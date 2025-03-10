@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
   <link rel="stylesheet" href="{{ 'mobile.css' | asset_url }}" media="(max-width: 768px)">
   <script src="{{ 'theme.js' | asset_url }}" defer></script>
+  <script src="{{ 'quicklink.umd.js' | asset_url }}" defer></script>
   <script src="{{ 'predictive-search.js' | asset_url }}" defer></script>
 
   {% render 'schemas' %}
@@ -61,5 +62,12 @@
     render 'newsletter-popup'
   endif
   %}
+  <script>
+    window.addEventListener('load', function() {
+      if (typeof quicklink === 'object') {
+        quicklink.listen();
+      }
+    });
+  </script>
 </body>
 </html>
