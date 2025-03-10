@@ -7,8 +7,7 @@
   --font-size: 1.125rem;
   --regular: 400;
   --bold: 900;
-  --border: 2px solid var(--black);
-  --shading: repeating-linear-gradient(45deg, white, white 2px, black 1px, black 3px);
+  --border: 1px solid var(--black);
 }
 
 * {
@@ -215,7 +214,6 @@ textarea {
   background: white;
   width: 100%;
   display: block;
-  border-radius: 0;
   border: var(--border);
   padding: 1rem;
   font-family: monospace;
@@ -307,11 +305,10 @@ main button,
   color: var(--white);
   padding: 14px 16px;
   position: relative;
-  border-radius: 5px;
 }
 main button.button-white,
 .button.button-white {
-  box-shadow: inset 0 0 0 2px var(--white);
+  box-shadow: inset 0 0 0 1px var(--white);
 }
 main button:hover,
 .button:hover,
@@ -319,7 +316,7 @@ main button.button-white,
 .button.button-white {
   background-color: var(--white);
   color: var(--black);
-  box-shadow: inset 0 0 0 2px var(--black);
+  box-shadow: inset 0 0 0 1px var(--black);
   font-weight: 600;
 }
 main button:before,
@@ -333,7 +330,6 @@ main button:before,
   left: 4px;
   z-index: -1;
   opacity: 0.75;
-  border-radius: 5px;
 }
 button + button,
 .button + .button {
@@ -394,7 +390,7 @@ main ol {
 
 hr {
   background: none;
-  border-top: 2px dashed var(--black);
+  border-top: 1px dashed var(--black);
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
 }
@@ -537,7 +533,7 @@ details > div {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  border: 2px solid var(--black);
+  border: 1px solid var(--black);
   padding: 1rem;
   text-decoration: none;
   background-color: var(--white);
@@ -550,7 +546,6 @@ details > div {
 .pill {
   display: inline-flex;
   padding: 0.15rem 0.75rem;
-  border-radius: 50px;
 }
 .product-card:hover:before,
 .collection-card:hover:before,
@@ -570,7 +565,6 @@ table:before {
   opacity: 0.75;
 }
 .pill:before {
-  border-radius: 50px;
   top: 0.35rem;
   left: 0.25rem;
 }
@@ -696,7 +690,6 @@ dialog {
   z-index: 100;
   background-color: var(--black);
   border: 0;
-  border-radius: 20px;
   max-width: 480px;
   width: calc(100vw - 2rem);
   color: white;
@@ -750,7 +743,7 @@ article img {
   left: 0;
   right: 0;
   background-color: var(--white);
-  border: 2px solid var(--black);
+  border: 1px solid var(--black);
   padding-bottom: 1rem;
 }
 #predictive-search-results ul {
@@ -761,7 +754,7 @@ article img {
   text-align: left;
   margin: 0 0.75rem;
   padding: 0.5rem 0;
-  border-bottom: 2px dashed var(--black);
+  border-bottom: 1px solid var(--black);
 }
 #predictive-search-results li:hover {
   background-color: #f7f7f7;
