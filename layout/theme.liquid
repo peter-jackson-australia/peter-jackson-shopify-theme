@@ -57,16 +57,16 @@
     </footer>
 
     {% liquid
-      # Newsletter Popup.
       if settings.newsletter_popup
         render 'newsletter-popup'
       endif
     %}
+    {% comment %}
+      Quicklink provides faster subsequent page-loads by prefetching in-viewport links during idle time
+    {% endcomment %}
     <script>
-      window.addEventListener('load', function () {
-        if (typeof quicklink === 'object') {
-          quicklink.listen();
-        }
+      window.addEventListener('load', () => {
+        quicklink.listen();
       });
     </script>
   </body>
