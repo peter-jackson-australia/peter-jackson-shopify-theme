@@ -19,8 +19,8 @@
 
   <link rel="canonical" href="{{ canonical_url }}">
 
-  <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}" rel="preload" as="style">
-  <script src="{{ 'theme.js' | asset_url }}" defer rel="preload" as="script"></script>
+  {{ 'theme.css' | asset_url | stylesheet_tag: preload: true }}
+  <script src="{{ 'theme.js' | asset_url }}" defer></script>
   <script src="{{ 'quicklink.umd.js' | asset_url }}" defer></script>
   <script src="{{ 'predictive-search.js' | asset_url }}" defer></script>
   
