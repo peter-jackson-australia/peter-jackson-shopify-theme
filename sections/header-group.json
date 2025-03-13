@@ -13,7 +13,6 @@
   "sections": {
     "announcement": {
       "type": "announcement-bar",
-      "disabled": true,
       "settings": {
         "text": "Welcome to the Peter Jackson Shopify Site",
         "background": "",
@@ -23,7 +22,7 @@
     "header": {
       "type": "header",
       "settings": {}
-    },
+    }
   },
   "order": [
     "announcement",
