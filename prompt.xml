@@ -1,29 +1,73 @@
 <prompt
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" type="development-request">
     <problem purpose="Defines the problem to be solved">
-        <summary>Install Alpine.JS within my Shopify Liquid theme without being render blocking at all</summary>
-        <detailed-description>I would like to use Alpine.JS throughout my website but I do not want it to have any performance impacts (currently the site is 100/100) from importing the library</detailed-description>
-        <objective priority="high">Have Alpine.JS in my Shopify Liquid theme without being render blocking or reducing lighthouse score</objective>
+        <summary>I need to create a mega menu side drawer component that contains the main menu for my Shopify Liquid Theme</summary>
+        <detailed-description>I want to create a button on the left hand side of my header component using Alpine.JS, that toggles open or closed the sidebar drawer menu. The sidebar drawer menu should be the full height of the screen minus the header height and sit below the header. when the sidebar drawer menu first opens up, it should contain the top level menu links in my main menu. If the top level menu link has sub menu items, it should be a clickable button that will open up a second drawer, otherwise it should just be a direct link. The second sidebar drawer menu will contain menu items that are on the second level of nesting and should follow the same functionality as the first drawer with buttons for elements that have third level menu items otherwise clickable links. If the second level menu items have child elements, a third drawer should open with the final links. A grey overlay should go over the body (not the header or the drawers) and scrolling should be locked. Alpine JS should be used for all functionality and the solution should be VERY simple.</detailed-description>
+        <objective priority="high">Create a functional, performant, simple side drawer mega menu with support for up to 3 levels of nesting and up to 3 drawers</objective>
     </problem>
     <context purpose="Provides technology context, constraints and existing code">
         <technology>
             <framework>Shopify Liquid</framework>
-            <languages>HTML, CSS, JavaScript, Liquid</languages>
-            <libraries>None yet</libraries>
+            <languages>HTML, CSS, JavaScript, Alpine.JS</languages>
+            <libraries>Alpine.JS</libraries>
         </technology>
+        <constraints>
+            <performance priority="high">The code must contain the most minimal amount of elements, lines, iterations, HTTP requests and external files as possible to meet the success criteria</performance>
+            <compatibility priority="high">The code must use conventions and practices that are supported by Safari 14 (16610.1.28) as a minimum standard</compatibility>
+        </constraints>
+        <existing-code-references>
+            reference the sections/header.liquid file
+        </existing-code-references>
     </context>
     <success-criteria purpose="Defines how to measure the success of the solution" priority="high">
         <functional-requirements priority="high">
-            <requirement>Alpine.JS installed in the Shopify Liquid theme without performance impact at all</requirement>
+            <requirement>
+            The menu should toggle opened or closed through the main button on the header OR by clicking anywhere on the header OR by clicking the grey overlay on the body
+            </requirement>
+            <requirement>
+            Menu items should be links if they do not have child menu items, otherwise buttons to open the next drawer and menu items
+            </requirement>
+            <requirement>
+            The functionality must be done through Alpine.JS for simplicity 
+            </requirement>
+            <requirement>
+            There must be a grey overlay over the body (not the header or drawers)
+            </requirement>
+            <requirement>
+            The body scroll must be locked when the menu is open
+            </requirement>
         </functional-requirements>
-        <test-cases>
-            <test-case>
-                <description>Add a very basic toggle button using Alpine.JS to prove that the library is installed and working</description>
-                <action>Create a button that toggles some message on or off using Alpine.JS</action>
-                <expected-outcome>Clicking the button will toggle on or off the message with Alpine.JS</expected-outcome>
-            </test-case>
-        </test-cases>
+        <non-functional-requirements priority="high">
+            <requirement>
+            The solution must very simple, prioritising minimal lines of code and simplicity. 
+            </requirement>
+        </non-functional-requirements>
     </success-criteria>
+    <examples purpose="Provides illustrative examples of a successful solution">
+        <example>
+            <scenario>A user comes to the home page of the website and clicks the menu, they set a category they are interested in that has sub categories, they click it and the second drawer opens up, here they see another section they are interested in that has further sub categories, they click it and the final drawer opens, then they click the link to the product category they want</scenario>
+        </example>
+    </examples>
+    <code-style-preferences purpose="Defines code style preferences">
+        <preferred-paradigms>
+            <paradigm>Functional</paradigm>
+            <paradigm>Procedural</paradigm>
+        </preferred-paradigms>
+        <avoided-paradigms>
+            <paradigm>Object-Oriented</paradigm>
+        </avoided-paradigms>
+        <priorities>
+            <priority>Simplicity</priority>
+            <priority>JavaScript native type safety</priority>
+            <priority>Bug-free</priority>
+            <priority>Scalability</priority>
+            <priority>Non-duplication</priority>
+        </priorities>
+        <naming-conventions>
+            <css>BEM - Block Element Modifier</css>
+            <javascript>camelCase</javascript>
+        </naming-conventions>
+    </code-style-preferences>
     <response-format purpose="Specifies the required response format">
         <sections>
             <section detail-level="low" word-count="50-100">Problem Overview</section>
