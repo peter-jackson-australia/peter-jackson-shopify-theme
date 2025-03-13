@@ -1,5 +1,13 @@
 {% comment %}
   Mega Menu Sidebar Drawer with side-by-side levels
+
+  TO DO:
+  Remove unused CSS
+  Semantic HTML
+  Add hover drawer with 5 products from 2nd level drawer collection
+  add support for collection videos
+  ensure that if no video or image is added to collection, nothing breaks
+  Put Javascript in bottom into own JS file in assets for minification
 {% endcomment %}
 
 <style>
@@ -30,7 +38,6 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
 
-  /* Adjust width based on active level */
   .menu-drawer[data-active-level='2'] {
     width: 700px;
   }
@@ -41,7 +48,7 @@
 
   .menu-drawer__inner {
     display: flex;
-    width: 1050px; /* 3 x 350px */
+    width: 1050px;
   }
 
   .menu-drawer__level {
@@ -126,7 +133,6 @@
     overflow: hidden;
   }
 
-  /* Featured image styles */
   .menu-drawer__featured-image {
     width: 100%;
     height: 200px;
@@ -134,7 +140,7 @@
     position: relative;
     overflow: hidden;
     border-bottom: 1px solid #eee;
-    will-change: transform; /* Performance optimization hint */
+    will-change: transform;
   }
 
   .menu-drawer__featured-image img {
@@ -142,7 +148,7 @@
     height: 100%;
     object-fit: cover;
     transition: opacity 0.2s ease;
-    transform: translateZ(0); /* Force GPU acceleration */
+    transform: translateZ(0);
   }
 
   .menu-drawer__featured-image.loading-new-image {
@@ -160,21 +166,18 @@
   @keydown.escape.window="closeMenu()"
   class="menu-drawer__container"
 >
-  <!-- Overlay -->
   <div
     x-show="isOpen"
     class="menu-drawer__overlay"
     @click="closeMenu()"
   ></div>
 
-  <!-- Menu Drawer -->
   <div
     x-show="isOpen"
     :data-active-level="currentLevel"
     class="menu-drawer"
   >
     <div class="menu-drawer__inner">
-      <!-- Level 1 -->
       <div
         :class="{'menu-drawer__level': true, 'active': currentLevel >= 1}"
         id="menu-drawer-level-1"
@@ -185,7 +188,7 @@
             <li>
               {% if link.links.size > 0 %}
                 <button
-                  @click="openLevel(2, '{{ link.title | escape }}', {{ forloop.index0 }}, '{{ link.object.featured_image | img_url: '1200x' }}', '{{ link.object.featured_image.alt | escape }}')"
+                  @click="openLevel(2, '{{ link.title | escape }}', {{ forloop.index0 }}, '{{ link.object.featured_image | image_url: width: 1200 }}', '{{ link.object.featured_image.alt | escape }}')"
                   class="menu-drawer__button menu-drawer__button--has-submenu"
                 >
                   <span>{{ link.title }}</span>
@@ -200,8 +203,6 @@
           {% endfor %}
         </ul>
       </div>
-
-      <!-- Level 2 -->
       <div
         :class="{'menu-drawer__level': true, 'active': currentLevel >= 2}"
         id="menu-drawer-level-2"
@@ -215,8 +216,6 @@
           </button>
           <h2 class="menu-drawer__heading" x-text="menuTitle"></h2>
         </div>
-
-        <!-- Featured Image Container -->
         <div
           class="menu-drawer__featured-image"
           :class="{'loading-new-image': isImageLoading}"
@@ -231,7 +230,6 @@
             width="100"
           >
         </div>
-
         <ul class="menu-drawer__menu">
           <template x-for="(item, childIndex) in submenu" :key="childIndex">
             <li>
@@ -253,8 +251,6 @@
           </template>
         </ul>
       </div>
-
-      <!-- Level 3 -->
       <div
         :class="{'menu-drawer__level': true, 'active': currentLevel >= 3}"
         id="menu-drawer-level-3"
@@ -279,8 +275,6 @@
     </div>
   </div>
 </div>
-
-<!-- Eventually move this to the assets folder for minifcation with the Shopify CDN -->
 <script>
   document.addEventListener('alpine:init', () => {
     Alpine.data('menuDrawer', () => ({
@@ -298,11 +292,9 @@
       isImageLoading: false,
 
       init() {
-        // Set header height
         const headerHeight = document.querySelector('header')?.offsetHeight || 60;
         document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
 
-        // Initialize menu data structure
         this.menuData = [
           {% for link in linklists['main-menu'].links %}
             {
@@ -330,7 +322,6 @@
           {% endfor %}
         ];
 
-        // Listen for toggle events from header button
         window.toggleNav = () => {
           this.isOpen ? this.closeMenu() : this.openMenu();
         };
@@ -348,10 +339,8 @@
       },
 
       openLevel(level, title, parentIndex, featuredImage, featuredImageAlt, childIndex) {
-        // Store the previous level to handle transitions properly
         const previousLevel = this.currentLevel;
         
-        // Check if we're clicking the same item at level 1 to open level 2 again
         const isSameLevel2Item = level === 2 && this.currentLevel === 2 && this.currentParentIndex === parentIndex;
         
         this.currentLevel = level;
@@ -361,25 +350,19 @@
           this.currentParentIndex = parentIndex;
           this.submenu = this.menuData[parentIndex].links;
           
-          // Don't change image if clicking the same item again
           if (!isSameLevel2Item) {
-            // Store current URL to check if image is the same
             const prevUrl = this.featuredImageUrl;
             const newUrl = featuredImage || (this.menuData[parentIndex] ? this.menuData[parentIndex].featuredImage : '');
             
-            // Only reset image if the URL has changed
             if (prevUrl !== newUrl) {
-              // Set loading state to completely hide the image element
               this.isImageLoading = true;
               this.imageLoaded = false;
-              
-              // While the image is hidden via CSS, set the new URL
-              // The '#' fallback prevents broken image icon
+
               if (featuredImage) {
                 this.featuredImageUrl = featuredImage;
                 this.featuredImageAlt = featuredImageAlt || title;
               } 
-              // Fallback to data from menuData structure
+
               else if (this.menuData[parentIndex]) {
                 this.featuredImageUrl = this.menuData[parentIndex].featuredImage;
                 this.featuredImageAlt = this.menuData[parentIndex].featuredImageAlt || title;
@@ -388,11 +371,7 @@
           }
         } else if (level === 3) {
           this.subMenuTitle = title;
-          // Direct access using parent and child indices
           this.subSubmenu = this.menuData[this.currentParentIndex].links[childIndex].links;
-          
-          // Maintain the featured image from level 2
-          // We don't need to do anything special here since we're not changing featuredImageUrl
         }
       },
 
@@ -400,7 +379,6 @@
         if (this.currentLevel > 1) {
           this.currentLevel--;
           
-          // Clear featured image only when going back to level 1
           if (this.currentLevel === 1) {
             this.featuredImageUrl = '';
             this.featuredImageAlt = '';
@@ -408,18 +386,15 @@
         }
       },
       
-      // Generate srcset for responsive images
       generateSrcset(baseUrl) {
         if (!baseUrl) return '';
         
-        // Extract the base URL without dimensions
         const urlParts = baseUrl.split('_1200x');
         if (urlParts.length !== 2) return baseUrl;
         
         const baseUrlWithoutSize = urlParts[0];
         const extension = urlParts[1];
         
-        // Generate different sizes for srcset
         return [
           `${baseUrlWithoutSize}_400x${extension} 400w`,
           `${baseUrlWithoutSize}_800x${extension} 800w`,
