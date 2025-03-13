@@ -9,21 +9,7 @@
  */
 {
   "sections": {
-    "articles_grid_XrKUxx": {
-      "type": "articles-grid",
-      "disabled": true,
-      "settings": {
-        "text": "Latest Articles Section",
-        "size": "h2",
-        "blog": "",
-        "limit": 3,
-        "articles_per_row": 3,
-        "background": "#f5f5f5",
-        "color": ""
-      }
-    }
   },
   "order": [
-    "articles_grid_XrKUxx"
   ]
 }
