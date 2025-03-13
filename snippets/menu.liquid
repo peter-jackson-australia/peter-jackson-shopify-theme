@@ -144,6 +144,14 @@
     transition: opacity 0.2s ease;
     transform: translateZ(0); /* Force GPU acceleration */
   }
+
+  .menu-drawer__featured-image.loading-new-image {
+    background-color: #f5f5f5;
+  }
+
+  .menu-drawer__featured-image.loading-new-image img {
+    display: none;
+  }
 </style>
 
 <div
@@ -177,7 +185,7 @@
             <li>
               {% if link.links.size > 0 %}
                 <button
-                  @click="openLevel(2, '{{ link.title | escape }}', {{ forloop.index0 }}, '{{ link.object.featured_image | image_url: width: 1200 }}', '{{ link.object.featured_image.alt | escape }}')"
+                  @click="openLevel(2, '{{ link.title | escape }}', {{ forloop.index0 }}, '{{ link.object.featured_image | img_url: '1200x' }}', '{{ link.object.featured_image.alt | escape }}')"
                   class="menu-drawer__button menu-drawer__button--has-submenu"
                 >
                   <span>{{ link.title }}</span>
@@ -209,14 +217,16 @@
         </div>
 
         <!-- Featured Image Container -->
-        <div class="menu-drawer__featured-image">
+        <div
+          class="menu-drawer__featured-image"
+          :class="{'loading-new-image': isImageLoading}"
+        >
           <img
-            :src="featuredImageUrl"
+            :src="featuredImageUrl || '#'"
             :alt="featuredImageAlt"
             :srcset="generateSrcset(featuredImageUrl)"
             loading="eager"
-            x-bind:style="{ opacity: featuredImageUrl ? 1 : 0 }"
-            @load="imageLoaded = true"
+            @load="imageLoaded = true; isImageLoading = false;"
             height="100"
             width="100"
           >
@@ -285,6 +295,7 @@
       featuredImageUrl: '',
       featuredImageAlt: '',
       imageLoaded: false,
+      isImageLoading: false,
 
       init() {
         // Set header height
@@ -350,25 +361,29 @@
           this.currentParentIndex = parentIndex;
           this.submenu = this.menuData[parentIndex].links;
           
-          // Don't reset imageLoaded if clicking the same item again
+          // Don't change image if clicking the same item again
           if (!isSameLevel2Item) {
             // Store current URL to check if image is the same
             const prevUrl = this.featuredImageUrl;
+            const newUrl = featuredImage || (this.menuData[parentIndex] ? this.menuData[parentIndex].featuredImage : '');
             
-            // Set featured image if provided directly from click handler
-            if (featuredImage) {
-              this.featuredImageUrl = featuredImage;
-              this.featuredImageAlt = featuredImageAlt || title;
-            } 
-            // Fallback to data from menuData structure
-            else {
-              this.featuredImageUrl = this.menuData[parentIndex].featuredImage;
-              this.featuredImageAlt = this.menuData[parentIndex].featuredImageAlt || title;
-            }
-            
-            // Only reset imageLoaded if the image URL has changed
-            if (prevUrl !== this.featuredImageUrl) {
+            // Only reset image if the URL has changed
+            if (prevUrl !== newUrl) {
+              // Set loading state to completely hide the image element
+              this.isImageLoading = true;
               this.imageLoaded = false;
+              
+              // While the image is hidden via CSS, set the new URL
+              // The '#' fallback prevents broken image icon
+              if (featuredImage) {
+                this.featuredImageUrl = featuredImage;
+                this.featuredImageAlt = featuredImageAlt || title;
+              } 
+              // Fallback to data from menuData structure
+              else if (this.menuData[parentIndex]) {
+                this.featuredImageUrl = this.menuData[parentIndex].featuredImage;
+                this.featuredImageAlt = this.menuData[parentIndex].featuredImageAlt || title;
+              }
             }
           }
         } else if (level === 3) {
