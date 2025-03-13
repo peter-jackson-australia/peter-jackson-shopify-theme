@@ -318,9 +318,6 @@
             }{% unless forloop.last %},{% endunless %}
           {% endfor %}
         ];
-        
-        // Preload collection images for faster rendering
-        this.preloadCollectionImages();
 
         // Listen for toggle events from header button
         window.toggleNav = () => {
@@ -339,42 +336,36 @@
         document.body.classList.remove('menu-open');
       },
 
-openLevel(level, title, parentIndex, featuredImage, featuredImageAlt, childIndex) {
-  // Store the previous level to handle transitions properly
-  const previousLevel = this.currentLevel;
-  this.currentLevel = level;
+      openLevel(level, title, parentIndex, featuredImage, featuredImageAlt, childIndex) {
+        // Store the previous level to handle transitions properly
+        const previousLevel = this.currentLevel;
+        this.currentLevel = level;
 
-  if (level === 2) {
-    this.menuTitle = title;
-    this.currentParentIndex = parentIndex;
-    this.submenu = this.menuData[parentIndex].links;
-    this.imageLoaded = false;
-    
-    // Set featured image if provided directly from click handler
-    if (featuredImage) {
-      this.featuredImageUrl = featuredImage;
-      this.featuredImageAlt = featuredImageAlt || title;
-    } 
-    // Fallback to data from menuData structure
-    else {
-      this.featuredImageUrl = this.menuData[parentIndex].featuredImage;
-      this.featuredImageAlt = this.menuData[parentIndex].featuredImageAlt || title;
-    }
-    
-    // Preload the image to avoid delay
-    if (this.featuredImageUrl) {
-      const img = new Image();
-      img.src = this.featuredImageUrl;
-    }
-  } else if (level === 3) {
-    this.subMenuTitle = title;
-    // Direct access using parent and child indices
-    this.subSubmenu = this.menuData[this.currentParentIndex].links[childIndex].links;
-    
-    // Maintain the featured image from level 2
-    // We don't need to do anything special here since we're not changing featuredImageUrl
-  }
-},
+        if (level === 2) {
+          this.menuTitle = title;
+          this.currentParentIndex = parentIndex;
+          this.submenu = this.menuData[parentIndex].links;
+          this.imageLoaded = false;
+          
+          // Set featured image if provided directly from click handler
+          if (featuredImage) {
+            this.featuredImageUrl = featuredImage;
+            this.featuredImageAlt = featuredImageAlt || title;
+          } 
+          // Fallback to data from menuData structure
+          else {
+            this.featuredImageUrl = this.menuData[parentIndex].featuredImage;
+            this.featuredImageAlt = this.menuData[parentIndex].featuredImageAlt || title;
+          }
+        } else if (level === 3) {
+          this.subMenuTitle = title;
+          // Direct access using parent and child indices
+          this.subSubmenu = this.menuData[this.currentParentIndex].links[childIndex].links;
+          
+          // Maintain the featured image from level 2
+          // We don't need to do anything special here since we're not changing featuredImageUrl
+        }
+      },
 
       backLevel() {
         if (this.currentLevel > 1) {
@@ -405,23 +396,6 @@ openLevel(level, title, parentIndex, featuredImage, featuredImageAlt, childIndex
           `${baseUrlWithoutSize}_800x${extension} 800w`,
           `${baseUrlWithoutSize}_1200x${extension} 1200w`
         ].join(', ');
-      },
-      
-      // Preload collection images for faster rendering
-      preloadCollectionImages() {
-        // Only preload if we have menu data
-        if (!this.menuData || !this.menuData.length) return;
-        
-        // Find all valid image URLs
-        const imagesToPreload = this.menuData
-          .filter(item => item.featuredImage)
-          .map(item => item.featuredImage);
-        
-        // Preload each image
-        imagesToPreload.forEach(imageUrl => {
-          const img = new Image();
-          img.src = imageUrl;
-        });
       }
     }));
   });
