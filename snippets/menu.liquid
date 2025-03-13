@@ -177,7 +177,7 @@
             <li>
               {% if link.links.size > 0 %}
                 <button
-                  @click="openLevel(2, '{{ link.title | escape }}', {{ forloop.index0 }}, '{{ link.object.featured_image | img_url: '1200x' }}', '{{ link.object.featured_image.alt | escape }}')"
+                  @click="openLevel(2, '{{ link.title | escape }}', {{ forloop.index0 }}, '{{ link.object.featured_image | image_url: width: 1200 }}', '{{ link.object.featured_image.alt | escape }}')"
                   class="menu-drawer__button menu-drawer__button--has-submenu"
                 >
                   <span>{{ link.title }}</span>
@@ -215,7 +215,7 @@
             :alt="featuredImageAlt"
             :srcset="generateSrcset(featuredImageUrl)"
             loading="eager"
-            x-bind:style="{ opacity: imageLoaded ? 1 : 0 }"
+            x-bind:style="{ opacity: featuredImageUrl ? 1 : 0 }"
             @load="imageLoaded = true"
             height="100"
             width="100"
@@ -339,23 +339,37 @@
       openLevel(level, title, parentIndex, featuredImage, featuredImageAlt, childIndex) {
         // Store the previous level to handle transitions properly
         const previousLevel = this.currentLevel;
+        
+        // Check if we're clicking the same item at level 1 to open level 2 again
+        const isSameLevel2Item = level === 2 && this.currentLevel === 2 && this.currentParentIndex === parentIndex;
+        
         this.currentLevel = level;
 
         if (level === 2) {
           this.menuTitle = title;
           this.currentParentIndex = parentIndex;
           this.submenu = this.menuData[parentIndex].links;
-          this.imageLoaded = false;
           
-          // Set featured image if provided directly from click handler
-          if (featuredImage) {
-            this.featuredImageUrl = featuredImage;
-            this.featuredImageAlt = featuredImageAlt || title;
-          } 
-          // Fallback to data from menuData structure
-          else {
-            this.featuredImageUrl = this.menuData[parentIndex].featuredImage;
-            this.featuredImageAlt = this.menuData[parentIndex].featuredImageAlt || title;
+          // Don't reset imageLoaded if clicking the same item again
+          if (!isSameLevel2Item) {
+            // Store current URL to check if image is the same
+            const prevUrl = this.featuredImageUrl;
+            
+            // Set featured image if provided directly from click handler
+            if (featuredImage) {
+              this.featuredImageUrl = featuredImage;
+              this.featuredImageAlt = featuredImageAlt || title;
+            } 
+            // Fallback to data from menuData structure
+            else {
+              this.featuredImageUrl = this.menuData[parentIndex].featuredImage;
+              this.featuredImageAlt = this.menuData[parentIndex].featuredImageAlt || title;
+            }
+            
+            // Only reset imageLoaded if the image URL has changed
+            if (prevUrl !== this.featuredImageUrl) {
+              this.imageLoaded = false;
+            }
           }
         } else if (level === 3) {
           this.subMenuTitle = title;
