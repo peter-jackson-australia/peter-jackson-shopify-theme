@@ -157,7 +157,7 @@
             <li>
               {% if link.links.size > 0 %}
                 <button
-                  @click="openLevel(2, '{{ link.title | escape }}', {{ link.links | json | replace: '"', "'" }})"
+                  @click="openLevel(2, '{{ link.title | escape }}', {{ forloop.index0 }})"
                   class="menu-drawer__button menu-drawer__button--has-submenu"
                 >
                   <span>{{ link.title }}</span>
@@ -187,11 +187,11 @@
           <h2 class="menu-drawer__heading" x-text="menuTitle"></h2>
         </div>
         <ul class="menu-drawer__menu">
-          <template x-for="(item, index) in submenu" :key="index">
+          <template x-for="(item, childIndex) in submenu" :key="childIndex">
             <li>
               <template x-if="item.links && item.links.length > 0">
                 <button
-                  @click="openLevel(3, item.title, item.links)"
+                  @click="openLevel(3, item.title, currentParentIndex, childIndex)"
                   class="menu-drawer__button menu-drawer__button--has-submenu"
                 >
                   <span x-text="item.title"></span>
@@ -242,11 +242,41 @@
       subMenuTitle: '',
       submenu: [],
       subSubmenu: [],
+      menuData: [],
+      currentParentIndex: 0,
 
       init() {
         // Set header height
         const headerHeight = document.querySelector('header')?.offsetHeight || 60;
         document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
+
+        // Initialize menu data structure
+        this.menuData = [
+          {% for link in linklists['main-menu'].links %}
+            {
+              title: "{{ link.title | escape }}",
+              url: "{{ link.url | escape }}",
+              links: [
+                {% for childlink in link.links %}
+                  {
+                    title: "{{ childlink.title | escape }}",
+                    url: "{{ childlink.url | escape }}",
+                    links: [
+                      {% for grandchildlink in childlink.links %}
+                        {
+                          title: "{{ grandchildlink.title | escape }}",
+                          url: "{{ grandchildlink.url | escape }}"
+                        }{% unless forloop.last %},{% endunless %}
+                      {% endfor %}
+                    ]
+                  }{% unless forloop.last %},{% endunless %}
+                {% endfor %}
+              ]
+            }{% unless forloop.last %},{% endunless %}
+          {% endfor %}
+        ];
+
+        console.log('Menu data initialized:', this.menuData);
 
         // Listen for toggle events from header button
         window.toggleNav = () => {
@@ -265,26 +295,21 @@
         document.body.classList.remove('menu-open');
       },
 
-      openLevel(level, title, items) {
-        // Parse items if passed as string
-        let parsedItems = items;
-        if (typeof items === 'string') {
-          try {
-            parsedItems = JSON.parse(items.replace(/'/g, '"'));
-          } catch (error) {
-            console.error('Error parsing menu items:', error);
-            parsedItems = [];
-          }
-        }
-
+      openLevel(level, title, parentIndex, childIndex) {
+        console.log('Opening level', level, 'title:', title, 'parentIndex:', parentIndex, 'childIndex:', childIndex);
+        
         this.currentLevel = level;
 
         if (level === 2) {
           this.menuTitle = title;
-          this.submenu = parsedItems;
+          this.currentParentIndex = parentIndex;
+          this.submenu = this.menuData[parentIndex].links;
+          console.log('Level 2 items:', this.submenu);
         } else if (level === 3) {
           this.subMenuTitle = title;
-          this.subSubmenu = parsedItems;
+          // Direct access using parent and child indices
+          this.subSubmenu = this.menuData[parentIndex].links[childIndex].links;
+          console.log('Level 3 items:', this.subSubmenu);
         }
       },
 
