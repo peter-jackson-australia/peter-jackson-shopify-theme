@@ -1,0 +1,48 @@
+<prompt
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" type="development-request">
+    <problem purpose="Defines the problem to be solved">
+        <summary>Install Alpine.JS within my Shopify Liquid theme without being render blocking at all</summary>
+        <detailed-description>I would like to use Alpine.JS throughout my website but I do not want it to have any performance impacts (currently the site is 100/100) from importing the library</detailed-description>
+        <objective priority="high">Have Alpine.JS in my Shopify Liquid theme without being render blocking or reducing lighthouse score</objective>
+    </problem>
+    <context purpose="Provides technology context, constraints and existing code">
+        <technology>
+            <framework>Shopify Liquid</framework>
+            <languages>HTML, CSS, JavaScript, Liquid</languages>
+            <libraries>None yet</libraries>
+        </technology>
+    </context>
+    <success-criteria purpose="Defines how to measure the success of the solution" priority="high">
+        <functional-requirements priority="high">
+            <requirement>Alpine.JS installed in the Shopify Liquid theme without performance impact at all</requirement>
+        </functional-requirements>
+        <test-cases>
+            <test-case>
+                <description>Add a very basic toggle button using Alpine.JS to prove that the library is installed and working</description>
+                <action>Create a button that toggles some message on or off using Alpine.JS</action>
+                <expected-outcome>Clicking the button will toggle on or off the message with Alpine.JS</expected-outcome>
+            </test-case>
+        </test-cases>
+    </success-criteria>
+    <response-format purpose="Specifies the required response format">
+        <sections>
+            <section detail-level="low" word-count="50-100">Problem Overview</section>
+            <section detail-level="medium" word-count="100-150">Edge Cases/Pitfalls</section>
+            <section detail-level="low" word-count="50-100">Solution Approach Description</section>
+            <section detail-level="high" word-count="150-250">Detailed Implementation Steps</section>
+            <section>Code Implementation</section>
+            <section detail-level="medium" word-count="100-150">Testing Strategy</section>
+        </sections>
+        <code-presentation>
+            <format>Code blocks with syntax highlighting</format>
+            <comments>Detailed comments explaining non-obvious logic</comments>
+            <organisation>Modular, with clear function boundaries</organisation>
+        </code-presentation>
+        <supporting-materials>
+            <include>References to documentation</include>
+            <include>
+                <requirement>Provable</requirement> Performance considerations
+            </include>
+        </supporting-materials>
+    </response-format>
+</prompt>
