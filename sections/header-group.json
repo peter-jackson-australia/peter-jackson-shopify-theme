@@ -15,7 +15,7 @@
       "type": "announcement-bar",
       "disabled": true,
       "settings": {
-        "text": "Welcome to the Taillour Demo store.",
+        "text": "Welcome to the Peter Jackson Shopify Site",
         "background": "",
         "color": ""
       }
@@ -24,17 +24,9 @@
       "type": "header",
       "settings": {}
     },
-    "nav": {
-      "type": "nav",
-      "disabled": true,
-      "settings": {
-        "menu": "main-menu"
-      }
-    }
   },
   "order": [
     "announcement",
-    "header",
-    "nav"
+    "header"
   ]
 }
