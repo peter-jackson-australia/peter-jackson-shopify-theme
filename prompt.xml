@@ -1,51 +1,38 @@
+<!--
+    STEP 1: Break the problem down into its smallest, atomic components. 
+    STEP 2: Use the Prompt XML template below for each step in the problem in a new Claude 3.7 window 
+    STEP 3: Test each step against the success criteria before moving on
+-->
+
 <prompt
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" type="development-request">
     <problem purpose="Defines the problem to be solved">
-        <summary>I need to create a mega menu side drawer component that contains the main menu for my Shopify Liquid Theme</summary>
-        <detailed-description>I want to create a button on the left hand side of my header component using Alpine.JS, that toggles open or closed the sidebar drawer menu. The sidebar drawer menu should be the full height of the screen minus the header height and sit below the header. when the sidebar drawer menu first opens up, it should contain the top level menu links in my main menu. If the top level menu link has sub menu items, it should be a clickable button that will open up a second drawer, otherwise it should just be a direct link. The second sidebar drawer menu will contain menu items that are on the second level of nesting and should follow the same functionality as the first drawer with buttons for elements that have third level menu items otherwise clickable links. If the second level menu items have child elements, a third drawer should open with the final links. A grey overlay should go over the body (not the header or the drawers) and scrolling should be locked. Alpine JS should be used for all functionality and the solution should be VERY simple.</detailed-description>
-        <objective priority="high">Create a functional, performant, simple side drawer mega menu with support for up to 3 levels of nesting and up to 3 drawers</objective>
+        <summary>Taking the existing code inside of menu.liquid, I want you to place the collection featured image inside of the level 2 menu drawer below the element with the class "menu-drawer__header"</summary>
+        <detailed-description>Without breaking any of the code inside of menu.liquid, pull in the featured image for the collection inside of drawer 2. For example if you click on a collection on level 1, it will open up this collection and its sub collections in menu drawer level 2. You are to pull in the featured image and place it directly below the element with the class "menu-drawer__header" and ensure that it is lazy loaded for performance benefits. The image should be responsive and use the srcset attribute</detailed-description>
+        <objective priority="high">Pull in the featured image for the currently active collection specified in menu drawer level 1 and display it in menu drawer level 2</objective>
     </problem>
     <context purpose="Provides technology context, constraints and existing code">
         <technology>
             <framework>Shopify Liquid</framework>
-            <languages>HTML, CSS, JavaScript, Alpine.JS</languages>
-            <libraries>Alpine.JS</libraries>
+            <languages>HTML, CSS, JavaScript, Liquid, Alpine.js</languages>
+            <libraries>Liquid, Alpine.js</libraries>
         </technology>
         <constraints>
             <performance priority="high">The code must contain the most minimal amount of elements, lines, iterations, HTTP requests and external files as possible to meet the success criteria</performance>
             <compatibility priority="high">The code must use conventions and practices that are supported by Safari 14 (16610.1.28) as a minimum standard</compatibility>
         </constraints>
-        <existing-code-references>
-            reference the sections/header.liquid file
-        </existing-code-references>
     </context>
     <success-criteria purpose="Defines how to measure the success of the solution" priority="high">
         <functional-requirements priority="high">
-            <requirement>
-            The menu should toggle opened or closed through the main button on the header OR by clicking anywhere on the header OR by clicking the grey overlay on the body
-            </requirement>
-            <requirement>
-            Menu items should be links if they do not have child menu items, otherwise buttons to open the next drawer and menu items
-            </requirement>
-            <requirement>
-            The functionality must be done through Alpine.JS for simplicity 
-            </requirement>
-            <requirement>
-            There must be a grey overlay over the body (not the header or drawers)
-            </requirement>
-            <requirement>
-            The body scroll must be locked when the menu is open
-            </requirement>
+            <requirement>The image must be from the top level menu item collection from the shopify main menu that is selected in menu drawer level 1. For example menu item 1 when selected would display the featured image in drawer 2 for menu item 1</requirement>
+            <requirement>The image must be responsive and must use the srcset attribute to load in the correct image resolution, for performance benefits.</requirement>
+            <requirement>A specified height must be set so that there are no layout shifts, a light grey box can sit where the image will go until it loads</requirement>
+            <requirement>The image must load in its alt tag</requirement>
         </functional-requirements>
-        <non-functional-requirements priority="high">
-            <requirement>
-            The solution must very simple, prioritising minimal lines of code and simplicity. 
-            </requirement>
-        </non-functional-requirements>
     </success-criteria>
     <examples purpose="Provides illustrative examples of a successful solution">
         <example>
-            <scenario>A user comes to the home page of the website and clicks the menu, they set a category they are interested in that has sub categories, they click it and the second drawer opens up, here they see another section they are interested in that has further sub categories, they click it and the final drawer opens, then they click the link to the product category they want</scenario>
+            <scenario>A user clicks on menu item c inside of the menu drawer level 1 drawer, this opens the level 2 drawer as menu item c has sub menu items. Inside of level 2 drawer the image for the collection selected in menu level 1 will be displayed after lazy loading, but not causing any layout shifts.</scenario>
         </example>
     </examples>
     <code-style-preferences purpose="Defines code style preferences">
