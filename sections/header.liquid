@@ -3,7 +3,7 @@
     Logos will typically be SVG's, so no theme settings for this for maximum control :)
   {% endcomment %}
   <div id="btn-menu" data-device="mobile" class="flex middle">
-    <button type="button" onclick="toggleNav();">Menu</button>
+    <button type="button" onclick="window.toggleNav();">Menu</button>
   </div>
   <div id="logo">
     <a href="/">Peter Jackson</a>
@@ -24,3 +24,5 @@
     </div>
   </div>
 </header>
+
+{% render 'menu-drawer' %}
