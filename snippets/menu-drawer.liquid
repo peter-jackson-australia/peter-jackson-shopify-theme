@@ -1,8 +1,5 @@
 {% comment %}
-  Mega Menu Sidebar Drawer
-  - Supports up to 3 levels of menu nesting
-  - Toggles via header button or overlay click
-  - Uses Alpine.js for state management
+  Mega Menu Sidebar Drawer with side-by-side levels
 {% endcomment %}
 
 <style>
@@ -26,34 +23,51 @@
     top: var(--header-height, 60px);
     left: 0;
     bottom: 0;
-    width: 100%;
-    max-width: 350px;
+    width: 350px;
     background: white;
-    overflow-y: auto;
+    overflow-x: hidden;
     z-index: 1002;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
 
-  .menu-drawer__level {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow-y: auto;
+  /* Adjust width based on active level */
+  .menu-drawer[data-active-level='2'] {
+    width: 700px;
   }
 
-  .menu-drawer__header {
+  .menu-drawer[data-active-level='3'] {
+    width: 1050px;
+  }
+
+  .menu-drawer__inner {
     display: flex;
-    align-items: center;
-    padding: 15px;
-    border-bottom: 1px solid #eee;
+    width: 1050px; /* 3 x 350px */
+  }
+
+  .menu-drawer__level {
+    width: 350px;
+    min-width: 350px;
+    height: 100%;
+    overflow-y: auto;
+    border-right: 1px solid #eee;
+    display: none;
+  }
+
+  .menu-drawer__level.active {
+    display: block;
   }
 
   .menu-drawer__heading {
     margin: 0;
     padding: 15px;
     font-size: 18px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .menu-drawer__header {
+    display: flex;
+    align-items: center;
+    padding: 15px;
     border-bottom: 1px solid #eee;
   }
 
@@ -108,7 +122,6 @@
     margin-right: 5px;
   }
 
-  /* When menu is open, prevent body scroll */
   body.menu-open {
     overflow: hidden;
   }
@@ -123,123 +136,99 @@
   <!-- Overlay -->
   <div
     x-show="isOpen"
-    x-transition:enter="transition-opacity ease-in-out duration-300"
-    x-transition:enter-start="opacity-0"
-    x-transition:enter-end="opacity-100"
-    x-transition:leave="transition-opacity ease-in-out duration-300"
-    x-transition:leave-start="opacity-100"
-    x-transition:leave-end="opacity-0"
-    @click="closeMenu()"
     class="menu-drawer__overlay"
+    @click="closeMenu()"
   ></div>
 
   <!-- Menu Drawer -->
   <div
     x-show="isOpen"
-    x-transition:enter="transition-transform ease-in-out duration-300"
-    x-transition:enter-start="-translate-x-full"
-    x-transition:enter-end="translate-x-0"
-    x-transition:leave="transition-transform ease-in-out duration-300"
-    x-transition:leave-start="translate-x-0"
-    x-transition:leave-end="-translate-x-full"
+    :data-active-level="currentLevel"
     class="menu-drawer"
   >
-    <!-- Level 1 -->
-    <div
-      x-show="currentLevel === 1"
-      class="menu-drawer__level"
-    >
-      <h2 class="menu-drawer__heading">Menu</h2>
-      <ul class="menu-drawer__menu">
-        {% for link in linklists['main-menu'].links %}
-          <li>
-            {% if link.links.size > 0 %}
-              <button
-                @click="openLevel(2, '{{ link.title }}', {{ link.links | json }})"
-                class="menu-drawer__button menu-drawer__button--has-submenu"
-              >
-                <span>{{ link.title }}</span>
-                <svg class="icon" viewBox="0 0 24 24">
-                  <path d="M8 4l8 8-8 8"></path>
-                </svg>
-              </button>
-            {% else %}
-              <a href="{{ link.url }}" class="menu-drawer__link">{{ link.title }}</a>
-            {% endif %}
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
-
-    <!-- Level 2 -->
-    <div
-      x-show="currentLevel === 2"
-      x-transition:enter="transition-transform ease-in-out duration-300"
-      x-transition:enter-start="translate-x-full"
-      x-transition:enter-end="translate-x-0"
-      x-transition:leave="transition-transform ease-in-out duration-300"
-      x-transition:leave-start="translate-x-0"
-      x-transition:leave-end="translate-x-full"
-      class="menu-drawer__level"
-    >
-      <div class="menu-drawer__header">
-        <button @click="backLevel()" class="menu-drawer__back">
-          <svg class="icon" viewBox="0 0 24 24">
-            <path d="M16 4l-8 8 8 8"></path>
-          </svg>
-          <span>Back</span>
-        </button>
-        <h2 class="menu-drawer__heading" x-text="currentTitle"></h2>
+    <div class="menu-drawer__inner">
+      <!-- Level 1 -->
+      <div
+        :class="{'menu-drawer__level': true, 'active': currentLevel >= 1}"
+      >
+        <h2 class="menu-drawer__heading">Menu</h2>
+        <ul class="menu-drawer__menu">
+          {% for link in linklists['main-menu'].links %}
+            <li>
+              {% if link.links.size > 0 %}
+                <button
+                  @click="openLevel(2, '{{ link.title | escape }}', {{ link.links | json | replace: '"', "'" }})"
+                  class="menu-drawer__button menu-drawer__button--has-submenu"
+                >
+                  <span>{{ link.title }}</span>
+                  <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M8 4l8 8-8 8"></path>
+                  </svg>
+                </button>
+              {% else %}
+                <a href="{{ link.url }}" class="menu-drawer__link">{{ link.title }}</a>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
       </div>
-      <ul class="menu-drawer__menu">
-        <template x-for="item in currentSubMenu" :key="item.title">
-          <li>
-            <template x-if="item.links && item.links.length > 0">
-              <button
-                @click="openLevel(3, item.title, item.links)"
-                class="menu-drawer__button menu-drawer__button--has-submenu"
-              >
-                <span x-text="item.title"></span>
-                <svg class="icon" viewBox="0 0 24 24">
-                  <path d="M8 4l8 8-8 8"></path>
-                </svg>
-              </button>
-            </template>
-            <template x-if="!item.links || item.links.length === 0">
+
+      <!-- Level 2 -->
+      <div
+        :class="{'menu-drawer__level': true, 'active': currentLevel >= 2}"
+      >
+        <div class="menu-drawer__header">
+          <button @click="backLevel()" class="menu-drawer__back">
+            <svg class="icon" viewBox="0 0 24 24">
+              <path d="M16 4l-8 8 8 8"></path>
+            </svg>
+            <span>Back</span>
+          </button>
+          <h2 class="menu-drawer__heading" x-text="menuTitle"></h2>
+        </div>
+        <ul class="menu-drawer__menu">
+          <template x-for="(item, index) in submenu" :key="index">
+            <li>
+              <template x-if="item.links && item.links.length > 0">
+                <button
+                  @click="openLevel(3, item.title, item.links)"
+                  class="menu-drawer__button menu-drawer__button--has-submenu"
+                >
+                  <span x-text="item.title"></span>
+                  <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M8 4l8 8-8 8"></path>
+                  </svg>
+                </button>
+              </template>
+              <template x-if="!item.links || item.links.length === 0">
+                <a :href="item.url" class="menu-drawer__link" x-text="item.title"></a>
+              </template>
+            </li>
+          </template>
+        </ul>
+      </div>
+
+      <!-- Level 3 -->
+      <div
+        :class="{'menu-drawer__level': true, 'active': currentLevel >= 3}"
+      >
+        <div class="menu-drawer__header">
+          <button @click="backLevel()" class="menu-drawer__back">
+            <svg class="icon" viewBox="0 0 24 24">
+              <path d="M16 4l-8 8 8 8"></path>
+            </svg>
+            <span>Back</span>
+          </button>
+          <h2 class="menu-drawer__heading" x-text="subMenuTitle"></h2>
+        </div>
+        <ul class="menu-drawer__menu">
+          <template x-for="(item, index) in subSubmenu" :key="index">
+            <li>
               <a :href="item.url" class="menu-drawer__link" x-text="item.title"></a>
-            </template>
-          </li>
-        </template>
-      </ul>
-    </div>
-
-    <!-- Level 3 -->
-    <div
-      x-show="currentLevel === 3"
-      x-transition:enter="transition-transform ease-in-out duration-300"
-      x-transition:enter-start="translate-x-full"
-      x-transition:enter-end="translate-x-0"
-      x-transition:leave="transition-transform ease-in-out duration-300"
-      x-transition:leave-start="translate-x-0"
-      x-transition:leave-end="translate-x-full"
-      class="menu-drawer__level"
-    >
-      <div class="menu-drawer__header">
-        <button @click="backLevel()" class="menu-drawer__back">
-          <svg class="icon" viewBox="0 0 24 24">
-            <path d="M16 4l-8 8 8 8"></path>
-          </svg>
-          <span>Back</span>
-        </button>
-        <h2 class="menu-drawer__heading" x-text="currentTitle"></h2>
+            </li>
+          </template>
+        </ul>
       </div>
-      <ul class="menu-drawer__menu">
-        <template x-for="item in currentSubMenu" :key="item.title">
-          <li>
-            <a :href="item.url" class="menu-drawer__link" x-text="item.title"></a>
-          </li>
-        </template>
-      </ul>
     </div>
   </div>
 </div>
@@ -249,13 +238,14 @@
     Alpine.data('menuDrawer', () => ({
       isOpen: false,
       currentLevel: 1,
-      currentTitle: '',
-      currentSubMenu: [],
-      menuHistory: [],
+      menuTitle: '',
+      subMenuTitle: '',
+      submenu: [],
+      subSubmenu: [],
 
       init() {
-        // Set custom property for header height
-        const headerHeight = document.querySelector('header').offsetHeight;
+        // Set header height
+        const headerHeight = document.querySelector('header')?.offsetHeight || 60;
         document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
 
         // Listen for toggle events from header button
@@ -267,9 +257,6 @@
       openMenu() {
         this.isOpen = true;
         this.currentLevel = 1;
-        this.currentTitle = 'Menu';
-        this.currentSubMenu = [];
-        this.menuHistory = [];
         document.body.classList.add('menu-open');
       },
 
@@ -278,29 +265,32 @@
         document.body.classList.remove('menu-open');
       },
 
-      openLevel(level, title, submenu) {
-        // Save current state to history for back navigation
-        this.menuHistory.push({
-          level: this.currentLevel,
-          title: this.currentTitle,
-          submenu: this.currentSubMenu,
-        });
+      openLevel(level, title, items) {
+        // Parse items if passed as string
+        let parsedItems = items;
+        if (typeof items === 'string') {
+          try {
+            parsedItems = JSON.parse(items.replace(/'/g, '"'));
+          } catch (error) {
+            console.error('Error parsing menu items:', error);
+            parsedItems = [];
+          }
+        }
 
         this.currentLevel = level;
-        this.currentTitle = title;
-        this.currentSubMenu = submenu;
+
+        if (level === 2) {
+          this.menuTitle = title;
+          this.submenu = parsedItems;
+        } else if (level === 3) {
+          this.subMenuTitle = title;
+          this.subSubmenu = parsedItems;
+        }
       },
 
       backLevel() {
-        if (this.menuHistory.length > 0) {
-          // Restore state from history
-          const previousState = this.menuHistory.pop();
-          this.currentLevel = previousState.level;
-          this.currentTitle = previousState.title;
-          this.currentSubMenu = previousState.submenu;
-        } else {
-          // If no history, go back to level 1
-          this.currentLevel = 1;
+        if (this.currentLevel > 1) {
+          this.currentLevel--;
         }
       },
     }));
