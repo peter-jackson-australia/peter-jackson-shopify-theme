@@ -3,7 +3,6 @@
 
   TO DO:
   Remove unused CSS
-  Semantic HTML
   Add hover drawer with 5 products from 2nd level drawer collection
   add support for collection videos
   ensure that if no video or image is added to collection, nothing breaks
@@ -163,58 +162,67 @@
   x-init="init()"
   @keydown.escape.window="closeMenu()"
   class="menu-drawer__container"
+  aria-label="Main menu"
 >
   <div
     x-show="isOpen"
     class="menu-drawer__overlay"
     @click="closeMenu()"
+    role="button"
+    aria-label="Close menu"
+    tabindex="-1"
   ></div>
 
-  <div
+  <nav
     x-show="isOpen"
     :data-active-level="currentLevel"
     class="menu-drawer"
   >
     <div class="menu-drawer__inner">
-      <div
+      <section
         :class="{'menu-drawer__level': true, 'active': currentLevel >= 1}"
         id="menu-drawer-level-1"
+        aria-labelledby="menu-drawer-heading-1"
       >
-        <h2 class="menu-drawer__heading">Menu</h2>
-        <ul class="menu-drawer__menu">
+        <h2 class="menu-drawer__heading" id="menu-drawer-heading-1">Menu</h2>
+        <ul class="menu-drawer__menu" role="menu">
           {% for link in linklists['main-menu'].links %}
-            <li>
+            <li role="none">
               {% if link.links.size > 0 %}
                 <button
                   @click="openLevel(2, '{{ link.title | escape }}', {{ forloop.index0 }}, '{{ link.object.featured_image | image_url: width: 1200 }}', '{{ link.object.featured_image.alt | escape }}')"
                   class="menu-drawer__button menu-drawer__button--has-submenu"
+                  role="menuitem"
+                  aria-haspopup="true"
+                  aria-expanded="false"
                 >
                   <span>{{ link.title }}</span>
-                  <svg class="icon" viewBox="0 0 24 24">
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M8 4l8 8-8 8"></path>
                   </svg>
                 </button>
               {% else %}
-                <a href="{{ link.url }}" class="menu-drawer__link">{{ link.title }}</a>
+                <a href="{{ link.url }}" class="menu-drawer__link" role="menuitem">{{ link.title }}</a>
               {% endif %}
             </li>
           {% endfor %}
         </ul>
-      </div>
-      <div
+      </section>
+      <section
         :class="{'menu-drawer__level': true, 'active': currentLevel >= 2}"
         id="menu-drawer-level-2"
+        aria-labelledby="menu-drawer-heading-2"
       >
-        <div class="menu-drawer__header">
-          <button @click="backLevel()" class="menu-drawer__back">
-            <svg class="icon" viewBox="0 0 24 24">
+        <header class="menu-drawer__header">
+          <button @click="backLevel()" class="menu-drawer__back" aria-label="Back to previous menu">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M16 4l-8 8 8 8"></path>
             </svg>
             <span>Back</span>
           </button>
-          <h2 class="menu-drawer__heading" x-text="menuTitle"></h2>
-        </div>
-        <div
+          <h2 class="menu-drawer__heading" id="menu-drawer-heading-2" x-text="menuTitle"></h2>
+        </header>
+        <figure
           class="menu-drawer__featured-image"
           :class="{'loading-new-image': isImageLoading}"
         >
@@ -227,51 +235,55 @@
             height="100"
             width="100"
           >
-        </div>
-        <ul class="menu-drawer__menu">
+        </figure>
+        <ul class="menu-drawer__menu" role="menu">
           <template x-for="(item, childIndex) in submenu" :key="childIndex">
-            <li>
+            <li role="none">
               <template x-if="item.links && item.links.length > 0">
                 <button
                   @click="openLevel(3, item.title, currentParentIndex, null, null, childIndex)"
                   class="menu-drawer__button menu-drawer__button--has-submenu"
+                  role="menuitem"
+                  aria-haspopup="true"
+                  aria-expanded="false"
                 >
                   <span x-text="item.title"></span>
-                  <svg class="icon" viewBox="0 0 24 24">
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M8 4l8 8-8 8"></path>
                   </svg>
                 </button>
               </template>
               <template x-if="!item.links || item.links.length === 0">
-                <a :href="item.url" class="menu-drawer__link" x-text="item.title"></a>
+                <a :href="item.url" class="menu-drawer__link" role="menuitem" x-text="item.title"></a>
               </template>
             </li>
           </template>
         </ul>
-      </div>
-      <div
+      </section>
+      <section
         :class="{'menu-drawer__level': true, 'active': currentLevel >= 3}"
         id="menu-drawer-level-3"
+        aria-labelledby="menu-drawer-heading-3"
       >
-        <div class="menu-drawer__header">
-          <button @click="backLevel()" class="menu-drawer__back">
-            <svg class="icon" viewBox="0 0 24 24">
+        <header class="menu-drawer__header">
+          <button @click="backLevel()" class="menu-drawer__back" aria-label="Back to previous menu">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M16 4l-8 8 8 8"></path>
             </svg>
             <span>Back</span>
           </button>
-          <h2 class="menu-drawer__heading" x-text="subMenuTitle"></h2>
-        </div>
-        <ul class="menu-drawer__menu">
+          <h2 class="menu-drawer__heading" id="menu-drawer-heading-3" x-text="subMenuTitle"></h2>
+        </header>
+        <ul class="menu-drawer__menu" role="menu">
           <template x-for="(item, index) in subSubmenu" :key="index">
-            <li>
-              <a :href="item.url" class="menu-drawer__link" x-text="item.title"></a>
+            <li role="none">
+              <a :href="item.url" class="menu-drawer__link" role="menuitem" x-text="item.title"></a>
             </li>
           </template>
         </ul>
-      </div>
+      </section>
     </div>
-  </div>
+  </nav>
 </aside>
 <script>
   document.addEventListener('alpine:init', () => {
