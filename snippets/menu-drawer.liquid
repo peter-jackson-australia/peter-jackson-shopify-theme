@@ -276,8 +276,6 @@
           {% endfor %}
         ];
 
-        console.log('Menu data initialized:', this.menuData);
-
         // Listen for toggle events from header button
         window.toggleNav = () => {
           this.isOpen ? this.closeMenu() : this.openMenu();
@@ -296,7 +294,6 @@
       },
 
       openLevel(level, title, parentIndex, childIndex) {
-        console.log('Opening level', level, 'title:', title, 'parentIndex:', parentIndex, 'childIndex:', childIndex);
         
         this.currentLevel = level;
 
@@ -304,12 +301,10 @@
           this.menuTitle = title;
           this.currentParentIndex = parentIndex;
           this.submenu = this.menuData[parentIndex].links;
-          console.log('Level 2 items:', this.submenu);
         } else if (level === 3) {
           this.subMenuTitle = title;
           // Direct access using parent and child indices
           this.subSubmenu = this.menuData[parentIndex].links[childIndex].links;
-          console.log('Level 3 items:', this.subSubmenu);
         }
       },
 
