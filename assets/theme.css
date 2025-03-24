@@ -131,7 +131,7 @@ select {
 }
 
 * {
-  font-family: 'Ordinary Regular' !important;
+  font-family: 'Ordinary Regular';
 }
 
 /* UI */
@@ -177,6 +177,8 @@ select {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: var(--space-2xl);
+  padding: 0 var(--space-l);
 }
 
 .header__logo {
