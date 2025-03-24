@@ -4,9 +4,9 @@
   TO DO:
   FUNCTIONALITY:
   Escape Characters
-  Add Video 
-  Add BLOG/STORES/ACCOUNT/WISHLIST/SUPPORT section 
-  Add Newsletter Signup 
+  Add Video
+  Add BLOG/STORES/ACCOUNT/WISHLIST/SUPPORT section
+  Add Newsletter Signup
   Create logic for greying out menu items and images per level and underlining current link
   Load in related content into infinite blazer slider
   Add hover drawer with 5 products from 2nd level drawer collection
@@ -83,7 +83,7 @@
 
   .menu-drawer__menu {
     list-style: none;
-    display: flex; 
+    display: flex;
     flex-direction: column;
     gap: var(--space-s);
     padding: var(--space-m) var(--space-l);
@@ -139,7 +139,7 @@
   .menu-drawer__featured-image img {
     width: 100%;
     height: 100%;
-    min-height: 350px; 
+    min-height: 350px;
     object-fit: cover;
     transition: opacity 0.2s ease;
     transform: translateZ(0);
@@ -181,7 +181,7 @@
             <li role="none">
               {% if link.links.size > 0 %}
                 <button
-                  @click="openLevel(2, '{{ link.title | escape }}', {{ forloop.index0 }}, '{{ link.object.featured_image | image_url: width: 1200 }}', '{{ link.object.featured_image.alt | escape }}')"
+                  @click="openLevel(2, '{{ link.title }}', {{ forloop.index0 }}, '{{ link.object.featured_image | image_url: width: 1200 }}', '{{ link.object.featured_image.alt }}')"
                   class="menu-drawer__button menu-drawer__button--has-submenu body--uppercase"
                   role="menuitem"
                   aria-haspopup="true"
@@ -211,7 +211,7 @@
             </svg>
             <span>Back</span>
           </button>
-          <h2 class="menu-drawer__heading" id="menu-drawer-heading-2" x-text="menuTitle"></h2>
+          <h2 class="menu-drawer__heading" id="menu-drawer-heading-2" x-text="decodeEntities(menuTitle)"></h2>
         </header>
         <figure
           class="menu-drawer__featured-image"
@@ -238,14 +238,19 @@
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  <span x-text="item.title"></span>
+                  <span x-text="decodeEntities(item.title)"></span>
                   <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M8 4l8 8-8 8"></path>
                   </svg>
                 </button>
               </template>
               <template x-if="!item.links || item.links.length === 0">
-                <a :href="item.url" class="menu-drawer__link body--uppercase" role="menuitem" x-text="item.title"></a>
+                <a
+                  :href="item.url"
+                  class="menu-drawer__link body--uppercase"
+                  role="menuitem"
+                  x-text="decodeEntities(item.title)"
+                ></a>
               </template>
             </li>
           </template>
@@ -263,12 +268,17 @@
             </svg>
             <span>Back</span>
           </button>
-          <h2 class="menu-drawer__heading" id="menu-drawer-heading-3" x-text="subMenuTitle"></h2>
+          <h2 class="menu-drawer__heading" id="menu-drawer-heading-3" x-text="decodeEntities(subMenuTitle)"></h2>
         </header>
         <ul class="menu-drawer__menu" role="menu">
           <template x-for="(item, index) in subSubmenu" :key="index">
             <li role="none">
-              <a :href="item.url" class="menu-drawer__link body--uppercase" role="menuitem" x-text="item.title"></a>
+              <a
+                :href="item.url"
+                class="menu-drawer__link body--uppercase"
+                role="menuitem"
+                x-text="decodeEntities(item.title)"
+              ></a>
             </li>
           </template>
         </ul>
@@ -299,20 +309,20 @@
         this.menuData = [
           {% for link in linklists['main-menu'].links %}
             {
-              title: "{{ link.title | escape }}",
-              url: "{{ link.url | escape }}",
+              title: "{{ link.title | strip_html | replace: '"', '\"' | replace: "'", "\\'" }}",
+              url: "{{ link.url }}",
               featuredImage: "{{ link.object.featured_image | image_url: '1200x' }}",
-              featuredImageAlt: "{{ link.object.featured_image.alt | escape }}",
+              featuredImageAlt: "{{ link.object.featured_image.alt | strip_html | replace: '"', '\"' | replace: "'", "\\'" }}",
               links: [
                 {% for childlink in link.links %}
                   {
-                    title: "{{ childlink.title | escape }}",
-                    url: "{{ childlink.url | escape }}",
+                    title: "{{ childlink.title | strip_html | replace: '"', '\"' | replace: "'", "\\'" }}",
+                    url: "{{ childlink.url }}",
                     links: [
                       {% for grandchildlink in childlink.links %}
                         {
-                          title: "{{ grandchildlink.title | escape }}",
-                          url: "{{ grandchildlink.url | escape }}"
+                          title: "{{ grandchildlink.title | strip_html | replace: '"', '\"' | replace: "'", "\\'" }}",
+                          url: "{{ grandchildlink.url }}"
                         }{% unless forloop.last %},{% endunless %}
                       {% endfor %}
                     ]
@@ -326,6 +336,13 @@
         window.toggleNav = () => {
           this.isOpen ? this.closeMenu() : this.openMenu();
         };
+      },
+
+      decodeEntities(text) {
+        if (!text) return '';
+        const textarea = document.createElement('textarea');
+        textarea.innerHTML = text;
+        return textarea.value;
       },
 
       openMenu() {

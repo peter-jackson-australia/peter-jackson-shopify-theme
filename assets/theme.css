@@ -61,6 +61,7 @@ select {
 /* Variables */
 
 :root {
+  
   /* Fluid Spacing */
   --space-3xs: clamp(0.25rem, 0.2375rem + 0.0625vw, 0.3125rem);
   --space-2xs: clamp(0.5rem, 0.475rem + 0.125vw, 0.625rem);
