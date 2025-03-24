@@ -1,3 +1,17 @@
+/* 
+ * Table of Contents:
+ * 1. CSS Reset
+ * 2. Variables
+ * 3. Global Styles
+ * 4. Typography
+ * 5. UI
+ * 6. Grids
+ * 7. Header
+ * 8. Footer
+ * 9. Search
+ * 10. Accessibility
+*/
+
 /* CSS Reset */
 
 *,
@@ -47,7 +61,6 @@ select {
   html:focus-within {
     scroll-behavior: auto;
   }
-
   *,
   *::before,
   *::after {
@@ -64,6 +77,8 @@ select {
 :root {
 }
 
+/* Global Styles */
+
 .hide {
   display: none;
 }
@@ -72,7 +87,7 @@ select {
 
 /* UI */
 
-/* Grids */ 
+/* Grids */
 
 [class^="grid-"] {
   display: grid;
@@ -170,11 +185,4 @@ a.skip-to-content {
 a.skip-to-content:focus-visible {
   position: relative;
   transform: translateX(0%);
-}
-
-@media (min-width: 769px) {
-  *:focus-visible,
-  a.skip-to-content:focus-visible span {
-    outline: 2px solid orange;
-  }
 }
