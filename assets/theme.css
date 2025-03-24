@@ -130,10 +130,6 @@ select {
   src: url("https://cdn.shopify.com/s/files/1/0898/1859/5696/files/ordinary-display-light.woff2?v=1742796170") format("woff2");
 }
 
-* {
-  font-family: 'Ordinary Regular';
-}
-
 /* UI */
 
 /* Grids */
@@ -174,6 +170,9 @@ select {
 /* Header */
 
 .header {
+  position: relative;
+  top: 0; 
+  z-index: 9996;
   display: flex;
   align-items: center;
   justify-content: space-between;

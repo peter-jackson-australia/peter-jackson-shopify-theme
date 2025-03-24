@@ -15,7 +15,7 @@
 
     {% if section.settings.mobile_image %}
       {{
-        section.settings.mobile_image
+        section.settings.mobile_images
         | image_url: width: 750
         | image_tag:
           class: 'hero__background hero__background--mobile',
@@ -59,7 +59,8 @@
 
 {% stylesheet %}
   .hero {
-    position: relative;
+    position: absolute;
+    top: 0;
     width: 100%;
     height: 100dvh;
     overflow: hidden;
@@ -84,8 +85,7 @@
     padding: 2rem;
     display: grid;
     gap: 1rem;
-    color: white;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    color: var(--white);
     background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
   }
 
@@ -105,27 +105,14 @@
   }
 
   .hero__heading {
-    margin: 0;
-    font-size: clamp(2rem, 5vw, 4rem);
+    font-size: var(--text-size-3xl);
+    font-family: 'Ordinary Light';
   }
 
   .hero__description {
-    max-width: 65ch;
-    font-size: clamp(1rem, 3vw, 1.25rem);
-  }
-
-  .hero__button {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    background-color: white;
-    color: black;
-    text-decoration: none;
-    border-radius: 4px;
-    transition: background-color 0.3s, color 0.3s;
-  }
-
-  .hero__button:hover {
-    background-color: #f0f0f0;
+    max-width: 80ch;
+    font-size: var(--text-size-m);
+    font-family: 'Ordinary Light';
   }
 {% endstylesheet %}
 
