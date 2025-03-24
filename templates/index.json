@@ -9,7 +9,19 @@
  */
 {
   "sections": {
+    "hero_primary_yKMEY6": {
+      "type": "hero-primary",
+      "settings": {
+        "desktop_image": "shopify://shop_images/peter-jackson-winter-25-hero-image.webp",
+        "heading": "Higher Ground",
+        "description": "<p>Beyond limits. Beyond expectations.</p>",
+        "button_label": "Shop Winter",
+        "button_link": "shopify://collections/sale",
+        "content_alignment": "center"
+      }
+    }
   },
   "order": [
+    "hero_primary_yKMEY6"
   ]
 }
