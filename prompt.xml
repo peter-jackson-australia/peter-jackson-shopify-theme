@@ -1,25 +1,60 @@
 <prompt
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" type="development-request">
     <problem purpose="Defines the problem to be solved">
-        <summary>This file is the base CSS file for the entire website, it includes a modern CSS reset, and some base stylings. I want you to remove all properties that are not 100% percent needed. I would consider anything layout related, like flex settings, margins etc to be needed. The file is 565 lines long, I would ideally like to get it down to 200-300</summary>
-        <detailed-description>Using best practice CSS standards, revise this stylesheet to be as minimal, functional and useful as possible for the base CSS styles defined within it. Reduce the line count down to 200-300. Ensure no repitition and group selectors where possible. Also include comments for the different sections and future sections - This is just the global CSS file which will contain styles that are reused across the site.</detailed-description>
-        <objective priority="high">Reduce CSS file to essential lines, rely on smart defaults and reduce repitition</objective>
+        <summary>I need a hero section component created for my Shopify Liquid store. With a responsive image backgorund, title, description and a CTA</summary>
+        <detailed-description>You will create me a Shopify Liquid section that intergrates seemlessly with the Shopify theme editor, it will give you the option to upload an image used for desktop and an image used for mobile, the images will be a full page width and height - 100dvh and 100dvw respectively, the hero section will always have a h1 element, a p element description and a link, the client should be able to determine which page the link goes to in the Shopify theme editor. The component should have the option to left align, center align or right align the content and the text should also align depending on the content alignment. The content should be aligned down the bottom of the component, there should also be a slight dropdown from the bottom of the image upwards, so that the content that sits above it directly is more readable. The component must used structured and semantic HTML</detailed-description>
+        <objective priority="high">Create a simple, reusable and professional hero section component for my Shopify liquid theme</objective>
     </problem>
     <context purpose="Provides technology context, constraints and existing code">
         <technology>
             <framework>Shopify Liquid</framework>
-            <languages>CSS</languages>
+            <languages>HTML, CSS, JavaScript, Liquid</languages>
+            <libraries>Shopify Liquid</libraries>
         </technology>
         <constraints>
-            <performance priority="high">The performance must be perfect</performance>
+            <performance priority="high">The code must contain the most minimal amount of elements, lines, iterations, HTTP requests and external files as possible to meet the success criteria</performance>
             <compatibility priority="high">The code must use conventions and practices that are supported by Safari 14 (16610.1.28) as a minimum standard</compatibility>
         </constraints>
     </context>
     <success-criteria purpose="Defines how to measure the success of the solution" priority="high">
         <functional-requirements priority="high">
-            <requirement>200-300 line count maximum. Only essential layout styles. no repitition.</requirement>
+            <requirement>The user must be able to change the heading text, the description text and the link destination on the Shopify theme editor</requirement>
+            <requirement>The user must be able to choose the content alignment, left, centre or right aligned</requirement>
+            <requirement>The text and content alignment must match, for example if the user selects left align, the text should also left align</requirement>
+            <requirement>The image must be responsive and cover the screen. It must not be lazy loaded. It must be loaded responsively using Shopify liquid only, not custom CSS or Javascript</requirement>
         </functional-requirements>
+        <non-functional-requirements priority="high">
+            <requirement>The markup must follow semantic HTML best practices</requirement>
+            <requirement>The markup must be accessible first</requirement>
+            <requirement>The CSS must follow BEM naming conventions</requirement>
+        </non-functional-requirements>
     </success-criteria>
+    <examples purpose="Provides illustrative examples of a successful solution">
+        <example>
+            <scenario>The user of the storefront logs onto the Shopify theme editor and adds in the hero section for editing</scenario>
+            <outcome>The user selects a desktop image which loads perfectly and quickly, they also select a mobile image. if no mobile image is selected, the desktop image remains. The user then enters in a title and description and lastly chooses a link for the CTA to go to from the products. The user then chooses left aligned content and the content moves to the left and all of the text also left aligns. The bottom of the image has a shadow coming upwards that makes the content easier to read.</outcome>
+        </example>
+    </examples>
+    <code-style-preferences purpose="Defines code style preferences">
+        <preferred-paradigms>
+            <paradigm>Functional</paradigm>
+            <paradigm>Procedural</paradigm>
+        </preferred-paradigms>
+        <avoided-paradigms>
+            <paradigm>Object-Oriented</paradigm>
+        </avoided-paradigms>
+        <priorities>
+            <priority>Simplicity</priority>
+            <priority>JavaScript native type safety</priority>
+            <priority>Bug-free</priority>
+            <priority>Scalability</priority>
+            <priority>Non-duplication</priority>
+        </priorities>
+        <naming-conventions>
+            <css>BEM - Block Element Modifier</css>
+            <javascript>camelCase</javascript>
+        </naming-conventions>
+    </code-style-preferences>
     <response-format purpose="Specifies the required response format">
         <sections>
             <section detail-level="low" word-count="50-100">Problem Overview</section>
