@@ -110,12 +110,14 @@ select {
   font-family: 'Ordinary Regular';
   src: url('https://cdn.shopify.com/s/files/1/0898/1859/5696/files/ordinary-display-regular.woff2?v=1742796201')
     format('woff2');
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Ordinary Light';
   src: url('https://cdn.shopify.com/s/files/1/0898/1859/5696/files/ordinary-display-light.woff2?v=1742796170')
     format('woff2');
+  font-display: swap;
 }
 
 .small {
