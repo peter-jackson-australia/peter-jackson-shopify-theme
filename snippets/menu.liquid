@@ -147,6 +147,18 @@
   .menu-drawer__featured-image.loading-new-image img {
     display: none;
   }
+
+  .menu-drawer__video-container {
+    width: 100%;
+    margin: var(--space-m) 0;
+    overflow: hidden;
+  }
+
+  .menu-drawer__video {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+  }
 </style>
 
 <aside
@@ -197,6 +209,33 @@
             </li>
           {% endfor %}
         </ul>
+
+        <div class="menu-drawer__video-container">
+          <video
+            class="menu-drawer__video"
+            x-ref="menuVideo"
+            x-init="
+              $watch('isOpen', value => {
+                if (value && $refs.menuVideo) {
+                  $refs.menuVideo.load();
+                  $refs.menuVideo.play().catch(e => console.log('Autoplay prevented:', e));
+                } else if ($refs.menuVideo) {
+                  $refs.menuVideo.pause();
+                }
+              })
+            "
+            muted
+            loop
+            playsinline
+            preload="none"
+            aria-hidden="true"
+          >
+            <source
+              data-src="https://cdn.shopify.com/videos/c/o/v/ccff09333a4c451588e9b1a091de9d04.mp4"
+              type="video/mp4"
+            >
+          </video>
+        </div>
       </section>
       <section
         :class="{'menu-drawer__level': true, 'active': currentLevel >= 2}"
@@ -348,6 +387,18 @@
         this.isOpen = true;
         this.currentLevel = 1;
         document.body.classList.add('menu-open');
+
+        setTimeout(() => {
+          const videoEl = this.$refs.menuVideo;
+          if (videoEl) {
+            const source = videoEl.querySelector('source');
+            if (source && source.dataset.src) {
+              source.src = source.dataset.src;
+              videoEl.load();
+              videoEl.play().catch(e => console.log('Autoplay prevented:', e));
+            }
+          }
+        }, 100);
       },
 
       closeMenu() {
