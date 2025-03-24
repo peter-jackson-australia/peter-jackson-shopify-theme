@@ -52,7 +52,6 @@
     width: 400px;
     height: 100%;
     overflow-y: auto;
-    border-right: 1px solid #eee;
     display: none;
   }
 
@@ -86,6 +85,10 @@
     flex-direction: column;
     gap: var(--space-s);
     padding: var(--space-m) var(--space-l);
+  }
+
+  #menu-drawer__menu-1 {
+    border-bottom: 1px solid var(--neutral-200);
   }
 
   .menu-drawer__link,
@@ -150,14 +153,17 @@
 
   .menu-drawer__video-container {
     width: 100%;
-    margin: var(--space-m) 0;
     overflow: hidden;
+    padding: var(--space-m);
+    border-bottom: 1px solid var(--neutral-200);
   }
 
   .menu-drawer__video {
     width: 100%;
     max-height: 300px;
     object-fit: cover;
+    margin-bottom: var(--space-2xs);
+    min-height: 260px;
   }
 </style>
 
@@ -187,7 +193,7 @@
         :class="{'menu-drawer__level': true, 'active': currentLevel >= 1}"
         id="menu-drawer-level-1"
       >
-        <ul class="menu-drawer__menu" role="menu">
+        <ul class="menu-drawer__menu" role="menu" id="menu-drawer__menu-1">
           {% for link in linklists['main-menu'].links %}
             <li role="none">
               {% if link.links.size > 0 %}
@@ -235,6 +241,7 @@
               type="video/mp4"
             >
           </video>
+          <p class="body">Winter 25 Collection</p>
         </div>
       </section>
       <section
