@@ -1,60 +1,25 @@
-<!--
-    STEP 1: Break the problem down into its smallest, atomic components. 
-    STEP 2: Use the Prompt XML template below for each step in the problem in a new Claude 3.7 window 
-    STEP 3: Test each step against the success criteria before moving on
--->
-
 <prompt
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" type="development-request">
     <problem purpose="Defines the problem to be solved">
-        <summary>Taking the existing code inside of menu.liquid, I want you to place the collection featured image inside of the level 2 menu drawer below the element with the class "menu-drawer__header"</summary>
-        <detailed-description>Without breaking any of the code inside of menu.liquid, pull in the featured image for the collection inside of drawer 2. For example if you click on a collection on level 1, it will open up this collection and its sub collections in menu drawer level 2. You are to pull in the featured image and place it directly below the element with the class "menu-drawer__header" and ensure that it is lazy loaded for performance benefits. The image should be responsive and use the srcset attribute</detailed-description>
-        <objective priority="high">Pull in the featured image for the currently active collection specified in menu drawer level 1 and display it in menu drawer level 2</objective>
+        <summary>This file is the base CSS file for the entire website, it includes a modern CSS reset, and some base stylings. I want you to remove all properties that are not 100% percent needed. I would consider anything layout related, like flex settings, margins etc to be needed. The file is 565 lines long, I would ideally like to get it down to 200-300</summary>
+        <detailed-description>Using best practice CSS standards, revise this stylesheet to be as minimal, functional and useful as possible for the base CSS styles defined within it. Reduce the line count down to 200-300. Ensure no repitition and group selectors where possible. Also include comments for the different sections and future sections - This is just the global CSS file which will contain styles that are reused across the site.</detailed-description>
+        <objective priority="high">Reduce CSS file to essential lines, rely on smart defaults and reduce repitition</objective>
     </problem>
     <context purpose="Provides technology context, constraints and existing code">
         <technology>
             <framework>Shopify Liquid</framework>
-            <languages>HTML, CSS, JavaScript, Liquid, Alpine.js</languages>
-            <libraries>Liquid, Alpine.js</libraries>
+            <languages>CSS</languages>
         </technology>
         <constraints>
-            <performance priority="high">The code must contain the most minimal amount of elements, lines, iterations, HTTP requests and external files as possible to meet the success criteria</performance>
+            <performance priority="high">The performance must be perfect</performance>
             <compatibility priority="high">The code must use conventions and practices that are supported by Safari 14 (16610.1.28) as a minimum standard</compatibility>
         </constraints>
     </context>
     <success-criteria purpose="Defines how to measure the success of the solution" priority="high">
         <functional-requirements priority="high">
-            <requirement>The image must be from the top level menu item collection from the shopify main menu that is selected in menu drawer level 1. For example menu item 1 when selected would display the featured image in drawer 2 for menu item 1</requirement>
-            <requirement>The image must be responsive and must use the srcset attribute to load in the correct image resolution, for performance benefits.</requirement>
-            <requirement>A specified height must be set so that there are no layout shifts, a light grey box can sit where the image will go until it loads</requirement>
-            <requirement>The image must load in its alt tag</requirement>
+            <requirement>200-300 line count maximum. Only essential layout styles. no repitition.</requirement>
         </functional-requirements>
     </success-criteria>
-    <examples purpose="Provides illustrative examples of a successful solution">
-        <example>
-            <scenario>A user clicks on menu item c inside of the menu drawer level 1 drawer, this opens the level 2 drawer as menu item c has sub menu items. Inside of level 2 drawer the image for the collection selected in menu level 1 will be displayed after lazy loading, but not causing any layout shifts.</scenario>
-        </example>
-    </examples>
-    <code-style-preferences purpose="Defines code style preferences">
-        <preferred-paradigms>
-            <paradigm>Functional</paradigm>
-            <paradigm>Procedural</paradigm>
-        </preferred-paradigms>
-        <avoided-paradigms>
-            <paradigm>Object-Oriented</paradigm>
-        </avoided-paradigms>
-        <priorities>
-            <priority>Simplicity</priority>
-            <priority>JavaScript native type safety</priority>
-            <priority>Bug-free</priority>
-            <priority>Scalability</priority>
-            <priority>Non-duplication</priority>
-        </priorities>
-        <naming-conventions>
-            <css>BEM - Block Element Modifier</css>
-            <javascript>camelCase</javascript>
-        </naming-conventions>
-    </code-style-preferences>
     <response-format purpose="Specifies the required response format">
         <sections>
             <section detail-level="low" word-count="50-100">Problem Overview</section>
