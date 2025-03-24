@@ -1,28 +1,16 @@
-<header class="container">
-  {% comment %}
-    Logos will typically be SVG's, so no theme settings for this for maximum control :)
-  {% endcomment %}
-  <div id="btn-menu" data-device="mobile" class="flex middle">
-    <button type="button" onclick="window.toggleNav();">Menu</button>
-  </div>
-  <div id="logo">
+<header class="header container">
+  <button type="button" onclick="window.toggleNav();">Menu</button>
+  <div class="header__logo">
     <a href="/">Peter Jackson</a>
   </div>
-  <div class="flex align-center center middle" data-device="desktop">
-    {% render 'search-form' %}
-  </div>
-  <div class="flex align-right middle">
-    <div>
-      <ul class="flex">
-        <li data-device="desktop"><a href="/account">Account</a></li>
-        <li>
-          <a href="{{ routes.cart_url }}"
-            >Cart (<span class="js--cart-counter">{{ cart.item_count }}</span>)</a
-          >
-        </li>
-      </ul>
-    </div>
-  </div>
+  <ul class="header__icons">
+    <li><a href="/account">Account</a></li>
+    <li>
+      <a href="{{ routes.cart_url }}"
+        >Cart (<span class="js--cart-counter">{{ cart.item_count }}</span>)</a
+      >
+    </li>
+  </ul>
 </header>
 
 {% render 'menu' %}
