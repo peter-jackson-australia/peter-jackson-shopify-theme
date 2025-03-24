@@ -240,7 +240,7 @@ select {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: var(--space-2xl);
+  height: var(--space-xl);
   padding: 0 var(--space-l);
 }
 

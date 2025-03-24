@@ -2,7 +2,7 @@
   .hero {
     position: relative;
     width: 100%;
-    height: calc(100dvh - 80px);
+    height: calc(100dvh - var(--space-xl));
     overflow: hidden;
   }
 
@@ -11,7 +11,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: calc(100dvh - 80px);
+    height: 100%;
     object-fit: cover;
     z-index: 1;
   }
@@ -26,7 +26,7 @@
     display: grid;
     gap: var(--space-s);
     color: var(--white);
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
   }
 
   .hero__content--left {
