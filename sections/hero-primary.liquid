@@ -1,3 +1,55 @@
+{% stylesheet %}
+  .hero {
+    position: relative;
+    width: 100%;
+    height: calc(100dvh - 80px);
+    overflow: hidden;
+  }
+
+  .hero__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  .hero__content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+    padding: 0 var(--space-l) var(--space-l) var(--space-l);
+    display: grid;
+    gap: var(--space-s);
+    color: var(--white);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+  }
+
+  .hero__content--left {
+    text-align: left;
+    justify-items: start;
+  }
+
+  .hero__content--center {
+    text-align: center;
+    justify-items: center;
+  }
+
+  .hero__content--right {
+    text-align: right;
+    justify-items: end;
+  }
+
+  .hero__description {
+    max-width: 80ch;
+  }
+
+{% endstylesheet %}
+
 {% if section.settings.desktop_image or section.settings.mobile_image %}
   <section id="hero-primary" class="hero" aria-label="{{ section.settings.heading | escape }}">
     {% if section.settings.desktop_image %}
@@ -22,16 +74,16 @@
       }}
     {% endif %}
     <div class="hero__content hero__content--{{ section.settings.content_alignment | default: 'center' }}">
-      <h1 class="hero__heading">{{ section.settings.heading }}</h1>
+      <h1 class="heading--3xl">{{ section.settings.heading }}</h1>
 
-      <div class="hero__description">
+      <div class="heading--xl">
         {{ section.settings.description }}
       </div>
 
       {% if section.settings.button_link and section.settings.button_label %}
         <a
           href="{{ section.settings.button_link }}"
-          class="hero__button"
+          class="button button--white"
           aria-label="{{ section.settings.button_label | escape }}"
         >
           {{ section.settings.button_label }}
@@ -40,65 +92,6 @@
     </div>
   </section>
 {% endif %}
-
-{% stylesheet %}
-  .hero {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100dvh;
-    overflow: hidden;
-  }
-
-  .hero__background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1;
-  }
-
-  .hero__content {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    z-index: 2;
-    padding: 2rem;
-    display: grid;
-    gap: 1rem;
-    color: var(--white);
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
-  }
-
-  .hero__content--left {
-    text-align: left;
-    justify-items: start;
-  }
-
-  .hero__content--center {
-    text-align: center;
-    justify-items: center;
-  }
-
-  .hero__content--right {
-    text-align: right;
-    justify-items: end;
-  }
-
-  .hero__heading {
-    font-size: var(--text-size-3xl);
-    font-family: 'Ordinary Light';
-  }
-
-  .hero__description {
-    max-width: 80ch;
-    font-size: var(--text-size-m);
-    font-family: 'Ordinary Light';
-  }
-{% endstylesheet %}
 
 {% schema %}
 {
