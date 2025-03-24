@@ -122,12 +122,12 @@ select {
 
 @font-face {
   font-family: "Ordinary Regular";
-  src: url("{{ 'ordinary-display-regular.woff2' | file_url }}") format("woff2");
+  src: url("https://cdn.shopify.com/s/files/1/0898/1859/5696/files/ordinary-display-regular.woff2?v=1742796201") format("woff2");
 }
 
 @font-face {
   font-family: "Ordinary Light";
-  src: url("{{ 'ordinary-display-light.woff2' | file_url }}") format("woff2");
+  src: url("https://cdn.shopify.com/s/files/1/0898/1859/5696/files/ordinary-display-light.woff2?v=1742796170") format("woff2");
 }
 
 * {
