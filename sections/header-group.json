@@ -13,6 +13,7 @@
   "sections": {
     "announcement": {
       "type": "announcement-bar",
+      "disabled": true,
       "settings": {
         "text": "Welcome to the Peter Jackson Shopify Site",
         "background": "",
