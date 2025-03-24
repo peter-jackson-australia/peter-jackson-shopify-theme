@@ -2,11 +2,21 @@
   Mega Menu Sidebar Drawer with side-by-side levels
 
   TO DO:
-  Remove unused CSS
+  FUNCTIONALITY:
+  Escape Characters
+  Add Video 
+  Add BLOG/STORES/ACCOUNT/WISHLIST/SUPPORT section 
+  Add Newsletter Signup 
+  Create logic for greying out menu items and images per level and underlining current link
+  Load in related content into infinite blazer slider
   Add hover drawer with 5 products from 2nd level drawer collection
-  add support for collection videos
-  ensure that if no video or image is added to collection, nothing breaks
-  Escape characters
+  Toggle link open or closed by clicking it
+  Search component on mobile
+  Make responsive
+  Complete styling
+  =================================TEST THOROUGHLY==============================================
+  Remove unused CSS
+  Clean up markup and Alpine
   Put Javascript in bottom into own JS file in assets for minification
 {% endcomment %}
 
@@ -121,10 +131,8 @@
 
   .menu-drawer__featured-image {
     width: 100%;
-    background-color: #f5f5f5;
     position: relative;
     overflow: hidden;
-    border-bottom: 1px solid #eee;
     will-change: transform;
   }
 
@@ -135,10 +143,6 @@
     object-fit: cover;
     transition: opacity 0.2s ease;
     transform: translateZ(0);
-  }
-
-  .menu-drawer__featured-image.loading-new-image {
-    background-color: #f5f5f5;
   }
 
   .menu-drawer__featured-image.loading-new-image img {
@@ -171,7 +175,6 @@
       <section
         :class="{'menu-drawer__level': true, 'active': currentLevel >= 1}"
         id="menu-drawer-level-1"
-        aria-labelledby="menu-drawer-heading-1"
       >
         <ul class="menu-drawer__menu" role="menu">
           {% for link in linklists['main-menu'].links %}
