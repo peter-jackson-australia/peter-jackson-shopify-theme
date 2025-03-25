@@ -71,61 +71,25 @@
   }
 </style>
 
-<div
-  class="newsletter-signup"
-  x-data="
-    {
-      submitted: false,
-      error: false,
-      errorMessage: '',
-      async submitForm(event) {
-        event.preventDefault();
-        const form = event.target;
-        const formData = new FormData(form);
-
-        try {
-          const response = await fetch(window.location.pathname, {
-            method: 'POST',
-            body: formData,
-            headers: {
-              'Accept': 'application/json'
-            }
-          });
-
-          if (response.ok) {
-            this.submitted = true;
-          } else {
-            const data = await response.json();
-            this.error = true;
-            this.errorMessage = data.description || 'Something went wrong.';
-          }
-        } catch (error) {
-          this.error = true;
-          this.errorMessage = 'Failed to submit form.';
-        }
-      }
-    }
-  "
->
+<div class="newsletter-signup">
   <h3 class="newsletter-signup__heading">Newsletter</h3>
 
   <div class="newsletter-signup__text">
     <p>Sign up to receive updates, access to exclusive deals, and more.</p>
   </div>
 
-  <div x-show="submitted" class="newsletter-signup__success">
+  <div id="newsletter-success" class="newsletter-signup__success" style="display: none;">
     <p><strong>Thanks for signing up!</strong></p>
   </div>
 
-  <div x-show="error" class="newsletter-signup__error">
-    <p><strong>Error:</strong> <span x-text="errorMessage"></span></p>
+  <div id="newsletter-error" class="newsletter-signup__error" style="display: none;">
+    <p><strong>Error:</strong> <span id="error-message"></span></p>
   </div>
 
   <form
-    x-show="!submitted"
+    id="newsletter-form"
     class="newsletter-signup__form"
-    @submit.prevent="submitForm"
-    action="{{ routes.account_path }}"
+    action="/contact#contact_form"
     method="post"
     accept-charset="UTF-8"
   >
@@ -155,4 +119,39 @@
       </label>
     </div>
   </form>
+
+  <script>
+    document.getElementById('newsletter-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const form = this;
+      const formData = new FormData(form);
+
+      fetch('/contact#contact_form', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          Accept: 'application/json',
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.status === 'OK') {
+            document.getElementById('newsletter-form').style.display = 'none';
+            document.getElementById('newsletter-success').style.display = 'block';
+          } else {
+            const errorElement = document.getElementById('error-message');
+            errorElement.textContent = data.description || 'Something went wrong.';
+            document.getElementById('newsletter-error').style.display = 'block';
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+          const errorElement = document.getElementById('error-message');
+          errorElement.textContent = 'Failed to submit form.';
+          document.getElementById('newsletter-error').style.display = 'block';
+        });
+    });
+  </script>
 </div>
