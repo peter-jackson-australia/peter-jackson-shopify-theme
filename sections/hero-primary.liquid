@@ -46,7 +46,6 @@
   .hero__description {
     max-width: 80ch;
   }
-
 {% endstylesheet %}
 
 {% if section.settings.desktop_image or section.settings.mobile_image %}
@@ -56,9 +55,9 @@
         section.settings.desktop_image
         | image_url: width: 2000
         | image_tag:
-          class: 'hero__background hero__background--desktop',
-          loading: 'eager',
-          alt: section.settings.desktop_image.alt
+        class: 'hero__background hero__background--desktop',
+        preload: true
+        alt: section.settings.desktop_image.alt
       }}
     {% endif %}
 
@@ -67,9 +66,9 @@
         section.settings.mobile_image
         | image_url: width: 1080
         | image_tag:
-          class: 'hero__background hero__background--mobile',
-          loading: 'eager',
-          alt: section.settings.mobile_image.alt
+        class: 'hero__background hero__background--mobile',
+        preload: true
+        alt: section.settings.mobile_image.alt
       }}
     {% endif %}
     <div class="hero__content hero__content--{{ section.settings.content_alignment | default: 'center' }}">
