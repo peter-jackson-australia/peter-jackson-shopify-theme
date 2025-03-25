@@ -71,42 +71,88 @@
   }
 </style>
 
-<div class="newsletter-signup">
+<div
+  class="newsletter-signup"
+  x-data="
+    {
+      submitted: false,
+      error: false,
+      errorMessage: '',
+      async submitForm(event) {
+        event.preventDefault();
+        const form = event.target;
+        const formData = new FormData(form);
+
+        try {
+          const response = await fetch(window.location.pathname, {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            }
+          });
+
+          if (response.ok) {
+            this.submitted = true;
+          } else {
+            const data = await response.json();
+            this.error = true;
+            this.errorMessage = data.description || 'Something went wrong.';
+          }
+        } catch (error) {
+          this.error = true;
+          this.errorMessage = 'Failed to submit form.';
+        }
+      }
+    }
+  "
+>
   <h3 class="newsletter-signup__heading">Newsletter</h3>
 
   <div class="newsletter-signup__text">
     <p>Sign up to receive updates, access to exclusive deals, and more.</p>
   </div>
 
-  {% form 'customer', class: 'newsletter-signup__form' %}
-    {% if form.posted_successfully? %}
-      <div class="newsletter-signup__success">
-        <p><strong>Thanks for signing up!</strong></p>
-      </div>
-    {% else %}
-      <input type="hidden" name="contact[tags]" value="newsletter">
+  <div x-show="submitted" class="newsletter-signup__success">
+    <p><strong>Thanks for signing up!</strong></p>
+  </div>
 
-      <div class="newsletter-signup__row">
-        <label class="visually-hidden" for="newsletter-signup-email">Email</label>
-        <input
-          type="email"
-          name="contact[email]"
-          id="newsletter-signup-email"
-          class="newsletter-signup__input"
-          placeholder="Enter email address"
-          required
-        >
-        <button type="submit" class="newsletter-signup__submit-icon" aria-label="Submit">
-          {% render 'icon-arrow-submit' %}
-        </button>
-      </div>
+  <div x-show="error" class="newsletter-signup__error">
+    <p><strong>Error:</strong> <span x-text="errorMessage"></span></p>
+  </div>
 
-      <div class="newsletter-signup__row">
-        <label class="newsletter-signup__checkbox-label">
-          <input type="checkbox" class="newsletter-signup__checkbox" required>
-          <span>I agree to receive email marketing. You can unsubscribe at any time.</span>
-        </label>
-      </div>
-    {% endif %}
-  {% endform %}
+  <form
+    x-show="!submitted"
+    class="newsletter-signup__form"
+    @submit.prevent="submitForm"
+    action="{{ routes.account_path }}"
+    method="post"
+    accept-charset="UTF-8"
+  >
+    <input type="hidden" name="form_type" value="customer">
+    <input type="hidden" name="utf8" value="✓">
+    <input type="hidden" name="contact[tags]" value="newsletter">
+
+    <div class="newsletter-signup__row">
+      <label class="visually-hidden" for="newsletter-signup-email">Email</label>
+      <input
+        type="email"
+        name="contact[email]"
+        id="newsletter-signup-email"
+        class="newsletter-signup__input"
+        placeholder="Enter email address"
+        required
+      >
+      <button type="submit" class="newsletter-signup__submit-icon" aria-label="Submit">
+        {% render 'icon-arrow-submit' %}
+      </button>
+    </div>
+
+    <div class="newsletter-signup__row">
+      <label class="newsletter-signup__checkbox-label">
+        <input type="checkbox" class="newsletter-signup__checkbox" required>
+        <span>I agree to receive email marketing. You can unsubscribe at any time.</span>
+      </label>
+    </div>
+  </form>
 </div>
