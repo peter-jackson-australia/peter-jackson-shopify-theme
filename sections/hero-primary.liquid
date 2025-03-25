@@ -53,7 +53,7 @@
     {% if section.settings.desktop_image %}
       {{
         section.settings.desktop_image
-        | image_url: width: 2000
+        | image_url: width: 1200
         | image_tag:
         class: 'hero__background hero__background--desktop',
         preload: true
@@ -64,7 +64,7 @@
     {% if section.settings.mobile_image %}
       {{
         section.settings.mobile_image
-        | image_url: width: 1080
+        | image_url: width: 768
         | image_tag:
         class: 'hero__background hero__background--mobile',
         preload: true
