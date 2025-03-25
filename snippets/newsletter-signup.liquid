@@ -78,23 +78,15 @@
     <p>Sign up to receive updates, access to exclusive deals, and more.</p>
   </div>
 
-  <div id="newsletter-success" class="newsletter-signup__success" style="display: none;">
+  <div id="newsletter-success-message" class="newsletter-signup__success" style="display: none;">
     <p><strong>Thanks for signing up!</strong></p>
   </div>
 
-  <div id="newsletter-error" class="newsletter-signup__error" style="display: none;">
-    <p><strong>Error:</strong> <span id="error-message"></span></p>
-  </div>
+  {% form 'customer', id: 'newsletter-form', class: 'newsletter-signup__form' %}
+    <div id="newsletter-error-message" class="newsletter-signup__error" style="display: none;">
+      <p><strong>Error:</strong> <span></span></p>
+    </div>
 
-  <form
-    id="newsletter-form"
-    class="newsletter-signup__form"
-    action="/contact#contact_form"
-    method="post"
-    accept-charset="UTF-8"
-  >
-    <input type="hidden" name="form_type" value="customer">
-    <input type="hidden" name="utf8" value="✓">
     <input type="hidden" name="contact[tags]" value="newsletter">
 
     <div class="newsletter-signup__row">
@@ -118,40 +110,55 @@
         <span>I agree to receive email marketing. You can unsubscribe at any time.</span>
       </label>
     </div>
-  </form>
+  {% endform %}
 
   <script>
-    document.getElementById('newsletter-form').addEventListener('submit', function (e) {
-      e.preventDefault();
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.getElementById('newsletter-form');
 
-      const form = this;
-      const formData = new FormData(form);
+      if (form) {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
 
-      fetch('/contact#contact_form', {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'X-Requested-With': 'XMLHttpRequest',
-          Accept: 'application/json',
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.status === 'OK') {
-            document.getElementById('newsletter-form').style.display = 'none';
-            document.getElementById('newsletter-success').style.display = 'block';
-          } else {
-            const errorElement = document.getElementById('error-message');
-            errorElement.textContent = data.description || 'Something went wrong.';
-            document.getElementById('newsletter-error').style.display = 'block';
-          }
-        })
-        .catch((error) => {
-          console.error('Error:', error);
-          const errorElement = document.getElementById('error-message');
-          errorElement.textContent = 'Failed to submit form.';
-          document.getElementById('newsletter-error').style.display = 'block';
+          const formData = new FormData(form);
+          const submitButton = form.querySelector('button[type="submit"]');
+          const originalButtonContent = submitButton.innerHTML;
+
+          // Optional: show loading state
+          submitButton.innerHTML = '<span>...</span>';
+          submitButton.disabled = true;
+
+          // Shopify's AJAX API for customer forms
+          fetch(window.location.origin + '/contact', {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'X-Requested-With': 'XMLHttpRequest',
+            },
+          })
+            .then((response) => {
+              if (response.ok) {
+                // Show success message, hide form
+                document.getElementById('newsletter-success-message').style.display = 'block';
+                form.style.display = 'none';
+              } else {
+                return response.json().then((data) => {
+                  throw new Error(data.description || 'Something went wrong');
+                });
+              }
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+              const errorContainer = document.getElementById('newsletter-error-message');
+              errorContainer.querySelector('span').textContent = error.message;
+              errorContainer.style.display = 'block';
+
+              // Reset button state
+              submitButton.innerHTML = originalButtonContent;
+              submitButton.disabled = false;
+            });
         });
+      }
     });
   </script>
 </div>
