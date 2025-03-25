@@ -78,87 +78,35 @@
     <p>Sign up to receive updates, access to exclusive deals, and more.</p>
   </div>
 
-  <div id="newsletter-success-message" class="newsletter-signup__success" style="display: none;">
-    <p><strong>Thanks for signing up!</strong></p>
-  </div>
+  {% form 'customer', class: 'newsletter-signup__form' %}
+    {% if form.posted_successfully? %}
+      <div class="newsletter-signup__success">
+        <p><strong>Thanks for signing up!</strong></p>
+      </div>
+    {% else %}
+      <input type="hidden" name="contact[tags]" value="newsletter">
 
-  {% form 'customer', id: 'newsletter-form', class: 'newsletter-signup__form' %}
-    <div id="newsletter-error-message" class="newsletter-signup__error" style="display: none;">
-      <p><strong>Error:</strong> <span></span></p>
-    </div>
+      <div class="newsletter-signup__row">
+        <label class="visually-hidden" for="newsletter-signup-email">Email</label>
+        <input
+          type="email"
+          name="contact[email]"
+          id="newsletter-signup-email"
+          class="newsletter-signup__input"
+          placeholder="Enter email address"
+          required
+        >
+        <button type="submit" class="newsletter-signup__submit-icon" aria-label="Submit">
+          {% render 'icon-arrow-submit' %}
+        </button>
+      </div>
 
-    <input type="hidden" name="contact[tags]" value="newsletter">
-
-    <div class="newsletter-signup__row">
-      <label class="visually-hidden" for="newsletter-signup-email">Email</label>
-      <input
-        type="email"
-        name="contact[email]"
-        id="newsletter-signup-email"
-        class="newsletter-signup__input"
-        placeholder="Enter email address"
-        required
-      >
-      <button type="submit" class="newsletter-signup__submit-icon" aria-label="Submit">
-        {% render 'icon-arrow-submit' %}
-      </button>
-    </div>
-
-    <div class="newsletter-signup__row">
-      <label class="newsletter-signup__checkbox-label">
-        <input type="checkbox" class="newsletter-signup__checkbox" required>
-        <span>I agree to receive email marketing. You can unsubscribe at any time.</span>
-      </label>
-    </div>
+      <div class="newsletter-signup__row">
+        <label class="newsletter-signup__checkbox-label">
+          <input type="checkbox" class="newsletter-signup__checkbox" required>
+          <span>I agree to receive email marketing. You can unsubscribe at any time.</span>
+        </label>
+      </div>
+    {% endif %}
   {% endform %}
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const form = document.getElementById('newsletter-form');
-
-      if (form) {
-        form.addEventListener('submit', function (e) {
-          e.preventDefault();
-
-          const formData = new FormData(form);
-          const submitButton = form.querySelector('button[type="submit"]');
-          const originalButtonContent = submitButton.innerHTML;
-
-          // Optional: show loading state
-          submitButton.innerHTML = '<span>...</span>';
-          submitButton.disabled = true;
-
-          // Shopify's AJAX API for customer forms
-          fetch(window.location.origin + '/contact', {
-            method: 'POST',
-            body: formData,
-            headers: {
-              'X-Requested-With': 'XMLHttpRequest',
-            },
-          })
-            .then((response) => {
-              if (response.ok) {
-                // Show success message, hide form
-                document.getElementById('newsletter-success-message').style.display = 'block';
-                form.style.display = 'none';
-              } else {
-                return response.json().then((data) => {
-                  throw new Error(data.description || 'Something went wrong');
-                });
-              }
-            })
-            .catch((error) => {
-              console.error('Error:', error);
-              const errorContainer = document.getElementById('newsletter-error-message');
-              errorContainer.querySelector('span').textContent = error.message;
-              errorContainer.style.display = 'block';
-
-              // Reset button state
-              submitButton.innerHTML = originalButtonContent;
-              submitButton.disabled = false;
-            });
-        });
-      }
-    });
-  </script>
 </div>
