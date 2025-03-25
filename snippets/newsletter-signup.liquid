@@ -71,121 +71,75 @@
   }
 </style>
 
-<div
-  class="newsletter-signup"
-  x-data="
-    {
-      submitted: false,
-      loading: false,
-      error: false,
-      errorMessage: '',
-
-      submitForm(event) {
-        event.preventDefault();
-        this.loading = true;
-        this.error = false;
-
-        const form = event.target;
-        const formData = new FormData(form);
-
-        fetch('/contact', {
-          method: 'POST',
-          body: formData,
-          headers: {
-            'X-Requested-With': 'XMLHttpRequest',
-            'Accept': 'application/json'
-          }
-        })
-        .then(response => {
-          if (response.ok) {
-            return response.json().then(data => {
-              this.submitted = true;
-            }).catch(() => {
-              // If not JSON but still OK, consider it a success
-              if (response.ok) {
-                this.submitted = true;
-              } else {
-                throw new Error('Invalid response format');
-              }
-            });
-          } else {
-            return response.json().then(data => {
-              throw new Error(data.description || 'Error submitting form');
-            }).catch(e => {
-              throw new Error('Failed to process response');
-            });
-          }
-        })
-        .catch(error => {
-          this.error = true;
-          this.errorMessage = error.message || 'Network error. Please try again.';
-          console.error('Form submission error:', error);
-        })
-        .finally(() => {
-          this.loading = false;
-        });
-      }
-    }
-  "
->
+<div class="newsletter-signup" x-data="{ showForm: true, showSuccess: false }">
   <h3 class="newsletter-signup__heading">Newsletter</h3>
 
   <div class="newsletter-signup__text">
     <p>Sign up to receive updates, access to exclusive deals, and more.</p>
   </div>
 
-  <div x-show="submitted" class="newsletter-signup__success">
+  <div x-show="showSuccess" class="newsletter-signup__success">
     <p><strong>Thanks for signing up!</strong></p>
   </div>
 
-  <div
-    x-show="error"
-    class="newsletter-signup__error"
-    style="padding: var(--space-s); background-color: #fff2f2; border-left: 3px solid #ff4d4d; margin-bottom: var(--space-s);"
-  >
-    <p><strong>Error:</strong> <span x-text="errorMessage"></span></p>
+  <div x-show="showForm">
+    {% form 'customer', class: 'newsletter-signup__form' %}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <input type="hidden" name="return_to" value="{{ request.path }}">
+
+      <div class="newsletter-signup__row">
+        <label class="visually-hidden" for="newsletter-signup-email">Email</label>
+        <input
+          type="email"
+          name="contact[email]"
+          id="newsletter-signup-email"
+          class="newsletter-signup__input"
+          placeholder="Enter email address"
+          required
+        >
+        <button type="submit" class="newsletter-signup__submit-icon" aria-label="Submit">
+          {% render 'icon-arrow-submit' %}
+        </button>
+      </div>
+
+      <div class="newsletter-signup__row">
+        <label class="newsletter-signup__checkbox-label">
+          <input type="checkbox" class="newsletter-signup__checkbox" required>
+          <span>I agree to receive email marketing. You can unsubscribe at any time.</span>
+        </label>
+      </div>
+    {% endform %}
   </div>
 
-  <form
-    x-show="!submitted"
-    @submit="submitForm"
-    class="newsletter-signup__form"
-    method="post"
-  >
-    <input type="hidden" name="form_type" value="customer">
-    <input type="hidden" name="utf8" value="✓">
-    <input type="hidden" name="contact[tags]" value="newsletter">
+  <script>
+    // Wait for the DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function () {
+      // Find our newsletter form
+      const newsletterForm = document.querySelector('.newsletter-signup__form');
 
-    <div class="newsletter-signup__row">
-      <label class="visually-hidden" for="newsletter-signup-email">Email</label>
-      <input
-        type="email"
-        name="contact[email]"
-        id="newsletter-signup-email"
-        class="newsletter-signup__input"
-        placeholder="Enter email address"
-        required
-      >
-      <button
-        type="submit"
-        class="newsletter-signup__submit-icon"
-        aria-label="Submit"
-        :disabled="loading"
-      >
-        <template x-if="!loading">
-          {% render 'icon-arrow-submit' %}
-        </template>
-        <template x-if="loading">
-          <span>...</span>
-        </template>
-      </button>
-    </div>
+      if (newsletterForm) {
+        // Create a hidden iframe for form submission
+        const iframe = document.createElement('iframe');
+        iframe.name = 'newsletter-submit-frame';
+        iframe.style.display = 'none';
+        document.body.appendChild(iframe);
 
-    <div class="newsletter-signup__row">
-      <label class="newsletter-signup__checkbox-label">
-        <input type="checkbox" class="newsletter-signup__checkbox" required>
-        <span>I agree to receive email marketing. You can unsubscribe at any time.</span>
-      </label>
-    </div>
-  </form>
+        // Set up the form to submit to the iframe
+        newsletterForm.target = 'newsletter-submit-frame';
+
+        // Add a submit event to show success message after submission
+        newsletterForm.addEventListener('submit', function (e) {
+          // Let the form submit normally to the iframe
+          // Get Alpine component
+          const component = Alpine.closestComponent(newsletterForm);
+
+          // After a short delay, show success message and hide form
+          setTimeout(function () {
+            component.showForm = false;
+            component.showSuccess = true;
+          }, 1000);
+        });
+      }
+    });
+  </script>
 </div>
