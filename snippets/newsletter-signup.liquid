@@ -34,7 +34,7 @@
   .newsletter-signup__input {
     width: 100%;
     padding: 10px;
-    padding-right: 40px;
+    padding-right: 40px; /* Space for the icon */
     border: 1px solid var(--neutral-300);
   }
 
@@ -91,32 +91,26 @@
         const form = event.target;
         const formData = new FormData(form);
 
-        fetch('{{ routes.account_url }}', {
+        fetch('{{ routes.account_url }}/post', {
           method: 'POST',
           body: formData,
           headers: {
-            'Accept': 'application/json'
+            'X-Requested-With': 'XMLHttpRequest'
           }
         })
         .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.json();
-        })
-        .then(data => {
-          if (data.status && data.status !== 'success') {
-            this.error = true;
-            this.errorMessage = data.errors ? Object.values(data.errors).flat()[0] : 'Submission error, please try again.';
-          } else {
+          if (response.status === 200) {
             this.submitted = true;
             this.error = false;
             form.reset();
+          } else {
+            this.error = true;
+            this.errorMessage = 'Submission error, please try again.';
           }
         })
         .catch(error => {
           this.error = true;
-          this.errorMessage = 'Submission error, please try again.';
+          this.errorMessage = 'Network error, please try again.';
           console.error('Error:', error);
         });
       }
@@ -140,24 +134,23 @@
   <form
     x-show="!submitted"
     class="newsletter-signup__form"
-    action="{{ routes.account_url }}"
-    method="post"
-    accept-charset="UTF-8"
-    @submit.prevent="submitForm"
+    @submit="submitForm"
   >
-    <input type="hidden" name="form_type" value="customer">
-    <input type="hidden" name="utf8" value="✓">
-    <input type="hidden" name="contact[tags]" value="newsletter">
+    {% form 'customer', id: 'newsletter-form', class: 'd-none' %}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <input type="email" name="contact[email]" id="hidden-email">
+      <input type="hidden" id="hidden-marketing" name="contact[accepts_marketing]" value="">
+    {% endform %}
 
     <div class="newsletter-signup__row">
       <label class="visually-hidden" for="newsletter-signup-email">Email</label>
       <input
         type="email"
-        name="contact[email]"
         id="newsletter-signup-email"
         class="newsletter-signup__input"
         placeholder="Enter email address"
         required
+        @change="document.getElementById('hidden-email').value = $event.target.value"
       >
       <button type="submit" class="newsletter-signup__submit-icon" aria-label="Submit">
         {% render 'icon-arrow-submit' %}
@@ -166,7 +159,12 @@
 
     <div class="newsletter-signup__row">
       <label class="newsletter-signup__checkbox-label">
-        <input type="checkbox" class="newsletter-signup__checkbox" required>
+        <input
+          type="checkbox"
+          class="newsletter-signup__checkbox"
+          required
+          @change="document.getElementById('hidden-marketing').value = $event.target.checked ? 'true' : ''"
+        >
         <span>I agree to receive email marketing. You can unsubscribe at any time.</span>
       </label>
     </div>
