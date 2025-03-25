@@ -71,42 +71,178 @@
   }
 </style>
 
-<div class="newsletter-signup">
+{% comment %}
+  NEWSLETTER SIGNUP WITH ALPINE.JS
+  - Handles form submission without page refresh
+  - Shows success/error messages inline
+  - Maintains hCaptcha functionality
+  - Uses fetch API for form submission
+{% endcomment %}
+
+<div
+  class="newsletter-signup"
+  x-data="
+    {
+      status: 'idle',
+      email: '',
+      error: '',
+      submitForm() {
+        this.status = 'loading';
+
+        // Get hCaptcha response if present
+        const hcaptchaResponse = document.querySelector('[name=h-captcha-response]')?.value;
+
+        // Create FormData from the form
+        const formData = new FormData(this.$refs.form);
+
+        // Submit using fetch
+        fetch('/contact#contact_form', {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.text();
+        })
+        .then(html => {
+          // Success - form was submitted
+          this.status = 'success';
+          this.email = '';
+        })
+        .catch(error => {
+          this.status = 'error';
+          this.error = 'There was a problem submitting your form. Please try again.';
+          console.error('Error:', error);
+        });
+      }
+    }
+  "
+  x-cloak
+>
   <h3 class="newsletter-signup__heading">Newsletter</h3>
 
   <div class="newsletter-signup__text">
     <p>Sign up to receive updates, access to exclusive deals, and more.</p>
   </div>
 
-  {% form 'customer', class: 'newsletter-signup__form' %}
-    {% if form.posted_successfully? %}
-      <div class="newsletter-signup__success">
-        <p><strong>Thanks for signing up!</strong></p>
-      </div>
-    {% else %}
-      <input type="hidden" name="contact[tags]" value="newsletter">
+  <!-- Success message (shown when status is 'success') -->
+  <div
+    x-show="status === 'success'"
+    x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="opacity-0 transform scale-95"
+    x-transition:enter-end="opacity-100 transform scale-100"
+    class="newsletter-signup__success"
+  >
+    <p><strong>Thanks for signing up!</strong></p>
+  </div>
 
-      <div class="newsletter-signup__row">
-        <label class="visually-hidden" for="newsletter-signup-email">Email</label>
-        <input
-          type="email"
-          name="contact[email]"
-          id="newsletter-signup-email"
-          class="newsletter-signup__input"
-          placeholder="Enter email address"
-          required
+  <!-- Error message -->
+  <div
+    x-show="status === 'error'"
+    x-transition
+    class="newsletter-signup__error"
+    style="padding: var(--space-s); background-color: #FFF0F0; border-left: 3px solid #FF0000; margin-bottom: var(--space-s);"
+  >
+    <p><strong>Error:</strong> <span x-text="error"></span></p>
+  </div>
+
+  <!-- Form (hidden when status is 'success') -->
+  <form
+    x-show="status !== 'success'"
+    x-ref="form"
+    method="post"
+    action="/contact#contact_form"
+    id="contact_form"
+    accept-charset="UTF-8"
+    class="newsletter-signup__form"
+    data-cptcha="true"
+    @submit.prevent="submitForm"
+  >
+    <input type="hidden" name="form_type" value="customer">
+    <input type="hidden" name="utf8" value="✓">
+    <input type="hidden" name="contact[tags]" value="newsletter">
+
+    <div class="newsletter-signup__row">
+      <label class="visually-hidden" for="newsletter-signup-email">Email</label>
+      <input
+        type="email"
+        name="contact[email]"
+        id="newsletter-signup-email"
+        class="newsletter-signup__input"
+        placeholder="Enter email address"
+        required
+        x-model="email"
+        :disabled="status === 'loading'"
+      >
+
+      <button
+        type="submit"
+        class="newsletter-signup__submit-icon"
+        aria-label="Submit"
+        :disabled="status === 'loading'"
+      >
+        <!-- Loading spinner (shown when status is 'loading') -->
+        <svg
+          x-show="status === 'loading'"
+          class="animate-spin h-4 w-4"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
         >
-        <button type="submit" class="newsletter-signup__submit-icon" aria-label="Submit">
-          {% render 'icon-arrow-submit' %}
-        </button>
-      </div>
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
 
-      <div class="newsletter-signup__row">
-        <label class="newsletter-signup__checkbox-label">
-          <input type="checkbox" class="newsletter-signup__checkbox" required>
-          <span>I agree to receive email marketing. You can unsubscribe at any time.</span>
-        </label>
-      </div>
-    {% endif %}
-  {% endform %}
+        <!-- Regular arrow icon (shown when status is not 'loading') -->
+        <svg
+          x-show="status !== 'loading'"
+          width="12"
+          height="10"
+          viewBox="0 0 12 10"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M6.6 1L10.6 5M10.6 5L6.6 9M10.6 5L1 5" stroke="#A0A0A0" stroke-width="0.75" stroke-linecap="square"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div class="newsletter-signup__row">
+      <label class="newsletter-signup__checkbox-label">
+        <input type="checkbox" class="newsletter-signup__checkbox" required :disabled="status === 'loading'">
+        <span>I agree to receive email marketing. You can unsubscribe at any time.</span>
+      </label>
+    </div>
+
+    <div class="h-captcha" data-sitekey="f06e6c50-85a8-45c8-87d0-21a2b65856fe" data-size="invisible"></div>
+  </form>
 </div>
+
+<!-- Optional: Add this style to ensure elements are hidden until Alpine.js initializes -->
+<style>
+  [x-cloak] {
+    display: none !important;
+  }
+
+  .newsletter-signup__error {
+    color: #721c24;
+  }
+
+  .animate-spin {
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>
