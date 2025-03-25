@@ -1,0 +1,100 @@
+<style>
+  .newsletter-signup {
+    padding: var(--space-m) var(--space-l);
+    border-top: 1px solid var(--neutral-200);
+  }
+
+  .newsletter-signup__heading {
+    margin: 0 0 var(--space-xs);
+    font-size: 18px;
+  }
+
+  .newsletter-signup__text {
+    margin-bottom: var(--space-s);
+    font-size: 14px;
+  }
+
+  .newsletter-signup__form {
+    width: 100%;
+  }
+
+  .newsletter-signup__row {
+    margin-bottom: var(--space-xs);
+  }
+
+  .newsletter-signup__input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--neutral-300);
+  }
+
+  .newsletter-signup__button {
+    margin-top: var(--space-xs);
+    width: 100%;
+    padding: 10px 20px;
+    background: var(--black);
+    color: var(--white);
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+
+  .newsletter-signup__checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    font-size: 12px;
+    gap: var(--space-xs);
+  }
+
+  .newsletter-signup__checkbox {
+    margin: 3px 0 0 0;
+  }
+
+  .newsletter-signup__success {
+    padding: var(--space-s);
+    background-color: var(--neutral-100);
+    border-left: 3px solid var(--black);
+    margin-bottom: var(--space-s);
+  }
+</style>
+
+<div class="newsletter-signup">
+  <h3 class="newsletter-signup__heading">Newsletter</h3>
+
+  <div class="newsletter-signup__text">
+    <p>Sign up to receive updates, access to exclusive deals, and more.</p>
+  </div>
+
+  {% form 'customer', class: 'newsletter-signup__form' %}
+    {% if form.posted_successfully? %}
+      <div class="newsletter-signup__success">
+        <p><strong>Thanks for signing up!</strong></p>
+      </div>
+    {% else %}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+
+      <div class="newsletter-signup__row">
+        <label class="visually-hidden" for="newsletter-signup-email">Email</label>
+        <input
+          type="email"
+          name="contact[email]"
+          id="newsletter-signup-email"
+          class="newsletter-signup__input"
+          placeholder="Enter email address"
+          required
+        >
+      </div>
+
+      <div class="newsletter-signup__row">
+        <button type="submit" class="newsletter-signup__button">Sign up</button>
+      </div>
+
+      <div class="newsletter-signup__row">
+        <label class="newsletter-signup__checkbox-label">
+          <input type="checkbox" class="newsletter-signup__checkbox" required>
+          <span>I agree to receive email marketing. You can unsubscribe at any time.</span>
+        </label>
+      </div>
+    {% endif %}
+  {% endform %}
+</div>

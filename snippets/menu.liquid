@@ -252,25 +252,7 @@
             </li>
           {% endfor %}
         </ul>
-        <!-- Newsletter form -->
-        <div class="menu-drawer__newsletter">
-          <h3 class="menu-drawer__heading">Stay Updated</h3>
-          <div class="menu-drawer__newsletter-content">
-            {% form 'customer', class: 'form newsletter-signup-form' %}
-              <input type="hidden" name="contact[tags]" value="newsletter">
-              <div class="form-row">
-                <input type="email" name="contact[email]" placeholder="Enter email address" required>
-                <button type="submit" value="submit">Sign up</button>
-              </div>
-              <div class="form-row">
-                <label class="flex align-center">
-                  <input type="checkbox" required>
-                  <span>I have read and accept the <a href="/pages/privacy-policy">privacy policy</a>.</span>
-                </label>
-              </div>
-            {% endform %}
-          </div>
-        </div>
+        {% render 'newsletter-signup' %}
       </section>
       <section
         :class="{'menu-drawer__level': true, 'active': currentLevel >= 2}"
