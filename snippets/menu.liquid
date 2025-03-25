@@ -3,19 +3,21 @@
 
   TO DO:
   FUNCTIONALITY:
-  Add STORES/ACCOUNT/WISHLIST/SUPPORT links
   Add Newsletter Signup
-  Create logic for greying out menu items and images per level and underlining current link
+  Toggle link open or closed by clicking it
+  Add hover drawer with 5 products from 2nd level drawer collection using blazer slider infinite slide
   Load in related content into infinite blazer slider
-  Add hover drawer with 5 products from 2nd level drawer collection
   Toggle link open or closed by clicking it
   Search component on mobile
   Journal articles pull in
   Make responsive
+  replace menu button with hamburger and close SVG's
+  replace see more arrows with correct icons
   Complete styling
   =================================TEST THOROUGHLY==============================================
   Remove unused CSS
   Clean up markup and Alpine
+  Clean up JavaScript
   Put Javascript in bottom into own JS file in assets for minification
 {% endcomment %}
 
@@ -243,7 +245,14 @@
           </video>
           <p class="body">Winter 25 Collection</p>
         </div>
-        <!-- Insert secondary menu here -->
+        <ul class="menu-drawer__menu" role="menu">
+          {% for link in linklists['secondary-main-menu'].links %}
+            <li role="none">
+              <a href="{{ link.url }}" class="menu-drawer__link body--uppercase" role="menuitem">{{ link.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+        <div class="klaviyo-form-WH7CVh"></div>
       </section>
       <section
         :class="{'menu-drawer__level': true, 'active': currentLevel >= 2}"
