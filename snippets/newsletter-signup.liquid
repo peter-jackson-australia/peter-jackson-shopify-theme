@@ -1,4 +1,5 @@
 {% comment %}
+  Add arrow icon
   send without full page refresh
   - Add in proper error handling and messages
   style professionally
@@ -28,28 +29,23 @@
 
   .newsletter-signup__row {
     margin-bottom: var(--space-xs);
-    position: relative;
   }
 
   .newsletter-signup__input {
     width: 100%;
     padding: 10px;
-    padding-right: 40px; /* Space for the icon */
     border: 1px solid var(--neutral-300);
   }
 
-  .newsletter-signup__submit-icon {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    background: none;
+  .newsletter-signup__button {
+    margin-top: var(--space-xs);
+    width: 100%;
+    padding: 10px 20px;
+    background: var(--black);
+    color: var(--white);
     border: none;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    cursor: pointer;
+    text-transform: uppercase;
   }
 
   .newsletter-signup__checkbox-label {
@@ -71,193 +67,43 @@
   }
 </style>
 
-<div
-  class="newsletter-signup"
-  x-data="
-    {
-      showSuccess: false,
-      showError: false,
-      loading: false,
-      errorMessage: ''
-    }
-  "
->
+<div class="newsletter-signup">
   <h3 class="newsletter-signup__heading">Newsletter</h3>
 
   <div class="newsletter-signup__text">
     <p>Sign up to receive updates, access to exclusive deals, and more.</p>
   </div>
 
-  <!-- Success message (hidden by default) -->
-  <div
-    x-show="showSuccess"
-    x-transition
-    class="newsletter-signup__success"
-  >
-    <p><strong>Thanks for signing up!</strong></p>
-  </div>
+  {% form 'customer', class: 'newsletter-signup__form' %}
+    {% if form.posted_successfully? %}
+      <div class="newsletter-signup__success">
+        <p><strong>Thanks for signing up!</strong></p>
+      </div>
+    {% else %}
+      <input type="hidden" name="contact[tags]" value="newsletter">
 
-  <!-- Error message -->
-  <div
-    x-show="showError"
-    x-transition
-    class="newsletter-signup__error"
-    style="padding: var(--space-s); background-color: #FFF0F0; border-left: 3px solid #FF0000; margin-bottom: var(--space-s);"
-  >
-    <p><strong>Error:</strong> <span x-text="errorMessage"></span></p>
-  </div>
-
-  <!-- Form (hidden when success is shown) -->
-  <form
-    x-show="!showSuccess"
-    method="post"
-    action="/contact#contact_form"
-    id="contact_form"
-    accept-charset="UTF-8"
-    class="newsletter-signup__form"
-    data-cptcha="true"
-    @submit.prevent="submitNewsletterForm($event)"
-  >
-    <input type="hidden" name="form_type" value="customer">
-    <input type="hidden" name="utf8" value="✓">
-    <input type="hidden" name="contact[tags]" value="newsletter">
-
-    <div class="newsletter-signup__row">
-      <label class="visually-hidden" for="newsletter-signup-email">Email</label>
-      <input
-        type="email"
-        name="contact[email]"
-        id="newsletter-signup-email"
-        class="newsletter-signup__input"
-        placeholder="Enter email address"
-        required
-        :disabled="loading"
-      >
-
-      <button
-        type="submit"
-        class="newsletter-signup__submit-icon"
-        aria-label="Submit"
-        :disabled="loading"
-      >
-        <!-- Loading spinner -->
-        <svg
-          x-show="loading"
-          class="animate-spin h-4 w-4"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
+      <div class="newsletter-signup__row">
+        <label class="visually-hidden" for="newsletter-signup-email">Email</label>
+        <input
+          type="email"
+          name="contact[email]"
+          id="newsletter-signup-email"
+          class="newsletter-signup__input"
+          placeholder="Enter email address"
+          required
         >
-          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-        </svg>
+      </div>
 
-        <!-- Regular arrow icon -->
-        <svg
-          x-show="!loading"
-          width="12"
-          height="10"
-          viewBox="0 0 12 10"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path d="M6.6 1L10.6 5M10.6 5L6.6 9M10.6 5L1 5" stroke="#A0A0A0" stroke-width="0.75" stroke-linecap="square"></path>
-        </svg>
-      </button>
-    </div>
+      <div class="newsletter-signup__row">
+        <button type="submit" class="newsletter-signup__button">Sign up</button>
+      </div>
 
-    <div class="newsletter-signup__row">
-      <label class="newsletter-signup__checkbox-label">
-        <input type="checkbox" class="newsletter-signup__checkbox" required :disabled="loading">
-        <span>I agree to receive email marketing. You can unsubscribe at any time.</span>
-      </label>
-    </div>
-
-    <div class="h-captcha" data-sitekey="f06e6c50-85a8-45c8-87d0-21a2b65856fe" data-size="invisible"></div>
-  </form>
+      <div class="newsletter-signup__row">
+        <label class="newsletter-signup__checkbox-label">
+          <input type="checkbox" class="newsletter-signup__checkbox" required>
+          <span>I agree to receive email marketing. You can unsubscribe at any time.</span>
+        </label>
+      </div>
+    {% endif %}
+  {% endform %}
 </div>
-
-<script>
-  document.addEventListener('alpine:init', () => {
-    // Global function to handle newsletter form submission
-    window.submitNewsletterForm = function (event) {
-      const form = event.target;
-      const formData = new FormData(form);
-      const alpineComponent = Alpine.getComponent(form.closest('[x-data]'));
-
-      // Set loading state
-      alpineComponent.loading = true;
-      alpineComponent.showError = false;
-
-      // Handle hCaptcha if needed
-      if (window.hcaptcha) {
-        try {
-          window.hcaptcha.execute();
-        } catch (e) {
-          console.error('hCaptcha error:', e);
-        }
-      }
-
-      // Create XHR request to submit the form
-      const xhr = new XMLHttpRequest();
-      xhr.open('POST', form.action, true);
-      xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-
-      xhr.onload = function () {
-        alpineComponent.loading = false;
-
-        if (xhr.status >= 200 && xhr.status < 300) {
-          // Check if the response contains success indicators
-          // If the response contains the success message or a redirect, consider it successful
-          if (
-            xhr.responseText.includes('form-status-list__item--success') ||
-            xhr.responseText.includes('Thanks for signing up')
-          ) {
-            // Success
-            alpineComponent.showSuccess = true;
-            form.reset();
-          } else {
-            // Form submission had an error in the response
-            alpineComponent.showError = true;
-            alpineComponent.errorMessage = 'Please check your information and try again.';
-          }
-        } else {
-          // HTTP error
-          alpineComponent.showError = true;
-          alpineComponent.errorMessage = 'There was a problem submitting your form. Please try again.';
-        }
-      };
-
-      xhr.onerror = function () {
-        alpineComponent.loading = false;
-        alpineComponent.showError = true;
-        alpineComponent.errorMessage = 'Network error. Please try again.';
-      };
-
-      xhr.send(formData);
-    };
-  });
-</script>
-
-<style>
-  [x-cloak] {
-    display: none !important;
-  }
-
-  .newsletter-signup__error {
-    color: #721c24;
-  }
-
-  .animate-spin {
-    animation: spin 1s linear infinite;
-  }
-
-  @keyframes spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-</style>
