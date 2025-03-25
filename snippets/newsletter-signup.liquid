@@ -78,7 +78,53 @@
       submitted: false,
       loading: false,
       error: false,
-      errorMessage: ''
+      errorMessage: '',
+
+      submitForm(event) {
+        event.preventDefault();
+        this.loading = true;
+        this.error = false;
+
+        const form = event.target;
+        const formData = new FormData(form);
+
+        fetch('/contact', {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            'Accept': 'application/json'
+          }
+        })
+        .then(response => {
+          if (response.ok) {
+            return response.json().then(data => {
+              this.submitted = true;
+            }).catch(() => {
+              // If not JSON but still OK, consider it a success
+              if (response.ok) {
+                this.submitted = true;
+              } else {
+                throw new Error('Invalid response format');
+              }
+            });
+          } else {
+            return response.json().then(data => {
+              throw new Error(data.description || 'Error submitting form');
+            }).catch(e => {
+              throw new Error('Failed to process response');
+            });
+          }
+        })
+        .catch(error => {
+          this.error = true;
+          this.errorMessage = error.message || 'Network error. Please try again.';
+          console.error('Form submission error:', error);
+        })
+        .finally(() => {
+          this.loading = false;
+        });
+      }
     }
   "
 >
@@ -102,7 +148,7 @@
 
   <form
     x-show="!submitted"
-    @submit.prevent="submitNewsletterForm($event)"
+    @submit="submitForm"
     class="newsletter-signup__form"
     method="post"
   >
@@ -142,58 +188,4 @@
       </label>
     </div>
   </form>
-
-  <script>
-    document.addEventListener('alpine:init', () => {
-      Alpine.data('newsletterData', () => ({
-        submitted: false,
-        loading: false,
-        error: false,
-        errorMessage: '',
-      }));
-
-      Alpine.magic('submitNewsletterForm', () => {
-        return async (event) => {
-          const form = event.target;
-          const formData = new FormData(form);
-          const alpineComponent = Alpine.closestComponent(form);
-
-          alpineComponent.loading = true;
-          alpineComponent.error = false;
-
-          try {
-            // Use Shopify's /contact endpoint
-            const response = await fetch('/contact', {
-              method: 'POST',
-              body: formData,
-              headers: {
-                'X-Requested-With': 'XMLHttpRequest',
-                Accept: 'application/json',
-              },
-            });
-
-            // Handle the response
-            if (response.ok) {
-              alpineComponent.submitted = true;
-            } else {
-              try {
-                const errorData = await response.json();
-                alpineComponent.error = true;
-                alpineComponent.errorMessage = errorData.description || 'Error submitting form';
-              } catch (jsonError) {
-                alpineComponent.error = true;
-                alpineComponent.errorMessage = 'Failed to process response';
-              }
-            }
-          } catch (error) {
-            alpineComponent.error = true;
-            alpineComponent.errorMessage = 'Network error. Please try again.';
-            console.error('Form submission error:', error);
-          } finally {
-            alpineComponent.loading = false;
-          }
-        };
-      });
-    });
-  </script>
 </div>
