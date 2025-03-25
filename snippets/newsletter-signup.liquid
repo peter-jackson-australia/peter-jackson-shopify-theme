@@ -71,14 +71,6 @@
   }
 </style>
 
-{% comment %}
-  NEWSLETTER SIGNUP WITH ALPINE.JS
-  - Handles form submission without page refresh
-  - Shows success/error messages inline
-  - Maintains hCaptcha functionality
-  - Uses fetch API for form submission
-{% endcomment %}
-
 <div
   class="newsletter-signup"
   x-data="
@@ -95,30 +87,50 @@
         // Create FormData from the form
         const formData = new FormData(this.$refs.form);
 
-        // Submit using fetch
-        fetch('/contact#contact_form', {
-          method: 'POST',
-          body: formData,
-          headers: {
-            'Accept': 'application/json'
+        // Create a hidden iframe for submission
+        const iframe = document.createElement('iframe');
+        iframe.name = 'newsletter-submit-frame';
+        iframe.style.display = 'none';
+        document.body.appendChild(iframe);
+
+        // Set up the iframe load handler
+        iframe.onload = () => {
+          // First load is just the iframe creation, ignore it
+          if (!this.$refs.form.hasAttribute('data-submitted')) {
+            return;
           }
-        })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
+
+          // Check if submission was successful - look for success message in the iframe content
+          try {
+            const iframeContent = iframe.contentDocument || iframe.contentWindow.document;
+            const successMessage = iframeContent.querySelector('.shopify-section .form-status-list .form-status-list__item--success');
+
+            if (successMessage) {
+              // Success - form was submitted
+              this.status = 'success';
+              this.email = '';
+            } else {
+              // No success message found - likely an error
+              this.status = 'error';
+              this.error = 'There was a problem submitting your form. Please try again.';
+            }
+          } catch (e) {
+            // Cross-origin issues reading iframe or other error
+            this.status = 'error';
+            this.error = 'There was a problem submitting your form. Please try again.';
+            console.error('Error:', e);
           }
-          return response.text();
-        })
-        .then(html => {
-          // Success - form was submitted
-          this.status = 'success';
-          this.email = '';
-        })
-        .catch(error => {
-          this.status = 'error';
-          this.error = 'There was a problem submitting your form. Please try again.';
-          console.error('Error:', error);
-        });
+
+          // Clean up
+          setTimeout(() => {
+            document.body.removeChild(iframe);
+          }, 100);
+        };
+
+        // Set the form target to the iframe and submit
+        this.$refs.form.setAttribute('data-submitted', 'true');
+        this.$refs.form.target = 'newsletter-submit-frame';
+        this.$refs.form.submit();
       }
     }
   "
@@ -161,7 +173,7 @@
     accept-charset="UTF-8"
     class="newsletter-signup__form"
     data-cptcha="true"
-    @submit.prevent="submitForm"
+    @submit="submitForm"
   >
     <input type="hidden" name="form_type" value="customer">
     <input type="hidden" name="utf8" value="✓">
