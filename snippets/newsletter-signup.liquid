@@ -71,42 +71,143 @@
   }
 </style>
 
-<div class="newsletter-signup">
+<div
+  class="newsletter-signup"
+  x-data="
+    {
+      submitted: false,
+      loading: false,
+      error: false,
+      debug: false,
+      errorMessage: '',
+      debugInfo: {},
+
+      async submitForm(event) {
+        event.preventDefault();
+        this.loading = true;
+        this.error = false;
+        this.debug = false;
+
+        const form = event.target;
+        const formData = new FormData(form);
+
+        // Log what we're submitting
+        this.debugInfo = {
+          url: '/?contact_posted=true',
+          method: 'POST',
+          formData: Object.fromEntries(formData)
+        };
+
+        try {
+          const response = await fetch('/?contact_posted=true', {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'X-Requested-With': 'XMLHttpRequest',
+              'Accept': 'application/json'
+            }
+          });
+
+          // Capture the response details for debugging
+          this.debugInfo.status = response.status;
+          this.debugInfo.statusText = response.statusText;
+          this.debugInfo.headers = Object.fromEntries([...response.headers]);
+
+          try {
+            const responseData = await response.json();
+            this.debugInfo.responseData = responseData;
+
+            if (response.ok) {
+              this.submitted = true;
+            } else {
+              this.error = true;
+              this.errorMessage = responseData.description || 'Something went wrong';
+            }
+          } catch (jsonError) {
+            // If not JSON, try to get text
+            const responseText = await response.text();
+            this.debugInfo.responseText = responseText;
+
+            // Check if it contains success indicators
+            if (responseText.includes('success') || response.ok) {
+              this.submitted = true;
+            } else {
+              throw new Error('Non-JSON response received');
+            }
+          }
+        } catch (error) {
+          this.error = true;
+          this.errorMessage = error.message || 'Failed to submit form';
+          this.debugInfo.error = error.toString();
+          console.error('Form submission error:', error);
+        } finally {
+          this.loading = false;
+          this.debug = true; // Always show debug info while we're troubleshooting
+          console.log('Debug info:', this.debugInfo);
+        }
+      }
+    }
+  "
+>
   <h3 class="newsletter-signup__heading">Newsletter</h3>
 
   <div class="newsletter-signup__text">
     <p>Sign up to receive updates, access to exclusive deals, and more.</p>
   </div>
 
-  {% form 'customer', class: 'newsletter-signup__form' %}
-    {% if form.posted_successfully? %}
-      <div class="newsletter-signup__success">
-        <p><strong>Thanks for signing up!</strong></p>
-      </div>
-    {% else %}
-      <input type="hidden" name="contact[tags]" value="newsletter">
+  <div x-show="submitted" class="newsletter-signup__success">
+    <p><strong>Thanks for signing up!</strong></p>
+  </div>
 
-      <div class="newsletter-signup__row">
-        <label class="visually-hidden" for="newsletter-signup-email">Email</label>
-        <input
-          type="email"
-          name="contact[email]"
-          id="newsletter-signup-email"
-          class="newsletter-signup__input"
-          placeholder="Enter email address"
-          required
-        >
-        <button type="submit" class="newsletter-signup__submit-icon" aria-label="Submit">
+  <div x-show="error" class="newsletter-signup__error">
+    <p><strong>Error:</strong> <span x-text="errorMessage"></span></p>
+  </div>
+
+  <!-- Debug info - remove in production -->
+  <div
+    x-show="debug"
+    class="newsletter-signup__debug"
+    style="margin-top: 20px; padding: 10px; background: #f5f5f5; font-size: 12px; overflow: auto; max-height: 200px;"
+  >
+    <h4>Debug Information</h4>
+    <pre x-text="JSON.stringify(debugInfo, null, 2)"></pre>
+  </div>
+
+  <form x-show="!submitted" @submit="submitForm" class="newsletter-signup__form" method="post">
+    <input type="hidden" name="form_type" value="customer">
+    <input type="hidden" name="utf8" value="✓">
+    <input type="hidden" name="contact[tags]" value="newsletter">
+
+    <div class="newsletter-signup__row">
+      <label class="visually-hidden" for="newsletter-signup-email">Email</label>
+      <input
+        type="email"
+        name="contact[email]"
+        id="newsletter-signup-email"
+        class="newsletter-signup__input"
+        placeholder="Enter email address"
+        required
+      >
+      <button
+        type="submit"
+        class="newsletter-signup__submit-icon"
+        aria-label="Submit"
+        :disabled="loading"
+      >
+        <template x-if="!loading">
           {% render 'icon-arrow-submit' %}
-        </button>
-      </div>
+        </template>
+        <template x-if="loading">
+          <span>...</span>
+        </template>
+      </button>
+    </div>
 
-      <div class="newsletter-signup__row">
-        <label class="newsletter-signup__checkbox-label">
-          <input type="checkbox" class="newsletter-signup__checkbox" required>
-          <span>I agree to receive email marketing. You can unsubscribe at any time.</span>
-        </label>
-      </div>
-    {% endif %}
-  {% endform %}
+    <div class="newsletter-signup__row">
+      <label class="newsletter-signup__checkbox-label">
+        <input type="checkbox" class="newsletter-signup__checkbox" required>
+        <span>I agree to receive email marketing. You can unsubscribe at any time.</span>
+      </label>
+    </div>
+  </form>
 </div>
