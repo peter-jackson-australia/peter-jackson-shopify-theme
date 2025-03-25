@@ -69,42 +69,21 @@
     border-left: 3px solid var(--black);
     margin-bottom: var(--space-s);
   }
-
-  .newsletter-signup__error {
-    padding: var(--space-s);
-    background-color: var(--neutral-100);
-    border-left: 3px solid #e74c3c;
-    margin-bottom: var(--space-s);
-  }
 </style>
 
-<div
-  class="newsletter-signup"
-  x-data="
-    {
-      submitted: false,
-      error: false,
-      errorMessage: '',
-      loading: false
-    }
-  "
->
+<div class="newsletter-signup">
   <h3 class="newsletter-signup__heading">Newsletter</h3>
 
   <div class="newsletter-signup__text">
     <p>Sign up to receive updates, access to exclusive deals, and more.</p>
   </div>
 
-  <div x-show="error" class="newsletter-signup__error">
-    <p x-text="errorMessage"></p>
-  </div>
-
-  <div x-show="submitted" class="newsletter-signup__success">
-    <p><strong>Thanks for signing up!</strong></p>
-  </div>
-
-  <div x-show="!submitted">
-    {% form 'customer', class: 'newsletter-signup__form' %}
+  {% form 'customer', class: 'newsletter-signup__form' %}
+    {% if form.posted_successfully? %}
+      <div class="newsletter-signup__success">
+        <p><strong>Thanks for signing up!</strong></p>
+      </div>
+    {% else %}
       <input type="hidden" name="contact[tags]" value="newsletter">
 
       <div class="newsletter-signup__row">
@@ -117,51 +96,17 @@
           placeholder="Enter email address"
           required
         >
-        <button
-          type="submit"
-          class="newsletter-signup__submit-icon"
-          aria-label="Submit"
-          @click.prevent="
-            loading = true;
-            const formData = new FormData($el.closest('form'));
-            fetch('/contact#contact_form', {
-              method: 'POST',
-              body: formData
-            })
-            .then(response => {
-              loading = false;
-              if (response.ok) {
-                submitted = true;
-              } else {
-                error = true;
-                errorMessage = 'Submission failed. Please try again.';
-              }
-            })
-            .catch(err => {
-              loading = false;
-              error = true;
-              errorMessage = 'Network error. Please try again.';
-              console.error(err);
-            })
-          "
-          :disabled="loading"
-        >
+        <button type="submit" class="newsletter-signup__submit-icon" aria-label="Submit">
           {% render 'icon-arrow-submit' %}
         </button>
       </div>
 
       <div class="newsletter-signup__row">
         <label class="newsletter-signup__checkbox-label">
-          <input
-            type="checkbox"
-            name="contact[accepts_marketing]"
-            value="true"
-            class="newsletter-signup__checkbox"
-            required
-          >
+          <input type="checkbox" class="newsletter-signup__checkbox" required>
           <span>I agree to receive email marketing. You can unsubscribe at any time.</span>
         </label>
       </div>
-    {% endform %}
-  </div>
+    {% endif %}
+  {% endform %}
 </div>
