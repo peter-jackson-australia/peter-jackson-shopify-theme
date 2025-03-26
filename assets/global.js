@@ -5,5 +5,5 @@ window.addEventListener("load", () => {
 
 // Initialise Blaze Sliders
 document.querySelectorAll(".blaze-slider").forEach((el) => {
-  new BlazeSlider(el, options);
+  new BlazeSlider(el);
 });

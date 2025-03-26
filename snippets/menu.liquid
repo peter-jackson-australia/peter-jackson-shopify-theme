@@ -1,7 +1,7 @@
 {% comment %}
   Mega Menu Sidebar Drawer with side-by-side levels
 
-  TO DO:
+  TO D:O
   FUNCTIONALITY:
   Load in related content into infinite blazer slider
   Add hover drawer with 5 products from 2nd level drawer collection using blazer slider infinite slide
@@ -165,6 +165,12 @@
     opacity: 1;
     text-decoration: underline;
   }
+
+  .blaze-track > * {
+    width: 70%;
+    height: 400px;
+    background-color: var(--neutral-200);
+  }
 </style>
 
 <aside
@@ -189,6 +195,7 @@
     class="menu-drawer"
   >
     <div class="menu-drawer__inner">
+      <!-- Menu Level 1 -->
       <section
         :class="{'menu-drawer__level': true, 'active': currentLevel >= 1}"
         id="menu-drawer-level-1"
@@ -257,6 +264,8 @@
         </ul>
         <div class="klaviyo-form-WH7CVh"></div>
       </section>
+
+      <!-- Menu Level 2 -->
       <section
         :class="{'menu-drawer__level': true, 'active': currentLevel >= 2}"
         id="menu-drawer-level-2"
@@ -322,7 +331,22 @@
             </li>
           </template>
         </ul>
+        <!-- Blaze Slider -->
+        <div class="blaze-slider">
+          <div class="blaze-container">
+            <div class="blaze-track-container">
+              <div class="blaze-track">
+                <div>1</div>
+                <div>2</div>
+                <div>3</div>
+                <div>4</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
+
+      <!-- Menu Level 3 -->
       <section
         :class="{'menu-drawer__level': true, 'active': currentLevel >= 3}"
         id="menu-drawer-level-3"
@@ -351,6 +375,7 @@
     </div>
   </nav>
 </aside>
+
 <script>
   document.addEventListener('alpine:init', () => {
     Alpine.data('menuDrawer', () => ({
