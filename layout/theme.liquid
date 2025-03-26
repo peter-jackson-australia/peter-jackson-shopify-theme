@@ -65,5 +65,58 @@
         quicklink.listen();
       });
     </script>
+    {% comment %}
+      Manually installing Klaviyo.js offers performance benefits over the app install method
+    {% endcomment %}
+    <script type="text/javascript" async="" src="https://static.klaviyo.com/onsite/js/VLyhSf/klaviyo.js"></script>
+    <script type="text/javascript">
+      //Initialize the Klaviyo object on page load
+      !(function () {
+        if (!window.klaviyo) {
+          window._klOnsite = window._klOnsite || [];
+          try {
+            window.klaviyo = new Proxy(
+              {},
+              {
+                get: function (n, i) {
+                  return 'push' === i
+                    ? function () {
+                        var n;
+                        (n = window._klOnsite).push.apply(n, arguments);
+                      }
+                    : function () {
+                        for (var n = arguments.length, o = new Array(n), w = 0; w < n; w++) o[w] = arguments[w];
+                        var t = 'function' == typeof o[o.length - 1] ? o.pop() : void 0,
+                          e = new Promise(function (n) {
+                            window._klOnsite.push(
+                              [i].concat(o, [
+                                function (i) {
+                                  t && t(i), n(i);
+                                },
+                              ])
+                            );
+                          });
+                        return e;
+                      };
+                },
+              }
+            );
+          } catch (n) {
+            (window.klaviyo = window.klaviyo || []),
+              (window.klaviyo.push = function () {
+                var n;
+                (n = window._klOnsite).push.apply(n, arguments);
+              });
+          }
+        }
+      })();
+    </script>
+    <script type="text/javascript">
+      //Customer accounts
+      var klaviyo = window.klaviyo || [];
+      if ('{{ customer.email }}') {
+        klaviyo.identify({ $email: '{{ customer.email }}' });
+      }
+    </script>
   </body>
 </html>
