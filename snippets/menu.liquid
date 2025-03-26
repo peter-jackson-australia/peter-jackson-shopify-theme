@@ -3,6 +3,7 @@
 
   TO DO:
   FUNCTIONALITY:
+  Replace see more arrows with correct icons
   Toggle link open or closed by clicking it
   Logic for showing which link is currently open and grey out others
   Add hover drawer with 5 products from 2nd level drawer collection using blazer slider infinite slide
@@ -393,38 +394,41 @@
       },
 
       openLevel(level, title, parentIndex, featuredImage, featuredImageAlt, childIndex) {
-        const previousLevel = this.currentLevel;
-        
+
         const isSameLevel2Item = level === 2 && this.currentLevel === 2 && this.currentParentIndex === parentIndex;
+        const isSameLevel3Item = level === 3 && this.currentLevel === 3 && this.currentChildIndex === childIndex;
+        
+        if (isSameLevel2Item || isSameLevel3Item) {
+          this.backLevel();
+          return;
+        }
         
         this.currentLevel = level;
-
+      
         if (level === 2) {
           this.menuTitle = title;
           this.currentParentIndex = parentIndex;
           this.submenu = this.menuData[parentIndex].links;
           
-          if (!isSameLevel2Item) {
-            const prevUrl = this.featuredImageUrl;
-            const newUrl = featuredImage || (this.menuData[parentIndex] ? this.menuData[parentIndex].featuredImage : '');
-            
-            if (prevUrl !== newUrl) {
-              this.isImageLoading = true;
-              this.imageLoaded = false;
-
-              if (featuredImage) {
-                this.featuredImageUrl = featuredImage;
-                this.featuredImageAlt = featuredImageAlt || title;
-              } 
-
-              else if (this.menuData[parentIndex]) {
-                this.featuredImageUrl = this.menuData[parentIndex].featuredImage;
-                this.featuredImageAlt = this.menuData[parentIndex].featuredImageAlt || title;
-              }
+          const prevUrl = this.featuredImageUrl;
+          const newUrl = featuredImage || (this.menuData[parentIndex] ? this.menuData[parentIndex].featuredImage : '');
+          
+          if (prevUrl !== newUrl) {
+            this.isImageLoading = true;
+            this.imageLoaded = false;
+      
+            if (featuredImage) {
+              this.featuredImageUrl = featuredImage;
+              this.featuredImageAlt = featuredImageAlt || title;
+            } 
+            else if (this.menuData[parentIndex]) {
+              this.featuredImageUrl = this.menuData[parentIndex].featuredImage;
+              this.featuredImageAlt = this.menuData[parentIndex].featuredImageAlt || title;
             }
           }
         } else if (level === 3) {
           this.subMenuTitle = title;
+          this.currentChildIndex = childIndex; 
           this.subSubmenu = this.menuData[this.currentParentIndex].links[childIndex].links;
         }
       },
