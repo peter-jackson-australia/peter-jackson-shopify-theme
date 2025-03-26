@@ -422,7 +422,15 @@
       },
 
       openLevel(level, title, parentIndex, featuredImage, featuredImageAlt, childIndex) {
-
+        if (level === 2 && this.activeLevel1Index === parentIndex && this.currentLevel > 1) {
+          this.currentLevel = 1;
+          this.activeLevel1Index = null;
+          this.activeLevel2Index = null;
+          this.featuredImageUrl = '';
+          this.featuredImageAlt = '';
+          return;
+        }
+        
         const isSameLevel2Item = level === 2 && this.currentLevel === 2 && this.currentParentIndex === parentIndex;
         const isSameLevel3Item = level === 3 && this.currentLevel === 3 && this.currentChildIndex === childIndex;
         
@@ -432,7 +440,7 @@
         }
         
         this.currentLevel = level;
-      
+
         if (level === 2) {
           this.activeLevel1Index = parentIndex;
           this.activeLevel2Index = null;
@@ -446,7 +454,7 @@
           if (prevUrl !== newUrl) {
             this.isImageLoading = true;
             this.imageLoaded = false;
-      
+
             if (featuredImage) {
               this.featuredImageUrl = featuredImage;
               this.featuredImageAlt = featuredImageAlt || title;
@@ -462,7 +470,7 @@
           this.currentChildIndex = childIndex; 
           this.subSubmenu = this.menuData[this.currentParentIndex].links[childIndex].links;
         }
-      },
+      }, 
 
       backLevel() {
         if (this.currentLevel > 1) {
