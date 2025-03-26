@@ -15,8 +15,8 @@ body {
   height: 100%;
 }
 
-ul[role='list'],
-ol[role='list'] {
+ul[role="list"],
+ol[role="list"] {
   list-style: none;
 }
 
@@ -61,7 +61,6 @@ select {
 /* Variables */
 
 :root {
-  
   /* Fluid Spacing */
   --space-3xs: clamp(0.25rem, 0.2375rem + 0.0625vw, 0.3125rem);
   --space-2xs: clamp(0.5rem, 0.475rem + 0.125vw, 0.625rem);
@@ -108,37 +107,37 @@ select {
 /* Typography */
 
 @font-face {
-  font-family: 'Ordinary Regular';
-  src: url('https://cdn.shopify.com/s/files/1/0898/1859/5696/files/ordinary-display-regular.woff2?v=1742796201')
-    format('woff2');
+  font-family: "Ordinary Regular";
+  src: url("https://cdn.shopify.com/s/files/1/0898/1859/5696/files/ordinary-display-regular.woff2?v=1742796201")
+    format("woff2");
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Ordinary Light';
-  src: url('https://cdn.shopify.com/s/files/1/0898/1859/5696/files/ordinary-display-light.woff2?v=1742796170')
-    format('woff2');
+  font-family: "Ordinary Light";
+  src: url("https://cdn.shopify.com/s/files/1/0898/1859/5696/files/ordinary-display-light.woff2?v=1742796170")
+    format("woff2");
   font-display: swap;
 }
 
 .small {
   line-height: 140%;
   letter-spacing: 0.2rem;
-  font-family: 'Ordinary Light';
+  font-family: "Ordinary Light";
   font-size: clamp(0.5787rem, 0.5498rem + 0.1447vw, 0.7234rem);
 }
 
 .body {
   line-height: 140%;
   letter-spacing: 0.2rem;
-  font-family: 'Ordinary Light';
+  font-family: "Ordinary Light";
   font-size: clamp(0.6944rem, 0.6597rem + 0.1736vw, 0.8681rem);
 }
 
 .body--uppercase {
   line-height: 140%;
   letter-spacing: 0.2rem;
-  font-family: 'Ordinary Light';
+  font-family: "Ordinary Light";
   text-transform: uppercase;
   font-size: clamp(0.6944rem, 0.6597rem + 0.1736vw, 0.8681rem);
 }
@@ -146,27 +145,27 @@ select {
 .body--bold {
   line-height: 140%;
   letter-spacing: 0.2rem;
-  font-family: 'Ordinary Regular';
+  font-family: "Ordinary Regular";
   font-size: clamp(0.6944rem, 0.6597rem + 0.1736vw, 0.8681rem);
 }
 
 .heading--l {
   line-height: 140%;
   letter-spacing: 0.125rem;
-  font-family: 'Ordinary Regular';
+  font-family: "Ordinary Regular";
   font-size: clamp(0.8333rem, 0.7917rem + 0.2083vw, 1.0417rem);
 }
 
 .heading--xl {
   line-height: 140%;
-  font-family: 'Ordinary Regular';
+  font-family: "Ordinary Regular";
   font-size: clamp(1rem, 0.95rem + 0.25vw, 1.25rem);
 }
 
 .heading--2xl {
   line-height: 140%;
   letter-spacing: 0.125rem;
-  font-family: 'Ordinary Regular';
+  font-family: "Ordinary Regular";
   font-size: clamp(1.2rem, 1.14rem + 0.3vw, 1.5rem);
 }
 
@@ -178,7 +177,7 @@ select {
 .heading--3xl {
   line-height: 100%;
   letter-spacing: 0.2rem;
-  font-family: 'Ordinary Light';
+  font-family: "Ordinary Light";
   font-size: clamp(2.986rem, 2.8367rem + 0.7465vw, 3.7325rem);
 }
 
@@ -186,7 +185,7 @@ select {
 
 .button {
   padding: var(--space-xs) var(--space-l);
-  font-family: 'Ordinary Light';
+  font-family: "Ordinary Light";
   text-align: center;
 }
 
@@ -199,7 +198,7 @@ select {
 
 /* Grids */
 
-[class^='grid-'] {
+[class^="grid-"] {
   display: grid;
   width: 100%;
 }
@@ -305,4 +304,35 @@ a.skip-to-content {
 a.skip-to-content:focus-visible {
   position: relative;
   transform: translateX(0%);
+}
+
+/* Blaze Slider */
+
+.blaze-slider {
+  --slides-to-show: 1;
+  --slide-gap: var(--space-m);
+  direction: ltr;
+}
+
+.blaze-container {
+  position: relative;
+}
+
+.blaze-track-container {
+  overflow: hidden;
+}
+
+.blaze-track {
+  will-change: transform;
+  touch-action: pan-y;
+  display: flex;
+  gap: var(--slide-gap);
+  --slide-width: calc((100% - (var(--slides-to-show) - 1) * var(--slide-gap)) / var(--slides-to-show));
+  box-sizing: border-box;
+}
+
+.blaze-track > * {
+  box-sizing: border-box;
+  width: var(--slide-width);
+  flex-shrink: 0;
 }
