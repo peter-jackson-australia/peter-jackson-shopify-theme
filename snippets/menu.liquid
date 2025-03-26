@@ -3,7 +3,6 @@
 
   TO DO:
   FUNCTIONALITY:
-  Video flickers when opening or closing menu
   Replace see more arrows with correct icons
   Toggle link open or closed by clicking it
   Logic for showing which link is currently open and grey out others
@@ -225,7 +224,6 @@
             x-init="
               $watch('isOpen', value => {
                 if (value && $refs.menuVideo) {
-                  $refs.menuVideo.load();
                   $refs.menuVideo.play().catch(e => console.log('Autoplay prevented:', e));
                 } else if ($refs.menuVideo) {
                   $refs.menuVideo.pause();
@@ -235,11 +233,11 @@
             muted
             loop
             playsinline
-            preload="none"
+            preload="metadata"
             aria-hidden="true"
           >
             <source
-              data-src="https://cdn.shopify.com/videos/c/o/v/ccff09333a4c451588e9b1a091de9d04.mp4"
+              src="https://cdn.shopify.com/videos/c/o/v/ccff09333a4c451588e9b1a091de9d04.mp4"
               type="video/mp4"
             >
           </video>
@@ -404,18 +402,6 @@
         this.isOpen = true;
         this.currentLevel = 1;
         document.body.classList.add('menu-open');
-
-        setTimeout(() => {
-          const videoEl = this.$refs.menuVideo;
-          if (videoEl) {
-            const source = videoEl.querySelector('source');
-            if (source && source.dataset.src) {
-              source.src = source.dataset.src;
-              videoEl.load();
-              videoEl.play().catch(e => console.log('Autoplay prevented:', e));
-            }
-          }
-        }, 100);
       },
 
       closeMenu() {
