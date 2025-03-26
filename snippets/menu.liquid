@@ -156,6 +156,16 @@
     margin-bottom: var(--space-2xs);
     min-height: 260px;
   }
+
+  .menu-drawer__item--inactive,
+  .menu-drawer__media--inactive {
+    opacity: 0.4;
+  }
+
+  .menu-drawer__item--active {
+    opacity: 1;
+    text-decoration: underline;
+  }
 </style>
 
 <aside
@@ -186,7 +196,15 @@
       >
         <ul class="menu-drawer__menu" role="menu" id="menu-drawer__menu-1">
           {% for link in linklists['main-menu'].links %}
-            <li role="none">
+            <li
+              role="none"
+              :class="
+                {
+                  'menu-drawer__item--inactive': currentLevel >= 2 && {{ forloop.index0 }} !== activeLevel1Index,
+                  'menu-drawer__item--active': currentLevel >= 2 && {{ forloop.index0 }} === activeLevel1Index
+                }
+              "
+            >
               {% if link.links.size > 0 %}
                 <button
                   @click="openLevel(2, '{{ link.title }}', {{ forloop.index0 }}, '{{ link.object.featured_image | image_url: width: 1200 }}', '{{ link.object.featured_image.alt }}')"
@@ -205,7 +223,7 @@
           {% endfor %}
         </ul>
 
-        <div class="menu-drawer__video-container">
+        <div class="menu-drawer__video-container" :class="{'menu-drawer__media--inactive': currentLevel >= 2}">
           <video
             class="menu-drawer__video"
             x-ref="menuVideo"
@@ -254,7 +272,12 @@
         </header>
         <figure
           class="menu-drawer__featured-image"
-          :class="{'loading-new-image': isImageLoading}"
+          :class="
+            {
+              'loading-new-image': isImageLoading,
+              'menu-drawer__media--inactive': currentLevel >= 3
+            }
+          "
         >
           <img
             :src="featuredImageUrl || '#'"
@@ -268,7 +291,15 @@
         </figure>
         <ul class="menu-drawer__menu" role="menu">
           <template x-for="(item, childIndex) in submenu" :key="childIndex">
-            <li role="none">
+            <li
+              role="none"
+              :class="
+                {
+                  'menu-drawer__item--inactive': currentLevel >= 3 && childIndex !== activeLevel2Index,
+                  'menu-drawer__item--active': currentLevel >= 3 && childIndex === activeLevel2Index
+                }
+              "
+            >
               <template x-if="item.links && item.links.length > 0">
                 <button
                   @click="openLevel(3, item.title, currentParentIndex, null, null, childIndex)"
@@ -336,6 +367,8 @@
       featuredImageAlt: '',
       imageLoaded: false,
       isImageLoading: false,
+      activeLevel1Index: null,
+      activeLevel2Index: null,
 
       init() {
         const headerHeight = document.querySelector('header')?.offsetHeight || 60;
@@ -404,6 +437,8 @@
         this.currentLevel = level;
       
         if (level === 2) {
+          this.activeLevel1Index = parentIndex;
+          this.activeLevel2Index = null;
           this.menuTitle = title;
           this.currentParentIndex = parentIndex;
           this.submenu = this.menuData[parentIndex].links;
@@ -425,6 +460,7 @@
             }
           }
         } else if (level === 3) {
+          this.activeLevel2Index = childIndex;
           this.subMenuTitle = title;
           this.currentChildIndex = childIndex; 
           this.subSubmenu = this.menuData[this.currentParentIndex].links[childIndex].links;
