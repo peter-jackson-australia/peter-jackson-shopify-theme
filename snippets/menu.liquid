@@ -3,7 +3,6 @@
 
   TO DO:
   FUNCTIONALITY:
-  Replace see more arrows with correct icons
   Toggle link open or closed by clicking it
   Logic for showing which link is currently open and grey out others
   Add hover drawer with 5 products from 2nd level drawer collection using blazer slider infinite slide
@@ -116,16 +115,8 @@
     font-size: 14px;
   }
 
-  .icon {
-    width: 20px;
-    height: 20px;
-    stroke: currentColor;
-    stroke-width: 2;
-    fill: none;
-  }
-
-  .menu-drawer__back .icon {
-    margin-right: 5px;
+  .menu-drawer__back span {
+    margin-left: var(--space-xs);
   }
 
   body.menu-open {
@@ -206,9 +197,7 @@
                   aria-expanded="false"
                 >
                   <span>{{ link.title }}</span>
-                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M8 4l8 8-8 8"></path>
-                  </svg>
+                  {% render 'icon-arrow-see-more' %}
                 </button>
               {% else %}
                 <a href="{{ link.url }}" class="menu-drawer__link body--uppercase" role="menuitem">{{ link.title }}</a>
@@ -259,9 +248,7 @@
       >
         <header class="menu-drawer__header">
           <button @click="backLevel()" class="menu-drawer__back" aria-label="Back to previous menu">
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M16 4l-8 8 8 8"></path>
-            </svg>
+            {% render 'icon-arrow-see-less' %}
             <span>Back</span>
           </button>
           <h2 class="menu-drawer__heading" id="menu-drawer-heading-2" x-text="decodeEntities(menuTitle)"></h2>
@@ -292,9 +279,7 @@
                   aria-expanded="false"
                 >
                   <span x-text="decodeEntities(item.title)"></span>
-                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M8 4l8 8-8 8"></path>
-                  </svg>
+                  {% render 'icon-arrow-see-more' %}
                 </button>
               </template>
               <template x-if="!item.links || item.links.length === 0">
@@ -316,9 +301,7 @@
       >
         <header class="menu-drawer__header">
           <button @click="backLevel()" class="menu-drawer__back" aria-label="Back to previous menu">
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M16 4l-8 8 8 8"></path>
-            </svg>
+            {% render 'icon-arrow-see-less' %}
             <span>Back</span>
           </button>
           <h2 class="menu-drawer__heading" id="menu-drawer-heading-3" x-text="decodeEntities(subMenuTitle)"></h2>
