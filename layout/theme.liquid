@@ -26,6 +26,10 @@
     <script src="{{ 'alpine.min.js' | asset_url }}" defer></script>
     <script src="{{ 'predictive-search.js' | asset_url }}" defer></script>
     <script src="{{ 'blaze-slider.min.js' | asset_url }}" defer></script>
+    {% comment %}
+      global.js must always be loaded last as it contains initialisation functions for various libraries
+    {% endcomment %}
+    <script src="{{ 'global.js' | asset_url }}" defer></script>
 
     {% render 'schemas' %}
     {% render 'social-meta-tags' %}
@@ -58,13 +62,5 @@
       </div>
     </footer>
 
-    {% comment %}
-      Quicklink provides faster subsequent page-loads by prefetching in-viewport links during idle time
-    {% endcomment %}
-    <script>
-      window.addEventListener('load', () => {
-        quicklink.listen();
-      });
-    </script>
   </body>
 </html>
