@@ -345,21 +345,10 @@
           </div>
         </div>
 
-        <!-- I want this to print the ID for current collection (The one selected in menu level 1) -->
-        {% assign suits_collection = collections.suits %}
-        <script>
-          const suitsCollection = {{ suits_collection | json }};
-          console.log('Collection ID:', suitsCollection.id);
-        </script>
-
         <!-- This prints out all of the blog articles for the jackson journal -->
         {% for article in blogs['the-jackson-journal'].articles %}
           <script>
-            console.log("Article Title: ", {{ article.title | json }});
-            console.log("Article Image URL: ", {{ article.image.src | json }});
-            console.log("Article Handle: ", {{ article.handle | json }});
-            // This one prints out the collection ID's related to the article, so for example
-            console.log("Related Collection ID's: ", JSON.stringify({{ article.metafields.custom.related_collections}}.map(url => +url.replace(/^gid:\/\/shopify\/Collection\//, ''))));
+            console.log({{ article.title | json }}, "related collection ID's: ", JSON.stringify({{ article.metafields.custom.related_collections}}.map(url => +url.replace(/^gid:\/\/shopify\/Collection\//, ''))));
           </script>
         {% endfor %}
       </section>
