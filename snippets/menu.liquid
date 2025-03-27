@@ -1,22 +1,5 @@
 {% comment %}
-  Mega Menu Sidebar Drawer with side-by-side levels
-
-  TO D:O
-  FUNCTIONALITY:
-  Load in related content into infinite blazer slider
-  Add hover drawer with 5 products from 2nd level drawer collection using blazer slider infinite slide
-  Search component on mobile
-  Make responsive
-  replace menu button with hamburger and close SVG's
-  Complete styling perfectly
-  Animate with Framer Motion
-  =================================TEST THOROUGHLY==============================================
-  Remove unused CSS
-  Check for duplicate CSS classes and ID's
-  Clean up markup and Alpine
-  Clean up JavaScript
-  Format
-  Put Javascript in bottom into own JS file in assets for minification
+  Mega Menu Sidebar Drawer Component
 {% endcomment %}
 
 <style>
@@ -188,28 +171,16 @@
     aria-label="Close menu"
     tabindex="-1"
   ></div>
-
-  <nav
-    x-show="isOpen"
-    :data-active-level="currentLevel"
-    class="menu-drawer"
-  >
+  <nav x-show="isOpen" :data-active-level="currentLevel" class="menu-drawer">
     <div class="menu-drawer__inner">
       <!-- Menu Level 1 -->
-      <section
-        :class="{'menu-drawer__level': true, 'active': currentLevel >= 1}"
-        id="menu-drawer-level-1"
-      >
+      <section :class="{'menu-drawer__level': true, 'active': currentLevel >= 1}" id="menu-drawer-level-1">
+        <!-- Menu Level 1 Links -->
         <ul class="menu-drawer__menu" role="menu" id="menu-drawer__menu-1">
           {% for link in linklists['main-menu'].links %}
             <li
               role="none"
-              :class="
-                {
-                  'menu-drawer__item--inactive': currentLevel >= 2 && {{ forloop.index0 }} !== activeLevel1Index,
-                  'menu-drawer__item--active': currentLevel >= 2 && {{ forloop.index0 }} === activeLevel1Index
-                }
-              "
+              :class="{ 'menu-drawer__item--inactive': currentLevel >= 2 && {{ forloop.index0 }} !== activeLevel1Index, 'menu-drawer__item--active': currentLevel >= 2 && {{ forloop.index0 }} === activeLevel1Index }"
             >
               {% if link.links.size > 0 %}
                 <button
@@ -228,33 +199,23 @@
             </li>
           {% endfor %}
         </ul>
-
+        <!-- Menu Level 1 Video -->
         <div class="menu-drawer__video-container" :class="{'menu-drawer__media--inactive': currentLevel >= 2}">
           <video
             class="menu-drawer__video"
             x-ref="menuVideo"
-            x-init="
-              $watch('isOpen', value => {
-                if (value && $refs.menuVideo) {
-                  $refs.menuVideo.play().catch(e => console.log('Autoplay prevented:', e));
-                } else if ($refs.menuVideo) {
-                  $refs.menuVideo.pause();
-                }
-              })
-            "
+            x-init="$watch('isOpen', value => {if (value && $refs.menuVideo) {$refs.menuVideo.play().catch(e => console.log('Autoplay prevented:', e));} else if ($refs.menuVideo) {$refs.menuVideo.pause();}})"
             muted
             loop
             playsinline
             preload="metadata"
             aria-hidden="true"
           >
-            <source
-              src="https://cdn.shopify.com/videos/c/o/v/ccff09333a4c451588e9b1a091de9d04.mp4"
-              type="video/mp4"
-            >
+            <source src="https://cdn.shopify.com/videos/c/o/v/ccff09333a4c451588e9b1a091de9d04.mp4" type="video/mp4">
           </video>
           <p class="body">Winter 25 Collection</p>
         </div>
+        <!-- Menu Level 1 Secondary Links -->
         <ul class="menu-drawer__menu" role="menu">
           {% for link in linklists['secondary-main-menu'].links %}
             <li role="none">
@@ -262,6 +223,7 @@
             </li>
           {% endfor %}
         </ul>
+        <!-- Menu Level 1 Newsletter Form -->
         <div class="klaviyo-form-WH7CVh"></div>
       </section>
 
@@ -278,14 +240,10 @@
           </button>
           <h2 class="menu-drawer__heading" id="menu-drawer-heading-2" x-text="decodeEntities(menuTitle)"></h2>
         </header>
+        <!-- Menu Level 2 Featured Image -->
         <figure
           class="menu-drawer__featured-image"
-          :class="
-            {
-              'loading-new-image': isImageLoading,
-              'menu-drawer__media--inactive': currentLevel >= 3
-            }
-          "
+          :class="{'loading-new-image': isImageLoading, 'menu-drawer__media--inactive': currentLevel >= 3 }"
         >
           <img
             :src="featuredImageUrl || '#'"
@@ -297,16 +255,12 @@
             width="100"
           >
         </figure>
+        <!-- Menu Level 2 Links -->
         <ul class="menu-drawer__menu" role="menu">
           <template x-for="(item, childIndex) in submenu" :key="childIndex">
             <li
               role="none"
-              :class="
-                {
-                  'menu-drawer__item--inactive': currentLevel >= 3 && childIndex !== activeLevel2Index,
-                  'menu-drawer__item--active': currentLevel >= 3 && childIndex === activeLevel2Index
-                }
-              "
+              :class="{'menu-drawer__item--inactive': currentLevel >= 3 && childIndex !== activeLevel2Index, 'menu-drawer__item--active': currentLevel >= 3 && childIndex === activeLevel2Index}"
             >
               <template x-if="item.links && item.links.length > 0">
                 <button
@@ -380,11 +334,11 @@
       isImageLoading: false,
       activeLevel1Index: null,
       activeLevel2Index: null,
-
+  
       init() {
         const headerHeight = document.querySelector('header')?.offsetHeight || 60;
         document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
-
+  
         this.menuData = [
           {% for link in linklists['main-menu'].links %}
             {
@@ -412,30 +366,30 @@
             }{% unless forloop.last %},{% endunless %}
           {% endfor %}
         ];
-
+  
         window.toggleNav = () => {
           this.isOpen ? this.closeMenu() : this.openMenu();
         };
       },
-
+  
       decodeEntities(text) {
         if (!text) return '';
         const textarea = document.createElement('textarea');
         textarea.innerHTML = text;
         return textarea.value;
       },
-
+  
       openMenu() {
         this.isOpen = true;
         this.currentLevel = 1;
         document.body.classList.add('menu-open');
       },
-
+  
       closeMenu() {
         this.isOpen = false;
         document.body.classList.remove('menu-open');
       },
-
+  
       openLevel(level, title, parentIndex, featuredImage, featuredImageAlt, childIndex) {
         if (level === 2 && this.activeLevel1Index === parentIndex && this.currentLevel > 1) {
           this.currentLevel = 1;
@@ -455,12 +409,12 @@
         }
         
         this.currentLevel = level;
-
+  
         if (level === 2) {
-
-          // Shows the collection ID selected in menu level 1 
+  
+          // Shows the collection ID selected in menu level 1 - REMOVE LATER
           console.log('Collection ID:', this.menuData[parentIndex].collectionId);
-
+  
           this.activeLevel1Index = parentIndex;
           this.activeLevel2Index = null;
           this.menuTitle = title;
@@ -473,7 +427,7 @@
           if (prevUrl !== newUrl) {
             this.isImageLoading = true;
             this.imageLoaded = false;
-
+  
             if (featuredImage) {
               this.featuredImageUrl = featuredImage;
               this.featuredImageAlt = featuredImageAlt || title;
@@ -490,7 +444,7 @@
           this.subSubmenu = this.menuData[this.currentParentIndex].links[childIndex].links;
         }
       }, 
-
+  
       backLevel() {
         if (this.currentLevel > 1) {
           this.currentLevel--;
