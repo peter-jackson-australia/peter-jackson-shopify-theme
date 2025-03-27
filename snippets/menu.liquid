@@ -345,6 +345,13 @@
           </div>
         </div>
 
+        <!-- I want this to print the ID for current collection (The one selected in menu level 1) -->
+        {% assign suits_collection = collections.suits %}
+        <script>
+          const suitsCollection = {{ suits_collection | json }};
+          console.log('Collection ID:', suitsCollection.id);
+        </script>
+
         <!-- This prints out all of the blog articles for the jackson journal -->
         {% for article in blogs['the-jackson-journal'].articles %}
           <script>
