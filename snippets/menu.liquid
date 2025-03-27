@@ -331,28 +331,6 @@
             </li>
           </template>
         </ul>
-        <!-- Blaze Slider -->
-        <div class="blaze-slider">
-          <div class="blaze-container">
-            <div class="blaze-track-container">
-              <div class="blaze-track">
-                <div>Blog article</div>
-                <div>Blog article</div>
-                <div>Blog article</div>
-                <div>Blog article</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <p></p>
-
-        <!-- This prints out all of the blog articles for the jackson journal -->
-        {% for article in blogs['the-jackson-journal'].articles %}
-          <script>
-            console.log({{ article.title | json }}, "related collection ID's: ", JSON.stringify({{ article.metafields.custom.related_collections}}.map(url => +url.replace(/^gid:\/\/shopify\/Collection\//, ''))));
-          </script>
-        {% endfor %}
       </section>
 
       <!-- Menu Level 3 -->
