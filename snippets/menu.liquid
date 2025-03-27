@@ -149,11 +149,6 @@
     text-decoration: underline;
   }
 
-  .blaze-track > * {
-    width: 70%;
-    height: 400px;
-    background-color: var(--neutral-200);
-  }
 </style>
 
 <aside
@@ -286,15 +281,68 @@
           </template>
         </ul>
 
-        {% for article in blogs['the-jackson-journal'].articles %}
-          <strong>{{ article.title }}</strong>
-          {% for relatedCollection in article.metafields.custom.related_collections.value %}
-            <div style="display: flex; gap: 10px;">
-              <p>Collection Name: {{ relatedCollection.title }} - ID: {{ relatedCollection.id }}</p>
+        <!-- Test the blog functionality perfectly, loop through only 50 blogs max and escape early if related collection is true (dont loop whole thing) -->
+        <!-- Currently selected collection ID -->
+        <p x-text="'Current Collection ID: ' + (menuData[currentParentIndex]?.collectionId || 'None')"></p>
+        <br>
+
+        <!-- Blaze Slider with matching blogs -->
+        <div
+          class="blaze-slider"
+          x-data="{ initSlider() { if (window.BlazeSlider) new BlazeSlider(this.$el, { slidesToShow: 1 }) } }"
+          x-init="$nextTick(() => initSlider())"
+        >
+          <div class="blaze-container">
+            <div class="blaze-track-container">
+              <div class="blaze-track">
+                {% for article in blogs['the-jackson-journal'].articles %}
+                  <div
+                    x-data="{ relatedIds: [{% for relatedCollection in article.metafields.custom.related_collections.value %}'{{ relatedCollection.id }}',{% endfor %}] }"
+                    x-show="relatedIds.includes(menuData[currentParentIndex]?.collectionId)"
+                    style="height: 100%;"
+                  >
+                    <div style="height: 100%; display: flex; flex-direction: column;">
+                      {% if article.image %}
+                        <img
+                          src="{{ article.image | image_url: width: '400px' }}"
+                          alt="{{ article.title }}"
+                          style="width: 100%; height: 80%; object-fit: cover;"
+                          width="100"
+                          height="100"
+                        >
+                      {% else %}
+                        <div style="width: 100%; height: 80%; background-color: var(--neutral-200); display: flex; align-items: center; justify-content: center;">
+                          <p>No image available</p>
+                        </div>
+                      {% endif %}
+                      <div style="padding: var(--space-s); height: 20%;">
+                        <h3>{{ article.title }}</h3>
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
             </div>
-          {% endfor %}
-          <br>
+          </div>
+        </div>
+
+        <!-- Existing blog list with "should display" indicator -->
+        {% for article in blogs['the-jackson-journal'].articles %}
+          <div x-data="{ relatedIds: [{% for relatedCollection in article.metafields.custom.related_collections.value %}'{{ relatedCollection.id }}',{% endfor %}] }">
+            <strong>
+              {{ article.title }}
+              <span x-show="relatedIds.includes(menuData[currentParentIndex]?.collectionId)">(should display)</span>
+            </strong>
+            <!-- The ID of collections associated to the current blog article loop iteration item -->
+            {% for relatedCollection in article.metafields.custom.related_collections.value %}
+              <div style="display: flex; gap: 10px;">
+                <p>Collection Name: {{ relatedCollection.title }} - ID: {{ relatedCollection.id }}</p>
+              </div>
+            {% endfor %}
+            <br>
+          </div>
         {% endfor %}
+
       </section>
 
       <!-- Menu Level 3 -->
