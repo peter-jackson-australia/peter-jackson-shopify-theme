@@ -345,13 +345,6 @@
           </div>
         </div>
 
-        <!-- I want this to print the ID for current collection (The one selected in menu level 1) -->
-        {% assign suits_collection = collections.suits %}
-        <script>
-          const suitsCollection = {{ suits_collection | json }};
-          console.log('Collection ID:', suitsCollection.id);
-        </script>
-
         <!-- This prints out all of the blog articles for the jackson journal -->
         {% for article in blogs['the-jackson-journal'].articles %}
           <script>
@@ -421,6 +414,7 @@
             {
               title: "{{ link.title | strip_html | replace: '"', '\"' | replace: "'", "\\'" }}",
               url: "{{ link.url }}",
+              collectionId: "{{ link.object.id }}",
               featuredImage: "{{ link.object.featured_image | image_url: '1200x' }}",
               featuredImageAlt: "{{ link.object.featured_image.alt | strip_html | replace: '"', '\"' | replace: "'", "\\'" }}",
               links: [
@@ -487,6 +481,10 @@
         this.currentLevel = level;
 
         if (level === 2) {
+
+          // Shows the collection ID selected in menu level 1 
+          console.log('Collection ID:', this.menuData[parentIndex].collectionId);
+
           this.activeLevel1Index = parentIndex;
           this.activeLevel2Index = null;
           this.menuTitle = title;
