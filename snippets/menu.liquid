@@ -285,6 +285,16 @@
             </li>
           </template>
         </ul>
+
+        {% for article in blogs['the-jackson-journal'].articles %}
+          <strong>{{ article.title }}</strong>
+          {% for relatedCollection in article.metafields.custom.related_collections.value %}
+            <div style="display: flex; gap: 10px;">
+              <p>Collection Name: {{ relatedCollection.title }} - ID: {{ relatedCollection.id }}</p>
+            </div>
+          {% endfor %}
+          <br>
+        {% endfor %}
       </section>
 
       <!-- Menu Level 3 -->
