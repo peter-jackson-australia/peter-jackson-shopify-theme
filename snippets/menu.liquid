@@ -147,6 +147,7 @@
   .menu-drawer__item--active {
     opacity: 1;
     text-decoration: underline;
+    font-weight: 500;
   }
 
   .menu-drawer__article {
@@ -166,10 +167,6 @@
   }
 
   .menu-drawer__article-header {
-  
-  }
-
-  .menu-drawer__article-header {
     padding: var(--space-s);
     height: 20%;
   }
@@ -178,6 +175,59 @@
   }
 
   .menu-drawer__article-link {
+  }
+
+  #menu-drawer-products {
+    position: fixed;
+    left: 800px; 
+    top: var(--space-xl);
+    width: 400px;
+    height: 100%;
+    background: var(--white);
+    overflow-y: auto;
+    display: none;
+    z-index: 10000; 
+  }
+
+  #menu-drawer-products.active {
+    display: block;
+  }
+
+  .menu-drawer__loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+  }
+
+  .menu-drawer__product {
+    display: flex;
+    align-items: center;
+    gap: var(--space-s);
+    padding: var(--space-xs);
+  }
+
+  .menu-drawer__product-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    background-color: #f5f5f5;
+  }
+  
+  .menu-drawer__product-details {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .menu-drawer__product-title {
+    font-weight: 500;
+  }
+  
+  .menu-drawer__loading {
+    display: flex;
+    justify-content: center;
+    padding: var(--space-l);
   }
 </style>
 
@@ -285,7 +335,12 @@
           <template x-for="(item, childIndex) in submenu" :key="childIndex">
             <li
               role="none"
-              :class="{'menu-drawer__item--inactive': currentLevel >= 3 && childIndex !== activeLevel2Index, 'menu-drawer__item--active': currentLevel >= 3 && childIndex === activeLevel2Index}"
+              :class="{
+                'menu-drawer__item--inactive': (currentLevel >= 3 && childIndex !== activeLevel2Index && !isProductsVisible) || (isProductsVisible && childIndex !== hoveredChildIndex), 
+                'menu-drawer__item--active': (currentLevel >= 3 && childIndex === activeLevel2Index && !isProductsVisible) || (isProductsVisible && childIndex === hoveredChildIndex)
+              }"
+              @mouseenter="startHoverTimer(childIndex, extractCollectionHandle(item.url))"
+              @mouseleave="stopProductHover()"
             >
               <template x-if="item.links && item.links.length > 0">
                 <button
@@ -349,6 +404,38 @@
           </template>
         </ul>
       </section>
+
+      <!-- Product Hover Menu -->
+      <section
+        :class="{'menu-drawer__level': true, 'active': isProductsVisible}"
+        id="menu-drawer-products"
+        aria-labelledby="menu-drawer-products-heading"
+        @mouseenter="isProductsVisible = true"
+        @mouseleave="stopProductHover()"
+      >
+        <header class="menu-drawer__header">
+          <h2 class="menu-drawer__heading" id="menu-drawer-products-heading" x-text="submenu[hoveredChildIndex]?.title || 'Products'"></h2>
+        </header>
+        
+        <!-- Loading indicator -->
+        <div x-show="isLoadingProducts" class="menu-drawer__loading">
+          <p>Loading products...</p>
+        </div>
+        
+        <!-- Products list -->
+        <ul class="menu-drawer__menu" role="menu" x-show="!isLoadingProducts && collectionProducts.length > 0">
+          <template x-for="(product, index) in collectionProducts" :key="index">
+            <li role="none" class="menu-drawer__product-item">
+              <div class="menu-drawer__product">
+                <img :src="product.image" :alt="product.title" width="60" height="60" class="menu-drawer__product-image" onerror="this.style.display='none'">
+                <div class="menu-drawer__product-details">
+                  <span x-text="product.title" class="menu-drawer__product-title"></span>
+                </div>
+              </div>
+            </li>
+          </template>
+        </ul>
+      </section>
     </div>
   </nav>
 </aside>
@@ -371,7 +458,16 @@
       activeLevel1Index: null,
       activeLevel2Index: null,
       filteredArticles: [],
-      BlazeSlider: null, 
+      BlazeSlider: null,
+      
+      // Product hover functionality properties
+      hoverTimerId: null,
+      hoveredCollectionHandle: null,
+      hoveredChildIndex: null,
+      isProductsVisible: false,
+      collectionProducts: [],
+      isLoadingProducts: false,
+      previousActiveLevel2Index: null,
   
       init() {
         const headerHeight = document.querySelector('header')?.offsetHeight || 60;
@@ -594,6 +690,94 @@
           `${baseUrlWithoutSize}_800x${extension} 800w`,
           `${baseUrlWithoutSize}_1200x${extension} 1200w`
         ].join(', ');
+      },
+      
+      // Product hover functionality methods
+      startHoverTimer(childIndex, collectionHandle) {
+        // Clear any existing timer
+        this.clearHoverTimer();
+        
+        // Don't trigger for items that open submenu
+        const item = this.submenu[childIndex];
+        if (item.links && item.links.length > 0) {
+          return;
+        }
+        
+        // Set the hovered collection immediately for styling
+        this.hoveredChildIndex = childIndex;
+        this.hoveredCollectionHandle = collectionHandle;
+        
+        // Start a new timer
+        this.hoverTimerId = setTimeout(() => {
+          this.loadProductsForCollection(collectionHandle);
+        }, 400);
+      },
+      
+      clearHoverTimer() {
+        if (this.hoverTimerId) {
+          clearTimeout(this.hoverTimerId);
+          this.hoverTimerId = null;
+        }
+      },
+      
+      stopProductHover() {
+        this.clearHoverTimer();
+        this.isProductsVisible = false;
+        this.hoveredCollectionHandle = null;
+        this.hoveredChildIndex = null;
+      },
+      
+      extractCollectionHandle(url) {
+        if (!url) return '';
+        
+        // Check if it's a collection URL
+        if (url.includes('/collections/')) {
+          const parts = url.split('/collections/');
+          if (parts.length > 1) {
+            // Extract handle and remove any query parameters
+            return parts[1].split('/')[0].split('?')[0];
+          }
+        }
+        return '';
+      },
+      
+      loadProductsForCollection(collectionHandle) {
+        if (!collectionHandle) return;
+        
+        this.isLoadingProducts = true;
+        
+        // Let's directly use Shopify's product API for reliable results
+        fetch(`/collections/${collectionHandle}/products.json?limit=5`)
+          .then(response => response.json())
+          .then(data => {
+            // Process products from the JSON response
+            const products = data.products.map(product => {
+              const featuredImage = product.images.length > 0 ? product.images[0].src : '';
+              const price = product.variants && product.variants.length > 0 
+                ? (product.variants[0].price / 100).toFixed(2) 
+                : '';
+              
+              return {
+                title: product.title,
+                price: `${price}`,
+                url: `/products/${product.handle}`,
+                image: featuredImage
+              };
+            });
+            
+            this.collectionProducts = products;
+            // Only show the drawer if we have products
+            this.isProductsVisible = products.length > 0;
+            this.isLoadingProducts = false;
+          })
+          .catch(error => {
+            console.error('Error loading products:', error);
+            this.isLoadingProducts = false;
+            
+            // Fallback with empty products array if there's an error
+            this.collectionProducts = [];
+            this.isProductsVisible = false;
+          });
       }
     }));
   });

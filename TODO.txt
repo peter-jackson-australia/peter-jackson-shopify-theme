@@ -1,15 +1,16 @@
 Mega Menu:
 Functionality:
 Add hover drawer with 5 products from 2nd level drawer collection using Blaze Slider infinite slide
-Search component on mobile
-Make responsive
+Complete styling perfectly/Make responsive
+Add search component on mobile
 Replace menu button with hamburger and close SVGs
-Complete styling perfectly
 Animate with Framer Motion
 Test
+
 Non-Functional Fixes:
 Remove unused CSS
 Check for duplicate CSS classes and IDs
+Have CSS in order it's used in 
 Clean up markup and Alpine
 Clean up JavaScript
 Format
