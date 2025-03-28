@@ -54,7 +54,8 @@
       {{
         section.settings.desktop_image
         | image_url: width: 1400
-        | image_tag:
+        | image_tag: 
+          preload: true
           class: 'hero__background hero__background--desktop',
           alt: section.settings.desktop_image.alt
       }}
@@ -65,6 +66,7 @@
         section.settings.mobile_image
         | image_url: width: 768
         | image_tag:
+          preload: true
           class: 'hero__background hero__background--mobile',
           alt: section.settings.mobile_image.alt
       }}
