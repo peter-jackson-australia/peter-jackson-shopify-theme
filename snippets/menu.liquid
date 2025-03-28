@@ -414,7 +414,7 @@
         @mouseleave="stopProductHover()"
       >
         <header class="menu-drawer__header">
-          <h2 class="menu-drawer__heading" id="menu-drawer-products-heading" x-text="submenu[hoveredChildIndex]?.title || 'Products'"></h2>
+          <h2 class="menu-drawer__heading" id="menu-drawer-products-heading" x-text="submenu[hoveredChildIndex]?.title + ' Preview' || 'Products'"></h2>
         </header>
         
         <!-- Loading indicator -->

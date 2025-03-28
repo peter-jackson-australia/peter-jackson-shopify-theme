@@ -1,6 +1,6 @@
 Mega Menu:
 Functionality:
-Add hover drawer with 5 products from 2nd level drawer collection using Blaze Slider infinite slide
+Add hover drawer with 5 products from 2nd level drawer collection and animate into infinite slider
 Complete styling perfectly/Make responsive
 Add search component on mobile
 Replace menu button with hamburger and close SVGs
