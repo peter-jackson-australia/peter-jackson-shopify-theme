@@ -404,14 +404,11 @@
         this.filteredArticles = []; 
       },
   
-      // New method to update the blaze-track content when filteredArticles changes
       refreshSliderContent() {
         const track = this.$refs.blazeSlider?.querySelector('.blaze-track');
         if (track) {
-          // Clear any existing content
           track.innerHTML = '';
           
-          // Add new slides for each article
           this.filteredArticles.forEach(article => {
             const slideHTML = `
               <div style="height: 100%;">
@@ -424,7 +421,6 @@
               </div>
             `;
             
-            // Append HTML directly to the track
             const tempDiv = document.createElement('div');
             tempDiv.innerHTML = slideHTML.trim();
             track.appendChild(tempDiv.firstElementChild);
@@ -467,7 +463,6 @@
             article.relatedIds.includes(collectionId)
           );      
   
-          // Use $nextTick to ensure DOM is updated before manipulating the slider content
           this.$nextTick(() => {
             this.refreshSliderContent();
             this.initBlazeSlider();
