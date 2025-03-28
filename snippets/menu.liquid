@@ -148,7 +148,6 @@
     opacity: 1;
     text-decoration: underline;
   }
-
 </style>
 
 <aside
@@ -281,68 +280,36 @@
           </template>
         </ul>
 
-        <!-- Test the blog functionality perfectly, loop through only 50 blogs max and escape early if related collection is true (dont loop whole thing) -->
-        <!-- Currently selected collection ID -->
-        <p x-text="'Current Collection ID: ' + (menuData[currentParentIndex]?.collectionId || 'None')"></p>
-        <br>
-
-        <!-- Blaze Slider with matching blogs -->
+        <!-- Blaze Slider with dynamically filtered blogs -->
         <div
           class="blaze-slider"
-          x-data="{ initSlider() { if (window.BlazeSlider) new BlazeSlider(this.$el, { slidesToShow: 1 }) } }"
-          x-init="$nextTick(() => initSlider())"
+          x-ref="blazeSlider"
         >
           <div class="blaze-container">
             <div class="blaze-track-container">
               <div class="blaze-track">
-                {% for article in blogs['the-jackson-journal'].articles %}
-                  <div
-                    x-data="{ relatedIds: [{% for relatedCollection in article.metafields.custom.related_collections.value %}'{{ relatedCollection.id }}',{% endfor %}] }"
-                    x-show="relatedIds.includes(menuData[currentParentIndex]?.collectionId)"
-                    style="height: 100%;"
-                  >
+                <template x-for="article in filteredArticles" :key="article.title">
+                  <div style="height: 100%;">
                     <div style="height: 100%; display: flex; flex-direction: column;">
-                      {% if article.image %}
+                      <template x-if="article.image">
                         <img
-                          src="{{ article.image | image_url: width: '400px' }}"
-                          alt="{{ article.title }}"
+                          :src="article.image"
+                          :alt="article.title"
                           style="width: 100%; height: 80%; object-fit: cover;"
                           width="100"
                           height="100"
                         >
-                      {% else %}
-                        <div style="width: 100%; height: 80%; background-color: var(--neutral-200); display: flex; align-items: center; justify-content: center;">
-                          <p>No image available</p>
-                        </div>
-                      {% endif %}
+                      </template>
                       <div style="padding: var(--space-s); height: 20%;">
-                        <h3>{{ article.title }}</h3>
+                        <h3 x-text="article.title"></h3>
                       </div>
                     </div>
                   </div>
-                {% endfor %}
+                </template>
               </div>
             </div>
           </div>
         </div>
-
-        <!-- Existing blog list with "should display" indicator -->
-        {% for article in blogs['the-jackson-journal'].articles %}
-          <div x-data="{ relatedIds: [{% for relatedCollection in article.metafields.custom.related_collections.value %}'{{ relatedCollection.id }}',{% endfor %}] }">
-            <strong>
-              {{ article.title }}
-              <span x-show="relatedIds.includes(menuData[currentParentIndex]?.collectionId)">(should display)</span>
-            </strong>
-            <!-- The ID of collections associated to the current blog article loop iteration item -->
-            {% for relatedCollection in article.metafields.custom.related_collections.value %}
-              <div style="display: flex; gap: 10px;">
-                <p>Collection Name: {{ relatedCollection.title }} - ID: {{ relatedCollection.id }}</p>
-              </div>
-            {% endfor %}
-            <br>
-          </div>
-        {% endfor %}
-
       </section>
 
       <!-- Menu Level 3 -->
@@ -392,6 +359,8 @@
       isImageLoading: false,
       activeLevel1Index: null,
       activeLevel2Index: null,
+      filteredArticles: [],
+      BlazeSlider: null, 
   
       init() {
         const headerHeight = document.querySelector('header')?.offsetHeight || 60;
@@ -446,6 +415,13 @@
       closeMenu() {
         this.isOpen = false;
         document.body.classList.remove('menu-open');
+
+        if (this.blazeSlider) {
+          this.blazeSlider.destroy(); 
+          this.blazeSlider = null; 
+        }
+
+        this.filteredArticles = []; 
       },
   
       openLevel(level, title, parentIndex, featuredImage, featuredImageAlt, childIndex) {
@@ -470,9 +446,6 @@
   
         if (level === 2) {
   
-          // Shows the collection ID selected in menu level 1 - REMOVE LATER
-          console.log('Collection ID:', this.menuData[parentIndex].collectionId);
-  
           this.activeLevel1Index = parentIndex;
           this.activeLevel2Index = null;
           this.menuTitle = title;
@@ -481,6 +454,13 @@
           
           const prevUrl = this.featuredImageUrl;
           const newUrl = featuredImage || (this.menuData[parentIndex] ? this.menuData[parentIndex].featuredImage : '');
+          const collectionId = this.menuData[parentIndex].collectionId;
+
+          this.filteredArticles = this.getAllArticles().filter(article => 
+            article.relatedIds.includes(collectionId)
+          );      
+
+          this.initBlazeSlider();
           
           if (prevUrl !== newUrl) {
             this.isImageLoading = true;
@@ -510,8 +490,46 @@
           if (this.currentLevel === 1) {
             this.featuredImageUrl = '';
             this.featuredImageAlt = '';
+            this.filteredArticles = []; 
+            if (this.blazeSlider) {
+              this.blazeSlider.destroy();
+              this.blazeSlider = null; 
+            }
+          } else if (this.currentLevel === 2) {
+            this.initBlazeSlider();
           }
         }
+      },
+
+      initBlazeSlider() {
+        if (this.blazeSlider) {
+          this.blazeSlider.destroy();
+          this.blazeSlider = null;
+        }
+        
+        this.$nextTick(() => {
+          if (this.filteredArticles.length > 0 && window.BlazeSlider && this.$refs.blazeSlider) {
+            this.blazeSlider = new BlazeSlider(this.$refs.blazeSlider, {
+              slidesToShow: 1,
+              enableAutoplay: false,
+              slideGap: '20px',
+              loop: true,
+              addEventListenerOptions: { passive: true }
+            });
+          }
+        });
+      },
+
+      getAllArticles() {
+        return [
+          {% for article in blogs['the-jackson-journal'].articles %}
+            {
+              title: "{{ article.title | escape }}",
+              image: "{{ article.image | image_url: width: '400px' }}",
+              relatedIds: [{% for relatedCollection in article.metafields.custom.related_collections.value %}'{{ relatedCollection.id }}',{% endfor %}]
+            }{% unless forloop.last %},{% endunless %}
+          {% endfor %}
+        ];
       },
       
       generateSrcset(baseUrl) {
