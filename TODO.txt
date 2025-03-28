@@ -1,6 +1,5 @@
 Mega Menu:
 Functionality:
-Load in related content into infinite Blaze Slider
 Add hover drawer with 5 products from 2nd level drawer collection using Blaze Slider infinite slide
 Search component on mobile
 Make responsive
@@ -14,4 +13,4 @@ Check for duplicate CSS classes and IDs
 Clean up markup and Alpine
 Clean up JavaScript
 Format
-Put JavaScript in bottom into own JS file in assets for minification
+Minify JavaScript in bottom into own JS file in assets for minification
