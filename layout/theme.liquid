@@ -20,7 +20,7 @@
 
     <link rel="canonical" href="{{ canonical_url }}">
 
-    {{ 'theme.css' | asset_url | stylesheet_tag: preload: true }}
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
     <script src="{{ 'theme.js' | asset_url }}" defer></script>
     <script src="{{ 'quicklink.umd.js' | asset_url }}" defer></script>
     <script src="{{ 'alpine.min.js' | asset_url }}" defer></script>
