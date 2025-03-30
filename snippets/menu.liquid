@@ -3,6 +3,11 @@
 {% endcomment %}
 
 <style>
+
+  [x-cloak] { 
+    display: none !important; 
+  }
+
   .menu-drawer__container {
     position: relative;
     z-index: 9997;
@@ -166,7 +171,7 @@
     aria-label="Close menu"
     tabindex="-1"
   ></div>
-  <nav x-show="isOpen" :data-active-level="currentLevel" class="menu-drawer">
+  <nav x-show="isOpen" x-cloak :data-active-level="currentLevel" class="menu-drawer">
     <div class="menu-drawer__inner">
       <!-- Menu Level 1 -->
       <section :class="{'menu-drawer__level': true, 'active': currentLevel >= 1}" id="menu-drawer-level-1">
