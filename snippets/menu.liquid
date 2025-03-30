@@ -216,7 +216,7 @@
           <p class="body">Winter 25 Collection</p>
         </div>
         <!-- Menu Level 1 Secondary Links -->
-        <ul class="menu-drawer__menu" role="menu">
+        <ul class="menu-drawer__menu" role="menu" :class="{'menu-drawer__media--inactive': currentLevel >= 2}">
           {% for link in linklists['secondary-main-menu'].links %}
             <li role="none">
               <a href="{{ link.url }}" class="menu-drawer__link body--uppercase" role="menuitem">{{ link.title }}</a>
@@ -233,7 +233,7 @@
         id="menu-drawer-level-2"
         aria-labelledby="menu-drawer-heading-2"
       >
-        <header class="menu-drawer__header">
+        <header class="menu-drawer__header" :class="{'menu-drawer__media--inactive': currentLevel >= 3}">
           <button @click="backLevel()" class="menu-drawer__back" aria-label="Back to previous menu">
             {% render 'icon-arrow-see-less' %}
             <span>Back</span>
@@ -292,7 +292,7 @@
         </ul>
 
         <!-- Blaze Slider with dynamically filtered blogs -->
-        <div class="blaze-slider" x-ref="blazeSlider">
+        <div class="blaze-slider" x-ref="blazeSlider" :class="{'menu-drawer__media--inactive': currentLevel >= 3}">
           <div class="blaze-container">
             <div class="blaze-track-container">
               <div class="blaze-track">
