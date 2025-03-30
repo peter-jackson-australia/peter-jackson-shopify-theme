@@ -324,44 +324,6 @@
           </template>
         </ul>
       </section>
-
-      <!-- Product Hover Menu -->
-      <section
-        :class="{'menu-drawer__level': true, 'active': isProductsVisible}"
-        id="menu-drawer-products"
-        aria-labelledby="menu-drawer-products-heading"
-        @mouseenter="handleProductsMouseEnter()"
-        @mouseleave="handleProductsMouseLeave()"
-      >
-        <header class="menu-drawer__header">
-          <h2
-            class="menu-drawer__heading"
-            id="menu-drawer-products-heading"
-            x-text="submenu[hoveredChildIndex]?.title + ' Preview' || 'Products'"
-          ></h2>
-        </header>
-
-        <!-- Products list - we don't show loading indicator anymore -->
-        <ul class="menu-drawer__menu" role="menu">
-          <template x-for="(product, index) in collectionProducts" :key="index">
-            <li role="none" class="menu-drawer__product-item">
-              <div class="menu-drawer__product">
-                <img
-                  :src="product.image"
-                  :alt="product.title"
-                  width="60"
-                  height="60"
-                  class="menu-drawer__product-image"
-                  onerror="this.style.display='none'"
-                >
-                <div class="menu-drawer__product-details">
-                  <span x-text="product.title" class="menu-drawer__product-title"></span>
-                </div>
-              </div>
-            </li>
-          </template>
-        </ul>
-      </section>
     </div>
   </nav>
 </aside>
