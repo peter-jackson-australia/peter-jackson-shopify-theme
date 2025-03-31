@@ -78,6 +78,15 @@
     border-bottom: 1px solid var(--neutral-200);
   }
 
+  #menu-drawer-level-2 {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+
+  #menu-drawer-level-2::-webkit-scrollbar {
+    display: none !important;
+  }
+
   #menu-drawer-level-2 > .menu-drawer__menu {
     border-top: 1px solid var(--neutral-200);
     border-bottom: 1px solid var(--neutral-200);
@@ -86,6 +95,10 @@
   #menu-drawer-level-2 > .blaze-slider {
     padding: var(--space-m) var(--space-l);
     position: relative;
+  }
+
+  #menu-drawer-level-2 > .blaze-slider > .blaze-container > .blaze-track-container {
+    overflow: visible !important;
   }
 
   #menu-drawer-level-2 > .blaze-slider::before {
@@ -225,7 +238,7 @@
   }
 
   .menu-drawer__article-content > img {
-    max-height: 300px;
+    max-height: 400px;
     height: 100%;
     width: 100%;
     object-fit: cover;
