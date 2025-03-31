@@ -154,6 +154,13 @@
     text-decoration: underline;
     font-weight: 500;
   }
+  
+  /* Add this to ensure selected items show underline */
+  li:has(.menu-drawer__item--active) a,
+  li:has(.menu-drawer__item--active) button > span:first-child {
+    text-decoration: underline;
+    font-weight: 500;
+  }
 </style>
 
 <aside
@@ -178,10 +185,7 @@
         <!-- Menu Level 1 Links -->
         <ul class="menu-drawer__menu" role="menu" id="menu-drawer__menu-1">
           {% for link in linklists['main-menu'].links %}
-            <li
-              role="none"
-              :class="{ 'menu-drawer__item--inactive': currentLevel >= 2 && {{ forloop.index0 }} !== activeLevel1Index, 'menu-drawer__item--active': currentLevel >= 2 && {{ forloop.index0 }} === activeLevel1Index }"
-            >
+            <li role="none" :class="{ 'menu-drawer__item--active': currentLevel >= 2 && {{ forloop.index0 }} === activeLevel1Index }">
               {% if link.links.size > 0 %}
                 <button
                   @click="openLevel(2, '{{ link.title }}', {{ forloop.index0 }}, '{{ link.object.featured_image | image_url: width: 1200 }}', '{{ link.object.featured_image.alt }}')"
@@ -190,19 +194,29 @@
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  <span>{{ link.title }}</span>
-                  {% render 'icon-arrow-see-more' %}
+                  <span :class="{ 'menu-drawer__item--inactive': currentLevel >= 2 && {{ forloop.index0 }} !== activeLevel1Index }">{{ link.title }}</span>
+                  <span :class="{ 'menu-drawer__item--inactive': currentLevel >= 2 && {{ forloop.index0 }} !== activeLevel1Index }">
+                    {% render 'icon-arrow-see-more' %}
+                  </span>
                 </button>
               {% else %}
-                <a href="{{ link.url }}" class="menu-drawer__link body--uppercase" role="menuitem">{{ link.title }}</a>
+                <a 
+                  href="{{ link.url }}" 
+                  class="menu-drawer__link body--uppercase" 
+                  :class="{ 'menu-drawer__item--inactive': currentLevel >= 2 }"
+                  role="menuitem"
+                >
+                  {{ link.title }}
+                </a>
               {% endif %}
             </li>
           {% endfor %}
         </ul>
         <!-- Menu Level 1 Video -->
-        <div class="menu-drawer__video-container" :class="{'menu-drawer__media--inactive': currentLevel >= 2}">
+        <div class="menu-drawer__video-container">
           <video
             class="menu-drawer__video"
+            :class="{'menu-drawer__media--inactive': currentLevel >= 2}"
             x-ref="menuVideo"
             x-init="$watch('isOpen', value => {if (value && $refs.menuVideo) {$refs.menuVideo.play().catch(e => console.log('Autoplay prevented:', e));} else if ($refs.menuVideo) {$refs.menuVideo.pause();}})"
             muted
@@ -213,13 +227,20 @@
           >
             <source src="https://cdn.shopify.com/videos/c/o/v/ccff09333a4c451588e9b1a091de9d04.mp4" type="video/mp4">
           </video>
-          <p class="body">Winter 25 Collection</p>
+          <p class="body" :class="{'menu-drawer__media--inactive': currentLevel >= 2}">Winter 25 Collection</p>
         </div>
         <!-- Menu Level 1 Secondary Links -->
-        <ul class="menu-drawer__menu" role="menu" :class="{'menu-drawer__media--inactive': currentLevel >= 2}">
+        <ul class="menu-drawer__menu" role="menu">
           {% for link in linklists['secondary-main-menu'].links %}
             <li role="none">
-              <a href="{{ link.url }}" class="menu-drawer__link body--uppercase" role="menuitem">{{ link.title }}</a>
+              <a 
+                href="{{ link.url }}" 
+                class="menu-drawer__link body--uppercase" 
+                :class="{'menu-drawer__item--inactive': currentLevel >= 2}"
+                role="menuitem"
+              >
+                {{ link.title }}
+              </a>
             </li>
           {% endfor %}
         </ul>
@@ -233,22 +254,25 @@
         id="menu-drawer-level-2"
         aria-labelledby="menu-drawer-heading-2"
       >
-        <header class="menu-drawer__header" :class="{'menu-drawer__media--inactive': currentLevel >= 3}">
+        <header class="menu-drawer__header">
           <button @click="backLevel()" class="menu-drawer__back" aria-label="Back to previous menu">
-            {% render 'icon-arrow-see-less' %}
-            <span>Back</span>
+            <span :class="{'menu-drawer__media--inactive': currentLevel >= 3}">{% render 'icon-arrow-see-less' %}</span>
+            <span :class="{'menu-drawer__media--inactive': currentLevel >= 3}">Back</span>
           </button>
-          <h2 class="menu-drawer__heading" id="menu-drawer-heading-2" x-text="decodeEntities(menuTitle)"></h2>
+          <h2 
+            class="menu-drawer__heading" 
+            id="menu-drawer-heading-2" 
+            :class="{'menu-drawer__media--inactive': currentLevel >= 3}"
+            x-text="decodeEntities(menuTitle)"
+          ></h2>
         </header>
         <!-- Menu Level 2 Featured Image -->
-        <figure
-          class="menu-drawer__featured-image"
-          :class="{'loading-new-image': isImageLoading, 'menu-drawer__media--inactive': currentLevel >= 3 }"
-        >
+        <figure class="menu-drawer__featured-image" :class="{'loading-new-image': isImageLoading}">
           <img
             :src="featuredImageUrl || '#'"
             :alt="featuredImageAlt"
             :srcset="generateSrcset(featuredImageUrl)"
+            :class="{'menu-drawer__media--inactive': currentLevel >= 3}"
             loading="eager"
             @load="imageLoaded = true; isImageLoading = false;"
             height="100"
@@ -258,15 +282,7 @@
         <!-- Menu Level 2 Links -->
         <ul class="menu-drawer__menu" role="menu">
           <template x-for="(item, childIndex) in submenu" :key="childIndex">
-            <li
-              role="none"
-              :class="
-                {
-                  'menu-drawer__item--inactive': currentLevel >= 3 && childIndex !== activeLevel2Index,
-                  'menu-drawer__item--active': currentLevel >= 3 && childIndex === activeLevel2Index
-                }
-              "
-            >
+            <li role="none" :class="{'menu-drawer__item--active': currentLevel >= 3 && childIndex === activeLevel2Index}">
               <template x-if="item.links && item.links.length > 0">
                 <button
                   @click="openLevel(3, item.title, currentParentIndex, null, null, childIndex)"
@@ -275,14 +291,17 @@
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  <span x-text="decodeEntities(item.title)"></span>
-                  {% render 'icon-arrow-see-more' %}
+                  <span :class="{'menu-drawer__item--inactive': currentLevel >= 3 && childIndex !== activeLevel2Index}" x-text="decodeEntities(item.title)"></span>
+                  <span :class="{'menu-drawer__item--inactive': currentLevel >= 3 && childIndex !== activeLevel2Index}">
+                    {% render 'icon-arrow-see-more' %}
+                  </span>
                 </button>
               </template>
               <template x-if="!item.links || item.links.length === 0">
                 <a
                   :href="item.url"
                   class="menu-drawer__link body--uppercase"
+                  :class="{'menu-drawer__item--inactive': currentLevel >= 3}"
                   role="menuitem"
                   x-text="decodeEntities(item.title)"
                 ></a>
