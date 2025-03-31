@@ -51,13 +51,13 @@
   .menu-drawer__heading {
     margin: 0;
     padding: 15px;
-    font-size: 18px;
   }
 
   .menu-drawer__header {
     display: flex;
     align-items: center;
-    padding: 15px;
+    padding: var(--space-m) var(--space-l);
+    border-bottom: 1px solid var(--neutral-200);
   }
 
   .menu-drawer__header .menu-drawer__heading {
@@ -78,7 +78,16 @@
     border-bottom: 1px solid var(--neutral-200);
   }
 
-  #menu-drawer-level-2, 
+  #menu-drawer-level-2 > .menu-drawer__menu {
+    border-top: 1px solid var(--neutral-200);
+    border-bottom: 1px solid var(--neutral-200);
+  }
+
+  #menu-drawer-level-2 > .blaze-slider {
+    padding: var(--space-m) var(--space-l);
+  }
+
+  #menu-drawer-level-2,
   #menu-drawer-level-3 {
     border-left: 1px solid var(--neutral-200);
   }
@@ -93,7 +102,6 @@
     border: none;
     background: none;
     color: inherit;
-    font-size: 16px;
     cursor: pointer;
   }
 
@@ -104,11 +112,11 @@
     border: none;
     padding: 0;
     cursor: pointer;
-    font-size: 14px;
   }
 
-  .menu-drawer__back span {
-    margin-left: var(--space-xs);
+  .menu-drawer__back > :first-child {
+    margin-right: var(--space-xs);
+    margin-top: -2px;
   }
 
   body.menu-open {
@@ -120,6 +128,7 @@
     position: relative;
     overflow: hidden;
     will-change: transform;
+    padding: var(--space-m) var(--space-l);
   }
 
   .menu-drawer__featured-image img {
@@ -193,6 +202,19 @@
 
   .menu-drawer__klaviyo > .klaviyo-form > div > form > div {
     gap: var(--space-xs);
+  }
+
+  .menu-drawer__klaviyo > .klaviyo-form > div > form > div > div > div > div > input {
+    padding: 0px !important;
+    border: none !important;
+    border-bottom: 1px solid var(--neutral-200) !important;
+    color: var(--neutral-950);
+  }
+
+  .menu-drawer__article-content > img {
+    min-height: 300px;
+    width: 100%;
+    object-fit: cover;
   }
 </style>
 
@@ -303,10 +325,10 @@
         <header class="menu-drawer__header">
           <button @click="backLevel()" class="menu-drawer__back" aria-label="Back to previous menu">
             <span :class="{'menu-drawer__media--inactive': currentLevel >= 3}">{% render 'icon-arrow-see-less' %}</span>
-            <span :class="{'menu-drawer__media--inactive': currentLevel >= 3}">Back</span>
+            <span class="body--uppercase" :class="{'menu-drawer__media--inactive': currentLevel >= 3}">Back</span>
           </button>
           <h2
-            class="menu-drawer__heading"
+            class="menu-drawer__heading body--uppercase"
             id="menu-drawer-heading-2"
             :class="{'menu-drawer__media--inactive': currentLevel >= 3}"
             x-text="decodeEntities(menuTitle)"
@@ -383,9 +405,13 @@
         <header class="menu-drawer__header">
           <button @click="backLevel()" class="menu-drawer__back" aria-label="Back to previous menu">
             {% render 'icon-arrow-see-less' %}
-            <span>Back</span>
+            <span class="body--uppercase">Back</span>
           </button>
-          <h2 class="menu-drawer__heading" id="menu-drawer-heading-3" x-text="decodeEntities(subMenuTitle)"></h2>
+          <h2
+            class="menu-drawer__heading body--uppercase"
+            id="menu-drawer-heading-3"
+            x-text="decodeEntities(subMenuTitle)"
+          ></h2>
         </header>
         <ul class="menu-drawer__menu" role="menu">
           <template x-for="(item, index) in subSubmenu" :key="index">
