@@ -420,11 +420,13 @@
         this.isOpen = true;
         this.currentLevel = 1;
         document.body.classList.add('menu-open');
+        document.querySelector('.hamburger-menu').classList.add('nav-open');
       },
   
       closeMenu() {
         this.isOpen = false;
         document.body.classList.remove('menu-open');
+        document.querySelector('.hamburger-menu').classList.remove('nav-open');
   
         if (this.blazeSlider) {
           this.blazeSlider.destroy(); 

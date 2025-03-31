@@ -1,11 +1,8 @@
 Mega Menu:
 Functionality:
 
-- grey out all elements correctly
-- if one article, make it not a slider 
 Complete styling perfectly/Make responsive
 Add search component on mobile
-Replace menu button with hamburger and close SVGs
 Animate with Framer Motion
 Test on firefox, chrome, safari, edge 
 

@@ -256,6 +256,38 @@ select {
   list-style: none;
 }
 
+.hamburger-menu {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.hamburger-svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+.hamburger-line {
+  transition: all 0.3s ease;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+.nav-open .top-line {
+  transform: translate(0, 4px) rotate(45deg);
+}
+
+.nav-open .bottom-line {
+  transform: translate(0, -4px) rotate(-45deg);
+}
+
 /* Footer */
 
 footer ul {
