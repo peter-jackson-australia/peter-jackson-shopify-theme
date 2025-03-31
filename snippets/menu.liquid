@@ -29,6 +29,7 @@
     background: var(--white);
     overflow-x: hidden;
     z-index: 9999;
+    border-top: 1px solid var(--neutral-200);
   }
 
   .menu-drawer__inner {
@@ -39,7 +40,7 @@
   .menu-drawer__level {
     width: 400px;
     height: 100%;
-    overflow-y: auto;
+    overflow-y: hidden;
     display: none;
   }
 
@@ -75,11 +76,11 @@
 
   #menu-drawer__menu-1 {
     border-bottom: 1px solid var(--neutral-200);
-    border-top: 1px solid var(--neutral-200);
   }
 
-  #menu-drawer__menu-1-secondary {
-    border-bottom: 1px solid var(--neutral-200);
+  #menu-drawer-level-2, 
+  #menu-drawer-level-3 {
+    border-left: 1px solid var(--neutral-200);
   }
 
   .menu-drawer__link,
@@ -168,10 +169,12 @@
   #menu-drawer-level-1 {
     display: flex;
     flex-direction: column;
+    height: 100%;
   }
 
-  #menu-drawer-level-1 > .klaviyo-form-WH7CVh {
+  .menu-drawer__scrollable-content {
     flex: 1;
+    overflow-y: auto;
   }
 
   .menu-drawer__klaviyo {
@@ -179,6 +182,8 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-s);
+    margin-top: auto;
+    border-top: 1px solid var(--neutral-200);
   }
 
   .menu-drawer__klaviyo > .klaviyo-form > div > form,
@@ -210,74 +215,78 @@
     <div class="menu-drawer__inner">
       <!-- Menu Level 1 -->
       <section :class="{'menu-drawer__level': true, 'active': currentLevel >= 1}" id="menu-drawer-level-1">
-        <!-- Menu Level 1 Links -->
-        <ul class="menu-drawer__menu" role="menu" id="menu-drawer__menu-1">
-          {% for link in linklists['main-menu'].links %}
-            <li
-              role="none"
-              :class="{ 'menu-drawer__item--active': currentLevel >= 2 && {{ forloop.index0 }} === activeLevel1Index }"
+        <!-- Scrollable Content Container -->
+        <div class="menu-drawer__scrollable-content">
+          <!-- Menu Level 1 Links -->
+          <ul class="menu-drawer__menu" role="menu" id="menu-drawer__menu-1">
+            {% for link in linklists['main-menu'].links %}
+              <li
+                role="none"
+                :class="{ 'menu-drawer__item--active': currentLevel >= 2 && {{ forloop.index0 }} === activeLevel1Index }"
+              >
+                {% if link.links.size > 0 %}
+                  <button
+                    @click="openLevel(2, '{{ link.title }}', {{ forloop.index0 }}, '{{ link.object.featured_image | image_url: width: 1200 }}', '{{ link.object.featured_image.alt }}')"
+                    class="menu-drawer__button menu-drawer__button--has-submenu body--uppercase"
+                    role="menuitem"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <span :class="{ 'menu-drawer__item--inactive': currentLevel >= 2 && {{ forloop.index0 }} !== activeLevel1Index }">
+                      {{- link.title -}}
+                    </span>
+                    <span :class="{ 'menu-drawer__item--inactive': currentLevel >= 2 && {{ forloop.index0 }} !== activeLevel1Index }">
+                      {% render 'icon-arrow-see-more' %}
+                    </span>
+                  </button>
+                {% else %}
+                  <a
+                    href="{{ link.url }}"
+                    class="menu-drawer__link body--uppercase"
+                    :class="{ 'menu-drawer__item--inactive': currentLevel >= 2 }"
+                    role="menuitem"
+                  >
+                    {{ link.title }}
+                  </a>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+          <!-- Menu Level 1 Video -->
+          <div class="menu-drawer__video-container">
+            <video
+              class="menu-drawer__video"
+              :class="{'menu-drawer__media--inactive': currentLevel >= 2}"
+              x-ref="menuVideo"
+              x-init="$watch('isOpen', value => {if (value && $refs.menuVideo) {$refs.menuVideo.play().catch(e => console.log('Autoplay prevented:', e));} else if ($refs.menuVideo) {$refs.menuVideo.pause();}})"
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              aria-hidden="true"
             >
-              {% if link.links.size > 0 %}
-                <button
-                  @click="openLevel(2, '{{ link.title }}', {{ forloop.index0 }}, '{{ link.object.featured_image | image_url: width: 1200 }}', '{{ link.object.featured_image.alt }}')"
-                  class="menu-drawer__button menu-drawer__button--has-submenu body--uppercase"
-                  role="menuitem"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <span :class="{ 'menu-drawer__item--inactive': currentLevel >= 2 && {{ forloop.index0 }} !== activeLevel1Index }">
-                    {{- link.title -}}
-                  </span>
-                  <span :class="{ 'menu-drawer__item--inactive': currentLevel >= 2 && {{ forloop.index0 }} !== activeLevel1Index }">
-                    {% render 'icon-arrow-see-more' %}
-                  </span>
-                </button>
-              {% else %}
+              <source src="https://cdn.shopify.com/videos/c/o/v/ccff09333a4c451588e9b1a091de9d04.mp4" type="video/mp4">
+            </video>
+            <p class="body" :class="{'menu-drawer__media--inactive': currentLevel >= 2}">Winter 25 Collection</p>
+          </div>
+          <!-- Menu Level 1 Secondary Links -->
+          <ul class="menu-drawer__menu" id="menu-drawer__menu-1-secondary" role="menu">
+            {% for link in linklists['secondary-main-menu'].links %}
+              <li role="none">
                 <a
                   href="{{ link.url }}"
                   class="menu-drawer__link body--uppercase"
-                  :class="{ 'menu-drawer__item--inactive': currentLevel >= 2 }"
+                  :class="{'menu-drawer__item--inactive': currentLevel >= 2}"
                   role="menuitem"
                 >
                   {{ link.title }}
                 </a>
-              {% endif %}
-            </li>
-          {% endfor %}
-        </ul>
-        <!-- Menu Level 1 Video -->
-        <div class="menu-drawer__video-container">
-          <video
-            class="menu-drawer__video"
-            :class="{'menu-drawer__media--inactive': currentLevel >= 2}"
-            x-ref="menuVideo"
-            x-init="$watch('isOpen', value => {if (value && $refs.menuVideo) {$refs.menuVideo.play().catch(e => console.log('Autoplay prevented:', e));} else if ($refs.menuVideo) {$refs.menuVideo.pause();}})"
-            muted
-            loop
-            playsinline
-            preload="metadata"
-            aria-hidden="true"
-          >
-            <source src="https://cdn.shopify.com/videos/c/o/v/ccff09333a4c451588e9b1a091de9d04.mp4" type="video/mp4">
-          </video>
-          <p class="body" :class="{'menu-drawer__media--inactive': currentLevel >= 2}">Winter 25 Collection</p>
+              </li>
+            {% endfor %}
+          </ul>
         </div>
-        <!-- Menu Level 1 Secondary Links -->
-        <ul class="menu-drawer__menu" id="menu-drawer__menu-1-secondary" role="menu">
-          {% for link in linklists['secondary-main-menu'].links %}
-            <li role="none">
-              <a
-                href="{{ link.url }}"
-                class="menu-drawer__link body--uppercase"
-                :class="{'menu-drawer__item--inactive': currentLevel >= 2}"
-                role="menuitem"
-              >
-                {{ link.title }}
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
-        <!-- Menu Level 1 Newsletter Form -->
+
+        <!-- Menu Level 1 Newsletter Form (Fixed at bottom) -->
         <div class="menu-drawer__klaviyo">
           <h2 class="menu-drawer__klaviyo__header body--uppercase">JOIN THE JACKSON CLUB</h2>
           <div class="klaviyo-form-WH7CVh"></div>
