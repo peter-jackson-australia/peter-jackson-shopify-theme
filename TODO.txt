@@ -1,16 +1,24 @@
 Mega Menu:
 Functionality:
 
-Complete styling perfectly/Make responsive
+Complete styling perfectly/Make responsive:
+Image heights 
+add PJ logo, account and cart SVG's 
+Give hamburger menu a discerible name for accessibility 
+style newsletter form perfectly 
+style scrollbar 
+Make responsive / hide the back buttons on desktop 
 Add search component on mobile
 Animate with Framer Motion
 Test on firefox, chrome, safari, edge 
 
 Non-Functional Fixes:
+BEM naming for everything 
 Remove unused CSS
 Check for duplicate CSS classes and IDs
 Have CSS in order it's used in 
 Clean up markup and Alpine
 Clean up JavaScript
 Format
+Have CSS in own file
 Minify JavaScript in bottom into own JS file in assets for minification
