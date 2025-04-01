@@ -142,6 +142,7 @@ select {
   font-family: "Ordinary Light";
   text-transform: uppercase;
   font-size: clamp(0.6944rem, 0.6597rem + 0.1736vw, 0.8681rem);
+  font-weight: 300;
 }
 
 .body--bold {
@@ -149,6 +150,7 @@ select {
   letter-spacing: 0.2rem;
   font-family: "Ordinary Regular";
   font-size: clamp(0.6944rem, 0.6597rem + 0.1736vw, 0.8681rem);
+  font-weight: 500;
 }
 
 .heading--l {
@@ -185,10 +187,26 @@ select {
 
 /* UI */
 
-.button {
-  padding: var(--space-xs) var(--space-l);
-  font-family: "Ordinary Light";
-  text-align: center;
+.button, .klaviyo-form-WH7CVh > div > form > div > div > div > button.needsclick {
+  padding: var(--space-xs) var(--space-l) !important;
+  font-family: "Ordinary Light" !important;
+  text-align: center !important;
+}
+
+.klaviyo-form-WH7CVh > div > form > div > div > div > button.needsclick {
+  background: var(--neutral-950) !important;
+}
+
+input,
+input::placeholder {
+  line-height: 140% !important;
+  letter-spacing: 0.2rem !important;
+  font-family: "Ordinary Light" !important;
+  font-size: clamp(0.6944rem, 0.6597rem + 0.1736vw, 0.8681rem) !important;
+}
+
+input:focus-visible {
+  outline-width: 0px !important;
 }
 
 .button--white {
