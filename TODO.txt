@@ -1,8 +1,7 @@
 Mega Menu:
 Functionality:
 
-Complete styling perfectly/Make responsive:
-Make responsive / hide the back buttons on desktop 
+Complete styling perfectly for desktop and mobile
 Animate with Framer Motion
 Test on firefox, chrome, safari, edge 
 Add search component on mobile

@@ -261,7 +261,7 @@ input:focus-visible {
   align-items: center;
   justify-content: space-between;
   height: var(--space-xl);
-  padding: 0 var(--space-l);
+  padding: 0 var(--space-m);
 }
 
 .header__logo {
@@ -420,7 +420,7 @@ a.skip-to-content:focus-visible {
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: var(--neutral-50);
+  background: var(--neutral-100);
   border-radius: 0 !important; 
   border-left: 1px solid var(--neutral-200);
 }
