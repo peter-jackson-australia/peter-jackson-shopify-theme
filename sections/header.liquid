@@ -1,27 +1,40 @@
 <header id="site-header" class="header container">
-  <button type="button" class="hamburger-menu" onclick="window.toggleNav();">
+  <button
+    type="button"
+    class="hamburger-menu"
+    onclick="window.toggleNav();"
+    aria-expanded="false"
+    aria-controls="site-navigation"
+    aria-label="Toggle menu"
+  >
     <div class="hamburger-icon">
-      {% render 'icon-hamburger-menu' %}
+      {% render 'icon-hamburger-menu', accessible_name: 'Menu' %}
     </div>
   </button>
   <div class="header__logo">
-    <a href="/">
-      {% render 'icon-peter-jackson' %}
+    <a href="/" aria-label="Peter Jackson - Home">
+      {% render 'icon-peter-jackson', accessible_name: 'Peter Jackson', role: 'img' %}
     </a>
   </div>
   <ul class="header__icons">
     <li>
-      <a href="/account">
-        {% render 'icon-account' %}
+      <a href="/account" aria-label="Account">
+        {% render 'icon-account', accessible_name: 'Account', role: 'img' %}
       </a>
     </li>
     <li>
-      <a href="{{ routes.cart_url }}" style="text-decoration: none; position: relative;">
-        {%- render 'icon-cart' %}
-        <span class="js--cart-counter {% if cart.item_count == 0 %}hide{% endif %}">{{ cart.item_count }}</span></a
+      <a
+        href="{{ routes.cart_url }}"
+        aria-label="Cart{% if cart.item_count > 0 %} with {{ cart.item_count }} item{% if cart.item_count > 1 %}s{% endif %}{% endif %}"
+        style="text-decoration: none; position: relative;"
       >
+        {%- render 'icon-cart', accessible_name: 'Shopping Cart', role: 'img' %}
+        <span class="js--cart-counter {% if cart.item_count == 0 %}hide{% endif %}" aria-hidden="true">
+          {{- cart.item_count -}}
+        </span>
+      </a>
     </li>
   </ul>
 </header>
 
-{% render 'menu' %}
+{% render 'menu', id: 'site-navigation' %}

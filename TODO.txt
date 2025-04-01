@@ -2,7 +2,6 @@ Mega Menu:
 Functionality:
 
 Complete styling perfectly/Make responsive:
-Give hamburger menu a discerible name for accessibility 
 style newsletter form perfectly 
 style scrollbar 
 Make responsive / hide the back buttons on desktop 
