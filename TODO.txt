@@ -2,7 +2,6 @@ Mega Menu:
 Functionality:
 
 Complete styling perfectly/Make responsive:
-Image heights 
 add PJ logo, account and cart SVG's 
 Give hamburger menu a discerible name for accessibility 
 style newsletter form perfectly 
