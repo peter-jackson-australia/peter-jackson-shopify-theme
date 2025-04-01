@@ -301,6 +301,14 @@
     .menu-drawer__back {
       display: block;
     }
+
+    .menu-drawer__featured-image img {
+      height: 100%;
+    }
+
+    .menu-drawer__video {
+      max-height: 400px;
+    }
   }
 </style>
 
@@ -482,13 +490,11 @@
             >
               The Jackson Journal
             </h2>
-            <div class="blaze-slider" x-ref="blazeSlider">
-              <div class="blaze-container">
-                <div class="blaze-track-container">
-                  <div class="blaze-track"></div>
-                </div>
+            <section class="splide" x-ref="blazeSlider">
+              <div class="splide__track">
+                <div class="splide__list"></div>
               </div>
-            </div>
+            </section>
           </div>
         </template>
       </section>
@@ -612,7 +618,7 @@
       },
   
       refreshSliderContent() {
-        const track = this.$refs.blazeSlider?.querySelector('.blaze-track');
+        const track = this.$refs.blazeSlider?.querySelector('.splide__list');
         
         if (track) {
           track.innerHTML = '';

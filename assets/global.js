@@ -2,8 +2,3 @@
 window.addEventListener("load", () => {
   quicklink.listen();
 });
-
-// Initialise Blaze Sliders
-document.querySelectorAll(".blaze-slider").forEach((el) => {
-  new BlazeSlider(el);
-});
