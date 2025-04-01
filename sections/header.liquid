@@ -16,9 +16,9 @@
       </a>
     </li>
     <li>
-      <a href="{{ routes.cart_url }}" style="text-decoration: none;">
+      <a href="{{ routes.cart_url }}" style="text-decoration: none; position: relative;">
         {%- render 'icon-cart' %}
-        <span class="js--cart-counter">{{ cart.item_count }}</span></a
+        <span class="js--cart-counter {% if cart.item_count == 0 %}hide{% endif %}">{{ cart.item_count }}</span></a
       >
     </li>
   </ul>

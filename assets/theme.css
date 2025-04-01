@@ -101,7 +101,7 @@ select {
 /* Global Styles */
 
 .hide {
-  display: none;
+  display: none !important;
 }
 
 /* Custom Scrollbar */
@@ -288,6 +288,22 @@ select {
 
 .nav-open .bottom-line {
   transform: translate(0, -4px) rotate(-45deg);
+}
+
+.js--cart-counter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background-color: var(--neutral-950);
+  color: var(--white);
+  font-size: 10px;
+  font-family: "Ordinary Regular";
+  position: absolute;
+  bottom: -7px;
+  right: -12px;
 }
 
 /* Footer */

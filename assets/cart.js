@@ -150,5 +150,6 @@ function removeGiftWrap(lineItemKey) {
 function updateCartCounter(cart) {
   document.querySelectorAll('.js--cart-counter').forEach(function(el) {
     el.innerText = cart.item_count;
+    el.classList.toggle('hide', cart.item_count === 0);
   });
 }
