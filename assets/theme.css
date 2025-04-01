@@ -254,6 +254,8 @@ select {
 .header__icons {
   display: flex;
   list-style: none;
+  gap: var(--space-s);
+  align-items: center;
 }
 
 .hamburger-menu {

@@ -5,13 +5,20 @@
     </div>
   </button>
   <div class="header__logo">
-    <a href="/">Peter Jackson</a>
+    <a href="/">
+      {% render 'icon-peter-jackson' %}
+    </a>
   </div>
   <ul class="header__icons">
-    <li><a href="/account">Account</a></li>
     <li>
-      <a href="{{ routes.cart_url }}"
-        >Cart (<span class="js--cart-counter">{{ cart.item_count }}</span>)</a
+      <a href="/account">
+        {% render 'icon-account' %}
+      </a>
+    </li>
+    <li>
+      <a href="{{ routes.cart_url }}" style="text-decoration: none;">
+        {%- render 'icon-cart' %}
+        <span class="js--cart-counter">{{ cart.item_count }}</span></a
       >
     </li>
   </ul>

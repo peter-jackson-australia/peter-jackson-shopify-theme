@@ -420,9 +420,13 @@
         </ul>
 
         <template x-if="filteredArticles && filteredArticles.length > 0">
-          <div>
-            <h2 class="menu-drawer__heading-journal body--uppercase">The Jackson Journal</h2>
-            <div class="blaze-slider" x-ref="blazeSlider" :class="{'menu-drawer__media--inactive': currentLevel >= 3}">
+          <div :class="{'menu-drawer__media--inactive': currentLevel >= 3}">
+            <h2
+              class="menu-drawer__heading-journal body--uppercase"
+            >
+              The Jackson Journal
+            </h2>
+            <div class="blaze-slider" x-ref="blazeSlider">
               <div class="blaze-container">
                 <div class="blaze-track-container">
                   <div class="blaze-track"></div>
