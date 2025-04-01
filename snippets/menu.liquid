@@ -40,7 +40,8 @@
   .menu-drawer__level {
     width: 400px;
     height: 100%;
-    overflow-y: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
     display: none;
   }
 
@@ -76,11 +77,11 @@
   }
 
   #menu-drawer-level-2 {
-    scrollbar-width: none !important;
-    -ms-overflow-style: none !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
   }
 
-  #menu-drawer-level-2::-webkit-scrollbar {
+  #menu-drawer-level-2::-webkit-scrollbar-horizontal {
     display: none !important;
   }
 
