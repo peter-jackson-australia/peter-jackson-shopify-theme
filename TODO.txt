@@ -1,18 +1,21 @@
 Mega Menu:
 Functionality:
 
+Completely reduce layout shifts (image heights)
 Complete styling perfectly for desktop and mobile
-Animate with Framer Motion
+Animate
 Test on firefox, chrome, safari, edge 
 Add search component on mobile
 
 Non-Functional Fixes:
 BEM naming for everything 
+Have CSS in order it's used in 
 Remove unused CSS
 Check for duplicate CSS classes and IDs
-Have CSS in order it's used in 
 Clean up markup and Alpine
 Clean up JavaScript
 Format
 Have CSS in own file
 Minify JavaScript in bottom into own JS file in assets for minification
+
+Preload hero image 
