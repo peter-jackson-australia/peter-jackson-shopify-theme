@@ -406,3 +406,21 @@ a.skip-to-content:focus-visible {
   width: var(--slide-width);
   flex-shrink: 0;
 }
+
+/* Custom Scrollbar */
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--white);
+  border-left: 1px solid var(--neutral-200);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--neutral-50);
+  border-radius: 0 !important; 
+  border-left: 1px solid var(--neutral-200);
+}
