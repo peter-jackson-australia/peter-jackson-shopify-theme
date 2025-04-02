@@ -117,16 +117,18 @@
     max-height: 300px;
     object-fit: cover;
     margin-bottom: var(--space-2xs);
-    min-height: 250px;
   }
 
   .menu-drawer__klaviyo {
     padding: var(--space-m) var(--space-m);
     display: flex;
     flex-direction: column;
-    gap: var(--space-xs);
     margin-top: auto;
     border-top: 1px solid var(--neutral-200);
+  }
+
+  .menu-drawer__klaviyo > p.small {
+    margin-top: var(--space-xs);
   }
 
   .menu-drawer__klaviyo > .klaviyo-form > div > form,
@@ -351,18 +353,15 @@
   ></div>
   <nav x-show="isOpen" x-cloak :data-active-level="currentLevel" class="menu-drawer">
     <div class="menu-drawer__inner">
-      <!-- Menu Level 1 -->
       <section
         :class="{'menu-drawer__level': true, 'menu-drawer__level--active': currentLevel >= 1}"
         id="menu-drawer-level-1"
         class="custom-scrollbar"
       >
-        <!-- Scrollable Content Container -->
         <div class="menu-drawer__scrollable-content custom-scrollbar">
           <div class="mobile-search-wrapper">
             {% render 'search-form' %}
           </div>
-          <!-- Menu Level 1 Links -->
           <ul class="menu-drawer__menu" role="menu" id="menu-drawer__menu-1">
             {% for link in linklists['main-menu'].links %}
               <li
@@ -397,7 +396,6 @@
               </li>
             {% endfor %}
           </ul>
-          <!-- Menu Level 1 Video -->
           <div class="menu-drawer__video-container">
             <video
               class="menu-drawer__video"
@@ -414,7 +412,6 @@
             </video>
             <p class="body" :class="{'menu-drawer__media--inactive': currentLevel >= 2}">Winter 25 Collection</p>
           </div>
-          <!-- Menu Level 1 Secondary Links -->
           <ul class="menu-drawer__menu" id="menu-drawer__menu-1-secondary" role="menu">
             {% for link in linklists['secondary-main-menu'].links %}
               <li role="none">
@@ -430,16 +427,12 @@
             {% endfor %}
           </ul>
         </div>
-
-        <!-- Menu Level 1 Newsletter Form (Fixed at bottom) -->
         <div class="menu-drawer__klaviyo">
           <h2 class="menu-drawer__klaviyo__header body--uppercase">JOIN THE JACKSON CLUB</h2>
           <div class="klaviyo-form-WH7CVh"></div>
           <p class="small">By signing up, you agree to our terms and conditions.</p>
         </div>
       </section>
-
-      <!-- Menu Level 2 -->
       <section
         class="custom-scrollbar"
         :class="{'menu-drawer__level': true, 'menu-drawer__level--active': currentLevel >= 2}"
@@ -458,7 +451,6 @@
             x-text="decodeEntities(menuTitle)"
           ></h2>
         </header>
-        <!-- Menu Level 2 Featured Image -->
         <figure
           class="menu-drawer__featured-image"
           :class="{'menu-drawer__featured-image--loading-new-image': isImageLoading}"
@@ -474,7 +466,6 @@
             width="100"
           >
         </figure>
-        <!-- Menu Level 2 Links -->
         <ul class="menu-drawer__menu" role="menu">
           <template x-for="(item, childIndex) in submenu" :key="childIndex">
             <li
@@ -516,16 +507,12 @@
             <h2 class="menu-drawer__heading-journal body--uppercase">The Jackson Journal</h2>
             <div class="splide" x-ref="splideSlider">
               <div class="splide__track">
-                <ul class="splide__list">
-                  <!-- Slides will be inserted here by refreshSliderContent() -->
-                </ul>
+                <ul class="splide__list"></ul>
               </div>
             </div>
           </div>
         </template>
       </section>
-
-      <!-- Menu Level 3 -->
       <section
         :class="{'menu-drawer__level': true, 'menu-drawer__level--active': currentLevel >= 3}"
         id="menu-drawer-level-3"
