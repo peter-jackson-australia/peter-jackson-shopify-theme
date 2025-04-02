@@ -361,6 +361,7 @@
       >
         <!-- Scrollable Content Container -->
         <div class="menu-drawer__scrollable-content custom-scrollbar">
+          {% render 'search-form' %}
           <!-- Menu Level 1 Links -->
           <ul class="menu-drawer__menu" role="menu" id="menu-drawer__menu-1">
             {% for link in linklists['main-menu'].links %}

@@ -1,8 +1,15 @@
-<predictive-search>
-  <form id="{{- id | default: 'header-search' -}}" action="{{ routes.search_url }}" method="get" role="search">
-    <div class="flex middle center">
+<div class="predictive-search">
+  <form
+    id="{{- id | default: 'header-search' -}}"
+    action="{{ routes.search_url }}"
+    method="get"
+    role="search"
+    class="predictive-search__form"
+  >
+    <div class="predictive-search__container">
       <input type="hidden" name="type" value="product">
-      <input type="search"
+      <input
+        type="search"
         id="search"
         name="q"
         value="{{ search.terms | escape }}"
@@ -13,10 +20,12 @@
         aria-owns="predictive-search-results"
         aria-controls="predictive-search-results"
         aria-haspopup="listbox"
-        aria-autocomplete="list">
+        aria-autocomplete="list"
+        class="predictive-search__input"
+      >
       <input name="options[prefix]" type="hidden" value="last">
-      <button type="submit" class="button">Search</button>
+      <button type="submit" class="predictive-search__button">Search</button>
     </div>
   </form>
-  <div id="predictive-search"></div>
- </predictive-search>
+  <div id="predictive-search" class="predictive-search__results"></div>
+</div>

@@ -1,12 +1,7 @@
 Mega Menu:
 Functionality:
 
-Completely reduce layout shifts (image heights)
-Complete styling perfectly for desktop and mobile
-Animate
-Test on firefox, chrome, safari, edge 
 Add search component on mobile
-
 Non-Functional Fixes:
 BEM naming for everything 
 Have CSS in order it's used in 

@@ -216,6 +216,18 @@ input:focus-visible {
   backdrop-filter: blur(0.25rem);
 }
 
+@media screen and (max-width: 1200px) {
+  .predictive-search__form {
+    padding: var(--space-m);
+  }
+}
+
+
+predictive-search__container 
+predictive-search__input 
+predictive-search__button 
+predictive-search__results 
+
 /* Grids */
 
 [class^="grid-"] {
