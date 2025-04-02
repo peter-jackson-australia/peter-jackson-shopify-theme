@@ -259,10 +259,23 @@
 
   .splide__slide.is-active .menu-drawer__article-image {
     filter: grayscale(0%);
-    background-attachment: fixed;
+  }
+
+  @media screen and (min-width: 1200px) {
+    #menu-drawer-level-2 > div > div > .splide__track > .splide__list > .splide__slide {
+      width: 80% !important;
+    }
   }
 
   @media screen and (max-width: 1200px) {
+    #menu-drawer-level-2 > div > div > .splide__track {
+      overflow: hidden;
+    }
+
+    .splide__slide .menu-drawer__article-image {
+      filter: grayscale(0%);
+    }
+
     .menu-drawer {
       width: 100%;
     }
@@ -669,7 +682,18 @@
               autoplay: false,
               type: 'loop',
               arrows: false,
-              pagination: false
+              pagination: false,
+              breakpoints: {
+                1200: {
+                  perPage: 3
+                }, 
+                768: {
+                  perPage: 2
+                },
+                470: {
+                  perPage: 1
+                }
+              }
             }).mount();
           }
         });
