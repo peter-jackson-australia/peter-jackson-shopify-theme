@@ -261,6 +261,14 @@
     filter: grayscale(0%);
   }
 
+  .menu-drawer__article-title,
+  .menu-drawer__article-tag {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
   @media screen and (min-width: 1200px) {
     #menu-drawer-level-2 > div > div > .splide__track > .splide__list > .splide__slide {
       width: 80% !important;
