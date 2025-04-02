@@ -4,8 +4,7 @@ Functionality:
 clean up menu.liquid  
 
 Non-Functional Fixes:
-BEM naming for everything 
-Have CSS in order it's used in 
+Have CSS in order it's used in - ALMOST DONE
 Remove unused CSS
 Check for duplicate CSS classes and IDs
 Clean up markup and Alpine

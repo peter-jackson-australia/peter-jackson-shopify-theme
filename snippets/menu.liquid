@@ -7,6 +7,10 @@
     display: none !important;
   }
 
+  body.menu-open {
+    overflow: hidden;
+  }
+
   .menu-drawer__container {
     position: relative;
     z-index: 9997;
@@ -45,23 +49,19 @@
     display: none;
   }
 
-  .menu-drawer__level.active {
+  .menu-drawer__level--active {
     display: block;
   }
 
-  .menu-drawer__header {
+  #menu-drawer-level-1 {
     display: flex;
-    align-items: center;
-    padding: var(--space-m) var(--space-m);
-    border-bottom: 1px solid var(--neutral-200);
+    flex-direction: column;
+    height: 100%;
   }
 
-  .menu-drawer__header .menu-drawer__heading {
-    flex-grow: 1;
-  }
-
-  .menu-drawer__heading-journal {
-    padding: var(--space-m) var(--space-m) 0 var(--space-m);
+  .menu-drawer__scrollable-content {
+    flex: 1;
+    overflow-y: auto;
   }
 
   .menu-drawer__menu {
@@ -76,39 +76,6 @@
     border-bottom: 1px solid var(--neutral-200);
   }
 
-  #menu-drawer-level-2 {
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
-  }
-
-  #menu-drawer-level-2::-webkit-scrollbar-horizontal {
-    display: none !important;
-  }
-
-  #menu-drawer-level-2 > .menu-drawer__menu {
-    border-top: 1px solid var(--neutral-200);
-    border-bottom: 1px solid var(--neutral-200);
-  }
-
-  #menu-drawer-level-2 > div > .splide {
-    padding: var(--space-m) var(--space-m);
-    position: relative;
-  }
-
-  .menu-drawer__article {
-    padding: 0;
-    width: 100%;
-  }
-
-  .splide__slide {
-    height: auto;
-  }
-
-  #menu-drawer-level-2,
-  #menu-drawer-level-3 {
-    border-left: 1px solid var(--neutral-200);
-  }
-
   .menu-drawer__link,
   .menu-drawer__button {
     display: flex;
@@ -120,58 +87,6 @@
     background: none;
     color: inherit;
     cursor: pointer;
-  }
-
-  .menu-drawer__back {
-    display: flex;
-    align-items: center;
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-  }
-
-  .menu-drawer__back > :first-child {
-    margin-right: var(--space-xs);
-    margin-top: -2px;
-  }
-
-  body.menu-open {
-    overflow: hidden;
-  }
-
-  .menu-drawer__featured-image {
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-    will-change: transform;
-    padding: var(--space-m) var(--space-m);
-    height: 250px;
-  }
-
-  .menu-drawer__featured-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transform: translateZ(0);
-  }
-
-  .menu-drawer__featured-image.loading-new-image img {
-    display: none;
-  }
-
-  .menu-drawer__video-container {
-    width: 100%;
-    padding: var(--space-m) var(--space-m);
-    border-bottom: 1px solid var(--neutral-200);
-  }
-
-  .menu-drawer__video {
-    width: 100%;
-    max-height: 300px;
-    object-fit: cover;
-    margin-bottom: var(--space-2xs);
-    min-height: 250px;
   }
 
   .menu-drawer__item--inactive,
@@ -191,15 +106,18 @@
     font-weight: 500;
   }
 
-  #menu-drawer-level-1 {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+  .menu-drawer__video-container {
+    width: 100%;
+    padding: var(--space-m) var(--space-m);
+    border-bottom: 1px solid var(--neutral-200);
   }
 
-  .menu-drawer__scrollable-content {
-    flex: 1;
-    overflow-y: auto;
+  .menu-drawer__video {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    margin-bottom: var(--space-2xs);
+    min-height: 250px;
   }
 
   .menu-drawer__klaviyo {
@@ -227,6 +145,95 @@
     color: var(--neutral-950);
   }
 
+  #menu-drawer-level-2,
+  #menu-drawer-level-3 {
+    border-left: 1px solid var(--neutral-200);
+  }
+
+  #menu-drawer-level-2 {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+
+  #menu-drawer-level-2::-webkit-scrollbar-horizontal {
+    display: none !important;
+  }
+
+  #menu-drawer-level-2 > .menu-drawer__menu {
+    border-top: 1px solid var(--neutral-200);
+    border-bottom: 1px solid var(--neutral-200);
+  }
+
+  #menu-drawer-level-2 > div > .splide {
+    padding: var(--space-m) var(--space-m);
+    position: relative;
+  }
+
+  #menu-drawer-level-2 > div > div > .splide__track {
+    overflow: visible;
+  }
+
+  .menu-drawer__header {
+    display: flex;
+    align-items: center;
+    padding: var(--space-m) var(--space-m);
+    border-bottom: 1px solid var(--neutral-200);
+  }
+
+  .menu-drawer__header .menu-drawer__heading {
+    flex-grow: 1;
+  }
+
+  .menu-drawer__back {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: none;
+  }
+
+  .menu-drawer__back > :first-child {
+    margin-right: var(--space-xs);
+    margin-top: -2px;
+  }
+
+  .menu-drawer__featured-image {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    will-change: transform;
+    padding: var(--space-m) var(--space-m);
+    height: 250px;
+  }
+
+  .menu-drawer__featured-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translateZ(0);
+  }
+
+  .menu-drawer__featured-image--loading-new-image img {
+    display: none;
+  }
+
+  .menu-drawer__heading-journal {
+    padding: var(--space-m) var(--space-m) 0 var(--space-m);
+  }
+
+  .menu-drawer__article {
+    padding: 0;
+    width: 100%;
+  }
+
+  .menu-drawer__article-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
   .menu-drawer__article-content > img {
     height: 250px;
     width: 100%;
@@ -238,18 +245,16 @@
     text-decoration: none;
   }
 
-  .menu-drawer__article-content {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
+  .menu-drawer__article-title,
+  .menu-drawer__article-tag {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
   }
 
-  .menu-drawer__back {
-    display: none;
-  }
-
-  #menu-drawer-level-2 > div > div > .splide__track {
-    overflow: visible;
+  .splide__slide {
+    height: auto;
   }
 
   .splide__slide .menu-drawer__article-image {
@@ -261,32 +266,17 @@
     filter: grayscale(0%);
   }
 
-  .menu-drawer__article-title,
-  .menu-drawer__article-tag {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
-  }
-
   @media screen and (min-width: 1200px) {
     #menu-drawer-level-2 > div > div > .splide__track > .splide__list > .splide__slide {
       width: 80% !important;
     }
+
     .mobile-search-wrapper {
       display: none;
     }
   }
 
   @media screen and (max-width: 1200px) {
-    #menu-drawer-level-2 > div > div > .splide__track {
-      overflow: hidden;
-    }
-
-    .splide__slide .menu-drawer__article-image {
-      filter: grayscale(0%);
-    }
-
     .menu-drawer {
       width: 100%;
     }
@@ -304,6 +294,7 @@
       left: 0;
       height: 100%;
       display: none;
+      background: var(--white);
     }
 
     #menu-drawer-level-1 {
@@ -311,7 +302,7 @@
       display: block;
     }
 
-    .menu-drawer__level.active {
+    .menu-drawer__level--active {
       display: block;
       z-index: 10;
     }
@@ -321,20 +312,24 @@
       border-left: none;
     }
 
-    .menu-drawer__level {
-      background: var(--white);
+    .menu-drawer__back {
+      display: block;
     }
 
     .menu-drawer__heading {
       text-align: right;
     }
 
-    .menu-drawer__back {
-      display: block;
-    }
-
     .menu-drawer__video {
       max-height: 400px;
+    }
+
+    #menu-drawer-level-2 > div > div > .splide__track {
+      overflow: hidden;
+    }
+
+    .splide__slide .menu-drawer__article-image {
+      filter: grayscale(0%);
     }
   }
 </style>
@@ -358,7 +353,7 @@
     <div class="menu-drawer__inner">
       <!-- Menu Level 1 -->
       <section
-        :class="{'menu-drawer__level': true, 'active': currentLevel >= 1}"
+        :class="{'menu-drawer__level': true, 'menu-drawer__level--active': currentLevel >= 1}"
         id="menu-drawer-level-1"
         class="custom-scrollbar"
       >
@@ -447,7 +442,7 @@
       <!-- Menu Level 2 -->
       <section
         class="custom-scrollbar"
-        :class="{'menu-drawer__level': true, 'active': currentLevel >= 2}"
+        :class="{'menu-drawer__level': true, 'menu-drawer__level--active': currentLevel >= 2}"
         id="menu-drawer-level-2"
         aria-labelledby="menu-drawer-heading-2"
       >
@@ -464,7 +459,10 @@
           ></h2>
         </header>
         <!-- Menu Level 2 Featured Image -->
-        <figure class="menu-drawer__featured-image" :class="{'loading-new-image': isImageLoading}">
+        <figure
+          class="menu-drawer__featured-image"
+          :class="{'menu-drawer__featured-image--loading-new-image': isImageLoading}"
+        >
           <img
             :src="featuredImageUrl || '#'"
             :alt="featuredImageAlt"
@@ -529,7 +527,7 @@
 
       <!-- Menu Level 3 -->
       <section
-        :class="{'menu-drawer__level': true, 'active': currentLevel >= 3}"
+        :class="{'menu-drawer__level': true, 'menu-drawer__level--active': currentLevel >= 3}"
         id="menu-drawer-level-3"
         aria-labelledby="menu-drawer-heading-3"
       >
