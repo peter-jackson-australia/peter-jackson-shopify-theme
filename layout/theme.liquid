@@ -21,7 +21,7 @@
     <link rel="canonical" href="{{ canonical_url }}">
 
     {{ 'theme.css' | asset_url | stylesheet_tag preload: true }}
-    {{ 'splide-core.min.css' | asset_url | stylesheet_tag preload: true }}
+    <link rel="stylesheet" href="{{ 'splide-core.min.css' | asset_url }}" media="print" onload="this.media='all'">
     <script src="{{ 'theme.js' | asset_url }}" defer></script>
     <script src="{{ 'quicklink.umd.js' | asset_url }}" defer></script>
     <script src="{{ 'alpine.min.js' | asset_url }}" defer></script>
