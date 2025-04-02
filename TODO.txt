@@ -1,9 +1,7 @@
 Mega Menu:
 Functionality:
 
-clean up theme.CSS
-clean up menu.liquid 
-clean up header.liquid 
+clean up menu.liquid  
 
 Non-Functional Fixes:
 BEM naming for everything 
