@@ -24,7 +24,9 @@
         class="predictive-search__input"
       >
       <input name="options[prefix]" type="hidden" value="last">
-      <button type="submit" class="predictive-search__button">Search</button>
+      <button type="submit" class="predictive-search__button">
+        {% render 'icon-site-search' %}
+      </button>
     </div>
   </form>
   <div id="predictive-search" class="predictive-search__results"></div>

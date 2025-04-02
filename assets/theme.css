@@ -216,17 +216,34 @@ input:focus-visible {
   backdrop-filter: blur(0.25rem);
 }
 
-@media screen and (max-width: 1200px) {
-  .predictive-search__form {
-    padding: var(--space-m);
-  }
+.predictive-search__form {
+  position: relative;
+  width: 100%;
+  border-bottom: 1px solid var(--neutral-200);
+  padding: var(--space-m) var(--space-m);
 }
 
+.predictive-search__input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid var(--neutral-200);
+  padding-bottom: var(--space-3xs);
+  background: transparent;
+}
 
-predictive-search__container 
-predictive-search__input 
-predictive-search__button 
-predictive-search__results 
+.predictive-search__button {
+  position: absolute;
+  right: var(--space-m);
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 /* Grids */
 

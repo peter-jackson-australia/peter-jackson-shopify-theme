@@ -1,7 +1,6 @@
 Mega Menu:
 Functionality:
 
-Add search component on mobile
 Non-Functional Fixes:
 BEM naming for everything 
 Have CSS in order it's used in 

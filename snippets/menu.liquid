@@ -273,6 +273,9 @@
     #menu-drawer-level-2 > div > div > .splide__track > .splide__list > .splide__slide {
       width: 80% !important;
     }
+    .mobile-search-wrapper {
+      display: none;
+    }
   }
 
   @media screen and (max-width: 1200px) {
@@ -361,7 +364,9 @@
       >
         <!-- Scrollable Content Container -->
         <div class="menu-drawer__scrollable-content custom-scrollbar">
-          {% render 'search-form' %}
+          <div class="mobile-search-wrapper">
+            {% render 'search-form' %}
+          </div>
           <!-- Menu Level 1 Links -->
           <ul class="menu-drawer__menu" role="menu" id="menu-drawer__menu-1">
             {% for link in linklists['main-menu'].links %}
