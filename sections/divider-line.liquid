@@ -1,0 +1,84 @@
+{% comment %}
+  Divider Line Section
+  A full-width horizontal line with customizable padding
+{% endcomment %}
+
+<style>
+  .hr-section {
+    width: 100%;
+    max-width: 100vw;
+  }
+
+  .hr-section__line {
+    width: 100%;
+    height: 1px;
+    background-color: var(--neutral-200);
+    border: none;
+  }
+</style>
+
+<div
+  class="hr-section"
+  style="padding-top: {{ section.settings.padding }}; padding-bottom: {{ section.settings.padding }};"
+>
+  <hr class="hr-section__line">
+</div>
+
+{% schema %}
+{
+  "name": "Horizontal Rule",
+  "settings": [
+    {
+      "type": "select",
+      "id": "padding",
+      "label": "Spacing",
+      "options": [
+        {
+          "value": "var(--space-3xs)",
+          "label": "Space 3XS"
+        },
+        {
+          "value": "var(--space-2xs)",
+          "label": "Space 2XS"
+        },
+        {
+          "value": "var(--space-xs)",
+          "label": "Space XS"
+        },
+        {
+          "value": "var(--space-s)",
+          "label": "Space S"
+        },
+        {
+          "value": "var(--space-m)",
+          "label": "Space M"
+        },
+        {
+          "value": "var(--space-l)",
+          "label": "Space L"
+        },
+        {
+          "value": "var(--space-xl)",
+          "label": "Space XL"
+        },
+        {
+          "value": "var(--space-2xl)",
+          "label": "Space 2XL"
+        },
+        {
+          "value": "var(--space-3xl)",
+          "label": "Space 3XL"
+        }
+      ],
+      "default": "var(--space-m)",
+      "info": "Applies to both top and bottom spacing"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Divider Line",
+      "category": "Spacers"
+    }
+  ]
+}
+{% endschema %}
