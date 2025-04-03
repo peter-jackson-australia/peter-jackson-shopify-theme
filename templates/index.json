@@ -29,10 +29,41 @@
         "button_label": "Shop Now",
         "products_to_show": 10
       }
+    },
+    "two_column_content_xT9mtk": {
+      "type": "two-column-content",
+      "blocks": {
+        "column_Uxrnca": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-winter-25-hero-image.webp",
+            "heading": "Column Heading",
+            "description": "Add your description text here.",
+            "button_label": "Learn More",
+            "button_link": ""
+          }
+        },
+        "column_dKmdNw": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-winter-25-hero-image.webp",
+            "heading": "Column Heading",
+            "description": "Add your description text here.",
+            "button_label": "Learn More",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_Uxrnca",
+        "column_dKmdNw"
+      ],
+      "settings": {}
     }
   },
   "order": [
     "hero_primary_yKMEY6",
-    "collection_slider_jjrawV"
+    "collection_slider_jjrawV",
+    "two_column_content_xT9mtk"
   ]
 }
