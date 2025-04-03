@@ -1,0 +1,188 @@
+{% comment %}
+  Two Column Content Section
+{% endcomment %}
+
+<section class="two-column-content">
+  <div class="two-column-content__grid">
+    {% for block in section.blocks %}
+      <article class="two-column-content__item" {{ block.shopify_attributes }}>
+        <div class="two-column-content__image-container">
+          {% if block.settings.image != blank %}
+            <picture>
+              {% if block.settings.image_mobile != blank %}
+                <source
+                  media="(max-width: 767px)"
+                  srcset="{{ block.settings.image_mobile | image_url: width: 'master' }}"
+                >
+              {% endif %}
+              {{
+                block.settings.image
+                | image_url: width: 800
+                | image_tag: class: 'two-column-content__image', loading: 'lazy', alt: block.settings.image.alt
+                | escape
+                | default: block.settings.heading
+              }}
+            </picture>
+          {% else %}
+            {{ 'image' | placeholder_svg_tag: 'two-column-content__image placeholder' }}
+          {% endif %}
+        </div>
+
+        <div class="two-column-content__content">
+          {% if block.settings.heading != blank %}
+            <h2 class="two-column-content__heading heading--l">{{ block.settings.heading }}</h2>
+          {% endif %}
+
+          {% if block.settings.description != blank %}
+            <p class="two-column-content__description body">{{ block.settings.description }}</p>
+          {% endif %}
+
+          {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+            <a href="{{ block.settings.button_link }}" class="two-column-content__link body--bold">
+              {{ block.settings.button_label }}
+              {% render 'icon-arrow-submit-dark' %}
+            </a>
+          {% endif %}
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<style>
+  .two-column-content__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .two-column-content__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .two-column-content__item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .two-column-content__image-container {
+    width: 100%;
+    height: 0;
+    padding-bottom: 130%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .two-column-content__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .two-column-content__content {
+    padding: var(--space-m) var(--space-m) var(--space-xl) var(--space-m);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    max-width: 380px;
+  }
+
+  @media (min-width: 768px) {
+    .two-column-content__content {
+      padding: var(--space-m) 20% var(--space-xl) var(--space-m);
+    }
+  }
+
+  .two-column-content__heading {
+    margin: 0;
+  }
+
+  .two-column-content__description {
+    margin: 0;
+    margin-bottom: var(--space-s);
+    color: var(--neutral-600);
+  }
+
+  .two-column-content__link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--neutral-900);
+    margin-top: var(--space-xs);
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Two Column Content",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Column Contents"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "Column",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Desktop Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Mobile Image (optional)"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Column Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Add your description text here."
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label",
+          "default": "Learn More"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Two Column Content",
+      "blocks": [
+        {
+          "type": "column"
+        },
+        {
+          "type": "column"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
