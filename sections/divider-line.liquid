@@ -1,6 +1,6 @@
 {% comment %}
-  Divider Line Section
-  A full-width horizontal line with customizable padding
+  Horizontal Rule Section
+  A simple full-width horizontal rule with customizable padding for top and bottom
 {% endcomment %}
 
 <style>
@@ -19,7 +19,7 @@
 
 <div
   class="hr-section"
-  style="padding-top: {{ section.settings.padding }}; padding-bottom: {{ section.settings.padding }};"
+  style="padding-top: {{ section.settings.padding_top }}; padding-bottom: {{ section.settings.padding_bottom }};"
 >
   <hr class="hr-section__line">
 </div>
@@ -30,8 +30,8 @@
   "settings": [
     {
       "type": "select",
-      "id": "padding",
-      "label": "Spacing",
+      "id": "padding_top",
+      "label": "Top Spacing",
       "options": [
         {
           "value": "var(--space-3xs)",
@@ -70,13 +70,58 @@
           "label": "Space 3XL"
         }
       ],
-      "default": "var(--space-m)",
-      "info": "Applies to both top and bottom spacing"
+      "default": "var(--space-s)",
+      "info": "Space above the horizontal rule"
+    },
+    {
+      "type": "select",
+      "id": "padding_bottom",
+      "label": "Bottom Spacing",
+      "options": [
+        {
+          "value": "var(--space-3xs)",
+          "label": "Space 3XS"
+        },
+        {
+          "value": "var(--space-2xs)",
+          "label": "Space 2XS"
+        },
+        {
+          "value": "var(--space-xs)",
+          "label": "Space XS"
+        },
+        {
+          "value": "var(--space-s)",
+          "label": "Space S"
+        },
+        {
+          "value": "var(--space-m)",
+          "label": "Space M"
+        },
+        {
+          "value": "var(--space-l)",
+          "label": "Space L"
+        },
+        {
+          "value": "var(--space-xl)",
+          "label": "Space XL"
+        },
+        {
+          "value": "var(--space-2xl)",
+          "label": "Space 2XL"
+        },
+        {
+          "value": "var(--space-3xl)",
+          "label": "Space 3XL"
+        }
+      ],
+      "default": "var(--space-s)",
+      "info": "Space below the horizontal rule"
     }
   ],
   "presets": [
     {
-      "name": "Divider Line",
+      "name": "Horizontal Rule",
       "category": "Spacers"
     }
   ]
