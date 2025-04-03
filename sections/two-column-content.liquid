@@ -2,58 +2,12 @@
   Two Column Content Section
 {% endcomment %}
 
-<section class="two-column-content">
-  <div class="two-column-content__grid">
-    {% for block in section.blocks %}
-      <article class="two-column-content__item" {{ block.shopify_attributes }}>
-        <div class="two-column-content__image-container">
-          {% if block.settings.image != blank %}
-            <picture>
-              {% if block.settings.image_mobile != blank %}
-                <source
-                  media="(max-width: 767px)"
-                  srcset="{{ block.settings.image_mobile | image_url: width: 'master' }}"
-                >
-              {% endif %}
-              {{
-                block.settings.image
-                | image_url: width: 800
-                | image_tag: class: 'two-column-content__image', loading: 'lazy', alt: block.settings.image.alt
-                | escape
-                | default: block.settings.heading
-              }}
-            </picture>
-          {% else %}
-            {{ 'image' | placeholder_svg_tag: 'two-column-content__image placeholder' }}
-          {% endif %}
-        </div>
-
-        <div class="two-column-content__content">
-          {% if block.settings.heading != blank %}
-            <h2 class="two-column-content__heading heading--l">{{ block.settings.heading }}</h2>
-          {% endif %}
-
-          {% if block.settings.description != blank %}
-            <p class="two-column-content__description body">{{ block.settings.description }}</p>
-          {% endif %}
-
-          {% if block.settings.button_label != blank and block.settings.button_link != blank %}
-            <a href="{{ block.settings.button_link }}" class="two-column-content__link body--bold">
-              {{ block.settings.button_label }}
-              {% render 'icon-arrow-submit-dark' %}
-            </a>
-          {% endif %}
-        </div>
-      </article>
-    {% endfor %}
-  </div>
-</section>
-
 <style>
   .two-column-content__grid {
     display: grid;
     grid-template-columns: 1fr;
     width: 100%;
+    padding-top: var(--space-2xl);
   }
 
   @media (min-width: 768px) {
@@ -86,27 +40,23 @@
   }
 
   .two-column-content__content {
-    padding: var(--space-m) var(--space-m) var(--space-xl) var(--space-m);
+    padding: var(--space-m);
     display: flex;
     flex-direction: column;
     gap: var(--space-xs);
-    max-width: 380px;
   }
 
-  @media (min-width: 768px) {
-    .two-column-content__content {
-      padding: var(--space-m) 20% var(--space-xl) var(--space-m);
-    }
-  }
-
-  .two-column-content__heading {
-    margin: 0;
+  .two-column-content__heading-container {
+    display: flex;
+    gap: var(--space-m);
   }
 
   .two-column-content__description {
-    margin: 0;
     margin-bottom: var(--space-s);
     color: var(--neutral-600);
+    max-width: 80ch;
+    margin-left: auto;
+    text-align: right;
   }
 
   .two-column-content__link {
@@ -117,6 +67,54 @@
     margin-top: var(--space-xs);
   }
 </style>
+
+<section class="two-column-content">
+  <div class="two-column-content__grid">
+    {% for block in section.blocks %}
+      <article class="two-column-content__item" {{ block.shopify_attributes }}>
+        <div class="two-column-content__image-container">
+          {% if block.settings.image != blank %}
+            <picture>
+              {% if block.settings.image_mobile != blank %}
+                <source
+                  media="(max-width: 767px)"
+                  srcset="{{ block.settings.image_mobile | image_url: width: 'master' }}"
+                >
+              {% endif %}
+              {{
+                block.settings.image
+                | image_url: width: 800
+                | image_tag: class: 'two-column-content__image', loading: 'lazy', alt: block.settings.image.alt
+                | escape
+                | default: block.settings.heading
+              }}
+            </picture>
+          {% else %}
+            {{ 'image' | placeholder_svg_tag: 'two-column-content__image placeholder' }}
+          {% endif %}
+        </div>
+
+        <div class="two-column-content__content">
+          <div class="two-column-content__heading-container">
+            {% if block.settings.heading != blank %}
+              <h2 class="two-column-content__heading heading--l">{{ block.settings.heading }}</h2>
+            {% endif %}
+
+            {% if block.settings.description != blank %}
+              <p class="two-column-content__description body">{{ block.settings.description }}</p>
+            {% endif %}
+          </div>
+          {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+            <a href="{{ block.settings.button_link }}" class="two-column-content__link body--bold">
+              {{ block.settings.button_label }}
+              {% render 'icon-arrow-submit-dark' %}
+            </a>
+          {% endif %}
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>
 
 {% schema %}
 {

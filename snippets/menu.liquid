@@ -454,7 +454,7 @@
           {% for article in blogs['the-jackson-journal'].articles limit: 50 %}
             {
               title: "{{ article.title | escape }}",
-              image: "{{ article.image | image_url: width: '400px' }}",
+              image: "{{ article.image | image_url: width: '600px' }}",
               url: "{{ article.url | escape }}",
               tag: "{{ article.tags[0] | escape }}",
               relatedIds: [{% for relatedCollection in article.metafields.custom.related_collections.value %}'{{ relatedCollection.id }}',{% endfor %}]

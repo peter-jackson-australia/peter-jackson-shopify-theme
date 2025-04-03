@@ -93,6 +93,7 @@
   @media screen and (max-width: 768px) {
     .collection-slider {
       padding-top: var(--space-xl);
+      padding-bottom: var(--space-xl);
     }
 
     .collection-slider__container {
@@ -103,6 +104,10 @@
 
     .collection-slider__content {
       margin-bottom: var(--space-xl);
+    }
+
+    .collection-slider__product-title {
+      width: calc(100% - var(--space-m));
     }
 
     .collection-slider__slider {
@@ -152,7 +157,7 @@
                     <div class="collection-slider__product-image-wrapper">
                       {% if product.featured_image != blank %}
                         <img
-                          src="{{ product.featured_image | image_url: width: '500x' }}"
+                          src="{{ product.featured_image | image_url: width: '600px' }}"
                           alt="{{ product.featured_image.alt | escape }}"
                           loading="lazy"
                           width="{{ product.featured_image.width }}"
