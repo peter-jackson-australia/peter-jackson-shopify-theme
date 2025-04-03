@@ -2,7 +2,7 @@
   Mega Menu Sidebar Drawer Component
 {% endcomment %}
 
-{{ 'snippet-menu.css' | asset_url | stylesheet_tag }}
+{{ 'snippet-menu.css' | asset_url | stylesheet_tag: preload: true }}
 
 <aside
   x-data="menuDrawer"
