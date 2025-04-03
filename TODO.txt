@@ -1,16 +1,9 @@
-Mega Menu:
-Functionality:
-
-clean up menu.liquid  
-
-Non-Functional Fixes:
-Have CSS in order it's used in - ALMOST DONE
-Remove unused CSS
-Check for duplicate CSS classes and IDs
-Clean up markup and Alpine
-Clean up JavaScript
-Format
-Have CSS in own file
-Minify JavaScript in bottom into own JS file in assets for minification
-
+Hero: 
+Reduce the LCP metric
 Preload hero image 
+
+Create content section 
+
+Add in the two new sections (content and footer) 
+
+Fix header 
