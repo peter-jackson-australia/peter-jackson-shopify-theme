@@ -19,9 +19,20 @@
         "button_link": "shopify://collections/sale",
         "content_alignment": "center"
       }
+    },
+    "collection_slider_jjrawV": {
+      "type": "collection-slider",
+      "settings": {
+        "heading": "New In Now",
+        "description": "Layer up with premium wool/cashmere blends.",
+        "collection": "suits",
+        "button_label": "Shop Now",
+        "products_to_show": 10
+      }
     }
   },
   "order": [
-    "hero_primary_yKMEY6"
+    "hero_primary_yKMEY6",
+    "collection_slider_jjrawV"
   ]
 }
