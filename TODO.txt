@@ -1,5 +1,7 @@
-Create content section 
-
-Add in the two new sections (content and footer) 
-
-Fix header 
+Fix header spacing on mobile, make sticky 
+Fix letter spacing across the board 
+reuse colors from content section for fonts, as it looks better 
+finish two column content section and make perfectly responsive 
+Add in blog section 
+Add in footer 
+Make sure all icons are perfec

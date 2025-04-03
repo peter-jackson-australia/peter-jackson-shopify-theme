@@ -29,7 +29,7 @@
     left: 0;
     width: 100%;
     z-index: 3;
-    padding: 0 var(--space-l) var(--space-l) var(--space-l);
+    padding: 0 var(--space-m) var(--space-2xl) var(--space-m);
     display: grid;
     gap: var(--space-s);
     color: var(--white);
@@ -52,6 +52,14 @@
 
   .hero__description {
     max-width: 80ch;
+  }
+
+  @media screen and (max-width: 768px) {
+    .hero__content {
+      padding-bottom: var(--space-xl);
+      text-align: left;
+      justify-items: start;
+    }
   }
 </style>
 
