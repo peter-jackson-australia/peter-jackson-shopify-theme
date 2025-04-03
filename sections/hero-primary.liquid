@@ -15,17 +15,24 @@
     z-index: 1;
   }
 
+  .hero__overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+  }
+
   .hero__content {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    z-index: 2;
+    z-index: 3;
     padding: 0 var(--space-l) var(--space-l) var(--space-l);
     display: grid;
     gap: var(--space-s);
     color: var(--white);
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
   }
 
   .hero__content--left {
@@ -54,9 +61,7 @@
       {{
         section.settings.desktop_image
         | image_url: width: 1400
-        | image_tag: 
-          class: 'hero__background hero__background--desktop',
-          alt: section.settings.desktop_image.alt
+        | image_tag: class: 'hero__background hero__background--desktop', alt: section.settings.desktop_image.alt
       }}
     {% endif %}
 
@@ -64,11 +69,10 @@
       {{
         section.settings.mobile_image
         | image_url: width: 768
-        | image_tag:
-          class: 'hero__background hero__background--mobile',
-          alt: section.settings.mobile_image.alt
+        | image_tag: class: 'hero__background hero__background--mobile', alt: section.settings.mobile_image.alt
       }}
     {% endif %}
+    <div class="hero__overlay"></div>
     <div class="hero__content hero__content--{{ section.settings.content_alignment | default: 'center' }}">
       <h1 class="heading--3xl">{{ section.settings.heading }}</h1>
 
