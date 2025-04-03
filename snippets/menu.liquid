@@ -174,6 +174,10 @@
           <div :class="{'menu-drawer__media--inactive': currentLevel >= 3}">
             <h2 class="menu-drawer__heading-journal body--uppercase">The Jackson Journal</h2>
             <div class="splide" x-ref="splideSlider">
+              <div class="splide__arrows">
+                <button class="splide__arrow splide__arrow--prev">{% render 'icon-arrow-see-less' %}</button>
+                <button class="splide__arrow splide__arrow--next">{% render 'icon-arrow-see-more' %}</button>
+              </div>
               <div class="splide__track">
                 <ul class="splide__list"></ul>
               </div>
@@ -341,17 +345,21 @@
           if (this.filteredArticles.length > 0 && window.Splide && this.$refs.splideSlider) {
             this.splideSlider = new Splide(this.$refs.splideSlider, {
               perPage: 1,
-              gap: '20px',
+              gap: 'var(--space-m)',
               autoplay: false,
               type: 'loop',
               arrows: false,
               pagination: false,
               breakpoints: {
                 1200: {
-                  perPage: 3
+                  perPage: 3,
+                  arrows: true, 
                 }, 
                 768: {
                   perPage: 2
+                }, 
+                470: {
+                  perPage: 1
                 }
               }
             }).mount();

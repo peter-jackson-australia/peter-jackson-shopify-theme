@@ -231,7 +231,7 @@ li:has(.menu-drawer__item--active) button > span:first-child {
 }
 
 .menu-drawer__article-content > img {
-  height: 250px;
+  height: 350px;
   width: 100%;
   object-fit: cover;
 }
@@ -270,6 +270,7 @@ li:has(.menu-drawer__item--active) button > span:first-child {
   .mobile-search-wrapper {
     display: none;
   }
+
 }
 
 @media screen and (max-width: 1200px) {
