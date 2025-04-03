@@ -220,41 +220,6 @@ input:focus-visible {
   backdrop-filter: blur(0.25rem);
 }
 
-/* Grids */
-
-[class^="grid-"] {
-  display: grid;
-  width: 100%;
-}
-
-.grid-auto {
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-}
-
-.grid-1 {
-  grid-template-columns: 1fr;
-}
-
-.grid-2 {
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.grid-3 {
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.grid-4 {
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.grid-5 {
-  grid-template-columns: repeat(5, 1fr);
-}
-
-.grid-6 {
-  grid-template-columns: repeat(6, 1fr);
-}
-
 /* Header */
 
 .header {
@@ -425,7 +390,7 @@ a.skip-to-content:focus-visible {
   transform: translateX(0%);
 }
 
-/* Splide slider */
+/* Splide Slider */
 
 .splide__arrows {
   display: flex;
