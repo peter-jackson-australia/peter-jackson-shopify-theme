@@ -185,7 +185,8 @@ select {
 
 /* UI */
 
-.button, .klaviyo-form-WH7CVh > div > form > div > div > div > button.needsclick {
+.button,
+.klaviyo-form-WH7CVh > div > form > div > div > div > button.needsclick {
   padding: var(--space-xs) var(--space-l) !important;
   font-family: "Ordinary Light" !important;
   text-align: center !important;
@@ -419,35 +420,22 @@ a.skip-to-content:focus-visible {
   transform: translateX(0%);
 }
 
-/* Blaze Slider */
+/* Splide slider */
 
-.blaze-slider {
-  --slides-to-show: 1;
-  --slide-gap: var(--space-m);
-  direction: ltr;
-}
-
-.blaze-container {
-  position: relative;
-}
-
-.blaze-track-container {
-  overflow: hidden;
-}
-
-.blaze-track {
-  will-change: transform;
-  touch-action: pan-y;
+.splide__arrows {
   display: flex;
-  gap: var(--slide-gap);
-  --slide-width: calc((100% - (var(--slides-to-show) - 1) * var(--slide-gap)) / var(--slides-to-show));
-  box-sizing: border-box;
+  gap: var(--space-xs); 
+  margin-bottom: var(--space-s);
 }
 
-.blaze-track > * {
-  box-sizing: border-box;
-  width: var(--slide-width);
-  flex-shrink: 0;
+.splide__arrow {
+  background-color: transparent;
+  border: none;
+  width: var(--space-s);
+  height: var(--space-s);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Custom Scrollbar */
@@ -464,7 +452,6 @@ a.skip-to-content:focus-visible {
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background: var(--neutral-100);
-  border-radius: 0 !important; 
+  border-radius: 0 !important;
   border-left: 1px solid var(--neutral-200);
 }
-
