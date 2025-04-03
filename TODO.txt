@@ -1,7 +1,3 @@
-Hero: 
-Reduce the LCP metric
-Preload hero image 
-
 Create content section 
 
 Add in the two new sections (content and footer) 
