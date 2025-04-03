@@ -15,6 +15,10 @@ body {
   height: 100%;
 }
 
+html {
+  overflow-y: scroll;
+}
+
 ul[role="list"],
 ol[role="list"] {
   list-style: none;
@@ -298,7 +302,7 @@ input:focus-visible {
 
 @media (max-width: 768px) {
   .header__logo {
-    width: 160px; 
+    width: 160px;
   }
 }
 
@@ -403,7 +407,7 @@ a.skip-to-content:focus-visible {
 
 .splide__arrows {
   display: flex;
-  gap: var(--space-xs); 
+  gap: var(--space-xs);
   margin-bottom: var(--space-s);
 }
 
