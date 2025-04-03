@@ -223,9 +223,12 @@ input:focus-visible {
 /* Header */
 
 .header {
-  position: relative;
+  position: fixed;
   top: 0;
-  z-index: 9996;
+  right: 0;
+  left: 0;
+  z-index: 999;
+  background-color: var(--white);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -259,8 +262,8 @@ input:focus-visible {
 
 .hamburger-svg {
   display: block;
-  width: 24px;
-  height: 24px;
+  width: 17px;
+  height: 17px;
 }
 
 .hamburger-line {
@@ -291,6 +294,12 @@ input:focus-visible {
   position: absolute;
   bottom: -7px;
   right: -12px;
+}
+
+@media (max-width: 768px) {
+  .header__logo {
+    width: 160px; 
+  }
 }
 
 /* Footer */
