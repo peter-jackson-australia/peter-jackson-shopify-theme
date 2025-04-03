@@ -5,20 +5,20 @@
   - Responsive: stacks on mobile, 1 column slider on mobile vs 3 on desktop
 {% endcomment %}
 
-<section class="featured-collection" id="section-{{ section.id }}">
-  <div class="featured-collection__container">
+<section class="collection-slider" id="section-{{ section.id }}">
+  <div class="collection-slider__container">
     <!-- Left side: Heading, description, and link -->
-    <div class="featured-collection__content">
+    <div class="collection-slider__content">
       {% if section.settings.heading != blank %}
-        <h2 class="heading--2xl featured-collection__heading">{{ section.settings.heading }}</h2>
+        <h2 class="heading--2xl collection-slider__heading">{{ section.settings.heading }}</h2>
       {% endif %}
 
       {% if section.settings.description != blank %}
-        <p class="body featured-collection__description">{{ section.settings.description }}</p>
+        <p class="body collection-slider__description">{{ section.settings.description }}</p>
       {% endif %}
 
       {% if section.settings.collection != blank and section.settings.button_label != blank %}
-        <a href="{{ section.settings.collection.url }}" class="body featured-collection__link">
+        <a href="{{ section.settings.collection.url }}" class="body collection-slider__link">
           {{ section.settings.button_label }}
           {% render 'icon-arrow-submit-dark' %}
         </a>
@@ -27,8 +27,8 @@
 
     <!-- Right side: Product slider -->
     {% if section.settings.collection != blank %}
-      <div class="featured-collection__slider-wrapper">
-        <div class="featured-collection__slider splide">
+      <div class="collection-slider__slider-wrapper">
+        <div class="collection-slider__slider splide">
           <div class="splide__arrows">
             <button class="splide__arrow splide__arrow--prev">{% render 'icon-arrow-see-less' %}</button>
             <button class="splide__arrow splide__arrow--next">{% render 'icon-arrow-see-more' %}</button>
@@ -37,9 +37,9 @@
             <ul class="splide__list">
               {% assign product_limit = section.settings.products_to_show | default: 10 %}
               {% for product in section.settings.collection.products limit: product_limit %}
-                <li class="splide__slide featured-collection__slide">
-                  <a href="{{ product.url }}" class="featured-collection__product-link">
-                    <div class="featured-collection__product-image-wrapper">
+                <li class="splide__slide collection-slider__slide">
+                  <a href="{{ product.url }}" class="collection-slider__product-link">
+                    <div class="collection-slider__product-image-wrapper">
                       {% if product.featured_image != blank %}
                         <img
                           src="{{ product.featured_image | img_url: '500x' }}"
@@ -47,23 +47,23 @@
                           loading="lazy"
                           width="{{ product.featured_image.width }}"
                           height="{{ product.featured_image.height }}"
-                          class="featured-collection__product-image"
+                          class="collection-slider__product-image"
                         >
                       {% else %}
-                        {{ 'product-1' | placeholder_svg_tag: 'featured-collection__product-image placeholder' }}
+                        {{ 'product-1' | placeholder_svg_tag: 'collection-slider__product-image placeholder' }}
                       {% endif %}
                     </div>
 
-                    <h3 class="heading--l featured-collection__product-title">{{ product.title }}</h3>
+                    <h3 class="body--bold collection-slider__product-title">{{ product.title }}</h3>
 
                     {% if product.metafields.custom.material != blank %}
-                      <p class="body featured-collection__product-material">{{ product.metafields.custom.material }}</p>
+                      <p class="body collection-slider__product-material">{{ product.metafields.custom.material }}</p>
                     {% endif %}
 
-                    <p class="body--bold featured-collection__product-price">
+                    <p class="body collection-slider__product-price">
                       {% if product.compare_at_price > product.price %}
-                        <span class="featured-collection__product-price--sale">{{ product.price | money }}</span>
-                        <span class="featured-collection__product-price--compare">
+                        <span class="collection-slider__product-price--sale">{{ product.price | money }}</span>
+                        <span class="collection-slider__product-price--compare">
                           {{- product.compare_at_price | money -}}
                         </span>
                       {% else %}
@@ -82,99 +82,108 @@
 </section>
 
 <style>
-  .featured-collection {
-    padding: var(--space-xl) var(--space-m);
+  .collection-slider {
+    padding: var(--space-2xl) var(--space-m);
     overflow: hidden;
   }
 
-  .featured-collection__container {
+  .collection-slider__container {
     display: flex;
     gap: var(--space-l);
     width: 100%;
     overflow: visible;
   }
 
-  .featured-collection__content {
+  .collection-slider__content {
     display: flex;
     flex-direction: column;
-    gap: var(--space-m);
+    justify-content: center;
     flex: 1;
     min-width: 30vw;
   }
 
-  .featured-collection__description {
-    max-width: 90%;
+  .collection-slider__heading {
+    margin-bottom: var(--space-2xs);
   }
 
-  .featured-collection__link {
+  .collection-slider__description {
+    max-width: 80ch;
+    margin-bottom: var(--space-l);
+  }
+
+  .collection-slider__link {
     display: inline-flex;
     align-items: center;
     gap: var(--space-xs);
     text-decoration: none;
     color: var(--neutral-950);
-    margin-top: var(--space-xs);
   }
 
-  .featured-collection__slider-wrapper {
+  .collection-slider__slider-wrapper {
     overflow: visible;
     width: 100%;
     flex: 2;
   }
 
-  .featured-collection__slider {
+  .collection-slider__slider {
     width: calc(100% + var(--space-m));
     margin-right: 0;
   }
 
-  .featured-collection__product-link {
+  .collection-slider__product-link {
     display: block;
     text-decoration: none;
     color: var(--neutral-950);
   }
 
-  .featured-collection__product-image-wrapper {
+  .collection-slider__product-image-wrapper {
     margin-bottom: var(--space-xs);
     overflow: hidden;
   }
 
-  .featured-collection__product-image {
+  .collection-slider__product-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
 
-  .featured-collection__product-title {
+  .collection-slider__product-title {
     margin: var(--space-xs) 0 var(--space-2xs);
   }
 
-  .featured-collection__product-material {
+  .collection-slider__product-material {
     margin-bottom: var(--space-2xs);
     color: var(--neutral-600);
   }
 
-  .featured-collection__product-price--compare {
+  .collection-slider__product-price--compare {
     text-decoration: line-through;
     color: var(--neutral-500);
     margin-left: var(--space-2xs);
   }
 
   @media screen and (max-width: 768px) {
-    .featured-collection__container {
+    .collection-slider {
+      padding-top: var(--space-xl);
+    }
+
+    .collection-slider__container {
       flex-direction: column;
       width: 100%;
+      gap: 0px;
     }
 
-    .featured-collection__content {
-      margin-bottom: var(--space-l);
+    .collection-slider__content {
+      margin-bottom: var(--space-xl);
     }
 
-    .featured-collection__slider {
+    .collection-slider__slider {
       width: calc(100% + var(--space-l));
     }
   }
 
   @media screen and (max-width: 470px) {
-    .featured-collection__slider-wrapper {
+    .collection-slider__slider-wrapper {
       overflow: hidden;
     }
   }
@@ -182,7 +191,7 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    const splideElement = document.querySelector('#section-{{ section.id }} .featured-collection__slider');
+    const splideElement = document.querySelector('#section-{{ section.id }} .collection-slider__slider');
 
     if (splideElement) {
       new Splide(splideElement, {
