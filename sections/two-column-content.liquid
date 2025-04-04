@@ -12,12 +12,6 @@
     border-bottom: 1px solid var(--neutral-200);
   }
 
-  @media (min-width: 1040px) {
-    .two-column-content__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
   .two-column-content__item {
     width: 100%;
     display: flex;
@@ -123,6 +117,12 @@
     color: var(--neutral-950);
     margin-top: var(--space-xs);
     gap: var(--space-xs);
+  }
+
+  @media (min-width: 1040px) {
+    .two-column-content__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   @media (max-width: 1040px) {
