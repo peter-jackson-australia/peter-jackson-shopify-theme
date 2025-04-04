@@ -170,10 +170,14 @@
                   srcset="{{ block.settings.image_mobile | image_url: width: 'master' }}"
                 >
               {% endif %}
+              {% assign image_class = 'two-column-content__image' %}
+              {% if has_product %}
+                {% assign image_class = 'two-column-content__image two-column-content__image--with-product' %}
+              {% endif %}
               {{
                 block.settings.image
                 | image_url: width: 800
-                | image_tag: class: has_product ? 'two-column-content__image two-column-content__image--with-product' : 'two-column-content__image', loading: 'lazy', alt: block.settings.image.alt
+                | image_tag: class: image_class, loading: 'lazy', alt: block.settings.image.alt
                 | escape
                 | default: block.settings.heading
               }}
@@ -187,7 +191,7 @@
               <div class="two-column-content__product-info">
                 {% if product.featured_image %}
                   <img
-                    src="{{ product.featured_image | img_url: '120x120', crop: 'center' }}"
+                    src="{{ product.featured_image | image_url: '120x120', crop: 'center' }}"
                     alt="{{ product.title }}"
                     class="two-column-content__product-thumbnail"
                     loading="lazy"
