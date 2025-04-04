@@ -124,6 +124,13 @@ select {
   font-display: swap;
 }
 
+@font-face {
+  font-family: "The Wedding Signature";
+  src: url("https://cdn.shopify.com/s/files/1/0898/1859/5696/files/the-wedding-signature-regular.woff2?v=1743742147")
+    format("woff2");
+  font-display: swap;
+}
+
 .small {
   line-height: 140%;
   letter-spacing: 0.065rem;
@@ -180,8 +187,10 @@ select {
 }
 
 .heading--decorative {
+  font-family: "Ordinary Regular";
   line-height: 100%;
   font-size: clamp(2.4883rem, 2.3639rem + 0.6221vw, 3.1104rem);
+  font-weight: 500;
 }
 
 .heading--3xl {
