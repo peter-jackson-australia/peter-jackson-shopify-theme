@@ -1,7 +1,6 @@
-Fix letter spacing across the board 
-reuse colors from content section for fonts, as it looks better 
-finish two column content section and make perfectly responsive 
-Add in blog section 
+Add in blog section + 4 blog tiles 
 Add in footer 
+
+Finalise: 
 Make sure all icons are perfectl
 final sense check to make sure everything for home page is perfect

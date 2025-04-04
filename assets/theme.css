@@ -414,8 +414,8 @@ a.skip-to-content:focus-visible {
 .splide__arrow {
   background-color: transparent;
   border: none;
-  width: var(--space-s);
-  height: var(--space-s);
+  width: 7px;
+  height: 12px;
   display: flex;
   justify-content: center;
   align-items: center;
