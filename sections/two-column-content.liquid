@@ -39,6 +39,71 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: filter 0.3s ease;
+  }
+
+  /* Product info overlay styles */
+  .two-column-content__product-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: var(--space-m);
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    display: none;
+  }
+
+  .two-column-content__image-container:hover .two-column-content__image--with-product {
+    filter: grayscale(100%);
+  }
+
+  .two-column-content__image-container:hover .two-column-content__product-overlay {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .two-column-content__product-info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-m);
+  }
+
+  .two-column-content__product-thumbnail {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .two-column-content__product-details {
+    flex-grow: 1;
+  }
+
+  .two-column-content__model-wearing {
+    color: var(--neutral-600);
+    margin-bottom: var(--space-xs);
+  }
+
+  .two-column-content__product-name {
+    margin-bottom: var(--space-xs);
+    color: var(--neutral-900);
+  }
+
+  .two-column-content__product-price {
+    margin-bottom: var(--space-xs);
+    color: var(--neutral-800);
+  }
+
+  .two-column-content__product-link {
+    display: inline-flex;
+    align-items: center;
+    margin-left: auto;
+    text-decoration: none;
+    color: var(--neutral-900);
+    gap: var(--space-xs);
   }
 
   .two-column-content__content {
@@ -89,6 +154,12 @@
 <section class="two-column-content">
   <div class="two-column-content__grid">
     {% for block in section.blocks %}
+      {% assign has_product = false %}
+      {% if block.settings.product != blank %}
+        {% assign has_product = true %}
+        {% assign product = all_products[block.settings.product] %}
+      {% endif %}
+
       <article class="two-column-content__item" {{ block.shopify_attributes }}>
         <div class="two-column-content__image-container">
           {% if block.settings.image != blank %}
@@ -102,13 +173,39 @@
               {{
                 block.settings.image
                 | image_url: width: 800
-                | image_tag: class: 'two-column-content__image', loading: 'lazy', alt: block.settings.image.alt
+                | image_tag: class: has_product ? 'two-column-content__image two-column-content__image--with-product' : 'two-column-content__image', loading: 'lazy', alt: block.settings.image.alt
                 | escape
                 | default: block.settings.heading
               }}
             </picture>
           {% else %}
             {{ 'image' | placeholder_svg_tag: 'two-column-content__image placeholder' }}
+          {% endif %}
+
+          {% if has_product %}
+            <div class="two-column-content__product-overlay" style="display: block;">
+              <div class="two-column-content__product-info">
+                {% if product.featured_image %}
+                  <img
+                    src="{{ product.featured_image | image_url: width: '120x120', crop: 'center' }}"
+                    alt="{{ product.title }}"
+                    class="two-column-content__product-thumbnail"
+                    loading="lazy"
+                    height="100"
+                    width="100"
+                  >
+                {% endif %}
+                <div class="two-column-content__product-details">
+                  <p class="two-column-content__model-wearing body--s">Model Is Wearing:</p>
+                  <p class="two-column-content__product-name body">{{ product.title }}</p>
+                  <p class="two-column-content__product-price body">{{ product.price | money }}</p>
+                </div>
+                <a href="{{ product.url }}" class="two-column-content__product-link body--s">
+                  View Product
+                  {% render 'icon-arrow-submit-dark' %}
+                </a>
+              </div>
+            </div>
           {% endif %}
         </div>
 
@@ -160,6 +257,12 @@
           "type": "image_picker",
           "id": "image_mobile",
           "label": "Mobile Image (optional)"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Featured Product (optional)",
+          "info": "If selected, product info will appear on image hover"
         },
         {
           "type": "text",
