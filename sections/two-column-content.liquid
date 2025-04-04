@@ -1,5 +1,5 @@
 {% comment %}
-  Two Column Content Section
+  Two Column Content Section - Using Correct Product Picker
 {% endcomment %}
 
 <style>
@@ -50,18 +50,15 @@
     width: 100%;
     background-color: rgba(255, 255, 255, 0.9);
     padding: var(--space-m);
-    opacity: 0;
     transform: translateY(100%);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    display: none;
+    transition: transform 0.3s ease;
   }
 
-  .two-column-content__image-container:hover .two-column-content__image--with-product {
+  .two-column-content__image-container:hover .two-column-content__image.has-product {
     filter: grayscale(100%);
   }
 
   .two-column-content__image-container:hover .two-column-content__product-overlay {
-    opacity: 1;
     transform: translateY(0);
   }
 
@@ -148,6 +145,14 @@
       text-align: left;
       margin-left: 0px;
     }
+    .two-column-content__product-info {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-s);
+    }
+    .two-column-content__product-link {
+      margin-top: var(--space-s);
+    }
   }
 </style>
 
@@ -155,9 +160,14 @@
   <div class="two-column-content__grid">
     {% for block in section.blocks %}
       {% assign has_product = false %}
-      {% if block.settings.product.size > 0 %}
-        {% assign has_product = true %}
-        {% assign product = all_products[block.settings.product.first] %}
+      {% assign product_data = null %}
+
+      {% if block.settings.product != blank %}
+        {% assign product_handle = block.settings.product %}
+        {% assign product_data = all_products[product_handle] %}
+        {% if product_data.id != blank %}
+          {% assign has_product = true %}
+        {% endif %}
       {% endif %}
 
       <article class="two-column-content__item" {{ block.shopify_attributes }}>
@@ -170,29 +180,34 @@
                   srcset="{{ block.settings.image_mobile | image_url: width: 'master' }}"
                 >
               {% endif %}
-              {% assign image_class = 'two-column-content__image' %}
               {% if has_product %}
-                {% assign image_class = 'two-column-content__image two-column-content__image--with-product' %}
+                {{
+                  block.settings.image
+                  | image_url: width: 800
+                  | image_tag:
+                    class: 'two-column-content__image has-product',
+                    loading: 'lazy',
+                    alt: block.settings.image.alt
+                }}
+              {% else %}
+                {{
+                  block.settings.image
+                  | image_url: width: 800
+                  | image_tag: class: 'two-column-content__image', loading: 'lazy', alt: block.settings.image.alt
+                }}
               {% endif %}
-              {{
-                block.settings.image
-                | image_url: width: 800
-                | image_tag: class: image_class, loading: 'lazy', alt: block.settings.image.alt
-                | escape
-                | default: block.settings.heading
-              }}
             </picture>
           {% else %}
             {{ 'image' | placeholder_svg_tag: 'two-column-content__image placeholder' }}
           {% endif %}
 
           {% if has_product %}
-            <div class="two-column-content__product-overlay" style="display: block;">
+            <div class="two-column-content__product-overlay">
               <div class="two-column-content__product-info">
-                {% if product.featured_image %}
+                {% if product_data.featured_image != blank %}
                   <img
-                    src="{{ product.featured_image | image_url: '120x120', crop: 'center' }}"
-                    alt="{{ product.title }}"
+                    src="{{ product_data.featured_image | image_url: '120x120', crop: 'center' }}"
+                    alt="{{ product_data.title }}"
                     class="two-column-content__product-thumbnail"
                     loading="lazy"
                     width="100"
@@ -201,10 +216,10 @@
                 {% endif %}
                 <div class="two-column-content__product-details">
                   <p class="two-column-content__model-wearing body--s">Model Is Wearing:</p>
-                  <p class="two-column-content__product-name body">{{ product.title }}</p>
-                  <p class="two-column-content__product-price body">{{ product.price | money }}</p>
+                  <p class="two-column-content__product-name body">{{ product_data.title }}</p>
+                  <p class="two-column-content__product-price body">{{ product_data.price | money }}</p>
                 </div>
-                <a href="{{ product.url }}" class="two-column-content__product-link body--s">
+                <a href="{{ product_data.url }}" class="two-column-content__product-link body--s">
                   View Product
                   {% render 'icon-arrow-submit-dark' %}
                 </a>
@@ -263,11 +278,10 @@
           "label": "Mobile Image (optional)"
         },
         {
-          "type": "product_list",
+          "type": "product",
           "id": "product",
           "label": "Featured Product (optional)",
-          "info": "If selected, product info will appear on image hover",
-          "limit": 1
+          "info": "If selected, product info will appear on image hover"
         },
         {
           "type": "text",
