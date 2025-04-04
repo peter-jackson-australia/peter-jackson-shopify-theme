@@ -155,9 +155,9 @@
   <div class="two-column-content__grid">
     {% for block in section.blocks %}
       {% assign has_product = false %}
-      {% if block.settings.product != blank %}
+      {% if block.settings.product.size > 0 %}
         {% assign has_product = true %}
-        {% assign product = all_products[block.settings.product] %}
+        {% assign product = all_products[block.settings.product.first] %}
       {% endif %}
 
       <article class="two-column-content__item" {{ block.shopify_attributes }}>
@@ -187,12 +187,12 @@
               <div class="two-column-content__product-info">
                 {% if product.featured_image %}
                   <img
-                    src="{{ product.featured_image | image_url: width: '120x120', crop: 'center' }}"
+                    src="{{ product.featured_image | img_url: '120x120', crop: 'center' }}"
                     alt="{{ product.title }}"
                     class="two-column-content__product-thumbnail"
                     loading="lazy"
-                    height="100"
                     width="100"
+                    height="100"
                   >
                 {% endif %}
                 <div class="two-column-content__product-details">
@@ -259,10 +259,11 @@
           "label": "Mobile Image (optional)"
         },
         {
-          "type": "product",
+          "type": "product_list",
           "id": "product",
           "label": "Featured Product (optional)",
-          "info": "If selected, product info will appear on image hover"
+          "info": "If selected, product info will appear on image hover",
+          "limit": 1
         },
         {
           "type": "text",
