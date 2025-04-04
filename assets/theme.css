@@ -126,14 +126,14 @@ select {
 
 .small {
   line-height: 140%;
-  letter-spacing: 0.2rem;
+  letter-spacing: 0.065rem;
   font-family: "Ordinary Light";
   font-size: clamp(0.5787rem, 0.5498rem + 0.1447vw, 0.7234rem);
 }
 
 .body {
   line-height: 140%;
-  letter-spacing: 0.2rem;
+  letter-spacing: 0.065rem;
   font-family: "Ordinary Light";
   font-size: clamp(0.6944rem, 0.6597rem + 0.1736vw, 0.8681rem);
   font-weight: 300;
@@ -141,7 +141,7 @@ select {
 
 .body--uppercase {
   line-height: 140%;
-  letter-spacing: 0.2rem;
+  letter-spacing: 0.065rem;
   font-family: "Ordinary Light";
   text-transform: uppercase;
   font-size: clamp(0.6944rem, 0.6597rem + 0.1736vw, 0.8681rem);
@@ -150,7 +150,7 @@ select {
 
 .body--bold {
   line-height: 140%;
-  letter-spacing: 0.2rem;
+  letter-spacing: 0.065rem;
   font-family: "Ordinary Regular";
   font-size: clamp(0.6944rem, 0.6597rem + 0.1736vw, 0.8681rem);
   font-weight: 500;
@@ -260,8 +260,8 @@ input:focus-visible {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 17px;
+  height: 17px;
 }
 
 .hamburger-svg {

@@ -8,9 +8,11 @@
     grid-template-columns: 1fr;
     width: 100%;
     padding-top: var(--space-2xl);
+    padding-bottom: calc(var(--space-2xl) - var(--space-m));
+    border-bottom: 1px solid var(--neutral-200);
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 1040px) {
     .two-column-content__grid {
       grid-template-columns: repeat(2, 1fr);
     }
@@ -65,6 +67,22 @@
     text-decoration: none;
     color: var(--neutral-900);
     margin-top: var(--space-xs);
+    gap: var(--space-xs);
+  }
+
+  @media (max-width: 1040px) {
+    .two-column-content__grid {
+      padding-top: var(--space-xl);
+      padding-bottom: calc(var(--space-xl) - var(--space-m));
+    }
+    .two-column-content__heading-container {
+      flex-direction: column;
+      gap: var(--space-s);
+    }
+    .two-column-content__description {
+      text-align: left;
+      margin-left: 0px;
+    }
   }
 </style>
 
@@ -105,7 +123,7 @@
             {% endif %}
           </div>
           {% if block.settings.button_label != blank and block.settings.button_link != blank %}
-            <a href="{{ block.settings.button_link }}" class="two-column-content__link body--bold">
+            <a href="{{ block.settings.button_link }}" class="two-column-content__link body">
               {{ block.settings.button_label }}
               {% render 'icon-arrow-submit-dark' %}
             </a>
