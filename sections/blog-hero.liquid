@@ -11,7 +11,6 @@
 
   .blog-hero__image {
     width: 100%;
-    height: 90vh;
     position: relative;
     overflow: hidden;
   }
@@ -35,9 +34,6 @@
   }
 
   .blog-hero__title {
-    font-family: 'The Wedding Signature';
-    font-size: clamp(2rem, 1.5rem + 2.5vw, 4rem);
-    line-height: 1.2;
     margin: 0;
     padding-right: var(--space-m);
   }
@@ -50,9 +46,6 @@
   }
 
   .blog-hero__subtitle {
-    font-family: 'Ordinary Regular';
-    font-size: clamp(1.2rem, 1.14rem + 0.3vw, 1.5rem);
-    line-height: 1.2;
     margin: 0;
     padding-left: var(--space-m);
   }
@@ -75,10 +68,6 @@
     color: var(--neutral-950);
     text-decoration: none;
     transition: opacity 0.3s ease;
-  }
-
-  .blog-hero__link:hover {
-    opacity: 0.8;
   }
 
   .blog-hero__recent {
@@ -116,10 +105,6 @@
     transition: transform 0.3s ease;
   }
 
-  .blog-hero__post-image:hover img {
-    transform: scale(1.05);
-  }
-
   .blog-hero__post-category {
     color: var(--neutral-600);
     text-transform: uppercase;
@@ -133,10 +118,6 @@
     color: var(--neutral-950);
     text-decoration: none;
     transition: opacity 0.3s ease;
-  }
-
-  .blog-hero__post-title a:hover {
-    opacity: 0.8;
   }
 
   .blog-hero__post-excerpt {
@@ -200,13 +181,13 @@
   <div class="blog-hero__content">
     <div class="blog-hero__header">
       {% if section.settings.heading != blank %}
-        <h1 class="blog-hero__title">{{ section.settings.heading }}</h1>
+        <h1 class="blog-hero__title heading--decorative">{{ section.settings.heading }}</h1>
       {% endif %}
 
       <span class="blog-hero__divider"></span>
 
       {% if section.settings.subheading != blank %}
-        <h2 class="blog-hero__subtitle">{{ section.settings.subheading }}</h2>
+        <h2 class="blog-hero__subtitle heading--l">{{ section.settings.subheading }}</h2>
       {% endif %}
     </div>
 
@@ -226,8 +207,6 @@
 
   {% if section.settings.show_recent_posts %}
     <div class="blog-hero__recent">
-      <h2 class="blog-hero__recent-title heading--xl">{{ section.settings.recent_posts_title }}</h2>
-
       <div class="blog-hero__posts">
         {%- assign blog = blogs[section.settings.blog] -%}
         {% for article in blog.articles limit: 4 %}
