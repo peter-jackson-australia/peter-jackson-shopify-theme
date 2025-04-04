@@ -37,6 +37,9 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/peter-jackson-menswear-winter-25-snow-image-1.webp",
+            "product": [
+              "agnelli-taupe-plaid-suit"
+            ],
             "heading": "Must-Have Knitwear",
             "description": "Layer up with premium wool/cashmere blends. Layer up with premium wool/cashmere blends.",
             "button_label": "Shop Now",
@@ -47,6 +50,7 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/peter-jackson-menswear-winter-25-snow-image-2.webp",
+            "product": [],
             "heading": "Must-Have Knitwear",
             "description": "Layer up with premium wool/cashmere blends. Layer up with premium wool/cashmere blends.",
             "button_label": "Shop Now",
