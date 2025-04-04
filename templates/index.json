@@ -61,11 +61,26 @@
         "column_dKmdNw"
       ],
       "settings": {}
+    },
+    "blog_hero_3BxWt4": {
+      "type": "blog-hero",
+      "settings": {
+        "hero_image": "shopify://shop_images/peter-jackson-winter-25-hero-image.webp",
+        "heading": "The Journal",
+        "subheading": "Heritage Meets Heritage",
+        "description": "<p>A spotlight on our partnership with prestigious Italian Mill, Vitale Barberis Canonico. With over 360 years of heritage, we've developed a capsule range that highlights 3 centuries of expertise.</p>",
+        "cta_link": "",
+        "cta_text": "Read Now",
+        "show_recent_posts": true,
+        "recent_posts_title": "Latest Articles",
+        "blog": "the-jackson-journal"
+      }
     }
   },
   "order": [
     "hero_primary_yKMEY6",
     "collection_slider_jjrawV",
-    "two_column_content_xT9mtk"
+    "two_column_content_xT9mtk",
+    "blog_hero_3BxWt4"
   ]
 }
