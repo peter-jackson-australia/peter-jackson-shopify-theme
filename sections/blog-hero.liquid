@@ -22,6 +22,55 @@
     object-fit: cover;
   }
 
+  /* New overlay styles */
+  .blog-hero__image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent);
+  }
+
+  /* New image content styles */
+  .blog-hero__image-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 3;
+    padding: var(--space-xl) var(--space-m);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+    color: var(--white);
+    max-width: 800px;
+  }
+
+  .blog-hero__image-title {
+    margin: 0;
+    color: var(--white);
+  }
+
+  .blog-hero__image-description {
+    color: var(--white);
+    max-width: 60ch;
+  }
+
+  .blog-hero__image-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--white);
+    gap: var(--space-xs);
+    transition: opacity 0.3s ease;
+  }
+
+  .blog-hero__image-link:hover {
+    opacity: 0.8;
+  }
+
   .blog-hero__content {
     display: flex;
     padding: var(--space-xl) var(--space-m);
@@ -168,6 +217,10 @@
     .blog-hero__image {
       height: 60vh;
     }
+
+    .blog-hero__image-content {
+      padding: var(--space-l) var(--space-m);
+    }
   }
 </style>
 
@@ -187,6 +240,27 @@
           | image_tag: loading: 'lazy', alt: section.settings.heading, class: 'blog-hero__main-image'
         }}
       </picture>
+
+      {% if section.settings.show_image_overlay %}
+        <div class="blog-hero__image-overlay"></div>
+
+        <div class="blog-hero__image-content">
+          {% if section.settings.image_heading != blank %}
+            <h2 class="blog-hero__image-title heading--2xl">{{ section.settings.image_heading }}</h2>
+          {% endif %}
+
+          {% if section.settings.image_description != blank %}
+            <div class="blog-hero__image-description body">{{ section.settings.image_description }}</div>
+          {% endif %}
+
+          {% if section.settings.image_link_url != blank and section.settings.image_link_text != blank %}
+            <a href="{{ section.settings.image_link_url }}" class="blog-hero__image-link body">
+              {{ section.settings.image_link_text }}
+              {% render 'icon-arrow-submit' %}
+            </a>
+          {% endif %}
+        </div>
+      {% endif %}
     </div>
   {% endif %}
 
@@ -266,6 +340,43 @@
       "type": "image_picker",
       "id": "hero_image_mobile",
       "label": "Mobile Hero Image (optional)"
+    },
+    {
+      "type": "header",
+      "content": "Image Overlay Content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image_overlay",
+      "label": "Show Content Over Image",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "image_heading",
+      "label": "Image Heading",
+      "default": "Featured Article"
+    },
+    {
+      "type": "richtext",
+      "id": "image_description",
+      "label": "Image Description",
+      "default": "<p>Discover our latest collection and insights in this featured article.</p>"
+    },
+    {
+      "type": "text",
+      "id": "image_link_text",
+      "label": "Image Link Text",
+      "default": "Read More"
+    },
+    {
+      "type": "url",
+      "id": "image_link_url",
+      "label": "Image Link URL"
+    },
+    {
+      "type": "header",
+      "content": "Content Section"
     },
     {
       "type": "text",
