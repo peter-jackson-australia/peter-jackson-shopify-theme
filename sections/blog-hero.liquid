@@ -22,7 +22,6 @@
     object-fit: cover;
   }
 
-  /* New overlay styles */
   .blog-hero__image-overlay {
     position: absolute;
     top: 0;
@@ -30,22 +29,20 @@
     width: 100%;
     height: 100%;
     z-index: 2;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.25), transparent);
   }
 
-  /* New image content styles */
   .blog-hero__image-content {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 3;
-    padding: var(--space-xl) var(--space-m);
+    padding: var(--space-m);
     display: flex;
     flex-direction: column;
-    gap: var(--space-m);
+    gap: var(--space-xs);
     color: var(--white);
-    max-width: 800px;
   }
 
   .blog-hero__image-title {
@@ -256,7 +253,7 @@
           {% if section.settings.image_link_url != blank and section.settings.image_link_text != blank %}
             <a href="{{ section.settings.image_link_url }}" class="blog-hero__image-link body">
               {{ section.settings.image_link_text }}
-              {% render 'icon-arrow-submit' %}
+              {% render 'icon-arrow-submit-white' %}
             </a>
           {% endif %}
         </div>
@@ -285,7 +282,7 @@
       {% if section.settings.cta_link != blank and section.settings.cta_text != blank %}
         <a href="{{ section.settings.cta_link }}" class="blog-hero__link body">
           {{ section.settings.cta_text }}
-          {% render 'icon-arrow-submit' %}
+          {% render 'icon-arrow-submit-dark' %}
         </a>
       {% endif %}
     </div>
