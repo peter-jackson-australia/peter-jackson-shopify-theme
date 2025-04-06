@@ -66,6 +66,11 @@
       "type": "blog-hero",
       "settings": {
         "hero_image": "shopify://shop_images/peter-jackson-menswear-green-jacket-white-turtleneck.webp",
+        "show_image_overlay": true,
+        "image_heading": "Featured Article",
+        "image_description": "<p>Discover our latest collection and insights in this featured article.</p>",
+        "image_link_text": "Read More",
+        "image_link_url": "shopify://blogs/the-jackson-journal/tops-bottoms-accessories",
         "heading": "The Journal",
         "subheading": "Heritage Meets Heritage",
         "description": "<p>A spotlight on our partnership with prestigious Italian Mill, Vitale Barberis Canonico. With over 360 years of heritage, we've developed a capsule range that highlights 3 centuries of expertise.</p>",
