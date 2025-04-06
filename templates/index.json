@@ -67,8 +67,8 @@
       "settings": {
         "hero_image": "shopify://shop_images/peter-jackson-menswear-green-jacket-white-turtleneck.webp",
         "show_image_overlay": true,
-        "image_heading": "Featured Article",
-        "image_description": "<p>Discover our latest collection and insights in this featured article.</p>",
+        "image_heading": "The Corduroy Comeback",
+        "image_description": "<p>Inspiration from The Jackson Journal</p>",
         "image_link_text": "Read More",
         "image_link_url": "shopify://blogs/the-jackson-journal/tops-bottoms-accessories",
         "heading": "The Journal",
