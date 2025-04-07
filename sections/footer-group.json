@@ -13,9 +13,22 @@
   "sections": {
     "footer": {
       "type": "footer",
-      "disabled": true,
       "settings": {
-        "menu": "footer"
+        "intro_heading": "Peter Jackson",
+        "intro_text": "We acknowledge this country's First Nations peoples and their ongoing strength in practising the world's oldest living culture. We acknowledge the Traditional Owners of the lands and waters on which we live and work, and pay our respect to their Elders past, present and emerging.",
+        "menu_heading": "Site",
+        "footer_menu": "footer",
+        "support_heading": "Support",
+        "footer_support_menu": "footer-support",
+        "show_initiative": true,
+        "initiative_heading": "THE BLUE SHIRT INITIATIVE",
+        "initiative_text": "$10 of every blue shirt sold goes directly to Beyond Blue's Support Service.",
+        "initiative_link": "",
+        "initiative_link_text": "Learn More",
+        "terms_link": "#",
+        "terms_text": "Terms & Conditions",
+        "privacy_link": "#",
+        "privacy_text": "Privacy Policy"
       }
     },
     "copyright": {
