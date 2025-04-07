@@ -1,7 +1,4 @@
 Add in footer 
+
 Preserve scroll position when menu is open
 AJAX Cart
-
-Finalise: 
-Make sure all icons are perfect
-final sense check to make sure everything for home page is perfect
