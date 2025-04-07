@@ -20,8 +20,6 @@
 
     <link rel="canonical" href="{{ canonical_url }}">
 
-    {{ 'ordinary-display-regular.woff2' | file_url | preload_tag: as: 'font' }}
-    {{ 'ordinary-display-light.woff2' | file_url | preload_tag: as: 'font' }}
     {{ 'theme.css' | asset_url | stylesheet_tag preload: true }}
     <link rel="stylesheet" href="{{ 'splide-core.min.css' | asset_url }}" media="print" onload="this.media='all'">
     {{ 'splide-core.min.css' | asset_url | stylesheet_tag preload: true }}
