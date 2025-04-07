@@ -19,16 +19,9 @@
     {% endif %}
 
     <link rel="canonical" href="{{ canonical_url }}">
-
     {{ 'theme.css' | asset_url | stylesheet_tag preload: true }}
-    <script type="application/json" data-ajax-cart-initial-state>
-      {{ cart | json }}
-    </script>
     <link rel="stylesheet" href="{{ 'splide-core.min.css' | asset_url }}" media="print" onload="this.media='all'">
     {{ 'splide-core.min.css' | asset_url | stylesheet_tag preload: true }}
-    <script type="module">
-      import '{{ "liquid-ajax-cart.min.js" | asset_url }}';
-    </script>
     <script src="{{ 'theme.js' | asset_url }}" defer></script>
     <script src="{{ 'quicklink.umd.js' | asset_url }}" defer></script>
     <script src="{{ 'alpine.min.js' | asset_url }}" defer></script>

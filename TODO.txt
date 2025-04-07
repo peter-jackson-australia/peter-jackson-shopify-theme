@@ -1,2 +1,2 @@
-Preserve scroll position when menu is open
 AJAX Cart
+Preserve scroll position when menu is open
