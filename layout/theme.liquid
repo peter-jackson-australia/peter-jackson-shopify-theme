@@ -20,6 +20,21 @@
 
     <link rel="canonical" href="{{ canonical_url }}">
 
+    {{
+      'https://cdn.shopify.com/s/files/1/0898/1859/5696/files/ordinary-display-regular.woff2?v=1742796201'
+      | file_url
+      | preload_tag: as: 'font'
+    }}
+    {{
+      'https://cdn.shopify.com/s/files/1/0898/1859/5696/files/ordinary-display-light.woff2?v=1742796170'
+      | file_url
+      | preload_tag: as: 'font'
+    }}
+    {{
+      'https://cdn.shopify.com/s/files/1/0898/1859/5696/files/the-wedding-signature-regular.woff2?v=1743742147'
+      | file_url
+      | preload_tag: as: 'font'
+    }}
     {{ 'theme.css' | asset_url | stylesheet_tag preload: true }}
     <link rel="stylesheet" href="{{ 'splide-core.min.css' | asset_url }}" media="print" onload="this.media='all'">
     <script src="{{ 'theme.js' | asset_url }}" defer></script>
