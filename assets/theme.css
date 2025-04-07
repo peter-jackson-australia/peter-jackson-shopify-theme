@@ -169,6 +169,8 @@ select {
   font-family: "Ordinary Regular";
   font-size: clamp(0.8333rem, 0.7917rem + 0.2083vw, 1.0417rem);
   font-weight: 500;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased; 
 }
 
 .heading--xl {
@@ -191,6 +193,8 @@ select {
   line-height: 100%;
   font-size: clamp(2.4883rem, 2.3639rem + 0.6221vw, 3.1104rem);
   font-weight: 500;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased; 
 }
 
 .heading--3xl {
