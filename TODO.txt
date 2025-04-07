@@ -1,4 +1,2 @@
-Add in footer 
-
 Preserve scroll position when menu is open
 AJAX Cart
