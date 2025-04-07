@@ -159,9 +159,19 @@
   .blog-hero__post-category {
     color: var(--neutral-600);
     text-transform: uppercase;
+    margin-bottom: var(--space-s);
   }
 
-  .blog-hero__post-title a {
+  .blog-hero__post-content {
+    padding-left: var(--space-m);
+  }
+
+  .blog-hero__post-title {
+    margin-bottom: var(--space-2xs);
+  }
+
+  .blog-hero__post-title a,
+  .blog-hero__post-link {
     color: var(--neutral-950);
     text-decoration: none;
   }
@@ -304,27 +314,32 @@
       <div class="blog-hero__posts">
         {%- assign blog = blogs[section.settings.blog] -%}
         {% for article in blog.articles limit: 4 %}
-          <div class="blog-hero__post">
+          <article class="blog-hero__post">
             {% if article.image %}
               <a href="{{ article.url }}" class="blog-hero__post-image">
                 {{ article.image | image_url: width: 500 | image_tag: loading: 'lazy', alt: article.title }}
               </a>
             {% endif %}
 
-            {% if article.tags.size > 0 %}
-              <div class="blog-hero__post-category small">{{ article.tags.first }}</div>
-            {% endif %}
+            <div class="blog-hero__post-content">
+              {% if article.tags.size > 0 %}
+                <div class="blog-hero__post-category small">{{ article.tags.first }}</div>
+              {% endif %}
 
-            <h3 class="blog-hero__post-title heading--l">
-              <a href="{{ article.url }}">{{ article.title }}</a>
-            </h3>
+              <h3 class="blog-hero__post-title heading--l">
+                <a href="{{ article.url }}">{{ article.title }}</a>
+              </h3>
 
-            {% if article.excerpt.size > 0 %}
-              <div class="blog-hero__post-excerpt body">{{ article.excerpt }}</div>
-            {% elsif article.content.size > 0 %}
-              <div class="blog-hero__post-excerpt body">{{ article.content | strip_html | truncatewords: 30 }}</div>
-            {% endif %}
-          </div>
+              {% if article.excerpt.size > 0 %}
+                <div class="blog-hero__post-excerpt body">{{ article.excerpt }}</div>
+              {% elsif article.content.size > 0 %}
+                <div class="blog-hero__post-excerpt body">{{ article.content | strip_html | truncatewords: 30 }}</div>
+              {% endif %}
+              <a href="{{ article.url }}" class="blog-hero__post-link">
+                <span class="body">Read Article {% render 'icon-arrow-submit-dark' %}</span>
+              </a>
+            </div>
+          </article>
         {% endfor %}
       </div>
     </div>
