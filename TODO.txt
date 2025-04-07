@@ -1,2 +1,21 @@
-AJAX Cart
+Collection page:
+Related collections and title 
+description 
+filter sidebar drawer 
+total products 
+grid selector
+
+Product tiles: 
+On hover, image gallery 
+title
+material (optional field) 
+price 
+
+campaign callout inserter 
+Infinite scroll pagination 
+related content section
+SEO accordion section 
+Collection navigator
+
+Main Menu:
 Preserve scroll position when menu is open
