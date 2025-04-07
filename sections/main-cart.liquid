@@ -1,42 +1,42 @@
 {% liquid
-# Some layout settings here. These aren't added as template settings, as they
-# don't need to be.
-assign thumbnail_width = 150
+  # Some layout settings here. These aren't added as template settings, as they
+  # don't need to be.
+  assign thumbnail_width = 150
 
-# BEGIN GIFT WRAP: Gift wrap option using a product.
-assign cart_item_keys = ""
-assign gift_wrap_items_list = ""
-assign gift_wrap = all_products[section.settings.gift_wrap_product]
+  # BEGIN GIFT WRAP: Gift wrap option using a product.
+  assign cart_item_keys = ''
+  assign gift_wrap_items_list = ''
+  assign gift_wrap = all_products[section.settings.gift_wrap_product]
 %}
 {% unless section.settings.gift_wrap_product == blank and gift_wrap == blank %}
-<script>
-window.giftWrap = {{ gift_wrap.first_available_variant | json }};
-</script>
+  <script>
+    window.giftWrap = {{ gift_wrap.first_available_variant | json }};
+  </script>
 {% endunless %}
 
 {% comment %}
-Save the gift wrap products in an array. The _id property is the
-line item of the product that needs gift wrapping.
+  Save the gift wrap products in an array. The _id property is the
+  line item of the product that needs gift wrapping.
 {% endcomment %}
 {% for item in cart.items %}
-  {% if item.product.handle == "gift-wrap" %}
+  {% if item.product.handle == 'gift-wrap' %}
     {%- capture gift_wrap_items_list -%}{{- gift_wrap_items_list -}}{%- if gift_wrap_items_list != '' -%},{%- endif -%}{{- item.properties['_id'] -}}{%- endcapture -%}
   {% endif %}
   {% comment %}
-  Array of cart item ids for gift wrap. These MUST be a string, so we use capture.
+    Array of cart item ids for gift wrap. These MUST be a string, so we use capture.
   {% endcomment %}
   {% capture cart_item_keys %}{{- cart_item_keys -}}{%- if cart_item_keys != '' -%},{%- endif -%}{{- item.key -}}{%- endcapture -%}
 {% endfor %}
 {% assign gift_wrap_items = gift_wrap_items_list | split: ',' %}
 {% assign cart_item_keys = cart_item_keys | split: ',' %}
 {% comment %}
-END: GIFT WRAP
+  END: GIFT WRAP
 {% endcomment %}
 
 <link rel="stylesheet" href="{{ 'cart.css' | asset_url }}">
 
 {% comment %}
-Empty cart section.
+  Empty cart section.
 {% endcomment %}
 {% capture empty_cart %}
 <section>
@@ -44,7 +44,7 @@ Empty cart section.
 </section>
 {% endcapture %}
 <script>
-const emptyCartHtml = `{{ empty_cart }}`;
+  const emptyCartHtml = `{{ empty_cart }}`;
 </script>
 
 {% comment %}
@@ -70,11 +70,11 @@ const emptyCartHtml = `{{ empty_cart }}`;
           </div>
           <div class="cart-items-group">
             {% liquid
-            for item in cart.items
-              unless item.product.handle == "gift-wrap" and cart_item_keys contains item.properties['_id']
-                render 'cart-item', item: item, thumbnail_width: thumbnail_width, gift_wrap: gift_wrap, gift_wrap_items: gift_wrap_items
-              endunless
-            endfor
+              for item in cart.items
+                unless item.product.handle == 'gift-wrap' and cart_item_keys contains item.properties._id
+                  render 'cart-item', item: item, thumbnail_width: thumbnail_width, gift_wrap: gift_wrap, gift_wrap_items: gift_wrap_items
+                endunless
+              endfor
             %}
           </div>
           <div class="cart-items-footer">
@@ -106,7 +106,6 @@ const emptyCartHtml = `{{ empty_cart }}`;
     {% endif %}
   </div>
 </div>
-
 
 {% schema %}
 {

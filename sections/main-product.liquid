@@ -1,12 +1,12 @@
 {% comment %}
-Get the first available variant
+  Get the first available variant
 {% endcomment %}
 {% assign current_variant = product.selected_or_first_available_variant %}
 
 <script>
-var current_variant = {{ current_variant | json }};
-var variants = {{ product.variants | json }};
-var default_image = {{ product.featured_image.id | default: 'null' }};
+  var current_variant = {{ current_variant | json }};
+  var variants = {{ product.variants | json }};
+  var default_image = {{ product.featured_image.id | default: 'null' }};
 </script>
 
 <link rel="stylesheet" href="{{ 'product.css' | asset_url }}">
@@ -14,14 +14,17 @@ var default_image = {{ product.featured_image.id | default: 'null' }};
 <div class="section-wrap">
   <div id="product" class="section">
     {% comment %}
-    Product gallery.
+      Product gallery.
     {% endcomment %}
     <section>
       <div id="product-photos">
         <div class="product-images-component">
           <div class="product-images-slider" data-images="{{ product.images.size }}">
             <div class="product-images-track">
-              <div class="product-images" style="grid-template-columns: repeat({{ product.images.size }}, minmax(100%, 1fr));">
+              <div
+                class="product-images"
+                style="grid-template-columns: repeat({{ product.images.size }}, minmax(100%, 1fr));"
+              >
                 {% assign image_width = 1024 %}
                 {% if product.images.size == 0 %}
                   {{ 'collection-4' | placeholder_svg_tag: 'placeholder' }}
@@ -29,11 +32,13 @@ var default_image = {{ product.featured_image.id | default: 'null' }};
                 {% for image in product.images %}
                   {% assign image_height = image_width | divided_by: image.aspect_ratio | ceil %}
                   <div class="product-image-item" data-imageid="{{ image.id }}">
-                    <img src="{{ image.src | image_url: width: image_width }}"
+                    <img
+                      src="{{ image.src | image_url: width: image_width }}"
                       width="{{ image_width }}"
                       height="{{ image_height }}"
                       alt="{{ image.alt }}"
-                      loading="lazy">
+                      loading="lazy"
+                    >
                   </div>
                 {% endfor %}
               </div>
@@ -54,10 +59,10 @@ var default_image = {{ product.featured_image.id | default: 'null' }};
       <hr>
 
       {% comment %}
-      Variant selector.
+        Variant selector.
       {% endcomment %}
-      <div>
-        <form action="{{ routes.cart_add_url }}" method="post">
+      <ajax-cart-product-form>
+        {% form 'product', product %}
           {%- for block in section.blocks -%}
             {% case block.type %}
               {%- when '@app' -%}
@@ -86,27 +91,33 @@ var default_image = {{ product.featured_image.id | default: 'null' }};
                           {% capture option_id %}{{ option_group.name }}_{{ value }}{% endcapture %}
                           {% assign this_variant = product.variants | where: option_field, value | first %}
                           <div class="variant-option">
-                            <input type="radio"
+                            <input
+                              type="radio"
                               id="{{ option_id | handleize }}"
                               class="js--variant-option"
                               name="{{ option_group.position | prepend: 'option'}}"
                               value="{{ value }}"
-                              {% if current_variant[option_field] == value %}checked{% endif %}>
-                              <label for="{{ option_id | handleize }}">
-                                {% unless this_variant.featured_image == blank %}
-                                  {% unless variant_images_list contains this_variant.featured_image.id %}
-                                    <img src="{{ this_variant.featured_image | image_url: width: 75, height: 75 }}"
+                              {% if current_variant[option_field] == value %}
+                                checked
+                              {% endif %}
+                            >
+                            <label for="{{ option_id | handleize }}">
+                              {% unless this_variant.featured_image == blank %}
+                                {% unless variant_images_list contains this_variant.featured_image.id %}
+                                  <img
+                                    src="{{ this_variant.featured_image | image_url: width: 75, height: 75 }}"
                                     width="50"
                                     height="50"
                                     data-index="{{- this_variant.featured_image.id -}}"
-                                    loading="lazy">
-                                    {% endunless %}
+                                    loading="lazy"
+                                  >
                                 {% endunless %}
-                                {{- value -}}
-                              </label>
+                              {% endunless %}
+                              {{- value -}}
+                            </label>
                           </div>
                           {%- comment -%}
-                          Only display the variant image for the first occurrence.
+                            Only display the variant image for the first occurrence.
                           {%- endcomment -%}
                           {%- capture variant_images_list -%}
                             {{- variant_images_list -}}
@@ -123,10 +134,12 @@ var default_image = {{ product.featured_image.id | default: 'null' }};
 
               {%- when 'button' -%}
                 <div class="form-row flex middle">
-                  <input type="hidden"
+                  <input
+                    type="hidden"
                     id="js--variant-id"
                     name="id"
-                    value="{{ current_variant.id }}">
+                    value="{{ current_variant.id }}"
+                  >
                   {% if current_variant.available == true %}
                     <button type="submit" id="js--addtocart" class="button">
                       {{ block.settings.button_label }}
@@ -147,7 +160,11 @@ var default_image = {{ product.featured_image.id | default: 'null' }};
                 <hr>
 
               {%- when 'detail' -%}
-                <details{% if block.settings.open == true %} open{%- endif -%}>
+                <details
+                  {% if block.settings.open == true %}
+                    open
+                  {%- endif -%}
+                >
                   <summary>
                     <span>{{ block.settings.title }}</span>
                   </summary>
@@ -162,109 +179,109 @@ var default_image = {{ product.featured_image.id | default: 'null' }};
                 </div>
 
               {%- when 'product' %}
-                {% render 'purchase-together',
-                  block: block,
-                  current_variant: current_variant
-                %}
-
+                {% render 'purchase-together', block: block, current_variant: current_variant %}
             {%- endcase -%}
           {%- endfor -%}
-        </form>
-      </div>
-
+        {% endform %}
+      </ajax-cart-product-form>
     </section>
   </div>
 </div>
 
-
 <script>
-// Product images slider
-const sliderComponents = document.querySelectorAll('.product-images-component');
-sliderComponents.forEach(function(sliderComponent) {
-  let sliderContainer = sliderComponent.querySelector('.product-images-slider');
-  let totalImages = sliderContainer.dataset.images;
-  let slider = sliderComponent.querySelector(".product-images-track");
+  // Product images slider
+  const sliderComponents = document.querySelectorAll('.product-images-component');
+  sliderComponents.forEach(function (sliderComponent) {
+    let sliderContainer = sliderComponent.querySelector('.product-images-slider');
+    let totalImages = sliderContainer.dataset.images;
+    let slider = sliderComponent.querySelector('.product-images-track');
 
-  // Loop through the slides and create the pagination,
-  // setting data-index attributes on the grid-items and
-  // the pagination options.
-  let sliderItems = slider.querySelector(".product-images");
-  let pagination = "";
-  if (sliderItems != null) {
-    sliderItems.querySelectorAll(".product-image-item").forEach(function(item, index) {
-      let activeClass = "";
-      let imgSrc = item.querySelector('img').src;
-      item.setAttribute("data-index", index);
-      if (index == 0) {
-        activeClass = ' class="active"';
-      }
-      pagination += `
+    // Loop through the slides and create the pagination,
+    // setting data-index attributes on the grid-items and
+    // the pagination options.
+    let sliderItems = slider.querySelector('.product-images');
+    let pagination = '';
+    if (sliderItems != null) {
+      sliderItems.querySelectorAll('.product-image-item').forEach(function (item, index) {
+        let activeClass = '';
+        let imgSrc = item.querySelector('img').src;
+        item.setAttribute('data-index', index);
+        if (index == 0) {
+          activeClass = ' class="active"';
+        }
+        pagination += `
         <button type="button" ${activeClass} data-index="${index}" onclick="goToImage(${index});">
           <img src="${imgSrc}" width="75" height="75" alt="Image ${index}" loading="lazy">
           <span>${index}</span>
         </button>`;
-    });
-  }
+      });
+    }
 
-  // Dots, previous and next buttons
-  if (totalImages > 1) {
-    sliderComponent.insertAdjacentHTML("beforeend", `
+    // Dots, previous and next buttons
+    if (totalImages > 1) {
+      sliderComponent.insertAdjacentHTML(
+        'beforeend',
+        `
       <div class="product-slider-controls">
         <div class="product-images-dots" data-device="desktop">${pagination}</div>
       </div>
-  `);
-    sliderContainer.insertAdjacentHTML("beforeend", `
+  `
+      );
+      sliderContainer.insertAdjacentHTML(
+        'beforeend',
+        `
       <div class="product-image-controls">
         <button type="button" onclick="goToImage('prev');" class="image-prev">&larr;</button>
         <button type="button" onclick="goToImage('next');" class="image-next">&rarr;</button>
       </div>
-  `);
-  }
+  `
+      );
+    }
 
-  // Loop through all the slides and see which
-  // one is visible in the viewport. If visible,
-  // update the pagination.
-  slider.addEventListener("scroll", function(event) {
-    let $this = event.target;
-    let sliderItems = $this.querySelector(".product-images");
-    let sliderPos = slider.scrollLeft;
-    let pagination = sliderComponent.querySelector(".product-images-dots");
-    sliderItems.querySelectorAll(".product-image-item").forEach(function(el, index) {
-      if (sliderPos == el.offsetLeft) {
-        let slideIndex = el.getAttribute("data-index");
-        pagination.querySelectorAll("button").forEach(function(button) {
-          button.classList.remove("active");
-        });
-        pagination.querySelector('button[data-index="' + slideIndex + '"]').classList.add("active");
-      }
+    // Loop through all the slides and see which
+    // one is visible in the viewport. If visible,
+    // update the pagination.
+    slider.addEventListener('scroll', function (event) {
+      let $this = event.target;
+      let sliderItems = $this.querySelector('.product-images');
+      let sliderPos = slider.scrollLeft;
+      let pagination = sliderComponent.querySelector('.product-images-dots');
+      sliderItems.querySelectorAll('.product-image-item').forEach(function (el, index) {
+        if (sliderPos == el.offsetLeft) {
+          let slideIndex = el.getAttribute('data-index');
+          pagination.querySelectorAll('button').forEach(function (button) {
+            button.classList.remove('active');
+          });
+          pagination.querySelector('button[data-index="' + slideIndex + '"]').classList.add('active');
+        }
+      });
     });
   });
-});
 
-// Function to jump to image.
-function goToImage(index, container=false) {
-  let sliderComponent = container || event.target.closest('.product-images-component');
-  if (index == "next" || index == "prev") {
-    let pagination = sliderComponent.querySelector(".product-images-dots");
-    let current = pagination.querySelector('button.active');
-    if (index == "next") {
-      if (current.nextElementSibling != null) {
-        current.nextElementSibling.click();
+  // Function to jump to image.
+  function goToImage(index, container = false) {
+    let sliderComponent = container || event.target.closest('.product-images-component');
+    if (index == 'next' || index == 'prev') {
+      let pagination = sliderComponent.querySelector('.product-images-dots');
+      let current = pagination.querySelector('button.active');
+      if (index == 'next') {
+        if (current.nextElementSibling != null) {
+          current.nextElementSibling.click();
+        }
+      } else {
+        if (current.previousElementSibling != null) {
+          current.previousElementSibling.click();
+        }
       }
     } else {
-      if (current.previousElementSibling != null) {
-        current.previousElementSibling.click();
-      }
+      let slide = sliderComponent.querySelector('.product-image-item[data-index="' + index + '"]');
+      sliderComponent.querySelector('.product-images-track').scrollTo({
+        top: 0,
+        left: slide.offsetLeft,
+        behavior: 'smooth',
+      });
     }
-  } else {
-    let slide = sliderComponent.querySelector('.product-image-item[data-index="' + index + '"]');
-    sliderComponent.querySelector('.product-images-track').scrollTo({
-      top: 0,
-      left:  slide.offsetLeft,
-      behavior: 'smooth'
-    });
   }
-}
 </script>
 
 {% schema %}
@@ -273,18 +290,18 @@ function goToImage(index, container=false) {
   "settings": [],
   "blocks": [
     {
-      "type":"@app"
+      "type": "@app"
     },
     {
       "type": "options",
       "name": "Product options",
       "limit": 1,
-      "settings":[]
+      "settings": []
     },
     {
       "type": "prices",
       "name": "Prices",
-      "settings":[]
+      "settings": []
     },
     {
       "type": "button",
