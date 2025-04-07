@@ -7,7 +7,6 @@
     background-color: var(--neutral-950);
     color: var(--white);
     padding-top: var(--space-xl);
-    padding-bottom: var(--space-xl);
   }
 
   .footer__section {
@@ -17,6 +16,11 @@
 
   .footer__heading {
     margin-bottom: var(--space-m);
+    text-transform: uppercase;
+  }
+
+  .footer__description {
+    max-width: 80ch;
   }
 
   .footer__list {
@@ -35,7 +39,7 @@
     text-decoration: underline;
   }
 
-  .footer__initiative {
+  .footer__partnerships {
     display: flex;
     align-items: center;
     gap: var(--space-m);
@@ -43,14 +47,19 @@
   }
 
   .footer__logo-box {
-    width: 50px;
-    height: 50px;
-    background-color: #777;
+    width: var(--space-3xl);
     overflow: hidden;
+  }
+
+  .footer__logo-box > img {
+    width: 100%;
   }
 
   .footer__info {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
   }
 
   .footer__bottom {
@@ -58,7 +67,7 @@
     justify-content: space-between;
     align-items: center;
     padding: var(--space-m);
-    border-top: 1px solid var(--neutral-800);
+    border-top: 1px solid var(--neutral-600);
   }
 
   .footer__terms {
@@ -77,54 +86,58 @@
 
 <footer class="footer">
   <div class="footer__section footer__intro">
-    <h2 class="footer__heading heading--xl">{{ section.settings.intro_heading }}</h2>
-    <p class="body">{{ section.settings.intro_text }}</p>
+    <h2 class="footer__heading footer__heading--intro heading--xl">{{ section.settings.intro_heading }}</h2>
+    <p class="footer__description footer__description--intro body">{{ section.settings.intro_text }}</p>
   </div>
 
   <div class="footer__main">
-    <div class="footer__section">
-      <h2 class="footer__heading heading--l">{{ section.settings.menu_heading }}</h2>
-      <ul class="footer__list">
+    <div class="footer__section footer__section--menu">
+      <h2 class="footer__heading footer__heading--menu heading--l">{{ section.settings.menu_heading }}</h2>
+      <ul class="footer__list footer__list--menu">
         {% for link in linklists[section.settings.footer_menu].links %}
-          <li>
-            <a href="{{ link.url }}" class="footer__link body">{{ link.title }}</a>
+          <li class="footer__list-item footer__list-item--menu">
+            <a href="{{ link.url }}" class="footer__link footer__link--menu body">{{ link.title }}</a>
           </li>
         {% endfor %}
       </ul>
     </div>
 
-    <div class="footer__section">
-      <h2 class="footer__heading heading--l">{{ section.settings.support_heading }}</h2>
-      <ul class="footer__list">
+    <div class="footer__section footer__section--support">
+      <h2 class="footer__heading footer__heading--support heading--l">{{ section.settings.support_heading }}</h2>
+      <ul class="footer__list footer__list--support">
         {% for link in linklists[section.settings.footer_support_menu].links %}
-          <li>
-            <a href="{{ link.url }}" class="footer__link body">{{ link.title }}</a>
+          <li class="footer__list-item footer__list-item--support">
+            <a href="{{ link.url }}" class="footer__link footer__link--support body">{{ link.title }}</a>
           </li>
         {% endfor %}
       </ul>
     </div>
 
-    <div class="footer__section">
-      {% if section.settings.show_initiative %}
-        <div class="footer__initiative">
-          {% if section.settings.initiative_image != blank %}
-            <div class="footer__logo-box">
+    <div class="footer__section footer__section--partnerships">
+      {% if section.settings.show_partnerships %}
+        <div class="footer__partnerships">
+          {% if section.settings.partnerships_image != blank %}
+            <div class="footer__logo-box footer__logo-box--partnerships">
               {{
-                section.settings.initiative_image
+                section.settings.partnerships_image
                 | image_url: width: 50
-                | image_tag: loading: 'lazy', alt: section.settings.initiative_heading
+                | image_tag: loading: 'lazy', alt: section.settings.partnerships_heading, class: 'footer__logo-img'
               }}
             </div>
           {% else %}
-            <div class="footer__logo-box"></div>
+            <div class="footer__logo-box footer__logo-box--partnerships"></div>
           {% endif %}
-          <div class="footer__info">
-            <h2 class="heading--l">{{ section.settings.initiative_heading }}</h2>
-            <p class="body">{{ section.settings.initiative_text }}</p>
-            {% if section.settings.initiative_link != blank and section.settings.initiative_link_text != blank %}
-              <a href="{{ section.settings.initiative_link }}" class="body">
-                {{- section.settings.initiative_link_text }}
-                <span aria-hidden="true">→</span></a
+          <div class="footer__info footer__info--partnerships">
+            <h2 class="footer__heading footer__heading--partnerships heading--l">
+              {{ section.settings.partnerships_heading }}
+            </h2>
+            <p class="footer__description footer__description--partnerships body">
+              {{ section.settings.partnerships_text }}
+            </p>
+            {% if section.settings.partnerships_link != blank and section.settings.partnerships_link_text != blank %}
+              <a href="{{ section.settings.partnerships_link }}" class="footer__link footer__link--partnerships body">
+                {{- section.settings.partnerships_link_text }}
+                <span class="footer__link-arrow" aria-hidden="true">→</span></a
               >
             {% endif %}
           </div>
@@ -136,19 +149,34 @@
   <div class="footer__bottom">
     <div class="footer__brand">
       {% if section.settings.footer_logo != blank %}
-        {{ section.settings.footer_logo | image_url: width: 140 | image_tag: loading: 'lazy', alt: shop.name }}
+        {{
+          section.settings.footer_logo
+          | image_url: width: 140
+          | image_tag: loading: 'lazy', alt: shop.name, class: 'footer__brand-logo'
+        }}
       {% else %}
-        <svg width="140" height="30" viewBox="0 0 140 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          class="footer__brand-placeholder"
+          width="140"
+          height="30"
+          viewBox="0 0 140 30"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <rect width="140" height="30" fill="#777"/>
         </svg>
       {% endif %}
     </div>
     <div class="footer__terms">
       {% if section.settings.terms_link != blank %}
-        <a href="{{ section.settings.terms_link }}" class="footer__link small">{{ section.settings.terms_text }}</a>
+        <a href="{{ section.settings.terms_link }}" class="footer__link footer__link--terms small">
+          {{- section.settings.terms_text -}}
+        </a>
       {% endif %}
       {% if section.settings.privacy_link != blank %}
-        <a href="{{ section.settings.privacy_link }}" class="footer__link small">{{ section.settings.privacy_text }}</a>
+        <a href="{{ section.settings.privacy_link }}" class="footer__link footer__link--privacy small">
+          {{- section.settings.privacy_text -}}
+        </a>
       {% endif %}
     </div>
   </div>
@@ -202,40 +230,40 @@
     },
     {
       "type": "header",
-      "content": "Initiative Section"
+      "content": "Partnerships Section"
     },
     {
       "type": "checkbox",
-      "id": "show_initiative",
-      "label": "Show Initiative Section",
+      "id": "show_partnerships",
+      "label": "Show Partnerships Section",
       "default": true
     },
     {
       "type": "image_picker",
-      "id": "initiative_image",
-      "label": "Initiative Logo"
+      "id": "partnerships_image",
+      "label": "Partnership Logo"
     },
     {
       "type": "text",
-      "id": "initiative_heading",
-      "label": "Initiative Heading",
+      "id": "partnerships_heading",
+      "label": "Partnership Heading",
       "default": "THE BLUE SHIRT INITIATIVE"
     },
     {
       "type": "textarea",
-      "id": "initiative_text",
-      "label": "Initiative Text",
+      "id": "partnerships_text",
+      "label": "Partnership Text",
       "default": "$10 of every blue shirt sold goes directly to Beyond Blue's Support Service."
     },
     {
       "type": "url",
-      "id": "initiative_link",
-      "label": "Initiative Link"
+      "id": "partnerships_link",
+      "label": "Partnership Link"
     },
     {
       "type": "text",
-      "id": "initiative_link_text",
-      "label": "Initiative Link Text",
+      "id": "partnerships_link_text",
+      "label": "Partnership Link Text",
       "default": "Learn More"
     },
     {
