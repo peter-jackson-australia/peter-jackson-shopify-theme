@@ -1,7 +1,10 @@
-Preserve scroll position when menu is open
-Add in blog section + 4 blog tiles 
+On mobile: 
+make all body text and small be 12px and not smaller. increase splide arrow distance for best practices 
+
 Add in footer 
+Preserve scroll position when menu is open
+AJAX Cart
 
 Finalise: 
-Make sure all icons are perfectl
+Make sure all icons are perfect
 final sense check to make sure everything for home page is perfect

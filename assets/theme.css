@@ -170,7 +170,7 @@ select {
   font-size: clamp(0.8333rem, 0.7917rem + 0.2083vw, 1.0417rem);
   font-weight: 500;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased; 
+  -webkit-font-smoothing: antialiased;
 }
 
 .heading--xl {
@@ -194,7 +194,7 @@ select {
   font-size: clamp(2.4883rem, 2.3639rem + 0.6221vw, 3.1104rem);
   font-weight: 500;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased; 
+  -webkit-font-smoothing: antialiased;
 }
 
 .heading--3xl {
@@ -203,6 +203,15 @@ select {
   font-family: "Ordinary Light";
   font-size: clamp(2.986rem, 2.8367rem + 0.7465vw, 3.7325rem);
   font-weight: 300;
+}
+
+@media screen and (max-width: 768px) {
+  .small,
+  .body,
+  .body--uppercase,
+  .body--bold {
+    font-size: 12px !important;
+  }
 }
 
 /* UI */
@@ -420,7 +429,7 @@ a.skip-to-content:focus-visible {
 
 .splide__arrows {
   display: flex;
-  gap: var(--space-xs);
+  gap: var(--space-m);
   margin-bottom: var(--space-s);
 }
 
