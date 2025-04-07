@@ -1,23 +1,279 @@
-<ul>
-  {% assign menu_handle = section.settings.menu | default: "footer" %}
-  {% for link in linklists[menu_handle].links %}
-    <li>
-      <a href="{{ link.url }}">
-        {{ link.title }}
-      </a>
-    </li>
-  {% endfor %}
-</ul>
+{% comment %}
+  Footer Section
+{% endcomment %}
+
+<style>
+  .footer {
+    background-color: var(--neutral-950);
+    color: var(--white);
+    padding-top: var(--space-xl);
+    padding-bottom: var(--space-xl);
+  }
+
+  .footer__section {
+    padding: 0 var(--space-m);
+    margin-bottom: var(--space-xl);
+  }
+
+  .footer__heading {
+    margin-bottom: var(--space-m);
+  }
+
+  .footer__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    list-style: none;
+  }
+
+  .footer__link {
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .footer__link:hover {
+    text-decoration: underline;
+  }
+
+  .footer__initiative {
+    display: flex;
+    align-items: center;
+    gap: var(--space-m);
+    margin-bottom: var(--space-l);
+  }
+
+  .footer__logo-box {
+    width: 50px;
+    height: 50px;
+    background-color: #777;
+    overflow: hidden;
+  }
+
+  .footer__info {
+    flex: 1;
+  }
+
+  .footer__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-m);
+    border-top: 1px solid var(--neutral-800);
+  }
+
+  .footer__terms {
+    display: flex;
+    gap: var(--space-m);
+  }
+
+  @media (min-width: 768px) {
+    .footer__main {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: var(--space-l);
+    }
+  }
+</style>
+
+<footer class="footer">
+  <div class="footer__section footer__intro">
+    <h2 class="footer__heading heading--xl">{{ section.settings.intro_heading }}</h2>
+    <p class="body">{{ section.settings.intro_text }}</p>
+  </div>
+
+  <div class="footer__main">
+    <div class="footer__section">
+      <h2 class="footer__heading heading--l">{{ section.settings.menu_heading }}</h2>
+      <ul class="footer__list">
+        {% for link in linklists[section.settings.footer_menu].links %}
+          <li>
+            <a href="{{ link.url }}" class="footer__link body">{{ link.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="footer__section">
+      <h2 class="footer__heading heading--l">{{ section.settings.support_heading }}</h2>
+      <ul class="footer__list">
+        {% for link in linklists[section.settings.footer_support_menu].links %}
+          <li>
+            <a href="{{ link.url }}" class="footer__link body">{{ link.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="footer__section">
+      {% if section.settings.show_initiative %}
+        <div class="footer__initiative">
+          {% if section.settings.initiative_image != blank %}
+            <div class="footer__logo-box">
+              {{
+                section.settings.initiative_image
+                | image_url: width: 50
+                | image_tag: loading: 'lazy', alt: section.settings.initiative_heading
+              }}
+            </div>
+          {% else %}
+            <div class="footer__logo-box"></div>
+          {% endif %}
+          <div class="footer__info">
+            <h2 class="heading--l">{{ section.settings.initiative_heading }}</h2>
+            <p class="body">{{ section.settings.initiative_text }}</p>
+            {% if section.settings.initiative_link != blank and section.settings.initiative_link_text != blank %}
+              <a href="{{ section.settings.initiative_link }}" class="body">
+                {{- section.settings.initiative_link_text }}
+                <span aria-hidden="true">→</span></a
+              >
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    <div class="footer__brand">
+      {% if section.settings.footer_logo != blank %}
+        {{ section.settings.footer_logo | image_url: width: 140 | image_tag: loading: 'lazy', alt: shop.name }}
+      {% else %}
+        <svg width="140" height="30" viewBox="0 0 140 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="140" height="30" fill="#777"/>
+        </svg>
+      {% endif %}
+    </div>
+    <div class="footer__terms">
+      {% if section.settings.terms_link != blank %}
+        <a href="{{ section.settings.terms_link }}" class="footer__link small">{{ section.settings.terms_text }}</a>
+      {% endif %}
+      {% if section.settings.privacy_link != blank %}
+        <a href="{{ section.settings.privacy_link }}" class="footer__link small">{{ section.settings.privacy_text }}</a>
+      {% endif %}
+    </div>
+  </div>
+</footer>
 
 {% schema %}
 {
-  "name": "Links",
+  "name": "Footer",
   "settings": [
     {
+      "type": "header",
+      "content": "Intro Section"
+    },
+    {
+      "type": "text",
+      "id": "intro_heading",
+      "label": "Heading",
+      "default": "JOIN THE JACKSON CLUB"
+    },
+    {
+      "type": "textarea",
+      "id": "intro_text",
+      "label": "Text",
+      "default": "Sign up to receive the latest news from Peter Jackson. Get our latest trend reports, product launches, events and special offers."
+    },
+    {
+      "type": "header",
+      "content": "Navigation Menus"
+    },
+    {
+      "type": "text",
+      "id": "menu_heading",
+      "label": "Menu Heading",
+      "default": "PETER JACKSON"
+    },
+    {
       "type": "link_list",
-      "id": "menu",
-      "label": "Menu",
-      "default": "footer"
+      "id": "footer_menu",
+      "label": "Footer Menu"
+    },
+    {
+      "type": "text",
+      "id": "support_heading",
+      "label": "Support Heading",
+      "default": "SUPPORT"
+    },
+    {
+      "type": "link_list",
+      "id": "footer_support_menu",
+      "label": "Support Menu"
+    },
+    {
+      "type": "header",
+      "content": "Initiative Section"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_initiative",
+      "label": "Show Initiative Section",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "initiative_image",
+      "label": "Initiative Logo"
+    },
+    {
+      "type": "text",
+      "id": "initiative_heading",
+      "label": "Initiative Heading",
+      "default": "THE BLUE SHIRT INITIATIVE"
+    },
+    {
+      "type": "textarea",
+      "id": "initiative_text",
+      "label": "Initiative Text",
+      "default": "$10 of every blue shirt sold goes directly to Beyond Blue's Support Service."
+    },
+    {
+      "type": "url",
+      "id": "initiative_link",
+      "label": "Initiative Link"
+    },
+    {
+      "type": "text",
+      "id": "initiative_link_text",
+      "label": "Initiative Link Text",
+      "default": "Learn More"
+    },
+    {
+      "type": "header",
+      "content": "Footer Bottom"
+    },
+    {
+      "type": "image_picker",
+      "id": "footer_logo",
+      "label": "Footer Logo"
+    },
+    {
+      "type": "url",
+      "id": "terms_link",
+      "label": "Terms & Conditions Link"
+    },
+    {
+      "type": "text",
+      "id": "terms_text",
+      "label": "Terms & Conditions Text",
+      "default": "Terms & Conditions"
+    },
+    {
+      "type": "url",
+      "id": "privacy_link",
+      "label": "Privacy Policy Link"
+    },
+    {
+      "type": "text",
+      "id": "privacy_text",
+      "label": "Privacy Policy Text",
+      "default": "Privacy Policy"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Peter Jackson Footer",
+      "category": "Footer"
     }
   ]
 }
