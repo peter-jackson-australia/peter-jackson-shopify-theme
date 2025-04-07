@@ -1,6 +1,3 @@
-On mobile: 
-make all body text and small be 12px and not smaller. increase splide arrow distance for best practices 
-
 Add in footer 
 Preserve scroll position when menu is open
 AJAX Cart
