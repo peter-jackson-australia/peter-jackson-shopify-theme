@@ -37,22 +37,35 @@
     top: 0;
     left: 0;
     width: 100%;
+    height: 100%;
     z-index: 3;
     padding: var(--space-m);
     display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
+    justify-content: space-between;
+    align-items: flex-start;
     color: var(--white);
   }
 
+  .blog-hero__image-header {
+    flex: 1;
+    padding-right: var(--space-l);
+  }
+
+  .blog-hero__image-description-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
   .blog-hero__image-title {
-    margin: 0;
     color: var(--white);
   }
 
   .blog-hero__image-description {
     color: var(--white);
-    max-width: 60ch;
+    max-width: 100%;
+    text-align: right;
   }
 
   .blog-hero__image-link {
@@ -61,16 +74,12 @@
     text-decoration: none;
     color: var(--white);
     gap: var(--space-xs);
-    transition: opacity 0.3s ease;
-  }
-
-  .blog-hero__image-link:hover {
-    opacity: 0.8;
+    margin-left: auto;
   }
 
   .blog-hero__content {
     display: flex;
-    padding: var(--space-xl) var(--space-m);
+    padding: var(--space-2xl) var(--space-m);
     gap: var(--space-xl);
   }
 
@@ -81,7 +90,6 @@
   }
 
   .blog-hero__title {
-    margin: 0;
     padding-right: var(--space-m);
   }
 
@@ -89,11 +97,9 @@
     height: 50px;
     width: 1px;
     background-color: var(--neutral-200);
-    margin: 0 var(--space-m);
   }
 
   .blog-hero__subtitle {
-    margin: 0;
     padding-left: var(--space-m);
   }
 
@@ -114,11 +120,10 @@
     gap: var(--space-xs);
     color: var(--neutral-950);
     text-decoration: none;
-    transition: opacity 0.3s ease;
   }
 
   .blog-hero__recent {
-    padding: var(--space-xl) var(--space-m);
+    padding-bottom: var(--space-2xl);
   }
 
   .blog-hero__recent-title {
@@ -128,7 +133,7 @@
   .blog-hero__posts {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-l);
+    gap: var(--space-xs);
   }
 
   .blog-hero__post {
@@ -149,7 +154,6 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
   }
 
   .blog-hero__post-category {
@@ -157,19 +161,13 @@
     text-transform: uppercase;
   }
 
-  .blog-hero__post-title {
-    margin: 0;
-  }
-
   .blog-hero__post-title a {
     color: var(--neutral-950);
     text-decoration: none;
-    transition: opacity 0.3s ease;
   }
 
   .blog-hero__post-excerpt {
     color: var(--neutral-600);
-    display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
@@ -198,10 +196,19 @@
     }
 
     .blog-hero__subtitle {
-      padding-left: 0;
+      margin-top: -7px;
     }
 
     .blog-hero__title {
+      padding-right: 0;
+    }
+
+    .blog-hero__image-content {
+      flex-direction: column;
+      gap: var(--space-m);
+    }
+
+    .blog-hero__image-header {
       padding-right: 0;
     }
   }
@@ -233,7 +240,7 @@
         {% endif %}
         {{
           section.settings.hero_image
-          | image_url: width: 1500
+          | image_url: width: 2000
           | image_tag: loading: 'lazy', alt: section.settings.heading, class: 'blog-hero__main-image'
         }}
       </picture>
@@ -242,20 +249,24 @@
         <div class="blog-hero__image-overlay"></div>
 
         <div class="blog-hero__image-content">
-          {% if section.settings.image_heading != blank %}
-            <h2 class="blog-hero__image-title heading--2xl">{{ section.settings.image_heading }}</h2>
-          {% endif %}
+          <div class="blog-hero__image-header">
+            {% if section.settings.image_heading != blank %}
+              <h2 class="blog-hero__image-title heading--l">{{ section.settings.image_heading }}</h2>
+            {% endif %}
+          </div>
 
-          {% if section.settings.image_description != blank %}
-            <div class="blog-hero__image-description body">{{ section.settings.image_description }}</div>
-          {% endif %}
+          <div class="blog-hero__image-description-container">
+            {% if section.settings.image_description != blank %}
+              <div class="blog-hero__image-description body">{{ section.settings.image_description }}</div>
+            {% endif %}
 
-          {% if section.settings.image_link_url != blank and section.settings.image_link_text != blank %}
-            <a href="{{ section.settings.image_link_url }}" class="blog-hero__image-link body">
-              {{ section.settings.image_link_text }}
-              {% render 'icon-arrow-submit-white' %}
-            </a>
-          {% endif %}
+            {% if section.settings.image_link_url != blank and section.settings.image_link_text != blank %}
+              <a href="{{ section.settings.image_link_url }}" class="blog-hero__image-link body">
+                {{ section.settings.image_link_text }}
+                {% render 'icon-arrow-submit-white' %}
+              </a>
+            {% endif %}
+          </div>
         </div>
       {% endif %}
     </div>
@@ -290,10 +301,6 @@
 
   {% if section.settings.show_recent_posts %}
     <div class="blog-hero__recent">
-      {% if section.settings.recent_posts_title != blank %}
-        <h2 class="blog-hero__recent-title heading--l">{{ section.settings.recent_posts_title }}</h2>
-      {% endif %}
-
       <div class="blog-hero__posts">
         {%- assign blog = blogs[section.settings.blog] -%}
         {% for article in blog.articles limit: 4 %}
@@ -403,10 +410,6 @@
       "id": "cta_text",
       "label": "CTA Text",
       "default": "Read Now"
-    },
-    {
-      "type": "header",
-      "content": "Recent Posts"
     },
     {
       "type": "checkbox",
