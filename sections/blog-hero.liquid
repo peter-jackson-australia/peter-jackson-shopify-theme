@@ -53,15 +53,15 @@
     padding-right: var(--space-l);
   }
 
+  .blog-hero__image-title {
+    color: var(--white);
+  }
+
   .blog-hero__image-description-container {
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: var(--space-xs);
-  }
-
-  .blog-hero__image-title {
-    color: var(--white);
   }
 
   .blog-hero__image-description {
@@ -105,6 +105,7 @@
   .blog-hero__subtitle {
     padding-left: var(--space-m);
     color: var(--neutral-950);
+    margin-top: -7px;
   }
 
   .blog-hero__description {
@@ -124,10 +125,6 @@
     gap: var(--space-xs);
     color: var(--neutral-950);
     text-decoration: none;
-  }
-
-  .blog-hero__recent-title {
-    margin-bottom: var(--space-l);
   }
 
   .blog-hero__posts {
@@ -156,23 +153,18 @@
     object-fit: cover;
   }
 
+  .blog-hero__post-content {
+    padding-left: var(--space-m);
+  }
+
   .blog-hero__post-category {
     color: var(--neutral-600);
     text-transform: uppercase;
     margin-bottom: var(--space-s);
   }
 
-  .blog-hero__post-content {
-    padding-left: var(--space-m);
-  }
-
   .blog-hero__post-title {
     margin-bottom: var(--space-2xs);
-  }
-
-  .blog-hero__post-link {
-    display: flex;
-    gap: var(--space-xs);
   }
 
   .blog-hero__post-title a,
@@ -188,19 +180,38 @@
     overflow: hidden;
   }
 
-  .blog-hero__subtitle {
-    margin-top: -7px;
+  .blog-hero__post-link {
+    display: flex;
+    gap: var(--space-xs);
   }
 
   @media screen and (max-width: 1000px) {
-    .blog-hero__posts {
-      grid-template-columns: repeat(2, 1fr);
-      column-gap: var(--space-xs) !important;
-    }
-
     .blog-hero {
       padding-top: var(--space-xl);
       padding-bottom: var(--space-xl);
+    }
+
+    .blog-hero__image-overlay {
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
+    }
+
+    .blog-hero__image-content {
+      flex-direction: column;
+      justify-content: end;
+      gap: var(--space-m);
+    }
+
+    .blog-hero__image-header {
+      flex: 0;
+      padding-right: 0;
+    }
+
+    .blog-hero__image-description-container {
+      flex: 0;
+    }
+
+    .blog-hero__image-link {
+      margin-left: 0px;
     }
 
     .blog-hero__content {
@@ -216,26 +227,16 @@
       gap: var(--space-m);
     }
 
-    .blog-hero__divider {
-      display: none;
-    }
-
     .blog-hero__title {
       padding-right: 0;
     }
 
-    .blog-hero__image-content {
-      flex-direction: column;
-      justify-content: end;
-      gap: var(--space-m);
+    .blog-hero__divider {
+      display: none;
     }
 
     .blog-hero__subtitle {
       padding-left: 0px;
-    }
-
-    .blog-hero__post-content {
-      padding-right: var(--space-m);
     }
 
     .blog-hero__text {
@@ -243,39 +244,27 @@
     }
 
     .blog-hero__posts {
+      grid-template-columns: repeat(2, 1fr);
       gap: calc(var(--space-xs) + var(--space-xs));
     }
 
-    .blog-hero__image-overlay {
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
-    }
-
-    .blog-hero__image-description-container {
-      flex: 0;
-    }
-
-    .blog-hero__image-header {
-      flex: 0;
-      padding-right: 0;
-    }
-
-    .blog-hero__image-link {
-      margin-left: 0px;
+    .blog-hero__post-content {
+      padding-right: var(--space-m);
     }
   }
 
   @media screen and (max-width: 480px) {
-    .blog-hero__posts {
-      grid-template-columns: 1fr;
-      gap: calc(var(--space-xs) + var(--space-xs));
-    }
-
     .blog-hero__image {
       height: 60vh;
     }
 
     .blog-hero__image-content {
       padding: var(--space-l) var(--space-m);
+    }
+
+    .blog-hero__posts {
+      grid-template-columns: 1fr;
+      gap: calc(var(--space-xs) + var(--space-xs));
     }
   }
 </style>
@@ -293,7 +282,7 @@
         {{
           section.settings.hero_image
           | image_url: width: 2000
-          | image_tag: loading: 'lazy', alt: section.settings.heading, class: 'blog-hero__main-image'
+          | image_tag: loading: 'lazy', alt: section.settings.heading, class: 'blog-hero__image-img'
         }}
       </picture>
 
