@@ -4,8 +4,6 @@ Product tiles:
 On hover, image gallery 
 
 campaign callout inserter 
-Infinite scroll pagination 
-
 related content section
 SEO accordion section 
 Collection navigator
