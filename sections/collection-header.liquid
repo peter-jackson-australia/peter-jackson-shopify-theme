@@ -1,38 +1,18 @@
 {% comment %}
-  Section: Collection Header
-  Displays the current collection title and related collections from metafield
+  Collection Header
 {% endcomment %}
-
-<section class="collection-header">
-  <div class="collection-header__wrapper">
-    <div class="collection-header__title">
-      <h2 class="heading--xl">{{ collection.title }}</h2>
-    </div>
-
-    <div class="collection-header__related">
-      {% comment %}
-        Debug: Output the metafield to see its structure
-      {% endcomment %}
-      {% if collection.metafields.custom.related_collections %}
-        <div class="debug-output">
-          <p>Metafield structure:</p>
-          <pre>{{ collection.metafields.custom.related_collections | json }}</pre>
-        </div>
-      {% else %}
-        <p>No related collections found.</p>
-      {% endif %}
-    </div>
-  </div>
-</section>
 
 <style>
   .collection-header {
-    padding: var(--space-l);
+    border-top: 1px solid var(--neutral-200);
+    border-bottom: 1px solid var(--neutral-200);
+    padding: var(--space-xs) var(--space-m);
   }
 
   .collection-header__wrapper {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: var(--space-l);
   }
 
@@ -44,10 +24,17 @@
     flex: 1 1 auto;
   }
 
-  .debug-output {
-    background: var(--neutral-50);
-    padding: var(--space-s);
-    overflow: auto;
+  .collection-header__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: end;
+    gap: var(--space-m);
+    list-style: none;
+  }
+
+  .collection-header__link {
+    text-decoration: none;
+    color: var(--neutral-950);
   }
 
   @media screen and (max-width: 768px) {
@@ -58,8 +45,36 @@
     .collection-header__related {
       overflow-x: auto;
     }
+
+    .collection-header__list {
+      flex-wrap: nowrap;
+      padding-bottom: var(--space-s);
+    }
   }
 </style>
+
+<section class="collection-header">
+  <div class="collection-header__wrapper">
+    <div class="collection-header__title">
+      <h1 class="heading--xl">{{ collection.title }}</h1>
+    </div>
+
+    <div class="collection-header__related">
+      {% if collection.metafields.custom.related_collections %}
+        <ul class="collection-header__list">
+          {% for collection_ref in collection.metafields.custom.related_collections.value %}
+            {% assign related_collection = collection_ref %}
+            <li class="collection-header__item">
+              <a href="{{ related_collection.url }}" class="collection-header__link body--uppercase">
+                {{ related_collection.title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+  </div>
+</section>
 
 {% schema %}
 {
