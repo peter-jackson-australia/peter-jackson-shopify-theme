@@ -74,6 +74,110 @@
       width: 100%;
     }
 
+    .product-card {
+      display: block;
+      position: relative;
+    }
+
+    .product-card__image-link {
+      display: block;
+      text-decoration: none;
+    }
+
+    .product-card__image-wrapper {
+      position: relative;
+      width: 100%;
+      height: auto;
+      overflow: hidden;
+    }
+
+    .product-card__image {
+      display: block;
+      width: 100%;
+      height: auto;
+      transition: opacity 0.2s ease;
+    }
+
+    .product-card__title-link {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .product-card__slider-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .product-card__slider {
+      width: 100%;
+      height: 100%;
+    }
+
+    .product-card__slider .splide__track,
+    .product-card__slider .splide__list,
+    .product-card__slider .splide__slide {
+      height: 100%;
+    }
+
+    .product-card__slider .splide__slide img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+
+    .product-card__slider .splide__arrows {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .product-card__slider .splide__arrow {
+      background: rgba(255, 255, 255, 0.7);
+      opacity: 0.9;
+      transition: opacity 0.2s;
+      z-index: 2;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      pointer-events: auto;
+    }
+
+    .product-card__slider .splide__arrow:hover {
+      opacity: 1;
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .product-card__slider .splide__arrow--prev {
+      left: 0.5rem;
+    }
+
+    .product-card__slider .splide__arrow--next {
+      right: 0.5rem;
+    }
+
+    .product-card__content {
+      position: relative;
+      z-index: 0;
+    }
+
+    .opacity-0 {
+      opacity: 0;
+    }
+
+    [x-cloak] {
+      display: none !important;
+    }
+
     @media (max-width: 768px) {
       .filter-sidebar {
         width: 100%;
@@ -144,7 +248,6 @@
     "
   >
     <div id="collection" class="section">
-      <!-- Filter Sidebar -->
       <div x-show="isFilterOpen" x-cloak>
         <div class="filter-sidebar__overlay" @click="closeFilter()"></div>
         <aside class="filter-sidebar">
@@ -158,7 +261,6 @@
         </aside>
       </div>
 
-      <!-- Collection Products -->
       {% paginate collection.products by section.settings.limit %}
         <div>
           <div class="section">
@@ -209,6 +311,16 @@
         pagination: '#AjaxinatePagination',
         offset: '300',
       });
+
+      document.addEventListener(
+        'click',
+        function (event) {
+          if (event.target.closest('.splide__arrow')) {
+            event.preventDefault();
+          }
+        },
+        true
+      );
     });
   </script>
 {% endif %}

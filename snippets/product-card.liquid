@@ -1,20 +1,79 @@
-<a class="product-card" href="{{ product.url }}">
-  <div class="product-card__image-wrapper">
-    {% if product.featured_image == blank %}
-      {{ 'product-1' | placeholder_svg_tag: 'product-card__image placeholder' }}
-    {% else %}
-      <img
-        class="product-card__image"
-        src="{{- product.featured_image.src | image_url: width: image_width -}}"
-        width="{{- image_width -}}"
-        height="{{- image_height -}}"
-        alt="{{- product.featured_image.alt | escape | strip_html | strip_newlines -}}"
-        loading="lazy"
+<div class="product-card">
+  <a class="product-card__image-link" href="{{ product.url }}">
+    <div
+      class="product-card__image-wrapper"
+      x-data="
+        {
+          isHovering: false,
+          splideInstance: null,
+          initSplide() {
+            if (!this.splideInstance && this.isHovering) {
+              this.$nextTick(() => {
+                this.splideInstance = new Splide(this.$refs.splide, {
+                  type: 'fade',
+                  arrows: true,
+                  pagination: false,
+                  speed: 400
+                }).mount();
+              });
+            }
+          },
+          destroySplide() {
+            if (this.splideInstance) {
+              this.splideInstance.destroy();
+              this.splideInstance = null;
+            }
+          }
+        }
+      "
+      @mouseenter="isHovering = true; initSplide()"
+      @mouseleave="isHovering = false; destroySplide()"
+    >
+      {% if product.featured_image == blank %}
+        {{ 'product-1' | placeholder_svg_tag: 'product-card__image placeholder' }}
+      {% else %}
+        <img
+          class="product-card__image"
+          src="{{- product.featured_image.src | image_url: width: image_width -}}"
+          width="{{- image_width -}}"
+          height="{{- image_height -}}"
+          alt="{{- product.featured_image.alt | escape | strip_html | strip_newlines -}}"
+          loading="lazy"
+          :class="{ 'opacity-0': isHovering }"
+        >
+      {% endif %}
+
+      <div
+        class="product-card__slider-wrapper"
+        x-show="isHovering"
+        x-cloak
       >
-    {% endif %}
-  </div>
+        <div class="splide product-card__slider" x-ref="splide">
+          <div class="splide__track">
+            <ul class="splide__list">
+              {% for image in product.images %}
+                <li class="splide__slide">
+                  <img
+                    class="product-card__image"
+                    src="{{- image.src | image_url: width: image_width -}}"
+                    width="{{- image_width -}}"
+                    height="{{- image_height -}}"
+                    alt="{{- image.alt | escape | strip_html | strip_newlines -}}"
+                    loading="{% if forloop.index0 < 3 %}eager{% else %}lazy{% endif %}"
+                  >
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </a>
+
   <div class="product-card__content">
-    <h3 class="product-card__title">{{ product.title }}</h3>
+    <a href="{{ product.url }}" class="product-card__title-link">
+      <h3 class="product-card__title">{{ product.title }}</h3>
+    </a>
 
     {% if product.metafields.custom.fabric_description != blank %}
       <p class="product-card__material">
@@ -29,4 +88,4 @@
       <span class="product-card__price--current">{{ product.price | money }}</span>
     </p>
   </div>
-</a>
+</div>
