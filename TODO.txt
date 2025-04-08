@@ -1,5 +1,4 @@
 Collection page:
-related content section
 SEO accordion section 
 Collection navigator
 campaign callout inserter 
@@ -7,6 +6,7 @@ Featured item slider
 Filtering options
 
 Styling 
+Make it fast (over 90) 
 
 /////////////////////////////////////////////////////
 

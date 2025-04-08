@@ -38,7 +38,7 @@
           width="{{- image_width -}}"
           height="{{- image_height -}}"
           alt="{{- product.featured_image.alt | escape | strip_html | strip_newlines -}}"
-          loading="lazy"
+          loading="eager"
           :class="{ 'opacity-0': isHovering }"
         >
       {% endif %}
