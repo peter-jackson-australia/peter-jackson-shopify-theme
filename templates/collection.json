@@ -9,6 +9,10 @@
  */
 {
   "sections": {
+    "collection_header_XU4U4W": {
+      "type": "collection-header",
+      "settings": {}
+    },
     "details": {
       "type": "main-collection-details",
       "settings": {}
@@ -16,13 +20,9 @@
     "products": {
       "type": "main-collection-products",
       "settings": {
-        "limit": 9,
+        "limit": 8,
         "products_per_row": 3
       }
-    },
-    "collection_header_XU4U4W": {
-      "type": "collection-header",
-      "settings": {}
     }
   },
   "order": [
