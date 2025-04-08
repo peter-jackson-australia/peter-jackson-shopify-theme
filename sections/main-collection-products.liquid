@@ -2,40 +2,182 @@
   <style>
     #collection {
       display: grid;
-      grid-template-columns: 200px auto;
-      gap: 3rem;
+      grid-template-columns: auto;
     }
-    #collection aside h3,
-    #collection aside p {
+
+    .filter-sidebar {
+      position: fixed;
+      top: var(--space-xl);
+      bottom: 0;
+      left: 0;
+      width: 280px;
+      background-color: var(--white);
+      z-index: 9998;
+      padding: var(--space-m);
+      overflow-y: auto;
+      border-top: 1px solid var;
+    }
+
+    .filter-sidebar__overlay {
+      position: fixed;
+      top: var(--space-xl);
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 9997;
+    }
+
+    .filter-sidebar h3,
+    .filter-sidebar p {
       margin-top: 0;
       margin-bottom: 0;
     }
-    #collection aside > div {
+
+    .filter-sidebar > div {
       margin-bottom: 1.5rem;
     }
-    {{ section.id | prepend: '#' }} .products-grid {
-      grid-template-columns: repeat({{ section.settings.products_per_row }}, 1fr);
+
+    .collection-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-m);
+    }
+
+    .collection-controls__actions {
+      display: flex;
+      gap: var(--space-s);
+      align-items: center;
+    }
+
+    .products-grid {
+      display: grid;
+      gap: var(--space-m);
+    }
+
+    .products-grid--cols-1 {
+      grid-template-columns: 1fr;
+    }
+
+    .products-grid--cols-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .products-grid--cols-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .filter-sidebar {
+        width: 100%;
+      }
+
+      .products-grid--cols-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .products-grid--cols-4 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    [x-cloak] {
+      display: none !important;
+    }
+
+    .btn {
+      background: var(--neutral-100);
+      border: 1px solid var(--neutral-200);
+      padding: var(--space-xs) var(--space-s);
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: var(--neutral-200);
+    }
+
+    body.filter-open {
+      overflow: hidden;
     }
   </style>
 
-  <div id="{{ section.id }}" class="section-wrap">
-    <div id="collection" class="section">
-      <aside>
-        <div class="flex middle">
-          <h3>Filters</h3>
-          <p>
-            <em><a href="{{ collection.url }}?sort_by={{ collection.sort_by }}">Clear all</a></em>
-          </p>
-        </div>
-        {% render 'collection-filters' %}
-      </aside>
+  <div
+    id="{{ section.id }}"
+    class="section-wrap"
+    x-data="
+      {
+        expandedGrid: false,
+        isFilterOpen: false,
 
+        toggleGridView() {
+          this.expandedGrid = !this.expandedGrid;
+        },
+
+        toggleFilter() {
+          this.isFilterOpen = !this.isFilterOpen;
+          document.body.classList.toggle('filter-open', this.isFilterOpen);
+        },
+
+        closeFilter() {
+          this.isFilterOpen = false;
+          document.body.classList.remove('filter-open');
+        }
+      }
+    "
+    x-init="
+      $watch('isFilterOpen', value => {
+        if (value) {
+          // Event listener to close filter when mega menu opens
+          document.addEventListener('menu-open', function menuOpenHandler() {
+            $data.closeFilter();
+            document.removeEventListener('menu-open', menuOpenHandler);
+          });
+        }
+      });
+    "
+  >
+    <div id="collection" class="section">
+      <!-- Filter Sidebar -->
+      <div x-show="isFilterOpen" x-cloak>
+        <div class="filter-sidebar__overlay" @click="closeFilter()"></div>
+        <aside class="filter-sidebar">
+          <div class="flex middle">
+            <h3>Filters</h3>
+            <p>
+              <em><a href="{{ collection.url }}?sort_by={{ collection.sort_by }}">Clear all</a></em>
+            </p>
+          </div>
+          {% render 'collection-filters' %}
+        </aside>
+      </div>
+
+      <!-- Collection Products -->
       {% paginate collection.products by section.settings.limit %}
         <div>
           <div class="section">
-            <p>{{ collection.products_count }} products</p>
+            <div class="collection-controls">
+              <button class="btn" @click="toggleFilter()">Filter</button>
 
-            <div class="products-grid">
+              <p>{{ collection.products_count }} products</p>
+
+              <div class="collection-controls__actions">
+                <button class="btn" @click="toggleGridView()">
+                  <span x-text="expandedGrid ? 'Compact View' : 'Expanded View'"></span>
+                </button>
+              </div>
+            </div>
+
+            <div
+              class="products-grid"
+              :class="
+                {
+                  'products-grid--cols-2': !expandedGrid,
+                  'products-grid--cols-4': expandedGrid
+                }
+              "
+            >
               {% liquid
                 for product in collection.products
                   render 'product-card', product: product
@@ -53,6 +195,8 @@
       {% endpaginate %}
     </div>
   </div>
+
+  <script></script>
 {% endif %}
 
 {% schema %}

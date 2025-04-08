@@ -1,16 +1,12 @@
 Collection page:
-filter sidebar drawer (come back to filtering after) 
-total products 
-grid selector (starts at 2)
 
 Product tiles: 
 On hover, image gallery 
-title
 material (optional field) 
-price 
 
 campaign callout inserter 
 Infinite scroll pagination 
+
 related content section
 SEO accordion section 
 Collection navigator
@@ -18,6 +14,7 @@ Collection navigator
 Filtering options and styling and AJAX 
 Featured item slider
 
+Styling 
 
 /////////////////////////////////////////////////////
 
