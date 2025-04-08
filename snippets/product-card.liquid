@@ -1,13 +1,16 @@
-{% liquid
-  assign image_width = 400
-  assign image_height = image_width | divided_by: product.featured_image.aspect_ratio | ceil
-%}
+<style>
+  .product-card__image {
+    width: 100%;
+  }
+</style>
+
 <a class="product-card" href="{{ product.url }}">
-  <div>
+  <div class="product-card__image-wrapper">
     {% if product.featured_image == blank %}
-      {{ 'product-1' | placeholder_svg_tag: 'placeholder' }}
+      {{ 'product-1' | placeholder_svg_tag: 'product-card__image placeholder' }}
     {% else %}
       <img
+        class="product-card__image"
         src="{{- product.featured_image.src | image_url: width: image_width -}}"
         width="{{- image_width -}}"
         height="{{- image_height -}}"
@@ -16,13 +19,20 @@
       >
     {% endif %}
   </div>
-  <div>
-    <h3>{{ product.title }}</h3>
-    <p>
+  <div class="product-card__content">
+    <h3 class="product-card__title">{{ product.title }}</h3>
+
+    {% if product.metafields.custom.fabric_description != blank %}
+      <p class="product-card__material">
+        {{ product.metafields.custom.fabric_description }}
+      </p>
+    {% endif %}
+
+    <p class="product-card__price">
       {% if product.compare_at_price > product.price %}
-        <span class="strike">{{ product.compare_at_price | money }}</span>
+        <span class="product-card__price--compare">{{ product.compare_at_price | money }}</span>
       {% endif %}
-      {{ product.price | money }}
+      <span class="product-card__price--current">{{ product.price | money }}</span>
     </p>
   </div>
 </a>
