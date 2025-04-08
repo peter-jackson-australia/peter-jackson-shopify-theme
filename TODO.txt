@@ -1,15 +1,10 @@
 Collection page:
-
-Product tiles: 
-On hover, image gallery 
-
-campaign callout inserter 
 related content section
 SEO accordion section 
 Collection navigator
-
-Filtering options and styling and AJAX 
+campaign callout inserter 
 Featured item slider
+Filtering options
 
 Styling 
 
