@@ -13,35 +13,16 @@
       "type": "main-collection-details",
       "settings": {}
     },
-    "collections": {
-      "type": "main-collection-sub",
-      "settings": {
-        "collections_per_row": 4
-      }
-    },
     "products": {
       "type": "main-collection-products",
       "settings": {
         "limit": 9,
         "products_per_row": 3
       }
-    },
-    "recently_viewed_rmKy7P": {
-      "type": "recently-viewed",
-      "settings": {
-        "heading": "Recently viewed",
-        "size": "h2",
-        "limit": 4,
-        "products_per_row": 4,
-        "background": "#ffffff",
-        "color": ""
-      }
     }
   },
   "order": [
     "details",
-    "collections",
-    "products",
-    "recently_viewed_rmKy7P"
+    "products"
   ]
 }
