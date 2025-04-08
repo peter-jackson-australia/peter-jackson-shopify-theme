@@ -1,9 +1,8 @@
 Collection page:
-Related collections and title 
-description 
-filter sidebar drawer 
+Description 
+filter sidebar drawer (come back to filtering after) 
 total products 
-grid selector
+grid selector (starts at 2)
 
 Product tiles: 
 On hover, image gallery 
@@ -16,6 +15,12 @@ Infinite scroll pagination
 related content section
 SEO accordion section 
 Collection navigator
+
+Filtering options and styling and AJAX 
+Featured item slider
+
+
+/////////////////////////////////////////////////////
 
 Main Menu:
 Preserve scroll position when menu is open
