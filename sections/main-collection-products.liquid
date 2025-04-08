@@ -238,7 +238,6 @@
     x-init="
       $watch('isFilterOpen', value => {
         if (value) {
-          // Event listener to close filter when mega menu opens
           document.addEventListener('menu-open', function menuOpenHandler() {
             $data.closeFilter();
             document.removeEventListener('menu-open', menuOpenHandler);
