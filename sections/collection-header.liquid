@@ -1,0 +1,76 @@
+{% comment %}
+  Section: Collection Header
+  Displays the current collection title and related collections from metafield
+{% endcomment %}
+
+<section class="collection-header">
+  <div class="collection-header__wrapper">
+    <div class="collection-header__title">
+      <h2 class="heading--xl">{{ collection.title }}</h2>
+    </div>
+
+    <div class="collection-header__related">
+      {% comment %}
+        Debug: Output the metafield to see its structure
+      {% endcomment %}
+      {% if collection.metafields.custom.related_collections %}
+        <div class="debug-output">
+          <p>Metafield structure:</p>
+          <pre>{{ collection.metafields.custom.related_collections | json }}</pre>
+        </div>
+      {% else %}
+        <p>No related collections found.</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .collection-header {
+    padding: var(--space-l);
+  }
+
+  .collection-header__wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-l);
+  }
+
+  .collection-header__title {
+    flex: 0 0 auto;
+  }
+
+  .collection-header__related {
+    flex: 1 1 auto;
+  }
+
+  .debug-output {
+    background: var(--neutral-50);
+    padding: var(--space-s);
+    overflow: auto;
+  }
+
+  @media screen and (max-width: 768px) {
+    .collection-header__wrapper {
+      flex-direction: column;
+    }
+
+    .collection-header__related {
+      overflow-x: auto;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Collection Header",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Collection Header"
+    }
+  ]
+}
+{% endschema %}
