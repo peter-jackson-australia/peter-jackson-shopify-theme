@@ -1,6 +1,28 @@
-<div class="section-wrap">
+{% comment %}
+  Collection Description
+{% endcomment %}
+
+<style>
+  .collection-description__container {
+    padding: var(--space-m);
+  }
+
+  .collection-description__text,
+  .collection-description__text > p > a {
+    max-width: 80ch;
+    color: var(--neutral-600) !important;
+    font-family: 'Ordinary Light';
+  }
+
+  .collection-description__text > p > strong {
+    color: var(--neutral-950) !important;
+    font-family: 'Ordinary Regular';
+  }
+</style>
+
+<div class="section-wrap collection-description__container">
   <div class="section">
-    <div class="rte">
+    <div class="rte collection-description__text body">
       {{ collection.description }}
     </div>
   </div>
