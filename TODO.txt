@@ -1,5 +1,4 @@
 Collection page:
-Description 
 filter sidebar drawer (come back to filtering after) 
 total products 
 grid selector (starts at 2)
