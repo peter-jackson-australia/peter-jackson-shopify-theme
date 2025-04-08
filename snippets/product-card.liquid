@@ -32,15 +32,25 @@
       {% if product.featured_image == blank %}
         {{ 'product-1' | placeholder_svg_tag: 'product-card__image placeholder' }}
       {% else %}
-        <img
-          class="product-card__image"
-          src="{{- product.featured_image.src | image_url: width: image_width -}}"
-          width="{{- image_width -}}"
-          height="{{- image_height -}}"
-          alt="{{- product.featured_image.alt | escape | strip_html | strip_newlines -}}"
-          loading="eager"
-          :class="{ 'opacity-0': isHovering }"
-        >
+        <div x-bind:class="{ 'opacity-0': isHovering }">
+          {% comment %}
+            Check if this is among the first two products to render
+            If used in a section, use section.index instead of forloop.index0
+          {% endcomment %}
+
+          {% assign image_class = 'product-card__image' %}
+          {% assign image_alt = product.featured_image.alt | escape | strip_html | strip_newlines %}
+
+          {%- if forloop.index0 != blank and forloop.index0 < 2 -%}
+            {{
+              product.featured_image
+              | image_url: width: image_width
+              | image_tag: alt: image_alt, loading: 'eager', preload: true
+            }}
+          {%- else -%}
+            {{ product.featured_image | image_url: width: image_width | image_tag: alt: image_alt, loading: 'eager' }}
+          {%- endif -%}
+        </div>
       {% endif %}
 
       <div
@@ -53,14 +63,26 @@
             <ul class="splide__list">
               {% for image in product.images %}
                 <li class="splide__slide">
-                  <img
-                    class="product-card__image"
-                    src="{{- image.src | image_url: width: image_width -}}"
-                    width="{{- image_width -}}"
-                    height="{{- image_height -}}"
-                    alt="{{- image.alt | escape | strip_html | strip_newlines -}}"
-                    loading="{% if forloop.index0 < 3 %}eager{% else %}lazy{% endif %}"
-                  >
+                  {% assign image_alt = image.alt | escape | strip_html | strip_newlines %}
+
+                  {% if forloop.index0 < 3 %}
+                    {{
+                      image
+                      | image_url: width: image_width
+                      | image_tag:
+                        class: 'product-card__image',
+                        width: image_width,
+                        height: image_height,
+                        alt: image_alt,
+                        loading: 'eager'
+                    }}
+                  {% else %}
+                    {{
+                      image
+                      | image_url: width: image_width
+                      | image_tag: class: 'product-card__image', alt: image_alt, loading: 'lazy'
+                    }}
+                  {% endif %}
                 </li>
               {% endfor %}
             </ul>
