@@ -2,7 +2,6 @@ Collection page:
 
 Product tiles: 
 On hover, image gallery 
-material (optional field) 
 
 campaign callout inserter 
 Infinite scroll pagination 

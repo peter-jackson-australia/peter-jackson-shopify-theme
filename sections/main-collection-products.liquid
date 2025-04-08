@@ -53,7 +53,7 @@
 
     .products-grid {
       display: grid;
-      gap: var(--space-m);
+      gap: var(--space-xs);
     }
 
     .products-grid--cols-1 {
@@ -68,7 +68,10 @@
       grid-template-columns: repeat(4, 1fr);
     }
 
-    /* Responsive adjustments */
+    .product-card__image {
+      width: 100%;
+    }
+
     @media (max-width: 768px) {
       .filter-sidebar {
         width: 100%;
