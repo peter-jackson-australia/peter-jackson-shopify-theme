@@ -3,41 +3,77 @@
 {% endcomment %}
 
 <style>
+  /* REMOVE THIS */
+
+  #shopify-section-template--24881899700592__details {
+    margin-top: 32px;
+  }
+
+  .collection-header > .collection-header__wrapper > .custom-scrollbar::-webkit-scrollbar-track {
+    border-top: 1px solid var(--neutral-200) !important;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  .collection-header > .collection-header__wrapper > .custom-scrollbar::-webkit-scrollbar-thumb {
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+  }
+
   .collection-header {
     border-top: 1px solid var(--neutral-200);
     border-bottom: 1px solid var(--neutral-200);
-    padding: var(--space-xs) var(--space-m);
+    padding: 0 var(--space-m);
+    padding-right: 0px;
   }
 
   .collection-header__wrapper {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    gap: var(--space-l);
+    align-items: stretch;
   }
-
   .collection-header__title {
     flex: 0 0 auto;
+    padding: var(--space-xs) 0;
+    padding-right: var(--space-m);
+    border-right: 1px solid var(--neutral-200);
   }
 
   .collection-header__related {
     flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    overflow: auto;
   }
 
   .collection-header__list {
     display: flex;
-    flex-wrap: wrap;
     justify-content: end;
     gap: var(--space-m);
     list-style: none;
+    padding: var(--space-s) var(--space-m);
+    margin-left: auto;
   }
 
   .collection-header__link {
+    white-space: nowrap;
     text-decoration: none;
     color: var(--neutral-950);
   }
 
   @media screen and (max-width: 768px) {
+    .collection-header {
+      padding: 0px;
+    }
+
+    .collection-header__title {
+      padding-left: var(--space-m);
+      border-right: none !important;
+      border-bottom: 1px solid var(--neutral-200);
+    }
+
     .collection-header__wrapper {
       flex-direction: column;
     }
@@ -49,6 +85,7 @@
     .collection-header__list {
       flex-wrap: nowrap;
       padding-bottom: var(--space-s);
+      margin-left: 0px;
     }
   }
 </style>
@@ -59,7 +96,7 @@
       <h1 class="heading--xl">{{ collection.title }}</h1>
     </div>
 
-    <div class="collection-header__related">
+    <div class="collection-header__related custom-scrollbar">
       {% if collection.metafields.custom.related_collections %}
         <ul class="collection-header__list">
           {% for collection_ref in collection.metafields.custom.related_collections.value %}
