@@ -66,6 +66,9 @@
         <div
           class="product-card__slider-wrapper"
           x-show="isHovering"
+          x-transition:enter="transition ease-out duration-200"
+          x-transition:enter-start="opacity-0"
+          x-transition:enter-end="opacity-100"
           x-cloak
         >
           <div class="splide product-card__slider" x-ref="splide">
