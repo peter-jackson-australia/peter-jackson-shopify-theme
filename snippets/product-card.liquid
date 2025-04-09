@@ -4,8 +4,6 @@
 
 {% assign image_width = image_width %}
 {% assign image_height = image_height %}
-{% assign loading_strategy = loading_strategy | default: 'eager' %}
-{% assign preload_image = preload_image | default: false %}
 {% assign image_alt = product.featured_image.alt | escape | strip_html | strip_newlines | default: product.title %}
 
 <div class="product-card">
@@ -51,8 +49,6 @@
             width: image_width,
             height: image_height,
             alt: image_alt,
-            loading: loading_strategy,
-            preload: preload,
             onload: "if(this.closest('.product-card__image-wrapper').__x) this.closest('.product-card__image-wrapper').__x.$data.imageLoaded = true"
         }}
       </div>

@@ -241,22 +241,7 @@
               "
             >
               {% for product in collection.products %}
-                {% assign loop_index = forloop.index0 %}
-
-                {% if loop_index < 2 %}
-                  {% assign preload_image = true %}
-                {% else %}
-                  {% assign preload_image = false %}
-                {% endif %}
-
-                {% render 'product-card',
-                  product: product,
-                  image_width: 700,
-                  image_height: 700,
-                  loading_strategy: 'eager',
-                  preload_image: preload_image,
-                  forloop_index0: loop_index
-                %}
+                {% render 'product-card', product: product, image_width: 700, image_height: 700 %}
               {% endfor %}
             </div>
             <div id="AjaxinatePagination">
