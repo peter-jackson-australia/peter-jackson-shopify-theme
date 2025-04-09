@@ -2,7 +2,7 @@
   Featured Collection Section
 {% endcomment %}
 
-<style>
+{% stylesheet %}
   .collection-slider {
     padding: var(--space-2xl) var(--space-m);
     overflow: hidden;
@@ -123,7 +123,7 @@
       overflow: hidden;
     }
   }
-</style>
+{% endstylesheet %}
 
 <section class="collection-slider" id="section-{{ section.id }}">
   <div class="collection-slider__container">

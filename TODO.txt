@@ -12,3 +12,5 @@ Make it fast (over 90)
 
 Main Menu:
 Preserve scroll position when menu is open
+
+Add noise over images for banding

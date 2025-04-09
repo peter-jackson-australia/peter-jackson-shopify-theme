@@ -2,7 +2,7 @@
   Blog Hero Section
 {% endcomment %}
 
-<style>
+{% stylesheet %}
   .blog-hero {
     display: flex;
     flex-direction: column;
@@ -93,6 +93,7 @@
   .blog-hero__title {
     padding-right: var(--space-m);
     color: var(--neutral-950);
+    white-space: nowrap;
   }
 
   .blog-hero__divider {
@@ -284,7 +285,7 @@
       gap: calc(var(--space-xs) + var(--space-xs));
     }
   }
-</style>
+{% endstylesheet %}
 
 <section class="blog-hero">
   {% if section.settings.hero_image != blank %}

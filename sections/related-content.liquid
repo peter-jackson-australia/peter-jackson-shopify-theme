@@ -1,6 +1,5 @@
 {% comment %}
-  Collection Related Articles Section
-  Shows articles related to the current collection
+  Collection Related Articles
 {% endcomment %}
 
 {% assign collection_id = collection.id %}
@@ -20,193 +19,194 @@
   {% endif %}
 {% endfor %}
 
-{% if has_related_articles %}
-  <style>
+{% stylesheet %}
+  .related-articles {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-2xl);
+    border-bottom: 1px solid var(--neutral-200);
+  }
+
+  .related-articles__content {
+    display: flex;
+    padding: var(--space-2xl) var(--space-m);
+    gap: var(--space-xl);
+    border-top: 1px solid var(--neutral-200);
+  }
+
+  .related-articles__header {
+    display: flex;
+    align-items: center;
+    flex: 1;
+  }
+
+  .related-articles__title {
+    padding-right: var(--space-m);
+    color: var(--neutral-950);
+    white-space: nowrap;
+  }
+
+  .related-articles__divider {
+    height: 50px;
+    width: 1px;
+    background-color: var(--neutral-200);
+  }
+
+  .related-articles__subtitle {
+    padding-left: var(--space-m);
+    color: var(--neutral-950);
+    margin-top: -7px;
+  }
+
+  .related-articles__description {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: var(--space-m);
+  }
+
+  .related-articles__text {
+    color: var(--neutral-600);
+    max-width: 80ch;
+    text-align: right;
+  }
+
+  .related-articles__link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    color: var(--neutral-950);
+    text-decoration: none;
+  }
+
+  .related-articles__posts {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-2xs);
+  }
+
+  .related-articles__post {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    overflow: hidden;
+  }
+
+  .related-articles__post-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    margin-bottom: var(--space-xs);
+    min-height: 550px;
+  }
+
+  .related-articles__post-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .related-articles__post-content {
+    padding-left: var(--space-m);
+  }
+
+  .related-articles__post-category {
+    color: var(--neutral-600);
+    text-transform: uppercase;
+    margin-bottom: var(--space-s);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .related-articles__post-title {
+    margin-bottom: var(--space-2xs);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .related-articles__post-title a,
+  .related-articles__post-link-container {
+    color: var(--neutral-950);
+    text-decoration: none;
+  }
+
+  .related-articles__post-excerpt {
+    color: var(--neutral-600);
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .related-articles__post-link {
+    display: flex;
+    gap: var(--space-xs);
+  }
+
+  @media screen and (max-width: 1000px) {
     .related-articles {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      padding-top: var(--space-2xl);
-      padding-bottom: var(--space-2xl);
-      border-bottom: 1px solid var(--neutral-200);
+      padding-top: var(--space-xl);
+      padding-bottom: var(--space-xl);
     }
 
     .related-articles__content {
-      display: flex;
-      padding: var(--space-2xl) var(--space-m);
-      gap: var(--space-xl);
-      border-top: 1px solid var(--neutral-200);
-    }
-
-    .related-articles__header {
-      display: flex;
-      align-items: center;
-      flex: 1;
-    }
-
-    .related-articles__title {
-      padding-right: var(--space-m);
-      color: var(--neutral-950);
-    }
-
-    .related-articles__divider {
-      height: 50px;
-      width: 1px;
-      background-color: var(--neutral-200);
-    }
-
-    .related-articles__subtitle {
-      padding-left: var(--space-m);
-      color: var(--neutral-950);
-      margin-top: -7px;
-    }
-
-    .related-articles__description {
-      flex: 1;
-      display: flex;
+      padding-top: var(--space-xl);
+      padding-bottom: var(--space-xl);
       flex-direction: column;
-      align-items: end;
       gap: var(--space-m);
     }
 
-    .related-articles__text {
-      color: var(--neutral-600);
-      max-width: 80ch;
-      text-align: right;
+    .related-articles__header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-m);
     }
 
-    .related-articles__link {
-      display: flex;
-      align-items: center;
-      gap: var(--space-xs);
-      color: var(--neutral-950);
-      text-decoration: none;
+    .related-articles__description {
+      align-items: start;
+    }
+
+    .related-articles__text {
+      text-align: left;
+    }
+
+    .related-articles__title {
+      padding-right: 0;
+    }
+
+    .related-articles__divider {
+      display: none;
+    }
+
+    .related-articles__subtitle {
+      padding-left: 0px;
     }
 
     .related-articles__posts {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: var(--space-2xs);
-    }
-
-    .related-articles__post {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-xs);
-      overflow: hidden;
-    }
-
-    .related-articles__post-image {
-      display: block;
-      width: 100%;
-      aspect-ratio: 1/1;
-      overflow: hidden;
-      margin-bottom: var(--space-xs);
-      min-height: 550px;
-    }
-
-    .related-articles__post-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      grid-template-columns: repeat(2, 1fr);
+      gap: calc(var(--space-xs) + var(--space-xs));
+      column-gap: var(--space-2xs);
     }
 
     .related-articles__post-content {
-      padding-left: var(--space-m);
+      padding-right: var(--space-m);
     }
+  }
 
-    .related-articles__post-category {
-      color: var(--neutral-600);
-      text-transform: uppercase;
-      margin-bottom: var(--space-s);
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
+  @media screen and (max-width: 480px) {
+    .related-articles__posts {
+      grid-template-columns: 1fr;
+      gap: calc(var(--space-xs) + var(--space-xs));
     }
+  }
+{% endstylesheet %}
 
-    .related-articles__post-title {
-      margin-bottom: var(--space-2xs);
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-
-    .related-articles__post-title a,
-    .related-articles__post-link-container {
-      color: var(--neutral-950);
-      text-decoration: none;
-    }
-
-    .related-articles__post-excerpt {
-      color: var(--neutral-600);
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-
-    .related-articles__post-link {
-      display: flex;
-      gap: var(--space-xs);
-    }
-
-    @media screen and (max-width: 1000px) {
-      .related-articles {
-        padding-top: var(--space-xl);
-        padding-bottom: var(--space-xl);
-      }
-
-      .related-articles__content {
-        padding-top: var(--space-xl);
-        padding-bottom: var(--space-xl);
-        flex-direction: column;
-        gap: var(--space-m);
-      }
-
-      .related-articles__header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: var(--space-m);
-      }
-
-      .related-articles__description {
-        align-items: start;
-      }
-
-      .related-articles__text {
-        text-align: left;
-      }
-
-      .related-articles__title {
-        padding-right: 0;
-      }
-
-      .related-articles__divider {
-        display: none;
-      }
-
-      .related-articles__subtitle {
-        padding-left: 0px;
-      }
-
-      .related-articles__posts {
-        grid-template-columns: repeat(2, 1fr);
-        gap: calc(var(--space-xs) + var(--space-xs));
-        column-gap: var(--space-2xs);
-      }
-
-      .related-articles__post-content {
-        padding-right: var(--space-m);
-      }
-    }
-
-    @media screen and (max-width: 480px) {
-      .related-articles__posts {
-        grid-template-columns: 1fr;
-        gap: calc(var(--space-xs) + var(--space-xs));
-      }
-    }
-  </style>
-
+{% if has_related_articles %}
   <section class="related-articles">
     <div class="related-articles__content">
       <div class="related-articles__header">
