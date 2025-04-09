@@ -2,10 +2,10 @@
   Product Card
 {% endcomment %}
 
-{% assign image_width = image_width | default: 700 %}
-{% assign image_height = image_height | default: 700 %}
-{% assign loading_strategy = loading_strategy | default: 'lazy' %}
-{% assign fetch_priority = fetch_priority | default: 'auto' %}
+{% assign image_width = image_width %}
+{% assign image_height = image_height %}
+{% assign loading_strategy = loading_strategy | default: 'eager' %}
+{% assign preload_image = preload_image | default: false %}
 {% assign image_alt = product.featured_image.alt | escape | strip_html | strip_newlines | default: product.title %}
 
 <div class="product-card">
@@ -29,8 +29,7 @@
                   type: 'fade',
                   arrows: true,
                   pagination: false,
-                  speed: 400,
-                  lazyLoad: 'nearby'
+                  speed: 400
                 }).mount();
               } catch (e) {
                 console.warn('Splide not available yet');
@@ -43,21 +42,17 @@
         x-data="{ imageLoaded: false }"
       {% endif %}
     >
-      <div
-        {% if product.images.size > 1 %}
-          x-bind:class="{ 'opacity-0': isHovering }"
-        {% endif %}
-      >
+      <div>
         {{
           product.featured_image
-          | image_url: width: image_width, height: image_height, crop: 'center'
+          | image_url: width: image_width
           | image_tag:
             class: 'product-card__image',
             width: image_width,
             height: image_height,
             alt: image_alt,
             loading: loading_strategy,
-            fetchpriority: fetch_priority,
+            preload: preload_image,
             onload: "if(this.closest('.product-card__image-wrapper').__x) this.closest('.product-card__image-wrapper').__x.$data.imageLoaded = true"
         }}
       </div>
@@ -84,7 +79,7 @@
                     %}
                     {{
                       image
-                      | image_url: width: image_width, height: image_height, crop: 'center'
+                      | image_url: width: image_width
                       | image_tag:
                         class: 'product-card__image',
                         width: image_width,

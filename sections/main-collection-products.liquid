@@ -5,35 +5,9 @@
 <script src="{{ 'ajaxinate.min.js' | asset_url }}" defer></script>
 
 {% if collection.products_count > 0 %}
-  {% for product in collection.products limit: 2 %}
-    <link
-      rel="preload"
-      as="image"
-      href="{{ product.featured_image | image_url: width: 700, height: 700, crop: 'center' }}"
-      fetchpriority="high"
-      imagesizes="(max-width: 768px) 100vw, 50vw"
-    >
-  {% endfor %}
-
   <style>
-    /* Critical styles inlined to prevent CLS */
     [x-cloak] {
       display: none !important;
-    }
-
-    .opacity-0 {
-      opacity: 0;
-    }
-
-    .btn {
-      background: var(--neutral-100);
-      border: 1px solid var(--neutral-200);
-      padding: var(--space-xs) var(--space-s);
-      cursor: pointer;
-    }
-
-    .btn:hover {
-      background: var(--neutral-200);
     }
 
     #collection {
@@ -59,12 +33,12 @@
       top: var(--space-xl);
       bottom: 0;
       left: 0;
-      width: 280px;
+      width: 400px;
       background-color: var(--white);
       z-index: 9998;
       padding: var(--space-m);
       overflow-y: auto;
-      border-top: 1px solid var;
+      border-top: 1px solid var(--neutral-200);
     }
 
     .filter-sidebar__overlay {
@@ -77,21 +51,10 @@
       z-index: 9997;
     }
 
-    .filter-sidebar h3,
-    .filter-sidebar p {
-      margin-top: 0;
-      margin-bottom: 0;
-    }
-
-    .filter-sidebar > div {
-      margin-bottom: 1.5rem;
-    }
-
     body.filter-open {
       overflow: hidden;
     }
 
-    /* Product grid with defined column layout */
     .products-grid {
       display: grid;
       gap: var(--space-xs);
@@ -109,80 +72,53 @@
       grid-template-columns: repeat(4, 1fr);
     }
 
-    /* Product card with stable layout */
     .product-card {
       display: block;
       position: relative;
-      height: 100%; /* Ensure full height */
+      height: 100%;
+      overflow: hidden;
     }
 
-    /* Critical styles to prevent CLS */
     .product-card__image-link {
       display: block;
-      text-decoration: none;
     }
 
     .product-card__image-wrapper {
       position: relative;
       width: 100%;
-      height: 0;
-      padding-bottom: 100%; /* 1:1 Aspect ratio */
+      height: 100%;
+      padding-bottom: 100%;
       overflow: hidden;
-      background-color: var(--neutral-200); /* Plain gray background */
+      background-color: var(--neutral-50);
     }
 
     .product-card__image {
       display: block;
       position: absolute;
-      top: 0;
-      left: 0;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: opacity 0.2s ease;
     }
 
     .product-card__content {
-      position: relative;
-      z-index: 0;
-      /* Set fixed height for content area */
       height: 120px;
       padding: var(--space-xs) 0;
       display: flex;
       flex-direction: column;
     }
 
-    .product-card__title {
-      margin: 0 0 var(--space-xs) 0;
-      font-size: 1rem;
-      line-height: 1.2;
-      /* Title truncation */
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
+    .product-card__title,
     .product-card__material {
       margin: 0 0 var(--space-xs) 0;
-      font-size: 0.875rem;
-      line-height: 1.2;
-      /* Material description truncation */
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
     .product-card__price {
-      margin: 0;
-      margin-top: auto; /* Push to bottom */
-      line-height: 1.2;
+      margin-top: auto;
     }
 
-    /* Slider styles */
     .product-card__slider-wrapper {
       position: absolute;
-      top: 0;
-      left: 0;
       width: 100%;
       height: 100%;
       z-index: 1;
@@ -199,12 +135,6 @@
       height: 100%;
     }
 
-    .product-card__slider .splide__slide img {
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
-    }
-
     .product-card__slider .splide__arrows {
       position: absolute;
       top: 0;
@@ -215,20 +145,13 @@
     }
 
     .product-card__slider .splide__arrow {
-      background: rgba(255, 255, 255, 0.7);
       z-index: 2;
       position: absolute;
       top: 50%;
-      transform: translateY(-50%);
-      width: 2rem;
-      height: 2rem;
+      width: 1rem;
+      height: 1rem;
       border-radius: 50%;
       pointer-events: auto;
-    }
-
-    .product-card__slider .splide__arrow:hover {
-      opacity: 1;
-      background: rgba(255, 255, 255, 0.9);
     }
 
     .product-card__slider .splide__arrow--prev {
@@ -276,7 +199,7 @@
           class="filter-sidebar__overlay"
           @click="isFilterOpen = false; document.body.classList.remove('filter-open')"
         ></div>
-        <aside class="filter-sidebar">
+        <aside class="filter-sidebar custom-scrollbar">
           <div class="flex middle">
             <h3>Filters</h3>
             <p>
@@ -319,24 +242,19 @@
             >
               {% for product in collection.products %}
                 {% assign loop_index = forloop.index0 %}
-                {% if loop_index < 4 %}
-                  {% assign loading_strategy = 'eager' %}
-                {% else %}
-                  {% assign loading_strategy = 'lazy' %}
-                {% endif %}
 
                 {% if loop_index < 2 %}
-                  {% assign fetch_priority = 'high' %}
+                  {% assign preload_image = true %}
                 {% else %}
-                  {% assign fetch_priority = 'auto' %}
+                  {% assign preload_image = false %}
                 {% endif %}
 
                 {% render 'product-card',
                   product: product,
                   image_width: 700,
                   image_height: 700,
-                  loading_strategy: loading_strategy,
-                  fetch_priority: fetch_priority,
+                  loading_strategy: 'eager',
+                  preload_image: preload_image,
                   forloop_index0: loop_index
                 %}
               {% endfor %}
@@ -358,7 +276,7 @@
         method: 'scroll',
         container: '#AjaxinateContainer',
         pagination: '#AjaxinatePagination',
-        offset: '300',
+        offset: '100',
       });
 
       document.addEventListener(
