@@ -45,14 +45,14 @@
       <div>
         {{
           product.featured_image
-          | image_url: width: image_width
+          | image_url: width: image_width, height: image_height
           | image_tag:
             class: 'product-card__image',
             width: image_width,
             height: image_height,
             alt: image_alt,
             loading: loading_strategy,
-            preload: preload_image,
+            preload: preload,
             onload: "if(this.closest('.product-card__image-wrapper').__x) this.closest('.product-card__image-wrapper').__x.$data.imageLoaded = true"
         }}
       </div>
@@ -79,7 +79,7 @@
                     %}
                     {{
                       image
-                      | image_url: width: image_width
+                      | image_url: width: image_width, height: image_height
                       | image_tag:
                         class: 'product-card__image',
                         width: image_width,
