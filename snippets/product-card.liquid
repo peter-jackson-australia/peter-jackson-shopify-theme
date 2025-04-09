@@ -64,25 +64,11 @@
               {% for image in product.images %}
                 <li class="splide__slide">
                   {% assign image_alt = image.alt | escape | strip_html | strip_newlines %}
-
-                  {% if forloop.index0 < 3 %}
-                    {{
-                      image
-                      | image_url: width: image_width
-                      | image_tag:
-                        class: 'product-card__image',
-                        width: image_width,
-                        height: image_height,
-                        alt: image_alt,
-                        loading: 'eager'
-                    }}
-                  {% else %}
-                    {{
-                      image
-                      | image_url: width: image_width
-                      | image_tag: class: 'product-card__image', alt: image_alt, loading: 'lazy'
-                    }}
-                  {% endif %}
+                  {{
+                    image
+                    | image_url: width: image_width
+                    | image_tag: class: 'product-card__image', width: image_width, height: image_height, alt: image_alt
+                  }}
                 </li>
               {% endfor %}
             </ul>
