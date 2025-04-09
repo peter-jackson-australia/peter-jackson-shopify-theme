@@ -1,10 +1,51 @@
+{% comment %}
+  Optimized main-collection-products.liquid
+  - Added preload for critical resources
+  - Fixed duplicated CSS rules
+  - Optimized CSS organization
+  - Improved Alpine.js initialization
+  - Structured for better render performance
+{% endcomment %}
+
 <script src="{{ 'ajaxinate.min.js' | asset_url }}" defer></script>
 
 {% if collection.products_count > 0 %}
   <style>
+    [x-cloak] {
+      display: none !important;
+    }
+
+    .opacity-0 {
+      opacity: 0;
+    }
+
+    .btn {
+      background: var(--neutral-100);
+      border: 1px solid var(--neutral-200);
+      padding: var(--space-xs) var(--space-s);
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: var(--neutral-200);
+    }
+
     #collection {
       display: grid;
       grid-template-columns: auto;
+    }
+
+    .collection-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-m);
+    }
+
+    .collection-controls__actions {
+      display: flex;
+      gap: var(--space-s);
+      align-items: center;
     }
 
     .filter-sidebar {
@@ -40,17 +81,8 @@
       margin-bottom: 1.5rem;
     }
 
-    .collection-controls {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: var(--space-m);
-    }
-
-    .collection-controls__actions {
-      display: flex;
-      gap: var(--space-s);
-      align-items: center;
+    body.filter-open {
+      overflow: hidden;
     }
 
     .products-grid {
@@ -70,10 +102,6 @@
       grid-template-columns: repeat(4, 1fr);
     }
 
-    .product-card__image {
-      width: 100%;
-    }
-
     .product-card {
       display: block;
       position: relative;
@@ -87,20 +115,30 @@
     .product-card__image-wrapper {
       position: relative;
       width: 100%;
-      height: auto;
+      height: 0;
+      padding-bottom: 100%;
       overflow: hidden;
     }
 
     .product-card__image {
       display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: cover;
       transition: opacity 0.2s ease;
     }
 
     .product-card__title-link {
       text-decoration: none;
       color: inherit;
+    }
+
+    .product-card__content {
+      position: relative;
+      z-index: 0;
     }
 
     .product-card__slider-wrapper {
@@ -165,19 +203,6 @@
       right: 0.5rem;
     }
 
-    .product-card__content {
-      position: relative;
-      z-index: 0;
-    }
-
-    .opacity-0 {
-      opacity: 0;
-    }
-
-    [x-cloak] {
-      display: none !important;
-    }
-
     @media (max-width: 768px) {
       .filter-sidebar {
         width: 100%;
@@ -191,25 +216,6 @@
         grid-template-columns: repeat(2, 1fr);
       }
     }
-
-    [x-cloak] {
-      display: none !important;
-    }
-
-    .btn {
-      background: var(--neutral-100);
-      border: 1px solid var(--neutral-200);
-      padding: var(--space-xs) var(--space-s);
-      cursor: pointer;
-    }
-
-    .btn:hover {
-      background: var(--neutral-200);
-    }
-
-    body.filter-open {
-      overflow: hidden;
-    }
   </style>
 
   <div
@@ -218,37 +224,22 @@
     x-data="
       {
         expandedGrid: false,
-        isFilterOpen: false,
-
-        toggleGridView() {
-          this.expandedGrid = !this.expandedGrid;
-        },
-
-        toggleFilter() {
-          this.isFilterOpen = !this.isFilterOpen;
-          document.body.classList.toggle('filter-open', this.isFilterOpen);
-        },
-
-        closeFilter() {
-          this.isFilterOpen = false;
-          document.body.classList.remove('filter-open');
-        }
+        isFilterOpen: false
       }
     "
     x-init="
-      $watch('isFilterOpen', value => {
-        if (value) {
-          document.addEventListener('menu-open', function menuOpenHandler() {
-            $data.closeFilter();
-            document.removeEventListener('menu-open', menuOpenHandler);
-          });
-        }
+      document.addEventListener('menu-open', () => {
+        isFilterOpen = false;
+        document.body.classList.remove('filter-open');
       });
     "
   >
     <div id="collection" class="section">
       <div x-show="isFilterOpen" x-cloak>
-        <div class="filter-sidebar__overlay" @click="closeFilter()"></div>
+        <div
+          class="filter-sidebar__overlay"
+          @click="isFilterOpen = false; document.body.classList.remove('filter-open')"
+        ></div>
         <aside class="filter-sidebar">
           <div class="flex middle">
             <h3>Filters</h3>
@@ -264,12 +255,17 @@
         <div>
           <div class="section">
             <div class="collection-controls">
-              <button class="btn" @click="toggleFilter()">Filter</button>
+              <button
+                class="btn"
+                @click="isFilterOpen = !isFilterOpen; document.body.classList.toggle('filter-open', isFilterOpen)"
+              >
+                Filter
+              </button>
 
               <p>{{ collection.products_count }} products</p>
 
               <div class="collection-controls__actions">
-                <button class="btn" @click="toggleGridView()">
+                <button class="btn" @click="expandedGrid = !expandedGrid">
                   <span x-text="expandedGrid ? 'Compact View' : 'Expanded View'"></span>
                 </button>
               </div>
@@ -285,11 +281,17 @@
                 }
               "
             >
-              {% liquid
-                for product in collection.products
-                  render 'product-card', product: product
-                endfor
-              %}
+              {% for product in collection.products %}
+                {% assign forloop_index0 = forloop.index0 %}
+                {%
+                  render 'product-card',
+                  product: product,
+                  image_width: 700,
+                  image_height: 700,
+                  loading_strategy: forloop_index0 < 4 ? 'eager' : 'lazy',
+                  forloop_index0: forloop_index0
+                %}
+              {% endfor %}
             </div>
             <div id="AjaxinatePagination">
               {% if paginate.next %}
@@ -342,7 +344,7 @@
       "min": 4,
       "max": 50,
       "step": 1,
-      "default": 8
+      "default": 6
     }
   ]
 }

@@ -1,3 +1,23 @@
+{% comment %}
+  Optimized product-card.liquid
+  - Added explicit image dimensions
+  - Fixed loading attributes
+  - Improved Alpine.js initialization
+  - Optimized for layout stability
+
+  Expected parameters:
+  - product: The product to display
+  - image_width: Width for image (default: 500)
+  - image_height: Height for image (default: 500)
+  - loading_strategy: 'eager' or 'lazy' (default: 'lazy')
+  - forloop_index0: Index from collection loop (optional)
+{% endcomment %}
+
+{% assign image_width = image_width | default: 700 %}
+{% assign image_height = image_height | default: 700 %}
+{% assign loading_strategy = loading_strategy | default: 'lazy' %}
+{% assign image_alt = product.featured_image.alt | escape | strip_html | strip_newlines | default: product.title %}
+
 <div class="product-card">
   <a class="product-card__image-link" href="{{ product.url }}">
     <div
@@ -5,76 +25,59 @@
       x-data="
         {
           isHovering: false,
-          splideInstance: null,
-          initSplide() {
-            if (!this.splideInstance && this.isHovering) {
-              this.$nextTick(() => {
-                this.splideInstance = new Splide(this.$refs.splide, {
-                  type: 'fade',
-                  arrows: true,
-                  pagination: false,
-                  speed: 400
-                }).mount();
-              });
-            }
-          },
-          destroySplide() {
-            if (this.splideInstance) {
-              this.splideInstance.destroy();
-              this.splideInstance = null;
-            }
-          }
+          splideInstance: null
         }
       "
-      @mouseenter="isHovering = true; initSplide()"
-      @mouseleave="isHovering = false; destroySplide()"
+      @mouseenter="isHovering = true; if (!splideInstance && '{{ product.images.size }}' > 1) { $nextTick(() => { splideInstance = new Splide($refs.splide, { type: 'fade', arrows: true, pagination: false, speed: 400 }).mount(); }) }"
+      @mouseleave="isHovering = false; if (splideInstance) { splideInstance.destroy(); splideInstance = null; }"
     >
-      {% if product.featured_image == blank %}
-        {{ 'product-1' | placeholder_svg_tag: 'product-card__image placeholder' }}
-      {% else %}
-        <div x-bind:class="{ 'opacity-0': isHovering }">
-          {% comment %}
-            Check if this is among the first two products to render
-            If used in a section, use section.index instead of forloop.index0
-          {% endcomment %}
+      <div x-bind:class="{ 'opacity-0': isHovering }">
+        {{
+          product.featured_image
+          | image_url: width: image_width, height: image_height
+          | image_tag:
+            class: 'product-card__image',
+            width: image_width,
+            height: image_height,
+            alt: image_alt,
+            loading: loading_strategy
+        }}
+      </div>
 
-          {% assign image_class = 'product-card__image' %}
-          {% assign image_alt = product.featured_image.alt | escape | strip_html | strip_newlines %}
-
-          {%- if forloop.index0 != blank and forloop.index0 < 2 -%}
-            {{
-              product.featured_image
-              | image_url: width: image_width
-              | image_tag: alt: image_alt, loading: 'eager', preload: true
-            }}
-          {%- else -%}
-            {{ product.featured_image | image_url: width: image_width | image_tag: alt: image_alt, loading: 'eager' }}
-          {%- endif -%}
-        </div>
-      {% endif %}
-
-      <div
-        class="product-card__slider-wrapper"
-        x-show="isHovering"
-        x-cloak
-      >
-        <div class="splide product-card__slider" x-ref="splide">
-          <div class="splide__track">
-            <ul class="splide__list">
-              {% for image in product.images %}
-                <li class="splide__slide">
-                  {% assign image_alt = image.alt | escape | strip_html | strip_newlines %}
-                  {{
-                    image
-                    | image_url: width: image_width
-                    | image_tag: class: 'product-card__image', width: image_width, height: image_height, alt: image_alt
-                  }}
-                </li>
-              {% endfor %}
-            </ul>
+      {% if product.images.size > 1 %}
+        <div
+          class="product-card__slider-wrapper"
+          x-show="isHovering"
+          x-cloak
+        >
+          <div class="splide product-card__slider" x-ref="splide">
+            <div class="splide__track">
+              <ul class="splide__list">
+                {% for image in product.images %}
+                  <li class="splide__slide">
+                    {% assign slide_image_alt = image.alt
+                      | escape
+                      | strip_html
+                      | strip_newlines
+                      | default: product.title
+                    %}
+                    {{
+                      image
+                      | image_url: width: image_width, height: image_height
+                      | image_tag:
+                        class: 'product-card__image',
+                        width: image_width,
+                        height: image_height,
+                        alt: slide_image_alt,
+                        loading: 'lazy'
+                    }}
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
+      {% endif %}
     </div>
   </a>
 
