@@ -1,13 +1,18 @@
 {% comment %}
-  Optimized main-collection-products.liquid
-  - Added preload for critical resources
-  - Fixed duplicated CSS rules
-  - Optimized CSS organization
-  - Improved Alpine.js initialization
-  - Structured for better render performance
+  Collection Products
 {% endcomment %}
 
 <script src="{{ 'ajaxinate.min.js' | asset_url }}" defer></script>
+
+{% if collection.products_count > 0 %}
+  {% for product in collection.products limit: 2 %}
+    {{
+      product.featured_image
+      | image_url: width: 700, height: 700, crop: 'center'
+      | image_tag: preload: true, fetchpriority: 'high', loading: 'eager', class: 'hidden', style: 'display: none;'
+    }}
+  {% endfor %}
+{% endif %}
 
 {% if collection.products_count > 0 %}
   <style>
@@ -85,6 +90,7 @@
       overflow: hidden;
     }
 
+    /* Product grid with defined column layout */
     .products-grid {
       display: grid;
       gap: var(--space-xs);
@@ -102,11 +108,13 @@
       grid-template-columns: repeat(4, 1fr);
     }
 
+    /* Product card with stable layout */
     .product-card {
       display: block;
       position: relative;
     }
 
+    /* Critical styles to prevent CLS */
     .product-card__image-link {
       display: block;
       text-decoration: none;
@@ -116,8 +124,9 @@
       position: relative;
       width: 100%;
       height: 0;
-      padding-bottom: 100%;
+      padding-bottom: 100%; /* 1:1 Aspect ratio */
       overflow: hidden;
+      background-color: var(--neutral-200); /* Plain gray background */
     }
 
     .product-card__image {
@@ -131,16 +140,14 @@
       transition: opacity 0.2s ease;
     }
 
-    .product-card__title-link {
-      text-decoration: none;
-      color: inherit;
-    }
-
     .product-card__content {
       position: relative;
       z-index: 0;
+      /* Set stable min-height to reserve space */
+      min-height: 100px;
     }
 
+    /* Slider styles */
     .product-card__slider-wrapper {
       position: absolute;
       top: 0;
@@ -280,14 +287,26 @@
               "
             >
               {% for product in collection.products %}
-                {% assign forloop_index0 = forloop.index0 %}
-                {%
-                  render 'product-card',
+                {% assign loop_index = forloop.index0 %}
+                {% if loop_index < 4 %}
+                  {% assign loading_strategy = 'eager' %}
+                {% else %}
+                  {% assign loading_strategy = 'lazy' %}
+                {% endif %}
+
+                {% if loop_index < 2 %}
+                  {% assign fetch_priority = 'high' %}
+                {% else %}
+                  {% assign fetch_priority = 'auto' %}
+                {% endif %}
+
+                {% render 'product-card',
                   product: product,
                   image_width: 700,
                   image_height: 700,
-                  loading_strategy: forloop_index0 < 4 ? 'eager' : 'lazy',
-                  forloop_index0: forloop_index0
+                  loading_strategy: loading_strategy,
+                  fetch_priority: fetch_priority,
+                  forloop_index0: loop_index
                 %}
               {% endfor %}
             </div>
@@ -303,7 +322,7 @@
   </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    window.addEventListener('load', function () {
       var endlessScroll = new Ajaxinate({
         method: 'scroll',
         container: '#AjaxinateContainer',

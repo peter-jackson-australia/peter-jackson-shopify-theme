@@ -1,46 +1,64 @@
 {% comment %}
-  Optimized product-card.liquid
-  - Added explicit image dimensions
-  - Fixed loading attributes
-  - Improved Alpine.js initialization
-  - Optimized for layout stability
-
-  Expected parameters:
-  - product: The product to display
-  - image_width: Width for image (default: 500)
-  - image_height: Height for image (default: 500)
-  - loading_strategy: 'eager' or 'lazy' (default: 'lazy')
-  - forloop_index0: Index from collection loop (optional)
+  Product Card
 {% endcomment %}
 
 {% assign image_width = image_width | default: 700 %}
 {% assign image_height = image_height | default: 700 %}
 {% assign loading_strategy = loading_strategy | default: 'lazy' %}
+{% assign fetch_priority = fetch_priority | default: 'auto' %}
 {% assign image_alt = product.featured_image.alt | escape | strip_html | strip_newlines | default: product.title %}
 
 <div class="product-card">
   <a class="product-card__image-link" href="{{ product.url }}">
     <div
       class="product-card__image-wrapper"
-      x-data="
-        {
-          isHovering: false,
-          splideInstance: null
-        }
-      "
-      @mouseenter="isHovering = true; if (!splideInstance && '{{ product.images.size }}' > 1) { $nextTick(() => { splideInstance = new Splide($refs.splide, { type: 'fade', arrows: true, pagination: false, speed: 400 }).mount(); }) }"
-      @mouseleave="isHovering = false; if (splideInstance) { splideInstance.destroy(); splideInstance = null; }"
+      {% if product.images.size > 1 %}
+        x-data="
+          {
+            isHovering: false,
+            splideInstance: null,
+            imageLoaded: false
+          }
+        "
+        @mouseenter="
+          isHovering = true;
+          if (!splideInstance && window.Splide) {
+            $nextTick(() => {
+              try {
+                splideInstance = new Splide($refs.splide, {
+                  type: 'fade',
+                  arrows: true,
+                  pagination: false,
+                  speed: 400,
+                  lazyLoad: 'nearby'
+                }).mount();
+              } catch (e) {
+                console.warn('Splide not available yet');
+              }
+            })
+          }
+        "
+        @mouseleave="isHovering = false; if (splideInstance) { splideInstance.destroy(); splideInstance = null; }"
+      {% else %}
+        x-data="{ imageLoaded: false }"
+      {% endif %}
     >
-      <div x-bind:class="{ 'opacity-0': isHovering }">
+      <div
+        {% if product.images.size > 1 %}
+          x-bind:class="{ 'opacity-0': isHovering }"
+        {% endif %}
+      >
         {{
           product.featured_image
-          | image_url: width: image_width, height: image_height
+          | image_url: width: image_width, height: image_height, crop: 'center'
           | image_tag:
             class: 'product-card__image',
             width: image_width,
             height: image_height,
             alt: image_alt,
-            loading: loading_strategy
+            loading: loading_strategy,
+            fetchpriority: fetch_priority,
+            onload: "if(this.closest('.product-card__image-wrapper').__x) this.closest('.product-card__image-wrapper').__x.$data.imageLoaded = true"
         }}
       </div>
 
@@ -63,7 +81,7 @@
                     %}
                     {{
                       image
-                      | image_url: width: image_width, height: image_height
+                      | image_url: width: image_width, height: image_height, crop: 'center'
                       | image_tag:
                         class: 'product-card__image',
                         width: image_width,
