@@ -12,7 +12,9 @@
       {% if associated_collection.id == collection.id %}
         <div class="collection-expandable-content__item">
           <h2>{{ content_entry.heading }}</h2>
-          <div>{{ content_entry.body }}</div>
+          <div>
+            {{ content_entry.body | metafield_tag }}
+          </div>
         </div>
       {% endif %}
     {% endfor %}
