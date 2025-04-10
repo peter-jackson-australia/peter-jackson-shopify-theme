@@ -140,6 +140,24 @@ select {
   color: var(--neutral-600) !important;
 }
 
+.breadcrumb__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3xs); 
+  list-style: none;
+  color: var(--neutral-950);
+}
+
+.breadcrumb__item {
+  position: relative;
+}
+
+.breadcrumb__link {
+  color: var(--neutral-950);
+}
+
 /* Splide */
 
 @keyframes splide-loading {

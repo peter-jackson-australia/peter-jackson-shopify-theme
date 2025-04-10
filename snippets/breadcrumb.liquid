@@ -2,11 +2,15 @@
   assign menu_handle = 'main-menu'
 %}
 
-<section id="breadcrumb" class="section-wrap">
-  <div class="section">
-    <ol aria-label="Breadcrumb" class="flex align-left small-text">
-      <li><a href="/" title="Home">Home</a></li>
+<section id="breadcrumb" class="breadcrumb">
+  <div class="breadcrumb__container">
+    <ol aria-label="Breadcrumb" class="breadcrumb__list small">
       {% if template.name == 'product' %}
+        <li class="breadcrumb__item">
+          <a href="/" title="Home" class="breadcrumb__link">Home</a>
+        </li>
+        <span class="breadcrumb__separator">/</span>
+
         {% assign collection_list = '' %}
         {% for collection in product.collections %}
           {% capture collection_list %}{{ collection_list }}|{{ collection.handle }}{% endcapture %}
@@ -17,9 +21,10 @@
         {% for parent in linklists[menu_handle].links %}
           {% assign parent_url_handle = parent.url | split: '/collections/' | last %}
           {% if collection_list contains parent_url_handle %}
-            <li>
-              <a href="{{ parent.url }}">{{ parent.title }}</a>
+            <li class="breadcrumb__item">
+              <a href="{{ parent.url }}" class="breadcrumb__link">{{ parent.title }}</a>
             </li>
+            <span class="breadcrumb__separator">/</span>
             {% assign trail_found = true %}
             {% break %}
           {% endif %}
@@ -27,12 +32,14 @@
           {% for child in parent.links %}
             {% assign child_url_handle = child.url | split: '/collections/' | last %}
             {% if collection_list contains child_url_handle and trail_found == false %}
-              <li>
-                <a href="{{ parent.url }}">{{ parent.title }}</a>
+              <li class="breadcrumb__item">
+                <a href="{{ parent.url }}" class="breadcrumb__link">{{ parent.title }}</a>
               </li>
-              <li>
-                <a href="{{ child.url }}">{{ child.title }}</a>
+              <span class="breadcrumb__separator">/</span>
+              <li class="breadcrumb__item">
+                <a href="{{ child.url }}" class="breadcrumb__link">{{ child.title }}</a>
               </li>
+              <span class="breadcrumb__separator">/</span>
               {% assign trail_found = true %}
               {% break %}
             {% endif %}
@@ -40,15 +47,18 @@
             {% for grandchild in child.links %}
               {% assign grandchild_url_handle = grandchild.url | split: '/collections/' | last %}
               {% if collection_list contains grandchild_url_handle and trail_found == false %}
-                <li>
-                  <a href="{{ parent.url }}">{{ parent.title }}</a>
+                <li class="breadcrumb__item">
+                  <a href="{{ parent.url }}" class="breadcrumb__link">{{ parent.title }}</a>
                 </li>
-                <li>
-                  <a href="{{ child.url }}">{{ child.title }}</a>
+                <span class="breadcrumb__separator">/</span>
+                <li class="breadcrumb__item">
+                  <a href="{{ child.url }}" class="breadcrumb__link">{{ child.title }}</a>
                 </li>
-                <li>
-                  <a href="{{ grandchild.url }}">{{ grandchild.title }}</a>
+                <span class="breadcrumb__separator">/</span>
+                <li class="breadcrumb__item">
+                  <a href="{{ grandchild.url }}" class="breadcrumb__link">{{ grandchild.title }}</a>
                 </li>
+                <span class="breadcrumb__separator">/</span>
                 {% assign trail_found = true %}
                 {% break %}
               {% endif %}
@@ -59,16 +69,21 @@
             {% endif %}
           {% endfor %}
         {% endfor %}
-        <li aria-current="page">{{ product.title }}</li>
+        <li class="breadcrumb__item breadcrumb__item--current" aria-current="page">{{ product.title }}</li>
 
       {% elsif template.name == 'collection' %}
+        <li class="breadcrumb__item">
+          <a href="/" title="Home" class="breadcrumb__link">Home</a>
+        </li>
+        <span class="breadcrumb__separator">/</span>
+
         {% assign trail_found = false %}
 
         {% for parent in linklists[menu_handle].links %}
           {% assign parent_url_handle = parent.url | split: '/collections/' | last %}
 
           {% if parent_url_handle == collection.handle %}
-            <li aria-current="page">{{ parent.title }}</li>
+            <li class="breadcrumb__item breadcrumb__item--current" aria-current="page">{{ parent.title }}</li>
             {% assign trail_found = true %}
             {% break %}
           {% endif %}
@@ -77,10 +92,11 @@
             {% assign child_url_handle = child.url | split: '/collections/' | last %}
 
             {% if child_url_handle == collection.handle and trail_found == false %}
-              <li>
-                <a href="{{ parent.url }}">{{ parent.title }}</a>
+              <li class="breadcrumb__item">
+                <a href="{{ parent.url }}" class="breadcrumb__link">{{ parent.title }}</a>
               </li>
-              <li aria-current="page">{{ child.title }}</li>
+              <span class="breadcrumb__separator">/</span>
+              <li class="breadcrumb__item breadcrumb__item--current" aria-current="page">{{ child.title }}</li>
               {% assign trail_found = true %}
               {% break %}
             {% endif %}
@@ -89,13 +105,15 @@
               {% assign grandchild_url_handle = grandchild.url | split: '/collections/' | last %}
 
               {% if grandchild_url_handle == collection.handle and trail_found == false %}
-                <li>
-                  <a href="{{ parent.url }}">{{ parent.title }}</a>
+                <li class="breadcrumb__item">
+                  <a href="{{ parent.url }}" class="breadcrumb__link">{{ parent.title }}</a>
                 </li>
-                <li>
-                  <a href="{{ child.url }}">{{ child.title }}</a>
+                <span class="breadcrumb__separator">/</span>
+                <li class="breadcrumb__item">
+                  <a href="{{ child.url }}" class="breadcrumb__link">{{ child.title }}</a>
                 </li>
-                <li aria-current="page">{{ grandchild.title }}</li>
+                <span class="breadcrumb__separator">/</span>
+                <li class="breadcrumb__item breadcrumb__item--current" aria-current="page">{{ grandchild.title }}</li>
                 {% assign trail_found = true %}
                 {% break %}
               {% endif %}
@@ -112,27 +130,53 @@
         {% endfor %}
 
         {% if trail_found == false %}
-          <li><a href="/collections">Collections</a></li>
-          <li aria-current="page">{{ collection.title }}</li>
+          <li class="breadcrumb__item">
+            <a href="/collections" class="breadcrumb__link">Collections</a>
+          </li>
+          <span class="breadcrumb__separator">/</span>
+          <li class="breadcrumb__item breadcrumb__item--current" aria-current="page">{{ collection.title }}</li>
         {% endif %}
 
       {% elsif template.name == 'blog' %}
-        <li aria-current="page">{{ blog.title }}</li>
+        <li class="breadcrumb__item">
+          <a href="/" title="Home" class="breadcrumb__link">Home</a>
+        </li>
+        <span class="breadcrumb__separator">/</span>
+        <li class="breadcrumb__item breadcrumb__item--current" aria-current="page">{{ blog.title }}</li>
 
       {% elsif template.name == 'article' %}
-        <li>
-          <a href="{{ blog.url }}">{{ blog.title }}</a>
+        <li class="breadcrumb__item">
+          <a href="/" title="Home" class="breadcrumb__link">Home</a>
         </li>
-        <li aria-current="page">{{ article.title }}</li>
+        <span class="breadcrumb__separator">/</span>
+        <li class="breadcrumb__item">
+          <a href="{{ blog.url }}" class="breadcrumb__link">{{ blog.title }}</a>
+        </li>
+        <span class="breadcrumb__separator">/</span>
+        <li class="breadcrumb__item breadcrumb__item--current" aria-current="page">{{ article.title }}</li>
 
       {% elsif template.name == 'page' %}
-        <li aria-current="page">{{ page.title }}</li>
+        <li class="breadcrumb__item">
+          <a href="/" title="Home" class="breadcrumb__link">Home</a>
+        </li>
+        <span class="breadcrumb__separator">/</span>
+        <li class="breadcrumb__item breadcrumb__item--current" aria-current="page">{{ page.title }}</li>
 
       {% elsif template.name == 'search' %}
-        <li aria-current="page">{{ search.terms | capitalize | prepend: 'Search: ' }}</li>
+        <li class="breadcrumb__item">
+          <a href="/" title="Home" class="breadcrumb__link">Home</a>
+        </li>
+        <span class="breadcrumb__separator">/</span>
+        <li class="breadcrumb__item breadcrumb__item--current" aria-current="page">
+          {{ search.terms | capitalize | prepend: 'Search: ' }}
+        </li>
 
       {% else %}
-        <li aria-current="page">{{ page_title }}</li>
+        <li class="breadcrumb__item">
+          <a href="/" title="Home" class="breadcrumb__link">Home</a>
+        </li>
+        <span class="breadcrumb__separator">/</span>
+        <li class="breadcrumb__item breadcrumb__item--current" aria-current="page">{{ page_title }}</li>
       {% endif %}
     </ol>
   </div>
