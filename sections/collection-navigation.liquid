@@ -49,6 +49,7 @@
   .collection-navigation__arrow {
     display: inline-flex;
     align-items: center;
+    flex-shrink: 0;
   }
 
   .collection-navigation__arrow--prev {
@@ -61,16 +62,35 @@
   }
 
   @media screen and (max-width: 768px) {
+    .collection-navigation {
+      padding: var(--space-m);
+    }
+
     .collection-navigation__container {
-      flex-direction: column;
-      gap: var(--space-m);
+      gap: var(--space-xs);
     }
 
     .collection-navigation__previous,
     .collection-navigation__current,
     .collection-navigation__next {
-      text-align: center;
-      width: 100%;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .collection-navigation__label,
+    .collection-navigation__link-text,
+    .collection-navigation__current {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .collection-navigation__arrow--prev {
+      margin-right: var(--space-3xs);
+    }
+
+    .collection-navigation__arrow--next {
+      margin-left: var(--space-3xs);
     }
   }
 {% endstylesheet %}
@@ -111,16 +131,20 @@
   endif
 -%}
 
-<section class="collection-navigation" data-section-type="collection-navigation">
+<div class="collection-navigation" data-section-type="collection-navigation">
   <div class="collection-navigation__container">
     <div class="collection-navigation__previous">
       {% if prev_collection %}
-        <span class="collection-navigation__label body--uppercase">Previous Category</span>
-        <a href="{{ prev_collection.url }}" class="collection-navigation__link body--uppercase">
+        <span class="collection-navigation__label body--uppercase">Previous</span>
+        <a
+          href="{{ prev_collection.url }}"
+          class="collection-navigation__link body--uppercase"
+          title="{{ prev_collection.title }}"
+        >
           <span class="collection-navigation__arrow collection-navigation__arrow--prev">
             {% render 'icon-arrow-submit-dark' %}
           </span>
-          {{ prev_collection.title }}
+          <span class="collection-navigation__link-text">{{ prev_collection.title }}</span>
         </a>
       {% endif %}
     </div>
@@ -131,9 +155,13 @@
 
     <div class="collection-navigation__next">
       {% if next_collection %}
-        <span class="collection-navigation__label body--uppercase">Next Category</span>
-        <a href="{{ next_collection.url }}" class="collection-navigation__link body--uppercase">
-          {{ next_collection.title }}
+        <span class="collection-navigation__label body--uppercase">Next</span>
+        <a
+          href="{{ next_collection.url }}"
+          class="collection-navigation__link body--uppercase"
+          title="{{ next_collection.title }}"
+        >
+          <span class="collection-navigation__link-text">{{ next_collection.title }}</span>
           <span class="collection-navigation__arrow collection-navigation__arrow--next">
             {% render 'icon-arrow-submit-dark' %}
           </span>
@@ -141,11 +169,12 @@
       {% endif %}
     </div>
   </div>
-</section>
+</div>
 
 {% schema %}
 {
   "name": "Collection Navigation",
+  "tag": "section",
   "settings": [],
   "presets": [
     {
