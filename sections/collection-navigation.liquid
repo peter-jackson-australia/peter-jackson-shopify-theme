@@ -1,92 +1,11 @@
 {%- comment -%}
   Collection Navigation
-  Displays a navigation row with previous, current, and next collection.
 {%- endcomment -%}
 
-{%- liquid
-  # Get all collections that are published
-  assign all_collections = collections | where: 'published_at', '!=""'
-
-  # Get current collection handle
-  assign current_handle = collection.handle
-
-  # Initialize previous and next collection
-  assign prev_collection = null
-  assign next_collection = null
-
-  # Flag to track when we've found the current collection
-  assign found_current = false
-  assign prev_collection_index = -1
-  assign current_collection_index = -1
-
-  # Loop through all collections to find the current, previous and next
-  for coll in all_collections
-    if found_current
-      assign next_collection = coll
-      break
-    endif
-
-    if coll.handle == current_handle
-      assign found_current = true
-      assign current_collection_index = forloop.index0
-      assign prev_collection_index = forloop.index0 | minus: 1
-
-      # If the previous index is valid, get the previous collection
-      if prev_collection_index >= 0 and prev_collection_index < all_collections.size
-        assign prev_collection = all_collections[prev_collection_index]
-      endif
-    endif
-  endfor
-
-  # Debug output if enabled
-  if section.settings.show_debug
-    echo 'All Collections: ' | append: all_collections | json
-  endif
--%}
-
-<section class="collection-navigation" data-section-type="collection-navigation">
-  <div class="collection-navigation__container">
-    <div class="collection-navigation__previous">
-      {% if prev_collection %}
-        <a href="{{ prev_collection.url }}" class="collection-navigation__link body--uppercase">
-          <span class="collection-navigation__arrow">←</span> {{ prev_collection.title }}
-        </a>
-      {% endif %}
-    </div>
-
-    <div class="collection-navigation__current heading--l">
-      {{ collection.title }}
-    </div>
-
-    <div class="collection-navigation__next">
-      {% if next_collection %}
-        <a href="{{ next_collection.url }}" class="collection-navigation__link body--uppercase">
-          {{ next_collection.title }}
-          <span class="collection-navigation__arrow">→</span>
-        </a>
-      {% endif %}
-    </div>
-  </div>
-
-  {% if section.settings.show_debug %}
-    <div class="collection-navigation__debug">
-      <details>
-        <summary class="body">Debug: Collection Data</summary>
-        <pre class="collection-navigation__debug-content">
-            Current Collection: {{ collection | json }}
-            Previous Collection: {{ prev_collection | json }}
-            Next Collection: {{ next_collection | json }}
-          </pre>
-      </details>
-    </div>
-  {% endif %}
-</section>
-
-<style>
+{% stylesheet %}
   .collection-navigation {
     width: 100%;
     padding: var(--space-l) var(--space-m);
-    border-bottom: 1px solid var(--neutral-200);
   }
 
   .collection-navigation__container {
@@ -94,8 +13,6 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
   }
 
   .collection-navigation__previous,
@@ -117,38 +34,30 @@
     text-align: right;
   }
 
+  .collection-navigation__label {
+    display: block;
+    margin-bottom: var(--space-2xs);
+  }
+
   .collection-navigation__link {
     color: var(--neutral-600);
     text-decoration: none;
-    transition: color 0.3s ease;
     display: inline-flex;
     align-items: center;
   }
 
-  .collection-navigation__link:hover {
-    color: var(--neutral-950);
-  }
-
   .collection-navigation__arrow {
-    display: inline-block;
-    margin: 0 var(--space-2xs);
+    display: inline-flex;
+    align-items: center;
   }
 
-  .collection-navigation__debug {
-    margin-top: var(--space-m);
-    border-top: 1px dashed var(--neutral-200);
-    padding-top: var(--space-m);
+  .collection-navigation__arrow--prev {
+    transform: rotate(180deg);
+    margin-right: var(--space-xs);
   }
 
-  .collection-navigation__debug-content {
-    background-color: var(--neutral-50);
-    padding: var(--space-m);
-    overflow-x: auto;
-    white-space: pre-wrap;
-    font-size: 12px;
-    line-height: 1.4;
-    margin-top: var(--space-xs);
-    border: 1px solid var(--neutral-200);
+  .collection-navigation__arrow--next {
+    margin-left: var(--space-xs);
   }
 
   @media screen and (max-width: 768px) {
@@ -164,20 +73,80 @@
       width: 100%;
     }
   }
-</style>
+{% endstylesheet %}
+
+{%- liquid
+  assign current_handle = collection.handle
+  assign prev_collection = null
+  assign next_collection = null
+  assign non_empty_collection_handles = ''
+
+  for coll in collections
+    if coll.products_count > 0
+      assign non_empty_collection_handles = non_empty_collection_handles | append: coll.handle | append: ','
+    endif
+  endfor
+
+  assign non_empty_collection_handles = non_empty_collection_handles | split: ','
+
+  assign current_index = 0
+  for handle in non_empty_collection_handles
+    if handle == current_handle
+      break
+    endif
+    assign current_index = current_index | plus: 1
+  endfor
+
+  assign prev_index = current_index | minus: 1
+  assign next_index = current_index | plus: 1
+
+  if prev_index >= 0
+    assign prev_handle = non_empty_collection_handles[prev_index]
+    assign prev_collection = collections[prev_handle]
+  endif
+
+  if next_index < non_empty_collection_handles.size
+    assign next_handle = non_empty_collection_handles[next_index]
+    assign next_collection = collections[next_handle]
+  endif
+-%}
+
+<section class="collection-navigation" data-section-type="collection-navigation">
+  <div class="collection-navigation__container">
+    <div class="collection-navigation__previous">
+      {% if prev_collection %}
+        <span class="collection-navigation__label body--uppercase">Previous Category</span>
+        <a href="{{ prev_collection.url }}" class="collection-navigation__link body--uppercase">
+          <span class="collection-navigation__arrow collection-navigation__arrow--prev">
+            {% render 'icon-arrow-submit-dark' %}
+          </span>
+          {{ prev_collection.title }}
+        </a>
+      {% endif %}
+    </div>
+
+    <div class="collection-navigation__current heading--l">
+      {{ collection.title }}
+    </div>
+
+    <div class="collection-navigation__next">
+      {% if next_collection %}
+        <span class="collection-navigation__label body--uppercase">Next Category</span>
+        <a href="{{ next_collection.url }}" class="collection-navigation__link body--uppercase">
+          {{ next_collection.title }}
+          <span class="collection-navigation__arrow collection-navigation__arrow--next">
+            {% render 'icon-arrow-submit-dark' %}
+          </span>
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
 
 {% schema %}
 {
   "name": "Collection Navigation",
-  "settings": [
-    {
-      "type": "checkbox",
-      "id": "show_debug",
-      "label": "Show Debug Information",
-      "default": false,
-      "info": "Display collection debug information (only visible in theme editor)"
-    }
-  ],
+  "settings": [],
   "presets": [
     {
       "name": "Collection Navigation",
