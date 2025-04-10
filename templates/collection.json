@@ -36,6 +36,12 @@
     "collection_content_VBV7xX": {
       "type": "collection-content",
       "settings": {}
+    },
+    "collection_navigation_zFff83": {
+      "type": "collection-navigation",
+      "settings": {
+        "show_debug": true
+      }
     }
   },
   "order": [
@@ -43,6 +49,7 @@
     "details",
     "products",
     "related_content_HfzyTd",
-    "collection_content_VBV7xX"
+    "collection_content_VBV7xX",
+    "collection_navigation_zFff83"
   ]
 }
