@@ -10,12 +10,14 @@
       {% assign associated_collection = content_entry.associated_collection.value %}
 
       {% if associated_collection.id == collection.id %}
-        <div class="collection-expandable-content__item">
-          <h2>{{ content_entry.heading }}</h2>
-          <div>
+        <accordion-element
+          class="collection-expandable-content__item body--bold"
+          data-title="{{ content_entry.heading }}"
+        >
+          <div class="body">
             {{ content_entry.body | metafield_tag }}
           </div>
-        </div>
+        </accordion-element>
       {% endif %}
     {% endfor %}
   {% endif %}
@@ -24,6 +26,7 @@
 {% schema %}
 {
   "name": "Collection Content",
+  "tag": "section",
   "settings": [],
   "presets": [
     {
