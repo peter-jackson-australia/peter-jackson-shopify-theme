@@ -1,6 +1,5 @@
 Collection page:
-Collection navigator
-campaign callout inserter (Just get a box to show anywhere in the grid for now)
+Campaign callout inserter (Just get a box to show anywhere in the grid for now)
 Featured item slider (Just get a box to show anywhere in the grid for now)
 Filtering options (Just get it to work) 
 
