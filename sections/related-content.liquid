@@ -136,13 +136,6 @@
     text-decoration: none;
   }
 
-  .related-articles__post-excerpt {
-    color: var(--neutral-600);
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
   .related-articles__post-link {
     display: flex;
     gap: var(--space-xs);
@@ -264,19 +257,11 @@
                 <a href="{{ article.url }}">{{ article.title }}</a>
               </h3>
 
-              {% if article.excerpt.size > 0 %}
-                <div class="related-articles__post-excerpt body">{{ article.excerpt }}</div>
-              {% elsif article.content.size > 0 %}
-                <div class="related-articles__post-excerpt body">
-                  {{ article.content | strip_html | truncatewords: 30 }}
-                </div>
-              {% endif %}
               <a href="{{ article.url }}" class="related-articles__post-link-container">
                 <span class="related-articles__post-link body">Read Article {% render 'icon-arrow-submit-dark' %}</span>
               </a>
             </div>
           </article>
-
           {% assign related_count = related_count | plus: 1 %}
           {% if related_count >= 4 %}
             {% break %}
