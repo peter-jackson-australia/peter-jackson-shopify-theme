@@ -32,12 +32,17 @@
         "cta_link": "shopify://blogs/the-jackson-journal",
         "cta_text": "View All Articles"
       }
+    },
+    "collection_content_VBV7xX": {
+      "type": "collection-content",
+      "settings": {}
     }
   },
   "order": [
     "collection_header_XU4U4W",
     "details",
     "products",
-    "related_content_HfzyTd"
+    "related_content_HfzyTd",
+    "collection_content_VBV7xX"
   ]
 }
