@@ -1,0 +1,32 @@
+{% comment %}
+  Collection Expandable Content Section
+{% endcomment %}
+
+<div class="collection-expandable-content">
+  {% assign collection_expandable_content = collection.metafields.custom.collection_expandable_content.value %}
+
+  {% if collection_expandable_content %}
+    {% for content_entry in collection_expandable_content %}
+      {% assign associated_collection = content_entry.associated_collection.value %}
+
+      {% if associated_collection.id == collection.id %}
+        <div class="collection-expandable-content__item">
+          <h2>{{ content_entry.heading }}</h2>
+          <div>{{ content_entry.body }}</div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Collection Content",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Collection Expandable Content"
+    }
+  ]
+}
+{% endschema %}
