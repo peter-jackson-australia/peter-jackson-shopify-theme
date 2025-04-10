@@ -1,0 +1,188 @@
+{%- comment -%}
+  Collection Navigation
+  Displays a navigation row with previous, current, and next collection.
+{%- endcomment -%}
+
+{%- liquid
+  # Get all collections that are published
+  assign all_collections = collections | where: 'published_at', '!=""'
+
+  # Get current collection handle
+  assign current_handle = collection.handle
+
+  # Initialize previous and next collection
+  assign prev_collection = null
+  assign next_collection = null
+
+  # Flag to track when we've found the current collection
+  assign found_current = false
+  assign prev_collection_index = -1
+  assign current_collection_index = -1
+
+  # Loop through all collections to find the current, previous and next
+  for coll in all_collections
+    if found_current
+      assign next_collection = coll
+      break
+    endif
+
+    if coll.handle == current_handle
+      assign found_current = true
+      assign current_collection_index = forloop.index0
+      assign prev_collection_index = forloop.index0 | minus: 1
+
+      # If the previous index is valid, get the previous collection
+      if prev_collection_index >= 0 and prev_collection_index < all_collections.size
+        assign prev_collection = all_collections[prev_collection_index]
+      endif
+    endif
+  endfor
+
+  # Debug output if enabled
+  if section.settings.show_debug
+    echo 'All Collections: ' | append: all_collections | json
+  endif
+-%}
+
+<section class="collection-navigation" data-section-type="collection-navigation">
+  <div class="collection-navigation__container">
+    <div class="collection-navigation__previous">
+      {% if prev_collection %}
+        <a href="{{ prev_collection.url }}" class="collection-navigation__link body--uppercase">
+          <span class="collection-navigation__arrow">←</span> {{ prev_collection.title }}
+        </a>
+      {% endif %}
+    </div>
+
+    <div class="collection-navigation__current heading--l">
+      {{ collection.title }}
+    </div>
+
+    <div class="collection-navigation__next">
+      {% if next_collection %}
+        <a href="{{ next_collection.url }}" class="collection-navigation__link body--uppercase">
+          {{ next_collection.title }}
+          <span class="collection-navigation__arrow">→</span>
+        </a>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if section.settings.show_debug %}
+    <div class="collection-navigation__debug">
+      <details>
+        <summary class="body">Debug: Collection Data</summary>
+        <pre class="collection-navigation__debug-content">
+            Current Collection: {{ collection | json }}
+            Previous Collection: {{ prev_collection | json }}
+            Next Collection: {{ next_collection | json }}
+          </pre>
+      </details>
+    </div>
+  {% endif %}
+</section>
+
+<style>
+  .collection-navigation {
+    width: 100%;
+    padding: var(--space-l) var(--space-m);
+    border-bottom: 1px solid var(--neutral-200);
+  }
+
+  .collection-navigation__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .collection-navigation__previous,
+  .collection-navigation__next {
+    flex: 1;
+  }
+
+  .collection-navigation__previous {
+    text-align: left;
+  }
+
+  .collection-navigation__current {
+    flex: 1;
+    text-align: center;
+    color: var(--neutral-950);
+  }
+
+  .collection-navigation__next {
+    text-align: right;
+  }
+
+  .collection-navigation__link {
+    color: var(--neutral-600);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .collection-navigation__link:hover {
+    color: var(--neutral-950);
+  }
+
+  .collection-navigation__arrow {
+    display: inline-block;
+    margin: 0 var(--space-2xs);
+  }
+
+  .collection-navigation__debug {
+    margin-top: var(--space-m);
+    border-top: 1px dashed var(--neutral-200);
+    padding-top: var(--space-m);
+  }
+
+  .collection-navigation__debug-content {
+    background-color: var(--neutral-50);
+    padding: var(--space-m);
+    overflow-x: auto;
+    white-space: pre-wrap;
+    font-size: 12px;
+    line-height: 1.4;
+    margin-top: var(--space-xs);
+    border: 1px solid var(--neutral-200);
+  }
+
+  @media screen and (max-width: 768px) {
+    .collection-navigation__container {
+      flex-direction: column;
+      gap: var(--space-m);
+    }
+
+    .collection-navigation__previous,
+    .collection-navigation__current,
+    .collection-navigation__next {
+      text-align: center;
+      width: 100%;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Collection Navigation",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_debug",
+      "label": "Show Debug Information",
+      "default": false,
+      "info": "Display collection debug information (only visible in theme editor)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Navigation",
+      "category": "Collection"
+    }
+  ]
+}
+{% endschema %}
