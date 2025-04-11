@@ -4,6 +4,7 @@ Sidebar drawer conflicting with main menu
 random image flashes on collection page first load 
 
 Styling 
+Loading more products styling
 Make it fast (over 90) 
 
 /////////////////////////////////////////////////////

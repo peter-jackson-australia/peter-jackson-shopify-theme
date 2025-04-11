@@ -287,7 +287,6 @@
       endif
 
       assign original_limit = section.settings.limit | plus: 0
-      assign adjusted_limit = original_limit
 
       assign grid_position = 3
       if has_grid_content and metaobject_raw.grid_position != blank
@@ -310,22 +309,6 @@
         if actual_position < 1
           assign actual_position = 1
         endif
-      endif
-
-      assign should_adjust_first_page = false
-      if has_grid_content
-        if paginate.current_page == 1
-          assign should_adjust_first_page = true
-        endif
-      endif
-
-      if should_adjust_first_page
-        assign first_page_limit = original_limit | minus: 1
-        if first_page_limit < 1
-          assign first_page_limit = 1
-        endif
-      else
-        assign first_page_limit = original_limit
       endif
     %}
     {% paginate collection.products by original_limit %}
@@ -364,17 +347,6 @@
             {% assign grid_content_span = 2 %}
             {% if paginate.current_page == 1 and has_grid_content %}
               {% assign products_to_show = products_to_show | minus: grid_content_span %}
-              {% if expandedGrid %}
-                {% assign remainder = products_to_show | modulo: 4 %}
-                {% if remainder != 0 %}
-                  {% assign products_to_show = products_to_show | minus: remainder %}
-                {% endif %}
-              {% else %}
-                {% assign remainder = products_to_show | modulo: 2 %}
-                {% if remainder != 0 %}
-                  {% assign products_to_show = products_to_show | minus: remainder %}
-                {% endif %}
-              {% endif %}
               {% if products_to_show < 1 %}
                 {% assign products_to_show = 1 %}
               {% endif %}
@@ -414,6 +386,8 @@
                     {% if metaobject_raw.description != blank %}
                       <div class="grid-content-description">{{ metaobject_raw.description }}</div>
                     {% endif %}
+
+                    {% if metaobject_raw.link != blank %}{{ metaobject_raw.link | metafield_tag }}{% endif %}
 
                     {% if metaobject_raw.link != blank %}
                       <a href="{{ metaobject_raw.link.url }}" class="btn grid-content-button">
