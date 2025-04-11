@@ -379,21 +379,11 @@
                       <p class="grid-content-leading-text">{{ metaobject_raw.leading_text }}</p>
                     {% endif %}
 
-                    {% if metaobject_raw.header != blank %}
-                      <h2 class="grid-content-header">{{ metaobject_raw.header }}</h2>
-                    {% endif %}
+                    <h2 class="grid-content-header">{{ metaobject_raw.header }}</h2>
 
-                    {% if metaobject_raw.description != blank %}
-                      <div class="grid-content-description">{{ metaobject_raw.description }}</div>
-                    {% endif %}
+                    <div class="grid-content-description">{{ metaobject_raw.description }}</div>
 
                     {% if metaobject_raw.link != blank %}{{ metaobject_raw.link | metafield_tag }}{% endif %}
-
-                    {% if metaobject_raw.link != blank %}
-                      <a href="{{ metaobject_raw.link.url }}" class="btn grid-content-button">
-                        {{- metaobject_raw.link.text -}}
-                      </a>
-                    {% endif %}
                   </div>
                 </div>
                 {% assign inserted = true %}
@@ -425,17 +415,9 @@
                   {% if metaobject_raw.leading_text != blank %}
                     <p class="grid-content-leading-text">{{ metaobject_raw.leading_text }}</p>
                   {% endif %}
-                  {% if metaobject_raw.header != blank %}
-                    <h2 class="grid-content-header">{{ metaobject_raw.header }}</h2>
-                  {% endif %}
-                  {% if metaobject_raw.description != blank %}
-                    <div class="grid-content-description">{{ metaobject_raw.description }}</div>
-                  {% endif %}
-                  {% if metaobject_raw.link != blank %}
-                    <a href="{{ metaobject_raw.link.url }}" class="btn grid-content-button">
-                      {{- metaobject_raw.link.text -}}
-                    </a>
-                  {% endif %}
+                  <h2 class="grid-content-header">{{ metaobject_raw.header }}</h2>
+                  <div class="grid-content-description">{{ metaobject_raw.description }}</div>
+                  {% if metaobject_raw.link != blank %}{{ metaobject_raw.link | metafield_tag }}{% endif %}
                 </div>
               </div>
             {% endif %}
