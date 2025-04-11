@@ -165,6 +165,7 @@
   .grid-content-item {
     background-color: #f0f0f0;
     padding: var(--space-m);
+    grid-column: span 2;
   }
 
   @media (max-width: 768px) {
@@ -178,6 +179,11 @@
 
     .products-grid--cols-4 {
       grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* On single column layouts, make content full width */
+    .products-grid--cols-2 .grid-content-item {
+      grid-column: span 1;
     }
   }
 {% endstylesheet %}
@@ -215,7 +221,54 @@
       </aside>
     </div>
 
-    {% paginate collection.products by section.settings.limit %}
+    {% comment %}
+      First determine if we have grid content to show and prepare variables
+      before doing pagination, so we can modify the pagination limit
+    {% endcomment %}
+    {% liquid
+      assign has_grid_content = false
+      if collection.metafields.custom.collection_grid_content != blank
+        assign has_grid_content = true
+        assign metaobject_raw = collection.metafields.custom.collection_grid_content.value
+      endif
+
+      assign original_limit = section.settings.limit | plus: 0
+      assign adjusted_limit = original_limit
+
+      assign grid_position = 3
+      if has_grid_content and metaobject_raw.grid_position != blank
+        assign grid_position = metaobject_raw.grid_position | plus: 0
+      endif
+
+      assign actual_position = grid_position
+
+      if grid_position > original_limit
+        assign actual_position = original_limit
+      endif
+
+      if actual_position < 1
+        assign actual_position = 1
+      endif
+
+      assign should_adjust_first_page = false
+      if has_grid_content
+        if paginate.current_page == 1
+          assign should_adjust_first_page = true
+        endif
+      endif
+
+      if should_adjust_first_page
+        assign first_page_limit = original_limit | minus: 1
+        if first_page_limit < 1
+          assign first_page_limit = 1
+        endif
+      else
+        assign first_page_limit = original_limit
+      endif
+    %}
+
+    {% comment %} Use the adjusted limit for the first page to account for the content block {% endcomment %}
+    {% paginate collection.products by original_limit %}
       <div>
         <div class="section">
           <div class="collection-controls">
@@ -236,15 +289,7 @@
           </div>
 
           {% comment %} Debug info section - will display metafield structure {% endcomment %}
-          {% liquid
-            assign has_grid_content = false
-            if collection.metafields.custom.collection_grid_content != blank
-              assign has_grid_content = true
-              assign metaobject_raw = collection.metafields.custom.collection_grid_content.value
-            endif
-          %}
-
-          <div style="background-color: #ffe0e0; padding: 10px; margin-bottom: 20px; border: 1px solid #ff0000;">
+          <div style="background-color: #ffe0e0; padding: 10px; margin-bottom: 20px; border: 1px solid #ff0000; max-width: 80vw;">
             <h3>Debug Information:</h3>
             <p>Metafield exists: {{ has_grid_content }}</p>
             {% if has_grid_content %}
@@ -269,33 +314,21 @@
             {% endif %}
           </div>
 
-          {% comment %} Set up variables for grid content insertion {% endcomment %}
-          {% assign grid_position = 3 %}
-          {% comment %} Default fallback position {% endcomment %}
-
-          {% if has_grid_content and metaobject_raw.grid_position != blank %}
-            {% assign grid_position = metaobject_raw.grid_position | plus: 0 %}
+          {% comment %} Flag to track if we should show content (only on first page) {% endcomment %}
+          {% assign show_content = false %}
+          {% if paginate.current_page == 1 and has_grid_content %}
+            {% assign show_content = true %}
           {% endif %}
 
-          {% assign actual_position = grid_position %}
-
-          {% comment %} Adjust position if it exceeds the products count {% endcomment %}
-          {% if grid_position > paginate.items %}
-            {% assign actual_position = paginate.items %}
-          {% endif %}
-
-          {% comment %} Ensure position is at least 1 {% endcomment %}
-          {% if actual_position < 1 %}
-            {% assign actual_position = 1 %}
-          {% endif %}
-
-          {% comment %} Additional debug info about positions {% endcomment %}
+          {% comment %} Additional debug info about positions and settings {% endcomment %}
           <div style="background-color: #e0f0ff; padding: 10px; margin-bottom: 20px; border: 1px solid #0000ff;">
             <h3>Position Information:</h3>
-            <p>Products in paginate: {{ paginate.items }}</p>
-            <p>Desired position: {{ grid_position }}</p>
+            <p>Products to show before loading more: {{ section.settings.limit }}</p>
+            <p>Total products: {{ paginate.items }}</p>
+            <p>Selected grid position for content: {{ grid_position }}</p>
             <p>Actual position: {{ actual_position }}</p>
-            <p>Products count: {{ collection.products.size }}</p>
+            <p>Show content: {{ show_content }}</p>
+            <p>Grid View: <span x-text="expandedGrid ? 'Expanded (4 columns)' : 'Compact (2 columns)'"></span></p>
           </div>
 
           <div
@@ -310,12 +343,47 @@
           >
             {% comment %} Loop through products and insert the content at the specified position {% endcomment %}
             {% assign inserted = false %}
+            {% assign products_shown = 0 %}
+
+            {% comment %}
+              Calculate how many products to show on this page to ensure even rows
+              For the first page, we need to account for the content block which spans 2 columns
+              in expanded view (4 columns) and compact view (2 columns)
+            {% endcomment %}
+            {% assign products_to_show = original_limit %}
+            {% assign grid_content_span = 2 %}
+            {% comment %} Content spans 2 columns by default {% endcomment %}
+
+            {% if paginate.current_page == 1 and has_grid_content %}
+              {% comment %} Adjust for the grid content taking up space {% endcomment %}
+              {% assign products_to_show = products_to_show | minus: grid_content_span %}
+
+              {% comment %} Ensure we maintain even rows based on column count {% endcomment %}
+              {% if expandedGrid %}
+                {% comment %} For 4-column layout, ensure multiple of 4 {% endcomment %}
+                {% assign remainder = products_to_show | modulo: 4 %}
+                {% if remainder != 0 %}
+                  {% assign products_to_show = products_to_show | minus: remainder %}
+                {% endif %}
+              {% else %}
+                {% comment %} For 2-column layout, ensure multiple of 2 {% endcomment %}
+                {% assign remainder = products_to_show | modulo: 2 %}
+                {% if remainder != 0 %}
+                  {% assign products_to_show = products_to_show | minus: remainder %}
+                {% endif %}
+              {% endif %}
+
+              {% comment %} Ensure we always show at least 1 product {% endcomment %}
+              {% if products_to_show < 1 %}
+                {% assign products_to_show = 1 %}
+              {% endif %}
+            {% endif %}
 
             {% for product in collection.products %}
               {% assign current_position = forloop.index %}
 
-              {% comment %} Insert grid content at the specified position {% endcomment %}
-              {% if current_position == actual_position and inserted == false and has_grid_content %}
+              {% comment %} Insert grid content at the specified position ONLY on first page {% endcomment %}
+              {% if current_position == actual_position and inserted == false and show_content %}
                 <div class="grid-content-item" style="background-color: #cccccc; padding: 20px; text-align: center;">
                   <p style="font-size: 12px; margin-bottom: 4px;">Position: {{ current_position }}</p>
 
@@ -350,11 +418,20 @@
                 {% assign inserted = true %}
               {% endif %}
 
-              {% render 'product-card', product: product, image_width: 700, image_height: 700 %}
+              {% comment %} Only render product if not reached the limit for this page {% endcomment %}
+              {% if products_shown < products_to_show or paginate.current_page > 1 %}
+                {% render 'product-card', product: product, image_width: 700, image_height: 700 %}
+                {% assign products_shown = products_shown | plus: 1 %}
+              {% endif %}
+
+              {% comment %} If we hit limit on first page, stop rendering more products {% endcomment %}
+              {% if paginate.current_page == 1 and products_shown >= products_to_show %}
+                {% comment %} Stop rendering more products on this page {% endcomment %}
+              {% endif %}
             {% endfor %}
 
-            {% comment %} If position is after all products, append it at the end {% endcomment %}
-            {% if inserted == false and has_grid_content and paginate.current_page == 1 %}
+            {% comment %} If position is after all products on first page and content wasn't inserted, append it at the end {% endcomment %}
+            {% if inserted == false and show_content %}
               <div class="grid-content-item" style="background-color: #cccccc; padding: 20px; text-align: center;">
                 <p style="font-size: 12px; margin-bottom: 4px;">Position: After all products</p>
 
