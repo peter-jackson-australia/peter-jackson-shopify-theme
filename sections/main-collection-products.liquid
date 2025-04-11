@@ -250,6 +250,18 @@
         assign actual_position = 1
       endif
 
+      # Ensure position is odd after bounds checking
+      assign is_even = actual_position | modulo: 2
+      if is_even == 0
+        # If position is even, subtract 1 to make it odd
+        assign actual_position = actual_position | minus: 1
+
+        # Edge case: if we went below 1, set to 1
+        if actual_position < 1
+          assign actual_position = 1
+        endif
+      endif
+
       assign should_adjust_first_page = false
       if has_grid_content
         if paginate.current_page == 1
@@ -326,7 +338,7 @@
             <p>Products to show before loading more: {{ section.settings.limit }}</p>
             <p>Total products: {{ paginate.items }}</p>
             <p>Selected grid position for content: {{ grid_position }}</p>
-            <p>Actual position: {{ actual_position }}</p>
+            <p>Actual position (adjusted to odd): {{ actual_position }}</p>
             <p>Show content: {{ show_content }}</p>
             <p>Grid View: <span x-text="expandedGrid ? 'Expanded (4 columns)' : 'Compact (2 columns)'"></span></p>
           </div>
