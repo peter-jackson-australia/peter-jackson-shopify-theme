@@ -188,6 +188,12 @@
   }
 {% endstylesheet %}
 
+{% comment %}
+  Collection Products with Grid Content Insert
+{% endcomment %}
+
+<script src="{{ 'ajaxinate.min.js' | asset_url }}" defer></script>
+
 <div
   id="{{ section.id }}"
   class="section-wrap"
@@ -320,7 +326,22 @@
                   {% if metaobject_raw.link != blank %}{{ metaobject_raw.link | metafield_tag }}{% endif %}
                 </li>
                 <li>Image Or Video Reference: {{ metaobject_raw.image_or_video }}</li>
-                <li>Image Or Video URL: {{ metaobject_raw.image_or_video | image_url }}</li>
+                <li>
+                  Media Type:
+                  {% if metaobject_raw.image_or_video contains '/Video/' %}
+                    Video
+                  {% else %}
+                    Image
+                  {% endif %}
+                </li>
+                <li>
+                  Media URL:
+                  {% if metaobject_raw.image_or_video contains '/Video/' %}
+                    {{ metaobject_raw.image_or_video | video_url }}
+                  {% else %}
+                    {{ metaobject_raw.image_or_video | image_url }}
+                  {% endif %}
+                </li>
                 <li>Grid Position: {{ metaobject_raw.grid_position }}</li>
               </ul>
             {% endif %}
@@ -415,6 +436,23 @@
                     <div>{{ metaobject_raw.description }}</div>
                   {% endif %}
 
+                  {% if metaobject_raw.image_or_video != blank %}
+                    <div class="grid-content-media" style="margin: 15px 0;">
+                      {% if metaobject_raw.image_or_video contains '/Video/' %}
+                        <video controls style="max-width: 100%; height: auto;">
+                          <source src="{{ metaobject_raw.image_or_video | video_url }}" type="video/mp4">
+                          Your browser does not support the video tag.
+                        </video>
+                      {% else %}
+                        <img
+                          src="{{ metaobject_raw.image_or_video | image_url: width: 800 }}"
+                          alt="{{ metaobject_raw.header }}"
+                          style="max-width: 100%; height: auto;"
+                        >
+                      {% endif %}
+                    </div>
+                  {% endif %}
+
                   {% if metaobject_raw.link != blank %}
                     <p style="margin-top: 15px;">
                       <a
@@ -461,6 +499,23 @@
 
                 {% if metaobject_raw.description != blank %}
                   <div>{{ metaobject_raw.description }}</div>
+                {% endif %}
+
+                {% if metaobject_raw.image_or_video != blank %}
+                  <div class="grid-content-media" style="margin: 15px 0;">
+                    {% if metaobject_raw.image_or_video contains '/Video/' %}
+                      <video controls style="max-width: 100%; height: auto;">
+                        <source src="{{ metaobject_raw.image_or_video | video_url }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>
+                    {% else %}
+                      <img
+                        src="{{ metaobject_raw.image_or_video | image_url: width: 800 }}"
+                        alt="{{ metaobject_raw.header }}"
+                        style="max-width: 100%; height: auto;"
+                      >
+                    {% endif %}
+                  </div>
                 {% endif %}
 
                 {% if metaobject_raw.link != blank %}
