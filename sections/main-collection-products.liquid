@@ -161,11 +161,71 @@
     right: 0.5rem;
   }
 
-  /* Simple styles for the grid content item */
   .grid-content-item {
-    background-color: #f0f0f0;
+    position: relative;
+    overflow: hidden;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding: var(--space-m);
+    min-height: 350px;
     grid-column: span 2;
+  }
+
+  .grid-content-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .image-background {
+    background-size: cover;
+    background-position: center;
+  }
+
+  .video-background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .video-background video {
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    position: absolute;
+  }
+
+  .grid-content-overlay {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 80%;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: var(--space-m);
+  }
+
+  .grid-content-leading-text {
+    font-size: 0.875rem;
+    margin-bottom: var(--space-xs);
+  }
+
+  .grid-content-header {
+    margin-bottom: var(--space-s);
+  }
+
+  .grid-content-description {
+    margin-bottom: var(--space-m);
+  }
+
+  .grid-content-button {
+    display: inline-block;
+    margin-top: var(--space-s);
   }
 
   @media (max-width: 768px) {
@@ -181,18 +241,11 @@
       grid-template-columns: repeat(2, 1fr);
     }
 
-    /* On single column layouts, make content full width */
     .products-grid--cols-2 .grid-content-item {
       grid-column: span 1;
     }
   }
 {% endstylesheet %}
-
-{% comment %}
-  Collection Products with Grid Content Insert
-{% endcomment %}
-
-<script src="{{ 'ajaxinate.min.js' | asset_url }}" defer></script>
 
 <div
   id="{{ section.id }}"
@@ -226,11 +279,6 @@
         {% render 'collection-filters' %}
       </aside>
     </div>
-
-    {% comment %}
-      First determine if we have grid content to show and prepare variables
-      before doing pagination, so we can modify the pagination limit
-    {% endcomment %}
     {% liquid
       assign has_grid_content = false
       if collection.metafields.custom.collection_grid_content != blank
@@ -256,13 +304,9 @@
         assign actual_position = 1
       endif
 
-      # Ensure position is odd after bounds checking
       assign is_even = actual_position | modulo: 2
       if is_even == 0
-        # If position is even, subtract 1 to make it odd
         assign actual_position = actual_position | minus: 1
-
-        # Edge case: if we went below 1, set to 1
         if actual_position < 1
           assign actual_position = 1
         endif
@@ -284,8 +328,6 @@
         assign first_page_limit = original_limit
       endif
     %}
-
-    {% comment %} Use the adjusted limit for the first page to account for the content block {% endcomment %}
     {% paginate collection.products by original_limit %}
       <div>
         <div class="section">
@@ -306,64 +348,6 @@
             </div>
           </div>
 
-          {% comment %} Debug info section - will display metafield structure {% endcomment %}
-          <div style="background-color: #ffe0e0; padding: 10px; margin-bottom: 20px; border: 1px solid #ff0000; max-width: 80vw;">
-            <h3>Debug Information:</h3>
-            <p>Metafield exists: {{ has_grid_content }}</p>
-            {% if has_grid_content %}
-              <p>Metaobject type: {{ collection.metafields.custom.collection_grid_content.type }}</p>
-              <p>Metaobject reference:</p>
-              <pre style="background: #f5f5f5; padding: 10px; overflow-x: auto;">{{ metaobject_raw | json }}</pre>
-
-              <p>Accessing as parsed JSON:</p>
-              <ul>
-                <li>Identifier: {{ metaobject_raw.identifier }}</li>
-                <li>Leading Text: {{ metaobject_raw.leading_text }}</li>
-                <li>Header: {{ metaobject_raw.header }}</li>
-                <li>Description: {{ metaobject_raw.description }}</li>
-                <li>
-                  Link:
-                  {% if metaobject_raw.link != blank %}{{ metaobject_raw.link | metafield_tag }}{% endif %}
-                </li>
-                <li>Image Or Video Reference: {{ metaobject_raw.image_or_video }}</li>
-                <li>
-                  Media Type:
-                  {% if metaobject_raw.image_or_video contains '/Video/' %}
-                    Video
-                  {% else %}
-                    Image
-                  {% endif %}
-                </li>
-                <li>
-                  Media URL:
-                  {% if metaobject_raw.image_or_video contains '/Video/' %}
-                    {{ metaobject_raw.image_or_video | video_url }}
-                  {% else %}
-                    {{ metaobject_raw.image_or_video | image_url }}
-                  {% endif %}
-                </li>
-                <li>Grid Position: {{ metaobject_raw.grid_position }}</li>
-              </ul>
-            {% endif %}
-          </div>
-
-          {% comment %} Flag to track if we should show content (only on first page) {% endcomment %}
-          {% assign show_content = false %}
-          {% if paginate.current_page == 1 and has_grid_content %}
-            {% assign show_content = true %}
-          {% endif %}
-
-          {% comment %} Additional debug info about positions and settings {% endcomment %}
-          <div style="background-color: #e0f0ff; padding: 10px; margin-bottom: 20px; border: 1px solid #0000ff;">
-            <h3>Position Information:</h3>
-            <p>Products to show before loading more: {{ section.settings.limit }}</p>
-            <p>Total products: {{ paginate.items }}</p>
-            <p>Selected grid position for content: {{ grid_position }}</p>
-            <p>Actual position (adjusted to odd): {{ actual_position }}</p>
-            <p>Show content: {{ show_content }}</p>
-            <p>Grid View: <span x-text="expandedGrid ? 'Expanded (4 columns)' : 'Compact (2 columns)'"></span></p>
-          </div>
-
           <div
             id="AjaxinateContainer"
             class="products-grid"
@@ -374,161 +358,111 @@
               }
             "
           >
-            {% comment %} Loop through products and insert the content at the specified position {% endcomment %}
             {% assign inserted = false %}
             {% assign products_shown = 0 %}
-
-            {% comment %}
-              Calculate how many products to show on this page to ensure even rows
-              For the first page, we need to account for the content block which spans 2 columns
-              in expanded view (4 columns) and compact view (2 columns)
-            {% endcomment %}
             {% assign products_to_show = original_limit %}
             {% assign grid_content_span = 2 %}
-            {% comment %} Content spans 2 columns by default {% endcomment %}
-
             {% if paginate.current_page == 1 and has_grid_content %}
-              {% comment %} Adjust for the grid content taking up space {% endcomment %}
               {% assign products_to_show = products_to_show | minus: grid_content_span %}
-
-              {% comment %} Ensure we maintain even rows based on column count {% endcomment %}
               {% if expandedGrid %}
-                {% comment %} For 4-column layout, ensure multiple of 4 {% endcomment %}
                 {% assign remainder = products_to_show | modulo: 4 %}
                 {% if remainder != 0 %}
                   {% assign products_to_show = products_to_show | minus: remainder %}
                 {% endif %}
               {% else %}
-                {% comment %} For 2-column layout, ensure multiple of 2 {% endcomment %}
                 {% assign remainder = products_to_show | modulo: 2 %}
                 {% if remainder != 0 %}
                   {% assign products_to_show = products_to_show | minus: remainder %}
                 {% endif %}
               {% endif %}
-
-              {% comment %} Ensure we always show at least 1 product {% endcomment %}
               {% if products_to_show < 1 %}
                 {% assign products_to_show = 1 %}
               {% endif %}
             {% endif %}
-
             {% for product in collection.products %}
               {% assign current_position = forloop.index %}
-
-              {% comment %} Insert grid content at the specified position ONLY on first page {% endcomment %}
-              {% if current_position == actual_position and inserted == false and show_content %}
-                <div class="grid-content-item" style="background-color: #cccccc; padding: 20px; text-align: center;">
-                  <p style="font-size: 12px; margin-bottom: 4px;">Position: {{ current_position }}</p>
-
-                  {% if metaobject_raw.leading_text != blank %}
-                    <p>
-                      <strong>{{ metaobject_raw.leading_text }}</strong>
-                    </p>
-                  {% endif %}
-
-                  {% if metaobject_raw.header != blank %}
-                    <h2>{{ metaobject_raw.header }}</h2>
-                  {% else %}
-                    <h2>TEST CONTENT INSERTED HERE</h2>
-                  {% endif %}
-
-                  {% if metaobject_raw.description != blank %}
-                    <div>{{ metaobject_raw.description }}</div>
-                  {% endif %}
-
+              {% if current_position == actual_position
+                and inserted == false
+                and paginate.current_page == 1
+                and has_grid_content
+              %}
+                <div class="grid-content-item">
                   {% if metaobject_raw.image_or_video != blank %}
-                    <div class="grid-content-media" style="margin: 15px 0;">
-                      {% if metaobject_raw.image_or_video contains '/Video/' %}
-                        <video controls style="max-width: 100%; height: auto;">
-                          <source src="{{ metaobject_raw.image_or_video | video_url }}" type="video/mp4">
-                          Your browser does not support the video tag.
+                    {% if metaobject_raw.image_or_video.value.media_type == 'video' %}
+                      <div class="grid-content-background video-background">
+                        <video autoplay muted loop playsinline>
+                          <source src="{{ metaobject_raw.image_or_video | file_url }}" type="video/mp4">
                         </video>
-                      {% else %}
-                        <img
-                          src="{{ metaobject_raw.image_or_video | image_url: width: 800 }}"
-                          alt="{{ metaobject_raw.header }}"
-                          style="max-width: 100%; height: auto;"
-                        >
-                      {% endif %}
-                    </div>
+                      </div>
+                    {% else %}
+                      <div
+                        class="grid-content-background image-background"
+                        style="background-image: url('{{ metaobject_raw.image_or_video | image_url: width: 1200 }}');"
+                      ></div>
+                    {% endif %}
                   {% endif %}
 
-                  {% if metaobject_raw.link != blank %}
-                    <p style="margin-top: 15px;">
-                      <a
-                        href="{{ metaobject_raw.link.url }}"
-                        class="btn"
-                        style="display: inline-block; padding: 8px 16px; background-color: #333; color: white; text-decoration: none; border-radius: 4px;"
-                      >
-                        {{ metaobject_raw.link.text }}
+                  <div class="grid-content-overlay">
+                    {% if metaobject_raw.leading_text != blank %}
+                      <p class="grid-content-leading-text">{{ metaobject_raw.leading_text }}</p>
+                    {% endif %}
+
+                    {% if metaobject_raw.header != blank %}
+                      <h2 class="grid-content-header">{{ metaobject_raw.header }}</h2>
+                    {% endif %}
+
+                    {% if metaobject_raw.description != blank %}
+                      <div class="grid-content-description">{{ metaobject_raw.description }}</div>
+                    {% endif %}
+
+                    {% if metaobject_raw.link != blank %}
+                      <a href="{{ metaobject_raw.link.url }}" class="btn grid-content-button">
+                        {{- metaobject_raw.link.text -}}
                       </a>
-                    </p>
-                  {% endif %}
+                    {% endif %}
+                  </div>
                 </div>
                 {% assign inserted = true %}
               {% endif %}
-
-              {% comment %} Only render product if not reached the limit for this page {% endcomment %}
               {% if products_shown < products_to_show or paginate.current_page > 1 %}
                 {% render 'product-card', product: product, image_width: 700, image_height: 700 %}
                 {% assign products_shown = products_shown | plus: 1 %}
               {% endif %}
-
-              {% comment %} If we hit limit on first page, stop rendering more products {% endcomment %}
               {% if paginate.current_page == 1 and products_shown >= products_to_show %}
-                {% comment %} Stop rendering more products on this page {% endcomment %}
               {% endif %}
             {% endfor %}
-
-            {% comment %} If position is after all products on first page and content wasn't inserted, append it at the end {% endcomment %}
-            {% if inserted == false and show_content %}
-              <div class="grid-content-item" style="background-color: #cccccc; padding: 20px; text-align: center;">
-                <p style="font-size: 12px; margin-bottom: 4px;">Position: After all products</p>
-
-                {% if metaobject_raw.leading_text != blank %}
-                  <p>
-                    <strong>{{ metaobject_raw.leading_text }}</strong>
-                  </p>
-                {% endif %}
-
-                {% if metaobject_raw.header != blank %}
-                  <h2>{{ metaobject_raw.header }}</h2>
-                {% else %}
-                  <h2>TEST CONTENT INSERTED AT THE END</h2>
-                {% endif %}
-
-                {% if metaobject_raw.description != blank %}
-                  <div>{{ metaobject_raw.description }}</div>
-                {% endif %}
-
+            {% if inserted == false and paginate.current_page == 1 and has_grid_content %}
+              <div class="grid-content-item">
                 {% if metaobject_raw.image_or_video != blank %}
-                  <div class="grid-content-media" style="margin: 15px 0;">
-                    {% if metaobject_raw.image_or_video contains '/Video/' %}
-                      <video controls style="max-width: 100%; height: auto;">
-                        <source src="{{ metaobject_raw.image_or_video | video_url }}" type="video/mp4">
-                        Your browser does not support the video tag.
+                  {% if metaobject_raw.image_or_video.value.media_type == 'video' %}
+                    <div class="grid-content-background video-background">
+                      <video autoplay muted loop playsinline>
+                        <source src="{{ metaobject_raw.image_or_video | file_url }}" type="video/mp4">
                       </video>
-                    {% else %}
-                      <img
-                        src="{{ metaobject_raw.image_or_video | image_url: width: 800 }}"
-                        alt="{{ metaobject_raw.header }}"
-                        style="max-width: 100%; height: auto;"
-                      >
-                    {% endif %}
-                  </div>
+                    </div>
+                  {% else %}
+                    <div
+                      class="grid-content-background image-background"
+                      style="background-image: url('{{ metaobject_raw.image_or_video | image_url: width: 1200 }}');"
+                    ></div>
+                  {% endif %}
                 {% endif %}
-
-                {% if metaobject_raw.link != blank %}
-                  <p style="margin-top: 15px;">
-                    <a
-                      href="{{ metaobject_raw.link.url }}"
-                      class="btn"
-                      style="display: inline-block; padding: 8px 16px; background-color: #333; color: white; text-decoration: none; border-radius: 4px;"
-                    >
-                      {{ metaobject_raw.link.text }}
+                <div class="grid-content-overlay">
+                  {% if metaobject_raw.leading_text != blank %}
+                    <p class="grid-content-leading-text">{{ metaobject_raw.leading_text }}</p>
+                  {% endif %}
+                  {% if metaobject_raw.header != blank %}
+                    <h2 class="grid-content-header">{{ metaobject_raw.header }}</h2>
+                  {% endif %}
+                  {% if metaobject_raw.description != blank %}
+                    <div class="grid-content-description">{{ metaobject_raw.description }}</div>
+                  {% endif %}
+                  {% if metaobject_raw.link != blank %}
+                    <a href="{{ metaobject_raw.link.url }}" class="btn grid-content-button">
+                      {{- metaobject_raw.link.text -}}
                     </a>
-                  </p>
-                {% endif %}
+                  {% endif %}
+                </div>
               </div>
             {% endif %}
           </div>
@@ -580,7 +514,7 @@
       "label": "Products",
       "info": "Determines how many products to show before loading more.",
       "min": 4,
-      "max": 50,
+      "max": 16,
       "step": 1,
       "default": 8
     }

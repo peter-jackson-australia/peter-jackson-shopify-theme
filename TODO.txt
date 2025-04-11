@@ -1,5 +1,4 @@
 Collection page:
-Campaign callout inserter (Just get a box to show anywhere in the grid for now)
 Filtering options (Just get it to work) 
 Sidebar drawer conflicting with main menu
 random image flashes on collection page first load 
