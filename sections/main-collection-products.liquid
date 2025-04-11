@@ -1,5 +1,5 @@
 {% comment %}
-  Collection Products
+  Collection Products with Grid Content Insert
 {% endcomment %}
 
 <script src="{{ 'ajaxinate.min.js' | asset_url }}" defer></script>
@@ -161,6 +161,12 @@
     right: 0.5rem;
   }
 
+  /* Simple styles for the grid content item */
+  .grid-content-item {
+    background-color: #f0f0f0;
+    padding: var(--space-m);
+  }
+
   @media (max-width: 768px) {
     .filter-sidebar {
       width: 100%;
@@ -229,6 +235,69 @@
             </div>
           </div>
 
+          {% comment %} Debug info section - will display metafield structure {% endcomment %}
+          {% liquid
+            assign has_grid_content = false
+            if collection.metafields.custom.collection_grid_content != blank
+              assign has_grid_content = true
+              assign metaobject_raw = collection.metafields.custom.collection_grid_content.value
+            endif
+          %}
+
+          <div style="background-color: #ffe0e0; padding: 10px; margin-bottom: 20px; border: 1px solid #ff0000;">
+            <h3>Debug Information:</h3>
+            <p>Metafield exists: {{ has_grid_content }}</p>
+            {% if has_grid_content %}
+              <p>Metaobject type: {{ collection.metafields.custom.collection_grid_content.type }}</p>
+              <p>Metaobject reference:</p>
+              <pre style="background: #f5f5f5; padding: 10px; overflow-x: auto;">{{ metaobject_raw | json }}</pre>
+
+              <p>Accessing as parsed JSON:</p>
+              <ul>
+                <li>Identifier: {{ metaobject_raw.identifier }}</li>
+                <li>Leading Text: {{ metaobject_raw.leading_text }}</li>
+                <li>Header: {{ metaobject_raw.header }}</li>
+                <li>Description: {{ metaobject_raw.description }}</li>
+                <li>
+                  Link:
+                  {% if metaobject_raw.link != blank %}{{ metaobject_raw.link | metafield_tag }}{% endif %}
+                </li>
+                <li>Image Or Video Reference: {{ metaobject_raw.image_or_video }}</li>
+                <li>Image Or Video URL: {{ metaobject_raw.image_or_video | image_url }}</li>
+                <li>Grid Position: {{ metaobject_raw.grid_position }}</li>
+              </ul>
+            {% endif %}
+          </div>
+
+          {% comment %} Set up variables for grid content insertion {% endcomment %}
+          {% assign grid_position = 3 %}
+          {% comment %} Default fallback position {% endcomment %}
+
+          {% if has_grid_content and metaobject_raw.grid_position != blank %}
+            {% assign grid_position = metaobject_raw.grid_position | plus: 0 %}
+          {% endif %}
+
+          {% assign actual_position = grid_position %}
+
+          {% comment %} Adjust position if it exceeds the products count {% endcomment %}
+          {% if grid_position > paginate.items %}
+            {% assign actual_position = paginate.items %}
+          {% endif %}
+
+          {% comment %} Ensure position is at least 1 {% endcomment %}
+          {% if actual_position < 1 %}
+            {% assign actual_position = 1 %}
+          {% endif %}
+
+          {% comment %} Additional debug info about positions {% endcomment %}
+          <div style="background-color: #e0f0ff; padding: 10px; margin-bottom: 20px; border: 1px solid #0000ff;">
+            <h3>Position Information:</h3>
+            <p>Products in paginate: {{ paginate.items }}</p>
+            <p>Desired position: {{ grid_position }}</p>
+            <p>Actual position: {{ actual_position }}</p>
+            <p>Products count: {{ collection.products.size }}</p>
+          </div>
+
           <div
             id="AjaxinateContainer"
             class="products-grid"
@@ -239,9 +308,85 @@
               }
             "
           >
+            {% comment %} Loop through products and insert the content at the specified position {% endcomment %}
+            {% assign inserted = false %}
+
             {% for product in collection.products %}
+              {% assign current_position = forloop.index %}
+
+              {% comment %} Insert grid content at the specified position {% endcomment %}
+              {% if current_position == actual_position and inserted == false and has_grid_content %}
+                <div class="grid-content-item" style="background-color: #cccccc; padding: 20px; text-align: center;">
+                  <p style="font-size: 12px; margin-bottom: 4px;">Position: {{ current_position }}</p>
+
+                  {% if metaobject_raw.leading_text != blank %}
+                    <p>
+                      <strong>{{ metaobject_raw.leading_text }}</strong>
+                    </p>
+                  {% endif %}
+
+                  {% if metaobject_raw.header != blank %}
+                    <h2>{{ metaobject_raw.header }}</h2>
+                  {% else %}
+                    <h2>TEST CONTENT INSERTED HERE</h2>
+                  {% endif %}
+
+                  {% if metaobject_raw.description != blank %}
+                    <div>{{ metaobject_raw.description }}</div>
+                  {% endif %}
+
+                  {% if metaobject_raw.link != blank %}
+                    <p style="margin-top: 15px;">
+                      <a
+                        href="{{ metaobject_raw.link.url }}"
+                        class="btn"
+                        style="display: inline-block; padding: 8px 16px; background-color: #333; color: white; text-decoration: none; border-radius: 4px;"
+                      >
+                        {{ metaobject_raw.link.text }}
+                      </a>
+                    </p>
+                  {% endif %}
+                </div>
+                {% assign inserted = true %}
+              {% endif %}
+
               {% render 'product-card', product: product, image_width: 700, image_height: 700 %}
             {% endfor %}
+
+            {% comment %} If position is after all products, append it at the end {% endcomment %}
+            {% if inserted == false and has_grid_content and paginate.current_page == 1 %}
+              <div class="grid-content-item" style="background-color: #cccccc; padding: 20px; text-align: center;">
+                <p style="font-size: 12px; margin-bottom: 4px;">Position: After all products</p>
+
+                {% if metaobject_raw.leading_text != blank %}
+                  <p>
+                    <strong>{{ metaobject_raw.leading_text }}</strong>
+                  </p>
+                {% endif %}
+
+                {% if metaobject_raw.header != blank %}
+                  <h2>{{ metaobject_raw.header }}</h2>
+                {% else %}
+                  <h2>TEST CONTENT INSERTED AT THE END</h2>
+                {% endif %}
+
+                {% if metaobject_raw.description != blank %}
+                  <div>{{ metaobject_raw.description }}</div>
+                {% endif %}
+
+                {% if metaobject_raw.link != blank %}
+                  <p style="margin-top: 15px;">
+                    <a
+                      href="{{ metaobject_raw.link.url }}"
+                      class="btn"
+                      style="display: inline-block; padding: 8px 16px; background-color: #333; color: white; text-decoration: none; border-radius: 4px;"
+                    >
+                      {{ metaobject_raw.link.text }}
+                    </a>
+                  </p>
+                {% endif %}
+              </div>
+            {% endif %}
           </div>
           <div id="AjaxinatePagination">
             {% if paginate.next %}
