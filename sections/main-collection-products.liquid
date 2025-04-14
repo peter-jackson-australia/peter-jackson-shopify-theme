@@ -33,6 +33,8 @@
     outline: none;
     border: none;
     cursor: pointer;
+    padding: var(--space-2xs) var(--space-s);
+    border: 1px solid var(--neutral-200);
   }
 
   .collection-controls__actions {
@@ -218,14 +220,12 @@
     position: relative;
     z-index: 1;
     text-align: center;
-    max-width: 80%;
     margin: 0 auto;
     background-color: rgba(0, 0, 0, 0.5);
     padding: var(--space-m);
   }
 
   .grid-content-leading-text {
-    font-size: 0.875rem;
     margin-bottom: var(--space-xs);
   }
 
@@ -240,6 +240,16 @@
   .grid-content-button {
     display: inline-block;
     margin-top: var(--space-s);
+  }
+
+  .grid-toggle-btn {
+    background-color: transparent;
+    padding: var(--space-2xs);
+    border: 1px solid var(--neutral-200);
+  }
+
+  .grid-toggle-btn > span {
+    vertical-align: middle;
   }
 
   @media (max-width: 768px) {
@@ -340,8 +350,21 @@
             <p class="body">{{ collection.products_count }} Products</p>
 
             <div class="collection-controls__actions">
-              <button class="btn" @click="expandedGrid = !expandedGrid">
-                <span x-text="expandedGrid ? 'Compact View' : 'Expanded View'"></span>
+              <button
+                class="btn grid-toggle-btn"
+                @click="expandedGrid = !expandedGrid"
+                x-data="{ isMobile: window.innerWidth < 768 }"
+                x-init="
+                  window.addEventListener('resize', () => {
+                    isMobile = window.innerWidth < 768;
+                  })
+                "
+              >
+                <span x-show="!isMobile && expandedGrid">{% render 'icon-grid-2' %}</span>
+                <span x-show="!isMobile && !expandedGrid">{% render 'icon-grid-4' %}</span>
+
+                <span x-show="isMobile && expandedGrid">{% render 'icon-grid-1' %}</span>
+                <span x-show="isMobile && !expandedGrid">{% render 'icon-grid-2' %}</span>
               </button>
             </div>
           </div>
@@ -466,6 +489,14 @@
       },
       true
     );
+
+    document.querySelectorAll('[x-data]').forEach((el) => {
+      if (el.hasAttribute('x-data') && el.__x) {
+        if (el.__x.$data.hasOwnProperty('isMobile')) {
+          el.__x.$data.isMobile = window.innerWidth < 768;
+        }
+      }
+    });
   });
 {% endjavascript %}
 
