@@ -9,7 +9,7 @@
         <li class="breadcrumb__item">
           <a href="/" title="Home" class="breadcrumb__link">Home</a>
         </li>
-        <span class="breadcrumb__separator">/</span>
+        <li class="breadcrumb__separator">/</li>
 
         {% assign collection_list = '' %}
         {% for collection in product.collections %}
@@ -24,7 +24,7 @@
             <li class="breadcrumb__item">
               <a href="{{ parent.url }}" class="breadcrumb__link">{{ parent.title }}</a>
             </li>
-            <span class="breadcrumb__separator">/</span>
+            <li class="breadcrumb__separator">/</li>
             {% assign trail_found = true %}
             {% break %}
           {% endif %}
@@ -35,11 +35,11 @@
               <li class="breadcrumb__item">
                 <a href="{{ parent.url }}" class="breadcrumb__link">{{ parent.title }}</a>
               </li>
-              <span class="breadcrumb__separator">/</span>
+              <li class="breadcrumb__separator">/</li>
               <li class="breadcrumb__item">
                 <a href="{{ child.url }}" class="breadcrumb__link">{{ child.title }}</a>
               </li>
-              <span class="breadcrumb__separator">/</span>
+              <li class="breadcrumb__separator">/</li>
               {% assign trail_found = true %}
               {% break %}
             {% endif %}
@@ -50,15 +50,15 @@
                 <li class="breadcrumb__item">
                   <a href="{{ parent.url }}" class="breadcrumb__link">{{ parent.title }}</a>
                 </li>
-                <span class="breadcrumb__separator">/</span>
+                <li class="breadcrumb__separator">/</li>
                 <li class="breadcrumb__item">
                   <a href="{{ child.url }}" class="breadcrumb__link">{{ child.title }}</a>
                 </li>
-                <span class="breadcrumb__separator">/</span>
+                <li class="breadcrumb__separator">/</li>
                 <li class="breadcrumb__item">
                   <a href="{{ grandchild.url }}" class="breadcrumb__link">{{ grandchild.title }}</a>
                 </li>
-                <span class="breadcrumb__separator">/</span>
+                <li class="breadcrumb__separator">/</li>
                 {% assign trail_found = true %}
                 {% break %}
               {% endif %}
@@ -75,7 +75,7 @@
         <li class="breadcrumb__item">
           <a href="/" title="Home" class="breadcrumb__link">Home</a>
         </li>
-        <span class="breadcrumb__separator">/</span>
+        <li class="breadcrumb__separator">/</li>
 
         {% assign trail_found = false %}
 
@@ -95,7 +95,7 @@
               <li class="breadcrumb__item">
                 <a href="{{ parent.url }}" class="breadcrumb__link">{{ parent.title }}</a>
               </li>
-              <span class="breadcrumb__separator">/</span>
+              <li class="breadcrumb__separator">/</li>
               <li class="breadcrumb__item breadcrumb__item--current" aria-current="page">{{ child.title }}</li>
               {% assign trail_found = true %}
               {% break %}
@@ -108,11 +108,11 @@
                 <li class="breadcrumb__item">
                   <a href="{{ parent.url }}" class="breadcrumb__link">{{ parent.title }}</a>
                 </li>
-                <span class="breadcrumb__separator">/</span>
+                <li class="breadcrumb__separator">/</li>
                 <li class="breadcrumb__item">
                   <a href="{{ child.url }}" class="breadcrumb__link">{{ child.title }}</a>
                 </li>
-                <span class="breadcrumb__separator">/</span>
+                <li class="breadcrumb__separator">/</li>
                 <li class="breadcrumb__item breadcrumb__item--current" aria-current="page">{{ grandchild.title }}</li>
                 {% assign trail_found = true %}
                 {% break %}
@@ -133,7 +133,7 @@
           <li class="breadcrumb__item">
             <a href="/collections" class="breadcrumb__link">Collections</a>
           </li>
-          <span class="breadcrumb__separator">/</span>
+          <li class="breadcrumb__separator">/</li>
           <li class="breadcrumb__item breadcrumb__item--current" aria-current="page">{{ collection.title }}</li>
         {% endif %}
 
@@ -141,32 +141,32 @@
         <li class="breadcrumb__item">
           <a href="/" title="Home" class="breadcrumb__link">Home</a>
         </li>
-        <span class="breadcrumb__separator">/</span>
+        <li class="breadcrumb__separator">/</li>
         <li class="breadcrumb__item breadcrumb__item--current" aria-current="page">{{ blog.title }}</li>
 
       {% elsif template.name == 'article' %}
         <li class="breadcrumb__item">
           <a href="/" title="Home" class="breadcrumb__link">Home</a>
         </li>
-        <span class="breadcrumb__separator">/</span>
+        <li class="breadcrumb__separator">/</li>
         <li class="breadcrumb__item">
           <a href="{{ blog.url }}" class="breadcrumb__link">{{ blog.title }}</a>
         </li>
-        <span class="breadcrumb__separator">/</span>
+        <li class="breadcrumb__separator">/</li>
         <li class="breadcrumb__item breadcrumb__item--current" aria-current="page">{{ article.title }}</li>
 
       {% elsif template.name == 'page' %}
         <li class="breadcrumb__item">
           <a href="/" title="Home" class="breadcrumb__link">Home</a>
         </li>
-        <span class="breadcrumb__separator">/</span>
+        <li class="breadcrumb__separator">/</li>
         <li class="breadcrumb__item breadcrumb__item--current" aria-current="page">{{ page.title }}</li>
 
       {% elsif template.name == 'search' %}
         <li class="breadcrumb__item">
           <a href="/" title="Home" class="breadcrumb__link">Home</a>
         </li>
-        <span class="breadcrumb__separator">/</span>
+        <li class="breadcrumb__separator">/</li>
         <li class="breadcrumb__item breadcrumb__item--current" aria-current="page">
           {{ search.terms | capitalize | prepend: 'Search: ' }}
         </li>
@@ -175,7 +175,7 @@
         <li class="breadcrumb__item">
           <a href="/" title="Home" class="breadcrumb__link">Home</a>
         </li>
-        <span class="breadcrumb__separator">/</span>
+        <li class="breadcrumb__separator">/</li>
         <li class="breadcrumb__item breadcrumb__item--current" aria-current="page">{{ page_title }}</li>
       {% endif %}
     </ol>
