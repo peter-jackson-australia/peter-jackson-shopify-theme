@@ -20,7 +20,7 @@
     "products": {
       "type": "main-collection-products",
       "settings": {
-        "limit": 16
+        "limit": 8
       }
     },
     "related_content_HfzyTd": {
