@@ -1,5 +1,4 @@
 Collection page:
-Filtering options (Just get it to work) 
 Sidebar drawer conflicting with main menu
 random image flashes on collection page first load 
 Styling 

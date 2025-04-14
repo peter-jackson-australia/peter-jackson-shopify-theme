@@ -230,7 +230,11 @@
                               | image_tag: alt: filter_value.display.value.alt
                             }}
                         {%- endcase -%}
-                        {{ filter_value.label }}
+                        {% if filter.label == 'Size' and filter_value.label contains '.0' %}
+                          {{ filter_value.label | remove: '.0' }}
+                        {% else %}
+                          {{ filter_value.label }}
+                        {% endif %}
                       </span>
                     </label>
                   </li>

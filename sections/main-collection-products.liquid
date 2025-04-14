@@ -1,5 +1,5 @@
 {% comment %}
-  Collection Products with Grid Content Insert
+  Collection Products
 {% endcomment %}
 
 <script src="{{ 'ajaxinate.min.js' | asset_url }}" defer></script>
@@ -19,6 +19,20 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: var(--space-m);
+    padding: 0 var(--space-m);
+    gap: var(--space-m);
+  }
+
+  .collection-controls > p {
+    margin-left: auto;
+    color: var(--neutral-600);
+  }
+
+  .collection-controls__filter-button {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
   }
 
   .collection-controls__actions {
@@ -316,13 +330,14 @@
         <div class="section">
           <div class="collection-controls">
             <button
-              class="btn"
+              class="collection-controls__filter-button body--bold"
               @click="isFilterOpen = !isFilterOpen; document.body.classList.toggle('filter-open', isFilterOpen)"
             >
               Filter
+              <span>{% render 'icon-filter' %}</span>
             </button>
 
-            <p>{{ collection.products_count }} products</p>
+            <p class="body">{{ collection.products_count }} Products</p>
 
             <div class="collection-controls__actions">
               <button class="btn" @click="expandedGrid = !expandedGrid">
