@@ -1,5 +1,4 @@
 Collection page:
-Image aspect ratios
 Style content slot 
 Content slot to not show when filters are applied but show when they are not 
 Loading more products styling
