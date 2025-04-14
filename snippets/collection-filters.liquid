@@ -103,163 +103,180 @@
   </details>
 
   {%- for filter in collection.filters -%}
-    <details class="filter-group">
-      <summary>
-        <div>
-          <span>{{ filter.label }}</span>
-          {%- if filter.active_values.size > 0 -%}
-            &nbsp;<span>({{ filter.active_values.size }})</span>
-          {%- endif -%}
-        </div>
-      </summary>
+    {% liquid
+      assign should_display_filter = true
 
-      <div>
-        <div>
-          {%- if filter.active_values.size > 0 -%}
-            <p><a href="{{ filter.url_to_remove }}">Reset</a></p>
-          {%- endif -%}
-        </div>
-        {%- case filter.type -%}
-          {%- when 'boolean' -%}
-            <ul>
-              <li>
-                <label for="Filter-{{ filter.param_name }}-{{ filter.true_value.value }}">
-                  <input
-                    type="checkbox"
-                    name="{{ filter.param_name }}"
-                    value="{{ filter.true_value.value }}"
-                    id="Filter-{{ filter.param_name }}"
-                    {% if filter.true_value.active -%}
-                      checked
-                    {%- endif %}
-                    {% if filter.true_value.count == 0 and filter.true_value.active == false -%}
-                      disabled
-                    {%- endif -%}
-                  >
-                  {{- filter.true_value.label -}}
-                </label>
-              </li>
-              <li>
-                <label for="Filter-{{ filter.param_name }}-{{ filter.false_value.value }}">
-                  <input
-                    type="checkbox"
-                    name="{{ filter.param_name }}"
-                    value="{{ filter.false_value.value }}"
-                    id="Filter-{{ filter.param_name }}"
-                    {% if filter.false_value.active -%}
-                      checked
-                    {%- endif %}
-                    {% if filter.false_value.count == 0 and filter.false_value.active == false -%}
-                      disabled
-                    {%- endif %}
-                  >
-                  {{- filter.false_value.label -}}
-                </label>
-              </li>
-            </ul>
+      case filter.type
+        when 'list'
+          if filter.values.size <= 1
+            assign should_display_filter = false
+          endif
+        when 'boolean'
+          if filter.true_value.count == 0 or filter.false_value.count == 0
+            assign should_display_filter = false
+          endif
+      endcase
+    %}
 
-            <div>
-              <button type="submit" class="button button-small">Apply</button>
-            </div>
-          {%- when 'list' -%}
-            <ul>
-              {%- for filter_value in filter.values -%}
+    {% if should_display_filter %}
+      <details class="filter-group">
+        <summary>
+          <div>
+            <span>{{ filter.label }}</span>
+            {%- if filter.active_values.size > 0 -%}
+              &nbsp;<span>({{ filter.active_values.size }})</span>
+            {%- endif -%}
+          </div>
+        </summary>
+
+        <div>
+          <div>
+            {%- if filter.active_values.size > 0 -%}
+              <p><a href="{{ filter.url_to_remove }}">Reset</a></p>
+            {%- endif -%}
+          </div>
+          {%- case filter.type -%}
+            {%- when 'boolean' -%}
+              <ul>
                 <li>
-                  <label for="Filter-{{ filter.param_name }}-{{ forloop.index }}" class="flex middle align-left">
+                  <label for="Filter-{{ filter.param_name }}-{{ filter.true_value.value }}">
                     <input
                       type="checkbox"
-                      name="{{ filter_value.param_name }}"
-                      value="{{ filter_value.value }}"
-                      id="Filter-{{ filter.param_name }}-{{ forloop.index }}"
-                      {% if filter_value.active -%}
+                      name="{{ filter.param_name }}"
+                      value="{{ filter.true_value.value }}"
+                      id="Filter-{{ filter.param_name }}"
+                      {% if filter.true_value.active -%}
                         checked
                       {%- endif %}
-                      {% if filter_value.count == 0 and filter_value.active == false -%}
+                      {% if filter.true_value.count == 0 and filter.true_value.active == false -%}
+                        disabled
+                      {%- endif -%}
+                    >
+                    {{- filter.true_value.label -}}
+                  </label>
+                </li>
+                <li>
+                  <label for="Filter-{{ filter.param_name }}-{{ filter.false_value.value }}">
+                    <input
+                      type="checkbox"
+                      name="{{ filter.param_name }}"
+                      value="{{ filter.false_value.value }}"
+                      id="Filter-{{ filter.param_name }}"
+                      {% if filter.false_value.active -%}
+                        checked
+                      {%- endif %}
+                      {% if filter.false_value.count == 0 and filter.false_value.active == false -%}
                         disabled
                       {%- endif %}
                     >
-                    <span>
-                      {%- case filter_value.display.type -%}
-                        {%- when 'colors' -%}
-                          {% liquid
-                            assign size_limit = filter_value.display.value.size | at_most: 4
-                            assign rotation = '0deg'
-                            if size_limit == 2
-                              assign rotation = '45deg'
-                            endif
-
-                            assign angle_increment = 360 | divided_by: size_limit
-                            assign angle = 0
-                          %}
-                          {%- capture conic_gradient -%}
-                            {%- for color in filter_value.display.value limit: size_limit -%}
-                              {{ color }} {{ angle }}deg{%- assign angle = angle | plus: angle_increment %} {{ angle }}deg{%- unless forloop.last %}, {%- endunless -%}
-                            {%- endfor -%}
-                          {%- endcapture -%}
-                          <span
-                            style="
-                              width: 25px;
-                              height: 25px;
-                              border-radius: 50%;
-                              display: flex;
-                              justify-content: center;
-                              align-items: center;
-                              background: conic-gradient({{ conic_gradient }}); transform: rotateZ({{ rotation }});
-                            "
-                          ></span>
-                        {%- when 'image' -%}
-                          {{
-                            filter_value.display.value
-                            | image_url: width: 25
-                            | image_tag: alt: filter_value.display.value.alt
-                          }}
-                      {%- endcase -%}
-                      {{ filter_value.label }}
-                    </span>
+                    {{- filter.false_value.label -}}
                   </label>
                 </li>
-              {%- endfor -%}
-            </ul>
+              </ul>
 
-            <p>
-              <button type="submit" class="button button-small">Apply</button>
-            </p>
-          {%- when 'price_range' -%}
-            <ul>
-              <li>
-                <label for="Filter-{{ filter.min_value.param_name }}"> From {{ cart.currency.symbol }} </label>
-                <input
-                  name="{{ filter.min_value.param_name }}"
-                  id="Filter-{{ filter.min_value.param_name }}"
-                  {% if filter.min_value.value -%}
-                    value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
-                  {%- endif %}
-                  type="number"
-                  placeholder="0"
-                  min="0"
-                  max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
-                >
-              </li>
-              <li>
-                <label for="Filter-{{ filter.max_value.param_name }}"> To {{ cart.currency.symbol }} </label>
-                <input
-                  name="{{ filter.max_value.param_name }}"
-                  id="Filter-{{ filter.max_value.param_name }}"
-                  {% if filter.max_value.value -%}
-                    value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
-                  {%- endif %}
-                  type="number"
-                  placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
-                  min="0"
-                  max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
-                >
-              </li>
-            </ul>
-            <p>
-              <button type="submit" class="button button-small">Apply</button>
-            </p>
-        {%- endcase -%}
-      </div>
-    </details>
+              <div>
+                <button type="submit" class="button button-small">Apply</button>
+              </div>
+            {%- when 'list' -%}
+              <ul>
+                {%- for filter_value in filter.values -%}
+                  <li>
+                    <label for="Filter-{{ filter.param_name }}-{{ forloop.index }}" class="flex middle align-left">
+                      <input
+                        type="checkbox"
+                        name="{{ filter_value.param_name }}"
+                        value="{{ filter_value.value }}"
+                        id="Filter-{{ filter.param_name }}-{{ forloop.index }}"
+                        {% if filter_value.active -%}
+                          checked
+                        {%- endif %}
+                        {% if filter_value.count == 0 and filter_value.active == false -%}
+                          disabled
+                        {%- endif %}
+                      >
+                      <span>
+                        {%- case filter_value.display.type -%}
+                          {%- when 'colors' -%}
+                            {% liquid
+                              assign size_limit = filter_value.display.value.size | at_most: 4
+                              assign rotation = '0deg'
+                              if size_limit == 2
+                                assign rotation = '45deg'
+                              endif
+
+                              assign angle_increment = 360 | divided_by: size_limit
+                              assign angle = 0
+                            %}
+                            {%- capture conic_gradient -%}
+                              {%- for color in filter_value.display.value limit: size_limit -%}
+                                {{ color }} {{ angle }}deg{%- assign angle = angle | plus: angle_increment %} {{ angle }}deg{%- unless forloop.last %}, {%- endunless -%}
+                              {%- endfor -%}
+                            {%- endcapture -%}
+                            <span
+                              style="
+                                width: 25px;
+                                height: 25px;
+                                border-radius: 50%;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                background: conic-gradient({{ conic_gradient }}); transform: rotateZ({{ rotation }});
+                              "
+                            ></span>
+                          {%- when 'image' -%}
+                            {{
+                              filter_value.display.value
+                              | image_url: width: 25
+                              | image_tag: alt: filter_value.display.value.alt
+                            }}
+                        {%- endcase -%}
+                        {{ filter_value.label }}
+                      </span>
+                    </label>
+                  </li>
+                {%- endfor -%}
+              </ul>
+
+              <p>
+                <button type="submit" class="button button-small">Apply</button>
+              </p>
+            {%- when 'price_range' -%}
+              <ul>
+                <li>
+                  <label for="Filter-{{ filter.min_value.param_name }}"> From {{ cart.currency.symbol }} </label>
+                  <input
+                    name="{{ filter.min_value.param_name }}"
+                    id="Filter-{{ filter.min_value.param_name }}"
+                    {% if filter.min_value.value -%}
+                      value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
+                    {%- endif %}
+                    type="number"
+                    placeholder="0"
+                    min="0"
+                    max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                  >
+                </li>
+                <li>
+                  <label for="Filter-{{ filter.max_value.param_name }}"> To {{ cart.currency.symbol }} </label>
+                  <input
+                    name="{{ filter.max_value.param_name }}"
+                    id="Filter-{{ filter.max_value.param_name }}"
+                    {% if filter.max_value.value -%}
+                      value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
+                    {%- endif %}
+                    type="number"
+                    placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                    min="0"
+                    max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                  >
+                </li>
+              </ul>
+              <p>
+                <button type="submit" class="button button-small">Apply</button>
+              </p>
+          {%- endcase -%}
+        </div>
+      </details>
+    {% endif %}
   {%- endfor -%}
 </form>
