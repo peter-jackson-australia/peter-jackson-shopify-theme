@@ -5,10 +5,6 @@
 <script src="{{ 'ajaxinate.min.js' | asset_url }}" defer></script>
 
 {% stylesheet %}
-  [x-cloak] {
-    display: none !important;
-  }
-
   #collection {
     display: grid;
     grid-template-columns: auto;
@@ -104,6 +100,7 @@
     padding-bottom: 100%;
     overflow: hidden;
     background-color: var(--neutral-50);
+    contain: paint;
   }
 
   .product-card__image {

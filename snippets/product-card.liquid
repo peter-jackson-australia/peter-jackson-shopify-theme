@@ -13,13 +13,12 @@
         x-data="
           {
             isHovering: false,
-            splideInstance: null
-          }
-        "
-        @mouseenter="
-          isHovering = true;
-          $nextTick(() => {
-            if (!splideInstance && window.Splide) {
+            splideInstance: null,
+            isSplideLoaded: false,
+            showSlider: false,
+            initSlider() {
+              if (!this.isHovering || !this.isSplideLoaded || this.splideInstance) return;
+
               const sliderHTML = `
                 <div class='product-card__slider-wrapper'>
                   <div class='splide product-card__slider'>
@@ -41,17 +40,52 @@
                   </div>
                 </div>
               `;
-              $refs.sliderContainer.innerHTML = sliderHTML;
-              splideInstance = new Splide($refs.sliderContainer.querySelector('.splide'), {
-                type: 'fade',
-                arrows: true,
-                pagination: false,
-                speed: 400
-              }).mount();
+
+              this.$refs.sliderContainer.innerHTML = sliderHTML;
+
+              try {
+                this.splideInstance = new Splide(this.$refs.sliderContainer.querySelector('.splide'), {
+                  type: 'fade',
+                  arrows: true,
+                  pagination: false,
+                  speed: 400
+                });
+
+                this.splideInstance.mount();
+                this.showSlider = true;
+              } catch (e) {
+                console.error('Failed to initialize Splide', e);
+                this.isSplideLoaded = false;
+              }
             }
-          })
+          }
         "
-        @mouseleave="isHovering = false; if (splideInstance) { splideInstance.destroy(); splideInstance = null; $refs.sliderContainer.innerHTML = ''; }"
+        x-init="
+          const checkSplide = () => {
+            if (typeof window.Splide !== 'undefined') {
+              isSplideLoaded = true;
+              if (isHovering) initSlider();
+            } else {
+              setTimeout(checkSplide, 100);
+            }
+          };
+          checkSplide();
+        "
+        @mouseenter="
+          isHovering = true;
+          if (isSplideLoaded) {
+            initSlider();
+          }
+        "
+        @mouseleave="
+          isHovering = false;
+          showSlider = false;
+          if (splideInstance) {
+            splideInstance.destroy();
+            splideInstance = null;
+            $refs.sliderContainer.innerHTML = '';
+          }
+        "
       {% endif %}
     >
       <div>
@@ -70,10 +104,8 @@
       {% if product.images.size > 1 %}
         <div
           x-ref="sliderContainer"
-          x-show="isHovering"
-          x-transition:enter="transition ease-out duration-200"
-          x-transition:enter-start="opacity-0"
-          x-transition:enter-end="opacity-100"
+          x-show="showSlider"
+          x-cloak
         ></div>
       {% endif %}
     </div>
@@ -92,7 +124,9 @@
 
     <p class="product-card__price small">
       <span class="product-card__price--current">{{ product.price | money }}</span>
-      <span class="product-card__price--compare">{{ product.compare_at_price | money }}</span>
+      {% if product.compare_at_price > product.price %}
+        <span class="product-card__price--compare">{{ product.compare_at_price | money }}</span>
+      {% endif %}
     </p>
   </div>
 </div>
