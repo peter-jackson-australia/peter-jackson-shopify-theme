@@ -1,10 +1,17 @@
 Collection page:
-Styling 
+Image aspect ratios
+Style content slot 
+Content slot to not show when filters are applied but show when they are not 
 Loading more products styling
+Grid selector styling 
+Slider styling
 Sidebar drawer conflicting with main menu
-random image flashes on collection page first load 
+Random image flashes on collection page first load 
+Make it fast (over 95) 
 
-Make it fast (over 90) 
+Restrict my created sections to certain parts using the enabled_on directive 
+
+AJAX CART
 
 /////////////////////////////////////////////////////
 

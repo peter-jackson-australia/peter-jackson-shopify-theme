@@ -2,8 +2,10 @@
   Product Card
 {% endcomment %}
 
-{% assign image_width = image_width %}
+{% assign image_width = image_width | default: 600 %}
 {% assign image_alt = product.featured_image.alt | escape | strip_html | strip_newlines | default: product.title %}
+{% assign image_aspect_ratio = product.featured_image.aspect_ratio | default: 1 %}
+{% assign image_height = image_width | divided_by: image_aspect_ratio | round %}
 
 <div class="product-card">
   <a class="product-card__image-link" href="{{ product.url }}">
@@ -25,12 +27,22 @@
                     <div class='splide__track'>
                       <ul class='splide__list'>
                         {% for image in product.images %}
+                          {% assign img_aspect_ratio = image.aspect_ratio | default: 1 %}
+                          {% assign img_height = image_width | divided_by: img_aspect_ratio | round %}
                           <li class='splide__slide'>
                             <img
-                              src='{{ image | image_url: width: image_width}}'
+                              src='{{ image | image_url: width: image_width }}'
+                              srcset='
+                                {{ image | image_url: width: 200 }} 200w,
+                                {{ image | image_url: width: 400 }} 400w,
+                                {{ image | image_url: width: 600 }} 600w,
+                                {{ image | image_url: width: 800 }} 800w
+                              '
+                              sizes='(max-width: 768px) 50vw, 25vw'
                               alt='{{ image.alt | escape | default: product.title }}'
                               class='product-card__image'
                               width='{{ image_width }}'
+                              height='{{ img_height }}'
                               loading='lazy'
                             >
                           </li>
@@ -89,16 +101,22 @@
       {% endif %}
     >
       <div>
-        {{
-          product.featured_image
-          | image_url: width: image_width
-          | image_tag:
-            fetchpriority: high,
-            class: 'product-card__image',
-            width: image_width,
-            alt: image_alt,
-            loading: 'eager'
-        }}
+        <img
+          src="{{ product.featured_image | image_url: width: image_width }}"
+          srcset="
+            {{ product.featured_image | image_url: width: 200 }} 200w,
+            {{ product.featured_image | image_url: width: 400 }} 400w,
+            {{ product.featured_image | image_url: width: 600 }} 600w,
+            {{ product.featured_image | image_url: width: 800 }} 800w
+          "
+          sizes="(max-width: 768px) 50vw, 25vw"
+          alt="{{ image_alt }}"
+          class="product-card__image"
+          width="{{ image_width }}"
+          height="{{ image_height }}"
+          loading="eager"
+          fetchpriority="high"
+        >
       </div>
 
       {% if product.images.size > 1 %}
