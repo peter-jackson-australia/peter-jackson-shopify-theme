@@ -3,7 +3,6 @@
 {% endcomment %}
 
 {% assign image_width = image_width %}
-{% assign image_height = image_height %}
 {% assign image_alt = product.featured_image.alt | escape | strip_html | strip_newlines | default: product.title %}
 
 <div class="product-card">
@@ -29,11 +28,10 @@
                         {% for image in product.images %}
                           <li class='splide__slide'>
                             <img
-                              src='{{ image | image_url: width: image_width, height: image_height }}'
+                              src='{{ image | image_url: width: image_width}}'
                               alt='{{ image.alt | escape | default: product.title }}'
                               class='product-card__image'
                               width='{{ image_width }}'
-                              height='{{ image_height }}'
                               loading='lazy'
                             >
                           </li>
@@ -59,11 +57,11 @@
       <div>
         {{
           product.featured_image
-          | image_url: width: image_width, height: image_height
+          | image_url: width: image_width
           | image_tag:
+            fetchpriority: high,
             class: 'product-card__image',
             width: image_width,
-            height: image_height,
             alt: image_alt,
             loading: 'eager'
         }}
