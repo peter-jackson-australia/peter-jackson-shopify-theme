@@ -95,20 +95,18 @@
 
   <div class="product-card__content">
     <a href="{{ product.url }}" class="product-card__title-link">
-      <h3 class="product-card__title">{{ product.title }}</h3>
+      <h3 class="product-card__title body--bold">{{ product.title }}</h3>
     </a>
 
     {% if product.metafields.custom.fabric_description != blank %}
-      <p class="product-card__material">
+      <p class="product-card__material small">
         {{ product.metafields.custom.fabric_description }}
       </p>
     {% endif %}
 
-    <p class="product-card__price">
-      {% if product.compare_at_price > product.price %}
-        <span class="product-card__price--compare">{{ product.compare_at_price | money }}</span>
-      {% endif %}
+    <p class="product-card__price small">
       <span class="product-card__price--current">{{ product.price | money }}</span>
+      <span class="product-card__price--compare">{{ product.compare_at_price | money }}</span>
     </p>
   </div>
 </div>

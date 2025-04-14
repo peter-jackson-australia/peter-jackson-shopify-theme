@@ -51,8 +51,7 @@
     width: 400px;
     background-color: var(--white);
     z-index: 9998;
-    padding: var(--space-m);
-    overflow-y: auto;
+    overflow-y: hidden;
     border-top: 1px solid var(--neutral-200);
   }
 
@@ -118,6 +117,18 @@
     padding: var(--space-xs) 0;
     display: flex;
     flex-direction: column;
+  }
+
+  .product-card__title {
+    color: var(--neutral-950);
+  }
+
+  .product-card__title-link {
+    text-decoration: none;
+  }
+
+  .product-card__material {
+    color: var(--neutral-600);
   }
 
   .product-card__title,
@@ -252,6 +263,21 @@
     vertical-align: middle;
   }
 
+  .filter-sidebar-header {
+    padding: var(--space-s) var(--space-m);
+    border-bottom: 1px solid var(--neutral-200);
+  }
+
+  .filter-sidebar-header > p > a {
+    color: var(--neutral-950);
+  }
+
+  .product-card__price--compare {
+    text-decoration: line-through;
+    color: var(--neutral-400);
+    margin-left: var(--space-2xs);
+  }
+
   @media (max-width: 768px) {
     .filter-sidebar {
       width: 100%;
@@ -293,11 +319,11 @@
         class="filter-sidebar__overlay"
         @click="isFilterOpen = false; document.body.classList.remove('filter-open')"
       ></div>
-      <aside class="filter-sidebar custom-scrollbar">
-        <div class="flex middle">
-          <h3>Filters</h3>
+      <aside class="filter-sidebar">
+        <div class="filter-sidebar-header">
+          <h3 class="heading--l">Filters</h3>
           <p>
-            <em><a href="{{ collection.url }}?sort_by={{ collection.sort_by }}">Clear all</a></em>
+            <a class="body" href="{{ collection.url }}?sort_by={{ collection.sort_by }}">Clear all</a>
           </p>
         </div>
         {% render 'collection-filters' %}

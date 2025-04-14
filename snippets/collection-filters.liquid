@@ -1,28 +1,200 @@
 <style>
-  .filter-group label.flex {
-    gap: 0.5rem;
+  .filter {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
-  .filter-group input[type='number'] {
-    padding: 0.5rem 1rem;
+
+  .filter__group {
+    border-bottom: 1px solid var(--neutral-200);
+    padding: var(--space-m);
+  }
+
+  .filter__group-title {
+    font-family: 'Ordinary Regular';
+    margin-bottom: var(--space-s);
+    color: var(--neutral-950);
+    text-transform: uppercase;
+  }
+
+  .filter__options {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .filter__option {
+    margin-bottom: var(--space-2xs);
+  }
+
+  .filter__checkbox-label,
+  .filter__radio-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    cursor: pointer;
+    color: var(--neutral-600);
+    font-family: 'Ordinary Light';
+    font-size: clamp(0.6944rem, 0.6597rem + 0.1736vw, 0.8681rem);
+  }
+
+  .filter__checkbox,
+  .filter__radio {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--neutral-400);
+    background-color: var(--white);
+    cursor: pointer;
+    position: relative;
+    margin: 0;
+  }
+
+  .filter__checkbox {
+    border-radius: 0;
+  }
+
+  .filter__radio {
+    border-radius: 50%;
+  }
+
+  .filter__checkbox:checked,
+  .filter__radio:checked {
+    background-color: var(--neutral-950);
+    border-color: var(--neutral-950);
+  }
+
+  .filter__checkbox:checked::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 2px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  .filter__radio:checked::after {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: white;
+  }
+
+  .filter__checkbox:focus,
+  .filter__radio:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--neutral-200);
+  }
+
+  .filter__price-range {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-s);
+  }
+
+  .filter__price-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .filter__price-label {
+    margin-bottom: var(--space-3xs);
+    color: var(--neutral-600);
+    font-family: 'Ordinary Light';
+    font-size: clamp(0.6944rem, 0.6597rem + 0.1736vw, 0.8681rem);
+  }
+
+  .filter__price-input {
+    border: 1px solid var(--neutral-200);
+    padding: var(--space-2xs) var(--space-xs);
+    font-family: 'Ordinary Light';
+    color: var(--neutral-950);
+  }
+
+  .filter__price-separator {
+    color: var(--neutral-400);
+    margin: 0 var(--space-2xs);
+  }
+
+  .filter__content {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 100px;
+  }
+
+  .filter__footer {
+    position: sticky;
+    bottom: 0;
+    background-color: var(--white);
+    padding: var(--space-m);
+    border-top: 1px solid var(--neutral-200);
+    width: 100%;
+    z-index: 1;
+    height: 100px;
+  }
+
+  .filter__apply-button {
+    width: 100%;
+    background-color: var(--neutral-950);
+    color: var(--white);
+    border: none;
+    padding: var(--space-xs) var(--space-s);
+    cursor: pointer;
+    font-family: 'Ordinary Light';
+    letter-spacing: 0.065rem;
+    text-transform: uppercase;
+  }
+
+  .filter__color-swatch {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    border: 1px solid var(--neutral-200);
+  }
+
+  .filter__active-count {
+    color: var(--neutral-400);
+    margin-left: var(--space-2xs);
+  }
+
+  .filter__reset {
+    color: var(--neutral-950);
+    text-decoration: underline;
+    margin-bottom: var(--space-xs);
+    display: inline-block;
+    font-size: clamp(0.6944rem, 0.6597rem + 0.1736vw, 0.8681rem);
+  }
+
+  .filter__group:last-of-type {
+    border-bottom: none;
+    padding-bottom: 0px;
   }
 </style>
 
-<form>
-  <details
-    class="filter-group"
-    {% unless collection.sort_by == blank %}
-      open
-    {% endunless %}
-  >
-    <summary>Sort by</summary>
-    <div>
-      <ul>
-        <li>
-          <label class="flex middle align-left">
+<form class="filter">
+  <div class="filter__content custom-scrollbar">
+    <div class="filter__group filter__sort-by">
+      <h3 class="filter__group-title body--uppercase">Sort by</h3>
+      <ul class="filter__options">
+        <li class="filter__option">
+          <label class="filter__radio-label">
             <input
               type="radio"
               name="sort_by"
               value="manual"
+              class="filter__radio"
               {% if collection.sort_by == 'manual' or collection.sort_by == blank %}
                 checked
               {% endif %}
@@ -30,12 +202,13 @@
             <span>Featured</span>
           </label>
         </li>
-        <li>
-          <label class="flex middle align-left">
+        <li class="filter__option">
+          <label class="filter__radio-label">
             <input
               type="radio"
               name="sort_by"
               value="best-selling"
+              class="filter__radio"
               {% if collection.sort_by == 'best-selling' %}
                 checked
               {% endif %}
@@ -43,12 +216,13 @@
             <span>Best selling</span>
           </label>
         </li>
-        <li>
-          <label class="flex middle align-left">
+        <li class="filter__option">
+          <label class="filter__radio-label">
             <input
               type="radio"
               name="sort_by"
               value="price-ascending"
+              class="filter__radio"
               {% if collection.sort_by == 'price-ascending' %}
                 checked
               {% endif %}
@@ -56,12 +230,13 @@
             <span>Price low to high</span>
           </label>
         </li>
-        <li>
-          <label class="flex middle align-left">
+        <li class="filter__option">
+          <label class="filter__radio-label">
             <input
               type="radio"
               name="sort_by"
               value="price-descending"
+              class="filter__radio"
               {% if collection.sort_by == 'price-descending' %}
                 checked
               {% endif %}
@@ -69,12 +244,13 @@
             <span>Price high to low</span>
           </label>
         </li>
-        <li>
-          <label class="flex middle align-left">
+        <li class="filter__option">
+          <label class="filter__radio-label">
             <input
               type="radio"
               name="sort_by"
               value="created-descending"
+              class="filter__radio"
               {% if collection.sort_by == 'created-descending' %}
                 checked
               {% endif %}
@@ -82,12 +258,13 @@
             <span>Newly added</span>
           </label>
         </li>
-        <li>
-          <label class="flex middle align-left">
+        <li class="filter__option">
+          <label class="filter__radio-label">
             <input
               type="radio"
               name="sort_by"
               value="created-ascending"
+              class="filter__radio"
               {% if collection.sort_by == 'created-ascending' %}
                 checked
               {% endif %}
@@ -96,55 +273,47 @@
           </label>
         </li>
       </ul>
-      <div>
-        <button type="submit" class="button button-small">Apply</button>
-      </div>
     </div>
-  </details>
 
-  {%- for filter in collection.filters -%}
-    {% liquid
-      assign should_display_filter = true
+    {%- for filter in collection.filters -%}
+      {% liquid
+        assign should_display_filter = true
 
-      case filter.type
-        when 'list'
-          if filter.values.size <= 1
-            assign should_display_filter = false
-          endif
-        when 'boolean'
-          if filter.true_value.count == 0 or filter.false_value.count == 0
-            assign should_display_filter = false
-          endif
-      endcase
-    %}
+        case filter.type
+          when 'list'
+            if filter.values.size <= 1
+              assign should_display_filter = false
+            endif
+          when 'boolean'
+            if filter.true_value.count == 0 or filter.false_value.count == 0
+              assign should_display_filter = false
+            endif
+        endcase
+      %}
 
-    {% if should_display_filter %}
-      <details class="filter-group">
-        <summary>
-          <div>
-            <span>{{ filter.label }}</span>
+      {% if should_display_filter %}
+        <div class="filter__group">
+          <h3 class="filter__group-title body--uppercase">
+            {{ filter.label }}
             {%- if filter.active_values.size > 0 -%}
-              &nbsp;<span>({{ filter.active_values.size }})</span>
+              <span class="filter__active-count">({{ filter.active_values.size }})</span>
             {%- endif -%}
-          </div>
-        </summary>
+          </h3>
 
-        <div>
-          <div>
-            {%- if filter.active_values.size > 0 -%}
-              <p><a href="{{ filter.url_to_remove }}">Reset</a></p>
-            {%- endif -%}
-          </div>
+          {%- if filter.active_values.size > 0 -%}
+            <a href="{{ filter.url_to_remove }}" class="filter__reset">Reset</a>
+          {%- endif -%}
+
           {%- case filter.type -%}
             {%- when 'boolean' -%}
-              <ul>
-                <li>
-                  <label for="Filter-{{ filter.param_name }}-{{ filter.true_value.value }}">
+              <ul class="filter__options">
+                <li class="filter__option">
+                  <label class="filter__checkbox-label">
                     <input
                       type="checkbox"
                       name="{{ filter.param_name }}"
                       value="{{ filter.true_value.value }}"
-                      id="Filter-{{ filter.param_name }}"
+                      class="filter__checkbox"
                       {% if filter.true_value.active -%}
                         checked
                       {%- endif %}
@@ -152,16 +321,16 @@
                         disabled
                       {%- endif -%}
                     >
-                    {{- filter.true_value.label -}}
+                    <span>{{- filter.true_value.label -}}</span>
                   </label>
                 </li>
-                <li>
-                  <label for="Filter-{{ filter.param_name }}-{{ filter.false_value.value }}">
+                <li class="filter__option">
+                  <label class="filter__checkbox-label">
                     <input
                       type="checkbox"
                       name="{{ filter.param_name }}"
                       value="{{ filter.false_value.value }}"
-                      id="Filter-{{ filter.param_name }}"
+                      class="filter__checkbox"
                       {% if filter.false_value.active -%}
                         checked
                       {%- endif %}
@@ -169,24 +338,20 @@
                         disabled
                       {%- endif %}
                     >
-                    {{- filter.false_value.label -}}
+                    <span>{{- filter.false_value.label -}}</span>
                   </label>
                 </li>
               </ul>
-
-              <div>
-                <button type="submit" class="button button-small">Apply</button>
-              </div>
             {%- when 'list' -%}
-              <ul>
+              <ul class="filter__options">
                 {%- for filter_value in filter.values -%}
-                  <li>
-                    <label for="Filter-{{ filter.param_name }}-{{ forloop.index }}" class="flex middle align-left">
+                  <li class="filter__option">
+                    <label class="filter__checkbox-label">
                       <input
                         type="checkbox"
                         name="{{ filter_value.param_name }}"
                         value="{{ filter_value.value }}"
-                        id="Filter-{{ filter.param_name }}-{{ forloop.index }}"
+                        class="filter__checkbox"
                         {% if filter_value.active -%}
                           checked
                         {%- endif %}
@@ -213,21 +378,14 @@
                               {%- endfor -%}
                             {%- endcapture -%}
                             <span
-                              style="
-                                width: 25px;
-                                height: 25px;
-                                border-radius: 50%;
-                                display: flex;
-                                justify-content: center;
-                                align-items: center;
-                                background: conic-gradient({{ conic_gradient }}); transform: rotateZ({{ rotation }});
-                              "
+                              class="filter__color-swatch"
+                              style="background: conic-gradient({{ conic_gradient }}); transform: rotateZ({{ rotation }});"
                             ></span>
                           {%- when 'image' -%}
                             {{
                               filter_value.display.value
                               | image_url: width: 25
-                              | image_tag: alt: filter_value.display.value.alt
+                              | image_tag: alt: filter_value.display.value.alt, class: 'filter__option-image'
                             }}
                         {%- endcase -%}
                         {% if filter.label == 'Size' and filter_value.label contains '.0' %}
@@ -240,47 +398,53 @@
                   </li>
                 {%- endfor -%}
               </ul>
-
-              <p>
-                <button type="submit" class="button button-small">Apply</button>
-              </p>
             {%- when 'price_range' -%}
-              <ul>
-                <li>
-                  <label for="Filter-{{ filter.min_value.param_name }}"> From {{ cart.currency.symbol }} </label>
-                  <input
-                    name="{{ filter.min_value.param_name }}"
-                    id="Filter-{{ filter.min_value.param_name }}"
-                    {% if filter.min_value.value -%}
-                      value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
-                    {%- endif %}
-                    type="number"
-                    placeholder="0"
-                    min="0"
-                    max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
-                  >
-                </li>
-                <li>
-                  <label for="Filter-{{ filter.max_value.param_name }}"> To {{ cart.currency.symbol }} </label>
-                  <input
-                    name="{{ filter.max_value.param_name }}"
-                    id="Filter-{{ filter.max_value.param_name }}"
-                    {% if filter.max_value.value -%}
-                      value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
-                    {%- endif %}
-                    type="number"
-                    placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
-                    min="0"
-                    max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
-                  >
-                </li>
-              </ul>
-              <p>
-                <button type="submit" class="button button-small">Apply</button>
-              </p>
+              <div class="filter__price-range">
+                <div class="filter__price-input-wrapper">
+                  <label for="Filter-{{ filter.min_value.param_name }}" class="filter__price-label">From</label>
+                  <div class="filter__price-field">
+                    <span class="filter__price-currency">{{ cart.currency.symbol }}</span>
+                    <input
+                      name="{{ filter.min_value.param_name }}"
+                      id="Filter-{{ filter.min_value.param_name }}"
+                      class="filter__price-input"
+                      {% if filter.min_value.value -%}
+                        value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
+                      {%- endif %}
+                      type="number"
+                      placeholder="0"
+                      min="0"
+                      max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                    >
+                  </div>
+                </div>
+
+                <div class="filter__price-input-wrapper">
+                  <label for="Filter-{{ filter.max_value.param_name }}" class="filter__price-label">To</label>
+                  <div class="filter__price-field">
+                    <span class="filter__price-currency">{{ cart.currency.symbol }}</span>
+                    <input
+                      name="{{ filter.max_value.param_name }}"
+                      id="Filter-{{ filter.max_value.param_name }}"
+                      class="filter__price-input"
+                      {% if filter.max_value.value -%}
+                        value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
+                      {%- endif %}
+                      type="number"
+                      placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                      min="0"
+                      max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                    >
+                  </div>
+                </div>
+              </div>
           {%- endcase -%}
         </div>
-      </details>
-    {% endif %}
-  {%- endfor -%}
+      {% endif %}
+    {%- endfor -%}
+  </div>
+
+  <div class="filter__footer">
+    <button type="submit" class="filter__apply-button">Apply Filters</button>
+  </div>
 </form>
