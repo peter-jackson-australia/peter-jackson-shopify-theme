@@ -11,10 +11,8 @@
   }
 
   .filter__group-title {
-    font-family: 'Ordinary Regular';
     margin-bottom: var(--space-s);
     color: var(--neutral-950);
-    text-transform: uppercase;
   }
 
   .filter__options {
@@ -34,8 +32,6 @@
     gap: var(--space-xs);
     cursor: pointer;
     color: var(--neutral-600);
-    font-family: 'Ordinary Light';
-    font-size: clamp(0.6944rem, 0.6597rem + 0.1736vw, 0.8681rem);
   }
 
   .filter__checkbox,
@@ -98,27 +94,23 @@
   .filter__price-range {
     display: flex;
     align-items: center;
-    gap: var(--space-xs);
+    gap: var(--space-m);
     margin-bottom: var(--space-s);
   }
 
   .filter__price-input-wrapper {
     display: flex;
     flex-direction: column;
-    flex: 1;
   }
 
   .filter__price-label {
     margin-bottom: var(--space-3xs);
     color: var(--neutral-600);
-    font-family: 'Ordinary Light';
-    font-size: clamp(0.6944rem, 0.6597rem + 0.1736vw, 0.8681rem);
   }
 
   .filter__price-input {
     border: 1px solid var(--neutral-200);
     padding: var(--space-2xs) var(--space-xs);
-    font-family: 'Ordinary Light';
     color: var(--neutral-950);
   }
 
@@ -151,9 +143,7 @@
     border: none;
     padding: var(--space-xs) var(--space-s);
     cursor: pointer;
-    font-family: 'Ordinary Light';
     letter-spacing: 0.065rem;
-    text-transform: uppercase;
   }
 
   .filter__color-swatch {
@@ -174,7 +164,6 @@
     text-decoration: underline;
     margin-bottom: var(--space-xs);
     display: inline-block;
-    font-size: clamp(0.6944rem, 0.6597rem + 0.1736vw, 0.8681rem);
   }
 
   .filter__group:last-of-type {
@@ -186,7 +175,7 @@
 <form class="filter">
   <div class="filter__content custom-scrollbar">
     <div class="filter__group filter__sort-by">
-      <h3 class="filter__group-title body--uppercase">Sort by</h3>
+      <h3 class="filter__group-title body--bold">Sort by</h3>
       <ul class="filter__options">
         <li class="filter__option">
           <label class="filter__radio-label">
@@ -199,7 +188,7 @@
                 checked
               {% endif %}
             >
-            <span>Featured</span>
+            <span class="body">Featured</span>
           </label>
         </li>
         <li class="filter__option">
@@ -213,7 +202,7 @@
                 checked
               {% endif %}
             >
-            <span>Best selling</span>
+            <span class="body">Best selling</span>
           </label>
         </li>
         <li class="filter__option">
@@ -227,7 +216,7 @@
                 checked
               {% endif %}
             >
-            <span>Price low to high</span>
+            <span class="body">Price low to high</span>
           </label>
         </li>
         <li class="filter__option">
@@ -241,7 +230,7 @@
                 checked
               {% endif %}
             >
-            <span>Price high to low</span>
+            <span class="body">Price high to low</span>
           </label>
         </li>
         <li class="filter__option">
@@ -255,7 +244,7 @@
                 checked
               {% endif %}
             >
-            <span>Newly added</span>
+            <span class="body">Newly added</span>
           </label>
         </li>
         <li class="filter__option">
@@ -269,7 +258,7 @@
                 checked
               {% endif %}
             >
-            <span>Oldest first</span>
+            <span class="body">Oldest first</span>
           </label>
         </li>
       </ul>
@@ -293,7 +282,7 @@
 
       {% if should_display_filter %}
         <div class="filter__group">
-          <h3 class="filter__group-title body--uppercase">
+          <h3 class="filter__group-title body--bold">
             {{ filter.label }}
             {%- if filter.active_values.size > 0 -%}
               <span class="filter__active-count">({{ filter.active_values.size }})</span>
@@ -321,7 +310,7 @@
                         disabled
                       {%- endif -%}
                     >
-                    <span>{{- filter.true_value.label -}}</span>
+                    <span class="body">{{- filter.true_value.label -}}</span>
                   </label>
                 </li>
                 <li class="filter__option">
@@ -338,7 +327,7 @@
                         disabled
                       {%- endif %}
                     >
-                    <span>{{- filter.false_value.label -}}</span>
+                    <span class="body">{{- filter.false_value.label -}}</span>
                   </label>
                 </li>
               </ul>
@@ -359,7 +348,7 @@
                           disabled
                         {%- endif %}
                       >
-                      <span>
+                      <span class="body">
                         {%- case filter_value.display.type -%}
                           {%- when 'colors' -%}
                             {% liquid
@@ -401,9 +390,9 @@
             {%- when 'price_range' -%}
               <div class="filter__price-range">
                 <div class="filter__price-input-wrapper">
-                  <label for="Filter-{{ filter.min_value.param_name }}" class="filter__price-label">From</label>
+                  <label for="Filter-{{ filter.min_value.param_name }}" class="filter__price-label body">From</label>
                   <div class="filter__price-field">
-                    <span class="filter__price-currency">{{ cart.currency.symbol }}</span>
+                    <span class="filter__price-currency body">{{ cart.currency.symbol }}</span>
                     <input
                       name="{{ filter.min_value.param_name }}"
                       id="Filter-{{ filter.min_value.param_name }}"
@@ -420,9 +409,9 @@
                 </div>
 
                 <div class="filter__price-input-wrapper">
-                  <label for="Filter-{{ filter.max_value.param_name }}" class="filter__price-label">To</label>
+                  <label for="Filter-{{ filter.max_value.param_name }}" class="filter__price-label body">To</label>
                   <div class="filter__price-field">
-                    <span class="filter__price-currency">{{ cart.currency.symbol }}</span>
+                    <span class="filter__price-currency body">{{ cart.currency.symbol }}</span>
                     <input
                       name="{{ filter.max_value.param_name }}"
                       id="Filter-{{ filter.max_value.param_name }}"
@@ -445,6 +434,6 @@
   </div>
 
   <div class="filter__footer">
-    <button type="submit" class="filter__apply-button">Apply Filters</button>
+    <button type="submit" class="filter__apply-button body">Apply Filters</button>
   </div>
 </form>
