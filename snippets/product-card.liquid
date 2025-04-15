@@ -69,12 +69,13 @@
 
               try {
                 this.splideInstance = new Splide(this.$refs.sliderContainer.querySelector('.splide'), {
-                  type: 'loop',
+                  start: 0,
+                  type: 'slide',
+                  rewind: false,
                   arrows: true,
                   pagination: false,
                   speed: 400,
                 });
-
                 this.splideInstance.mount();
                 this.showSlider = true;
               } catch (e) {
@@ -135,7 +136,7 @@
         <div
           x-ref="sliderContainer"
           x-show="showSlider"
-          x-cloak
+          x-cloak="showSlider"
         ></div>
       {% endif %}
     </div>
