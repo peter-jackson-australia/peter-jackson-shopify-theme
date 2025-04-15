@@ -55,7 +55,7 @@
                               class='product-card__image'
                               width='{{ image_width }}'
                               height='{{ img_height }}'
-                              loading='lazy'
+                              loading='eager'
                             >
                           </li>
                         {% endfor %}
@@ -71,11 +71,10 @@
                 this.splideInstance = new Splide(this.$refs.sliderContainer.querySelector('.splide'), {
                   start: 0,
                   type: 'slide',
-                  perPage: 1,
-                  rewind: false,
                   arrows: true,
                   pagination: false,
-                  speed: 400,
+                  waitForTransition: true,
+                  speed: 300,
                 });
                 this.splideInstance.mount();
                 this.showSlider = true;

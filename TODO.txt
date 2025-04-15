@@ -11,6 +11,8 @@ Make it fast (over 95)
 
 Restrict my created sections to certain parts using the enabled_on directive 
 
+Show 1 product when 1 product
+
 AJAX CART
 
 /////////////////////////////////////////////////////
