@@ -1,14 +1,17 @@
 Collection page:
-Add in ability to make hero section on collection pages 
-Random image flashes on collection page first load 
+Show 1 product when 1 product instead of 1 products
+Grid selector styling
+Style reset, filter counteer, pricing component  
 Have indication that filter has been applied 
-Style reset, filter counteer, pricing component 
-Grid selector styling 
+Add in ability to make hero section on collection pages 
+Add in additional color swatches 
+Random image flashes on collection page first load 
 Sidebar drawer conflicting with main menu
 Basic transitions for grid selector and products loading in
 Make it fast (over 95) 
+
 Restrict my created sections to certain parts using the enabled_on directive 
-Show 1 product when 1 product instead of 1 products
+
 AJAX CART (Just get it to work)
 
 /////////////////////////////////////////////////////
