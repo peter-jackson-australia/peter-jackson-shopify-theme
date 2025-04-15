@@ -1,10 +1,7 @@
 Collection page:
-Style content slot 
-Content slot to not show when filters are applied but show when they are not 
-Loading more products styling
+Random image flashes on collection page first load 
 Grid selector styling 
 Sidebar drawer conflicting with main menu
-Random image flashes on collection page first load 
 Make it fast (over 95) 
 
 Restrict my created sections to certain parts using the enabled_on directive 
