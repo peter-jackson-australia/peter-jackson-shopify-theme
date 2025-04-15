@@ -212,19 +212,18 @@
     width: 0;
   }
 
-  .grid-content-item {
+  .grid-content {
     position: relative;
     overflow: hidden;
-    color: white;
+    color: var(--white);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: var(--space-m);
     min-height: 350px;
     grid-column: span 2;
   }
 
-  .grid-content-background {
+  .grid-content__background {
     position: absolute;
     top: 0;
     left: 0;
@@ -233,48 +232,56 @@
     z-index: 0;
   }
 
-  .image-background {
+  .grid-content__background--image {
     background-size: cover;
     background-position: center;
   }
 
-  .video-background {
+  .grid-content__background--video {
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  .video-background video {
+  .grid-content__background--video video {
     min-width: 100%;
     min-height: 100%;
     object-fit: cover;
     position: absolute;
   }
 
-  .grid-content-overlay {
-    position: relative;
+  .grid-content__overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
     z-index: 1;
-    text-align: center;
-    margin: 0 auto;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: var(--space-m);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
   }
 
-  .grid-content-leading-text {
+  .grid-content__container {
+    position: relative;
+    z-index: 2;
+    padding: var(--space-m);
+    text-align: center;
+    display: grid;
+    margin-top: auto;
+  }
+
+  .grid-content__header {
     margin-bottom: var(--space-xs);
   }
 
-  .grid-content-header {
+  .grid-content__description {
     margin-bottom: var(--space-s);
   }
 
-  .grid-content-description {
-    margin-bottom: var(--space-m);
+  .grid-content__container--left {
+    text-align: left;
+    justify-items: start;
   }
 
-  .grid-content-button {
-    display: inline-block;
-    margin-top: var(--space-s);
+  .grid-content__description {
+    max-width: 80ch;
   }
 
   .grid-toggle-btn {
@@ -315,8 +322,14 @@
       grid-template-columns: repeat(2, 1fr);
     }
 
-    .products-grid--cols-2 .grid-content-item {
+    .products-grid--cols-2 .grid-content {
       grid-column: span 1;
+    }
+
+    .grid-content__container {
+      padding-bottom: var(--space-xl);
+      text-align: left;
+      justify-items: start;
     }
   }
 {% endstylesheet %}
@@ -447,32 +460,36 @@
                 and paginate.current_page == 1
                 and has_grid_content
               %}
-                <div class="grid-content-item">
+                <div class="grid-content">
                   {% if metaobject_raw.image_or_video != blank %}
                     {% if metaobject_raw.image_or_video.value.media_type == 'video' %}
-                      <div class="grid-content-background video-background">
+                      <div class="grid-content__background grid-content__background--video">
                         <video autoplay muted loop playsinline>
                           <source src="{{ metaobject_raw.image_or_video | file_url }}" type="video/mp4">
                         </video>
                       </div>
                     {% else %}
                       <div
-                        class="grid-content-background image-background"
+                        class="grid-content__background grid-content__background--image"
                         style="background-image: url('{{ metaobject_raw.image_or_video | image_url: width: 1200 }}');"
                       ></div>
                     {% endif %}
                   {% endif %}
 
-                  <div class="grid-content-overlay">
+                  <div class="grid-content__overlay"></div>
+
+                  <div class="grid-content__container grid-content__container--left">
                     {% if metaobject_raw.leading_text != blank %}
-                      <p class="grid-content-leading-text">{{ metaobject_raw.leading_text }}</p>
+                      <p class="heading--l grid-content__leading-text">{{ metaobject_raw.leading_text }}</p>
                     {% endif %}
 
-                    <h2 class="grid-content-header">{{ metaobject_raw.header }}</h2>
+                    <h2 class="heading--2xl grid-content__header">{{ metaobject_raw.header }}</h2>
 
-                    <div class="grid-content-description">{{ metaobject_raw.description }}</div>
+                    <div class="body grid-content__description">{{ metaobject_raw.description }}</div>
 
-                    {% if metaobject_raw.link != blank %}{{ metaobject_raw.link | metafield_tag }}{% endif %}
+                    {% if metaobject_raw.link != blank %}
+                      {{ metaobject_raw.link | metafield_tag | replace: 'class="', 'class="button button--white ' }}
+                    {% endif %}
                   </div>
                 </div>
                 {% assign inserted = true %}
@@ -485,28 +502,36 @@
               {% endif %}
             {% endfor %}
             {% if inserted == false and paginate.current_page == 1 and has_grid_content %}
-              <div class="grid-content-item">
+              <div class="grid-content">
                 {% if metaobject_raw.image_or_video != blank %}
                   {% if metaobject_raw.image_or_video.value.media_type == 'video' %}
-                    <div class="grid-content-background video-background">
+                    <div class="grid-content__background grid-content__background--video">
                       <video autoplay muted loop playsinline>
                         <source src="{{ metaobject_raw.image_or_video | file_url }}" type="video/mp4">
                       </video>
                     </div>
                   {% else %}
                     <div
-                      class="grid-content-background image-background"
+                      class="grid-content__background grid-content__background--image"
                       style="background-image: url('{{ metaobject_raw.image_or_video | image_url: width: 1200 }}');"
                     ></div>
                   {% endif %}
                 {% endif %}
-                <div class="grid-content-overlay">
+
+                <div class="grid-content__overlay"></div>
+
+                <div class="grid-content__container grid-content__container--left">
                   {% if metaobject_raw.leading_text != blank %}
-                    <p class="grid-content-leading-text">{{ metaobject_raw.leading_text }}</p>
+                    <p class="heading--l grid-content__leading-text">{{ metaobject_raw.leading_text }}</p>
                   {% endif %}
-                  <h2 class="grid-content-header">{{ metaobject_raw.header }}</h2>
-                  <div class="grid-content-description">{{ metaobject_raw.description }}</div>
-                  {% if metaobject_raw.link != blank %}{{ metaobject_raw.link | metafield_tag }}{% endif %}
+
+                  <h2 class="heading--2xl grid-content__header">{{ metaobject_raw.header }}</h2>
+
+                  <div class="body grid-content__description">{{ metaobject_raw.description }}</div>
+
+                  {% if metaobject_raw.link != blank %}
+                    {{ metaobject_raw.link | metafield_tag | replace: 'class="', 'class="button button--white ' }}
+                  {% endif %}
                 </div>
               </div>
             {% endif %}
