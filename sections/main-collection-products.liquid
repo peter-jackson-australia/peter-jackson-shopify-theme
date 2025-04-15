@@ -368,9 +368,22 @@
     </div>
     {% liquid
       assign has_grid_content = false
+
       if collection.metafields.custom.collection_grid_content != blank
         assign has_grid_content = true
-        assign metaobject_raw = collection.metafields.custom.collection_grid_content.value
+        for filter in collection.filters
+          for active_filter in filter.active_values
+            assign has_grid_content = false
+            break
+          endfor
+          if has_grid_content == false
+            break
+          endif
+        endfor
+
+        if has_grid_content
+          assign metaobject_raw = collection.metafields.custom.collection_grid_content.value
+        endif
       endif
 
       assign original_limit = section.settings.limit | plus: 0
@@ -538,7 +551,7 @@
           </div>
           <div id="AjaxinatePagination">
             {% if paginate.next %}
-              <a href="{{ paginate.next.url }}">Loading More</a>
+              <a href="{{ paginate.next.url }}"></a>
             {% endif %}
           </div>
         </div>
@@ -554,6 +567,8 @@
       container: '#AjaxinateContainer',
       pagination: '#AjaxinatePagination',
       offset: '100',
+      loadingText:
+        '<div style="display:flex;justify-content:center;align-items:center;padding:var(--space-m) 0;width:100%;height:1px;overflow:hidden"><svg fill=#DADADA height=1 style=max-width:300px viewBox="0 0 100 1"width=100% xmlns=http://www.w3.org/2000/svg><style>.react{animation:moving 1s ease-in-out infinite;transform-origin:0 50%}@keyframes moving{0%{width:0%}50%{width:100%;transform:translateX(0)}100%{width:0;transform:translateX(100%)}}</style><rect class=react fill=#DADADA height=1 width=100% /></svg></div>',
     });
 
     document.addEventListener(
