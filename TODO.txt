@@ -1,5 +1,5 @@
 Collection page:
-Splide slider: do not show next part of image at all 
+Splide slider: 
 Add progress bar
 Style content slot 
 Content slot to not show when filters are applied but show when they are not 
