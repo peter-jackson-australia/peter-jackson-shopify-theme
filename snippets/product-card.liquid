@@ -24,6 +24,18 @@
               const sliderHTML = `
                 <div class='product-card__slider-wrapper'>
                   <div class='splide product-card__slider'>
+                    <div class='splide__arrows'>
+                      <button class='splide__arrow splide__arrow--prev'>
+                        <svg width='7' height='12' viewBox='0 0 7 12' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                          <path d='M6 1L1 6L6 11' stroke='#0F0F0F' stroke-linecap='square'/>
+                        </svg>
+                      </button>
+                      <button class='splide__arrow splide__arrow--next'>
+                        <svg width='7' height='12' viewBox='0 0 7 12' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                          <path d='M1 1L6 6L1 11' stroke='#0F0F0F' stroke-linecap='square'/>
+                        </svg>
+                      </button>
+                    </div>
                     <div class='splide__track'>
                       <ul class='splide__list'>
                         {% for image in product.images %}
@@ -57,10 +69,10 @@
 
               try {
                 this.splideInstance = new Splide(this.$refs.sliderContainer.querySelector('.splide'), {
-                  type: 'fade',
+                  type: 'loop',
                   arrows: true,
                   pagination: false,
-                  speed: 400
+                  speed: 400,
                 });
 
                 this.splideInstance.mount();

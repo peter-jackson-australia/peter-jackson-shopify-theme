@@ -1,9 +1,10 @@
 Collection page:
+Slider styling:
+Featurd image as first image in slider
 Style content slot 
 Content slot to not show when filters are applied but show when they are not 
 Loading more products styling
 Grid selector styling 
-Slider styling
 Sidebar drawer conflicting with main menu
 Random image flashes on collection page first load 
 Make it fast (over 95) 
