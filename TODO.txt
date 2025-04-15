@@ -1,6 +1,6 @@
 Collection page:
-Slider styling:
-Featurd image as first image in slider
+Splide slider: do not show next part of image at all 
+Add progress bar
 Style content slot 
 Content slot to not show when filters are applied but show when they are not 
 Loading more products styling
