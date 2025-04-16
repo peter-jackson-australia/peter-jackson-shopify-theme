@@ -1,5 +1,4 @@
 Collection page: 
-Add in close icon to filtering bar 
 Make grid slot content bigger on 2 column mode
 Add in ability to make hero section on collection pages 
 Random image flashes on collection page first load 

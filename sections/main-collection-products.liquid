@@ -392,6 +392,13 @@
           <p>
             <a class="body" href="{{ collection.url }}?sort_by={{ collection.sort_by }}">Clear all</a>
           </p>
+          <button
+            class="filter-close-btn"
+            @click="isFilterOpen = false; document.body.classList.remove('filter-open')"
+            aria-label="Close filters"
+          >
+            {% render 'icon-close' %}
+          </button>
         </div>
         {% render 'collection-filters' %}
       </aside>
