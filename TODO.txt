@@ -1,9 +1,8 @@
 Collection page: 
+Mobile responsiveness (1 column grid by default)
 Make grid slot content bigger on 2 column mode
 Add in ability to make hero section on collection pages 
 Random image flashes on collection page first load 
-Sidebar drawer conflicting with main menu
-Mobile responsiveness
 Basic transitions for grid selector and products loading in
 Make it fast (over 95) 
 Restrict my created sections to certain parts using the enabled_on directive 
