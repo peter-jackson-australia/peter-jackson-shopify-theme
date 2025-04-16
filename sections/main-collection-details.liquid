@@ -17,15 +17,110 @@
     color: var(--neutral-950) !important;
     font-family: 'Ordinary Regular';
   }
+
+  .collection-hero {
+    position: relative;
+    height: calc(100dvh - var(--space-xl) - 57px - 57px);
+    overflow: hidden;
+    margin-bottom: var(--space-m);
+  }
+
+  .collection-hero__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  .collection-hero__overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+  }
+
+  .collection-hero__content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 3;
+    padding: var(--space-m);
+    padding-bottom: var(--space-xl);
+    display: grid;
+    gap: var(--space-s);
+    color: var(--white);
+    text-align: left;
+    justify-items: start;
+  }
+
+  .collection-hero__description {
+    max-width: 80ch;
+  }
+
+  .collection-hero__description,
+  .collection-hero__description p,
+  .collection-hero__description a {
+    color: var(--white) !important;
+  }
+
+  .collection-hero__description p strong {
+    color: var(--white) !important;
+  }
+
+  @media screen and (max-width: 768px) {
+    .collection-hero__content {
+      padding-bottom: var(--space-xl);
+    }
+  }
 {% endstylesheet %}
 
-<section class="section-wrap collection-description__container">
-  <div class="section">
-    <div class="rte collection-description__text body">
-      {{ collection.description }}
+{% assign hero_enabled = collection.metafields.custom.enable_collection_hero | default: false %}
+{% assign hero_image = collection.metafields.custom.collection_hero_image %}
+{% assign hero_header = collection.metafields.custom.collection_hero_header %}
+
+{% if hero_enabled and hero_image %}
+  <style>
+    .collection-header {
+      border-bottom: none !important;
+    }
+  </style>
+  <section class="collection-hero" aria-label="{{ hero_header | default: collection.title | escape }}">
+    {% if hero_image %}
+      {{
+        hero_image
+        | image_url: width: 2000
+        | image_tag: class: 'collection-hero__background', alt: collection.title, loading: 'eager'
+      }}
+    {% endif %}
+    <div class="collection-hero__overlay"></div>
+    <div class="collection-hero__content">
+      {% if hero_header != blank %}
+        <h2 class="heading--2xl">{{ hero_header }}</h2>
+      {% else %}
+        <h2 class="heading--2xl">{{ collection.title }}</h2>
+      {% endif %}
+
+      {% if collection.description != blank %}
+        <div class="rte collection-hero__description heading--l">
+          {{ collection.description }}
+        </div>
+      {% endif %}
     </div>
-  </div>
-</section>
+  </section>
+{% else %}
+  <section class="section-wrap collection-description__container">
+    <div class="section">
+      <div class="rte collection-description__text body">
+        {{ collection.description }}
+      </div>
+    </div>
+  </section>
+{% endif %}
 
 {% schema %}
 {
@@ -34,7 +129,7 @@
   "settings": [
     {
       "type": "paragraph",
-      "content": "Display collection description."
+      "content": "Display collection description with optional hero banner from collection metafields."
     }
   ]
 }

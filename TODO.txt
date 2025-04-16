@@ -1,5 +1,4 @@
 Collection page: 
-Add in ability to make hero section on collection pages 
 Random image flashes on collection page first load 
 Make it fast (over 95) 
 
