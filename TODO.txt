@@ -1,5 +1,4 @@
 Collection page: 
-Adjust collection header height when hero mode is enabled (1px off)
 Random image flashes on collection page first load 
 Make it fast (over 95) 
 
