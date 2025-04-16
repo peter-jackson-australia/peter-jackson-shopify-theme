@@ -57,7 +57,6 @@
     background-color: var(--white);
     z-index: 9998;
     overflow-y: hidden;
-    border-top: 1px solid var(--neutral-200);
   }
 
   .filter-sidebar__overlay {
@@ -76,7 +75,7 @@
 
   .products-grid {
     display: grid;
-    gap: var(--space-xs);
+    gap: var(--space-2xs);
   }
 
   .products-grid--cols-1 {
@@ -313,8 +312,13 @@
   }
 
   .filter-sidebar-header {
-    padding: var(--space-s) var(--space-m);
+    padding: var(--space-xs) var(--space-m);
+    border-top: 1px solid var(--neutral-200);
     border-bottom: 1px solid var(--neutral-200);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 57px;
   }
 
   .filter-sidebar-header > p > a {
@@ -380,7 +384,7 @@
       ></div>
       <aside class="filter-sidebar">
         <div class="filter-sidebar-header">
-          <h3 class="heading--l">Filters</h3>
+          <h3 class="heading--xl">Filters</h3>
           <p>
             <a class="body" href="{{ collection.url }}?sort_by={{ collection.sort_by }}">Clear all</a>
           </p>

@@ -8,12 +8,16 @@
     border-bottom: 1px solid var(--neutral-200);
     padding: 0 var(--space-m);
     padding-right: 0px;
+    height: 57px;
+    overflow-y: hidden;
   }
 
   .collection-header__wrapper {
     display: flex;
     justify-content: space-between;
     align-items: stretch;
+    max-height: calc(100% + 2px);
+    height: calc(100% + 2px);
   }
 
   .collection-header > .collection-header__wrapper > .custom-scrollbar::-webkit-scrollbar-track {
@@ -27,6 +31,7 @@
     border-left: none;
     border-right: none;
     border-bottom: none;
+    border-top: 1px solid var(--neutral-200);
   }
 
   .collection-header__title {
@@ -50,6 +55,7 @@
     list-style: none;
     padding: var(--space-s) var(--space-m);
     margin-left: auto;
+    max-height: 100%;
   }
 
   .collection-header__link {
@@ -61,6 +67,7 @@
   @media screen and (max-width: 768px) {
     .collection-header {
       padding: 0px;
+      height: auto;
     }
 
     .collection-header__wrapper {
