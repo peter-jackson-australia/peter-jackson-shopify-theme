@@ -85,9 +85,11 @@
 
 {% if hero_enabled and hero_image %}
   <style>
-    .collection-header {
-      border-bottom: none !important;
-      height: 56px !important;
+    @media screen and (min-width: 768px) {
+      .collection-header {
+        border-bottom: none !important;
+        height: 56px !important;
+      }
     }
   </style>
   <section class="collection-hero" aria-label="{{ hero_header | default: collection.title | escape }}">
