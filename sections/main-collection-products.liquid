@@ -13,15 +13,16 @@
   .collection-controls {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: stretch;
     margin-bottom: var(--space-m);
     padding: 0 var(--space-m);
-    gap: var(--space-m);
+    gap: var(--space-xs);
   }
 
   .collection-controls > p {
     margin-left: auto;
     color: var(--neutral-600);
+    align-self: center;
   }
 
   .collection-controls__filter-button {
@@ -288,10 +289,19 @@
     background-color: transparent;
     padding: var(--space-2xs);
     border: 1px solid var(--neutral-200);
+    display: flex;
+    align-items: center;
+    height: 100%;
   }
 
   .grid-toggle-btn > span {
     vertical-align: middle;
+    height: 14px;
+    display: inline-block;
+  }
+
+  .grid-toggle-btn > span > svg {
+    vertical-align: baseline;
   }
 
   .filter-sidebar-header {
@@ -427,7 +437,10 @@
               <span>{% render 'icon-filter' %}</span>
             </button>
 
-            <p class="body">{{ collection.products_count }} Products</p>
+            <p class="body">
+              {{ collection.products_count }}
+              {% if collection.products_count == 1 %}Product{% else %}Products{% endif %}
+            </p>
 
             <div class="collection-controls__actions">
               <button

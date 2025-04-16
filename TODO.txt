@@ -1,6 +1,4 @@
 Collection page:
-Show 1 product when 1 product instead of 1 products
-Grid selector styling
 Style reset, filter counteer, pricing component  
 Have indication that filter has been applied 
 Add in ability to make hero section on collection pages 
