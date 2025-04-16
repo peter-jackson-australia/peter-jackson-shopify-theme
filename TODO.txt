@@ -1,6 +1,4 @@
-Collection page:
-Style reset, filter counteer, pricing component  
-Have indication that filter has been applied 
+Collection page: 
 Add in ability to make hero section on collection pages 
 Add in additional color swatches 
 Random image flashes on collection page first load 

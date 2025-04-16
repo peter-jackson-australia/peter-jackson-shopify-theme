@@ -34,6 +34,14 @@
     border: 1px solid var(--neutral-200);
   }
 
+  .filter-indicator {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: var(--neutral-950);
+    margin-left: var(--space-3xs);
+  }
+
   .collection-controls__actions {
     display: flex;
     gap: var(--space-s);
@@ -429,12 +437,25 @@
       <div>
         <div class="section">
           <div class="collection-controls">
+            {% liquid
+              assign has_active_filters = false
+              for filter in collection.filters
+                if filter.active_values.size > 0
+                  assign has_active_filters = true
+                  break
+                endif
+              endfor
+            %}
+
             <button
               class="collection-controls__filter-button body--bold"
               @click="isFilterOpen = !isFilterOpen; document.body.classList.toggle('filter-open', isFilterOpen)"
             >
               Filter
               <span>{% render 'icon-filter' %}</span>
+              {% if has_active_filters %}
+                <span class="filter-indicator"></span>
+              {% endif %}
             </button>
 
             <p class="body">

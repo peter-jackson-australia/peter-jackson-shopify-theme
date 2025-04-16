@@ -90,6 +90,10 @@
     outline: none;
   }
 
+  .filter__option:has(.filter__checkbox[disabled]) {
+    display: none !important;
+  }
+
   .filter__price-range {
     display: flex;
     align-items: center;
@@ -154,8 +158,7 @@
   }
 
   .filter__active-count {
-    color: var(--neutral-400);
-    margin-left: var(--space-2xs);
+    color: var(--neutral-600);
   }
 
   .filter__reset {
@@ -266,16 +269,30 @@
     {%- for filter in collection.filters -%}
       {% liquid
         assign should_display_filter = true
+        assign visible_options_count = 0
 
         case filter.type
           when 'list'
-            if filter.values.size <= 1
+            for filter_value in filter.values
+              if filter_value.count > 0 or filter_value.active
+                assign visible_options_count = visible_options_count | plus: 1
+              endif
+            endfor
+            if visible_options_count == 0 or filter.values.size <= 1
               assign should_display_filter = false
             endif
           when 'boolean'
-            if filter.true_value.count == 0 or filter.false_value.count == 0
+            if filter.true_value.count > 0 or filter.true_value.active
+              assign visible_options_count = visible_options_count | plus: 1
+            endif
+            if filter.false_value.count > 0 or filter.false_value.active
+              assign visible_options_count = visible_options_count | plus: 1
+            endif
+            if visible_options_count == 0
               assign should_display_filter = false
             endif
+          when 'price_range'
+            # Price range is always shown
         endcase
       %}
 
@@ -284,12 +301,12 @@
           <h3 class="filter__group-title body--bold">
             {{ filter.label }}
             {%- if filter.active_values.size > 0 -%}
-              <span class="filter__active-count">({{ filter.active_values.size }})</span>
+              <span class="filter__active-count body">({{ filter.active_values.size }})</span>
             {%- endif -%}
           </h3>
 
           {%- if filter.active_values.size > 0 -%}
-            <a href="{{ filter.url_to_remove }}" class="filter__reset">Reset</a>
+            <a href="{{ filter.url_to_remove }}" class="filter__reset body">Reset</a>
           {%- endif -%}
 
           {%- case filter.type -%}
