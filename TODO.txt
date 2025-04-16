@@ -1,4 +1,5 @@
 Collection page: 
+Add in close icon to filtering bar and finish filter bar header styling 
 Make grid slot content bigger on 2 column mode
 Add in ability to make hero section on collection pages 
 Add in additional color swatches 
