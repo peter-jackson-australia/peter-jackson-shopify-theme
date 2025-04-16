@@ -19,7 +19,7 @@
   {% endif %}
 {% endfor %}
 
-{% stylesheet %}
+<style>
   .related-articles {
     display: flex;
     flex-direction: column;
@@ -196,7 +196,7 @@
       gap: calc(var(--space-xs) + var(--space-xs));
     }
   }
-{% endstylesheet %}
+</style>
 
 {% if has_related_articles %}
   <section class="related-articles">

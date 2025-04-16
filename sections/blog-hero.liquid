@@ -2,7 +2,7 @@
   Blog Hero Section
 {% endcomment %}
 
-{% stylesheet %}
+<style>
   .blog-hero {
     display: flex;
     flex-direction: column;
@@ -285,7 +285,7 @@
       gap: calc(var(--space-xs) + var(--space-xs));
     }
   }
-{% endstylesheet %}
+</style>
 
 <section class="blog-hero">
   {% if section.settings.hero_image != blank %}

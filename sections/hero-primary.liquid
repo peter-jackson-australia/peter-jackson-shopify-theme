@@ -1,4 +1,4 @@
-{% stylesheet %}
+<style>
   .hero {
     position: relative;
     height: calc(100dvh - var(--space-xl));
@@ -61,7 +61,7 @@
       justify-items: start;
     }
   }
-{% endstylesheet %}
+</style>
 
 {% if section.settings.desktop_image or section.settings.mobile_image %}
   <section id="hero-primary" class="hero" aria-label="{{ section.settings.heading | escape }}">

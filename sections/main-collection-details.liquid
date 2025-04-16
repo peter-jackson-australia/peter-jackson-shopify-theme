@@ -2,7 +2,7 @@
   Collection Description
 {% endcomment %}
 
-{% stylesheet %}
+<style>
   .collection-description__container {
     padding: var(--space-m);
   }
@@ -77,7 +77,7 @@
       padding-bottom: var(--space-xl);
     }
   }
-{% endstylesheet %}
+</style>
 
 {% assign hero_enabled = collection.metafields.custom.enable_collection_hero | default: false %}
 {% assign hero_image = collection.metafields.custom.collection_hero_image %}
