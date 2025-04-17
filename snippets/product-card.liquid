@@ -132,7 +132,7 @@
         "
       {% endif %}
     >
-      <div>
+      <div style="background-color: var(--neutral-50); position: relative; width: 100%; padding-bottom: calc({{ image_height | times: 1.0 | divided_by: image_width | times: 100 }}%);">
         <img
           src="{{ product.featured_image | image_url: width: image_width }}"
           srcset="
@@ -148,6 +148,7 @@
           height="{{ image_height }}"
           loading="eager"
           fetchpriority="high"
+          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
         >
       </div>
 
