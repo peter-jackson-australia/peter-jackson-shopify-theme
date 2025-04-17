@@ -1,4 +1,6 @@
 Collection page: 
+Rename Footer section 
+Add in preview images for theme editor
 AJAX CART (Just get it to work)
 
 /////////////////////////////////////////////////////
