@@ -1,0 +1,372 @@
+{% comment %}
+  Cart Drawer Sidebar Component
+{% endcomment %}
+
+<style>
+  .cart-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    max-width: 400px;
+    height: 100vh;
+    background: #fff;
+    z-index: 1000;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .cart-drawer--open {
+    transform: translateX(0);
+  }
+
+  .cart-drawer__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  }
+
+  .cart-drawer__overlay--visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .cart-drawer__header {
+    padding: 1rem;
+    border-bottom: 1px solid #e5e5e5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cart-drawer__close {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+  }
+
+  .cart-drawer__content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+  }
+
+  .cart-drawer__items {
+    opacity: 1;
+    transition: opacity 0.2s;
+  }
+
+  html.js-ajax-cart-processing .cart-drawer__items {
+    opacity: 0.7;
+  }
+
+  html.js-ajax-cart-processing .cart-drawer__items:before {
+    content: 'Loading';
+    display: block;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .cart-drawer__item {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .cart-drawer__item-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+  }
+
+  .cart-drawer__item-details {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cart-drawer__item-title {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  .cart-drawer__item-price {
+    margin-bottom: 0.5rem;
+  }
+
+  .cart-drawer__item-quantity {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .cart-drawer__quantity-button {
+    background: #f5f5f5;
+    border: none;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .cart-drawer__quantity-input {
+    width: 40px;
+    text-align: center;
+    margin: 0 0.5rem;
+    border: 1px solid #e5e5e5;
+    padding: 0.25rem;
+  }
+
+  .cart-drawer__item-remove {
+    color: #999;
+    font-size: 0.875rem;
+    text-decoration: underline;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: inline-block;
+  }
+
+  .cart-drawer__footer {
+    padding: 1rem;
+    border-top: 1px solid #e5e5e5;
+  }
+
+  .cart-drawer__subtotal {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    font-weight: bold;
+  }
+
+  .cart-drawer__checkout {
+    width: 100%;
+    padding: 1rem;
+    background: #000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  .cart-drawer__continue {
+    width: 100%;
+    padding: 1rem;
+    background: transparent;
+    border: 1px solid #000;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .cart-drawer__empty {
+    text-align: center;
+    padding: 2rem;
+  }
+</style>
+
+<aside
+  x-data="cartDrawer"
+  @keydown.escape.window="closeCart()"
+  class="cart-drawer__container"
+  aria-label="Shopping cart"
+  data-ajax-cart-section
+>
+  <div
+    x-show="isOpen"
+    x-cloak
+    class="cart-drawer__overlay"
+    :class="{'cart-drawer__overlay--visible': isOpen}"
+    @click="closeCart()"
+    role="button"
+    aria-label="Close cart"
+    tabindex="-1"
+  ></div>
+
+  <div
+    x-show="isOpen"
+    x-cloak
+    class="cart-drawer"
+    :class="{'cart-drawer--open': isOpen}"
+  >
+    <div class="cart-drawer__header">
+      <h2>
+        Cart (<span data-ajax-cart-bind="item_count">{{ cart.item_count }}</span>)
+      </h2>
+      <button @click="closeCart()" class="cart-drawer__close" aria-label="Close cart">&times;</button>
+    </div>
+
+    <div class="cart-drawer__content">
+      <div class="cart-drawer__items" data-ajax-cart-section-scroll>
+        {% if cart.item_count > 0 %}
+          {% for line_item in cart.items %}
+            {% assign line_item_index = forloop.index %}
+
+            <div class="cart-drawer__item">
+              <img
+                src="{{ line_item.image | image_url: width: 160 }}"
+                alt="{{ line_item.title | escape }}"
+                class="cart-drawer__item-image"
+                width="80"
+                height="80"
+                loading="lazy"
+              >
+
+              <div class="cart-drawer__item-details">
+                <div class="cart-drawer__item-title">
+                  <a href="{{ line_item.url }}">{{ line_item.product.title | escape }}</a>
+                  {% unless line_item.product.has_only_default_variant %}
+                    <p class="cart-drawer__item-variant">
+                      {% for option_name in line_item.product.options %}
+                        {{ option_name }}: {{ line_item.variant.options[forloop.index0] -}}
+                        <br>
+                      {% endfor %}
+                    </p>
+                  {% endunless %}
+                </div>
+
+                <div class="cart-drawer__item-price">
+                  {{ line_item.final_price | money }}
+                </div>
+
+                <ajax-cart-quantity class="cart-drawer__item-quantity">
+                  <a
+                    class="cart-drawer__quantity-button"
+                    data-ajax-cart-quantity-minus
+                    aria-label="Decrease quantity by one"
+                    href="{{ routes.cart_change_url }}?line={{ line_item_index }}&quantity={{ line_item.quantity | minus: 1 }}"
+                    >-</a
+                  >
+
+                  <input
+                    class="cart-drawer__quantity-input"
+                    data-ajax-cart-quantity-input="{{ line_item_index }}"
+                    name="updates[]"
+                    value="{{ line_item.quantity }}"
+                    type="number"
+                    min="0"
+                    aria-label="Item quantity"
+                    form="cart-drawer-form"
+                  >
+
+                  <a
+                    class="cart-drawer__quantity-button"
+                    data-ajax-cart-quantity-plus
+                    aria-label="Increase quantity by one"
+                    href="{{ routes.cart_change_url }}?line={{ line_item_index }}&quantity={{ line_item.quantity | plus: 1 }}"
+                    >+</a
+                  >
+                </ajax-cart-quantity>
+
+                <div data-ajax-cart-errors="{{ line_item.key }}"></div>
+
+                <a
+                  class="cart-drawer__item-remove"
+                  data-ajax-cart-request-button
+                  href="{{ line_item.url_to_remove }}"
+                  >Remove</a
+                >
+              </div>
+
+              <div class="cart-drawer__item-total">
+                {{ line_item.final_line_price | money }}
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="cart-drawer__empty">
+            <p>Your cart is empty</p>
+            <button @click="closeCart()" class="cart-drawer__continue">Continue Shopping</button>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if cart.item_count > 0 %}
+      <div class="cart-drawer__footer">
+        <div class="cart-drawer__subtotal">
+          <span>Subtotal</span>
+          <span data-ajax-cart-bind="total_price | money_with_currency">
+            {{- cart.total_price | money_with_currency -}}
+          </span>
+        </div>
+
+        {% form 'cart', cart, id: 'cart-drawer-form' %}
+          <button
+            type="submit"
+            name="checkout"
+            class="cart-drawer__checkout"
+          >
+            Checkout
+          </button>
+        {% endform %}
+
+        <button @click="closeCart()" class="cart-drawer__continue">Continue Shopping</button>
+      </div>
+    {% endif %}
+  </div>
+</aside>
+
+<script>
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('cartDrawer', () => ({
+      isOpen: false,
+
+      init() {
+        // Make cart button open drawer instead of navigating to cart page
+        const cartLinks = document.querySelectorAll('a[href="{{ routes.cart_url }}"]');
+        cartLinks.forEach((link) => {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.openCart();
+          });
+        });
+
+        // Listen for cart add events to open drawer
+        document.addEventListener('liquid-ajax-cart:request-end', (event) => {
+          const { requestState } = event.detail;
+
+          // If the "add to cart" request is successful
+          if (requestState.requestType === 'add' && requestState.responseData?.ok) {
+            this.openCart();
+          }
+        });
+
+        // Expose method globally
+        window.openCartDrawer = () => this.openCart();
+        window.closeCartDrawer = () => this.closeCart();
+      },
+
+      openCart() {
+        this.isOpen = true;
+        document.body.classList.add('cart-drawer-open');
+        document.body.style.overflow = 'hidden';
+      },
+
+      closeCart() {
+        this.isOpen = false;
+        document.body.classList.remove('cart-drawer-open');
+        document.body.style.overflow = '';
+      },
+    }));
+  });
+</script>

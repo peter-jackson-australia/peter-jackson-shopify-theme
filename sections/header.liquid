@@ -23,10 +23,11 @@
       </a>
     </li>
     <li>
-      <a
-        href="{{ routes.cart_url }}"
+      <button
+        type="button"
+        onclick="window.openCartDrawer();"
         aria-label="Cart{% if cart.item_count > 0 %} with {{ cart.item_count }} item{% if cart.item_count > 1 %}s{% endif %}{% endif %}"
-        style="text-decoration: none; position: relative;"
+        style="background: none; border: none; cursor: pointer; padding: 0; position: relative;"
       >
         {%- render 'icon-cart', accessible_name: 'Shopping Cart', role: 'img' %}
         <span
@@ -37,9 +38,10 @@
         >
           {{ cart.item_count }}
         </span>
-      </a>
+      </button>
     </li>
   </ul>
 </div>
 
 {% render 'menu', id: 'site-navigation' %}
+{% render 'cart-drawer' %}

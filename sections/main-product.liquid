@@ -209,6 +209,7 @@
     // If the "add to cart" request is successful
     if (requestState.requestType === 'add' && requestState.responseData?.ok) {
       // Add the CSS class to the "body" tag
+      window.openCartDrawer();
       document.body.classList.add('js-show-ajax-cart');
     }
   });
