@@ -5,7 +5,7 @@
 
 <div
   id="cart-debug-tool"
-  style="display: none; position: fixed; bottom: 0; right: 0; background: white; border: 1px solid #ccc; padding: 15px; max-width: 400px; max-height: 400px; overflow: auto; z-index: 9999; font-family: monospace; font-size: 12px;"
+  style="position: fixed; bottom: 0; right: 0; background: white; border: 1px solid #ccc; padding: 15px; max-width: 400px; max-height: 400px; overflow: auto; z-index: 9999; font-family: monospace; font-size: 12px;"
 >
   <h3>Cart Debug Tool</h3>
   <button onclick="document.getElementById('cart-debug-tool').style.display = 'none'">Close</button>
@@ -17,15 +17,6 @@
 
 <script>
   // Add a keyboard shortcut (Ctrl+Shift+C) to toggle debug panel
-  document.addEventListener('keydown', function (e) {
-    if (e.ctrlKey && e.shiftKey && e.key === 'C') {
-      const debugTool = document.getElementById('cart-debug-tool');
-      debugTool.style.display = debugTool.style.display === 'none' ? 'block' : 'none';
-      if (debugTool.style.display === 'block') {
-        refreshCartDebug();
-      }
-    }
-  });
 
   // Function to refresh cart debug info
   function refreshCartDebug() {

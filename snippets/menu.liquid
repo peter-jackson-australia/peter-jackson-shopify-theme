@@ -5,7 +5,6 @@
 {{ 'snippet-menu.css' | asset_url | stylesheet_tag: preload: true }}
 
 <aside
-  data-ajax-cart-static-element
   x-data="menuDrawer"
   x-init="init()"
   @keydown.escape.window="closeMenu()"
