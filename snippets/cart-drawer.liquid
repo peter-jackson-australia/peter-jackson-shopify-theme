@@ -1,30 +1,29 @@
 {% comment %}
-  Cart Drawer Sidebar Component
+  Simple Cart Drawer - Reliable Implementation
+  This snippet creates a cart drawer that works with Liquid Ajax Cart
 {% endcomment %}
 
 <style>
-  .cart-drawer {
+  .simple-cart-drawer {
     position: fixed;
     top: 0;
-    right: 0;
+    right: -400px;
     width: 100%;
     max-width: 400px;
     height: 100vh;
-    background: #fff;
+    background: #ffffff;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
     z-index: 1000;
-    transform: translateX(100%);
-    transition: transform 0.3s ease-in-out;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease-out;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
   }
 
-  .cart-drawer--open {
-    transform: translateX(0);
+  .simple-cart-drawer.is-active {
+    right: 0;
   }
 
-  .cart-drawer__overlay {
+  .simple-cart-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -34,87 +33,87 @@
     z-index: 999;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    transition: opacity 0.3s, visibility 0.3s;
   }
 
-  .cart-drawer__overlay--visible {
+  .simple-cart-overlay.is-active {
     opacity: 1;
     visibility: visible;
   }
 
-  .cart-drawer__header {
-    padding: 1rem;
+  .simple-cart__header {
+    padding: 15px;
     border-bottom: 1px solid #e5e5e5;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
-  .cart-drawer__close {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 1.5rem;
-    padding: 0.5rem;
+  .simple-cart__title {
+    margin: 0;
+    font-size: 18px;
   }
 
-  .cart-drawer__content {
+  .simple-cart__close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .simple-cart__content {
     flex: 1;
     overflow-y: auto;
-    padding: 1rem;
+    padding: 15px;
   }
 
-  .cart-drawer__items {
-    opacity: 1;
-    transition: opacity 0.2s;
-  }
-
-  html.js-ajax-cart-processing .cart-drawer__items {
-    opacity: 0.7;
-  }
-
-  html.js-ajax-cart-processing .cart-drawer__items:before {
-    content: 'Loading';
-    display: block;
+  .simple-cart__empty-message {
     text-align: center;
-    padding: 1rem;
+    padding: 30px 0;
   }
 
-  .cart-drawer__item {
+  .simple-cart__item {
     display: grid;
     grid-template-columns: 80px 1fr auto;
-    gap: 1rem;
-    padding: 1rem 0;
+    gap: 15px;
+    padding: 15px 0;
     border-bottom: 1px solid #e5e5e5;
   }
 
-  .cart-drawer__item-image {
+  .simple-cart__item-image {
     width: 80px;
     height: 80px;
     object-fit: cover;
   }
 
-  .cart-drawer__item-details {
+  .simple-cart__item-details {
     display: flex;
     flex-direction: column;
   }
 
-  .cart-drawer__item-title {
+  .simple-cart__item-title {
     font-weight: bold;
-    margin-bottom: 0.5rem;
+    margin-bottom: 5px;
   }
 
-  .cart-drawer__item-price {
-    margin-bottom: 0.5rem;
+  .simple-cart__item-variant {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 5px;
   }
 
-  .cart-drawer__item-quantity {
+  .simple-cart__item-price {
+    margin-bottom: 5px;
+  }
+
+  .simple-cart__quantity-wrapper {
     display: flex;
     align-items: center;
-    margin-bottom: 0.5rem;
+    margin-bottom: 5px;
   }
 
-  .cart-drawer__quantity-button {
+  .simple-cart__quantity-btn {
     background: #f5f5f5;
     border: none;
     width: 25px;
@@ -124,249 +123,255 @@
     justify-content: center;
     cursor: pointer;
     text-decoration: none;
-    color: inherit;
+    color: #333;
   }
 
-  .cart-drawer__quantity-input {
+  .simple-cart__quantity-input {
     width: 40px;
     text-align: center;
-    margin: 0 0.5rem;
+    margin: 0 5px;
+    padding: 2px 5px;
     border: 1px solid #e5e5e5;
-    padding: 0.25rem;
   }
 
-  .cart-drawer__item-remove {
+  .simple-cart__remove {
     color: #999;
-    font-size: 0.875rem;
+    font-size: 14px;
     text-decoration: underline;
     background: none;
     border: none;
     cursor: pointer;
     padding: 0;
-    display: inline-block;
+    text-align: left;
   }
 
-  .cart-drawer__footer {
-    padding: 1rem;
+  .simple-cart__footer {
     border-top: 1px solid #e5e5e5;
+    padding: 15px;
   }
 
-  .cart-drawer__subtotal {
+  .simple-cart__subtotal {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 1rem;
+    margin-bottom: 15px;
     font-weight: bold;
   }
 
-  .cart-drawer__checkout {
+  .simple-cart__checkout {
+    display: block;
     width: 100%;
-    padding: 1rem;
+    padding: 10px;
     background: #000;
     color: #fff;
     border: none;
-    cursor: pointer;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-  }
-
-  .cart-drawer__continue {
-    width: 100%;
-    padding: 1rem;
-    background: transparent;
-    border: 1px solid #000;
-    cursor: pointer;
-    font-weight: bold;
-  }
-
-  .cart-drawer__empty {
     text-align: center;
-    padding: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .simple-cart__continue {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    color: #000;
+    border: 1px solid #000;
+    text-align: center;
+    cursor: pointer;
   }
 </style>
 
-<aside
-  x-data="cartDrawer"
-  @keydown.escape.window="closeCart()"
-  class="cart-drawer__container"
-  aria-label="Shopping cart"
+<div
   data-ajax-cart-section
+  id="simple-cart-drawer"
+  class="simple-cart-drawer"
 >
-  <div
-    x-show="isOpen"
-    x-cloak
-    class="cart-drawer__overlay"
-    :class="{'cart-drawer__overlay--visible': isOpen}"
-    @click="closeCart()"
-    role="button"
-    aria-label="Close cart"
-    tabindex="-1"
-  ></div>
+  <div class="simple-cart__header">
+    <h2 class="simple-cart__title">
+      Cart (<span data-ajax-cart-bind="item_count">{{ cart.item_count }}</span>)
+    </h2>
+    <button class="simple-cart__close" onclick="closeSimpleCart()">×</button>
+  </div>
 
-  <div
-    x-show="isOpen"
-    x-cloak
-    class="cart-drawer"
-    :class="{'cart-drawer--open': isOpen}"
-  >
-    <div class="cart-drawer__header">
-      <h2>
-        Cart (<span data-ajax-cart-bind="item_count">{{ cart.item_count }}</span>)
-      </h2>
-      <button @click="closeCart()" class="cart-drawer__close" aria-label="Close cart">&times;</button>
-    </div>
+  <div class="simple-cart__content">
+    <!-- Empty cart message -->
+    {% if cart.item_count == 0 %}
+      <div class="simple-cart__empty-message">
+        <p>Your cart is empty</p>
+      </div>
+    {% else %}
+      <!-- Cart items -->
+      {% for item in cart.items %}
+        <div class="simple-cart__item" data-item-key="{{ item.key }}">
+          <img
+            src="{{ item.image | image_url: width: 160 }}"
+            alt="{{ item.title | escape }}"
+            class="simple-cart__item-image"
+            loading="lazy"
+            width="80"
+            height="80"
+          >
 
-    <div class="cart-drawer__content">
-      <div class="cart-drawer__items" data-ajax-cart-section-scroll>
-        {% if cart.item_count > 0 %}
-          {% for line_item in cart.items %}
-            {% assign line_item_index = forloop.index %}
+          <div class="simple-cart__item-details">
+            <div class="simple-cart__item-title">
+              {{ item.product.title | escape }}
+            </div>
 
-            <div class="cart-drawer__item">
-              <img
-                src="{{ line_item.image | image_url: width: 160 }}"
-                alt="{{ line_item.title | escape }}"
-                class="cart-drawer__item-image"
-                width="80"
-                height="80"
-                loading="lazy"
+            {% unless item.product.has_only_default_variant %}
+              <div class="simple-cart__item-variant">
+                {% for option in item.options_with_values %}
+                  {{ option.name }}: {{ option.value -}}
+                  {%- unless forloop.last %}, {% endunless %}
+                {% endfor %}
+              </div>
+            {% endunless %}
+
+            <div class="simple-cart__item-price">
+              {{ item.final_price | money }}
+            </div>
+
+            <div class="simple-cart__quantity-wrapper">
+              <a
+                href="{{ routes.cart_change_url }}?id={{ item.key }}&quantity={{ item.quantity | minus: 1 }}"
+                class="simple-cart__quantity-btn"
+                data-ajax-cart-request-button
+                >-</a
               >
 
-              <div class="cart-drawer__item-details">
-                <div class="cart-drawer__item-title">
-                  <a href="{{ line_item.url }}">{{ line_item.product.title | escape }}</a>
-                  {% unless line_item.product.has_only_default_variant %}
-                    <p class="cart-drawer__item-variant">
-                      {% for option_name in line_item.product.options %}
-                        {{ option_name }}: {{ line_item.variant.options[forloop.index0] -}}
-                        <br>
-                      {% endfor %}
-                    </p>
-                  {% endunless %}
-                </div>
+              <input
+                type="number"
+                name="updates[{{ item.key }}]"
+                value="{{ item.quantity }}"
+                min="0"
+                class="simple-cart__quantity-input"
+                data-ajax-cart-quantity-input="{{ item.key }}"
+                form="simple-cart-form"
+              >
 
-                <div class="cart-drawer__item-price">
-                  {{ line_item.final_price | money }}
-                </div>
-
-                <ajax-cart-quantity class="cart-drawer__item-quantity">
-                  <a
-                    class="cart-drawer__quantity-button"
-                    data-ajax-cart-quantity-minus
-                    aria-label="Decrease quantity by one"
-                    href="{{ routes.cart_change_url }}?line={{ line_item_index }}&quantity={{ line_item.quantity | minus: 1 }}"
-                    >-</a
-                  >
-
-                  <input
-                    class="cart-drawer__quantity-input"
-                    data-ajax-cart-quantity-input="{{ line_item_index }}"
-                    name="updates[]"
-                    value="{{ line_item.quantity }}"
-                    type="number"
-                    min="0"
-                    aria-label="Item quantity"
-                    form="cart-drawer-form"
-                  >
-
-                  <a
-                    class="cart-drawer__quantity-button"
-                    data-ajax-cart-quantity-plus
-                    aria-label="Increase quantity by one"
-                    href="{{ routes.cart_change_url }}?line={{ line_item_index }}&quantity={{ line_item.quantity | plus: 1 }}"
-                    >+</a
-                  >
-                </ajax-cart-quantity>
-
-                <div data-ajax-cart-errors="{{ line_item.key }}"></div>
-
-                <a
-                  class="cart-drawer__item-remove"
-                  data-ajax-cart-request-button
-                  href="{{ line_item.url_to_remove }}"
-                  >Remove</a
-                >
-              </div>
-
-              <div class="cart-drawer__item-total">
-                {{ line_item.final_line_price | money }}
-              </div>
+              <a
+                href="{{ routes.cart_change_url }}?id={{ item.key }}&quantity={{ item.quantity | plus: 1 }}"
+                class="simple-cart__quantity-btn"
+                data-ajax-cart-request-button
+                >+</a
+              >
             </div>
-          {% endfor %}
-        {% else %}
-          <div class="cart-drawer__empty">
-            <p>Your cart is empty</p>
-            <button @click="closeCart()" class="cart-drawer__continue">Continue Shopping</button>
+
+            <a
+              href="{{ routes.cart_change_url }}?id={{ item.key }}&quantity=0"
+              class="simple-cart__remove"
+              data-ajax-cart-request-button
+              >Remove</a
+            >
+
+            <!-- Error message area for this item -->
+            <div data-ajax-cart-errors="{{ item.key }}"></div>
           </div>
-        {% endif %}
-      </div>
-    </div>
 
-    {% if cart.item_count > 0 %}
-      <div class="cart-drawer__footer">
-        <div class="cart-drawer__subtotal">
-          <span>Subtotal</span>
-          <span data-ajax-cart-bind="total_price | money_with_currency">
-            {{- cart.total_price | money_with_currency -}}
-          </span>
+          <div class="simple-cart__item-total">
+            {{ item.final_line_price | money }}
+          </div>
         </div>
-
-        {% form 'cart', cart, id: 'cart-drawer-form' %}
-          <button
-            type="submit"
-            name="checkout"
-            class="cart-drawer__checkout"
-          >
-            Checkout
-          </button>
-        {% endform %}
-
-        <button @click="closeCart()" class="cart-drawer__continue">Continue Shopping</button>
-      </div>
+      {% endfor %}
     {% endif %}
   </div>
-</aside>
+
+  {% if cart.item_count > 0 %}
+    <div class="simple-cart__footer">
+      <div class="simple-cart__subtotal">
+        <span>Subtotal</span>
+        <span data-ajax-cart-bind="total_price | money_with_currency">
+          {{- cart.total_price | money_with_currency -}}
+        </span>
+      </div>
+
+      {% form 'cart', cart, id: 'simple-cart-form' %}
+        <button type="submit" name="checkout" class="simple-cart__checkout">Checkout</button>
+      {% endform %}
+
+      <button class="simple-cart__continue" onclick="closeSimpleCart()">Continue Shopping</button>
+    </div>
+  {% endif %}
+</div>
+
+<div id="simple-cart-overlay" class="simple-cart-overlay" onclick="closeSimpleCart()"></div>
 
 <script>
-  document.addEventListener('alpine:init', () => {
-    Alpine.data('cartDrawer', () => ({
-      isOpen: false,
-
-      init() {
-        // Make cart button open drawer instead of navigating to cart page
-        const cartLinks = document.querySelectorAll('a[href="{{ routes.cart_url }}"]');
-        cartLinks.forEach((link) => {
-          link.addEventListener('click', (e) => {
-            e.preventDefault();
-            this.openCart();
-          });
-        });
-
-        // Listen for cart add events to open drawer
-        document.addEventListener('liquid-ajax-cart:request-end', (event) => {
-          const { requestState } = event.detail;
-
-          // If the "add to cart" request is successful
-          if (requestState.requestType === 'add' && requestState.responseData?.ok) {
-            this.openCart();
-          }
-        });
-
-        // Expose method globally
-        window.openCartDrawer = () => this.openCart();
-        window.closeCartDrawer = () => this.closeCart();
-      },
-
-      openCart() {
-        this.isOpen = true;
-        document.body.classList.add('cart-drawer-open');
-        document.body.style.overflow = 'hidden';
-      },
-
-      closeCart() {
-        this.isOpen = false;
-        document.body.classList.remove('cart-drawer-open');
-        document.body.style.overflow = '';
-      },
-    }));
+  // Prevent initialization issues by waiting for DOM content to load
+  document.addEventListener('DOMContentLoaded', function () {
+    // Initialize AJAX cart hooks
+    setupSimpleCart();
   });
+
+  function setupSimpleCart() {
+    // Redirect cart links to open the drawer instead
+    document.querySelectorAll('a[href="{{ routes.cart_url }}"]').forEach((link) => {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        openSimpleCart();
+      });
+    });
+
+    // Make drawer close when ESC key is pressed
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        closeSimpleCart();
+      }
+    });
+
+    // Listen for AJAX cart events
+    document.addEventListener('liquid-ajax-cart:request-end', function (event) {
+      const { requestState } = event.detail;
+
+      // Open cart drawer after adding an item
+      if (requestState.requestType === 'add' && requestState.responseData?.ok) {
+        openSimpleCart();
+      }
+
+      // Close drawer when cart becomes empty
+      if (requestState.responseData?.item_count === 0) {
+        // Keep drawer open so the user can see it's empty, but release scroll lock
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Make sure any existing cart button in product.liquid opens the drawer
+    const addToCartForms = document.querySelectorAll('ajax-cart-product-form form');
+    addToCartForms.forEach((form) => {
+      form.addEventListener('submit', function (e) {
+        // Let Liquid AJAX Cart handle the form submission
+        // It will trigger the 'liquid-ajax-cart:request-end' event later
+      });
+    });
+
+    // Expose global cart functions
+    window.openSimpleCart = openSimpleCart;
+    window.closeSimpleCart = closeSimpleCart;
+  }
+
+  function openSimpleCart() {
+    const drawer = document.getElementById('simple-cart-drawer');
+    const overlay = document.getElementById('simple-cart-overlay');
+
+    drawer.classList.add('is-active');
+    overlay.classList.add('is-active');
+    document.body.style.overflow = 'hidden';
+
+    // Force a cart refresh to ensure data is current
+    fetch('/cart?view=ajax')
+      .then((response) => response.text())
+      .catch((error) => {
+        console.error('Error refreshing cart:', error);
+      });
+  }
+
+  function closeSimpleCart() {
+    const drawer = document.getElementById('simple-cart-drawer');
+    const overlay = document.getElementById('simple-cart-overlay');
+
+    drawer.classList.remove('is-active');
+    overlay.classList.remove('is-active');
+    document.body.style.overflow = '';
+  }
 </script>

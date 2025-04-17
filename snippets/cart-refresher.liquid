@@ -1,0 +1,48 @@
+{% comment %}
+  Cart Refresher
+  Include this in your theme.liquid file before the closing </body> tag
+  This ensures the cart state is always up-to-date
+{% endcomment %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Refresh cart state when page loads
+    refreshCartState();
+
+    // Set up interval to periodically refresh cart state (every 30 seconds)
+    // This helps keep the cart state in sync across tabs/windows
+    setInterval(refreshCartState, 30000);
+  });
+
+  function refreshCartState() {
+    // Use a simple fetch to get the current cart state
+    // The Liquid AJAX Cart library will handle updating the UI
+    fetch('/cart.js')
+      .then((response) => response.json())
+      .then((cart) => {
+        // Cart data is automatically processed by Liquid AJAX Cart
+        // No need to manually update anything
+        console.log('Cart refreshed, items:', cart.item_count);
+
+        // If we need to force a UI update, dispatch a custom event
+        document.dispatchEvent(
+          new CustomEvent('cart:refreshed', {
+            detail: { cart: cart },
+          })
+        );
+      })
+      .catch((error) => {
+        console.error('Error refreshing cart:', error);
+      });
+  }
+
+  // Listen for page visibility changes to refresh cart when returning to the page
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'visible') {
+      refreshCartState();
+    }
+  });
+
+  // Function to manually force a cart refresh when needed
+  window.forceCartRefresh = refreshCartState;
+</script>
