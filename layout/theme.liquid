@@ -35,29 +35,6 @@
 
   <body>
     {% comment %}
-      Liquid AJAX Cart
-    {% endcomment %}
-    <script type="application/json" data-ajax-cart-initial-state>
-      {{ cart | json }}
-    </script>
-    <script type="module">
-      import '{{ "liquid-ajax-cart-v2.1.2.min.js" | asset_url }}';
-    </script>
-    <script>
-      function runWhenInit() {
-        console.log('The current cart state is: ', window.liquidAjaxCart.cart);
-      }
-
-      if (window.liquidAjaxCart?.init) {
-        // if Liquid Ajax Cart is already initialized
-        runWhenInit();
-      } else {
-        // wait for Liquid Ajax Cart to be initialized
-        document.addEventListener('liquid-ajax-cart:init', runWhenInit);
-      }
-    </script>
-
-    {% comment %}
       Skip to content accessibility link
     {% endcomment %}
     <a href="#main-content" class="skip-to-content desktop">

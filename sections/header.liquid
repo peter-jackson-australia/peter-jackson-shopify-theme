@@ -23,25 +23,18 @@
       </a>
     </li>
     <li>
-      <button
-        type="button"
-        onclick="window.openSimpleCart();"
+      <a
+        href="{{ routes.cart_url }}"
         aria-label="Cart{% if cart.item_count > 0 %} with {{ cart.item_count }} item{% if cart.item_count > 1 %}s{% endif %}{% endif %}"
-        style="background: none; border: none; cursor: pointer; padding: 0; position: relative;"
+        style="text-decoration: none; position: relative;"
       >
         {%- render 'icon-cart', accessible_name: 'Shopping Cart', role: 'img' %}
-        <span
-          data-ajax-cart-section
-          data-ajax-cart-bind="item_count"
-          class="js--cart-counter {% if cart.item_count == 0 %}hide{% endif %}"
-          aria-hidden="true"
-        >
-          {{ cart.item_count }}
+        <span class="js--cart-counter {% if cart.item_count == 0 %}hide{% endif %}" aria-hidden="true">
+          {{- cart.item_count -}}
         </span>
-      </button>
+      </a>
     </li>
   </ul>
 </div>
 
 {% render 'menu', id: 'site-navigation' %}
-{% render 'cart-drawer' %}
