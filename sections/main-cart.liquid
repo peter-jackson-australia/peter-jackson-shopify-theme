@@ -1,110 +1,81 @@
-{% liquid
-  # Some layout settings here. These aren't added as template settings, as they
-  # don't need to be.
-  assign thumbnail_width = 150
+<style>
+  .my-cart__items {
+    opacity: 1;
+    transition: opacity 0.2s;
+  }
 
-  # BEGIN GIFT WRAP: Gift wrap option using a product.
-  assign cart_item_keys = ''
-  assign gift_wrap_items_list = ''
-  assign gift_wrap = all_products[section.settings.gift_wrap_product]
-%}
-{% unless section.settings.gift_wrap_product == blank and gift_wrap == blank %}
-  <script>
-    window.giftWrap = {{ gift_wrap.first_available_variant | json }};
-  </script>
-{% endunless %}
+  /* Make the cart content look visually disabled while updating */
+  html.js-ajax-cart-processing .my-cart__items {
+    opacity: 0.7;
+  }
 
-{% comment %}
-  Save the gift wrap products in an array. The _id property is the
-  line item of the product that needs gift wrapping.
-{% endcomment %}
-{% for item in cart.items %}
-  {% if item.product.handle == 'gift-wrap' %}
-    {%- capture gift_wrap_items_list -%}{{- gift_wrap_items_list -}}{%- if gift_wrap_items_list != '' -%},{%- endif -%}{{- item.properties['_id'] -}}{%- endcapture -%}
-  {% endif %}
-  {% comment %}
-    Array of cart item ids for gift wrap. These MUST be a string, so we use capture.
-  {% endcomment %}
-  {% capture cart_item_keys %}{{- cart_item_keys -}}{%- if cart_item_keys != '' -%},{%- endif -%}{{- item.key -}}{%- endcapture -%}
-{% endfor %}
-{% assign gift_wrap_items = gift_wrap_items_list | split: ',' %}
-{% assign cart_item_keys = cart_item_keys | split: ',' %}
-{% comment %}
-  END: GIFT WRAP
-{% endcomment %}
+  /* Show a loading indicator */
+  html.js-ajax-cart-processing .my-cart__items:before {
+    content: 'Loading';
+    display: block;
+  }
+</style>
 
-<link rel="stylesheet" href="{{ 'cart.css' | asset_url }}">
+<div class="my-cart" data-ajax-cart-section>
+  <h2>Cart ({{ cart.item_count }})</h2>
 
-{% comment %}
-  Empty cart section.
-{% endcomment %}
-{% capture empty_cart %}
-<section>
-  <p>Your basket is empty. <a href="{{ shop.url }}" class="button">Let's go shopping</a></p>
-</section>
-{% endcapture %}
-<script>
-  const emptyCartHtml = `{{ empty_cart }}`;
-</script>
+  <div class="my-cart__items" data-ajax-cart-section-scroll>
+    <!-- Loop through cart items -->
+    {% for line_item in cart.items %}
+      {% assign line_item_index = forloop.index %}
 
-{% comment %}
-{% endcomment %}
-<div class="section-wrap">
-  <section class="section">
-    <h1 data-title="Cart">Cart</h1>
-  </section>
+      <div>
+        <a href="{{ line_item.url }}">{{ line_item.title | escape }}</a>
+      </div>
+      <div>Price: {{ line_item.final_price | money }}</div>
 
-  <div id="cart-content" class="section">
-    {% if cart.items.size > 0 %}
-      <form action="{{ routes.cart_url }}" method="post">
-        {% render 'cart-spend', section: section %}
+      <div>
+        Quantity:
+        <ajax-cart-quantity>
+          <!-- "Minus one" button -->
+          <a
+            data-ajax-cart-quantity-minus
+            href="{{ routes.cart_change_url }}?line={{ line_item_index }}&quantity={{ line_item.quantity | minus: 1 }}"
+          >
+            Minus one
+          </a>
 
-        <section>
-          <div class="cart-items-header" data-device="desktop">
-            <div>Product</div>
-            <div>Quantity</div>
-            <div>Total</div>
-          </div>
-          <div class="cart-items-header" data-device="mobile">
-            <div>Items</div>
-          </div>
-          <div class="cart-items-group">
-            {% liquid
-              for item in cart.items
-                unless item.product.handle == 'gift-wrap' and cart_item_keys contains item.properties._id
-                  render 'cart-item', item: item, thumbnail_width: thumbnail_width, gift_wrap: gift_wrap, gift_wrap_items: gift_wrap_items
-                endunless
-              endfor
-            %}
-          </div>
-          <div class="cart-items-footer">
-            <div class="cart-items-footer__total flex">
-              <span>{{ section.settings.cart_total_label }}</span>
-              <strong class="large-text js--cart-total">{{ cart.total_price | money }}</strong>
-            </div>
-            <div class="cart-items-footer__note">
-              {{ section.settings.checkout_note }}
-            </div>
-            <div>
-              <button type="submit" name="checkout" class="button">
-                {{ section.settings.checkout_btn_label }}
-              </button>
-              {%- if additional_checkout_buttons -%}
-                <div class="cart__dynamic-checkout-buttons additional-checkout-buttons">
-                  {{ content_for_additional_checkout_buttons }}
-                </div>
-              {%- endif -%}
-            </div>
-          </div>
-        </section>
-      </form>
-      <script src="{{ 'cart.js' | asset_url }}"></script>
-    {% endif %}
+          <!-- Item quantity input -->
+          <input
+            data-ajax-cart-quantity-input="{{ line_item_index }}"
+            name="updates[]"
+            value="{{ line_item.quantity }}"
+            type="number"
+            form="my-ajax-cart-form"
+          >
 
-    {% if cart.items.size == 0 %}
-      {{ empty_cart }}
-    {% endif %}
+          <!-- "Plus one" button -->
+          <a
+            data-ajax-cart-quantity-plus
+            href="{{ routes.cart_change_url }}?line={{ line_item_index }}&quantity={{ line_item.quantity | plus: 1 }}"
+          >
+            Plus one
+          </a>
+        </ajax-cart-quantity>
+      </div>
+
+      <!-- Item error messages -->
+      <div data-ajax-cart-errors="{{ line_item.key }}"></div>
+
+      <div>
+        Total: <strong>{{ line_item.final_line_price | money }}</strong>
+      </div>
+
+      <!-- "Remove item" button -->
+      <a data-ajax-cart-request-button href="{{ line_item.url_to_remove }}"> Remove </a>
+
+      <hr>
+    {% endfor %}
   </div>
+
+  {% form 'cart', cart, id: 'my-ajax-cart-form' %}
+    <button type="submit" name="checkout">Checkout — {{ cart.total_price | money_with_currency }}</button>
+  {% endform %}
 </div>
 
 {% schema %}

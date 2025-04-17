@@ -1,6 +1,22 @@
 {% comment %}
   Get the first available variant
 {% endcomment %}
+
+<style>
+  /* Show a loading indicator */
+  ajax-cart-product-form[processing]:before {
+    content: 'Loading';
+    display: block;
+  }
+
+  /* Make the "Add to cart" button look visually disabled while loading */
+  ajax-cart-product-form[processing] [type='submit'] {
+    opacity: 0.7;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+</style>
+
 {% assign current_variant = product.selected_or_first_available_variant %}
 
 <script>
@@ -61,8 +77,8 @@
       {% comment %}
         Variant selector.
       {% endcomment %}
-      <div>
-        <form action="{{ routes.cart_add_url }}" method="post">
+      <ajax-cart-product-form>
+        {% form 'product', product %}
           {%- for block in section.blocks -%}
             {% case block.type %}
               {%- when '@app' -%}
@@ -141,9 +157,7 @@
                     value="{{ current_variant.id }}"
                   >
                   {% if current_variant.available == true %}
-                    <button type="submit" id="js--addtocart" class="button">
-                      {{ block.settings.button_label }}
-                    </button>
+                    <button type="submit" name="add">Add to cart</button>
                   {% else %}
                     <button type="submit" id="js--addtocart" class="button" disabled>Unavailable</button>
                   {% endif %}
@@ -182,11 +196,23 @@
                 {% render 'purchase-together', block: block, current_variant: current_variant %}
             {%- endcase -%}
           {%- endfor -%}
-        </form>
-      </div>
+        {% endform %}
+      </ajax-cart-product-form>
     </section>
   </div>
 </div>
+
+<script>
+  document.addEventListener('liquid-ajax-cart:request-end', (event) => {
+    const { requestState } = event.detail;
+
+    // If the "add to cart" request is successful
+    if (requestState.requestType === 'add' && requestState.responseData?.ok) {
+      // Add the CSS class to the "body" tag
+      document.body.classList.add('js-show-ajax-cart');
+    }
+  });
+</script>
 
 <script>
   // Product images slider
