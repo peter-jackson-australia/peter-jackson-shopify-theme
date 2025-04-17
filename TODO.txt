@@ -1,12 +1,13 @@
 Collection page: 
-Random image flashes on collection page first load 
-Make it fast (over 95) 
-
 Restrict my created sections to certain parts using the enabled_on directive 
 AJAX CART (Just get it to work)
+
 
 /////////////////////////////////////////////////////
 
 Main Menu:
 Preserve scroll position when menu is open
-(Maybe) Add noise over images for banding
+
+//////////////////////
+
+Logic for opening and closing menus, sidebars, modals without conflicting
