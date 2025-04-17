@@ -79,24 +79,12 @@
         "show_recent_posts": true,
         "blog": "the-jackson-journal"
       }
-    },
-    "collection_slider_FxRneT": {
-      "type": "collection-slider",
-      "name": "Featured Collection",
-      "settings": {
-        "heading": "New In Now",
-        "description": "Layer up with premium wool/cashmere blends.",
-        "collection": "bags",
-        "button_label": "Shop Now",
-        "products_to_show": 10
-      }
     }
   },
   "order": [
     "hero_primary_yKMEY6",
     "collection_slider_jjrawV",
     "two_column_content_xT9mtk",
-    "blog_hero_3BxWt4",
-    "collection_slider_FxRneT"
+    "blog_hero_3BxWt4"
   ]
 }
