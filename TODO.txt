@@ -1,7 +1,5 @@
 Collection page: 
-Restrict my created sections to certain parts using the enabled_on directive 
 AJAX CART (Just get it to work)
-
 
 /////////////////////////////////////////////////////
 
