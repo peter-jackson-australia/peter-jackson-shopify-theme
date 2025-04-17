@@ -64,7 +64,7 @@
 </style>
 
 {% if section.settings.desktop_image or section.settings.mobile_image %}
-  <section id="hero-primary" class="hero" aria-label="{{ section.settings.heading | escape }}">
+  <div id="hero-primary" class="hero" aria-label="{{ section.settings.heading | escape }}">
     {% if section.settings.desktop_image %}
       {{
         section.settings.desktop_image
@@ -104,7 +104,7 @@
         </a>
       {% endif %}
     </div>
-  </section>
+  </div>
 {% endif %}
 
 {% schema %}

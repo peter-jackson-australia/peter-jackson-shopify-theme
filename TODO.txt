@@ -6,6 +6,7 @@ AJAX CART (Just get it to work)
 
 Main Menu:
 Preserve scroll position when menu is open
+Add ability to change video, video subtitle, newsletter title and newsletter legal spiel
 
 //////////////////////
 

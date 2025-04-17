@@ -199,7 +199,7 @@
 </style>
 
 {% if has_related_articles %}
-  <section class="related-articles">
+  <div class="related-articles">
     <div class="related-articles__content">
       <div class="related-articles__header">
         {% if section.settings.heading != blank %}
@@ -268,7 +268,7 @@
         {% endif %}
       {% endfor %}
     </div>
-  </section>
+  </div>
 {% endif %}
 
 {% schema %}
