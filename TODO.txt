@@ -1,5 +1,4 @@
 Collection page: 
-Add in preview images for theme editor
 AJAX CART (Just get it to work)
 
 /////////////////////////////////////////////////////
