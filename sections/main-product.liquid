@@ -159,7 +159,7 @@
                   {% if current_variant.available == true %}
                     <button type="submit" name="add">Add to cart</button>
                   {% else %}
-                    <button type="submit" id="js--addtocart" class="button" disabled>Unavailable</button>
+                    <button type="submit" name="add" disabled>Unavailable</button>
                   {% endif %}
                 </div>
 
@@ -196,6 +196,9 @@
                 {% render 'purchase-together', block: block, current_variant: current_variant %}
             {%- endcase -%}
           {%- endfor -%}
+          <div data-ajax-cart-messages="form">
+            <!-- Errors and messages appear here -->
+          </div>
         {% endform %}
       </ajax-cart-product-form>
     </section>

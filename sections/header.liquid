@@ -1,4 +1,4 @@
-<div id="site-header" class="header container" data-ajax-cart-section>
+<div id="site-header" class="header container">
   <button
     type="button"
     class="hamburger-menu"
@@ -31,6 +31,7 @@
       >
         {%- render 'icon-cart', accessible_name: 'Shopping Cart', role: 'img' %}
         <span
+          data-ajax-cart-section
           data-ajax-cart-bind="item_count"
           class="js--cart-counter {% if cart.item_count == 0 %}hide{% endif %}"
           aria-hidden="true"
@@ -44,4 +45,3 @@
 
 {% render 'menu', id: 'site-navigation' %}
 {% render 'cart-drawer' %}
-{% render 'cart-debug' %}
