@@ -1,4 +1,4 @@
-Collection page: 
+PDP page
 AJAX CART (Just get it to work)
 
 /////////////////////////////////////////////////////
