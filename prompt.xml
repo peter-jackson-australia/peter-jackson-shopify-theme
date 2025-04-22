@@ -1,6 +1,64 @@
-<prompt
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" type="development-request">
-    <context>I have this Shopify Liquid theme code for an interactive mega menu sidebar drawer component that uses Shopify Liquid, Alpine.JS, HTML, CSS and JavaScript. Everything is working correctly so far</context>
-    <problem>When hovering over a link in menu level 2, a third sidebar drawer opens up with a preview of products contained in that particular collection. I would like you to extend the functionality so that this drawer stays open for 400ms before it closes AND if the user hovers over it, it stays open until the user stops hovering over it.</problem>
-    <example>User A opens the sidebar mega menu drawer by clikcing the "menu" button. The first level of the mega menu opens up. The user sees a collection they are interested in, "Suits", that has second level nested menu links, the user clicks "Suits". The second level menu drawer opens up and there are additional collections. The user see's a collection that DOES NOT have further nested menu links and is just a link to that collection page, they hover over this link and a preview of the collection opens, they hover over to a product they are interested in and the preview stays open, they decide to move the mouse away and the preview closes</example>
+<prompt>
+	<instructions purpose="To define a high level overview of the problem that Claude needs to solve and the optimal, desired outcome">
+		<problem>I have a Shopify Liquid theme for my online store. The products page (sections/main-product.liquid) has a badly styled section for the product images which I want to fix</problem>
+		<goal priority="high">Turn the product images into a VERTICAL Splide slider that has a progress bar on the LEFT HAND side. The slider will be 100% of the viewport height on desktop and 50% of the viewport width. On mobile, the product image slider should be exactly the same as the Splide slider in snippets/product-card.liquid (The arrows sitting on top of the image and the progress bar on the bottom of the image). You are to rewrite all code inside of sections/main-product.liquid that is related to this image gallery slider to achieve my goal. The solution must be as simple and accurate as possible, with no conflicts with the other files</goal>
+	</instructions>
+	<context purpose="To give an overview of all of the additional and contextual information related to the problem being solved">
+		<files>
+            <file>
+                <name>sections/main-product.liquid</name>
+                <purpose>This file contains the product imagery and product information used on the products template for my store - It is the only file I wish to make changes to</purpose> 
+            </file>
+            <file>
+                <name>snippets/product-card.liquid</name>
+                <purpose>This file is a reusable snippet for product cards using Liquid and Alpine.JS. The snippet shows a default image thumbnail and on hover creates a Splide instance to navigate through the products imgages</purpose> 
+            </file>
+            <file>
+                <name>assets/theme.css</name>
+                <purpose>This CSS file contains all of the font, colour, spacing and global variables used in the project. Variables from here need to be used to style elements to ensure consistency.</purpose> 
+            </file>
+		</files>
+		<references>
+			<reference>
+                <description>This is a code example of how to instantiate a vertical Splide slider that responds to mouse movements for scrolling. You'll need to set waitForTransition to true or provide the wheelSleep duration.</description>
+                <code>
+                    var splide = new Splide( '.splide', {
+                    direction: 'ttb',
+                    height   : '10rem',
+                    wheel    : true,
+                    } );
+
+                    splide.mount();
+                </code>
+            </reference>
+            <reference>
+                <description>This is a code example of how to calculate the progress rate of the progress bar from the Splide documentation.</description>
+                <code>
+                    var splide = new Splide( '.splide' );
+                    var bar    = splide.root.querySelector( '.my-carousel-progress-bar' );
+
+                    // Updates the bar width whenever the carousel moves:
+                    splide.on( 'mounted move', function () {
+                    var end  = splide.Components.Controller.getEnd() + 1;
+                    var rate = Math.min( ( splide.index + 1 ) / end, 1 );
+                    bar.style.width = String( 100 * rate ) + '%';
+                    } );
+
+                    splide.mount();
+                </code>
+            </reference>
+		</references>
+	</context>
+	<examples purpose="To illustrate examples of what succesfully completing the goal will look like">
+		<example>"User A" navigates to our website homepage from a Google search, he finds the product he is interested in buying and clicks on it and is taken to the product page. On the left hand side of the products page is container that takes up 50 percent of User A's laptop screen and it contains the first image of the product. The user hovers over this image and scrolls down and the next image loads and the progress bar on the left hand side of the container moves the progress indicator down towards the bottom of the container. The user scrolls all the way to the end of the container and the final image shows and the progress bar is at the bottom of the container.</example>
+    	<example>"User B" navigates to our website homepage from a Google search on his mobile phone. He finds a product he is interested in buying and taps on it and is taken to the product page. Just underneath the site header is a full width image slider with a previous arrow on the left and a next arrow on the right, both arrows sit on top of the product images directly in the middle vertically. The user swipes to the left and the second image is shown and the progress bar on the bottom of the container moves the progress indicator to the right. The user scrolls all the way to end and the progress indicator is all the way at the end</example>
+    </examples>
+	<response purpose="The desired structure of Claude's response">
+		<sections>
+			<section detail-level="low" word-count="50-100">Provide a high level overview of the problem</section>
+			<section detail-level="low" word-count="50-100">Provide a high level overview of the goal</section>
+            <section detail-level="medium" word-count="50-100">Provide 2 examples that outline the complete interaction with the slider including explanations for responsiveness</section>
+			<section detail-level="high" word-count="100-150">Provide a detailed, logical, rational explanation of each step you will take to achieve the goal and fix the problem</section>
+		</sections>
+	</response>
 </prompt>

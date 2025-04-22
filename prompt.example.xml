@@ -1,90 +1,27 @@
-<!--
-    STEP 1: Break the problem down into its smallest, atomic components. 
-    STEP 2: Use the Prompt XML template below for each step in the problem in a new Claude 3.7 window 
-    STEP 3: Test each step against the success criteria before moving on
--->
-
-<prompt
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" type="development-request">
-    <problem purpose="Defines the problem to be solved">
-        <summary></summary>
-        <detailed-description></detailed-description>
-        <objective priority="high"></objective>
-    </problem>
-    <context purpose="Provides technology context, constraints and existing code">
-        <technology>
-            <framework>Shopify Liquid</framework>
-            <languages></languages>
-            <libraries></libraries>
-        </technology>
-        <constraints>
-            <performance priority="high">The code must contain the most minimal amount of elements, lines, iterations, HTTP requests and external files as possible to meet the success criteria</performance>
-            <compatibility priority="high">The code must use conventions and practices that are supported by Safari 14 (16610.1.28) as a minimum standard</compatibility>
-        </constraints>
-        <existing-code-references></existing-code-references>
-    </context>
-    <success-criteria purpose="Defines how to measure the success of the solution" priority="high">
-        <functional-requirements priority="high">
-            <requirement></requirement>
-        </functional-requirements>
-        <non-functional-requirements priority="high">
-            <requirement></requirement>
-        </non-functional-requirements>
-        <test-cases>
-            <test-case>
-                <description></description>
-                <action></action>
-                <expected-outcome></expected-outcome>
-            </test-case>
-        </test-cases>
-    </success-criteria>
-    <examples purpose="Provides illustrative examples of a successful solution">
-        <example>
-            <scenario></scenario>
-            <input></input>
-            <expected-output></expected-output>
-            <explanation></explanation>
-        </example>
-    </examples>
-    <code-style-preferences purpose="Defines code style preferences">
-        <preferred-paradigms>
-            <paradigm>Functional</paradigm>
-            <paradigm>Procedural</paradigm>
-        </preferred-paradigms>
-        <avoided-paradigms>
-            <paradigm>Object-Oriented</paradigm>
-        </avoided-paradigms>
-        <priorities>
-            <priority>Simplicity</priority>
-            <priority>JavaScript native type safety</priority>
-            <priority>Bug-free</priority>
-            <priority>Scalability</priority>
-            <priority>Non-duplication</priority>
-        </priorities>
-        <naming-conventions>
-            <css>BEM - Block Element Modifier</css>
-            <javascript>camelCase</javascript>
-        </naming-conventions>
-    </code-style-preferences>
-    <response-format purpose="Specifies the required response format">
-        <sections>
-            <section detail-level="low" word-count="50-100">Problem Overview</section>
-            <section detail-level="medium" word-count="100-150">Edge Cases/Pitfalls</section>
-            <section detail-level="low" word-count="50-100">Solution Approach Description</section>
-            <section detail-level="high" word-count="150-250">Detailed Implementation Steps</section>
-            <section>Code Implementation</section>
-            <section detail-level="medium" word-count="100-150">Testing Strategy</section>
-        </sections>
-        <code-presentation>
-            <format>Code blocks with syntax highlighting</format>
-            <comments>Detailed comments explaining non-obvious logic</comments>
-            <organisation>Modular, with clear function boundaries</organisation>
-        </code-presentation>
-        <supporting-materials>
-            <include>References to documentation</include>
-            <include>
-                <requirement>Provable</requirement> Performance considerations
-            </include>
-        </supporting-materials>
-    </response-format>
+<prompt>
+	<instructions purpose="To define a high level overview of the problem that Claude needs to solve and the optimal, desired outcome">
+		<problem></problem>
+		<goal priority="high"></goal>
+	</instructions>
+	<context purpose="To give an overview of all of the additional and contextual information related to the problem being solved">
+		<technology>
+			<languages></languages>
+			<libraries></libraries>
+			<frameworks>Shopify Liquid</frameworks>
+		</technology>
+		<references>
+			<reference></reference>
+		</references>
+	</context>
+	<examples purpose="To illustrate examples of what succesfully completing the goal will look like">
+		<example></example>
+	</examples>
+	<response purpose="The structure of Claude's response">
+		<sections>
+			<section detail-level="low" word-count="50-100">Provide a high level overview of the problem</section>
+			<section detail-level="low" word-count="50-100">Provide a high level overview of the goal</section>
+			<section detail-level="high" word-count="100-150">Provide a detailed, logical, rational explanation of each step you will take to achieve the goal and fix the problem</section>
+			<section>Code Implementation</section>
+		</sections>
+	</response>
 </prompt>
