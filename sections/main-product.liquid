@@ -10,23 +10,20 @@
 </script>
 
 <div class="section-wrap">
-  <div id="product" class="section">
-    <section>
-      <div id="product-photos">
-        <div class="product-images-component">
-          <div class="product-images-slider" data-images="{{ product.images.size }}">
-            <div class="product-images-track">
-              <div
-                class="product-images"
-                style="grid-template-columns: repeat({{ product.images.size }}, minmax(100%, 1fr));"
-              >
+  <div id="product">
+    <div>
+      <div>
+        <div>
+          <div data-images="{{ product.images.size }}">
+            <div>
+              <div>
                 {% assign image_width = 1024 %}
                 {% if product.images.size == 0 %}
                   {{ 'collection-4' | placeholder_svg_tag: 'placeholder' }}
                 {% endif %}
                 {% for image in product.images %}
                   {% assign image_height = image_width | divided_by: image.aspect_ratio | ceil %}
-                  <div class="product-image-item" data-imageid="{{ image.id }}">
+                  <div data-imageid="{{ image.id }}">
                     <img
                       src="{{ image.src | image_url: width: image_width }}"
                       width="{{ image_width }}"
@@ -41,7 +38,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </div>
 
     <section id="product-details">
       <h1 data-title="{{ product.title }}">{{ product.title }}</h1>
@@ -66,7 +63,7 @@
                 {% render block %}
 
               {%- when 'prices' -%}
-                <p class="large-text">
+                <p>
                   <strike class="js--variant-compareatprice">
                     {%- if current_variant.compare_at_price > current_variant.price -%}
                       {{- current_variant.compare_at_price | money -}}
@@ -81,7 +78,7 @@
                 {% unless product.has_only_default_variant %}
                   {% for option_group in product.options_with_values %}
                     {% assign option_field = option_group.position | prepend: 'option' %}
-                    <div class="form-row">
+                    <div>
                       <fieldset class="variant-options js--variant-options">
                         <legend>{{ option_group.name | prepend: 'Select ' }}</legend>
                         {% for value in option_group.values %}
@@ -108,7 +105,7 @@
                 {% endunless %}
 
               {%- when 'button' -%}
-                <div class="form-row flex middle">
+                <div>
                   <input
                     type="hidden"
                     id="js--variant-id"
@@ -116,11 +113,11 @@
                     value="{{ current_variant.id }}"
                   >
                   {% if current_variant.available == true %}
-                    <button type="submit" id="js--addtocart" class="button">
+                    <button type="submit" id="js--addtocart">
                       {{ block.settings.button_label }}
                     </button>
                   {% else %}
-                    <button type="submit" id="js--addtocart" class="button" disabled>Unavailable</button>
+                    <button type="submit" id="js--addtocart" disabled>Unavailable</button>
                   {% endif %}
                 </div>
             {%- endcase -%}
