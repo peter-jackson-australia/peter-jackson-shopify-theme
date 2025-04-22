@@ -462,7 +462,7 @@
                 {% for option_group in product.options_with_values %}
                   {% assign option_field = option_group.position | prepend: 'option' %}
                   <fieldset class="variant-options js--variant-options">
-                    <legend class="body--bold">{{ option_group.name }}</legend>
+                    <legend class="body--bold">{{ option_group.name }}:</legend>
                     <div class="variant-options__list">
                       {% for value in option_group.values %}
                         {% capture option_id %}{{ option_group.name }}_{{ value }}{% endcapture %}
