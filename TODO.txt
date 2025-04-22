@@ -1,4 +1,7 @@
-PDP page
+PDP page: 
+Style product info section correctly
+
+
 AJAX CART (Just get it to work)
 
 /////////////////////////////////////////////////////
