@@ -13,9 +13,6 @@
 
 <div class="section-wrap">
   <div id="product" class="section">
-    {% comment %}
-      Product gallery.
-    {% endcomment %}
     <section>
       <div id="product-photos">
         <div class="product-images-component">
@@ -56,7 +53,9 @@
         <span class="js--variant-sku">{{ current_variant.sku }}</span>
       </p>
 
-      <hr>
+      <p class="rte">
+        {{ product.description }}
+      </p>
 
       {% comment %}
         Variant selector.
@@ -85,11 +84,10 @@
                   {% for option_group in product.options_with_values %}
                     {% assign option_field = option_group.position | prepend: 'option' %}
                     <div class="form-row">
-                      <fieldset class="variant-options js--variant-options {{ option_field }} flex align-left wrap">
+                      <fieldset class="variant-options js--variant-options">
                         <legend>{{ option_group.name | prepend: 'Select ' }}</legend>
                         {% for value in option_group.values %}
                           {% capture option_id %}{{ option_group.name }}_{{ value }}{% endcapture %}
-                          {% assign this_variant = product.variants | where: option_field, value | first %}
                           <div class="variant-option">
                             <input
                               type="radio"
@@ -102,30 +100,9 @@
                               {% endif %}
                             >
                             <label for="{{ option_id | handleize }}">
-                              {% unless this_variant.featured_image == blank %}
-                                {% unless variant_images_list contains this_variant.featured_image.id %}
-                                  <img
-                                    src="{{ this_variant.featured_image | image_url: width: 75, height: 75 }}"
-                                    width="50"
-                                    height="50"
-                                    data-index="{{- this_variant.featured_image.id -}}"
-                                    loading="lazy"
-                                  >
-                                {% endunless %}
-                              {% endunless %}
                               {{- value -}}
                             </label>
                           </div>
-                          {%- comment -%}
-                            Only display the variant image for the first occurrence.
-                          {%- endcomment -%}
-                          {%- capture variant_images_list -%}
-                            {{- variant_images_list -}}
-                            {%- unless variant_images_list contains this_variant.featured_image.id -%}
-                              {%- unless variant_images_list == blank -%},{%- endunless -%}
-                              {{- this_variant.featured_image.id -}}
-                            {%- endunless -%}
-                          {%- endcapture -%}
                         {% endfor %}
                       </fieldset>
                     </div>
@@ -148,38 +125,6 @@
                     <button type="submit" id="js--addtocart" class="button" disabled>Unavailable</button>
                   {% endif %}
                 </div>
-
-              {%- when 'text' -%}
-                {% unless block.settings.content == blank or block.settings.content == '<p></p>' %}
-                  <div class="rte" style="margin-top:2rem;">
-                    {{ block.settings.content }}
-                  </div>
-                {% endunless %}
-
-              {%- when 'rule' -%}
-                <hr>
-
-              {%- when 'detail' -%}
-                <details
-                  {% if block.settings.open == true %}
-                    open
-                  {%- endif -%}
-                >
-                  <summary>
-                    <span>{{ block.settings.title }}</span>
-                  </summary>
-                  <div class="rte">
-                    {{ block.settings.content }}
-                  </div>
-                </details>
-
-              {%- when 'liquid' -%}
-                <div class="raw-html-content">
-                  {{ block.settings.html }}
-                </div>
-
-              {%- when 'product' %}
-                {% render 'purchase-together', block: block, current_variant: current_variant %}
             {%- endcase -%}
           {%- endfor -%}
         </form>
@@ -187,102 +132,6 @@
     </section>
   </div>
 </div>
-
-<script>
-  // Product images slider
-  const sliderComponents = document.querySelectorAll('.product-images-component');
-  sliderComponents.forEach(function (sliderComponent) {
-    let sliderContainer = sliderComponent.querySelector('.product-images-slider');
-    let totalImages = sliderContainer.dataset.images;
-    let slider = sliderComponent.querySelector('.product-images-track');
-
-    // Loop through the slides and create the pagination,
-    // setting data-index attributes on the grid-items and
-    // the pagination options.
-    let sliderItems = slider.querySelector('.product-images');
-    let pagination = '';
-    if (sliderItems != null) {
-      sliderItems.querySelectorAll('.product-image-item').forEach(function (item, index) {
-        let activeClass = '';
-        let imgSrc = item.querySelector('img').src;
-        item.setAttribute('data-index', index);
-        if (index == 0) {
-          activeClass = ' class="active"';
-        }
-        pagination += `
-        <button type="button" ${activeClass} data-index="${index}" onclick="goToImage(${index});">
-          <img src="${imgSrc}" width="75" height="75" alt="Image ${index}" loading="lazy">
-          <span>${index}</span>
-        </button>`;
-      });
-    }
-
-    // Dots, previous and next buttons
-    if (totalImages > 1) {
-      sliderComponent.insertAdjacentHTML(
-        'beforeend',
-        `
-      <div class="product-slider-controls">
-        <div class="product-images-dots" data-device="desktop">${pagination}</div>
-      </div>
-  `
-      );
-      sliderContainer.insertAdjacentHTML(
-        'beforeend',
-        `
-      <div class="product-image-controls">
-        <button type="button" onclick="goToImage('prev');" class="image-prev">&larr;</button>
-        <button type="button" onclick="goToImage('next');" class="image-next">&rarr;</button>
-      </div>
-  `
-      );
-    }
-
-    // Loop through all the slides and see which
-    // one is visible in the viewport. If visible,
-    // update the pagination.
-    slider.addEventListener('scroll', function (event) {
-      let $this = event.target;
-      let sliderItems = $this.querySelector('.product-images');
-      let sliderPos = slider.scrollLeft;
-      let pagination = sliderComponent.querySelector('.product-images-dots');
-      sliderItems.querySelectorAll('.product-image-item').forEach(function (el, index) {
-        if (sliderPos == el.offsetLeft) {
-          let slideIndex = el.getAttribute('data-index');
-          pagination.querySelectorAll('button').forEach(function (button) {
-            button.classList.remove('active');
-          });
-          pagination.querySelector('button[data-index="' + slideIndex + '"]').classList.add('active');
-        }
-      });
-    });
-  });
-
-  // Function to jump to image.
-  function goToImage(index, container = false) {
-    let sliderComponent = container || event.target.closest('.product-images-component');
-    if (index == 'next' || index == 'prev') {
-      let pagination = sliderComponent.querySelector('.product-images-dots');
-      let current = pagination.querySelector('button.active');
-      if (index == 'next') {
-        if (current.nextElementSibling != null) {
-          current.nextElementSibling.click();
-        }
-      } else {
-        if (current.previousElementSibling != null) {
-          current.previousElementSibling.click();
-        }
-      }
-    } else {
-      let slide = sliderComponent.querySelector('.product-image-item[data-index="' + index + '"]');
-      sliderComponent.querySelector('.product-images-track').scrollTo({
-        top: 0,
-        left: slide.offsetLeft,
-        behavior: 'smooth',
-      });
-    }
-  }
-</script>
 
 {% schema %}
 {
@@ -313,103 +162,6 @@
           "id": "button_label",
           "label": "Button Label",
           "default": "Add to cart"
-        }
-      ]
-    },
-    {
-      "type": "text",
-      "name": "Text",
-      "settings": [
-        {
-          "type": "richtext",
-          "id": "content",
-          "label": "Content"
-        }
-      ]
-    },
-    {
-      "type": "rule",
-      "name": "Horizontal rule",
-      "settings": []
-    },
-    {
-      "type": "detail",
-      "name": "Expandable content",
-      "settings": [
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title"
-        },
-        {
-          "type": "richtext",
-          "id": "content",
-          "label": "Content"
-        },
-        {
-          "type": "checkbox",
-          "id": "open",
-          "label": "Open by default",
-          "default": false
-        }
-      ]
-    },
-    {
-      "type": "liquid",
-      "name": "Custom Liquid",
-      "settings": [
-        {
-          "type": "liquid",
-          "id": "html",
-          "label": "HTML/Liquid",
-          "info": "You can add HTML, CSS and limited Liquid markup."
-        }
-      ]
-    },
-    {
-      "type": "product",
-      "name": "Purchase together",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "header",
-          "content": "Setting up this feature",
-          "info": "A product metafield definition with the namespace and key `taillour.purchase_together` should be created with the type `Product variant`. The metafield should allow a 'List of product variants'. [Create definition](/admin/settings/custom_data/product/metafields)."
-        },
-        {
-          "type": "text",
-          "id": "heading",
-          "label": "Heading",
-          "default": "Frequently purchased together"
-        },
-        {
-          "type": "inline_richtext",
-          "id": "total_label",
-          "label": "Total price label",
-          "default": "Total Price:"
-        },
-        {
-          "type": "select",
-          "id": "limit",
-          "label": "Limit",
-          "options": [
-            {
-              "value": "1",
-              "label": "1"
-            },
-            {
-              "value": "2",
-              "label": "2"
-            }
-          ],
-          "default": "2",
-          "info": "Set the number of products to display."
-        },
-        {
-          "type": "number",
-          "id": "thumbnail_size",
-          "label": "Thumbnail size",
-          "default": 150
         }
       ]
     }
