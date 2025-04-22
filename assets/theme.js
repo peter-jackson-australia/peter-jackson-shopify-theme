@@ -162,14 +162,6 @@ ready(function () {
             document.querySelector('#js--addtocart').innerText = 'Add to cart';
           }
 
-          // Update image
-          var imageId = v.featured_image != null ? v.featured_image.id : default_image;
-          var imageIndex = document
-            .querySelector('.product-image-item[data-imageid="' + imageId + '"]')
-            .getAttribute('data-index');
-          var sliderContainer = document.querySelector('.product-images-component');
-          goToImage(imageIndex, sliderContainer);
-
           // Append the variant ID as a url parameter
           if (v != undefined) {
             if (historyState()) {
