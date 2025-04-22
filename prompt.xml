@@ -1,37 +1,30 @@
 <prompt>
 	<instructions purpose="To define a high level overview of the problem that Claude needs to solve and the optimal, desired outcome">
-		<problem></problem>
-		<goal priority="high"></goal>
+		<problem>I have an online store built with Shopify using a custom Shopify Liquid theme. On the product pages I have a gallery slider to the left and the product information, variant selector and buy now button on the right. The product information section is completely unstyled.</problem>
+		<goal priority="high">I want to style and structure the product information section as follows: Next to the gallery slider on the right there will be a container that is 100% of the viewport height and 50% of the viewport width on desktop. On mobile this container sits below the image gallery slider and is 100% width. This container holds the product information and purchasing options. At the top left of this container is a flex container that has the product title on the left and the original price and discount price on the right. Below this is the product SKU. Below that is the variant/optins selector, currently they are just unstyled radio buttons, but they should be styled as plain text. When a radio button is selected it will have an underline to indicate it has been checked. If a radio is disabled the text will be var(--neutral-200). The variant/options should be in a flex row that wraps but aligned to the left so they all line up. Below this is the add to cart button that needs styling (dark background, no edges, full width) then finally beneath this should be a container that has 3 tabs, "Product Info" which is just the product description, "Specifications And Care" which is the three metafields: "Care guide", descriptors.care_guide which is of type multi-line text, "Sizing Information", custom.garment_fit which is of type multi-line text and "Specifications" custom.product_specifications. These metafields are optional so check for them first. The final tab is "Shipping" this should be editable in the theme editor. Clicking on a tab will show its tab contents and hide the others, by default none show. A tab will have an underline under the tab title when active. The code should be simple and easy and use styling from the theme.css file for typogaphy, colors and spacing. All elements should be semantic and follow BEM naming conventions. Leave the classes with the js-- prefix alone, they are neccessary</goal>
 	</instructions>
 	<context purpose="To give an overview of all of the additional and contextual information related to the problem being solved">
 		<files>
             <file>
-                <name></name>
-                <purpose></purpose> 
+                <name>sections/main-product</name>
+                <purpose>Displays the product gallery and information for the current product page</purpose> 
+            </file>
+            <file>
+                <name>assets/theme.css</name>
+                <purpose>Contains variables used for typography, colours, spacing and global elements</purpose> 
             </file>
 		</files>
-		<references>
-			<reference>
-                <description></description>
-                <code></code>
-            </reference>
-            <reference>
-                <description></description>
-                <code></code>
-            </reference>
-		</references>
 	</context>
 	<examples purpose="To illustrate examples of what succesfully completing the goal will look like">
-		<example></example>
-    	<example></example>
+		<example>"User A" finds a product on my website he likes and goes to its page. On the left hand side is the product gallery slider and on the right is our new product information section. He selects an option and it underlines. The out of stock options are greyed out. He clicks on the "Product Info" tab and the product description text is shown below it. Once he is satisfied he clicks add to cart and his item is added to the cart</example>
+    	<example>"User B" finds a product on my website on his phone and goes to its page. at the top of the page is the product gallery slider, below that is our new product information section. He makes a selection of a variant and adds it to the cart</example>
     </examples>
 	<response purpose="The desired structure of Claude's response">
 		<sections>
-			<section detail-level="low" word-count="50-100"></section>
-			<section detail-level="low" word-count="50-100"></section>
-            <section detail-level="medium" word-count="50-100"></section>
-			<section detail-level="high" word-count="100-150"></section>
+			<section detail-level="low" word-count="50-100">Give me a high level overview of the problem</section>
+			<section detail-level="low" word-count="50-100">Give me a high level overview of the goal</section>
+            <section detail-level="medium" word-count="50-100">Give me 2 detailed examples of how the product information section will look, be structured and function for desktop and mobile</section>
+			<section detail-level="high" word-count="100-150">Explain how you will achieve this in the fewest lines of code possible, step by step using logical reasoning</section>
 		</sections>
 	</response>
 </prompt>
-```

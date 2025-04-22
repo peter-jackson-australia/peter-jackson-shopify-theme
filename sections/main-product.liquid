@@ -86,17 +86,15 @@
     transform: translateY(-50%);
     width: 2px;
     height: 50%;
-    background-color: var(--neutral-50);
     z-index: 10;
   }
 
   .product-images-progress--mobile {
-    left: 50%;
+    left: 0;
     top: auto;
-    bottom: var(--space-m);
-    transform: translateX(-50%);
-    width: 30%;
-    height: 2px;
+    bottom: -4px;
+    width: 100%;
+    height: 4px;
   }
 
   .product-images-progress__bar {
@@ -161,61 +159,191 @@
     height: 12px;
   }
 
-  .product-images-progress {
-    position: absolute;
-    left: var(--space-m);
-    top: 50%;
-    transform: translateY(-50%);
-    width: 2px;
-    height: 30%;
-    background-color: var(--neutral-200);
-    z-index: 10;
-  }
-
-  .product-images-progress__bar {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 0;
-    background-color: var(--neutral-950);
-    transition: height 0.3s ease;
-  }
-
-  .product-images-progress--mobile {
-    left: 0;
-    top: auto;
-    bottom: 0;
-    transform: none;
-    width: 100%;
-    height: 2px;
-    background: transparent;
-    z-index: 2;
-  }
-
-  .product-images-progress--mobile .product-images-progress__bar {
-    width: 0;
-    height: 2px;
-    transition: width 300ms ease;
-  }
-
   #product {
     display: flex;
-    gap: var(--space-2xl);
+    gap: 0;
   }
 
   #product-details {
-    flex: 1;
-    padding: var(--space-xl) var(--space-l);
+    width: 50vw;
+    height: calc(100vh - var(--space-xl));
+    padding: var(--space-3xl);
+    overflow-y: auto;
+    flex: none;
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
-  @media screen and (max-width: 768px) {
+  .product-details__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-2xs);
+    gap: var(--space-m);
+  }
+
+  .product-details__title {
+    color: var(--neutral-950);
+  }
+
+  .product-details__price {
+    display: flex;
+    gap: var(--space-xs);
+  }
+
+  .product-details__compare-price {
+    color: var(--neutral-600);
+    text-decoration: line-through;
+  }
+
+  .product-details__price-actual {
+    color: var(--neutral-950);
+  }
+
+  .product-details__sku {
+    margin-bottom: var(--space-l);
+    color: var(--neutral-600);
+  }
+
+  .variant-options {
+    border: none;
+    margin: 0 0 var(--space-m) 0;
+    padding: 0;
+  }
+
+  .variant-options legend {
+    margin-bottom: var(--space-xs);
+    color: var(--neutral-950);
+  }
+
+  .variant-options__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-m);
+    align-items: center;
+  }
+
+  .variant-option {
+    position: relative;
+  }
+
+  .variant-option input[type='radio'] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .variant-option label {
+    padding: 0;
+    color: var(--neutral-950);
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+  }
+
+  .variant-option input[type='radio']:checked + label::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--neutral-950);
+  }
+
+  .variant-option input[type='radio']:disabled + label {
+    color: var(--neutral-200);
+    cursor: not-allowed;
+  }
+
+  #js--addtocart {
+    width: 100%;
+    background-color: var(--neutral-950);
+    color: var(--white);
+    border: none;
+    padding: var(--space-s) var(--space-m);
+    cursor: pointer;
+    margin-bottom: var(--space-s);
+  }
+
+  #js--addtocart:disabled {
+    background-color: var(--neutral-200);
+    cursor: not-allowed;
+  }
+
+  #js--addtocart:hover:not(:disabled) {
+    background-color: var(--neutral-950);
+  }
+
+  .product-tabs__list {
+    display: flex;
+    gap: var(--space-l);
+    border-bottom: 1px solid var(--neutral-200);
+    margin-bottom: var(--space-m);
+  }
+
+  .product-tabs__tab {
+    position: relative;
+    padding: var(--space-s) 0;
+    background: none;
+    border: none;
+    color: var(--neutral-600);
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+
+  .product-tabs__tab.is-active {
+    color: var(--neutral-950);
+  }
+
+  .product-tabs__tab.is-active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--neutral-950);
+  }
+
+  .product-tabs__content {
+    display: none;
+  }
+
+  .product-tabs__content.is-active {
+    display: block;
+  }
+
+  .product-tabs__description,
+  .product-tabs__specifications,
+  .product-tabs__shipping {
+    color: var(--neutral-600);
+  }
+
+  .product-tabs__description > p {
+    margin-bottom: var(--space-m);
+  }
+
+  .product-tabs__metafield {
+    margin-bottom: var(--space-m);
+  }
+
+  .product-tabs__metafield h4 {
+    margin-bottom: var(--space-xs);
+    color: var(--neutral-950);
+  }
+
+  @media screen and (max-width: 1099px) {
     #product {
       flex-direction: column;
-      gap: var(--space-l);
     }
 
     #product-details {
+      width: 100%;
+      height: auto;
       padding: var(--space-m);
     }
 
@@ -293,89 +421,152 @@
     </div>
 
     <section id="product-details">
-      <h1 data-title="{{ product.title }}">{{ product.title }}</h1>
+      <div class="product-details__header">
+        <h1 class="product-details__title heading--xl" data-title="{{ product.title }}">{{ product.title }}</h1>
+        <div class="product-details__price">
+          {% if current_variant.compare_at_price > current_variant.price %}
+            <span class="product-details__compare-price body js--variant-compareatprice">
+              {{ current_variant.compare_at_price | money }}
+            </span>
+          {% endif %}
+          <span class="product-details__price-actual body--bold js--variant-price">
+            {{ current_variant.price | money }}
+          </span>
+        </div>
+      </div>
 
-      <p>
+      <p class="product-details__sku small">
         Product Code:
         <span class="js--variant-sku">{{ current_variant.sku }}</span>
       </p>
 
-      <p class="rte">
-        {{ product.description }}
-      </p>
+      <form action="{{ routes.cart_add_url }}" method="post">
+        {%- for block in section.blocks -%}
+          {% case block.type %}
+            {%- when '@app' -%}
+              {% render block %}
 
-      {% comment %}
-        Variant selector.
-      {% endcomment %}
-      <div>
-        <form action="{{ routes.cart_add_url }}" method="post">
-          {%- for block in section.blocks -%}
-            {% case block.type %}
-              {%- when '@app' -%}
-                {% render block %}
-
-              {%- when 'prices' -%}
-                <p>
-                  <strike class="js--variant-compareatprice">
-                    {%- if current_variant.compare_at_price > current_variant.price -%}
-                      {{- current_variant.compare_at_price | money -}}
-                    {%- endif -%}
-                  </strike>
-                  <strong class="js--variant-price">
-                    {{ current_variant.price | money }}
-                  </strong>
-                </p>
-
-              {%- when 'options' %}
-                {% unless product.has_only_default_variant %}
-                  {% for option_group in product.options_with_values %}
-                    {% assign option_field = option_group.position | prepend: 'option' %}
-                    <div>
-                      <fieldset class="variant-options js--variant-options">
-                        <legend>{{ option_group.name | prepend: 'Select ' }}</legend>
-                        {% for value in option_group.values %}
-                          {% capture option_id %}{{ option_group.name }}_{{ value }}{% endcapture %}
-                          <div class="variant-option">
-                            <input
-                              type="radio"
-                              id="{{ option_id | handleize }}"
-                              class="js--variant-option"
-                              name="{{ option_group.position | prepend: 'option'}}"
-                              value="{{ value }}"
-                              {% if current_variant[option_field] == value %}
-                                checked
-                              {% endif %}
-                            >
-                            <label for="{{ option_id | handleize }}">
-                              {{- value -}}
-                            </label>
-                          </div>
-                        {% endfor %}
-                      </fieldset>
+            {%- when 'options' %}
+              {% unless product.has_only_default_variant %}
+                {% for option_group in product.options_with_values %}
+                  {% assign option_field = option_group.position | prepend: 'option' %}
+                  <fieldset class="variant-options js--variant-options">
+                    <legend class="body--bold">{{ option_group.name }}</legend>
+                    <div class="variant-options__list">
+                      {% for value in option_group.values %}
+                        {% capture option_id %}{{ option_group.name }}_{{ value }}{% endcapture %}
+                        <div class="variant-option">
+                          <input
+                            type="radio"
+                            id="{{ option_id | handleize }}"
+                            class="js--variant-option"
+                            name="{{ option_group.position | prepend: 'option'}}"
+                            value="{{ value }}"
+                            {% if current_variant[option_field] == value %}
+                              checked
+                            {% endif %}
+                          >
+                          <label for="{{ option_id | handleize }}" class="body">
+                            {{- value -}}
+                          </label>
+                        </div>
+                      {% endfor %}
                     </div>
-                  {% endfor %}
-                {% endunless %}
+                  </fieldset>
+                {% endfor %}
+              {% endunless %}
 
-              {%- when 'button' -%}
-                <div>
-                  <input
-                    type="hidden"
-                    id="js--variant-id"
-                    name="id"
-                    value="{{ current_variant.id }}"
-                  >
-                  {% if current_variant.available == true %}
-                    <button type="submit" id="js--addtocart">
-                      {{ block.settings.button_label }}
-                    </button>
-                  {% else %}
-                    <button type="submit" id="js--addtocart" disabled>Unavailable</button>
-                  {% endif %}
+            {%- when 'button' -%}
+              <input
+                type="hidden"
+                id="js--variant-id"
+                name="id"
+                value="{{ current_variant.id }}"
+              >
+              {% if current_variant.available == true %}
+                <button type="submit" id="js--addtocart" class="body">Add To Cart</button>
+              {% else %}
+                <button type="submit" id="js--addtocart" class="body--uppercase" disabled>Unavailable</button>
+              {% endif %}
+          {%- endcase -%}
+        {%- endfor -%}
+      </form>
+
+      {% assign has_description = false %}
+      {% assign has_specs = false %}
+      {% assign has_shipping = false %}
+
+      {% if product.description != blank %}
+        {% assign has_description = true %}
+      {% endif %}
+
+      {% if product.metafields.descriptors.care_guide != blank
+        or product.metafields.custom.garment_fit != blank
+        or product.metafields.custom.product_specifications != blank
+      %}
+        {% assign has_specs = true %}
+      {% endif %}
+
+      {% if section.settings.shipping_content != blank %}
+        {% assign has_shipping = true %}
+      {% endif %}
+
+      {% if has_description or has_specs or has_shipping %}
+        <div class="product-tabs">
+          <div class="product-tabs__list">
+            {% if has_description %}
+              <button class="product-tabs__tab body--uppercase" data-tab="description">Product Info</button>
+            {% endif %}
+            {% if has_specs %}
+              <button class="product-tabs__tab body--uppercase" data-tab="specs">Specifications And Care</button>
+            {% endif %}
+            {% if has_shipping %}
+              <button class="product-tabs__tab body--uppercase" data-tab="shipping">Shipping</button>
+            {% endif %}
+          </div>
+
+          {% if has_description %}
+            <div class="product-tabs__content" data-content="description">
+              <div class="product-tabs__description rte body">
+                {{ product.description }}
+              </div>
+            </div>
+          {% endif %}
+
+          {% if has_specs %}
+            <div class="product-tabs__content" data-content="specs">
+              {% if product.metafields.descriptors.care_guide != blank %}
+                <div class="product-tabs__metafield">
+                  <h4 class="body--bold">Care Guide</h4>
+                  <div class="body">{{ product.metafields.descriptors.care_guide }}</div>
                 </div>
-            {%- endcase -%}
-          {%- endfor -%}
-        </form>
-      </div>
+              {% endif %}
+
+              {% if product.metafields.custom.garment_fit != blank %}
+                <div class="product-tabs__metafield">
+                  <h4 class="body--bold">Sizing Information</h4>
+                  <div class="body">{{ product.metafields.custom.garment_fit }}</div>
+                </div>
+              {% endif %}
+
+              {% if product.metafields.custom.product_specifications != blank %}
+                <div class="product-tabs__metafield">
+                  <h4 class="body--bold">Specifications</h4>
+                  <div class="body">{{ product.metafields.custom.product_specifications }}</div>
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+
+          {% if has_shipping %}
+            <div class="product-tabs__content" data-content="shipping">
+              <div class="body">
+                {{ section.settings.shipping_content }}
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
     </section>
   </div>
 </div>
@@ -399,7 +590,7 @@
           splideInstance.destroy();
         }
 
-        const isMobile = window.innerWidth < 768;
+        const isMobile = window.innerWidth < 1100;
 
         const options = isMobile
           ? {
@@ -460,13 +651,41 @@
         resizeTimeout = setTimeout(initSlider, 250);
       });
     }
+
+    const tabButtons = document.querySelectorAll('.product-tabs__tab');
+    const tabContents = document.querySelectorAll('.product-tabs__content');
+
+    if (tabButtons.length > 0) {
+      tabButtons.forEach((button) => {
+        button.addEventListener('click', function () {
+          const tabName = this.dataset.tab;
+
+          tabButtons.forEach((tab) => tab.classList.remove('is-active'));
+          tabContents.forEach((content) => content.classList.remove('is-active'));
+
+          this.classList.add('is-active');
+          const activeContent = document.querySelector(`[data-content="${tabName}"]`);
+
+          if (activeContent) {
+            activeContent.classList.add('is-active');
+          }
+        });
+      });
+    }
   });
 </script>
 
 {% schema %}
 {
   "name": "Product Page",
-  "settings": [],
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "shipping_content",
+      "label": "Shipping Information",
+      "default": "<p>Free shipping on orders over $100. Ships within 2-3 business days.</p>"
+    }
+  ],
   "blocks": [
     {
       "type": "@app"
