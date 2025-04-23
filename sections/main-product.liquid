@@ -35,7 +35,7 @@
 
   .product-images-container--mobile .splide__slide {
     position: relative;
-    padding-bottom: 100%;
+    padding-bottom: 75%;
   }
 
   .product-images-container--mobile .splide__slide img {
@@ -114,7 +114,6 @@
   .product-images-progress--mobile .product-images-progress__bar {
     width: 0;
     height: 100%;
-    transition: width 0.3s ease;
   }
 
   .product-images-splide .splide__arrows {
@@ -173,6 +172,7 @@
     width: 50vw;
     height: calc(100vh - var(--space-xl));
     overflow-y: auto;
+    scrollbar-gutter: stable both-edges;
   }
 
   #product-details {
@@ -349,6 +349,10 @@
   }
 
   @media screen and (max-width: 1099px) {
+    header {
+      border-bottom: none;
+    }
+
     #product {
       flex-direction: column;
     }
@@ -629,6 +633,7 @@
           breakpoints: {
             1100: {
               type: 'slide',
+              height: '70vh',
               direction: 'ltr',
               arrows: true,
               perPage: 1,
