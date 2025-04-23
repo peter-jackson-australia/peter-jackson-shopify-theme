@@ -16,6 +16,10 @@
 {% endif %}
 
 <style>
+  header {
+    border-bottom: 1px solid var(--neutral-200);
+  }
+
   .product-images-container {
     position: relative;
     width: 50vw;
@@ -162,18 +166,17 @@
   #product {
     display: flex;
     gap: 0;
+    border-bottom: 1px solid var(--neutral-200);
   }
 
   .product-details__container {
     width: 50vw;
+    height: calc(100vh - var(--space-xl));
     overflow-y: auto;
   }
 
   #product-details {
-    height: calc(100vh - var(--space-xl));
     padding: var(--space-3xl);
-    overflow-y: auto;
-    margin: 0 auto;
   }
 
   .product-details__header {
@@ -348,6 +351,11 @@
   @media screen and (max-width: 1099px) {
     #product {
       flex-direction: column;
+    }
+
+    .product-details__container {
+      width: 100%;
+      height: auto;
     }
 
     #product-details {
@@ -609,27 +617,30 @@
 
         const isMobile = window.innerWidth < 1100;
 
-        const options = isMobile
-          ? {
+        const options = {
+          direction: 'ttb',
+          height: '100vh',
+          wheel: true,
+          waitForTransition: true,
+          arrows: false,
+          pagination: false,
+          speed: 300,
+          drag: true,
+          breakpoints: {
+            1100: {
               type: 'slide',
+              direction: 'ltr',
               arrows: true,
               perPage: 1,
               pagination: false,
               rewind: false,
+              wheel: false,
               drag: true,
               speed: 300,
               waitForTransition: true,
-            }
-          : {
-              direction: 'ttb',
-              height: '100vh',
-              wheel: true,
-              waitForTransition: true,
-              arrows: false,
-              pagination: false,
-              speed: 300,
-              drag: true,
-            };
+            },
+          },
+        };
 
         splideInstance = new Splide('.product-images-splide', options);
 
