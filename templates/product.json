@@ -36,8 +36,15 @@
         "shipping_content": "<p>Free shipping on orders over $100. Ships within 2-3 business days.</p>"
       }
     },
+    "shop_the_look_cCQwPG": {
+      "type": "shop-the-look",
+      "settings": {
+        "heading": "Shop the Look"
+      }
+    },
     "recently_viewed_yG6Mdn": {
       "type": "recently-viewed",
+      "disabled": true,
       "settings": {
         "heading": "Recently viewed",
         "size": "h2",
@@ -45,12 +52,6 @@
         "products_per_row": 4,
         "background": "#ffffff",
         "color": ""
-      }
-    },
-    "shop_the_look_cCQwPG": {
-      "type": "shop-the-look",
-      "settings": {
-        "heading": "Shop the Look"
       }
     }
   },
