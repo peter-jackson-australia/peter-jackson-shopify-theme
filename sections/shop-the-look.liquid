@@ -1,0 +1,299 @@
+{% comment %}
+  Shop the Look section
+  Displays related products from metafield custom.shop_the_look alongside the second product image
+{% endcomment %}
+
+{% if product.metafields.custom.shop_the_look != blank
+  and product.metafields.custom.shop_the_look.size > 0
+  and product.images.size > 1
+%}
+  {% assign second_image = product.images[1] %}
+  {% assign related_products = product.metafields.custom.shop_the_look %}
+
+  <style>
+    .shop-the-look {
+      display: flex;
+      border-bottom: 1px solid var(--neutral-200);
+      overflow: hidden;
+    }
+
+    .shop-the-look__slider-container {
+      width: 50vw;
+      padding: var(--space-2xl) var(--space-m);
+    }
+
+    .shop-the-look__heading {
+      margin-bottom: var(--space-l);
+      color: var(--neutral-950);
+    }
+
+    .shop-the-look__slider-wrapper {
+      overflow: visible;
+      width: 100%;
+    }
+
+    .shop-the-look__slider {
+      width: calc(100% + var(--space-m));
+      margin-right: 0;
+    }
+
+    .shop-the-look__image-container {
+      width: 50vw;
+      position: relative;
+      overflow: hidden;
+      background-color: var(--neutral-50);
+    }
+
+    .shop-the-look__image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      object-position: center;
+    }
+
+    .shop-the-look__product-link {
+      display: block;
+      text-decoration: none;
+      color: var(--neutral-950);
+    }
+
+    .shop-the-look__product-image-wrapper {
+      margin-bottom: var(--space-xs);
+      overflow: hidden;
+      background-color: var(--neutral-50);
+    }
+
+    .shop-the-look__product-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .shop-the-look__product-title {
+      margin: var(--space-xs) 0 var(--space-2xs);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: var(--neutral-950);
+    }
+
+    .shop-the-look__product-material {
+      margin-bottom: var(--space-2xs);
+      color: var(--neutral-600);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .shop-the-look__product-price--compare {
+      text-decoration: line-through;
+      color: var(--neutral-600);
+      margin-left: var(--space-2xs);
+    }
+
+    .shop-the-look__single-product {
+      padding: var(--space-m);
+      max-width: 400px;
+    }
+
+    @media screen and (max-width: 768px) {
+      .shop-the-look {
+        flex-direction: column;
+      }
+
+      .shop-the-look__slider-container {
+        width: 100%;
+        padding-top: var(--space-xl);
+        padding-bottom: var(--space-xl);
+      }
+
+      .shop-the-look__image-container {
+        display: none;
+      }
+
+      .shop-the-look__slider {
+        width: calc(100% + var(--space-l));
+      }
+
+      .shop-the-look__product-title {
+        width: calc(100% - var(--space-m));
+      }
+    }
+
+    @media screen and (max-width: 470px) {
+      .shop-the-look__slider-wrapper {
+        overflow: hidden;
+      }
+    }
+  </style>
+
+  <div class="shop-the-look" id="section-{{ section.id }}">
+    <div class="shop-the-look__slider-container">
+      <h2 class="heading--2xl shop-the-look__heading">{{ section.settings.heading }}</h2>
+
+      {% if related_products.size > 1 %}
+        <div class="shop-the-look__slider-wrapper">
+          <div class="shop-the-look__slider splide">
+            <div class="splide__arrows">
+              <button class="splide__arrow splide__arrow--prev">{% render 'icon-arrow-see-less' %}</button>
+              <button class="splide__arrow splide__arrow--next">{% render 'icon-arrow-see-more' %}</button>
+            </div>
+            <div class="splide__track">
+              <ul class="splide__list">
+                {% for related_product in related_products %}
+                  <li class="splide__slide shop-the-look__slide">
+                    <a href="{{ related_product.url }}" class="shop-the-look__product-link">
+                      <div class="shop-the-look__product-image-wrapper">
+                        {% if related_product.featured_image != blank %}
+                          <img
+                            src="{{ related_product.featured_image | image_url: width: '600px' }}"
+                            alt="{{ related_product.featured_image.alt | escape }}"
+                            loading="lazy"
+                            width="{{ related_product.featured_image.width }}"
+                            height="{{ related_product.featured_image.height }}"
+                            class="shop-the-look__product-image"
+                          >
+                        {% else %}
+                          {{ 'product-1' | placeholder_svg_tag: 'shop-the-look__product-image placeholder' }}
+                        {% endif %}
+                      </div>
+
+                      <h3 class="body--bold shop-the-look__product-title">{{ related_product.title }}</h3>
+
+                      {% if related_product.metafields.custom.fabric_description != blank %}
+                        <p class="small shop-the-look__product-material">
+                          {{ related_product.metafields.custom.fabric_description }}
+                        </p>
+                      {% endif %}
+
+                      <p class="small shop-the-look__product-price">
+                        {% if related_product.compare_at_price > related_product.price %}
+                          <span class="shop-the-look__product-price--sale">{{ related_product.price | money }}</span>
+                          <span class="shop-the-look__product-price--compare">
+                            {{- related_product.compare_at_price | money -}}
+                          </span>
+                        {% else %}
+                          {{ related_product.price | money }}
+                        {% endif %}
+                      </p>
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      {% else %}
+        <div class="shop-the-look__single-product">
+          {% assign related_product = related_products[0] %}
+          <a href="{{ related_product.url }}" class="shop-the-look__product-link">
+            <div class="shop-the-look__product-image-wrapper">
+              {% if related_product.featured_image != blank %}
+                <img
+                  src="{{ related_product.featured_image | image_url: width: '600px' }}"
+                  alt="{{ related_product.featured_image.alt | escape }}"
+                  loading="lazy"
+                  width="{{ related_product.featured_image.width }}"
+                  height="{{ related_product.featured_image.height }}"
+                  class="shop-the-look__product-image"
+                >
+              {% else %}
+                {{ 'product-1' | placeholder_svg_tag: 'shop-the-look__product-image placeholder' }}
+              {% endif %}
+            </div>
+
+            <h3 class="body--bold shop-the-look__product-title">{{ related_product.title }}</h3>
+
+            {% if related_product.metafields.custom.fabric_description != blank %}
+              <p class="small shop-the-look__product-material">
+                {{ related_product.metafields.custom.fabric_description }}
+              </p>
+            {% endif %}
+
+            <p class="small shop-the-look__product-price">
+              {% if related_product.compare_at_price > related_product.price %}
+                <span class="shop-the-look__product-price--sale">{{ related_product.price | money }}</span>
+                <span class="shop-the-look__product-price--compare">
+                  {{- related_product.compare_at_price | money -}}
+                </span>
+              {% else %}
+                {{ related_product.price | money }}
+              {% endif %}
+            </p>
+          </a>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="shop-the-look__image-container">
+      {% assign image_width = 1024 %}
+      {% assign image_height = image_width | divided_by: second_image.aspect_ratio | ceil %}
+      <img
+        src="{{ second_image.src | image_url: width: image_width }}"
+        srcset="
+          {{ second_image.src | image_url: width: 600 }} 600w,
+          {{ second_image.src | image_url: width: 800 }} 800w,
+          {{ second_image.src | image_url: width: 1024 }} 1024w,
+          {{ second_image.src | image_url: width: 1440 }} 1440w
+        "
+        sizes="(max-width: 768px) 100vw, 50vw"
+        width="{{ image_width }}"
+        height="{{ image_height }}"
+        alt="{{ second_image.alt | default: product.title }}"
+        loading="lazy"
+        class="shop-the-look__image"
+      >
+    </div>
+  </div>
+
+  {% if related_products.size > 1 %}
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const splideElement = document.querySelector('#section-{{ section.id }} .shop-the-look__slider');
+
+        if (splideElement) {
+          new Splide(splideElement, {
+            perPage: 4,
+            type: 'loop',
+            gap: 'var(--space-m)',
+            arrows: false,
+            pagination: false,
+            drag: true,
+            snap: true,
+            breakpoints: {
+              470: {
+                perPage: 1,
+              },
+              768: {
+                perPage: 2,
+                arrows: true,
+              },
+            },
+          }).mount();
+        }
+      });
+    </script>
+  {% endif %}
+{% endif %}
+
+{% schema %}
+{
+  "name": "Shop the Look",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Shop the Look"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop the Look",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}
