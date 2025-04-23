@@ -491,7 +491,11 @@
                               {% endif %}
                             >
                             <label for="{{ option_id | handleize }}" class="body">
-                              {{- value -}}
+                              {% if option_group.name == 'Size' and value contains '.0' %}
+                                {{- value | remove: '.0' -}}
+                              {% else %}
+                                {{- value -}}
+                              {% endif %}
                             </label>
                           </div>
                         {% endfor %}
