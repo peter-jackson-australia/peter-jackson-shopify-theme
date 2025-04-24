@@ -2,6 +2,44 @@
   Shop the Look section - Modified with overlayed arrows
 {% endcomment %}
 
+{% for item in product.metafields.custom.shop_the_look.value %}
+  <li>Item {{ forloop.index }}: {{ item | json }}</li>
+
+  {% comment %} Try to load as product reference {% endcomment %}
+  {% if item.type == 'product_reference' %}
+    {% assign product_item = item.value %}
+    <p>Product Reference Value: {{ product_item | json }}</p>
+
+    <ul>
+      <li>Title: {{ product_item.title }}</li>
+      <li>Handle: {{ product_item.handle }}</li>
+      <li>Price: {{ product_item.price | money }}</li>
+      <li>
+        Has featured image: {% if product_item.featured_image %}Yes{% else %}No{% endif %}
+      </li>
+    </ul>
+  {% else %}
+    {% comment %} Try to load product by handle if it's just a string {% endcomment %}
+    {% if item.type == 'string' or item.type == null %}
+      {% assign handle = item %}
+      {% if handle == blank %}
+        {% assign handle = item.value %}
+      {% endif %}
+
+      {% if handle != blank %}
+        <p>Attempting to load product with handle: {{ handle }}</p>
+        {% assign product_item = all_products[handle] %}
+
+        {% if product_item.id %}
+          <p style="color: green;">✓ Successfully loaded product: {{ product_item.title }}</p>
+        {% else %}
+          <p style="color: red;">✗ Failed to load product with handle: {{ handle }}</p>
+        {% endif %}
+      {% endif %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
 {% comment %} Check if we have a metafield and multiple images {% endcomment %}
 {% if product.metafields.custom.shop_the_look != blank and product.images.size > 1 %}
   {% comment %} Get the second image {% endcomment %}
@@ -286,7 +324,6 @@
           </div>
         </div>
       {% else %}
-        {% comment %} Display a single product if we only have one {% endcomment %}
         <div class="shop-the-look__single-product">
           {% if all_products['albinoni-black-penny-loafer'] %}
             {% assign product_item = all_products['albinoni-black-penny-loafer'] %}
