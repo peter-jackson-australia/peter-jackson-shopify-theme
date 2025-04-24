@@ -1,5 +1,6 @@
 PDP page: 
-Recently viewed 
+Recently viewed:
+    Styling
 Product navigation
 Ensure correct section tags 
 Responsiveness
