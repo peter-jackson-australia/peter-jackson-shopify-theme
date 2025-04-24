@@ -4,6 +4,7 @@ Related content
 Recently viewed 
 Product navigation
 Ensure correct section tags 
+Responsiveness
 Make all product sections only work on products template 
 Make it fast (over 95) 
 

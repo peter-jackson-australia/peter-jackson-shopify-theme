@@ -1,6 +1,5 @@
 {% comment %}
-  Shop the Look section
-  Displays related products from metafield custom.shop_the_look alongside the second product image
+  Shop the Look section - Modified with overlayed arrows
 {% endcomment %}
 
 {% comment %} Check if we have a metafield and multiple images {% endcomment %}
@@ -36,6 +35,7 @@
     .shop-the-look__slider {
       width: calc(100% + var(--space-m));
       margin: 0 auto;
+      position: relative;
     }
 
     .shop-the-look__image-container {
@@ -63,6 +63,7 @@
       margin-bottom: var(--space-xs);
       overflow: hidden;
       background-color: var(--neutral-50);
+      position: relative;
     }
 
     .shop-the-look__product-image {
@@ -94,6 +95,41 @@
     .shop-the-look__single-product {
       padding: var(--space-m);
       max-width: 400px;
+    }
+
+    /* Arrow styling */
+    .shop-the-look .splide__arrows {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .shop-the-look .splide__arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      pointer-events: auto;
+      opacity: 0.9;
+      border: none;
+    }
+
+    .shop-the-look .splide__arrow--prev {
+      left: -24px;
+    }
+
+    .shop-the-look .splide__arrow--next {
+      right: -24px;
     }
 
     @media screen and (max-width: 768px) {
@@ -135,10 +171,6 @@
       {% if all_products['albinoni-black-penny-loafer'] and all_products['alessio-brown-pebbled-leather-bag'] %}
         <div class="shop-the-look__slider-wrapper">
           <div class="shop-the-look__slider splide">
-            <div class="splide__arrows">
-              <button class="splide__arrow splide__arrow--prev">{% render 'icon-arrow-see-less' %}</button>
-              <button class="splide__arrow splide__arrow--next">{% render 'icon-arrow-see-more' %}</button>
-            </div>
             <div class="splide__track">
               <ul class="splide__list">
                 {% if all_products['albinoni-black-penny-loafer'] %}
@@ -247,6 +279,10 @@
                 {% endif %}
               </ul>
             </div>
+            <div class="splide__arrows">
+              <button class="splide__arrow splide__arrow--prev">{% render 'icon-arrow-see-less' %}</button>
+              <button class="splide__arrow splide__arrow--next">{% render 'icon-arrow-see-more' %}</button>
+            </div>
           </div>
         </div>
       {% else %}
@@ -326,7 +362,7 @@
             width: '500px',
             type: 'loop',
             gap: 'var(--space-m)',
-            arrows: false,
+            arrows: true,
             pagination: false,
             drag: true,
             snap: true,
