@@ -2,34 +2,10 @@
   Shop the Look section - Debug Output
 {% endcomment %}
 
-{% comment %} This part succesfully loops through the Shop the look metafield and pulls in the neccessary information {% endcomment %}
-<div class="debug-output" style="padding: 20px; background: #f5f5f5; margin-bottom: 20px; border: 1px solid #ddd;">
-  <h3>Debug: Shop the Look Products</h3>
+{% comment %} Total amount of shop the look items {% endcomment %}
+{{ product.metafields.custom.shop_the_look | split: ',' | size }}
 
-  {% for item in product.metafields.custom.shop_the_look.value %}
-    <div style="margin-bottom: 15px; padding: 10px; border: 1px solid #ccc;">
-      <ul style="list-style: none; padding: 0;">
-        <li><strong>Title:</strong> {{ item.title }}</li>
-        <li><strong>Price:</strong> {{ item.price | money }}</li>
-        <li><strong>Compare At Price:</strong> {{ item.compare_at_price | money }}</li>
-
-        <li>
-          <strong>Link:</strong> <a href="/products/{{ item.handle }}" target="_blank">/products/{{ item.handle }}</a>
-        </li>
-
-        <li><strong>Featured Image:</strong> {{ item.featured_image | image_url: width: 450 }}</li>
-      </ul>
-    </div>
-  {% endfor %}
-
-  {% if product.metafields.custom.shop_the_look == blank or product.metafields.custom.shop_the_look.value.size == 0 %}
-    <h4>No shop the look products found</h4>
-  {% endif %}
-</div>
-
-{% comment %} Check if we have a metafield and multiple images {% endcomment %}
 {% if product.metafields.custom.shop_the_look != blank and product.images.size > 1 %}
-  {% comment %} Get the second image {% endcomment %}
   {% assign second_image = product.images[1] %}
 
   <style>
@@ -191,25 +167,23 @@
   <div class="shop-the-look" id="section-{{ section.id }}">
     <div class="shop-the-look__slider-container">
       <h2 class="heading--xl shop-the-look__heading">{{ section.settings.heading }}</h2>
-
       {% comment %} Use a multi-product slider only if we have more than one product {% endcomment %}
-      {% if all_products['albinoni-black-penny-loafer'] and all_products['alessio-brown-pebbled-leather-bag'] %}
+      {% if product.metafields.custom.shop_the_look != blank %}
         <div class="shop-the-look__slider-wrapper">
           <div class="shop-the-look__slider splide">
             <div class="splide__track">
               <ul class="splide__list">
-                {% if all_products['albinoni-black-penny-loafer'] %}
-                  {% assign product_item = all_products['albinoni-black-penny-loafer'] %}
+                {% for item in product.metafields.custom.shop_the_look.value %}
                   <li class="splide__slide shop-the-look__slide">
-                    <a href="{{ product_item.url }}" class="shop-the-look__product-link">
+                    <a href="/products/{{ item.handle }}" target="_blank" class="shop-the-look__product-link">
                       <div class="shop-the-look__product-image-wrapper">
-                        {% if product_item.featured_image != blank %}
+                        {% if item.featured_image != blank %}
                           <img
-                            src="{{ product_item.featured_image | image_url: width: '600px' }}"
-                            alt="{{ product_item.featured_image.alt | escape }}"
+                            src="{{ item.featured_image | image_url: width: '600px' }}"
+                            alt="{{ item.featured_image.alt | escape }}"
                             loading="lazy"
-                            width="{{ product_item.featured_image.width }}"
-                            height="{{ product_item.featured_image.height }}"
+                            width="{{ item.featured_image.width }}"
+                            height="{{ item.featured_image.width }}"
                             class="shop-the-look__product-image"
                           >
                         {% else %}
@@ -217,91 +191,21 @@
                         {% endif %}
                       </div>
 
-                      <h3 class="body--bold shop-the-look__product-title">{{ product_item.title }}</h3>
+                      <h3 class="body--bold shop-the-look__product-title">{{ item.title }}</h3>
 
                       <p class="small shop-the-look__product-price">
-                        {% if product_item.compare_at_price > product_item.price %}
-                          <span class="shop-the-look__product-price--sale">{{ product_item.price | money }}</span>
+                        {% if item.compare_at_price > item.price %}
+                          <span class="shop-the-look__product-price--sale">{{ item.price | money }}</span>
                           <span class="shop-the-look__product-price--compare">
-                            {{- product_item.compare_at_price | money -}}
+                            {{- item.compare_at_price | money -}}
                           </span>
                         {% else %}
-                          {{ product_item.price | money }}
+                          {{ item.price | money }}
                         {% endif %}
                       </p>
                     </a>
                   </li>
-                {% endif %}
-
-                {% if all_products['alessio-brown-pebbled-leather-bag'] %}
-                  {% assign product_item = all_products['alessio-brown-pebbled-leather-bag'] %}
-                  <li class="splide__slide shop-the-look__slide">
-                    <a href="{{ product_item.url }}" class="shop-the-look__product-link">
-                      <div class="shop-the-look__product-image-wrapper">
-                        {% if product_item.featured_image != blank %}
-                          <img
-                            src="{{ product_item.featured_image | image_url: width: '600px' }}"
-                            alt="{{ product_item.featured_image.alt | escape }}"
-                            loading="lazy"
-                            width="{{ product_item.featured_image.width }}"
-                            height="{{ product_item.featured_image.height }}"
-                            class="shop-the-look__product-image"
-                          >
-                        {% else %}
-                          {{ 'product-1' | placeholder_svg_tag: 'shop-the-look__product-image placeholder' }}
-                        {% endif %}
-                      </div>
-
-                      <h3 class="body--bold shop-the-look__product-title">{{ product_item.title }}</h3>
-
-                      <p class="small shop-the-look__product-price">
-                        {% if product_item.compare_at_price > product_item.price %}
-                          <span class="shop-the-look__product-price--sale">{{ product_item.price | money }}</span>
-                          <span class="shop-the-look__product-price--compare">
-                            {{- product_item.compare_at_price | money -}}
-                          </span>
-                        {% else %}
-                          {{ product_item.price | money }}
-                        {% endif %}
-                      </p>
-                    </a>
-                  </li>
-                {% endif %}
-
-                {% if all_products['aqua-sunset-pocket-square'] %}
-                  {% assign product_item = all_products['aqua-sunset-pocket-square'] %}
-                  <li class="splide__slide shop-the-look__slide">
-                    <a href="{{ product_item.url }}" class="shop-the-look__product-link">
-                      <div class="shop-the-look__product-image-wrapper">
-                        {% if product_item.featured_image != blank %}
-                          <img
-                            src="{{ product_item.featured_image | image_url: width: '600px' }}"
-                            alt="{{ product_item.featured_image.alt | escape }}"
-                            loading="lazy"
-                            width="{{ product_item.featured_image.width }}"
-                            height="{{ product_item.featured_image.height }}"
-                            class="shop-the-look__product-image"
-                          >
-                        {% else %}
-                          {{ 'product-1' | placeholder_svg_tag: 'shop-the-look__product-image placeholder' }}
-                        {% endif %}
-                      </div>
-
-                      <h3 class="body--bold shop-the-look__product-title">{{ product_item.title }}</h3>
-
-                      <p class="small shop-the-look__product-price">
-                        {% if product_item.compare_at_price > product_item.price %}
-                          <span class="shop-the-look__product-price--sale">{{ product_item.price | money }}</span>
-                          <span class="shop-the-look__product-price--compare">
-                            {{- product_item.compare_at_price | money -}}
-                          </span>
-                        {% else %}
-                          {{ product_item.price | money }}
-                        {% endif %}
-                      </p>
-                    </a>
-                  </li>
-                {% endif %}
+                {% endfor %}
               </ul>
             </div>
             <div class="splide__arrows">
@@ -311,6 +215,7 @@
           </div>
         </div>
       {% else %}
+        {% comment %} Single product is loaded in with hardcoded values - we don't want that {% endcomment %}
         <div class="shop-the-look__single-product">
           {% if all_products['albinoni-black-penny-loafer'] %}
             {% assign product_item = all_products['albinoni-black-penny-loafer'] %}
@@ -374,7 +279,7 @@
     </div>
   </div>
 
-  {% comment %} Initialize the slider if we have multiple products {% endcomment %}
+  {% comment %} Initialize the slider if we have multiple products, right now it is using hardcoded check, but I want it to check {{ product.metafields.custom.shop_the_look | split: ',' | size }} is greater than 1 {% endcomment %}
   {% if all_products['albinoni-black-penny-loafer'] and all_products['alessio-brown-pebbled-leather-bag'] %}
     <script>
       document.addEventListener('DOMContentLoaded', function () {
