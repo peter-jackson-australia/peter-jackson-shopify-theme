@@ -2,8 +2,7 @@
   Shop the Look section - Debug Output
 {% endcomment %}
 
-{% comment %} Total amount of shop the look items {% endcomment %}
-{{ product.metafields.custom.shop_the_look | split: ',' | size }}
+{% assign shop_the_look_count = product.metafields.custom.shop_the_look | split: ',' | size %}
 
 {% if product.metafields.custom.shop_the_look != blank and product.images.size > 1 %}
   {% assign second_image = product.images[1] %}
@@ -96,9 +95,9 @@
     .shop-the-look__single-product {
       padding: var(--space-m);
       max-width: 400px;
+      margin: 0 auto;
     }
 
-    /* Arrow styling */
     .shop-the-look .splide__arrows {
       position: absolute;
       top: 0;
@@ -167,8 +166,7 @@
   <div class="shop-the-look" id="section-{{ section.id }}">
     <div class="shop-the-look__slider-container">
       <h2 class="heading--xl shop-the-look__heading">{{ section.settings.heading }}</h2>
-      {% comment %} Use a multi-product slider only if we have more than one product {% endcomment %}
-      {% if product.metafields.custom.shop_the_look != blank %}
+      {% if shop_the_look_count > 1 %}
         <div class="shop-the-look__slider-wrapper">
           <div class="shop-the-look__slider splide">
             <div class="splide__track">
@@ -215,45 +213,39 @@
           </div>
         </div>
       {% else %}
-        {% comment %} Single product is loaded in with hardcoded values - we don't want that {% endcomment %}
         <div class="shop-the-look__single-product">
-          {% if all_products['albinoni-black-penny-loafer'] %}
-            {% assign product_item = all_products['albinoni-black-penny-loafer'] %}
-          {% elsif all_products['alessio-brown-pebbled-leather-bag'] %}
-            {% assign product_item = all_products['alessio-brown-pebbled-leather-bag'] %}
-          {% elsif all_products['aqua-sunset-pocket-square'] %}
-            {% assign product_item = all_products['aqua-sunset-pocket-square'] %}
+          {% assign single_product = product.metafields.custom.shop_the_look.value | first %}
+          {% if single_product %}
+            <a href="/products/{{ single_product.handle }}" class="shop-the-look__product-link">
+              <div class="shop-the-look__product-image-wrapper">
+                {% if single_product.featured_image != blank %}
+                  <img
+                    src="{{ single_product.featured_image | image_url: width: '600px' }}"
+                    alt="{{ single_product.featured_image.alt | escape }}"
+                    loading="lazy"
+                    width="{{ single_product.featured_image.width }}"
+                    height="{{ single_product.featured_image.height }}"
+                    class="shop-the-look__product-image"
+                  >
+                {% else %}
+                  {{ 'product-1' | placeholder_svg_tag: 'shop-the-look__product-image placeholder' }}
+                {% endif %}
+              </div>
+
+              <h3 class="body--bold shop-the-look__product-title">{{ single_product.title }}</h3>
+
+              <p class="small shop-the-look__product-price">
+                {% if single_product.compare_at_price > single_product.price %}
+                  <span class="shop-the-look__product-price--sale">{{ single_product.price | money }}</span>
+                  <span class="shop-the-look__product-price--compare">
+                    {{- single_product.compare_at_price | money -}}
+                  </span>
+                {% else %}
+                  {{ single_product.price | money }}
+                {% endif %}
+              </p>
+            </a>
           {% endif %}
-
-          <a href="{{ product_item.url }}" class="shop-the-look__product-link">
-            <div class="shop-the-look__product-image-wrapper">
-              {% if product_item.featured_image != blank %}
-                <img
-                  src="{{ product_item.featured_image | image_url: width: '600px' }}"
-                  alt="{{ product_item.featured_image.alt | escape }}"
-                  loading="lazy"
-                  width="{{ product_item.featured_image.width }}"
-                  height="{{ product_item.featured_image.height }}"
-                  class="shop-the-look__product-image"
-                >
-              {% else %}
-                {{ 'product-1' | placeholder_svg_tag: 'shop-the-look__product-image placeholder' }}
-              {% endif %}
-            </div>
-
-            <h3 class="body--bold shop-the-look__product-title">{{ product_item.title }}</h3>
-
-            <p class="small shop-the-look__product-price">
-              {% if product_item.compare_at_price > product_item.price %}
-                <span class="shop-the-look__product-price--sale">{{ product_item.price | money }}</span>
-                <span class="shop-the-look__product-price--compare">
-                  {{- product_item.compare_at_price | money -}}
-                </span>
-              {% else %}
-                {{ product_item.price | money }}
-              {% endif %}
-            </p>
-          </a>
         </div>
       {% endif %}
     </div>
@@ -279,8 +271,7 @@
     </div>
   </div>
 
-  {% comment %} Initialize the slider if we have multiple products, right now it is using hardcoded check, but I want it to check {{ product.metafields.custom.shop_the_look | split: ',' | size }} is greater than 1 {% endcomment %}
-  {% if all_products['albinoni-black-penny-loafer'] and all_products['alessio-brown-pebbled-leather-bag'] %}
+  {% if shop_the_look_count > 1 %}
     <script>
       document.addEventListener('DOMContentLoaded', function () {
         const splideElement = document.querySelector('#section-{{ section.id }} .shop-the-look__slider');
