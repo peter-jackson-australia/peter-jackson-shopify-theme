@@ -54,7 +54,6 @@
     },
     "recently_viewed_yG6Mdn": {
       "type": "recently-viewed",
-      "disabled": true,
       "settings": {
         "heading": "Recently viewed",
         "size": "h2",
