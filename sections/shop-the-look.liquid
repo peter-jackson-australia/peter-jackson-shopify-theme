@@ -2,6 +2,7 @@
   Shop the Look section - Debug Output
 {% endcomment %}
 
+<p>{{ product.metafields.custom.shop_the_look.value | json }}</p>
 {% assign shop_the_look_count = product.metafields.custom.shop_the_look | split: ',' | size %}
 
 {% if product.metafields.custom.shop_the_look != blank and product.images.size > 1 %}
