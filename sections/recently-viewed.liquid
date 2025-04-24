@@ -3,26 +3,116 @@
   # to work correctly.
   assign image_width = 400
 %}
+
 <style>
-  #recently-viewed.section-wrap:before {
-    background-color:{{ section.settings.background | default: '#ffffff' }}
+  .recently-viewed {
+    position: relative;
   }
-  #recently-viewed .products-grid {
-    grid-template-columns: repeat({{ section.settings.products_per_row }}, 1fr);
+
+  .recently-viewed::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: {{ section.settings.background | default: '#ffffff' }};
+    z-index: -1;
+  }
+
+  .recently-viewed__header {
+    margin-bottom: var(--space-m);
+  }
+
+  .recently-viewed__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-2xs);
+  }
+
+  /* Inheriting product card styles from the main collection page */
+  .recently-viewed__card {
+    display: block;
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .recently-viewed__card-image-link {
+    display: block;
+  }
+
+  .recently-viewed__card-image-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--neutral-50);
+    contain: paint;
+  }
+
+  .recently-viewed__card-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .recently-viewed__card-content {
+    padding: var(--space-xs) var(--space-m);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+  }
+
+  .recently-viewed__card-title {
+    color: var(--neutral-950);
+  }
+
+  .recently-viewed__card-title-link {
+    text-decoration: none;
+  }
+
+  .recently-viewed__card-material {
+    color: var(--neutral-600);
+  }
+
+  .recently-viewed__card-title,
+  .recently-viewed__card-material,
+  .recently-viewed__card-price {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .recently-viewed__card-price {
+    margin-top: auto;
+  }
+
+  .recently-viewed__card-price--compare {
+    text-decoration: line-through;
+    color: var(--neutral-600);
+    margin-left: var(--space-2xs);
+  }
+
+  @media (max-width: 768px) {
+    .recently-viewed__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 </style>
 
-<section id="recently-viewed" class="section-wrap" style="color:{{ section.settings.color | default:'inherit' }};">
+<section
+  id="recently-viewed"
+  class="recently-viewed section-wrap"
+  style="color:{{ section.settings.color | default:'inherit' }};"
+>
   <div class="section">
-    <{{ section.settings.size }} data-title="{{ section.settings.heading }}">
-      {{ section.settings.heading }}
-    </{{ section.settings.size }}>
-    <div id="js--recently_viewed" class="products-grid"></div>
+    <h2 class="recently-viewed__header heading--2xl">{{ section.settings.heading }}</h2>
+    <div id="js--recently_viewed" class="recently-viewed__grid"></div>
   </div>
 </section>
 
 <script>
-
 /*
 * GET RECENTLY VIEWED ITEMS
 * Returns list of recently viewed items from local storage.
@@ -30,7 +120,7 @@
 function _getRecentlyViewed() {
   let recentlyViewed = localStorage.getItem("recentlyViewed");
   let items = JSON.parse(recentlyViewed);
-  // console.log(items);
+  console.log(items);
   if (items !== null && items[0] !== undefined) {
     let sortedItems = items.sort(function(a, b) {
       return a.timestamp - b.timestamp;
@@ -49,7 +139,7 @@ function _getRecentlyViewed() {
 function saveRecentlyViewedProduct(handle) {
   let recentlyViewed = _getRecentlyViewed();
   let exists = false;
-  let maxItemsToSave = 8;
+  let maxItemsToSave = 4;
   recentlyViewed.forEach(function(item, index) {
     if (item.handle == handle) {
       exists = true;
@@ -78,7 +168,7 @@ function saveRecentlyViewedProduct(handle) {
 */
 function displayRecentlyViewed() {
   let items = _getRecentlyViewed();
-  const limit = {{ section.settings.limit }};
+  const limit = 4; // Hard-coded to always show 4 items
   const el = document.getElementById("js--recently_viewed");
   if (document.getElementById("recently-viewed") != null) {
     if (items.length > 0) {
@@ -146,48 +236,8 @@ ready(function() {
     {
       "type": "inline_richtext",
       "id": "heading",
-      "label": "Text",
+      "label": "Heading",
       "default": "Recently viewed"
-    },
-    {
-      "type": "select",
-      "id": "size",
-      "label": "Size",
-      "options": [
-        {
-          "value": "h1",
-          "label": "H1"
-        },
-        {
-          "value": "h2",
-          "label": "H2"
-        },
-        {
-          "value": "h3",
-          "label": "H3"
-        }
-      ],
-      "default": "h2"
-    },
-    {
-      "type": "range",
-      "id": "limit",
-      "label": "Products",
-      "info": "Number of products displayed.",
-      "min": 4,
-      "max": 8,
-      "step": 1,
-      "default": 4
-    },
-    {
-      "type": "range",
-      "id": "products_per_row",
-      "label": "Products Per Row",
-      "info": "Number of products per row.",
-      "min": 1,
-      "max": 4,
-      "step": 1,
-      "default": 4
     },
     {
       "type": "header",
