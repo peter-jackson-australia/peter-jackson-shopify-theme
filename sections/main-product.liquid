@@ -164,10 +164,21 @@
   }
 
   .product-details__container {
+    position: relative;
     width: 50vw;
     height: calc(100vh - var(--space-xl));
     overflow-y: auto;
     scrollbar-gutter: stable both-edges;
+  }
+
+  .product-details__fade-overlay {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: var(--space-3xl);
+    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.9) 50%, var(--white));
+    pointer-events: none;
   }
 
   #product-details {
@@ -591,6 +602,7 @@
           </div>
         {% endif %}
       </div>
+      <div class="product-details__fade-overlay"></div>
     </section>
   </div>
 </div>
