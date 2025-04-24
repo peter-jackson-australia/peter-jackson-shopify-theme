@@ -1,44 +1,31 @@
 {% comment %}
-  Shop the Look section - Modified with overlayed arrows
+  Shop the Look section - Debug Output
 {% endcomment %}
 
-{% for item in product.metafields.custom.shop_the_look.value %}
-  <li>Item {{ forloop.index }}: {{ item | json }}</li>
+{% comment %} This part succesfully loops through the Shop the look metafield and pulls in the neccessary information {% endcomment %}
+<div class="debug-output" style="padding: 20px; background: #f5f5f5; margin-bottom: 20px; border: 1px solid #ddd;">
+  <h3>Debug: Shop the Look Products</h3>
 
-  {% comment %} Try to load as product reference {% endcomment %}
-  {% if item.type == 'product_reference' %}
-    {% assign product_item = item.value %}
-    <p>Product Reference Value: {{ product_item | json }}</p>
+  {% for item in product.metafields.custom.shop_the_look.value %}
+    <div style="margin-bottom: 15px; padding: 10px; border: 1px solid #ccc;">
+      <ul style="list-style: none; padding: 0;">
+        <li><strong>Title:</strong> {{ item.title }}</li>
+        <li><strong>Price:</strong> {{ item.price | money }}</li>
+        <li><strong>Compare At Price:</strong> {{ item.compare_at_price | money }}</li>
 
-    <ul>
-      <li>Title: {{ product_item.title }}</li>
-      <li>Handle: {{ product_item.handle }}</li>
-      <li>Price: {{ product_item.price | money }}</li>
-      <li>
-        Has featured image: {% if product_item.featured_image %}Yes{% else %}No{% endif %}
-      </li>
-    </ul>
-  {% else %}
-    {% comment %} Try to load product by handle if it's just a string {% endcomment %}
-    {% if item.type == 'string' or item.type == null %}
-      {% assign handle = item %}
-      {% if handle == blank %}
-        {% assign handle = item.value %}
-      {% endif %}
+        <li>
+          <strong>Link:</strong> <a href="/products/{{ item.handle }}" target="_blank">/products/{{ item.handle }}</a>
+        </li>
 
-      {% if handle != blank %}
-        <p>Attempting to load product with handle: {{ handle }}</p>
-        {% assign product_item = all_products[handle] %}
+        <li><strong>Featured Image:</strong> {{ item.featured_image | image_url: width: 450 }}</li>
+      </ul>
+    </div>
+  {% endfor %}
 
-        {% if product_item.id %}
-          <p style="color: green;">✓ Successfully loaded product: {{ product_item.title }}</p>
-        {% else %}
-          <p style="color: red;">✗ Failed to load product with handle: {{ handle }}</p>
-        {% endif %}
-      {% endif %}
-    {% endif %}
+  {% if product.metafields.custom.shop_the_look == blank or product.metafields.custom.shop_the_look.value.size == 0 %}
+    <h4>No shop the look products found</h4>
   {% endif %}
-{% endfor %}
+</div>
 
 {% comment %} Check if we have a metafield and multiple images {% endcomment %}
 {% if product.metafields.custom.shop_the_look != blank and product.images.size > 1 %}
