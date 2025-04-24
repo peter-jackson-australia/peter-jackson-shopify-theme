@@ -1,5 +1,4 @@
 PDP page: 
-Add white to transparent gradient overlay so that tabbed content doesn't look like it's touching the shop the look section
 add shop the look arrow navigation
 Related content 
 Recently viewed 
