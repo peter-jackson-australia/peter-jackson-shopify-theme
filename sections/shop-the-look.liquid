@@ -2,10 +2,15 @@
   Shop the Look section - Debug Output
 {% endcomment %}
 
-<p>{{ product.metafields.custom.shop_the_look.value | json }}</p>
-{% assign shop_the_look_count = product.metafields.custom.shop_the_look | split: ',' | size %}
+{% assign active_products = 0 %}
 
-{% if product.metafields.custom.shop_the_look != blank and product.images.size > 1 %}
+{% for item in product.metafields.custom.shop_the_look.value %}
+  {% assign active_products = forloop.index %}
+{% endfor %}
+
+{% assign shop_the_look_count = active_products %}
+
+{% if shop_the_look_count > 0 and product.images.size > 1 %}
   {% assign second_image = product.images[1] %}
 
   <style>
@@ -114,23 +119,22 @@
       top: 50%;
       transform: translateY(-50%);
       width: 30px;
-      height: 30px;
+      height: 100%;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       pointer-events: auto;
-      opacity: 0.9;
       border: none;
     }
 
     .shop-the-look .splide__arrow--prev {
-      left: -24px;
+      left: -32px;
     }
 
     .shop-the-look .splide__arrow--next {
-      right: -24px;
+      right: -32px;
     }
 
     @media screen and (max-width: 768px) {
