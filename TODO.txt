@@ -3,6 +3,9 @@ add shop the look arrow navigation
 Related content 
 Recently viewed 
 Product navigation
+Ensure correct section tags 
+Make all product sections only work on products template 
+Make it fast (over 95) 
 
 /////////////////////////////////////////////////////
 
