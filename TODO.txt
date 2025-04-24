@@ -1,6 +1,4 @@
 PDP page: 
-Recently viewed:
-    Styling
 Product navigation
 Ensure correct section tags 
 Responsiveness
