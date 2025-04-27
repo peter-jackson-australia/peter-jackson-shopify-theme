@@ -57,12 +57,18 @@
       "settings": {
         "heading": "Recently Viewed"
       }
+    },
+    "product_navigation_AwEGJc": {
+      "type": "product-navigation",
+      "name": "Product Navigation",
+      "settings": {}
     }
   },
   "order": [
     "product",
     "shop_the_look_cCQwPG",
     "product_related_content_B9BLgW",
-    "recently_viewed_yG6Mdn"
+    "recently_viewed_yG6Mdn",
+    "product_navigation_AwEGJc"
   ]
 }
