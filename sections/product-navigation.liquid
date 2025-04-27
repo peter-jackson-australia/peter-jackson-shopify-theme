@@ -1,0 +1,179 @@
+{%- comment -%}
+  Product Navigation
+{%- endcomment -%}
+
+<style>
+  .product-navigation {
+    width: 100%;
+    padding: var(--space-l) var(--space-m);
+  }
+
+  .product-navigation__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .product-navigation__previous,
+  .product-navigation__next {
+    flex: 1;
+  }
+
+  .product-navigation__previous {
+    text-align: left;
+  }
+
+  .product-navigation__current {
+    flex: 1;
+    text-align: center;
+    color: var(--neutral-950);
+  }
+
+  .product-navigation__next {
+    text-align: right;
+  }
+
+  .product-navigation__label {
+    display: block;
+    margin-bottom: var(--space-2xs);
+  }
+
+  .product-navigation__link {
+    color: var(--neutral-600);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .product-navigation__arrow {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .product-navigation__arrow--prev {
+    transform: rotate(180deg);
+    margin-right: var(--space-xs);
+  }
+
+  .product-navigation__arrow--next {
+    margin-left: var(--space-xs);
+  }
+
+  @media screen and (max-width: 768px) {
+    .product-navigation {
+      padding: var(--space-m);
+    }
+
+    .product-navigation__container {
+      gap: var(--space-xs);
+      flex-direction: column;
+      text-align: center !important;
+      justify-content: center;
+    }
+
+    .product-navigation__previous,
+    .product-navigation__current,
+    .product-navigation__next {
+      text-align: center;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .product-navigation__label,
+    .product-navigation__link-text,
+    .product-navigation__current {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .product-navigation__arrow--prev {
+      margin-right: var(--space-3xs);
+    }
+
+    .product-navigation__arrow--next {
+      margin-left: var(--space-3xs);
+    }
+  }
+</style>
+
+{%- liquid
+  assign prev_product = null
+  assign next_product = null
+  assign navigation_collection = null
+
+  # Find the first valid collection to use for navigation
+  for collection in product.collections
+    # Skip the sale collection
+    if collection.handle != 'sale'
+      assign navigation_collection = collection
+      break
+    endif
+  endfor
+
+  # Only proceed if we found a valid collection
+  if navigation_collection
+    # Get the previous and next products in the collection
+    assign prev_product = navigation_collection.previous_product
+    assign next_product = navigation_collection.next_product
+  endif
+-%}
+
+<div class="product-navigation" data-section-type="product-navigation">
+  <div class="product-navigation__container">
+    <div class="product-navigation__previous">
+      {% if prev_product and prev_product.available %}
+        <span class="product-navigation__label body--uppercase">Previous</span>
+        <a
+          href="{{ prev_product.url }}"
+          class="product-navigation__link body--uppercase"
+          title="{{ prev_product.title }}"
+        >
+          <span class="product-navigation__arrow product-navigation__arrow--prev">
+            {% render 'icon-arrow-submit-dark' %}
+          </span>
+          <span class="product-navigation__link-text">{{ prev_product.title }}</span>
+        </a>
+      {% endif %}
+    </div>
+
+    <div class="product-navigation__current heading--l">
+      {% render 'breadcrumb' %}
+    </div>
+
+    <div class="product-navigation__next">
+      {% if next_product and next_product.available %}
+        <span class="product-navigation__label body--uppercase">Next</span>
+        <a
+          href="{{ next_product.url }}"
+          class="product-navigation__link body--uppercase"
+          title="{{ next_product.title }}"
+        >
+          <span class="product-navigation__link-text">{{ next_product.title }}</span>
+          <span class="product-navigation__arrow product-navigation__arrow--next">
+            {% render 'icon-arrow-submit-dark' %}
+          </span>
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product Navigation",
+  "tag": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Product Navigation",
+      "category": "Product"
+    }
+  ],
+  "enabled_on": {
+    "templates": ["product"]
+  }
+}
+{% endschema %}
