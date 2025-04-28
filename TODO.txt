@@ -1,5 +1,6 @@
 PDP page: 
 Size Guide
+Only load in related articles if they exist
 Responsiveness
 Make all product sections only work on products template 
 Make it fast (over 95) 
