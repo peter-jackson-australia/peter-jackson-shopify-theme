@@ -1,5 +1,4 @@
 PDP page: 
-Product navigation
 Size Guide
 Ensure correct section tags 
 Responsiveness
