@@ -6,9 +6,9 @@
 {% if product.featured_image %}
   {{
     product.featured_image
-    | image_url: width: 1024
+    | image_url: width: 768
     | image_tag:
-      widths: '600, 800, 1024, 1440',
+      widths: '300, 500, 700, 1000',
       sizes: '(max-width: 768px) 100vw, 50vw',
       preload: true,
       style: 'display: none;'
@@ -418,16 +418,16 @@
               </li>
             {% endif %}
             {% for image in product.images %}
-              {% assign image_width = 1024 %}
+              {% assign image_width = 768 %}
               {% assign image_height = image_width | divided_by: image.aspect_ratio | ceil %}
               <li class="splide__slide" data-imageid="{{ image.id }}">
                 <img
                   src="{{ image.src | image_url: width: image_width }}"
                   srcset="
-                    {{ image.src | image_url: width: 600 }} 600w,
-                    {{ image.src | image_url: width: 800 }} 800w,
-                    {{ image.src | image_url: width: 1024 }} 1024w,
-                    {{ image.src | image_url: width: 1440 }} 1440w
+                    {{ image.src | image_url: width: 300 }} 300w,
+                    {{ image.src | image_url: width: 500 }} 500w,
+                    {{ image.src | image_url: width: 700 }} 700w,
+                    {{ image.src | image_url: width: 1000 }} 1000w
                   "
                   sizes="(max-width: 768px) 100vw, 50vw"
                   width="{{ image_width }}"
