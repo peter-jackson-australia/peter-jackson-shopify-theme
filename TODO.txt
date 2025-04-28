@@ -2,7 +2,6 @@ PDP page:
 Size Guide
 Responsiveness
 Make all product sections only work on products template 
-Make it fast (over 95) 
 
 /////////////////////////////////////////////////////
 

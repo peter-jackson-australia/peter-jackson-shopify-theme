@@ -1,1 +1,714 @@
-<h1>This is the size guide</h1>
+<style>
+  table {
+    table-layout: auto !important;
+  }
+
+  .sizing-image {
+    max-width: 200px !important;
+  }
+
+  .tab-container {
+    width: 100%;
+  }
+
+  .tab-buttons {
+    display: flex;
+    gap: var(--space-l);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .tab-content {
+    display: none;
+  }
+
+  .tab-content.active {
+    display: block;
+  }
+
+  .size-content {
+    display: none;
+  }
+
+  .size-content.active {
+    display: table;
+  }
+
+  #sizing-selection-content-paragraph {
+    color: var(--neutral-600);
+  }
+
+  .measurement-guide {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xl);
+  }
+
+  .guide-text {
+    flex: 1;
+  }
+
+  .measurement-item {
+    margin-bottom: var(--space-m);
+  }
+
+  .measurement-item h6 {
+    margin-bottom: var(--space-s);
+  }
+
+  .measurement-item p {
+    max-width: 500px;
+    color: var(--neutral-600);
+  }
+
+  .size-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: var(--space-l);
+  }
+
+  .size-table th,
+  .size-table td {
+    padding: var(--space-s);
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  .table-container {
+    overflow-x: auto;
+    padding-bottom: var(--space-s);
+  }
+
+  @media screen and (max-width: 1080px) {
+    .measurement-guide {
+      flex-direction: column !important;
+    }
+
+    .tab-buttons {
+      margin-bottom: var(--space-m);
+    }
+
+    .measurement-guide {
+      margin-bottom: var(--space-m);
+    }
+
+    .table-container {
+      overflow-x: scroll;
+    }
+
+    #whats-my-size-container {
+      padding: var(--space-xl);
+    }
+
+    .measurement-item {
+      text-align: center;
+    }
+  }
+
+  @media screen and (min-width: 1081px) {
+    #first-hr {
+      display: none;
+    }
+
+    .guide-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    #whats-my-size-container {
+      display: flex;
+    }
+
+    #size-container-left {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      padding: var(--space-2xl);
+    }
+
+    #size-container-right {
+      background-color: var(--white);
+      padding: var(--space-2xl);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    .size-table th {
+      background-color: var(--white);
+    }
+
+    #size-container-left-inner {
+      max-width: 400px;
+      margin-left: auto;
+    }
+
+    .tab-buttons:nth-of-type(1) {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .tab-content {
+      max-width: 900px;
+      width: 100%;
+      margin-right: auto;
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+  }
+</style>
+<div id="whats-my-size-container">
+  <div id="size-container-left">
+    <div id="size-container-left-inner">
+      <h3 class="heading--xl">What's My Size?</h3>
+      <p
+        class="body"
+        id="sizing-selection-content-paragraph"
+      >
+        Find the perfect fit with our size chart. We offer 3 different fits for our tailored suits: Regular, short and
+        long. These are determined by the length of the sleeve and jacket with a 3cm difference between fittings.
+      </p>
+      <div class="tab-buttons">
+        <button class="tab-button active body--bold" data-tab="suit">Suit &amp; Jacket</button>
+        <button class="tab-button body--bold" data-tab="pants">Trousers</button>
+        <button class="tab-button body--bold" data-tab="shirt">Shirts</button>
+        <button class="tab-button body--bold" data-tab="shoes">Shoes</button>
+      </div>
+    </div>
+  </div>
+  <div id="size-container-right" class="tab-container">
+    <hr id="first-hr">
+    <div id="suit" class="tab-content active">
+      <div class="measurement-guide">
+        <div class="guide-image">
+          <img
+            class="sizing-image"
+            src="https://img.myshopline.com/image/store/1691455054240/Sizeguide-Asset-1.png?w=1124&amp;h=1710"
+            alt="Suit measurement guide"
+            width="100"
+            height="100"
+          >
+        </div>
+        <div class="guide-text">
+          <div class="measurement-item">
+            <h6 class="body--bold">A. Chest</h6>
+            <p class="">
+              With a tape measure wrap around the chest, pulling the tape firmly to gauge your centimetre measurement
+            </p>
+          </div>
+          <div class="measurement-item">
+            <h6 class="body--bold">B. Sleeve Length</h6>
+            <p>
+              With the arm naturally down, measure from the tip of your shoulder - where the shoulder seam meets the
+              sleeve head down to the wrist
+            </p>
+          </div>
+          <div class="measurement-item">
+            <h6 class="body--bold">Please Note:</h6>
+            <p>
+              if you are purchasing a 2 piece suit - the trouser size that will come with the jacket is preselected.
+            </p>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <h6 class="font-body">Size Chart</h6>
+      <div class="tab-buttons">
+        <button class="tab-button size-button" data-size="short">Short</button>
+        <button class="tab-button size-button active" data-size="regular">Regular</button>
+        <button class="tab-button size-button" data-size="long">Long</button>
+      </div>
+      <div class="table-container">
+        <table id="regular-table" class="size-table size-content active">
+          <thead>
+            <tr>
+              <th><strong>Size</strong></th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Chest</td>
+              <td>84</td>
+              <td>88</td>
+              <td>92</td>
+              <td>96</td>
+              <td>100</td>
+              <td>104</td>
+              <td>108</td>
+              <td>112</td>
+              <td>116</td>
+              <td>120</td>
+              <td>124</td>
+              <td>128</td>
+            </tr>
+            <tr>
+              <td>Sleeve</td>
+              <td>62</td>
+              <td>62.5</td>
+              <td>63</td>
+              <td>63.5</td>
+              <td>64</td>
+              <td>64.5</td>
+              <td>65</td>
+              <td>65.5</td>
+              <td>66</td>
+              <td>66.5</td>
+              <td>67</td>
+              <td>67.5</td>
+            </tr>
+            <tr>
+              <td>Trousers</td>
+              <td>72</td>
+              <td>76</td>
+              <td>80</td>
+              <td>84</td>
+              <td>88</td>
+              <td>92</td>
+              <td>96</td>
+              <td>100</td>
+              <td>104</td>
+              <td>108</td>
+              <td>112</td>
+              <td>116</td>
+            </tr>
+          </tbody>
+        </table>
+        <table id="short-table" class="size-table size-content">
+          <thead>
+            <tr>
+              <th><strong>Size</strong></th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Chest</td>
+              <td>88</td>
+              <td>92</td>
+              <td>96</td>
+              <td>100</td>
+              <td>104</td>
+              <td>108</td>
+              <td>112</td>
+              <td>116</td>
+              <td>120</td>
+              <td>124</td>
+              <td>128</td>
+            </tr>
+            <tr>
+              <td>Sleeve</td>
+              <td>59.5</td>
+              <td>60</td>
+              <td>60.5</td>
+              <td>61</td>
+              <td>61.5</td>
+              <td>62</td>
+              <td>62.5</td>
+              <td>63</td>
+              <td>63.5</td>
+              <td>64</td>
+              <td>64.5</td>
+            </tr>
+            <tr>
+              <td>Trousers</td>
+              <td>76</td>
+              <td>80</td>
+              <td>84</td>
+              <td>88</td>
+              <td>92</td>
+              <td>96</td>
+              <td>100</td>
+              <td>104</td>
+              <td>108</td>
+              <td>112</td>
+              <td>116</td>
+            </tr>
+          </tbody>
+        </table>
+        <table id="long-table" class="size-table size-content">
+          <thead>
+            <tr>
+              <th><strong>Size</strong></th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Chest</td>
+              <td>88</td>
+              <td>92</td>
+              <td>96</td>
+              <td>100</td>
+              <td>104</td>
+              <td>108</td>
+              <td>112</td>
+              <td>116</td>
+              <td>120</td>
+              <td>124</td>
+              <td>128</td>
+            </tr>
+            <tr>
+              <td>Sleeve</td>
+              <td>65.5</td>
+              <td>66</td>
+              <td>66.5</td>
+              <td>67</td>
+              <td>67.5</td>
+              <td>68</td>
+              <td>68.5</td>
+              <td>69</td>
+              <td>69.5</td>
+              <td>70</td>
+              <td>70.5</td>
+            </tr>
+            <tr>
+              <td>Trousers</td>
+              <td>76</td>
+              <td>80</td>
+              <td>84</td>
+              <td>88</td>
+              <td>92</td>
+              <td>96</td>
+              <td>100</td>
+              <td>104</td>
+              <td>108</td>
+              <td>112</td>
+              <td>116</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div id="pants" class="tab-content">
+      <div class="measurement-guide">
+        <div class="guide-image">
+          <img
+            class="sizing-image"
+            src="https://img.myshopline.com/image/store/1691455054240/Sizeguide-Asset-2.png?w=1124&amp;h=1710"
+            alt="Trousers measurement guide"
+            width="100"
+            height="100"
+          >
+        </div>
+        <div class="guide-text">
+          <div class="measurement-item">
+            <h6 class="body--bold">A. Waist</h6>
+            <p>Measure around the body at hip height pulling the tape firm.</p>
+          </div>
+          <div class="measurement-item">
+            <h6 class="body--bold">B. Inleg</h6>
+            <p>
+              Measure from the lowest part of your crotch area to the hem, or where your foot meets the ground (shoes
+              off) &mdash; This relates to 2-piece suits. <br>
+              <br>
+              Separate trousers and chinos have a standard inleg of: 84cm, and 82cm for our range of cuffed trousers.
+            </p>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="table-container">
+        <table class="size-table">
+          <thead>
+            <tr>
+              <th><strong>Size</strong></th>
+              <th>76</th>
+              <th>80</th>
+              <th>84</th>
+              <th>88</th>
+              <th>92</th>
+              <th>96</th>
+              <th>100</th>
+              <th>104</th>
+              <th>108</th>
+              <th>112</th>
+              <th>116</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Inleg Short</td>
+              <td>80</td>
+              <td>80</td>
+              <td>80</td>
+              <td>80</td>
+              <td>80</td>
+              <td>80</td>
+              <td>80</td>
+              <td>80</td>
+              <td>80</td>
+              <td>80</td>
+              <td>80</td>
+            </tr>
+            <tr>
+              <td>Inleg Regular</td>
+              <td>82</td>
+              <td>82</td>
+              <td>82</td>
+              <td>82</td>
+              <td>82</td>
+              <td>82</td>
+              <td>82</td>
+              <td>82</td>
+              <td>82</td>
+              <td>82</td>
+              <td>82</td>
+            </tr>
+            <tr>
+              <td>Inleg Long</td>
+              <td>85</td>
+              <td>85</td>
+              <td>85</td>
+              <td>85</td>
+              <td>85</td>
+              <td>85</td>
+              <td>85</td>
+              <td>85</td>
+              <td>85</td>
+              <td>85</td>
+              <td>85</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- Shirts Tab -->
+    <div id="shirt" class="tab-content">
+      <div class="measurement-guide">
+        <div class="guide-image">
+          <img
+            class="sizing-image"
+            src="https://img.myshopline.com/image/store/1691455054240/Sizeguide-Asset-3.png?w=1124&amp;h=1710"
+            alt="Shirt measurement guide"
+            width="100"
+            height="100"
+          >
+        </div>
+        <div class="guide-text">
+          <div class="measurement-item">
+            <h6 class="body--bold">A. Neck</h6>
+            <p>
+              Measure around base of neck near Adam's apple. A correct fitting shirt should have one finger gap from the
+              tape measure to skin.
+            </p>
+          </div>
+          <div class="measurement-item">
+            <h6 class="body--bold">B. Sleeve Length</h6>
+            <p>Measure from the shoulder seam to the crease of where your hand meets your wrist.</p>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="table-container">
+        <table class="size-table">
+          <thead>
+            <tr>
+              <th><strong>Casual Size</strong></th>
+              <th>S</th>
+              <th>S</th>
+              <th>M</th>
+              <th>M</th>
+              <th>L</th>
+              <th>L</th>
+              <th>XL</th>
+              <th>XL</th>
+              <th>2XL</th>
+              <th>2XL</th>
+              <th>2XL</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Business</td>
+              <td>37</td>
+              <td>38</td>
+              <td>39</td>
+              <td>40</td>
+              <td>41</td>
+              <td>42</td>
+              <td>43</td>
+              <td>44</td>
+              <td>46</td>
+              <td>48</td>
+              <td>50</td>
+            </tr>
+            <tr>
+              <td>Chest</td>
+              <td>100</td>
+              <td>104</td>
+              <td>108</td>
+              <td>112</td>
+              <td>114</td>
+              <td>118</td>
+              <td>122</td>
+              <td>126</td>
+              <td>130</td>
+              <td>134</td>
+              <td>142</td>
+            </tr>
+            <tr>
+              <td>Sleeve</td>
+              <td>61</td>
+              <td>61</td>
+              <td>63.5</td>
+              <td>63.5</td>
+              <td>65</td>
+              <td>65</td>
+              <td>66.5</td>
+              <td>68</td>
+              <td>68</td>
+              <td>69.5</td>
+              <td>69.5</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div id="shoes" class="tab-content">
+      <div class="measurement-guide">
+        <div class="guide-image">
+          <img
+            class="sizing-image"
+            src="https://img.myshopline.com/image/store/1691455054240/Sizeguide-Asset-4.png?w=1124&amp;h=1710"
+            alt="Shoe measurement guide"
+            width="100"
+            height="100"
+          >
+        </div>
+        <div class="guide-text">
+          <div class="measurement-item">
+            <h6 class="body--bold">Foot Size</h6>
+            <p>Our shoes are standard designed and width in UK sizes.</p>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="table-container">
+        <table class="size-table">
+          <tbody>
+            <tr>
+              <td>UK</td>
+              <td>6</td>
+              <td>7</td>
+              <td>8</td>
+              <td>9</td>
+              <td>10</td>
+              <td>11</td>
+              <td>12</td>
+              <td>13</td>
+              <td>14</td>
+            </tr>
+            <tr>
+              <td>US</td>
+              <td>7</td>
+              <td>8</td>
+              <td>9</td>
+              <td>10</td>
+              <td>11</td>
+              <td>12</td>
+              <td>13</td>
+              <td>14</td>
+              <td>15</td>
+            </tr>
+            <tr>
+              <td>EU</td>
+              <td>40</td>
+              <td>41/42</td>
+              <td>43</td>
+              <td>44</td>
+              <td>45</td>
+              <td>46</td>
+              <td>48</td>
+              <td>49</td>
+              <td>50</td>
+            </tr>
+            <tr>
+              <td>Length</td>
+              <td>25.4</td>
+              <td>26.2</td>
+              <td>27.1</td>
+              <td>27.9</td>
+              <td>28.8</td>
+              <td>29.6</td>
+              <td>30.5</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.tab-button').forEach((button) => {
+    button.addEventListener('click', () => {
+      if (button.classList.contains('size-button')) {
+        document.querySelectorAll('.size-button').forEach((btn) => btn.classList.remove('active'));
+        document.querySelectorAll('.size-content').forEach((content) => content.classList.remove('active'));
+
+        button.classList.add('active');
+        const sizeType = button.getAttribute('data-size');
+        document.getElementById(`${sizeType}-table`).classList.add('active');
+      } else {
+        document.querySelectorAll('.tab-button:not(.size-button)').forEach((btn) => btn.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach((content) => content.classList.remove('active'));
+
+        button.classList.add('active');
+        const tabId = button.getAttribute('data-tab');
+        document.getElementById(tabId).classList.add('active');
+      }
+    });
+  });
+</script>
+<script>
+  const tabContents = {
+    suit: 'Find the perfect fit with our size chart. We offer 3 fits for our tailored suits: Regular, short and long. These are determined by the length of the sleeve and jacket with a 3cm difference between fittings.',
+    pants:
+      "Our trouser sizes go up in increments of 4cm. If your waist (point A.) measures 88cm, your trouser size is 88. If your waist is 90cm, it's better to go up to size 92 - always best to leave room for comfort.",
+    shirt:
+      'Find the ultimate tailored companion with the right fit. Our tailored business shirts feature the signature cutaway collar. For a custom longer sleeve shirt contact us through our Made to Measure programme.',
+    shoes:
+      "Our exclusive range of premium leather footwear is designed with UK sizing in mind. See the table to the right for reference. If you're not sure about your size feel free to contact us via our contact form.",
+  };
+
+  const paragraphElement = document.getElementById('sizing-selection-content-paragraph');
+
+  document.querySelectorAll('.tab-buttons .tab-button:not(.size-button)').forEach((button) => {
+    button.addEventListener('click', () => {
+      const tabId = button.getAttribute('data-tab');
+      paragraphElement.textContent = tabContents[tabId];
+    });
+  });
+</script>
