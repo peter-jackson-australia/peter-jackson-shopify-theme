@@ -3,6 +3,21 @@
 {% endcomment %}
 {% assign current_variant = product.selected_or_first_available_variant %}
 
+{% if product.featured_image %}
+  <link
+    rel="preload"
+    as="image"
+    href="{{ product.featured_image | image_url: width: 800, format: 'webp' }}"
+    media="(min-width: 1100px)"
+  >
+  <link
+    rel="preload"
+    as="image"
+    href="{{ product.featured_image | image_url: width: 500, format: 'webp' }}"
+    media="(max-width: 1099px)"
+  >
+{% endif %}
+
 <style>
   .product-images-container {
     position: relative;
@@ -410,17 +425,17 @@
               {% assign image_height = image_width | divided_by: image.aspect_ratio | ceil %}
               <li class="splide__slide" data-imageid="{{ image.id }}">
                 <img
-                  src="{{ image.src | image_url: width: image_width }}"
+                  src="{{ image.src | image_url: width: image_width, format: 'webp' }}"
                   srcset="
-                    {{ image.src | image_url: width: 300 }} 300w,
-                    {{ image.src | image_url: width: 500 }} 500w,
-                    {{ image.src | image_url: width: 700 }} 700w,
-                    {{ image.src | image_url: width: 1000 }} 1000w
+                    {{ image.src | image_url: width: 300, format: 'webp' }} 300w,
+                    {{ image.src | image_url: width: 500, format: 'webp' }} 500w,
+                    {{ image.src | image_url: width: 700, format: 'webp' }} 700w,
+                    {{ image.src | image_url: width: 1000, format: 'webp' }} 1000w
                   "
                   sizes="(max-width: 768px) 100vw, 50vw"
                   width="{{ image_width }}"
                   height="{{ image_height }}"
-                  alt="{{ image.alt }}"
+                  alt="{{ image.alt | escape }}"
                   loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
                   {% if forloop.first %}
                     fetchpriority="high"
