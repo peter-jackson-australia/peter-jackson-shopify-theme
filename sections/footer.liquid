@@ -86,7 +86,7 @@
 
   .footer__terms {
     display: flex;
-    gap: var(--space-m);
+    gap: var(--space-l);
   }
 
   @media (max-width: 1024px) {
@@ -117,7 +117,7 @@
     }
     .footer__terms {
       flex-direction: column;
-      gap: var(--space-2xs);
+      gap: var(--space-xs);
     }
   }
 </style>
@@ -207,12 +207,12 @@
     </div>
     <div class="footer__terms">
       {% if section.settings.terms_link != blank %}
-        <a href="{{ section.settings.terms_link }}" class="footer__link footer__link--terms small">
+        <a href="{{ section.settings.terms_link }}" class="footer__link footer__link--terms body">
           {{- section.settings.terms_text -}}
         </a>
       {% endif %}
       {% if section.settings.privacy_link != blank %}
-        <a href="{{ section.settings.privacy_link }}" class="footer__link footer__link--privacy small">
+        <a href="{{ section.settings.privacy_link }}" class="footer__link footer__link--privacy body">
           {{- section.settings.privacy_text -}}
         </a>
       {% endif %}
