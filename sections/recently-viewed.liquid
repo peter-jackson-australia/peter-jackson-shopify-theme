@@ -306,9 +306,6 @@ ready(function() {
   "tag": "section",
   "class": "recently-viewed-section",
   "limit": 1,
-  "disabled_on": {
-    "groups": ["header"]
-  },
   "presets": [
     {
       "name": "Recently Viewed"
@@ -321,6 +318,9 @@ ready(function() {
       "label": "Heading",
       "default": "Recently Viewed"
     }
-  ]
+  ],
+  "enabled_on": {
+    "templates": ["product"]
+  }
 }
 {% endschema %}
