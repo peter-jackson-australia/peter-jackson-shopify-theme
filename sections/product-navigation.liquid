@@ -6,6 +6,7 @@
   .product-navigation {
     width: 100%;
     padding: var(--space-l) var(--space-m);
+    border-top: 1px solid var(--neutral-200);
   }
 
   .product-navigation__container {
@@ -103,28 +104,47 @@
   assign prev_product = null
   assign next_product = null
   assign navigation_collection = null
+  assign small_collection = null
 
-  # Find the first valid collection to use for navigation
   for collection in product.collections
-    # Skip the sale collection
-    if collection.handle != 'sale'
-      assign navigation_collection = collection
+    if collection.products_count < 50
+      assign small_collection = collection
       break
     endif
   endfor
 
-  # Only proceed if we found a valid collection
+  if small_collection
+    assign navigation_collection = small_collection
+  elsif product.collections.size > 0
+    assign navigation_collection = product.collections[0]
+  endif
+
   if navigation_collection
-    # Get the previous and next products in the collection
-    assign prev_product = navigation_collection.previous_product
-    assign next_product = navigation_collection.next_product
+    for product_in_collection in navigation_collection.products
+      if product_in_collection.handle == product.handle
+        assign product_index = forloop.index0
+
+        if product_index > 0
+          assign prev_index = product_index | minus: 1
+          assign prev_product = navigation_collection.products[prev_index]
+        endif
+
+        assign collection_size = navigation_collection.products.size | minus: 1
+        if product_index < collection_size
+          assign next_index = product_index | plus: 1
+          assign next_product = navigation_collection.products[next_index]
+        endif
+
+        break
+      endif
+    endfor
   endif
 -%}
 
 <div class="product-navigation" data-section-type="product-navigation">
   <div class="product-navigation__container">
     <div class="product-navigation__previous">
-      {% if prev_product and prev_product.available %}
+      {% if prev_product %}
         <span class="product-navigation__label body--uppercase">Previous</span>
         <a
           href="{{ prev_product.url }}"
@@ -144,7 +164,7 @@
     </div>
 
     <div class="product-navigation__next">
-      {% if next_product and next_product.available %}
+      {% if next_product %}
         <span class="product-navigation__label body--uppercase">Next</span>
         <a
           href="{{ next_product.url }}"
