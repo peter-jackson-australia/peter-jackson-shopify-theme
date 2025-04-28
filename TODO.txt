@@ -1,7 +1,6 @@
 PDP page: 
-Size Guide
+Finish Size Guide
 Responsiveness
-Make all product sections only work on products template 
 
 /////////////////////////////////////////////////////
 
