@@ -214,9 +214,90 @@
     color: var(--neutral-950);
   }
 
-  .product-details__sku {
+  .product-details__sku-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: var(--space-l);
+  }
+
+  .product-details__sku {
     color: var(--neutral-600);
+    margin-bottom: 0;
+  }
+
+  .size-guide-button {
+    color: var(--neutral-600);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  .size-guide-button:hover {
+    color: var(--neutral-950);
+  }
+
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .modal-overlay.is-active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Prevent scrolling when modal is open */
+  body.modal-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+  }
+
+  .modal-content {
+    background-color: var(--white);
+    padding: var(--space-l);
+    max-width: 80%;
+    max-height: 80%;
+    overflow-y: auto;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+  }
+
+  .modal-overlay.is-active .modal-content {
+    transform: translateY(0);
+  }
+
+  .modal-close {
+    position: absolute;
+    top: var(--space-xs);
+    right: var(--space-xs);
+    background: none;
+    border: none;
+    padding: var(--space-2xs);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  body.modal-open {
+    overflow: hidden;
   }
 
   .variant-options {
@@ -387,6 +468,11 @@
     .product-images-container--mobile .splide__arrows {
       display: block;
     }
+
+    .modal-content {
+      max-width: 90%;
+      max-height: 90%;
+    }
   }
 </style>
 
@@ -469,10 +555,18 @@
           </div>
         </div>
 
-        <p class="product-details__sku small">
-          Product Code:
-          <span class="js--variant-sku">{{ current_variant.sku }}</span>
-        </p>
+        <div class="product-details__sku-container">
+          <p class="product-details__sku small">
+            Product Code:
+            <span class="js--variant-sku">{{ current_variant.sku }}</span>
+          </p>
+          <button
+            type="button"
+            class="size-guide-button small"
+          >
+            What's my size?
+          </button>
+        </div>
 
         <form action="{{ routes.cart_add_url }}" method="post">
           {%- for block in section.blocks -%}
@@ -611,8 +705,50 @@
   </div>
 </div>
 
+<!-- Size Guide Modal -->
+<div class="modal-overlay">
+  <div class="modal-content">
+    <button
+      type="button"
+      class="modal-close"
+    >
+      {% render 'icon-close' %}
+    </button>
+    {% render 'size-guide' %}
+  </div>
+</div>
+
 <script>
   document.addEventListener('DOMContentLoaded', function () {
+    if (typeof Alpine === 'undefined') {
+      console.warn('Alpine.js is required for the size guide modal');
+    }
+
+    const sizeGuideButton = document.querySelector('.size-guide-button');
+    const modalOverlay = document.querySelector('.modal-overlay');
+    const modalClose = document.querySelector('.modal-close');
+
+    if (sizeGuideButton && modalOverlay) {
+      sizeGuideButton.addEventListener('click', function () {
+        modalOverlay.classList.add('is-active');
+        document.body.classList.add('modal-open');
+      });
+
+      modalOverlay.addEventListener('click', function (e) {
+        if (e.target === modalOverlay) {
+          modalOverlay.classList.remove('is-active');
+          document.body.classList.remove('modal-open');
+        }
+      });
+
+      if (modalClose) {
+        modalClose.addEventListener('click', function () {
+          modalOverlay.classList.remove('is-active');
+          document.body.classList.remove('modal-open');
+        });
+      }
+    }
+
     const checkSplide = setInterval(function () {
       if (typeof Splide !== 'undefined') {
         clearInterval(checkSplide);
