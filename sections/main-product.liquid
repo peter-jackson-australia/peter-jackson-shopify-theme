@@ -3,18 +3,6 @@
 {% endcomment %}
 {% assign current_variant = product.selected_or_first_available_variant %}
 
-{% if product.featured_image %}
-  {{
-    product.featured_image
-    | image_url: width: 768
-    | image_tag:
-      widths: '300, 500, 700, 1000',
-      sizes: '(max-width: 768px) 100vw, 50vw',
-      preload: true,
-      style: 'display: none;'
-  }}
-{% endif %}
-
 <style>
   .product-images-container {
     position: relative;
