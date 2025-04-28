@@ -11,6 +11,14 @@
     width: 100%;
   }
 
+  .tab-button {
+    border: none;
+    background: none;
+    border-bottom: 1px solid var(--neutral-950);
+    padding-bottom: var(--space-2xs);
+    cursor: pointer;
+  }
+
   .tab-buttons {
     display: flex;
     gap: var(--space-l);
@@ -69,7 +77,7 @@
 
   .size-table th,
   .size-table td {
-    padding: var(--space-s);
+    padding: var(--space-xs);
     text-align: left;
     white-space: nowrap;
   }
@@ -106,10 +114,6 @@
   }
 
   @media screen and (min-width: 1081px) {
-    #first-hr {
-      display: none;
-    }
-
     .guide-text {
       display: flex;
       flex-direction: column;
@@ -145,7 +149,6 @@
     }
 
     .tab-buttons:nth-of-type(1) {
-      flex-direction: column;
       align-items: center;
     }
 
@@ -178,7 +181,6 @@
     </div>
   </div>
   <div id="size-container-right" class="tab-container">
-    <hr id="first-hr">
     <div id="suit" class="tab-content active">
       <div class="measurement-guide">
         <div class="guide-image">
@@ -193,37 +195,36 @@
         <div class="guide-text">
           <div class="measurement-item">
             <h6 class="body--bold">A. Chest</h6>
-            <p class="">
+            <p class="body">
               With a tape measure wrap around the chest, pulling the tape firmly to gauge your centimetre measurement
             </p>
           </div>
           <div class="measurement-item">
             <h6 class="body--bold">B. Sleeve Length</h6>
-            <p>
+            <p class="body">
               With the arm naturally down, measure from the tip of your shoulder - where the shoulder seam meets the
               sleeve head down to the wrist
             </p>
           </div>
           <div class="measurement-item">
             <h6 class="body--bold">Please Note:</h6>
-            <p>
+            <p class="body">
               if you are purchasing a 2 piece suit - the trouser size that will come with the jacket is preselected.
             </p>
           </div>
         </div>
       </div>
-      <hr>
-      <h6 class="font-body">Size Chart</h6>
+      <h6 class="body--bold">Size Chart</h6>
       <div class="tab-buttons">
-        <button class="tab-button size-button" data-size="short">Short</button>
-        <button class="tab-button size-button active" data-size="regular">Regular</button>
-        <button class="tab-button size-button" data-size="long">Long</button>
+        <button class="tab-button size-button body--bold" data-size="short">Short</button>
+        <button class="tab-button size-button body--bold active" data-size="regular">Regular</button>
+        <button class="tab-button size-button body--bold" data-size="long">Long</button>
       </div>
       <div class="table-container">
         <table id="regular-table" class="size-table size-content active">
           <thead>
             <tr>
-              <th><strong>Size</strong></th>
+              <th><strong class="body--bold">Size</strong></th>
               <th>&nbsp;</th>
               <th>&nbsp;</th>
               <th>&nbsp;</th>
@@ -238,7 +239,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr class="body">
               <td>Chest</td>
               <td>84</td>
               <td>88</td>
@@ -253,7 +254,7 @@
               <td>124</td>
               <td>128</td>
             </tr>
-            <tr>
+            <tr class="body">
               <td>Sleeve</td>
               <td>62</td>
               <td>62.5</td>
@@ -268,7 +269,7 @@
               <td>67</td>
               <td>67.5</td>
             </tr>
-            <tr>
+            <tr class="body">
               <td>Trousers</td>
               <td>72</td>
               <td>76</td>
@@ -287,8 +288,8 @@
         </table>
         <table id="short-table" class="size-table size-content">
           <thead>
-            <tr>
-              <th><strong>Size</strong></th>
+            <tr class="body">
+              <th><strong class="body--bold">Size</strong></th>
               <th>&nbsp;</th>
               <th>&nbsp;</th>
               <th>&nbsp;</th>
@@ -303,7 +304,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr class="body">
               <td>Chest</td>
               <td>88</td>
               <td>92</td>
@@ -317,7 +318,7 @@
               <td>124</td>
               <td>128</td>
             </tr>
-            <tr>
+            <tr class="body">
               <td>Sleeve</td>
               <td>59.5</td>
               <td>60</td>
@@ -331,7 +332,7 @@
               <td>64</td>
               <td>64.5</td>
             </tr>
-            <tr>
+            <tr class="body">
               <td>Trousers</td>
               <td>76</td>
               <td>80</td>
@@ -349,8 +350,8 @@
         </table>
         <table id="long-table" class="size-table size-content">
           <thead>
-            <tr>
-              <th><strong>Size</strong></th>
+            <tr class="body">
+              <th><strong class="body--bold">Size</strong></th>
               <th>&nbsp;</th>
               <th>&nbsp;</th>
               <th>&nbsp;</th>
@@ -365,7 +366,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr class="body">
               <td>Chest</td>
               <td>88</td>
               <td>92</td>
@@ -379,7 +380,7 @@
               <td>124</td>
               <td>128</td>
             </tr>
-            <tr>
+            <tr class="body">
               <td>Sleeve</td>
               <td>65.5</td>
               <td>66</td>
@@ -393,7 +394,7 @@
               <td>70</td>
               <td>70.5</td>
             </tr>
-            <tr>
+            <tr class="body">
               <td>Trousers</td>
               <td>76</td>
               <td>80</td>
@@ -425,11 +426,11 @@
         <div class="guide-text">
           <div class="measurement-item">
             <h6 class="body--bold">A. Waist</h6>
-            <p>Measure around the body at hip height pulling the tape firm.</p>
+            <p class="body">Measure around the body at hip height pulling the tape firm.</p>
           </div>
           <div class="measurement-item">
             <h6 class="body--bold">B. Inleg</h6>
-            <p>
+            <p class="body">
               Measure from the lowest part of your crotch area to the hem, or where your foot meets the ground (shoes
               off) &mdash; This relates to 2-piece suits. <br>
               <br>
@@ -438,11 +439,10 @@
           </div>
         </div>
       </div>
-      <hr>
       <div class="table-container">
         <table class="size-table">
           <thead>
-            <tr>
+            <tr class="body">
               <th><strong>Size</strong></th>
               <th>76</th>
               <th>80</th>
@@ -458,7 +458,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr class="body">
               <td>Inleg Short</td>
               <td>80</td>
               <td>80</td>
@@ -472,7 +472,7 @@
               <td>80</td>
               <td>80</td>
             </tr>
-            <tr>
+            <tr class="body">
               <td>Inleg Regular</td>
               <td>82</td>
               <td>82</td>
@@ -486,7 +486,7 @@
               <td>82</td>
               <td>82</td>
             </tr>
-            <tr>
+            <tr class="body">
               <td>Inleg Long</td>
               <td>85</td>
               <td>85</td>
@@ -519,22 +519,21 @@
         <div class="guide-text">
           <div class="measurement-item">
             <h6 class="body--bold">A. Neck</h6>
-            <p>
+            <p class="body">
               Measure around base of neck near Adam's apple. A correct fitting shirt should have one finger gap from the
               tape measure to skin.
             </p>
           </div>
           <div class="measurement-item">
             <h6 class="body--bold">B. Sleeve Length</h6>
-            <p>Measure from the shoulder seam to the crease of where your hand meets your wrist.</p>
+            <p class="body">Measure from the shoulder seam to the crease of where your hand meets your wrist.</p>
           </div>
         </div>
       </div>
-      <hr>
       <div class="table-container">
         <table class="size-table">
           <thead>
-            <tr>
+            <tr class="body">
               <th><strong>Casual Size</strong></th>
               <th>S</th>
               <th>S</th>
@@ -550,7 +549,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr class="body">
               <td>Business</td>
               <td>37</td>
               <td>38</td>
@@ -564,7 +563,7 @@
               <td>48</td>
               <td>50</td>
             </tr>
-            <tr>
+            <tr class="body">
               <td>Chest</td>
               <td>100</td>
               <td>104</td>
@@ -578,7 +577,7 @@
               <td>134</td>
               <td>142</td>
             </tr>
-            <tr>
+            <tr class="body">
               <td>Sleeve</td>
               <td>61</td>
               <td>61</td>
@@ -610,15 +609,14 @@
         <div class="guide-text">
           <div class="measurement-item">
             <h6 class="body--bold">Foot Size</h6>
-            <p>Our shoes are standard designed and width in UK sizes.</p>
+            <p class="body">Our shoes are standard designed and width in UK sizes.</p>
           </div>
         </div>
       </div>
-      <hr>
       <div class="table-container">
         <table class="size-table">
           <tbody>
-            <tr>
+            <tr class="body">
               <td>UK</td>
               <td>6</td>
               <td>7</td>
@@ -630,7 +628,7 @@
               <td>13</td>
               <td>14</td>
             </tr>
-            <tr>
+            <tr class="body">
               <td>US</td>
               <td>7</td>
               <td>8</td>
@@ -642,7 +640,7 @@
               <td>14</td>
               <td>15</td>
             </tr>
-            <tr>
+            <tr class="body">
               <td>EU</td>
               <td>40</td>
               <td>41/42</td>
@@ -654,7 +652,7 @@
               <td>49</td>
               <td>50</td>
             </tr>
-            <tr>
+            <tr class="body">
               <td>Length</td>
               <td>25.4</td>
               <td>26.2</td>
