@@ -10,7 +10,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: var(--space-m);
+  }
+
+  #sizing-selection-content-paragraph {
+    color: var(--neutral-600);
+    text-align: center;
   }
 
   .size-guide-title {
@@ -25,54 +29,53 @@
   .main-tab-button {
     border: none;
     background: none;
-    padding: var(--space-xs) var(--space-s);
+    padding: var(--space-3xs) 0px;
     cursor: pointer;
-    border-bottom: 2px solid transparent;
-    transition: all 0.2s ease;
+    border-bottom: 1px solid transparent;
   }
 
   .main-tab-button.active {
-    border-bottom: 2px solid var(--neutral-950);
-  }
-
-  .main-tab-button:hover:not(.active) {
-    border-bottom: 2px solid var(--neutral-400);
+    border-bottom: 1px solid var(--neutral-950);
   }
 
   .size-guide-content {
     display: flex;
-    min-height: 500px;
+    gap: var(--space-2xl);
   }
 
   .size-guide-left {
     width: 40%;
-    padding: var(--space-l);
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    padding-top: var(--space-m);
   }
 
   .size-guide-right {
     width: 60%;
-    padding: var(--space-l);
+    padding-top: var(--space-m);
+    padding-right: 0px;
+    padding-bottom: 0px;
     overflow-x: auto;
+  }
+
+  .size-guide-right > .tab-content.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-m);
+    height: 100%;
   }
 
   .guide-image {
     margin-bottom: var(--space-m);
+    background-color: #f0ede9;
   }
 
   .sizing-image {
-    max-width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  .measurement-item {
-    margin-bottom: var(--space-m);
-  }
-
-  .measurement-item h6 {
-    margin-bottom: var(--space-xs);
+    max-height: 300px;
+    width: 100%;
+    object-fit: contain;
   }
 
   .measurement-item p {
@@ -80,21 +83,17 @@
     margin-top: 0;
   }
 
-  .size-options {
-    margin-bottom: var(--space-m);
-  }
-
   .size-button {
     border: none;
     background: none;
-    padding: var(--space-xs) var(--space-s);
+    padding: var(--space-3xs) 0px;
     cursor: pointer;
     margin-right: var(--space-s);
-    border-bottom: 2px solid transparent;
+    border-bottom: 1px solid transparent;
   }
 
   .size-button.active {
-    border-bottom: 2px solid var(--neutral-950);
+    border-bottom: 1px solid var(--neutral-950);
   }
 
   .size-table {
@@ -105,17 +104,19 @@
 
   .size-table th,
   .size-table td {
-    padding: var(--space-xs) var(--space-s);
     text-align: left;
     white-space: nowrap;
-  }
-
-  .size-table th {
-    background-color: var(--neutral-100);
+    color: var(--neutral-600);
+    padding-right: var(--space-xs);
   }
 
   .tab-content {
     display: none;
+  }
+
+  .tab-content > p {
+    color: var(--neutral-600);
+    text-align: center;
   }
 
   .tab-content.active {
@@ -159,27 +160,31 @@
 </style>
 
 <div class="size-guide-container">
-  <!-- Header with title and main tabs -->
   <div class="size-guide-header">
     <h3 class="size-guide-title heading--xl">What's My Size?</h3>
     <div class="main-tabs">
-      <button class="main-tab-button active body--bold" data-tab="suit">Suit &amp; Jacket</button>
-      <button class="main-tab-button body--bold" data-tab="pants">Trousers</button>
-      <button class="main-tab-button body--bold" data-tab="shirt">Shirts</button>
-      <button class="main-tab-button body--bold" data-tab="shoes">Shoes</button>
+      <button class="main-tab-button active body" data-tab="suit">Suit & Jacket</button>
+      <button class="main-tab-button body" data-tab="pants">Trousers</button>
+      <button class="main-tab-button body" data-tab="shirt">Shirts</button>
+      <button class="main-tab-button body" data-tab="shoes">Shoes</button>
+      <button
+        type="button"
+        class="modal-close"
+      >
+        {% render 'icon-close' %}
+      </button>
     </div>
   </div>
-  <!-- Main content area with two columns -->
   <div class="size-guide-content">
-    <!-- Left column - image and description -->
     <div class="size-guide-left">
-      <!-- Suit Tab Images -->
       <div id="suit-left" class="tab-content active">
         <div class="guide-image">
           <img
             class="sizing-image"
-            src="https://img.myshopline.com/image/store/1691455054240/Sizeguide-Asset-1.png?w=1124&amp;h=1710"
+            src="https://www.calexicoman.com.au/cdn/shop/files/Antonio_Linen_Shirt_in_Black.webp?v=1735784804&width=1200"
             alt="Suit measurement guide"
+            width="300"
+            height="300"
           >
         </div>
         <p class="body" id="sizing-selection-content-paragraph">
@@ -188,13 +193,14 @@
         </p>
       </div>
 
-      <!-- Pants Tab Images -->
       <div id="pants-left" class="tab-content">
         <div class="guide-image">
           <img
             class="sizing-image"
-            src="https://img.myshopline.com/image/store/1691455054240/Sizeguide-Asset-2.png?w=1124&amp;h=1710"
+            src="https://www.calexicoman.com.au/cdn/shop/files/Antonio_Linen_Shirt_in_Black.webp?v=1735784804&width=1200"
             alt="Trousers measurement guide"
+            width="300"
+            height="300"
           >
         </div>
         <p class="body">
@@ -203,13 +209,14 @@
         </p>
       </div>
 
-      <!-- Shirt Tab Images -->
       <div id="shirt-left" class="tab-content">
         <div class="guide-image">
           <img
             class="sizing-image"
-            src="https://img.myshopline.com/image/store/1691455054240/Sizeguide-Asset-3.png?w=1124&amp;h=1710"
+            src="https://www.calexicoman.com.au/cdn/shop/files/Antonio_Linen_Shirt_in_Black.webp?v=1735784804&width=1200"
             alt="Shirt measurement guide"
+            width="300"
+            height="300"
           >
         </div>
         <p class="body">
@@ -218,13 +225,14 @@
         </p>
       </div>
 
-      <!-- Shoes Tab Images -->
       <div id="shoes-left" class="tab-content">
         <div class="guide-image">
           <img
             class="sizing-image"
-            src="https://img.myshopline.com/image/store/1691455054240/Sizeguide-Asset-4.png?w=1124&amp;h=1710"
+            src="https://www.calexicoman.com.au/cdn/shop/files/Antonio_Linen_Shirt_in_Black.webp?v=1735784804&width=1200"
             alt="Shoe measurement guide"
+            width="300"
+            height="300"
           >
         </div>
         <p class="body">
@@ -234,58 +242,30 @@
       </div>
     </div>
 
-    <!-- Right column - measurement details and size charts -->
     <div class="size-guide-right">
-      <!-- Suit Sizing -->
       <div id="suit" class="tab-content active">
-        <!-- Measurement Guide Text -->
-        <div class="guide-text">
-          <div class="measurement-item">
-            <h6 class="body--bold">A. Chest</h6>
-            <p class="body">
-              With a tape measure wrap around the chest, pulling the tape firmly to gauge your centimetre measurement.
-            </p>
-          </div>
-          <div class="measurement-item">
-            <h6 class="body--bold">B. Sleeve Length</h6>
-            <p class="body">
-              With the arm naturally down, measure from the tip of your shoulder - where the shoulder seam meets the
-              sleeve head down to the wrist.
-            </p>
-          </div>
-          <div class="measurement-item">
-            <h6 class="body--bold">Please Note:</h6>
-            <p class="body">
-              If you are purchasing a 2 piece suit - the trouser size that will come with the jacket is preselected.
-            </p>
-          </div>
+        <div class="measurement-item">
+          <p class="body">
+            <span class="body--bold" style="color: var(--neutral-950);">A. Chest:</span>
+            With a tape measure wrap around the chest, pulling the tape firmly to gauge your centimetre measurement.
+          </p>
         </div>
-
-        <!-- Size Chart -->
-        <h6 class="body--bold">Size Chart</h6>
+        <div class="measurement-item">
+          <p class="body">
+            <span class="body--bold" style="color: var(--neutral-950);">B. Sleeve Length:</span>
+            With the arm naturally down, measure from the tip of your shoulder - where the shoulder seam meets the
+            sleeve head down to the wrist. Please note - if you are purchasing a 2 piece suit, the trouser size that
+            will come with the jacket is preselected.
+          </p>
+        </div>
         <div class="size-options">
-          <button class="size-button body--bold" data-size="short">Short</button>
-          <button class="size-button body--bold active" data-size="regular">Regular</button>
-          <button class="size-button body--bold" data-size="long">Long</button>
+          <p class="body--bold">Size Chart:</p>
+          <button class="size-button body" data-size="short">Short</button>
+          <button class="size-button body active" data-size="regular">Regular</button>
+          <button class="size-button body" data-size="long">Long</button>
         </div>
         <div class="table-container">
           <table id="regular-table" class="size-table size-content active">
-            <thead>
-              <tr>
-                <th><strong class="body--bold">Size</strong></th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-              </tr>
-            </thead>
             <tbody>
               <tr class="body">
                 <td>Chest</td>
@@ -335,22 +315,6 @@
             </tbody>
           </table>
           <table id="short-table" class="size-table size-content">
-            <thead>
-              <tr class="body">
-                <th><strong class="body--bold">Size</strong></th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-              </tr>
-            </thead>
             <tbody>
               <tr class="body">
                 <td>Chest</td>
@@ -397,22 +361,6 @@
             </tbody>
           </table>
           <table id="long-table" class="size-table size-content">
-            <thead>
-              <tr class="body">
-                <th><strong class="body--bold">Size</strong></th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-              </tr>
-            </thead>
             <tbody>
               <tr class="body">
                 <td>Chest</td>
@@ -460,42 +408,38 @@
           </table>
         </div>
       </div>
-      <!-- Pants Sizing -->
       <div id="pants" class="tab-content">
-        <!-- Measurement Guide Text -->
-        <div class="guide-text">
-          <div class="measurement-item">
-            <h6 class="body--bold">A. Waist</h6>
-            <p class="body">Measure around the body at hip height pulling the tape firm.</p>
-          </div>
-          <div class="measurement-item">
-            <h6 class="body--bold">B. Inleg</h6>
-            <p class="body">
-              Measure from the lowest part of your crotch area to the hem, or where your foot meets the ground (shoes
-              off) &mdash; This relates to 2-piece suits. <br>
-              <br>
-              Separate trousers and chinos have a standard inleg of: 84cm, and 82cm for our range of cuffed trousers.
-            </p>
-          </div>
+        <div class="measurement-item">
+          <p class="body">
+            <span class="body--bold" style="color: var(--neutral-950);">A. Waist:</span>
+            Measure around the body at hip height pulling the tape firm.
+          </p>
+        </div>
+        <div class="measurement-item">
+          <p class="body">
+            <span class="body--bold" style="color: var(--neutral-950);">B. Inleg:</span>
+            Measure from the lowest part of your crotch area to the hem, or where your foot meets the ground (shoes off)
+            - This relates to 2-piece suits. Separate trousers and chinos have a standard inleg of: 84cm, and 82cm for
+            our range of cuffed trousers.
+          </p>
         </div>
 
-        <!-- Size Chart -->
         <div class="table-container">
           <table class="size-table">
             <thead>
               <tr class="body">
-                <th><strong>Size</strong></th>
-                <th>76</th>
-                <th>80</th>
-                <th>84</th>
-                <th>88</th>
-                <th>92</th>
-                <th>96</th>
-                <th>100</th>
-                <th>104</th>
-                <th>108</th>
-                <th>112</th>
-                <th>116</th>
+                <td>Size</td>
+                <td>76</td>
+                <td>80</td>
+                <td>84</td>
+                <td>88</td>
+                <td>92</td>
+                <td>96</td>
+                <td>100</td>
+                <td>104</td>
+                <td>108</td>
+                <td>112</td>
+                <td>116</td>
               </tr>
             </thead>
             <tbody>
@@ -546,40 +490,37 @@
         </div>
       </div>
 
-      <!-- Shirts Sizing -->
       <div id="shirt" class="tab-content">
-        <!-- Measurement Guide Text -->
-        <div class="guide-text">
-          <div class="measurement-item">
-            <h6 class="body--bold">A. Neck</h6>
-            <p class="body">
-              Measure around base of neck near Adam's apple. A correct fitting shirt should have one finger gap from the
-              tape measure to skin.
-            </p>
-          </div>
-          <div class="measurement-item">
-            <h6 class="body--bold">B. Sleeve Length</h6>
-            <p class="body">Measure from the shoulder seam to the crease of where your hand meets your wrist.</p>
-          </div>
+        <div class="measurement-item">
+          <p class="body">
+            <span class="body--bold" style="color: var(--neutral-950);">A. Neck:</span>
+            Measure around base of neck near Adam's apple. A correct fitting shirt should have one finger gap from the
+            tape measure to skin.
+          </p>
+        </div>
+        <div class="measurement-item">
+          <p class="body">
+            <span class="body--bold" style="color: var(--neutral-950);">B. Sleeve Length:</span>
+            Measure from the shoulder seam to the crease of where your hand meets your wrist.
+          </p>
         </div>
 
-        <!-- Size Chart -->
         <div class="table-container">
           <table class="size-table">
             <thead>
               <tr class="body">
-                <th><strong>Casual Size</strong></th>
-                <th>S</th>
-                <th>S</th>
-                <th>M</th>
-                <th>M</th>
-                <th>L</th>
-                <th>L</th>
-                <th>XL</th>
-                <th>XL</th>
-                <th>2XL</th>
-                <th>2XL</th>
-                <th>2XL</th>
+                <td>Casual Size</td>
+                <td>S</td>
+                <td>S</td>
+                <td>M</td>
+                <td>M</td>
+                <td>L</td>
+                <td>L</td>
+                <td>XL</td>
+                <td>XL</td>
+                <td>2XL</td>
+                <td>2XL</td>
+                <td>2XL</td>
               </tr>
             </thead>
             <tbody>
@@ -630,17 +571,14 @@
         </div>
       </div>
 
-      <!-- Shoes Sizing -->
       <div id="shoes" class="tab-content">
-        <!-- Measurement Guide Text -->
-        <div class="guide-text">
-          <div class="measurement-item">
-            <h6 class="body--bold">Foot Size</h6>
-            <p class="body">Our shoes are standard designed and width in UK sizes.</p>
-          </div>
+        <div class="measurement-item">
+          <p class="body">
+            <span class="body--bold" style="color: var(--neutral-950);">Foot Size:</span>
+            Our shoes are standard designed and width in UK sizes.
+          </p>
         </div>
 
-        <!-- Size Chart -->
         <div class="table-container">
           <table class="size-table">
             <tbody>

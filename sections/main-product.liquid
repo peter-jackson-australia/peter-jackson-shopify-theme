@@ -71,8 +71,8 @@
     position: absolute;
     left: var(--space-m);
     top: 50%;
-    transform: translateY(-50%);
     width: 2px;
+    transform: translateY(-50%);
     height: 50%;
     z-index: 10;
   }
@@ -268,9 +268,6 @@
   }
 
   .modal-close {
-    position: absolute;
-    top: var(--space-xs);
-    right: var(--space-xs);
     background: none;
     border: none;
     padding: var(--space-2xs);
@@ -691,12 +688,6 @@
 
 <div class="modal-overlay">
   <div class="modal-content">
-    <button
-      type="button"
-      class="modal-close"
-    >
-      {% render 'icon-close' %}
-    </button>
     {% render 'size-guide' %}
   </div>
 </div>
