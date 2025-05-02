@@ -32,17 +32,9 @@
         "privacy_link": "#",
         "privacy_text": "Privacy Policy"
       }
-    },
-    "copyright": {
-      "type": "copyright",
-      "disabled": true,
-      "settings": {
-        "text": "Copyright&copy;{{ 'now' | date: '%Y' }}, {{ shop.name }}."
-      }
     }
   },
   "order": [
-    "footer",
-    "copyright"
+    "footer"
   ]
 }
