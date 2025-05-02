@@ -1,7 +1,7 @@
 <style>
   .size-guide-container {
     width: 100%;
-    max-width: 1200px;
+    max-width: 900px;
     margin: 0 auto;
     background-color: var(--white);
   }
@@ -14,7 +14,7 @@
 
   #sizing-selection-content-paragraph {
     color: var(--neutral-600);
-    text-align: center;
+    max-width: 80ch;
   }
 
   .size-guide-title {
@@ -40,7 +40,7 @@
 
   .size-guide-content {
     display: flex;
-    gap: var(--space-2xl);
+    gap: var(--space-xl);
   }
 
   .size-guide-left {
@@ -48,12 +48,12 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-top: var(--space-m);
+    padding-top: var(--space-l);
   }
 
   .size-guide-right {
     width: 60%;
-    padding-top: var(--space-m);
+    padding-top: var(--space-l);
     padding-right: 0px;
     padding-bottom: 0px;
     overflow-x: auto;
@@ -62,14 +62,15 @@
   .size-guide-right > .tab-content.active {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: var(--space-m);
+    gap: var(--space-l);
     height: 100%;
   }
 
   .guide-image {
-    margin-bottom: var(--space-m);
-    background-color: #f0ede9;
+    margin-bottom: var(--space-l);
+    background-color: var(--neutral-50);
+    display: flex;
+    justify-content: center;
   }
 
   .sizing-image {
@@ -81,6 +82,7 @@
   .measurement-item p {
     color: var(--neutral-600);
     margin-top: 0;
+    max-width: 80ch;
   }
 
   .size-button {
@@ -88,7 +90,7 @@
     background: none;
     padding: var(--space-3xs) 0px;
     cursor: pointer;
-    margin-right: var(--space-s);
+    margin-right: var(--space-m);
     border-bottom: 1px solid transparent;
   }
 
@@ -108,6 +110,7 @@
     white-space: nowrap;
     color: var(--neutral-600);
     padding-right: var(--space-xs);
+    font-variant-numeric: tabular-nums;
   }
 
   .tab-content {
@@ -116,7 +119,7 @@
 
   .tab-content > p {
     color: var(--neutral-600);
-    text-align: center;
+    max-width: 80ch;
   }
 
   .tab-content.active {
@@ -131,17 +134,42 @@
     display: table;
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1024px) {
+    .size-guide-content {
+      gap: var(--space-m);
+    }
+
     .size-guide-header {
       flex-direction: column;
       align-items: flex-start;
       gap: var(--space-m);
     }
 
+    .size-guide-left {
+      padding-top: var(--space-m);
+    }
+
+    .guide-image {
+      margin-bottom: var(--space-m);
+    }
+
+    .sizing-image {
+      max-height: 200px;
+    }
+
+    .size-guide-right {
+      padding-top: 0px;
+    }
+
+    .modal-content {
+      padding: var(--space-m);
+      padding-bottom: 0px;
+    }
+
     .main-tabs {
       width: 100%;
       overflow-x: auto;
-      padding-bottom: var(--space-xs);
+      flex-wrap: wrap;
     }
 
     .size-guide-content {
@@ -155,6 +183,28 @@
 
     .table-container {
       overflow-x: auto;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      padding: 0px;
+      padding-top: var(--space-m);
+      padding-right: var(--space-m);
+    }
+
+    .size-guide-right > .tab-content.active {
+      gap: var(--space-m);
+    }
+
+    .size-table {
+      padding-bottom: var(--space-m);
+    }
+
+    .size-table th,
+    .size-table td {
+      padding-right: var(--space-s);
     }
   }
 </style>
@@ -242,7 +292,7 @@
       </div>
     </div>
 
-    <div class="size-guide-right">
+    <div class="size-guide-right custom-scrollbar">
       <div id="suit" class="tab-content active">
         <div class="measurement-item">
           <p class="body">
@@ -259,12 +309,12 @@
           </p>
         </div>
         <div class="size-options">
-          <p class="body--bold">Size Chart:</p>
+          <p class="body--bold" style="margin-bottom: var(--space-xs);">Size Chart:</p>
           <button class="size-button body" data-size="short">Short</button>
           <button class="size-button body active" data-size="regular">Regular</button>
           <button class="size-button body" data-size="long">Long</button>
         </div>
-        <div class="table-container">
+        <div class="table-container custom-scrollbar">
           <table id="regular-table" class="size-table size-content active">
             <tbody>
               <tr class="body">
@@ -424,7 +474,7 @@
           </p>
         </div>
 
-        <div class="table-container">
+        <div class="table-container custom-scrollbar">
           <table class="size-table">
             <thead>
               <tr class="body">
@@ -505,7 +555,7 @@
           </p>
         </div>
 
-        <div class="table-container">
+        <div class="table-container custom-scrollbar">
           <table class="size-table">
             <thead>
               <tr class="body">
@@ -579,7 +629,7 @@
           </p>
         </div>
 
-        <div class="table-container">
+        <div class="table-container custom-scrollbar">
           <table class="size-table">
             <tbody>
               <tr class="body">

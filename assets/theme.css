@@ -85,12 +85,12 @@ select {
 
 /* Content Visibility - Increases performance by deferring below the fold rendering */
 
-#shopify-section-template--24770662695280__collection_slider_jjrawV,
+/* #shopify-section-template--24770662695280__collection_slider_jjrawV,
 #shopify-section-template--24770662695280__two_column_content_xT9mtk,
 #shopify-section-template--24770662695280__blog_hero_3BxWt4,
 footer {
   content-visibility: auto;
-} 
+}  */
 
 /* Variables */
 

@@ -34,12 +34,13 @@
     }
 
     .shop-the-look__slider-wrapper {
+      max-width: 600px;
+      margin: 0 auto;
       overflow: visible;
       width: 100%;
     }
 
     .shop-the-look__slider {
-      width: calc(100% + var(--space-m));
       margin: 0 auto;
       position: relative;
     }
@@ -70,6 +71,10 @@
       overflow: hidden;
       background-color: var(--neutral-50);
       position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
     }
 
     .shop-the-look__product-image {
@@ -130,34 +135,28 @@
     }
 
     .shop-the-look .splide__arrow--prev {
-      left: -32px;
+      left: 0px;
     }
 
     .shop-the-look .splide__arrow--next {
-      right: -32px;
+      right: 0px;
     }
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 1100px) {
       .shop-the-look {
         flex-direction: column;
+        margin-top: var(--space-xl);
+        border-top: 1px solid var(--neutral-200);
       }
 
       .shop-the-look__slider-container {
         width: 100%;
         padding-top: var(--space-xl);
-        padding-bottom: var(--space-xl);
+        padding-bottom: 0px;
       }
 
       .shop-the-look__image-container {
         display: none;
-      }
-
-      .shop-the-look__slider {
-        width: calc(100% + var(--space-l));
-      }
-
-      .shop-the-look__product-title {
-        width: calc(100% - var(--space-m));
       }
     }
 
@@ -284,21 +283,12 @@
         if (splideElement) {
           new Splide(splideElement, {
             perPage: 1,
-            width: '500px',
             type: 'loop',
             gap: 'var(--space-m)',
             arrows: true,
             pagination: false,
             drag: true,
             snap: true,
-            breakpoints: {
-              470: {
-                perPage: 1,
-              },
-              768: {
-                arrows: true,
-              },
-            },
           }).mount();
         }
       });
