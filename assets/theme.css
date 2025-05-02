@@ -83,6 +83,15 @@ select {
   }
 }
 
+/* Content Visibility - Increases performance by deferring below the fold rendering */
+
+.collection-slider,
+.two-column-content,
+.blog-hero,
+.footer {
+  content-visibility: auto;
+}
+
 /* Variables */
 
 :root {
