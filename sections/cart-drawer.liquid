@@ -215,6 +215,26 @@
     margin: auto;
     color: #212529;
   }
+
+  .cart-drawer-item-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 10px;
+  }
+
+  .cart-drawer-item-remove {
+    font-size: 13px;
+    color: #a1a1a1;
+    cursor: pointer;
+    background: none;
+    border: none;
+    text-decoration: underline;
+  }
+
+  .cart-drawer-item-remove:hover {
+    color: #212529;
+  }
 </style>
 
 <div class="cart-drawer">
@@ -236,7 +256,11 @@
       {% else %}
         <div class="cart-drawer-items">
           {% for item in cart.items %}
-            <div class="cart-drawer-item" data-line-item-key="{{ item.key }}">
+            <div
+              class="cart-drawer-item"
+              data-line-item-key="{{ item.key }}"
+              data-inventory-quantity="{{ item.variant.inventory_quantity }}"
+            >
               <div class="cart-drawer-item-image">
                 <img src="{{ item.image | img_url: '200x' }}" alt="{{ item.title }}">
               </div>
@@ -247,10 +271,13 @@
                       <a href="{{ item.url }}">{{ item.product.title }}</a>
                     </h3>
                     <span>{{ item.variant.title }}</span>
-                    <div class="cart-drawer-quantity-selector">
-                      <button class="cart-drawer-quantity-selector-minus" type="button">-</button>
-                      <input type="text" readonly value="{{ item.quantity }}">
-                      <button class="cart-drawer-quantity-selector-plus" type="button">+</button>
+                    <div class="cart-drawer-item-actions">
+                      <div class="cart-drawer-quantity-selector">
+                        <button class="cart-drawer-quantity-selector-minus" type="button">-</button>
+                        <input type="text" readonly value="{{ item.quantity }}">
+                        <button class="cart-drawer-quantity-selector-plus" type="button">+</button>
+                      </div>
+                      <button type="button" class="cart-drawer-item-remove">Remove</button>
                     </div>
                   </div>
                   <div class="cart-drawer-item-main-flex-right">

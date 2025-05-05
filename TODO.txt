@@ -1,4 +1,11 @@
-AJAX CART (Just get it to work)
+AJAX CART:
+Make drawer open instantly, and just update cart items 
+Ensure that the cart counter is always correct 
+Add in some loading states
+Test thoroughly 
+Style 
+minimise code 
+
 
 /////////////////////////////////////////////////////
 
