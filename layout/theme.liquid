@@ -54,18 +54,6 @@
         {% sections 'footer-group' %}
       </div>
     </footer>
-    {% comment %}
-      Put this code within <body> tag —
-      in a place where you want the ajax-cart section to appear
-    {% endcomment %}
-
-    {% section 'main-cart' %}
-
-    <script type="application/json" data-ajax-cart-initial-state>
-      {{ cart | json }}
-    </script>
-    <script type="module">
-      import '{{ 'liquid-ajax-cart.js' | asset_url }}';
-    </script>
+    {% section 'cart-drawer' %}
   </body>
 </html>

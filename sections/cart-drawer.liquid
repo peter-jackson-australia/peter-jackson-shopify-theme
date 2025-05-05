@@ -1,0 +1,28 @@
+<h2>Your cart ({{ cart.item_count }})</h2>
+
+{% if cart.empty? %}
+  <p>Your cart is empty</p>
+{% else %}
+  {% form 'cart', cart %}
+    {% for item in cart.items %}
+      <img src="{{ item.image | img_url: '200x' }}" alt="{{ item.title }}">
+      <h3>{{ item.product.title }}</h3>
+      <p>{{ item.variant.title }}</p>
+      <a href="{{ item.url_to_remove }}">Remove</a>
+      <p>{{ item.final_line_price | money }}</p>
+      <input name="quantity" value="{{ item.quantity }}">
+    {% endfor %}
+
+    <p>{{ cart.total_discounts | money }}</p>
+    <p>{{ cart.total_price | money }}</p>
+
+    <button type="submit" name="checkout">Checkout</button>
+  {% endform %}
+{% endif %}
+
+{% schema %}
+{
+  "name": "Cart drawer",
+  "settings": []
+}
+{% endschema %}

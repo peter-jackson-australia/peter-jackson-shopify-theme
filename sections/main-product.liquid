@@ -569,63 +569,61 @@
           </button>
         </div>
 
-        <ajax-cart-product-form>
-          <form action="{{ routes.cart_add_url }}" method="post">
-            {%- for block in section.blocks -%}
-              {% case block.type %}
-                {%- when '@app' -%}
-                  {% render block %}
+        <form action="{{ routes.cart_add_url }}" method="post">
+          {%- for block in section.blocks -%}
+            {% case block.type %}
+              {%- when '@app' -%}
+                {% render block %}
 
-                {%- when 'options' %}
-                  {% unless product.has_only_default_variant %}
-                    {% for option_group in product.options_with_values %}
-                      {% assign option_field = option_group.position | prepend: 'option' %}
-                      <fieldset class="variant-options js--variant-options">
-                        <legend class="body--bold">{{ option_group.name }}:</legend>
-                        <div class="variant-options__list">
-                          {% for value in option_group.values %}
-                            {% capture option_id %}{{ option_group.name }}_{{ value }}{% endcapture %}
-                            <div class="variant-option">
-                              <input
-                                type="radio"
-                                id="{{ option_id | handleize }}"
-                                class="js--variant-option"
-                                name="{{ option_group.position | prepend: 'option'}}"
-                                value="{{ value }}"
-                                {% if current_variant[option_field] == value %}
-                                  checked
-                                {% endif %}
-                              >
-                              <label for="{{ option_id | handleize }}" class="body">
-                                {% if option_group.name == 'Size' and value contains '.0' %}
-                                  {{- value | remove: '.0' -}}
-                                {% else %}
-                                  {{- value -}}
-                                {% endif %}
-                              </label>
-                            </div>
-                          {% endfor %}
-                        </div>
-                      </fieldset>
-                    {% endfor %}
-                  {% endunless %}
+              {%- when 'options' %}
+                {% unless product.has_only_default_variant %}
+                  {% for option_group in product.options_with_values %}
+                    {% assign option_field = option_group.position | prepend: 'option' %}
+                    <fieldset class="variant-options js--variant-options">
+                      <legend class="body--bold">{{ option_group.name }}:</legend>
+                      <div class="variant-options__list">
+                        {% for value in option_group.values %}
+                          {% capture option_id %}{{ option_group.name }}_{{ value }}{% endcapture %}
+                          <div class="variant-option">
+                            <input
+                              type="radio"
+                              id="{{ option_id | handleize }}"
+                              class="js--variant-option"
+                              name="{{ option_group.position | prepend: 'option'}}"
+                              value="{{ value }}"
+                              {% if current_variant[option_field] == value %}
+                                checked
+                              {% endif %}
+                            >
+                            <label for="{{ option_id | handleize }}" class="body">
+                              {% if option_group.name == 'Size' and value contains '.0' %}
+                                {{- value | remove: '.0' -}}
+                              {% else %}
+                                {{- value -}}
+                              {% endif %}
+                            </label>
+                          </div>
+                        {% endfor %}
+                      </div>
+                    </fieldset>
+                  {% endfor %}
+                {% endunless %}
 
-                {%- when 'button' -%}
-                  <input
-                    type="hidden"
-                    id="js--variant-id"
-                    name="id"
-                    value="{{ current_variant.id }}"
-                  >
-                  {% if current_variant.available == true %}
-                    <button type="submit" id="js--addtocart" class="body">Add To Cart</button>
-                  {% else %}
-                    <button type="submit" id="js--addtocart" class="body--uppercase" disabled>Unavailable</button>
-                  {% endif %}
-              {%- endcase -%}
-            {%- endfor -%}
-          </form>
-        </ajax-cart-product-form>
+              {%- when 'button' -%}
+                <input
+                  type="hidden"
+                  id="js--variant-id"
+                  name="id"
+                  value="{{ current_variant.id }}"
+                >
+                {% if current_variant.available == true %}
+                  <button type="submit" id="js--addtocart" class="body">Add To Cart</button>
+                {% else %}
+                  <button type="submit" id="js--addtocart" class="body--uppercase" disabled>Unavailable</button>
+                {% endif %}
+            {%- endcase -%}
+          {%- endfor -%}
+        </form>
 
         {% assign has_description = false %}
         {% assign has_specs = false %}
