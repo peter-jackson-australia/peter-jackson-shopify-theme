@@ -1,3 +1,5 @@
+{%- comment -%}sections/header.liquid{%- endcomment -%}
+
 <div id="site-header" class="header container">
   <button
     type="button"
@@ -11,11 +13,13 @@
       {% render 'icon-hamburger-menu', accessible_name: 'Menu' %}
     </div>
   </button>
+
   <div class="header__logo">
     <a href="/" aria-label="Peter Jackson - Home">
       {% render 'icon-peter-jackson', accessible_name: 'Peter Jackson', role: 'img' %}
     </a>
   </div>
+
   <ul class="header__icons">
     <li>
       <a href="/account" aria-label="Account">
@@ -23,16 +27,16 @@
       </a>
     </li>
     <li>
-      <a
-        href="{{ routes.cart_url }}"
+      <button
+        id="cart-toggle"
+        class="cart-toggle"
         aria-label="Cart{% if cart.item_count > 0 %} with {{ cart.item_count }} item{% if cart.item_count > 1 %}s{% endif %}{% endif %}"
-        style="text-decoration: none; position: relative;"
       >
         {%- render 'icon-cart', accessible_name: 'Shopping Cart', role: 'img' %}
         <span class="js--cart-counter {% if cart.item_count == 0 %}hide{% endif %}" aria-hidden="true">
           {{- cart.item_count -}}
         </span>
-      </a>
+      </button>
     </li>
   </ul>
 </div>
