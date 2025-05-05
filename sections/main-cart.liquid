@@ -1,175 +1,65 @@
-{% liquid
-  # Some layout settings here. These aren't added as template settings, as they
-  # don't need to be.
-  assign thumbnail_width = 150
+{% comment %} sections/main-cart.liquid {% endcomment %}
 
-  # BEGIN GIFT WRAP: Gift wrap option using a product.
-  assign cart_item_keys = ''
-  assign gift_wrap_items_list = ''
-  assign gift_wrap = all_products[section.settings.gift_wrap_product]
-%}
-{% unless section.settings.gift_wrap_product == blank and gift_wrap == blank %}
-  <script>
-    window.giftWrap = {{ gift_wrap.first_available_variant | json }};
-  </script>
-{% endunless %}
+<form action="{{ routes.cart_url }}" method="post" class="main-cart">
+  <!--
+    Add the data-ajax-cart-section attribute
+    to a container that must be re-rendered
+    when the user's cart gets changed
+  -->
+  <div data-ajax-cart-section>
+    <h2>Cart</h2>
 
-{% comment %}
-  Save the gift wrap products in an array. The _id property is the
-  line item of the product that needs gift wrapping.
-{% endcomment %}
-{% for item in cart.items %}
-  {% if item.product.handle == 'gift-wrap' %}
-    {%- capture gift_wrap_items_list -%}{{- gift_wrap_items_list -}}{%- if gift_wrap_items_list != '' -%},{%- endif -%}{{- item.properties['_id'] -}}{%- endcapture -%}
-  {% endif %}
-  {% comment %}
-    Array of cart item ids for gift wrap. These MUST be a string, so we use capture.
-  {% endcomment %}
-  {% capture cart_item_keys %}{{- cart_item_keys -}}{%- if cart_item_keys != '' -%},{%- endif -%}{{- item.key -}}{%- endcapture -%}
-{% endfor %}
-{% assign gift_wrap_items = gift_wrap_items_list | split: ',' %}
-{% assign cart_item_keys = cart_item_keys | split: ',' %}
-{% comment %}
-  END: GIFT WRAP
-{% endcomment %}
+    <div class="main-cart__items" data-ajax-cart-section-scroll>
+      {% for item in cart.items %}
+        {% assign item_index = forloop.index %}
+        <hr>
+        <div>
+          <a href="{{ item.url }}">{{ item.title }}</a>
+        </div>
+        <div>Price: {{ item.final_price | money }}</div>
 
-<link rel="stylesheet" href="{{ 'cart.css' | asset_url }}">
+        <div>
+          Quantity:
 
-{% comment %}
-  Empty cart section.
-{% endcomment %}
-{% capture empty_cart %}
-<section>
-  <p>Your basket is empty. <a href="{{ shop.url }}" class="button">Let's go shopping</a></p>
-</section>
-{% endcapture %}
-<script>
-  const emptyCartHtml = `{{ empty_cart }}`;
-</script>
+          <!-- Wrap the quantity control in the <ajax-cart-quantity> custom tag -->
+          <ajax-cart-quantity>
+            <!-- Add the data-ajax-cart-quantity-minus attribute to the "Minus" button -->
+            <a
+              data-ajax-cart-quantity-minus
+              href="{{ routes.cart_change_url }}?line={{ item_index }}&quantity={{ item.quantity | minus: 1 }}"
+            >
+              Minus one
+            </a>
 
-{% comment %}
-{% endcomment %}
-<div class="section-wrap">
-  <section class="section">
-    <h1 data-title="Cart">Cart</h1>
-  </section>
+            <!-- Add the data-ajax-cart-quantity-input attribute to quantity input fields -->
+            <input
+              data-ajax-cart-quantity-input="{{ item_index }}"
+              name="updates[]"
+              value="{{ item.quantity }}"
+              type="number"
+            >
 
-  <div id="cart-content" class="section">
-    {% if cart.items.size > 0 %}
-      <form action="{{ routes.cart_url }}" method="post">
-        {% render 'cart-spend', section: section %}
+            <!-- Add the data-ajax-cart-quantity-plus attribute to the "Plus" button -->
+            <a
+              data-ajax-cart-quantity-plus
+              href="{{ routes.cart_change_url }}?line={{ item_index }}&quantity={{ item.quantity | plus: 1 }}"
+            >
+              Plus one
+            </a>
+          </ajax-cart-quantity>
+        </div>
 
-        <section>
-          <div class="cart-items-header" data-device="desktop">
-            <div>Product</div>
-            <div>Quantity</div>
-            <div>Total</div>
-          </div>
-          <div class="cart-items-header" data-device="mobile">
-            <div>Items</div>
-          </div>
-          <div class="cart-items-group">
-            {% liquid
-              for item in cart.items
-                unless item.product.handle == 'gift-wrap' and cart_item_keys contains item.properties._id
-                  render 'cart-item', item: item, thumbnail_width: thumbnail_width, gift_wrap: gift_wrap, gift_wrap_items: gift_wrap_items
-                endunless
-              endfor
-            %}
-          </div>
-          <div class="cart-items-footer">
-            <div class="cart-items-footer__total flex">
-              <span>{{ section.settings.cart_total_label }}</span>
-              <strong class="large-text js--cart-total">{{ cart.total_price | money }}</strong>
-            </div>
-            <div class="cart-items-footer__note">
-              {{ section.settings.checkout_note }}
-            </div>
-            <div>
-              <button type="submit" name="checkout" class="button">
-                {{ section.settings.checkout_btn_label }}
-              </button>
-              {%- if additional_checkout_buttons -%}
-                <div class="cart__dynamic-checkout-buttons additional-checkout-buttons">
-                  {{ content_for_additional_checkout_buttons }}
-                </div>
-              {%- endif -%}
-            </div>
-          </div>
-        </section>
-      </form>
-      <script src="{{ 'cart.js' | asset_url }}" defer></script>
-    {% endif %}
+        <!-- Place a data-ajax-cart-errors container for error messages -->
+        <div data-ajax-cart-errors="{{ item.key }}"></div>
 
-    {% if cart.items.size == 0 %}
-      {{ empty_cart }}
-    {% endif %}
+        <div>
+          Total: <strong>{{ item.final_line_price | money }}</strong>
+        </div>
+      {% endfor %}
+    </div>
+
+    <button type="submit" name="checkout">Checkout — {{ cart.total_price | money_with_currency }}</button>
   </div>
-</div>
+</form>
 
-{% schema %}
-{
-  "name": "Cart",
-  "tag": "section",
-  "class": "cart-section",
-  "disabled_on": {
-    "groups": ["header"]
-  },
-  "settings": [
-    {
-      "type": "header",
-      "content": "Spend more message"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_spend_more",
-      "label": "Enable",
-      "default": false
-    },
-    {
-      "type": "number",
-      "id": "spend_more_trigger",
-      "label": "Trigger amount"
-    },
-    {
-      "type": "richtext",
-      "id": "spend_more_message",
-      "label": "Message",
-      "info": "Enter SPEND_AMT to insert balance amount.",
-      "default": "<p>Spend <strong>SPEND_AMT</strong> to qualify for <strong>free delivery</strong>.</p>"
-    },
-    {
-      "type": "header",
-      "content": "Cart total"
-    },
-    {
-      "type": "inline_richtext",
-      "id": "cart_total_label",
-      "label": "Cart total label",
-      "default": "Estimated total"
-    },
-    {
-      "type": "richtext",
-      "id": "checkout_note",
-      "label": "Checkout note",
-      "default": "<p><em>Tax, shipping and discounts are calculated at checkout.</em></p>"
-    },
-    {
-      "type": "text",
-      "id": "checkout_btn_label",
-      "label": "Checkout button label",
-      "default": "Checkout"
-    },
-    {
-      "type": "header",
-      "content": "Gift wrap"
-    },
-    {
-      "type": "product",
-      "id": "gift_wrap_product",
-      "label": "Product",
-      "info": "Leave blank to turn feature off."
-    }
-  ]
-}
-{% endschema %}
+{% schema %} { "name": "Main Cart" } {% endschema %}
