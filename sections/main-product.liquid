@@ -569,7 +569,7 @@
           </button>
         </div>
 
-        <form action="{{ routes.cart_add_url }}" method="post">
+        <form action="/cart/add" method="post">
           {%- for block in section.blocks -%}
             {% case block.type %}
               {%- when '@app' -%}
