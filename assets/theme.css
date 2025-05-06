@@ -558,20 +558,15 @@ input:focus-visible {
   transform: translate(0, -4px) rotate(-45deg);
 }
 
-.js--cart-counter {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 17px;
-  height: 17px;
+.cart-indicator {
+  display: block;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  background-color: var(--neutral-950);
-  color: var(--white);
-  font-size: 10px;
-  font-family: "Ordinary Regular";
+  background-color: #ff0000;
   position: absolute;
-  bottom: -7px;
-  right: -12px;
+  bottom: -2px;
+  right: -5px;
 }
 
 @media (max-width: 768px) {

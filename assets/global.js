@@ -1,12 +1,23 @@
 window.addEventListener("load", () => {
   quicklink.listen();
 
-  document.querySelectorAll(".js--cart-counter").forEach((el) => {
+  document.querySelectorAll(".cart-indicator").forEach((el) => {
     el.style.visibility = "hidden";
   });
 
+  const storedCount = localStorage.getItem("cartCount");
+  if (storedCount !== null) {
+    const count = parseInt(storedCount, 10);
+    if (count > 0) {
+      document.querySelectorAll(".cart-indicator").forEach((el) => {
+        el.classList.remove("hide");
+        el.style.visibility = "visible";
+      });
+    }
+  }
+
   syncCartFromStorage().then(() => {
-    document.querySelectorAll(".js--cart-counter").forEach((el) => {
+    document.querySelectorAll(".cart-indicator").forEach((el) => {
       el.style.visibility = "visible";
     });
   });
@@ -21,8 +32,7 @@ function closeCartDrawer() {
 }
 
 function updateCartItemCounts(count) {
-  document.querySelectorAll(".js--cart-counter").forEach((el) => {
-    el.textContent = count;
+  document.querySelectorAll(".cart-indicator").forEach((el) => {
     if (count > 0) {
       el.classList.remove("hide");
     } else {
@@ -30,6 +40,8 @@ function updateCartItemCounts(count) {
     }
   });
   localStorage.setItem("cartCount", count.toString());
+  
+  localStorage.setItem("cartCountUpdated", new Date().getTime().toString());
 }
 
 async function syncCartFromStorage() {
@@ -38,19 +50,15 @@ async function syncCartFromStorage() {
     updateCartItemCounts(parseInt(storedCartCount, 10));
   }
 
-  const cartState = localStorage.getItem("cartState");
-  if (cartState) {
-    try {
-      const lastCartUpdate = localStorage.getItem("lastCartUpdate");
-      const currentTime = new Date().getTime();
+  const shouldRefreshCart = () => {
+    const lastCartCountUpdate = localStorage.getItem("cartCountUpdated");
+    if (!lastCartCountUpdate) return true;
+    
+    const currentTime = new Date().getTime();
+    return currentTime - parseInt(lastCartCountUpdate, 10) > 300000;
+  };
 
-      if (!lastCartUpdate || currentTime - parseInt(lastCartUpdate, 10) > 3600000) {
-        await fetchAndUpdateCart();
-      }
-    } catch (e) {
-      await fetchAndUpdateCart();
-    }
-  } else {
+  if (!localStorage.getItem("cartState") || shouldRefreshCart()) {
     await fetchAndUpdateCart();
   }
 }
@@ -58,6 +66,8 @@ async function syncCartFromStorage() {
 async function fetchAndUpdateCart() {
   try {
     const res = await fetch("/cart.js");
+    if (!res.ok) throw new Error("Failed to fetch cart");
+    
     const cart = await res.json();
     updateCartItemCounts(cart.item_count);
     localStorage.setItem("cartState", JSON.stringify(cart));
@@ -220,12 +230,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
 window.addEventListener("pageshow", (event) => {
   if (event.persisted) {
-    document.querySelectorAll(".js--cart-counter").forEach((el) => {
+    document.querySelectorAll(".cart-indicator").forEach((el) => {
       el.style.visibility = "hidden";
     });
-
+    
+    const storedCount = localStorage.getItem("cartCount");
+    if (storedCount !== null) {
+      const count = parseInt(storedCount, 10);
+      if (count > 0) {
+        document.querySelectorAll(".cart-indicator").forEach((el) => {
+          el.classList.remove("hide");
+          el.style.visibility = "visible";
+        });
+      } else {
+        document.querySelectorAll(".cart-indicator").forEach((el) => {
+          el.classList.add("hide");
+        });
+      }
+    }
+    
     syncCartFromStorage().then(() => {
-      document.querySelectorAll(".js--cart-counter").forEach((el) => {
+      document.querySelectorAll(".cart-indicator").forEach((el) => {
         el.style.visibility = "visible";
       });
     });

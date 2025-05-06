@@ -25,14 +25,12 @@
     <li>
       <a
         href="{{ routes.cart_url }}"
-        aria-label="Cart{% if cart.item_count > 0 %} with {{ cart.item_count }} item{% if cart.item_count > 1 %}s{% endif %}{% endif %}"
+        aria-label="Cart{% if cart.item_count > 0 %} with items{% endif %}"
         style="text-decoration: none; position: relative;"
         class="js-cart-icon"
       >
         {%- render 'icon-cart', accessible_name: 'Shopping Cart', role: 'img' %}
-        <span class="js--cart-counter {% if cart.item_count == 0 %}hide{% endif %}" aria-hidden="true">
-          {{- cart.item_count -}}
-        </span>
+        <span class="cart-indicator {% if cart.item_count == 0 %}hide{% endif %}" aria-hidden="true"></span>
       </a>
     </li>
   </ul>
