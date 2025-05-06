@@ -232,11 +232,11 @@ document.addEventListener("DOMContentLoaded", () => {
                         ${variantTitle ? `<span>${variantTitle}</span>` : ''}
                         <div class="cart-drawer-item-actions">
                           <div class="cart-drawer-quantity-selector">
-                            <button class="cart-drawer-quantity-selector-minus" type="button">-</button>
+                            <button class="cart-drawer-quantity-selector-minus" type="button" style="cursor: not-allowed;">-</button>
                             <input type="text" readonly value="1">
-                            <button class="cart-drawer-quantity-selector-plus" type="button">+</button>
+                            <button class="cart-drawer-quantity-selector-plus" type="button" style="cursor: not-allowed;">+</button>
                           </div>
-                          <button type="button" class="cart-drawer-item-remove">Remove</button>
+                          <button type="button" class="cart-drawer-item-remove" style="cursor: not-allowed;">Remove</button>
                         </div>
                       </div>
                       <div class="cart-drawer-item-main-flex-right">
@@ -304,7 +304,7 @@ document.addEventListener("DOMContentLoaded", () => {
             updateCartDrawer();
           };
           
-          setTimeout(refreshDrawer, 2000);
+          setTimeout(refreshDrawer, 1000);
           
         } catch (e) {
           console.error("Error adding to cart:", e);

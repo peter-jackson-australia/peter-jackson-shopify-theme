@@ -1,5 +1,4 @@
 AJAX CART:
-Ensure variant options are always retrieved, add in safeguards for items that dont have variants 
 Replace cart counter with some kind of indicator dot and remove cart item quantity from top of the cart 
 Make the cart checkout button sticky and the line items container have custom scrollbar with a soft gradient sitting above checkout button container 
 Style 
