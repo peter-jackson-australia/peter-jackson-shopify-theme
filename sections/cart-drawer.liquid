@@ -68,6 +68,10 @@
     cursor: pointer;
   }
 
+  .cart-drawer-header-right-close:hover {
+    color: #212529;
+  }
+
   .cart-drawer-form {
     flex: 1;
     display: flex;
@@ -224,17 +228,17 @@
     border: none;
     text-decoration: underline;
   }
+
+  .cart-drawer-item-remove:hover {
+    color: #212529;
+  }
 </style>
 
 <div class="cart-drawer">
   <div class="cart-drawer-box">
-    {% comment %} Header section {% endcomment %}
     <header class="cart-drawer-header">
       <h2>Your cart</h2>
-
       <div class="cart-drawer-header-right">
-        <span class="cart-drawer-header-right-items">{{ cart.item_count }} items</span>
-
         <button class="cart-drawer-header-right-close" type="button">X</button>
       </div>
     </header>
@@ -259,19 +263,7 @@
                     <h3>
                       <a href="{{ item.url }}">{{ item.product.title }}</a>
                     </h3>
-                    {% if item.variant.title != 'Default Title' %}
-                      <span>
-                        {% assign variant_title_parts = item.variant.title | split: ' / ' %}
-                        {% for part in variant_title_parts %}
-                          {% if part contains '.0' %}
-                            {{ part | replace: '.0', '' }}
-                          {% else %}
-                            {{ part }}
-                          {% endif %}
-                          {% unless forloop.last %} / {% endunless %}
-                        {% endfor %}
-                      </span>
-                    {% endif %}
+                    <span>{{ item.variant.title }}</span>
                     <div class="cart-drawer-item-actions">
                       <div class="cart-drawer-quantity-selector">
                         <button class="cart-drawer-quantity-selector-minus" type="button">-</button>

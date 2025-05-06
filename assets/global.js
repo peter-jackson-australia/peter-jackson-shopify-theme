@@ -141,9 +141,6 @@ function addCartDrawerListeners() {
   document.querySelectorAll(".cart-drawer-item-remove").forEach((button) => {
     button.addEventListener("click", async () => {
       const rootItem = button.closest(".cart-drawer-item");
-
-      rootItem.style.display = "none";
-
       const key = rootItem.getAttribute("data-line-item-key");
 
       try {
@@ -163,7 +160,6 @@ function addCartDrawerListeners() {
 
         updateCartDrawer();
       } catch (e) {
-        rootItem.style.display = "";
         console.error("Error removing item:", e);
       }
     });
@@ -186,128 +182,8 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll('form[action="/cart/add"]').forEach((form) => {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
-
-      openCartDrawer();
-
       const addToCartButton = form.querySelector("#js--addtocart");
       if (addToCartButton && !addToCartButton.disabled) {
-        const cartDrawer = document.querySelector(".cart-drawer-form");
-        if (cartDrawer) {
-          const productTitle = document.querySelector(".product-details__title").innerText;
-          const productPrice = document.querySelector(".product-details__price-actual").innerText;
-
-          let productImage = "";
-
-          const productImages = document.querySelectorAll(".product-images-splide .splide__slide img");
-          if (productImages.length > 0) {
-            productImage = productImages[0].src;
-          }
-
-          const variantOptionGroups = document.querySelectorAll(".js--variant-options");
-          let variantSelections = [];
-
-          if (variantOptionGroups.length > 0) {
-            variantOptionGroups.forEach((optionGroup) => {
-              const selectedOption = optionGroup.querySelector('input[type="radio"]:checked');
-              if (selectedOption) {
-                let optionValue = selectedOption.value.replace(".0", "");
-                variantSelections.push(optionValue);
-              }
-            });
-          }
-
-          const variantTitle = variantSelections.length > 0 ? variantSelections.join(" / ") : "";
-          const existingItem = findExistingCartItem(productTitle, variantTitle);
-
-          if (existingItem) {
-            const quantityInput = existingItem.querySelector(".cart-drawer-quantity-selector input");
-            const currentQuantity = parseInt(quantityInput.value, 10);
-            quantityInput.value = currentQuantity + 1;
-
-            const priceElement = existingItem.querySelector(".cart-drawer-item-main-flex-right span");
-            if (priceElement) {
-              const singlePrice = parseMoney(productPrice);
-              const newPrice = formatMoney(singlePrice * (currentQuantity + 1));
-              priceElement.innerText = newPrice;
-            }
-
-            existingItem.style.backgroundColor = "#f8f9fa";
-            setTimeout(() => {
-              existingItem.style.backgroundColor = "";
-            }, 300);
-          } else {
-            if (document.querySelector(".cart-drawer-empty")) {
-              cartDrawer.innerHTML = `
-                <div class="cart-drawer-items">
-                  <div class="cart-drawer-item placeholder-item" style="cursor: not-allowed;">
-                    <div class="cart-drawer-item-image">
-                      <img src="${productImage}" alt="${productTitle}">
-                    </div>
-                    <div class="cart-drawer-item-main">
-                      <div class="cart-drawer-item-main-flex">
-                        <div class="cart-drawer-item-main-flex-left">
-                          <h3><a href="#">${productTitle}</a></h3>
-                          ${variantTitle ? `<span>${variantTitle}</span>` : ""}
-                          <div class="cart-drawer-item-actions">
-                            <div class="cart-drawer-quantity-selector">
-                              <button class="cart-drawer-quantity-selector-minus" type="button" style="cursor: not-allowed;">-</button>
-                              <input type="text" readonly value="1">
-                              <button class="cart-drawer-quantity-selector-plus" type="button" style="cursor: not-allowed;">+</button>
-                            </div>
-                            <button type="button" class="cart-drawer-item-remove" style="cursor: not-allowed;">Remove</button>
-                          </div>
-                        </div>
-                        <div class="cart-drawer-item-main-flex-right">
-                          <span>${productPrice}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <footer class="cart-drawer-footer">
-                  <div class="cart-drawer-footer-row">
-                    <h3>Subtotal</h3>
-                    <span>${productPrice}</span>
-                  </div>
-                  <button type="submit" name="checkout" class="cart-drawer-button">Checkout</button>
-                </footer>
-              `;
-            } else {
-              const cartItems = document.querySelector(".cart-drawer-items");
-              if (cartItems) {
-                const placeholderItem = document.createElement("div");
-                placeholderItem.className = "cart-drawer-item placeholder-item";
-                placeholderItem.style.cursor = "not-allowed";
-                placeholderItem.innerHTML = `
-                  <div class="cart-drawer-item-image">
-                    <img src="${productImage}" alt="${productTitle}">
-                  </div>
-                  <div class="cart-drawer-item-main">
-                    <div class="cart-drawer-item-main-flex">
-                      <div class="cart-drawer-item-main-flex-left">
-                        <h3><a href="#">${productTitle}</a></h3>
-                        ${variantTitle ? `<span>${variantTitle}</span>` : ""}
-                        <div class="cart-drawer-item-actions">
-                          <div class="cart-drawer-quantity-selector">
-                            <button class="cart-drawer-quantity-selector-minus" type="button">-</button>
-                            <input type="text" readonly value="1">
-                            <button class="cart-drawer-quantity-selector-plus" type="button">+</button>
-                          </div>
-                          <button type="button" class="cart-drawer-item-remove">Remove</button>
-                        </div>
-                      </div>
-                      <div class="cart-drawer-item-main-flex-right">
-                        <span>${productPrice}</span>
-                      </div>
-                    </div>
-                  </div>
-                `;
-                cartItems.prepend(placeholderItem);
-              }
-            }
-          }
-        }
-
         const originalText = addToCartButton.innerHTML;
         addToCartButton.innerHTML = `<div style="width: var(--space-s); height: var(--space-s); margin: 0 auto;"><svg fill=#FFFFFFFF viewBox="0 0 20 20"xmlns=http://www.w3.org/2000/svg><defs><linearGradient id=RadialGradient8932><stop offset=0% stop-color=currentColor stop-opacity=1 /><stop offset=100% stop-color=currentColor stop-opacity=0.25 /></linearGradient></defs><style>@keyframes spin8932{to{transform:rotate(360deg)}}#circle8932{transform-origin:50% 50%;stroke:url(#RadialGradient8932);fill:none;animation:spin8932 .5s infinite linear}</style><circle cx=10 cy=10 id=circle8932 r=8 stroke-width=2 /></svg></div>`;
 
@@ -317,13 +193,9 @@ document.addEventListener("DOMContentLoaded", () => {
             body: new FormData(form),
           });
 
-          await fetchAndUpdateCart();
-
-          const refreshDrawer = () => {
-            updateCartDrawer();
-          };
-
-          setTimeout(refreshDrawer, 1000);
+          const cart = await fetchAndUpdateCart();
+          await updateCartDrawer();
+          openCartDrawer();
         } catch (e) {
           console.error("Error adding to cart:", e);
         } finally {
@@ -345,30 +217,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-
-function findExistingCartItem(productTitle, variantTitle) {
-  const cartItems = document.querySelectorAll(".cart-drawer-item:not(.placeholder-item)");
-
-  for (const item of cartItems) {
-    const itemTitle = item.querySelector("h3 a").innerText;
-    const itemVariantElem = item.querySelector(".cart-drawer-item-main-flex-left > span");
-    const itemVariant = itemVariantElem ? itemVariantElem.innerText : "";
-
-    if (itemTitle === productTitle && itemVariant === variantTitle) {
-      return item;
-    }
-  }
-
-  return null;
-}
-
-function parseMoney(moneyString) {
-  return parseFloat(moneyString.replace(/[^0-9.-]+/g, ""));
-}
-
-function formatMoney(amount) {
-  return "$" + amount.toFixed(2);
-}
 
 window.addEventListener("pageshow", (event) => {
   if (event.persisted) {
