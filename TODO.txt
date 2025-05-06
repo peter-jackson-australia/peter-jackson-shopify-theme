@@ -1,4 +1,5 @@
 AJAX CART:
+add in loading state for cart total, placeholder price, quantiy selector (also don't show remove button on placeholder)
 Replace cart counter with some kind of indicator dot and remove cart item quantity from top of the cart 
 Make the cart checkout button sticky and the line items container have custom scrollbar with a soft gradient sitting above checkout button container 
 Style 
