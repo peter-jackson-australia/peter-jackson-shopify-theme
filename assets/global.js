@@ -196,8 +196,8 @@ document.addEventListener("DOMContentLoaded", () => {
           const productTitle = document.querySelector('.product-details__title').innerText;
           const productPrice = document.querySelector('.product-details__price-actual').innerText;
           
-          // IMPORTANT: Always use first product image
           let productImage = '';
+          
           const productImages = document.querySelectorAll('.product-images-splide .splide__slide img');
           if (productImages.length > 0) {
             productImage = productImages[0].src;
@@ -217,14 +217,6 @@ document.addEventListener("DOMContentLoaded", () => {
           }
           
           const variantTitle = variantSelections.length > 0 ? variantSelections.join(' / ') : '';
-          
-          // HACK: Force the browser to load the image by setting it as a global property
-          // The browser will cache this image which prevents flickering
-          window.lastProductImage = productImage;
-          
-          // Create a hidden Image object to ensure the browser loads and caches the image
-          const preloadImg = new Image();
-          preloadImg.src = productImage;
           
           if (document.querySelector('.cart-drawer-empty')) {
             cartDrawer.innerHTML = `
@@ -305,28 +297,17 @@ document.addEventListener("DOMContentLoaded", () => {
             method: "post",
             body: new FormData(form),
           });
-  
+          
           await fetchAndUpdateCart();
           
-          if (preloadImg.complete) {
-            setTimeout(() => {
-              updateCartDrawer();
-            }, 500);
-          } else {
-            preloadImg.onload = function() {
-              setTimeout(() => {
-                updateCartDrawer();
-              }, 500);
-            };
-            
-            setTimeout(() => {
-              updateCartDrawer();
-            }, 2000);
-          }
+          const refreshDrawer = () => {
+            updateCartDrawer();
+          };
+          
+          setTimeout(refreshDrawer, 2000);
           
         } catch (e) {
           console.error("Error adding to cart:", e);
-          updateCartDrawer();
         } finally {
           addToCartButton.innerHTML = originalText;
         }
