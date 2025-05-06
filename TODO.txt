@@ -1,5 +1,5 @@
 AJAX CART:
-Make drawer open instantly when item
+Make drawer open instantly
 Add in some kind of placeholder that is slightly greyed out with all of the product line item info (ungrey it out when item is actually in the cart) 
 Ensure that the cart counter is always correct, especially when navigating back a page very quickly (maybe its value should only ever derive from JS)
 Make the cart checkout button sticky and the line items container have custom scrollbar with a soft gradient sitting above checkout button container 
