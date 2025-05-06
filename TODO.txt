@@ -1,4 +1,5 @@
 AJAX CART:
+Make cart state persistance perfect
 Remove the default title that is shown for items with no variants
 Make the cart checkout button sticky and the line items container have custom scrollbar with a soft gradient sitting above checkout button container 
 Style 
