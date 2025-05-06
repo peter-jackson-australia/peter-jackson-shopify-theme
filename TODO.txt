@@ -1,9 +1,9 @@
 AJAX CART:
+Add in loading state when cart button is clicked 
 Make drawer open instantly when item is added, and just update cart items 
 Ensure that the cart counter is always correct, especially when navigating back a page very quickly 
 Add in some loading states
 Make the cart checkout button sticky and the line items container have custom scrollbar with a soft gradient sitting above checkout button container 
-ensure that if clicking unavailable item, the cart doesn't add item or open 
 Style 
 minimise code and combine files 
 Test thoroughly and make fast
