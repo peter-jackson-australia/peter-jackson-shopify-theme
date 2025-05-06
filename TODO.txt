@@ -1,11 +1,17 @@
 AJAX CART:
-Make drawer open instantly, and just update cart items 
-Ensure that the cart counter is always correct 
+Make drawer open instantly when item is added, and just update cart items 
+Ensure that the cart counter is always correct, especially when navigating back a page very quickly 
 Add in some loading states
-Test thoroughly 
+Make the cart checkout button sticky and the line items container have custom scrollbar with a soft gradient sitting above checkout button container 
+ensure that if clicking unavailable item, the cart doesn't add item or open 
 Style 
-minimise code 
+minimise code and combine files 
+Test thoroughly and make fast
 
+Add in cursor not allowed on invalid back button on product image sliders
+change filter button to say filters 
+remove random black dot when filters are applied 
+price input field is being cut off on longer numbers like 799.00
 
 /////////////////////////////////////////////////////
 
