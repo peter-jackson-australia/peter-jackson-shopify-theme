@@ -192,6 +192,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll('form[action="/cart/add"]').forEach((form) => {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
+      openCartDrawer();
       const addToCartButton = form.querySelector("#js--addtocart");
       if (addToCartButton && !addToCartButton.disabled) {
         const originalText = addToCartButton.innerHTML;
@@ -205,7 +206,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
           const cart = await fetchAndUpdateCart();
           await updateCartDrawer();
-          openCartDrawer();
         } catch (e) {
           console.error("Error adding to cart:", e);
         } finally {
