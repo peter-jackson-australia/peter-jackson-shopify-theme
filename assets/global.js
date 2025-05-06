@@ -193,21 +193,16 @@ document.addEventListener("DOMContentLoaded", () => {
       if (addToCartButton && !addToCartButton.disabled) {
         const cartDrawer = document.querySelector(".cart-drawer-form");
         if (cartDrawer) {
-          // Get basic product details
           const productTitle = document.querySelector('.product-details__title').innerText;
           const productPrice = document.querySelector('.product-details__price-actual').innerText;
           
-          // Get the current product image
+          // IMPORTANT: Always use first product image
           let productImage = '';
-          const activeSlide = document.querySelector('.product-images-splide .splide__slide.is-active img');
-          if (activeSlide) {
-            productImage = activeSlide.src;
-          } else {
-            const firstImage = document.querySelector('.product-images-splide .splide__slide img');
-            productImage = firstImage ? firstImage.src : '';
+          const productImages = document.querySelectorAll('.product-images-splide .splide__slide img');
+          if (productImages.length > 0) {
+            productImage = productImages[0].src;
           }
           
-          // Get all variant selections in a more flexible way
           const variantOptionGroups = document.querySelectorAll('.js--variant-options');
           let variantSelections = [];
           
@@ -221,10 +216,16 @@ document.addEventListener("DOMContentLoaded", () => {
             });
           }
           
-          // Join selections with slash separator, or empty string if none
           const variantTitle = variantSelections.length > 0 ? variantSelections.join(' / ') : '';
           
-          // Rest of your existing code for placeholder creation
+          // HACK: Force the browser to load the image by setting it as a global property
+          // The browser will cache this image which prevents flickering
+          window.lastProductImage = productImage;
+          
+          // Create a hidden Image object to ensure the browser loads and caches the image
+          const preloadImg = new Image();
+          preloadImg.src = productImage;
+          
           if (document.querySelector('.cart-drawer-empty')) {
             cartDrawer.innerHTML = `
               <div class="cart-drawer-items">
@@ -296,7 +297,6 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         }
         
-        // Rest of your existing code for fetch, etc.
         const originalText = addToCartButton.innerHTML;
         addToCartButton.innerHTML = `<div style="width: var(--space-s); height: var(--space-s); margin: 0 auto;"><svg fill=#FFFFFFFF viewBox="0 0 20 20"xmlns=http://www.w3.org/2000/svg><defs><linearGradient id=RadialGradient8932><stop offset=0% stop-color=currentColor stop-opacity=1 /><stop offset=100% stop-color=currentColor stop-opacity=0.25 /></linearGradient></defs><style>@keyframes spin8932{to{transform:rotate(360deg)}}#circle8932{transform-origin:50% 50%;stroke:url(#RadialGradient8932);fill:none;animation:spin8932 .5s infinite linear}</style><circle cx=10 cy=10 id=circle8932 r=8 stroke-width=2 /></svg></div>`;
   
@@ -306,10 +306,27 @@ document.addEventListener("DOMContentLoaded", () => {
             body: new FormData(form),
           });
   
-          const cart = await fetchAndUpdateCart();
-          await updateCartDrawer();
+          await fetchAndUpdateCart();
+          
+          if (preloadImg.complete) {
+            setTimeout(() => {
+              updateCartDrawer();
+            }, 500);
+          } else {
+            preloadImg.onload = function() {
+              setTimeout(() => {
+                updateCartDrawer();
+              }, 500);
+            };
+            
+            setTimeout(() => {
+              updateCartDrawer();
+            }, 2000);
+          }
+          
         } catch (e) {
           console.error("Error adding to cart:", e);
+          updateCartDrawer();
         } finally {
           addToCartButton.innerHTML = originalText;
         }
