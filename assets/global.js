@@ -193,13 +193,38 @@ document.addEventListener("DOMContentLoaded", () => {
       if (addToCartButton && !addToCartButton.disabled) {
         const cartDrawer = document.querySelector(".cart-drawer-form");
         if (cartDrawer) {
+          // Get basic product details
           const productTitle = document.querySelector('.product-details__title').innerText;
           const productPrice = document.querySelector('.product-details__price-actual').innerText;
-          const productImage = document.querySelector('.product-images-splide .splide__slide.is-active img').src;
-          const variantSize = document.querySelector('input[name="option1"]:checked')?.value || '';
-          const variantFit = document.querySelector('input[name="option2"]:checked')?.value || '';
-          const variantTitle = variantSize && variantFit ? `${variantSize.replace('.0', '')} / ${variantFit}` : '';
           
+          // Get the current product image
+          let productImage = '';
+          const activeSlide = document.querySelector('.product-images-splide .splide__slide.is-active img');
+          if (activeSlide) {
+            productImage = activeSlide.src;
+          } else {
+            const firstImage = document.querySelector('.product-images-splide .splide__slide img');
+            productImage = firstImage ? firstImage.src : '';
+          }
+          
+          // Get all variant selections in a more flexible way
+          const variantOptionGroups = document.querySelectorAll('.js--variant-options');
+          let variantSelections = [];
+          
+          if (variantOptionGroups.length > 0) {
+            variantOptionGroups.forEach(optionGroup => {
+              const selectedOption = optionGroup.querySelector('input[type="radio"]:checked');
+              if (selectedOption) {
+                let optionValue = selectedOption.value.replace('.0', '');
+                variantSelections.push(optionValue);
+              }
+            });
+          }
+          
+          // Join selections with slash separator, or empty string if none
+          const variantTitle = variantSelections.length > 0 ? variantSelections.join(' / ') : '';
+          
+          // Rest of your existing code for placeholder creation
           if (document.querySelector('.cart-drawer-empty')) {
             cartDrawer.innerHTML = `
               <div class="cart-drawer-items">
@@ -211,7 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <div class="cart-drawer-item-main-flex">
                       <div class="cart-drawer-item-main-flex-left">
                         <h3><a href="#">${productTitle}</a></h3>
-                        <span>${variantTitle}</span>
+                        ${variantTitle ? `<span>${variantTitle}</span>` : ''}
                         <div class="cart-drawer-item-actions">
                           <div class="cart-drawer-quantity-selector">
                             <button class="cart-drawer-quantity-selector-minus" type="button">-</button>
@@ -250,7 +275,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   <div class="cart-drawer-item-main-flex">
                     <div class="cart-drawer-item-main-flex-left">
                       <h3><a href="#">${productTitle}</a></h3>
-                      <span>${variantTitle}</span>
+                      ${variantTitle ? `<span>${variantTitle}</span>` : ''}
                       <div class="cart-drawer-item-actions">
                         <div class="cart-drawer-quantity-selector">
                           <button class="cart-drawer-quantity-selector-minus" type="button">-</button>
@@ -271,15 +296,16 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         }
         
+        // Rest of your existing code for fetch, etc.
         const originalText = addToCartButton.innerHTML;
         addToCartButton.innerHTML = `<div style="width: var(--space-s); height: var(--space-s); margin: 0 auto;"><svg fill=#FFFFFFFF viewBox="0 0 20 20"xmlns=http://www.w3.org/2000/svg><defs><linearGradient id=RadialGradient8932><stop offset=0% stop-color=currentColor stop-opacity=1 /><stop offset=100% stop-color=currentColor stop-opacity=0.25 /></linearGradient></defs><style>@keyframes spin8932{to{transform:rotate(360deg)}}#circle8932{transform-origin:50% 50%;stroke:url(#RadialGradient8932);fill:none;animation:spin8932 .5s infinite linear}</style><circle cx=10 cy=10 id=circle8932 r=8 stroke-width=2 /></svg></div>`;
-
+  
         try {
           await fetch("/cart/add", {
             method: "post",
             body: new FormData(form),
           });
-
+  
           const cart = await fetchAndUpdateCart();
           await updateCartDrawer();
         } catch (e) {
