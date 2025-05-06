@@ -1,14 +1,12 @@
 window.addEventListener("load", () => {
   quicklink.listen();
-  
-  // Hide cart counter initially
-  document.querySelectorAll(".js--cart-counter").forEach(el => {
+
+  document.querySelectorAll(".js--cart-counter").forEach((el) => {
     el.style.visibility = "hidden";
   });
-  
-  // Sync from storage then make visible
+
   syncCartFromStorage().then(() => {
-    document.querySelectorAll(".js--cart-counter").forEach(el => {
+    document.querySelectorAll(".js--cart-counter").forEach((el) => {
       el.style.visibility = "visible";
     });
   });
@@ -19,9 +17,7 @@ function openCartDrawer() {
 }
 
 function closeCartDrawer() {
-  document
-    .querySelector(".cart-drawer")
-    .classList.remove("cart-drawer--active");
+  document.querySelector(".cart-drawer").classList.remove("cart-drawer--active");
 }
 
 function updateCartItemCounts(count) {
@@ -41,13 +37,13 @@ async function syncCartFromStorage() {
   if (storedCartCount !== null) {
     updateCartItemCounts(parseInt(storedCartCount, 10));
   }
-  
+
   const cartState = localStorage.getItem("cartState");
   if (cartState) {
     try {
       const lastCartUpdate = localStorage.getItem("lastCartUpdate");
       const currentTime = new Date().getTime();
-      
+
       if (!lastCartUpdate || currentTime - parseInt(lastCartUpdate, 10) > 3600000) {
         await fetchAndUpdateCart();
       }
@@ -86,12 +82,12 @@ async function updateCartDrawer(fetchCart = true) {
     if (fetchCart) {
       const cartRes = await fetch("/cart.js");
       const cart = await cartRes.json();
-      
+
       updateCartItemCounts(cart.item_count);
       localStorage.setItem("cartState", JSON.stringify(cart));
       localStorage.setItem("lastCartUpdate", new Date().getTime().toString());
     }
-    
+
     addCartDrawerListeners();
   } catch (e) {
     console.error("Error updating cart drawer:", e);
@@ -99,60 +95,54 @@ async function updateCartDrawer(fetchCart = true) {
 }
 
 function addCartDrawerListeners() {
-  document
-    .querySelectorAll(".cart-drawer-quantity-selector button")
-    .forEach((button) => {
-      button.addEventListener("click", async () => {
-        const rootItem = button.closest(".cart-drawer-item");
-        const key = rootItem.getAttribute("data-line-item-key");
-        const currentQuantity = Number(
-          button.parentElement.querySelector("input").value
-        );
-        const isUp = button.classList.contains(
-          "cart-drawer-quantity-selector-plus"
-        );
-        
-        if (isUp) {
-          const inventoryLimit = parseInt(rootItem.getAttribute("data-inventory-quantity") || "Infinity", 10);
-          if (currentQuantity >= inventoryLimit) {
-            const quantityInput = button.parentElement.querySelector("input");
-            quantityInput.style.backgroundColor = "#ffeeee";
-            setTimeout(() => {
-              quantityInput.style.backgroundColor = "";
-            }, 820);
-            return;
-          }
-        }
-        
-        const newQuantity = isUp ? currentQuantity + 1 : currentQuantity - 1;
-
-        try {
-          const res = await fetch("/cart/update.js", {
-            method: "post",
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ updates: { [key]: newQuantity } }),
-          });
-          const cart = await res.json();
-
-          updateCartItemCounts(cart.item_count);
-          localStorage.setItem("cartState", JSON.stringify(cart));
-          localStorage.setItem("lastCartUpdate", new Date().getTime().toString());
-          
-          updateCartDrawer();
-        } catch (e) {
-          console.error("Error updating quantity:", e);
-        }
-      });
-    });
-
-  document.querySelectorAll(".cart-drawer-item-remove").forEach(button => {
+  document.querySelectorAll(".cart-drawer-quantity-selector button").forEach((button) => {
     button.addEventListener("click", async () => {
       const rootItem = button.closest(".cart-drawer-item");
       const key = rootItem.getAttribute("data-line-item-key");
-      
+      const currentQuantity = Number(button.parentElement.querySelector("input").value);
+      const isUp = button.classList.contains("cart-drawer-quantity-selector-plus");
+
+      if (isUp) {
+        const inventoryLimit = parseInt(rootItem.getAttribute("data-inventory-quantity") || "Infinity", 10);
+        if (currentQuantity >= inventoryLimit) {
+          const quantityInput = button.parentElement.querySelector("input");
+          quantityInput.style.backgroundColor = "#ffeeee";
+          setTimeout(() => {
+            quantityInput.style.backgroundColor = "";
+          }, 820);
+          return;
+        }
+      }
+
+      const newQuantity = isUp ? currentQuantity + 1 : currentQuantity - 1;
+
+      try {
+        const res = await fetch("/cart/update.js", {
+          method: "post",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ updates: { [key]: newQuantity } }),
+        });
+        const cart = await res.json();
+
+        updateCartItemCounts(cart.item_count);
+        localStorage.setItem("cartState", JSON.stringify(cart));
+        localStorage.setItem("lastCartUpdate", new Date().getTime().toString());
+
+        updateCartDrawer();
+      } catch (e) {
+        console.error("Error updating quantity:", e);
+      }
+    });
+  });
+
+  document.querySelectorAll(".cart-drawer-item-remove").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const rootItem = button.closest(".cart-drawer-item");
+      const key = rootItem.getAttribute("data-line-item-key");
+
       try {
         const res = await fetch("/cart/update.js", {
           method: "post",
@@ -167,7 +157,7 @@ function addCartDrawerListeners() {
         updateCartItemCounts(cart.item_count);
         localStorage.setItem("cartState", JSON.stringify(cart));
         localStorage.setItem("lastCartUpdate", new Date().getTime().toString());
-        
+
         updateCartDrawer();
       } catch (e) {
         console.error("Error removing item:", e);
@@ -179,39 +169,38 @@ function addCartDrawerListeners() {
     e.stopPropagation();
   });
 
-  document
-    .querySelectorAll(".cart-drawer-header-right-close, .cart-drawer")
-    .forEach((el) => {
-      el.addEventListener("click", () => {
-        closeCartDrawer();
-      });
+  document.querySelectorAll(".cart-drawer-header-right-close, .cart-drawer").forEach((el) => {
+    el.addEventListener("click", () => {
+      closeCartDrawer();
     });
+  });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   addCartDrawerListeners();
-  
+
   document.querySelectorAll('form[action="/cart/add"]').forEach((form) => {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
+      const addToCartButton = form.querySelector("#js--addtocart");
+      if (addToCartButton && !addToCartButton.disabled) {
+        const originalText = addToCartButton.innerHTML;
+        addToCartButton.innerHTML = `<div style="width: var(--space-s); height: var(--space-s); margin: 0 auto;"><svg fill=#FFFFFFFF viewBox="0 0 20 20"xmlns=http://www.w3.org/2000/svg><defs><linearGradient id=RadialGradient8932><stop offset=0% stop-color=currentColor stop-opacity=1 /><stop offset=100% stop-color=currentColor stop-opacity=0.25 /></linearGradient></defs><style>@keyframes spin8932{to{transform:rotate(360deg)}}#circle8932{transform-origin:50% 50%;stroke:url(#RadialGradient8932);fill:none;animation:spin8932 .5s infinite linear}</style><circle cx=10 cy=10 id=circle8932 r=8 stroke-width=2 /></svg></div>`;
 
-      try {
-        await fetch("/cart/add", {
-          method: "post",
-          body: new FormData(form),
-        });
+        try {
+          await fetch("/cart/add", {
+            method: "post",
+            body: new FormData(form),
+          });
 
-        const res = await fetch("/cart.js");
-        const cart = await res.json();
-        
-        updateCartItemCounts(cart.item_count);
-        localStorage.setItem("cartState", JSON.stringify(cart));
-        localStorage.setItem("lastCartUpdate", new Date().getTime().toString());
-
-        await updateCartDrawer();
-        openCartDrawer();
-      } catch (e) {
-        console.error("Error adding to cart:", e);
+          const cart = await fetchAndUpdateCart();
+          await updateCartDrawer();
+          openCartDrawer();
+        } catch (e) {
+          console.error("Error adding to cart:", e);
+        } finally {
+          addToCartButton.innerHTML = originalText;
+        }
       }
     });
   });
@@ -219,11 +208,9 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll('a[href="/cart"]').forEach((a) => {
     a.addEventListener("click", (e) => {
       e.preventDefault();
-      
-      // Open cart drawer immediately
+
       openCartDrawer();
-      
-      // Then update in background
+
       fetchAndUpdateCart().then(() => {
         updateCartDrawer(false);
       });
@@ -233,12 +220,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 window.addEventListener("pageshow", (event) => {
   if (event.persisted) {
-    document.querySelectorAll(".js--cart-counter").forEach(el => {
+    document.querySelectorAll(".js--cart-counter").forEach((el) => {
       el.style.visibility = "hidden";
     });
-    
+
     syncCartFromStorage().then(() => {
-      document.querySelectorAll(".js--cart-counter").forEach(el => {
+      document.querySelectorAll(".js--cart-counter").forEach((el) => {
         el.style.visibility = "visible";
       });
     });

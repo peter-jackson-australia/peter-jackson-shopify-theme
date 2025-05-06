@@ -617,9 +617,19 @@
                   value="{{ current_variant.id }}"
                 >
                 {% if current_variant.available == true %}
-                  <button type="submit" id="js--addtocart" class="body">Add To Cart</button>
+                  <button type="submit" id="js--addtocart" class="body" style="height: var(--space-xl);">
+                    Add To Cart
+                  </button>
                 {% else %}
-                  <button type="submit" id="js--addtocart" class="body--uppercase" disabled>Unavailable</button>
+                  <button
+                    type="submit"
+                    id="js--addtocart"
+                    class="body--uppercase"
+                    style="height: var(--space-xl);"
+                    disabled
+                  >
+                    Unavailable
+                  </button>
                 {% endif %}
             {%- endcase -%}
           {%- endfor -%}
