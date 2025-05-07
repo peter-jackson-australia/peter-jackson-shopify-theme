@@ -1,3 +1,7 @@
+{% comment %}
+  AJAX Cart
+{% endcomment %}
+
 <style>
   .cart {
     position: fixed;
@@ -82,7 +86,6 @@
   .cart-item {
     display: flex;
     align-items: center;
-    border: 1px solid var(--neutral-200);
     background: var(--white);
     overflow: hidden;
   }
@@ -92,13 +95,16 @@
   }
 
   .cart-item__image {
-    width: var(--space-xl);
+    width: 100px;
+    min-width: 100px;
   }
 
   .cart-item__image img {
-    width: var(--space-xl);
-    height: var(--space-xl);
-    object-fit: cover;
+    width: 100%;
+    height: auto;
+    max-height: 100px;
+    object-fit: contain;
+    display: block;
   }
 
   .cart-item__content {
@@ -108,12 +114,14 @@
 
   .cart-item__row {
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
+    align-items: flex-start;
     gap: var(--space-s);
   }
 
   .cart-item__details {
     flex: 1;
+    min-width: 50%;
   }
 
   .cart-item__title a {
@@ -228,7 +236,12 @@
               data-inventory-quantity="{{ item.variant.inventory_quantity }}"
             >
               <div class="cart-item__image">
-                <img src="{{ item.image | img_url: '200x' }}" alt="{{ item.title }}">
+                <img
+                  src="{{ item.image | image_url: width: '200x' }}"
+                  alt="{{ item.title }}"
+                  width="100"
+                  height="auto"
+                >
               </div>
               <div class="cart-item__content">
                 <div class="cart-item__row">
