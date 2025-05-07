@@ -1,304 +1,295 @@
 <style>
-  .cart-drawer {
+  .cart {
     position: fixed;
     top: 0;
     left: -9999px;
     opacity: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.6);
     z-index: 99999;
     display: flex;
     flex-direction: column;
-    padding: 24px;
   }
 
-  .cart-drawer--active {
+  .cart--active {
     left: 0;
     opacity: 1;
   }
 
-  .cart-drawer-box {
-    width: 480px;
-    background: #f5f5f5;
-    border-radius: 12px;
+  .cart__container {
+    width: 400px;
+    background-color: var(--white);
     flex: 1;
     margin-left: auto;
     display: flex;
     flex-direction: column;
     overflow: auto;
     opacity: 0;
-    transform: translateX(40px);
+    transform: translateX(var(--space-m));
   }
 
-  .cart-drawer--active .cart-drawer-box {
+  .cart--active .cart__container {
     transform: none;
     opacity: 1;
   }
 
-  .cart-drawer-header {
+  .cart__header {
     display: flex;
     align-items: center;
-    padding: 24px;
-    border-bottom: 1px solid #e7e7e7;
+    padding: var(--space-m);
+    border-bottom: 1px solid var(--neutral-200);
   }
 
-  .cart-drawer-header h2 {
-    color: #212529;
+  .cart__title {
+    color: var(--neutral-950);
     flex: 1;
-    font-weight: 500;
-    font-size: 18px;
   }
 
-  .cart-drawer-header-right {
-    color: #a1a1a1;
+  .cart__controls {
+    color: var(--neutral-400);
     display: inline-flex;
     align-items: center;
-    gap: 20px;
+    gap: var(--space-s);
   }
 
-  .cart-drawer-header-right-items {
+  .cart__count {
     display: block;
-    font-weight: 500;
   }
 
-  .cart-drawer-header-right-close {
-    width: 20px;
-    color: #a1a1a1;
+  .cart__close {
+    width: var(--space-s);
+    color: var(--neutral-400);
     cursor: pointer;
+    background: none;
+    border: none;
   }
 
-  .cart-drawer-header-right-close:hover {
-    color: #212529;
+  .cart__close:hover {
+    color: var(--neutral-950);
   }
 
-  .cart-drawer-form {
+  .cart__form {
     flex: 1;
     display: flex;
     flex-direction: column;
   }
 
-  .cart-drawer-items {
-    padding: 24px;
+  .cart__items {
+    padding: var(--space-m);
   }
 
-  .cart-drawer-item {
+  .cart-item {
     display: flex;
     align-items: center;
-    border: 1px solid #e7e7e7;
-    border-radius: 12px;
-    background: white;
+    border: 1px solid var(--neutral-200);
+    background: var(--white);
     overflow: hidden;
   }
 
-  .cart-drawer-item + .cart-drawer-item {
-    margin-top: 10px;
+  .cart-item + .cart-item {
+    margin-top: var(--space-2xs);
   }
 
-  .cart-drawer-item-image {
-    width: 120px;
+  .cart-item__image {
+    width: var(--space-xl);
   }
 
-  .cart-drawer-item-image img {
-    width: 120px;
-    height: 120px;
+  .cart-item__image img {
+    width: var(--space-xl);
+    height: var(--space-xl);
     object-fit: cover;
   }
 
-  .cart-drawer-item-main {
+  .cart-item__content {
     flex: 1;
-    padding: 0 24px;
+    padding: 0 var(--space-m);
   }
 
-  .cart-drawer-item-main-flex {
+  .cart-item__row {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: var(--space-s);
   }
 
-  .cart-drawer-item-main-flex-left {
+  .cart-item__details {
     flex: 1;
   }
 
-  .cart-drawer-item-main-flex-left h3 {
-    font-size: 15px;
-    font-weight: 500;
+  .cart-item__title a {
+    color: var(--neutral-950);
   }
 
-  .cart-drawer-item-main-flex-left h3 a {
-    color: #212529;
-  }
-
-  .cart-drawer-item-main-flex-left span {
-    color: #a1a1a1;
-    font-size: 13px;
-    margin-top: 4px;
+  .cart-item__variant {
+    color: var(--neutral-400);
     display: block;
+    margin-top: var(--space-3xs);
   }
 
-  .cart-drawer-item-main-flex-right span {
-    font-weight: 500;
-    color: #212529;
-    font-size: 14px;
-  }
-
-  .cart-drawer-quantity-selector {
+  .cart-item__quantity {
     display: inline-flex;
-    border: 1px solid #e7e7e7;
-    border-radius: 4px;
-    margin-top: 10px;
+    border: 1px solid var(--neutral-200);
+    margin-top: var(--space-2xs);
   }
 
-  .cart-drawer-quantity-selector button {
-    width: 28px;
-    height: 24px;
+  .cart-item__quantity-button {
+    width: var(--space-l);
+    height: var(--space-m);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     user-select: none;
+    background: none;
+    border: none;
   }
 
-  .cart-drawer-quantity-selector input {
-    width: 28px;
-    font-size: 13px;
+  .cart-item__quantity-input {
+    width: var(--space-l);
     text-align: center;
-    line-height: 24px;
-    border-left: 1px solid #e7e7e7;
-    border-right: 1px solid #e7e7e7;
+    border-left: 1px solid var(--neutral-200);
+    border-right: 1px solid var(--neutral-200);
+    border-top: none;
+    border-bottom: none;
   }
 
-  .cart-drawer-footer {
-    padding: 24px;
+  .cart__footer {
+    padding: var(--space-m);
     margin-top: auto;
-    border-top: 1px solid #e7e7e7;
+    border-top: 1px solid var(--neutral-200);
   }
 
-  .cart-drawer-footer-row {
+  .cart__footer-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin-bottom: var(--space-2xs);
   }
 
-  .cart-drawer-footer-row:last-of-type {
-    margin-bottom: 16px;
+  .cart__footer-row:last-of-type {
+    margin-bottom: var(--space-xs);
   }
 
-  .cart-drawer-footer-row h3 {
-    font-weight: 400;
-    color: #525252;
-    font-size: 14px;
-  }
-
-  .cart-drawer-footer-row span {
-    font-weight: 500;
-    color: #212529;
-    font-size: 14px;
-  }
-
-  .cart-drawer-button {
+  .cart__checkout {
     display: block;
     width: 100%;
-    font-weight: 500;
-    background-color: #212529;
-    color: #fff;
-    line-height: 46px;
-    font-size: 16px;
-    border-radius: 6px;
+    background-color: var(--neutral-950);
+    color: var(--white);
+    border: none;
+    cursor: pointer;
+    padding: var(--space-2xs) 0;
   }
 
-  .cart-drawer-empty {
+  .cart__empty {
     margin: auto;
-    color: #212529;
+    color: var(--neutral-950);
   }
 
-  .cart-drawer-item-actions {
+  .cart-item__actions {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-top: 10px;
+    gap: var(--space-xs);
+    margin-top: var(--space-2xs);
   }
 
-  .cart-drawer-item-remove {
-    font-size: 13px;
-    color: #a1a1a1;
+  .cart-item__remove {
+    color: var(--neutral-400);
     cursor: pointer;
     background: none;
     border: none;
     text-decoration: underline;
   }
 
-  .cart-drawer-item-remove:hover {
-    color: #212529;
+  .cart-item__remove:hover {
+    color: var(--neutral-950);
   }
 </style>
 
-<div class="cart-drawer">
-  <div class="cart-drawer-box">
-    <header class="cart-drawer-header">
-      <h2>Cart</h2>
-      <div class="cart-drawer-header-right">
-        <button class="cart-drawer-header-right-close" type="button">X</button>
+<aside class="cart" role="dialog" aria-labelledby="cart-title">
+  <div class="cart__container">
+    <header class="cart__header">
+      <h2 id="cart-title" class="cart__title heading--xl">Cart</h2>
+      <div class="cart__controls">
+        <button class="cart__close" type="button" aria-label="Close cart">
+          {% render 'icon-close' %}
+        </button>
       </div>
     </header>
 
-    {% form 'cart', cart, class: 'cart-drawer-form' %}
+    {% form 'cart', cart, class: 'cart__form' %}
       {% if cart.item_count == 0 %}
-        <p class="cart-drawer-empty">Your cart is empty</p>
+        <p class="cart__empty body">Your cart is empty</p>
       {% else %}
-        <div class="cart-drawer-items">
+        <div class="cart__items">
           {% for item in cart.items %}
-            <div
-              class="cart-drawer-item"
+            <article
+              class="cart-item"
               data-line-item-key="{{ item.key }}"
               data-inventory-quantity="{{ item.variant.inventory_quantity }}"
             >
-              <div class="cart-drawer-item-image">
+              <div class="cart-item__image">
                 <img src="{{ item.image | img_url: '200x' }}" alt="{{ item.title }}">
               </div>
-              <div class="cart-drawer-item-main">
-                <div class="cart-drawer-item-main-flex">
-                  <div class="cart-drawer-item-main-flex-left">
-                    <h3>
+              <div class="cart-item__content">
+                <div class="cart-item__row">
+                  <div class="cart-item__details">
+                    <h3 class="cart-item__title body--bold">
                       <a href="{{ item.url }}">{{ item.product.title }}</a>
                     </h3>
-                    <span>{{ item.variant.title }}</span>
-                    <div class="cart-drawer-item-actions">
-                      <div class="cart-drawer-quantity-selector">
-                        <button class="cart-drawer-quantity-selector-minus" type="button">-</button>
-                        <input type="text" readonly value="{{ item.quantity }}">
-                        <button class="cart-drawer-quantity-selector-plus" type="button">+</button>
+                    <span class="cart-item__variant small">{{ item.variant.title }}</span>
+                    <div class="cart-item__actions">
+                      <div class="cart-item__quantity">
+                        <button
+                          class="cart-item__quantity-button cart-item__quantity-button--minus"
+                          type="button"
+                          aria-label="Decrease quantity"
+                        >
+                          -
+                        </button>
+                        <input
+                          type="text"
+                          class="cart-item__quantity-input small"
+                          readonly
+                          value="{{ item.quantity }}"
+                          aria-label="Quantity"
+                        >
+                        <button
+                          class="cart-item__quantity-button cart-item__quantity-button--plus"
+                          type="button"
+                          aria-label="Increase quantity"
+                        >
+                          +
+                        </button>
                       </div>
-                      <button type="button" class="cart-drawer-item-remove">Remove</button>
+                      <button type="button" class="cart-item__remove small">Remove</button>
                     </div>
                   </div>
-                  <div class="cart-drawer-item-main-flex-right">
-                    <span>{{ item.final_line_price | money }}</span>
+                  <div class="cart-item__price">
+                    <span class="body--bold">{{ item.final_line_price | money }}</span>
                   </div>
                 </div>
               </div>
-            </div>
+            </article>
           {% endfor %}
         </div>
 
-        <footer class="cart-drawer-footer">
+        <footer class="cart__footer">
           {% if cart.total_discounts > 0 %}
-            <div class="cart-drawer-footer-row">
-              <h3>Discounts</h3>
-              <span>{{ cart.total_discounts | money }}</span>
+            <div class="cart__footer-row">
+              <h3 class="cart__footer-label body">Discounts</h3>
+              <span class="cart__footer-value body--bold">{{ cart.total_discounts | money }}</span>
             </div>
           {% endif %}
-          <div class="cart-drawer-footer-row">
-            <h3>Subtotal</h3>
-            <span>{{ cart.total_price | money }}</span>
+          <div class="cart__footer-row">
+            <h3 class="cart__footer-label body">Subtotal</h3>
+            <span class="cart__footer-value body--bold">{{ cart.total_price | money }}</span>
           </div>
-          <button type="submit" name="checkout" class="cart-drawer-button">Checkout</button>
+          <button type="submit" name="checkout" class="cart__checkout heading--l">Checkout</button>
         </footer>
       {% endif %}
     {% endform %}
   </div>
-</div>
+</aside>
 
 {% schema %}
 {

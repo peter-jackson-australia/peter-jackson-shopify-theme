@@ -24,11 +24,11 @@ window.addEventListener("load", () => {
 });
 
 function openCartDrawer() {
-  document.querySelector(".cart-drawer").classList.add("cart-drawer--active");
+  document.querySelector(".cart").classList.add("cart--active");
 }
 
 function closeCartDrawer() {
-  document.querySelector(".cart-drawer").classList.remove("cart-drawer--active");
+  document.querySelector(".cart").classList.remove("cart--active");
 }
 
 function updateCartItemCounts(count) {
@@ -86,8 +86,8 @@ async function updateCartDrawer(fetchCart = true) {
     const html = document.createElement("div");
     html.innerHTML = text;
 
-    const newBox = html.querySelector(".cart-drawer").innerHTML;
-    document.querySelector(".cart-drawer").innerHTML = newBox;
+    const newBox = html.querySelector(".cart").innerHTML;
+    document.querySelector(".cart").innerHTML = newBox;
 
     if (fetchCart) {
       const cartRes = await fetch("/cart.js");
@@ -105,12 +105,12 @@ async function updateCartDrawer(fetchCart = true) {
 }
 
 function addCartDrawerListeners() {
-  document.querySelectorAll(".cart-drawer-quantity-selector button").forEach((button) => {
+  document.querySelectorAll(".cart-item__quantity button").forEach((button) => {
     button.addEventListener("click", async () => {
-      const rootItem = button.closest(".cart-drawer-item");
+      const rootItem = button.closest(".cart-item");
       const key = rootItem.getAttribute("data-line-item-key");
       const currentQuantity = Number(button.parentElement.querySelector("input").value);
-      const isUp = button.classList.contains("cart-drawer-quantity-selector-plus");
+      const isUp = button.classList.contains("cart-item__quantity-button--plus");
 
       if (isUp) {
         const inventoryLimit = parseInt(rootItem.getAttribute("data-inventory-quantity") || "Infinity", 10);
@@ -148,9 +148,9 @@ function addCartDrawerListeners() {
     });
   });
 
-  document.querySelectorAll(".cart-drawer-item-remove").forEach((button) => {
+  document.querySelectorAll(".cart-item__remove").forEach((button) => {
     button.addEventListener("click", async () => {
-      const rootItem = button.closest(".cart-drawer-item");
+      const rootItem = button.closest(".cart-item");
       const key = rootItem.getAttribute("data-line-item-key");
 
       try {
@@ -175,11 +175,11 @@ function addCartDrawerListeners() {
     });
   });
 
-  document.querySelector(".cart-drawer-box").addEventListener("click", (e) => {
+  document.querySelector(".cart__container").addEventListener("click", (e) => {
     e.stopPropagation();
   });
 
-  document.querySelectorAll(".cart-drawer-header-right-close, .cart-drawer").forEach((el) => {
+  document.querySelectorAll(".cart__close, .cart").forEach((el) => {
     el.addEventListener("click", () => {
       closeCartDrawer();
     });
