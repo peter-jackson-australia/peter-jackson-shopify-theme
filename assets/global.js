@@ -18,13 +18,7 @@ function createLoadingSpinner(color = "var(--neutral-100)") {
 
 function createAnimatedLoader() {
   const loader = document.createElement("div");
-  loader.style.width = "100%";
-  loader.style.height = "100%";
-  loader.style.display = "flex";
-  loader.style.alignItems = "center";
-  loader.style.justifyContent = "flex-start";
-  loader.style.padding = "0";
-  loader.style.margin = "0";
+  loader.className = "animated-loader";
   
   loader.innerHTML = `
     <svg fill="#E7E7E7" viewBox="0 0 40 4" xmlns="http://www.w3.org/2000/svg" style="height: 4px; display: block;">
@@ -41,6 +35,25 @@ function createAnimatedLoader() {
   `;
   return loader;
 }
+
+  function showCartItemError(rootItem, message) {
+    const existingError = rootItem.querySelector('.cart-item__error');
+    if (existingError) {
+      existingError.remove();
+    }
+    
+    const errorElement = document.createElement('div');
+    errorElement.className = 'cart-item__error small';
+    errorElement.textContent = message;
+    
+    const actionsElement = rootItem.querySelector('.cart-item__actions');
+    actionsElement.after(errorElement);
+    
+    setTimeout(() => {
+      errorElement.classList.add('fade-out');
+      setTimeout(() => errorElement.remove(), 800);
+    }, 12000);
+  }
 
 function applyCartTotalLoaders() {
   const footerValues = document.querySelectorAll(".cart__footer-value");
@@ -110,18 +123,14 @@ function applyOptimisticUI() {
     
     const actionsEl = existingItem.querySelector(".cart-item__actions");
     if (actionsEl) {
-      const quantityEl = existingItem.querySelector(".cart-item__quantity");
-      const height = quantityEl ? quantityEl.offsetHeight : 30;
-      const width = quantityEl ? quantityEl.offsetWidth : 90;
-      
       const oldHTML = actionsEl.innerHTML;
       
       actionsEl.innerHTML = `
-        <div style="height: ${height}px; width: ${width}px; padding: 0; margin: 0; border: none; display: flex; justify-content: flex-start; align-items: center;"></div>
-        <div style="width: 60px;"></div>
+        <div class="placeholder-loader"></div>
+        <div class="placeholder-remove"></div>
       `;
       
-      const loaderContainer = actionsEl.querySelector("div:first-child");
+      const loaderContainer = actionsEl.querySelector(".placeholder-loader");
       loaderContainer.appendChild(createAnimatedLoader());
     }
   } else {
@@ -142,23 +151,22 @@ function applyOptimisticUI() {
             <div class="cart-item__specifics">
               <p class="cart-item__variant small">${variantTitle}</p>
               <div class="cart-item__price">
-                <div style="height: 18px; width: 80px;"></div>
+                <div class="price-placeholder"></div>
               </div>
             </div>
             <div class="cart-item__actions">
-              <div style="height: 30px; width: 90px; padding: 0; margin: 0; border: none; display: flex; justify-content: flex-start; align-items: center;">
-              </div>
-              <div style="width: 60px;"></div>
+              <div class="placeholder-loader"></div>
+              <div class="placeholder-remove"></div>
             </div>
           </div>
         </div>
       </div>
     `;
     
-    const priceElement = cartItem.querySelector(".cart-item__price > div");
+    const priceElement = cartItem.querySelector(".price-placeholder");
     priceElement.appendChild(createAnimatedLoader());
     
-    const quantityElement = cartItem.querySelector(".cart-item__actions > div:first-child");
+    const quantityElement = cartItem.querySelector(".placeholder-loader");
     quantityElement.appendChild(createAnimatedLoader());
     
     itemsContainer.prepend(cartItem);
@@ -213,8 +221,48 @@ async function updateCartDrawer() {
     
     cartElements.drawer.innerHTML = html.querySelector(".cart").innerHTML;
     addCartEventListeners();
+    return true;
   } catch (e) {
     console.error("Error updating cart drawer:", e);
+    return false;
+  }
+}
+
+function addCartItemButtonListeners(rootItem) {
+  const plusButton = rootItem.querySelector(".cart-item__quantity-button--plus");
+  const minusButton = rootItem.querySelector(".cart-item__quantity-button--minus");
+  const removeButton = rootItem.querySelector(".cart-item__remove");
+  
+  if (plusButton && minusButton) {
+    [plusButton, minusButton].forEach(btn => {
+      btn.addEventListener("click", event => {
+        const newBtn = btn.cloneNode(true);
+        btn.parentNode.replaceChild(newBtn, btn);
+        document.dispatchEvent(new Event('DOMContentLoaded'));
+      });
+    });
+  }
+  
+  if (removeButton) {
+    removeButton.addEventListener("click", () => {
+      const cartItem = removeButton.closest(".cart-item");
+      const key = cartItem.getAttribute("data-line-item-key");
+      
+      cartItem.style.display = "none";
+      applyCartTotalLoaders();
+      
+      fetch("/cart/update.js", {
+        method: "post",
+        headers: { Accept: "application/json", "Content-Type": "application/json" },
+        body: JSON.stringify({ updates: { [key]: 0 } }),
+      })
+      .then(() => updateCartDrawer())
+      .catch(e => {
+        console.error("Error removing item:", e);
+        cartItem.style.display = "";
+        updateCartDrawer();
+      });
+    });
   }
 }
 
@@ -228,23 +276,111 @@ function addCartEventListeners() {
       
       if (isUp) {
         const inventoryLimit = parseInt(rootItem.getAttribute("data-inventory-quantity") || "Infinity", 10);
+        
         if (currentQuantity >= inventoryLimit) {
-          const input = button.parentElement.querySelector("input");
-          input.style.backgroundColor = "#ffeeee";
-          setTimeout(() => { input.style.backgroundColor = ""; }, 820);
+          applyCartTotalLoaders();
+          
+          const actionsEl = rootItem.querySelector(".cart-item__actions");
+          const originalActionsHTML = actionsEl.innerHTML;
+          
+          const priceEl = rootItem.querySelector(".cart-item__price");
+          const originalPriceHTML = priceEl.innerHTML;
+          
+          actionsEl.innerHTML = `
+            <div class="placeholder-loader"></div>
+            <div class="placeholder-remove"></div>
+          `;
+          actionsEl.querySelector(".placeholder-loader").appendChild(createAnimatedLoader());
+          
+          priceEl.innerHTML = "";
+          priceEl.appendChild(createAnimatedLoader());
+          
+          await new Promise(resolve => setTimeout(resolve, 800));
+          
+          await updateCartDrawer();
+          
+          const updatedRootItem = document.querySelector(`[data-line-item-key="${key}"]`);
+          if (updatedRootItem) {
+            const existingError = updatedRootItem.querySelector('.cart-item__error');
+            if (existingError) {
+              existingError.remove();
+            }
+            
+            const errorElement = document.createElement('div');
+            errorElement.className = 'cart-item__error small cart-item__error--permanent';
+            errorElement.textContent = `Sorry, only ${inventoryLimit} ${inventoryLimit === 1 ? 'item' : 'items'} available.`;
+            
+            const updatedActionsEl = updatedRootItem.querySelector(".cart-item__actions");
+            updatedActionsEl.after(errorElement);
+            
+            const clearErrorOnClick = () => {
+              const permanentErrors = document.querySelectorAll('.cart-item__error--permanent');
+              permanentErrors.forEach(error => {
+                error.classList.add('fade-out');
+                setTimeout(() => error.remove(), 800);
+              });
+              
+              document.removeEventListener('click', clearErrorOnClick);
+            };
+            
+            setTimeout(() => {
+              document.addEventListener('click', clearErrorOnClick);
+            }, 100);
+          }
+          
           return;
         }
       }
       
       try {
+        applyCartTotalLoaders();
+        
+        const actionsEl = rootItem.querySelector(".cart-item__actions");
+        const originalActionsHTML = actionsEl.innerHTML;
+        
+        const priceEl = rootItem.querySelector(".cart-item__price");
+        const originalPriceHTML = priceEl.innerHTML;
+        
+        actionsEl.innerHTML = `
+          <div class="placeholder-loader"></div>
+          <div class="placeholder-remove"></div>
+        `;
+        actionsEl.querySelector(".placeholder-loader").appendChild(createAnimatedLoader());
+        
+        priceEl.innerHTML = "";
+        priceEl.appendChild(createAnimatedLoader());
+        
         await fetch("/cart/update.js", {
           method: "post",
           headers: { Accept: "application/json", "Content-Type": "application/json" },
           body: JSON.stringify({ updates: { [key]: isUp ? currentQuantity + 1 : currentQuantity - 1 } }),
         });
-        updateCartDrawer();
+        
+        await updateCartDrawer();
       } catch (e) {
         console.error("Error updating quantity:", e);
+        await updateCartDrawer();
+        
+        const updatedRootItem = document.querySelector(`[data-line-item-key="${key}"]`);
+        if (updatedRootItem) {
+          const existingError = updatedRootItem.querySelector('.cart-item__error');
+          if (existingError) {
+            existingError.remove();
+          }
+          
+          const errorElement = document.createElement('div');
+          errorElement.className = 'cart-item__error small cart-item__error--permanent';
+          errorElement.textContent = "Could not update quantity. Please try again.";
+          
+          const updatedActionsEl = updatedRootItem.querySelector(".cart-item__actions");
+          updatedActionsEl.after(errorElement);
+          
+          document.addEventListener('click', function clearError() {
+            errorElement.classList.add('fade-out');
+            setTimeout(() => errorElement.remove(), 800);
+            document.removeEventListener('click', clearError);
+          });
+        }
       }
     });
   });
@@ -290,6 +426,26 @@ function initCart() {
   cartElements.forms.forEach(form => {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
+      
+      let cart;
+      try {
+        const res = await fetch("/cart.js");
+        if (res.ok) {
+          cart = await res.json();
+        }
+      } catch (error) {
+        console.error("Error fetching cart:", error);
+      }
+      
+      const variantId = form.querySelector('#js--variant-id')?.value || "";
+      const quantityInput = form.querySelector('input[name="quantity"]');
+      const quantity = quantityInput ? parseInt(quantityInput.value, 10) : 1;
+      
+      let existingItem;
+      if (cart && cart.items) {
+        existingItem = cart.items.find(item => item.variant_id.toString() === variantId);
+      }
+      
       openCartDrawer();
       
       const addButton = form.querySelector("#js--addtocart");
@@ -304,7 +460,54 @@ function initCart() {
             method: "post", 
             body: new FormData(form) 
           });
-          updateCartDrawer();
+          await updateCartDrawer();
+          
+          if (existingItem) {
+            const cartItem = document.querySelector(`.cart-item[data-line-item-key*="${variantId}"]`);
+            if (cartItem) {
+              const inventoryLimit = parseInt(cartItem.getAttribute("data-inventory-quantity") || "Infinity", 10);
+              const newQuantity = existingItem.quantity + quantity;
+              
+              if (inventoryLimit !== Infinity && newQuantity > inventoryLimit) {
+                try {
+                  await fetch("/cart/update.js", {
+                    method: "post",
+                    headers: { Accept: "application/json", "Content-Type": "application/json" },
+                    body: JSON.stringify({ updates: { [existingItem.key]: inventoryLimit } }),
+                  });
+                  await updateCartDrawer();
+                  
+                  const updatedItem = document.querySelector(`.cart-item[data-line-item-key*="${variantId}"]`);
+                  if (updatedItem) {
+                    const existingError = updatedItem.querySelector('.cart-item__error');
+                    if (existingError) {
+                      existingError.remove();
+                    }
+                    
+                    const errorElement = document.createElement('div');
+                    errorElement.className = 'cart-item__error small cart-item__error--permanent';
+                    errorElement.textContent = `Sorry, only ${inventoryLimit} ${inventoryLimit === 1 ? 'item' : 'items'} available.`;
+                    
+                    const actionsEl = updatedItem.querySelector(".cart-item__actions");
+                    if (actionsEl) {
+                      actionsEl.after(errorElement);
+                      
+                      document.addEventListener('click', function clearError() {
+                        const errorToRemove = updatedItem.querySelector('.cart-item__error--permanent');
+                        if (errorToRemove) {
+                          errorToRemove.classList.add('fade-out');
+                          setTimeout(() => errorToRemove.remove(), 800);
+                        }
+                        document.removeEventListener('click', clearError);
+                      });
+                    }
+                  }
+                } catch (error) {
+                  console.error("Error updating cart quantity:", error);
+                }
+              }
+            }
+          }
         } catch (e) {
           console.error("Error adding to cart:", e);
           updateCartDrawer();
@@ -326,4 +529,9 @@ function initCart() {
   addCartEventListeners();
 }
 
-document.addEventListener("DOMContentLoaded", addCartEventListeners);
+document.addEventListener("DOMContentLoaded", () => {
+  addCartEventListeners();
+  document.querySelectorAll(".cart-item").forEach(item => {
+    addCartItemButtonListeners(item);
+  });
+});
