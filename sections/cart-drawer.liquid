@@ -82,6 +82,9 @@
 
   .cart__items {
     padding: var(--space-m);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
   }
 
   .cart-item {
@@ -89,10 +92,7 @@
     align-items: center;
     background: var(--white);
     overflow: hidden;
-  }
-
-  .cart-item + .cart-item {
-    margin-top: var(--space-2xs);
+    gap: var(--space-m);
   }
 
   .cart-item__image {
@@ -102,15 +102,13 @@
 
   .cart-item__image img {
     width: 100%;
-    height: auto;
-    max-height: 100px;
-    object-fit: contain;
+    height: 150px;
+    object-fit: cover;
     display: block;
   }
 
   .cart-item__content {
     flex: 1;
-    padding: 0 var(--space-m);
   }
 
   .cart-item__row {
@@ -121,24 +119,32 @@
   }
 
   .cart-item__details {
-    flex: 1;
-    min-width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    width: 100%;
   }
 
   .cart-item__title a {
     color: var(--neutral-950);
   }
 
+  .cart-item__specifics {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    height: 15px;
+  }
+
   .cart-item__variant {
     color: var(--neutral-400);
     display: block;
-    margin-top: var(--space-3xs);
   }
 
   .cart-item__quantity {
     display: inline-flex;
     border: 1px solid var(--neutral-200);
-    margin-top: var(--space-2xs);
+    height: 100%;
   }
 
   .cart-item__quantity-button {
@@ -196,9 +202,9 @@
 
   .cart-item__actions {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: var(--space-xs);
-    margin-top: var(--space-2xs);
+    height: 30px;
   }
 
   .cart-item__remove {
@@ -250,11 +256,16 @@
                     <h3 class="cart-item__title body--bold">
                       <a href="{{ item.url }}">{{ item.product.title }}</a>
                     </h3>
-                    <span class="cart-item__variant small">{{ item.variant.title }}</span>
+                    <div class="cart-item__specifics">
+                      <p class="cart-item__variant small">{{ item.variant.title }}</p>
+                      <div class="cart-item__price">
+                        <p class="small">{{ item.final_line_price | money }}</p>
+                      </div>
+                    </div>
                     <div class="cart-item__actions">
                       <div class="cart-item__quantity">
                         <button
-                          class="cart-item__quantity-button cart-item__quantity-button--minus"
+                          class="cart-item__quantity-button cart-item__quantity-button--minus body"
                           type="button"
                           aria-label="Decrease quantity"
                         >
@@ -268,7 +279,7 @@
                           aria-label="Quantity"
                         >
                         <button
-                          class="cart-item__quantity-button cart-item__quantity-button--plus"
+                          class="cart-item__quantity-button cart-item__quantity-button--plus body"
                           type="button"
                           aria-label="Increase quantity"
                         >
@@ -277,9 +288,6 @@
                       </div>
                       <button type="button" class="cart-item__remove small">Remove</button>
                     </div>
-                  </div>
-                  <div class="cart-item__price">
-                    <span class="body--bold">{{ item.final_line_price | money }}</span>
                   </div>
                 </div>
               </div>
