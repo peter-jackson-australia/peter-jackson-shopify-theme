@@ -412,6 +412,10 @@
     color: var(--neutral-950);
   }
 
+  .product-error {
+    color: #ff0000;
+  }
+
   @media screen and (max-width: 1099px) {
     header {
       border-bottom: none;
@@ -615,6 +619,11 @@
                   id="js--variant-id"
                   name="id"
                   value="{{ current_variant.id }}"
+                >
+                <input
+                  type="hidden"
+                  id="js--variant-inventory-quantity"
+                  value="{{ current_variant.inventory_quantity }}"
                 >
                 {% if current_variant.available == true %}
                   <button type="submit" id="js--addtocart" class="body" style="height: var(--space-xl);">

@@ -36,24 +36,39 @@ function createAnimatedLoader() {
   return loader;
 }
 
-  function showCartItemError(rootItem, message) {
-    const existingError = rootItem.querySelector('.cart-item__error');
-    if (existingError) {
-      existingError.remove();
-    }
-    
-    const errorElement = document.createElement('div');
-    errorElement.className = 'cart-item__error small';
-    errorElement.textContent = message;
-    
-    const actionsElement = rootItem.querySelector('.cart-item__actions');
-    actionsElement.after(errorElement);
-    
-    setTimeout(() => {
-      errorElement.classList.add('fade-out');
-      setTimeout(() => errorElement.remove(), 800);
-    }, 12000);
+function showCartItemError(rootItem, message) {
+  const existingError = rootItem.querySelector('.cart-item__error');
+  if (existingError) {
+    existingError.remove();
   }
+  
+  const errorElement = document.createElement('div');
+  errorElement.className = 'cart-item__error small';
+  errorElement.textContent = message;
+  
+  const actionsElement = rootItem.querySelector('.cart-item__actions');
+  actionsElement.after(errorElement);
+  
+  setTimeout(() => {
+    errorElement.classList.add('fade-out');
+    setTimeout(() => errorElement.remove(), 800);
+  }, 12000);
+}
+
+function showProductError(form, message) {
+  const existingError = form.querySelector('.product-error');
+  if (existingError) {
+    existingError.remove();
+  }
+  
+  const errorElement = document.createElement('div');
+  errorElement.className = 'product-error body';
+  errorElement.textContent = message;
+  errorElement.style.color = 'red';
+  
+  const addButton = form.querySelector('#js--addtocart');
+  addButton.after(errorElement);
+}
 
 function applyCartTotalLoaders() {
   const footerValues = document.querySelectorAll(".cart__footer-value");
@@ -427,92 +442,60 @@ function initCart() {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       
-      let cart;
-      try {
-        const res = await fetch("/cart.js");
-        if (res.ok) {
-          cart = await res.json();
-        }
-      } catch (error) {
-        console.error("Error fetching cart:", error);
-      }
-      
       const variantId = form.querySelector('#js--variant-id')?.value || "";
       const quantityInput = form.querySelector('input[name="quantity"]');
       const quantity = quantityInput ? parseInt(quantityInput.value, 10) : 1;
       
-      let existingItem;
-      if (cart && cart.items) {
-        existingItem = cart.items.find(item => item.variant_id.toString() === variantId);
-      }
-      
-      openCartDrawer();
-      
       const addButton = form.querySelector("#js--addtocart");
       if (addButton && !addButton.disabled) {
+        // Clear any existing error
+        const existingError = form.querySelector('.product-error');
+        if (existingError) {
+          existingError.remove();
+        }
+        
+        // Show loading state on button immediately
         const originalText = addButton.innerHTML;
         addButton.innerHTML = `<div style="width: var(--space-s); height: var(--space-s); margin: auto;"><svg fill=#FFFFFFFF viewBox="0 0 20 20"xmlns=http://www.w3.org/2000/svg><defs><linearGradient id=RadialGradient8932><stop offset=0% stop-color=currentColor stop-opacity=1 /><stop offset=100% stop-color=currentColor stop-opacity=0.25 /></linearGradient></defs><style>@keyframes spin8932{to{transform:rotate(360deg)}}#circle8932{transform-origin:50% 50%;stroke:url(#RadialGradient8932);fill:none;animation:spin8932 .5s infinite linear}</style><circle cx=10 cy=10 id=circle8932 r=8 stroke-width=2 /></svg></div>`;
         
-        applyOptimisticUI();
-        
         try {
+          // Check inventory limits before opening cart
+          const inventoryQuantity = parseInt(document.querySelector('#js--variant-inventory-quantity')?.value || "Infinity", 10);
+          
+          // Get current cart data
+          const cart = await fetchCart();
+          
+          let existingItem = null;
+          if (cart && cart.items) {
+            existingItem = cart.items.find(item => item.variant_id.toString() === variantId);
+          }
+          
+          const totalRequestedQuantity = (existingItem ? existingItem.quantity : 0) + quantity;
+          
+          if (inventoryQuantity !== Infinity && totalRequestedQuantity > inventoryQuantity) {
+            // Show error on product page
+            addButton.innerHTML = originalText;
+            showProductError(form, `Sorry, only ${inventoryQuantity} ${inventoryQuantity === 1 ? 'item' : 'items'} available.`);
+            return;
+          }
+          
+          // If we passed inventory check, now open cart and add item
+          openCartDrawer();
+          applyOptimisticUI();
+          
           await fetch("/cart/add", { 
             method: "post", 
             body: new FormData(form) 
           });
           await updateCartDrawer();
-          
-          if (existingItem) {
-            const cartItem = document.querySelector(`.cart-item[data-line-item-key*="${variantId}"]`);
-            if (cartItem) {
-              const inventoryLimit = parseInt(cartItem.getAttribute("data-inventory-quantity") || "Infinity", 10);
-              const newQuantity = existingItem.quantity + quantity;
-              
-              if (inventoryLimit !== Infinity && newQuantity > inventoryLimit) {
-                try {
-                  await fetch("/cart/update.js", {
-                    method: "post",
-                    headers: { Accept: "application/json", "Content-Type": "application/json" },
-                    body: JSON.stringify({ updates: { [existingItem.key]: inventoryLimit } }),
-                  });
-                  await updateCartDrawer();
-                  
-                  const updatedItem = document.querySelector(`.cart-item[data-line-item-key*="${variantId}"]`);
-                  if (updatedItem) {
-                    const existingError = updatedItem.querySelector('.cart-item__error');
-                    if (existingError) {
-                      existingError.remove();
-                    }
-                    
-                    const errorElement = document.createElement('div');
-                    errorElement.className = 'cart-item__error small cart-item__error--permanent';
-                    errorElement.textContent = `Sorry, only ${inventoryLimit} ${inventoryLimit === 1 ? 'item' : 'items'} available.`;
-                    
-                    const actionsEl = updatedItem.querySelector(".cart-item__actions");
-                    if (actionsEl) {
-                      actionsEl.after(errorElement);
-                      
-                      document.addEventListener('click', function clearError() {
-                        const errorToRemove = updatedItem.querySelector('.cart-item__error--permanent');
-                        if (errorToRemove) {
-                          errorToRemove.classList.add('fade-out');
-                          setTimeout(() => errorToRemove.remove(), 800);
-                        }
-                        document.removeEventListener('click', clearError);
-                      });
-                    }
-                  }
-                } catch (error) {
-                  console.error("Error updating cart quantity:", error);
-                }
-              }
-            }
-          }
         } catch (e) {
           console.error("Error adding to cart:", e);
-          updateCartDrawer();
-        } finally {
           addButton.innerHTML = originalText;
+          showProductError(form, "Could not add to cart. Please try again.");
+        } finally {
+          if (addButton.innerHTML !== originalText) {
+            addButton.innerHTML = originalText;
+          }
         }
       }
     });
