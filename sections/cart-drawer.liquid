@@ -275,7 +275,11 @@
                       <a href="{{ item.url }}">{{ item.product.title }}</a>
                     </h3>
                     <div class="cart-item__specifics">
-                      <p class="cart-item__variant small">{{ item.variant.title }}</p>
+                      {% if item.variant.title != 'Default Title' %}
+                        <p class="cart-item__variant small">{{ item.variant.title }}</p>
+                      {% else %}
+                        <p class="cart-item__variant small"></p>
+                      {% endif %}
                       <div class="cart-item__price">
                         <p class="small">{{ item.final_line_price | money }}</p>
                       </div>

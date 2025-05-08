@@ -35,15 +35,6 @@
     color: var(--neutral-950);
   }
 
-  .filter-indicator {
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    background-color: var(--neutral-950);
-    margin-left: var(--space-3xs);
-    border-radius: 50%;
-  }
-
   .collection-controls__actions {
     display: flex;
     gap: var(--space-s);
@@ -209,7 +200,7 @@
 
   .product-card__slider .splide__arrow:disabled {
     opacity: 0.3;
-    cursor: default;
+    cursor: not-allowed;
   }
 
   .product-card__slider .splide__progress {
@@ -466,11 +457,8 @@
               class="collection-controls__filter-button body--bold"
               @click="isFilterOpen = !isFilterOpen; document.body.classList.toggle('filter-open', isFilterOpen)"
             >
-              Filter
+              Filters
               <span>{% render 'icon-filter' %}</span>
-              {% if has_active_filters %}
-                <span class="filter-indicator"></span>
-              {% endif %}
             </button>
 
             <p class="body">
