@@ -10,6 +10,125 @@ window.addEventListener("load", () => {
   initCart();
 });
 
+function createSkeletonLoader(width = "100%", height = "16px") {
+  const loader = document.createElement("div");
+  loader.style.width = width;
+  loader.style.height = height;
+  loader.style.backgroundColor = "var(--neutral-100)";
+  loader.style.borderRadius = "2px";
+  return loader;
+}
+
+function createLoadingSpinner(color = "var(--neutral-100)") {
+  const spinner = document.createElement("div");
+  spinner.innerHTML = `<div style="width: var(--space-s); height: var(--space-s); margin: 0 auto;"><svg fill=${color} viewBox="0 0 20 20"xmlns=http://www.w3.org/2000/svg><defs><linearGradient id=RadialGradient8932><stop offset=0% stop-color=currentColor stop-opacity=1 /><stop offset=100% stop-color=currentColor stop-opacity=0.25 /></linearGradient></defs><style>@keyframes spin8932{to{transform:rotate(360deg)}}#circle8932{transform-origin:50% 50%;stroke:url(#RadialGradient8932);fill:none;animation:spin8932 .5s infinite linear}</style><circle cx=10 cy=10 id=circle8932 r=8 stroke-width=2 /></svg></div>`;
+  return spinner;
+}
+
+function applyCartTotalLoaders() {
+  const footerValues = document.querySelectorAll(".cart__footer-value");
+  footerValues.forEach(el => {
+    el.innerHTML = "";
+    el.appendChild(createSkeletonLoader("80px", "18px"));
+  });
+  
+  const checkoutButton = document.querySelector(".cart__checkout");
+  if (checkoutButton) {
+    checkoutButton.innerHTML = "";
+    checkoutButton.appendChild(createLoadingSpinner("var(--white)"));
+  }
+}
+
+function applyOptimisticUI() {
+  const productTitle = document.querySelector(".product-details__title")?.textContent || "";
+  const variantTitle = Array.from(document.querySelectorAll('.js--variant-option:checked'))
+    .map(input => input.nextElementSibling?.textContent?.trim())
+    .filter(Boolean)
+    .join(' / ') || "";
+  const productImage = document.querySelector(".splide__slide img")?.src || "";
+  const variantId = document.querySelector('#js--variant-id')?.value || "";
+  
+  applyCartTotalLoaders();
+  
+  const isCartEmpty = document.querySelector(".cart__empty");
+  if (isCartEmpty) {
+    const cartForm = document.querySelector(".cart__form");
+    isCartEmpty.remove();
+    
+    const itemsContainer = document.createElement("div");
+    itemsContainer.className = "cart__items";
+    cartForm.prepend(itemsContainer);
+    
+    if (!document.querySelector(".cart__footer")) {
+      const footer = document.createElement("footer");
+      footer.className = "cart__footer";
+      footer.innerHTML = `
+        <div class="cart__footer-row">
+          <h3 class="cart__footer-label body">Subtotal</h3>
+          <span class="cart__footer-value body--bold"></span>
+        </div>
+        <button type="submit" name="checkout" class="cart__checkout heading--l"></button>
+      `;
+      cartForm.appendChild(footer);
+      
+      const newCheckoutButton = footer.querySelector(".cart__checkout");
+      newCheckoutButton.appendChild(createLoadingSpinner("var(--white)"));
+      
+      const footerValue = footer.querySelector(".cart__footer-value");
+      footerValue.appendChild(createSkeletonLoader("80px", "18px"));
+    }
+  }
+  
+  const itemsContainer = document.querySelector(".cart__items");
+  if (!itemsContainer) return;
+  
+  const existingItem = document.querySelector(`.cart-item[data-line-item-key*="${variantId}"]`);
+  
+  if (existingItem) {
+    const priceElement = existingItem.querySelector(".cart-item__price");
+    const actionsElement = existingItem.querySelector(".cart-item__actions");
+    
+    if (priceElement) {
+      priceElement.innerHTML = "";
+      priceElement.appendChild(createSkeletonLoader("80px", "18px"));
+    }
+    
+    if (actionsElement) {
+      actionsElement.innerHTML = "";
+      actionsElement.appendChild(createSkeletonLoader("150px", "30px"));
+    }
+  } else {
+    const cartItem = document.createElement("article");
+    cartItem.className = "cart-item";
+    cartItem.setAttribute("data-line-item-key", `temp-${variantId}`);
+    
+    cartItem.innerHTML = `
+      <div class="cart-item__image">
+        <img src="${productImage}" alt="${productTitle}" width="100" height="auto">
+      </div>
+      <div class="cart-item__content">
+        <div class="cart-item__row">
+          <div class="cart-item__details">
+            <h3 class="cart-item__title body--bold">
+              <a href="${window.location.pathname}">${productTitle}</a>
+            </h3>
+            <span class="cart-item__variant small">${variantTitle}</span>
+            <div class="cart-item__actions"></div>
+          </div>
+          <div class="cart-item__price"></div>
+        </div>
+      </div>
+    `;
+    
+    const priceElement = cartItem.querySelector(".cart-item__price");
+    priceElement.appendChild(createSkeletonLoader("80px", "18px"));
+    
+    const actionsElement = cartItem.querySelector(".cart-item__actions");
+    actionsElement.appendChild(createSkeletonLoader("150px", "30px"));
+    
+    itemsContainer.prepend(cartItem);
+  }
+}
 
 function openCartDrawer() {
   cartElements.drawer.classList.add("cart--active");
@@ -97,7 +216,13 @@ function addCartEventListeners() {
 
   document.querySelectorAll(".cart-item__remove").forEach((button) => {
     button.addEventListener("click", async () => {
-      const key = button.closest(".cart-item").getAttribute("data-line-item-key");
+      const cartItem = button.closest(".cart-item");
+      const key = cartItem.getAttribute("data-line-item-key");
+      
+      cartItem.style.display = "none";
+      
+      applyCartTotalLoaders();
+      
       try {
         await fetch("/cart/update.js", {
           method: "post",
@@ -107,6 +232,8 @@ function addCartEventListeners() {
         updateCartDrawer();
       } catch (e) {
         console.error("Error removing item:", e);
+        cartItem.style.display = "";
+        updateCartDrawer();
       }
     });
   });
@@ -135,11 +262,17 @@ function initCart() {
         const originalText = addButton.innerHTML;
         addButton.innerHTML = `<div style="width: var(--space-s); height: var(--space-s); margin: 0 auto;"><svg fill=#FFFFFFFF viewBox="0 0 20 20"xmlns=http://www.w3.org/2000/svg><defs><linearGradient id=RadialGradient8932><stop offset=0% stop-color=currentColor stop-opacity=1 /><stop offset=100% stop-color=currentColor stop-opacity=0.25 /></linearGradient></defs><style>@keyframes spin8932{to{transform:rotate(360deg)}}#circle8932{transform-origin:50% 50%;stroke:url(#RadialGradient8932);fill:none;animation:spin8932 .5s infinite linear}</style><circle cx=10 cy=10 id=circle8932 r=8 stroke-width=2 /></svg></div>`;
         
+        applyOptimisticUI();
+        
         try {
-          await fetch("/cart/add", { method: "post", body: new FormData(form) });
+          await fetch("/cart/add", { 
+            method: "post", 
+            body: new FormData(form) 
+          });
           updateCartDrawer();
         } catch (e) {
           console.error("Error adding to cart:", e);
+          updateCartDrawer();
         } finally {
           addButton.innerHTML = originalText;
         }
