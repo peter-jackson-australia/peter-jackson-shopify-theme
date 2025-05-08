@@ -10,26 +10,43 @@ window.addEventListener("load", () => {
   initCart();
 });
 
-function createSkeletonLoader(width = "100%", height = "16px") {
-  const loader = document.createElement("div");
-  loader.style.width = width;
-  loader.style.height = height;
-  loader.style.backgroundColor = "var(--neutral-100)";
-  loader.style.borderRadius = "2px";
-  return loader;
-}
-
 function createLoadingSpinner(color = "var(--neutral-100)") {
   const spinner = document.createElement("div");
   spinner.innerHTML = `<div style="width: var(--space-s); height: var(--space-s); margin: 0 auto;"><svg fill=${color} viewBox="0 0 20 20"xmlns=http://www.w3.org/2000/svg><defs><linearGradient id=RadialGradient8932><stop offset=0% stop-color=currentColor stop-opacity=1 /><stop offset=100% stop-color=currentColor stop-opacity=0.25 /></linearGradient></defs><style>@keyframes spin8932{to{transform:rotate(360deg)}}#circle8932{transform-origin:50% 50%;stroke:url(#RadialGradient8932);fill:none;animation:spin8932 .5s infinite linear}</style><circle cx=10 cy=10 id=circle8932 r=8 stroke-width=2 /></svg></div>`;
   return spinner;
 }
 
+function createAnimatedLoader() {
+  const loader = document.createElement("div");
+  loader.style.width = "100%";
+  loader.style.height = "100%";
+  loader.style.display = "flex";
+  loader.style.alignItems = "center";
+  loader.style.justifyContent = "flex-start";
+  loader.style.padding = "0";
+  loader.style.margin = "0";
+  
+  loader.innerHTML = `
+    <svg fill="#E7E7E7" viewBox="0 0 40 4" xmlns="http://www.w3.org/2000/svg" style="height: 4px; display: block;">
+      <style>
+        .react{animation:moving 1s ease-in-out infinite}
+        @keyframes moving{
+          0%{width:0%}
+          50%{width:100%;transform:translate(0,0)}
+          100%{width:0;right:0;transform:translate(100%,0)}
+        }
+      </style>
+      <rect class="react" fill="#E7E7E7" height="4" width="40" />
+    </svg>
+  `;
+  return loader;
+}
+
 function applyCartTotalLoaders() {
   const footerValues = document.querySelectorAll(".cart__footer-value");
   footerValues.forEach(el => {
     el.innerHTML = "";
-    el.appendChild(createSkeletonLoader("80px", "18px"));
+    el.appendChild(createAnimatedLoader());
   });
   
   const checkoutButton = document.querySelector(".cart__checkout");
@@ -67,7 +84,7 @@ function applyOptimisticUI() {
           <h3 class="cart__footer-label body">Subtotal</h3>
           <span class="cart__footer-value body--bold"></span>
         </div>
-        <button type="submit" name="checkout" class="cart__checkout heading--l"></button>
+        <button type="submit" name="checkout" class="cart__checkout body"></button>
       `;
       cartForm.appendChild(footer);
       
@@ -75,7 +92,7 @@ function applyOptimisticUI() {
       newCheckoutButton.appendChild(createLoadingSpinner("var(--white)"));
       
       const footerValue = footer.querySelector(".cart__footer-value");
-      footerValue.appendChild(createSkeletonLoader("80px", "18px"));
+      footerValue.appendChild(createAnimatedLoader());
     }
   }
   
@@ -86,16 +103,26 @@ function applyOptimisticUI() {
   
   if (existingItem) {
     const priceElement = existingItem.querySelector(".cart-item__price");
-    const actionsElement = existingItem.querySelector(".cart-item__actions");
-    
     if (priceElement) {
       priceElement.innerHTML = "";
-      priceElement.appendChild(createSkeletonLoader("80px", "18px"));
+      priceElement.appendChild(createAnimatedLoader());
     }
     
-    if (actionsElement) {
-      actionsElement.innerHTML = "";
-      actionsElement.appendChild(createSkeletonLoader("150px", "30px"));
+    const actionsEl = existingItem.querySelector(".cart-item__actions");
+    if (actionsEl) {
+      const quantityEl = existingItem.querySelector(".cart-item__quantity");
+      const height = quantityEl ? quantityEl.offsetHeight : 30;
+      const width = quantityEl ? quantityEl.offsetWidth : 90;
+      
+      const oldHTML = actionsEl.innerHTML;
+      
+      actionsEl.innerHTML = `
+        <div style="height: ${height}px; width: ${width}px; padding: 0; margin: 0; border: none; display: flex; justify-content: flex-start; align-items: center;"></div>
+        <div style="width: 60px;"></div>
+      `;
+      
+      const loaderContainer = actionsEl.querySelector("div:first-child");
+      loaderContainer.appendChild(createAnimatedLoader());
     }
   } else {
     const cartItem = document.createElement("article");
@@ -104,7 +131,7 @@ function applyOptimisticUI() {
     
     cartItem.innerHTML = `
       <div class="cart-item__image">
-        <img src="${productImage}" alt="${productTitle}" width="100" height="auto">
+        <img src="${productImage}" alt="${productTitle}" width="100" height="150">
       </div>
       <div class="cart-item__content">
         <div class="cart-item__row">
@@ -112,19 +139,27 @@ function applyOptimisticUI() {
             <h3 class="cart-item__title body--bold">
               <a href="${window.location.pathname}">${productTitle}</a>
             </h3>
-            <span class="cart-item__variant small">${variantTitle}</span>
-            <div class="cart-item__actions"></div>
+            <div class="cart-item__specifics">
+              <p class="cart-item__variant small">${variantTitle}</p>
+              <div class="cart-item__price">
+                <div style="height: 18px; width: 80px;"></div>
+              </div>
+            </div>
+            <div class="cart-item__actions">
+              <div style="height: 30px; width: 90px; padding: 0; margin: 0; border: none; display: flex; justify-content: flex-start; align-items: center;">
+              </div>
+              <div style="width: 60px;"></div>
+            </div>
           </div>
-          <div class="cart-item__price"></div>
         </div>
       </div>
     `;
     
-    const priceElement = cartItem.querySelector(".cart-item__price");
-    priceElement.appendChild(createSkeletonLoader("80px", "18px"));
+    const priceElement = cartItem.querySelector(".cart-item__price > div");
+    priceElement.appendChild(createAnimatedLoader());
     
-    const actionsElement = cartItem.querySelector(".cart-item__actions");
-    actionsElement.appendChild(createSkeletonLoader("150px", "30px"));
+    const quantityElement = cartItem.querySelector(".cart-item__actions > div:first-child");
+    quantityElement.appendChild(createAnimatedLoader());
     
     itemsContainer.prepend(cartItem);
   }
@@ -260,7 +295,7 @@ function initCart() {
       const addButton = form.querySelector("#js--addtocart");
       if (addButton && !addButton.disabled) {
         const originalText = addButton.innerHTML;
-        addButton.innerHTML = `<div style="width: var(--space-s); height: var(--space-s); margin: 0 auto;"><svg fill=#FFFFFFFF viewBox="0 0 20 20"xmlns=http://www.w3.org/2000/svg><defs><linearGradient id=RadialGradient8932><stop offset=0% stop-color=currentColor stop-opacity=1 /><stop offset=100% stop-color=currentColor stop-opacity=0.25 /></linearGradient></defs><style>@keyframes spin8932{to{transform:rotate(360deg)}}#circle8932{transform-origin:50% 50%;stroke:url(#RadialGradient8932);fill:none;animation:spin8932 .5s infinite linear}</style><circle cx=10 cy=10 id=circle8932 r=8 stroke-width=2 /></svg></div>`;
+        addButton.innerHTML = `<div style="width: var(--space-s); height: var(--space-s); margin: auto;"><svg fill=#FFFFFFFF viewBox="0 0 20 20"xmlns=http://www.w3.org/2000/svg><defs><linearGradient id=RadialGradient8932><stop offset=0% stop-color=currentColor stop-opacity=1 /><stop offset=100% stop-color=currentColor stop-opacity=0.25 /></linearGradient></defs><style>@keyframes spin8932{to{transform:rotate(360deg)}}#circle8932{transform-origin:50% 50%;stroke:url(#RadialGradient8932);fill:none;animation:spin8932 .5s infinite linear}</style><circle cx=10 cy=10 id=circle8932 r=8 stroke-width=2 /></svg></div>`;
         
         applyOptimisticUI();
         

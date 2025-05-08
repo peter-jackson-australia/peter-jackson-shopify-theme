@@ -206,6 +206,7 @@
     border: none;
     cursor: pointer;
     padding: var(--space-2xs) 0;
+    height: var(--space-xl);
   }
 
   .cart__empty {
@@ -319,7 +320,7 @@
             <h3 class="cart__footer-label body">Subtotal</h3>
             <span class="cart__footer-value body--bold">{{ cart.total_price | money }}</span>
           </div>
-          <button type="submit" name="checkout" class="cart__checkout heading--l">Checkout</button>
+          <button type="submit" name="checkout" class="cart__checkout body">Checkout</button>
         </footer>
       {% endif %}
     {% endform %}
