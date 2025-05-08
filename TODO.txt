@@ -3,8 +3,6 @@ Make the cart checkout button sticky and the line items container have custom sc
 minimise code and combine files 
 Test thoroughly and make fast
 
-Add in loading spinner to filtering button
-
 /////////////////////////////////////////////////////
 
 Main Menu:
