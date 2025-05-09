@@ -1,5 +1,4 @@
-AJAX CART:
-Test thoroughly and make fast
+Account pages/careers
 
 /////////////////////////////////////////////////////
 
