@@ -531,7 +531,6 @@
                   width="{{ image_width }}"
                   height="{{ image_height }}"
                   alt="{{ image.alt | escape }}"
-                  decoding="async"
                   loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
                   {% if forloop.first %}
                     fetchpriority="high"
