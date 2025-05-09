@@ -10,49 +10,12 @@ window.addEventListener("load", () => {
   initCart();
 });
 
-function createLoadingSpinner() {
-  const spinner = document.createElement("div");
-  spinner.innerHTML = `<span class="loader--spinner"></span>`;
-  return spinner;
-}
-
 function createAnimatedLoader() {
   const loader = document.createElement("div");
   loader.className = "animated-loader";
   
-  loader.innerHTML = `
-    <svg fill="#E7E7E7" viewBox="0 0 40 4" xmlns="http://www.w3.org/2000/svg" style="height: 4px; display: block;">
-      <style>
-        .react{animation:moving 1s ease-in-out infinite}
-        @keyframes moving{
-          0%{width:0%}
-          50%{width:100%;transform:translate(0,0)}
-          100%{width:0;right:0;transform:translate(100%,0)}
-        }
-      </style>
-      <rect class="react" fill="#E7E7E7" height="4" width="40" />
-    </svg>
-  `;
+  loader.innerHTML = `<svg fill=#E7E7E7 style=height:4px;display:block viewBox="0 0 40 4"xmlns=http://www.w3.org/2000/svg><style>.react{animation:moving 1s ease-in-out infinite}@keyframes moving{0%{width:0%}50%{width:100%;transform:translate(0,0)}100%{width:0;right:0;transform:translate(100%,0)}}</style><rect class=react fill=#E7E7E7 height=4 width=40 /></svg>`;
   return loader;
-}
-
-function showCartItemError(rootItem, message) {
-  const existingError = rootItem.querySelector('.cart-item__error');
-  if (existingError) {
-    existingError.remove();
-  }
-  
-  const errorElement = document.createElement('div');
-  errorElement.className = 'cart-item__error small';
-  errorElement.textContent = message;
-  
-  const actionsElement = rootItem.querySelector('.cart-item__actions');
-  actionsElement.after(errorElement);
-  
-  setTimeout(() => {
-    errorElement.classList.add('fade-out');
-    setTimeout(() => errorElement.remove(), 800);
-  }, 12000);
 }
 
 function showProductError(form, message) {
@@ -116,7 +79,7 @@ function applyOptimisticUI() {
       cartForm.appendChild(footer);
       
       const newCheckoutButton = footer.querySelector(".cart__checkout");
-      newCheckoutButton.appendChild(createLoadingSpinner());
+      newCheckoutButton.innerHTML = '<span class="loader--spinner"></span>';
       
       const footerValue = footer.querySelector(".cart__footer-value");
       footerValue.appendChild(createAnimatedLoader());
@@ -214,7 +177,6 @@ async function fetchCart() {
     
     const cart = await res.json();
     updateCartIndicators(cart.item_count);
-    localStorage.setItem("cartState", JSON.stringify(cart));
     return cart;
   } catch (e) {
     console.error("Error fetching cart:", e);
@@ -239,44 +201,6 @@ async function updateCartDrawer() {
   } catch (e) {
     console.error("Error updating cart drawer:", e);
     return false;
-  }
-}
-
-function addCartItemButtonListeners(rootItem) {
-  const plusButton = rootItem.querySelector(".cart-item__quantity-button--plus");
-  const minusButton = rootItem.querySelector(".cart-item__quantity-button--minus");
-  const removeButton = rootItem.querySelector(".cart-item__remove");
-  
-  if (plusButton && minusButton) {
-    [plusButton, minusButton].forEach(btn => {
-      btn.addEventListener("click", event => {
-        const newBtn = btn.cloneNode(true);
-        btn.parentNode.replaceChild(newBtn, btn);
-        document.dispatchEvent(new Event('DOMContentLoaded'));
-      });
-    });
-  }
-  
-  if (removeButton) {
-    removeButton.addEventListener("click", () => {
-      const cartItem = removeButton.closest(".cart-item");
-      const key = cartItem.getAttribute("data-line-item-key");
-      
-      cartItem.style.display = "none";
-      applyCartTotalLoaders();
-      
-      fetch("/cart/update.js", {
-        method: "post",
-        headers: { Accept: "application/json", "Content-Type": "application/json" },
-        body: JSON.stringify({ updates: { [key]: 0 } }),
-      })
-      .then(() => updateCartDrawer())
-      .catch(e => {
-        console.error("Error removing item:", e);
-        cartItem.style.display = "";
-        updateCartDrawer();
-      });
-    });
   }
 }
 
