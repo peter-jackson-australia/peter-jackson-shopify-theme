@@ -57,9 +57,24 @@ function prePopulateCartDrawer(cartData) {
       cartItem.setAttribute("data-inventory-quantity", item.variant.inventory_quantity);
     }
     
-    const variantTitle = item.variant_title && item.variant_title !== 'Default Title' 
-      ? item.variant_title.replace('.0', '') 
-      : 'One Size';
+    let variantInfo = "One Size";
+    if (item.variant_title && item.variant_title !== 'Default Title') {
+      if (item.options_with_values && Array.isArray(item.options_with_values)) {
+        try {
+          const parts = item.options_with_values.map(opt => 
+            `${opt.name}: ${(opt.value || '').toString().replace('.0', '')}`
+          );
+          if (parts.length > 0) {
+            variantInfo = parts.join(', ');
+          }
+        } catch (e) {
+          console.error("Error formatting variant info:", e);
+          variantInfo = item.variant_title.replace('.0', '');
+        }
+      } else {
+        variantInfo = item.variant_title.replace('.0', '');
+      }
+    }
     
     cartItem.innerHTML = `
       <div class="cart-item__image">
@@ -77,7 +92,7 @@ function prePopulateCartDrawer(cartData) {
               <a href="${item.url}">${item.product_title || item.title}</a>
             </h3>
             <div class="cart-item__specifics">
-              <p class="cart-item__variant small">${variantTitle}</p>
+              <p class="cart-item__variant small">${variantInfo}</p>
               <div class="cart-item__price">
                 <p class="small">${formatMoney(item.line_price)}</p>
               </div>
@@ -257,10 +272,40 @@ async function updateCartDrawer() {
 
 function applyOptimisticUI() {
   const productTitle = document.querySelector(".product-details__title")?.textContent || "";
-  const variantTitle = Array.from(document.querySelectorAll('.js--variant-option:checked'))
-    .map(input => input.nextElementSibling?.textContent?.trim())
-    .filter(Boolean)
-    .join(' / ') || "";
+  
+  // Get variant options in a simple way to avoid potential errors
+  let variantSelections = "One Size";
+  
+  try {
+    const options = [];
+    document.querySelectorAll('.js--variant-options').forEach(optGroup => {
+      const legend = optGroup.querySelector('legend');
+      if (!legend) return;
+      
+      const optionName = legend.textContent.replace(':', '').trim();
+      const selectedInput = optGroup.querySelector('.js--variant-option:checked');
+      if (!selectedInput) return;
+      
+      const label = selectedInput.nextElementSibling;
+      if (!label) return;
+      
+      const optionValue = label.textContent.trim();
+      if (optionName && optionValue) {
+        options.push(`${optionName}: ${optionValue}`);
+      }
+    });
+    
+    if (options.length > 0) {
+      variantSelections = options.join(', ');
+    }
+  } catch (e) {
+    console.error("Error formatting variant selections:", e);
+    variantSelections = Array.from(document.querySelectorAll('.js--variant-option:checked'))
+      .map(input => input.nextElementSibling?.textContent?.trim())
+      .filter(Boolean)
+      .join(' / ') || "One Size";
+  }
+  
   const productImage = document.querySelector(".splide__slide img")?.src || "";
   const variantId = document.querySelector('#js--variant-id')?.value || "";
   
@@ -328,7 +373,7 @@ function applyOptimisticUI() {
               <a href="${window.location.pathname}">${productTitle}</a>
             </h3>
             <div class="cart-item__specifics">
-              <p class="cart-item__variant small">${variantTitle ? variantTitle : 'One Size'}</p>
+              <p class="cart-item__variant small">${variantSelections}</p>
               <div class="cart-item__price">
                 <div class="price-placeholder"></div>
               </div>
