@@ -278,7 +278,11 @@
                     </h3>
                     <div class="cart-item__specifics">
                       {% if item.variant.title != 'Default Title' %}
-                        <p class="cart-item__variant small">{{ item.variant.title }}</p>
+                        {% if item.variant.title contains '.0' %}
+                          <p class="cart-item__variant small">{{ item.variant.title | remove: '.0' }}</p>
+                        {% else %}
+                          <p class="cart-item__variant small">{{ item.variant.title }}</p>
+                        {% endif %}
                       {% else %}
                         <p class="cart-item__variant small">One Size</p>
                       {% endif %}
