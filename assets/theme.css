@@ -707,3 +707,25 @@ a.skip-to-content:focus-visible {
   border-radius: 0 !important;
   border-left: 1px solid var(--neutral-200);
 }
+
+/* Loading Spinner */
+
+.loader--spinner {
+  width: var(--space-xs);
+  height: var(--space-xs);
+  border: 2px solid var(--white);
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

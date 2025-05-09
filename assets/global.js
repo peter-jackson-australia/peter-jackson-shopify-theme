@@ -12,7 +12,7 @@ window.addEventListener("load", () => {
 
 function createLoadingSpinner(color = "var(--neutral-100)") {
   const spinner = document.createElement("div");
-  spinner.innerHTML = `<div style="width: var(--space-s); height: var(--space-s); margin: 0 auto;"><svg fill=${color} viewBox="0 0 20 20"xmlns=http://www.w3.org/2000/svg><defs><linearGradient id=RadialGradient8932><stop offset=0% stop-color=currentColor stop-opacity=1 /><stop offset=100% stop-color=currentColor stop-opacity=0.25 /></linearGradient></defs><style>@keyframes spin8932{to{transform:rotate(360deg)}}#circle8932{transform-origin:50% 50%;stroke:url(#RadialGradient8932);fill:none;animation:spin8932 .5s infinite linear}</style><circle cx=10 cy=10 id=circle8932 r=8 stroke-width=2 /></svg></div>`;
+  spinner.innerHTML = `<span class="loader--spinner"></span>`;
   return spinner;
 }
 
@@ -454,7 +454,7 @@ function initCart() {
         }
         
         const originalText = addButton.innerHTML;
-        addButton.innerHTML = `<div style="width: var(--space-s); height: var(--space-s); margin: auto;"><svg fill=#FFFFFFFF viewBox="0 0 20 20"xmlns=http://www.w3.org/2000/svg><defs><linearGradient id=RadialGradient8932><stop offset=0% stop-color=currentColor stop-opacity=1 /><stop offset=100% stop-color=currentColor stop-opacity=0.25 /></linearGradient></defs><style>@keyframes spin8932{to{transform:rotate(360deg)}}#circle8932{transform-origin:50% 50%;stroke:url(#RadialGradient8932);fill:none;animation:spin8932 .5s infinite linear}</style><circle cx=10 cy=10 id=circle8932 r=8 stroke-width=2 /></svg></div>`;
+        addButton.innerHTML = `<span class="loader--spinner"></span>`;
         
         try {
           const inventoryQuantity = parseInt(document.querySelector('#js--variant-inventory-quantity')?.value || "Infinity", 10);

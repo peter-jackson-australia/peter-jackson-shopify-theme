@@ -28,6 +28,7 @@
         aria-label="Cart{% if cart.item_count > 0 %} with items{% endif %}"
         style="text-decoration: none; position: relative;"
         class="js-cart-icon"
+        onclick="return false;"
       >
         {%- render 'icon-cart', accessible_name: 'Shopping Cart', role: 'img' %}
         <span class="cart-indicator {% if cart.item_count == 0 %}hide{% endif %}" aria-hidden="true"></span>

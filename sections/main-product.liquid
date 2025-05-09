@@ -576,7 +576,7 @@
           </button>
         </div>
 
-        <form action="/cart/add" method="post">
+        <form action="/cart/add" method="post" onsubmit="return false;">
           {%- for block in section.blocks -%}
             {% case block.type %}
               {%- when '@app' -%}
@@ -629,7 +629,12 @@
                   value="{{ current_variant.inventory_quantity }}"
                 >
                 {% if current_variant.available == true %}
-                  <button type="submit" id="js--addtocart" class="body" style="height: var(--space-xl);">
+                  <button
+                    type="submit"
+                    id="js--addtocart"
+                    class="body"
+                    style="height: var(--space-xl);"
+                  >
                     Add To Cart
                   </button>
                 {% else %}
