@@ -83,6 +83,9 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    height: calc(100dvh - var(--space-xl));
+    overflow-y: hidden;
+    position: relative;
   }
 
   .cart__items {
@@ -189,6 +192,10 @@
     padding: var(--space-m);
     margin-top: auto;
     border-top: 1px solid var(--neutral-200);
+    position: absolute;
+    bottom: 0;
+    background-color: var(--white);
+    width: 100%;
   }
 
   .cart__footer-row {
