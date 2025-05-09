@@ -448,21 +448,17 @@ function initCart() {
       
       const addButton = form.querySelector("#js--addtocart");
       if (addButton && !addButton.disabled) {
-        // Clear any existing error
         const existingError = form.querySelector('.product-error');
         if (existingError) {
           existingError.remove();
         }
         
-        // Show loading state on button immediately
         const originalText = addButton.innerHTML;
         addButton.innerHTML = `<div style="width: var(--space-s); height: var(--space-s); margin: auto;"><svg fill=#FFFFFFFF viewBox="0 0 20 20"xmlns=http://www.w3.org/2000/svg><defs><linearGradient id=RadialGradient8932><stop offset=0% stop-color=currentColor stop-opacity=1 /><stop offset=100% stop-color=currentColor stop-opacity=0.25 /></linearGradient></defs><style>@keyframes spin8932{to{transform:rotate(360deg)}}#circle8932{transform-origin:50% 50%;stroke:url(#RadialGradient8932);fill:none;animation:spin8932 .5s infinite linear}</style><circle cx=10 cy=10 id=circle8932 r=8 stroke-width=2 /></svg></div>`;
         
         try {
-          // Check inventory limits before opening cart
           const inventoryQuantity = parseInt(document.querySelector('#js--variant-inventory-quantity')?.value || "Infinity", 10);
           
-          // Get current cart data
           const cart = await fetchCart();
           
           let existingItem = null;
@@ -473,13 +469,11 @@ function initCart() {
           const totalRequestedQuantity = (existingItem ? existingItem.quantity : 0) + quantity;
           
           if (inventoryQuantity !== Infinity && totalRequestedQuantity > inventoryQuantity) {
-            // Show error on product page
             addButton.innerHTML = originalText;
             showProductError(form, `Sorry, only ${inventoryQuantity} ${inventoryQuantity === 1 ? 'item' : 'items'} available.`);
             return;
           }
           
-          // If we passed inventory check, now open cart and add item
           openCartDrawer();
           applyOptimisticUI();
           
