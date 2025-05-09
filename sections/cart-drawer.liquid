@@ -203,14 +203,13 @@
   }
 
   .cart__checkout {
-    display: block;
     width: 100%;
+    height: var(--space-xl);
     background-color: var(--neutral-950);
     color: var(--white);
     border: none;
+    padding: var(--space-xs) var(--space-s);
     cursor: pointer;
-    padding: var(--space-2xs) 0;
-    height: var(--space-xl);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -281,7 +280,7 @@
                       {% if item.variant.title != 'Default Title' %}
                         <p class="cart-item__variant small">{{ item.variant.title }}</p>
                       {% else %}
-                        <p class="cart-item__variant small"></p>
+                        <p class="cart-item__variant small">One Size</p>
                       {% endif %}
                       <div class="cart-item__price">
                         <p class="small">{{ item.final_line_price | money }}</p>

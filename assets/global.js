@@ -10,7 +10,7 @@ window.addEventListener("load", () => {
   initCart();
 });
 
-function createLoadingSpinner(color = "var(--neutral-100)") {
+function createLoadingSpinner() {
   const spinner = document.createElement("div");
   spinner.innerHTML = `<span class="loader--spinner"></span>`;
   return spinner;
@@ -79,8 +79,7 @@ function applyCartTotalLoaders() {
   
   const checkoutButton = document.querySelector(".cart__checkout");
   if (checkoutButton) {
-    checkoutButton.innerHTML = "";
-    checkoutButton.appendChild(createLoadingSpinner("var(--white)"));
+    checkoutButton.innerHTML = '<span class="loader--spinner"></span>';
   }
 }
 
@@ -117,7 +116,7 @@ function applyOptimisticUI() {
       cartForm.appendChild(footer);
       
       const newCheckoutButton = footer.querySelector(".cart__checkout");
-      newCheckoutButton.appendChild(createLoadingSpinner("var(--white)"));
+      newCheckoutButton.appendChild(createLoadingSpinner());
       
       const footerValue = footer.querySelector(".cart__footer-value");
       footerValue.appendChild(createAnimatedLoader());
@@ -164,7 +163,7 @@ function applyOptimisticUI() {
               <a href="${window.location.pathname}">${productTitle}</a>
             </h3>
             <div class="cart-item__specifics">
-              <p class="cart-item__variant small">${variantTitle}</p>
+              <p class="cart-item__variant small">${variantTitle ? variantTitle : 'One Size'}</p>
               <div class="cart-item__price">
                 <div class="price-placeholder"></div>
               </div>
