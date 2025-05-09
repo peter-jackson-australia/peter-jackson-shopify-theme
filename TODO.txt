@@ -1,4 +1,5 @@
 AJAX CART:
+Cart persistance (have everything come from localstorage) 
 Make the cart checkout button sticky and the line items container have custom scrollbar with a soft gradient sitting above checkout button container 
 minimise code and combine files 
 Test thoroughly and make fast
