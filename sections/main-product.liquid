@@ -523,14 +523,15 @@
                   srcset="
                     {{ image.src | image_url: width: 100 }} 100w,
                     {{ image.src | image_url: width: 200 }} 200w,
-                    {{ image.src | image_url: width: 400 }} 400w,
-                    {{ image.src | image_url: width: 600 }} 600w,
-                    {{ image.src | image_url: width: 800 }} 800w
+                    {{ image.src | image_url: width: 300 }} 300w,
+                    {{ image.src | image_url: width: 500 }} 500w,
+                    {{ image.src | image_url: width: 700 }} 700w
                   "
-                  sizes="(max-width: 600px) 50vw, 30vw"
+                  sizes="(max-width: 500px) 40vw, 20vw"
                   width="{{ image_width }}"
                   height="{{ image_height }}"
                   alt="{{ image.alt | escape }}"
+                  decoding="async"
                   loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
                   {% if forloop.first %}
                     fetchpriority="high"
