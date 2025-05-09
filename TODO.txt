@@ -1,5 +1,4 @@
 AJAX CART:
-Sometimes prevent default doesn't work 
 Cart persistance
 Make the cart checkout button sticky and the line items container have custom scrollbar with a soft gradient sitting above checkout button container 
 minimise code and combine files 
