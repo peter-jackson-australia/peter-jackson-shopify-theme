@@ -1,7 +1,4 @@
 AJAX CART:
-Make the cart checkout button sticky and the line items container have custom scrollbar with a soft gradient sitting above checkout button container 
-lock scrolling when cart is open
-minimise code and combine files 
 Test thoroughly and make fast
 
 /////////////////////////////////////////////////////
