@@ -13,36 +13,86 @@ window.addEventListener("load", () => {
 function createAnimatedLoader() {
   const loader = document.createElement("div");
   loader.className = "animated-loader";
-  
   loader.innerHTML = `<svg fill=#E7E7E7 style=height:4px;display:block viewBox="0 0 40 4"xmlns=http://www.w3.org/2000/svg><style>.react{animation:moving 1s ease-in-out infinite}@keyframes moving{0%{width:0%}50%{width:100%;transform:translate(0,0)}100%{width:0;right:0;transform:translate(100%,0)}}</style><rect class=react fill=#E7E7E7 height=4 width=40 /></svg>`;
   return loader;
 }
 
-function showProductError(form, message) {
-  const existingError = form.querySelector('.product-error');
-  if (existingError) {
-    existingError.remove();
-  }
+function showError(container, message, className = 'product-error body') {
+  const existingError = container.querySelector(`.${className.split(' ')[0]}`);
+  if (existingError) existingError.remove();
   
   const errorElement = document.createElement('div');
-  errorElement.className = 'product-error body';
+  errorElement.className = className;
   errorElement.textContent = message;
   errorElement.style.color = 'red';
   
-  const addButton = form.querySelector('#js--addtocart');
-  addButton.after(errorElement);
+  const target = container.querySelector('#js--addtocart') || 
+                container.querySelector('.cart-item__actions');
+  if (target) target.after(errorElement);
+  return errorElement;
+}
+
+function createLoadingPlaceholder(element) {
+  const originalHTML = element.innerHTML;
+  element.innerHTML = "";
+  element.appendChild(createAnimatedLoader());
+  return originalHTML;
 }
 
 function applyCartTotalLoaders() {
-  const footerValues = document.querySelectorAll(".cart__footer-value");
-  footerValues.forEach(el => {
-    el.innerHTML = "";
-    el.appendChild(createAnimatedLoader());
-  });
+  document.querySelectorAll(".cart__footer-value").forEach(el => createLoadingPlaceholder(el));
   
   const checkoutButton = document.querySelector(".cart__checkout");
-  if (checkoutButton) {
-    checkoutButton.innerHTML = '<span class="loader--spinner"></span>';
+  if (checkoutButton) checkoutButton.innerHTML = '<span class="loader--spinner"></span>';
+}
+
+function openCartDrawer() {
+  cartElements.drawer.classList.add("cart--active");
+}
+
+function closeCartDrawer() {
+  cartElements.drawer.classList.remove("cart--active");
+}
+
+function updateCartIndicators(count) {
+  cartElements.indicators.forEach(el => {
+    el.style.visibility = "visible";
+    el.classList.toggle("hide", count <= 0);
+  });
+  localStorage.setItem("cartCount", count.toString());
+}
+
+async function fetchCart() {
+  try {
+    const res = await fetch("/cart.js");
+    if (!res.ok) throw new Error("Failed to fetch cart");
+    
+    const cart = await res.json();
+    updateCartIndicators(cart.item_count);
+    return cart;
+  } catch (e) {
+    console.error("Error fetching cart:", e);
+    return null;
+  }
+}
+
+async function updateCartDrawer() {
+  try {
+    const [drawerRes, cartData] = await Promise.all([
+      fetch("/?section_id=cart-drawer"),
+      fetchCart()
+    ]);
+    
+    const text = await drawerRes.text();
+    const html = document.createElement("div");
+    html.innerHTML = text;
+    
+    cartElements.drawer.innerHTML = html.querySelector(".cart").innerHTML;
+    addCartEventListeners();
+    return true;
+  } catch (e) {
+    console.error("Error updating cart drawer:", e);
+    return false;
   }
 }
 
@@ -93,22 +143,15 @@ function applyOptimisticUI() {
   
   if (existingItem) {
     const priceElement = existingItem.querySelector(".cart-item__price");
-    if (priceElement) {
-      priceElement.innerHTML = "";
-      priceElement.appendChild(createAnimatedLoader());
-    }
+    if (priceElement) createLoadingPlaceholder(priceElement);
     
     const actionsEl = existingItem.querySelector(".cart-item__actions");
     if (actionsEl) {
-      const oldHTML = actionsEl.innerHTML;
-      
       actionsEl.innerHTML = `
         <div class="placeholder-loader"></div>
         <div class="placeholder-remove"></div>
       `;
-      
-      const loaderContainer = actionsEl.querySelector(".placeholder-loader");
-      loaderContainer.appendChild(createAnimatedLoader());
+      actionsEl.querySelector(".placeholder-loader").appendChild(createAnimatedLoader());
     }
   } else {
     const cartItem = document.createElement("article");
@@ -140,68 +183,28 @@ function applyOptimisticUI() {
       </div>
     `;
     
-    const priceElement = cartItem.querySelector(".price-placeholder");
-    priceElement.appendChild(createAnimatedLoader());
-    
-    const quantityElement = cartItem.querySelector(".placeholder-loader");
-    quantityElement.appendChild(createAnimatedLoader());
+    cartItem.querySelector(".price-placeholder").appendChild(createAnimatedLoader());
+    cartItem.querySelector(".placeholder-loader").appendChild(createAnimatedLoader());
     
     itemsContainer.prepend(cartItem);
   }
 }
 
-function openCartDrawer() {
-  cartElements.drawer.classList.add("cart--active");
-}
-
-function closeCartDrawer() {
-  cartElements.drawer.classList.remove("cart--active");
-}
-
-function updateCartIndicators(count) {
-  cartElements.indicators.forEach(el => {
-    el.style.visibility = "visible";
-    if (count > 0) {
-      el.classList.remove("hide");
-    } else {
-      el.classList.add("hide");
-    }
-  });
-  localStorage.setItem("cartCount", count.toString());
-}
-
-async function fetchCart() {
-  try {
-    const res = await fetch("/cart.js");
-    if (!res.ok) throw new Error("Failed to fetch cart");
-    
-    const cart = await res.json();
-    updateCartIndicators(cart.item_count);
-    return cart;
-  } catch (e) {
-    console.error("Error fetching cart:", e);
-    return null;
-  }
-}
-
-async function updateCartDrawer() {
-  try {
-    const [drawerRes, cartData] = await Promise.all([
-      fetch("/?section_id=cart-drawer"),
-      fetchCart()
-    ]);
-    
-    const text = await drawerRes.text();
-    const html = document.createElement("div");
-    html.innerHTML = text;
-    
-    cartElements.drawer.innerHTML = html.querySelector(".cart").innerHTML;
-    addCartEventListeners();
-    return true;
-  } catch (e) {
-    console.error("Error updating cart drawer:", e);
-    return false;
-  }
+function addErrorWithTimeout(item, message) {
+  const errorElement = showError(item, message, 'cart-item__error small cart-item__error--permanent');
+  
+  const clearErrorOnClick = () => {
+    const permanentErrors = document.querySelectorAll('.cart-item__error--permanent');
+    permanentErrors.forEach(error => {
+      error.classList.add('fade-out');
+      setTimeout(() => error.remove(), 800);
+    });
+    document.removeEventListener('click', clearErrorOnClick);
+  };
+  
+  setTimeout(() => {
+    document.addEventListener('click', clearErrorOnClick);
+  }, 100);
 }
 
 function addCartEventListeners() {
@@ -219,53 +222,23 @@ function addCartEventListeners() {
           applyCartTotalLoaders();
           
           const actionsEl = rootItem.querySelector(".cart-item__actions");
-          const originalActionsHTML = actionsEl.innerHTML;
-          
-          const priceEl = rootItem.querySelector(".cart-item__price");
-          const originalPriceHTML = priceEl.innerHTML;
-          
+          createLoadingPlaceholder(actionsEl);
           actionsEl.innerHTML = `
             <div class="placeholder-loader"></div>
             <div class="placeholder-remove"></div>
           `;
           actionsEl.querySelector(".placeholder-loader").appendChild(createAnimatedLoader());
           
-          priceEl.innerHTML = "";
-          priceEl.appendChild(createAnimatedLoader());
+          createLoadingPlaceholder(rootItem.querySelector(".cart-item__price"));
           
           await new Promise(resolve => setTimeout(resolve, 800));
-          
           await updateCartDrawer();
           
           const updatedRootItem = document.querySelector(`[data-line-item-key="${key}"]`);
           if (updatedRootItem) {
-            const existingError = updatedRootItem.querySelector('.cart-item__error');
-            if (existingError) {
-              existingError.remove();
-            }
-            
-            const errorElement = document.createElement('div');
-            errorElement.className = 'cart-item__error small cart-item__error--permanent';
-            errorElement.textContent = `Sorry, only ${inventoryLimit} ${inventoryLimit === 1 ? 'item' : 'items'} available.`;
-            
-            const updatedActionsEl = updatedRootItem.querySelector(".cart-item__actions");
-            updatedActionsEl.after(errorElement);
-            
-            const clearErrorOnClick = () => {
-              const permanentErrors = document.querySelectorAll('.cart-item__error--permanent');
-              permanentErrors.forEach(error => {
-                error.classList.add('fade-out');
-                setTimeout(() => error.remove(), 800);
-              });
-              
-              document.removeEventListener('click', clearErrorOnClick);
-            };
-            
-            setTimeout(() => {
-              document.addEventListener('click', clearErrorOnClick);
-            }, 100);
+            addErrorWithTimeout(updatedRootItem, 
+              `Sorry, only ${inventoryLimit} ${inventoryLimit === 1 ? 'item' : 'items'} available.`);
           }
-          
           return;
         }
       }
@@ -274,19 +247,14 @@ function addCartEventListeners() {
         applyCartTotalLoaders();
         
         const actionsEl = rootItem.querySelector(".cart-item__actions");
-        const originalActionsHTML = actionsEl.innerHTML;
-        
-        const priceEl = rootItem.querySelector(".cart-item__price");
-        const originalPriceHTML = priceEl.innerHTML;
-        
+        createLoadingPlaceholder(actionsEl);
         actionsEl.innerHTML = `
           <div class="placeholder-loader"></div>
           <div class="placeholder-remove"></div>
         `;
         actionsEl.querySelector(".placeholder-loader").appendChild(createAnimatedLoader());
         
-        priceEl.innerHTML = "";
-        priceEl.appendChild(createAnimatedLoader());
+        createLoadingPlaceholder(rootItem.querySelector(".cart-item__price"));
         
         await fetch("/cart/update.js", {
           method: "post",
@@ -301,23 +269,7 @@ function addCartEventListeners() {
         
         const updatedRootItem = document.querySelector(`[data-line-item-key="${key}"]`);
         if (updatedRootItem) {
-          const existingError = updatedRootItem.querySelector('.cart-item__error');
-          if (existingError) {
-            existingError.remove();
-          }
-          
-          const errorElement = document.createElement('div');
-          errorElement.className = 'cart-item__error small cart-item__error--permanent';
-          errorElement.textContent = "Could not update quantity. Please try again.";
-          
-          const updatedActionsEl = updatedRootItem.querySelector(".cart-item__actions");
-          updatedActionsEl.after(errorElement);
-          
-          document.addEventListener('click', function clearError() {
-            errorElement.classList.add('fade-out');
-            setTimeout(() => errorElement.remove(), 800);
-            document.removeEventListener('click', clearError);
-          });
+          addErrorWithTimeout(updatedRootItem, "Could not update quantity. Please try again.");
         }
       }
     });
@@ -329,7 +281,6 @@ function addCartEventListeners() {
       const key = cartItem.getAttribute("data-line-item-key");
       
       cartItem.style.display = "none";
-      
       applyCartTotalLoaders();
       
       try {
@@ -347,10 +298,61 @@ function addCartEventListeners() {
     });
   });
 
-  document.querySelector(".cart__container").addEventListener("click", e => e.stopPropagation());
+  document.querySelector(".cart__container")?.addEventListener("click", e => e.stopPropagation());
   document.querySelectorAll(".cart__close, .cart").forEach(el => {
     el.addEventListener("click", closeCartDrawer);
   });
+}
+
+function handleAddToCart(form) {
+  return async (e) => {
+    e.preventDefault();
+    
+    const variantId = form.querySelector('#js--variant-id')?.value || "";
+    const quantityInput = form.querySelector('input[name="quantity"]');
+    const quantity = quantityInput ? parseInt(quantityInput.value, 10) : 1;
+    
+    const addButton = form.querySelector("#js--addtocart");
+    if (!addButton || addButton.disabled) return;
+    
+    const originalText = addButton.innerHTML;
+    addButton.innerHTML = `<span class="loader--spinner"></span>`;
+    
+    try {
+      const inventoryQuantity = parseInt(document.querySelector('#js--variant-inventory-quantity')?.value || "Infinity", 10);
+      const cart = await fetchCart();
+      
+      let existingItem = null;
+      if (cart && cart.items) {
+        existingItem = cart.items.find(item => item.variant_id.toString() === variantId);
+      }
+      
+      const totalRequestedQuantity = (existingItem ? existingItem.quantity : 0) + quantity;
+      
+      if (inventoryQuantity !== Infinity && totalRequestedQuantity > inventoryQuantity) {
+        addButton.innerHTML = originalText;
+        showError(form, `Sorry, only ${inventoryQuantity} ${inventoryQuantity === 1 ? 'item' : 'items'} available.`);
+        return;
+      }
+      
+      openCartDrawer();
+      applyOptimisticUI();
+      
+      await fetch("/cart/add", { 
+        method: "post", 
+        body: new FormData(form) 
+      });
+      await updateCartDrawer();
+    } catch (e) {
+      console.error("Error adding to cart:", e);
+      addButton.innerHTML = originalText;
+      showError(form, "Could not add to cart. Please try again.");
+    } finally {
+      if (addButton.innerHTML !== originalText) {
+        addButton.innerHTML = originalText;
+      }
+    }
+  };
 }
 
 function initCart() {
@@ -362,60 +364,7 @@ function initCart() {
   }
   
   cartElements.forms.forEach(form => {
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      
-      const variantId = form.querySelector('#js--variant-id')?.value || "";
-      const quantityInput = form.querySelector('input[name="quantity"]');
-      const quantity = quantityInput ? parseInt(quantityInput.value, 10) : 1;
-      
-      const addButton = form.querySelector("#js--addtocart");
-      if (addButton && !addButton.disabled) {
-        const existingError = form.querySelector('.product-error');
-        if (existingError) {
-          existingError.remove();
-        }
-        
-        const originalText = addButton.innerHTML;
-        addButton.innerHTML = `<span class="loader--spinner"></span>`;
-        
-        try {
-          const inventoryQuantity = parseInt(document.querySelector('#js--variant-inventory-quantity')?.value || "Infinity", 10);
-          
-          const cart = await fetchCart();
-          
-          let existingItem = null;
-          if (cart && cart.items) {
-            existingItem = cart.items.find(item => item.variant_id.toString() === variantId);
-          }
-          
-          const totalRequestedQuantity = (existingItem ? existingItem.quantity : 0) + quantity;
-          
-          if (inventoryQuantity !== Infinity && totalRequestedQuantity > inventoryQuantity) {
-            addButton.innerHTML = originalText;
-            showProductError(form, `Sorry, only ${inventoryQuantity} ${inventoryQuantity === 1 ? 'item' : 'items'} available.`);
-            return;
-          }
-          
-          openCartDrawer();
-          applyOptimisticUI();
-          
-          await fetch("/cart/add", { 
-            method: "post", 
-            body: new FormData(form) 
-          });
-          await updateCartDrawer();
-        } catch (e) {
-          console.error("Error adding to cart:", e);
-          addButton.innerHTML = originalText;
-          showProductError(form, "Could not add to cart. Please try again.");
-        } finally {
-          if (addButton.innerHTML !== originalText) {
-            addButton.innerHTML = originalText;
-          }
-        }
-      }
-    });
+    form.addEventListener("submit", handleAddToCart(form));
   });
   
   cartElements.cartLinks.forEach(link => {
@@ -431,7 +380,4 @@ function initCart() {
 
 document.addEventListener("DOMContentLoaded", () => {
   addCartEventListeners();
-  document.querySelectorAll(".cart-item").forEach(item => {
-    addCartItemButtonListeners(item);
-  });
 });
