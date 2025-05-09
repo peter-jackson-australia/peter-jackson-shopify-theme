@@ -7,8 +7,159 @@ const cartElements = {
 
 window.addEventListener("load", () => {
   quicklink.listen();
-  initCart();
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  initCartFromStorage();
+  addCartEventListeners();
+});
+
+function initCartFromStorage() {
+  const storedCartData = localStorage.getItem("cartData");
+  
+  if (storedCartData) {
+    try {
+      const cartData = JSON.parse(storedCartData);
+      
+      if (cartData.count > 0) {
+        updateCartIndicators(cartData.count);
+      }
+      
+      if (cartData.items && cartData.items.length > 0) {
+        prePopulateCartDrawer(cartData);
+      }
+    } catch (e) {
+      console.error("Error parsing stored cart data:", e);
+    }
+  }
+  
+  fetchCart().then(cart => {
+    if (cart) updateCartDrawer();
+  });
+}
+
+function prePopulateCartDrawer(cartData) {
+  const cartEmpty = document.querySelector(".cart__empty");
+  if (!cartEmpty) return;
+  
+  cartEmpty.remove();
+  const cartForm = document.querySelector(".cart__form");
+  
+  const itemsContainer = document.createElement("div");
+  itemsContainer.className = "cart__items";
+  cartForm.prepend(itemsContainer);
+  
+  cartData.items.forEach(item => {
+    const cartItem = document.createElement("article");
+    cartItem.className = "cart-item";
+    cartItem.setAttribute("data-line-item-key", item.key);
+    if (item.variant && item.variant.inventory_quantity !== undefined) {
+      cartItem.setAttribute("data-inventory-quantity", item.variant.inventory_quantity);
+    }
+    
+    const variantTitle = item.variant_title && item.variant_title !== 'Default Title' 
+      ? item.variant_title.replace('.0', '') 
+      : 'One Size';
+    
+    cartItem.innerHTML = `
+      <div class="cart-item__image">
+        <img
+          src="${item.image}"
+          alt="${item.title}"
+          width="100"
+          height="auto"
+        >
+      </div>
+      <div class="cart-item__content">
+        <div class="cart-item__row">
+          <div class="cart-item__details">
+            <h3 class="cart-item__title body--bold">
+              <a href="${item.url}">${item.product_title || item.title}</a>
+            </h3>
+            <div class="cart-item__specifics">
+              <p class="cart-item__variant small">${variantTitle}</p>
+              <div class="cart-item__price">
+                <p class="small">${formatMoney(item.line_price)}</p>
+              </div>
+            </div>
+            <div class="cart-item__actions">
+              <div class="cart-item__quantity">
+                <button
+                  class="cart-item__quantity-button cart-item__quantity-button--minus body"
+                  type="button"
+                  aria-label="Decrease quantity"
+                >
+                  -
+                </button>
+                <input
+                  type="text"
+                  class="cart-item__quantity-input small"
+                  readonly
+                  value="${item.quantity}"
+                  aria-label="Quantity"
+                >
+                <button
+                  class="cart-item__quantity-button cart-item__quantity-button--plus body"
+                  type="button"
+                  aria-label="Increase quantity"
+                >
+                  +
+                </button>
+              </div>
+              <button type="button" class="cart-item__remove small">Remove</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    itemsContainer.appendChild(cartItem);
+  });
+  
+  if (!document.querySelector(".cart__footer")) {
+    const footer = document.createElement("footer");
+    footer.className = "cart__footer";
+    footer.innerHTML = `
+      <div class="cart__footer-row">
+        <h3 class="cart__footer-label body">Subtotal</h3>
+        <span class="cart__footer-value body--bold">${formatMoney(cartData.total)}</span>
+      </div>
+      <button type="submit" name="checkout" class="cart__checkout body">Checkout</button>
+    `;
+    cartForm.appendChild(footer);
+  }
+}
+
+function formatMoney(cents) {
+  const format = "{{amount_with_comma_separator}}";
+  if (typeof cents === 'string') {
+    cents = cents.replace('.', '');
+  }
+  const placeholderRegex = /\{\{\s*(\w+)\s*\}\}/;
+  const formatString = (format || '{{amount}}').match(placeholderRegex)[1];
+  
+  function formatWithDelimiters(number, precision = 2, thousands = ',', decimal = '.') {
+    if (isNaN(number) || number == null) return 0;
+    number = (number / 100.0).toFixed(precision);
+    const parts = number.split('.');
+    const dollarsAmount = parts[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, `$1${thousands}`);
+    const centsAmount = parts[1] ? (decimal + parts[1]) : '';
+    return dollarsAmount + centsAmount;
+  }
+  
+  switch (formatString) {
+    case 'amount':
+      return formatWithDelimiters(cents, 2);
+    case 'amount_with_comma_separator':
+      return formatWithDelimiters(cents, 2, '.', ',');
+    case 'amount_no_decimals':
+      return formatWithDelimiters(cents, 0);
+    case 'amount_with_space_separator':
+      return formatWithDelimiters(cents, 2, ' ', ',');
+    default:
+      return formatWithDelimiters(cents, 2);
+  }
+}
 
 function createAnimatedLoader() {
   const loader = document.createElement("div");
@@ -68,6 +219,14 @@ async function fetchCart() {
     if (!res.ok) throw new Error("Failed to fetch cart");
     
     const cart = await res.json();
+    
+    localStorage.setItem("cartData", JSON.stringify({
+      count: cart.item_count,
+      items: cart.items,
+      total: cart.total_price,
+      timestamp: Date.now()
+    }));
+    
     updateCartIndicators(cart.item_count);
     return cart;
   } catch (e) {
@@ -355,29 +514,14 @@ function handleAddToCart(form) {
   };
 }
 
-function initCart() {
-  const storedCount = localStorage.getItem("cartCount");
-  if (storedCount && parseInt(storedCount) > 0) {
-    updateCartIndicators(parseInt(storedCount));
-  } else {
-    fetchCart();
-  }
-  
-  cartElements.forms.forEach(form => {
-    form.addEventListener("submit", handleAddToCart(form));
-  });
-  
-  cartElements.cartLinks.forEach(link => {
-    link.addEventListener("click", (e) => {
-      e.preventDefault();
-      openCartDrawer();
-      updateCartDrawer();
-    });
-  });
-  
-  addCartEventListeners();
-}
+cartElements.forms.forEach(form => {
+  form.addEventListener("submit", handleAddToCart(form));
+});
 
-document.addEventListener("DOMContentLoaded", () => {
-  addCartEventListeners();
+cartElements.cartLinks.forEach(link => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+    openCartDrawer();
+    updateCartDrawer();
+  });
 });
