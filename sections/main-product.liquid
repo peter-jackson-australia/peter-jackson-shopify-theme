@@ -517,17 +517,7 @@
             {% endif %}
             {% for image in product.images %}
               <li class="splide__slide" data-imageid="{{ image.id }}">
-                <img
-                  src="{{ image.src | image_url: width: '600px' }}"
-                  alt="{{ image.alt | escape }}"
-                  loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
-                  width="{{ image.width }}"
-                  height="{{ image.height }}"
-                  {% if forloop.first %}
-                    fetchpriority="high"
-                  {% endif %}
-                  preload="true"
-                >
+                {{ image | image_url: width: 600 | image_tag: alt: image.alt, preload: true }}
               </li>
             {% endfor %}
           </ul>
