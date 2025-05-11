@@ -752,12 +752,13 @@
       }
     }
 
-    const checkSplide = setInterval(function () {
-      if (typeof Splide !== 'undefined') {
-        clearInterval(checkSplide);
+    if (typeof Splide !== 'undefined') {
+      initializeProductSlider();
+    } else {
+      window.addEventListener('load', function () {
         initializeProductSlider();
-      }
-    }, 100);
+      });
+    }
 
     function initializeProductSlider() {
       let splideInstance = null;
