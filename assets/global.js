@@ -139,7 +139,7 @@ function prePopulateCartDrawer(cartData) {
         <h3 class="cart__footer-label body">Subtotal</h3>
         <span class="cart__footer-value body--bold">${formatMoney(cartData.total)}</span>
       </div>
-      <button type="submit" name="checkout" class="cart__checkout body">Checkout</button>
+      <button type="submit" name="checkout" class="cart__checkout body" style="height: var(--space-xl);">Checkout</button>
     `;
     cartForm.appendChild(footer);
   }
@@ -190,7 +190,6 @@ function showError(container, message, className = 'product-error body') {
   const errorElement = document.createElement('div');
   errorElement.className = className;
   errorElement.textContent = message;
-  errorElement.style.color = 'red';
   
   const target = container.querySelector('#js--addtocart') || 
                 container.querySelector('.cart-item__actions');
@@ -275,7 +274,6 @@ async function updateCartDrawer() {
 function applyOptimisticUI() {
   const productTitle = document.querySelector(".product-details__title")?.textContent || "";
   
-  // Get variant options in a simple way to avoid potential errors
   let variantSelections = "One Size";
   
   try {

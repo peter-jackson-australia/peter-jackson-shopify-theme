@@ -711,8 +711,8 @@ a.skip-to-content:focus-visible {
 /* Loading Spinner */
 
 .loader--spinner {
-  width: var(--space-xs);
-  height: var(--space-xs);
+  width: 16px;
+  height: 16px;
   border: 2px solid var(--white);
   border-bottom-color: transparent;
   border-radius: 50%;
