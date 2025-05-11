@@ -516,23 +516,13 @@
               </li>
             {% endif %}
             {% for image in product.images %}
-              {% assign image_width = 600 %}
-              {% assign image_height = image_width | divided_by: image.aspect_ratio | ceil %}
               <li class="splide__slide" data-imageid="{{ image.id }}">
                 <img
-                  src="{{ image.src | image_url: width: image_width }}"
-                  srcset="
-                    {{ image.src | image_url: width: 100 }} 100w,
-                    {{ image.src | image_url: width: 200 }} 200w,
-                    {{ image.src | image_url: width: 300 }} 300w,
-                    {{ image.src | image_url: width: 500 }} 500w,
-                    {{ image.src | image_url: width: 700 }} 700w
-                  "
-                  sizes="(max-width: 500px) 40vw, 20vw"
-                  width="{{ image_width }}"
-                  height="{{ image_height }}"
+                  src="{{ image.src | image_url: width: '600px' }}"
                   alt="{{ image.alt | escape }}"
                   loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+                  width="{{ image.width }}"
+                  height="{{ image.height }}"
                   {% if forloop.first %}
                     fetchpriority="high"
                   {% endif %}
