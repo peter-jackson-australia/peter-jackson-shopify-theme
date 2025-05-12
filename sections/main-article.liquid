@@ -1,32 +1,31 @@
 {% liquid
-assign image_width = 800
-assign image_height = image_width | divided_by: article.image.aspect_ratio | ceil
+  assign image_width = 800
+  assign image_height = image_width | divided_by: article.image.aspect_ratio | ceil
 %}
 
 {% unless section.settings.max_width == blank or section.settings.max_width == 0 %}
-<style>
-{{ section.id | prepend: '#' }} .section {
-  max-width: {{ section.settings.max_width | append: 'px' }};
-}
-</style>
+  <style>
+    {{ section.id | prepend: '#' }} .section {
+      max-width: {{ section.settings.max_width | append: 'px' }};
+    }
+  </style>
 {% endunless %}
 
 <style>
-.comments-list li {
-  margin-bottom: 1rem;
-  padding-bottom: 1rem;
-}
-.comments-list li:not(:last-child) {
-  border-bottom: 1px dashed rgba(0,0,0,0.35);
-}
+  .comments-list li {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+  }
+  .comments-list li:not(:last-child) {
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.35);
+  }
 </style>
 
 <section id="{{ section.id }}" class="section-wrap">
   <div class="section">
     <h1 data-title="{{ article.title }}">{{ article.title }}</h1>
     <p class="small-text">
-      Published on {{ article.published_at | date: '%b %d, %Y' }}
-      by {{ article.user.name }}
+      Published on {{ article.published_at | date: '%b %d, %Y' }} by {{ article.user.name }}
       {% unless article.tags.size == 0 %}
         &bullet; Tagged with
         {% for tag in article.tags %}
@@ -38,11 +37,13 @@ assign image_height = image_width | divided_by: article.image.aspect_ratio | cei
     <div class="rte">
       {% unless article.image.src == blank %}
         <div class="article-image box">
-          <img src="{{ article.image.src | image_url: width: image_width }}"
-          width="{{ image_width }}"
-          height="{{ image_height }}"
-          alt="{{ article.image.alt }}"
-          loading="lazy">
+          <img
+            src="{{ article.image.src | image_url: width: image_width }}"
+            width="{{ image_width }}"
+            height="{{ image_height }}"
+            alt="{{ article.image.alt }}"
+            loading="lazy"
+          >
         </div>
       {% endunless %}
       {{ article.content }}
@@ -70,7 +71,7 @@ assign image_height = image_width | divided_by: article.image.aspect_ratio | cei
             <li>
               <p>
                 <strong class="pill">{{ comment.author }}</strong><br>
-                <span class="small-text">{{ comment.created_at | date: format: 'date_at_time'}}</span>
+                <span class="small-text">{{ comment.created_at | date: format: 'date_at_time' }}</span>
               </p>
               <blockquote>
                 <p>{{ comment.content }}</p>
@@ -110,9 +111,10 @@ assign image_height = image_width | divided_by: article.image.aspect_ratio | cei
 {% schema %}
 {
   "name": "Article",
+  "limit": 1,
   "settings": [
     {
-      "type":"number",
+      "type": "number",
       "id": "max_width",
       "label": "Max page width (px)",
       "info": "Leave blank for default.",

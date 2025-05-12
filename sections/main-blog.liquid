@@ -1,31 +1,32 @@
 {% paginate blog.articles by section.settings.limit %}
-<div class="section-wrap">
-  <div class="section">
-    <h1 data-title="{{- blog.title -}}">{{ blog.title }}</h1>
-    <p>{{ page_description }}</p>
-  </div>
+  <div class="section-wrap">
+    <div class="section">
+      <h1 data-title="{{- blog.title -}}">{{ blog.title }}</h1>
+      <p>{{ page_description }}</p>
+    </div>
 
-  <div class="section">
-    <div class="articles-grid">
-      {% liquid
-      for article in blog.articles
-        render 'article-card', article: article
-      endfor
-      %}
+    <div class="section">
+      <div class="articles-grid">
+        {% liquid
+          for article in blog.articles
+            render 'article-card', article: article
+          endfor
+        %}
+      </div>
+    </div>
+
+    <div class="section">
+      <div>
+        {% render 'pagination', paginate: paginate %}
+      </div>
     </div>
   </div>
-
-  <div class="section">
-    <div>
-      {% render 'pagination', paginate: paginate %}
-    </div>
-  </div>
-</div>
 {% endpaginate %}
 
 {% schema %}
 {
   "name": "Blog",
+  "limit": 1,
   "tag": "section",
   "class": "blog-products-section",
   "disabled_on": {

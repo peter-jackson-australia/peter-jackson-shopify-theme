@@ -1,4 +1,3 @@
-Fix section display settings 
 Make it so only one section can be used on each page 
 Home page sections
 Jackson Journal/Careers
