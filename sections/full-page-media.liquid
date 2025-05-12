@@ -26,18 +26,12 @@
     z-index: 1;
   }
 
-  .full-page-media__image--mobile {
-    display: none;
-  }
-
   @media screen and (max-width: 768px) {
-    .full-page-media__image--desktop {
-      display: none;
-    }
-
-    .full-page-media__image--mobile {
-      display: block;
-    }
+    {% if section.settings.mobile_image %}
+      .full-page-media__image--desktop {
+        display: none;
+      }
+    {% endif %}
   }
 </style>
 
@@ -72,8 +66,8 @@
       muted
       playsinline
       aria-label="{{ section.settings.alt_text | escape }}"
+      src="{{ section.settings.video }}"
     >
-      <source src="{{ section.settings.video | file_url }}" type="video/mp4">
       Your browser does not support the video tag.
     </video>
   {% endif %}
