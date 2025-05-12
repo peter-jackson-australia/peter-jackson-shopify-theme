@@ -223,18 +223,14 @@ function saveRecentlyViewedProduct(handle) {
   });
 
   if (exists === false) {
-    // Trim the array
     recentlyViewed.splice(maxItemsToSave);
-    // Append the new data to the recentlyViewed array
     recentlyViewed.unshift({
       handle: handle,
       date: Date.now(),
     });
-    // Re-save the updated data back to local storage
     localStorage.setItem("recentlyViewed", JSON.stringify(recentlyViewed));
   }
 
-  // Reload the recentlyViewed list
   _getRecentlyViewed();
 };
 
@@ -268,7 +264,6 @@ function displayRecentlyViewed() {
               el.insertAdjacentHTML("beforeend", card);
             })
             .catch(function(error) {
-              // Remove this item from the array.
               let cleanUpArray = items.filter((i) => i.handle != item.handle);
               localStorage.setItem("recentlyViewed", JSON.stringify(cleanUpArray));
             });

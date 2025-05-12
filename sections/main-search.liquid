@@ -1,16 +1,16 @@
 <style>
-#search-form {
-  max-width: 600px;
-}
-{{ section.id | prepend: '#'}} .products-grid {
-  grid-template-columns: repeat({{ section.settings.products_per_row }}, 1fr);
-}
+  #search-form {
+    max-width: 600px;
+  }
+  {{ section.id | prepend: '#'}} .products-grid {
+    grid-template-columns: repeat({{ section.settings.products_per_row }}, 1fr);
+  }
 </style>
 
 <section id="{{ section.id }}" class="section-wrap">
   <div class="section">
     {% if search.performed %}
-      {% assign search_term = search.terms | capitalize | prepend: "&quot;" | append: "&quot;" %}
+      {% assign search_term = search.terms | capitalize | prepend: '&quot;' | append: '&quot;' %}
       {% capture title %}Found {{ search.results_count }} results for {{ search_term }}{% endcapture %}
       <h1 data-title="{{ title }}">{{ title }}</h1>
     {% else %}
@@ -18,11 +18,13 @@
     {% endif %}
     <form id="search-form" action="{{ routes.search_url }}" method="get" class="flex middle">
       <input type="hidden" name="type" value="product">
-      <input type="text"
+      <input
+        type="text"
         name="q"
         value="{{ search.terms }}"
         placeholder="Enter product name or keywords..."
-        maxlength="128">
+        maxlength="128"
+      >
       <button type="submit" class="button solid">Search</button>
     </form>
     <hr>
@@ -30,9 +32,9 @@
     {% paginate search.results by section.settings.limit %}
       <div class="products-grid">
         {% liquid
-        for product in search.results
-          render 'product-card', product: product
-        endfor
+          for product in search.results
+            render 'product-card', product: product
+          endfor
         %}
       </div>
 
@@ -50,8 +52,8 @@
   "name": "Search",
   "tag": "section",
   "class": "search-products-section",
-  "disabled_on": {
-    "groups": ["header"]
+  "enabled_on": {
+    "templates": ["search"]
   },
   "settings": [
     {
