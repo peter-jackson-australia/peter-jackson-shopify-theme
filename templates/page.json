@@ -9,17 +9,17 @@
  */
 {
   "sections": {
-    "full_page_media_3z67Bc": {
+    "full_page_media_BB4HUA": {
       "type": "full-page-media",
       "name": "Full Page Media",
       "settings": {
-        "media_type": "image",
+        "media_type": "video",
         "video": "shopify://files/videos/peter-jackson-menswear-mega-menu-video-winter-25.mp4",
         "alt_text": "Full page media"
       }
     }
   },
   "order": [
-    "full_page_media_3z67Bc"
+    "full_page_media_BB4HUA"
   ]
 }
