@@ -1,10 +1,9 @@
-/////////////////////////////////////////////////////
-
 Account pages/careers
 
 /////////////////////////////////////////////////////
 
 Make collections and pdp page have 98/100 minimum speed score
+Fix all accessibility errors on all pages thus far
 
 Main Menu:
 Preserve scroll position when menu is open
