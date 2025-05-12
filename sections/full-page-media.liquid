@@ -32,10 +32,18 @@
     object-fit: cover;
   }
 
+  .full-page-media__image--mobile {
+    display: none;
+  }
+
   @media screen and (max-width: 768px) {
     {% if section.settings.mobile_image %}
       .full-page-media__image--desktop {
         display: none;
+      }
+
+      .full-page-media__image--mobile {
+        display: block;
       }
     {% endif %}
   }
@@ -110,8 +118,8 @@
     {
       "type": "image_picker",
       "id": "mobile_image",
-      "label": "Mobile Image",
-      "info": "Used when Media Type is set to Image"
+      "label": "Mobile Image (optional)",
+      "info": "If not provided, Desktop Image will be used on mobile devices"
     },
     {
       "type": "video",
