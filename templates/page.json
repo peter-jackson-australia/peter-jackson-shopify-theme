@@ -13,8 +13,7 @@
       "type": "full-page-media",
       "name": "Full Page Media",
       "settings": {
-        "media_type": "video",
-        "desktop_image": "shopify://shop_images/peter-jackson-menswear-green-jacket-white-turtleneck.webp",
+        "media_type": "image",
         "video": "shopify://files/videos/peter-jackson-menswear-mega-menu-video-winter-25.mp4",
         "alt_text": "Full page media"
       }
