@@ -1,3 +1,5 @@
+Fix section display settings 
+Home page sections
 Jackson Journal/Careers
 Tuesday Locations
 
