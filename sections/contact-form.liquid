@@ -1,15 +1,15 @@
 <style>
-{{ section.id | prepend: '#' }}.section-wrap:before {
-  background-color: {{ section.settings.background | default: '#ffffff' }}
-}
+  {{ section.id | prepend: '#' }}.section-wrap:before {
+    background-color: {{ section.settings.background | default: '#ffffff' }}
+  }
 </style>
 
 <div id="{{ section.id }}" class="section-wrap" style="color:{{ section.settings.color | default:'inherit' }};">
   <div class="section">
     <div class="center">
-      <{{- section.settings.size }} data-title="{{ section.settings.heading }}">
+      <{{ section.settings.size }} data-title="{{ section.settings.heading }}">
         {{ section.settings.heading }}
-      </{{- section.settings.size -}}>
+      </{{ section.settings.size }}>
 
       <div class="rte">
         {{ section.settings.text }}
@@ -29,73 +29,89 @@
         {% endif %}
 
         {%- for block in section.blocks -%}
-
           {% capture label %}
           <label for="{{ block.settings.name | handleize | prepend: 'contact_' }}">
             {{ block.settings.title }}
           </label>
           {% endcapture %}
 
-            {%- case block.type -%}
-              {%- when 'text' -%}
-                <div class="form-row">
-                  {{ label }}
-                  <input type="text"
+          {%- case block.type -%}
+            {%- when 'text' -%}
+              <div class="form-row">
+                {{ label }}
+                <input
+                  type="text"
+                  id="{{ block.settings.name | handleize | prepend: 'contact_' }}"
+                  name="contact[{{- block.settings.name -}}]"
+                  placeholder="{{ block.settings.placeholder }}"
+                  {% unless block.settings.maxlength == blank %}
+                    maxlength="{{ block.settings.maxlength }}"
+                  {% endunless %}
+                  {% if block.settings.required == true %}
+                    required
+                  {% endif %}
+                >
+              </div>
+
+            {%- when 'textarea' -%}
+              <div class="form-row">
+                {{ label }}
+                <textarea
+                  name="contact[{{- block.settings.name -}}]"
+                  id="{{ block.settings.name | handleize | prepend: 'contact_' }}"
+                  placeholder="{{ block.settings.placeholder }}"
+                  {% unless block.settings.maxlength == blank %}
+                    maxlength="{{ block.settings.maxlength }}"
+                  {% endunless %}
+                  rows="{{ block.settings.rows | default: 5 }}"
+                  {% if block.settings.required == true %}
+                    required
+                  {% endif -%}
+                ></textarea>
+              </div>
+
+            {%- when 'email' -%}
+              <div class="form-row">
+                {{ label }}
+                <input
+                  type="email"
+                  id="{{ block.settings.name | handleize | prepend: 'contact_' }}"
+                  name="contact[email]"
+                  placeholder="{{ block.settings.placeholder }}"
+                  {% unless block.settings.maxlength == blank %}
+                    maxlength="{{ block.settings.maxlength }}"
+                  {% endunless %}
+                  required
+                >
+              </div>
+
+            {%- when 'paragraph' -%}
+              {{ block.settings.text }}
+
+            {%- when 'checkbox' -%}
+              <div class="form-row">
+                <label class="flex middle align-left" for="{{ block.settings.name | handleize | prepend: 'contact_' }}">
+                  <input
+                    type="checkbox"
                     id="{{ block.settings.name | handleize | prepend: 'contact_' }}"
                     name="contact[{{- block.settings.name -}}]"
-                    placeholder="{{ block.settings.placeholder }}"
-                    {% unless block.settings.maxlength == blank %}maxlength="{{ block.settings.maxlength }}"{% endunless %}
-                    {% if block.settings.required == true %}required{% endif %}>
-                </div>
-
-              {%- when 'textarea' -%}
-                <div class="form-row">
-                  {{ label }}
-                  <textarea name="contact[{{- block.settings.name -}}]"
-                    id="{{ block.settings.name | handleize | prepend: 'contact_' }}"
-                    placeholder="{{ block.settings.placeholder }}"
-                    {% unless block.settings.maxlength == blank %}maxlength="{{ block.settings.maxlength }}"{% endunless %}
-                    rows="{{ block.settings.rows | default: 5 }}"
-                    {% if block.settings.required == true %}required{% endif %}></textarea>
-                </div>
-
-              {%- when 'email' -%}
-                <div class="form-row">
-                  {{ label }}
-                  <input type="email"
-                    id="{{ block.settings.name | handleize | prepend: 'contact_' }}"
-                    name="contact[email]"
-                    placeholder="{{ block.settings.placeholder }}"
-                    {% unless block.settings.maxlength == blank %}maxlength="{{ block.settings.maxlength }}"{% endunless %}
-                    required>
-                </div>
-
-              {%- when 'paragraph' -%}
-                {{ block.settings.text }}
-
-              {%- when 'checkbox' -%}
-                <div class="form-row">
-                  <label class="flex middle align-left" for="{{ block.settings.name | handleize | prepend: 'contact_' }}">
-                    <input type="checkbox"
-                    id="{{ block.settings.name | handleize | prepend: 'contact_' }}"
-                    name="contact[{{- block.settings.name -}}]"
-                    {% if block.settings.required == true %}required{% endif %}>
-                    {{ block.settings.title }}
-                  </label>
-                </div>
-
-            {%- endcase -%}
+                    {% if block.settings.required == true %}
+                      required
+                    {% endif %}
+                  >
+                  {{ block.settings.title }}
+                </label>
+              </div>
+          {%- endcase -%}
         {% endfor %}
 
         <div class="form-row">
           <button type="submit" value="submit">
-            {{ section.settings.button_label | default: "Sign up" }}
+            {{ section.settings.button_label | default: 'Sign up' }}
           </button>
         </div>
       {% endform %}
-
     </div>
-
   </div>
 </div>
 
@@ -104,9 +120,6 @@
   "name": "Contact Form",
   "tag": "section",
   "class": "contact-form-section",
-  "disabled_on": {
-    "groups": ["header"]
-  },
   "presets": [
     {
       "name": "Contact Form",
@@ -286,7 +299,7 @@
       "type": "inline_richtext",
       "id": "heading",
       "label": "Text",
-      "default": "Contact us",
+      "default": "Contact us"
     },
     {
       "type": "select",
@@ -335,6 +348,9 @@
       "id": "color",
       "label": "Text Colour"
     }
-  ]
+  ],
+  "enabled_on": {
+    "templates": ["page"]
+  }
 }
 {% endschema %}
