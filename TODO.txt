@@ -1,5 +1,3 @@
-Fix the PDP gallery images and load speed, it's too blurry and too slow
-
 /////////////////////////////////////////////////////
 
 Account pages/careers
