@@ -13,7 +13,9 @@
       "type": "full-page-media",
       "name": "Full Page Media",
       "settings": {
-        "media_type": "video",
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-34.webp",
+        "mobile_image": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-41.webp",
         "video": "shopify://files/videos/peter-jackson-menswear-mega-menu-video-winter-25.mp4",
         "alt_text": "Full page media"
       }
