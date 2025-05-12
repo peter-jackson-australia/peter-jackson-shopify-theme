@@ -9,8 +9,15 @@
  */
 {
   "current": {
+    "newsletter_popup": false,
     "newsletter_heading": "Newsletter Sign-up",
     "newsletter_text": "This is the built-in newsletter signup pop-up form, which you can customise as required.",
+    "sections": {
+      "cart-drawer": {
+        "type": "cart-drawer",
+        "settings": {}
+      }
+    },
     "content_for_index": [],
     "blocks": {
       "855628211100114053": {
