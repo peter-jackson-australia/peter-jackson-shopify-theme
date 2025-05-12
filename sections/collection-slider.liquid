@@ -1,5 +1,5 @@
 {% comment %}
-  Featured Collection Section
+  Collection Slider Section
 {% endcomment %}
 
 <style>
@@ -231,7 +231,7 @@
 
 {% schema %}
 {
-  "name": "Featured Collection",
+  "name": "Collection Slider",
   "tag": "section",
   "settings": [
     {
@@ -269,9 +269,12 @@
   ],
   "presets": [
     {
-      "name": "Featured Collection",
+      "name": "Collection Slider",
       "category": "Collection"
     }
-  ]
+  ],
+  "enabled_on": {
+    "templates": ["index", "page", "article"]
+  }
 }
 {% endschema %}
