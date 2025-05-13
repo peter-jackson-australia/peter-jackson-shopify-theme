@@ -1,77 +1,48 @@
 <style>
   .image-with-text {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
     padding: var(--space-2xl) var(--space-m);
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    gap: calc(var(--space-xl) + var(--space-l));
   }
 
   .image-with-text--right {
     flex-direction: row-reverse;
   }
 
-  .image-with-text__media {
-    flex: 1;
-    position: relative;
-    width: 100%;
-    max-width: 900px;
-  }
-
-  .image-with-text__content {
-    flex: 1;
+  .image-with-text__media-container {
+    width: 50%;
     display: flex;
-    flex-direction: column;
-    gap: var(--space-m);
-    max-width: 80ch;
+    justify-content: center;
+    align-items: center;
   }
 
-  .image-with-text__image-wrapper {
+  .image-with-text__images-wrapper {
     position: relative;
     width: 100%;
-    margin-bottom: var(--space-l);
-    margin-right: var(--space-l);
+    aspect-ratio: 3/4;
+    padding-right: var(--space-m);
+    padding-bottom: var(--space-m);
   }
 
-  .image-with-text--right .image-with-text__image-wrapper {
-    margin-right: 0;
-    margin-left: var(--space-l);
-  }
-
-  .image-with-text__first-image-container {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    height: 100%;
-    max-width: 900px;
-    max-height: 700px;
-    overflow: hidden;
-  }
-
-  .image-with-text__first-image-container--single {
-    position: relative;
-    width: 100%;
-    min-width: 100%;
-    height: 100%;
-  }
-
-  .image-with-text__second-image-container {
+  .image-with-text__image-container {
     position: absolute;
-    top: var(--space-l);
-    left: var(--space-l);
-    z-index: 1;
-    width: 100%;
-    max-width: 900px;
-    max-height: 700px;
+    top: 0;
+    left: 0;
     overflow: hidden;
   }
 
-  .image-with-text--right .image-with-text__second-image-container {
-    left: calc(-1 * var(--space-l));
+  .image-with-text__image-container:only-child {
+    width: 100%;
+    height: 100%;
+  }
+
+  .image-with-text__image-container--first,
+  .image-with-text__image-container--second {
+    width: calc(100% - var(--space-m));
+    height: calc(100% - var(--space-m));
   }
 
   .image-with-text__image {
@@ -82,62 +53,59 @@
     display: block;
   }
 
-  .image-with-text__second-image {
-    filter: grayscale(100%) opacity(70%);
+  .image-with-text__image-container--first {
+    z-index: 2;
+  }
+
+  .image-with-text__image-container--second {
+    z-index: 1;
+    transform: translate(var(--space-m), var(--space-m));
+  }
+
+  .image-with-text__image-container--second .image-with-text__image {
+    filter: grayscale(100%);
+  }
+
+  .image-with-text__content {
+    width: 50%;
+    padding: 0 var(--space-l);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
   }
 
   .image-with-text__title {
     color: var(--neutral-950);
   }
 
-  .image-with-text__description {
+  .image-with-text__text {
     color: var(--neutral-600);
+    max-width: 70ch;
   }
 
-  .image-with-text__description > p {
-    max-width: 60ch;
+  .image-with-text__button {
+    align-self: flex-start;
+    background-color: var(--white);
+    color: var(--neutral-950);
+    border: 1px solid var(--neutral-200);
+    text-decoration: none;
   }
 
   @media screen and (max-width: 768px) {
     .image-with-text {
-      padding: var(--space-xl) var(--space-m);
-    }
-
-    .image-with-text,
-    .image-with-text--right {
       flex-direction: column;
       gap: var(--space-l);
+      padding: var(--space-l) var(--space-m);
     }
 
+    .image-with-text--right {
+      flex-direction: column;
+    }
+
+    .image-with-text__media-container,
     .image-with-text__content {
       width: 100%;
-    }
-
-    .image-with-text__media {
-      width: 100%;
-    }
-
-    .image-with-text__image-wrapper {
-      margin-bottom: var(--space-m);
-      margin-right: 0;
-      margin-left: 0;
-    }
-
-    .image-with-text--right .image-with-text__image-wrapper {
-      margin-right: 0;
-      margin-left: 0;
-    }
-
-    .image-with-text__second-image-container {
-      top: var(--space-m);
-      left: var(--space-m);
-      width: calc(100% - 2 * var(--space-m));
-      right: auto;
-    }
-
-    .image-with-text--right .image-with-text__second-image-container {
-      left: var(--space-m);
-      right: var(--space-m);
+      padding: 0;
     }
   }
 </style>
@@ -147,45 +115,45 @@
   class="image-with-text {% if section.settings.alignment == 'right' %}image-with-text--right{% endif %}"
   aria-label="Image with text section"
 >
-  <div class="image-with-text__media">
-    <div class="image-with-text__image-wrapper">
+  <figure class="image-with-text__media-container">
+    <div class="image-with-text__images-wrapper">
       {% if section.settings.first_image != blank %}
-        <figure class="image-with-text__first-image-container {% if section.settings.second_image == blank %}image-with-text__first-image-container--single{% endif %}">
+        <div class="image-with-text__image-container {% if section.settings.second_image != blank %}image-with-text__image-container--first{% endif %}">
           {{
             section.settings.first_image
-            | image_url: width: 900
+            | image_url: width: 1200
             | image_tag: class: 'image-with-text__image', alt: section.settings.first_image.alt
-            | default: section.settings.heading, width: 900, height: 600, loading: 'lazy'
+            | default: section.settings.heading, loading: 'lazy'
           }}
-        </figure>
+        </div>
       {% endif %}
 
       {% if section.settings.second_image != blank %}
-        <figure class="image-with-text__second-image-container">
+        <div class="image-with-text__image-container image-with-text__image-container--second">
           {{
             section.settings.second_image
-            | image_url: width: 900
-            | image_tag:
-              class: 'image-with-text__image image-with-text__second-image',
-              alt: section.settings.second_image.alt
-            | default: section.settings.heading, width: 900, height: 600, loading: 'lazy'
+            | image_url: width: 1200
+            | image_tag: class: 'image-with-text__image', alt: section.settings.second_image.alt
+            | default: section.settings.heading, loading: 'lazy'
           }}
-        </figure>
+        </div>
       {% endif %}
     </div>
-  </div>
+  </figure>
 
   <div class="image-with-text__content">
     {% if section.settings.heading != blank %}
-      <h2 class="image-with-text__title heading--2xl">
-        {{ section.settings.heading }}
-      </h2>
+      <h2 class="image-with-text__title heading--2xl">{{ section.settings.heading }}</h2>
     {% endif %}
 
     {% if section.settings.text != blank %}
-      <div class="image-with-text__description body">
-        {{ section.settings.text }}
-      </div>
+      <div class="image-with-text__text body">{{ section.settings.text }}</div>
+    {% endif %}
+
+    {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+      <a href="{{ section.settings.button_link }}" class="image-with-text__button button">
+        {{ section.settings.button_label }}
+      </a>
     {% endif %}
   </div>
 </section>
@@ -196,33 +164,31 @@
   "tag": "section",
   "settings": [
     {
-      "type": "select",
-      "id": "alignment",
-      "label": "Image alignment",
-      "options": [
-        {
-          "value": "left",
-          "label": "Left"
-        },
-        {
-          "value": "right",
-          "label": "Right"
-        }
-      ],
-      "default": "left",
-      "info": "Determines if the image appears on the left or right side of the text"
-    },
-    {
       "type": "image_picker",
       "id": "first_image",
-      "label": "First image",
-      "info": "Primary image that appears in the foreground"
+      "label": "First Image"
     },
     {
       "type": "image_picker",
       "id": "second_image",
-      "label": "Second image (optional)",
-      "info": "Secondary image that appears behind the first image with a greyed-out appearance"
+      "label": "Second Image (Optional)",
+      "info": "Will appear behind the first image with a slight offset"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Section Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Image on left"
+        },
+        {
+          "value": "right",
+          "label": "Image on right"
+        }
+      ],
+      "default": "left"
     },
     {
       "type": "text",
@@ -233,8 +199,19 @@
     {
       "type": "richtext",
       "id": "text",
-      "label": "Text content",
-      "default": "<p>Pair text with an image to provide information about a product, collection, or brand story. Add details about availability, style, or even provide a review.</p>"
+      "label": "Text",
+      "default": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
     }
   ],
   "presets": [
@@ -242,8 +219,10 @@
       "name": "Image With Text",
       "category": "Image",
       "settings": {
+        "alignment": "left",
         "heading": "Image With Text",
-        "text": "<p>Pair text with an image to provide information about a product, collection, or brand story.</p>"
+        "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+        "button_label": "Learn More"
       }
     }
   ],
