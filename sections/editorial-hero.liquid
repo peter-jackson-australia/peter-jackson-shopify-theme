@@ -1,0 +1,232 @@
+<style>
+  .editorial-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--space-xl) var(--space-m);
+    width: 100%;
+  }
+
+  .editorial-hero__leading-text {
+    margin-bottom: var(--space-m);
+  }
+
+  .editorial-hero__title-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .editorial-hero__first-title {
+    margin-bottom: calc(var(--space-m) * -1);
+    z-index: 2;
+  }
+
+  .editorial-hero__media-container {
+    width: 100%;
+    max-width: 700px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .editorial-hero__image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .editorial-hero__video-wrapper {
+    width: 100%;
+    position: relative;
+  }
+
+  .editorial-hero__video {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .editorial-hero__second-title {
+    margin-top: calc(var(--space-m) * -1);
+    z-index: 2;
+  }
+
+  .editorial-hero__description {
+    max-width: 700px;
+    margin: var(--space-m) auto;
+  }
+
+  .editorial-hero__cta-container {
+    margin-top: var(--space-m);
+  }
+
+  .editorial-hero__cta {
+    display: inline-block;
+    background-color: var(--neutral-950);
+    color: var(--white);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+  }
+</style>
+
+<section
+  id="editorial-hero-{{ section.id }}"
+  class="editorial-hero"
+  aria-label="Editorial hero section"
+>
+  {% if section.settings.leading_text != blank %}
+    <div class="editorial-hero__leading-text body">
+      {{ section.settings.leading_text }}
+    </div>
+  {% endif %}
+
+  <div class="editorial-hero__title-container">
+    {% if section.settings.first_title != blank %}
+      <h2 class="editorial-hero__first-title heading--3xl">
+        {{ section.settings.first_title }}
+      </h2>
+    {% endif %}
+  </div>
+
+  <div class="editorial-hero__media-container">
+    {% if section.settings.media_type == 'image' %}
+      {% if section.settings.image != blank %}
+        {{
+          section.settings.image
+          | image_url: width: 700
+          | image_tag: class: 'editorial-hero__image', alt: section.settings.image.alt
+          | default: section.settings.first_title, width: 700, height: 470, loading: 'eager'
+        }}
+      {% endif %}
+    {% elsif section.settings.media_type == 'video' and section.settings.video != blank %}
+      <div class="editorial-hero__video-wrapper">
+        {{
+          section.settings.video
+          | video_tag:
+            class: 'editorial-hero__video',
+            autoplay: true,
+            loop: true,
+            muted: true,
+            controls: false,
+            playsinline: true
+        }}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="editorial-hero__title-container">
+    {% if section.settings.second_title != blank %}
+      <h2 class="editorial-hero__second-title heading--3xl">
+        {{ section.settings.second_title }}
+      </h2>
+    {% endif %}
+  </div>
+
+  {% if section.settings.description != blank %}
+    <div class="editorial-hero__description body">
+      {{ section.settings.description }}
+    </div>
+  {% endif %}
+
+  {% if section.settings.cta_text != blank and section.settings.cta_link != blank %}
+    <div class="editorial-hero__cta-container">
+      <a href="{{ section.settings.cta_link }}" class="editorial-hero__cta button">
+        {{ section.settings.cta_text }}
+      </a>
+    </div>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Editorial Hero",
+  "tag": "section",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "text",
+      "id": "leading_text",
+      "label": "Editorial Hero Leading Text",
+      "info": "Optional introductory text that appears above the titles"
+    },
+    {
+      "type": "text",
+      "id": "first_title",
+      "label": "Editorial Hero First Title",
+      "info": "Enter a single word for the first title",
+      "default": "Discover"
+    },
+    {
+      "type": "select",
+      "id": "media_type",
+      "label": "Editorial Hero Media Type",
+      "options": [
+        {
+          "value": "image",
+          "label": "Image"
+        },
+        {
+          "value": "video",
+          "label": "Video"
+        }
+      ],
+      "default": "image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Editorial Hero Image",
+      "info": "Used when Media Type is set to Image"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Editorial Hero Video",
+      "info": "Used when Media Type is set to Video. Will autoplay, loop, and be muted with no controls."
+    },
+    {
+      "type": "text",
+      "id": "second_title",
+      "label": "Editorial Hero Second Title",
+      "info": "Enter a single word for the second title",
+      "default": "Collection"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Editorial Hero Description",
+      "info": "Text that appears below the titles and media"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Editorial Hero CTA Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Editorial Hero CTA Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Editorial Hero",
+      "category": "Text",
+      "settings": {
+        "first_title": "Discover",
+        "second_title": "Collection",
+        "cta_text": "Shop Now"
+      }
+    }
+  ],
+  "enabled_on": {
+    "templates": ["index", "page", "article", "blog"]
+  }
+}
+{% endschema %}
