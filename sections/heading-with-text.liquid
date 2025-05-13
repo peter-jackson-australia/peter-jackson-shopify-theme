@@ -1,0 +1,126 @@
+{% comment %}
+  Heading with Text
+{% endcomment %}
+
+<style>
+  .heading-with-text {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: var(--space-m);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+  }
+
+  .heading-with-text--left {
+    text-align: left;
+  }
+
+  .heading-with-text--center {
+    text-align: center;
+  }
+
+  .heading-with-text--right {
+    text-align: right;
+  }
+
+  .heading-with-text__heading-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+</style>
+
+<section class="heading-with-text heading-with-text--{{ section.settings.alignment }}">
+  <div class="heading-with-text__heading-group">
+    {% if section.settings.leading_text != blank %}
+      <p class="heading-with-text__leading body--uppercase">{{ section.settings.leading_text }}</p>
+    {% endif %}
+
+    {% if section.settings.heading != blank %}
+      <h2 class="heading-with-text__heading {% if section.settings.heading_style == 'decorative' %}heading--decorative{% else %}heading--2xl{% endif %}">
+        {{ section.settings.heading }}
+      </h2>
+    {% endif %}
+  </div>
+
+  {% if section.settings.content != blank %}
+    <div class="heading-with-text__content body metafield-rich_text_field">
+      {{ section.settings.content }}
+    </div>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Heading with Text",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "leading_text",
+      "label": "Leading Text",
+      "default": "Introduction"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Section Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_style",
+      "label": "Heading Style",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "decorative",
+          "label": "Decorative"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content",
+      "default": "<p>Add your content here. This area uses the rich text editor so you can format text, add links, and more.</p>"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Text Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Heading with Text",
+      "category": "Text"
+    }
+  ],
+  "enabled_on": {
+    "templates": ["index", "page", "article", "blog"]
+  }
+}
+{% endschema %}
