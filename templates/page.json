@@ -27,32 +27,38 @@
       "type": "image-with-text",
       "name": "Image With Text",
       "settings": {
-        "alignment": "left",
         "first_image": "shopify://shop_images/mens-jacket-brown-corduroy-WT25-SC05-1.webp",
         "second_image": "shopify://shop_images/peter-jackson-menswear-winter-25-snow-image-2.webp",
+        "alignment": "left",
         "heading": "Image With Text",
-        "text": "<p>Pair text with an image to provide information about a product, collection, or brand story.</p>"
+        "text": "<p>Pair text with an image to provide information about a product, collection, or brand story.</p>",
+        "button_label": "Learn More",
+        "button_link": ""
       }
     },
     "image_with_text_qUbHFp": {
       "type": "image-with-text",
       "name": "Image With Text",
       "settings": {
-        "alignment": "right",
         "first_image": "shopify://shop_images/peter-jackson-menswear-winter-25-snow-image-2.webp",
         "second_image": "shopify://shop_images/peter-jackson-menswear-winter-25-snow-image-1.webp",
+        "alignment": "right",
         "heading": "Image With Text",
-        "text": "<p>Pair text with an image to provide information about a product, collection, or brand story.</p>"
+        "text": "<p>Pair text with an image to provide information about a product, collection, or brand story.</p>",
+        "button_label": "Learn More",
+        "button_link": ""
       }
     },
     "image_with_text_C6TMfW": {
       "type": "image-with-text",
       "name": "Image With Text",
       "settings": {
-        "alignment": "left",
         "first_image": "shopify://shop_images/peter-jackson-menswear-winter-25-snow-image-1.webp",
+        "alignment": "left",
         "heading": "Image With Text",
-        "text": "<p>Pair text with an image to provide information about a product, collection, or brand story.</p>"
+        "text": "<p>Pair text with an image to provide information about a product, collection, or brand story.</p>",
+        "button_label": "Learn More",
+        "button_link": ""
       }
     },
     "full_page_media_BB4HUA": {
@@ -65,6 +71,17 @@
         "video": "shopify://files/videos/winter-25-sale-hero-video-peter-jackson.mp4",
         "alt_text": "Full page media"
       }
+    },
+    "collection_slider_6MjyYk": {
+      "type": "collection-slider",
+      "name": "Collection Slider",
+      "settings": {
+        "heading": "New In Now",
+        "description": "Layer up with premium wool/cashmere blends.",
+        "collection": "new-arrivals",
+        "button_label": "Shop Now",
+        "products_to_show": 10
+      }
     }
   },
   "order": [
@@ -72,6 +89,7 @@
     "image_with_text_etHcn8",
     "image_with_text_qUbHFp",
     "image_with_text_C6TMfW",
-    "full_page_media_BB4HUA"
+    "full_page_media_BB4HUA",
+    "collection_slider_6MjyYk"
   ]
 }
