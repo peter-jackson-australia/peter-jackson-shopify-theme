@@ -165,6 +165,21 @@
         "show_recent_posts": true,
         "blog": "the-jackson-journal"
       }
+    },
+    "variable_column_content_F99hgn": {
+      "type": "variable-column-content",
+      "name": "Variable Column Content",
+      "settings": {
+        "column_count": "3",
+        "text_alignment": "left",
+        "image_1": "shopify://shop_images/peter-jackson-grey-suit-river-lake-como-italy.webp",
+        "image_2": "shopify://shop_images/peter-jackson-suit-items-lake-como-black-tie-white-shirt-black-pants.webp",
+        "image_3": "shopify://shop_images/peter-jackson-black-tuxedo-black-bowtie.webp",
+        "heading": "Variable Column Content",
+        "text": "<p>Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.</p>",
+        "button_label": "Learn More",
+        "button_link": "shopify://collections/accessories"
+      }
     }
   },
   "order": [
@@ -178,6 +193,7 @@
     "block_quote_7QnDfh",
     "shop_the_look_global_xEkGHw",
     "two_column_content_KXnFAa",
-    "blog_hero_qQW8aG"
+    "blog_hero_qQW8aG",
+    "variable_column_content_F99hgn"
   ]
 }
