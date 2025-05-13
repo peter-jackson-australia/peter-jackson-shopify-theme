@@ -90,6 +90,17 @@
         "quote_text": "Our winter collection embodies a mindset — one of purpose, progress, and refinement. Suits and sports jackets are reimagined in relaxed silhouettes, crafted from premium textiles that balance heritage with innovation. This is style designed not just for the day ahead, but for the journey beyond it - tailored for higher ground.",
         "background_color": "white"
       }
+    },
+    "shop_the_look_global_xEkGHw": {
+      "type": "shop-the-look-global",
+      "name": "Shop the Look Global",
+      "settings": {
+        "heading": "Shop the Look",
+        "featured_image": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-41.webp",
+        "product1": "",
+        "product2": "",
+        "product3": ""
+      }
     }
   },
   "order": [
@@ -99,6 +110,7 @@
     "image_with_text_C6TMfW",
     "full_page_media_BB4HUA",
     "collection_slider_6MjyYk",
-    "block_quote_7QnDfh"
+    "block_quote_7QnDfh",
+    "shop_the_look_global_xEkGHw"
   ]
 }
