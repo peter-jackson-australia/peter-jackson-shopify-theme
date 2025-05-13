@@ -88,7 +88,7 @@
       "name": "Block Quote",
       "settings": {
         "quote_text": "A spotlight on our partnership with prestigious Italian Mill, Vitale Barberis Canonico. With over 360 years of heritage, we've developed a capsule range that highlights 3 centuries of expertise.",
-        "background_color": "white"
+        "background_color": "green-700"
       }
     }
   },
