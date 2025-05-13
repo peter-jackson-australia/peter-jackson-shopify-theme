@@ -34,6 +34,17 @@
         "text": "<p>Pair text with an image to provide information about a product, collection, or brand story.</p>"
       }
     },
+    "image_with_text_qUbHFp": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "alignment": "right",
+        "first_image": "shopify://shop_images/peter-jackson-menswear-winter-25-snow-image-2.webp",
+        "second_image": "shopify://shop_images/peter-jackson-menswear-winter-25-snow-image-1.webp",
+        "heading": "Image With Text",
+        "text": "<p>Pair text with an image to provide information about a product, collection, or brand story.</p>"
+      }
+    },
     "full_page_media_BB4HUA": {
       "type": "full-page-media",
       "name": "Full Page Media",
@@ -49,6 +60,7 @@
   "order": [
     "editorial_hero_Wgnf6W",
     "image_with_text_etHcn8",
+    "image_with_text_qUbHFp",
     "full_page_media_BB4HUA"
   ]
 }
