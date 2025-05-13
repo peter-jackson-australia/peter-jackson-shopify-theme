@@ -3,9 +3,12 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: var(--space-xl) var(--space-m);
+    justify-content: space-between;
+    padding: var(--space-2xl) var(--space-m);
     width: 100%;
-    gap: var(--space-xl);
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: calc(var(--space-xl) + var(--space-l));
   }
 
   .image-with-text--right {
@@ -27,11 +30,23 @@
     max-width: 80ch;
   }
 
+  .image-with-text__image-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: var(--space-l);
+    margin-right: var(--space-l);
+  }
+
+  .image-with-text--right .image-with-text__image-wrapper {
+    margin-right: 0;
+    margin-left: var(--space-l);
+  }
+
   .image-with-text__first-image-container {
     position: relative;
     z-index: 2;
-    max-width: 900px;
     width: 100%;
+    max-width: 900px;
   }
 
   .image-with-text__second-image-container {
@@ -39,8 +54,8 @@
     top: var(--space-l);
     left: var(--space-l);
     z-index: 1;
-    max-width: 900px;
     width: 100%;
+    max-width: 900px;
   }
 
   .image-with-text--right .image-with-text__second-image-container {
@@ -60,15 +75,19 @@
   }
 
   .image-with-text__title {
-    text-transform: uppercase;
     color: var(--neutral-950);
   }
 
   .image-with-text__description {
     color: var(--neutral-600);
+    max-width: 80ch;
   }
 
   @media screen and (max-width: 768px) {
+    .image-with-text {
+      padding: var(--space-xl) var(--space-m);
+    }
+
     .image-with-text,
     .image-with-text--right {
       flex-direction: column;
@@ -81,6 +100,16 @@
 
     .image-with-text__media {
       width: 100%;
+    }
+
+    .image-with-text__image-wrapper {
+      margin-bottom: var(--space-m);
+      margin-right: var(--space-m);
+    }
+
+    .image-with-text--right .image-with-text__image-wrapper {
+      margin-right: 0;
+      margin-left: var(--space-m);
     }
 
     .image-with-text__second-image-container {
@@ -100,29 +129,31 @@
   aria-label="Image with text section"
 >
   <div class="image-with-text__media">
-    {% if section.settings.first_image != blank %}
-      <figure class="image-with-text__first-image-container">
-        {{
-          section.settings.first_image
-          | image_url: width: 900
-          | image_tag: class: 'image-with-text__image', alt: section.settings.first_image.alt
-          | default: section.settings.heading, width: 900, height: 600, loading: 'lazy'
-        }}
-      </figure>
-    {% endif %}
+    <div class="image-with-text__image-wrapper">
+      {% if section.settings.first_image != blank %}
+        <figure class="image-with-text__first-image-container">
+          {{
+            section.settings.first_image
+            | image_url: width: 900
+            | image_tag: class: 'image-with-text__image', alt: section.settings.first_image.alt
+            | default: section.settings.heading, width: 900, height: 600, loading: 'lazy'
+          }}
+        </figure>
+      {% endif %}
 
-    {% if section.settings.second_image != blank %}
-      <figure class="image-with-text__second-image-container">
-        {{
-          section.settings.second_image
-          | image_url: width: 900
-          | image_tag:
-            class: 'image-with-text__image image-with-text__second-image',
-            alt: section.settings.second_image.alt
-          | default: section.settings.heading, width: 900, height: 600, loading: 'lazy'
-        }}
-      </figure>
-    {% endif %}
+      {% if section.settings.second_image != blank %}
+        <figure class="image-with-text__second-image-container">
+          {{
+            section.settings.second_image
+            | image_url: width: 900
+            | image_tag:
+              class: 'image-with-text__image image-with-text__second-image',
+              alt: section.settings.second_image.alt
+            | default: section.settings.heading, width: 900, height: 600, loading: 'lazy'
+          }}
+        </figure>
+      {% endif %}
+    </div>
   </div>
 
   <div class="image-with-text__content">
