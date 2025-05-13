@@ -82,6 +82,14 @@
         "button_label": "Shop Now",
         "products_to_show": 10
       }
+    },
+    "block_quote_7QnDfh": {
+      "type": "block-quote",
+      "name": "Block Quote",
+      "settings": {
+        "quote_text": "Add a memorable quote that represents your brand values or highlights your products.",
+        "background_color": "green-700"
+      }
     }
   },
   "order": [
@@ -90,6 +98,7 @@
     "image_with_text_qUbHFp",
     "image_with_text_C6TMfW",
     "full_page_media_BB4HUA",
-    "collection_slider_6MjyYk"
+    "collection_slider_6MjyYk",
+    "block_quote_7QnDfh"
   ]
 }
