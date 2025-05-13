@@ -48,10 +48,10 @@
     class="block-quote__container block-quote--{{ section.settings.background_color }}"
   >
     {% if section.settings.quote_text != blank %}
-      <p class="block-quote__text heading--3xl">"{{ section.settings.quote_text }}"</p>
+      <p class="block-quote__text heading--3xl">{{ section.settings.quote_text }}</p>
     {% else %}
       <p class="block-quote__text heading--3xl">
-        "Add a memorable quote that represents your brand values or highlights your products."
+        Add a memorable quote that represents your brand values or highlights your products.
       </p>
     {% endif -%}
   </blockquote>
