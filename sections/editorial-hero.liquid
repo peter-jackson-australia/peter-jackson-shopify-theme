@@ -4,12 +4,9 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: var(--space-xl) var(--space-m);
+    padding: var(--space-2xl) var(--space-m);
     width: 100%;
-  }
-
-  .editorial-hero__leading-text {
-    margin-bottom: var(--space-m);
+    gap: var(--space-m);
   }
 
   .editorial-hero__title-container {
@@ -20,9 +17,9 @@
     width: 100%;
   }
 
-  .editorial-hero__first-title {
-    margin-bottom: calc(var(--space-l) * -1);
-    z-index: 2;
+  .editorial-hero__first-title,
+  .editorial-hero__second-title {
+    text-transform: uppercase;
   }
 
   .editorial-hero__media-container {
@@ -50,19 +47,9 @@
     display: block;
   }
 
-  .editorial-hero__second-title {
-    margin-top: calc(var(--space-l) * -1);
-    z-index: 2;
-  }
-
   .editorial-hero__description {
     max-width: 80ch;
-    margin: var(--space-m) auto;
     color: var(--neutral-600);
-  }
-
-  .editorial-hero__cta-container {
-    margin-top: var(--space-xs);
   }
 
   .editorial-hero__cta {
@@ -72,6 +59,12 @@
     border: 1px solid var(--neutral-200);
     cursor: pointer;
     text-decoration: none;
+  }
+
+  @media screen and (max-width: 768px) {
+    .editorial-hero {
+      padding: var(--space-xl) var(--space-m);
+    }
   }
 </style>
 
@@ -129,9 +122,9 @@
   </div>
 
   {% if section.settings.description != blank %}
-    <div class="editorial-hero__description body">
+    <p class="editorial-hero__description body">
       {{ section.settings.description }}
-    </div>
+    </p>
   {% endif %}
 
   {% if section.settings.cta_text != blank and section.settings.cta_link != blank %}

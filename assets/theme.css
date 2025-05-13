@@ -464,9 +464,9 @@ accordion-fan > accordion-element > .ploiu-accordion-title {
 
 .heading--4xl {
   line-height: 100%;
-  letter-spacing: 0.5rem;
+  letter-spacing: 0.2rem;
   font-family: "Ordinary Regular";
-  font-size: clamp(5.1598rem, 4.9018rem + 1.2899vw, 6.4497rem);
+  font-size: clamp(3.5832rem, 3.404rem + 0.8958vw, 4.479rem);; 
   font-weight: 500;
 }
 
@@ -513,6 +513,10 @@ input:focus-visible {
 
 /* Header */
 
+header {
+  position: relative;
+}
+
 .header {
   background-color: var(--white);
   display: flex;
@@ -525,6 +529,9 @@ input:focus-visible {
 .header__logo {
   display: flex;
   align-items: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .header__icons {
