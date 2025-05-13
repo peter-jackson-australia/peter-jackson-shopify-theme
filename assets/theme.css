@@ -462,6 +462,14 @@ accordion-fan > accordion-element > .ploiu-accordion-title {
   font-weight: 300;
 }
 
+.heading--4xl {
+  line-height: 100%;
+  letter-spacing: 0.5rem;
+  font-family: "Ordinary Regular";
+  font-size: clamp(5.1598rem, 4.9018rem + 1.2899vw, 6.4497rem);
+  font-weight: 500;
+}
+
 @media screen and (max-width: 768px) {
   .small,
   .body,
