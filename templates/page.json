@@ -170,7 +170,7 @@
       "type": "variable-column-content",
       "name": "Variable Column Content",
       "settings": {
-        "column_count": "3",
+        "column_count": "4",
         "text_alignment": "center",
         "image_1": "shopify://shop_images/peter-jackson-menswear-winter-25-snow-image-1.webp",
         "image_2": "shopify://shop_images/peter-jackson-menswear-winter-25-snow-image-2.webp",
