@@ -147,6 +147,24 @@
       "name": "Two Column Content",
       "settings": {}
     },
+    "variable_column_content_F99hgn": {
+      "type": "variable-column-content",
+      "name": "Variable Column Content",
+      "settings": {
+        "column_count": "4",
+        "text_alignment": "center",
+        "image_1": "shopify://shop_images/peter-jackson-menswear-winter-25-snow-image-1.webp",
+        "image_2": "shopify://shop_images/peter-jackson-menswear-winter-25-snow-image-2.webp",
+        "image_3": "shopify://shop_images/peter-jackson-menswear-green-jacket-white-turtleneck.webp",
+        "image_4": "shopify://shop_images/peter-jackson-menswear-winter-25-snow-image-1.webp",
+        "image_5": "shopify://shop_images/peter-jackson-menswear-green-jacket-white-turtleneck.webp",
+        "image_6": "shopify://shop_images/peter-jackson-menswear-winter-25-snow-image-1.webp",
+        "heading": "Variable Column Content",
+        "text": "<p>Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.</p>",
+        "button_label": "Learn More",
+        "button_link": "shopify://collections/accessories"
+      }
+    },
     "blog_hero_qQW8aG": {
       "type": "blog-hero",
       "name": "Blog Hero",
@@ -165,24 +183,6 @@
         "show_recent_posts": true,
         "blog": "the-jackson-journal"
       }
-    },
-    "variable_column_content_F99hgn": {
-      "type": "variable-column-content",
-      "name": "Variable Column Content",
-      "settings": {
-        "column_count": "4",
-        "text_alignment": "center",
-        "image_1": "shopify://shop_images/peter-jackson-menswear-winter-25-snow-image-1.webp",
-        "image_2": "shopify://shop_images/peter-jackson-menswear-winter-25-snow-image-2.webp",
-        "image_3": "shopify://shop_images/peter-jackson-menswear-green-jacket-white-turtleneck.webp",
-        "image_4": "shopify://shop_images/peter-jackson-menswear-winter-25-snow-image-1.webp",
-        "image_5": "shopify://shop_images/peter-jackson-menswear-green-jacket-white-turtleneck.webp",
-        "image_6": "shopify://shop_images/peter-jackson-menswear-winter-25-snow-image-1.webp",
-        "heading": "Variable Column Content",
-        "text": "<p>Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.</p>",
-        "button_label": "Learn More",
-        "button_link": "shopify://collections/accessories"
-      }
     }
   },
   "order": [
@@ -196,7 +196,7 @@
     "block_quote_7QnDfh",
     "shop_the_look_global_xEkGHw",
     "two_column_content_KXnFAa",
-    "blog_hero_qQW8aG",
-    "variable_column_content_F99hgn"
+    "variable_column_content_F99hgn",
+    "blog_hero_qQW8aG"
   ]
 }
