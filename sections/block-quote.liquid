@@ -1,0 +1,109 @@
+<style>
+  .block-quote {
+    text-align: center;
+    padding: var(--space-2xl) var(--space-m);
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .block-quote__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-xl);
+  }
+
+  .block-quote__text {
+    max-width: 80ch;
+    margin: 0 auto;
+  }
+
+  .block-quote--neutral-950 {
+    background-color: var(--neutral-950);
+    color: var(--white);
+  }
+
+  .block-quote--green-700 {
+    background-color: var(--green-700);
+    color: var(--white);
+  }
+
+  .block-quote--white {
+    background-color: var(--white);
+    color: var(--neutral-950);
+  }
+
+  @media screen and (max-width: 768px) {
+    .block-quote__container {
+      padding: var(--space-l);
+    }
+  }
+</style>
+
+<section
+  id="block-quote-{{ section.id }}"
+  class="block-quote"
+  aria-label="Block quote section"
+>
+  <blockquote
+    class="block-quote__container block-quote--{{ section.settings.background_color }}"
+  >
+    {% if section.settings.quote_text != blank %}
+      <p class="block-quote__text heading--2xl">{{ section.settings.quote_text }}</p>
+    {% else %}
+      <p class="block-quote__text heading--2xl">
+        Add a memorable quote that represents your brand values or highlights your products.
+      </p>
+    {% endif %}
+  </blockquote>
+</section>
+
+{% schema %}
+{
+  "name": "Block Quote",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "quote_text",
+      "label": "Quote Text",
+      "default": "Add a memorable quote that represents your brand values or highlights your products."
+    },
+    {
+      "type": "select",
+      "id": "background_color",
+      "label": "Background Color",
+      "options": [
+        {
+          "value": "neutral-950",
+          "label": "Black"
+        },
+        {
+          "value": "green-700",
+          "label": "Green"
+        },
+        {
+          "value": "white",
+          "label": "White"
+        }
+      ],
+      "default": "neutral-950"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Block Quote",
+      "category": "Text",
+      "settings": {
+        "quote_text": "Add a memorable quote that represents your brand values or highlights your products.",
+        "background_color": "neutral-950"
+      }
+    }
+  ],
+  "enabled_on": {
+    "templates": ["index", "page", "article", "blog"]
+  }
+}
+{% endschema %}
