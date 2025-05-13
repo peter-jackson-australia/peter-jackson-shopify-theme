@@ -3,7 +3,7 @@ BEFORE 22nd May
 Home page sections: heading with text, vertical scroller, video with controls, countdown timer, FAQ's, Map: 
     fix all accessibiliy issues and warnings
     Ensure all sections have the ability to add border top and bottom
-
+    Ensure all sections are perfectly responsive
 15th:     
 General blog template
 
