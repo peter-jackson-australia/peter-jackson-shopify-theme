@@ -91,14 +91,14 @@
         {% assign image_setting = 'image_' | append: i %}
         {% if section.settings[image_setting] != blank %}
           <div class="variable-column-content__image-wrapper">
-            <img
-              src="{{ section.settings[image_setting] | img_url: 'master' }}"
-              alt="{{ section.settings[image_setting].alt | escape }}"
-              width="{{ section.settings[image_setting].width }}"
-              height="{{ section.settings[image_setting].height }}"
-              loading="lazy"
-              class="variable-column-content__image"
-            >
+            {{
+              section.settings[image_setting]
+              | image_url: width: 800
+              | image_tag:
+                class: 'variable-column-content__image',
+                loading: 'lazy',
+                alt: section.settings[image_setting].alt
+            }}
           </div>
         {% endif %}
       {% endfor %}
