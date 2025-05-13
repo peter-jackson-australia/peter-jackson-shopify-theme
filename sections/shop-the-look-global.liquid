@@ -1,0 +1,355 @@
+{% comment %}
+  Shop The Look Global Section
+{% endcomment %}
+
+{% assign selected_products = section.settings.products %}
+{% assign active_products = 0 %}
+
+{% for item in selected_products %}
+  {% if item != blank %}
+    {% assign active_products = forloop.index %}
+  {% endif %}
+{% endfor %}
+
+{% assign shop_the_look_count = active_products %}
+
+{% if shop_the_look_count > 0 %}
+  <style>
+    .shop-the-look-global {
+      display: flex;
+      overflow: hidden;
+    }
+
+    .shop-the-look-global__slider-container {
+      width: 50vw;
+      padding: var(--space-2xl) var(--space-m);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .shop-the-look-global__heading {
+      margin-bottom: var(--space-l);
+      color: var(--neutral-950);
+      text-align: center;
+    }
+
+    .shop-the-look-global__slider-wrapper {
+      max-width: 600px;
+      margin: 0 auto;
+      overflow: visible;
+      width: 100%;
+    }
+
+    .shop-the-look-global__slider {
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .shop-the-look-global__image-container {
+      width: 50vw;
+      position: relative;
+      overflow: hidden;
+      background-color: var(--neutral-50);
+    }
+
+    .shop-the-look-global__image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      object-position: center;
+    }
+
+    .shop-the-look-global__product-link {
+      display: block;
+      text-decoration: none;
+      color: var(--neutral-950);
+    }
+
+    .shop-the-look-global__product-image-wrapper {
+      margin-bottom: var(--space-xs);
+      overflow: hidden;
+      background-color: var(--neutral-50);
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+    }
+
+    .shop-the-look-global__product-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .shop-the-look-global__product-title {
+      margin: var(--space-xs) 0 var(--space-2xs);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: var(--neutral-950);
+      text-align: center;
+    }
+
+    .shop-the-look-global__product-price {
+      color: var(--neutral-950);
+      text-align: center;
+    }
+
+    .shop-the-look-global__product-price--compare {
+      text-decoration: line-through;
+      color: var(--neutral-600);
+      margin-left: var(--space-2xs);
+    }
+
+    .shop-the-look-global__single-product {
+      padding: var(--space-m);
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .shop-the-look-global .splide__arrows {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .shop-the-look-global .splide__arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 30px;
+      height: 100%;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      pointer-events: auto;
+      border: none;
+    }
+
+    .shop-the-look-global .splide__arrow--prev {
+      left: 0px;
+    }
+
+    .shop-the-look-global .splide__arrow--next {
+      right: 0px;
+    }
+
+    @media screen and (max-width: 1100px) {
+      .shop-the-look-global {
+        flex-direction: column;
+        margin-top: var(--space-xl);
+        border-top: 1px solid var(--neutral-200);
+      }
+
+      .shop-the-look-global__slider-container {
+        width: 100%;
+        padding-top: var(--space-xl);
+        padding-bottom: 0px;
+      }
+
+      .shop-the-look-global__image-container {
+        display: none;
+      }
+    }
+
+    @media screen and (max-width: 470px) {
+      .shop-the-look-global__slider-wrapper {
+        overflow: hidden;
+      }
+    }
+  </style>
+
+  <div class="shop-the-look-global" id="section-{{ section.id }}">
+    <div class="shop-the-look-global__slider-container">
+      <h2 class="heading--xl shop-the-look-global__heading">{{ section.settings.heading }}</h2>
+      {% if shop_the_look_count > 1 %}
+        <div class="shop-the-look-global__slider-wrapper">
+          <div class="shop-the-look-global__slider splide">
+            <div class="splide__track">
+              <ul class="splide__list">
+                {% for product in selected_products %}
+                  {% if product != blank %}
+                    {% assign product_object = product %}
+                    <li class="splide__slide shop-the-look-global__slide">
+                      <a href="{{ product_object.url }}" target="_blank" class="shop-the-look-global__product-link">
+                        <div class="shop-the-look-global__product-image-wrapper">
+                          {% if product_object.featured_image != blank %}
+                            <img
+                              src="{{ product_object.featured_image | image_url: width: '600px' }}"
+                              alt="{{ product_object.featured_image.alt | escape }}"
+                              loading="lazy"
+                              width="{{ product_object.featured_image.width }}"
+                              height="{{ product_object.featured_image.width }}"
+                              class="shop-the-look-global__product-image"
+                            >
+                          {% else %}
+                            {{ 'product-1' | placeholder_svg_tag: 'shop-the-look-global__product-image placeholder' }}
+                          {% endif %}
+                        </div>
+
+                        <h3 class="body--bold shop-the-look-global__product-title">{{ product_object.title }}</h3>
+
+                        <p class="small shop-the-look-global__product-price">
+                          {% if product_object.compare_at_price > product_object.price %}
+                            <span class="shop-the-look-global__product-price--sale">
+                              {{- product_object.price | money -}}
+                            </span>
+                            <span class="shop-the-look-global__product-price--compare">
+                              {{- product_object.compare_at_price | money -}}
+                            </span>
+                          {% else %}
+                            {{ product_object.price | money }}
+                          {% endif %}
+                        </p>
+                      </a>
+                    </li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </div>
+            <div class="splide__arrows">
+              <button class="splide__arrow splide__arrow--prev">{% render 'icon-arrow-see-less' %}</button>
+              <button class="splide__arrow splide__arrow--next">{% render 'icon-arrow-see-more' %}</button>
+            </div>
+          </div>
+        </div>
+      {% else %}
+        <div class="shop-the-look-global__single-product">
+          {% assign single_product = selected_products | first %}
+          {% if single_product != blank %}
+            {% assign single_product_object = single_product %}
+            <a href="{{ single_product_object.url }}" class="shop-the-look-global__product-link">
+              <div class="shop-the-look-global__product-image-wrapper">
+                {% if single_product_object.featured_image != blank %}
+                  <img
+                    src="{{ single_product_object.featured_image | image_url: width: '600px' }}"
+                    alt="{{ single_product_object.featured_image.alt | escape }}"
+                    loading="lazy"
+                    width="{{ single_product_object.featured_image.width }}"
+                    height="{{ single_product_object.featured_image.height }}"
+                    class="shop-the-look-global__product-image"
+                  >
+                {% else %}
+                  {{ 'product-1' | placeholder_svg_tag: 'shop-the-look-global__product-image placeholder' }}
+                {% endif %}
+              </div>
+
+              <h3 class="body--bold shop-the-look-global__product-title">{{ single_product_object.title }}</h3>
+
+              <p class="small shop-the-look-global__product-price">
+                {% if single_product_object.compare_at_price > single_product_object.price %}
+                  <span class="shop-the-look-global__product-price--sale">
+                    {{- single_product_object.price | money -}}
+                  </span>
+                  <span class="shop-the-look-global__product-price--compare">
+                    {{- single_product_object.compare_at_price | money -}}
+                  </span>
+                {% else %}
+                  {{ single_product_object.price | money }}
+                {% endif %}
+              </p>
+            </a>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="shop-the-look-global__image-container">
+      {% if section.settings.featured_image != blank %}
+        {% assign featured_image = section.settings.featured_image %}
+        {% assign image_width = 1024 %}
+        {% assign image_height = image_width | divided_by: featured_image.aspect_ratio | ceil %}
+        <img
+          src="{{ featured_image | image_url: width: image_width }}"
+          srcset="
+            {{ featured_image | image_url: width: 600 }} 600w,
+            {{ featured_image | image_url: width: 800 }} 800w,
+            {{ featured_image | image_url: width: 1024 }} 1024w,
+            {{ featured_image | image_url: width: 1440 }} 1440w
+          "
+          sizes="(max-width: 768px) 100vw, 50vw"
+          width="{{ image_width }}"
+          height="{{ image_height }}"
+          alt="{{ featured_image.alt | default: section.settings.heading }}"
+          loading="lazy"
+          class="shop-the-look-global__image"
+        >
+      {% else %}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'shop-the-look-global__image placeholder' }}
+      {% endif %}
+    </div>
+  </div>
+
+  {% if shop_the_look_count > 1 %}
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const splideElement = document.querySelector('#section-{{ section.id }} .shop-the-look-global__slider');
+
+        if (splideElement) {
+          new Splide(splideElement, {
+            perPage: 1,
+            type: 'loop',
+            gap: 'var(--space-m)',
+            arrows: true,
+            pagination: false,
+            drag: true,
+            snap: true,
+          }).mount();
+        }
+      });
+    </script>
+  {% endif %}
+{% endif %}
+
+{% schema %}
+{
+  "name": "Shop the Look Global",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Shop the Look"
+    },
+    {
+      "type": "image_picker",
+      "id": "featured_image",
+      "label": "Featured Image"
+    },
+    {
+      "type": "product",
+      "id": "product1",
+      "label": "Product 1"
+    },
+    {
+      "type": "product",
+      "id": "product2",
+      "label": "Product 2"
+    },
+    {
+      "type": "product",
+      "id": "product3",
+      "label": "Product 3"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop the Look Global",
+      "category": "Featured"
+    }
+  ],
+  "enabled_on": {
+    "templates": ["index", "page", "article", "blog"]
+  }
+}
+{% endschema %}
