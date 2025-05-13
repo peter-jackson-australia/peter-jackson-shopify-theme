@@ -39,7 +39,12 @@
   .variable-column-content__text-content {
     display: flex;
     flex-direction: column;
-    gap: var(--space-s);
+    gap: var(--space-m);
+  }
+
+  .variable-column-content__text {
+    color: var(--neutral-600);
+    max-width: 80ch;
   }
 
   .variable-column-content__text-content--left {
@@ -58,17 +63,12 @@
   }
 
   .variable-column-content__button {
-    background-color: var(--neutral-950);
-    color: var(--white);
-    text-decoration: none;
     display: inline-block;
-    border: 1px solid var(--neutral-950);
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-
-  .variable-column-content__button:hover {
     background-color: var(--white);
     color: var(--neutral-950);
+    border: 1px solid var(--neutral-200);
+    cursor: pointer;
+    text-decoration: none;
   }
 
   @media screen and (max-width: 768px) {
