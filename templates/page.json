@@ -23,6 +23,17 @@
         "cta_link": "shopify://collections/sale"
       }
     },
+    "image_with_text_etHcn8": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "alignment": "left",
+        "first_image": "shopify://shop_images/mens-jacket-green-cashmere-WT25-SC03-1.webp",
+        "second_image": "shopify://shop_images/mens-jacket-green-cashmere-WT25-SC03-14.webp",
+        "heading": "Image With Text",
+        "text": "<p>Pair text with an image to provide information about a product, collection, or brand story.</p>"
+      }
+    },
     "full_page_media_BB4HUA": {
       "type": "full-page-media",
       "name": "Full Page Media",
@@ -37,6 +48,7 @@
   },
   "order": [
     "editorial_hero_Wgnf6W",
+    "image_with_text_etHcn8",
     "full_page_media_BB4HUA"
   ]
 }
