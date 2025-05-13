@@ -1,10 +1,7 @@
 <style>
   .block-quote {
     text-align: center;
-    padding: var(--space-2xl) var(--space-m);
     width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
   }
 
   .block-quote__container {
@@ -12,7 +9,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: var(--space-xl);
+    padding: var(--space-3xl);
   }
 
   .block-quote__text {
@@ -51,12 +48,12 @@
     class="block-quote__container block-quote--{{ section.settings.background_color }}"
   >
     {% if section.settings.quote_text != blank %}
-      <p class="block-quote__text heading--2xl">{{ section.settings.quote_text }}</p>
+      <p class="block-quote__text heading--2xl">"{{ section.settings.quote_text }}"</p>
     {% else %}
       <p class="block-quote__text heading--2xl">
-        Add a memorable quote that represents your brand values or highlights your products.
+        "Add a memorable quote that represents your brand values or highlights your products."
       </p>
-    {% endif %}
+    {% endif -%}
   </blockquote>
 </section>
 
