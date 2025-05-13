@@ -2,18 +2,12 @@
   Shop The Look Global Section
 {% endcomment %}
 
-{% assign selected_products = section.settings.products %}
-{% assign active_products = 0 %}
+{% assign has_products = false %}
+{% if section.settings.product1 != blank or section.settings.product2 != blank or section.settings.product3 != blank %}
+  {% assign has_products = true %}
+{% endif %}
 
-{% for item in selected_products %}
-  {% if item != blank %}
-    {% assign active_products = forloop.index %}
-  {% endif %}
-{% endfor %}
-
-{% assign shop_the_look_count = active_products %}
-
-{% if shop_the_look_count > 0 %}
+{% if has_products %}
   <style>
     .shop-the-look-global {
       display: flex;
@@ -171,49 +165,130 @@
   <div class="shop-the-look-global" id="section-{{ section.id }}">
     <div class="shop-the-look-global__slider-container">
       <h2 class="heading--xl shop-the-look-global__heading">{{ section.settings.heading }}</h2>
-      {% if shop_the_look_count > 1 %}
+
+      {% assign product_count = 0 %}
+      {% if section.settings.product1 != blank %}{% assign product_count = product_count | plus: 1 %}{% endif %}
+      {% if section.settings.product2 != blank %}{% assign product_count = product_count | plus: 1 %}{% endif %}
+      {% if section.settings.product3 != blank %}{% assign product_count = product_count | plus: 1 %}{% endif %}
+
+      {% if product_count > 1 %}
         <div class="shop-the-look-global__slider-wrapper">
           <div class="shop-the-look-global__slider splide">
             <div class="splide__track">
               <ul class="splide__list">
-                {% for product in selected_products %}
-                  {% if product != blank %}
-                    {% assign product_object = product %}
+                {% if section.settings.product1 != blank %}
+                  {% assign product = all_products[section.settings.product1] %}
+                  {% if product.featured_image != blank %}
                     <li class="splide__slide shop-the-look-global__slide">
-                      <a href="{{ product_object.url }}" target="_blank" class="shop-the-look-global__product-link">
+                      <a href="{{ product.url }}" class="shop-the-look-global__product-link">
                         <div class="shop-the-look-global__product-image-wrapper">
-                          {% if product_object.featured_image != blank %}
-                            <img
-                              src="{{ product_object.featured_image | image_url: width: '600px' }}"
-                              alt="{{ product_object.featured_image.alt | escape }}"
-                              loading="lazy"
-                              width="{{ product_object.featured_image.width }}"
-                              height="{{ product_object.featured_image.width }}"
-                              class="shop-the-look-global__product-image"
-                            >
-                          {% else %}
-                            {{ 'product-1' | placeholder_svg_tag: 'shop-the-look-global__product-image placeholder' }}
-                          {% endif %}
+                          {% assign image_width = 600 %}
+                          {% assign image_height = image_width
+                            | divided_by: product.featured_image.aspect_ratio
+                            | round
+                          %}
+                          <img
+                            src="{{ product.featured_image | image_url: width: image_width }}"
+                            alt="{{ product.featured_image.alt | escape }}"
+                            loading="lazy"
+                            width="{{ image_width }}"
+                            height="{{ image_height }}"
+                            class="shop-the-look-global__product-image"
+                          >
                         </div>
 
-                        <h3 class="body--bold shop-the-look-global__product-title">{{ product_object.title }}</h3>
+                        <h3 class="body--bold shop-the-look-global__product-title">{{ product.title }}</h3>
 
                         <p class="small shop-the-look-global__product-price">
-                          {% if product_object.compare_at_price > product_object.price %}
-                            <span class="shop-the-look-global__product-price--sale">
-                              {{- product_object.price | money -}}
-                            </span>
+                          {% if product.compare_at_price_max > product.price %}
+                            <span class="shop-the-look-global__product-price--sale">{{ product.price | money }}</span>
                             <span class="shop-the-look-global__product-price--compare">
-                              {{- product_object.compare_at_price | money -}}
+                              {{- product.compare_at_price_max | money -}}
                             </span>
                           {% else %}
-                            {{ product_object.price | money }}
+                            {{ product.price | money }}
                           {% endif %}
                         </p>
                       </a>
                     </li>
                   {% endif %}
-                {% endfor %}
+                {% endif %}
+
+                {% if section.settings.product2 != blank %}
+                  {% assign product = all_products[section.settings.product2] %}
+                  {% if product.featured_image != blank %}
+                    <li class="splide__slide shop-the-look-global__slide">
+                      <a href="{{ product.url }}" class="shop-the-look-global__product-link">
+                        <div class="shop-the-look-global__product-image-wrapper">
+                          {% assign image_width = 600 %}
+                          {% assign image_height = image_width
+                            | divided_by: product.featured_image.aspect_ratio
+                            | round
+                          %}
+                          <img
+                            src="{{ product.featured_image | image_url: width: image_width }}"
+                            alt="{{ product.featured_image.alt | escape }}"
+                            loading="lazy"
+                            width="{{ image_width }}"
+                            height="{{ image_height }}"
+                            class="shop-the-look-global__product-image"
+                          >
+                        </div>
+
+                        <h3 class="body--bold shop-the-look-global__product-title">{{ product.title }}</h3>
+
+                        <p class="small shop-the-look-global__product-price">
+                          {% if product.compare_at_price_max > product.price %}
+                            <span class="shop-the-look-global__product-price--sale">{{ product.price | money }}</span>
+                            <span class="shop-the-look-global__product-price--compare">
+                              {{- product.compare_at_price_max | money -}}
+                            </span>
+                          {% else %}
+                            {{ product.price | money }}
+                          {% endif %}
+                        </p>
+                      </a>
+                    </li>
+                  {% endif %}
+                {% endif %}
+
+                {% if section.settings.product3 != blank %}
+                  {% assign product = all_products[section.settings.product3] %}
+                  {% if product.featured_image != blank %}
+                    <li class="splide__slide shop-the-look-global__slide">
+                      <a href="{{ product.url }}" class="shop-the-look-global__product-link">
+                        <div class="shop-the-look-global__product-image-wrapper">
+                          {% assign image_width = 600 %}
+                          {% assign image_height = image_width
+                            | divided_by: product.featured_image.aspect_ratio
+                            | round
+                          %}
+                          <img
+                            src="{{ product.featured_image | image_url: width: image_width }}"
+                            alt="{{ product.featured_image.alt | escape }}"
+                            loading="lazy"
+                            width="{{ image_width }}"
+                            height="{{ image_height }}"
+                            class="shop-the-look-global__product-image"
+                          >
+                        </div>
+
+                        <h3 class="body--bold shop-the-look-global__product-title">{{ product.title }}</h3>
+
+                        <p class="small shop-the-look-global__product-price">
+                          {% if product.compare_at_price_max > product.price %}
+                            <span class="shop-the-look-global__product-price--sale">{{ product.price | money }}</span>
+                            <span class="shop-the-look-global__product-price--compare">
+                              {{- product.compare_at_price_max | money -}}
+                            </span>
+                          {% else %}
+                            {{ product.price | money }}
+                          {% endif %}
+                        </p>
+                      </a>
+                    </li>
+                  {% endif %}
+                {% endif %}
               </ul>
             </div>
             <div class="splide__arrows">
@@ -224,37 +299,39 @@
         </div>
       {% else %}
         <div class="shop-the-look-global__single-product">
-          {% assign single_product = selected_products | first %}
-          {% if single_product != blank %}
-            {% assign single_product_object = single_product %}
-            <a href="{{ single_product_object.url }}" class="shop-the-look-global__product-link">
+          {% if section.settings.product1 != blank %}
+            {% assign product = all_products[section.settings.product1] %}
+          {% elsif section.settings.product2 != blank %}
+            {% assign product = all_products[section.settings.product2] %}
+          {% elsif section.settings.product3 != blank %}
+            {% assign product = all_products[section.settings.product3] %}
+          {% endif %}
+
+          {% if product.featured_image != blank %}
+            <a href="{{ product.url }}" class="shop-the-look-global__product-link">
               <div class="shop-the-look-global__product-image-wrapper">
-                {% if single_product_object.featured_image != blank %}
-                  <img
-                    src="{{ single_product_object.featured_image | image_url: width: '600px' }}"
-                    alt="{{ single_product_object.featured_image.alt | escape }}"
-                    loading="lazy"
-                    width="{{ single_product_object.featured_image.width }}"
-                    height="{{ single_product_object.featured_image.height }}"
-                    class="shop-the-look-global__product-image"
-                  >
-                {% else %}
-                  {{ 'product-1' | placeholder_svg_tag: 'shop-the-look-global__product-image placeholder' }}
-                {% endif %}
+                {% assign image_width = 600 %}
+                {% assign image_height = image_width | divided_by: product.featured_image.aspect_ratio | round %}
+                <img
+                  src="{{ product.featured_image | image_url: width: image_width }}"
+                  alt="{{ product.featured_image.alt | escape }}"
+                  loading="lazy"
+                  width="{{ image_width }}"
+                  height="{{ image_height }}"
+                  class="shop-the-look-global__product-image"
+                >
               </div>
 
-              <h3 class="body--bold shop-the-look-global__product-title">{{ single_product_object.title }}</h3>
+              <h3 class="body--bold shop-the-look-global__product-title">{{ product.title }}</h3>
 
               <p class="small shop-the-look-global__product-price">
-                {% if single_product_object.compare_at_price > single_product_object.price %}
-                  <span class="shop-the-look-global__product-price--sale">
-                    {{- single_product_object.price | money -}}
-                  </span>
+                {% if product.compare_at_price_max > product.price %}
+                  <span class="shop-the-look-global__product-price--sale">{{ product.price | money }}</span>
                   <span class="shop-the-look-global__product-price--compare">
-                    {{- single_product_object.compare_at_price | money -}}
+                    {{- product.compare_at_price_max | money -}}
                   </span>
                 {% else %}
-                  {{ single_product_object.price | money }}
+                  {{ product.price | money }}
                 {% endif %}
               </p>
             </a>
@@ -263,33 +340,30 @@
       {% endif %}
     </div>
 
-    <div class="shop-the-look-global__image-container">
-      {% if section.settings.featured_image != blank %}
-        {% assign featured_image = section.settings.featured_image %}
+    {% if section.settings.featured_image != blank %}
+      <div class="shop-the-look-global__image-container">
         {% assign image_width = 1024 %}
-        {% assign image_height = image_width | divided_by: featured_image.aspect_ratio | ceil %}
+        {% assign image_height = image_width | divided_by: section.settings.featured_image.aspect_ratio | round %}
         <img
-          src="{{ featured_image | image_url: width: image_width }}"
+          src="{{ section.settings.featured_image | image_url: width: image_width }}"
           srcset="
-            {{ featured_image | image_url: width: 600 }} 600w,
-            {{ featured_image | image_url: width: 800 }} 800w,
-            {{ featured_image | image_url: width: 1024 }} 1024w,
-            {{ featured_image | image_url: width: 1440 }} 1440w
+            {{ section.settings.featured_image | image_url: width: 600 }} 600w,
+            {{ section.settings.featured_image | image_url: width: 800 }} 800w,
+            {{ section.settings.featured_image | image_url: width: 1024 }} 1024w,
+            {{ section.settings.featured_image | image_url: width: 1440 }} 1440w
           "
           sizes="(max-width: 768px) 100vw, 50vw"
           width="{{ image_width }}"
           height="{{ image_height }}"
-          alt="{{ featured_image.alt | default: section.settings.heading }}"
+          alt="{{ section.settings.featured_image.alt | default: section.settings.heading }}"
           loading="lazy"
           class="shop-the-look-global__image"
         >
-      {% else %}
-        {{ 'lifestyle-1' | placeholder_svg_tag: 'shop-the-look-global__image placeholder' }}
-      {% endif %}
-    </div>
+      </div>
+    {% endif %}
   </div>
 
-  {% if shop_the_look_count > 1 %}
+  {% if product_count > 1 %}
     <script>
       document.addEventListener('DOMContentLoaded', function () {
         const splideElement = document.querySelector('#section-{{ section.id }} .shop-the-look-global__slider');
@@ -347,9 +421,6 @@
       "name": "Shop the Look Global",
       "category": "Featured"
     }
-  ],
-  "enabled_on": {
-    "templates": ["index", "page", "article", "blog"]
-  }
+  ]
 }
 {% endschema %}
