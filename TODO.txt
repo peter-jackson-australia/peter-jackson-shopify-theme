@@ -1,9 +1,16 @@
 BEFORE 22nd May
+14th: 
 Home page sections: heading with text, vertical scroller, video with controls, countdown timer, FAQ's, Map: 
     fix all accessibiliy issues and warnings
     Ensure all sections have the ability to add border top and bottom
+
+15th:     
 General blog template
-Locations
+
+16th
+Locations template
+
+17th-22nd:
 Store locator
 Bring all blogs over 
 
@@ -15,7 +22,7 @@ Fix all accessibility errors on all pages thus far
 Main Menu:
 Preserve scroll position when menu is open
 Make the loading spinner show on filter button when clear filters or reset is selected 
-Add ability to change video, video subtitle, newsletter title and newsletter legal spiel
+Add ability to change video, video subtitle, newsletter title and newsletter legal spiel in theme editor
 
 //////////////////////
 
