@@ -9,6 +9,18 @@
  */
 {
   "sections": {
+    "hero_primary_dVADTX": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "desktop_image": "shopify://shop_images/peter-jackson-menswear-green-jacket-white-turtleneck.webp",
+        "heading": "Peter Jackson Menswear",
+        "description": "Discover our latest collection",
+        "button_label": "Shop Now",
+        "button_link": "shopify://collections/bags",
+        "content_alignment": "center"
+      }
+    },
     "editorial_hero_Wgnf6W": {
       "type": "editorial-hero",
       "name": "Editorial Hero",
@@ -104,6 +116,7 @@
     }
   },
   "order": [
+    "hero_primary_dVADTX",
     "editorial_hero_Wgnf6W",
     "image_with_text_etHcn8",
     "image_with_text_qUbHFp",
