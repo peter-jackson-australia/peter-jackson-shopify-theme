@@ -1,8 +1,11 @@
-Home page sections: vertical scroller, video with controls, countdown timer, FAQ's, Map: 
+BEFORE 22nd May
+Home page sections: heading with text, vertical scroller, video with controls, countdown timer, FAQ's, Map: 
     fix all accessibiliy issues and warnings
+    Ensure all sections have the ability to add border top and bottom
 General blog template
 Locations
 Store locator
+Bring all blogs over 
 
 /////////////////////////////////////////////////////
 
