@@ -1,6 +1,8 @@
-Home page sections
-General blog template / Careers
-Tuesday Locations
+Home page sections: vertical scroller, video with controls, countdown timer, FAQ's, Map: 
+    fix all accessibiliy issues and warnings
+General blog template
+Locations
+Store locator
 
 /////////////////////////////////////////////////////
 
