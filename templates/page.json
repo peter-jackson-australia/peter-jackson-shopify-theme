@@ -170,8 +170,8 @@
       "type": "variable-column-content",
       "name": "Variable Column Content",
       "settings": {
-        "column_count": "6",
-        "text_alignment": "left",
+        "column_count": "3",
+        "text_alignment": "center",
         "image_1": "shopify://shop_images/peter-jackson-menswear-winter-25-snow-image-1.webp",
         "image_2": "shopify://shop_images/peter-jackson-menswear-winter-25-snow-image-2.webp",
         "image_3": "shopify://shop_images/peter-jackson-menswear-green-jacket-white-turtleneck.webp",
