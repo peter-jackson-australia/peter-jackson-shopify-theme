@@ -4,7 +4,7 @@
     height: calc(100dvh - var(--space-xl));
   }
 
-  .splide__slide {
+  .hero-slider .splide__slide {
     position: relative;
     height: calc(100dvh - var(--space-xl));
   }
@@ -34,6 +34,18 @@
 
   .hero-slider__background--mobile {
     display: none;
+  }
+
+  @media not all and (min-resolution:.001dpcm) {
+    @supports (-webkit-appearance:none) {
+      .hero-slider .hero-slider__overlay {
+        -webkit-transform: translate3d(0,0,0);
+      }
+
+      .hero-slider .hero-slider__content {
+        -webkit-transform: translate3d(0,0,0);
+      }
+    }
   }
 
   .hero-slider__overlay {
@@ -97,7 +109,7 @@
     transform: none;
   }
 
-  .splide__pagination__page {
+  .hero-slider .splide__pagination__page {
     width: 8px;
     height: 8px;
     margin: 0;
@@ -108,7 +120,7 @@
     cursor: pointer;
   }
 
-  .splide__pagination__page.is-active {
+  .hero-slider .splide__pagination__page.is-active {
     background-color: var(--white);
     transform: none;
   }
@@ -182,7 +194,9 @@
                   muted: true,
                   controls: false,
                   playsinline: true,
-                  class: 'hero-slider__video-element'
+                  class: 'hero-slider__video-element',
+                  id: 'video-'
+                | append: block.id
               }}
             </div>
           {% endif %}
@@ -214,21 +228,69 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    new Splide('#hero-slider-{{ section.id }}', {
+    const slider = new Splide('#hero-slider-{{ section.id }}', {
       type: 'loop',
       perPage: 1,
       arrows: false,
       pagination: true,
       drag: true,
       autoplay: {{ section.settings.autoplay }},
-      interval: {{ section.settings.slide_interval | times: 1000 }},
-    }).mount();
+      interval: {{ section.settings.slide_interval | times: 1000 }}
+    });
+
+    const isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1 &&
+                   navigator.userAgent && !navigator.userAgent.match('CriOS');
+
+    if (isSafari) {
+      slider.on('mounted', function() {
+        const sliderElement = document.getElementById('hero-slider-{{ section.id }}');
+        const overlaysInHero = sliderElement.querySelectorAll('.hero-slider__overlay');
+        const contentsInHero = sliderElement.querySelectorAll('.hero-slider__content');
+        overlaysInHero.forEach(el => {
+          el.style.transform = 'translateZ(0)';
+        });
+
+        contentsInHero.forEach(el => {
+          el.style.transform = 'translateZ(0)';
+        });
+      });
+
+      slider.on('move', function() {
+        const currentSlideNum = slider.index;
+        requestAnimationFrame(function() {
+          const currentSlide = slider.Components.Elements.slides[currentSlideNum];
+          const overlay = currentSlide.querySelector('.hero-slider__overlay');
+          const content = currentSlide.querySelector('.hero-slider__content');
+
+          if (overlay) overlay.style.willChange = 'transform';
+          if (content) content.style.willChange = 'transform';
+
+          setTimeout(function() {
+            if (overlay) overlay.style.willChange = 'auto';
+            if (content) content.style.willChange = 'auto';
+          }, 500);
+        });
+      });
+    }
+
+    slider.on('mounted', function() {
+      const heroSlider = document.getElementById('hero-slider-{{ section.id }}');
+      const videos = heroSlider.querySelectorAll('.hero-slider__video-element');
+
+      videos.forEach(function(video) {
+        video.muted = true;
+        video.playsInline = true;
+      });
+    });
+
+    slider.mount();
   });
 </script>
 
 {% schema %}
 {
   "name": "Hero Slider",
+  "limit": 1,
   "tag": "section",
   "settings": [
     {
