@@ -275,9 +275,9 @@
       "type": "two-column-heading-text",
       "name": "Two Column Heading Text",
       "settings": {
-        "icon": "shopify://shop_images/beyond-blue-footer-logo.svg",
+        "icon": "shopify://shop_images/peter-jackson-menswear-green-jacket-white-turtleneck.webp",
         "heading": "Section Heading",
-        "heading_style": "decorative",
+        "heading_style": "normal",
         "content": "<p>Add your content here. This area uses the rich text editor so you can format text, add links, and more.</p>",
         "alignment": "left"
       }
