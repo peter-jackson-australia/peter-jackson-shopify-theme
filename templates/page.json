@@ -22,7 +22,7 @@
             "description": "Discover our latest collection",
             "button_label": "Shop Now",
             "button_link": "shopify://collections/accessories",
-            "content_alignment": "center"
+            "content_alignment": "left"
           }
         },
         "slide_tgrrCU": {
@@ -34,7 +34,7 @@
             "description": "Discover our latest collection",
             "button_label": "Shop Now",
             "button_link": "shopify://products/abstract-sunshine-pocket-square",
-            "content_alignment": "center"
+            "content_alignment": "left"
           }
         },
         "slide_AFrQaA": {
