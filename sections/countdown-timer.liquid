@@ -3,12 +3,34 @@
     position: relative;
     padding: var(--space-xl) var(--space-m);
     text-align: center;
-    background-color: var(--white);
+    color: var(--white);
+  }
+
+  .countdown-timer__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  .countdown-timer__overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
   }
 
   .countdown-timer__container {
+    position: relative;
     max-width: 1200px;
     margin: 0 auto;
+    z-index: 3;
   }
 
   .countdown-timer__heading {
@@ -33,22 +55,14 @@
     display: inline-block;
     width: 100%;
     padding: var(--space-s);
-    background-color: var(--neutral-950);
+    background-color: transparent;
+    border: 1px solid var(--white);
     color: var(--white);
-    border-radius: 4px;
     margin-bottom: var(--space-xs);
-    font-family: 'Ordinary Regular', sans-serif;
-    font-weight: 500;
-    font-size: clamp(1.5rem, 1.425rem + 0.375vw, 1.875rem);
-    line-height: 1;
   }
 
   .countdown-timer__label {
-    font-family: 'Ordinary Light', sans-serif;
-    text-transform: uppercase;
-    font-size: clamp(0.6944rem, 0.6597rem + 0.1736vw, 0.8681rem);
-    color: var(--neutral-600);
-    letter-spacing: 0.065rem;
+    color: var(--white);
   }
 
   .countdown-timer__message {
@@ -60,7 +74,6 @@
     display: none;
   }
 
-  /* Mobile styles */
   @media screen and (max-width: 768px) {
     .countdown-timer__blocks {
       gap: var(--space-s);
@@ -69,90 +82,58 @@
     .countdown-timer__block {
       min-width: 60px;
     }
-
-    .countdown-timer__value {
-      font-size: clamp(1rem, 0.95rem + 0.25vw, 1.25rem);
-    }
-
-    .countdown-timer__label {
-      font-size: 12px;
-    }
   }
 </style>
 
-<div
-  id="countdown-timer-{{ section.id }}"
-  class="countdown-timer"
-  style="
-    background-color: {{ section.settings.background_color }};
-    color: {{ section.settings.text_color }};
-  "
-  {% if section.settings.section_id != blank %}
-    id="{{ section.settings.section_id }}"
+<div id="countdown-timer-{{ section.id }}" class="countdown-timer">
+  {% if section.settings.background_image %}
+    {{
+      section.settings.background_image
+      | image_url: width: 2000
+      | image_tag: class: 'countdown-timer__background', alt: section.settings.background_image.alt
+      | default: section.settings.heading, loading: 'lazy'
+    }}
+    <div class="countdown-timer__overlay"></div>
   {% endif %}
->
+
   <div class="countdown-timer__container">
     {% if section.settings.heading != blank %}
-      <h2 class="countdown-timer__heading heading--2xl" style="color: {{ section.settings.text_color }};">
+      <h2 class="countdown-timer__heading heading--2xl">
         {{ section.settings.heading }}
       </h2>
     {% endif %}
 
     {% if section.settings.subheading != blank %}
-      <div class="countdown-timer__subheading body" style="color: {{ section.settings.text_color }};">
+      <div class="countdown-timer__subheading body">
         {{ section.settings.subheading }}
       </div>
     {% endif %}
 
     <div id="countdown-timer-blocks-{{ section.id }}" class="countdown-timer__blocks">
       <div class="countdown-timer__block">
-        <div
-          id="countdown-timer-days-{{ section.id }}"
-          class="countdown-timer__value"
-          style="background-color: {{ section.settings.block_color }};"
-        >
-          00
-        </div>
-        <div class="countdown-timer__label" style="color: {{ section.settings.label_color }};">
+        <div id="countdown-timer-days-{{ section.id }}" class="countdown-timer__value heading--xl">00</div>
+        <div class="countdown-timer__label body--uppercase">
           {{ section.settings.days_label | default: 'Days' }}
         </div>
       </div>
 
       <div class="countdown-timer__block">
-        <div
-          id="countdown-timer-hours-{{ section.id }}"
-          class="countdown-timer__value"
-          style="background-color: {{ section.settings.block_color }};"
-        >
-          00
-        </div>
-        <div class="countdown-timer__label" style="color: {{ section.settings.label_color }};">
+        <div id="countdown-timer-hours-{{ section.id }}" class="countdown-timer__value heading--xl">00</div>
+        <div class="countdown-timer__label body--uppercase">
           {{ section.settings.hours_label | default: 'Hours' }}
         </div>
       </div>
 
       <div class="countdown-timer__block">
-        <div
-          id="countdown-timer-minutes-{{ section.id }}"
-          class="countdown-timer__value"
-          style="background-color: {{ section.settings.block_color }};"
-        >
-          00
-        </div>
-        <div class="countdown-timer__label" style="color: {{ section.settings.label_color }};">
+        <div id="countdown-timer-minutes-{{ section.id }}" class="countdown-timer__value heading--xl">00</div>
+        <div class="countdown-timer__label body--uppercase">
           {{ section.settings.minutes_label | default: 'Minutes' }}
         </div>
       </div>
 
       <div class="countdown-timer__block">
-        <div
-          id="countdown-timer-seconds-{{ section.id }}"
-          class="countdown-timer__value"
-          style="background-color: {{ section.settings.block_color }};"
-        >
-          00
-        </div>
-        <div class="countdown-timer__label" style="color: {{ section.settings.label_color }};">
+        <div id="countdown-timer-seconds-{{ section.id }}" class="countdown-timer__value heading--xl">00</div>
+        <div class="countdown-timer__label body--uppercase">
           {{ section.settings.seconds_label | default: 'Seconds' }}
         </div>
       </div>
@@ -161,7 +142,6 @@
     <div
       id="countdown-timer-final-{{ section.id }}"
       class="countdown-timer__final-message countdown-timer__message heading--xl"
-      style="color: {{ section.settings.text_color }};"
     >
       {{ section.settings.final_message | default: 'Final hours! Do not miss out!' }}
     </div>
@@ -169,7 +149,6 @@
     <div
       id="countdown-timer-complete-{{ section.id }}"
       class="countdown-timer__complete-message countdown-timer__message heading--xl"
-      style="color: {{ section.settings.text_color }};"
     >
       {{ section.settings.complete_message | default: 'The countdown has ended!' }}
     </div>
@@ -178,12 +157,7 @@
       <div class="countdown-timer__button-container" style="margin-top: var(--space-l);">
         <a
           href="{{ section.settings.button_link }}"
-          class="button"
-          style="
-            background-color: {{ section.settings.button_background }};
-            color: {{ section.settings.button_text_color }};
-            border: 1px solid {{ section.settings.button_border_color }};
-          "
+          class="button button--white"
         >
           {{ section.settings.button_label }}
         </a>
@@ -211,7 +185,6 @@
       const distance = targetDate - now;
 
       if (distance <= 0) {
-        // Countdown completed
         daysElement.textContent = "00";
         hoursElement.textContent = "00";
         minutesElement.textContent = "00";
@@ -223,19 +196,16 @@
         return;
       }
 
-      // Calculate time units
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      // Update the display
       daysElement.textContent = String(days).padStart(2, '0');
       hoursElement.textContent = String(hours).padStart(2, '0');
       minutesElement.textContent = String(minutes).padStart(2, '0');
       secondsElement.textContent = String(seconds).padStart(2, '0');
 
-      // Check if we're in the final hours
       if (distance <= (finalHoursThreshold * 60 * 60 * 1000)) {
         blocksElement.style.display = "none";
         finalMessageElement.style.display = "block";
@@ -246,11 +216,9 @@
         completeMessageElement.style.display = "none";
       }
 
-      // Continue updating
       requestAnimationFrame(updateTimer);
     }
 
-    // Start the countdown
     if (targetDate) {
       updateTimer();
     }
@@ -274,6 +242,11 @@
       "info": "Custom ID for this section, useful for CSS or JavaScript targeting"
     },
     {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
       "type": "text",
       "id": "heading",
       "label": "Heading",
@@ -283,7 +256,7 @@
       "type": "text",
       "id": "subheading",
       "label": "Subheading",
-      "default": "Don't miss out on this special offer!"
+      "default": "Do not miss out on this special offer!"
     },
     {
       "type": "text",
@@ -359,52 +332,6 @@
       "type": "url",
       "id": "button_link",
       "label": "Button Link"
-    },
-    {
-      "type": "header",
-      "content": "Styling"
-    },
-    {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background Color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "text_color",
-      "label": "Text Color",
-      "default": "#0f0f0f"
-    },
-    {
-      "type": "color",
-      "id": "block_color",
-      "label": "Timer Block Color",
-      "default": "#0f0f0f"
-    },
-    {
-      "type": "color",
-      "id": "label_color",
-      "label": "Timer Label Color",
-      "default": "#616161"
-    },
-    {
-      "type": "color",
-      "id": "button_background",
-      "label": "Button Background Color",
-      "default": "#0f0f0f"
-    },
-    {
-      "type": "color",
-      "id": "button_text_color",
-      "label": "Button Text Color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "button_border_color",
-      "label": "Button Border Color",
-      "default": "#0f0f0f"
     }
   ],
   "presets": [
