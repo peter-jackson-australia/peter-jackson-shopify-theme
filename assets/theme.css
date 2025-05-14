@@ -140,6 +140,12 @@ select {
   color: var(--neutral-600) !important;
 }
 
+.metafield-rich_text_field > p > strong {
+  color: var(--neutral-950) !important; 
+  font-family: 'Ordinary Regular', sans-serif;
+  font-weight: 500; 
+} 
+
 .breadcrumb__list {
   display: flex;
   flex-wrap: wrap;
