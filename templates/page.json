@@ -28,6 +28,7 @@
           "type": "slide",
           "settings": {
             "media_type": "image",
+            "desktop_image": "shopify://shop_images/peter-jackson-menswear-green-jacket-white-turtleneck.webp",
             "heading": "Welcome to Our Store",
             "description": "Discover our latest collection",
             "button_label": "Shop Now",
