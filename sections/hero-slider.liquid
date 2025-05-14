@@ -107,26 +107,38 @@
         <li class="splide__slide hero-slider__slide" {{ block.shopify_attributes }}>
           {% if block.settings.media_type == 'image' %}
             {% if block.settings.desktop_image %}
+              {% assign loading_attr = 'lazy' %}
+              {% assign preload_attr = false %}
+              {% if forloop.index == 1 %}
+                {% assign loading_attr = 'eager' %}
+                {% assign preload_attr = true %}
+              {% endif %}
+
               {{
                 block.settings.desktop_image
                 | image_url: width: 2000
                 | image_tag:
-                class: 'hero-slider__background hero-slider__background--desktop',
-                alt: block.settings.desktop_image.alt | default: block.settings.heading,
-                loading: forloop.index == 1 ? 'eager' : 'lazy',
-                preload: forloop.index == 1
+                  class: 'hero-slider__background hero-slider__background--desktop',
+                  alt: block.settings.desktop_image.alt
+                | default: block.settings.heading, loading: loading_attr, preload: preload_attr
               }}
             {% endif %}
 
             {% if block.settings.mobile_image %}
+              {% assign loading_attr = 'lazy' %}
+              {% assign preload_attr = false %}
+              {% if forloop.index == 1 %}
+                {% assign loading_attr = 'eager' %}
+                {% assign preload_attr = true %}
+              {% endif %}
+
               {{
                 block.settings.mobile_image
                 | image_url: width: 768
                 | image_tag:
-                class: 'hero-slider__background hero-slider__background--mobile',
-                alt: block.settings.mobile_image.alt | default: block.settings.heading,
-                loading: forloop.index == 1 ? 'eager' : 'lazy',
-                preload: forloop.index == 1
+                  class: 'hero-slider__background hero-slider__background--mobile',
+                  alt: block.settings.mobile_image.alt
+                | default: block.settings.heading, loading: loading_attr, preload: preload_attr
               }}
             {% endif %}
           {% elsif block.settings.media_type == 'video' and block.settings.video %}
