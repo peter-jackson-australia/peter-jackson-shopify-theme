@@ -22,7 +22,7 @@
             "description": "Discover our latest collection",
             "button_label": "Shop Now",
             "button_link": "shopify://collections/accessories",
-            "content_alignment": "left"
+            "content_alignment": "center"
           }
         },
         "slide_tgrrCU": {
