@@ -287,6 +287,7 @@
       "name": "Video",
       "settings": {
         "video": "shopify://files/videos/winter-25-sale-hero-video-peter-jackson.mp4",
+        "placeholder_image": "shopify://shop_images/peter-jackson-menswear-green-jacket-white-turtleneck.webp",
         "title": "Video title",
         "show_title": false,
         "width": "full-width",
