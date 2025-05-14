@@ -19,7 +19,7 @@
             "heading": "Welcome to Our Store",
             "description": "Discover our latest collection",
             "button_label": "Shop Now",
-            "button_link": "",
+            "button_link": "shopify://collections/accessories",
             "content_alignment": "center"
           }
         }
