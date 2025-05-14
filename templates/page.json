@@ -281,6 +281,18 @@
         "content": "<p>Add your content here. This area uses the rich text editor so you can format text, add links, and more.</p>",
         "alignment": "left"
       }
+    },
+    "video_nbTVNy": {
+      "type": "video",
+      "name": "Video",
+      "settings": {
+        "video": "shopify://files/videos/winter-25-sale-hero-video-peter-jackson.mp4",
+        "title": "Video title",
+        "show_title": false,
+        "width": "full-width",
+        "loop": false,
+        "muted": false
+      }
     }
   },
   "order": [
@@ -299,6 +311,7 @@
     "variable_column_content_F99hgn",
     "blog_hero_qQW8aG",
     "heading_with_text_QNA4BA",
-    "two_column_heading_text_GTgTNe"
+    "two_column_heading_text_GTgTNe",
+    "video_nbTVNy"
   ]
 }
