@@ -1,0 +1,127 @@
+{% comment %}
+  Two Column Heading with Text
+{% endcomment %}
+
+<style>
+  .video-container {
+    position: relative;
+    width: 100%;
+    margin: var(--space-m) 0;
+    overflow: hidden;
+  }
+
+  .video-container__video {
+    width: 100%;
+    display: block;
+  }
+
+  .video-container--full-width {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .video-container--contained {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 var(--space-m);
+  }
+</style>
+
+<div
+  id="video-section-{{ section.id }}"
+  class="video-container video-container--{{ section.settings.width }}"
+  aria-label="{{ section.settings.title | escape }}"
+>
+  {% if section.settings.video %}
+    <div class="video-container__video">
+      {{
+        section.settings.video
+        | video_tag:
+          controls: true,
+          autoplay: false,
+          loop: section.settings.loop,
+          muted: section.settings.muted,
+          playsinline: true,
+          class: 'video-container__video-element'
+      }}
+    </div>
+  {% else %}
+    <div class="video-container__placeholder body">
+      {{ 'Please upload a video' }}
+    </div>
+  {% endif %}
+
+  {% if section.settings.title != blank and section.settings.show_title %}
+    <div class="video-container__title" style="margin-top: var(--space-s);">
+      <p class="heading--xl">{{ section.settings.title }}</p>
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Video",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video",
+      "info": "Upload or select a video. MP4 format recommended."
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Video title",
+      "info": "For accessibility and can be displayed below video"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show title below video",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Video width",
+      "options": [
+        {
+          "value": "contained",
+          "label": "Contained"
+        },
+        {
+          "value": "full-width",
+          "label": "Full width"
+        }
+      ],
+      "default": "contained"
+    },
+    {
+      "type": "checkbox",
+      "id": "loop",
+      "label": "Loop video",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "muted",
+      "label": "Mute video",
+      "default": false,
+      "info": "Note: Some browsers may require videos to be muted to play automatically"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video",
+      "settings": {
+        "width": "contained"
+      }
+    }
+  ],
+  "enabled_on": {
+    "templates": ["index", "page", "article", "blog"]
+  }
+}
+{% endschema %}
