@@ -168,15 +168,15 @@
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener('DOMContentLoaded', function() {
     new Splide('#hero-slider-{{ section.id }}', {
-      type: 'loop',
+      type: 'fade',
       rewind: true,
       arrows: false,
       pagination: false,
       drag: true,
-      autoplay: true,
-      interval: 5000,
+      autoplay: {{ section.settings.autoplay }},
+      interval: {{ section.settings.slide_interval | times: 1000 }},
     }).mount();
   });
 </script>
@@ -185,6 +185,24 @@
 {
   "name": "Hero Slider",
   "tag": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay slides",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "slide_interval",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "unit": "sec",
+      "label": "Change slides every",
+      "default": 5
+    }
+  ],
   "max_blocks": 4,
   "blocks": [
     {
