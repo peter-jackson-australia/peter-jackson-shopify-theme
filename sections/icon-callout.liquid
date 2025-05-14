@@ -1,0 +1,185 @@
+<style>
+  .icon-callout {
+    text-align: center;
+    width: 100%;
+  }
+
+  .icon-callout__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-3xl);
+  }
+
+  .icon-callout__icon {
+    max-width: 80px;
+    margin-bottom: var(--space-m);
+  }
+
+  .icon-callout__heading {
+    margin-bottom: var(--space-s);
+  }
+
+  .icon-callout__text {
+    max-width: 60ch;
+    margin: 0 auto var(--space-l);
+  }
+
+  .icon-callout__cta {
+    display: inline-block;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .icon-callout__cta:hover {
+    opacity: 0.8;
+  }
+
+  .icon-callout--neutral-950 {
+    background-color: var(--neutral-950);
+    color: var(--white);
+  }
+
+  .icon-callout--neutral-950 .icon-callout__cta {
+    border: 1px solid var(--white);
+    color: var(--white);
+  }
+
+  .icon-callout--green-700 {
+    background-color: var(--green-700);
+    color: var(--white);
+  }
+
+  .icon-callout--green-700 .icon-callout__cta {
+    border: 1px solid var(--white);
+    color: var(--white);
+  }
+
+  .icon-callout--white {
+    background-color: var(--white);
+    color: var(--neutral-950);
+  }
+
+  .icon-callout--white .icon-callout__cta {
+    border: 1px solid var(--neutral-950);
+    color: var(--neutral-950);
+  }
+
+  @media screen and (max-width: 768px) {
+    .icon-callout__container {
+      padding: var(--space-xl);
+    }
+
+    .icon-callout__icon {
+      max-width: 60px;
+    }
+  }
+</style>
+
+<section
+  id="icon-callout-{{ section.id }}"
+  class="icon-callout"
+  aria-label="Icon callout section"
+>
+  <div
+    class="icon-callout__container icon-callout--{{ section.settings.background_color }}"
+  >
+    {% if section.settings.icon != blank %}
+      <img
+        src="{{ section.settings.icon | image_url: width: 150 }}"
+        alt="{{ section.settings.heading | escape }}"
+        class="icon-callout__icon"
+        width="80"
+        height="80"
+        loading="lazy"
+      >
+    {% endif %}
+
+    {% if section.settings.heading != blank %}
+      <h2 class="icon-callout__heading heading--xl">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    {% if section.settings.text != blank %}
+      <div class="icon-callout__text body">{{ section.settings.text }}</div>
+    {% endif %}
+
+    {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+      <a href="{{ section.settings.button_link }}" class="icon-callout__cta button">
+        {{ section.settings.button_label }}
+      </a>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Icon Callout",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "icon",
+      "label": "Icon Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Feature Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Add descriptive text about this feature or benefit to help visitors understand your offerings better.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "select",
+      "id": "background_color",
+      "label": "Background Color",
+      "options": [
+        {
+          "value": "neutral-950",
+          "label": "Black"
+        },
+        {
+          "value": "green-700",
+          "label": "Green"
+        },
+        {
+          "value": "white",
+          "label": "White"
+        }
+      ],
+      "default": "neutral-950"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Icon Callout",
+      "category": "Text",
+      "settings": {
+        "heading": "Feature Heading",
+        "text": "<p>Add descriptive text about this feature or benefit to help visitors understand your offerings better.</p>",
+        "button_label": "Learn More",
+        "background_color": "neutral-950"
+      }
+    }
+  ],
+  "enabled_on": {
+    "templates": ["index", "page", "collection", "product"]
+  }
+}
+{% endschema %}

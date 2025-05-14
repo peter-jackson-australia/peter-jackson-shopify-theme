@@ -1,8 +1,7 @@
 BEFORE 23rd May
 Home page sections:
-
     Code:
-    Finish the sections
+    Finish the sections: Icon callout section, Announcement bar only on home page, Contact Form 
     Rename Editorial Hero to Hero Editorial
     Ensure all sections have the ability to add border top and bottom
     Add ability for content editors to assign ID to each section so links can be /#some-link
