@@ -369,6 +369,18 @@
       ],
       "name": "FAQ Section",
       "settings": {}
+    },
+    "icon_callout_Y4zYKz": {
+      "type": "icon-callout",
+      "name": "Icon Callout",
+      "settings": {
+        "icon": "shopify://shop_images/beyond-blue-footer-logo.svg",
+        "heading": "Feature Heading",
+        "text": "<p>Add descriptive text about this feature or benefit to help visitors understand your offerings better.</p>",
+        "button_label": "Learn More",
+        "button_link": "shopify://collections/accessories",
+        "background_color": "green-700"
+      }
     }
   },
   "order": [
@@ -390,6 +402,7 @@
     "heading_with_text_QNA4BA",
     "two_column_heading_text_GTgTNe",
     "video_nbTVNy",
-    "faqs_kApQaQ"
+    "faqs_kApQaQ",
+    "icon_callout_Y4zYKz"
   ]
 }
