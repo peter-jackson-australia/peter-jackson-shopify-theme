@@ -9,6 +9,25 @@
  */
 {
   "sections": {
+    "countdown_timer_96y4Qd": {
+      "type": "countdown-timer",
+      "name": "Countdown Timer",
+      "settings": {
+        "background_image": "shopify://shop_images/peter-jackson-menswear-green-jacket-white-turtleneck.webp",
+        "heading": "Limited Time Offer",
+        "subheading": "Don't miss out on this special offer!",
+        "target_date": "2025-05-14T23:30:00",
+        "days_label": "Days",
+        "hours_label": "Hours",
+        "minutes_label": "Minutes",
+        "seconds_label": "Seconds",
+        "final_hours_threshold": 3,
+        "final_message": "Final hours! Do not miss out!",
+        "complete_message": "The countdown has ended!",
+        "button_label": "Shop Now",
+        "button_link": "shopify://collections/accessories"
+      }
+    },
     "hero_slider_hUgckb": {
       "type": "hero-slider",
       "blocks": {
@@ -295,29 +314,10 @@
         "loop": false,
         "muted": false
       }
-    },
-    "countdown_timer_96y4Qd": {
-      "type": "countdown-timer",
-      "name": "Countdown Timer",
-      "settings": {
-        "section_id": "",
-        "background_image": "shopify://shop_images/peter-jackson-menswear-green-jacket-white-turtleneck.webp",
-        "heading": "Limited Time Offer",
-        "subheading": "Don't miss out on this special offer!",
-        "target_date": "2025-05-14T23:30:00",
-        "days_label": "Days",
-        "hours_label": "Hours",
-        "minutes_label": "Minutes",
-        "seconds_label": "Seconds",
-        "final_hours_threshold": 3,
-        "final_message": "Final hours! Do not miss out!",
-        "complete_message": "The countdown has ended!",
-        "button_label": "Shop Now",
-        "button_link": "shopify://collections/accessories"
-      }
     }
   },
   "order": [
+    "countdown_timer_96y4Qd",
     "hero_slider_hUgckb",
     "hero_primary_dVADTX",
     "editorial_hero_Wgnf6W",
@@ -334,7 +334,6 @@
     "blog_hero_qQW8aG",
     "heading_with_text_QNA4BA",
     "two_column_heading_text_GTgTNe",
-    "video_nbTVNy",
-    "countdown_timer_96y4Qd"
+    "video_nbTVNy"
   ]
 }
