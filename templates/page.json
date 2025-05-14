@@ -301,6 +301,7 @@
       "name": "Countdown Timer",
       "settings": {
         "section_id": "",
+        "background_image": "shopify://shop_images/peter-jackson-menswear-green-jacket-white-turtleneck.webp",
         "heading": "Limited Time Offer",
         "subheading": "Don't miss out on this special offer!",
         "target_date": "2025-05-14T23:30:00",
@@ -312,14 +313,7 @@
         "final_message": "Final hours! Do not miss out!",
         "complete_message": "The countdown has ended!",
         "button_label": "",
-        "button_link": "",
-        "background_color": "#ffffff",
-        "text_color": "#0f0f0f",
-        "block_color": "#0f0f0f",
-        "label_color": "#616161",
-        "button_background": "#0f0f0f",
-        "button_text_color": "#ffffff",
-        "button_border_color": "#0f0f0f"
+        "button_link": ""
       }
     }
   },
