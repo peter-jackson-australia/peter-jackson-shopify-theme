@@ -46,7 +46,7 @@
             "description": "Discover our latest collection",
             "button_label": "Shop Now",
             "button_link": "shopify://collections/sale",
-            "content_alignment": "right"
+            "content_alignment": "center"
           }
         },
         "slide_CwzXiP": {
