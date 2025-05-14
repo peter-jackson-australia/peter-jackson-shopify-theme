@@ -259,6 +259,17 @@
         "content": "<p><em>The foundation of feeling</em> good lies in connection—with yourself and others. <strong>The Empowered Mind </strong>is a platform built to inspire men to take leadership in their well-being—mental, physical, and emotional. It's a hub for meaningful conversations, practical tools, and real stories that champion a holistic approach to wellness. With insights to spark discussion and resources to empower action, </p><ul><li>this initiative supports men in embracing their best selves through care, growth, and connection. </li></ul><p><a href=\"/collections/accessories\" target=\"_blank\" title=\"Accessories\">True strength isn’t just how you carry yourself; it’s how you care for yourself.</a></p>",
         "alignment": "left"
       }
+    },
+    "collection_slider_secondary_37wKhC": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "New In Now",
+        "description": "Layer up with premium wool/cashmere blends.",
+        "collection": "new-suits",
+        "button_label": "Shop Now",
+        "products_to_show": 10
+      }
     }
   },
   "order": [
@@ -275,6 +286,7 @@
     "two_column_content_KXnFAa",
     "variable_column_content_F99hgn",
     "blog_hero_qQW8aG",
-    "heading_with_text_QNA4BA"
+    "heading_with_text_QNA4BA",
+    "collection_slider_secondary_37wKhC"
   ]
 }
