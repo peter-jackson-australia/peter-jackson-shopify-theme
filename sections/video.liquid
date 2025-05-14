@@ -35,7 +35,7 @@
 >
   {% if section.settings.video %}
     <div class="video-container__video">
-      {% if section.settings.placeholder_image != blank %}
+      {% if section.settings.poster_image %}
         {{
           section.settings.video
           | video_tag:
@@ -45,7 +45,7 @@
             muted: section.settings.muted,
             playsinline: true,
             class: 'video-container__video-element',
-            poster: section.settings.placeholder_image
+            poster: section.settings.poster_image
           | image_url
         }}
       {% else %}
@@ -87,9 +87,9 @@
     },
     {
       "type": "image_picker",
-      "id": "placeholder_image",
-      "label": "Placeholder Image",
-      "info": "Image shown before video plays. If not provided, the video's first frame will be used."
+      "id": "poster_image",
+      "label": "Poster Image",
+      "info": "Image shown before video plays"
     },
     {
       "type": "text",
