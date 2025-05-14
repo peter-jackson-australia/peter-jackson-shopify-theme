@@ -9,6 +9,45 @@
  */
 {
   "sections": {
+    "hero_slider_GegNkU": {
+      "type": "hero-slider",
+      "blocks": {
+        "slide_RQMnrV": {
+          "type": "slide",
+          "settings": {
+            "media_type": "video",
+            "video": "shopify://files/videos/winter-25-sale-hero-video-peter-jackson.mp4",
+            "heading": "Welcome to Our Store",
+            "description": "Discover our latest collection",
+            "button_label": "Shop Now",
+            "button_link": "shopify://collections/accessories",
+            "content_alignment": "center"
+          }
+        },
+        "slide_DgG7CW": {
+          "type": "slide",
+          "settings": {
+            "media_type": "image",
+            "heading": "Welcome to Our Store",
+            "description": "Discover our latest collection",
+            "button_label": "Shop Now",
+            "button_link": "",
+            "content_alignment": "center"
+          }
+        }
+      },
+      "block_order": [
+        "slide_RQMnrV",
+        "slide_DgG7CW"
+      ],
+      "name": "Hero Slider",
+      "settings": {
+        "autoplay": true,
+        "autoplay_speed": 5,
+        "transition_speed": 0.8,
+        "pause_on_hover": true
+      }
+    },
     "hero_primary_dVADTX": {
       "type": "hero-primary",
       "name": "Hero Section",
@@ -197,6 +236,7 @@
     }
   },
   "order": [
+    "hero_slider_GegNkU",
     "hero_primary_dVADTX",
     "editorial_hero_Wgnf6W",
     "image_with_text_etHcn8",
