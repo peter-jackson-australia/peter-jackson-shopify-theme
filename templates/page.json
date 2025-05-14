@@ -45,7 +45,7 @@
             "heading": "Slide 3 Video",
             "description": "Discover our latest collection",
             "button_label": "Shop Now",
-            "button_link": "",
+            "button_link": "shopify://collections/sale",
             "content_alignment": "center"
           }
         },
