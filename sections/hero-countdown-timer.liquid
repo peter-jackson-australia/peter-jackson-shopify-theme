@@ -195,35 +195,38 @@
     const finalMessageElement = document.getElementById("countdown-timer-final-" + sectionId);
     const completeMessageElement = document.getElementById("countdown-timer-complete-" + sectionId);
 
-    // Define Melbourne's target time in UTC
-    function getTargetDateInUTC() {
-      // Parse the target date string (this is in Melbourne time)
+    // Simple solution: use a fixed offset for Melbourne
+    function getMelbourneTime() {
+      // Parse target date (in Melbourne time)
       const [datePart, timePart] = targetDateStr.split('T');
       const [year, month, day] = datePart.split('-').map(Number);
       const [hours, minutes, seconds] = timePart.split(':').map(Number);
 
-      // Melbourne is UTC+10 (ignoring DST for simplicity)
-      // Convert Melbourne time to UTC by subtracting 10 hours
-      const utcDate = new Date(Date.UTC(
-        year,
-        month - 1, // JS months are 0-based
-        day,
-        hours - 10, // Convert Melbourne time to UTC
-        minutes,
-        seconds
-      ));
+      // Create a date object using explicit year, month, day, etc.
+      // This creates a local date with these values
+      const dateObj = new Date(year, month - 1, day, hours, minutes, seconds);
 
-      return utcDate.getTime();
+      // Convert Melbourne date to a fixed timestamp regardless of local timezone
+      // This is our target time
+      const melbourne = new Date(dateObj);
+
+      // Account for timezone differences
+      // getTimezoneOffset returns minutes WEST of UTC (opposite sign of usual timezone notation)
+      const localTimezoneOffset = dateObj.getTimezoneOffset();
+      const melbourneTimezoneOffset = -600; // Melbourne is UTC+10:00 (-600 minutes from UTC)
+      const offsetDiff = melbourneTimezoneOffset - localTimezoneOffset;
+
+      // Apply the offset difference to get true Melbourne time
+      melbourne.setMinutes(melbourne.getMinutes() + offsetDiff);
+
+      return melbourne.getTime();
     }
 
-    const targetDateUTC = getTargetDateInUTC();
+    const targetDate = getMelbourneTime();
 
     function updateTimer() {
-      // Current time in UTC milliseconds
-      const nowUTC = Date.now();
-
-      // Time difference in milliseconds
-      const distance = targetDateUTC - nowUTC;
+      const now = new Date().getTime();
+      const distance = targetDate - now;
 
       if (distance <= 0) {
         daysElement.textContent = "00";
