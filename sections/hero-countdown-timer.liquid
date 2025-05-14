@@ -38,15 +38,10 @@
     gap: var(--space-s);
   }
 
-  .countdown-timer__heading {
-    margin-bottom: var(--space-m);
-  }
-
   .countdown-timer__blocks {
     display: flex;
     justify-content: center;
     gap: var(--space-m);
-    margin: var(--space-l) 0;
   }
 
   .countdown-timer__block {
@@ -64,6 +59,10 @@
     border: 1px solid var(--white);
     color: var(--white);
     margin-bottom: var(--space-xs);
+  }
+
+  .countdown-timer__button-container {
+    margin-top: var(--space-s);
   }
 
   .countdown-timer__label {
@@ -110,13 +109,13 @@
 
   <div class="countdown-timer__container">
     {% if section.settings.heading != blank %}
-      <h2 class="countdown-timer__heading heading--2xl">
+      <h1 class="countdown-timer__heading heading--3xl">
         {{ section.settings.heading }}
-      </h2>
+      </h1>
     {% endif %}
 
     {% if section.settings.subheading != blank %}
-      <div class="countdown-timer__subheading body">
+      <div class="countdown-timer__subheading heading--l">
         {{ section.settings.subheading }}
       </div>
     {% endif %}
@@ -166,7 +165,7 @@
     </div>
 
     {% if section.settings.button_label != blank and section.settings.button_link != blank %}
-      <div class="countdown-timer__button-container" style="margin-top: var(--space-l);">
+      <div class="countdown-timer__button-container">
         <a
           href="{{ section.settings.button_link }}"
           class="button button--white"
