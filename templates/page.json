@@ -22,10 +22,22 @@
             "button_link": "shopify://collections/accessories",
             "content_alignment": "center"
           }
+        },
+        "slide_tgrrCU": {
+          "type": "slide",
+          "settings": {
+            "desktop_image": "shopify://shop_images/peter-jackson-menswear-winter-25-snow-image-1.webp",
+            "heading": "Slide 2",
+            "description": "Discover our latest collection",
+            "button_label": "Shop Now",
+            "button_link": "",
+            "content_alignment": "center"
+          }
         }
       },
       "block_order": [
-        "slide_PW3GAi"
+        "slide_PW3GAi",
+        "slide_tgrrCU"
       ],
       "name": "Hero Slider",
       "settings": {}
