@@ -314,6 +314,49 @@
         "loop": false,
         "muted": false
       }
+    },
+    "faqs_kApQaQ": {
+      "type": "faqs",
+      "blocks": {
+        "faq_item_6EcP34": {
+          "type": "faq_item",
+          "settings": {
+            "question": "FAQ question",
+            "answer": "<p>This is a test</p>"
+          }
+        },
+        "faq_item_DWKxg9": {
+          "type": "faq_item",
+          "settings": {
+            "question": "FAQ question",
+            "answer": "<p>Answer your customer's question here.</p>"
+          }
+        },
+        "faq_item_fYLF3r": {
+          "type": "faq_item",
+          "settings": {
+            "question": "FAQ question",
+            "answer": "<p>Answer your customer's question here.</p>"
+          }
+        },
+        "faq_item_bM9jrJ": {
+          "type": "faq_item",
+          "settings": {
+            "question": "FAQ question",
+            "answer": "<p>Answer your customer's question here.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_6EcP34",
+        "faq_item_DWKxg9",
+        "faq_item_fYLF3r",
+        "faq_item_bM9jrJ"
+      ],
+      "name": "FAQ Section",
+      "settings": {
+        "heading": "Frequently Asked Questions"
+      }
     }
   },
   "order": [
@@ -334,6 +377,7 @@
     "blog_hero_qQW8aG",
     "heading_with_text_QNA4BA",
     "two_column_heading_text_GTgTNe",
-    "video_nbTVNy"
+    "video_nbTVNy",
+    "faqs_kApQaQ"
   ]
 }
