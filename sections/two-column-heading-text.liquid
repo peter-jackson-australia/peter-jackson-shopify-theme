@@ -1,0 +1,166 @@
+{% comment %}
+  Two Column Heading with Text
+{% endcomment %}
+
+<style>
+  .two-column-heading-text {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: var(--space-2xl) var(--space-m);
+    padding-bottom: calc(var(--space-2xl) - var(--space-m));
+  }
+
+  .two-column-heading-text__wrapper {
+    display: flex;
+    gap: var(--space-xl);
+  }
+
+  .two-column-heading-text__column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+  }
+
+  .two-column-heading-text--left {
+    text-align: left;
+  }
+
+  .two-column-heading-text--center {
+    text-align: center;
+  }
+
+  .two-column-heading-text--right {
+    text-align: right;
+  }
+
+  .two-column-heading-text__heading-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .two-column-heading-text__icon {
+    max-width: 200px;
+    height: auto;
+    margin-bottom: var(--space-xs);
+  }
+
+  @media screen and (max-width: 768px) {
+    .two-column-heading-text__wrapper {
+      flex-direction: column;
+      gap: var(--space-l);
+    }
+
+    .two-column-heading-text__column {
+      text-align: left;
+    }
+  }
+</style>
+
+<section class="two-column-heading-text two-column-heading-text--{{ section.settings.alignment }}">
+  <div class="two-column-heading-text__wrapper">
+    <div class="two-column-heading-text__column">
+      <div class="two-column-heading-text__heading-group">
+        {% if section.settings.icon != blank %}
+          <img
+            src="{{ section.settings.icon | image_url: width: 200 }}"
+            alt="{{ section.settings.icon.alt | escape }}"
+            width="{{ section.settings.icon.width }}"
+            height="{{ section.settings.icon.height }}"
+            loading="lazy"
+            class="two-column-heading-text__icon"
+          >
+        {% endif %}
+
+        {% if section.settings.heading != blank %}
+          <h2 class="two-column-heading-text__heading {% if section.settings.heading_style == 'decorative' %}heading--decorative{% else %}heading--2xl{% endif %}">
+            {{ section.settings.heading }}
+          </h2>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="two-column-heading-text__column">
+      {% if section.settings.content != blank %}
+        <div class="two-column-heading-text__content body metafield-rich_text_field">
+          {{ section.settings.content }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Two Column Heading Text",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "icon",
+      "label": "Icon/Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Section Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_style",
+      "label": "Heading Style",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "decorative",
+          "label": "Decorative"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content",
+      "default": "<p>Add your content here. This area uses the rich text editor so you can format text, add links, and more.</p>"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Desktop Text Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "info": "Mobile view will always be left-aligned"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Two Column Heading Text",
+      "category": "Text"
+    }
+  ],
+  "enabled_on": {
+    "templates": ["index", "page", "article", "blog"]
+  }
+}
+{% endschema %}
