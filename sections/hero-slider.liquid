@@ -2,17 +2,19 @@
   .hero-slider {
     position: relative;
     height: calc(100dvh - var(--space-xl));
-    overflow: hidden;
+  }
+
+  .splide__slide {
+    position: relative;
+    height: calc(100dvh - var(--space-xl));
   }
 
   .hero-slider__background {
     position: absolute;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: 1;
   }
 
   .hero-slider__overlay {
@@ -65,17 +67,19 @@
 
 <div class="hero-slider splide" id="hero-slider-{{ section.id }}">
   <div class="splide__track">
-    <div class="splide__list">
+    <ul class="splide__list">
       {% for block in section.blocks %}
-        <div class="splide__slide" {{ block.shopify_attributes }}>
+        <li class="splide__slide" {{ block.shopify_attributes }}>
           {% if block.settings.desktop_image %}
+            {% assign loading_attr = 'lazy' %}
+            {% if forloop.first %}
+              {% assign loading_attr = 'eager' %}
+            {% endif %}
+
             {{
               block.settings.desktop_image
               | image_url: width: 2000
-              | image_tag:
-                class: 'hero-slider__background hero-slider__background--desktop',
-                alt: block.settings.desktop_image.alt,
-                preload: true
+              | image_tag: class: 'hero-slider__background', loading: loading_attr
             }}
           {% endif %}
 
@@ -83,10 +87,7 @@
             {{
               block.settings.mobile_image
               | image_url: width: 768
-              | image_tag:
-                class: 'hero-slider__background hero-slider__background--mobile',
-                alt: block.settings.mobile_image.alt,
-                preload: true
+              | image_tag: class: 'hero-slider__background hero-slider__background--mobile', loading: loading_attr
             }}
           {% endif %}
 
@@ -108,27 +109,23 @@
               </a>
             {% endif %}
           </div>
-        </div>
+        </li>
       {% endfor %}
-    </div>
+    </ul>
   </div>
 </div>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    const splideElement = document.querySelector('#hero-slider-{{ section.id }}');
-
-    if (splideElement) {
-      new Splide(splideElement, {
-        type: 'loop',
-        perPage: 1,
-        arrows: false,
-        pagination: false,
-        drag: true,
-        autoplay: true,
-        interval: 5000,
-      }).mount();
-    }
+    new Splide('#hero-slider-{{ section.id }}', {
+      type: 'loop',
+      rewind: true,
+      arrows: false,
+      pagination: false,
+      drag: true,
+      autoplay: true,
+      interval: 5000,
+    }).mount();
   });
 </script>
 
