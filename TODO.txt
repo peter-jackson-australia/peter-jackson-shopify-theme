@@ -1,6 +1,7 @@
 BEFORE 22nd May
 14th: 
 Home page sections:
+    Ensure no repeated section tags
     fix all accessibiliy issues and warnings
     Ensure all sections have the ability to add border top and bottom
     Ensure all sections are perfectly responsive
