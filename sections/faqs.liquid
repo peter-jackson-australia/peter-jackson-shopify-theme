@@ -2,6 +2,21 @@
   FAQ Section
 {% endcomment %}
 
+<style>
+  .faq-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: var(--space-2xl) 0px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+  }
+
+  .faq-items__item > .ploiu-accordion-body > .body > p {
+    margin-bottom: var(--space-m);
+  }
+</style>
+
 <div class="faq-section">
   {% if section.settings.heading != blank %}
     <h2 class="faq-section__heading heading--2xl">{{ section.settings.heading }}</h2>
