@@ -291,8 +291,35 @@
         "title": "Video title",
         "show_title": false,
         "width": "full-width",
+        "aspect_ratio": "16-9",
         "loop": false,
         "muted": false
+      }
+    },
+    "countdown_timer_96y4Qd": {
+      "type": "countdown-timer",
+      "name": "Countdown Timer",
+      "settings": {
+        "section_id": "",
+        "heading": "Limited Time Offer",
+        "subheading": "Don't miss out on this special offer!",
+        "target_date": "2025-05-14T23:30:00",
+        "days_label": "Days",
+        "hours_label": "Hours",
+        "minutes_label": "Minutes",
+        "seconds_label": "Seconds",
+        "final_hours_threshold": 3,
+        "final_message": "Final hours! Do not miss out!",
+        "complete_message": "The countdown has ended!",
+        "button_label": "",
+        "button_link": "",
+        "background_color": "#ffffff",
+        "text_color": "#0f0f0f",
+        "block_color": "#0f0f0f",
+        "label_color": "#616161",
+        "button_background": "#0f0f0f",
+        "button_text_color": "#ffffff",
+        "button_border_color": "#0f0f0f"
       }
     }
   },
@@ -313,6 +340,7 @@
     "blog_hero_qQW8aG",
     "heading_with_text_QNA4BA",
     "two_column_heading_text_GTgTNe",
-    "video_nbTVNy"
+    "video_nbTVNy",
+    "countdown_timer_96y4Qd"
   ]
 }
