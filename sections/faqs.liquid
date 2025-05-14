@@ -18,13 +18,11 @@
 </style>
 
 <div class="faq-section">
-  {% if section.settings.heading != blank %}
-    <h2 class="faq-section__heading heading--2xl">{{ section.settings.heading }}</h2>
-  {% endif %}
-
   <div class="faq-items">
     {% for block in section.blocks %}
-      {% if block.type == 'faq_item' %}
+      {% if block.type == 'heading' %}
+        <h2 class="faq-section__heading heading--2xl">{{ block.settings.heading }}</h2>
+      {% elsif block.type == 'faq_item' %}
         <accordion-element
           class="faq-items__item body--bold"
           data-title="{{ block.settings.question }}"
@@ -43,15 +41,19 @@
   "name": "FAQ Section",
   "tag": "section",
   "class": "section",
-  "settings": [
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Frequently Asked Questions"
-    }
-  ],
   "blocks": [
+    {
+      "name": "Heading",
+      "type": "heading",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading Text",
+          "default": "FAQ Category"
+        }
+      ]
+    },
     {
       "name": "FAQ Item",
       "type": "faq_item",
@@ -76,10 +78,16 @@
       "name": "FAQ Section",
       "blocks": [
         {
+          "type": "heading"
+        },
+        {
           "type": "faq_item"
         },
         {
           "type": "faq_item"
+        },
+        {
+          "type": "heading"
         },
         {
           "type": "faq_item"
