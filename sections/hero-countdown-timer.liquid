@@ -69,6 +69,10 @@
     margin-top: var(--space-l);
   }
 
+  .countdown-timer__button-container {
+    margin-top: var(--space-s);
+  }
+
   .countdown-timer__final-message,
   .countdown-timer__complete-message {
     display: none;
@@ -88,6 +92,10 @@
 
     .countdown-timer__block {
       min-width: 60px;
+    }
+
+    .countdown-timer__button-container {
+      margin-top: var(--space-s);
     }
   }
 </style>
@@ -176,7 +184,7 @@
 <script>
   (function() {
     const sectionId = "{{ section.id }}";
-    const targetDate = new Date("{{ section.settings.target_date }}").getTime();
+    const targetDateStr = "{{ section.settings.target_date }}";
     const finalHoursThreshold = {{ section.settings.final_hours_threshold | default: 3 }};
 
     const daysElement = document.getElementById("countdown-timer-days-" + sectionId);
@@ -186,6 +194,19 @@
     const blocksElement = document.getElementById("countdown-timer-blocks-" + sectionId);
     const finalMessageElement = document.getElementById("countdown-timer-final-" + sectionId);
     const completeMessageElement = document.getElementById("countdown-timer-complete-" + sectionId);
+
+    function createTargetDate() {
+      const [datePart, timePart] = targetDateStr.split('T');
+      const [year, month, day] = datePart.split('-').map(Number);
+      const [hours, minutes, seconds] = timePart.split(':').map(Number);
+
+      const melOffset = 10;
+      const targetUTC = Date.UTC(year, month - 1, day, hours - melOffset, minutes, seconds);
+
+      return targetUTC;
+    }
+
+    const targetDate = createTargetDate();
 
     function updateTimer() {
       const now = new Date().getTime();
@@ -262,7 +283,7 @@
     {
       "type": "text",
       "id": "target_date",
-      "label": "Target Date and Time",
+      "label": "Target Date and Time (Melbourne)",
       "default": "2025-12-31T23:59:59",
       "info": "Enter date in format: YYYY-MM-DDTHH:MM:SS (e.g., 2025-12-31T23:59:59)"
     },
