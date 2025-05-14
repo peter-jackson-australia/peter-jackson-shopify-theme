@@ -1,14 +1,15 @@
 BEFORE 23rd May
 Home page sections:
     Check all labels and default settings
+    Ensure all sections have the ability to add border top and bottom
     Rename Editorial Hero to Hero Editorial
     Assign all sections to a relevant category
     Ensure all sections have matching padding
     Ensure no repeated section tags
     fix all accessibiliy issues and warnings
-    Ensure all sections have the ability to add border top and bottom
+    Add ability for content editors to assign ID to each section so links can be /#some-link
     Ensure all sections are perfectly responsive
-    Ensure all sections are fast as hell and do well in Lighthouse
+    Ensure all sections are fast and do well in Lighthouse
     Find a way to restrict multiple hero sections
     Find a way to disable custom CSS
 
