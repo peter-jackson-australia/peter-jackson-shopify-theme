@@ -195,28 +195,15 @@
     const finalMessageElement = document.getElementById("countdown-timer-final-" + sectionId);
     const completeMessageElement = document.getElementById("countdown-timer-complete-" + sectionId);
 
-    // Simple solution: use a fixed offset for Melbourne
     function getMelbourneTime() {
-      // Parse target date (in Melbourne time)
       const [datePart, timePart] = targetDateStr.split('T');
       const [year, month, day] = datePart.split('-').map(Number);
       const [hours, minutes, seconds] = timePart.split(':').map(Number);
-
-      // Create a date object using explicit year, month, day, etc.
-      // This creates a local date with these values
       const dateObj = new Date(year, month - 1, day, hours, minutes, seconds);
-
-      // Convert Melbourne date to a fixed timestamp regardless of local timezone
-      // This is our target time
       const melbourne = new Date(dateObj);
-
-      // Account for timezone differences
-      // getTimezoneOffset returns minutes WEST of UTC (opposite sign of usual timezone notation)
       const localTimezoneOffset = dateObj.getTimezoneOffset();
-      const melbourneTimezoneOffset = -600; // Melbourne is UTC+10:00 (-600 minutes from UTC)
+      const melbourneTimezoneOffset = -600;
       const offsetDiff = melbourneTimezoneOffset - localTimezoneOffset;
-
-      // Apply the offset difference to get true Melbourne time
       melbourne.setMinutes(melbourne.getMinutes() + offsetDiff);
 
       return melbourne.getTime();
