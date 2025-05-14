@@ -312,8 +312,8 @@
         "final_hours_threshold": 3,
         "final_message": "Final hours! Do not miss out!",
         "complete_message": "The countdown has ended!",
-        "button_label": "",
-        "button_link": ""
+        "button_label": "Shop Now",
+        "button_link": "shopify://collections/accessories"
       }
     }
   },
