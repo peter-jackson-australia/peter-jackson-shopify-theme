@@ -70,7 +70,7 @@
   }
 
   .countdown-timer__button-container {
-    margin-top: var(--space-s);
+    margin-top: var(--space-m);
   }
 
   .countdown-timer__final-message,
@@ -195,22 +195,35 @@
     const finalMessageElement = document.getElementById("countdown-timer-final-" + sectionId);
     const completeMessageElement = document.getElementById("countdown-timer-complete-" + sectionId);
 
-    function createTargetDate() {
+    // Define Melbourne's target time in UTC
+    function getTargetDateInUTC() {
+      // Parse the target date string (this is in Melbourne time)
       const [datePart, timePart] = targetDateStr.split('T');
       const [year, month, day] = datePart.split('-').map(Number);
       const [hours, minutes, seconds] = timePart.split(':').map(Number);
 
-      const melOffset = 10;
-      const targetUTC = Date.UTC(year, month - 1, day, hours - melOffset, minutes, seconds);
+      // Melbourne is UTC+10 (ignoring DST for simplicity)
+      // Convert Melbourne time to UTC by subtracting 10 hours
+      const utcDate = new Date(Date.UTC(
+        year,
+        month - 1, // JS months are 0-based
+        day,
+        hours - 10, // Convert Melbourne time to UTC
+        minutes,
+        seconds
+      ));
 
-      return targetUTC;
+      return utcDate.getTime();
     }
 
-    const targetDate = createTargetDate();
+    const targetDateUTC = getTargetDateInUTC();
 
     function updateTimer() {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
+      // Current time in UTC milliseconds
+      const nowUTC = Date.now();
+
+      // Time difference in milliseconds
+      const distance = targetDateUTC - nowUTC;
 
       if (distance <= 0) {
         daysElement.textContent = "00";
