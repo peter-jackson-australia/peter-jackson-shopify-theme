@@ -75,12 +75,56 @@
     max-width: 80ch;
   }
 
+  .hero-slider .splide__pagination {
+    position: absolute;
+    bottom: var(--space-m);
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0;
+    z-index: 4;
+    display: flex;
+    gap: var(--space-xs);
+  }
+
+  .hero-slider__content--left ~ .splide__pagination {
+    left: var(--space-m);
+    transform: none;
+  }
+
+  .hero-slider__content--right ~ .splide__pagination {
+    left: auto;
+    right: var(--space-m);
+    transform: none;
+  }
+
+  .splide__pagination__page {
+    width: 8px;
+    height: 8px;
+    margin: 0;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--neutral-600);
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+  }
+
+  .splide__pagination__page.is-active {
+    background-color: var(--white);
+    transform: none;
+  }
+
   @media screen and (max-width: 768px) {
     .hero-slider__content {
       padding-bottom: var(--space-xl);
       text-align: left;
       justify-items: start;
     }
+
+    .hero-slider .splide__pagination {
+        margin-left: var(--space-m);
+        left: var(--space-m);
+        bottom: var(--space-s);
+      }
 
     {% for block in section.blocks %}
       {% if block.settings.mobile_image %}
@@ -165,15 +209,16 @@
       {% endfor %}
     </ul>
   </div>
+  <div class="splide__pagination"></div>
 </div>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     new Splide('#hero-slider-{{ section.id }}', {
-      type: 'fade',
-      rewind: true,
+      type: 'loop',
+      perPage: 1,
       arrows: false,
-      pagination: false,
+      pagination: true,
       drag: true,
       autoplay: {{ section.settings.autoplay }},
       interval: {{ section.settings.slide_interval | times: 1000 }},
@@ -196,7 +241,7 @@
       "type": "range",
       "id": "slide_interval",
       "min": 3,
-      "max": 10,
+      "max": 30,
       "step": 1,
       "unit": "sec",
       "label": "Change slides every",
