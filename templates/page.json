@@ -164,7 +164,7 @@
       "type": "collection-slider-secondary",
       "name": "Collection Slider Secondary",
       "settings": {
-        "heading": "New In Now",
+        "heading": "Collection Slider - Can Show 24 Products",
         "description": "Layer up with premium wool/cashmere blends.",
         "collection": "new-arrivals",
         "button_label": "Shop Now",
