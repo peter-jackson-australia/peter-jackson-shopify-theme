@@ -35,18 +35,31 @@
 >
   {% if section.settings.video %}
     <div class="video-container__video">
-      {{
-        section.settings.video
-        | video_tag:
-          controls: true,
-          autoplay: false,
-          loop: section.settings.loop,
-          muted: section.settings.muted,
-          playsinline: true,
-          class: 'video-container__video-element',
-          poster: section.settings.placeholder_image
-        | image_url: width: 1500
-      }}
+      {% if section.settings.placeholder_image != blank %}
+        {{
+          section.settings.video
+          | video_tag:
+            controls: true,
+            autoplay: false,
+            loop: section.settings.loop,
+            muted: section.settings.muted,
+            playsinline: true,
+            class: 'video-container__video-element',
+            poster: section.settings.placeholder_image
+          | image_url
+        }}
+      {% else %}
+        {{
+          section.settings.video
+          | video_tag:
+            controls: true,
+            autoplay: false,
+            loop: section.settings.loop,
+            muted: section.settings.muted,
+            playsinline: true,
+            class: 'video-container__video-element'
+        }}
+      {% endif %}
     </div>
   {% else %}
     <div class="video-container__placeholder body">
