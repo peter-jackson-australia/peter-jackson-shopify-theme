@@ -1,28 +1,26 @@
-BEFORE 22nd May
-14th: 
+BEFORE 23rd May
 Home page sections:
     Ensure no repeated section tags
     fix all accessibiliy issues and warnings
     Ensure all sections have the ability to add border top and bottom
     Ensure all sections are perfectly responsive
-15th:     
+    Ensure all sections are fast as hell and do well in Lighthouse
+
 General blog template
 Blog collection template
 
-16th
+17th
 Locations template
 
-17th-22nd:
+18th-23rd:
 Store locator
 Bring all blogs over 
 
-23rd: 
+24th: 
 Desktop Search 
 
-24th: 
-About us 
-made to measure 
-careers 
+25th: 
+Careers 
 
 
 /////////////////////////////////////////////////////
