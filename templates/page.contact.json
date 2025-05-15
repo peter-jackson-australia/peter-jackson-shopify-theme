@@ -118,7 +118,7 @@
           "type": "faq_item",
           "settings": {
             "question": "FAQ question",
-            "answer": "<p><strong>Answer</strong> your <em>customer's</em> <a href=\"/collections/accessories\" title=\"Accessories\">question</a> here.</p>"
+            "answer": "<p><strong>Answer</strong> your <em>customer's</em> <a href=\"/collections/accessories\" title=\"Accessories\">question</a> here.</p><p></p><ul><li>We acknowledge this country's First Nations peoples and their ongoing strength in practising the world's oldest living culture. We acknowledge the Traditional Owners of the lands and waters on which we live and work, and pay our respect to their Elders past, present and emerging.</li></ul><p></p>"
           }
         },
         "faq_item_fagtNM": {
