@@ -60,11 +60,23 @@
         "button_label": "Shop Sale",
         "button_link": "shopify://collections/sale"
       }
+    },
+    "block_quote_TQfhmP": {
+      "type": "block-quote",
+      "name": "Block Quote",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "quote_text": "With a new generation of Jackson's at the helm and more than 60 stores nationally, Peter Jackson still remains a family business echoing views and values established 70 years ago.",
+        "background_color": "neutral-950"
+      }
     }
   },
   "order": [
     "editorial_hero_VU9Aei",
     "image_with_text_CyHrD8",
-    "variable_column_content_8UyUJ8"
+    "variable_column_content_8UyUJ8",
+    "block_quote_TQfhmP"
   ]
 }
