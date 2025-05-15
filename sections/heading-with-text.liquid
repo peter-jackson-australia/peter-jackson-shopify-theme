@@ -6,11 +6,16 @@
   .heading-with-text {
     padding: var(--space-2xl) var(--space-m);
     padding-bottom: calc(var(--space-2xl) - var(--space-m));
+    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-200);{% endif %}
+    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-200);{% endif %}
+  }
+
+  .heading-with-text__container {
+    max-width: 700px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     gap: var(--space-m);
-    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-200);{% endif %}
-    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-200);{% endif %}
   }
 
   .heading-with-text--left {
@@ -30,13 +35,6 @@
     flex-direction: column;
     gap: var(--space-xs);
   }
-
-  .heading-with-text__heading-group > p,
-  .heading-with-text__heading-group > h2,
-  .heading-with-text__content {
-    max-width: 80ch;
-    margin: 0 auto;
-  }
 </style>
 
 <div
@@ -45,23 +43,25 @@
     id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
   {% endif %}
 >
-  <div class="heading-with-text__heading-group">
-    {% if section.settings.leading_text != blank %}
-      <p class="heading-with-text__leading body--uppercase">{{ section.settings.leading_text }}</p>
-    {% endif %}
+  <div class="heading-with-text__container">
+    <div class="heading-with-text__heading-group">
+      {% if section.settings.leading_text != blank %}
+        <p class="heading-with-text__leading body--uppercase">{{ section.settings.leading_text }}</p>
+      {% endif %}
 
-    {% if section.settings.heading != blank %}
-      <h2 class="heading-with-text__heading {% if section.settings.heading_style == 'decorative' %}heading--decorative{% else %}heading--2xl{% endif %}">
-        {{ section.settings.heading }}
-      </h2>
+      {% if section.settings.heading != blank %}
+        <h2 class="heading-with-text__heading {% if section.settings.heading_style == 'decorative' %}heading--decorative{% else %}heading--2xl{% endif %}">
+          {{ section.settings.heading }}
+        </h2>
+      {% endif %}
+    </div>
+
+    {% if section.settings.content != blank %}
+      <div class="heading-with-text__content body metafield-rich_text_field">
+        {{ section.settings.content }}
+      </div>
     {% endif %}
   </div>
-
-  {% if section.settings.content != blank %}
-    <div class="heading-with-text__content body metafield-rich_text_field">
-      {{ section.settings.content }}
-    </div>
-  {% endif %}
 </div>
 
 {% schema %}
