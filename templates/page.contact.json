@@ -118,7 +118,7 @@
           "type": "faq_item",
           "settings": {
             "question": "FAQ question",
-            "answer": "<p>Answer your customer's question here.</p>"
+            "answer": "<p><strong>Answer</strong> your <em>customer's</em> question here.</p>"
           }
         },
         "faq_item_fagtNM": {
