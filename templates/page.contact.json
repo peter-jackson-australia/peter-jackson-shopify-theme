@@ -104,23 +104,27 @@
         "color": ""
       }
     },
-    "two_column_heading_text_PUKYhh": {
-      "type": "two-column-heading-text",
-      "name": "Two Column Heading Text",
+    "variable_column_content_ArNDk8": {
+      "type": "variable-column-content",
+      "name": "Variable Column Content",
       "settings": {
         "anchor_id": "",
         "show_top_border": true,
         "show_bottom_border": true,
-        "icon": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-34.webp",
-        "heading": "Section Heading",
-        "heading_style": "decorative",
-        "content": "<p><em>Add your content here. This area uses the rich text editor so you can format text, add links, and more. </em></p><p><a href=\"/collections/accessories\" title=\"Accessories\">Add your content here. This area uses the rich text editor so you can format text, add links, and more.</a></p>",
-        "alignment": "left"
+        "column_count": "3",
+        "text_alignment": "left",
+        "image_1": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-30.webp",
+        "image_2": "shopify://shop_images/mens-jacket-green-cashmere-WT25-SC03-8.webp",
+        "image_3": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-41.webp",
+        "heading": "Variable Column Content",
+        "text": "<p>Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.</p>",
+        "button_label": "Learn More",
+        "button_link": ""
       }
     }
   },
   "order": [
     "contact_form",
-    "two_column_heading_text_PUKYhh"
+    "variable_column_content_ArNDk8"
   ]
 }
