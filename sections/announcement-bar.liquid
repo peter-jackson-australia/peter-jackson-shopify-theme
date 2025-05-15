@@ -1,5 +1,7 @@
 <style>
   .announcement-bar {
+    background-color: var(--{{section.settings.background_color}});
+    color: var(--{{section.settings.text_color}});
     padding: var(--space-2xs);
   }
 
@@ -27,27 +29,9 @@
     text-align: right;
     justify-content: flex-end;
   }
-
-  .announcement-bar--neutral-950 {
-    background-color: var(--neutral-950);
-    color: var(--white);
-  }
-
-  .announcement-bar--green-700 {
-    background-color: var(--green-700);
-    color: var(--white);
-  }
-
-  .announcement-bar--white {
-    background-color: var(--white);
-    color: var(--neutral-950);
-  }
 </style>
 
-<div
-  class="announcement-bar announcement-bar--{{ section.settings.background_color }} splide"
-  id="announcement-bar-{{ section.id }}"
->
+<div class="announcement-bar splide" id="announcement-bar-{{ section.id }}">
   <div class="splide__track">
     <ul class="splide__list">
       {% for block in section.blocks %}
@@ -117,6 +101,22 @@
         }
       ],
       "default": "neutral-950"
+    },
+    {
+      "type": "select",
+      "id": "text_color",
+      "label": "Text Color",
+      "options": [
+        {
+          "value": "white",
+          "label": "White"
+        },
+        {
+          "value": "neutral-950",
+          "label": "Black"
+        }
+      ],
+      "default": "white"
     }
   ],
   "blocks": [
