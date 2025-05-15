@@ -104,31 +104,61 @@
         "color": ""
       }
     },
-    "blog_hero_MVR3xg": {
-      "type": "blog-hero",
-      "name": "Blog Hero",
+    "faqs_LQXrQH": {
+      "type": "faqs",
+      "blocks": {
+        "heading_cUhtmQ": {
+          "type": "heading",
+          "settings": {
+            "heading": "FAQ Category",
+            "anchor_id": ""
+          }
+        },
+        "faq_item_xQxy4w": {
+          "type": "faq_item",
+          "settings": {
+            "question": "FAQ question",
+            "answer": "<p>Answer your customer's question here.</p>"
+          }
+        },
+        "faq_item_fagtNM": {
+          "type": "faq_item",
+          "settings": {
+            "question": "FAQ question",
+            "answer": "<p>Answer your customer's question here.</p>"
+          }
+        },
+        "heading_NdR6Fh": {
+          "type": "heading",
+          "settings": {
+            "heading": "FAQ Category",
+            "anchor_id": ""
+          }
+        },
+        "faq_item_CqkYg8": {
+          "type": "faq_item",
+          "settings": {
+            "question": "FAQ question",
+            "answer": "<p>Answer your customer's question here.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_cUhtmQ",
+        "faq_item_xQxy4w",
+        "faq_item_fagtNM",
+        "heading_NdR6Fh",
+        "faq_item_CqkYg8"
+      ],
+      "name": "FAQ Section",
       "settings": {
-        "anchor_id": "",
         "show_top_border": false,
-        "show_bottom_border": false,
-        "hero_image": "shopify://shop_images/peter-jackson-menswear-green-jacket-white-turtleneck.webp",
-        "show_image_overlay": true,
-        "image_heading": "Featured Article",
-        "image_description": "Discover our latest collection and insights in this featured article.",
-        "image_link_text": "Read More",
-        "image_link_url": "",
-        "heading": "The Journal",
-        "subheading": "Heritage Meets Heritage",
-        "description": "A spotlight on our partnership with prestigious Italian Mill, Vitale Barberis Canonico. With over 360 years of heritage, we've developed a capsule range that highlights 3 centuries of expertise.",
-        "cta_link": "shopify://collections/bags",
-        "cta_text": "Read Now",
-        "show_recent_posts": true,
-        "blog": ""
+        "show_bottom_border": false
       }
     }
   },
   "order": [
     "contact_form",
-    "blog_hero_MVR3xg"
+    "faqs_LQXrQH"
   ]
 }
