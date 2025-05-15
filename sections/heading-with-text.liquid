@@ -33,7 +33,7 @@
   }
 </style>
 
-<section class="heading-with-text heading-with-text--{{ section.settings.alignment }}">
+<div class="heading-with-text heading-with-text--{{ section.settings.alignment }}">
   <div class="heading-with-text__heading-group">
     {% if section.settings.leading_text != blank %}
       <p class="heading-with-text__leading body--uppercase">{{ section.settings.leading_text }}</p>
@@ -51,7 +51,7 @@
       {{ section.settings.content }}
     </div>
   {% endif %}
-</section>
+</div>
 
 {% schema %}
 {

@@ -2,14 +2,14 @@ BEFORE 23rd May
 Home page sections:
     Code:
     Finish the sections: Contact Form 
-    Ensure all sections have the ability to add border top and bottom
-    Add ability for content editors to assign ID to each section so links can be /#some-link
     Ensure all sections have matching padding
     Ensure all sections are perfectly responsive
     fix all accessibiliy issues and warnings
     Ensure all sections are fast and do well in Lighthouse
     
     Schema:
+    Ensure all sections have the ability to add border top and bottom
+    Add ability for content editors to assign ID to each section so links can be /#some-link
     Assign all sections to a relevant category
     Check all labels and default settings
     Ensure no repeated section tags

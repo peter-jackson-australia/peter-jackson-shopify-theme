@@ -87,7 +87,7 @@
   }
 </style>
 
-<section class="variable-column-content" id="shopify-section-{{ section.id }}">
+<div class="variable-column-content" id="shopify-section-{{ section.id }}">
   {% if section.settings.column_count != blank %}
     {% assign column_count = section.settings.column_count | plus: 0 %}
     <div class="variable-column-content__image-grid" style="grid-template-columns: repeat({{ column_count }}, 1fr);">
@@ -130,7 +130,7 @@
       {% endif %}
     </div>
   </div>
-</section>
+</div>
 
 {% schema %}
 {
