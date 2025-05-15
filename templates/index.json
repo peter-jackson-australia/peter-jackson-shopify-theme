@@ -9,71 +9,46 @@
  */
 {
   "sections": {
-    "hero_primary_yKMEY6": {
-      "type": "hero-primary",
-      "settings": {
-        "desktop_image": "shopify://shop_images/peter-jackson-winter-25-hero-image.webp",
-        "heading": "Higher Ground",
-        "description": "<p>Beyond limits. Beyond expectations.</p>",
-        "button_label": "Shop Winter",
-        "button_link": "shopify://collections/sale",
-        "content_alignment": "center"
-      }
-    },
-    "collection_slider_jjrawV": {
-      "type": "collection-slider",
-      "settings": {
-        "heading": "New In Now",
-        "description": "Layer up with premium wool/cashmere blends. Layer up with premium wool/cashmere blends.",
-        "collection": "new-suits",
-        "button_label": "Shop Now",
-        "products_to_show": 10
-      }
-    },
-    "two_column_content_xT9mtk": {
-      "type": "two-column-content",
+    "hero_slider_8nUMXN": {
+      "type": "hero-slider",
       "blocks": {
-        "column_Uxrnca": {
-          "type": "column",
+        "slide_nDqFK9": {
+          "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/peter-jackson-menswear-winter-25-snow-image-1.webp",
-            "product": "agnelli-taupe-plaid-suit",
-            "heading": "Must-Have Knitwear",
-            "description": "Layer up with premium wool/cashmere blends. Layer up with premium wool/cashmere blends.",
+            "media_type": "video",
+            "video": "shopify://files/videos/winter-25-sale-hero-video-peter-jackson.mp4",
+            "heading": "Welcome to Our Store",
+            "description": "Discover our latest collection",
             "button_label": "Shop Now",
-            "button_link": "shopify://collections/suits"
-          }
-        },
-        "column_dKmdNw": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/peter-jackson-menswear-winter-25-snow-image-2.webp",
-            "product": "[]",
-            "heading": "Must-Have Knitwear",
-            "description": "Layer up with premium wool/cashmere blends. Layer up with premium wool/cashmere blends.",
-            "button_label": "Shop Now",
-            "button_link": "shopify://collections/suits"
+            "button_link": "",
+            "content_alignment": "center"
           }
         }
       },
       "block_order": [
-        "column_Uxrnca",
-        "column_dKmdNw"
+        "slide_nDqFK9"
       ],
-      "settings": {}
+      "name": "Hero Slider",
+      "settings": {
+        "autoplay": true,
+        "slide_interval": 5
+      }
     },
     "blog_hero_3BxWt4": {
       "type": "blog-hero",
       "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
         "hero_image": "shopify://shop_images/peter-jackson-menswear-green-jacket-white-turtleneck.webp",
         "show_image_overlay": true,
         "image_heading": "The Corduroy Comeback",
-        "image_description": "<p>Inspiration from The Jackson Journal</p>",
+        "image_description": "Inspiration from The Jackson Journal",
         "image_link_text": "Read The Article",
         "image_link_url": "shopify://blogs/the-jackson-journal/tops-bottoms-accessories",
         "heading": "The Journal",
         "subheading": "Heritage Meets Heritage",
-        "description": "<p>A spotlight on our partnership with prestigious Italian Mill, Vitale Barberis Canonico. With over 360 years of heritage, we've developed a capsule range that highlights 3 centuries of expertise.</p>",
+        "description": "A spotlight on our partnership with prestigious Italian Mill, Vitale Barberis Canonico. With over 360 years of heritage, we've developed a capsule range that highlights 3 centuries of expertise.",
         "cta_link": "shopify://blogs/the-jackson-journal",
         "cta_text": "View The Jackson Journal",
         "show_recent_posts": true,
@@ -82,9 +57,7 @@
     }
   },
   "order": [
-    "hero_primary_yKMEY6",
-    "collection_slider_jjrawV",
-    "two_column_content_xT9mtk",
+    "hero_slider_8nUMXN",
     "blog_hero_3BxWt4"
   ]
 }
