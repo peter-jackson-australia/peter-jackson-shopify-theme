@@ -381,6 +381,43 @@
         "button_link": "shopify://collections/accessories",
         "background_color": "green-700"
       }
+    },
+    "contact_form_tcC8JM": {
+      "type": "contact-form",
+      "blocks": {
+        "email_QcgGFm": {
+          "type": "email",
+          "settings": {
+            "title": "Email",
+            "maxlength": 128,
+            "placeholder": "e.g. steve@example.com"
+          }
+        },
+        "textarea_yFnwgP": {
+          "type": "textarea",
+          "settings": {
+            "title": "Label",
+            "name": "body",
+            "maxlength": 128,
+            "rows": 5,
+            "required": false,
+            "placeholder": ""
+          }
+        }
+      },
+      "block_order": [
+        "email_QcgGFm",
+        "textarea_yFnwgP"
+      ],
+      "name": "Contact Form",
+      "settings": {
+        "heading": "Contact us",
+        "size": "h2",
+        "text": "<p>Complete the form below to send us a message.</p>",
+        "button_label": "Submit",
+        "background": "#ffffff",
+        "color": ""
+      }
     }
   },
   "order": [
@@ -403,6 +440,7 @@
     "two_column_heading_text_GTgTNe",
     "video_nbTVNy",
     "faqs_kApQaQ",
-    "icon_callout_Y4zYKz"
+    "icon_callout_Y4zYKz",
+    "contact_form_tcC8JM"
   ]
 }
