@@ -49,6 +49,9 @@
 >
   <blockquote
     class="block-quote__container block-quote--{{ section.settings.background_color }}"
+    {% if section.settings.anchor_id != blank %}
+      id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
+    {% endif %}
   >
     {% if section.settings.quote_text != blank %}
       <p class="block-quote__text heading--3xl">{{ section.settings.quote_text }}</p>
@@ -65,6 +68,12 @@
   "name": "Block Quote",
   "tag": "section",
   "settings": [
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Anchor ID (lowercase with hyphens)",
+      "info": "Example: history or about-us"
+    },
     {
       "type": "textarea",
       "id": "quote_text",
