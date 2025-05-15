@@ -83,9 +83,9 @@ document.addEventListener('DOMContentLoaded', function () {
   const rotateScrollElements = document.querySelectorAll('.animate-rotate-scroll');
   if (rotateScrollElements.length > 0) {
     gsap.set('.animate-rotate-scroll .word', {
-      y: '110%',
+      y: '100%',
       opacity: 0,
-      rotationZ: '10',
+      rotationZ: '5',
     });
 
     gsap.to('.animate-rotate-scroll .word', {
