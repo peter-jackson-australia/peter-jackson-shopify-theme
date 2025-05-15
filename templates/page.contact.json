@@ -104,21 +104,21 @@
         "color": ""
       }
     },
-    "heading_with_text_NFdyLC": {
-      "type": "heading-with-text",
-      "name": "Heading with Text",
+    "icon_callout_acKFTV": {
+      "type": "icon-callout",
+      "name": "Icon Callout",
       "settings": {
-        "anchor_id": "Heading with Text",
-        "leading_text": "Introduction",
-        "heading": "Section Heading",
-        "heading_style": "normal",
-        "content": "<p>Add your content here. This area uses the rich text editor so you can format text, add links, and more.</p>",
-        "alignment": "center"
+        "anchor_id": "testing icon callout",
+        "heading": "Feature Heading",
+        "text": "<p>Add descriptive text about this feature or benefit to help visitors understand your offerings better.</p>",
+        "button_label": "Learn More",
+        "button_link": "",
+        "background_color": "neutral-950"
       }
     }
   },
   "order": [
     "contact_form",
-    "heading_with_text_NFdyLC"
+    "icon_callout_acKFTV"
   ]
 }
