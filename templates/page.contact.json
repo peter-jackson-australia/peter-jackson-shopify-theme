@@ -104,61 +104,23 @@
         "color": ""
       }
     },
-    "faqs_4rXnRH": {
-      "type": "faqs",
-      "blocks": {
-        "heading_N3BhVP": {
-          "type": "heading",
-          "settings": {
-            "heading": "FAQ Category",
-            "anchor_id": ""
-          }
-        },
-        "faq_item_8U6LFE": {
-          "type": "faq_item",
-          "settings": {
-            "question": "FAQ question",
-            "answer": "<p>Answer your customer's question here.</p>"
-          }
-        },
-        "faq_item_hDTaMA": {
-          "type": "faq_item",
-          "settings": {
-            "question": "FAQ question",
-            "answer": "<p>Answer your customer's question here.</p>"
-          }
-        },
-        "heading_LVPwii": {
-          "type": "heading",
-          "settings": {
-            "heading": "FAQ Category",
-            "anchor_id": ""
-          }
-        },
-        "faq_item_AXnWxM": {
-          "type": "faq_item",
-          "settings": {
-            "question": "FAQ question",
-            "answer": "<p>Answer your customer's question here.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "heading_N3BhVP",
-        "faq_item_8U6LFE",
-        "faq_item_hDTaMA",
-        "heading_LVPwii",
-        "faq_item_AXnWxM"
-      ],
-      "name": "FAQ Section",
+    "heading_with_text_KLkCMU": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
       "settings": {
+        "anchor_id": "",
         "show_top_border": true,
-        "show_bottom_border": true
+        "show_bottom_border": true,
+        "leading_text": "Introduction",
+        "heading": "Section Heading",
+        "heading_style": "normal",
+        "content": "<p>Add your content here. This area uses the rich text editor so you can format text, add links, and more.</p>",
+        "alignment": "center"
       }
     }
   },
   "order": [
     "contact_form",
-    "faqs_4rXnRH"
+    "heading_with_text_KLkCMU"
   ]
 }
