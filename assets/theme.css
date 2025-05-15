@@ -145,7 +145,8 @@ select {
   color: var(--neutral-600) !important;
 }
 
-.metafield-rich_text_field > p > strong {
+.metafield-rich_text_field > p > strong, 
+.metafield-rich_text_field > * > li > strong {
   color: var(--neutral-950) !important;
   font-family: "Ordinary Regular", sans-serif;
   font-weight: 500;
