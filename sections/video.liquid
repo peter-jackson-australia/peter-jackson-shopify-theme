@@ -51,7 +51,7 @@
           section.settings.video
           | video_tag:
             controls: true,
-            autoplay: false,
+            autoplay: section.settings.autoplay,
             loop: section.settings.loop,
             muted: section.settings.muted,
             playsinline: true,
@@ -63,7 +63,7 @@
           section.settings.video
           | video_tag:
             controls: true,
-            autoplay: false,
+            autoplay: section.settings.autoplay,
             loop: section.settings.loop,
             muted: section.settings.muted,
             playsinline: true,
@@ -154,6 +154,13 @@
         }
       ],
       "default": "16-9"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay video",
+      "default": false,
+      "info": "Most browsers require videos to be muted for autoplay to work"
     },
     {
       "type": "checkbox",
