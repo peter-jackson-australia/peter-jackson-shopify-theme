@@ -32,7 +32,7 @@
             id="{{ block.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
           {% endif %}
         >
-          {{ block.settings.heading }}>{{ block.settings.heading }}
+          {{ block.settings.heading }}
         </h2>
       {% elsif block.type == 'faq_item' %}
         <accordion-element
