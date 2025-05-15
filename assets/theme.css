@@ -365,15 +365,15 @@ accordion-element > .ploiu-accordion-body {
   transition: height 0.3s;
 }
 
-accordion-element > .ploiu-accordion-body > .body > p > strong {
+accordion-element > .ploiu-accordion-body > .body > p > strong,
+accordion-element > .ploiu-accordion-body > .body > * > li > strong {
   color: var(--neutral-950);
   font-family: "Ordinary Regular";
   font-weight: 500;
 }
 
 accordion-element > .ploiu-accordion-body > .body > p > a,
-accordion-element > .ploiu-accordion-body > .body > * > li > *
- {
+accordion-element > .ploiu-accordion-body > .body > * > li > * {
   color: var(--neutral-600);
 }
 
