@@ -12,6 +12,8 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-m);
+    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-200);{% endif %}
+    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-200);{% endif %}
   }
 
   .heading-with-text--left {
@@ -69,6 +71,18 @@
       "id": "anchor_id",
       "label": "Anchor ID (lowercase with hyphens)",
       "info": "Example: history or about-us"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_top_border",
+      "label": "Show top border",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bottom_border",
+      "label": "Show bottom border",
+      "default": false
     },
     {
       "type": "text",
