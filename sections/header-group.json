@@ -20,10 +20,18 @@
             "text": "Welcome to our store! <a href=\"#\"> Find out more</a>",
             "alignment": "center"
           }
+        },
+        "announcement_iJMTjg": {
+          "type": "announcement",
+          "settings": {
+            "text": "2 Welcome to our store! <a href=\"#\"> Find out more</a>",
+            "alignment": "center"
+          }
         }
       },
       "block_order": [
-        "announcement_ycFxCM"
+        "announcement_ycFxCM",
+        "announcement_iJMTjg"
       ],
       "settings": {
         "autoplay": true,
