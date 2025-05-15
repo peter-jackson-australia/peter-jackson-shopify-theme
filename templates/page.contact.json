@@ -104,20 +104,22 @@
         "color": ""
       }
     },
-    "two_column_heading_text_tpBfCT": {
-      "type": "two-column-heading-text",
-      "name": "Two Column Heading Text",
+    "variable_column_content_w3paUB": {
+      "type": "variable-column-content",
+      "name": "Variable Column Content",
       "settings": {
-        "anchor_id": "testing two column heading text section",
-        "heading": "Section Heading",
-        "heading_style": "normal",
-        "content": "<p>Add your content here. This area uses the rich text editor so you can format text, add links, and more.</p>",
-        "alignment": "left"
+        "anchor_id": "testing variable cntent",
+        "column_count": "3",
+        "text_alignment": "left",
+        "heading": "Variable Column Content",
+        "text": "<p>Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.</p>",
+        "button_label": "Learn More",
+        "button_link": ""
       }
     }
   },
   "order": [
     "contact_form",
-    "two_column_heading_text_tpBfCT"
+    "variable_column_content_w3paUB"
   ]
 }
