@@ -54,10 +54,22 @@
         "show_recent_posts": true,
         "blog": "the-jackson-journal"
       }
+    },
+    "collection_slider_j7dkET": {
+      "type": "collection-slider",
+      "name": "Collection Slider",
+      "settings": {
+        "heading": "New In Now",
+        "description": "Layer up with premium wool/cashmere blends.",
+        "collection": "beach-weddings",
+        "button_label": "Shop Now",
+        "products_to_show": 10
+      }
     }
   },
   "order": [
     "hero_slider_8nUMXN",
-    "blog_hero_3BxWt4"
+    "blog_hero_3BxWt4",
+    "collection_slider_j7dkET"
   ]
 }
