@@ -105,18 +105,18 @@
         "content_alignment": "center"
       }
     },
-    "editorial_hero_Wgnf6W": {
+    "editorial_hero_zdeAK7": {
       "type": "editorial-hero",
-      "name": "Editorial Hero",
+      "name": "Hero Editorial",
       "settings": {
         "leading_text": "Winter 25",
-        "first_title": "Higher",
+        "first_title": "Winter 25",
         "media_type": "video",
         "video": "shopify://files/videos/winter-25-sale-hero-video-peter-jackson.mp4",
         "second_title": "Ground",
         "description": "Our winter collection embodies a mindset — one of purpose, progress, and refinement. Suits and sports jackets are reimagined in relaxed silhouettes, crafted from premium textiles that balance heritage with innovation. This is style designed not just for the day ahead, but for the journey beyond it - tailored for higher ground.",
         "cta_text": "Shop Now",
-        "cta_link": "shopify://collections/sale"
+        "cta_link": ""
       }
     },
     "image_with_text_etHcn8": {
@@ -424,7 +424,7 @@
     "hero_countdown_timer_rgEpQV",
     "hero_slider_hUgckb",
     "hero_primary_dVADTX",
-    "editorial_hero_Wgnf6W",
+    "editorial_hero_zdeAK7",
     "image_with_text_etHcn8",
     "image_with_text_qUbHFp",
     "image_with_text_C6TMfW",
