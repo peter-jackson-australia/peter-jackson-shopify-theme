@@ -104,23 +104,58 @@
         "color": ""
       }
     },
-    "editorial_hero_xXKKKh": {
-      "type": "editorial-hero",
-      "name": "Hero Editorial",
-      "settings": {
-        "anchor_id": "Testing hero",
-        "leading_text": "",
-        "first_title": "Discover",
-        "media_type": "image",
-        "second_title": "Collection",
-        "description": "",
-        "cta_text": "Shop Now",
-        "cta_link": ""
-      }
+    "faqs_RUBiDT": {
+      "type": "faqs",
+      "blocks": {
+        "heading_M6E7Jj": {
+          "type": "heading",
+          "settings": {
+            "heading": "FAQ Category",
+            "anchor_id": "Testing anchor"
+          }
+        },
+        "faq_item_rFeKf8": {
+          "type": "faq_item",
+          "settings": {
+            "question": "FAQ question",
+            "answer": "<p>Answer your customer's question here.</p>"
+          }
+        },
+        "faq_item_dqNm8f": {
+          "type": "faq_item",
+          "settings": {
+            "question": "FAQ question",
+            "answer": "<p>Answer your customer's question here.</p>"
+          }
+        },
+        "heading_nfAh9F": {
+          "type": "heading",
+          "settings": {
+            "heading": "FAQ Category",
+            "anchor_id": ""
+          }
+        },
+        "faq_item_yXcWLt": {
+          "type": "faq_item",
+          "settings": {
+            "question": "FAQ question",
+            "answer": "<p>Answer your customer's question here.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_M6E7Jj",
+        "faq_item_rFeKf8",
+        "faq_item_dqNm8f",
+        "heading_nfAh9F",
+        "faq_item_yXcWLt"
+      ],
+      "name": "FAQ Section",
+      "settings": {}
     }
   },
   "order": [
     "contact_form",
-    "editorial_hero_xXKKKh"
+    "faqs_RUBiDT"
   ]
 }
