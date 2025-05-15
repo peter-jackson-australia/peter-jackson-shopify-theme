@@ -104,25 +104,23 @@
         "color": ""
       }
     },
-    "image_with_text_jwtzxJ": {
-      "type": "image-with-text",
-      "name": "Image With Text",
+    "shop_the_look_global_np9P4x": {
+      "type": "shop-the-look-global",
+      "name": "Shop the Look Global",
       "settings": {
         "anchor_id": "",
         "show_top_border": true,
         "show_bottom_border": true,
-        "first_image": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-41.webp",
-        "second_image": "shopify://shop_images/mens-jacket-green-cashmere-WT25-SC03-17.webp",
-        "alignment": "left",
-        "heading": "Image With Text",
-        "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-        "button_label": "Learn More",
-        "button_link": ""
+        "heading": "Shop the Look",
+        "featured_image": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-41.webp",
+        "product1": "agra-taupe-turtleneck-knit",
+        "product2": "",
+        "product3": ""
       }
     }
   },
   "order": [
     "contact_form",
-    "image_with_text_jwtzxJ"
+    "shop_the_look_global_np9P4x"
   ]
 }
