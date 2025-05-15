@@ -78,7 +78,12 @@
   }
 </style>
 
-<div class="two-column-heading-text two-column-heading-text--{{ section.settings.alignment }}">
+<div
+  class="two-column-heading-text two-column-heading-text--{{ section.settings.alignment }}"
+  {% if section.settings.anchor_id != blank %}
+    id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
+  {% endif %}
+>
   <div class="two-column-heading-text__wrapper">
     <div class="two-column-heading-text__column">
       <div class="two-column-heading-text__heading-group">
@@ -117,6 +122,12 @@
   "tag": "section",
   "class": "section",
   "settings": [
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Anchor ID (lowercase with hyphens)",
+      "info": "Example: history or about-us"
+    },
     {
       "type": "image_picker",
       "id": "icon",
