@@ -9,10 +9,6 @@
  */
 {
   "sections": {
-    "page": {
-      "type": "main-page",
-      "settings": {}
-    },
     "contact_form": {
       "type": "contact-form",
       "blocks": {
@@ -107,10 +103,19 @@
         "background": "#ffffff",
         "color": ""
       }
+    },
+    "block_quote_4aVKCh": {
+      "type": "block-quote",
+      "name": "Block Quote",
+      "settings": {
+        "anchor_id": "Test Tag",
+        "quote_text": "Add a memorable quote that represents your brand values or highlights your products.",
+        "background_color": "neutral-950"
+      }
     }
   },
   "order": [
-    "page",
-    "contact_form"
+    "contact_form",
+    "block_quote_4aVKCh"
   ]
 }
