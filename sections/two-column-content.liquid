@@ -9,6 +9,8 @@
     width: 100%;
     padding-top: var(--space-2xl);
     padding-bottom: calc(var(--space-2xl) - var(--space-m));
+    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-200);{% endif %}
+    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-200);{% endif %}
   }
 
   .two-column-content__item {
@@ -256,6 +258,18 @@
       "id": "anchor_id",
       "label": "Anchor ID (lowercase with hyphens)",
       "info": "Example: history or about-us"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_top_border",
+      "label": "Show top border",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bottom_border",
+      "label": "Show bottom border",
+      "default": false
     }
   ],
   "blocks": [
