@@ -26,7 +26,14 @@
   <div class="faq-items">
     {% for block in section.blocks %}
       {% if block.type == 'heading' %}
-        <h2 class="faq-section__heading heading--2xl">{{ block.settings.heading }}</h2>
+        <h2
+          class="faq-section__heading heading--2xl"
+          {% if block.settings.anchor_id != blank %}
+            id="{{ block.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
+          {% endif %}
+        >
+          {{ block.settings.heading }}>{{ block.settings.heading }}
+        </h2>
       {% elsif block.type == 'faq_item' %}
         <accordion-element
           class="faq-items__item body--bold"
@@ -56,6 +63,12 @@
           "id": "heading",
           "label": "Heading Text",
           "default": "FAQ Category"
+        },
+        {
+          "type": "text",
+          "id": "anchor_id",
+          "label": "Anchor ID (lowercase with hyphens)",
+          "info": "Example: shipping or returns"
         }
       ]
     },
