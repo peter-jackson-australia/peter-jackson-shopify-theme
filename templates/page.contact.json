@@ -104,13 +104,13 @@
         "color": ""
       }
     },
-    "two_column_content_XGA7iG": {
+    "two_column_content_yJkLUn": {
       "type": "two-column-content",
       "blocks": {
-        "column_TFeECf": {
+        "column_UJG6tk": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-41.webp",
+            "image": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-30.webp",
             "product": "",
             "heading": "Column Heading",
             "description": "Add your description text here.",
@@ -118,10 +118,10 @@
             "button_link": ""
           }
         },
-        "column_3mpjVN": {
+        "column_dgBnT9": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-41.webp",
+            "image": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-20.webp",
             "product": "",
             "heading": "Column Heading",
             "description": "Add your description text here.",
@@ -131,8 +131,8 @@
         }
       },
       "block_order": [
-        "column_TFeECf",
-        "column_3mpjVN"
+        "column_UJG6tk",
+        "column_dgBnT9"
       ],
       "name": "Two Column Content",
       "settings": {
@@ -144,6 +144,6 @@
   },
   "order": [
     "contact_form",
-    "two_column_content_XGA7iG"
+    "two_column_content_yJkLUn"
   ]
 }
