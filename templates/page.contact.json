@@ -104,21 +104,44 @@
         "color": ""
       }
     },
-    "shop_the_look_global_8JqPct": {
-      "type": "shop-the-look-global",
-      "name": "Shop the Look Global",
+    "two_column_content_zJxzPw": {
+      "type": "two-column-content",
+      "blocks": {
+        "column_amRE98": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-41.webp",
+            "product": "",
+            "heading": "Column Heading",
+            "description": "Add your description text here.",
+            "button_label": "Learn More",
+            "button_link": ""
+          }
+        },
+        "column_zJRKki": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/mens-jacket-green-cashmere-WT25-SC03-11.webp",
+            "product": "",
+            "heading": "Column Heading",
+            "description": "Add your description text here.",
+            "button_label": "Learn More",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_amRE98",
+        "column_zJRKki"
+      ],
+      "name": "Two Column Content",
       "settings": {
-        "anchor_id": "testing shop the look",
-        "heading": "Shop the Look",
-        "featured_image": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-41.webp",
-        "product1": "agnelli-taupe-plaid-suit",
-        "product2": "",
-        "product3": ""
+        "anchor_id": ""
       }
     }
   },
   "order": [
     "contact_form",
-    "shop_the_look_global_8JqPct"
+    "two_column_content_zJxzPw"
   ]
 }
