@@ -37,7 +37,7 @@
         "autoplay": true,
         "slide_interval": 5,
         "background_color": "white",
-        "text_color": "white"
+        "text_color": "neutral-950"
       }
     },
     "header": {
