@@ -114,7 +114,7 @@
         "icon": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-34.webp",
         "heading": "Section Heading",
         "heading_style": "decorative",
-        "content": "<p>Add your content here. This area uses the rich text editor so you can format text, add links, and more. </p><p><a href=\"/collections/accessories\" title=\"Accessories\">Add your content here. This area uses the rich text editor so you can format text, add links, and more.</a></p>",
+        "content": "<p><em>Add your content here. This area uses the rich text editor so you can format text, add links, and more. </em></p><p><a href=\"/collections/accessories\" title=\"Accessories\">Add your content here. This area uses the rich text editor so you can format text, add links, and more.</a></p>",
         "alignment": "left"
       }
     }
