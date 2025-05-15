@@ -96,6 +96,20 @@
         "button_label": "Shop Now",
         "products_to_show": 10
       }
+    },
+    "shop_the_look_global_dJdX7a": {
+      "type": "shop-the-look-global",
+      "name": "Shop the Look Global",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "heading": "Shop the Look",
+        "featured_image": "shopify://shop_images/mens-coat-chocolate-cashmere-WT25-SC02-30.webp",
+        "product1": "albinoni-black-penny-loafer",
+        "product2": "",
+        "product3": ""
+      }
     }
   },
   "order": [
@@ -104,6 +118,7 @@
     "variable_column_content_8UyUJ8",
     "block_quote_TQfhmP",
     "heading_with_text_GUmwjw",
-    "collection_slider_secondary_aebwFC"
+    "collection_slider_secondary_aebwFC",
+    "shop_the_look_global_dJdX7a"
   ]
 }
