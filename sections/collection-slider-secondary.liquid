@@ -136,15 +136,15 @@
   <div class="collection-slider-secondary__container">
     <div class="collection-slider-secondary__content">
       {% if section.settings.heading != blank %}
-        <h2 class="heading--2xl collection-slider-secondary__heading">{{ section.settings.heading }}</h2>
+        <h2 class="heading--2xl collection-slider-secondary__heading animate-slide-up-scroll">{{ section.settings.heading }}</h2>
       {% endif %}
 
       {% if section.settings.description != blank %}
-        <p class="body collection-slider-secondary__description">{{ section.settings.description }}</p>
+        <p class="body collection-slider-secondary__description animate-body-slide-up-scroll">{{ section.settings.description }}</p>
       {% endif %}
 
       {% if section.settings.collection != blank and section.settings.button_label != blank %}
-        <a href="{{ section.settings.collection.url }}" class="body collection-slider-secondary__link">
+        <a href="{{ section.settings.collection.url }}" class="body collection-slider-secondary__link animate-body-slide-up-scroll">
           {{ section.settings.button_label }}
           {% render 'icon-arrow-submit-dark' %}
         </a>

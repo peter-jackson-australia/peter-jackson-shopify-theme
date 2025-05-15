@@ -225,11 +225,11 @@
         <div class="two-column-content__content">
           <div class="two-column-content__heading-container">
             {% if block.settings.heading != blank %}
-              <h2 class="two-column-content__heading heading--l">{{ block.settings.heading }}</h2>
+              <h2 class="two-column-content__heading heading--l animate-slide-up-scroll">{{ block.settings.heading }}</h2>
             {% endif %}
 
             {% if block.settings.description != blank %}
-              <p class="two-column-content__description body">{{ block.settings.description }}</p>
+              <p class="two-column-content__description body animate-body-slide-up-scroll">{{ block.settings.description }}</p>
             {% endif %}
           </div>
           {% if block.settings.button_label != blank and block.settings.button_link != blank %}
