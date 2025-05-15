@@ -7,6 +7,8 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: var(--space-2xl) var(--space-m);
+    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-200);{% endif %}
+    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-200);{% endif %}
   }
 
   .faq-items__item > .ploiu-accordion-body > .body > p {
@@ -53,6 +55,20 @@
   "name": "FAQ Section",
   "tag": "section",
   "class": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_top_border",
+      "label": "Show top border",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bottom_border",
+      "label": "Show bottom border",
+      "default": false
+    }
+  ],
   "blocks": [
     {
       "name": "Heading",
