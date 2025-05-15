@@ -17,7 +17,7 @@
         "announcement_ycFxCM": {
           "type": "announcement",
           "settings": {
-            "text": "Welcome to our store! <a href=\"#\"> Find out more</a>",
+            "text": "<strong>Welcome</strong> to our store! <a href=\"#\"> Find out more</a>",
             "alignment": "center"
           }
         },
