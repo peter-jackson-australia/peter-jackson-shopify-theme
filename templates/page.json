@@ -9,6 +9,23 @@
  */
 {
   "sections": {
+    "editorial_hero_VU9Aei": {
+      "type": "editorial-hero",
+      "name": "Hero Editorial",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": true,
+        "leading_text": "Peter Jackson",
+        "first_title": "Our",
+        "media_type": "video",
+        "video": "shopify://files/videos/winter-25-sale-hero-video-peter-jackson.mp4",
+        "second_title": "Story",
+        "description": "Peter Jackson is an Australian garment maker constructing quality menswear with a passion for innovative design and a strong emphasis on revolutionising the menswear retail space.",
+        "cta_text": "Shop Now",
+        "cta_link": "shopify://collections/sale"
+      }
+    },
     "block_quote_qnBnCF": {
       "type": "block-quote",
       "name": "Block Quote",
@@ -22,6 +39,7 @@
     }
   },
   "order": [
+    "editorial_hero_VU9Aei",
     "block_quote_qnBnCF"
   ]
 }
