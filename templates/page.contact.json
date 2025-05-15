@@ -104,21 +104,22 @@
         "color": ""
       }
     },
-    "icon_callout_acKFTV": {
-      "type": "icon-callout",
-      "name": "Icon Callout",
+    "image_with_text_gXTcFa": {
+      "type": "image-with-text",
+      "name": "Image With Text",
       "settings": {
-        "anchor_id": "testing icon callout",
-        "heading": "Feature Heading",
-        "text": "<p>Add descriptive text about this feature or benefit to help visitors understand your offerings better.</p>",
+        "anchor_id": "test image with text",
+        "first_image": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-41.webp",
+        "alignment": "left",
+        "heading": "Image With Text",
+        "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
         "button_label": "Learn More",
-        "button_link": "",
-        "background_color": "neutral-950"
+        "button_link": ""
       }
     }
   },
   "order": [
     "contact_form",
-    "icon_callout_acKFTV"
+    "image_with_text_gXTcFa"
   ]
 }
