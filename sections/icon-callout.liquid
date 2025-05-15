@@ -74,6 +74,9 @@
 >
   <div
     class="icon-callout__container icon-callout--{{ section.settings.background_color }}"
+    {% if section.settings.anchor_id != blank %}
+      id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
+    {% endif %}
   >
     {% if section.settings.icon != blank %}
       <img
@@ -107,6 +110,12 @@
   "name": "Icon Callout",
   "tag": "section",
   "settings": [
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Anchor ID (lowercase with hyphens)",
+      "info": "Example: history or about-us"
+    },
     {
       "type": "image_picker",
       "id": "icon",
