@@ -4,16 +4,17 @@
 
 <style>
   .two-column-heading-text {
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
     padding: var(--space-2xl) var(--space-m);
     padding-bottom: calc(var(--space-2xl) - var(--space-m));
+    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-200);{% endif %}
+    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-200);{% endif %}
   }
 
   .two-column-heading-text__wrapper {
     display: flex;
     gap: var(--space-xl);
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
   .two-column-heading-text__column {
@@ -127,6 +128,18 @@
       "id": "anchor_id",
       "label": "Anchor ID (lowercase with hyphens)",
       "info": "Example: history or about-us"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_top_border",
+      "label": "Show top border",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bottom_border",
+      "label": "Show bottom border",
+      "default": false
     },
     {
       "type": "image_picker",
