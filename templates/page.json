@@ -171,6 +171,17 @@
         "button_link": "",
         "background_color": "green-700"
       }
+    },
+    "collection_slider_iDTgXU": {
+      "type": "collection-slider",
+      "name": "Collection Slider",
+      "settings": {
+        "heading": "New In Now",
+        "description": "Layer up with premium wool/cashmere blends.",
+        "collection": "new-arrivals",
+        "button_label": "Shop Now",
+        "products_to_show": 10
+      }
     }
   },
   "order": [
@@ -183,6 +194,7 @@
     "shop_the_look_global_dJdX7a",
     "full_page_media_xTazU4",
     "two_column_content_JDRceL",
-    "icon_callout_GpH4gY"
+    "icon_callout_GpH4gY",
+    "collection_slider_iDTgXU"
   ]
 }
