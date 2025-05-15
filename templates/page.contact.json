@@ -104,25 +104,61 @@
         "color": ""
       }
     },
-    "editorial_hero_N3tjmm": {
-      "type": "editorial-hero",
-      "name": "Hero Editorial",
+    "faqs_4rXnRH": {
+      "type": "faqs",
+      "blocks": {
+        "heading_N3BhVP": {
+          "type": "heading",
+          "settings": {
+            "heading": "FAQ Category",
+            "anchor_id": ""
+          }
+        },
+        "faq_item_8U6LFE": {
+          "type": "faq_item",
+          "settings": {
+            "question": "FAQ question",
+            "answer": "<p>Answer your customer's question here.</p>"
+          }
+        },
+        "faq_item_hDTaMA": {
+          "type": "faq_item",
+          "settings": {
+            "question": "FAQ question",
+            "answer": "<p>Answer your customer's question here.</p>"
+          }
+        },
+        "heading_LVPwii": {
+          "type": "heading",
+          "settings": {
+            "heading": "FAQ Category",
+            "anchor_id": ""
+          }
+        },
+        "faq_item_AXnWxM": {
+          "type": "faq_item",
+          "settings": {
+            "question": "FAQ question",
+            "answer": "<p>Answer your customer's question here.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_N3BhVP",
+        "faq_item_8U6LFE",
+        "faq_item_hDTaMA",
+        "heading_LVPwii",
+        "faq_item_AXnWxM"
+      ],
+      "name": "FAQ Section",
       "settings": {
-        "anchor_id": "",
         "show_top_border": true,
-        "show_bottom_border": true,
-        "leading_text": "",
-        "first_title": "Discover",
-        "media_type": "image",
-        "second_title": "Collection",
-        "description": "",
-        "cta_text": "Shop Now",
-        "cta_link": ""
+        "show_bottom_border": true
       }
     }
   },
   "order": [
     "contact_form",
-    "editorial_hero_N3tjmm"
+    "faqs_4rXnRH"
   ]
 }
