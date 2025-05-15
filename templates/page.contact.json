@@ -104,61 +104,22 @@
         "color": ""
       }
     },
-    "faqs_TxEyVe": {
-      "type": "faqs",
-      "blocks": {
-        "heading_McReMj": {
-          "type": "heading",
-          "settings": {
-            "heading": "FAQ Category",
-            "anchor_id": ""
-          }
-        },
-        "faq_item_WU4h7p": {
-          "type": "faq_item",
-          "settings": {
-            "question": "FAQ question",
-            "answer": "<ul><li>Answer your customer's <a href=\"/collections\" title=\"All collections\">question</a> here.</li></ul><p></p><ul><li><strong>Test </strong><em><strong>fhfgdgd </strong></em></li></ul>"
-          }
-        },
-        "faq_item_aQpQpz": {
-          "type": "faq_item",
-          "settings": {
-            "question": "FAQ question",
-            "answer": "<p>Answer your customer's question here.</p>"
-          }
-        },
-        "heading_V9RExF": {
-          "type": "heading",
-          "settings": {
-            "heading": "FAQ Category",
-            "anchor_id": ""
-          }
-        },
-        "faq_item_xn3WMH": {
-          "type": "faq_item",
-          "settings": {
-            "question": "FAQ question",
-            "answer": "<p>Answer your customer's question here.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "heading_McReMj",
-        "faq_item_WU4h7p",
-        "faq_item_aQpQpz",
-        "heading_V9RExF",
-        "faq_item_xn3WMH"
-      ],
-      "name": "FAQ Section",
+    "two_column_heading_text_kck8kh": {
+      "type": "two-column-heading-text",
+      "name": "Two Column Heading Text",
       "settings": {
+        "anchor_id": "",
         "show_top_border": false,
-        "show_bottom_border": false
+        "show_bottom_border": false,
+        "heading": "Section Heading",
+        "heading_style": "normal",
+        "content": "<p>Add your content here. This area uses the rich text editor so you can format text, add links, and more.</p><ul><li><strong>Add</strong> your content here. This <a href=\"/collections/bags\" title=\"Bags\">area</a> uses the rich text editor so you can format text, add links, and more.</li></ul><p>Add your content here. This area uses the rich text editor so you can format text, add links, and more.</p>",
+        "alignment": "left"
       }
     }
   },
   "order": [
     "contact_form",
-    "faqs_TxEyVe"
+    "two_column_heading_text_kck8kh"
   ]
 }
