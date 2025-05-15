@@ -10,7 +10,6 @@ Home page sections:
     
     Schema:
     Animations
-    Check all labels and default settings
 
     Admin: 
     Find a way to restrict multiple hero sections
