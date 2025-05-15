@@ -45,9 +45,31 @@
         "background": "#ffffff",
         "color": ""
       }
+    },
+    "blog_hero_UARR4Q": {
+      "type": "blog-hero",
+      "name": "Blog Hero",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "show_image_overlay": true,
+        "image_heading": "Featured Article Title",
+        "image_description": "Description text for the featured article.",
+        "image_link_text": "Read More",
+        "image_link_url": "",
+        "heading": "The Jackson Journal",
+        "subheading": "Heritage Meets Heritage",
+        "description": "Some general information about the blog collection",
+        "cta_link": "",
+        "cta_text": "Read Now",
+        "show_recent_posts": true,
+        "blog": ""
+      }
     }
   },
   "order": [
-    "contact_form_tcC8JM"
+    "contact_form_tcC8JM",
+    "blog_hero_UARR4Q"
   ]
 }
