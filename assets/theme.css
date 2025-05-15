@@ -364,6 +364,12 @@ accordion-element > .ploiu-accordion-body {
   transition: height 0.3s;
 }
 
+accordion-element > .ploiu-accordion-body > .body > p > strong {
+  color: var(--neutral-950);
+  font-family: 'Ordinary Regular'; 
+  font-weight: 500; 
+}
+
 accordion-element:not(.open) > .ploiu-accordion-body {
   height: 0 !important;
   padding: 0 var(--space-m);
