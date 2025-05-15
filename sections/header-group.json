@@ -25,7 +25,7 @@
           "type": "announcement",
           "settings": {
             "text": "2 Welcome to our store! <a href=\"#\"> Find out more</a>",
-            "alignment": "center"
+            "alignment": "left"
           }
         }
       },
@@ -36,7 +36,7 @@
       "settings": {
         "autoplay": true,
         "slide_interval": 5,
-        "background_color": "neutral-950",
+        "background_color": "transparent",
         "text_color": "white"
       }
     },
