@@ -104,44 +104,20 @@
         "color": ""
       }
     },
-    "two_column_content_zJxzPw": {
-      "type": "two-column-content",
-      "blocks": {
-        "column_amRE98": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-41.webp",
-            "product": "",
-            "heading": "Column Heading",
-            "description": "Add your description text here.",
-            "button_label": "Learn More",
-            "button_link": ""
-          }
-        },
-        "column_zJRKki": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/mens-jacket-green-cashmere-WT25-SC03-11.webp",
-            "product": "",
-            "heading": "Column Heading",
-            "description": "Add your description text here.",
-            "button_label": "Learn More",
-            "button_link": ""
-          }
-        }
-      },
-      "block_order": [
-        "column_amRE98",
-        "column_zJRKki"
-      ],
-      "name": "Two Column Content",
+    "two_column_heading_text_tpBfCT": {
+      "type": "two-column-heading-text",
+      "name": "Two Column Heading Text",
       "settings": {
-        "anchor_id": "testing two column"
+        "anchor_id": "testing two column heading text section",
+        "heading": "Section Heading",
+        "heading_style": "normal",
+        "content": "<p>Add your content here. This area uses the rich text editor so you can format text, add links, and more.</p>",
+        "alignment": "left"
       }
     }
   },
   "order": [
     "contact_form",
-    "two_column_content_zJxzPw"
+    "two_column_heading_text_tpBfCT"
   ]
 }
