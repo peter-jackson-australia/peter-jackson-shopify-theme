@@ -104,25 +104,20 @@
         "color": ""
       }
     },
-    "video_VVyCyJ": {
-      "type": "video",
-      "name": "Video",
+    "block_quote_rYtMk7": {
+      "type": "block-quote",
+      "name": "Block Quote",
       "settings": {
-        "anchor_id": "testing video",
-        "video": "shopify://files/videos/winter-25-sale-hero-video-peter-jackson.mp4",
-        "poster_image": "shopify://shop_images/peter-jackson-menswear-green-jacket-white-turtleneck.webp",
-        "title": "",
-        "show_title": false,
-        "width": "contained",
-        "aspect_ratio": "16-9",
-        "autoplay": true,
-        "loop": false,
-        "muted": true
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "quote_text": "Add a memorable quote that represents your brand values or highlights your products.",
+        "background_color": "white"
       }
     }
   },
   "order": [
     "contact_form",
-    "video_VVyCyJ"
+    "block_quote_rYtMk7"
   ]
 }
