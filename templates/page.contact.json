@@ -118,7 +118,7 @@
           "type": "faq_item",
           "settings": {
             "question": "FAQ question",
-            "answer": "<ul><li>Answer your customer's <a href=\"/collections\" title=\"All collections\">question</a> here.</li></ul>"
+            "answer": "<ul><li>Answer your customer's <a href=\"/collections\" title=\"All collections\">question</a> here.</li></ul><p></p><ul><li><strong>Test </strong><em><strong>fhfgdgd </strong></em></li></ul>"
           }
         },
         "faq_item_aQpQpz": {
