@@ -7,6 +7,8 @@
     width: 100%;
     margin: 0;
     padding: var(--space-2xl) 0;
+    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-200);{% endif %}
+    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-200);{% endif %}
   }
 
   .variable-column-content__image-grid {
@@ -149,6 +151,18 @@
       "id": "anchor_id",
       "label": "Anchor ID (lowercase with hyphens)",
       "info": "Example: history or about-us"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_top_border",
+      "label": "Show top border",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bottom_border",
+      "label": "Show bottom border",
+      "default": false
     },
     {
       "type": "select",
