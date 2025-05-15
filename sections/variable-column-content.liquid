@@ -90,7 +90,13 @@
 <div class="variable-column-content" id="shopify-section-{{ section.id }}">
   {% if section.settings.column_count != blank %}
     {% assign column_count = section.settings.column_count | plus: 0 %}
-    <div class="variable-column-content__image-grid" style="grid-template-columns: repeat({{ column_count }}, 1fr);">
+    <div
+      class="variable-column-content__image-grid"
+      style="grid-template-columns: repeat({{ column_count }}, 1fr);"
+      {% if section.settings.anchor_id != blank %}
+        id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
+      {% endif %}
+    >
       {% for i in (1..column_count) %}
         {% assign image_setting = 'image_' | append: i %}
         {% if section.settings[image_setting] != blank %}
@@ -138,6 +144,12 @@
   "tag": "section",
   "class": "variable-column-content-section",
   "settings": [
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Anchor ID (lowercase with hyphens)",
+      "info": "Example: history or about-us"
+    },
     {
       "type": "select",
       "id": "column_count",
