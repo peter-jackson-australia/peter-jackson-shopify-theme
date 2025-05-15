@@ -4,11 +4,14 @@
 
 <style>
   .faq-section {
-    max-width: 1200px;
-    margin: 0 auto;
     padding: var(--space-2xl) var(--space-m);
     {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-200);{% endif %}
     {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-200);{% endif %}
+  }
+
+  .faq-section__container {
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
   .faq-items__item > .ploiu-accordion-body > .body > p {
@@ -25,28 +28,30 @@
 </style>
 
 <div class="faq-section">
-  <div class="faq-items">
-    {% for block in section.blocks %}
-      {% if block.type == 'heading' %}
-        <h2
-          class="faq-section__heading heading--2xl"
-          {% if block.settings.anchor_id != blank %}
-            id="{{ block.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
-          {% endif %}
-        >
-          {{ block.settings.heading }}
-        </h2>
-      {% elsif block.type == 'faq_item' %}
-        <accordion-element
-          class="faq-items__item body--bold"
-          data-title="{{ block.settings.question }}"
-        >
-          <div class="body">
-            {{ block.settings.answer }}
-          </div>
-        </accordion-element>
-      {% endif %}
-    {% endfor %}
+  <div class="faq-section__container">
+    <div class="faq-items">
+      {% for block in section.blocks %}
+        {% if block.type == 'heading' %}
+          <h2
+            class="faq-section__heading heading--2xl"
+            {% if block.settings.anchor_id != blank %}
+              id="{{ block.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
+            {% endif %}
+          >
+            {{ block.settings.heading }}
+          </h2>
+        {% elsif block.type == 'faq_item' %}
+          <accordion-element
+            class="faq-items__item body--bold"
+            data-title="{{ block.settings.question }}"
+          >
+            <div class="body">
+              {{ block.settings.answer }}
+            </div>
+          </accordion-element>
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
 </div>
 
