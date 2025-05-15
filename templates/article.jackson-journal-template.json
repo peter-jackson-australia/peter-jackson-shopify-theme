@@ -11,10 +11,82 @@
   "sections": {
     "article": {
       "type": "main-article",
-      "settings": {}
+      "settings": {
+        "max_width": 768
+      }
+    },
+    "editorial_hero_VXJ8Fx": {
+      "type": "editorial-hero",
+      "name": "Hero Editorial",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "leading_text": "",
+        "first_title": "Discover",
+        "media_type": "image",
+        "second_title": "Collection",
+        "description": "",
+        "cta_text": "Shop Now",
+        "cta_link": ""
+      }
+    },
+    "faqs_F6AHbQ": {
+      "type": "faqs",
+      "blocks": {
+        "heading_FJVQhK": {
+          "type": "heading",
+          "settings": {
+            "heading": "FAQ Category",
+            "anchor_id": ""
+          }
+        },
+        "faq_item_xGieWc": {
+          "type": "faq_item",
+          "settings": {
+            "question": "FAQ question",
+            "answer": "<p>Answer your customer's question here.</p>"
+          }
+        },
+        "faq_item_HwDmiK": {
+          "type": "faq_item",
+          "settings": {
+            "question": "FAQ question",
+            "answer": "<p>Answer your customer's question here.</p>"
+          }
+        },
+        "heading_L33fpx": {
+          "type": "heading",
+          "settings": {
+            "heading": "FAQ Category",
+            "anchor_id": ""
+          }
+        },
+        "faq_item_XDx3Gh": {
+          "type": "faq_item",
+          "settings": {
+            "question": "FAQ question",
+            "answer": "<p>Answer your customer's question here.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_FJVQhK",
+        "faq_item_xGieWc",
+        "faq_item_HwDmiK",
+        "heading_L33fpx",
+        "faq_item_XDx3Gh"
+      ],
+      "name": "FAQ Section",
+      "settings": {
+        "show_top_border": false,
+        "show_bottom_border": false
+      }
     }
   },
   "order": [
-    "article"
+    "article",
+    "editorial_hero_VXJ8Fx",
+    "faqs_F6AHbQ"
   ]
 }
