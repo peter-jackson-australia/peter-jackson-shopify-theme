@@ -104,23 +104,46 @@
         "color": ""
       }
     },
-    "shop_the_look_global_np9P4x": {
-      "type": "shop-the-look-global",
-      "name": "Shop the Look Global",
+    "two_column_content_XGA7iG": {
+      "type": "two-column-content",
+      "blocks": {
+        "column_TFeECf": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-41.webp",
+            "product": "",
+            "heading": "Column Heading",
+            "description": "Add your description text here.",
+            "button_label": "Learn More",
+            "button_link": ""
+          }
+        },
+        "column_3mpjVN": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-41.webp",
+            "product": "",
+            "heading": "Column Heading",
+            "description": "Add your description text here.",
+            "button_label": "Learn More",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_TFeECf",
+        "column_3mpjVN"
+      ],
+      "name": "Two Column Content",
       "settings": {
         "anchor_id": "",
         "show_top_border": true,
-        "show_bottom_border": true,
-        "heading": "Shop the Look",
-        "featured_image": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-41.webp",
-        "product1": "agra-taupe-turtleneck-knit",
-        "product2": "",
-        "product3": ""
+        "show_bottom_border": true
       }
     }
   },
   "order": [
     "contact_form",
-    "shop_the_look_global_np9P4x"
+    "two_column_content_XGA7iG"
   ]
 }
