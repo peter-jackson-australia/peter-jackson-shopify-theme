@@ -110,7 +110,7 @@
       "settings": {
         "anchor_id": "",
         "show_top_border": true,
-        "show_bottom_border": false,
+        "show_bottom_border": true,
         "quote_text": "Add a memorable quote that represents your brand values or highlights your products.",
         "background_color": "white"
       }
