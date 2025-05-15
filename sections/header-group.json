@@ -13,9 +13,22 @@
   "sections": {
     "announcement": {
       "type": "announcement-bar",
+      "blocks": {
+        "announcement_ycFxCM": {
+          "type": "announcement",
+          "settings": {
+            "text": "Welcome to our store! <a href=\"#\"> Find out more</a>",
+            "alignment": "center"
+          }
+        }
+      },
+      "block_order": [
+        "announcement_ycFxCM"
+      ],
       "settings": {
-        "text": "Welcome to the Peter Jackson Shopify Site",
-        "background": "",
+        "autoplay": true,
+        "slide_interval": 5,
+        "background": "#935c5c",
         "color": ""
       }
     },
