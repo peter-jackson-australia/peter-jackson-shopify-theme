@@ -104,27 +104,27 @@
         "color": ""
       }
     },
-    "variable_column_content_ArNDk8": {
-      "type": "variable-column-content",
-      "name": "Variable Column Content",
+    "video_3mFewW": {
+      "type": "video",
+      "name": "Video",
       "settings": {
         "anchor_id": "",
         "show_top_border": true,
         "show_bottom_border": true,
-        "column_count": "3",
-        "text_alignment": "left",
-        "image_1": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-30.webp",
-        "image_2": "shopify://shop_images/mens-jacket-green-cashmere-WT25-SC03-8.webp",
-        "image_3": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-41.webp",
-        "heading": "Variable Column Content",
-        "text": "<p>Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.</p>",
-        "button_label": "Learn More",
-        "button_link": ""
+        "video": "shopify://files/videos/winter-25-sale-hero-video-peter-jackson.mp4",
+        "poster_image": "shopify://shop_images/peter-jackson-menswear-green-jacket-white-turtleneck.webp",
+        "title": "",
+        "show_title": false,
+        "width": "full-width",
+        "aspect_ratio": "16-9",
+        "autoplay": true,
+        "loop": false,
+        "muted": true
       }
     }
   },
   "order": [
     "contact_form",
-    "variable_column_content_ArNDk8"
+    "video_3mFewW"
   ]
 }
