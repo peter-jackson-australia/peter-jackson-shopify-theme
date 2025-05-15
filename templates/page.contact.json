@@ -118,8 +118,5 @@
       }
     }
   },
-  "order": [
-    "contact_form",
-    "two_column_heading_text_kck8kh"
-  ]
+  "order": ["contact_form", "two_column_heading_text_kck8kh"]
 }

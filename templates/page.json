@@ -9,43 +9,6 @@
  */
 {
   "sections": {
-    "contact_form_tcC8JM": {
-      "type": "contact-form",
-      "blocks": {
-        "email_QcgGFm": {
-          "type": "email",
-          "settings": {
-            "title": "Email",
-            "maxlength": 128,
-            "placeholder": "e.g. steve@example.com"
-          }
-        },
-        "textarea_yFnwgP": {
-          "type": "textarea",
-          "settings": {
-            "title": "Label",
-            "name": "body",
-            "maxlength": 128,
-            "rows": 5,
-            "required": false,
-            "placeholder": ""
-          }
-        }
-      },
-      "block_order": [
-        "email_QcgGFm",
-        "textarea_yFnwgP"
-      ],
-      "name": "Contact Form",
-      "settings": {
-        "heading": "Contact us",
-        "size": "h2",
-        "text": "<p>Complete the form below to send us a message.</p>",
-        "button_label": "Submit",
-        "background": "#ffffff",
-        "color": ""
-      }
-    },
     "blog_hero_UARR4Q": {
       "type": "blog-hero",
       "name": "Blog Hero",
@@ -69,8 +32,5 @@
       }
     }
   },
-  "order": [
-    "contact_form_tcC8JM",
-    "blog_hero_UARR4Q"
-  ]
+  "order": ["blog_hero_UARR4Q"]
 }
