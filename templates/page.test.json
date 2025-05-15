@@ -1,0 +1,200 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "editorial_hero_VU9Aei": {
+      "type": "editorial-hero",
+      "name": "Hero Editorial",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": true,
+        "leading_text": "Our Story",
+        "first_title": "Peter",
+        "media_type": "video",
+        "video": "shopify://files/videos/winter-25-sale-hero-video-peter-jackson.mp4",
+        "second_title": "Jackson",
+        "description": "Peter Jackson is an Australian garment maker constructing quality menswear with a passion for innovative design and a strong emphasis on revolutionising the menswear retail space.",
+        "cta_text": "Shop Now",
+        "cta_link": "shopify://collections/sale"
+      }
+    },
+    "image_with_text_CyHrD8": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "first_image": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-20.webp",
+        "second_image": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-35.webp",
+        "alignment": "left",
+        "heading": "Where it all began",
+        "text": "For over 7 decades we’ve believed in elevating the dress standards of all Australian men.Empowering them to draw confidence from their appearance, knowing that they will look their best and be ready for every occasion. This strong sense of purpose started in 1948, in the heart of Melbourne’s CBD-Little Bourke Street, where siblings Olga, Peter and David Jackson ran their iconic barbershop.",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    },
+    "variable_column_content_8UyUJ8": {
+      "type": "variable-column-content",
+      "name": "Variable Column Content",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "column_count": "4",
+        "text_alignment": "center",
+        "image_1": "shopify://shop_images/peter-jackson-menswear-winter-25-snow-image-1.webp",
+        "image_2": "shopify://shop_images/peter-jackson-menswear-winter-25-snow-image-2.webp",
+        "image_3": "shopify://shop_images/peter-jackson-menswear-winter-25-snow-image-1.webp",
+        "image_4": "shopify://shop_images/peter-jackson-menswear-winter-25-snow-image-2.webp",
+        "heading": "Tailored Specialists",
+        "text": "Selling neckties, the trio’s foray into fashion gradually evolved into a full tailored Men’s range. Soon after, we promptly established ourselves as the number one destination for men’s fashion throughout Melbourne.",
+        "button_label": "Shop Sale",
+        "button_link": "shopify://collections/sale"
+      }
+    },
+    "block_quote_TQfhmP": {
+      "type": "block-quote",
+      "name": "Block Quote",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "quote_text": "With a new generation of Jackson's at the helm and more than 60 stores nationally, Peter Jackson still remains a family business echoing views and values established 70 years ago.",
+        "background_color": "neutral-950"
+      }
+    },
+    "heading_with_text_GUmwjw": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "leading_text": "Mills & Production",
+        "heading": "All Peter Jackson fabrics are sourced from the most respected and prestigious textile producers in the world.",
+        "heading_style": "normal",
+        "content": "<p>Our chosen mills are renowned for their refined production techniques, dedication to quality, and use of premium natural fibres. Our enduring partnerships with them stem from their innovative approach and eco-friendly practices, with a focus on environmental performance and compliance with regulations.</p><p>Our suits are crafted from Australian Merino wool that is meticulously cultivated by generations of Australian woolgrowers. We use Merino wool because its resilient natural stretch prevents it from losing its shape. When the fabric is stretched, the fibres natural crimp acts like a spring returning it to its original form. Its durability also stems from it being comprised of a special protein called Keratin. Keratin acts as a barrier, protecting you (and the sheep!) from environmental elements</p>",
+        "alignment": "center"
+      }
+    },
+    "collection_slider_secondary_aebwFC": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "Suiting",
+        "description": "We are committed to bridging the gap between accessibility and luxury. We dedicate ourselves to bringing you the best possible value for quality tailored menswear.",
+        "collection": "new-suits",
+        "button_label": "Shop Now",
+        "products_to_show": 10
+      }
+    },
+    "shop_the_look_global_dJdX7a": {
+      "type": "shop-the-look-global",
+      "name": "Shop the Look Global",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "heading": "Shop the Look",
+        "featured_image": "shopify://shop_images/mens-coat-chocolate-cashmere-WT25-SC02-30.webp",
+        "product1": "albinoni-black-penny-loafer",
+        "product2": "",
+        "product3": ""
+      }
+    },
+    "full_page_media_xTazU4": {
+      "type": "full-page-media",
+      "name": "Full Page Media",
+      "settings": {
+        "media_type": "video",
+        "video": "shopify://files/videos/winter-25-sale-hero-video-peter-jackson.mp4",
+        "alt_text": "Full page media"
+      }
+    },
+    "two_column_content_JDRceL": {
+      "type": "two-column-content",
+      "blocks": {
+        "column_c4NCGM": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-winter-25-snow-image-1.webp",
+            "product": "",
+            "heading": "Production",
+            "description": "We believe in creating a sustainable future for the world of fashion, aligning ourselves with suppliers that are dedicated to reducing their carbon footprint. Suppliers, like Marzotto in Italy, whose investment in solar energy has saved the use of close to a one million litres of oil since November 2011.",
+            "button_label": "Learn More",
+            "button_link": ""
+          }
+        },
+        "column_j3PFeV": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-winter-25-snow-image-2.webp",
+            "product": "",
+            "heading": "Production",
+            "description": "We believe in creating a sustainable future for the world of fashion, aligning ourselves with suppliers that are dedicated to reducing their carbon footprint. Suppliers, like Marzotto in Italy, whose investment in solar energy has saved the use of close to a one million litres of oil since November 2011.",
+            "button_label": "Learn More",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_c4NCGM",
+        "column_j3PFeV"
+      ],
+      "name": "Two Column Content",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": true
+      }
+    },
+    "icon_callout_GpH4gY": {
+      "type": "icon-callout",
+      "name": "Icon Callout",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "icon": "shopify://shop_images/beyond-blue-footer-logo.svg",
+        "heading": "Beyond Blue",
+        "text": "For 75 years, our brand has been more than a menswear label—we've been a companion in men's lives, crafting confidence and style. Today, we deepen that commitment with a partnership with Beyond Blue aimed at supporting men's mental health and dismantling the stigma that surrounds it.",
+        "button_label": "Learn More",
+        "button_link": "",
+        "background_color": "green-700"
+      }
+    },
+    "collection_slider_iDTgXU": {
+      "type": "collection-slider",
+      "name": "Collection Slider",
+      "settings": {
+        "heading": "New In Now",
+        "description": "Layer up with premium wool/cashmere blends.",
+        "collection": "new-arrivals",
+        "button_label": "Shop Now",
+        "products_to_show": 10
+      }
+    }
+  },
+  "order": [
+    "editorial_hero_VU9Aei",
+    "image_with_text_CyHrD8",
+    "variable_column_content_8UyUJ8",
+    "block_quote_TQfhmP",
+    "heading_with_text_GUmwjw",
+    "collection_slider_secondary_aebwFC",
+    "shop_the_look_global_dJdX7a",
+    "full_page_media_xTazU4",
+    "two_column_content_JDRceL",
+    "icon_callout_GpH4gY",
+    "collection_slider_iDTgXU"
+  ]
+}
