@@ -111,6 +111,7 @@
         "anchor_id": "",
         "show_top_border": true,
         "show_bottom_border": true,
+        "icon": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-30.webp",
         "heading": "Feature Heading",
         "text": "<p>Add descriptive text about this feature or benefit to help visitors understand your offerings better.</p>",
         "button_label": "Learn More",
