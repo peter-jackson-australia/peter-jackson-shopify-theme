@@ -1,13 +1,16 @@
 <style>
   .image-with-text {
+    padding: var(--space-2xl) var(--space-m);
+    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-200);{% endif %}
+    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-200);{% endif %}
+  }
+
+  .image-with-text__container {
     display: flex;
     align-items: center;
-    padding: var(--space-2xl) var(--space-m);
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-200);{% endif %}
-    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-200);{% endif %}
   }
 
   .image-with-text--right {
@@ -117,51 +120,53 @@
   class="image-with-text {% if section.settings.alignment == 'right' %}image-with-text--right{% endif %}"
   aria-label="Image with text section"
 >
-  <figure
-    class="image-with-text__media-container"
-    {% if section.settings.anchor_id != blank %}
-      id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
-    {% endif %}
-  >
-    <div class="image-with-text__images-wrapper">
-      {% if section.settings.first_image != blank %}
-        <div class="image-with-text__image-container {% if section.settings.second_image != blank %}image-with-text__image-container--first{% endif %}">
-          {{
-            section.settings.first_image
-            | image_url: width: 1200
-            | image_tag: class: 'image-with-text__image', alt: section.settings.first_image.alt
-            | default: section.settings.heading, loading: 'lazy'
-          }}
-        </div>
+  <div class="image-with-text__container">
+    <figure
+      class="image-with-text__media-container"
+      {% if section.settings.anchor_id != blank %}
+        id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
+      {% endif %}
+    >
+      <div class="image-with-text__images-wrapper">
+        {% if section.settings.first_image != blank %}
+          <div class="image-with-text__image-container {% if section.settings.second_image != blank %}image-with-text__image-container--first{% endif %}">
+            {{
+              section.settings.first_image
+              | image_url: width: 1200
+              | image_tag: class: 'image-with-text__image', alt: section.settings.first_image.alt
+              | default: section.settings.heading, loading: 'lazy'
+            }}
+          </div>
+        {% endif %}
+
+        {% if section.settings.second_image != blank %}
+          <div class="image-with-text__image-container image-with-text__image-container--second">
+            {{
+              section.settings.second_image
+              | image_url: width: 1200
+              | image_tag: class: 'image-with-text__image', alt: section.settings.second_image.alt
+              | default: section.settings.heading, loading: 'lazy'
+            }}
+          </div>
+        {% endif %}
+      </div>
+    </figure>
+
+    <div class="image-with-text__content">
+      {% if section.settings.heading != blank %}
+        <h2 class="image-with-text__title heading--2xl">{{ section.settings.heading }}</h2>
       {% endif %}
 
-      {% if section.settings.second_image != blank %}
-        <div class="image-with-text__image-container image-with-text__image-container--second">
-          {{
-            section.settings.second_image
-            | image_url: width: 1200
-            | image_tag: class: 'image-with-text__image', alt: section.settings.second_image.alt
-            | default: section.settings.heading, loading: 'lazy'
-          }}
-        </div>
+      {% if section.settings.text != blank %}
+        <div class="image-with-text__text body">{{ section.settings.text }}</div>
+      {% endif %}
+
+      {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+        <a href="{{ section.settings.button_link }}" class="image-with-text__button button">
+          {{ section.settings.button_label }}
+        </a>
       {% endif %}
     </div>
-  </figure>
-
-  <div class="image-with-text__content">
-    {% if section.settings.heading != blank %}
-      <h2 class="image-with-text__title heading--2xl">{{ section.settings.heading }}</h2>
-    {% endif %}
-
-    {% if section.settings.text != blank %}
-      <div class="image-with-text__text body">{{ section.settings.text }}</div>
-    {% endif %}
-
-    {% if section.settings.button_label != blank and section.settings.button_link != blank %}
-      <a href="{{ section.settings.button_link }}" class="image-with-text__button button">
-        {{ section.settings.button_label }}
-      </a>
-    {% endif %}
   </div>
 </div>
 
