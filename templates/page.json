@@ -26,20 +26,45 @@
         "cta_link": "shopify://collections/sale"
       }
     },
-    "block_quote_qnBnCF": {
-      "type": "block-quote",
-      "name": "Block Quote",
+    "image_with_text_CyHrD8": {
+      "type": "image-with-text",
+      "name": "Image With Text",
       "settings": {
         "anchor_id": "",
-        "show_top_border": true,
+        "show_top_border": false,
         "show_bottom_border": true,
-        "quote_text": "Premium European textiles, Neapolitan style and contemporary edge form our winter collection of suits, sports jackets, outerwear, casual jackets and refined essentials.",
-        "background_color": "white"
+        "first_image": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-20.webp",
+        "second_image": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-35.webp",
+        "alignment": "left",
+        "heading": "Where it all began",
+        "text": "For over 7 decades we’ve believed in elevating the dress standards of all Australian men.Empowering them to draw confidence from their appearance, knowing that they will look their best and be ready for every occasion. This strong sense of purpose started in 1948, in the heart of Melbourne’s CBD-Little Bourke Street, where siblings Olga, Peter and David Jackson ran their iconic barbershop.",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    },
+    "variable_column_content_8UyUJ8": {
+      "type": "variable-column-content",
+      "name": "Variable Column Content",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "column_count": "4",
+        "text_alignment": "center",
+        "image_1": "shopify://shop_images/peter-jackson-menswear-winter-25-snow-image-1.webp",
+        "image_2": "shopify://shop_images/peter-jackson-menswear-winter-25-snow-image-2.webp",
+        "image_3": "shopify://shop_images/peter-jackson-menswear-winter-25-snow-image-1.webp",
+        "image_4": "shopify://shop_images/peter-jackson-menswear-winter-25-snow-image-2.webp",
+        "heading": "Tailored Specialists",
+        "text": "Selling neckties, the trio’s foray into fashion gradually evolved into a full tailored Men’s range. Soon after, we promptly established ourselves as the number one destination for men’s fashion throughout Melbourne.",
+        "button_label": "Shop Sale",
+        "button_link": "shopify://collections/sale"
       }
     }
   },
   "order": [
     "editorial_hero_VU9Aei",
-    "block_quote_qnBnCF"
+    "image_with_text_CyHrD8",
+    "variable_column_content_8UyUJ8"
   ]
 }
