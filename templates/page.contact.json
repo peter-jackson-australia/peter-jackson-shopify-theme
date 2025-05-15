@@ -104,23 +104,61 @@
         "color": ""
       }
     },
-    "heading_with_text_F4PBGE": {
-      "type": "heading-with-text",
-      "name": "Heading with Text",
+    "faqs_TxEyVe": {
+      "type": "faqs",
+      "blocks": {
+        "heading_McReMj": {
+          "type": "heading",
+          "settings": {
+            "heading": "FAQ Category",
+            "anchor_id": ""
+          }
+        },
+        "faq_item_WU4h7p": {
+          "type": "faq_item",
+          "settings": {
+            "question": "FAQ question",
+            "answer": "<ul><li>Answer your customer's <a href=\"/collections\" title=\"All collections\">question</a> here.</li></ul>"
+          }
+        },
+        "faq_item_aQpQpz": {
+          "type": "faq_item",
+          "settings": {
+            "question": "FAQ question",
+            "answer": "<p>Answer your customer's question here.</p>"
+          }
+        },
+        "heading_V9RExF": {
+          "type": "heading",
+          "settings": {
+            "heading": "FAQ Category",
+            "anchor_id": ""
+          }
+        },
+        "faq_item_xn3WMH": {
+          "type": "faq_item",
+          "settings": {
+            "question": "FAQ question",
+            "answer": "<p>Answer your customer's question here.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_McReMj",
+        "faq_item_WU4h7p",
+        "faq_item_aQpQpz",
+        "heading_V9RExF",
+        "faq_item_xn3WMH"
+      ],
+      "name": "FAQ Section",
       "settings": {
-        "anchor_id": "",
         "show_top_border": false,
-        "show_bottom_border": false,
-        "leading_text": "Introduction",
-        "heading": "Section Heading",
-        "heading_style": "normal",
-        "content": "<ul><li><strong>Add</strong> your <em>content</em> here. This area uses the rich text editor so you <a href=\"/collections/accessories\" title=\"Accessories\">can</a> format text, add links, and more.</li><li></li><li>test</li></ul>",
-        "alignment": "left"
+        "show_bottom_border": false
       }
     }
   },
   "order": [
     "contact_form",
-    "heading_with_text_F4PBGE"
+    "faqs_TxEyVe"
   ]
 }
