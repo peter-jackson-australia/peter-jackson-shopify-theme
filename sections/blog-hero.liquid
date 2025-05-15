@@ -291,7 +291,12 @@
   }
 </style>
 
-<div class="blog-hero">
+<div
+  class="blog-hero"
+  {% if section.settings.anchor_id != blank %}
+    id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
+  {% endif %}
+>
   {% if section.settings.hero_image != blank %}
     <div class="blog-hero__image">
       <picture>
@@ -405,6 +410,12 @@
   "tag": "section",
   "limit": 1,
   "settings": [
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Anchor ID (lowercase with hyphens)",
+      "info": "Example: history or about-us"
+    },
     {
       "type": "image_picker",
       "id": "hero_image",
