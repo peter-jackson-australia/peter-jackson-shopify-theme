@@ -115,7 +115,12 @@
   class="image-with-text {% if section.settings.alignment == 'right' %}image-with-text--right{% endif %}"
   aria-label="Image with text section"
 >
-  <figure class="image-with-text__media-container">
+  <figure
+    class="image-with-text__media-container"
+    {% if section.settings.anchor_id != blank %}
+      id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
+    {% endif %}
+  >
     <div class="image-with-text__images-wrapper">
       {% if section.settings.first_image != blank %}
         <div class="image-with-text__image-container {% if section.settings.second_image != blank %}image-with-text__image-container--first{% endif %}">
@@ -163,6 +168,12 @@
   "name": "Image With Text",
   "tag": "section",
   "settings": [
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Anchor ID (lowercase with hyphens)",
+      "info": "Example: history or about-us"
+    },
     {
       "type": "image_picker",
       "id": "first_image",
