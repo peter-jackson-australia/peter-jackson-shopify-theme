@@ -104,61 +104,23 @@
         "color": ""
       }
     },
-    "faqs_LQXrQH": {
-      "type": "faqs",
-      "blocks": {
-        "heading_cUhtmQ": {
-          "type": "heading",
-          "settings": {
-            "heading": "FAQ Category",
-            "anchor_id": ""
-          }
-        },
-        "faq_item_xQxy4w": {
-          "type": "faq_item",
-          "settings": {
-            "question": "FAQ question",
-            "answer": "<p><strong>Answer</strong> your <em>customer's</em> <a href=\"/collections/accessories\" title=\"Accessories\">question</a> here.</p><ul><li>We acknowledge this country's First Nations peoples and their ongoing strength in practising the world's oldest living culture. We acknowledge the Traditional Owners of the lands and waters on which we live and work, and pay our respect to their Elders past, present and emerging.</li></ul><ol><li>We acknowledge this country's First Nations peoples and their ongoing strength in practising the world's oldest living culture. We acknowledge the Traditional Owners of the lands and waters on which we live and work, and pay our respect to their Elders past, present and emerging.</li></ol><p></p>"
-          }
-        },
-        "faq_item_fagtNM": {
-          "type": "faq_item",
-          "settings": {
-            "question": "FAQ question",
-            "answer": "<p>Answer your customer's question here.</p>"
-          }
-        },
-        "heading_NdR6Fh": {
-          "type": "heading",
-          "settings": {
-            "heading": "FAQ Category",
-            "anchor_id": ""
-          }
-        },
-        "faq_item_CqkYg8": {
-          "type": "faq_item",
-          "settings": {
-            "question": "FAQ question",
-            "answer": "<p>Answer your customer's question here.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "heading_cUhtmQ",
-        "faq_item_xQxy4w",
-        "faq_item_fagtNM",
-        "heading_NdR6Fh",
-        "faq_item_CqkYg8"
-      ],
-      "name": "FAQ Section",
+    "heading_with_text_F4PBGE": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
       "settings": {
+        "anchor_id": "",
         "show_top_border": false,
-        "show_bottom_border": false
+        "show_bottom_border": false,
+        "leading_text": "Introduction",
+        "heading": "Section Heading",
+        "heading_style": "normal",
+        "content": "<ul><li><strong>Add</strong> your <em>content</em> here. This area uses the rich text editor so you <a href=\"/collections/accessories\" title=\"Accessories\">can</a> format text, add links, and more.</li><li></li><li>test</li></ul>",
+        "alignment": "left"
       }
     }
   },
   "order": [
     "contact_form",
-    "faqs_LQXrQH"
+    "heading_with_text_F4PBGE"
   ]
 }
