@@ -36,7 +36,8 @@
       "settings": {
         "autoplay": true,
         "slide_interval": 5,
-        "background_color": "green-700"
+        "background_color": "neutral-950",
+        "text_color": "white"
       }
     },
     "header": {
