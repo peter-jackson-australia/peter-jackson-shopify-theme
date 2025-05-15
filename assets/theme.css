@@ -370,6 +370,11 @@ accordion-element > .ploiu-accordion-body > .body > p > strong {
   font-weight: 500; 
 }
 
+accordion-element > .ploiu-accordion-body > .body > p > a {
+  color: var(--neutral-600);
+}
+
+
 accordion-element:not(.open) > .ploiu-accordion-body {
   height: 0 !important;
   padding: 0 var(--space-m);
