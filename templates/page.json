@@ -71,12 +71,39 @@
         "quote_text": "With a new generation of Jackson's at the helm and more than 60 stores nationally, Peter Jackson still remains a family business echoing views and values established 70 years ago.",
         "background_color": "neutral-950"
       }
+    },
+    "heading_with_text_GUmwjw": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "leading_text": "Mills & Production",
+        "heading": "All Peter Jackson fabrics are sourced from the most respected and prestigious textile producers in the world.",
+        "heading_style": "normal",
+        "content": "<p>Our chosen mills are renowned for their refined production techniques, dedication to quality, and use of premium natural fibres. Our enduring partnerships with them stem from their innovative approach and eco-friendly practices, with a focus on environmental performance and compliance with regulations.</p><p>Our suits are crafted from Australian Merino wool that is meticulously cultivated by generations of Australian woolgrowers. We use Merino wool because its resilient natural stretch prevents it from losing its shape. When the fabric is stretched, the fibres natural crimp acts like a spring returning it to its original form. Its durability also stems from it being comprised of a special protein called Keratin. Keratin acts as a barrier, protecting you (and the sheep!) from environmental elements</p>",
+        "alignment": "center"
+      }
+    },
+    "collection_slider_secondary_aebwFC": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "Suiting",
+        "description": "We are committed to bridging the gap between accessibility and luxury. We dedicate ourselves to bringing you the best possible value for quality tailored menswear.",
+        "collection": "new-suits",
+        "button_label": "Shop Now",
+        "products_to_show": 10
+      }
     }
   },
   "order": [
     "editorial_hero_VU9Aei",
     "image_with_text_CyHrD8",
     "variable_column_content_8UyUJ8",
-    "block_quote_TQfhmP"
+    "block_quote_TQfhmP",
+    "heading_with_text_GUmwjw",
+    "collection_slider_secondary_aebwFC"
   ]
 }
