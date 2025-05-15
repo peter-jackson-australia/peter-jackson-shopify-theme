@@ -79,7 +79,12 @@
     </div>
   {% endif %}
 
-  <div class="editorial-hero__title-container">
+  <div
+    class="editorial-hero__title-container"
+    {% if section.settings.anchor_id != blank %}
+      id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
+    {% endif %}
+  >
     {% if section.settings.first_title != blank %}
       <h1 class="editorial-hero__first-title heading--4xl">
         {{ section.settings.first_title }}
@@ -143,6 +148,12 @@
   "tag": "section",
   "limit": 1,
   "settings": [
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Anchor ID (lowercase with hyphens)",
+      "info": "Example: history or about-us"
+    },
     {
       "type": "text",
       "id": "leading_text",
