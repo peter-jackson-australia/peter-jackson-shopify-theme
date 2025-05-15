@@ -12,7 +12,6 @@ Home page sections:
     Add ability for content editors to assign ID to each section so links can be /#some-link
     Assign all sections to a relevant category
     Check all labels and default settings
-    Ensure no repeated section tags
 
     Admin: 
     Find a way to restrict multiple hero sections
