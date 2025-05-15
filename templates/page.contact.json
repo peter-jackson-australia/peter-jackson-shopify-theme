@@ -104,30 +104,25 @@
         "color": ""
       }
     },
-    "blog_hero_aH4gNK": {
-      "type": "blog-hero",
-      "name": "Blog Hero",
+    "editorial_hero_N3tjmm": {
+      "type": "editorial-hero",
+      "name": "Hero Editorial",
       "settings": {
         "anchor_id": "",
         "show_top_border": true,
         "show_bottom_border": true,
-        "show_image_overlay": true,
-        "image_heading": "Featured Article",
-        "image_description": "<p>Discover our latest collection and insights in this featured article.</p>",
-        "image_link_text": "Read More",
-        "image_link_url": "",
-        "heading": "The Journal",
-        "subheading": "Heritage Meets Heritage",
-        "description": "<p>A spotlight on our partnership with prestigious Italian Mill, Vitale Barberis Canonico. With over 360 years of heritage, we've developed a capsule range that highlights 3 centuries of expertise.</p>",
-        "cta_link": "",
-        "cta_text": "Read Now",
-        "show_recent_posts": true,
-        "blog": ""
+        "leading_text": "",
+        "first_title": "Discover",
+        "media_type": "image",
+        "second_title": "Collection",
+        "description": "",
+        "cta_text": "Shop Now",
+        "cta_link": ""
       }
     }
   },
   "order": [
     "contact_form",
-    "blog_hero_aH4gNK"
+    "editorial_hero_N3tjmm"
   ]
 }
