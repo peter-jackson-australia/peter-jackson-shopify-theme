@@ -9,7 +9,7 @@ Home page sections:
     Animations
     
     Schema:
-    Ensure all sections have the ability to add border top and bottom ()
+    Animations
     Check all labels and default settings
 
     Admin: 
