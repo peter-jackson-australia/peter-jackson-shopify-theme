@@ -154,11 +154,11 @@
 
     <div class="image-with-text__content">
       {% if section.settings.heading != blank %}
-        <h2 class="image-with-text__title heading--2xl">{{ section.settings.heading }}</h2>
+        <h2 class="image-with-text__title heading--2xl animate-rotate-scroll">{{ section.settings.heading }}</h2>
       {% endif %}
 
       {% if section.settings.text != blank %}
-        <div class="image-with-text__text body">{{ section.settings.text }}</div>
+        <div class="image-with-text__text body .animate-opacity-scrub-scroll">{{ section.settings.text }}</div>
       {% endif %}
 
       {% if section.settings.button_label != blank and section.settings.button_link != blank %}
