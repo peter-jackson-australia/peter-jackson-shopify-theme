@@ -161,7 +161,12 @@
   </style>
 
   <div class="shop-the-look-global" id="section-{{ section.id }}">
-    <div class="shop-the-look-global__slider-container">
+    <div
+      class="shop-the-look-global__slider-container"
+      {% if section.settings.anchor_id != blank %}
+        id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
+      {% endif %}
+    >
       <h2 class="heading--xl shop-the-look-global__heading">{{ section.settings.heading }}</h2>
 
       {% assign product_count = 0 %}
@@ -387,6 +392,12 @@
   "name": "Shop the Look Global",
   "tag": "section",
   "settings": [
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Anchor ID (lowercase with hyphens)",
+      "info": "Example: history or about-us"
+    },
     {
       "type": "text",
       "id": "heading",
