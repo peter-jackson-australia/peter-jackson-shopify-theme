@@ -33,7 +33,12 @@
   }
 </style>
 
-<div class="heading-with-text heading-with-text--{{ section.settings.alignment }}">
+<div
+  class="heading-with-text heading-with-text--{{ section.settings.alignment }}"
+  {% if section.settings.anchor_id != blank %}
+    id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
+  {% endif %}
+>
   <div class="heading-with-text__heading-group">
     {% if section.settings.leading_text != blank %}
       <p class="heading-with-text__leading body--uppercase">{{ section.settings.leading_text }}</p>
@@ -59,6 +64,12 @@
   "tag": "section",
   "class": "section",
   "settings": [
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Anchor ID (lowercase with hyphens)",
+      "info": "Example: history or about-us"
+    },
     {
       "type": "text",
       "id": "leading_text",
