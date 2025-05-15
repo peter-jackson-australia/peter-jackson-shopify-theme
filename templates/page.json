@@ -156,6 +156,21 @@
         "show_top_border": true,
         "show_bottom_border": true
       }
+    },
+    "icon_callout_GpH4gY": {
+      "type": "icon-callout",
+      "name": "Icon Callout",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "icon": "shopify://shop_images/beyond-blue-footer-logo.svg",
+        "heading": "Beyond Blue",
+        "text": "For 75 years, our brand has been more than a menswear label—we've been a companion in men's lives, crafting confidence and style. Today, we deepen that commitment with a partnership with Beyond Blue aimed at supporting men's mental health and dismantling the stigma that surrounds it.",
+        "button_label": "Learn More",
+        "button_link": "",
+        "background_color": "green-700"
+      }
     }
   },
   "order": [
@@ -167,6 +182,7 @@
     "collection_slider_secondary_aebwFC",
     "shop_the_look_global_dJdX7a",
     "full_page_media_xTazU4",
-    "two_column_content_JDRceL"
+    "two_column_content_JDRceL",
+    "icon_callout_GpH4gY"
   ]
 }
