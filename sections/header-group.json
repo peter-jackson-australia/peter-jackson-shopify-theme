@@ -18,14 +18,14 @@
           "type": "announcement",
           "settings": {
             "text": "Welcome to our store! <a href=\"#\"> Find out more</a>",
-            "alignment": "left"
+            "alignment": "center"
           }
         },
         "announcement_iJMTjg": {
           "type": "announcement",
           "settings": {
             "text": "2 Welcome to our store! <a href=\"#\"> Find out more</a>",
-            "alignment": "left"
+            "alignment": "center"
           }
         }
       },
