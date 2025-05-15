@@ -201,8 +201,6 @@
                 }}
               {% endif %}
             </picture>
-          {% else %}
-            {{ 'image' | placeholder_svg_tag: 'two-column-content__image placeholder' }}
           {% endif %}
 
           {% if has_product %}
@@ -335,7 +333,7 @@
     }
   ],
   "enabled_on": {
-    "templates": ["index", "page", "article"]
+    "templates": ["index", "page", "article", "blog"]
   }
 }
 {% endschema %}
