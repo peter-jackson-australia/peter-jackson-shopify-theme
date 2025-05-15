@@ -7,8 +7,6 @@ const cartElements = {
 
 window.addEventListener("load", () => {
   quicklink.listen();
-  var image = document.getElementsByClassName("parallax-scroll");
-  new simpleParallax(image);
 });
 
 document.addEventListener("DOMContentLoaded", () => {
