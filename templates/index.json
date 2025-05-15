@@ -275,6 +275,60 @@
         "product2": "alessio-off-white-denim-jacket",
         "product3": ""
       }
+    },
+    "block_quote_jWbdcn": {
+      "type": "block-quote",
+      "name": "Block Quote",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "quote_text": "Add a memorable quote that represents your brand values or highlights your products.",
+        "background_color": "green-700"
+      }
+    },
+    "heading_with_text_nXDJtX": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "leading_text": "Introduction",
+        "heading": "Section Heading",
+        "heading_style": "normal",
+        "content": "<p>Add your content here. This area uses the rich text editor so you can format text, add links, and more.</p>",
+        "alignment": "center"
+      }
+    },
+    "icon_callout_YX3Qbm": {
+      "type": "icon-callout",
+      "name": "Icon Callout",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "icon": "shopify://shop_images/beyond-blue-footer-logo.svg",
+        "heading": "Feature Heading",
+        "text": "Add descriptive text about this feature or benefit to help visitors understand your offerings better.",
+        "button_label": "Learn More",
+        "button_link": "",
+        "background_color": "green-700"
+      }
+    },
+    "two_column_heading_text_PFHx3f": {
+      "type": "two-column-heading-text",
+      "name": "Two Column Heading Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "icon": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-30.webp",
+        "heading": "Section Heading",
+        "heading_style": "normal",
+        "content": "<p>Add your content here. This area uses the rich text editor so you can format text, add links, and more.</p>",
+        "alignment": "left"
+      }
     }
   },
   "order": [
@@ -290,6 +344,10 @@
     "variable_column_content_nrKaDc",
     "full_page_media_JDAyid",
     "video_dK3HqF",
-    "shop_the_look_global_xR4JDN"
+    "shop_the_look_global_xR4JDN",
+    "block_quote_jWbdcn",
+    "heading_with_text_nXDJtX",
+    "icon_callout_YX3Qbm",
+    "two_column_heading_text_PFHx3f"
   ]
 }
