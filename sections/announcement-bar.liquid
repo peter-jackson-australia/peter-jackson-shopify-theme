@@ -1,8 +1,20 @@
 <style>
+  .announcement-bar-section {
+    position: absolute;
+    top: var(--space-xl);
+    left: 0;
+    width: 100%;
+    z-index: 10;
+  }
+
   .announcement-bar {
-    background-color: var(--{{section.settings.background_color}});
-    color: var(--{{section.settings.text_color}});
+    background-color: {% if section.settings.background_color != 'transparent' %}var(--{{ section.settings.background_color }}){% else %}transparent{% endif %};
+    color: var(--{{ section.settings.text_color }});
     padding: var(--space-2xs);
+    width: 100%;
+    {% if section.settings.background_color == 'white' %}
+      border-top: 1px solid var(--neutral-200);
+    {% endif %}
   }
 
   .announcement-bar .splide__slide {
@@ -65,6 +77,7 @@
 {
   "name": "Announcement Bar",
   "class": "announcement-bar-section",
+  "limit": 1,
   "settings": [
     {
       "type": "checkbox",
@@ -87,6 +100,10 @@
       "id": "background_color",
       "label": "Background Color",
       "options": [
+        {
+          "value": "transparent",
+          "label": "Transparent"
+        },
         {
           "value": "neutral-950",
           "label": "Black"
@@ -162,6 +179,9 @@
         }
       ]
     }
-  ]
+  ],
+  "enabled_on": {
+    "templates": ["index"]
+  }
 }
 {% endschema %}
