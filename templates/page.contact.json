@@ -115,8 +115,9 @@
         "show_title": false,
         "width": "contained",
         "aspect_ratio": "16-9",
+        "autoplay": true,
         "loop": false,
-        "muted": false
+        "muted": true
       }
     }
   },
