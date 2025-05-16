@@ -11,7 +11,6 @@ Home page sections:
     Schema:
     Animations
 
-    Fix the sizing information section to be rich text (Care guide, Sizing Information, Specifications)
     Fix height of all hero secitons with new announcmeent bar changes
     Add flexibility for grid content collection slot to not have content and just image
     increase resolution for pdp images 
