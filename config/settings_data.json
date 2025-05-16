@@ -38,8 +38,8 @@
           "match_cart_discount_title": false
         }
       },
-      "16559847531084589941": {
-        "type": "shopify://apps/pareto-volume-discount/blocks/app-embed-block/170ada5d-6ed5-4d40-b93c-1aa195de1ccc",
+      "4370498596972413234": {
+        "type": "shopify://apps/bogo-bundle-quantity-breaks/blocks/bundle-script/c214782b-9117-4fc8-b8c2-3c94d685bb81",
         "disabled": false,
         "settings": {}
       }
