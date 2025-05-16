@@ -14,8 +14,6 @@ Home page sections:
     higher resolution for all images
     Add flexibility for grid content collection slot to not have content and just image
     make the collection pages featuredd image clickable
-    Fix height of all hero secitons with new announcmeent bar changes
-    Remove the overlay shadow for hero sections
     add vertical alignment support for hero sections
     variable column content 2 - add headings underneath 
 
