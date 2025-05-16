@@ -24,9 +24,29 @@
         "button_label": "Learn More",
         "button_link": ""
       }
+    },
+    "hero_countdown_timer_9gemxD": {
+      "type": "hero-countdown-timer",
+      "name": "Hero Countdown Timer",
+      "settings": {
+        "background_image": "shopify://shop_images/peter-jackson-menswear-green-jacket-white-turtleneck.webp",
+        "heading": "Limited Time Offer",
+        "subheading": "Do not miss out on this special offer!",
+        "target_date": "2025-12-31T23:59:59",
+        "days_label": "Days",
+        "hours_label": "Hours",
+        "minutes_label": "Minutes",
+        "seconds_label": "Seconds",
+        "final_hours_threshold": 3,
+        "final_message": "Final hours! Do not miss out!",
+        "complete_message": "The countdown has ended!",
+        "button_label": "",
+        "button_link": ""
+      }
     }
   },
   "order": [
-    "image_with_text_yR3Cd4"
+    "image_with_text_yR3Cd4",
+    "hero_countdown_timer_9gemxD"
   ]
 }
