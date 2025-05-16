@@ -25,10 +25,18 @@
         "disabled": false,
         "settings": {}
       },
-      "14826766009936288847": {
-        "type": "shopify://apps/discounty/blocks/sdk/d65eb522-0d94-499f-9831-d4b3301f5340",
+      "16477348613150133823": {
+        "type": "shopify://apps/unlimited-bundles/blocks/script-app-block/d33d0f48-dee0-42a0-b156-2a5dce91814a",
         "disabled": false,
-        "settings": {}
+        "settings": {
+          "reload_on_line_item_properties": false,
+          "disable_reload_on_cart_update": false,
+          "disable_cart_attribute_tracker": false,
+          "disable_facebook_events": false,
+          "enable_reload_on_bundle_auto_match": false,
+          "use_h2_header": false,
+          "match_cart_discount_title": false
+        }
       }
     }
   }
