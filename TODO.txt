@@ -11,7 +11,7 @@ Home page sections:
     Schema:
     Animations
 
-    make the collection pages featured image clickable
+    Shop the look slider loads images bigger than single image
     add vertical alignment support for hero sections
     variable column content 2 - add headings underneath 
 
