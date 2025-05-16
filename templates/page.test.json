@@ -35,10 +35,22 @@
         "quote_text": "Add a memorable quote that represents your brand values or highlights your products.",
         "background_color": "green-800"
       }
+    },
+    "collection_slider_d7MrER": {
+      "type": "collection-slider",
+      "name": "Collection Slider",
+      "settings": {
+        "heading": "New In Now",
+        "description": "Layer up with premium wool/cashmere blends.",
+        "collection": "business-shirts",
+        "button_label": "Shop Now",
+        "products_to_show": 12
+      }
     }
   },
   "order": [
     "image_with_text_yR3Cd4",
-    "block_quote_fxMyHG"
+    "block_quote_fxMyHG",
+    "collection_slider_d7MrER"
   ]
 }
