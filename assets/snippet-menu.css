@@ -202,7 +202,7 @@ li:has(.menu-drawer__item--active) button > span:first-child {
   overflow: hidden;
   will-change: transform;
   padding: var(--space-m) var(--space-m);
-  height: 250px;
+  height: 550px;
 }
 
 .menu-drawer__featured-image img {
