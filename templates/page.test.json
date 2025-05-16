@@ -161,6 +161,20 @@
         "desktop_image": "shopify://shop_images/two-men-one-suit.webp",
         "alt_text": "Full page media"
       }
+    },
+    "shop_the_look_global_wRVfxe": {
+      "type": "shop-the-look-global",
+      "name": "Shop the Look Global",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": true,
+        "heading": "Shop the Look",
+        "featured_image": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-41.webp",
+        "product1": "albinoni-black-penny-loafer",
+        "product2": "aldo-black-leather-briefcase",
+        "product3": ""
+      }
     }
   },
   "order": [
@@ -173,6 +187,7 @@
     "collection_slider_nJKW6V",
     "collection_slider_secondary_c794YH",
     "editorial_hero_8qiKbE",
-    "full_page_media_Yi9UQT"
+    "full_page_media_Yi9UQT",
+    "shop_the_look_global_wRVfxe"
   ]
 }
