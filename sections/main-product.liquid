@@ -6,8 +6,6 @@
 <style>
   .product-images-container {
     position: relative;
-    width: 50vw;
-    height: calc(100dvh - var(--space-xl) - 35px);
     overflow: hidden;
   }
 
@@ -153,10 +151,10 @@
 
   .product-details__container {
     position: relative;
-    width: 50vw;
-    height: calc(100dvh - var(--space-xl) - 35px);
     overflow-y: auto;
     scrollbar-gutter: stable both-edges;
+    width: 50%;
+    margin: 0 auto;
   }
 
   .product-details__fade-overlay {
@@ -774,7 +772,8 @@
 
         const options = {
           direction: 'ttb',
-          height: '100vh',
+          height: Math.min({{product.images[0].height}} * (window.innerWidth * 0.5 / {{product.images[0].width}}), 
+          window.innerHeight * 1),
           wheel: true,
           waitForTransition: true,
           arrows: false,
@@ -784,8 +783,9 @@
           breakpoints: {
             1100: {
               type: 'slide',
-              height: '70vh',
               direction: 'ltr',
+              height: Math.min({{product.images[0].height}} * (window.innerWidth * 1 / {{product.images[0].width}}), 
+              window.innerHeight * 1), 
               arrows: true,
               perPage: 1,
               pagination: false,

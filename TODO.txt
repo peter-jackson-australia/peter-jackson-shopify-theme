@@ -10,6 +10,7 @@ Home page sections:
     Animations
 
     add vertical alignment support for hero sections
+    Make the menu featured images load faster
     variable column content 2 - add headings underneath 
 
 General blog template
