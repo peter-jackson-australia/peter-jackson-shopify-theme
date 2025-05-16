@@ -135,6 +135,23 @@
         "button_label": "Shop Now",
         "products_to_show": 10
       }
+    },
+    "editorial_hero_8qiKbE": {
+      "type": "editorial-hero",
+      "name": "Hero Editorial",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": true,
+        "leading_text": "",
+        "first_title": "Discover",
+        "media_type": "image",
+        "image": "shopify://shop_images/two-men-one-suit.webp",
+        "second_title": "Collection",
+        "description": "",
+        "cta_text": "Shop Now",
+        "cta_link": ""
+      }
     }
   },
   "order": [
@@ -145,6 +162,7 @@
     "hero_primary_3At64A",
     "hero_slider_aK39ay",
     "collection_slider_nJKW6V",
-    "collection_slider_secondary_c794YH"
+    "collection_slider_secondary_c794YH",
+    "editorial_hero_8qiKbE"
   ]
 }
