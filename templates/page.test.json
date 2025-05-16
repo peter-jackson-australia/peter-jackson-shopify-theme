@@ -25,28 +25,46 @@
         "button_link": ""
       }
     },
-    "hero_countdown_timer_9gemxD": {
-      "type": "hero-countdown-timer",
-      "name": "Hero Countdown Timer",
+    "two_column_content_r3C9Cx": {
+      "type": "two-column-content",
+      "blocks": {
+        "column_MrN3Aj": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-41.webp",
+            "product": "",
+            "heading": "Production",
+            "description": "Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review. Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.",
+            "button_label": "Learn More",
+            "button_link": ""
+          }
+        },
+        "column_4LNb4i": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/mens-jacket-green-cashmere-WT25-SC03-1.webp",
+            "product": "",
+            "heading": "Production",
+            "description": "Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review. Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.",
+            "button_label": "Learn More",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_MrN3Aj",
+        "column_4LNb4i"
+      ],
+      "name": "Two Column Content",
       "settings": {
-        "background_image": "shopify://shop_images/peter-jackson-menswear-green-jacket-white-turtleneck.webp",
-        "heading": "Limited Time Offer",
-        "subheading": "Do not miss out on this special offer!",
-        "target_date": "2025-12-31T23:59:59",
-        "days_label": "Days",
-        "hours_label": "Hours",
-        "minutes_label": "Minutes",
-        "seconds_label": "Seconds",
-        "final_hours_threshold": 3,
-        "final_message": "Final hours! Do not miss out!",
-        "complete_message": "The countdown has ended!",
-        "button_label": "Sale",
-        "button_link": "shopify://collections/accessories"
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false
       }
     }
   },
   "order": [
     "image_with_text_yR3Cd4",
-    "hero_countdown_timer_9gemxD"
+    "two_column_content_r3C9Cx"
   ]
 }
