@@ -304,12 +304,12 @@
         {% if section.settings.hero_image_mobile != blank %}
           <source
             media="(max-width: 767px)"
-            srcset="{{ section.settings.hero_image_mobile | image_url: width: 'master' }}"
+            srcset="{{ section.settings.hero_image_mobile | image_url: width: 2000 }}"
           >
         {% endif %}
         {{
           section.settings.hero_image
-          | image_url: width: 'master'
+          | image_url: width: 2000
           | image_tag: loading: 'lazy', alt: section.settings.heading, class: 'blog-hero__image-img'
         }}
       </picture>
