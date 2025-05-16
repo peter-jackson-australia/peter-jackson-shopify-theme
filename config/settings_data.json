@@ -24,11 +24,6 @@
         "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
         "disabled": false,
         "settings": {}
-      },
-      "6852929633348333696": {
-        "type": "shopify://apps/upsell-kit/blocks/convert_kit/8210f7df-6bdf-460f-856f-3fd7208d6832",
-        "disabled": false,
-        "settings": {}
       }
     }
   }
