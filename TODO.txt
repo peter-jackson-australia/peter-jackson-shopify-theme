@@ -11,7 +11,6 @@ Home page sections:
     Schema:
     Animations
 
-    green 700 to 800 
     move announcmeent bar moved to top of screen and hero section height recalculated / decrease the padding 
     Add flexibility for grid content collection slot to not have content and just image
     increase resolution for pdp images 
