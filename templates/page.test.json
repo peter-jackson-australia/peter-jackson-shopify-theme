@@ -14,9 +14,10 @@
       "name": "Image With Text",
       "settings": {
         "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": false,
+        "show_top_border": true,
+        "show_bottom_border": true,
         "first_image": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-41.webp",
+        "second_image": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-27.webp",
         "alignment": "left",
         "heading": "Image With Text",
         "text": "Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.",
