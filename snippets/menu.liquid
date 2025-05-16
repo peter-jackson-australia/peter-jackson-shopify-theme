@@ -124,16 +124,18 @@
           class="menu-drawer__featured-image"
           :class="{'menu-drawer__featured-image--loading-new-image': isImageLoading}"
         >
-          <img
-            :src="featuredImageUrl || '#'"
-            :alt="featuredImageAlt"
-            :srcset="generateSrcset(featuredImageUrl)"
-            :class="{'menu-drawer__media--inactive': currentLevel >= 3}"
-            loading="eager"
-            @load="imageLoaded = true; isImageLoading = false;"
-            height="100"
-            width="100"
-          >
+          <a :href="menuData[currentParentIndex]?.url || '#'">
+            <img
+              :src="featuredImageUrl || '#'"
+              :alt="featuredImageAlt"
+              :srcset="generateSrcset(featuredImageUrl)"
+              :class="{'menu-drawer__media--inactive': currentLevel >= 3}"
+              loading="eager"
+              @load="imageLoaded = true; isImageLoading = false;"
+              height="100"
+              width="100"
+            >
+          </a>
         </figure>
         <ul class="menu-drawer__menu" role="menu">
           <template x-for="(item, childIndex) in submenu" :key="childIndex">
