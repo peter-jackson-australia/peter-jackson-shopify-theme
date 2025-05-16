@@ -13,7 +13,7 @@
     margin: 0 auto;
   }
 
-  .image-with-text--right {
+  .image-with-text__container--right {
     flex-direction: row-reverse;
   }
 
@@ -97,13 +97,12 @@
   }
 
   @media screen and (max-width: 768px) {
-    .image-with-text {
+    .image-with-text__container {
       flex-direction: column;
       gap: var(--space-l);
-      padding: var(--space-l) var(--space-m);
     }
 
-    .image-with-text--right {
+    .image-with-text__container--right {
       flex-direction: column;
     }
 
@@ -112,15 +111,19 @@
       width: 100%;
       padding: 0;
     }
+
+    .image-with-text {
+      padding: var(--space-l) var(--space-m);
+    }
   }
 </style>
 
 <div
   id="image-with-text-{{ section.id }}"
-  class="image-with-text {% if section.settings.alignment == 'right' %}image-with-text--right{% endif %}"
+  class="image-with-text"
   aria-label="Image with text section"
 >
-  <div class="image-with-text__container">
+  <div class="image-with-text__container {% if section.settings.alignment == 'right' %}image-with-text__container--right{% endif %}">
     <figure
       class="image-with-text__media-container"
       {% if section.settings.anchor_id != blank %}
