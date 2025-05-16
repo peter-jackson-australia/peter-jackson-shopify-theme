@@ -677,24 +677,24 @@
 
             {% if has_specs %}
               <div class="product-tabs__content" data-content="specs">
-                {% if product.metafields.descriptors.care_guide != blank %}
+                {% if product.metafields.custom.care_guide != blank %}
                   <div class="product-tabs__metafield">
                     <h4 class="body--bold">Care Guide</h4>
-                    <div class="body">{{ product.metafields.custom.care_guide }}</div>
+                    <div class="body">{{ product.metafields.custom.care_guide | metafield_tag }}</div>
                   </div>
                 {% endif %}
 
                 {% if product.metafields.custom.garment_fit != blank %}
                   <div class="product-tabs__metafield">
                     <h4 class="body--bold">Sizing Information</h4>
-                    <div class="body">{{ product.metafields.custom.garment_fit }}</div>
+                    <div class="body">{{ product.metafields.custom.garment_fit | metafield_tag }}</div>
                   </div>
                 {% endif %}
 
                 {% if product.metafields.custom.product_specifications != blank %}
                   <div class="product-tabs__metafield">
                     <h4 class="body--bold">Specifications</h4>
-                    <div class="body">{{ product.metafields.custom.product_specifications }}</div>
+                    <div class="body">{{ product.metafields.custom.product_specifications | metafield_tag }}</div>
                   </div>
                 {% endif %}
               </div>
