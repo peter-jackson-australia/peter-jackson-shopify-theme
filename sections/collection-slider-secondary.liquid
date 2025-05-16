@@ -167,7 +167,7 @@
                     <div class="collection-slider-secondary__product-image-wrapper">
                       {% if product.featured_image != blank %}
                         <img
-                          src="{{ product.featured_image | image_url: width: '600px' }}"
+                          src="{{ product.featured_image | image_url: width: 'master' }}"
                           alt="{{ product.featured_image.alt | escape }}"
                           loading="lazy"
                           width="{{ product.featured_image.width }}"
@@ -272,9 +272,9 @@
       "type": "range",
       "id": "products_to_show",
       "min": 3,
-      "max": 24,
+      "max": 12,
       "step": 1,
-      "default": 10,
+      "default": 9,
       "label": "Maximum products to show"
     }
   ],
