@@ -13,7 +13,7 @@ body.menu-open {
 
 .menu-drawer__overlay {
   position: fixed;
-  top: var(--space-xl);
+  top: calc(var(--space-xl) + 35px);
   left: 0;
   right: 0;
   bottom: 0;
@@ -23,7 +23,7 @@ body.menu-open {
 
 .menu-drawer {
   position: fixed;
-  top: var(--space-xl);
+  top: calc(var(--space-xl) + 35px);
   bottom: 0;
   background: var(--white);
   overflow-x: hidden;
