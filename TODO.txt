@@ -7,8 +7,6 @@ Home page sections:
     fix all accessibiliy issues and warnings
     Ensure all sections are fast and do well in Lighthouse
     Animations
-    REMOVE EXAMPLE ANIMATIONS 
-    FIX TWO COLUMN LAYOUT SECTION TEXT
     
     Schema:
     Animations
