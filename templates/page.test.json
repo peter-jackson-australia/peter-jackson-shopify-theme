@@ -24,47 +24,9 @@
         "button_label": "Learn More",
         "button_link": ""
       }
-    },
-    "two_column_content_r3C9Cx": {
-      "type": "two-column-content",
-      "blocks": {
-        "column_MrN3Aj": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-41.webp",
-            "product": "",
-            "heading": "Production",
-            "description": "Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review. Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.",
-            "button_label": "Learn More",
-            "button_link": ""
-          }
-        },
-        "column_4LNb4i": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/mens-jacket-green-cashmere-WT25-SC03-1.webp",
-            "product": "",
-            "heading": "Production",
-            "description": "Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review. Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.",
-            "button_label": "Learn More",
-            "button_link": ""
-          }
-        }
-      },
-      "block_order": [
-        "column_MrN3Aj",
-        "column_4LNb4i"
-      ],
-      "name": "Two Column Content",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": false
-      }
     }
   },
   "order": [
-    "image_with_text_yR3Cd4",
-    "two_column_content_r3C9Cx"
+    "image_with_text_yR3Cd4"
   ]
 }
