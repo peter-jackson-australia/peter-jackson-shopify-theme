@@ -124,6 +124,17 @@
         "button_label": "Shop Now",
         "products_to_show": 10
       }
+    },
+    "collection_slider_secondary_c794YH": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "New In Now",
+        "description": "Layer up with premium wool/cashmere blends.",
+        "collection": "casual",
+        "button_label": "Shop Now",
+        "products_to_show": 10
+      }
     }
   },
   "order": [
@@ -133,6 +144,7 @@
     "hero_countdown_timer_htHihT",
     "hero_primary_3At64A",
     "hero_slider_aK39ay",
-    "collection_slider_nJKW6V"
+    "collection_slider_nJKW6V",
+    "collection_slider_secondary_c794YH"
   ]
 }
