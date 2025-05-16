@@ -11,7 +11,7 @@ Home page sections:
     Schema:
     Animations
 
-    move announcmeent bar moved to top of screen and hero section height recalculated / decrease the padding 
+    Fix height of all hero secitons with new announcmeent bar changes
     Add flexibility for grid content collection slot to not have content and just image
     increase resolution for pdp images 
     make the collection pages featuredd image portrait
