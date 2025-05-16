@@ -210,6 +210,7 @@ li:has(.menu-drawer__item--active) button > span:first-child {
   height: 100%;
   object-fit: cover;
   transform: translateZ(0);
+  background-color: var(--neutral-200); 
 }
 
 .menu-drawer__featured-image--loading-new-image img {
