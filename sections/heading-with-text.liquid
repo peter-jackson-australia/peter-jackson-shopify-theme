@@ -46,18 +46,18 @@
   <div class="heading-with-text__container">
     <div class="heading-with-text__heading-group">
       {% if section.settings.leading_text != blank %}
-        <p class="heading-with-text__leading body--uppercase animate-slide-up-scroll">{{ section.settings.leading_text }}</p>
+        <p class="heading-with-text__leading body--uppercase">{{ section.settings.leading_text }}</p>
       {% endif %}
 
       {% if section.settings.heading != blank %}
-        <h2 class="heading-with-text__heading {% if section.settings.heading_style == 'decorative' %}heading--decorative{% else %}heading--2xl{% endif %} animate-slide-up-scroll">
+        <h2 class="heading-with-text__heading {% if section.settings.heading_style == 'decorative' %}heading--decorative{% else %}heading--2xl{% endif %}">
           {{ section.settings.heading }}
         </h2>
       {% endif %}
     </div>
 
     {% if section.settings.content != blank %}
-      <div class="heading-with-text__content body metafield-rich_text_field animate-opacity-scrub-scroll">
+      <div class="heading-with-text__content body metafield-rich_text_field">
         {{ section.settings.content }}
       </div>
     {% endif %}

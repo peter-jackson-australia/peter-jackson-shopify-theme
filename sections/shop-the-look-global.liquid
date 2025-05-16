@@ -169,7 +169,7 @@
         id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
       {% endif %}
     >
-      <h2 class="heading--xl shop-the-look-global__heading animate-slide-up-scroll">{{ section.settings.heading }}</h2>
+      <h2 class="heading--xl shop-the-look-global__heading">{{ section.settings.heading }}</h2>
 
       {% assign product_count = 0 %}
       {% if section.settings.product1 != blank %}{% assign product_count = product_count | plus: 1 %}{% endif %}

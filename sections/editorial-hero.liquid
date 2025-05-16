@@ -88,7 +88,7 @@
     {% endif %}
   >
     {% if section.settings.first_title != blank %}
-      <h1 class="editorial-hero__first-title heading--4xl animate-slide-up-scroll">
+      <h1 class="editorial-hero__first-title heading--4xl">
         {{ section.settings.first_title }}
       </h1>
     {% endif %}
@@ -123,21 +123,21 @@
 
   <div class="editorial-hero__title-container">
     {% if section.settings.second_title != blank %}
-      <h1 class="editorial-hero__second-title heading--4xl animate-slide-up-scroll">
+      <h1 class="editorial-hero__second-title heading--4xl">
         {{ section.settings.second_title }}
       </h1>
     {% endif %}
   </div>
 
   {% if section.settings.description != blank %}
-    <p class="editorial-hero__description body animate-body-slide-up-scroll">
+    <p class="editorial-hero__description body">
       {{ section.settings.description }}
     </p>
   {% endif %}
 
   {% if section.settings.cta_text != blank and section.settings.cta_link != blank %}
     <div class="editorial-hero__cta-container">
-      <a href="{{ section.settings.cta_link }}" class="editorial-hero__cta button animate-body-slide-up-scroll">
+      <a href="{{ section.settings.cta_link }}" class="editorial-hero__cta button">
         {{ section.settings.cta_text }}
       </a>
     </div>

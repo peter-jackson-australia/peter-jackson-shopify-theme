@@ -92,11 +92,11 @@
     {% endif %}
 
     {% if section.settings.heading != blank %}
-      <h2 class="icon-callout__heading heading--xl animate-slide-up-scroll">{{ section.settings.heading }}</h2>
+      <h2 class="icon-callout__heading heading--xl">{{ section.settings.heading }}</h2>
     {% endif %}
 
     {% if section.settings.text != blank %}
-      <div class="icon-callout__text body animate-body-slide-up-scroll">{{ section.settings.text }}</div>
+      <div class="icon-callout__text body">{{ section.settings.text }}</div>
     {% endif %}
 
     {% if section.settings.button_label != blank and section.settings.button_link != blank %}
