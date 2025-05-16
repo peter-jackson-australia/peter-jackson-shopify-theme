@@ -43,7 +43,7 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
-        "hero_image": "shopify://shop_images/Peter_Jackson_Suits_Two_men_wearing_suits_and_coats_in_the_snow.webp",
+        "hero_image": "shopify://shop_images/two-men-one-suit.webp",
         "show_image_overlay": true,
         "image_heading": "Featured Article Title",
         "image_description": "Description text for the featured article.",
@@ -62,7 +62,7 @@
       "type": "hero-countdown-timer",
       "name": "Hero Countdown Timer",
       "settings": {
-        "background_image": "shopify://shop_images/Peter_Jackson_Suits_Two_men_wearing_suits_and_coats_in_the_snow.webp",
+        "background_image": "shopify://shop_images/two-men-one-suit.webp",
         "heading": "Limited Time Offer",
         "subheading": "Do not miss out on this special offer!",
         "target_date": "2025-12-31T23:59:59",
@@ -81,7 +81,7 @@
       "type": "hero-primary",
       "name": "Hero Section",
       "settings": {
-        "desktop_image": "shopify://shop_images/Peter_Jackson_Suits_Two_men_wearing_suits_and_coats_in_the_snow.webp",
+        "desktop_image": "shopify://shop_images/two-men-one-suit.webp",
         "heading": "Welcome to Our Store",
         "description": "Discover our latest collection",
         "button_label": "Shop Now",
@@ -96,7 +96,7 @@
           "type": "slide",
           "settings": {
             "media_type": "image",
-            "desktop_image": "shopify://shop_images/Peter_Jackson_Suits_Two_men_wearing_suits_and_coats_in_the_snow.webp",
+            "desktop_image": "shopify://shop_images/two-men-one-suit.webp",
             "heading": "Welcome to Our Store",
             "description": "Discover our latest collection",
             "button_label": "Shop Now",
