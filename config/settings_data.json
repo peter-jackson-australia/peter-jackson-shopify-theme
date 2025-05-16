@@ -25,12 +25,10 @@
         "disabled": false,
         "settings": {}
       },
-      "18228966181090706294": {
-        "type": "shopify://apps/selleasy/blocks/app-embed/790c1a03-a71f-4bc1-9869-00dad526d3c2",
+      "6852929633348333696": {
+        "type": "shopify://apps/upsell-kit/blocks/convert_kit/8210f7df-6bdf-460f-856f-3fd7208d6832",
         "disabled": false,
-        "settings": {
-          "storefrontAccessToken": ""
-        }
+        "settings": {}
       }
     }
   }
