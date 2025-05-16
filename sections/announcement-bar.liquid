@@ -1,88 +1,82 @@
-{% if template == 'index' %}
-  <style>
-    .announcement-bar-section {
-      position: absolute;
-      top: var(--space-xl);
-      left: 0;
-      width: 100%;
-      z-index: 10;
-    }
+<style>
+  .announcement-bar-section {
+    width: 100%;
+  }
 
-    .announcement-bar {
-      background-color: {% if section.settings.background_color != 'transparent' %}var(--{{ section.settings.background_color }}){% else %}transparent{% endif %};
-      color: var(--{{ section.settings.text_color }});
-      padding: var(--space-2xs);
-      width: 100%;
-      {% if section.settings.background_color == 'white' %}
-        border-top: 1px solid var(--neutral-200);
-      {% endif %}
-    }
+  .announcement-bar {
+    background-color: {% if section.settings.background_color != 'transparent' %}var(--{{ section.settings.background_color }}){% else %}transparent{% endif %};
+    color: var(--{{ section.settings.text_color }});
+    padding: var(--space-2xs);
+    width: 100%;
+    {% if section.settings.background_color == 'white' %}
+      border-bottom: 1px solid var(--neutral-200);
+    {% endif %}
+  }
 
-    .announcement-bar__content > a {
-      color: var(--{{ section.settings.text_color }});
-    }
+  .announcement-bar__content > a {
+    color: var(--{{ section.settings.text_color }});
+  }
 
-    .announcement-bar__content > strong {
-      font-family: 'Ordinary Regular', sans-serif;
-      font-weight: 500;
-    }
+  .announcement-bar__content > strong {
+    font-family: 'Ordinary Regular', sans-serif;
+    font-weight: 500;
+  }
 
-    .announcement-bar .splide__slide {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+  .announcement-bar .splide__slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-    .announcement-bar__content {
-      width: 100%;
-    }
+  .announcement-bar__content {
+    width: 100%;
+  }
 
-    .announcement-bar__content--left {
-      text-align: left;
-      justify-content: flex-start;
-    }
+  .announcement-bar__content--left {
+    text-align: left;
+    justify-content: flex-start;
+  }
 
-    .announcement-bar__content--center {
-      text-align: center;
-      justify-content: center;
-    }
+  .announcement-bar__content--center {
+    text-align: center;
+    justify-content: center;
+  }
 
-    .announcement-bar__content--right {
-      text-align: right;
-      justify-content: flex-end;
-    }
-  </style>
+  .announcement-bar__content--right {
+    text-align: right;
+    justify-content: flex-end;
+  }
+</style>
 
-  <div class="announcement-bar splide" id="announcement-bar-{{ section.id }}">
-    <div class="splide__track">
-      <ul class="splide__list">
-        {% for block in section.blocks %}
-          <li class="splide__slide" {{ block.shopify_attributes }}>
-            <div class="announcement-bar__content body announcement-bar__content--{{ block.settings.alignment | default: 'center' }}">
-              {{ block.settings.text }}
-            </div>
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
+<div class="announcement-bar splide" id="announcement-bar-{{ section.id }}">
+  <div class="splide__track">
+    <ul class="splide__list">
+      {% for block in section.blocks %}
+        <li class="splide__slide" {{ block.shopify_attributes }}>
+          <div class="announcement-bar__content small announcement-bar__content--{{ block.settings.alignment | default: 'center' }}">
+            {{ block.settings.text }}
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
   </div>
+</div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const slider = new Splide('#announcement-bar-{{ section.id }}', {
-        type: 'loop',
-        perPage: 1,
-        arrows: false,
-        pagination: false,
-        drag: true,
-        autoplay: {{ section.settings.autoplay }},
-        interval: {{ section.settings.slide_interval | times: 1000 }}
-      });
-
-      slider.mount();
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const slider = new Splide('#announcement-bar-{{ section.id }}', {
+      type: 'loop',
+      perPage: 1,
+      arrows: false,
+      pagination: false,
+      drag: true,
+      autoplay: {{ section.settings.autoplay }},
+      interval: {{ section.settings.slide_interval | times: 1000 }}
     });
-  </script>
-{% endif %}
+
+    slider.mount();
+  });
+</script>
 
 {% schema %}
 {
@@ -111,10 +105,6 @@
       "id": "background_color",
       "label": "Background Color",
       "options": [
-        {
-          "value": "transparent",
-          "label": "Transparent"
-        },
         {
           "value": "neutral-950",
           "label": "Black"
