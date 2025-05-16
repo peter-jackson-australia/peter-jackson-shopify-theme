@@ -152,6 +152,15 @@
         "cta_text": "Shop Now",
         "cta_link": ""
       }
+    },
+    "full_page_media_Yi9UQT": {
+      "type": "full-page-media",
+      "name": "Full Page Media",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/two-men-one-suit.webp",
+        "alt_text": "Full page media"
+      }
     }
   },
   "order": [
@@ -163,6 +172,7 @@
     "hero_slider_aK39ay",
     "collection_slider_nJKW6V",
     "collection_slider_secondary_c794YH",
-    "editorial_hero_8qiKbE"
+    "editorial_hero_8qiKbE",
+    "full_page_media_Yi9UQT"
   ]
 }
