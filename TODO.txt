@@ -11,11 +11,11 @@ Home page sections:
     Schema:
     Animations
 
+increase resolution for pdp images grid slider images
     Fix height of all hero secitons with new announcmeent bar changes
     Add flexibility for grid content collection slot to not have content and just image
-    increase resolution for pdp images 
     make the collection pages featuredd image portrait
-    can turn the shadow on or off for hero sections
+    Remove the overlay shadow for hero sections
     add vertical alignment support for hero sections
     variable column content 2 - add headings underneath 
 
