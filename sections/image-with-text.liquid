@@ -135,7 +135,7 @@
           <div class="image-with-text__image-container {% if section.settings.second_image != blank %}image-with-text__image-container--first{% endif %}">
             {{
               section.settings.first_image
-              | image_url: width: 1000
+              | image_url: width: 2000
               | image_tag: class: 'image-with-text__image', alt: section.settings.first_image.alt
               | default: section.settings.heading, loading: 'lazy'
             }}
@@ -146,7 +146,7 @@
           <div class="image-with-text__image-container image-with-text__image-container--second">
             {{
               section.settings.second_image
-              | image_url: width: 1000
+              | image_url: width: 2000
               | image_tag: class: 'image-with-text__image', alt: section.settings.second_image.alt
               | default: section.settings.heading, loading: 'lazy'
             }}
