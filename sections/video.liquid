@@ -48,7 +48,7 @@
       {% endif %}
     >
       {% if section.settings.poster_image %}
-        {% assign poster_url = section.settings.poster_image | image_url: width: 1500 %}
+        {% assign poster_url = section.settings.poster_image | image_url: width: 2000 %}
         {{
           section.settings.video
           | video_tag:

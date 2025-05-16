@@ -39,7 +39,7 @@
               >
                 {% if link.links.size > 0 %}
                   <button
-                    @click="openLevel(2, '{{ link.title }}', {{ forloop.index0 }}, '{{ link.object.featured_image | image_url: width: 1200 }}', '{{ link.object.featured_image.alt }}')"
+                    @click="openLevel(2, '{{ link.title }}', {{ forloop.index0 }}, '{{ link.object.featured_image | image_url: width: 700 }}', '{{ link.object.featured_image.alt }}')"
                     class="menu-drawer__button menu-drawer__button--has-submenu body--uppercase"
                     role="menuitem"
                     aria-haspopup="true"

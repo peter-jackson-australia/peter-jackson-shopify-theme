@@ -181,13 +181,13 @@
               {% if block.settings.image_mobile != blank %}
                 <source
                   media="(max-width: 767px)"
-                  srcset="{{ block.settings.image_mobile | image_url: width: 'master' }}"
+                  srcset="{{ block.settings.image_mobile | image_url: width: 1000 }}"
                 >
               {% endif %}
               {% if has_product %}
                 {{
                   block.settings.image
-                  | image_url: width: 800
+                  | image_url: width: 1000
                   | image_tag:
                     class: 'two-column-content__image has-product',
                     loading: 'lazy',
@@ -196,7 +196,7 @@
               {% else %}
                 {{
                   block.settings.image
-                  | image_url: width: 800
+                  | image_url: width: 1000
                   | image_tag: class: 'two-column-content__image', loading: 'lazy', alt: block.settings.image.alt
                 }}
               {% endif %}
