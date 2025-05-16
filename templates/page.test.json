@@ -24,9 +24,21 @@
         "button_label": "Learn More",
         "button_link": ""
       }
+    },
+    "block_quote_fxMyHG": {
+      "type": "block-quote",
+      "name": "Block Quote",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "quote_text": "Add a memorable quote that represents your brand values or highlights your products.",
+        "background_color": "green-800"
+      }
     }
   },
   "order": [
-    "image_with_text_yR3Cd4"
+    "image_with_text_yR3Cd4",
+    "block_quote_fxMyHG"
   ]
 }
