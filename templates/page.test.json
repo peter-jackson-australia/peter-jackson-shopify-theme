@@ -113,6 +113,17 @@
         "autoplay": true,
         "slide_interval": 5
       }
+    },
+    "collection_slider_nJKW6V": {
+      "type": "collection-slider",
+      "name": "Collection Slider",
+      "settings": {
+        "heading": "New In Now",
+        "description": "Layer up with premium wool/cashmere blends.",
+        "collection": "black-tie-weddings",
+        "button_label": "Shop Now",
+        "products_to_show": 10
+      }
     }
   },
   "order": [
@@ -121,6 +132,7 @@
     "blog_hero_AfCwVi",
     "hero_countdown_timer_htHihT",
     "hero_primary_3At64A",
-    "hero_slider_aK39ay"
+    "hero_slider_aK39ay",
+    "collection_slider_nJKW6V"
   ]
 }
