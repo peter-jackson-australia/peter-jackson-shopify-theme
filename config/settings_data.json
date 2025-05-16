@@ -38,8 +38,8 @@
           "match_cart_discount_title": false
         }
       },
-      "8171265131012698934": {
-        "type": "shopify://apps/oc-quantity-breaks-limit/blocks/orichi-discount/3f38eaa3-2a3f-4e55-bcc9-df5d3f75e351",
+      "16559847531084589941": {
+        "type": "shopify://apps/pareto-volume-discount/blocks/app-embed-block/170ada5d-6ed5-4d40-b93c-1aa195de1ccc",
         "disabled": false,
         "settings": {}
       }
