@@ -36,21 +36,91 @@
         "background_color": "green-800"
       }
     },
-    "collection_slider_d7MrER": {
-      "type": "collection-slider",
-      "name": "Collection Slider",
+    "blog_hero_AfCwVi": {
+      "type": "blog-hero",
+      "name": "Blog Hero",
       "settings": {
-        "heading": "New In Now",
-        "description": "Layer up with premium wool/cashmere blends.",
-        "collection": "business-shirts",
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "hero_image": "shopify://shop_images/Peter_Jackson_Suits_Two_men_wearing_suits_and_coats_in_the_snow.webp",
+        "show_image_overlay": true,
+        "image_heading": "Featured Article Title",
+        "image_description": "Description text for the featured article.",
+        "image_link_text": "Read More",
+        "image_link_url": "",
+        "heading": "The Jackson Journal",
+        "subheading": "Heritage Meets Heritage",
+        "description": "Some general information about the blog collection",
+        "cta_link": "",
+        "cta_text": "Read Now",
+        "show_recent_posts": true,
+        "blog": ""
+      }
+    },
+    "hero_countdown_timer_htHihT": {
+      "type": "hero-countdown-timer",
+      "name": "Hero Countdown Timer",
+      "settings": {
+        "background_image": "shopify://shop_images/Peter_Jackson_Suits_Two_men_wearing_suits_and_coats_in_the_snow.webp",
+        "heading": "Limited Time Offer",
+        "subheading": "Do not miss out on this special offer!",
+        "target_date": "2025-12-31T23:59:59",
+        "days_label": "Days",
+        "hours_label": "Hours",
+        "minutes_label": "Minutes",
+        "seconds_label": "Seconds",
+        "final_hours_threshold": 3,
+        "final_message": "Final hours! Do not miss out!",
+        "complete_message": "The countdown has ended!",
+        "button_label": "",
+        "button_link": ""
+      }
+    },
+    "hero_primary_3At64A": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "desktop_image": "shopify://shop_images/Peter_Jackson_Suits_Two_men_wearing_suits_and_coats_in_the_snow.webp",
+        "heading": "Welcome to Our Store",
+        "description": "Discover our latest collection",
         "button_label": "Shop Now",
-        "products_to_show": 12
+        "button_link": "",
+        "content_alignment": "center"
+      }
+    },
+    "hero_slider_aK39ay": {
+      "type": "hero-slider",
+      "blocks": {
+        "slide_TMbqge": {
+          "type": "slide",
+          "settings": {
+            "media_type": "image",
+            "desktop_image": "shopify://shop_images/Peter_Jackson_Suits_Two_men_wearing_suits_and_coats_in_the_snow.webp",
+            "heading": "Welcome to Our Store",
+            "description": "Discover our latest collection",
+            "button_label": "Shop Now",
+            "button_link": "",
+            "content_alignment": "center"
+          }
+        }
+      },
+      "block_order": [
+        "slide_TMbqge"
+      ],
+      "name": "Hero Slider",
+      "settings": {
+        "autoplay": true,
+        "slide_interval": 5
       }
     }
   },
   "order": [
     "image_with_text_yR3Cd4",
     "block_quote_fxMyHG",
-    "collection_slider_d7MrER"
+    "blog_hero_AfCwVi",
+    "hero_countdown_timer_htHihT",
+    "hero_primary_3At64A",
+    "hero_slider_aK39ay"
   ]
 }
