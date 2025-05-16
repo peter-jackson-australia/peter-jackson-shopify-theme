@@ -38,22 +38,10 @@
 
   @media not all and (min-resolution:.001dpcm) {
     @supports (-webkit-appearance:none) {
-      .hero-slider .hero-slider__overlay {
-        -webkit-transform: translate3d(0,0,0);
-      }
-
       .hero-slider .hero-slider__content {
         -webkit-transform: translate3d(0,0,0);
       }
     }
-  }
-
-  .hero-slider__overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
   }
 
   .hero-slider__content {
@@ -201,7 +189,6 @@
             </div>
           {% endif %}
 
-          <div class="hero-slider__overlay"></div>
           <div class="hero-slider__content hero-slider__content--{{ block.settings.content_alignment | default: 'center' }}">
             <h1 class="heading--3xl">{{ block.settings.heading }}</h1>
 
@@ -244,11 +231,7 @@
     if (isSafari) {
       slider.on('mounted', function() {
         const sliderElement = document.getElementById('hero-slider-{{ section.id }}');
-        const overlaysInHero = sliderElement.querySelectorAll('.hero-slider__overlay');
         const contentsInHero = sliderElement.querySelectorAll('.hero-slider__content');
-        overlaysInHero.forEach(el => {
-          el.style.transform = 'translateZ(0)';
-        });
 
         contentsInHero.forEach(el => {
           el.style.transform = 'translateZ(0)';
@@ -259,14 +242,11 @@
         const currentSlideNum = slider.index;
         requestAnimationFrame(function() {
           const currentSlide = slider.Components.Elements.slides[currentSlideNum];
-          const overlay = currentSlide.querySelector('.hero-slider__overlay');
           const content = currentSlide.querySelector('.hero-slider__content');
 
-          if (overlay) overlay.style.willChange = 'transform';
           if (content) content.style.willChange = 'transform';
 
           setTimeout(function() {
-            if (overlay) overlay.style.willChange = 'auto';
             if (content) content.style.willChange = 'auto';
           }, 500);
         });

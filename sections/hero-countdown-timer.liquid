@@ -17,16 +17,6 @@
     z-index: 1;
   }
 
-  .countdown-timer__overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: 2;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
-  }
-
   .countdown-timer__container {
     position: absolute;
     bottom: 0;
@@ -104,7 +94,6 @@
       | image_tag: class: 'countdown-timer__background', alt: section.settings.background_image.alt
       | default: section.settings.heading, loading: 'lazy'
     }}
-    <div class="countdown-timer__overlay"></div>
   {% endif %}
 
   <div class="countdown-timer__container">
