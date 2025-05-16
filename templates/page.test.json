@@ -19,9 +19,25 @@
         "button_label": "Shop Now",
         "products_to_show": 10
       }
+    },
+    "image_with_text_yR3Cd4": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "first_image": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-41.webp",
+        "alignment": "left",
+        "heading": "Image With Text",
+        "text": "Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
     }
   },
   "order": [
-    "collection_slider_iDTgXU"
+    "collection_slider_iDTgXU",
+    "image_with_text_yR3Cd4"
   ]
 }
