@@ -2,16 +2,13 @@ BEFORE 23rd May
 Home page sections:
     Code:
     Finish the sections: Contact Form 
-    Ensure all sections have matching padding
     Ensure all sections are perfectly responsive
-    fix all accessibiliy issues and warnings
     Ensure all sections are fast and do well in Lighthouse
     Animations
     
     Schema:
     Animations
 
-    Shop the look slider loads images bigger than single image
     add vertical alignment support for hero sections
     variable column content 2 - add headings underneath 
 
