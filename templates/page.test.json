@@ -116,7 +116,7 @@
             "description": "Discover our latest collection",
             "button_label": "Shop Now",
             "button_link": "",
-            "content_alignment": "center"
+            "content_alignment": "left"
           }
         }
       },
