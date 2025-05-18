@@ -66,6 +66,8 @@
         "heading": "Limited Time Offer",
         "subheading": "Do not miss out on this special offer!",
         "target_date": "2025-12-31T23:59:59",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "middle",
         "days_label": "Days",
         "hours_label": "Hours",
         "minutes_label": "Minutes",
