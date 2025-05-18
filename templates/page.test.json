@@ -104,8 +104,8 @@
             "description": "Discover our latest collection",
             "button_label": "Shop Now",
             "button_link": "",
-            "horizontal_alignment": "center",
-            "vertical_alignment": "bottom"
+            "horizontal_alignment": "right",
+            "vertical_alignment": "top"
           }
         },
         "slide_KBFLLr": {
