@@ -3,7 +3,6 @@
     position: relative;
     height: calc(100dvh - var(--space-xl) - 35px);
     overflow: hidden;
-    text-align: center;
     color: var(--white);
   }
 
@@ -19,19 +18,56 @@
 
   .countdown-timer__container {
     position: absolute;
-    bottom: 0;
-    left: 0;
     width: 100%;
     z-index: 3;
-    padding: 0 var(--space-m) var(--space-2xl) var(--space-m);
+    padding: 0 var(--space-m);
     display: grid;
     gap: var(--space-s);
   }
 
+  .countdown-timer__container--left {
+    text-align: left;
+    justify-items: start;
+  }
+
+  .countdown-timer__container--center {
+    text-align: center;
+    justify-items: center;
+  }
+
+  .countdown-timer__container--right {
+    text-align: right;
+    justify-items: end;
+  }
+
+  .countdown-timer__container--top {
+    top: 0;
+    padding-top: var(--space-2xl);
+  }
+
+  .countdown-timer__container--middle {
+    top: 50%;
+    transform: translateY(-50%);
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .countdown-timer__container--bottom {
+    bottom: 0;
+    padding-bottom: var(--space-2xl);
+  }
+
   .countdown-timer__blocks {
     display: flex;
-    justify-content: center;
     gap: var(--space-m);
+  }
+
+  .countdown-timer__container--center .countdown-timer__blocks {
+    justify-content: center;
+  }
+
+  .countdown-timer__container--right .countdown-timer__blocks {
+    justify-content: flex-end;
   }
 
   .countdown-timer__block {
@@ -71,6 +107,10 @@
       justify-items: center;
     }
 
+    .countdown-timer__container--top {
+      padding-top: var(--space-xl);
+    }
+
     .countdown-timer__blocks {
       gap: var(--space-s);
       justify-content: flex-start;
@@ -96,7 +136,7 @@
     }}
   {% endif %}
 
-  <div class="countdown-timer__container">
+  <div class="countdown-timer__container countdown-timer__container--{{ section.settings.horizontal_alignment | default: 'center' }} countdown-timer__container--{{ section.settings.vertical_alignment | default: 'bottom' }}">
     {% if section.settings.heading != blank %}
       <h1 class="countdown-timer__heading heading--3xl">
         {{ section.settings.heading }}
@@ -275,6 +315,50 @@
       "label": "Target Date and Time (Melbourne)",
       "default": "2025-12-31T23:59:59",
       "info": "Enter date in format: YYYY-MM-DDTHH:MM:SS (e.g., 2025-12-31T23:59:59)"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "horizontal_alignment",
+      "label": "Horizontal Alignment",
+      "default": "center",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "vertical_alignment",
+      "label": "Vertical Alignment",
+      "default": "bottom",
+      "options": [
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "middle",
+          "label": "Middle"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        }
+      ]
     },
     {
       "type": "header",

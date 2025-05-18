@@ -9,7 +9,7 @@ Home page sections:
     Schema:
     Animations
 
-    add vertical alignment support for hero sections
+    add vertical alignment support for hero sections (countdown, slider) 
     Make the menu featured images load faster
     variable column content 2 - add headings underneath 
 
