@@ -117,8 +117,8 @@
             "description": "Discover our latest collection",
             "button_label": "Shop Now",
             "button_link": "",
-            "horizontal_alignment": "center",
-            "vertical_alignment": "middle"
+            "horizontal_alignment": "left",
+            "vertical_alignment": "top"
           }
         }
       },
