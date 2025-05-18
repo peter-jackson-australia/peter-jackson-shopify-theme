@@ -17,11 +17,9 @@
 
   .hero__content {
     position: absolute;
-    bottom: 0;
-    left: 0;
     width: 100%;
     z-index: 3;
-    padding: 0 var(--space-m) var(--space-2xl) var(--space-m);
+    padding: 0 var(--space-m);
     display: grid;
     gap: var(--space-s);
     color: var(--white);
@@ -42,15 +40,39 @@
     justify-items: end;
   }
 
+  .hero__content--top {
+    top: 0;
+    padding-top: var(--space-2xl);
+  }
+
+  .hero__content--middle {
+    top: 50%;
+    transform: translateY(-50%);
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .hero__content--bottom {
+    bottom: 0;
+    padding-bottom: var(--space-2xl);
+  }
+
   .hero__description {
     max-width: 80ch;
   }
 
   @media screen and (max-width: 768px) {
     .hero__content {
-      padding-bottom: var(--space-xl);
       text-align: left;
       justify-items: start;
+    }
+
+    .hero__content--top {
+      padding-top: var(--space-xl);
+    }
+
+    .hero__content--bottom {
+      padding-bottom: var(--space-xl);
     }
   }
 </style>
@@ -78,7 +100,7 @@
           preload: true
       }}
     {% endif %}
-    <div class="hero__content hero__content--{{ section.settings.content_alignment | default: 'center' }}">
+    <div class="hero__content hero__content--{{ section.settings.horizontal_alignment | default: 'center' }} hero__content--{{ section.settings.vertical_alignment | default: 'bottom' }}">
       <h1 class="heading--3xl">{{ section.settings.heading }}</h1>
 
       <div class="heading--l">
@@ -139,8 +161,8 @@
     },
     {
       "type": "select",
-      "id": "content_alignment",
-      "label": "Content Alignment",
+      "id": "horizontal_alignment",
+      "label": "Horizontal Alignment",
       "default": "center",
       "options": [
         {
@@ -154,6 +176,26 @@
         {
           "value": "right",
           "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "vertical_alignment",
+      "label": "Vertical Alignment",
+      "default": "bottom",
+      "options": [
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "middle",
+          "label": "Middle"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
         }
       ]
     }
