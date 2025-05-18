@@ -1,440 +1,436 @@
 <style>
-  .countdown-timer {
+  .hero-slider {
     position: relative;
     height: calc(100dvh - var(--space-xl) - 35px);
-    overflow: hidden;
-    color: var(--white);
   }
 
-  .countdown-timer__background {
+  .hero-slider .splide__slide {
+    position: relative;
+    height: calc(100dvh - var(--space-xl) - 35px);
+  }
+
+  .hero-slider__background {
     position: absolute;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
     z-index: 1;
   }
 
-  .countdown-timer__container {
+  .hero-slider__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .hero-slider__video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-slider__background--mobile {
+    display: none;
+  }
+
+  @media not all and (min-resolution:.001dpcm) {
+    @supports (-webkit-appearance:none) {
+      .hero-slider .hero-slider__content {
+        -webkit-transform: translate3d(0,0,0);
+      }
+    }
+  }
+
+  .hero-slider__content {
     position: absolute;
     width: 100%;
     z-index: 3;
     padding: 0 var(--space-m);
     display: grid;
     gap: var(--space-s);
+    color: var(--white);
   }
 
-  .countdown-timer__container--left {
+  .hero-slider__content--left {
     text-align: left;
     justify-items: start;
   }
 
-  .countdown-timer__container--center {
+  .hero-slider__content--center {
     text-align: center;
     justify-items: center;
   }
 
-  .countdown-timer__container--right {
+  .hero-slider__content--right {
     text-align: right;
     justify-items: end;
   }
 
-  .countdown-timer__container--top {
+  .hero-slider__content--top {
     top: 0;
     padding-top: var(--space-2xl);
   }
 
-  .countdown-timer__container--middle {
+  .hero-slider__content--middle {
     top: 50%;
     transform: translateY(-50%);
     padding-top: 0;
     padding-bottom: 0;
   }
 
-  .countdown-timer__container--bottom {
+  .hero-slider__content--bottom {
     bottom: 0;
     padding-bottom: var(--space-2xl);
   }
 
-  .countdown-timer__blocks {
+  .hero-slider__description {
+    max-width: 80ch;
+  }
+
+  .hero-slider .splide__pagination {
+    position: absolute;
+    bottom: var(--space-m);
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0;
+    z-index: 4;
     display: flex;
-    gap: var(--space-m);
+    gap: var(--space-xs);
   }
 
-  .countdown-timer__container--center .countdown-timer__blocks {
-    justify-content: center;
+  .hero-slider__content--left ~ .splide__pagination {
+    left: var(--space-m);
+    transform: none;
   }
 
-  .countdown-timer__container--right .countdown-timer__blocks {
-    justify-content: flex-end;
+  .hero-slider__content--right ~ .splide__pagination {
+    left: auto;
+    right: var(--space-m);
+    transform: none;
   }
 
-  .countdown-timer__block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 80px;
+  .hero-slider .splide__pagination__page {
+    width: 8px;
+    height: 8px;
+    margin: 0;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--neutral-600);
+    transition: background-color 0.3s ease;
+    cursor: pointer;
   }
 
-  .countdown-timer__value {
-    display: inline-block;
-    width: 100%;
-    padding: var(--space-s);
-    background-color: transparent;
-    border: 1px solid var(--white);
-    color: var(--white);
-    margin-bottom: var(--space-xs);
-    text-align: center;
-  }
-
-  .countdown-timer__label {
-    color: var(--white);
-  }
-
-  .countdown-timer__button-container {
-    margin-top: var(--space-m);
-  }
-
-  .countdown-timer__final-message,
-  .countdown-timer__complete-message {
-    display: none;
+  .hero-slider .splide__pagination__page.is-active {
+    background-color: var(--white);
+    transform: none;
   }
 
   @media screen and (max-width: 768px) {
-    .countdown-timer__container {
-      padding-bottom: var(--space-xl);
-      text-align: center;
-      justify-items: center;
+    .hero-slider__content {
+      text-align: left;
+      justify-items: start;
     }
 
-    .countdown-timer__container--top {
+    .hero-slider__content--top {
       padding-top: var(--space-xl);
     }
 
-    .countdown-timer__blocks {
-      gap: var(--space-s);
-      justify-content: flex-start;
+    .hero-slider__content--bottom {
+      padding-bottom: var(--space-xl);
     }
 
-    .countdown-timer__block {
-      min-width: 60px;
+    .hero-slider .splide__pagination {
+      margin-left: var(--space-m);
+      left: var(--space-m);
+      bottom: var(--space-s);
     }
 
-    .countdown-timer__button-container {
-      margin-top: var(--space-s);
-    }
+    {% for block in section.blocks %}
+      {% if block.settings.mobile_image %}
+        #hero-slider-{{ section.id }} .splide__slide[data-block-id="{{ block.id }}"] .hero-slider__background--desktop {
+          display: none;
+        }
+
+        #hero-slider-{{ section.id }} .splide__slide[data-block-id="{{ block.id }}"] .hero-slider__background--mobile {
+          display: block;
+        }
+      {% endif %}
+    {% endfor %}
   }
 </style>
 
-<div id="countdown-timer-{{ section.id }}" class="countdown-timer">
-  {% if section.settings.background_image %}
-    {{
-      section.settings.background_image
-      | image_url: width: 2000
-      | image_tag: class: 'countdown-timer__background', alt: section.settings.background_image.alt
-      | default: section.settings.heading, loading: 'lazy'
-    }}
-  {% endif %}
+<div class="hero-slider splide" id="hero-slider-{{ section.id }}">
+  <div class="splide__track">
+    <ul class="splide__list">
+      {% for block in section.blocks %}
+        <li class="splide__slide" {{ block.shopify_attributes }} data-block-id="{{ block.id }}">
+          {% if block.settings.media_type == 'image' %}
+            {% if block.settings.desktop_image %}
+              {% assign loading_attr = 'lazy' %}
+              {% if forloop.first %}
+                {% assign loading_attr = 'eager' %}
+              {% endif %}
 
-  <div class="countdown-timer__container countdown-timer__container--{{ section.settings.horizontal_alignment | default: 'center' }} countdown-timer__container--{{ section.settings.vertical_alignment | default: 'bottom' }}">
-    {% if section.settings.heading != blank %}
-      <h1 class="countdown-timer__heading heading--3xl">
-        {{ section.settings.heading }}
-      </h1>
-    {% endif %}
+              {{
+                block.settings.desktop_image
+                | image_url: width: 2000
+                | image_tag:
+                  class: 'hero-slider__background hero-slider__background--desktop',
+                  loading: loading_attr,
+                  preload: true
+              }}
+            {% endif %}
 
-    {% if section.settings.subheading != blank %}
-      <div class="countdown-timer__subheading heading--l">
-        {{ section.settings.subheading }}
-      </div>
-    {% endif %}
+            {% if block.settings.mobile_image %}
+              {{
+                block.settings.mobile_image
+                | image_url: width: 2000
+                | image_tag:
+                  class: 'hero-slider__background hero-slider__background--mobile',
+                  loading: loading_attr,
+                  preload: true
+              }}
+            {% endif %}
+          {% elsif block.settings.media_type == 'video' and block.settings.video %}
+            <div class="hero-slider__video">
+              {{
+                block.settings.video
+                | video_tag:
+                  autoplay: true,
+                  loop: true,
+                  muted: true,
+                  controls: false,
+                  playsinline: true,
+                  class: 'hero-slider__video-element',
+                  id: 'video-'
+                | append: block.id
+              }}
+            </div>
+          {% endif %}
 
-    <div id="countdown-timer-blocks-{{ section.id }}" class="countdown-timer__blocks">
-      <div class="countdown-timer__block">
-        <div id="countdown-timer-days-{{ section.id }}" class="countdown-timer__value heading--xl">00</div>
-        <div class="countdown-timer__label body--uppercase">
-          {{ section.settings.days_label | default: 'Days' }}
-        </div>
-      </div>
+          <div class="hero-slider__content hero-slider__content--{{ block.settings.horizontal_alignment | default: 'center' }} hero-slider__content--{{ block.settings.vertical_alignment | default: 'bottom' }}">
+            <h1 class="heading--3xl">{{ block.settings.heading }}</h1>
 
-      <div class="countdown-timer__block">
-        <div id="countdown-timer-hours-{{ section.id }}" class="countdown-timer__value heading--xl">00</div>
-        <div class="countdown-timer__label body--uppercase">
-          {{ section.settings.hours_label | default: 'Hours' }}
-        </div>
-      </div>
+            <div class="heading--l">
+              {{ block.settings.description }}
+            </div>
 
-      <div class="countdown-timer__block">
-        <div id="countdown-timer-minutes-{{ section.id }}" class="countdown-timer__value heading--xl">00</div>
-        <div class="countdown-timer__label body--uppercase">
-          {{ section.settings.minutes_label | default: 'Minutes' }}
-        </div>
-      </div>
-
-      <div class="countdown-timer__block">
-        <div id="countdown-timer-seconds-{{ section.id }}" class="countdown-timer__value heading--xl">00</div>
-        <div class="countdown-timer__label body--uppercase">
-          {{ section.settings.seconds_label | default: 'Seconds' }}
-        </div>
-      </div>
-    </div>
-
-    <div
-      id="countdown-timer-final-{{ section.id }}"
-      class="countdown-timer__final-message countdown-timer__message heading--xl"
-    >
-      {{ section.settings.final_message | default: 'Final hours! Do not miss out!' }}
-    </div>
-
-    <div
-      id="countdown-timer-complete-{{ section.id }}"
-      class="countdown-timer__complete-message countdown-timer__message heading--xl"
-    >
-      {{ section.settings.complete_message | default: 'The countdown has ended!' }}
-    </div>
-
-    {% if section.settings.button_label != blank and section.settings.button_link != blank %}
-      <div class="countdown-timer__button-container">
-        <a
-          href="{{ section.settings.button_link }}"
-          class="button button--white"
-        >
-          {{ section.settings.button_label }}
-        </a>
-      </div>
-    {% endif %}
+            {% if block.settings.button_link and block.settings.button_label %}
+              <a
+                href="{{ block.settings.button_link }}"
+                class="button button--white"
+                aria-label="{{ block.settings.button_label | escape }}"
+              >
+                {{ block.settings.button_label }}
+              </a>
+            {% endif %}
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
   </div>
+  <div class="splide__pagination"></div>
 </div>
 
 <script>
-  (function() {
-    const sectionId = "{{ section.id }}";
-    const targetDateStr = "{{ section.settings.target_date }}";
-    const finalHoursThreshold = {{ section.settings.final_hours_threshold | default: 3 }};
+  document.addEventListener('DOMContentLoaded', function() {
+    const slider = new Splide('#hero-slider-{{ section.id }}', {
+      type: 'loop',
+      perPage: 1,
+      arrows: false,
+      pagination: true,
+      drag: true,
+      autoplay: {{ section.settings.autoplay }},
+      interval: {{ section.settings.slide_interval | times: 1000 }}
+    });
 
-    const daysElement = document.getElementById("countdown-timer-days-" + sectionId);
-    const hoursElement = document.getElementById("countdown-timer-hours-" + sectionId);
-    const minutesElement = document.getElementById("countdown-timer-minutes-" + sectionId);
-    const secondsElement = document.getElementById("countdown-timer-seconds-" + sectionId);
-    const blocksElement = document.getElementById("countdown-timer-blocks-" + sectionId);
-    const finalMessageElement = document.getElementById("countdown-timer-final-" + sectionId);
-    const completeMessageElement = document.getElementById("countdown-timer-complete-" + sectionId);
+    const isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1 &&
+                   navigator.userAgent && !navigator.userAgent.match('CriOS');
 
-    function getMelbourneTime() {
-      const [datePart, timePart] = targetDateStr.split('T');
-      const [year, month, day] = datePart.split('-').map(Number);
-      const [hours, minutes, seconds] = timePart.split(':').map(Number);
-      const dateObj = new Date(year, month - 1, day, hours, minutes, seconds);
-      const melbourne = new Date(dateObj);
-      const localTimezoneOffset = dateObj.getTimezoneOffset();
-      const melbourneTimezoneOffset = -600;
-      const offsetDiff = melbourneTimezoneOffset - localTimezoneOffset;
-      melbourne.setMinutes(melbourne.getMinutes() + offsetDiff);
+    if (isSafari) {
+      slider.on('mounted', function() {
+        const sliderElement = document.getElementById('hero-slider-{{ section.id }}');
+        const contentsInHero = sliderElement.querySelectorAll('.hero-slider__content');
 
-      return melbourne.getTime();
+        contentsInHero.forEach(el => {
+          el.style.transform = 'translateZ(0)';
+        });
+      });
+
+      slider.on('move', function() {
+        const currentSlideNum = slider.index;
+        requestAnimationFrame(function() {
+          const currentSlide = slider.Components.Elements.slides[currentSlideNum];
+          const content = currentSlide.querySelector('.hero-slider__content');
+
+          if (content) content.style.willChange = 'transform';
+
+          setTimeout(function() {
+            if (content) content.style.willChange = 'auto';
+          }, 500);
+        });
+      });
     }
 
-    const targetDate = getMelbourneTime();
+    slider.on('mounted', function() {
+      const heroSlider = document.getElementById('hero-slider-{{ section.id }}');
+      const videos = heroSlider.querySelectorAll('.hero-slider__video-element');
 
-    function updateTimer() {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
+      videos.forEach(function(video) {
+        video.muted = true;
+        video.playsInline = true;
+      });
+    });
 
-      if (distance <= 0) {
-        daysElement.textContent = "00";
-        hoursElement.textContent = "00";
-        minutesElement.textContent = "00";
-        secondsElement.textContent = "00";
-
-        blocksElement.style.display = "none";
-        finalMessageElement.style.display = "none";
-        completeMessageElement.style.display = "block";
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      daysElement.textContent = String(days).padStart(2, '0');
-      hoursElement.textContent = String(hours).padStart(2, '0');
-      minutesElement.textContent = String(minutes).padStart(2, '0');
-      secondsElement.textContent = String(seconds).padStart(2, '0');
-
-      if (distance <= (finalHoursThreshold * 60 * 60 * 1000)) {
-        blocksElement.style.display = "none";
-        finalMessageElement.style.display = "block";
-        completeMessageElement.style.display = "none";
-      } else {
-        blocksElement.style.display = "flex";
-        finalMessageElement.style.display = "none";
-        completeMessageElement.style.display = "none";
-      }
-
-      requestAnimationFrame(updateTimer);
-    }
-
-    if (targetDate) {
-      updateTimer();
-    }
-  })();
+    slider.mount();
+  });
 </script>
 
 {% schema %}
 {
-  "name": "Hero Countdown Timer",
-  "tag": "section",
-  "class": "section",
+  "name": "Hero Slider",
   "limit": 1,
+  "tag": "section",
   "settings": [
     {
-      "type": "header",
-      "content": "Countdown Settings"
-    },
-    {
-      "type": "image_picker",
-      "id": "background_image",
-      "label": "Background Image"
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Limited Time Offer"
-    },
-    {
-      "type": "text",
-      "id": "subheading",
-      "label": "Subheading",
-      "default": "Do not miss out on this special offer!"
-    },
-    {
-      "type": "text",
-      "id": "target_date",
-      "label": "Target Date and Time (Melbourne)",
-      "default": "2025-12-31T23:59:59",
-      "info": "Enter date in format: YYYY-MM-DDTHH:MM:SS (e.g., 2025-12-31T23:59:59)"
-    },
-    {
-      "type": "header",
-      "content": "Layout"
-    },
-    {
-      "type": "select",
-      "id": "horizontal_alignment",
-      "label": "Horizontal Alignment",
-      "default": "center",
-      "options": [
-        {
-          "value": "left",
-          "label": "Left"
-        },
-        {
-          "value": "center",
-          "label": "Center"
-        },
-        {
-          "value": "right",
-          "label": "Right"
-        }
-      ]
-    },
-    {
-      "type": "select",
-      "id": "vertical_alignment",
-      "label": "Vertical Alignment",
-      "default": "bottom",
-      "options": [
-        {
-          "value": "top",
-          "label": "Top"
-        },
-        {
-          "value": "middle",
-          "label": "Middle"
-        },
-        {
-          "value": "bottom",
-          "label": "Bottom"
-        }
-      ]
-    },
-    {
-      "type": "header",
-      "content": "Timer Labels"
-    },
-    {
-      "type": "text",
-      "id": "days_label",
-      "label": "Days Label",
-      "default": "Days"
-    },
-    {
-      "type": "text",
-      "id": "hours_label",
-      "label": "Hours Label",
-      "default": "Hours"
-    },
-    {
-      "type": "text",
-      "id": "minutes_label",
-      "label": "Minutes Label",
-      "default": "Minutes"
-    },
-    {
-      "type": "text",
-      "id": "seconds_label",
-      "label": "Seconds Label",
-      "default": "Seconds"
-    },
-    {
-      "type": "header",
-      "content": "Messages"
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay slides",
+      "default": true
     },
     {
       "type": "range",
-      "id": "final_hours_threshold",
-      "min": 1,
-      "max": 48,
+      "id": "slide_interval",
+      "min": 3,
+      "max": 30,
       "step": 1,
-      "default": 3,
-      "label": "Final Hours Threshold (hours)",
-      "info": "Show the final hours message when this many hours remain"
-    },
+      "unit": "sec",
+      "label": "Change slides every",
+      "default": 5
+    }
+  ],
+  "max_blocks": 4,
+  "blocks": [
     {
-      "type": "text",
-      "id": "final_message",
-      "label": "Final Hours Message",
-      "default": "Final hours! Do not miss out!"
-    },
-    {
-      "type": "text",
-      "id": "complete_message",
-      "label": "Completion Message",
-      "default": "The countdown has ended!"
-    },
-    {
-      "type": "header",
-      "content": "Button (Optional)"
-    },
-    {
-      "type": "text",
-      "id": "button_label",
-      "label": "Button Label"
-    },
-    {
-      "type": "url",
-      "id": "button_link",
-      "label": "Button Link"
+      "name": "Slide",
+      "type": "slide",
+      "settings": [
+        {
+          "type": "select",
+          "id": "media_type",
+          "label": "Media Type",
+          "options": [
+            {
+              "value": "image",
+              "label": "Image"
+            },
+            {
+              "value": "video",
+              "label": "Video"
+            }
+          ],
+          "default": "image"
+        },
+        {
+          "type": "image_picker",
+          "id": "desktop_image",
+          "label": "Desktop Image",
+          "info": "Used when Media Type is set to Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile Image (optional)",
+          "info": "If not provided, Desktop Image will be used on mobile devices"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video",
+          "info": "Used when Media Type is set to Video."
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Welcome to Our Store"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "Discover our latest collection"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Text",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        },
+        {
+          "type": "select",
+          "id": "horizontal_alignment",
+          "label": "Horizontal Alignment",
+          "default": "center",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "vertical_alignment",
+          "label": "Vertical Alignment",
+          "default": "bottom",
+          "options": [
+            {
+              "value": "top",
+              "label": "Top"
+            },
+            {
+              "value": "middle",
+              "label": "Middle"
+            },
+            {
+              "value": "bottom",
+              "label": "Bottom"
+            }
+          ]
+        }
+      ]
     }
   ],
   "presets": [
     {
-      "name": "Hero Countdown Timer",
-      "category": "Hero"
+      "name": "Hero Slider",
+      "category": "Hero",
+      "blocks": [
+        {
+          "type": "slide"
+        }
+      ]
     }
-  ]
+  ],
+  "enabled_on": {
+    "templates": ["index", "page", "article", "blog"]
+  }
 }
 {% endschema %}
