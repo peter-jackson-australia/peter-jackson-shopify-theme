@@ -38,7 +38,10 @@
 
   @media not all and (min-resolution:.001dpcm) {
     @supports (-webkit-appearance:none) {
-      .hero-slider .hero-slider__content {
+      .hero-slider .hero-slider__content--middle {
+        transform: translateY(-50%) translate3d(0,0,0);
+      }
+      .hero-slider .hero-slider__content:not(.hero-slider__content--middle) {
         -webkit-transform: translate3d(0,0,0);
       }
     }
@@ -256,7 +259,14 @@
         const contentsInHero = sliderElement.querySelectorAll('.hero-slider__content');
 
         contentsInHero.forEach(el => {
-          el.style.transform = 'translateZ(0)';
+          // Store original transform if it exists
+          const originalTransform = window.getComputedStyle(el).transform;
+          if (originalTransform && originalTransform !== 'none') {
+            // If the element already has a transform (like middle alignment), combine with translateZ
+            el.style.transform = originalTransform + ' translateZ(0)';
+          } else {
+            el.style.transform = 'translateZ(0)';
+          }
         });
       });
 
@@ -266,7 +276,10 @@
           const currentSlide = slider.Components.Elements.slides[currentSlideNum];
           const content = currentSlide.querySelector('.hero-slider__content');
 
-          if (content) content.style.willChange = 'transform';
+          if (content) {
+            // Set will-change while preserving existing transforms
+            content.style.willChange = 'transform';
+          }
 
           setTimeout(function() {
             if (content) content.style.willChange = 'auto';
