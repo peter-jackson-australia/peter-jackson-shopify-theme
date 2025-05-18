@@ -46,11 +46,9 @@
 
   .hero-slider__content {
     position: absolute;
-    bottom: 0;
-    left: 0;
     width: 100%;
     z-index: 3;
-    padding: 0 var(--space-m) var(--space-2xl) var(--space-m);
+    padding: 0 var(--space-m);
     display: grid;
     gap: var(--space-s);
     color: var(--white);
@@ -69,6 +67,23 @@
   .hero-slider__content--right {
     text-align: right;
     justify-items: end;
+  }
+
+  .hero-slider__content--top {
+    top: 0;
+    padding-top: var(--space-2xl);
+  }
+
+  .hero-slider__content--middle {
+    top: 50%;
+    transform: translateY(-50%);
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .hero-slider__content--bottom {
+    bottom: 0;
+    padding-bottom: var(--space-2xl);
   }
 
   .hero-slider__description {
@@ -115,16 +130,23 @@
 
   @media screen and (max-width: 768px) {
     .hero-slider__content {
-      padding-bottom: var(--space-xl);
       text-align: left;
       justify-items: start;
     }
 
+    .hero-slider__content--top {
+      padding-top: var(--space-xl);
+    }
+
+    .hero-slider__content--bottom {
+      padding-bottom: var(--space-xl);
+    }
+
     .hero-slider .splide__pagination {
-        margin-left: var(--space-m);
-        left: var(--space-m);
-        bottom: var(--space-s);
-      }
+      margin-left: var(--space-m);
+      left: var(--space-m);
+      bottom: var(--space-s);
+    }
 
     {% for block in section.blocks %}
       {% if block.settings.mobile_image %}
@@ -189,7 +211,7 @@
             </div>
           {% endif %}
 
-          <div class="hero-slider__content hero-slider__content--{{ block.settings.content_alignment | default: 'center' }}">
+          <div class="hero-slider__content hero-slider__content--{{ block.settings.horizontal_alignment | default: 'center' }} hero-slider__content--{{ block.settings.vertical_alignment | default: 'bottom' }}">
             <h1 class="heading--3xl">{{ block.settings.heading }}</h1>
 
             <div class="heading--l">
@@ -355,8 +377,8 @@
         },
         {
           "type": "select",
-          "id": "content_alignment",
-          "label": "Content Alignment",
+          "id": "horizontal_alignment",
+          "label": "Horizontal Alignment",
           "default": "center",
           "options": [
             {
@@ -370,6 +392,26 @@
             {
               "value": "right",
               "label": "Right"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "vertical_alignment",
+          "label": "Vertical Alignment",
+          "default": "bottom",
+          "options": [
+            {
+              "value": "top",
+              "label": "Top"
+            },
+            {
+              "value": "middle",
+              "label": "Middle"
+            },
+            {
+              "value": "bottom",
+              "label": "Bottom"
             }
           ]
         }
