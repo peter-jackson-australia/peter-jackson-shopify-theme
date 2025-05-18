@@ -841,6 +841,21 @@
     const tabContents = document.querySelectorAll('.product-tabs__content');
 
     if (tabButtons.length > 0) {
+      const descriptionTab = document.querySelector('[data-tab="description"]');
+      if (descriptionTab) {
+        descriptionTab.classList.add('is-active');
+        const descriptionContent = document.querySelector('[data-content="description"]');
+        if (descriptionContent) {
+          descriptionContent.classList.add('is-active');
+        }
+      } else if (tabButtons[0]) {
+        tabButtons[0].classList.add('is-active');
+        const firstTabContent = document.querySelector(`[data-content="${tabButtons[0].dataset.tab}"]`);
+        if (firstTabContent) {
+          firstTabContent.classList.add('is-active');
+        }
+      }
+
       tabButtons.forEach((button) => {
         button.addEventListener('click', function () {
           const tabName = this.dataset.tab;
