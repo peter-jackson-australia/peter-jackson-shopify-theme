@@ -86,7 +86,8 @@
         "description": "Discover our latest collection",
         "button_label": "Shop Now",
         "button_link": "",
-        "content_alignment": "center"
+        "horizontal_alignment": "center",
+        "vertical_alignment": "middle"
       }
     },
     "hero_slider_aK39ay": {
