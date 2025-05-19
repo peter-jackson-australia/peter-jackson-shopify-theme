@@ -431,6 +431,23 @@
     margin-bottom: var(--space-3xs);
   }
 
+  @media screen and (min-width: 1100px) {
+    #product {
+      align-items: flex-start;
+    }
+
+    .product-details__container {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      max-height: calc(100dvh - var(--space-xl) - 35px);
+      overflow-y: auto;
+    }
+
+    .product-details__container::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
   @media screen and (max-width: 1099px) {
     header {
       border-bottom: none;
@@ -450,7 +467,6 @@
       width: 100%;
       height: auto;
       padding: var(--space-m);
-      padding-bottom: 0px;
     }
 
     .product-details__header {
