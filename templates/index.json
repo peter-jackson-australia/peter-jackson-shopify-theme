@@ -46,10 +46,71 @@
         "button_label": "Shop Now",
         "products_to_show": 10
       }
+    },
+    "hero_primary_YCJLcF": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "desktop_image": "shopify://shop_images/Click_Frenzy_Hero.webp",
+        "heading": "Outerwear",
+        "description": "Wool-cashmere blends",
+        "button_label": "Shop Now",
+        "button_link": "shopify://collections/outerwear",
+        "horizontal_alignment": "left",
+        "vertical_alignment": "middle"
+      }
+    },
+    "variable_column_content_secondary_jHpEgT": {
+      "type": "variable-column-content-secondary",
+      "blocks": {
+        "column_item_c8jUhX": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-man-wearing-winter-coat.jpg",
+            "heading": "Column Heading",
+            "text": "Add a brief description for this column item."
+          }
+        },
+        "column_item_WQU99A": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Peter-Jackson-Man-Wearing-Suit-By-Lake.jpg",
+            "heading": "Column Heading",
+            "text": "Add a brief description for this column item."
+          }
+        },
+        "column_item_CF4TLx": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-man-wearing-sports-jacket-and-tie-walking-through-streets-of-europe.jpg",
+            "heading": "Column Heading",
+            "text": "Add a brief description for this column item."
+          }
+        }
+      },
+      "block_order": [
+        "column_item_c8jUhX",
+        "column_item_WQU99A",
+        "column_item_CF4TLx"
+      ],
+      "name": "Variable Column Content Secondary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "4",
+        "text_alignment": "left",
+        "heading": "",
+        "text": "",
+        "button_label": "",
+        "button_link": ""
+      }
     }
   },
   "order": [
     "hero_slider_YwPfy7",
-    "collection_slider_wUXWw3"
+    "collection_slider_wUXWw3",
+    "hero_primary_YCJLcF",
+    "variable_column_content_secondary_jHpEgT"
   ]
 }
