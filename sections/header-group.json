@@ -14,10 +14,10 @@
     "announcement": {
       "type": "announcement-bar",
       "blocks": {
-        "announcement_ycFxCM": {
+        "announcement_mQFJhL": {
           "type": "announcement",
           "settings": {
-            "text": "<strong>Welcome</strong> to our store! <a href=\"#\"> Find out more</a>",
+            "text": "Half Year Sale | up to 50% Off*",
             "alignment": "center"
           }
         },
@@ -30,7 +30,7 @@
         }
       },
       "block_order": [
-        "announcement_ycFxCM",
+        "announcement_mQFJhL",
         "announcement_iJMTjg"
       ],
       "settings": {
