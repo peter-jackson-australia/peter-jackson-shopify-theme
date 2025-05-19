@@ -15,14 +15,15 @@
         "slide_b3nJFG": {
           "type": "slide",
           "settings": {
-            "media_type": "video",
+            "media_type": "image",
+            "desktop_image": "shopify://shop_images/two-men-one-suit.webp",
             "video": "shopify://files/videos/Sale Red Fabric_Final.mp4",
-            "heading": "up to 50% Off*",
-            "description": "HALF YEAR SALE",
-            "button_label": "Shop Now",
+            "heading": "Higher Ground",
+            "description": "Winter 25 Collection",
+            "button_label": "Shop New",
             "button_link": "shopify://collections/sale",
-            "horizontal_alignment": "left",
-            "vertical_alignment": "middle"
+            "horizontal_alignment": "center",
+            "vertical_alignment": "bottom"
           }
         }
       },
@@ -34,9 +35,21 @@
         "autoplay": true,
         "slide_interval": 5
       }
+    },
+    "collection_slider_wUXWw3": {
+      "type": "collection-slider",
+      "name": "Collection Slider",
+      "settings": {
+        "heading": "New In Now",
+        "description": "Layer up with premium wool/cashmere blends.",
+        "collection": "sale",
+        "button_label": "Shop Now",
+        "products_to_show": 10
+      }
     }
   },
   "order": [
-    "hero_slider_YwPfy7"
+    "hero_slider_YwPfy7",
+    "collection_slider_wUXWw3"
   ]
 }
