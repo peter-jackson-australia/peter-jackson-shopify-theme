@@ -481,7 +481,7 @@
 
           <div
             id="AjaxinateContainer"
-            class="products-grid"
+            class="products-grid animate-container-cards-scroll"
             :class="
               {
                 'products-grid--cols-2': !expandedGrid,
@@ -588,7 +588,7 @@
               {% endif %}
             {% endif %}
           </div>
-          <div id="AjaxinatePagination">
+          <div id="AjaxinatePagination" class="animate-container-cards-scroll">
             {% if paginate.next %}
               <a aria-label="Loading More" href="{{ paginate.next.url }}"></a>
             {% endif %}
