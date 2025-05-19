@@ -30,9 +30,21 @@
         "show_recent_posts": true,
         "blog": "the-jackson-journal"
       }
+    },
+    "collection_slider_RTB3HN": {
+      "type": "collection-slider",
+      "name": "Collection Slider",
+      "settings": {
+        "heading": "New In Now",
+        "description": "Layer up with premium wool/cashmere blends.",
+        "collection": "new-arrivals",
+        "button_label": "Shop Now",
+        "products_to_show": 10
+      }
     }
   },
   "order": [
-    "blog_hero_3ryHLc"
+    "blog_hero_3ryHLc",
+    "collection_slider_RTB3HN"
   ]
 }
