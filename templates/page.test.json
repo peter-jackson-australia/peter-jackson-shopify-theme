@@ -193,6 +193,61 @@
         "product2": "albinoni-penny-loafer",
         "product3": ""
       }
+    },
+    "variable_column_content_secondary_MYRC7r": {
+      "type": "variable-column-content-secondary",
+      "blocks": {
+        "column_item_LijgV4": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-man-wearing-sports-jacket-and-tie-walking-through-streets-of-europe.jpg",
+            "heading": "Column Heading",
+            "text": "Add a brief description for this column item."
+          }
+        },
+        "column_item_tjRidR": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Peter-Jackson-Man-Wearing-Suit-By-Lake.jpg",
+            "heading": "Column Heading",
+            "text": "Add a brief description for this column item."
+          }
+        },
+        "column_item_qHG6pB": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-man-wearing-winter-coat.jpg",
+            "heading": "Column Heading",
+            "text": "Add a brief description for this column item."
+          }
+        },
+        "column_item_8qPbVn": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Peter_Jackson_Man_Wearing_Suit_By_Lake.webp",
+            "heading": "Column Heading",
+            "text": "Add a brief description for this column item."
+          }
+        }
+      },
+      "block_order": [
+        "column_item_LijgV4",
+        "column_item_tjRidR",
+        "column_item_qHG6pB",
+        "column_item_8qPbVn"
+      ],
+      "name": "Variable Column Content Secondary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "4",
+        "text_alignment": "center",
+        "heading": "Variable Column Content Secondary",
+        "text": "Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
     }
   },
   "order": [
@@ -206,6 +261,7 @@
     "collection_slider_secondary_c794YH",
     "editorial_hero_8qiKbE",
     "full_page_media_Yi9UQT",
-    "shop_the_look_global_wRVfxe"
+    "shop_the_look_global_wRVfxe",
+    "variable_column_content_secondary_MYRC7r"
   ]
 }
