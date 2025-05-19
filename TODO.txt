@@ -9,6 +9,8 @@ Home page sections:
     Schema:
     Animations
 
+    Hero slider - add in field for mobile video
+
     Make the menu featured images load faster
 
 General blog template
