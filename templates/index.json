@@ -9,22 +9,34 @@
  */
 {
   "sections": {
-    "two_column_heading_text_PFHx3f": {
-      "type": "two-column-heading-text",
-      "name": "Two Column Heading Text",
+    "hero_slider_YwPfy7": {
+      "type": "hero-slider",
+      "blocks": {
+        "slide_b3nJFG": {
+          "type": "slide",
+          "settings": {
+            "media_type": "video",
+            "video": "shopify://files/videos/Sale Red Fabric_Final.mp4",
+            "heading": "Welcome to Our Store",
+            "description": "Discover our latest collection",
+            "button_label": "Shop Now",
+            "button_link": "",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "bottom"
+          }
+        }
+      },
+      "block_order": [
+        "slide_b3nJFG"
+      ],
+      "name": "Hero Slider",
       "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": false,
-        "icon": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-30.webp",
-        "heading": "Section Heading",
-        "heading_style": "normal",
-        "content": "<p>Add your content here. This area uses the rich text editor so you can format text, add links, and more.</p>",
-        "alignment": "left"
+        "autoplay": true,
+        "slide_interval": 5
       }
     }
   },
   "order": [
-    "two_column_heading_text_PFHx3f"
+    "hero_slider_YwPfy7"
   ]
 }

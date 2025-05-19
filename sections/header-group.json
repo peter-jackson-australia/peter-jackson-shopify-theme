@@ -14,23 +14,23 @@
     "announcement": {
       "type": "announcement-bar",
       "blocks": {
-        "announcement_ycFxCM": {
+        "announcement_mQFJhL": {
           "type": "announcement",
           "settings": {
-            "text": "<strong>Welcome</strong> to our store! <a href=\"#\"> Find out more</a>",
+            "text": "Half Year Sale | up to 50% Off*",
             "alignment": "center"
           }
         },
         "announcement_iJMTjg": {
           "type": "announcement",
           "settings": {
-            "text": "2 Welcome to our store! <a href=\"#\"> Find out more</a>",
+            "text": "Merino Wool Suits starting from $399",
             "alignment": "center"
           }
         }
       },
       "block_order": [
-        "announcement_ycFxCM",
+        "announcement_mQFJhL",
         "announcement_iJMTjg"
       ],
       "settings": {
