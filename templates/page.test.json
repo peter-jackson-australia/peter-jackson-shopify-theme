@@ -378,8 +378,51 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
-        "quote_text": "Add a memorable quote that represents your brand values or highlights your products.",
+        "quote_text": "Add a memorable quote that represents your brand values or highlights your products. Add a memorable quote that represents your brand values or highlights your products. Add a memorable quote that represents your brand values or highlights your products.",
         "background_color": "white"
+      }
+    },
+    "heading_with_text_YAU6Bw": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "leading_text": "Introduction",
+        "heading": "Section Heading",
+        "heading_style": "decorative",
+        "content": "<p><strong>Add</strong> your content here. This area uses the rich text editor so you can format text, add links, and more. Add your content here. This area uses the rich text editor so you can format text, </p><ul><li>add links, and more. Add your content here. This area uses the rich text editor so you can format text, add links, and more. Add your content here. This area uses the rich text editor so you can format text, add links, and more. Add your content here. This area uses the rich text editor so you can format text, add links, and more. Add your content here. This area uses the rich text editor so you can format text, add links, and more. Add your content here. This area uses the rich text editor so you can format text, add links, and more. Add your content here. This area uses the rich text editor so you can format text, add links, and more.</li></ul>",
+        "alignment": "left"
+      }
+    },
+    "icon_callout_QCQiXU": {
+      "type": "icon-callout",
+      "name": "Icon Callout",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "icon": "shopify://shop_images/beyond-blue-footer-logo.svg",
+        "heading": "Feature Heading",
+        "text": "Add descriptive text about this feature or benefit to help visitors understand your offerings better.",
+        "button_label": "Learn More",
+        "button_link": "shopify://collections/accessories",
+        "background_color": "neutral-950"
+      }
+    },
+    "two_column_heading_text_wCiYH8": {
+      "type": "two-column-heading-text",
+      "name": "Two Column Heading Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "icon": "shopify://shop_images/mens-turtleneck-chocolate-wool-WT25-K01-10.webp",
+        "heading": "Section Heading",
+        "heading_style": "decorative",
+        "content": "<p><strong>Add</strong> your content here. This area uses the rich text editor so you can format text, add links, and more. Add your <a href=\"/collections/accessories\" title=\"Accessories\">content</a> here. This area uses the rich text editor so you can format text, add links, and more. Add your content here. This area uses the rich text editor so you can format text, add links, and more. </p><ul><li>Add your content here. This area uses the rich text editor so you can format text, add links, and more.</li></ul>",
+        "alignment": "left"
       }
     }
   },
@@ -400,6 +443,9 @@
     "full_page_media_fmYDXr",
     "video_PCPhDV",
     "shop_the_look_global_cRQM6n",
-    "block_quote_wjVYwG"
+    "block_quote_wjVYwG",
+    "heading_with_text_YAU6Bw",
+    "icon_callout_QCQiXU",
+    "two_column_heading_text_wCiYH8"
   ]
 }
