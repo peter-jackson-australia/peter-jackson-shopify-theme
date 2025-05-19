@@ -17,10 +17,10 @@
           "settings": {
             "media_type": "video",
             "video": "shopify://files/videos/Sale Red Fabric_Final.mp4",
-            "heading": "Welcome to Our Store",
-            "description": "Discover our latest collection",
+            "heading": "up to 50% Off*",
+            "description": "HALF YEAR SALE",
             "button_label": "Shop Now",
-            "button_link": "",
+            "button_link": "shopify://collections/sale",
             "horizontal_alignment": "center",
             "vertical_alignment": "bottom"
           }
