@@ -227,6 +227,149 @@
         "button_label": "Learn More",
         "button_link": "shopify://collections/bags"
       }
+    },
+    "two_column_content_TpwXa3": {
+      "type": "two-column-content",
+      "blocks": {
+        "column_cE8G6W": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-man-wearing-winter-coat.jpg",
+            "product": "",
+            "heading": "Column Heading",
+            "description": "Add your description text here.",
+            "button_label": "Learn More",
+            "button_link": ""
+          }
+        },
+        "column_BFfwnG": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-man-wearing-winter-coat.jpg",
+            "product": "",
+            "heading": "Column Heading",
+            "description": "Add your description text here. Add your description text here. Add your description text here. Add your description text here. Add your description text here. Add your description text here.",
+            "button_label": "Learn More",
+            "button_link": "shopify://collections/accessories"
+          }
+        }
+      },
+      "block_order": [
+        "column_cE8G6W",
+        "column_BFfwnG"
+      ],
+      "name": "Two Column Content",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false
+      }
+    },
+    "variable_column_content_W4GLw3": {
+      "type": "variable-column-content",
+      "name": "Variable Column Content",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "column_count": "4",
+        "text_alignment": "center",
+        "image_1": "shopify://shop_images/mens-blazer-green-wool-WT25-SP02-27.webp",
+        "image_2": "shopify://shop_images/mens-blazer-green-wool-WT25-SP02-3.webp",
+        "image_3": "shopify://shop_images/mens-jacket-green-wool-WT25-SP18-1.webp",
+        "image_4": "shopify://shop_images/mens-jacket-green-wool-WT25-SP18-13.webp",
+        "heading": "Variable Column Content",
+        "text": "Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.",
+        "button_label": "Learn More",
+        "button_link": "shopify://collections/accessories"
+      }
+    },
+    "variable_column_content_secondary_EdN6iB": {
+      "type": "variable-column-content-secondary",
+      "blocks": {
+        "column_item_4HxeRY": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/mens-blazer-green-wool-WT25-SP02-3.webp",
+            "heading": "Column Heading",
+            "text": "Add a brief description for this column item."
+          }
+        },
+        "column_item_hdNBAq": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/mens-blazer-green-wool-WT25-SP02-28.webp",
+            "heading": "Column Heading",
+            "text": "Add a brief description for this column item."
+          }
+        },
+        "column_item_z96mBq": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/WT25-SP07-29.webp",
+            "heading": "Column Heading",
+            "text": "Add a brief description for this column item."
+          }
+        }
+      },
+      "block_order": [
+        "column_item_4HxeRY",
+        "column_item_hdNBAq",
+        "column_item_z96mBq"
+      ],
+      "name": "Variable Column Content Secondary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": true,
+        "column_count": "3",
+        "text_alignment": "center",
+        "heading": "",
+        "text": "",
+        "button_label": "",
+        "button_link": ""
+      }
+    },
+    "full_page_media_fmYDXr": {
+      "type": "full-page-media",
+      "name": "Full Page Media",
+      "settings": {
+        "media_type": "video",
+        "video": "shopify://files/videos/winter-25-sale-hero-video-peter-jackson.mp4",
+        "alt_text": "Full page media"
+      }
+    },
+    "video_PCPhDV": {
+      "type": "video",
+      "name": "Video",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": true,
+        "video": "shopify://files/videos/winter-25-sale-hero-video-peter-jackson.mp4",
+        "poster_image": "shopify://shop_images/Click_Frenzy_Hero.webp",
+        "title": "",
+        "show_title": false,
+        "width": "full-width",
+        "aspect_ratio": "16-9",
+        "autoplay": true,
+        "loop": true,
+        "muted": true
+      }
+    },
+    "shop_the_look_global_cRQM6n": {
+      "type": "shop-the-look-global",
+      "name": "Shop the Look Global",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": true,
+        "heading": "Shop the Look",
+        "featured_image": "shopify://shop_images/mens-blazer-green-wool-WT25-SP02-28.webp",
+        "product1": "agnelli-taupe-plaid-suit",
+        "product2": "albinoni-black-penny-loafer",
+        "product3": "alessio-brown-pebbled-leather-bag"
+      }
     }
   },
   "order": [
@@ -239,6 +382,12 @@
     "hero_primary_td6ewy",
     "hero_slider_cjH7P9",
     "image_with_text_QzzR99",
-    "image_with_text_y7LF9r"
+    "image_with_text_y7LF9r",
+    "two_column_content_TpwXa3",
+    "variable_column_content_W4GLw3",
+    "variable_column_content_secondary_EdN6iB",
+    "full_page_media_fmYDXr",
+    "video_PCPhDV",
+    "shop_the_look_global_cRQM6n"
   ]
 }
