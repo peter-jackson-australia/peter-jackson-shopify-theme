@@ -36,6 +36,10 @@
     display: none;
   }
 
+  .hero-slider__video--mobile {
+    display: none;
+  }
+
   @media not all and (min-resolution:.001dpcm) {
     @supports (-webkit-appearance:none) {
       .hero-slider .hero-slider__content--middle {
@@ -161,6 +165,16 @@
           display: block;
         }
       {% endif %}
+
+      {% if block.settings.mobile_video %}
+        #hero-slider-{{ section.id }} .splide__slide[data-block-id="{{ block.id }}"] .hero-slider__video--desktop {
+          display: none;
+        }
+
+        #hero-slider-{{ section.id }} .splide__slide[data-block-id="{{ block.id }}"] .hero-slider__video--mobile {
+          display: block;
+        }
+      {% endif %}
     {% endfor %}
   }
 </style>
@@ -197,21 +211,40 @@
                   preload: true
               }}
             {% endif %}
-          {% elsif block.settings.media_type == 'video' and block.settings.video %}
-            <div class="hero-slider__video">
-              {{
-                block.settings.video
-                | video_tag:
-                  autoplay: true,
-                  loop: true,
-                  muted: true,
-                  controls: false,
-                  playsinline: true,
-                  class: 'hero-slider__video-element',
-                  id: 'video-'
-                | append: block.id
-              }}
-            </div>
+          {% elsif block.settings.media_type == 'video' %}
+            {% if block.settings.video %}
+              <div class="hero-slider__video hero-slider__video--desktop">
+                {{
+                  block.settings.video
+                  | video_tag:
+                    autoplay: true,
+                    loop: true,
+                    muted: true,
+                    controls: false,
+                    playsinline: true,
+                    class: 'hero-slider__video-element',
+                    id: 'video-'
+                  | append: block.id
+                }}
+              </div>
+            {% endif %}
+
+            {% if block.settings.mobile_video %}
+              <div class="hero-slider__video hero-slider__video--mobile">
+                {{
+                  block.settings.mobile_video
+                  | video_tag:
+                    autoplay: true,
+                    loop: true,
+                    muted: true,
+                    controls: false,
+                    playsinline: true,
+                    class: 'hero-slider__video-element',
+                    id: 'mobile-video-'
+                  | append: block.id
+                }}
+              </div>
+            {% endif %}
           {% endif %}
 
           <div class="hero-slider__content hero-slider__content--{{ block.settings.horizontal_alignment | default: 'center' }} hero-slider__content--{{ block.settings.vertical_alignment | default: 'bottom' }}">
@@ -362,8 +395,14 @@
         {
           "type": "video",
           "id": "video",
-          "label": "Video",
-          "info": "Used when Media Type is set to Video."
+          "label": "Desktop Video",
+          "info": "Used when Media Type is set to Video"
+        },
+        {
+          "type": "video",
+          "id": "mobile_video",
+          "label": "Mobile Video (optional)",
+          "info": "If not provided, Desktop Video will be used on mobile devices"
         },
         {
           "type": "text",

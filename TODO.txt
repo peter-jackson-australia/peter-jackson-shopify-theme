@@ -8,7 +8,6 @@ Home page sections:
     Schema:
     Animations
 
-    Hero Editoral - Adjust the text settings for h1 on mobile
     Hero slider - add in field for mobile video
     variable content - add in CTA field and clickable card field
 
