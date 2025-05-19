@@ -294,7 +294,9 @@
           "settings": {
             "image": "shopify://shop_images/mens-blazer-green-wool-WT25-SP02-3.webp",
             "heading": "Column Heading",
-            "text": "Add a brief description for this column item."
+            "text": "Add a brief description for this column item.",
+            "column_link": "shopify://collections",
+            "column_link_text": "Shop Now"
           }
         },
         "column_item_hdNBAq": {
@@ -302,7 +304,9 @@
           "settings": {
             "image": "shopify://shop_images/mens-blazer-green-wool-WT25-SP02-28.webp",
             "heading": "Column Heading",
-            "text": "Add a brief description for this column item."
+            "text": "Add a brief description for this column item.",
+            "column_link": "",
+            "column_link_text": "Shop Now"
           }
         },
         "column_item_z96mBq": {
@@ -310,7 +314,9 @@
           "settings": {
             "image": "shopify://shop_images/WT25-SP07-29.webp",
             "heading": "Column Heading",
-            "text": "Add a brief description for this column item."
+            "text": "Add a brief description for this column item.",
+            "column_link": "",
+            "column_link_text": "Shop Now"
           }
         }
       },
