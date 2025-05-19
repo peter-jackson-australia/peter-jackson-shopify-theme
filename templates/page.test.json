@@ -52,11 +52,145 @@
         "button_label": "Shop Now",
         "products_to_show": 10
       }
+    },
+    "faqs_PwBzcB": {
+      "type": "faqs",
+      "blocks": {
+        "heading_gpQgzH": {
+          "type": "heading",
+          "settings": {
+            "heading": "FAQ Category",
+            "anchor_id": ""
+          }
+        },
+        "faq_item_yJDjeN": {
+          "type": "faq_item",
+          "settings": {
+            "question": "FAQ question",
+            "answer": "<p><strong>Answer</strong> your customer's <a href=\"/collections/accessories\" title=\"Accessories\">question</a> here.</p>"
+          }
+        },
+        "faq_item_PKYzTX": {
+          "type": "faq_item",
+          "settings": {
+            "question": "FAQ question",
+            "answer": "<p>Answer your customer's question here.</p>"
+          }
+        },
+        "heading_dknJAJ": {
+          "type": "heading",
+          "settings": {
+            "heading": "FAQ Category",
+            "anchor_id": ""
+          }
+        },
+        "faq_item_q3UB3F": {
+          "type": "faq_item",
+          "settings": {
+            "question": "FAQ question",
+            "answer": "<p>Answer your customer's question here.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_gpQgzH",
+        "faq_item_yJDjeN",
+        "faq_item_PKYzTX",
+        "heading_dknJAJ",
+        "faq_item_q3UB3F"
+      ],
+      "name": "FAQ Section",
+      "settings": {
+        "show_top_border": false,
+        "show_bottom_border": false
+      }
+    },
+    "hero_countdown_timer_3Hw83h": {
+      "type": "hero-countdown-timer",
+      "name": "Hero Countdown Timer",
+      "settings": {
+        "background_image": "shopify://shop_images/Click_Frenzy_Hero.webp",
+        "heading": "Limited Time Offer",
+        "subheading": "Do not miss out on this special offer!",
+        "target_date": "2025-12-31T23:59:59",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "middle",
+        "days_label": "Days",
+        "hours_label": "Hours",
+        "minutes_label": "Minutes",
+        "seconds_label": "Seconds",
+        "final_hours_threshold": 3,
+        "final_message": "Final hours! Do not miss out!",
+        "complete_message": "The countdown has ended!",
+        "button_label": "",
+        "button_link": ""
+      }
+    },
+    "editorial_hero_MCq8we": {
+      "type": "editorial-hero",
+      "name": "Hero Editorial",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "leading_text": "Winter 25",
+        "first_title": "Discover",
+        "media_type": "video",
+        "video": "shopify://files/videos/winter-25-sale-hero-video-peter-jackson.mp4",
+        "second_title": "Collection",
+        "description": "This is a hero editorial section",
+        "cta_text": "Shop Now",
+        "cta_link": "shopify://collections/accessories"
+      }
+    },
+    "hero_primary_td6ewy": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "desktop_image": "shopify://shop_images/Click_Frenzy_Hero.webp",
+        "heading": "Welcome to Our Store",
+        "description": "Discover our latest collection",
+        "button_label": "Shop Now",
+        "button_link": "shopify://collections/accessories",
+        "horizontal_alignment": "left",
+        "vertical_alignment": "top"
+      }
+    },
+    "hero_slider_cjH7P9": {
+      "type": "hero-slider",
+      "blocks": {
+        "slide_mTRynn": {
+          "type": "slide",
+          "settings": {
+            "media_type": "image",
+            "desktop_image": "shopify://shop_images/Click_Frenzy_Hero.webp",
+            "heading": "Welcome to Our Store",
+            "description": "Discover our latest collection",
+            "button_label": "Shop Now",
+            "button_link": "",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "bottom"
+          }
+        }
+      },
+      "block_order": [
+        "slide_mTRynn"
+      ],
+      "name": "Hero Slider",
+      "settings": {
+        "autoplay": true,
+        "slide_interval": 5
+      }
     }
   },
   "order": [
     "blog_hero_3ryHLc",
     "collection_slider_RTB3HN",
-    "collection_slider_secondary_F8e4Df"
+    "collection_slider_secondary_F8e4Df",
+    "faqs_PwBzcB",
+    "hero_countdown_timer_3Hw83h",
+    "editorial_hero_MCq8we",
+    "hero_primary_td6ewy",
+    "hero_slider_cjH7P9"
   ]
 }
