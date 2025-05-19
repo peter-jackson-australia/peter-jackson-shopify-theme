@@ -13,6 +13,8 @@ document.addEventListener("DOMContentLoaded", function () {
   );
   const bodyElements = document.querySelectorAll(".animate-paragraph-slide-up-scroll");
   const containerElements = document.querySelectorAll(".animate-container-cards-scroll");
+  const parallaxImages = document.querySelectorAll(".animate-image-parallax");
+  const parallaxHorizontalImages = document.querySelectorAll(".animate-image-parallax-horizontal");
 
   if (headingElements.length > 0) {
     new SplitType(headingElements, {
@@ -136,7 +138,6 @@ document.addEventListener("DOMContentLoaded", function () {
   */
   if (containerElements.length > 0) {
     containerElements.forEach((container) => {
-      // Select all direct children of the container
       const cards = container.children;
       
       if (cards.length > 0) {
@@ -150,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
           opacity: 1,
           duration: 0.6,
           ease: "power2.out",
-          stagger: 0.15, // Time between each card's animation
+          stagger: 0.15,
           scrollTrigger: {
             trigger: container,
             start: "top bottom-=150",
@@ -159,4 +160,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+  
 });
+
