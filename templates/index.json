@@ -113,12 +113,35 @@
         "button_label": "",
         "button_link": ""
       }
+    },
+    "blog_hero_MDUFaj": {
+      "type": "blog-hero",
+      "name": "Blog Hero",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "hero_image": "shopify://shop_images/Peter-Jackson-Man-Wearing-Green-Corduroy-Suit.jpg",
+        "show_image_overlay": true,
+        "image_heading": "Winter Outerwear",
+        "image_description": "Explore the must-have winter jackets & coats",
+        "image_link_text": "Read More",
+        "image_link_url": "shopify://blogs/the-jackson-journal",
+        "heading": "The Jackson Journal",
+        "subheading": "The Corduroy Comeback",
+        "description": "Vintage utility meets contemporary style. From suits to jackets and casual shirts, this classic textile is back with a vengeance.",
+        "cta_link": "",
+        "cta_text": "Read Now",
+        "show_recent_posts": true,
+        "blog": "the-jackson-journal"
+      }
     }
   },
   "order": [
     "hero_slider_YwPfy7",
     "collection_slider_wUXWw3",
     "hero_primary_YCJLcF",
-    "variable_column_content_secondary_jHpEgT"
+    "variable_column_content_secondary_jHpEgT",
+    "blog_hero_MDUFaj"
   ]
 }
