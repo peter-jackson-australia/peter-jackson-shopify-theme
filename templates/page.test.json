@@ -9,41 +9,14 @@
  */
 {
   "sections": {
-    "image_with_text_yR3Cd4": {
-      "type": "image-with-text",
-      "name": "Image With Text",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": true,
-        "show_bottom_border": true,
-        "first_image": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-41.webp",
-        "second_image": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-27.webp",
-        "alignment": "left",
-        "heading": "Image With Text",
-        "text": "Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.",
-        "button_label": "Learn More",
-        "button_link": ""
-      }
-    },
-    "block_quote_fxMyHG": {
-      "type": "block-quote",
-      "name": "Block Quote",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": false,
-        "quote_text": "Add a memorable quote that represents your brand values or highlights your products.",
-        "background_color": "green-800"
-      }
-    },
-    "blog_hero_AfCwVi": {
+    "blog_hero_3ryHLc": {
       "type": "blog-hero",
       "name": "Blog Hero",
       "settings": {
         "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": false,
-        "hero_image": "shopify://shop_images/two-men-one-suit.webp",
+        "show_top_border": true,
+        "show_bottom_border": true,
+        "hero_image": "shopify://shop_images/peter-jackson-menswear-green-jacket-white-turtleneck.webp",
         "show_image_overlay": true,
         "image_heading": "Featured Article Title",
         "image_description": "Description text for the featured article.",
@@ -52,216 +25,14 @@
         "heading": "The Jackson Journal",
         "subheading": "Heritage Meets Heritage",
         "description": "Some general information about the blog collection",
-        "cta_link": "",
+        "cta_link": "shopify://collections/accessories",
         "cta_text": "Read Now",
         "show_recent_posts": true,
-        "blog": ""
-      }
-    },
-    "hero_countdown_timer_htHihT": {
-      "type": "hero-countdown-timer",
-      "name": "Hero Countdown Timer",
-      "settings": {
-        "background_image": "shopify://shop_images/peter-jackson-menswear-green-jacket-white-turtleneck.webp",
-        "heading": "Limited Time Offer",
-        "subheading": "Do not miss out on this special offer!",
-        "target_date": "2025-12-31T23:59:59",
-        "horizontal_alignment": "right",
-        "vertical_alignment": "top",
-        "days_label": "Days",
-        "hours_label": "Hours",
-        "minutes_label": "Minutes",
-        "seconds_label": "Seconds",
-        "final_hours_threshold": 3,
-        "final_message": "Final hours! Do not miss out!",
-        "complete_message": "The countdown has ended!",
-        "button_label": "",
-        "button_link": ""
-      }
-    },
-    "hero_primary_3At64A": {
-      "type": "hero-primary",
-      "name": "Hero Section",
-      "settings": {
-        "desktop_image": "shopify://shop_images/two-men-one-suit.webp",
-        "heading": "Welcome to Our Store",
-        "description": "Discover our latest collection",
-        "button_label": "Shop Now",
-        "button_link": "",
-        "horizontal_alignment": "center",
-        "vertical_alignment": "middle"
-      }
-    },
-    "hero_slider_aK39ay": {
-      "type": "hero-slider",
-      "blocks": {
-        "slide_TMbqge": {
-          "type": "slide",
-          "settings": {
-            "media_type": "image",
-            "desktop_image": "shopify://shop_images/two-men-one-suit.webp",
-            "heading": "Welcome to Our Store",
-            "description": "Discover our latest collection",
-            "button_label": "Shop Now",
-            "button_link": "",
-            "horizontal_alignment": "right",
-            "vertical_alignment": "top"
-          }
-        },
-        "slide_KBFLLr": {
-          "type": "slide",
-          "settings": {
-            "media_type": "image",
-            "desktop_image": "shopify://shop_images/peter-jackson-menswear-green-jacket-white-turtleneck.webp",
-            "heading": "Welcome to Our Store",
-            "description": "Discover our latest collection",
-            "button_label": "Shop Now",
-            "button_link": "",
-            "horizontal_alignment": "left",
-            "vertical_alignment": "top"
-          }
-        }
-      },
-      "block_order": [
-        "slide_TMbqge",
-        "slide_KBFLLr"
-      ],
-      "name": "Hero Slider",
-      "settings": {
-        "autoplay": true,
-        "slide_interval": 5
-      }
-    },
-    "collection_slider_nJKW6V": {
-      "type": "collection-slider",
-      "name": "Collection Slider",
-      "settings": {
-        "heading": "New In Now",
-        "description": "Layer up with premium wool/cashmere blends.",
-        "collection": "black-tie-weddings",
-        "button_label": "Shop Now",
-        "products_to_show": 10
-      }
-    },
-    "collection_slider_secondary_c794YH": {
-      "type": "collection-slider-secondary",
-      "name": "Collection Slider Secondary",
-      "settings": {
-        "heading": "New In Now",
-        "description": "Layer up with premium wool/cashmere blends.",
-        "collection": "new-arrivals",
-        "button_label": "Shop Now",
-        "products_to_show": 10
-      }
-    },
-    "editorial_hero_8qiKbE": {
-      "type": "editorial-hero",
-      "name": "Hero Editorial",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": true,
-        "show_bottom_border": true,
-        "leading_text": "",
-        "first_title": "Discover",
-        "media_type": "image",
-        "image": "shopify://shop_images/two-men-one-suit.webp",
-        "second_title": "Collection",
-        "description": "",
-        "cta_text": "Shop Now",
-        "cta_link": ""
-      }
-    },
-    "full_page_media_Yi9UQT": {
-      "type": "full-page-media",
-      "name": "Full Page Media",
-      "settings": {
-        "media_type": "image",
-        "desktop_image": "shopify://shop_images/two-men-one-suit.webp",
-        "alt_text": "Full page media"
-      }
-    },
-    "shop_the_look_global_wRVfxe": {
-      "type": "shop-the-look-global",
-      "name": "Shop the Look Global",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": true,
-        "show_bottom_border": true,
-        "heading": "Shop the Look",
-        "featured_image": "shopify://shop_images/mens-jacket-taupe-cashmere-WT25-SC03-41.webp",
-        "product1": "allende-grey-taupe-overcheck-suit",
-        "product2": "albinoni-penny-loafer",
-        "product3": ""
-      }
-    },
-    "variable_column_content_secondary_MYRC7r": {
-      "type": "variable-column-content-secondary",
-      "blocks": {
-        "column_item_LijgV4": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/peter-jackson-man-wearing-sports-jacket-and-tie-walking-through-streets-of-europe.jpg",
-            "heading": "Column Heading",
-            "text": "Add a brief description for this column item."
-          }
-        },
-        "column_item_tjRidR": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/Peter-Jackson-Man-Wearing-Suit-By-Lake.jpg",
-            "heading": "Column Heading",
-            "text": "Add a brief description for this column item."
-          }
-        },
-        "column_item_qHG6pB": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/peter-jackson-man-wearing-winter-coat.jpg",
-            "heading": "Column Heading",
-            "text": "Add a brief description for this column item."
-          }
-        },
-        "column_item_8qPbVn": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/Peter_Jackson_Man_Wearing_Suit_By_Lake.webp",
-            "heading": "Column Heading",
-            "text": "Add a brief description for this column item."
-          }
-        }
-      },
-      "block_order": [
-        "column_item_LijgV4",
-        "column_item_tjRidR",
-        "column_item_qHG6pB",
-        "column_item_8qPbVn"
-      ],
-      "name": "Variable Column Content Secondary",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": false,
-        "column_count": "4",
-        "text_alignment": "center",
-        "heading": "Variable Column Content Secondary",
-        "text": "Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.",
-        "button_label": "Learn More",
-        "button_link": ""
+        "blog": "the-jackson-journal"
       }
     }
   },
   "order": [
-    "image_with_text_yR3Cd4",
-    "block_quote_fxMyHG",
-    "blog_hero_AfCwVi",
-    "hero_countdown_timer_htHihT",
-    "hero_primary_3At64A",
-    "hero_slider_aK39ay",
-    "collection_slider_nJKW6V",
-    "collection_slider_secondary_c794YH",
-    "editorial_hero_8qiKbE",
-    "full_page_media_Yi9UQT",
-    "shop_the_look_global_wRVfxe",
-    "variable_column_content_secondary_MYRC7r"
+    "blog_hero_3ryHLc"
   ]
 }
