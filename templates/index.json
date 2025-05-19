@@ -70,14 +70,6 @@
             "text": "Winter jackets & coats"
           }
         },
-        "column_item_CF4TLx": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/peter-jackson-man-wearing-sports-jacket-and-tie-walking-through-streets-of-europe.jpg",
-            "heading": "Sports Jackets",
-            "text": "A versatile wardrobe staple"
-          }
-        },
         "column_item_FrJjbX": {
           "type": "column_item",
           "settings": {
@@ -93,13 +85,21 @@
             "heading": "Column Heading",
             "text": "Add a brief description for this column item."
           }
+        },
+        "column_item_CF4TLx": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-man-wearing-sports-jacket-and-tie-walking-through-streets-of-europe.jpg",
+            "heading": "Sports Jackets",
+            "text": "A versatile wardrobe staple"
+          }
         }
       },
       "block_order": [
         "column_item_c8jUhX",
-        "column_item_CF4TLx",
         "column_item_FrJjbX",
-        "column_item_DYEeGP"
+        "column_item_DYEeGP",
+        "column_item_CF4TLx"
       ],
       "name": "Variable Column Content Secondary",
       "settings": {
