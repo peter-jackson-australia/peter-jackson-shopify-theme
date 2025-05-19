@@ -18,12 +18,12 @@
             "media_type": "image",
             "desktop_image": "shopify://shop_images/two-men-one-suit.webp",
             "video": "shopify://files/videos/Sale Red Fabric_Final.mp4",
-            "heading": "up to 50% Off*",
-            "description": "HALF YEAR SALE",
-            "button_label": "Shop Now",
+            "heading": "Higher Ground",
+            "description": "Winter 25 Collection",
+            "button_label": "Shop New",
             "button_link": "shopify://collections/sale",
-            "horizontal_alignment": "left",
-            "vertical_alignment": "middle"
+            "horizontal_alignment": "center",
+            "vertical_alignment": "bottom"
           }
         }
       },
