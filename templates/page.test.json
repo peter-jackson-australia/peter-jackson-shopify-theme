@@ -195,6 +195,22 @@
         "autoplay": true,
         "slide_interval": 5
       }
+    },
+    "image_with_text_QzzR99": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": true,
+        "first_image": "shopify://shop_images/mens-blazer-green-wool-WT25-SP02-3.webp",
+        "second_image": "shopify://shop_images/mens-jacket-green-wool-WT25-SP18-1.webp",
+        "alignment": "left",
+        "heading": "Image With Text",
+        "text": "Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.",
+        "button_label": "Learn More",
+        "button_link": "shopify://collections/bags"
+      }
     }
   },
   "order": [
@@ -205,6 +221,7 @@
     "hero_countdown_timer_3Hw83h",
     "editorial_hero_MCq8we",
     "hero_primary_td6ewy",
-    "hero_slider_cjH7P9"
+    "hero_slider_cjH7P9",
+    "image_with_text_QzzR99"
   ]
 }
