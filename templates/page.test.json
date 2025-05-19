@@ -362,13 +362,24 @@
       "name": "Shop the Look Global",
       "settings": {
         "anchor_id": "",
-        "show_top_border": true,
+        "show_top_border": false,
         "show_bottom_border": true,
         "heading": "Shop the Look",
         "featured_image": "shopify://shop_images/mens-blazer-green-wool-WT25-SP02-28.webp",
         "product1": "agnelli-taupe-plaid-suit",
         "product2": "albinoni-black-penny-loafer",
         "product3": "alessio-brown-pebbled-leather-bag"
+      }
+    },
+    "block_quote_wjVYwG": {
+      "type": "block-quote",
+      "name": "Block Quote",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "quote_text": "Add a memorable quote that represents your brand values or highlights your products.",
+        "background_color": "white"
       }
     }
   },
@@ -388,6 +399,7 @@
     "variable_column_content_secondary_EdN6iB",
     "full_page_media_fmYDXr",
     "video_PCPhDV",
-    "shop_the_look_global_cRQM6n"
+    "shop_the_look_global_cRQM6n",
+    "block_quote_wjVYwG"
   ]
 }
