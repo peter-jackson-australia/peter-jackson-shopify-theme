@@ -1,8 +1,8 @@
 BEFORE 23rd May
 Home page sections:
     Code:
-    Finish the sections: Contact Form 
     Ensure all sections are perfectly responsive
+    Finish the sections: Contact Form 
     Ensure all sections are fast and do well in Lighthouse
     Animations
     
