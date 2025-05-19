@@ -9,6 +9,7 @@ Home page sections:
     Schema:
     Animations
 
+    Make the PDP info section never have more height than PDP slider
     Make the menu featured images load faster
 
 General blog template
