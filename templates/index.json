@@ -17,7 +17,7 @@
           "settings": {
             "media_type": "video",
             "video": "shopify://files/videos/WT25-Homepage-Desktop-Compressed.mp4",
-            "heading": "Higher Ground",
+            "heading": "Renaissance of Style",
             "description": "Winter 25 Collection",
             "button_label": "Shop New",
             "button_link": "shopify://collections/sale",
@@ -41,7 +41,7 @@
       "settings": {
         "heading": "New In Now",
         "description": "Layer up with premium wool/cashmere blends.",
-        "collection": "sale",
+        "collection": "new-arrivals",
         "button_label": "Shop Now",
         "products_to_show": 10
       }
