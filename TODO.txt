@@ -10,7 +10,6 @@ Home page sections:
     Animations
 
     Make the menu featured images load faster
-    variable column content 2 - add headings underneath 
 
 General blog template
 Blog collection template
