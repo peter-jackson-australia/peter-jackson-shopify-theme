@@ -67,6 +67,22 @@
           "type": "column_item",
           "settings": {
             "image": "shopify://shop_images/peter-jackson-man-wearing-winter-coat.jpg",
+            "heading": "Outerwear",
+            "text": "Winter jackets & coats"
+          }
+        },
+        "column_item_CF4TLx": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-man-wearing-sports-jacket-and-tie-walking-through-streets-of-europe.jpg",
+            "heading": "Sports Jackets",
+            "text": "A versatile wardrobe staple"
+          }
+        },
+        "column_item_FrJjbX": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-man-wearing-winter-coat.jpg",
             "heading": "Column Heading",
             "text": "Add a brief description for this column item."
           }
@@ -75,23 +91,16 @@
           "type": "column_item",
           "settings": {
             "image": "shopify://shop_images/Peter-Jackson-Man-Wearing-Suit-By-Lake.jpg",
-            "heading": "Column Heading",
-            "text": "Add a brief description for this column item."
-          }
-        },
-        "column_item_CF4TLx": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/peter-jackson-man-wearing-sports-jacket-and-tie-walking-through-streets-of-europe.jpg",
-            "heading": "Column Heading",
-            "text": "Add a brief description for this column item."
+            "heading": "Winter Tailoring",
+            "text": "Suits & suit separates crafted from premium European textiles"
           }
         }
       },
       "block_order": [
         "column_item_c8jUhX",
-        "column_item_WQU99A",
-        "column_item_CF4TLx"
+        "column_item_CF4TLx",
+        "column_item_FrJjbX",
+        "column_item_WQU99A"
       ],
       "name": "Variable Column Content Secondary",
       "settings": {
