@@ -248,7 +248,7 @@
           {% endif %}
 
           <div class="hero-slider__content hero-slider__content--{{ block.settings.horizontal_alignment | default: 'center' }} hero-slider__content--{{ block.settings.vertical_alignment | default: 'bottom' }}">
-            <h1 class="heading--3xl animate-body-slide-up-scroll">{{ block.settings.heading }}</h1>
+            <h1 class="heading--3xl">{{ block.settings.heading }}</h1>
 
             <div class="heading--l">
               {{ block.settings.description }}
@@ -292,10 +292,8 @@
         const contentsInHero = sliderElement.querySelectorAll('.hero-slider__content');
 
         contentsInHero.forEach(el => {
-          // Store original transform if it exists
           const originalTransform = window.getComputedStyle(el).transform;
           if (originalTransform && originalTransform !== 'none') {
-            // If the element already has a transform (like middle alignment), combine with translateZ
             el.style.transform = originalTransform + ' translateZ(0)';
           } else {
             el.style.transform = 'translateZ(0)';
@@ -310,7 +308,6 @@
           const content = currentSlide.querySelector('.hero-slider__content');
 
           if (content) {
-            // Set will-change while preserving existing transforms
             content.style.willChange = 'transform';
           }
 

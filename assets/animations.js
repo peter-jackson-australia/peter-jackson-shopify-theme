@@ -1,16 +1,18 @@
 document.addEventListener("DOMContentLoaded", function () {
   /*
     Classes: 
-    animate-slide-up-scroll
-    animate-rotate-scroll
-    animate-opacity-scrub-scroll
-    animate-body-slide-up-scroll
+    animate-word-slide-up-scroll
+    animate-word-rotate-scroll
+    animate-word-opacity-scroll
+    animate-paragraph-slide-up-scroll
+    animate-container-cards-scroll
   */
 
   const headingElements = document.querySelectorAll(
-    ".animate-slide-up-load, .animate-slide-up-scroll, .animate-rotate-load, .animate-rotate-scroll, .animate-opacity-scrub-scroll"
+    ".animate-slide-up-load, .animate-word-slide-up-scroll, .animate-rotate-load, .animate-word-rotate-scroll, .animate-word-opacity-scroll"
   );
-  const bodyElements = document.querySelectorAll(".animate-body-slide-up-scroll");
+  const bodyElements = document.querySelectorAll(".animate-paragraph-slide-up-scroll");
+  const containerElements = document.querySelectorAll(".animate-container-cards-scroll");
 
   if (headingElements.length > 0) {
     new SplitType(headingElements, {
@@ -21,9 +23,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* 
     Slide up on scroll
-    Class: animate-slide-up-scroll
+    Class: animate-word-slide-up-scroll
   */
-  const slideUpScrollElements = document.querySelectorAll(".animate-slide-up-scroll");
+  const slideUpScrollElements = document.querySelectorAll(".animate-word-slide-up-scroll");
   if (slideUpScrollElements.length > 0) {
     slideUpScrollElements.forEach((element) => {
       const words = element.querySelectorAll(".word");
@@ -49,9 +51,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* 
     Rotate on scroll
-    Class: animate-rotate-scroll
+    Class: animate-word-rotate-scroll
   */
-  const rotateScrollElements = document.querySelectorAll(".animate-rotate-scroll");
+  const rotateScrollElements = document.querySelectorAll(".animate-word-rotate-scroll");
   if (rotateScrollElements.length > 0) {
     rotateScrollElements.forEach((element) => {
       const words = element.querySelectorAll(".word");
@@ -79,9 +81,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* 
     Scrub opacity on scroll
-    Class: animate-opacity-scrub-scroll
+    Class: animate-word-opacity-scroll
   */
-  const opacityScrubElements = document.querySelectorAll(".animate-opacity-scrub-scroll");
+  const opacityScrubElements = document.querySelectorAll(".animate-word-opacity-scroll");
   if (opacityScrubElements.length > 0) {
     opacityScrubElements.forEach((element) => {
       const words = element.querySelectorAll(".word");
@@ -106,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* 
     Paragraph text slide up on scroll
-    Class: animate-body-slide-up-scroll
+    Class: animate-paragraph-slide-up-scroll
   */
   if (bodyElements.length > 0) {
     bodyElements.forEach((element) => {
@@ -125,6 +127,36 @@ document.addEventListener("DOMContentLoaded", function () {
           start: "top bottom-=100",
         },
       });
+    });
+  }
+
+  /* 
+    Container with cards animation
+    Class: animate-container-cards-scroll
+  */
+  if (containerElements.length > 0) {
+    containerElements.forEach((container) => {
+      // Select all direct children of the container
+      const cards = container.children;
+      
+      if (cards.length > 0) {
+        gsap.set(cards, {
+          y: "50px",
+          opacity: 0,
+        });
+        
+        gsap.to(cards, {
+          y: "0",
+          opacity: 1,
+          duration: 0.6,
+          ease: "power2.out",
+          stagger: 0.15, // Time between each card's animation
+          scrollTrigger: {
+            trigger: container,
+            start: "top bottom-=150",
+          },
+        });
+      }
     });
   }
 });
