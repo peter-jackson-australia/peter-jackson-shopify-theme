@@ -21,8 +21,8 @@
             "description": "HALF YEAR SALE",
             "button_label": "Shop Now",
             "button_link": "shopify://collections/sale",
-            "horizontal_alignment": "center",
-            "vertical_alignment": "bottom"
+            "horizontal_alignment": "left",
+            "vertical_alignment": "middle"
           }
         }
       },
