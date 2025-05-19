@@ -171,10 +171,24 @@
             "horizontal_alignment": "center",
             "vertical_alignment": "bottom"
           }
+        },
+        "slide_hW8L9f": {
+          "type": "slide",
+          "settings": {
+            "media_type": "image",
+            "desktop_image": "shopify://shop_images/peter-jackson-menswear-green-jacket-white-turtleneck.webp",
+            "heading": "Welcome to Our Store",
+            "description": "Discover our latest collection",
+            "button_label": "Shop Now",
+            "button_link": "",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "bottom"
+          }
         }
       },
       "block_order": [
-        "slide_mTRynn"
+        "slide_mTRynn",
+        "slide_hW8L9f"
       ],
       "name": "Hero Slider",
       "settings": {
