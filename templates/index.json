@@ -15,9 +15,8 @@
         "slide_b3nJFG": {
           "type": "slide",
           "settings": {
-            "media_type": "image",
-            "desktop_image": "shopify://shop_images/two-men-one-suit.webp",
-            "video": "shopify://files/videos/Sale Red Fabric_Final.mp4",
+            "media_type": "video",
+            "video": "shopify://files/videos/WT25-Homepage-Desktop-Compressed.mp4",
             "heading": "Higher Ground",
             "description": "Winter 25 Collection",
             "button_label": "Shop New",
@@ -87,12 +86,12 @@
             "text": "Add a brief description for this column item."
           }
         },
-        "column_item_WQU99A": {
+        "column_item_DYEeGP": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/Peter-Jackson-Man-Wearing-Suit-By-Lake.jpg",
-            "heading": "Winter Tailoring",
-            "text": "Suits & suit separates crafted from premium European textiles"
+            "image": "shopify://shop_images/peter-jackson-man-wearing-winter-coat.jpg",
+            "heading": "Column Heading",
+            "text": "Add a brief description for this column item."
           }
         }
       },
@@ -100,7 +99,7 @@
         "column_item_c8jUhX",
         "column_item_CF4TLx",
         "column_item_FrJjbX",
-        "column_item_WQU99A"
+        "column_item_DYEeGP"
       ],
       "name": "Variable Column Content Secondary",
       "settings": {
