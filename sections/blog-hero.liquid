@@ -287,6 +287,9 @@
 >
   {% if section.settings.hero_image != blank %}
     <div class="blog-hero__image">
+      {% if section.settings.hero_image_link != blank %}
+        <a href="{{ section.settings.hero_image_link }}">
+      {% endif %}
       <picture>
         {% if section.settings.hero_image_mobile != blank %}
           <source
@@ -300,6 +303,9 @@
           | image_tag: loading: 'lazy', alt: section.settings.heading, class: 'blog-hero__image-img'
         }}
       </picture>
+      {% if section.settings.hero_image_link != blank %}
+        </a>
+      {% endif %}
 
       {% if section.settings.show_image_overlay %}
         <div class="blog-hero__image-content">
@@ -433,6 +439,11 @@
       "type": "image_picker",
       "id": "hero_image_mobile",
       "label": "Mobile Hero Image (optional)"
+    },
+    {
+      "type": "url",
+      "id": "hero_image_link",
+      "label": "Hero Image Link"
     },
     {
       "type": "header",
