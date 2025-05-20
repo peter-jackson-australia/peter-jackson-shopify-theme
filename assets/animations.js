@@ -162,18 +162,41 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   
   function animateCards(cards) {
+    let images = [];
+    
+    cards.forEach(card => {
+      const cardImages = card.querySelectorAll('img');
+      if (cardImages.length) {
+        images = [...images, ...cardImages];
+      }
+    });
+    
     gsap.set(cards, {
       y: "50px",
       opacity: 0,
     });
     
-    gsap.to(cards, {
-      y: "0",
-      opacity: 1,
-      duration: 0.6,
-      ease: "power2.out",
-      stagger: 0.15,
-    });
+    function preloadImage(img) {
+      return new Promise((resolve) => {
+        if (img.complete) {
+          resolve();
+        } else {
+          img.onload = () => resolve();
+          img.onerror = () => resolve();
+        }
+      });
+    }
+    
+    Promise.all(images.map(img => preloadImage(img)))
+      .then(() => {
+        gsap.to(cards, {
+          y: "0",
+          opacity: 1,
+          duration: 0.6,
+          ease: "power2.out",
+          stagger: 0.15,
+        });
+      });
   }
   
   const ajaxContainer = document.getElementById("AjaxinateContainer");
