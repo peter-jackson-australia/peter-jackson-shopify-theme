@@ -184,7 +184,9 @@
         id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
       {% endif %}
     >
-      <h2 class="heading--xl shop-the-look-global__heading">{{ section.settings.heading }}</h2>
+      <h2 class="heading--xl shop-the-look-global__heading {% if section.settings.heading_animation != 'none' %}{{ section.settings.heading_animation }}{% endif %}">
+        {{ section.settings.heading }}
+      </h2>
 
       {% assign product_count = 0 %}
       {% if section.settings.product1 != blank %}{% assign product_count = product_count | plus: 1 %}{% endif %}
@@ -432,6 +434,30 @@
       "id": "heading",
       "label": "Heading",
       "default": "Shop the Look"
+    },
+    {
+      "type": "select",
+      "id": "heading_animation",
+      "label": "Heading Animation",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "animate-word-slide-up-scroll",
+          "label": "Slide Up Words"
+        },
+        {
+          "value": "animate-word-rotate-scroll",
+          "label": "Rotate In Words"
+        },
+        {
+          "value": "animate-paragraph-slide-up-scroll",
+          "label": "Slide Up"
+        }
+      ],
+      "default": "none"
     },
     {
       "type": "image_picker",
