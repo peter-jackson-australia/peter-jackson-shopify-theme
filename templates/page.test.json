@@ -152,11 +152,16 @@
         "show_top_border": false,
         "show_bottom_border": true,
         "leading_text": "Winter 25",
+        "leading_text_animation": "animate-paragraph-slide-up-scroll",
         "first_title": "Discover",
+        "first_title_animation": "animate-paragraph-slide-up-scroll",
         "media_type": "video",
         "video": "shopify://files/videos/winter-25-sale-hero-video-peter-jackson.mp4",
+        "animate_media": true,
         "second_title": "Collection",
+        "second_title_animation": "animate-paragraph-slide-up-scroll",
         "description": "This is a hero editorial section",
+        "description_animation": "animate-paragraph-slide-up-scroll",
         "cta_text": "Shop Now",
         "cta_link": "shopify://collections/accessories"
       }
