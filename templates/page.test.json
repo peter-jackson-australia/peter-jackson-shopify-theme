@@ -56,10 +56,13 @@
       "name": "Collection Slider Secondary",
       "settings": {
         "heading": "New In Now",
+        "heading_animation": "animate-paragraph-slide-up-scroll",
         "description": "Layer up with premium wool/cashmere blends.",
+        "description_animation": "animate-paragraph-slide-up-scroll",
         "collection": "new-arrivals",
         "button_label": "Shop Now",
-        "products_to_show": 10
+        "products_to_show": 10,
+        "animate_products": true
       }
     },
     "faqs_PwBzcB": {
