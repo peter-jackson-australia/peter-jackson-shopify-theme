@@ -274,7 +274,9 @@
             "image": "shopify://shop_images/peter-jackson-man-wearing-winter-coat.jpg",
             "product": "",
             "heading": "Column Heading",
+            "heading_animation": "animate-paragraph-slide-up-scroll",
             "description": "Add your description text here.",
+            "description_animation": "animate-paragraph-slide-up-scroll",
             "button_label": "Learn More",
             "button_link": ""
           }
@@ -285,7 +287,9 @@
             "image": "shopify://shop_images/peter-jackson-man-wearing-winter-coat.jpg",
             "product": "",
             "heading": "Column Heading",
+            "heading_animation": "none",
             "description": "Add your description text here. Add your description text here. Add your description text here. Add your description text here. Add your description text here. Add your description text here.",
+            "description_animation": "none",
             "button_label": "Learn More",
             "button_link": "shopify://collections/accessories"
           }
@@ -299,7 +303,8 @@
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
-        "show_bottom_border": false
+        "show_bottom_border": false,
+        "animate_columns": false
       }
     },
     "variable_column_content_W4GLw3": {
