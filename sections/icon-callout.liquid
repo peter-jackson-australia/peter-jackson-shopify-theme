@@ -92,11 +92,15 @@
     {% endif %}
 
     {% if section.settings.heading != blank %}
-      <h2 class="icon-callout__heading heading--xl">{{ section.settings.heading }}</h2>
+      <h2 class="icon-callout__heading heading--xl {% if section.settings.heading_animation != 'none' %}{{ section.settings.heading_animation }}{% endif %}">
+        {{ section.settings.heading }}
+      </h2>
     {% endif %}
 
     {% if section.settings.text != blank %}
-      <div class="icon-callout__text body">{{ section.settings.text }}</div>
+      <div class="icon-callout__text body {% if section.settings.text_animation != 'none' %}{{ section.settings.text_animation }}{% endif %}">
+        {{ section.settings.text }}
+      </div>
     {% endif %}
 
     {% if section.settings.button_label != blank and section.settings.button_link != blank %}
@@ -142,10 +146,62 @@
       "default": "Feature Heading"
     },
     {
+      "type": "select",
+      "id": "heading_animation",
+      "label": "Heading Animation",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "animate-word-slide-up-scroll",
+          "label": "Slide Up Words"
+        },
+        {
+          "value": "animate-word-rotate-scroll",
+          "label": "Rotate In Words"
+        },
+        {
+          "value": "animate-paragraph-slide-up-scroll",
+          "label": "Slide Up"
+        }
+      ],
+      "default": "none"
+    },
+    {
       "type": "text",
       "id": "text",
       "label": "Text",
       "default": "Add descriptive text about this feature or benefit to help visitors understand your offerings better."
+    },
+    {
+      "type": "select",
+      "id": "text_animation",
+      "label": "Text Animation",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "animate-word-slide-up-scroll",
+          "label": "Slide Up Words"
+        },
+        {
+          "value": "animate-word-rotate-scroll",
+          "label": "Rotate In Words"
+        },
+        {
+          "value": "animate-paragraph-slide-up-scroll",
+          "label": "Slide Up"
+        },
+        {
+          "value": "animate-word-opacity-scroll",
+          "label": "Fade In Words"
+        }
+      ],
+      "default": "none"
     },
     {
       "type": "text",
