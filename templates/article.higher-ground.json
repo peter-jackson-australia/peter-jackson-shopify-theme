@@ -258,6 +258,20 @@
         "mobile_image": "shopify://shop_images/Higher-Ground-25_1296x_056d5532-ba31-4ca9-995b-dde481acb249.webp",
         "alt_text": "Full page media"
       }
+    },
+    "collection_slider_secondary_yGfCVj": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "Shop New Season",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "new-arrivals",
+        "button_label": "New In",
+        "products_to_show": 10,
+        "animate_products": false
+      }
     }
   },
   "order": [
@@ -273,6 +287,7 @@
     "collection_slider_secondary_Fr3RYB",
     "variable_column_content_DECpXN",
     "heading_with_text_NFCiF4",
-    "full_page_media_fUVJVk"
+    "full_page_media_fUVJVk",
+    "collection_slider_secondary_yGfCVj"
   ]
 }
