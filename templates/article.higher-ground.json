@@ -254,6 +254,8 @@
       "name": "Full Page Media",
       "settings": {
         "media_type": "image",
+        "desktop_image": "shopify://shop_images/Higher-Ground-22_2000x_16836b81-bdc5-4650-9c30-02b0c87cdcfa.webp",
+        "mobile_image": "shopify://shop_images/Higher-Ground-25_1296x_056d5532-ba31-4ca9-995b-dde481acb249.webp",
         "alt_text": "Full page media"
       }
     }
