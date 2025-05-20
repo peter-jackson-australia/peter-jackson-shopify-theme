@@ -446,7 +446,7 @@
             %}
 
             <button
-              class="collection-controls__filter-button body--bold"
+              class="collection-controls__filter-button body"
               @click="isFilterOpen = !isFilterOpen; document.body.classList.toggle('filter-open', isFilterOpen)"
             >
               Filters
@@ -541,7 +541,11 @@
                       <div class="body grid-content__description">{{ metaobject_raw.description }}</div>
 
                       {% if metaobject_raw.link != blank %}
-                        {{ metaobject_raw.link | metafield_tag | replace: 'class="', 'class="button button--white ' }}
+                        {{
+                          metaobject_raw.link
+                          | metafield_tag
+                          | replace: 'class="', 'class="button button--white body'
+                        }}
                       {% endif %}
                     </div>
                   </div>
@@ -581,7 +585,7 @@
                     <div class="body grid-content__description">{{ metaobject_raw.description }}</div>
 
                     {% if metaobject_raw.link != blank %}
-                      {{ metaobject_raw.link | metafield_tag | replace: 'class="', 'class="button button--white ' }}
+                      {{ metaobject_raw.link | metafield_tag | replace: 'class="', 'class="button button--white body' }}
                     {% endif %}
                   </div>
                 </div>
