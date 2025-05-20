@@ -24,7 +24,7 @@
         "show_top_border": false,
         "show_bottom_border": true,
         "leading_text": "",
-        "leading_text_animation": "none",
+        "leading_text_animation": "animate-paragraph-slide-up-scroll",
         "first_title": "Higher",
         "first_title_animation": "none",
         "media_type": "video",
