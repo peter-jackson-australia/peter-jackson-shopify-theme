@@ -125,12 +125,12 @@
 >
   <div class="image-with-text__container {% if section.settings.alignment == 'right' %}image-with-text__container--right{% endif %}">
     <figure
-      class="image-with-text__media-container"
+      class="image-with-text__media-container {% if section.settings.animate_images %}animate-container-cards-scroll{% endif %}"
       {% if section.settings.anchor_id != blank %}
         id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
       {% endif %}
     >
-      <div class="image-with-text__images-wrapper {% if section.settings.animate_images %}animate-container-cards-scroll{% endif %}">
+      <div class="image-with-text__images-wrapper">
         {% if section.settings.first_image != blank %}
           <div class="image-with-text__image-container {% if section.settings.second_image != blank %}image-with-text__image-container--first{% endif %}">
             {{
