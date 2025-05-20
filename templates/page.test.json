@@ -124,17 +124,22 @@
       "settings": {
         "background_image": "shopify://shop_images/Click_Frenzy_Hero.webp",
         "heading": "Limited Time Offer",
+        "heading_animation": "animate-paragraph-slide-up-scroll",
         "subheading": "Do not miss out on this special offer!",
+        "subheading_animation": "animate-paragraph-slide-up-scroll",
         "target_date": "2025-12-31T23:59:59",
         "horizontal_alignment": "center",
         "vertical_alignment": "middle",
+        "animate_timer_blocks": true,
         "days_label": "Days",
         "hours_label": "Hours",
         "minutes_label": "Minutes",
         "seconds_label": "Seconds",
         "final_hours_threshold": 3,
         "final_message": "Final hours! Do not miss out!",
+        "final_message_animation": "animate-paragraph-slide-up-scroll",
         "complete_message": "The countdown has ended!",
+        "complete_message_animation": "animate-paragraph-slide-up-scroll",
         "button_label": "",
         "button_link": ""
       }
