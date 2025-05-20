@@ -108,14 +108,14 @@
       "type": "collection-slider-secondary",
       "name": "Collection Slider Secondary",
       "settings": {
-        "heading": "New In Now",
+        "heading": "Outerwear",
         "heading_animation": "none",
-        "description": "Layer up with premium wool/cashmere blends.",
+        "description": "Premium winter jackets and coats",
         "description_animation": "none",
         "collection": "outerwear",
-        "button_label": "Shop All Outerwear",
+        "button_label": "Shop All",
         "products_to_show": 10,
-        "animate_products": false
+        "animate_products": true
       }
     }
   },
