@@ -101,8 +101,12 @@
     >
       {% for i in (1..column_count) %}
         {% assign image_setting = 'image_' | append: i %}
+        {% assign image_link_setting = 'image_' | append: i | append: '_link' %}
         {% if section.settings[image_setting] != blank %}
           <div class="variable-column-content__image-wrapper">
+            {% if section.settings[image_link_setting] != blank %}
+              <a href="{{ section.settings[image_link_setting] }}">
+            {% endif %}
             {{
               section.settings[image_setting]
               | image_url: width: 800
@@ -111,6 +115,9 @@
                 loading: 'lazy',
                 alt: section.settings[image_setting].alt
             }}
+            {% if section.settings[image_link_setting] != blank %}
+              </a>
+            {% endif %}
           </div>
         {% endif %}
       {% endfor %}
@@ -228,9 +235,21 @@
       "label": "Image 1"
     },
     {
+      "type": "url",
+      "id": "image_1_link",
+      "label": "Image 1 Link",
+      "info": "Add a link to make this image clickable"
+    },
+    {
       "type": "image_picker",
       "id": "image_2",
       "label": "Image 2"
+    },
+    {
+      "type": "url",
+      "id": "image_2_link",
+      "label": "Image 2 Link",
+      "info": "Add a link to make this image clickable"
     },
     {
       "type": "image_picker",
@@ -238,9 +257,21 @@
       "label": "Image 3"
     },
     {
+      "type": "url",
+      "id": "image_3_link",
+      "label": "Image 3 Link",
+      "info": "Add a link to make this image clickable"
+    },
+    {
       "type": "image_picker",
       "id": "image_4",
       "label": "Image 4"
+    },
+    {
+      "type": "url",
+      "id": "image_4_link",
+      "label": "Image 4 Link",
+      "info": "Add a link to make this image clickable"
     },
     {
       "type": "image_picker",
@@ -248,9 +279,21 @@
       "label": "Image 5"
     },
     {
+      "type": "url",
+      "id": "image_5_link",
+      "label": "Image 5 Link",
+      "info": "Add a link to make this image clickable"
+    },
+    {
       "type": "image_picker",
       "id": "image_6",
       "label": "Image 6"
+    },
+    {
+      "type": "url",
+      "id": "image_6_link",
+      "label": "Image 6 Link",
+      "info": "Add a link to make this image clickable"
     },
     {
       "type": "header",
