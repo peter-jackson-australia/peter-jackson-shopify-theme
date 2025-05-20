@@ -337,7 +337,9 @@
           "settings": {
             "image": "shopify://shop_images/mens-blazer-green-wool-WT25-SP02-3.webp",
             "heading": "Column Heading",
+            "heading_animation": "none",
             "text": "Add a brief description for this column item.",
+            "text_animation": "none",
             "column_link": "shopify://collections",
             "column_link_text": "Shop Now"
           }
@@ -347,7 +349,9 @@
           "settings": {
             "image": "shopify://shop_images/mens-blazer-green-wool-WT25-SP02-28.webp",
             "heading": "Column Heading",
+            "heading_animation": "none",
             "text": "Add a brief description for this column item.",
+            "text_animation": "none",
             "column_link": "",
             "column_link_text": "Shop Now"
           }
@@ -357,7 +361,9 @@
           "settings": {
             "image": "shopify://shop_images/WT25-SP07-29.webp",
             "heading": "Column Heading",
+            "heading_animation": "none",
             "text": "Add a brief description for this column item.",
+            "text_animation": "none",
             "column_link": "",
             "column_link_text": "Shop Now"
           }
@@ -375,8 +381,11 @@
         "show_bottom_border": true,
         "column_count": "3",
         "text_alignment": "center",
+        "animate_columns": true,
         "heading": "Heading",
+        "heading_animation": "animate-paragraph-slide-up-scroll",
         "text": "Text",
+        "text_animation": "animate-paragraph-slide-up-scroll",
         "button_label": "Shop Now",
         "button_link": "shopify://collections/accessories"
       }
