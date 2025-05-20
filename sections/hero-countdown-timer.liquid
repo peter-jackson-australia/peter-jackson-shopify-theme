@@ -139,18 +139,21 @@
 
   <div class="countdown-timer__container countdown-timer__container--{{ section.settings.horizontal_alignment | default: 'center' }} countdown-timer__container--{{ section.settings.vertical_alignment | default: 'bottom' }}">
     {% if section.settings.heading != blank %}
-      <h1 class="countdown-timer__heading heading--3xl">
+      <h1 class="countdown-timer__heading heading--3xl {% if section.settings.heading_animation != 'none' %}{{ section.settings.heading_animation }}{% endif %}">
         {{ section.settings.heading }}
       </h1>
     {% endif %}
 
     {% if section.settings.subheading != blank %}
-      <div class="countdown-timer__subheading heading--l">
+      <div class="countdown-timer__subheading heading--l {% if section.settings.subheading_animation != 'none' %}{{ section.settings.subheading_animation }}{% endif %}">
         {{ section.settings.subheading }}
       </div>
     {% endif %}
 
-    <div id="countdown-timer-blocks-{{ section.id }}" class="countdown-timer__blocks">
+    <div
+      id="countdown-timer-blocks-{{ section.id }}"
+      class="countdown-timer__blocks {% if section.settings.animate_timer_blocks %}animate-container-cards-scroll{% endif %}"
+    >
       <div class="countdown-timer__block">
         <div id="countdown-timer-days-{{ section.id }}" class="countdown-timer__value heading--xl">00</div>
         <div class="countdown-timer__label body--uppercase">
@@ -182,14 +185,14 @@
 
     <div
       id="countdown-timer-final-{{ section.id }}"
-      class="countdown-timer__final-message countdown-timer__message heading--xl"
+      class="countdown-timer__final-message countdown-timer__message heading--xl {% if section.settings.final_message_animation != 'none' %}{{ section.settings.final_message_animation }}{% endif %}"
     >
       {{ section.settings.final_message | default: 'Final hours! Do not miss out!' }}
     </div>
 
     <div
       id="countdown-timer-complete-{{ section.id }}"
-      class="countdown-timer__complete-message countdown-timer__message heading--xl"
+      class="countdown-timer__complete-message countdown-timer__message heading--xl {% if section.settings.complete_message_animation != 'none' %}{{ section.settings.complete_message_animation }}{% endif %}"
     >
       {{ section.settings.complete_message | default: 'The countdown has ended!' }}
     </div>
@@ -305,10 +308,58 @@
       "default": "Limited Time Offer"
     },
     {
+      "type": "select",
+      "id": "heading_animation",
+      "label": "Heading Animation",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "animate-word-slide-up-scroll",
+          "label": "Slide Up Words"
+        },
+        {
+          "value": "animate-word-rotate-scroll",
+          "label": "Rotate In Words"
+        },
+        {
+          "value": "animate-paragraph-slide-up-scroll",
+          "label": "Slide Up"
+        }
+      ],
+      "default": "none"
+    },
+    {
       "type": "text",
       "id": "subheading",
       "label": "Subheading",
       "default": "Do not miss out on this special offer!"
+    },
+    {
+      "type": "select",
+      "id": "subheading_animation",
+      "label": "Subheading Animation",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "animate-word-slide-up-scroll",
+          "label": "Slide Up Words"
+        },
+        {
+          "value": "animate-word-rotate-scroll",
+          "label": "Rotate In Words"
+        },
+        {
+          "value": "animate-paragraph-slide-up-scroll",
+          "label": "Slide Up"
+        }
+      ],
+      "default": "none"
     },
     {
       "type": "text",
@@ -363,6 +414,17 @@
     },
     {
       "type": "header",
+      "content": "Animation Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "animate_timer_blocks",
+      "label": "Animate Timer Blocks",
+      "default": false,
+      "info": "Adds a staggered animation to the timer blocks as they scroll into view"
+    },
+    {
+      "type": "header",
       "content": "Timer Labels"
     },
     {
@@ -410,10 +472,58 @@
       "default": "Final hours! Do not miss out!"
     },
     {
+      "type": "select",
+      "id": "final_message_animation",
+      "label": "Final Message Animation",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "animate-word-slide-up-scroll",
+          "label": "Slide Up Words"
+        },
+        {
+          "value": "animate-word-rotate-scroll",
+          "label": "Rotate In Words"
+        },
+        {
+          "value": "animate-paragraph-slide-up-scroll",
+          "label": "Slide Up"
+        }
+      ],
+      "default": "none"
+    },
+    {
       "type": "text",
       "id": "complete_message",
       "label": "Completion Message",
       "default": "The countdown has ended!"
+    },
+    {
+      "type": "select",
+      "id": "complete_message_animation",
+      "label": "Complete Message Animation",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "animate-word-slide-up-scroll",
+          "label": "Slide Up Words"
+        },
+        {
+          "value": "animate-word-rotate-scroll",
+          "label": "Rotate In Words"
+        },
+        {
+          "value": "animate-paragraph-slide-up-scroll",
+          "label": "Slide Up"
+        }
+      ],
+      "default": "none"
     },
     {
       "type": "header",
