@@ -140,8 +140,8 @@
         "final_message_animation": "animate-paragraph-slide-up-scroll",
         "complete_message": "The countdown has ended!",
         "complete_message_animation": "animate-paragraph-slide-up-scroll",
-        "button_label": "",
-        "button_link": ""
+        "button_label": "Shop Now",
+        "button_link": "shopify://collections/accessories"
       }
     },
     "editorial_hero_MCq8we": {
