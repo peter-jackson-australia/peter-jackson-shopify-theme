@@ -287,9 +287,9 @@
             "image": "shopify://shop_images/peter-jackson-man-wearing-winter-coat.jpg",
             "product": "",
             "heading": "Column Heading",
-            "heading_animation": "none",
+            "heading_animation": "animate-paragraph-slide-up-scroll",
             "description": "Add your description text here. Add your description text here. Add your description text here. Add your description text here. Add your description text here. Add your description text here.",
-            "description_animation": "none",
+            "description_animation": "animate-paragraph-slide-up-scroll",
             "button_label": "Learn More",
             "button_link": "shopify://collections/accessories"
           }
