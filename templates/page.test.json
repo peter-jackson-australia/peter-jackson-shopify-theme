@@ -316,12 +316,15 @@
         "show_bottom_border": false,
         "column_count": "4",
         "text_alignment": "center",
+        "animate_images": true,
         "image_1": "shopify://shop_images/mens-blazer-green-wool-WT25-SP02-27.webp",
         "image_2": "shopify://shop_images/mens-blazer-green-wool-WT25-SP02-3.webp",
         "image_3": "shopify://shop_images/mens-jacket-green-wool-WT25-SP18-1.webp",
         "image_4": "shopify://shop_images/mens-jacket-green-wool-WT25-SP18-13.webp",
         "heading": "Variable Column Content",
+        "heading_animation": "animate-paragraph-slide-up-scroll",
         "text": "Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.",
+        "text_animation": "animate-paragraph-slide-up-scroll",
         "button_label": "Learn More",
         "button_link": "shopify://collections/accessories"
       }
