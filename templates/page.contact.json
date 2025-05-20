@@ -123,10 +123,88 @@
         "button_label": "Learn More",
         "button_link": ""
       }
+    },
+    "variable_column_content_secondary_x8TD3J": {
+      "type": "variable-column-content-secondary",
+      "blocks": {
+        "column_item_JpGENF": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/mens-scarf-green-wool-XSC12-GE-3.webp",
+            "image_link": "shopify://collections/accessories",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_yMJTij": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/mens-scarf-navy-wool-silk-XSC14-2.webp",
+            "image_link": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_8PECDj": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/mens-scarf-navy-wool-silk-XSC14-1.webp",
+            "image_link": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_EmTrMt": {
+          "type": "column_item",
+          "settings": {
+            "image_link": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_JpGENF",
+        "column_item_yMJTij",
+        "column_item_8PECDj",
+        "column_item_EmTrMt"
+      ],
+      "name": "Variable Column Content Secondary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "3",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "Variable Column Content Secondary",
+        "heading_animation": "none",
+        "text": "Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
     }
   },
   "order": [
     "contact_form",
-    "image_with_text_jVgeex"
+    "image_with_text_jVgeex",
+    "variable_column_content_secondary_x8TD3J"
   ]
 }
