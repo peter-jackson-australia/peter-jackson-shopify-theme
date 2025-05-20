@@ -200,11 +200,39 @@
         "button_label": "Learn More",
         "button_link": ""
       }
+    },
+    "variable_column_content_m3Ttm4": {
+      "type": "variable-column-content",
+      "name": "Variable Column Content",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "3",
+        "text_alignment": "left",
+        "animate_images": false,
+        "image_1": "shopify://shop_images/mens-scarf-blue-green-5.webp",
+        "image_1_link": "shopify://collections/bottoms",
+        "image_2": "shopify://shop_images/mens-scarf-blue-green-3.webp",
+        "image_2_link": "shopify://collections/bottoms",
+        "image_3": "shopify://shop_images/mens-scarf-green-wool-XSC12-GE-3.webp",
+        "image_3_link": "shopify://pages/contact",
+        "image_4_link": "",
+        "image_5_link": "",
+        "image_6_link": "",
+        "heading": "Variable Column Content",
+        "heading_animation": "none",
+        "text": "Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
     }
   },
   "order": [
     "contact_form",
     "image_with_text_jVgeex",
-    "variable_column_content_secondary_x8TD3J"
+    "variable_column_content_secondary_x8TD3J",
+    "variable_column_content_m3Ttm4"
   ]
 }
