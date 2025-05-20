@@ -227,12 +227,25 @@
         "button_label": "Learn More",
         "button_link": ""
       }
+    },
+    "full_page_media_PJFFwx": {
+      "type": "full-page-media",
+      "name": "Full Page Media",
+      "settings": {
+        "media_type": "video",
+        "desktop_image": "shopify://shop_images/Higher-Ground-11_2000x_c79ae7f6-21a2-456c-9040-60b8f3877894.webp",
+        "video": "shopify://files/videos/WT25-Homepage-Desktop-Compressed.mp4",
+        "link": "shopify://collections/accessories",
+        "link_text": "Learn more",
+        "alt_text": "Full page media"
+      }
     }
   },
   "order": [
     "contact_form",
     "image_with_text_jVgeex",
     "variable_column_content_secondary_x8TD3J",
-    "variable_column_content_m3Ttm4"
+    "variable_column_content_m3Ttm4",
+    "full_page_media_PJFFwx"
   ]
 }
