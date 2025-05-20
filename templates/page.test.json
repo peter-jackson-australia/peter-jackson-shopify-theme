@@ -114,7 +114,8 @@
       "name": "FAQ Section",
       "settings": {
         "show_top_border": false,
-        "show_bottom_border": false
+        "show_bottom_border": false,
+        "animate_faqs": true
       }
     },
     "hero_countdown_timer_3Hw83h": {
