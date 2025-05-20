@@ -33,7 +33,7 @@
         "cta_link": "shopify://collections/accessories",
         "cta_text": "Read Now",
         "show_recent_posts": true,
-        "animate_posts": true,
+        "animate_posts": false,
         "blog": "the-jackson-journal"
       }
     },
