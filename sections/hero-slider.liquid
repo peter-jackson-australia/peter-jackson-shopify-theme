@@ -246,9 +246,11 @@
           {% endif %}
 
           <div class="hero-slider__content hero-slider__content--{{ block.settings.horizontal_alignment | default: 'center' }} hero-slider__content--{{ block.settings.vertical_alignment | default: 'bottom' }}">
-            <h1 class="heading--3xl">{{ block.settings.heading }}</h1>
+            <h1 class="heading--3xl {% if block.settings.heading_animation != 'none' %}{{ block.settings.heading_animation }}{% endif %}">
+              {{ block.settings.heading }}
+            </h1>
 
-            <div class="heading--l">
+            <div class="heading--l {% if block.settings.description_animation != 'none' %}{{ block.settings.description_animation }}{% endif %}">
               {{ block.settings.description }}
             </div>
 
@@ -406,10 +408,58 @@
           "default": "Welcome to Our Store"
         },
         {
+          "type": "select",
+          "id": "heading_animation",
+          "label": "Heading Animation",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "animate-word-slide-up-scroll",
+              "label": "Slide Up Words"
+            },
+            {
+              "value": "animate-word-rotate-scroll",
+              "label": "Rotate In Words"
+            },
+            {
+              "value": "animate-paragraph-slide-up-scroll",
+              "label": "Slide Up"
+            }
+          ],
+          "default": "none"
+        },
+        {
           "type": "text",
           "id": "description",
           "label": "Description",
           "default": "Discover our latest collection"
+        },
+        {
+          "type": "select",
+          "id": "description_animation",
+          "label": "Description Animation",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "animate-word-slide-up-scroll",
+              "label": "Slide Up Words"
+            },
+            {
+              "value": "animate-word-rotate-scroll",
+              "label": "Rotate In Words"
+            },
+            {
+              "value": "animate-paragraph-slide-up-scroll",
+              "label": "Slide Up"
+            }
+          ],
+          "default": "none"
         },
         {
           "type": "text",
