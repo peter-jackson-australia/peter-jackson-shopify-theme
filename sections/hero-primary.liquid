@@ -101,9 +101,11 @@
       }}
     {% endif %}
     <div class="hero__content hero__content--{{ section.settings.horizontal_alignment | default: 'center' }} hero__content--{{ section.settings.vertical_alignment | default: 'bottom' }}">
-      <h1 class="heading--3xl">{{ section.settings.heading }}</h1>
+      <h1 class="heading--3xl {% if section.settings.heading_animation != 'none' %}{{ section.settings.heading_animation }}{% endif %}">
+        {{ section.settings.heading }}
+      </h1>
 
-      <div class="heading--l">
+      <div class="heading--l {% if section.settings.description_animation != 'none' %}{{ section.settings.description_animation }}{% endif %}">
         {{ section.settings.description }}
       </div>
 
@@ -143,10 +145,58 @@
       "default": "Welcome to Our Store"
     },
     {
+      "type": "select",
+      "id": "heading_animation",
+      "label": "Heading Animation",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "animate-word-slide-up-scroll",
+          "label": "Slide Up Words"
+        },
+        {
+          "value": "animate-word-rotate-scroll",
+          "label": "Rotate In Words"
+        },
+        {
+          "value": "animate-paragraph-slide-up-scroll",
+          "label": "Slide Up"
+        }
+      ],
+      "default": "none"
+    },
+    {
       "type": "text",
       "id": "description",
       "label": "Description",
       "default": "Discover our latest collection"
+    },
+    {
+      "type": "select",
+      "id": "description_animation",
+      "label": "Description Animation",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "animate-word-slide-up-scroll",
+          "label": "Slide Up Words"
+        },
+        {
+          "value": "animate-word-rotate-scroll",
+          "label": "Rotate In Words"
+        },
+        {
+          "value": "animate-paragraph-slide-up-scroll",
+          "label": "Slide Up"
+        }
+      ],
+      "default": "none"
     },
     {
       "type": "text",
