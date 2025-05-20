@@ -31,9 +31,9 @@
         "video": "shopify://files/videos/WT25-Homepage-Desktop-Compressed.mp4",
         "animate_media": false,
         "second_title": "Ground",
-        "second_title_animation": "none",
+        "second_title_animation": "animate-paragraph-slide-up-scroll",
         "description": "Our winter collection embodies a mindset — one of purpose, progress, and refinement. Suits and sports jackets are reimagined in relaxed silhouettes, crafted from premium textiles that balance heritage with innovation. This is style designed not just for the day ahead, but for the journey beyond it — tailored for higher ground.",
-        "description_animation": "none",
+        "description_animation": "animate-paragraph-slide-up-scroll",
         "cta_text": "Shop Now",
         "cta_link": ""
       }
@@ -258,6 +258,20 @@
         "mobile_image": "shopify://shop_images/Higher-Ground-25_1296x_056d5532-ba31-4ca9-995b-dde481acb249.webp",
         "alt_text": "Full page media"
       }
+    },
+    "collection_slider_secondary_yGfCVj": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "Shop New Season",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "new-arrivals",
+        "button_label": "New In",
+        "products_to_show": 10,
+        "animate_products": false
+      }
     }
   },
   "order": [
@@ -273,6 +287,7 @@
     "collection_slider_secondary_Fr3RYB",
     "variable_column_content_DECpXN",
     "heading_with_text_NFCiF4",
-    "full_page_media_fUVJVk"
+    "full_page_media_fUVJVk",
+    "collection_slider_secondary_yGfCVj"
   ]
 }
