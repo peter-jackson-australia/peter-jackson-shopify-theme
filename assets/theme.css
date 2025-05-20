@@ -416,7 +416,9 @@ accordion-fan > accordion-element > .ploiu-accordion-title {
   font-size: clamp(0.5787rem, 0.5498rem + 0.1447vw, 0.7234rem);
 }
 
-.body {
+.body,
+p, 
+li {
   line-height: 140%;
   letter-spacing: 0.065rem;
   font-family: 'Ordinary Light';
@@ -433,7 +435,9 @@ accordion-fan > accordion-element > .ploiu-accordion-title {
   font-weight: 300;
 }
 
-.body--bold {
+.body--bold,
+h5, 
+h6 {
   line-height: 140%;
   letter-spacing: 0.065rem;
   font-family: 'Ordinary Regular';
@@ -441,7 +445,8 @@ accordion-fan > accordion-element > .ploiu-accordion-title {
   font-weight: 500;
 }
 
-.heading--l {
+.heading--l,
+h4 {
   line-height: 140%;
   letter-spacing: 0.125rem;
   font-family: 'Ordinary Regular';
@@ -451,14 +456,16 @@ accordion-fan > accordion-element > .ploiu-accordion-title {
   -webkit-font-smoothing: antialiased;
 }
 
-.heading--xl {
+.heading--xl,
+h3 {
   line-height: 140%;
   font-family: 'Ordinary Regular';
   font-size: clamp(1rem, 0.95rem + 0.25vw, 1.25rem);
   font-weight: 500;
 }
 
-.heading--2xl {
+.heading--2xl,
+h2 {
   line-height: 140%;
   letter-spacing: 0.125rem;
   font-family: 'Ordinary Regular';
@@ -475,7 +482,8 @@ accordion-fan > accordion-element > .ploiu-accordion-title {
   -webkit-font-smoothing: antialiased;
 }
 
-.heading--3xl {
+.heading--3xl, 
+h1 {
   line-height: 100%;
   letter-spacing: 0.2rem;
   font-family: 'Ordinary Light';

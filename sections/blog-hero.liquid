@@ -175,13 +175,6 @@
     text-decoration: none;
   }
 
-  .blog-hero__post-excerpt {
-    color: var(--neutral-600);
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
   .blog-hero__post-link {
     display: flex;
     gap: var(--space-xs);
@@ -384,11 +377,6 @@
                 <a href="{{ article.url }}">{{ article.title }}</a>
               </h3>
 
-              {% if article.excerpt.size > 0 %}
-                <div class="blog-hero__post-excerpt body">{{ article.excerpt }}</div>
-              {% elsif article.content.size > 0 %}
-                <div class="blog-hero__post-excerpt body">{{ article.content | strip_html | truncatewords: 30 }}</div>
-              {% endif %}
               <a href="{{ article.url }}" class="blog-hero__post-link-container">
                 <span class="blog-hero__post-link body">Read Article {% render 'icon-arrow-submit-dark' %}</span>
               </a>
