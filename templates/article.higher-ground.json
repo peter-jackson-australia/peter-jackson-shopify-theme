@@ -31,9 +31,9 @@
         "video": "shopify://files/videos/WT25-Homepage-Desktop-Compressed.mp4",
         "animate_media": false,
         "second_title": "Ground",
-        "second_title_animation": "none",
+        "second_title_animation": "animate-paragraph-slide-up-scroll",
         "description": "Our winter collection embodies a mindset — one of purpose, progress, and refinement. Suits and sports jackets are reimagined in relaxed silhouettes, crafted from premium textiles that balance heritage with innovation. This is style designed not just for the day ahead, but for the journey beyond it — tailored for higher ground.",
-        "description_animation": "none",
+        "description_animation": "animate-paragraph-slide-up-scroll",
         "cta_text": "Shop Now",
         "cta_link": ""
       }
