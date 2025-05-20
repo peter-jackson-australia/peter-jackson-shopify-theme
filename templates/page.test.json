@@ -172,7 +172,9 @@
       "settings": {
         "desktop_image": "shopify://shop_images/Click_Frenzy_Hero.webp",
         "heading": "Welcome to Our Store",
+        "heading_animation": "animate-paragraph-slide-up-scroll",
         "description": "Discover our latest collection",
+        "description_animation": "animate-paragraph-slide-up-scroll",
         "button_label": "Shop Now",
         "button_link": "shopify://collections/accessories",
         "horizontal_alignment": "left",
