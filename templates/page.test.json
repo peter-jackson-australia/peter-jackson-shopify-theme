@@ -425,6 +425,7 @@
         "show_top_border": false,
         "show_bottom_border": true,
         "heading": "Shop the Look",
+        "heading_animation": "animate-paragraph-slide-up-scroll",
         "featured_image": "shopify://shop_images/mens-blazer-green-wool-WT25-SP02-28.webp",
         "product1": "agnelli-taupe-plaid-suit",
         "product2": "albinoni-black-penny-loafer",
