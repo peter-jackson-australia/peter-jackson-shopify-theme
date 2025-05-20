@@ -117,6 +117,42 @@
         "products_to_show": 10,
         "animate_products": true
       }
+    },
+    "image_with_text_KWmAa3": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "first_image": "shopify://shop_images/Higher-Ground-5_900x_b9c7f089-0715-4a89-9497-717235b82c9e.webp",
+        "animate_images": false,
+        "alignment": "left",
+        "heading": "Quiet Command",
+        "heading_animation": "none",
+        "text": "The fine-gauge knit defines winter’s sharpest layer. In classic turtlenecks and clean crew styles, each piece is cut from a wool-cashmere blend that delivers warmth, breathability, and a soft, refined finish.",
+        "text_animation": "none",
+        "button_label": "Shop Knitwear",
+        "button_link": ""
+      }
+    },
+    "image_with_text_FGfVYU": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "first_image": "shopify://shop_images/Higher-Ground-6_900x_e0484f2a-0263-454c-ab59-aff2b7c7618d.webp",
+        "animate_images": false,
+        "alignment": "right",
+        "heading": "",
+        "heading_animation": "none",
+        "text": "Designed to style under suits and sports jackets with ease, it’s a foundation of the season’s style. Crafted to sit close to the body without bulk, it slips easily under tailoring — adding warmth, not weight.",
+        "text_animation": "none",
+        "button_label": "Shop Knitwear",
+        "button_link": "shopify://collections/knitwear"
+      }
     }
   },
   "order": [
@@ -125,6 +161,8 @@
     "full_page_media_DQrgiW",
     "two_column_content_JQLcTq",
     "hero_primary_AMqni9",
-    "collection_slider_secondary_GjGnVj"
+    "collection_slider_secondary_GjGnVj",
+    "image_with_text_KWmAa3",
+    "image_with_text_FGfVYU"
   ]
 }
