@@ -137,11 +137,15 @@
   <div class="collection-slider-secondary__container">
     <div class="collection-slider-secondary__content">
       {% if section.settings.heading != blank %}
-        <h2 class="heading--2xl collection-slider-secondary__heading">{{ section.settings.heading }}</h2>
+        <h2 class="heading--2xl collection-slider-secondary__heading {% if section.settings.heading_animation != 'none' %}{{ section.settings.heading_animation }}{% endif %}">
+          {{ section.settings.heading }}
+        </h2>
       {% endif %}
 
       {% if section.settings.description != blank %}
-        <p class="body collection-slider-secondary__description">{{ section.settings.description }}</p>
+        <p class="body collection-slider-secondary__description {% if section.settings.description_animation != 'none' %}{{ section.settings.description_animation }}{% endif %}">
+          {{ section.settings.description }}
+        </p>
       {% endif %}
 
       {% if section.settings.collection != blank and section.settings.button_label != blank %}
@@ -160,7 +164,7 @@
             <button class="splide__arrow splide__arrow--next">{% render 'icon-arrow-see-more' %}</button>
           </div>
           <div class="splide__track">
-            <ul class="splide__list">
+            <ul class="splide__list {% if section.settings.animate_products %}animate-container-cards-scroll{% endif %}">
               {% assign product_limit = section.settings.products_to_show | default: 10 %}
               {% for product in section.settings.collection.products limit: product_limit %}
                 <li class="splide__slide collection-slider-secondary__slide">
@@ -253,10 +257,58 @@
       "default": "New In Now"
     },
     {
+      "type": "select",
+      "id": "heading_animation",
+      "label": "Heading Animation",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "animate-word-slide-up-scroll",
+          "label": "Slide Up Words"
+        },
+        {
+          "value": "animate-word-rotate-scroll",
+          "label": "Rotate In Words"
+        },
+        {
+          "value": "animate-paragraph-slide-up-scroll",
+          "label": "Slide Up"
+        }
+      ],
+      "default": "none"
+    },
+    {
       "type": "textarea",
       "id": "description",
       "label": "Description",
       "default": "Layer up with premium wool/cashmere blends."
+    },
+    {
+      "type": "select",
+      "id": "description_animation",
+      "label": "Description Animation",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "animate-word-slide-up-scroll",
+          "label": "Slide Up Words"
+        },
+        {
+          "value": "animate-word-rotate-scroll",
+          "label": "Rotate In Words"
+        },
+        {
+          "value": "animate-paragraph-slide-up-scroll",
+          "label": "Slide Up"
+        }
+      ],
+      "default": "none"
     },
     {
       "type": "collection",
@@ -277,6 +329,17 @@
       "step": 1,
       "default": 10,
       "label": "Maximum products to show"
+    },
+    {
+      "type": "header",
+      "content": "Animation Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "animate_products",
+      "label": "Animate Products",
+      "default": false,
+      "info": "Adds a staggered animation to products as they scroll into view"
     }
   ],
   "presets": [
