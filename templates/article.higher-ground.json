@@ -113,7 +113,7 @@
         "description": "Layer up with premium wool/cashmere blends.",
         "description_animation": "none",
         "collection": "outerwear",
-        "button_label": "Shop Now",
+        "button_label": "Shop All Outerwear",
         "products_to_show": 10,
         "animate_products": false
       }
