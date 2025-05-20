@@ -104,19 +104,29 @@
         "color": ""
       }
     },
-    "two_column_heading_text_kck8kh": {
-      "type": "two-column-heading-text",
-      "name": "Two Column Heading Text",
+    "image_with_text_jVgeex": {
+      "type": "image-with-text",
+      "name": "Image With Text",
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
-        "heading": "Section Heading",
-        "heading_style": "normal",
-        "content": "<p>Add your content here. This area uses the rich text editor so you can format text, add links, and more.</p><ul><li><strong>Add</strong> your content here. This <a href=\"/collections/bags\" title=\"Bags\">area</a> uses the rich text editor so you can format text, add links, and more.</li></ul><p>Add your content here. This area uses the rich text editor so you can format text, add links, and more.</p>",
-        "alignment": "left"
+        "first_image": "shopify://shop_images/mens-scarf-green-wool-XSC12-GE-2.webp",
+        "image_link": "shopify://products/abstract-sunshine-pocket-square",
+        "second_image": "shopify://shop_images/mens-scarf-navy-wool-silk-XSC14-80.webp",
+        "animate_images": false,
+        "alignment": "left",
+        "heading": "Image With Text",
+        "heading_animation": "none",
+        "text": "Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
       }
     }
   },
-  "order": ["contact_form", "two_column_heading_text_kck8kh"]
+  "order": [
+    "contact_form",
+    "image_with_text_jVgeex"
+  ]
 }
