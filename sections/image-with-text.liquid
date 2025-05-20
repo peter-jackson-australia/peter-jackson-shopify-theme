@@ -133,12 +133,18 @@
       <div class="image-with-text__images-wrapper">
         {% if section.settings.first_image != blank %}
           <div class="image-with-text__image-container {% if section.settings.second_image != blank %}image-with-text__image-container--first{% endif %}">
+            {% if section.settings.image_link != blank %}
+              <a href="{{ section.settings.image_link }}">
+            {% endif %}
             {{
               section.settings.first_image
               | image_url: width: 2000
               | image_tag: class: 'image-with-text__image', alt: section.settings.first_image.alt
               | default: section.settings.heading, loading: 'lazy'
             }}
+            {% if section.settings.image_link != blank %}
+              </a>
+            {% endif %}
           </div>
         {% endif %}
 
@@ -204,6 +210,12 @@
       "type": "image_picker",
       "id": "first_image",
       "label": "First Image"
+    },
+    {
+      "type": "url",
+      "id": "image_link",
+      "label": "Image Link",
+      "info": "Add a link to make the main image clickable"
     },
     {
       "type": "image_picker",

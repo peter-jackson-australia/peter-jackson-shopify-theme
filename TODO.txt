@@ -3,7 +3,7 @@ Home page sections:
     Finish the sections: Contact Form 
     
     Schema:
-    Choose link for blog hero hero image, image with text image, variable column content image, full page media video or image
+    Choose link for image with text image, variable column content image, full page media video or image
     
     Make the menu featured images load faster
 
