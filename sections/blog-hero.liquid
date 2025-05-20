@@ -305,13 +305,17 @@
         <div class="blog-hero__image-content">
           <div class="blog-hero__image-header">
             {% if section.settings.image_heading != blank %}
-              <h2 class="blog-hero__image-title heading--l">{{ section.settings.image_heading }}</h2>
+              <h2 class="blog-hero__image-title heading--l {% if section.settings.image_heading_animation != 'none' %}{{ section.settings.image_heading_animation }}{% endif %}">
+                {{ section.settings.image_heading }}
+              </h2>
             {% endif %}
           </div>
 
           <div class="blog-hero__image-description-container">
             {% if section.settings.image_description != blank %}
-              <div class="blog-hero__image-description body">{{ section.settings.image_description }}</div>
+              <div class="blog-hero__image-description body {% if section.settings.image_description_animation != 'none' %}{{ section.settings.image_description_animation }}{% endif %}">
+                {{ section.settings.image_description }}
+              </div>
             {% endif %}
 
             {% if section.settings.image_link_url != blank and section.settings.image_link_text != blank %}
@@ -329,19 +333,25 @@
   <div class="blog-hero__content">
     <div class="blog-hero__header">
       {% if section.settings.heading != blank %}
-        <h1 class="blog-hero__title heading--decorative">{{ section.settings.heading }}</h1>
+        <h1 class="blog-hero__title heading--decorative {% if section.settings.heading_animation != 'none' %}{{ section.settings.heading_animation }}{% endif %}">
+          {{ section.settings.heading }}
+        </h1>
       {% endif %}
 
       <span class="blog-hero__divider"></span>
 
       {% if section.settings.subheading != blank %}
-        <h2 class="blog-hero__subtitle heading--l">{{ section.settings.subheading }}</h2>
+        <h2 class="blog-hero__subtitle heading--l {% if section.settings.subheading_animation != 'none' %}{{ section.settings.subheading_animation }}{% endif %}">
+          {{ section.settings.subheading }}
+        </h2>
       {% endif %}
     </div>
 
     <div class="blog-hero__description">
       {% if section.settings.description != blank %}
-        <div class="blog-hero__text body">{{ section.settings.description }}</div>
+        <div class="blog-hero__text body {% if section.settings.description_animation != 'none' %}{{ section.settings.description_animation }}{% endif %}">
+          {{ section.settings.description }}
+        </div>
       {% endif %}
 
       {% if section.settings.cta_link != blank and section.settings.cta_text != blank %}
@@ -355,7 +365,7 @@
 
   {% if section.settings.show_recent_posts %}
     <div class="blog-hero__recent">
-      <div class="blog-hero__posts">
+      <div class="blog-hero__posts {% if section.settings.animate_posts %}animate-container-cards-scroll{% endif %}">
         {%- assign blog = blogs[section.settings.blog] -%}
         {% for article in blog.articles limit: 4 %}
           <article class="blog-hero__post">
@@ -441,10 +451,54 @@
       "default": "Featured Article Title"
     },
     {
+      "type": "select",
+      "id": "image_heading_animation",
+      "label": "Image Heading Animation",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "animate-word-slide-up-scroll",
+          "label": "Slide Up"
+        },
+        {
+          "value": "animate-word-rotate-scroll",
+          "label": "Rotate In"
+        },
+        {
+          "value": "animate-word-opacity-scroll",
+          "label": "Fade In"
+        }
+      ],
+      "default": "none"
+    },
+    {
       "type": "text",
       "id": "image_description",
       "label": "Image Description",
       "default": "Description text for the featured article."
+    },
+    {
+      "type": "select",
+      "id": "image_description_animation",
+      "label": "Image Description Animation",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "animate-paragraph-slide-up-scroll",
+          "label": "Slide Up"
+        },
+        {
+          "value": "animate-word-opacity-scroll",
+          "label": "Fade In"
+        }
+      ],
+      "default": "none"
     },
     {
       "type": "text",
@@ -468,16 +522,84 @@
       "default": "The Jackson Journal"
     },
     {
+      "type": "select",
+      "id": "heading_animation",
+      "label": "Heading Animation",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "animate-word-slide-up-scroll",
+          "label": "Slide Up"
+        },
+        {
+          "value": "animate-word-rotate-scroll",
+          "label": "Rotate In"
+        },
+        {
+          "value": "animate-word-opacity-scroll",
+          "label": "Fade In"
+        }
+      ],
+      "default": "none"
+    },
+    {
       "type": "text",
       "id": "subheading",
       "label": "Subheading",
       "default": "Heritage Meets Heritage"
     },
     {
+      "type": "select",
+      "id": "subheading_animation",
+      "label": "Subheading Animation",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "animate-word-slide-up-scroll",
+          "label": "Slide Up"
+        },
+        {
+          "value": "animate-word-rotate-scroll",
+          "label": "Rotate In"
+        },
+        {
+          "value": "animate-word-opacity-scroll",
+          "label": "Fade In"
+        }
+      ],
+      "default": "none"
+    },
+    {
       "type": "text",
       "id": "description",
       "label": "Description",
       "default": "Some general information about the blog collection"
+    },
+    {
+      "type": "select",
+      "id": "description_animation",
+      "label": "Description Animation",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "animate-paragraph-slide-up-scroll",
+          "label": "Slide Up"
+        },
+        {
+          "value": "animate-word-opacity-scroll",
+          "label": "Fade In"
+        }
+      ],
+      "default": "none"
     },
     {
       "type": "url",
@@ -491,10 +613,21 @@
       "default": "Read Now"
     },
     {
+      "type": "header",
+      "content": "Blog Posts"
+    },
+    {
       "type": "checkbox",
       "id": "show_recent_posts",
       "label": "Show Recent Posts",
       "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "animate_posts",
+      "label": "Animate Blog Posts",
+      "default": true,
+      "info": "Adds a staggered fade-in animation to blog post cards"
     },
     {
       "type": "blog",
