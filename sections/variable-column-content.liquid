@@ -93,7 +93,7 @@
   {% if section.settings.column_count != blank %}
     {% assign column_count = section.settings.column_count | plus: 0 %}
     <div
-      class="variable-column-content__image-grid"
+      class="variable-column-content__image-grid {% if section.settings.animate_images %}animate-container-cards-scroll{% endif %}"
       style="grid-template-columns: repeat({{ column_count }}, 1fr);"
       {% if section.settings.anchor_id != blank %}
         id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
@@ -120,13 +120,13 @@
   <div class="variable-column-content__text-container">
     <div class="variable-column-content__text-content variable-column-content__text-content--{{ section.settings.text_alignment }}">
       {% if section.settings.heading != blank %}
-        <h2 class="variable-column-content__heading heading--xl">
+        <h2 class="variable-column-content__heading heading--xl {% if section.settings.heading_animation != 'none' %}{{ section.settings.heading_animation }}{% endif %}">
           {{ section.settings.heading }}
         </h2>
       {% endif %}
 
       {% if section.settings.text != blank %}
-        <div class="variable-column-content__text body">
+        <div class="variable-column-content__text body {% if section.settings.text_animation != 'none' %}{{ section.settings.text_animation }}{% endif %}">
           {{ section.settings.text }}
         </div>
       {% endif %}
@@ -216,6 +216,13 @@
       "content": "Images"
     },
     {
+      "type": "checkbox",
+      "id": "animate_images",
+      "label": "Animate Images",
+      "default": false,
+      "info": "Adds a staggered animation to images as they scroll into view"
+    },
+    {
       "type": "image_picker",
       "id": "image_1",
       "label": "Image 1"
@@ -256,10 +263,58 @@
       "default": "Variable Column Content"
     },
     {
+      "type": "select",
+      "id": "heading_animation",
+      "label": "Heading Animation",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "animate-word-slide-up-scroll",
+          "label": "Slide Up Words"
+        },
+        {
+          "value": "animate-word-rotate-scroll",
+          "label": "Rotate In Words"
+        },
+        {
+          "value": "animate-paragraph-slide-up-scroll",
+          "label": "Slide Up"
+        }
+      ],
+      "default": "none"
+    },
+    {
       "type": "text",
       "id": "text",
       "label": "Text",
       "default": "Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store."
+    },
+    {
+      "type": "select",
+      "id": "text_animation",
+      "label": "Text Animation",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "animate-word-slide-up-scroll",
+          "label": "Slide Up Words"
+        },
+        {
+          "value": "animate-word-rotate-scroll",
+          "label": "Rotate In Words"
+        },
+        {
+          "value": "animate-paragraph-slide-up-scroll",
+          "label": "Slide Up"
+        }
+      ],
+      "default": "none"
     },
     {
       "type": "text",
