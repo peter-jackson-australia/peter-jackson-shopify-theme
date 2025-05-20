@@ -18,7 +18,9 @@
             "media_type": "video",
             "video": "shopify://files/videos/WT25-Homepage-Desktop-Compressed.mp4",
             "heading": "Renaissance of Style",
+            "heading_animation": "none",
             "description": "Winter 25 Collection",
+            "description_animation": "none",
             "button_label": "Shop New",
             "button_link": "shopify://collections/sale",
             "horizontal_alignment": "center",
@@ -40,10 +42,13 @@
       "name": "Collection Slider",
       "settings": {
         "heading": "New In Now",
+        "heading_animation": "none",
         "description": "Layer up with premium wool/cashmere blends.",
+        "description_animation": "none",
         "collection": "new-arrivals",
         "button_label": "Shop Now",
-        "products_to_show": 10
+        "products_to_show": 10,
+        "animate_products": false
       }
     },
     "hero_primary_YCJLcF": {
@@ -52,7 +57,9 @@
       "settings": {
         "desktop_image": "shopify://shop_images/Click_Frenzy_Hero.webp",
         "heading": "Outerwear",
+        "heading_animation": "none",
         "description": "Wool-cashmere blends",
+        "description_animation": "none",
         "button_label": "Shop Now",
         "button_link": "shopify://collections/outerwear",
         "horizontal_alignment": "left",
@@ -67,7 +74,11 @@
           "settings": {
             "image": "shopify://shop_images/peter-jackson-man-wearing-winter-coat.jpg",
             "heading": "Outerwear",
-            "text": "Winter jackets & coats"
+            "heading_animation": "none",
+            "text": "Winter jackets & coats",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
           }
         },
         "column_item_FrJjbX": {
@@ -75,7 +86,11 @@
           "settings": {
             "image": "shopify://shop_images/peter-jackson-man-wearing-casual-essentials.jpg",
             "heading": "The New Casual Code",
-            "text": "Casual essentials to elevate the everyday"
+            "heading_animation": "none",
+            "text": "Casual essentials to elevate the everyday",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
           }
         },
         "column_item_DYEeGP": {
@@ -83,7 +98,11 @@
           "settings": {
             "image": "shopify://shop_images/peter-jackson-man-wearing-winter-coat.jpg",
             "heading": "Column Heading",
-            "text": "Add a brief description for this column item."
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
           }
         },
         "column_item_CF4TLx": {
@@ -91,7 +110,11 @@
           "settings": {
             "image": "shopify://shop_images/peter-jackson-man-wearing-sports-jacket-and-tie-walking-through-streets-of-europe.jpg",
             "heading": "Sports Jackets",
-            "text": "A versatile wardrobe staple"
+            "heading_animation": "none",
+            "text": "A versatile wardrobe staple",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
           }
         }
       },
@@ -108,8 +131,11 @@
         "show_bottom_border": false,
         "column_count": "4",
         "text_alignment": "left",
+        "animate_columns": false,
         "heading": "",
+        "heading_animation": "none",
         "text": "",
+        "text_animation": "none",
         "button_label": "",
         "button_link": ""
       }
@@ -122,17 +148,24 @@
         "show_top_border": true,
         "show_bottom_border": false,
         "hero_image": "shopify://shop_images/Peter-Jackson-Man-Wearing-Green-Corduroy-Suit.jpg",
+        "hero_image_link": "shopify://blogs/the-jackson-journal",
         "show_image_overlay": true,
         "image_heading": "Winter Outerwear",
+        "image_heading_animation": "none",
         "image_description": "Explore the must-have winter jackets & coats",
+        "image_description_animation": "none",
         "image_link_text": "Read More",
         "image_link_url": "shopify://blogs/the-jackson-journal",
         "heading": "The Jackson Journal",
+        "heading_animation": "none",
         "subheading": "The Corduroy Comeback",
+        "subheading_animation": "none",
         "description": "Vintage utility meets contemporary style. From suits to jackets and casual shirts, this classic textile is back with a vengeance.",
+        "description_animation": "none",
         "cta_link": "",
         "cta_text": "Read Now",
         "show_recent_posts": true,
+        "animate_posts": true,
         "blog": "the-jackson-journal"
       }
     }
