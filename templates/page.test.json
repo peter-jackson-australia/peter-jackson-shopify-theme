@@ -375,10 +375,10 @@
         "show_bottom_border": true,
         "column_count": "3",
         "text_alignment": "center",
-        "heading": "",
-        "text": "",
-        "button_label": "",
-        "button_link": ""
+        "heading": "Heading",
+        "text": "Text",
+        "button_label": "Shop Now",
+        "button_link": "shopify://collections/accessories"
       }
     },
     "full_page_media_fmYDXr": {
