@@ -764,3 +764,9 @@ a.skip-to-content:focus-visible {
     transform: rotate(360deg);
   }
 }
+
+/* GSAP animations */
+
+.animate-container-cards-scroll > * {
+  opacity: 0;
+}

@@ -1,4 +1,17 @@
 document.addEventListener("DOMContentLoaded", function () {
+  const isDesktop = window.innerWidth >= 768;
+  
+  if (!isDesktop) {
+    const containerElements = document.querySelectorAll(".animate-container-cards-scroll");
+    if (containerElements.length > 0) {
+      containerElements.forEach((container) => {
+        const cards = container.children;
+        gsap.set(cards, { opacity: 1, y: 0 });
+      });
+    }
+    return;
+  }
+  
   /*
     Classes: 
     animate-word-slide-up-scroll
@@ -179,6 +192,19 @@ document.addEventListener("DOMContentLoaded", function () {
   const ajaxContainer = document.getElementById("AjaxinateContainer");
   
   if (ajaxContainer) {
+    if (ajaxContainer.children.length > 0) {
+      const initialCards = Array.from(ajaxContainer.children).filter(
+        node => !node.classList.contains('no-products-message')
+      );
+      
+      if (initialCards.length > 0) {
+        gsap.set(initialCards, {
+          y: "50px",
+          opacity: 0,
+        });
+      }
+    }
+    
     const observer = new MutationObserver(function(mutations) {
       mutations.forEach(function(mutation) {
         if (mutation.addedNodes.length) {
