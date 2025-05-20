@@ -470,7 +470,9 @@
         "show_bottom_border": false,
         "icon": "shopify://shop_images/beyond-blue-footer-logo.svg",
         "heading": "Feature Heading",
+        "heading_animation": "animate-paragraph-slide-up-scroll",
         "text": "Add descriptive text about this feature or benefit to help visitors understand your offerings better.",
+        "text_animation": "animate-word-opacity-scroll",
         "button_label": "Learn More",
         "button_link": "shopify://collections/accessories",
         "background_color": "neutral-950"
