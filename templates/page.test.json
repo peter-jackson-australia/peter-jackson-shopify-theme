@@ -236,9 +236,12 @@
         "show_bottom_border": false,
         "first_image": "shopify://shop_images/mens-blazer-green-wool-WT25-SP02-3.webp",
         "second_image": "shopify://shop_images/mens-jacket-green-wool-WT25-SP18-1.webp",
+        "animate_images": true,
         "alignment": "left",
         "heading": "Image With Text",
+        "heading_animation": "animate-paragraph-slide-up-scroll",
         "text": "Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.",
+        "text_animation": "animate-paragraph-slide-up-scroll",
         "button_label": "Learn More",
         "button_link": "shopify://collections/bags"
       }
@@ -252,9 +255,12 @@
         "show_bottom_border": false,
         "first_image": "shopify://shop_images/mens-blazer-green-wool-WT25-SP02-3.webp",
         "second_image": "shopify://shop_images/mens-jacket-green-wool-WT25-SP18-1.webp",
+        "animate_images": false,
         "alignment": "right",
         "heading": "Image With Text",
+        "heading_animation": "none",
         "text": "Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.",
+        "text_animation": "none",
         "button_label": "Learn More",
         "button_link": "shopify://collections/bags"
       }
