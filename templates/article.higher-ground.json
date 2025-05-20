@@ -199,6 +199,20 @@
         "autoplay": true,
         "slide_interval": 5
       }
+    },
+    "collection_slider_secondary_Fr3RYB": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "European Textiles, Neapolitan Style",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "suits",
+        "button_label": "Shop Winter Tailoring",
+        "products_to_show": 10,
+        "animate_products": false
+      }
     }
   },
   "order": [
@@ -210,6 +224,7 @@
     "collection_slider_secondary_GjGnVj",
     "image_with_text_KWmAa3",
     "image_with_text_FGfVYU",
-    "hero_slider_zKUKdU"
+    "hero_slider_zKUKdU",
+    "collection_slider_secondary_Fr3RYB"
   ]
 }
