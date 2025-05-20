@@ -31,7 +31,7 @@
 
 <div class="faq-section">
   <div class="faq-section__container">
-    <div class="faq-items">
+    <div class="faq-items {% if section.settings.animate_faqs %}animate-container-cards-scroll{% endif %}">
       {% for block in section.blocks %}
         {% if block.type == 'heading' %}
           <h2
@@ -74,6 +74,13 @@
       "id": "show_bottom_border",
       "label": "Show bottom border",
       "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "animate_faqs",
+      "label": "Animate FAQ items",
+      "default": false,
+      "info": "Adds a staggered animation to FAQ items as they scroll into view"
     }
   ],
   "blocks": [
@@ -119,15 +126,6 @@
       "name": "FAQ Section",
       "category": "FAQ's",
       "blocks": [
-        {
-          "type": "heading"
-        },
-        {
-          "type": "faq_item"
-        },
-        {
-          "type": "faq_item"
-        },
         {
           "type": "heading"
         },
