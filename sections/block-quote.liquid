@@ -56,9 +56,11 @@
     {% endif %}
   >
     {% if section.settings.quote_text != blank %}
-      <p class="block-quote__text heading--3xl">{{ section.settings.quote_text }}</p>
+      <p class="block-quote__text heading--3xl {% if section.settings.quote_animation != 'none' %}{{ section.settings.quote_animation }}{% endif %}">
+        {{ section.settings.quote_text }}
+      </p>
     {% else %}
-      <p class="block-quote__text heading--3xl">
+      <p class="block-quote__text heading--3xl {% if section.settings.quote_animation != 'none' %}{{ section.settings.quote_animation }}{% endif %}">
         Add a memorable quote that represents your brand values or highlights your products.
       </p>
     {% endif -%}
@@ -93,6 +95,34 @@
       "id": "quote_text",
       "label": "Quote Text",
       "default": "Add a memorable quote that represents your brand values or highlights your products."
+    },
+    {
+      "type": "select",
+      "id": "quote_animation",
+      "label": "Quote Animation",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "animate-word-slide-up-scroll",
+          "label": "Slide Up Words"
+        },
+        {
+          "value": "animate-word-rotate-scroll",
+          "label": "Rotate In Words"
+        },
+        {
+          "value": "animate-paragraph-slide-up-scroll",
+          "label": "Slide Up"
+        },
+        {
+          "value": "animate-word-opacity-scroll",
+          "label": "Fade In Words"
+        }
+      ],
+      "default": "none"
     },
     {
       "type": "select",
