@@ -11,10 +11,105 @@
   "sections": {
     "article": {
       "type": "main-article",
-      "settings": {}
+      "disabled": true,
+      "settings": {
+        "max_width": 768
+      }
+    },
+    "editorial_hero_Q8bdNh": {
+      "type": "editorial-hero",
+      "name": "Hero Editorial",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "leading_text": "",
+        "leading_text_animation": "none",
+        "first_title": "Higher",
+        "first_title_animation": "none",
+        "media_type": "video",
+        "video": "shopify://files/videos/WT25-Homepage-Desktop-Compressed.mp4",
+        "animate_media": false,
+        "second_title": "Ground",
+        "second_title_animation": "none",
+        "description": "Our winter collection embodies a mindset — one of purpose, progress, and refinement. Suits and sports jackets are reimagined in relaxed silhouettes, crafted from premium textiles that balance heritage with innovation. This is style designed not just for the day ahead, but for the journey beyond it — tailored for higher ground.",
+        "description_animation": "none",
+        "cta_text": "Shop Now",
+        "cta_link": ""
+      }
+    },
+    "full_page_media_DQrgiW": {
+      "type": "full-page-media",
+      "name": "Full Page Media",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/Higher-Ground-2_2102x_262d9e57-8b01-4718-8a37-b5c4260c1e99.webp",
+        "alt_text": "Full page media"
+      }
+    },
+    "two_column_content_JQLcTq": {
+      "type": "two-column-content",
+      "blocks": {
+        "column_E6NPhW": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Higher-Ground-4_900x_343acf6e-e3ab-441b-9280-720a71ce8069.webp",
+            "product": "textured-rib-crew-neck-ash",
+            "heading": "The Build Up",
+            "heading_animation": "none",
+            "description": "New season knitwear. The ultimate outfit foundation piece.",
+            "description_animation": "none",
+            "button_label": "Learn More",
+            "button_link": ""
+          }
+        },
+        "column_R9dG48": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/WT25-Suits_1512x_8ac5eb3d-e875-43bb-b6cf-13fc2f62f29c.webp",
+            "product": "",
+            "heading": "Winter Tailoring",
+            "heading_animation": "none",
+            "description": "Merino wool suits for cooler days.",
+            "description_animation": "none",
+            "button_label": "Learn More",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_E6NPhW",
+        "column_R9dG48"
+      ],
+      "name": "Two Column Content",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "animate_columns": false
+      }
+    },
+    "hero_primary_AMqni9": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "desktop_image": "shopify://shop_images/Wt25-Launch-Hero_2000x_463f760b-fb8a-497b-8b90-b7a1c37ff402.webp",
+        "heading": "Next-Level Outerwear",
+        "heading_animation": "none",
+        "description": "A refined essential for the season. Our wool coats balance structure with ease in a versatile car coat length.",
+        "description_animation": "none",
+        "button_label": "Shop Outerwear",
+        "button_link": "shopify://collections/outerwear",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "bottom"
+      }
     }
   },
   "order": [
-    "article"
+    "article",
+    "editorial_hero_Q8bdNh",
+    "full_page_media_DQrgiW",
+    "two_column_content_JQLcTq",
+    "hero_primary_AMqni9"
   ]
 }
