@@ -213,6 +213,49 @@
         "products_to_show": 10,
         "animate_products": false
       }
+    },
+    "variable_column_content_DECpXN": {
+      "type": "variable-column-content",
+      "name": "Variable Column Content",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "3",
+        "text_alignment": "center",
+        "animate_images": false,
+        "image_1": "shopify://shop_images/Higher-Ground-18_1296x_6f34e57a-a003-4ff4-846c-f56fd65a6fc1.webp",
+        "image_2": "shopify://shop_images/Higher-Ground-20_1512x_bed04047-3e42-4ccc-84bf-fa81e433ba28.webp",
+        "image_3": "shopify://shop_images/Higher-Ground-21_1296x_16db31b8-b465-43a2-a9e6-66f77ad4ca56.webp",
+        "heading": "The Height Of Ease",
+        "heading_animation": "none",
+        "text": "Relaxed in form, precise in impact. These aren’t just off-duty layers — they’re refined essentials that bring structure to the everyday. Suede, denim, and soft tailoring offer a sense of polish, proving that casual can still carry weight.",
+        "text_animation": "none",
+        "button_label": "Shop Casual Essentials",
+        "button_link": "shopify://collections/casual"
+      }
+    },
+    "heading_with_text_NFCiF4": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "leading_text": "",
+        "heading": "The Feel Factor",
+        "heading_style": "normal",
+        "content": "<p>Texture isn’t an accent — it’s the point. Wool-cashmere and corduroy add structure and depth to casual looks, making even off-duty outfits feel refined.</p>",
+        "alignment": "center"
+      }
+    },
+    "full_page_media_fUVJVk": {
+      "type": "full-page-media",
+      "name": "Full Page Media",
+      "settings": {
+        "media_type": "image",
+        "alt_text": "Full page media"
+      }
     }
   },
   "order": [
@@ -225,6 +268,9 @@
     "image_with_text_KWmAa3",
     "image_with_text_FGfVYU",
     "hero_slider_zKUKdU",
-    "collection_slider_secondary_Fr3RYB"
+    "collection_slider_secondary_Fr3RYB",
+    "variable_column_content_DECpXN",
+    "heading_with_text_NFCiF4",
+    "full_page_media_fUVJVk"
   ]
 }
