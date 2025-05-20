@@ -161,5 +161,38 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
   
+  function animateCards(cards) {
+    gsap.set(cards, {
+      y: "50px",
+      opacity: 0,
+    });
+    
+    gsap.to(cards, {
+      y: "0",
+      opacity: 1,
+      duration: 0.6,
+      ease: "power2.out",
+      stagger: 0.15,
+    });
+  }
+  
+  const ajaxContainer = document.getElementById("AjaxinateContainer");
+  
+  if (ajaxContainer) {
+    const observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.addedNodes.length) {
+          const newCards = Array.from(mutation.addedNodes).filter(
+            node => node.nodeType === 1 && !node.classList.contains('no-products-message')
+          );
+          
+          if (newCards.length > 0) {
+            animateCards(newCards);
+          }
+        }
+      });
+    });
+    
+    observer.observe(ajaxContainer, { childList: true });
+  }
 });
-
