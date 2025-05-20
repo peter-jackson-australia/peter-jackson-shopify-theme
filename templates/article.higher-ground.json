@@ -163,14 +163,14 @@
             "media_type": "image",
             "desktop_image": "shopify://shop_images/Higher-Ground-11_2000x_c79ae7f6-21a2-456c-9040-60b8f3877894.webp",
             "mobile_image": "shopify://shop_images/Higher-Ground-12_1512x_d69a6e14-699c-48e7-8c5b-b28738aacdc0.webp",
-            "heading": "Welcome to Our Store",
+            "heading": "A Modern Statement",
             "heading_animation": "none",
             "description": "Discover our latest collection",
             "description_animation": "none",
             "button_label": "Shop Now",
             "button_link": "",
             "horizontal_alignment": "center",
-            "vertical_alignment": "bottom"
+            "vertical_alignment": "middle"
           }
         }
       },
