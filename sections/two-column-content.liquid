@@ -174,7 +174,10 @@
         {% endif %}
       {% endif %}
 
-      <article class="two-column-content__item" {{ block.shopify_attributes }}>
+      <article
+        class="two-column-content__item {% if section.settings.animate_columns %}animate-container-cards-scroll{% endif %}"
+        {{ block.shopify_attributes }}
+      >
         <div class="two-column-content__image-container">
           {% if block.settings.image != blank %}
             <picture>
@@ -225,11 +228,15 @@
         <div class="two-column-content__content">
           <div class="two-column-content__heading-container">
             {% if block.settings.heading != blank %}
-              <h2 class="two-column-content__heading heading--l">{{ block.settings.heading }}</h2>
+              <h2 class="two-column-content__heading heading--l {% if block.settings.heading_animation != 'none' %}{{ block.settings.heading_animation }}{% endif %}">
+                {{ block.settings.heading }}
+              </h2>
             {% endif %}
 
             {% if block.settings.description != blank %}
-              <p class="two-column-content__description body">{{ block.settings.description }}</p>
+              <p class="two-column-content__description body {% if block.settings.description_animation != 'none' %}{{ block.settings.description_animation }}{% endif %}">
+                {{ block.settings.description }}
+              </p>
             {% endif %}
           </div>
           {% if block.settings.button_label != blank and block.settings.button_link != blank %}
@@ -268,6 +275,13 @@
       "id": "show_bottom_border",
       "label": "Show bottom border",
       "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "animate_columns",
+      "label": "Animate columns",
+      "default": false,
+      "info": "Adds a staggered animation to columns as they scroll into view"
     }
   ],
   "blocks": [
@@ -299,10 +313,58 @@
           "default": "Column Heading"
         },
         {
+          "type": "select",
+          "id": "heading_animation",
+          "label": "Heading Animation",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "animate-word-slide-up-scroll",
+              "label": "Slide Up Words"
+            },
+            {
+              "value": "animate-word-rotate-scroll",
+              "label": "Rotate In Words"
+            },
+            {
+              "value": "animate-paragraph-slide-up-scroll",
+              "label": "Slide Up"
+            }
+          ],
+          "default": "none"
+        },
+        {
           "type": "textarea",
           "id": "description",
           "label": "Description",
           "default": "Add your description text here."
+        },
+        {
+          "type": "select",
+          "id": "description_animation",
+          "label": "Description Animation",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "animate-word-slide-up-scroll",
+              "label": "Slide Up Words"
+            },
+            {
+              "value": "animate-word-rotate-scroll",
+              "label": "Rotate In Words"
+            },
+            {
+              "value": "animate-paragraph-slide-up-scroll",
+              "label": "Slide Up"
+            }
+          ],
+          "default": "none"
         },
         {
           "type": "text",
