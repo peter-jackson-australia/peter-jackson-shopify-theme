@@ -141,7 +141,8 @@ select {
 .metafield-rich_text_field > *,
 .metafield-rich_text_field > * > a,
 .metafield-rich_text_field > p > a,
-.metafield-rich_text_field > * > li > * {
+.metafield-rich_text_field > * > li > *,
+.line > p > a {
   color: var(--neutral-600) !important;
 }
 
