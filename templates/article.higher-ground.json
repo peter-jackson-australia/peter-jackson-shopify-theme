@@ -23,7 +23,7 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": true,
-        "leading_text": "",
+        "leading_text": "WINTER 25",
         "leading_text_animation": "animate-paragraph-slide-up-scroll",
         "first_title": "Higher",
         "first_title_animation": "animate-paragraph-slide-up-scroll",
@@ -103,6 +103,20 @@
         "horizontal_alignment": "center",
         "vertical_alignment": "bottom"
       }
+    },
+    "collection_slider_secondary_GjGnVj": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "New In Now",
+        "heading_animation": "none",
+        "description": "Layer up with premium wool/cashmere blends.",
+        "description_animation": "none",
+        "collection": "outerwear",
+        "button_label": "Shop Now",
+        "products_to_show": 10,
+        "animate_products": false
+      }
     }
   },
   "order": [
@@ -110,6 +124,7 @@
     "editorial_hero_Q8bdNh",
     "full_page_media_DQrgiW",
     "two_column_content_JQLcTq",
-    "hero_primary_AMqni9"
+    "hero_primary_AMqni9",
+    "collection_slider_secondary_GjGnVj"
   ]
 }
