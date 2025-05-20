@@ -26,7 +26,7 @@
         "leading_text": "",
         "leading_text_animation": "animate-paragraph-slide-up-scroll",
         "first_title": "Higher",
-        "first_title_animation": "none",
+        "first_title_animation": "animate-paragraph-slide-up-scroll",
         "media_type": "video",
         "video": "shopify://files/videos/WT25-Homepage-Desktop-Compressed.mp4",
         "animate_media": false,
