@@ -130,7 +130,7 @@
         id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
       {% endif %}
     >
-      <div class="image-with-text__images-wrapper">
+      <div class="image-with-text__images-wrapper {% if section.settings.animate_images %}animate-container-cards-scroll{% endif %}">
         {% if section.settings.first_image != blank %}
           <div class="image-with-text__image-container {% if section.settings.second_image != blank %}image-with-text__image-container--first{% endif %}">
             {{
@@ -157,11 +157,15 @@
 
     <div class="image-with-text__content">
       {% if section.settings.heading != blank %}
-        <h2 class="image-with-text__title heading--2xl">{{ section.settings.heading }}</h2>
+        <h2 class="image-with-text__title heading--2xl {% if section.settings.heading_animation != 'none' %}{{ section.settings.heading_animation }}{% endif %}">
+          {{ section.settings.heading }}
+        </h2>
       {% endif %}
 
       {% if section.settings.text != blank %}
-        <div class="image-with-text__text body">{{ section.settings.text }}</div>
+        <div class="image-with-text__text body {% if section.settings.text_animation != 'none' %}{{ section.settings.text_animation }}{% endif %}">
+          {{ section.settings.text }}
+        </div>
       {% endif %}
 
       {% if section.settings.button_label != blank and section.settings.button_link != blank %}
@@ -208,6 +212,13 @@
       "info": "Will appear behind the first image with a slight offset"
     },
     {
+      "type": "checkbox",
+      "id": "animate_images",
+      "label": "Animate Images",
+      "default": false,
+      "info": "Adds an animation to the images as they scroll into view"
+    },
+    {
       "type": "select",
       "id": "alignment",
       "label": "Section Alignment",
@@ -230,10 +241,58 @@
       "default": "Image with text"
     },
     {
+      "type": "select",
+      "id": "heading_animation",
+      "label": "Heading Animation",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "animate-word-slide-up-scroll",
+          "label": "Slide Up Words"
+        },
+        {
+          "value": "animate-word-rotate-scroll",
+          "label": "Rotate In Words"
+        },
+        {
+          "value": "animate-paragraph-slide-up-scroll",
+          "label": "Slide Up"
+        }
+      ],
+      "default": "none"
+    },
+    {
       "type": "text",
       "id": "text",
       "label": "Text",
       "default": "Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review."
+    },
+    {
+      "type": "select",
+      "id": "text_animation",
+      "label": "Text Animation",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "animate-word-slide-up-scroll",
+          "label": "Slide Up Words"
+        },
+        {
+          "value": "animate-word-rotate-scroll",
+          "label": "Rotate In Words"
+        },
+        {
+          "value": "animate-paragraph-slide-up-scroll",
+          "label": "Slide Up"
+        }
+      ],
+      "default": "none"
     },
     {
       "type": "text",
