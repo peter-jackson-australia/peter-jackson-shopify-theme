@@ -130,7 +130,7 @@
   {% if section.settings.column_count != blank %}
     {% assign column_count = section.settings.column_count | plus: 0 %}
     <div
-      class="variable-column-content-secondary__image-grid"
+      class="variable-column-content-secondary__image-grid {% if section.settings.animate_columns %}animate-container-cards-scroll{% endif %}"
       style="grid-template-columns: repeat({{ column_count }}, 1fr);"
       {% if section.settings.anchor_id != blank %}
         id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
@@ -160,13 +160,13 @@
             {% if block.settings.heading != blank or block.settings.text != blank %}
               <div class="variable-column-content-secondary__column-content">
                 {% if block.settings.heading != blank %}
-                  <h3 class="variable-column-content-secondary__column-heading heading--l">
+                  <h3 class="variable-column-content-secondary__column-heading heading--l {% if block.settings.heading_animation != 'none' %}{{ block.settings.heading_animation }}{% endif %}">
                     {{ block.settings.heading }}
                   </h3>
                 {% endif %}
 
                 {% if block.settings.text != blank %}
-                  <div class="variable-column-content-secondary__column-text body">
+                  <div class="variable-column-content-secondary__column-text body {% if block.settings.text_animation != 'none' %}{{ block.settings.text_animation }}{% endif %}">
                     {{ block.settings.text }}
                   </div>
                 {% endif %}
@@ -192,13 +192,13 @@
   <div class="variable-column-content-secondary__text-container">
     <div class="variable-column-content-secondary__text-content variable-column-content-secondary__text-content--{{ section.settings.text_alignment }}">
       {% if section.settings.heading != blank %}
-        <h2 class="variable-column-content-secondary__heading heading--xl">
+        <h2 class="variable-column-content-secondary__heading heading--xl {% if section.settings.heading_animation != 'none' %}{{ section.settings.heading_animation }}{% endif %}">
           {{ section.settings.heading }}
         </h2>
       {% endif %}
 
       {% if section.settings.text != blank %}
-        <div class="variable-column-content-secondary__text body">
+        <div class="variable-column-content-secondary__text body {% if section.settings.text_animation != 'none' %}{{ section.settings.text_animation }}{% endif %}">
           {{ section.settings.text }}
         </div>
       {% endif %}
@@ -280,6 +280,13 @@
       "default": "left"
     },
     {
+      "type": "checkbox",
+      "id": "animate_columns",
+      "label": "Animate Columns",
+      "default": false,
+      "info": "Adds a staggered animation to columns as they scroll into view"
+    },
+    {
       "type": "header",
       "content": "Main Content"
     },
@@ -290,10 +297,58 @@
       "default": "Variable Column Content Secondary"
     },
     {
+      "type": "select",
+      "id": "heading_animation",
+      "label": "Heading Animation",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "animate-word-slide-up-scroll",
+          "label": "Slide Up Words"
+        },
+        {
+          "value": "animate-word-rotate-scroll",
+          "label": "Rotate In Words"
+        },
+        {
+          "value": "animate-paragraph-slide-up-scroll",
+          "label": "Slide Up"
+        }
+      ],
+      "default": "none"
+    },
+    {
       "type": "text",
       "id": "text",
       "label": "Text",
       "default": "Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store."
+    },
+    {
+      "type": "select",
+      "id": "text_animation",
+      "label": "Text Animation",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "animate-word-slide-up-scroll",
+          "label": "Slide Up Words"
+        },
+        {
+          "value": "animate-word-rotate-scroll",
+          "label": "Rotate In Words"
+        },
+        {
+          "value": "animate-paragraph-slide-up-scroll",
+          "label": "Slide Up"
+        }
+      ],
+      "default": "none"
     },
     {
       "type": "text",
@@ -325,10 +380,58 @@
           "default": "Column Heading"
         },
         {
+          "type": "select",
+          "id": "heading_animation",
+          "label": "Heading Animation",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "animate-word-slide-up-scroll",
+              "label": "Slide Up Words"
+            },
+            {
+              "value": "animate-word-rotate-scroll",
+              "label": "Rotate In Words"
+            },
+            {
+              "value": "animate-paragraph-slide-up-scroll",
+              "label": "Slide Up"
+            }
+          ],
+          "default": "none"
+        },
+        {
           "type": "text",
           "id": "text",
           "label": "Text",
           "default": "Add a brief description for this column item."
+        },
+        {
+          "type": "select",
+          "id": "text_animation",
+          "label": "Text Animation",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "animate-word-slide-up-scroll",
+              "label": "Slide Up Words"
+            },
+            {
+              "value": "animate-word-rotate-scroll",
+              "label": "Rotate In Words"
+            },
+            {
+              "value": "animate-paragraph-slide-up-scroll",
+              "label": "Slide Up"
+            }
+          ],
+          "default": "none"
         },
         {
           "type": "url",
