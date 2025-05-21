@@ -273,13 +273,6 @@
     }
   }
 
-  @media screen and (max-width: 480px) {
-    .article-related__posts {
-      grid-template-columns: 1fr;
-      gap: calc(var(--space-xs) + var(--space-xs));
-    }
-  }
-
   .article-navigation {
     width: 100%;
     padding: var(--space-l) var(--space-m);
@@ -374,18 +367,32 @@
       margin-left: var(--space-3xs);
     }
   }
+
+  @media screen and (max-width: 480px) {
+    .article-related__posts {
+      grid-template-columns: 1fr;
+      gap: calc(var(--space-xs) + var(--space-xs));
+    }
+  }
 </style>
 
 {% liquid
   assign image_width = 800
   assign image_height = image_width | divided_by: article.image.aspect_ratio | ceil
+  assign blog_sub_collection = article.metafields.custom.blog_sub_collection
 %}
 
 <section id="{{ section.id }}" class="section-wrap">
   <article class="section">
     <header class="article-header">
       <div class="article-header__collection">
-        <h2 class="heading--decorative">{{ blog.title }}</h2>
+        <h2 class="heading--decorative">
+          {% if blog_sub_collection != blank %}
+            {{ blog_sub_collection }}
+          {% else %}
+            The Jackson Journal
+          {% endif %}
+        </h2>
       </div>
 
       {% if article.tags.size > 0 %}
