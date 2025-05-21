@@ -280,6 +280,10 @@ li:has(.menu-drawer__item--active) button > span:first-child {
     width: 100%;
   }
 
+  .menu-drawer__overlay {
+    display: none; 
+  }
+
   .menu-drawer__inner {
     display: block;
     position: relative;
@@ -287,7 +291,7 @@ li:has(.menu-drawer__item--active) button > span:first-child {
   }
 
   .menu-drawer__level {
-    width: 100vw;
+    width: 100%;
     position: absolute;
     top: 0;
     left: 0;

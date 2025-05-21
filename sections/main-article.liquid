@@ -3,6 +3,10 @@
     border-bottom: 1px solid var(--neutral-200);
   }
 
+  .menu-drawer {
+    border-top: none;
+  }
+
   .article-header {
     text-align: center;
     max-width: 800px;
@@ -209,6 +213,16 @@
     gap: var(--space-xs);
   }
 
+  .leading-letter {
+    font-size: 56px;
+    float: left;
+    line-height: 0.8;
+    margin-right: var(--space-xs);
+    padding-bottom: 5px;
+    font-weight: 500;
+    font-family: 'Ordinary Regular';
+  }
+
   @media screen and (max-width: 1000px) {
     .article-related {
       padding-top: var(--space-xl);
@@ -266,7 +280,6 @@
     }
   }
 
-  /* Article Navigation Styles */
   .article-navigation {
     width: 100%;
     padding: var(--space-l) var(--space-m);
@@ -526,6 +539,30 @@
     </div>
   </article>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const articleContent = document.querySelector('.article-content');
+    if (articleContent) {
+      const firstParagraph = articleContent.querySelector('p');
+      if (firstParagraph && firstParagraph.textContent.trim()) {
+        const text = firstParagraph.innerHTML;
+        const firstChar = firstParagraph.textContent.trim()[0];
+        const charIndex = text.indexOf(firstChar);
+
+        if (charIndex >= 0) {
+          const newHtml =
+            text.substring(0, charIndex) +
+            '<span class="leading-letter">' +
+            firstChar +
+            '</span>' +
+            text.substring(charIndex + 1);
+          firstParagraph.innerHTML = newHtml;
+        }
+      }
+    }
+  });
+</script>
 
 {% schema %}
 {
