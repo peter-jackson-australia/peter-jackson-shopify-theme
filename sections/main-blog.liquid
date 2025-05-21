@@ -1,11 +1,6 @@
 {% paginate blog.articles by section.settings.limit %}
   <div class="section-wrap">
     <div class="section">
-      <h1 data-title="{{- blog.title -}}">{{ blog.title }}</h1>
-      <p>{{ page_description }}</p>
-    </div>
-
-    <div class="section">
       <div class="articles-grid">
         {% liquid
           for article in blog.articles
@@ -25,7 +20,7 @@
 
 {% schema %}
 {
-  "name": "Blog",
+  "name": "Blog Collection",
   "limit": 1,
   "tag": "section",
   "class": "blog-products-section",
