@@ -85,6 +85,282 @@
   .article-content blockquote > *:first-of-type {
     margin-bottom: var(--space-xs);
   }
+
+  .article-related {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-bottom: var(--space-2xl);
+    border-bottom: 1px solid var(--neutral-200);
+    border-top: 1px solid var(--neutral-200);
+  }
+
+  .article-related__content {
+    display: flex;
+    padding: var(--space-2xl) var(--space-m);
+    gap: var(--space-xl);
+    border-top: 1px solid var(--neutral-200);
+  }
+
+  .article-related__header {
+    display: flex;
+    align-items: center;
+    flex: 1;
+  }
+
+  .article-related__title {
+    padding-right: var(--space-m);
+    color: var(--neutral-950);
+    white-space: nowrap;
+    margin: 0 auto;
+    padding: var(--space-2xl) 0px;
+  }
+
+  .article-related__divider {
+    height: 50px;
+    width: 1px;
+    background-color: var(--neutral-200);
+  }
+
+  .article-related__subtitle {
+    padding-left: var(--space-m);
+    color: var(--neutral-950);
+    margin-top: -7px;
+  }
+
+  .article-related__description {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: var(--space-m);
+  }
+
+  .article-related__text {
+    color: var(--neutral-600);
+    max-width: 80ch;
+    text-align: right;
+  }
+
+  .article-related__link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    color: var(--neutral-950);
+    text-decoration: none;
+  }
+
+  .article-related__posts {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-2xs);
+  }
+
+  .article-related__post {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    overflow: hidden;
+  }
+
+  .article-related__post-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    margin-bottom: var(--space-xs);
+    min-height: 550px;
+  }
+
+  .article-related__post-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .article-related__post-content {
+    padding-left: var(--space-m);
+  }
+
+  .article-related__post-category {
+    color: var(--neutral-600);
+    text-transform: uppercase;
+    margin-bottom: var(--space-s);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .article-related__post-title {
+    margin-bottom: var(--space-2xs);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .article-related__post-title a,
+  .article-related__post-link-container {
+    color: var(--neutral-950);
+    text-decoration: none;
+  }
+
+  .article-related__post-link {
+    display: flex;
+    gap: var(--space-xs);
+  }
+
+  @media screen and (max-width: 1000px) {
+    .article-related {
+      padding-top: var(--space-xl);
+      padding-bottom: var(--space-xl);
+    }
+
+    .article-related__content {
+      padding-top: var(--space-xl);
+      padding-bottom: var(--space-xl);
+      flex-direction: column;
+      gap: var(--space-m);
+    }
+
+    .article-related__header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-m);
+    }
+
+    .article-related__description {
+      align-items: start;
+    }
+
+    .article-related__text {
+      text-align: left;
+    }
+
+    .article-related__title {
+      padding-right: 0;
+    }
+
+    .article-related__divider {
+      display: none;
+    }
+
+    .article-related__subtitle {
+      padding-left: 0px;
+    }
+
+    .article-related__posts {
+      grid-template-columns: repeat(2, 1fr);
+      gap: calc(var(--space-xs) + var(--space-xs));
+      column-gap: var(--space-2xs);
+    }
+
+    .article-related__post-content {
+      padding-right: var(--space-m);
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .article-related__posts {
+      grid-template-columns: 1fr;
+      gap: calc(var(--space-xs) + var(--space-xs));
+    }
+  }
+
+  /* Article Navigation Styles */
+  .article-navigation {
+    width: 100%;
+    padding: var(--space-l) var(--space-m);
+  }
+
+  .article-navigation__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .article-navigation__previous,
+  .article-navigation__next {
+    flex: 1;
+  }
+
+  .article-navigation__previous {
+    text-align: left;
+  }
+
+  .article-navigation__current {
+    flex: 1;
+    text-align: center;
+    color: var(--neutral-950);
+  }
+
+  .article-navigation__next {
+    text-align: right;
+  }
+
+  .article-navigation__label {
+    display: block;
+    margin-bottom: var(--space-2xs);
+  }
+
+  .article-navigation__link {
+    color: var(--neutral-600);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .article-navigation__arrow {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .article-navigation__arrow--prev {
+    transform: rotate(180deg);
+    margin-right: var(--space-xs);
+  }
+
+  .article-navigation__arrow--next {
+    margin-left: var(--space-xs);
+  }
+
+  @media screen and (max-width: 768px) {
+    .article-navigation {
+      padding: var(--space-m);
+    }
+
+    .article-navigation__container {
+      gap: var(--space-xs);
+      flex-direction: column;
+      text-align: center !important;
+      justify-content: center;
+    }
+
+    .article-navigation__previous,
+    .article-navigation__current,
+    .article-navigation__next {
+      text-align: center;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .article-navigation__label,
+    .article-navigation__link-text,
+    .article-navigation__current {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .article-navigation__arrow--prev {
+      margin-right: var(--space-3xs);
+    }
+
+    .article-navigation__arrow--next {
+      margin-left: var(--space-3xs);
+    }
+  }
 </style>
 
 {% liquid
@@ -140,6 +416,113 @@
     </header>
     <div class="article-content">
       {{ article.content }}
+    </div>
+    <div class="article-related">
+      <div class="article-related__header">
+        <h2 class="article-related__title heading--2xl">Newest Articles</h2>
+      </div>
+
+      <div class="article-related__posts">
+        {% assign displayed_count = 0 %}
+        {% for related_article in blogs['the-jackson-journal'].articles limit: 8 %}
+          {% if related_article.id != article.id and displayed_count < 4 %}
+            <article class="article-related__post">
+              {% if related_article.image %}
+                <a href="{{ related_article.url }}" class="article-related__post-image">
+                  {{
+                    related_article.image
+                    | image_url: width: 800
+                    | image_tag: loading: 'lazy', alt: related_article.title
+                  }}
+                </a>
+              {% endif %}
+
+              <div class="article-related__post-content">
+                {% if related_article.tags.size > 0 %}
+                  <div class="article-related__post-category small">{{ related_article.tags.first }}</div>
+                {% endif %}
+
+                <h3 class="article-related__post-title heading--l">
+                  <a href="{{ related_article.url }}">{{ related_article.title }}</a>
+                </h3>
+
+                <a href="{{ related_article.url }}" class="article-related__post-link-container">
+                  <span class="article-related__post-link body"
+                    >Read Article {% render 'icon-arrow-submit-dark' -%}
+                  </span>
+                </a>
+              </div>
+            </article>
+            {% assign displayed_count = displayed_count | plus: 1 %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    {%- liquid
+      assign current_article = article
+      assign current_blog = blog
+      assign all_articles = current_blog.articles
+      assign prev_article = null
+      assign next_article = null
+      assign current_index = -1
+      for i in (0..all_articles.size)
+        assign article_at_index = all_articles[i]
+        if article_at_index.id == current_article.id
+          assign current_index = i
+          break
+        endif
+      endfor
+
+      if current_index > 0
+        assign next_index = current_index | minus: 1
+        assign next_article = all_articles[next_index]
+      endif
+
+      assign max_index = all_articles.size | minus: 1
+      if current_index < max_index
+        assign prev_index = current_index | plus: 1
+        assign prev_article = all_articles[prev_index]
+      endif
+    -%}
+
+    <div class="article-navigation">
+      <div class="article-navigation__container">
+        <div class="article-navigation__previous">
+          {% if prev_article %}
+            <span class="article-navigation__label body--uppercase">Previous</span>
+            <a
+              href="{{ prev_article.url }}"
+              class="article-navigation__link body--uppercase"
+              title="            {{- prev_article.title -}}"
+            >
+              <span class="article-navigation__arrow article-navigation__arrow--prev">
+                {% render 'icon-arrow-submit-dark' %}
+              </span>
+              <span class="article-navigation__link-text">{{ prev_article.title }}</span>
+            </a>
+          {% endif %}
+        </div>
+
+        <div class="article-navigation__current heading--l">
+          {% render 'breadcrumb' %}
+        </div>
+
+        <div class="article-navigation__next">
+          {% if next_article %}
+            <span class="article-navigation__label body--uppercase">Next</span>
+            <a
+              href="{{ next_article.url }}"
+              class="article-navigation__link body--uppercase"
+              title="            {{- next_article.title -}}"
+            >
+              <span class="article-navigation__link-text">{{ next_article.title }}</span>
+              <span class="article-navigation__arrow article-navigation__arrow--next">
+                {% render 'icon-arrow-submit-dark' %}
+              </span>
+            </a>
+          {% endif %}
+        </div>
+      </div>
     </div>
   </article>
 </section>
