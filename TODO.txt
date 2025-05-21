@@ -6,7 +6,7 @@ Make the menu featured images load faster
 General blog template
 Blog collection template
 
-21st 
+22 
 Locations template
 
 22-27rd:

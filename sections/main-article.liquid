@@ -22,7 +22,7 @@
   }
 
   .article-header__divider,
-  .article-content > hr {
+  .article-content hr {
     border: 0;
     height: 1px;
     background-color: var(--neutral-200);
@@ -73,13 +73,17 @@
     font-weight: 500;
   }
 
-  .article-content > h1,
-  .article-content > h2,
-  .article-content > h3,
-  .article-content > h4,
-  .article-content > h5,
-  .article-content > h6 {
+  .article-content h1,
+  .article-content h2,
+  .article-content h3,
+  .article-content h4,
+  .article-content h5,
+  .article-content h6 {
     color: var(--neutral-950);
+  }
+
+  .article-content blockquote > *:first-of-type {
+    margin-bottom: var(--space-xs);
   }
 </style>
 
