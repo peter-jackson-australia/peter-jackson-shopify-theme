@@ -3,7 +3,6 @@ Code:
 Finish the sections: Contact Form     
 Make the menu featured images load faster
 
-General blog template
 Blog collection template
 
 22 

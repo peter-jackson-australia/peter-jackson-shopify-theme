@@ -399,9 +399,9 @@
         <div class="article-header__tags">
           <p class="small">
             {% for tag in article.tags %}
-              <a href="{{ blog.url }}/tagged/{{ tag | handleize }}" class="article-header__tag body--uppercase">
+              <p class="article-header__tag body--uppercase">
                 {{- tag -}}
-              </a>
+              </p>
               {%- unless forloop.last %}, {% endunless %}
             {% endfor %}
           </p>
