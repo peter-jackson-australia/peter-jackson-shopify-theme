@@ -1,6 +1,72 @@
 <script src="{{ 'ajaxinate.min.js' | asset_url }}" defer></script>
 
 <style>
+  .search-header {
+    border-top: 1px solid var(--neutral-200);
+    border-bottom: 1px solid var(--neutral-200);
+    padding: 0 var(--space-m);
+    padding-right: 0px;
+    height: 57px;
+    overflow-y: hidden;
+    margin-bottom: var(--space-m);
+  }
+
+  .search-header__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    max-height: calc(100% + 2px);
+    height: calc(100% + 2px);
+  }
+
+  .search-header__title {
+    flex: 0 0 auto;
+    padding: var(--space-xs) 0;
+    padding-right: var(--space-m);
+    border-right: 1px solid var(--neutral-200);
+    display: flex;
+    align-items: center;
+  }
+
+  .search-header__form-container {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    padding: var(--space-s) var(--space-m);
+  }
+
+  .search-header__form {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    width: 100%;
+    max-width: 400px;
+    gap: var(--space-s);
+  }
+
+  .search-header__input {
+    flex: 1;
+    border: none;
+    padding: var(--space-s) 0px;
+    border-bottom: 1px solid var(--neutral-200);
+    background-color: var(--white);
+    color: var(--neutral-950);
+  }
+
+  .search-header__input:focus {
+    outline: none;
+    border-color: var(--neutral-400);
+  }
+
+  .search-header__button {
+    padding: var(--space-2xs) var(--space-s);
+    background-color: var(--neutral-950);
+    color: var(--white);
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
   .products-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -148,7 +214,7 @@
   .search-controls {
     display: flex;
     justify-content: space-between;
-    align-items: stretch;
+    align-items: end;
     margin-bottom: var(--space-m);
     padding: 0 var(--space-m);
     gap: var(--space-xs);
@@ -197,7 +263,31 @@
     background-color: var(--neutral-50);
   }
 
-  @media (max-width: 768px) {
+  @media screen and (max-width: 768px) {
+    .search-header {
+      padding: 0px;
+      height: auto;
+    }
+
+    .search-header__wrapper {
+      flex-direction: column;
+    }
+
+    .search-header__title {
+      padding-left: var(--space-m);
+      border-right: none !important;
+      border-bottom: 1px solid var(--neutral-200);
+      height: 49px;
+    }
+
+    .search-header__form-container {
+      padding-bottom: var(--space-s);
+    }
+
+    .search-header__form {
+      margin-left: 0;
+    }
+
     .products-grid {
       grid-template-columns: repeat(2, 1fr);
     }
@@ -206,26 +296,34 @@
 
 <div id="{{ section.id }}" class="section-wrap">
   <div class="section">
-    {% if search.performed %}
-      {% assign search_term = search.terms | capitalize | prepend: '&quot;' | append: '&quot;' %}
-      {% capture title %}Found {{ search.results_count }} results for {{ search_term }}{% endcapture %}
-      <h1 data-title="{{ title }}">{{ title }}</h1>
-    {% else %}
-      <h1 data-title="Search">Search Products</h1>
-    {% endif %}
+    <div class="search-header">
+      <div class="search-header__wrapper">
+        <div class="search-header__title">
+          {% if search.performed %}
+            {% assign search_term = search.terms | capitalize | prepend: '&quot;' | append: '&quot;' %}
+            {% capture title %}Found {{ search.results_count }} results for {{ search_term }}{% endcapture %}
+            <h1 data-title="{{ title }}" class="heading--xl">{{ title }}</h1>
+          {% else %}
+            <h1 data-title="Search" class="heading--xl">Search Products</h1>
+          {% endif %}
+        </div>
 
-    <form id="search-form" action="{{ routes.search_url }}" method="get" class="flex middle">
-      <input type="hidden" name="type" value="product">
-      <input
-        type="text"
-        name="q"
-        value="{{ search.terms }}"
-        placeholder="Enter product name or keywords..."
-        maxlength="128"
-      >
-      <button type="submit" class="button solid">Search</button>
-    </form>
-    <hr>
+        <div class="search-header__form-container">
+          <form id="search-form" action="{{ routes.search_url }}" method="get" class="search-header__form">
+            <input type="hidden" name="type" value="product">
+            <input
+              type="text"
+              name="q"
+              value=""
+              placeholder="Enter product name or keywords..."
+              maxlength="128"
+              class="search-header__input"
+            >
+            <button type="submit" class="search-header__button body">Search</button>
+          </form>
+        </div>
+      </div>
+    </div>
 
     {% if search.performed %}
       <div
@@ -263,7 +361,7 @@
             <span>{% render 'icon-filter' %}</span>
           </button>
 
-          <p class="body">
+          <p class="small">
             {{ search.results_count }}
             {% if search.results_count == 1 %}Result{% else %}Results{% endif %}
           </p>
