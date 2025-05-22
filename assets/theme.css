@@ -72,6 +72,10 @@ select {
   font: inherit;
 }
 
+@view-transition {
+  navigation: auto;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
     scroll-behavior: auto;
