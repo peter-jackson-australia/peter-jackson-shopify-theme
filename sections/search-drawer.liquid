@@ -1,0 +1,143 @@
+<style>
+  body.search-open {
+    overflow: hidden;
+  }
+
+  .search-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s linear;
+  }
+
+  .search-drawer--active {
+    left: 0;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .search-drawer__container {
+    width: 400px;
+    max-width: 100%;
+    background-color: var(--white);
+    flex: 1;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: transform 0.4s ease, opacity 0.3s linear;
+  }
+
+  .search-drawer--active .search-drawer__container {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  .search-drawer__header {
+    display: flex;
+    align-items: center;
+    height: var(--space-xl);
+    padding: var(--space-m);
+  }
+
+  .search-drawer__title {
+    color: var(--neutral-950);
+    flex: 1;
+  }
+
+  .search-drawer__close {
+    width: var(--space-s);
+    color: var(--neutral-400);
+    cursor: pointer;
+    background: none;
+    border: none;
+  }
+
+  .search-drawer__close:hover {
+    color: var(--neutral-950);
+  }
+
+  .search-drawer__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-m);
+    padding-top: 0px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .search-drawer {
+      display: none;
+    }
+  }
+</style>
+
+<aside
+  x-data="searchDrawer"
+  x-init="init()"
+  @keydown.escape.window="closeSearch()"
+  class="search-drawer"
+  role="dialog"
+  aria-labelledby="search-title"
+  @click="closeSearch()"
+>
+  <div class="search-drawer__container" @click.stop>
+    <header class="search-drawer__header">
+      <h2 id="search-title" class="search-drawer__title heading--xl">Search</h2>
+      <button
+        class="search-drawer__close"
+        type="button"
+        aria-label="Close search"
+        @click="closeSearch()"
+      >
+        {% render 'icon-close' %}
+      </button>
+    </header>
+
+    <div class="search-drawer__content">
+      {% render 'search-form' %}
+    </div>
+  </div>
+</aside>
+
+<script>
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('searchDrawer', () => ({
+      isOpen: false,
+
+      init() {
+        window.toggleSearch = () => {
+          this.openSearch();
+        };
+      },
+
+      openSearch() {
+        this.isOpen = true;
+        document.body.classList.add('search-open');
+        document.querySelector('.search-drawer').classList.add('search-drawer--active');
+      },
+
+      closeSearch() {
+        this.isOpen = false;
+        document.body.classList.remove('search-open');
+        document.querySelector('.search-drawer').classList.remove('search-drawer--active');
+      },
+    }));
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Search drawer"
+}
+{% endschema %}

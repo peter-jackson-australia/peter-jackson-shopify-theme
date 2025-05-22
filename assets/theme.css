@@ -613,6 +613,17 @@ header {
   right: -5px;
 }
 
+.header__search-desktop {
+  display: none;
+}
+
+@media screen and (min-width: 769px) {
+  .header__search-desktop {
+    display: block;
+    margin-top: 3px; 
+  }
+}
+
 @media (max-width: 768px) {
   .header__logo {
     width: 160px;
@@ -700,6 +711,16 @@ input[type='search'] {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+}
+
+@media (min-width: 769px) {
+  .predictive-search__input {
+    padding: var(--space-s) 0px; 
+  }
+
+  .predictive-search__button {
+    right: 0; 
+  }
 }
 
 /* Accessibility */

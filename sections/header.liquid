@@ -17,6 +17,16 @@
     </a>
   </div>
   <ul class="header__icons">
+    <li class="header__search-desktop">
+      <button
+        type="button"
+        onclick="window.toggleSearch();"
+        aria-label="Search"
+        style="background: none; border: none; padding: 0; cursor: pointer; display: flex; align-items: center; justify-content: center;"
+      >
+        {% render 'icon-site-search', accessible_name: 'Search', role: 'img' %}
+      </button>
+    </li>
     <li>
       <a href="/account" aria-label="Account">
         {% render 'icon-account', accessible_name: 'Account', role: 'img' %}
