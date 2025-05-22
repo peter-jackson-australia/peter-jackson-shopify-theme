@@ -841,6 +841,17 @@
         });
 
         splideInstance.mount();
+        if (splideInstance.length <= 1) {
+          document.querySelector('.product-images-progress').style.display = 'none';
+          if (isMobile) {
+            document.querySelector('.splide__arrows').style.display = 'none';
+          }
+        } else {
+          document.querySelector('.product-images-progress').style.display = '';
+          if (isMobile) {
+            document.querySelector('.splide__arrows').style.display = '';
+          }
+        }
 
         if (isMobile) {
           container.classList.add('product-images-container--mobile');
