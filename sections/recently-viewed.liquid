@@ -42,7 +42,6 @@
     width: 100%;
     overflow: hidden;
     background-color: var(--neutral-50);
-    contain: paint;
   }
 
   .product-card__image {
@@ -93,7 +92,7 @@
     background-color: var(--neutral-50);
   }
 
-  .product-card__image-wrapper:hover > div:first-child {
+  .product-card__image-wrapper[x-data]:hover > div:first-child {
     opacity: 0;
   }
 
