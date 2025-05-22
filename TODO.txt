@@ -1,6 +1,7 @@
 Home page sections:
 Code:
 Finish the sections: Contact Form     
+Support pages
 
 Blog collection template
 
