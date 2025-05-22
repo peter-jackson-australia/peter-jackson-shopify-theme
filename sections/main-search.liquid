@@ -10,7 +10,7 @@
     opacity: 1 !important;
   }
 
-  .collection-controls {
+  .search-controls {
     display: flex;
     justify-content: space-between;
     align-items: stretch;
@@ -19,14 +19,15 @@
     gap: var(--space-xs);
   }
 
-  .collection-controls__filter-button {
+  .search-controls__filter-button {
     background-color: transparent;
-    border: 1px solid #ccc;
-    padding: 8px 16px;
     cursor: pointer;
+    padding: var(--space-2xs) var(--space-s);
+    border: 1px solid var(--neutral-200);
+    color: var(--neutral-950);
   }
 
-  .filter-sidebar {
+  .search-filter-sidebar {
     position: fixed;
     top: calc(var(--space-xl) + 35px);
     bottom: 0;
@@ -36,7 +37,7 @@
     z-index: 9998;
   }
 
-  .filter-sidebar__overlay {
+  .search-filter-sidebar__overlay {
     position: fixed;
     top: calc(var(--space-xl) + 35px);
     left: 0;
@@ -46,7 +47,7 @@
     z-index: 9997;
   }
 
-  body.filter-open {
+  body.search-filter-open {
     overflow: hidden;
   }
 
@@ -86,18 +87,18 @@
       >
         <div x-show="isFilterOpen" x-cloak>
           <div
-            class="filter-sidebar__overlay"
-            @click="isFilterOpen = false; document.body.classList.remove('filter-open')"
+            class="search-filter-sidebar__overlay"
+            @click="isFilterOpen = false; document.body.classList.remove('search-filter-open')"
           ></div>
-          <aside class="filter-sidebar">
-            <div class="filter-sidebar-header">
+          <aside class="search-filter-sidebar">
+            <div class="search-filter-sidebar-header">
               <h3 class="heading--xl">Filters</h3>
               <p>
                 <a class="body" href="{{ routes.search_url }}?q={{ search.terms | escape }}&type=product">Clear all</a>
               </p>
               <button
-                class="filter-close-btn"
-                @click="isFilterOpen = false; document.body.classList.remove('filter-open')"
+                class="search-filter-close-btn"
+                @click="isFilterOpen = false; document.body.classList.remove('search-filter-open')"
                 aria-label="Close filters"
               >
                 {% render 'icon-close' %}
@@ -107,10 +108,10 @@
           </aside>
         </div>
 
-        <div class="collection-controls">
+        <div class="search-controls">
           <button
-            class="collection-controls__filter-button body"
-            @click="isFilterOpen = !isFilterOpen; document.body.classList.toggle('filter-open', isFilterOpen)"
+            class="search-controls__filter-button body"
+            @click="isFilterOpen = !isFilterOpen; document.body.classList.toggle('search-filter-open', isFilterOpen)"
           >
             Filters
             <span>{% render 'icon-filter' %}</span>
