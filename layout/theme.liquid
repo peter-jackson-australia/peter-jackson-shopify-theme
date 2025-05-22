@@ -34,13 +34,9 @@
     <script type="speculationrules">
       {
         "prerender": [
-          {
-            "where": {
-              "and": [{ "href_matches": "/*" }, { "not": { "href_matches": "/logout" } }]
-            },
-            "eagerness": "moderate"
-          }
-        ]
+          "where": { "href_matches": "/*" },
+          "eagerness": "moderate"
+        }]
       }
     </script>
 
