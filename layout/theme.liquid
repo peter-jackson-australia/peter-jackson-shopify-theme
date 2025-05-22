@@ -31,6 +31,18 @@
     <script src="{{ 'gsap.min.js' | asset_url }}" defer></script>
     <script src="{{ 'scrolltrigger.min.js' | asset_url }}" defer></script>
     <script src="{{ 'animations.js' | asset_url }}" defer></script>
+    <script type="speculationrules">
+      {
+        "prerender": [
+          {
+            "where": {
+              "and": [{ "href_matches": "/*" }, { "not": { "href_matches": "/logout" } }]
+            },
+            "eagerness": "moderate"
+          }
+        ]
+      }
+    </script>
 
     {% render 'schemas' %}
     {% render 'social-meta-tags' %}
