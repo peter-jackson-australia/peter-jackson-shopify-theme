@@ -1,13 +1,68 @@
+<script src="{{ 'ajaxinate.min.js' | asset_url }}" defer></script>
+
 <style>
   #search-form {
     max-width: 600px;
   }
-  {{ section.id | prepend: '#'}} .products-grid {
-    grid-template-columns: repeat({{ section.settings.products_per_row }}, 1fr);
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .product-card {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .collection-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px 0;
+  }
+
+  .collection-controls__filter-button {
+    background-color: transparent;
+    border: 1px solid #ccc;
+    padding: 8px 16px;
+    cursor: pointer;
+  }
+
+  .filter-sidebar {
+    position: fixed;
+    top: calc(var(--space-xl) + 35px);
+    bottom: 0;
+    left: 0;
+    width: 400px;
+    background-color: var(--white);
+    z-index: 9998;
+  }
+
+  .filter-sidebar__overlay {
+    position: fixed;
+    top: calc(var(--space-xl) + 35px);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 9997;
+  }
+
+  body.filter-open {
+    overflow: hidden;
+  }
+
+  @media (max-width: 768px) {
+    .products-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 </style>
 
-<section id="{{ section.id }}" class="section-wrap">
+<div id="{{ section.id }}" class="section-wrap">
   <div class="section">
     {% if search.performed %}
       {% assign search_term = search.terms | capitalize | prepend: '&quot;' | append: '&quot;' %}
@@ -16,6 +71,7 @@
     {% else %}
       <h1 data-title="Search">Search Products</h1>
     {% endif %}
+
     <form id="search-form" action="{{ routes.search_url }}" method="get" class="flex middle">
       <input type="hidden" name="type" value="product">
       <input
@@ -29,23 +85,397 @@
     </form>
     <hr>
 
-    {% paginate search.results by section.settings.limit %}
-      <div class="products-grid">
-        {% liquid
-          for product in search.results
-            render 'product-card', product: product
-          endfor
-        %}
-      </div>
+    {% if search.performed %}
+      <div
+        x-data="{ isFilterOpen: false }"
+      >
+        <div x-show="isFilterOpen" x-cloak>
+          <div
+            class="filter-sidebar__overlay"
+            @click="isFilterOpen = false; document.body.classList.remove('filter-open')"
+          ></div>
+          <aside class="filter-sidebar">
+            <div class="filter-sidebar-header">
+              <h3 class="heading--xl">Filters</h3>
+              <p>
+                <a class="body" href="{{ routes.search_url }}?q={{ search.terms | escape }}&type=product">Clear all</a>
+              </p>
+              <button
+                class="filter-close-btn"
+                @click="isFilterOpen = false; document.body.classList.remove('filter-open')"
+                aria-label="Close filters"
+              >
+                {% render 'icon-close' %}
+              </button>
+            </div>
+            <!-- ========== START SEARCH FILTERS CODE (TO BE MOVED TO search-filters.liquid SNIPPET) ========== -->
+            <style>
+              .filter {
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+              }
 
-      <div class="section">
-        <div>
-          {% render 'pagination', paginate: paginate %}
+              .filter-sidebar-header {
+                padding: var(--space-xs) var(--space-m);
+                border-top: 1px solid var(--neutral-200);
+                border-bottom: 1px solid var(--neutral-200);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                height: 57px;
+              }
+
+              .filter-sidebar-header > p > a {
+                color: var(--neutral-950);
+              }
+
+              .filter__group {
+                border-bottom: 1px solid var(--neutral-200);
+                padding: var(--space-m);
+              }
+
+              .filter__group-title {
+                margin-bottom: var(--space-s);
+                color: var(--neutral-950);
+              }
+
+              .filter__options {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+              }
+
+              .filter__option {
+                margin-bottom: var(--space-2xs);
+              }
+
+              .filter__checkbox-label,
+              .filter__radio-label {
+                display: flex;
+                align-items: center;
+                gap: var(--space-xs);
+                cursor: pointer;
+                color: var(--neutral-600);
+              }
+
+              .filter__checkbox,
+              .filter__radio {
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                width: 16px;
+                height: 16px;
+                border: 1px solid var(--neutral-400);
+                background-color: var(--white);
+                cursor: pointer;
+                position: relative;
+                margin: 0;
+              }
+
+              .filter__checkbox {
+                border-radius: 0;
+              }
+
+              .filter__radio {
+                border-radius: 50%;
+              }
+
+              .filter__checkbox:checked,
+              .filter__radio:checked {
+                background-color: var(--neutral-950);
+                border-color: var(--neutral-950);
+              }
+
+              .filter__checkbox:checked::after {
+                content: '';
+                position: absolute;
+                left: 5px;
+                top: 2px;
+                width: 4px;
+                height: 8px;
+                border: solid white;
+                border-width: 0 2px 2px 0;
+                transform: rotate(45deg);
+              }
+
+              .filter__radio:checked::after {
+                content: '';
+                position: absolute;
+                left: 4px;
+                top: 4px;
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background-color: white;
+              }
+
+              .filter__checkbox:focus,
+              .filter__radio:focus {
+                outline: none;
+              }
+
+              .filter__option:has(.filter__checkbox[disabled]) {
+                display: none !important;
+              }
+
+              .filter__price-range {
+                display: flex;
+                align-items: center;
+                gap: var(--space-m);
+                margin-bottom: var(--space-s);
+              }
+
+              .filter__price-input-wrapper {
+                display: flex;
+                flex-direction: column;
+              }
+
+              .filter__price-label {
+                margin-bottom: var(--space-3xs);
+                color: var(--neutral-600);
+              }
+
+              .filter__price-input {
+                border: 1px solid var(--neutral-200);
+                padding: var(--space-2xs) var(--space-xs);
+                color: var(--neutral-950);
+                min-width: 120px;
+              }
+
+              .filter__price-separator {
+                color: var(--neutral-400);
+                margin: 0 var(--space-2xs);
+              }
+
+              .filter__content {
+                flex: 1;
+                overflow-y: auto;
+                padding-bottom: 100px;
+              }
+
+              .filter__footer {
+                position: sticky;
+                bottom: 0;
+                background-color: var(--white);
+                padding: var(--space-m);
+                border-top: 1px solid var(--neutral-200);
+                width: 100%;
+                z-index: 1;
+                height: 100px;
+                display: flex;
+                align-items: center;
+              }
+
+              .filter__apply-button {
+                width: 100%;
+                height: var(--space-xl);
+                background-color: var(--neutral-950);
+                color: var(--white);
+                border: none;
+                padding: var(--space-xs) var(--space-s);
+                cursor: pointer;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              }
+
+              .filter__color-swatch {
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                display: inline-block;
+                border: 1px solid var(--neutral-200);
+              }
+
+              .filter__active-count {
+                color: var(--neutral-600);
+              }
+
+              .filter__reset {
+                color: var(--neutral-950);
+                text-decoration: underline;
+                margin-bottom: var(--space-xs);
+                display: inline-block;
+              }
+
+              .filter__group:last-of-type {
+                border-bottom: none;
+                padding-bottom: 0px;
+              }
+
+              .filter-close-btn {
+                display: none;
+                background: transparent;
+                border: none;
+                padding: 0;
+                cursor: pointer;
+              }
+
+              @media (max-width: 768px) {
+                .filter-sidebar {
+                  width: 100%;
+                }
+
+                .filter-sidebar-header {
+                  height: 50px;
+                }
+
+                .filter-close-btn {
+                  display: block;
+                }
+              }
+            </style>
+
+            <form class="filter" action="{{ routes.search_url }}" method="get">
+              <input type="hidden" name="type" value="product">
+              <input type="hidden" name="q" value="{{ search.terms }}">
+
+              <div class="filter__content">
+                <!-- Sort By Section -->
+                <div class="filter__group">
+                  <h3 class="filter__group-title">Sort by</h3>
+                  <ul class="filter__options">
+                    <li class="filter__option">
+                      <label class="filter__radio-label">
+                        <input
+                          type="radio"
+                          name="sort_by"
+                          value="relevance"
+                          class="filter__radio"
+                          {% unless request.params.sort_by %}
+                            checked
+                          {% endunless %}
+                        >
+                        <span>Relevance</span>
+                      </label>
+                    </li>
+                    <li class="filter__option">
+                      <label class="filter__radio-label">
+                        <input
+                          type="radio"
+                          name="sort_by"
+                          value="price-ascending"
+                          class="filter__radio"
+                          {% if request.params.sort_by == 'price-ascending' %}
+                            checked
+                          {% endif %}
+                        >
+                        <span>Price low to high</span>
+                      </label>
+                    </li>
+                    <li class="filter__option">
+                      <label class="filter__radio-label">
+                        <input
+                          type="radio"
+                          name="sort_by"
+                          value="price-descending"
+                          class="filter__radio"
+                          {% if request.params.sort_by == 'price-descending' %}
+                            checked
+                          {% endif %}
+                        >
+                        <span>Price high to low</span>
+                      </label>
+                    </li>
+                    <li class="filter__option">
+                      <label class="filter__radio-label">
+                        <input
+                          type="radio"
+                          name="sort_by"
+                          value="created-descending"
+                          class="filter__radio"
+                          {% if request.params.sort_by == 'created-descending' %}
+                            checked
+                          {% endif %}
+                        >
+                        <span>Newest first</span>
+                      </label>
+                    </li>
+                    <li class="filter__option">
+                      <label class="filter__radio-label">
+                        <input
+                          type="radio"
+                          name="sort_by"
+                          value="best-selling"
+                          class="filter__radio"
+                          {% if request.params.sort_by == 'best-selling' %}
+                            checked
+                          {% endif %}
+                        >
+                        <span>Best selling</span>
+                      </label>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="filter__footer">
+                <button type="submit" class="filter__apply-button body">Apply Filters</button>
+              </div>
+            </form>
+            <script>
+              document.querySelector('.filter').addEventListener('submit', function (e) {
+                const button = document.querySelector('.filter__apply-button');
+                button.innerHTML = `<span class="loader--spinner"></span>`;
+              });
+            </script>
+            <!-- ========== END SEARCH FILTERS CODE (TO BE MOVED TO search-filters.liquid SNIPPET) ========== -->
+          </aside>
         </div>
+
+        <div class="collection-controls">
+          <button
+            class="collection-controls__filter-button body"
+            @click="isFilterOpen = !isFilterOpen; document.body.classList.toggle('filter-open', isFilterOpen)"
+          >
+            Filters
+            <span>{% render 'icon-filter' %}</span>
+          </button>
+
+          <p class="body">
+            {{ search.results_count }}
+            {% if search.results_count == 1 %}Result{% else %}Results{% endif %}
+          </p>
+        </div>
+
+        {% paginate search.results by section.settings.limit %}
+          <div id="AjaxinateContainer" class="products-grid">
+            {% if search.results_count == 0 %}
+              <div>
+                <p>No products found</p>
+                <p>Try adjusting your search terms or <a href="/">return home</a></p>
+              </div>
+            {% else %}
+              {% for product in search.results %}
+                {% render 'product-card', product: product %}
+              {% endfor %}
+            {% endif %}
+          </div>
+
+          <div id="AjaxinatePagination">
+            {% if paginate.next %}
+              <a aria-label="Loading More" href="{{ paginate.next.url }}">Load More</a>
+            {% endif %}
+          </div>
+        {% endpaginate %}
       </div>
-    {% endpaginate %}
+    {% endif %}
   </div>
-</section>
+</div>
+
+{% javascript %}
+  window.addEventListener('load', function () {
+    if (document.querySelector('#AjaxinateContainer')) {
+      var endlessScroll = new Ajaxinate({
+        method: 'scroll',
+        container: '#AjaxinateContainer',
+        pagination: '#AjaxinatePagination',
+        offset: '100',
+      });
+    }
+  });
+{% endjavascript %}
 
 {% schema %}
 {
@@ -60,22 +490,12 @@
     {
       "type": "range",
       "id": "limit",
-      "label": "Limit",
-      "info": "Limit the number of products displayed per page.",
+      "label": "Products per load",
+      "info": "Number of products to show initially and load with each scroll.",
       "min": 4,
       "max": 50,
       "step": 1,
       "default": 24
-    },
-    {
-      "type": "range",
-      "id": "products_per_row",
-      "label": "Products Per Row",
-      "info": "Number of products per row.",
-      "min": 1,
-      "max": 4,
-      "step": 1,
-      "default": 4
     }
   ]
 }
