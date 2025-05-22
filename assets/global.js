@@ -411,6 +411,16 @@ function addErrorWithTimeout(item, message) {
   }, 100);
 }
 
+function isGiftCardItem(rootItem) {
+  const itemTitle = rootItem.querySelector('.cart-item__title a')?.textContent || '';
+  return itemTitle.toLowerCase().includes('gift card');
+}
+
+function isGiftCardProduct() {
+  const productTitle = document.querySelector(".product-details__title")?.textContent || '';
+  return productTitle.toLowerCase().includes('gift card');
+}
+
 function addCartEventListeners() {
   document.querySelectorAll(".cart-item__quantity button").forEach((button) => {
     button.addEventListener("click", async () => {
@@ -419,7 +429,7 @@ function addCartEventListeners() {
       const currentQuantity = Number(button.parentElement.querySelector("input").value);
       const isUp = button.classList.contains("cart-item__quantity-button--plus");
 
-      if (isUp) {
+      if (isUp && !isGiftCardItem(rootItem)) {
         const inventoryLimit = parseInt(rootItem.getAttribute("data-inventory-quantity") || "Infinity", 10);
 
         if (currentQuantity >= inventoryLimit) {
@@ -538,7 +548,7 @@ function handleAddToCart(form) {
 
       const totalRequestedQuantity = (existingItem ? existingItem.quantity : 0) + quantity;
 
-      if (inventoryQuantity !== Infinity && totalRequestedQuantity > inventoryQuantity) {
+      if (!isGiftCardProduct() && inventoryQuantity !== Infinity && totalRequestedQuantity > inventoryQuantity) {
         addButton.innerHTML = originalText;
         showError(form, `Sorry, only ${inventoryQuantity} ${inventoryQuantity === 1 ? "item" : "items"} available.`);
         return;

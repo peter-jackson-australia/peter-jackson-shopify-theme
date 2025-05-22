@@ -520,6 +520,7 @@
   var current_variant = {{ current_variant | json }};
   var variants = {{ product.variants | json }};
   var default_image = {{ product.featured_image.id | default: 'null' }};
+  var product_type = {{ product.type | json }};
 </script>
 
 <div class="section-wrap">
