@@ -14,7 +14,6 @@ Bring all blogs over
 
 24th: 
 Desktop Search:
-    - clean up the mess before moving on 
     - Fix up search results grid card styling
     - Fix up search results page header
 
