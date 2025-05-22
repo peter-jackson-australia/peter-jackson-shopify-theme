@@ -3,6 +3,7 @@ Code:
 Finish the sections: Contact Form     
 Make the menu featured images load faster
 
+Fix PDP slider for cases where there is only one image
 Blog collection template
 
 22 
@@ -11,11 +12,6 @@ Locations template
 22-27rd:
 Store locator
 Bring all blogs over 
-
-24th: 
-Desktop Search:
-    - Fix up search results grid card styling
-    - Fix up search results page header
 
 25th: 
 Careers 
