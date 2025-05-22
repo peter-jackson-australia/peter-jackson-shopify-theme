@@ -16,6 +16,8 @@ Bring all blogs over
 Desktop Search:
     - Rename CSS and classes used in initial style sheet. 
     - clean up the mess before moving on 
+    - Fix up search results grid card styling
+    - Fix up search results page header
 
 25th: 
 Careers 
