@@ -102,6 +102,62 @@
             "question": "Shipping Methods",
             "answer": "<p>Standard Shipping - Australia Post Network.</p><p>Free Standard shipping on all orders over $99 within Australia.</p><ul><li>Melbourne Metro – expect delivery 1-3 Business Days from Dispatch.</li><li>All other capital cities – delivery is between 3-5 Business Days from Dispatch.</li><li>Regional Australia – allow a little longer, 5-7 Business Days from Dispatch.</li></ul><p>Express shipping - $15 within Australia.</p><ul><li>Metropolitan Cities (Australia) - Guaranteed 1-2 Business Days from Dispatch.</li><li>Regional Australia – 3-4 Business Days from Dispatch.</li></ul>"
           }
+        },
+        "faq_item_RrCcaF": {
+          "type": "faq_item",
+          "settings": {
+            "question": "International Shipping",
+            "answer": "<p>International shipping - $50</p><p>We currently ship internationally to New Zealand only. If you'd like to arrange shipping to a different country, please contact info@peterjacksons.com</p><ul><li>All New Zealand – expected delivery 7-10 business days from dispatch.</li><li>Orders in AUD which are equivalent to NZ$200 shipped to New Zealand may incur GST, customs charges and duties charged by the NZ Customs Service once the parcel reaches its destination port and must be paid by the recipient directly to the NZ Customs Service or its authorised service provider. Peter Jackson Pty Ltd. is not responsible for and will not reimburse any of these charges and duties.</li><li>Customs charges and duties are the responsibility of the Customer and will not be refunded by Peter Jackson Pty Ltd. There are limited times when only the duty and GST can be refunded to you by the NZ Customs Service.</li></ul><p>Find out more here: https://www.customs.govt.nz/personal/online-shopping/</p>"
+          }
+        },
+        "faq_item_T6mqhy": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Tracking Parcels",
+            "answer": "<p>You can track your Standard, Express or International parcels via the Australia Post website. You will receive a tracking number in your dispatch confirmation email.</p><p>If your parcel hasn't arrived in the estimated time period, please refer to the Australia Post website here to see if delivery of your parcel has been attempted. Peter Jackson Australia Pty. cannot accept responsibility for delays, damages or loss of orders following handover to Australia Post.</p>"
+          }
+        },
+        "faq_item_pXHHGd": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Porch Theft",
+            "answer": "<p>Australia Post has detailed policies regarding <a href=\"https://auspost.com.au/receiving/manage-deliveries-in-transit/leave-in-a-safe-place\" target=\"_blank\">Safe Place</a> deliveries and <a href=\"https://auspost.com.au/receiving/delayed-lost-or-damaged-items/compensation\" target=\"_blank\">compensation</a> for potential loss of parcels. Once Australia Post has collected and received a parcel for delivery it is entirely their responsibility to deliver it to a safe location. To avoid porch theft, you are able to change the conditions of delivery through Australia Post and choose to leave the parcel at a different location.</p><p>Peter Jackson Australia Pty. processes parcels with the utmost care and responsibility, however, it’s not liable for any loss or damage after passing them onto Australia Post.</p>"
+          }
+        },
+        "faq_item_7zEYQW": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Stock Availability",
+            "answer": "<p>Our stock levels change frequently and there may be some garments only available online for a limited time. If the size you are after is not available online, simply contact our Customer Service team (03 9415 6281) and they will do their best to track the right size down for you.</p><p>There may also be times when a garment purchased via our website is not available in our online warehouse when we come to dispatch. In this case, we will do our best to source the garment from one of our stores and email you about this within one working day of your order.</p>"
+          }
+        },
+        "heading_TBXARd": {
+          "type": "heading",
+          "settings": {
+            "heading": "FAQS",
+            "anchor_id": ""
+          }
+        },
+        "faq_item_86tH4k": {
+          "type": "faq_item",
+          "settings": {
+            "question": "General Questions",
+            "answer": "<p><strong>What payment methods are available?<br/><br/></strong>We accept all major credit cards in-store and online. We also accept payments through Paypal for online purchases and Afterpay for in-store and online purchases. Visa, Mastercard and Amex have a small transaction percentage attached.</p><p><br/><strong>How can I search for items on the website?</strong><br/><br/>Click on the magnifying glass icon on the top-right of your screen. You can start typing a product code (SKU) if it’s known to you, or a colour, pattern, product style, etc. e.g: grey check jacket.</p><p><br/><strong>Can I hire a suit?</strong><br/><br/>Unfortunately, we do not offer hiring services.</p><p><br/><strong>How can I order online?</strong><br/><br/>Once you’ve found a product you like, you can select the size and quantity from the product page and click “add to cart”. It will give you the option to keep shopping, or head straight to check-out, where you’ll have to enter your shipping address and select a payment method.</p><p><br/>You can log in with your email and password if you already have an online account. It will assist with a faster checkout process.</p><p><br/><strong>How do I know what size I am?</strong><br/><br/>We want you to find the perfect fit, which is why we have a size chart you can access by clicking on the \"What's my size\" link after clicking \"Select size\" on any suit or sports jacket.<br/><br/></p><p><strong>Can I change or cancel my order?<br/><br/></strong>Once an order has been placed on our website, it’s not possible to cancel it. However, you might be able to change it if you get in touch with us before it has been dispatched.</p><p><br/><strong>How can I find the nearest Peter Jackson store?</strong><br/><br/>We have over 60 stores throughout the country and have listed them all by state in our store locator. You can access it by clicking on the \"find a store\" link on the top right corner of your screen.<br/><br/><strong>Was my order successful?</strong><br/><br/>If your order was successful you would receive a confirmation email shortly after completing payment. If you haven’t received any confirmation from us, check your spam folder or get in touch with us at <a href=\"mailto:sales@peterjacksons.com\">sales@peterjacksons.com</a></p><p><br/><strong>When will I get my order?</strong><br/><br/>We dispatch all orders within 3 – 5 business days. Generally, standard delivery takes between 3 – 5 business from the date of dispatch. Check our Shipping Information page <a href=\"https://www.peterjacksons.com/pages/shipping-delivery\" target=\"_self\">here</a> for more information.<br/><br/></p><p><strong>How can I track my order?</strong><br/><br/>Right after dispatch, you will receive an email from us with a confirmation and a tracking number for Australia Post.</p><p><br/><strong>I didn't receive a confirmation email for my order, did it go through?</strong><br/><br/>Check your spam folder. If you haven’t received a confirmation from us 24 hours after placing your order, contact us at <a href=\"mailto:sales@peterjacksons.com\">sales@peterjacksons.com</a> or <a href=\"tel:+0394156281\">(03) 9415 6281</a><br/><br/></p><p><strong>My order arrived but it’s incomplete<br/><br/></strong>In some cases, we dispatch an order in separate parcels due to the stock’s availability at the time. If you experience this, allow some extra time for the rest of the order to arrive. You can also contact us to inquire about the current status of your order.</p>"
+          }
+        },
+        "faq_item_8gp6Ey": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Product & Stock",
+            "answer": "<p><strong>I can’t find my size online<br/><br/></strong>Sometimes our availability online differs from our in-store inventory. If you can’t find your size feel free to contact us at <a href=\"mailto:sales@peterjacksons.com\">sales@peterjacksons.com</a> or <a href=\"tel:+0394156281\">(03) 9415 6281</a> to inquire about stock availability at our warehouse or your nearest store.<br/><br/><strong>I saw something in-store that I can’t find online</strong><br/><br/>We try to maintain cohesiveness between our in-store and online experiences. However, sometimes we might opt not to display a certain range of products due to availability or seasonality. If you’ve seen something in-store that you can’t find online, get in touch with us. One of our team members will help you locate that item if it’s still available.</p><p><br/><strong>The price has changed since I ordered. Can I get a refund?</strong><br/><br/>We run different promotions and sales throughout the year. Some of these promotions are exclusive to our online shopping experience. If an item you bought went on sale shortly after, unfortunately, we can’t issue a refund for the item or the price difference. <a href=\"https://www.peterjacksons.com/pages/returns\" target=\"_self\">Click here</a> for more information on our refund policy.</p>"
+          }
+        },
+        "faq_item_8q7NKn": {
+          "type": "faq_item",
+          "settings": {
+            "question": "My Account",
+            "answer": "<p><strong>How can I reset my password?</strong><br/><br/>Click on the top right sign-in icon (when browsing on a desktop computer), or open the burger menu. (when browsing on mobile) Then click on the sign-in icon. Click “Forgot password?” and enter your email address, then click “reset password.” You will be sent an email with a link to reset your password.</p><p><br/><strong>How can I create an account?</strong><br/><br/>Click on the top right sign-in icon if browsing on a desktop computer, or open the burger menu if browsing on mobile, and then on the sign-in icon. You can create an account by signing in with your Facebook or clicking on “Not a member? Sign up here.” Fill in with your name, last name, e-mail address and a password of your choice. Then you can click on “create an account”</p><p><br/><strong>How can I change my email, phone or address?</strong><br/><br/>After signing in, click on the sign-in icon. It will take you to your account overview. You can update any of your personal information there. You can also add a new address, see your wishlist or even check a gift card’s balance.</p><p><br/><strong>I want to unsubscribe from the newsletter.</strong><br/><br/>At the bottom of every one of our newsletter emails, there’s a link to unsubscribe. Alternatively, you can also write to us at <a href=\"mailto:info@peterjacksons.com\">info@peterjacksons.com</a> with the request.</p>"
+          }
         }
       },
       "block_order": [
@@ -117,7 +173,15 @@
         "faq_item_hb4T6c",
         "faq_item_bXzTER",
         "faq_item_C73FA6",
-        "faq_item_UBAB38"
+        "faq_item_UBAB38",
+        "faq_item_RrCcaF",
+        "faq_item_T6mqhy",
+        "faq_item_pXHHGd",
+        "faq_item_7zEYQW",
+        "heading_TBXARd",
+        "faq_item_86tH4k",
+        "faq_item_8gp6Ey",
+        "faq_item_8q7NKn"
       ],
       "name": "FAQ Section",
       "settings": {
