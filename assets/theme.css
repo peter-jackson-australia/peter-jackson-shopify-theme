@@ -807,7 +807,7 @@ a.skip-to-content:focus-visible {
 
 /* Klaviyo Overrides */
 
-.needsclick * {
+.menu-drawer__klaviyo .needsclick * {
   line-height: 140%;
   letter-spacing: 0.065rem;
   font-family: 'Ordinary Light';
