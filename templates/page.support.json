@@ -46,6 +46,20 @@
             "question": "Conditions of purchase",
             "answer": "<ul><li>A valid proof of purchase is required (bank statement, store receipt or order number for online purchases) on all return transactions.</li><li>Under the Australian Consumer Law (ACL), consumers have a right to return faulty goods in certain circumstances.</li><li>If the product has a major failure, the consumer has the right to choose between a replacement or a refund. If the product has a minor failure, the business can choose to give the consumer a free repair instead of a replacement or refund.</li></ul>"
           }
+        },
+        "faq_item_NHng7g": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Additional information",
+            "answer": "<ul><li>Refunds are only processed from our head office. Stores are not authorised to process refunds.</li><li>Return can be made on sale items, and items purchased at all Peter Jackson stores including outlets.</li><li>If a garment has been altered, this is deemed to not be in original condition and therefore not eligible for an exchange, refund or credit note.</li><li>In-store and online prices may vary depending on promotional activity at the time of purchase.</li><li>Gift cards can be redeemed for merchandise only at Peter Jackson stores. Gift cards cannot be redeemed for cash.</li></ul>"
+          }
+        },
+        "faq_item_jdgFLw": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is a major failure",
+            "answer": "<p>A product or good has a major failure when:</p><ul><li>It has a problem that would have stopped someone from buying it if they had known about it</li><li>It is unsafe</li><li>It is significantly different from any sample or description</li><li>It doesn’t do what the business said it would, or what the consumer asked for, and can’t easily be made suitable for such a purpose.</li></ul><p>Businesses are not required to provide refunds to consumers because of a change of mind when there is no major or minor failure in relation to the good and the good was properly described.</p><p>This change of mind policy does not affect your rights under the Australian Consumer Law. If you purchased a product with a major fault, you have the right to ask for your choice of a replacement or refund. </p><p>For more information about your rights as a consumer please<a href=\"https://www.consumer.vic.gov.au/products-and-services/business-practices/store-policies/change-of-mind#:~:text=Generally%2C%20a%20store%20does%20not,product%20covered%20by%20consumer%20guarantees.\"> click here.</a></p>"
+          }
         }
       },
       "block_order": [
@@ -53,7 +67,9 @@
         "faq_item_DWEzWg",
         "faq_item_8DCYct",
         "faq_item_6YAWz9",
-        "faq_item_jU4T9C"
+        "faq_item_jU4T9C",
+        "faq_item_NHng7g",
+        "faq_item_jdgFLw"
       ],
       "name": "FAQ Section",
       "settings": {
