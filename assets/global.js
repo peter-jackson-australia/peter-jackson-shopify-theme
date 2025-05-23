@@ -5,6 +5,10 @@ const cartElements = {
   cartLinks: document.querySelectorAll('a[href="/cart"]'),
 };
 
+window.addEventListener("load", () => {
+  quicklink.listen();
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   initCartFromStorage();
   addCartEventListeners();
