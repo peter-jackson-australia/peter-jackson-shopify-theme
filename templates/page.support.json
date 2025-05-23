@@ -67,6 +67,41 @@
             "question": "When can a consumer return faulty goods?",
             "answer": "<p>Consumers can return faulty goods within a reasonable time. The term “reasonable time” is not defined by the ACL. The nature of our goods a reasonable amount of time is 6 months for any assessment. Goods returned outside this duration cannot be accessed purely based on the time passed.</p>"
           }
+        },
+        "heading_RdeUC4": {
+          "type": "heading",
+          "settings": {
+            "heading": "Shipping & Delivery",
+            "anchor_id": ""
+          }
+        },
+        "faq_item_hb4T6c": {
+          "type": "faq_item",
+          "settings": {
+            "question": "High Volume Orders",
+            "answer": "<p>Due to high demand and increased order volume, our warehouse team are experiencing delays in dispatching orders. Please allow for extended dispatch times and extra delivery time due to the high volume.<br/><br/>Peter Jackson uses third party couriers and delivery times are subject to their service capacity. Unfortunately, this is beyond our control. Our delivery time frame is estimated only and Peter Jackson will not be held liable for any loss, expense, or damage caused by dispatch or delivery delays.<br/><br/>We sincerely appreciate your patience and understanding.</p>"
+          }
+        },
+        "faq_item_bXzTER": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Dispatch",
+            "answer": "<p>Dispatch refers to when your garments leave our Distribution Centre. On the day of dispatch, you will receive an email confirming that your order has left our Distributions Centre. This email will contain your Australia Post Tracking Number, which can be used on the Australia Post Website.</p><ul><li>Standard shipping orders can take between 5 – 7 business days to be dispatched.</li><li>Express shipping orders can take between 3 - 4 business days to be dispatched.</li><li>Orders are not dispatched over the weekend or during Victorian public holidays.</li></ul><p>During heavy trading periods, there are times when we may need to source your garment order from stores across our network, which will delay dispatch. In this case, our Customer Care team will contact you via email to inform you of the expected delay.</p><ul><li>You will receive an email at 5 pm EST on the day your order has been dispatched.</li><li>All orders are dispatched from our Victorian Head office, Abbotsford, Melbourne.</li><li>Please be aware, Dispatch period does not include standard shipping times.</li></ul>"
+          }
+        },
+        "faq_item_C73FA6": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Confirmation",
+            "answer": "<p>Once your order is processed you will receive a confirmation email. The confirmation email will only confirm that your order has been processed and will not include a tracking number.</p><p>A tracking number will only be received at the time of dispatch.</p>"
+          }
+        },
+        "faq_item_UBAB38": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Shipping Methods",
+            "answer": "<p>Standard Shipping - Australia Post Network.</p><p>Free Standard shipping on all orders over $99 within Australia.</p><ul><li>Melbourne Metro – expect delivery 1-3 Business Days from Dispatch.</li><li>All other capital cities – delivery is between 3-5 Business Days from Dispatch.</li><li>Regional Australia – allow a little longer, 5-7 Business Days from Dispatch.</li></ul><p>Express shipping - $15 within Australia.</p><ul><li>Metropolitan Cities (Australia) - Guaranteed 1-2 Business Days from Dispatch.</li><li>Regional Australia – 3-4 Business Days from Dispatch.</li></ul>"
+          }
         }
       },
       "block_order": [
@@ -77,7 +112,12 @@
         "faq_item_jU4T9C",
         "faq_item_NHng7g",
         "faq_item_jdgFLw",
-        "faq_item_EktQna"
+        "faq_item_EktQna",
+        "heading_RdeUC4",
+        "faq_item_hb4T6c",
+        "faq_item_bXzTER",
+        "faq_item_C73FA6",
+        "faq_item_UBAB38"
       ],
       "name": "FAQ Section",
       "settings": {
