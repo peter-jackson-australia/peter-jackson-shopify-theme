@@ -6,7 +6,12 @@ const cartElements = {
 };
 
 window.addEventListener("load", () => {
-  quicklink.listen();
+  quicklink.listen({
+    ignores: [
+      /\/cart$/,  
+      uri => uri.includes('/cart') 
+    ]
+  });
 });
 
 document.addEventListener("DOMContentLoaded", () => {
