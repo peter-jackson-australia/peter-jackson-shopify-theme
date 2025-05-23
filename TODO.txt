@@ -1,6 +1,7 @@
 Home page sections:
 Code:
-installl shippit
+Bring tracking scripts
+Installl shippit
 Finish the sections: Contact Form     
 Support pages
 
