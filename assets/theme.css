@@ -807,6 +807,11 @@ a.skip-to-content:focus-visible {
 
 /* Klaviyo Overrides */
 
+#rich-text-01JQ7PY3EM88BD6RSMQFFCS2QW > *, 
+#rich-text-01JQ7PY3EVQV63T4NT5GGT9J67 > * {
+  text-align: left !important;
+}
+
 #rich-text-01JQ7PY3EM88BD6RSMQFFCS2QW > * > *, 
 #rich-text-01JQ7PY3EVQV63T4NT5GGT9J67 > * > * {
   line-height: 140% !important;
