@@ -809,6 +809,7 @@ a.skip-to-content:focus-visible {
 
 #rich-text-01JQ7PY3EM88BD6RSMQFFCS2QW > *, 
 #rich-text-01JQ7PY3EVQV63T4NT5GGT9J67 > * {
+  padding-top: var(--space-2xs) !important; 
   text-align: left !important;
 }
 
