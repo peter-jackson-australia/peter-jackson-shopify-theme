@@ -158,6 +158,20 @@
             "question": "My Account",
             "answer": "<p><strong>How can I reset my password?</strong><br/><br/>Click on the top right sign-in icon (when browsing on a desktop computer), or open the burger menu. (when browsing on mobile) Then click on the sign-in icon. Click “Forgot password?” and enter your email address, then click “reset password.” You will be sent an email with a link to reset your password.</p><p><br/><strong>How can I create an account?</strong><br/><br/>Click on the top right sign-in icon if browsing on a desktop computer, or open the burger menu if browsing on mobile, and then on the sign-in icon. You can create an account by signing in with your Facebook or clicking on “Not a member? Sign up here.” Fill in with your name, last name, e-mail address and a password of your choice. Then you can click on “create an account”</p><p><br/><strong>How can I change my email, phone or address?</strong><br/><br/>After signing in, click on the sign-in icon. It will take you to your account overview. You can update any of your personal information there. You can also add a new address, see your wishlist or even check a gift card’s balance.</p><p><br/><strong>I want to unsubscribe from the newsletter.</strong><br/><br/>At the bottom of every one of our newsletter emails, there’s a link to unsubscribe. Alternatively, you can also write to us at <a href=\"mailto:info@peterjacksons.com\">info@peterjacksons.com</a> with the request.</p>"
           }
+        },
+        "faq_item_EdRyPG": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Payments",
+            "answer": "<p><strong>Can I use a credit note to make online purchases?</strong><br/><br/>Initially, all credit notes issued in-store are only redeemable in-store. However, we can activate them for online purchases upon request. Contact us at <a href=\"mailto:sales@peterjacksons.com\">sales@peterjacksons.com</a> or <a href=\"tel:+0394156281\">(03) 9415 6281.</a> We’ll process it for you right away.</p><p><br/><strong>Can I use more than one promo code on my order?</strong><br/><br/>You're only able to use one promo code per transaction.</p><p><br/><strong>How can I redeem a promo code?</strong><br/><br/>Enter your promo code in the “promo code” field at checkout. Then, either press Enter or click on the right-pointing arrow icon.</p>"
+          }
+        },
+        "faq_item_qaLAR4": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Gift Cards",
+            "answer": "<p><strong>I lost my Virtual Gift card. Could you send it again?</strong><br/><br/>Of course. Just get in touch with us at <a href=\"mailto:info@peterjacksons.com\">info@peterjacksons.com</a> or <a href=\"tel:+0394156281\">(03) 9415 6281.</a> Have the email address you used for the purchase, and we’ll resend it there.</p><p><br/><strong>Can I use a physical gift card for online purchases?</strong><br/><br/>In short, Yes. However, our physical gift cards are mainly for in-store purchases, so we’ll need to activate them for online usage from our head office. Get in touch with us, and we’ll sort it out for you.</p><p><br/><strong>Can I use a virtual gift card for in-store purchases?</strong><br/><br/>Yes. However, virtual gift cards are issued for online purchases originally. We will have to activate them for you to be redeemable in-store. Contact us, and we’ll process that request for you.</p>"
+          }
         }
       },
       "block_order": [
@@ -181,7 +195,9 @@
         "heading_TBXARd",
         "faq_item_86tH4k",
         "faq_item_8gp6Ey",
-        "faq_item_8q7NKn"
+        "faq_item_8q7NKn",
+        "faq_item_EdRyPG",
+        "faq_item_qaLAR4"
       ],
       "name": "FAQ Section",
       "settings": {
