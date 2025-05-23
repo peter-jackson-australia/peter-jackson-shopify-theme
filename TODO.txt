@@ -1,7 +1,8 @@
 Todo:
 Install shippit
+Update newsletter sign up confirmation text 
 Finish the sections: Contact Form     
-Support pages
+
 Careers
 
 Blog collection template
