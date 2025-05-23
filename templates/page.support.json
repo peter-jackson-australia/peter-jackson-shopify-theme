@@ -9,29 +9,45 @@
  */
 {
   "sections": {
-    "editorial_hero_hceC9g": {
-      "type": "editorial-hero",
-      "name": "Hero Editorial",
+    "faqs_bHCdcg": {
+      "type": "faqs",
+      "blocks": {
+        "heading_RUeFX4": {
+          "type": "heading",
+          "settings": {
+            "heading": "Returns & Exchanges",
+            "anchor_id": "returns-and-exchanges"
+          }
+        },
+        "faq_item_DWEzWg": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Returns",
+            "answer": "<p>We understand there are some differences between an online and an in-store shopping experience, which is why there are a few slight variations in the way we handle returns and exchanges for both.</p>"
+          }
+        },
+        "faq_item_8DCYct": {
+          "type": "faq_item",
+          "settings": {
+            "question": "FAQ question",
+            "answer": "<p>Answer your customer's question here.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_RUeFX4",
+        "faq_item_DWEzWg",
+        "faq_item_8DCYct"
+      ],
+      "name": "FAQ Section",
       "settings": {
-        "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
-        "leading_text": "",
-        "leading_text_animation": "none",
-        "first_title": "Discover",
-        "first_title_animation": "none",
-        "media_type": "image",
-        "animate_media": false,
-        "second_title": "Collection",
-        "second_title_animation": "none",
-        "description": "",
-        "description_animation": "none",
-        "cta_text": "Shop Now",
-        "cta_link": ""
+        "animate_faqs": false
       }
     }
   },
   "order": [
-    "editorial_hero_hceC9g"
+    "faqs_bHCdcg"
   ]
 }
