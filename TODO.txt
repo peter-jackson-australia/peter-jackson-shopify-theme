@@ -1,12 +1,12 @@
 Todo:
 Install shippit
 Finish the sections: Contact Form     
-
 Careers
 
 Blog collection template
 Locations template
 Store locator
+Email templates
 
 /////////////////////////////////////////////////////
 
