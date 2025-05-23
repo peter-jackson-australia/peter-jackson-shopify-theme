@@ -1,5 +1,4 @@
 Todo:
-Fix console error related to cart
 Installl shippit
 Finish the sections: Contact Form     
 Support pages
