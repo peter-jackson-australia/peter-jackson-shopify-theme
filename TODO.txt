@@ -1,5 +1,5 @@
 Todo:
-Installl shippit
+Install shippit
 Finish the sections: Contact Form     
 Support pages
 Careers
