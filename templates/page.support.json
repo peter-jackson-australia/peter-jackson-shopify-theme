@@ -60,6 +60,13 @@
             "question": "What is a major failure",
             "answer": "<p>A product or good has a major failure when:</p><ul><li>It has a problem that would have stopped someone from buying it if they had known about it</li><li>It is unsafe</li><li>It is significantly different from any sample or description</li><li>It doesn’t do what the business said it would, or what the consumer asked for, and can’t easily be made suitable for such a purpose.</li></ul><p>Businesses are not required to provide refunds to consumers because of a change of mind when there is no major or minor failure in relation to the good and the good was properly described.</p><p>This change of mind policy does not affect your rights under the Australian Consumer Law. If you purchased a product with a major fault, you have the right to ask for your choice of a replacement or refund. </p><p>For more information about your rights as a consumer please<a href=\"https://www.consumer.vic.gov.au/products-and-services/business-practices/store-policies/change-of-mind#:~:text=Generally%2C%20a%20store%20does%20not,product%20covered%20by%20consumer%20guarantees.\"> click here.</a></p>"
           }
+        },
+        "faq_item_EktQna": {
+          "type": "faq_item",
+          "settings": {
+            "question": "When can a consumer return faulty goods?",
+            "answer": "<p>Consumers can return faulty goods within a reasonable time. The term “reasonable time” is not defined by the ACL. The nature of our goods a reasonable amount of time is 6 months for any assessment. Goods returned outside this duration cannot be accessed purely based on the time passed.</p>"
+          }
         }
       },
       "block_order": [
@@ -69,7 +76,8 @@
         "faq_item_6YAWz9",
         "faq_item_jU4T9C",
         "faq_item_NHng7g",
-        "faq_item_jdgFLw"
+        "faq_item_jdgFLw",
+        "faq_item_EktQna"
       ],
       "name": "FAQ Section",
       "settings": {
