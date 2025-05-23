@@ -29,15 +29,23 @@
         "faq_item_8DCYct": {
           "type": "faq_item",
           "settings": {
-            "question": "FAQ question",
-            "answer": "<p>Answer your customer's question here.</p>"
+            "question": "In-store purchases & returns",
+            "answer": "<p>If something isn't quite right, you have 30 days to return it back to the store of purchase. Please return items in original condition and with all tags still attached. We understand circumstances can change, if you change your mind after an in-store purchase, we can offer a full credit note or exchange of an equivalent item.</p>"
+          }
+        },
+        "faq_item_6YAWz9": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Online purchases & returns",
+            "answer": "<p>We understand that purchasing a tailored garment online can be tricky, subsequently, we offer a full refund in the event of a change of mind.</p><p>For a return or an exchange, online orders have to be sent back to our head office within 30 days from the date of purchase. After we have received your return, you can expect to receive your refund within 14 days. This will be sent to the same method you used to pay.</p><p>Once your return has been processed, you will receive a confirmation email.<br/><br/>To request a return or exchange, don't forget to fill out and include our \"returns & exchanges\" form when sending a product back to us. Postage costs are not covered.<br/><br/>You can download the form from here: Download</p>"
           }
         }
       },
       "block_order": [
         "heading_RUeFX4",
         "faq_item_DWEzWg",
-        "faq_item_8DCYct"
+        "faq_item_8DCYct",
+        "faq_item_6YAWz9"
       ],
       "name": "FAQ Section",
       "settings": {
