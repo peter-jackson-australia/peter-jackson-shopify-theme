@@ -1,146 +1,3 @@
-<div id="careers-container">
-  {% if section.settings.career_image %}
-    <img
-      id="visual"
-      alt="Peter Jackson Career Visual"
-      src="{{ section.settings.career_image | image_url: width: '2000' }}"
-      loading="lazy"
-      height="100"
-      width="100"
-    >
-  {% endif %}
-
-  <section id="careers-page">
-    <h3 class="heading--2xl">Careers</h3>
-    <p class="body excerpt">
-      Join the Peter Jackson team and become part of a storied legacy in men's fashion, where quality, style, and
-      exceptional service have been our hallmarks since 1948.
-    </p>
-
-    <hr>
-
-    <h5 class="body--bold career-content">Join the team</h5>
-
-    <p class="body career-content">
-      Peter Jackson, a name synonymous with quality tailoring since 1948, continues to expand nationally while
-      maintaining a strong commitment to top-notch customer service and apparel.<br>
-      <br>
-      We're seeking fashion-forward, service-oriented team players with exceptional people skills to help grow our
-      iconic brand and build a career in Australian men's fashion.<br>
-      <br>
-      Join us in upholding our legacy.
-    </p>
-
-    <form
-      id="contact-form"
-      action="https://formspree.io/f/xldedvgw"
-      method="POST"
-      enctype="multipart/form-data"
-    >
-      <section class="form-row">
-        <input
-          class="small"
-          placeholder="Full Name"
-          required
-          type="text"
-          name="name"
-        >
-        <input
-          class="small"
-          placeholder="Email"
-          required
-          type="email"
-          name="email"
-        >
-        <input
-          class="small"
-          placeholder="Phone"
-          required
-          type="text"
-          name="phone"
-        >
-      </section>
-
-      <section class="form-row">
-        <select class="small" required name="role">
-          <option value="">Role</option>
-          <option value="Sales">Sales</option>
-          <option value="Marketing">Marketing</option>
-          <option value="Customer Service">Customer Service</option>
-          <option value="Other">Other</option>
-        </select>
-
-        <select class="small" required name="state">
-          <option value="">State</option>
-          <option value="NSW">NSW</option>
-          <option value="VIC">VIC</option>
-          <option value="QLD">QLD</option>
-          <option value="SA">SA</option>
-          <option value="WA">WA</option>
-          <option value="ACT">ACT</option>
-        </select>
-
-        <div class="radio-group">
-          <input
-            id="availability-full"
-            type="checkbox"
-            name="full-time-availability"
-            value="Full Time"
-          >
-          <label class="small" for="availability-full">Full Time</label>
-
-          <input
-            id="availability-part"
-            type="checkbox"
-            name="part-time-availability"
-            value="Part Time"
-          >
-          <label class="small" for="availability-part">Part Time</label>
-
-          <input
-            id="availability-casual"
-            type="checkbox"
-            name="casual-availability"
-            value="Casual"
-          >
-          <label class="small" for="availability-casual">Casual</label>
-        </div>
-      </section>
-
-      <section class="form-row">
-        <textarea
-          class="small"
-          name="message"
-          placeholder="Message"
-        ></textarea>
-      </section>
-
-      <section class="submit-form">
-        <input type="file" name="upload">
-        <button class="upload-cv small" type="button">UPLOAD CV</button>
-        <button class="small" id="career-submit-button" type="submit">Send</button>
-      </section>
-    </form>
-
-    <section id="success-modal">
-      <section id="success-modal-content">
-        <button
-          id="close-modal"
-          class="modal-close"
-        >
-          &times;
-        </button>
-        <h3 class="heading--2xl">Thank You!</h3>
-        <p class="body">Thank you for your interest in joining the Peter Jackson team!</p>
-        <p class="body">
-          We value diversity, innovation, and a commitment to excellence. If a position becomes available that matches
-          your background, we'll be in touch.
-        </p>
-      </section>
-    </section>
-  </section>
-</div>
-
 <style>
   #careers-container {
     max-width: 1400px;
@@ -148,8 +5,7 @@
     display: grid;
     gap: var(--space-2xl);
     grid-template-columns: 1fr 1fr;
-    margin-top: var(--space-2xl);
-    padding: var(--space-m);
+    padding: var(--space-2xl) var(--space-m);
   }
 
   #careers-container #visual {
@@ -161,6 +17,10 @@
     margin: auto;
     padding: 0 var(--space-xs);
     position: relative;
+  }
+
+  #careers-page p {
+    color: var(--neutral-600);
   }
 
   #careers-page hr {
@@ -383,6 +243,149 @@
     }
   }
 </style>
+
+<div id="careers-container">
+  {% if section.settings.career_image %}
+    <img
+      id="visual"
+      alt="Peter Jackson Career Visual"
+      src="{{ section.settings.career_image | image_url: width: '2000' }}"
+      loading="lazy"
+      height="100"
+      width="100"
+    >
+  {% endif %}
+
+  <section id="careers-page">
+    <h1 class="heading--2xl" style="margin-bottom: var(--space-s)">Careers</h1>
+    <p class="body excerpt">
+      Join the Peter Jackson team and become part of a storied legacy in men's fashion, where quality, style, and
+      exceptional service have been our hallmarks since 1948.
+    </p>
+
+    <hr>
+
+    <h5 class="body--bold career-content">Join the team</h5>
+
+    <p class="body career-content">
+      Peter Jackson, a name synonymous with quality tailoring since 1948, continues to expand nationally while
+      maintaining a strong commitment to top-notch customer service and apparel.<br>
+      <br>
+      We're seeking fashion-forward, service-oriented team players with exceptional people skills to help grow our
+      iconic brand and build a career in Australian men's fashion.<br>
+      <br>
+      Join us in upholding our legacy.
+    </p>
+
+    <form
+      id="contact-form"
+      action="https://formspree.io/f/xldedvgw"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <section class="form-row">
+        <input
+          class="small"
+          placeholder="Full Name"
+          required
+          type="text"
+          name="name"
+        >
+        <input
+          class="small"
+          placeholder="Email"
+          required
+          type="email"
+          name="email"
+        >
+        <input
+          class="small"
+          placeholder="Phone"
+          required
+          type="text"
+          name="phone"
+        >
+      </section>
+
+      <section class="form-row">
+        <select class="small" required name="role">
+          <option value="">Role</option>
+          <option value="Sales">Sales</option>
+          <option value="Marketing">Marketing</option>
+          <option value="Customer Service">Customer Service</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <select class="small" required name="state">
+          <option value="">State</option>
+          <option value="NSW">NSW</option>
+          <option value="VIC">VIC</option>
+          <option value="QLD">QLD</option>
+          <option value="SA">SA</option>
+          <option value="WA">WA</option>
+          <option value="ACT">ACT</option>
+        </select>
+
+        <div class="radio-group">
+          <input
+            id="availability-full"
+            type="checkbox"
+            name="full-time-availability"
+            value="Full Time"
+          >
+          <label class="small" for="availability-full">Full Time</label>
+
+          <input
+            id="availability-part"
+            type="checkbox"
+            name="part-time-availability"
+            value="Part Time"
+          >
+          <label class="small" for="availability-part">Part Time</label>
+
+          <input
+            id="availability-casual"
+            type="checkbox"
+            name="casual-availability"
+            value="Casual"
+          >
+          <label class="small" for="availability-casual">Casual</label>
+        </div>
+      </section>
+
+      <section class="form-row">
+        <textarea
+          class="small"
+          name="message"
+          placeholder="Message"
+        ></textarea>
+      </section>
+
+      <section class="submit-form">
+        <input type="file" name="upload">
+        <button class="upload-cv small" type="button">UPLOAD CV</button>
+        <button class="small" id="career-submit-button" type="submit">Send</button>
+      </section>
+    </form>
+
+    <section id="success-modal">
+      <section id="success-modal-content">
+        <button
+          id="close-modal"
+          class="modal-close"
+        >
+          &times;
+        </button>
+        <h3 class="heading--2xl">Thank You!</h3>
+        <p class="body">Thank you for your interest in joining the Peter Jackson team!</p>
+        <p class="body">
+          We value diversity, innovation, and a commitment to excellence. If a position becomes available that matches
+          your background, we'll be in touch.
+        </p>
+      </section>
+    </section>
+  </section>
+</div>
 
 <script>
   function initCareersForm() {
