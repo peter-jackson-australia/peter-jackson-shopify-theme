@@ -289,9 +289,9 @@
       ],
       "name": "FAQ Section",
       "settings": {
-        "show_top_border": false,
+        "show_top_border": true,
         "show_bottom_border": false,
-        "animate_faqs": false
+        "animate_faqs": true
       }
     }
   },
