@@ -72,7 +72,7 @@
           "type": "heading",
           "settings": {
             "heading": "Shipping & Delivery",
-            "anchor_id": ""
+            "anchor_id": "shipping-and-delivery"
           }
         },
         "faq_item_hb4T6c": {
@@ -135,7 +135,7 @@
           "type": "heading",
           "settings": {
             "heading": "FAQS",
-            "anchor_id": ""
+            "anchor_id": "frequently-asked-questions"
           }
         },
         "faq_item_86tH4k": {
@@ -177,7 +177,7 @@
           "type": "heading",
           "settings": {
             "heading": "T&C",
-            "anchor_id": ""
+            "anchor_id": "terms-and-conditions"
           }
         },
         "faq_item_3A3K9N": {
@@ -191,7 +191,7 @@
           "type": "heading",
           "settings": {
             "heading": "Privacy Policy",
-            "anchor_id": ""
+            "anchor_id": "privacy-policy"
           }
         },
         "faq_item_QtQeAB": {
