@@ -39,13 +39,21 @@
             "question": "Online purchases & returns",
             "answer": "<p>We understand that purchasing a tailored garment online can be tricky, subsequently, we offer a full refund in the event of a change of mind.</p><p>For a return or an exchange, online orders have to be sent back to our head office within 30 days from the date of purchase. After we have received your return, you can expect to receive your refund within 14 days. This will be sent to the same method you used to pay.</p><p>Once your return has been processed, you will receive a confirmation email.<br/><br/>To request a return or exchange, don't forget to fill out and include our \"returns & exchanges\" form when sending a product back to us. Postage costs are not covered.<br/><br/>You can download the form from here: Download</p>"
           }
+        },
+        "faq_item_jU4T9C": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Conditions of purchase",
+            "answer": "<ul><li>A valid proof of purchase is required (bank statement, store receipt or order number for online purchases) on all return transactions.</li><li>Under the Australian Consumer Law (ACL), consumers have a right to return faulty goods in certain circumstances.</li><li>If the product has a major failure, the consumer has the right to choose between a replacement or a refund. If the product has a minor failure, the business can choose to give the consumer a free repair instead of a replacement or refund.</li></ul>"
+          }
         }
       },
       "block_order": [
         "heading_RUeFX4",
         "faq_item_DWEzWg",
         "faq_item_8DCYct",
-        "faq_item_6YAWz9"
+        "faq_item_6YAWz9",
+        "faq_item_jU4T9C"
       ],
       "name": "FAQ Section",
       "settings": {
