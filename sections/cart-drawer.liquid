@@ -300,7 +300,12 @@
                             {% if forloop.index <= variant_parts.size %}
                               {% assign option_index = forloop.index | minus: 1 %}
                               {% assign option_value = variant_parts[option_index] %}
-                              {{ option }}: {{ option_value | remove: '.0' -}}
+                              {{ option }}:
+                              {% if option contains 'Size' and option_value contains '.0' -%}
+                                {{- option_value | remove: '.0' -}}
+                              {%- else -%}
+                                {{- option_value -}}
+                              {%- endif %}
                               {%- unless forloop.last %}, {% endunless %}
                             {% endif %}
                           {% endfor %}
