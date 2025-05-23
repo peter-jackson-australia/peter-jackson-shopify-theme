@@ -291,7 +291,7 @@
       "settings": {
         "show_top_border": true,
         "show_bottom_border": false,
-        "animate_faqs": true
+        "animate_faqs": false
       }
     }
   },
