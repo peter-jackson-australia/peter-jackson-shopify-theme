@@ -718,11 +718,11 @@ input[type='search'] {
 }
 
 @media (min-width: 769px) {
-  .predictive-search__input {
+  .search-drawer__content .predictive-search__input {
     padding: var(--space-s) 0px; 
   }
 
-  .predictive-search__button {
+  .search-drawer__content .predictive-search__button {
     right: 0; 
   }
 }
