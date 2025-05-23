@@ -27,9 +27,9 @@
         "partnerships_link": "",
         "partnerships_link_text": "Learn More",
         "footer_logo": "shopify://shop_images/peter-jackson-white-logo.svg",
-        "terms_link": "#",
+        "terms_link": "/pages/support/#terms-and-conditions-segment",
         "terms_text": "Terms & Conditions",
-        "privacy_link": "#",
+        "privacy_link": "/pages/support/#privacy-policy-segment",
         "privacy_text": "Privacy Policy"
       }
     }
