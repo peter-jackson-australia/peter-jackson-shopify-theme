@@ -807,8 +807,8 @@ a.skip-to-content:focus-visible {
 
 /* Klaviyo Overrides */
 
-#rich-text-01JQ7PY3EM88BD6RSMQFFCS2QW, 
-#rich-text-01JQ7PY3EVQV63T4NT5GGT9J67 {
+#rich-text-01JQ7PY3EM88BD6RSMQFFCS2QW > *, 
+#rich-text-01JQ7PY3EVQV63T4NT5GGT9J67 > * {
   line-height: 140% !important;
   letter-spacing: 0.065rem !important;
   font-family: 'Ordinary Light' !important;
