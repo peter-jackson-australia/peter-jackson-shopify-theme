@@ -1,6 +1,5 @@
 Home page sections:
 Code:
-Remove non sale items from sale category
 Fix up menu search bar padding problem
 installl shippit
 Finish the sections: Contact Form     
