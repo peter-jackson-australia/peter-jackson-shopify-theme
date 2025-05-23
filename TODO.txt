@@ -1,13 +1,13 @@
-Home page sections:
-Code:
+Todo:
+Fix console error related to cart
 Installl shippit
 Finish the sections: Contact Form     
 Support pages
+Careers
 
 Blog collection template
 Locations template
 Store locator
-Careers
 
 /////////////////////////////////////////////////////
 
