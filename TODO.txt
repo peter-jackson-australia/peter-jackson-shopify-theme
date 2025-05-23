@@ -1,26 +1,18 @@
 Home page sections:
 Code:
-Bring tracking scripts
 Installl shippit
 Finish the sections: Contact Form     
 Support pages
 
 Blog collection template
-
-23 
 Locations template
-
-22-27rd:
 Store locator
-Bring all blogs over 
-
-25th: 
-Careers 
+Careers
 
 /////////////////////////////////////////////////////
 
 Make collections and pdp page have 98/100 minimum speed score
-Fix all accessibility errors on all pages thus far
+Fix all accessibility errors on website thus far
 
 Main Menu:
 Preserve scroll position when menu is open
