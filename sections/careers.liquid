@@ -397,7 +397,6 @@
       }
     });
 
-    // Handle success modal
     const urlParams = new URLSearchParams(window.location.search);
     const status = urlParams.get('status');
 
@@ -410,7 +409,6 @@
       window.history.replaceState({}, document.title, window.location.pathname);
     }
 
-    // Close modal handlers
     document.querySelector('#close-modal').addEventListener('click', hideModal);
     document.querySelector('#success-modal').addEventListener('click', hideModal);
   }
