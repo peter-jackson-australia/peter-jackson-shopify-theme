@@ -1,6 +1,5 @@
 Todo:
 Install shippit
-Update newsletter sign up confirmation text 
 Finish the sections: Contact Form     
 
 Careers
