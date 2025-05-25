@@ -1,8 +1,17 @@
 <style>
+  .menu-drawer {
+    border-top: none;
+  }
+
+  #site-header {
+    border-bottom: 1px solid var(--neutral-200);
+  }
+
   #careers-container {
     max-width: 1400px;
     margin: auto;
     display: grid;
+    align-items: center;
     gap: var(--space-2xl);
     grid-template-columns: 1fr 1fr;
     padding: var(--space-2xl) var(--space-m);
@@ -188,16 +197,21 @@
 
   #success-modal-content {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: var(--green-800);
+    left: 0;
+    right: 0;
+    top: 30%;
+    background-color: var(--neutral-950);
     color: var(--white);
     text-align: center;
     text-wrap: balance;
     max-width: 500px;
-    width: 100%;
-    padding: var(--space-3xl);
+    margin: 0 auto;
+    padding: var(--space-2xl);
+  }
+
+  #success-modal-content h3,
+  #success-modal-content p {
+    color: white;
   }
 
   .modal-close {
@@ -219,7 +233,6 @@
     #careers-container {
       grid-template-columns: 1fr;
       gap: var(--space-xl);
-      margin-top: var(--space-xl);
     }
 
     .form-row:first-of-type,
@@ -240,6 +253,7 @@
 
     #success-modal-content {
       padding: var(--space-xl);
+      margin: var(--space-m);
     }
   }
 </style>
