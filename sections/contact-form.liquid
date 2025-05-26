@@ -101,6 +101,49 @@
     background-color: var(--neutral-800);
   }
 
+  .contact-form__checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    cursor: pointer;
+    color: var(--neutral-600);
+  }
+
+  .contact-form__checkbox {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--neutral-400);
+    background-color: var(--white);
+    cursor: pointer;
+    position: relative;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .contact-form__checkbox:checked {
+    background-color: var(--neutral-950);
+    border-color: var(--neutral-950);
+  }
+
+  .contact-form__checkbox:checked::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 2px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  .contact-form__checkbox:focus {
+    outline: none;
+  }
+
   @media (max-width: 768px) {
     .contact-form {
       flex-direction: column;
@@ -165,41 +208,129 @@
           </div>
         {% endif %}
 
-        <div class="contact-form__input-group">
-          <label for="ContactForm-name" class="contact-form__label body">Name</label>
-          <input
-            type="text"
-            id="ContactForm-name"
-            name="contact[name]"
-            class="contact-form__input"
-            value="{% if form.name %}{{ form.name }}{% endif %}"
-            required
-          >
-        </div>
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'text' %}
+              <div class="contact-form__input-group">
+                <label for="ContactForm-{{ block.id }}" class="contact-form__label body">
+                  {{ block.settings.label -}}
+                  {%- if block.settings.required %} *{% endif %}
+                </label>
+                <input
+                  type="text"
+                  id="ContactForm-{{ block.id }}"
+                  name="contact[{{ block.settings.name }}]"
+                  class="contact-form__input"
+                  {% if block.settings.required %}
+                    required
+                  {% endif %}
+                  {% if block.settings.placeholder %}
+                    placeholder="{{ block.settings.placeholder }}"
+                  {% endif %}
+                >
+              </div>
+            {% when 'email' %}
+              <div class="contact-form__input-group">
+                <label for="ContactForm-{{ block.id }}" class="contact-form__label body">
+                  {{ block.settings.label -}}
+                  {%- if block.settings.required %} *{% endif %}
+                </label>
+                <input
+                  type="email"
+                  id="ContactForm-{{ block.id }}"
+                  name="contact[{{ block.settings.name }}]"
+                  class="contact-form__input"
+                  {% if block.settings.required %}
+                    required
+                  {% endif %}
+                  {% if block.settings.placeholder %}
+                    placeholder="{{ block.settings.placeholder }}"
+                  {% endif %}
+                >
+              </div>
+            {% when 'phone' %}
+              <div class="contact-form__input-group">
+                <label for="ContactForm-{{ block.id }}" class="contact-form__label body">
+                  {{ block.settings.label -}}
+                  {%- if block.settings.required %} *{% endif %}
+                </label>
+                <input
+                  type="tel"
+                  id="ContactForm-{{ block.id }}"
+                  name="contact[{{ block.settings.name }}]"
+                  class="contact-form__input"
+                  {% if block.settings.required %}
+                    required
+                  {% endif %}
+                  {% if block.settings.placeholder %}
+                    placeholder="{{ block.settings.placeholder }}"
+                  {% endif %}
+                >
+              </div>
+            {% when 'textarea' %}
+              <div class="contact-form__input-group">
+                <label for="ContactForm-{{ block.id }}" class="contact-form__label body">
+                  {{ block.settings.label -}}
+                  {%- if block.settings.required %} *{% endif %}
+                </label>
+                <textarea
+                  id="ContactForm-{{ block.id }}"
+                  name="contact[{{ block.settings.name }}]"
+                  class="contact-form__textarea"
+                  {% if block.settings.required %}
+                    required
+                  {% endif %}
+                  {% if block.settings.placeholder %}
+                    placeholder="{{ block.settings.placeholder }}"
+                  {% endif %}
+                ></textarea>
+              </div>
+            {% when 'select' %}
+              <div class="contact-form__input-group">
+                <label for="ContactForm-{{ block.id }}" class="contact-form__label body">
+                  {{ block.settings.label -}}
+                  {%- if block.settings.required %} *{% endif %}
+                </label>
+                <select
+                  id="ContactForm-{{ block.id }}"
+                  name="contact[{{ block.settings.name }}]"
+                  class="contact-form__input"
+                  {% if block.settings.required %}
+                    required
+                  {% endif %}
+                >
+                  {% if block.settings.placeholder %}
+                    <option value="">{{ block.settings.placeholder }}</option>
+                  {% endif %}
+                  {% assign options = block.settings.options | split: ',' %}
+                  {% for option in options %}
+                    <option value="{{ option | strip }}">{{ option | strip }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            {% when 'checkbox' %}
+              <div class="contact-form__input-group">
+                <label class="contact-form__checkbox-label body">
+                  <input
+                    type="checkbox"
+                    id="ContactForm-{{ block.id }}"
+                    name="contact[{{ block.settings.name }}]"
+                    class="contact-form__checkbox"
+                    value="Yes"
+                    {% if block.settings.required %}
+                      required
+                    {% endif %}
+                  >
+                  {{ block.settings.label -}}
+                  {%- if block.settings.required %} *{% endif %}
+                </label>
+              </div>
+          {% endcase %}
+        {% endfor %}
 
-        <div class="contact-form__input-group">
-          <label for="ContactForm-email" class="contact-form__label body">Email</label>
-          <input
-            type="email"
-            id="ContactForm-email"
-            name="contact[email]"
-            class="contact-form__input"
-            value="{% if form.email %}{{ form.email }}{% endif %}"
-            required
-          >
-        </div>
-
-        <div class="contact-form__input-group">
-          <label for="ContactForm-message" class="contact-form__label body">Message</label>
-          <textarea
-            id="ContactForm-message"
-            name="contact[body]"
-            class="contact-form__textarea"
-            required
-          >{% if form.body %}{{ form.body }}{% endif %}</textarea>
-        </div>
-
-        <button type="submit" class="contact-form__button body">Send Message</button>
+        <button type="submit" class="contact-form__button body">
+          {{ section.settings.button_text | default: 'Send Message' }}
+        </button>
       {% endform %}
     </div>
   </div>
@@ -225,11 +356,222 @@
       "type": "image_picker",
       "id": "image",
       "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Send Message"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text Field",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Text Field"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Field Name",
+          "info": "Used for form submission. Use lowercase with underscores (e.g., first_name)"
+        },
+        {
+          "type": "text",
+          "id": "placeholder",
+          "label": "Placeholder Text"
+        },
+        {
+          "type": "checkbox",
+          "id": "required",
+          "label": "Required Field",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "email",
+      "name": "Email Field",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Email"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Field Name",
+          "info": "Used for form submission. Use lowercase with underscores (e.g., email_address)"
+        },
+        {
+          "type": "text",
+          "id": "placeholder",
+          "label": "Placeholder Text"
+        },
+        {
+          "type": "checkbox",
+          "id": "required",
+          "label": "Required Field",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "phone",
+      "name": "Phone Field",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Phone"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Field Name",
+          "info": "Used for form submission. Use lowercase with underscores (e.g., phone_number)"
+        },
+        {
+          "type": "text",
+          "id": "placeholder",
+          "label": "Placeholder Text"
+        },
+        {
+          "type": "checkbox",
+          "id": "required",
+          "label": "Required Field",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "textarea",
+      "name": "Textarea Field",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Message"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Field Name",
+          "info": "Used for form submission. Use lowercase with underscores (e.g., message_body)"
+        },
+        {
+          "type": "text",
+          "id": "placeholder",
+          "label": "Placeholder Text"
+        },
+        {
+          "type": "checkbox",
+          "id": "required",
+          "label": "Required Field",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "name": "Select Field",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Select Option"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Field Name",
+          "info": "Used for form submission. Use lowercase with underscores (e.g., inquiry_type)"
+        },
+        {
+          "type": "text",
+          "id": "placeholder",
+          "label": "Placeholder Text",
+          "default": "Choose an option"
+        },
+        {
+          "type": "textarea",
+          "id": "options",
+          "label": "Options",
+          "info": "Enter each option on a new line or separate with commas",
+          "default": "Option 1,Option 2,Option 3"
+        },
+        {
+          "type": "checkbox",
+          "id": "required",
+          "label": "Required Field",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "name": "Checkbox Field",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "I agree to the terms and conditions"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Field Name",
+          "info": "Used for form submission. Use lowercase with underscores (e.g., terms_agreement)"
+        },
+        {
+          "type": "checkbox",
+          "id": "required",
+          "label": "Required Field",
+          "default": false
+        }
+      ]
     }
   ],
   "presets": [
     {
-      "name": "Contact Form"
+      "name": "Contact Form",
+      "blocks": [
+        {
+          "type": "text",
+          "settings": {
+            "label": "Name",
+            "name": "name",
+            "required": true
+          }
+        },
+        {
+          "type": "email",
+          "settings": {
+            "label": "Email",
+            "name": "email",
+            "required": true
+          }
+        },
+        {
+          "type": "textarea",
+          "settings": {
+            "label": "Message",
+            "name": "body",
+            "required": true
+          }
+        }
+      ]
     }
   ]
 }
