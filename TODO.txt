@@ -1,21 +1,15 @@
 Todo:
 Install shippit
-Fix all accessibility errors on website thus far
-Make website faster
 Finish the sections: Contact Form     
-
 Blog collection template
 Locations template
 Store locator
 Email templates
+Gift Cards
 
 /////////////////////////////////////////////////////
 
 Main Menu:
 Preserve scroll position when menu is open
-Make the loading spinner show on filter button when clear filters or reset is selected 
 Add ability to change video, video subtitle, newsletter title and newsletter legal spiel in theme editor
-
-//////////////////////
-
 Logic for opening and closing menus, sidebars, modals without conflicting 
