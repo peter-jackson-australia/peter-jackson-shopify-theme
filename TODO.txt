@@ -11,9 +11,6 @@ Email templates
 
 /////////////////////////////////////////////////////
 
-Make collections and pdp page have 98/100 minimum speed score
-
-
 Main Menu:
 Preserve scroll position when menu is open
 Make the loading spinner show on filter button when clear filters or reset is selected 
