@@ -138,9 +138,13 @@
             {% endif %}
             {{
               section.settings.first_image
-              | image_url: width: 2000
+              | image_url: width: 600
               | image_tag: class: 'image-with-text__image', alt: section.settings.first_image.alt
-              | default: section.settings.heading, loading: 'lazy'
+              | default: section.settings.heading,
+                loading: 'lazy',
+                decoding: 'async',
+                widths: '300, 400, 500, 600, 700, 800, 1000, 1200',
+                sizes: '(max-width: 768px) 100vw, 50vw'
             }}
             {% if section.settings.image_link != blank %}
               </a>
@@ -152,9 +156,13 @@
           <div class="image-with-text__image-container image-with-text__image-container--second">
             {{
               section.settings.second_image
-              | image_url: width: 2000
+              | image_url: width: 600
               | image_tag: class: 'image-with-text__image', alt: section.settings.second_image.alt
-              | default: section.settings.heading, loading: 'lazy'
+              | default: section.settings.heading,
+                loading: 'lazy',
+                decoding: 'async',
+                widths: '300, 400, 500, 600, 700, 800, 1000, 1200',
+                sizes: '(max-width: 768px) 100vw, 50vw'
             }}
           </div>
         {% endif %}

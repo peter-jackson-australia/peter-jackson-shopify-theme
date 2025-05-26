@@ -184,23 +184,35 @@
               {% if block.settings.image_mobile != blank %}
                 <source
                   media="(max-width: 767px)"
-                  srcset="{{ block.settings.image_mobile | image_url: width: 1000 }}"
+                  srcset="
+                    {{ block.settings.image_mobile | image_url: width: 400 }} 1x,
+                    {{ block.settings.image_mobile | image_url: width: 800 }} 2x
+                  "
                 >
               {% endif %}
               {% if has_product %}
                 {{
                   block.settings.image
-                  | image_url: width: 1000
+                  | image_url: width: 720
                   | image_tag:
                     class: 'two-column-content__image has-product',
                     loading: 'lazy',
-                    alt: block.settings.image.alt
+                    decoding: 'async',
+                    alt: block.settings.image.alt,
+                    widths: '400, 500, 600, 700, 800, 1000, 1200',
+                    sizes: '(max-width: 768px) 100vw, (max-width: 1040px) 100vw, 50vw'
                 }}
               {% else %}
                 {{
                   block.settings.image
-                  | image_url: width: 1000
-                  | image_tag: class: 'two-column-content__image', loading: 'lazy', alt: block.settings.image.alt
+                  | image_url: width: 720
+                  | image_tag:
+                    class: 'two-column-content__image',
+                    loading: 'lazy',
+                    decoding: 'async',
+                    alt: block.settings.image.alt,
+                    widths: '400, 500, 600, 700, 800, 1000, 1200',
+                    sizes: '(max-width: 768px) 100vw, (max-width: 1040px) 100vw, 50vw'
                 }}
               {% endif %}
             </picture>

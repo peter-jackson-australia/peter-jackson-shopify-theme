@@ -105,9 +105,13 @@
       {% if section.settings.image != blank %}
         {{
           section.settings.image
-          | image_url: width: 2000
+          | image_url: width: 700
           | image_tag: class: 'editorial-hero__image', alt: section.settings.image.alt
-          | default: section.settings.first_title, width: 2000, height: 2000, loading: 'eager'
+          | default: section.settings.first_title,
+            loading: 'eager',
+            decoding: 'async',
+            widths: '400, 500, 600, 700, 800, 1000, 1200, 1400',
+            sizes: '(max-width: 400px) 400px, (max-width: 500px) 500px, (max-width: 600px) 600px, (max-width: 768px) 700px, 700px'
         }}
       {% endif %}
     {% elsif section.settings.media_type == 'video' and section.settings.video != blank %}

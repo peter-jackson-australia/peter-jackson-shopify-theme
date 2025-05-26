@@ -148,14 +148,24 @@
                 {% if block.settings.image_link != blank %}
                   <a href="{{ block.settings.image_link }}">
                 {% endif %}
+                {% assign grid_sizes = '' %}
+                {% case column_count %}
+                  {% when 2 %}
+                    {% assign grid_sizes = '(max-width: 768px) 100vw, 50vw' %}
+                  {% when 3 %}
+                    {% assign grid_sizes = '(max-width: 768px) 100vw, 33.33vw' %}
+                  {% when 4 %}
+                    {% assign grid_sizes = '(max-width: 768px) 100vw, 25vw' %}
+                {% endcase %}
                 {{
                   block.settings.image
-                  | image_url: width: 800
+                  | image_url: width: 600
                   | image_tag:
                     class: 'variable-column-content-secondary__image',
                     loading: 'lazy',
+                    decoding: 'async',
                     alt: block.settings.image.alt
-                  | default: block.settings.heading
+                  | default: block.settings.heading, widths: '200, 300, 400, 500, 600, 700, 800', sizes: grid_sizes
                 }}
                 {% if block.settings.image_link != blank %}
                   </a>

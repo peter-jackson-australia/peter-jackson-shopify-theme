@@ -107,13 +107,27 @@
             {% if section.settings[image_link_setting] != blank %}
               <a href="{{ section.settings[image_link_setting] }}">
             {% endif %}
+            {% assign grid_sizes = '' %}
+            {% case column_count %}
+              {% when 3 %}
+                {% assign grid_sizes = '(max-width: 768px) 100vw, 33.33vw' %}
+              {% when 4 %}
+                {% assign grid_sizes = '(max-width: 768px) 100vw, 25vw' %}
+              {% when 5 %}
+                {% assign grid_sizes = '(max-width: 768px) 100vw, 20vw' %}
+              {% when 6 %}
+                {% assign grid_sizes = '(max-width: 768px) 100vw, 16.67vw' %}
+            {% endcase %}
             {{
               section.settings[image_setting]
-              | image_url: width: 800
+              | image_url: width: 600
               | image_tag:
                 class: 'variable-column-content__image',
                 loading: 'lazy',
-                alt: section.settings[image_setting].alt
+                decoding: 'async',
+                alt: section.settings[image_setting].alt,
+                widths: '200, 300, 400, 500, 600, 700, 800',
+                sizes: grid_sizes
             }}
             {% if section.settings[image_link_setting] != blank %}
               </a>

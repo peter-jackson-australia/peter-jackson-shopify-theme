@@ -172,12 +172,13 @@
                     <div class="collection-slider-secondary__product-image-wrapper">
                       {% if product.featured_image != blank %}
                         <img
-                          src="{{ product.featured_image | image_url: width: '2000' }}"
+                          src="{{ product.featured_image | image_url: width: '600' }}"
                           alt="{{ product.featured_image.alt | escape }}"
                           loading="lazy"
                           width="{{ product.featured_image.width }}"
                           height="{{ product.featured_image.height }}"
                           class="collection-slider-secondary__product-image"
+                          decoding="async"
                         >
                       {% else %}
                         {{

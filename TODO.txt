@@ -1,5 +1,7 @@
 Todo:
 Install shippit
+Fix all accessibility errors on website thus far
+Make website faster
 Finish the sections: Contact Form     
 
 Blog collection template
@@ -10,7 +12,7 @@ Email templates
 /////////////////////////////////////////////////////
 
 Make collections and pdp page have 98/100 minimum speed score
-Fix all accessibility errors on website thus far
+
 
 Main Menu:
 Preserve scroll position when menu is open
