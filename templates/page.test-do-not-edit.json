@@ -65,11 +65,107 @@
         "products_to_show": 12,
         "animate_products": true
       }
+    },
+    "hero_countdown_timer_8WEfri": {
+      "type": "hero-countdown-timer",
+      "name": "Hero Countdown Timer",
+      "settings": {
+        "background_image": "shopify://shop_images/Higher-Ground-2_2102x_262d9e57-8b01-4718-8a37-b5c4260c1e99.webp",
+        "heading": "Limited Time Offer",
+        "heading_animation": "none",
+        "subheading": "Do not miss out on this special offer!",
+        "subheading_animation": "none",
+        "target_date": "2025-12-31T23:59:59",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "bottom",
+        "animate_timer_blocks": false,
+        "days_label": "Days",
+        "hours_label": "Hours",
+        "minutes_label": "Minutes",
+        "seconds_label": "Seconds",
+        "final_hours_threshold": 3,
+        "final_message": "Final hours! Do not miss out!",
+        "final_message_animation": "none",
+        "complete_message": "The countdown has ended!",
+        "complete_message_animation": "none",
+        "button_label": "",
+        "button_link": ""
+      }
+    },
+    "editorial_hero_t7yiM8": {
+      "type": "editorial-hero",
+      "name": "Hero Editorial",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "leading_text": "",
+        "leading_text_animation": "none",
+        "first_title": "Discover",
+        "first_title_animation": "none",
+        "media_type": "image",
+        "image": "shopify://shop_images/Wt25-Launch-Hero_2000x_463f760b-fb8a-497b-8b90-b7a1c37ff402.webp",
+        "animate_media": false,
+        "second_title": "Collection",
+        "second_title_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "cta_text": "Shop Now",
+        "cta_link": ""
+      }
+    },
+    "hero_primary_QRT9xH": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "desktop_image": "shopify://shop_images/Higher-Ground-10_2000x_a3504dc2-72d2-4cce-ba83-2df0da46af22.webp",
+        "mobile_image": "shopify://shop_images/Higher-Ground-14_1512x_654bf664-3a7c-4975-a17a-f43347a99f4a.webp",
+        "heading": "Welcome to Our Store",
+        "heading_animation": "none",
+        "description": "Discover our latest collection",
+        "description_animation": "none",
+        "button_label": "Shop Now",
+        "button_link": "",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "bottom"
+      }
+    },
+    "hero_slider_ReRhzR": {
+      "type": "hero-slider",
+      "blocks": {
+        "slide_tdgLdV": {
+          "type": "slide",
+          "settings": {
+            "media_type": "image",
+            "desktop_image": "shopify://shop_images/Higher-Ground-21_1296x_16db31b8-b465-43a2-a9e6-66f77ad4ca56.webp",
+            "heading": "Welcome to Our Store",
+            "heading_animation": "none",
+            "description": "Discover our latest collection",
+            "description_animation": "none",
+            "button_label": "Shop Now",
+            "button_link": "",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "bottom"
+          }
+        }
+      },
+      "block_order": [
+        "slide_tdgLdV"
+      ],
+      "name": "Hero Slider",
+      "settings": {
+        "autoplay": true,
+        "slide_interval": 5
+      }
     }
   },
   "order": [
     "blog_hero_ipk94Y",
     "collection_slider_f7QrE8",
-    "collection_slider_secondary_49NwC3"
+    "collection_slider_secondary_49NwC3",
+    "hero_countdown_timer_8WEfri",
+    "editorial_hero_t7yiM8",
+    "hero_primary_QRT9xH",
+    "hero_slider_ReRhzR"
   ]
 }
