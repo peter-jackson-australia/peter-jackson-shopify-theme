@@ -1,115 +1,205 @@
+<!-- Contact Form Section -->
+
 <style>
-  {{ section.id | prepend: '#' }}.section-wrap:before {
-    background-color: {{ section.settings.background | default: '#ffffff' }}
+  .contact-form {
+    height: calc(100dvh - var(--space-xl));
+    display: flex;
+    background-color: var(--white);
+  }
+
+  .contact-form__image-container {
+    width: 50vw;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .contact-form__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .contact-form__form-container {
+    width: 50vw;
+    padding: var(--space-xl) var(--space-l);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .contact-form__form-container--full-width {
+    width: 100vw;
+  }
+
+  .contact-form__content {
+    max-width: 500px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .contact-form__heading {
+    margin-bottom: var(--space-m);
+    color: var(--neutral-950);
+  }
+
+  .contact-form__description {
+    margin-bottom: var(--space-xl);
+    color: var(--neutral-600);
+    white-space: pre-line;
+  }
+
+  .contact-form__form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+  }
+
+  .contact-form__input-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-form__label {
+    margin-bottom: var(--space-3xs);
+    color: var(--neutral-600);
+  }
+
+  .contact-form__input,
+  .contact-form__textarea {
+    border: 1px solid var(--neutral-200);
+    padding: var(--space-2xs) var(--space-xs);
+    color: var(--neutral-950);
+    background-color: var(--white);
+  }
+
+  .contact-form__input:focus,
+  .contact-form__textarea:focus {
+    outline: none;
+    border-color: var(--neutral-400);
+  }
+
+  .contact-form__textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  .contact-form__button {
+    width: 100%;
+    height: var(--space-xl);
+    background-color: var(--neutral-950);
+    color: var(--white);
+    border: none;
+    padding: var(--space-xs) var(--space-s);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: var(--space-s);
+  }
+
+  .contact-form__button:hover {
+    background-color: var(--neutral-800);
+  }
+
+  @media (max-width: 768px) {
+    .contact-form {
+      flex-direction: column;
+      height: auto;
+      min-height: calc(100dvh - var(--space-xl));
+    }
+
+    .contact-form__image-container {
+      width: 100vw;
+      height: 40vh;
+    }
+
+    .contact-form__form-container {
+      width: 100vw;
+      padding: var(--space-l) var(--space-m);
+    }
+
+    .contact-form__form-container--full-width {
+      width: 100vw;
+    }
   }
 </style>
 
-<div id="{{ section.id }}" class="section-wrap" style="color:{{ section.settings.color | default:'inherit' }};">
-  <div class="section">
-    <div class="center">
-      <{{ section.settings.size }} data-title="{{ section.settings.heading }}">
-        {{ section.settings.heading }}
-      </{{ section.settings.size }}>
+<div class="contact-form">
+  {% if section.settings.image %}
+    <div class="contact-form__image-container">
+      {{
+        section.settings.image
+        | image_url: width: 1000
+        | image_tag: alt: section.settings.image.alt, class: 'contact-form__image'
+      }}
+    </div>
+  {% endif %}
 
-      <div class="rte">
-        {{ section.settings.text }}
-      </div>
+  <div class="contact-form__form-container {% unless section.settings.image %}contact-form__form-container--full-width{% endunless %}">
+    <div class="contact-form__content">
+      {% if section.settings.heading %}
+        <h1 class="contact-form__heading heading--3xl">{{ section.settings.heading }}</h1>
+      {% endif %}
 
-      {% form 'contact', class: 'form contact-form center align-left' %}
+      {% if section.settings.description %}
+        <div class="contact-form__description body">{{ section.settings.description }}</div>
+      {% endif %}
+
+      {% form 'contact', class: 'contact-form__form' %}
         {% if form.posted_successfully? %}
-          <div class="rte">
-            <p>
-              <strong>Thanks for your enquiry!</strong>
-            </p>
-          </div>
-        {% else %}
-          <div class="rte">
-            {{ form.errors | default_errors }}
+          <div class="contact-form__success body">Thank you for your message. We'll get back to you soon!</div>
+        {% endif %}
+
+        {% if form.errors %}
+          <div class="contact-form__errors">
+            {% for field in form.errors %}
+              <div class="contact-form__error body">
+                {% if field == 'form' %}
+                  {{ form.errors.messages[field] }}
+                {% else %}
+                  {{ form.errors.translated_fields[field] | capitalize }}
+                  {{ form.errors.messages[field] }}
+                {% endif %}
+              </div>
+            {% endfor %}
           </div>
         {% endif %}
 
-        {%- for block in section.blocks -%}
-          {% capture label %}
-          <label for="{{ block.settings.name | handleize | prepend: 'contact_' }}">
-            {{ block.settings.title }}
-          </label>
-          {% endcapture %}
-
-          {%- case block.type -%}
-            {%- when 'text' -%}
-              <div class="form-row">
-                {{ label }}
-                <input
-                  type="text"
-                  id="{{ block.settings.name | handleize | prepend: 'contact_' }}"
-                  name="contact[{{- block.settings.name -}}]"
-                  placeholder="{{ block.settings.placeholder }}"
-                  {% unless block.settings.maxlength == blank %}
-                    maxlength="{{ block.settings.maxlength }}"
-                  {% endunless %}
-                  {% if block.settings.required == true %}
-                    required
-                  {% endif %}
-                >
-              </div>
-
-            {%- when 'textarea' -%}
-              <div class="form-row">
-                {{ label }}
-                <textarea
-                  name="contact[{{- block.settings.name -}}]"
-                  id="{{ block.settings.name | handleize | prepend: 'contact_' }}"
-                  placeholder="{{ block.settings.placeholder }}"
-                  {% unless block.settings.maxlength == blank %}
-                    maxlength="{{ block.settings.maxlength }}"
-                  {% endunless %}
-                  rows="{{ block.settings.rows | default: 5 }}"
-                  {% if block.settings.required == true %}
-                    required
-                  {% endif -%}
-                ></textarea>
-              </div>
-
-            {%- when 'email' -%}
-              <div class="form-row">
-                {{ label }}
-                <input
-                  type="email"
-                  id="{{ block.settings.name | handleize | prepend: 'contact_' }}"
-                  name="contact[email]"
-                  placeholder="{{ block.settings.placeholder }}"
-                  {% unless block.settings.maxlength == blank %}
-                    maxlength="{{ block.settings.maxlength }}"
-                  {% endunless %}
-                  required
-                >
-              </div>
-
-            {%- when 'paragraph' -%}
-              {{ block.settings.text }}
-
-            {%- when 'checkbox' -%}
-              <div class="form-row">
-                <label class="flex middle align-left" for="{{ block.settings.name | handleize | prepend: 'contact_' }}">
-                  <input
-                    type="checkbox"
-                    id="{{ block.settings.name | handleize | prepend: 'contact_' }}"
-                    name="contact[{{- block.settings.name -}}]"
-                    {% if block.settings.required == true %}
-                      required
-                    {% endif %}
-                  >
-                  {{ block.settings.title }}
-                </label>
-              </div>
-          {%- endcase -%}
-        {% endfor %}
-
-        <div class="form-row">
-          <button type="submit" value="submit">
-            {{ section.settings.button_label | default: 'Sign up' }}
-          </button>
+        <div class="contact-form__input-group">
+          <label for="ContactForm-name" class="contact-form__label body">Name</label>
+          <input
+            type="text"
+            id="ContactForm-name"
+            name="contact[name]"
+            class="contact-form__input"
+            value="{% if form.name %}{{ form.name }}{% endif %}"
+            required
+          >
         </div>
+
+        <div class="contact-form__input-group">
+          <label for="ContactForm-email" class="contact-form__label body">Email</label>
+          <input
+            type="email"
+            id="ContactForm-email"
+            name="contact[email]"
+            class="contact-form__input"
+            value="{% if form.email %}{{ form.email }}{% endif %}"
+            required
+          >
+        </div>
+
+        <div class="contact-form__input-group">
+          <label for="ContactForm-message" class="contact-form__label body">Message</label>
+          <textarea
+            id="ContactForm-message"
+            name="contact[body]"
+            class="contact-form__textarea"
+            required
+          >{% if form.body %}{{ form.body }}{% endif %}</textarea>
+        </div>
+
+        <button type="submit" class="contact-form__button body">Send Message</button>
       {% endform %}
     </div>
   </div>
@@ -118,241 +208,29 @@
 {% schema %}
 {
   "name": "Contact Form",
-  "limit": 1,
-  "tag": "section",
-  "class": "contact-form-section",
-  "presets": [
-    {
-      "name": "Contact Form",
-      "category": "Forms",
-      "blocks": [
-        {
-          "type": "email"
-        },
-        {
-          "type": "textarea",
-          "settings": {
-            "name": "body"
-          }
-        }
-      ]
-    }
-  ],
-  "blocks": [
+  "settings": [
     {
       "type": "text",
-      "name": "Text Field",
-      "settings": [
-        {
-          "type": "inline_richtext",
-          "id": "title",
-          "label": "Label",
-          "default": "Label",
-          "info": "Display a label for the field."
-        },
-        {
-          "type": "text",
-          "id": "name",
-          "label": "Input Name",
-          "default": "Name",
-          "info": "This is the name of the field."
-        },
-        {
-          "type": "number",
-          "id": "maxlength",
-          "label": "Max Length",
-          "default": 128,
-          "info": "Leave blank to have no max length."
-        },
-        {
-          "type": "checkbox",
-          "id": "required",
-          "label": "Required",
-          "default": false
-        },
-        {
-          "type": "text",
-          "id": "placeholder",
-          "label": "Placeholder",
-          "info": "Add additional instructions with a placeholder."
-        }
-      ]
+      "id": "heading",
+      "label": "Heading",
+      "default": "Get in Touch"
     },
     {
       "type": "textarea",
-      "name": "Textarea",
-      "settings": [
-        {
-          "type": "inline_richtext",
-          "id": "title",
-          "label": "Label",
-          "default": "Label",
-          "info": "Display a label for the field."
-        },
-        {
-          "type": "text",
-          "id": "name",
-          "label": "Input Name",
-          "default": "body",
-          "info": "This is the name of the field. Default is 'body'."
-        },
-        {
-          "type": "number",
-          "id": "maxlength",
-          "label": "Max Length",
-          "default": 128,
-          "info": "Leave blank to have no max length."
-        },
-        {
-          "type": "number",
-          "id": "rows",
-          "label": "Rows",
-          "default": 5
-        },
-        {
-          "type": "checkbox",
-          "id": "required",
-          "label": "Required",
-          "default": false
-        },
-        {
-          "type": "text",
-          "id": "placeholder",
-          "label": "Placeholder",
-          "info": "Add additional instructions with a placeholder."
-        }
-      ]
+      "id": "description",
+      "label": "Description",
+      "default": "We'd love to hear from you. Send us a message and we'll respond as soon as possible."
     },
     {
-      "type": "email",
-      "name": "Email Field",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "inline_richtext",
-          "id": "title",
-          "label": "Label",
-          "default": "Email",
-          "info": "Display a label for the field."
-        },
-        {
-          "type": "number",
-          "id": "maxlength",
-          "label": "Max Length",
-          "default": 128,
-          "info": "Leave blank to have no max length."
-        },
-        {
-          "type": "text",
-          "id": "placeholder",
-          "label": "Placeholder",
-          "info": "Add additional instructions with a placeholder.",
-          "default": "e.g. steve@example.com"
-        }
-      ]
-    },
-    {
-      "type": "checkbox",
-      "name": "Checkbox",
-      "settings": [
-        {
-          "type": "inline_richtext",
-          "id": "title",
-          "label": "Label",
-          "default": "Label",
-          "info": "Display a label for the field."
-        },
-        {
-          "type": "text",
-          "id": "name",
-          "label": "Input Name",
-          "default": "Name",
-          "info": "This is the name of the field."
-        },
-        {
-          "type": "checkbox",
-          "id": "required",
-          "label": "Required",
-          "default": false
-        },
-        {
-          "type": "text",
-          "id": "placeholder",
-          "label": "Placeholder",
-          "info": "Add additional instructions with a placeholder."
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "name": "Paragraph",
-      "settings": [
-        {
-          "type": "richtext",
-          "id": "text",
-          "label": "Text",
-          "default": "<p>Aut ratione sapiente repudiandae modi consequatur eos dolores consectetur dolorum.</p>"
-        }
-      ]
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
     }
   ],
-  "settings": [
+  "presets": [
     {
-      "type": "inline_richtext",
-      "id": "heading",
-      "label": "Text",
-      "default": "Contact us"
-    },
-    {
-      "type": "select",
-      "id": "size",
-      "label": "Size",
-      "options": [
-        {
-          "value": "h1",
-          "label": "H1"
-        },
-        {
-          "value": "h2",
-          "label": "H2"
-        },
-        {
-          "value": "h3",
-          "label": "H3"
-        }
-      ],
-      "default": "h2"
-    },
-    {
-      "type": "richtext",
-      "id": "text",
-      "label": "Text",
-      "default": "<p>Complete the form below to send us a message.</p>"
-    },
-    {
-      "type": "text",
-      "id": "button_label",
-      "label": "Button Label",
-      "default": "Submit"
-    },
-    {
-      "type": "header",
-      "content": "Section Settings"
-    },
-    {
-      "type": "color",
-      "id": "background",
-      "label": "Background",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "color",
-      "label": "Text Colour"
+      "name": "Contact Form"
     }
-  ],
-  "enabled_on": {
-    "templates": ["page"]
-  }
+  ]
 }
 {% endschema %}
