@@ -80,7 +80,6 @@
 {% if section.settings.desktop_image or section.settings.mobile_image %}
   <div id="hero-primary" class="hero" aria-label="{{ section.settings.heading | escape }}">
     <picture>
-      {% comment %} Mobile image source - DPR capped at 2x for performance {% endcomment %}
       {% if section.settings.mobile_image %}
         <source
           media="(max-width: 768px)"
@@ -91,7 +90,6 @@
         >
       {% endif %}
 
-      {% comment %} Desktop image with comprehensive responsive sizes {% endcomment %}
       {% if section.settings.desktop_image %}
         {{
           section.settings.desktop_image
@@ -104,7 +102,6 @@
             preload: true
         }}
       {% elsif section.settings.mobile_image %}
-        {% comment %} Fallback if only mobile image is set {% endcomment %}
         {{
           section.settings.mobile_image
           | image_url: width: 500
