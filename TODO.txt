@@ -1,7 +1,6 @@
 Todo:
 Install shippit
 Finish the sections: Contact Form     
-Careers (Finish styling the form and success message)
 
 Blog collection template
 Locations template
