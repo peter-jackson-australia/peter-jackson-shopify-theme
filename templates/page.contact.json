@@ -11,97 +11,10 @@
   "sections": {
     "contact_form": {
       "type": "contact-form",
-      "blocks": {
-        "text_LU8zqn": {
-          "type": "text",
-          "settings": {
-            "title": "First Name",
-            "name": "First Name",
-            "maxlength": 128,
-            "required": false,
-            "placeholder": ""
-          }
-        },
-        "text_CgHJ6n": {
-          "type": "text",
-          "settings": {
-            "title": "Last Name",
-            "name": "Last Name",
-            "maxlength": 128,
-            "required": false,
-            "placeholder": ""
-          }
-        },
-        "email_JcEXPP": {
-          "type": "email",
-          "settings": {
-            "title": "Email",
-            "maxlength": 128,
-            "placeholder": ""
-          }
-        },
-        "textarea_XmypF6": {
-          "type": "textarea",
-          "settings": {
-            "title": "Message",
-            "name": "Body",
-            "maxlength": 128,
-            "rows": 5,
-            "required": true,
-            "placeholder": ""
-          }
-        },
-        "paragraph_3RCxUm": {
-          "type": "paragraph",
-          "settings": {
-            "text": "<p><strong>How did you hear about us?<br/></strong>Tick all that apply.</p>"
-          }
-        },
-        "checkbox_ceachf": {
-          "type": "checkbox",
-          "settings": {
-            "title": "Google",
-            "name": "Google",
-            "required": false,
-            "placeholder": ""
-          }
-        },
-        "checkbox_HGGwkP": {
-          "type": "checkbox",
-          "settings": {
-            "title": "Facebook",
-            "name": "Facebook",
-            "required": false,
-            "placeholder": ""
-          }
-        },
-        "checkbox_wHnRgw": {
-          "type": "checkbox",
-          "settings": {
-            "title": "TV",
-            "name": "TV",
-            "required": false,
-            "placeholder": ""
-          }
-        }
-      },
-      "block_order": [
-        "text_LU8zqn",
-        "text_CgHJ6n",
-        "email_JcEXPP",
-        "textarea_XmypF6",
-        "paragraph_3RCxUm",
-        "checkbox_ceachf",
-        "checkbox_HGGwkP",
-        "checkbox_wHnRgw"
-      ],
       "settings": {
         "heading": "Contact Form Section",
-        "size": "h2",
-        "text": "<p>This is the contact form section where you can add whatever fields you need via the customiser.</p>",
-        "button_label": "Submit",
-        "background": "#ffffff",
-        "color": ""
+        "description": "We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
+        "image": "shopify://shop_images/Higher-Ground-12_1512x_d69a6e14-699c-48e7-8c5b-b28738aacdc0.webp"
       }
     }
   },
