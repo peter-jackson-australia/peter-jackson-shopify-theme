@@ -12,7 +12,7 @@
     "contact_form": {
       "type": "contact-form",
       "settings": {
-        "heading": "Contact Form Section",
+        "heading": "Contact Us",
         "description": "We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
         "image": "shopify://shop_images/Higher-Ground-12_1512x_d69a6e14-699c-48e7-8c5b-b28738aacdc0.webp"
       }
