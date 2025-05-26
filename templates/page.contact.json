@@ -15,61 +15,65 @@
         "text_zcW3RP": {
           "type": "text",
           "settings": {
-            "label": "Name",
+            "title": "Name",
             "name": "customer_name",
-            "placeholder": "",
-            "required": true
+            "maxlength": 128,
+            "required": true,
+            "placeholder": ""
           }
         },
         "email_FWk9CR": {
           "type": "email",
           "settings": {
-            "label": "Email",
-            "name": "customer_email",
-            "placeholder": "",
-            "required": true
-          }
-        },
-        "phone_H3btc4": {
-          "type": "phone",
-          "settings": {
-            "label": "Phone",
-            "name": "customer_phone",
-            "placeholder": "",
-            "required": true
+            "title": "Email",
+            "maxlength": 128,
+            "placeholder": ""
           }
         },
         "text_hzCLLR": {
           "type": "text",
           "settings": {
-            "label": "Postcode",
+            "title": "Phone",
+            "name": "customer_phone",
+            "maxlength": 128,
+            "required": true,
+            "placeholder": ""
+          }
+        },
+        "text_fPRYBA": {
+          "type": "text",
+          "settings": {
+            "title": "Postcode",
             "name": "customer_postcode",
-            "placeholder": "",
-            "required": false
+            "maxlength": 128,
+            "required": true,
+            "placeholder": ""
           }
         },
         "textarea_7khLgP": {
           "type": "textarea",
           "settings": {
-            "label": "Your Message",
+            "title": "Message",
             "name": "customer_message",
-            "placeholder": "",
-            "required": false
+            "maxlength": 500,
+            "rows": 5,
+            "required": false,
+            "placeholder": ""
           }
         }
       },
       "block_order": [
         "text_zcW3RP",
         "email_FWk9CR",
-        "phone_H3btc4",
         "text_hzCLLR",
+        "text_fPRYBA",
         "textarea_7khLgP"
       ],
       "settings": {
         "heading": "Contact Us",
         "description": "We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
         "image": "shopify://shop_images/Higher-Ground-12_1512x_d69a6e14-699c-48e7-8c5b-b28738aacdc0.webp",
-        "button_text": "Send Message"
+        "button_label": "Submit"
       }
     }
   },
