@@ -11,10 +11,65 @@
   "sections": {
     "contact_form": {
       "type": "contact-form",
+      "blocks": {
+        "text_zcW3RP": {
+          "type": "text",
+          "settings": {
+            "label": "Name",
+            "name": "customer_name",
+            "placeholder": "",
+            "required": true
+          }
+        },
+        "email_FWk9CR": {
+          "type": "email",
+          "settings": {
+            "label": "Email",
+            "name": "customer_email",
+            "placeholder": "",
+            "required": true
+          }
+        },
+        "phone_H3btc4": {
+          "type": "phone",
+          "settings": {
+            "label": "Phone",
+            "name": "customer_phone",
+            "placeholder": "",
+            "required": true
+          }
+        },
+        "text_hzCLLR": {
+          "type": "text",
+          "settings": {
+            "label": "Postcode",
+            "name": "customer_postcode",
+            "placeholder": "",
+            "required": false
+          }
+        },
+        "textarea_7khLgP": {
+          "type": "textarea",
+          "settings": {
+            "label": "Your Message",
+            "name": "customer_message",
+            "placeholder": "",
+            "required": false
+          }
+        }
+      },
+      "block_order": [
+        "text_zcW3RP",
+        "email_FWk9CR",
+        "phone_H3btc4",
+        "text_hzCLLR",
+        "textarea_7khLgP"
+      ],
       "settings": {
         "heading": "Contact Us",
         "description": "We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
-        "image": "shopify://shop_images/Higher-Ground-12_1512x_d69a6e14-699c-48e7-8c5b-b28738aacdc0.webp"
+        "image": "shopify://shop_images/Higher-Ground-12_1512x_d69a6e14-699c-48e7-8c5b-b28738aacdc0.webp",
+        "button_text": "Send Message"
       }
     }
   },
