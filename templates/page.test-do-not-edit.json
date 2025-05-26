@@ -157,6 +157,202 @@
         "autoplay": true,
         "slide_interval": 5
       }
+    },
+    "image_with_text_mwWGrx": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "first_image": "shopify://shop_images/mens-navy-blue-suit-jacket-SSRC22-3.webp",
+        "image_link": "",
+        "second_image": "shopify://shop_images/mens-navy-blue-suit-jacket-SSRC22-11.webp",
+        "animate_images": false,
+        "alignment": "left",
+        "heading": "Image With Text",
+        "heading_animation": "none",
+        "text": "Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    },
+    "two_column_content_AiGYCN": {
+      "type": "two-column-content",
+      "blocks": {
+        "column_zykYbf": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/mens-blue-suit-pants-SSRT22-9.webp",
+            "image_mobile": "shopify://shop_images/mens-blue-suit-pants-SSRT22-11.webp",
+            "product": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "description": "Add your description text here.",
+            "description_animation": "none",
+            "button_label": "Learn More",
+            "button_link": ""
+          }
+        },
+        "column_36cfai": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/men-blazer-grey-wool-SSRC28-26.webp",
+            "image_mobile": "shopify://shop_images/men-blazer-grey-wool-SSRC28-25.webp",
+            "product": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "description": "Add your description text here.",
+            "description_animation": "none",
+            "button_label": "Learn More",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_zykYbf",
+        "column_36cfai"
+      ],
+      "name": "Two Column Content",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "animate_columns": false
+      }
+    },
+    "variable_column_content_f9UBLt": {
+      "type": "variable-column-content",
+      "name": "Variable Column Content",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "3",
+        "text_alignment": "left",
+        "animate_images": false,
+        "image_1": "shopify://shop_images/mens-scarf-navy-wool-silk-XSC14-3.webp",
+        "image_1_link": "",
+        "image_2": "shopify://shop_images/mens-scarf-navy-wool-silk-XSC14-2.webp",
+        "image_2_link": "",
+        "image_3": "shopify://shop_images/Mens-suit-navy-pinstripe-WT24-R05-17.webp",
+        "image_3_link": "",
+        "image_4_link": "",
+        "image_5_link": "",
+        "image_6_link": "",
+        "heading": "Variable Column Content",
+        "heading_animation": "none",
+        "text": "Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    },
+    "variable_column_content_secondary_hAzByw": {
+      "type": "variable-column-content-secondary",
+      "blocks": {
+        "column_item_aKEPD9": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/cayman-blue-sharksin-vest-peter-jackson-menswear.webp",
+            "image_link": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_wxUhBK": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/bolzano-white-with-wide-olivechoc-stripe-shirt-peter-jackson-menswear.webp",
+            "image_link": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_RPhHQK": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/muted-black-paisley-pocket-square-peter-jackson-menswear.webp",
+            "image_link": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_HkWgHg": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/paisley-floral-motif-pocket-square-peter-jackson-menswear.webp",
+            "image_link": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_aKEPD9",
+        "column_item_wxUhBK",
+        "column_item_RPhHQK",
+        "column_item_HkWgHg"
+      ],
+      "name": "Variable Column Content Secondary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "3",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "Variable Column Content Secondary",
+        "heading_animation": "none",
+        "text": "Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    },
+    "full_page_media_KMytTx": {
+      "type": "full-page-media",
+      "name": "Full Page Media",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/luxury-italian-striped-tie-brown-and-navy-elegance-peter-jackson-menswear.webp",
+        "mobile_image": "shopify://shop_images/mens-blue-suit-pants-SSRT20-16_55a1d2dc-b759-46d5-bfdd-49a7e126965c.webp",
+        "link": "",
+        "link_text": "Learn more",
+        "alt_text": "Full page media"
+      }
+    },
+    "shop_the_look_global_iAPexx": {
+      "type": "shop-the-look-global",
+      "name": "Shop the Look Global",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "heading": "Shop the Look",
+        "heading_animation": "none",
+        "featured_image": "shopify://shop_images/cayman-royal-blue-glencheck-vest-peter-jackson-menswear-2.webp",
+        "product1": "agnelli-taupe-plaid-suit",
+        "product2": "albinoni-penny-loafer",
+        "product3": ""
+      }
     }
   },
   "order": [
@@ -166,6 +362,12 @@
     "hero_countdown_timer_8WEfri",
     "editorial_hero_t7yiM8",
     "hero_primary_QRT9xH",
-    "hero_slider_ReRhzR"
+    "hero_slider_ReRhzR",
+    "image_with_text_mwWGrx",
+    "two_column_content_AiGYCN",
+    "variable_column_content_f9UBLt",
+    "variable_column_content_secondary_hAzByw",
+    "full_page_media_KMytTx",
+    "shop_the_look_global_iAPexx"
   ]
 }
