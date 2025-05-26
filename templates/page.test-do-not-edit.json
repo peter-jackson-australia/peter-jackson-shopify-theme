@@ -38,30 +38,23 @@
         "blog": "the-jackson-journal"
       }
     },
-    "editorial_hero_hceC9g": {
-      "type": "editorial-hero",
-      "name": "Hero Editorial",
+    "collection_slider_f7QrE8": {
+      "type": "collection-slider",
+      "name": "Collection Slider",
       "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": false,
-        "leading_text": "",
-        "leading_text_animation": "none",
-        "first_title": "Discover",
-        "first_title_animation": "none",
-        "media_type": "image",
-        "animate_media": false,
-        "second_title": "Collection",
-        "second_title_animation": "none",
-        "description": "",
+        "heading": "New In Now",
+        "heading_animation": "none",
+        "description": "Layer up with premium wool/cashmere blends.",
         "description_animation": "none",
-        "cta_text": "Shop Now",
-        "cta_link": ""
+        "collection": "new-arrivals",
+        "button_label": "Shop Now",
+        "products_to_show": 12,
+        "animate_products": true
       }
     }
   },
   "order": [
     "blog_hero_ipk94Y",
-    "editorial_hero_hceC9g"
+    "collection_slider_f7QrE8"
   ]
 }
