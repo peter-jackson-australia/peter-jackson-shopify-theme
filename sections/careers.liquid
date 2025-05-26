@@ -462,6 +462,7 @@
 {% schema %}
 {
   "name": "Careers",
+  "limit": 1,
   "settings": [
     {
       "type": "image_picker",
@@ -471,8 +472,12 @@
   ],
   "presets": [
     {
-      "name": "Careers"
+      "name": "Careers",
+      "category": "Forms"
     }
-  ]
+  ],
+  "enabled_on": {
+    "templates": ["page"]
+  }
 }
 {% endschema %}
