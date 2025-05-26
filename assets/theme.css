@@ -93,10 +93,6 @@ select {
 
 /* Content Visibility */
 
-.shopify-section {
-  content-visibility: auto;
-}
-
 /* Variables */
 
 :root {
