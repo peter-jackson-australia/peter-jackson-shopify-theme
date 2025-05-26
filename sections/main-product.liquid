@@ -549,7 +549,7 @@
             {% endif %}
             {% for image in product.images %}
               <li class="splide__slide" data-imageid="{{ image.id }}">
-                {{ image | image_url: width: image.width | image_tag: alt: image.alt, preload: true }}
+                {{ image | image_url: width: 800 | image_tag: alt: image.alt, preload: true }}
               </li>
             {% endfor %}
           </ul>
