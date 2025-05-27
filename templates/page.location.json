@@ -29,9 +29,18 @@
         "cta_text": "Shop Now",
         "cta_link": ""
       }
+    },
+    "location_hero_ifieje": {
+      "type": "location-hero",
+      "name": "Location Hero Testing",
+      "settings": {
+        "show_title": true,
+        "title": "Location Testing"
+      }
     }
   },
   "order": [
-    "editorial_hero_hceC9g"
+    "editorial_hero_hceC9g",
+    "location_hero_ifieje"
   ]
 }
