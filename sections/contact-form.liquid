@@ -309,6 +309,13 @@
   </div>
 </div>
 
+<script>
+  document.querySelector('.contact-form__form').addEventListener('submit', function (e) {
+    const button = document.querySelector('.contact-form__button');
+    button.innerHTML = `<span class="loader--spinner"></span>`;
+  });
+</script>
+
 {% schema %}
 {
   "name": "Contact Form",
