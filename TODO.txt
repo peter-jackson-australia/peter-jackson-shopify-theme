@@ -17,10 +17,11 @@ FAQ’s
 Collection slider secondary new arrivals 
 Latest news
 Location navigation 
+Store locator
 
 /////////////////////////////////////////////////////
 
-Store locator
+
 Blog collection template
 Email templates
 Gift Cards
