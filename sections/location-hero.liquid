@@ -54,180 +54,231 @@
 {% endcomment %}
 
 {% comment %}
-  20 different ways to access location objects
+  Complete Shopify section with schema for testing location access
 {% endcomment %}
 
-<!-- SOLUTION 1 -->
-<div style="background: red; color: white; padding: 10px; margin: 20px 0;">
-  <strong>SOLUTION 1: shop.locations</strong>
-</div>
-{% for location in shop.locations %}
-  <div>{{ location.name }} - {{ location.id }}</div>
-{% endfor %}
-
-<!-- SOLUTION 2 -->
-<div style="background: red; color: white; padding: 10px; margin: 20px 0;">
-  <strong>SOLUTION 2: shop.locations with pickup filter</strong>
-</div>
-{% for location in shop.locations %}
-  {% if location.pickup_enabled %}
-    <div>{{ location.name }} - {{ location.id }}</div>
-  {% endif %}
-{% endfor %}
-
-<!-- SOLUTION 3 -->
-<div style="background: red; color: white; padding: 10px; margin: 20px 0;">
-  <strong>SOLUTION 3: locations (direct)</strong>
-</div>
-{% for location in locations %}
-  <div>{{ location.name }} - {{ location.id }}</div>
-{% endfor %}
-
-<!-- SOLUTION 4 -->
-<div style="background: red; color: white; padding: 10px; margin: 20px 0;">
-  <strong>SOLUTION 4: store.locations</strong>
-</div>
-{% for location in store.locations %}
-  <div>{{ location.name }} - {{ location.id }}</div>
-{% endfor %}
-
-<!-- SOLUTION 5 -->
-<div style="background: red; color: white; padding: 10px; margin: 20px 0;">
-  <strong>SOLUTION 5: shop.store_locations</strong>
-</div>
-{% for location in shop.store_locations %}
-  <div>{{ location.name }} - {{ location.id }}</div>
-{% endfor %}
-
-<!-- SOLUTION 6 -->
-<div style="background: red; color: white; padding: 10px; margin: 20px 0;">
-  <strong>SOLUTION 6: all_locations</strong>
-</div>
-{% for location in all_locations %}
-  <div>{{ location.name }} - {{ location.id }}</div>
-{% endfor %}
-
-<!-- SOLUTION 7 -->
-<div style="background: red; color: white; padding: 10px; margin: 20px 0;">
-  <strong>SOLUTION 7: shop.pickup_locations</strong>
-</div>
-{% for location in shop.pickup_locations %}
-  <div>{{ location.name }} - {{ location.id }}</div>
-{% endfor %}
-
-<!-- SOLUTION 8 -->
-<div style="background: red; color: white; padding: 10px; margin: 20px 0;">
-  <strong>SOLUTION 8: pickup_locations</strong>
-</div>
-{% for location in pickup_locations %}
-  <div>{{ location.name }} - {{ location.id }}</div>
-{% endfor %}
-
-<!-- SOLUTION 9 -->
-<div style="background: red; color: white; padding: 10px; margin: 20px 0;">
-  <strong>SOLUTION 9: shop.locations.all</strong>
-</div>
-{% for location in shop.locations.all %}
-  <div>{{ location.name }} - {{ location.id }}</div>
-{% endfor %}
-
-<!-- SOLUTION 10 -->
-<div style="background: red; color: white; padding: 10px; margin: 20px 0;">
-  <strong>SOLUTION 10: Using assign with shop.locations</strong>
-</div>
-{% assign all_locations = shop.locations %}
-{% for location in all_locations %}
-  <div>{{ location.name }} - {{ location.id }}</div>
-{% endfor %}
-
-<!-- SOLUTION 11 -->
-<div style="background: red; color: white; padding: 10px; margin: 20px 0;">
-  <strong>SOLUTION 11: shop['locations']</strong>
-</div>
-{% for location in shop.locations %}
-  <div>{{ location.name }} - {{ location.id }}</div>
-{% endfor %}
-
-<!-- SOLUTION 12 -->
-<div style="background: red; color: white; padding: 10px; margin: 20px 0;">
-  <strong>SOLUTION 12: Using where filter for active locations</strong>
-</div>
-{% assign active_locations = shop.locations | where: 'active', true %}
-{% for location in active_locations %}
-  <div>{{ location.name }} - {{ location.id }}</div>
-{% endfor %}
-
-<!-- SOLUTION 13 -->
-<div style="background: red; color: white; padding: 10px; margin: 20px 0;">
-  <strong>SOLUTION 13: location_list</strong>
-</div>
-{% for location in location_list %}
-  <div>{{ location.name }} - {{ location.id }}</div>
-{% endfor %}
-
-<!-- SOLUTION 14 -->
-<div style="background: red; color: white; padding: 10px; margin: 20px 0;">
-  <strong>SOLUTION 14: shop.location_list</strong>
-</div>
-{% for location in shop.location_list %}
-  <div>{{ location.name }} - {{ location.id }}</div>
-{% endfor %}
-
-<!-- SOLUTION 15 -->
-<div style="background: red; color: white; padding: 10px; margin: 20px 0;">
-  <strong>SOLUTION 15: Using tablerow for locations</strong>
-</div>
-{% tablerow location in shop.locations %}
-  {{ location.name }} - {{ location.id }}
-{% endtablerow %}
-
-<!-- SOLUTION 16 -->
-<div style="background: red; color: white; padding: 10px; margin: 20px 0;">
-  <strong>SOLUTION 16: shop.physical_locations</strong>
-</div>
-{% for location in shop.physical_locations %}
-  <div>{{ location.name }} - {{ location.id }}</div>
-{% endfor %}
-
-<!-- SOLUTION 17 -->
-<div style="background: red; color: white; padding: 10px; margin: 20px 0;">
-  <strong>SOLUTION 17: Using size check first</strong>
-</div>
-{% if shop.locations.size > 0 %}
-  {% for location in shop.locations %}
-    <div>{{ location.name }} - {{ location.id }}</div>
-  {% endfor %}
-{% endif %}
-
-<!-- SOLUTION 18 -->
-<div style="background: red; color: white; padding: 10px; margin: 20px 0;">
-  <strong>SOLUTION 18: shop.locations with limit</strong>
-</div>
-{% for location in shop.locations limit: 10 %}
-  <div>{{ location.name }} - {{ location.id }}</div>
-{% endfor %}
-
-<!-- SOLUTION 19 -->
-<div style="background: red; color: white; padding: 10px; margin: 20px 0;">
-  <strong>SOLUTION 19: Using capture with locations</strong>
-</div>
-{% capture location_output %}
-    {% for location in shop.locations %}
-      {{ location.name }} - {{ location.id }}|
-    {% endfor %}
-  {% endcapture %}
-{{ location_output | split: '|' | join: '<br>' }}
-
-<!-- SOLUTION 20 -->
-<div style="background: red; color: white; padding: 10px; margin: 20px 0;">
-  <strong>SOLUTION 20: Checking location object exists first</strong>
-</div>
-{% if shop.locations %}
-  {% for location in shop.locations %}
-    {% if location.name %}
-      <div>{{ location.name }} - {{ location.id }}</div>
+<div class="location-hero-section">
+  <div class="container">
+    {% if section.settings.show_title %}
+      <h2 class="section-title">{{ section.settings.title }}</h2>
     {% endif %}
-  {% endfor %}
-{% else %}
-  <div>No locations available</div>
-{% endif %}
+
+    <!-- SOLUTION 1 -->
+    <div style="background: red; color: white; padding: 10px; margin: 20px 0;">
+      <strong>SOLUTION 1: shop.locations</strong>
+    </div>
+    {% for location in shop.locations %}
+      <div>{{ location.name }} - {{ location.id }}</div>
+    {% endfor %}
+
+    <!-- SOLUTION 2 -->
+    <div style="background: red; color: white; padding: 10px; margin: 20px 0;">
+      <strong>SOLUTION 2: shop.locations with pickup filter</strong>
+    </div>
+    {% for location in shop.locations %}
+      {% if location.pickup_enabled %}
+        <div>{{ location.name }} - {{ location.id }}</div>
+      {% endif %}
+    {% endfor %}
+
+    <!-- SOLUTION 3 -->
+    <div style="background: red; color: white; padding: 10px; margin: 20px 0;">
+      <strong>SOLUTION 3: locations (direct)</strong>
+    </div>
+    {% for location in locations %}
+      <div>{{ location.name }} - {{ location.id }}</div>
+    {% endfor %}
+
+    <!-- SOLUTION 4 -->
+    <div style="background: red; color: white; padding: 10px; margin: 20px 0;">
+      <strong>SOLUTION 4: store.locations</strong>
+    </div>
+    {% for location in store.locations %}
+      <div>{{ location.name }} - {{ location.id }}</div>
+    {% endfor %}
+
+    <!-- SOLUTION 5 -->
+    <div style="background: red; color: white; padding: 10px; margin: 20px 0;">
+      <strong>SOLUTION 5: shop.store_locations</strong>
+    </div>
+    {% for location in shop.store_locations %}
+      <div>{{ location.name }} - {{ location.id }}</div>
+    {% endfor %}
+
+    <!-- SOLUTION 6 -->
+    <div style="background: red; color: white; padding: 10px; margin: 20px 0;">
+      <strong>SOLUTION 6: all_locations</strong>
+    </div>
+    {% for location in all_locations %}
+      <div>{{ location.name }} - {{ location.id }}</div>
+    {% endfor %}
+
+    <!-- SOLUTION 7 -->
+    <div style="background: red; color: white; padding: 10px; margin: 20px 0;">
+      <strong>SOLUTION 7: shop.pickup_locations</strong>
+    </div>
+    {% for location in shop.pickup_locations %}
+      <div>{{ location.name }} - {{ location.id }}</div>
+    {% endfor %}
+
+    <!-- SOLUTION 8 -->
+    <div style="background: red; color: white; padding: 10px; margin: 20px 0;">
+      <strong>SOLUTION 8: pickup_locations</strong>
+    </div>
+    {% for location in pickup_locations %}
+      <div>{{ location.name }} - {{ location.id }}</div>
+    {% endfor %}
+
+    <!-- SOLUTION 9 -->
+    <div style="background: red; color: white; padding: 10px; margin: 20px 0;">
+      <strong>SOLUTION 9: shop.locations.all</strong>
+    </div>
+    {% for location in shop.locations.all %}
+      <div>{{ location.name }} - {{ location.id }}</div>
+    {% endfor %}
+
+    <!-- SOLUTION 10 -->
+    <div style="background: red; color: white; padding: 10px; margin: 20px 0;">
+      <strong>SOLUTION 10: Using assign with shop.locations</strong>
+    </div>
+    {% assign all_locations = shop.locations %}
+    {% for location in all_locations %}
+      <div>{{ location.name }} - {{ location.id }}</div>
+    {% endfor %}
+
+    <!-- SOLUTION 11 -->
+    <div style="background: red; color: white; padding: 10px; margin: 20px 0;">
+      <strong>SOLUTION 11: shop['locations']</strong>
+    </div>
+    {% for location in shop.locations %}
+      <div>{{ location.name }} - {{ location.id }}</div>
+    {% endfor %}
+
+    <!-- SOLUTION 12 -->
+    <div style="background: red; color: white; padding: 10px; margin: 20px 0;">
+      <strong>SOLUTION 12: Using where filter for active locations</strong>
+    </div>
+    {% assign active_locations = shop.locations | where: 'active', true %}
+    {% for location in active_locations %}
+      <div>{{ location.name }} - {{ location.id }}</div>
+    {% endfor %}
+
+    <!-- SOLUTION 13 -->
+    <div style="background: red; color: white; padding: 10px; margin: 20px 0;">
+      <strong>SOLUTION 13: location_list</strong>
+    </div>
+    {% for location in location_list %}
+      <div>{{ location.name }} - {{ location.id }}</div>
+    {% endfor %}
+
+    <!-- SOLUTION 14 -->
+    <div style="background: red; color: white; padding: 10px; margin: 20px 0;">
+      <strong>SOLUTION 14: shop.location_list</strong>
+    </div>
+    {% for location in shop.location_list %}
+      <div>{{ location.name }} - {{ location.id }}</div>
+    {% endfor %}
+
+    <!-- SOLUTION 15 -->
+    <div style="background: red; color: white; padding: 10px; margin: 20px 0;">
+      <strong>SOLUTION 15: Using tablerow for locations</strong>
+    </div>
+    <table>
+      {% tablerow location in shop.locations %}
+        {{ location.name }} - {{ location.id }}
+      {% endtablerow %}
+    </table>
+
+    <!-- SOLUTION 16 -->
+    <div style="background: red; color: white; padding: 10px; margin: 20px 0;">
+      <strong>SOLUTION 16: shop.physical_locations</strong>
+    </div>
+    {% for location in shop.physical_locations %}
+      <div>{{ location.name }} - {{ location.id }}</div>
+    {% endfor %}
+
+    <!-- SOLUTION 17 -->
+    <div style="background: red; color: white; padding: 10px; margin: 20px 0;">
+      <strong>SOLUTION 17: Using size check first</strong>
+    </div>
+    {% if shop.locations.size > 0 %}
+      {% for location in shop.locations %}
+        <div>{{ location.name }} - {{ location.id }}</div>
+      {% endfor %}
+    {% endif %}
+
+    <!-- SOLUTION 18 -->
+    <div style="background: red; color: white; padding: 10px; margin: 20px 0;">
+      <strong>SOLUTION 18: shop.locations with limit</strong>
+    </div>
+    {% for location in shop.locations limit: 10 %}
+      <div>{{ location.name }} - {{ location.id }}</div>
+    {% endfor %}
+
+    <!-- SOLUTION 19 -->
+    <div style="background: red; color: white; padding: 10px; margin: 20px 0;">
+      <strong>SOLUTION 19: Using capture with locations</strong>
+    </div>
+    {% capture location_output %}
+        {% for location in shop.locations %}
+          {{ location.name }} - {{ location.id }}|
+        {% endfor %}
+      {% endcapture %}
+    {{ location_output | split: '|' | join: '<br>' }}
+
+    <!-- SOLUTION 20 -->
+    <div style="background: red; color: white; padding: 10px; margin: 20px 0;">
+      <strong>SOLUTION 20: Checking location object exists first</strong>
+    </div>
+    {% if shop.locations %}
+      {% for location in shop.locations %}
+        {% if location.name %}
+          <div>{{ location.name }} - {{ location.id }}</div>
+        {% endif %}
+      {% endfor %}
+    {% else %}
+      <div>No locations available</div>
+    {% endif %}
+  </div>
+</div>
+
+<style>
+  .location-hero-section {
+    padding: 20px 0;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .section-title {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Location Hero Testing",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show section title",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section title",
+      "default": "Location Testing"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Location Hero Testing"
+    }
+  ]
+}
+{% endschema %}
