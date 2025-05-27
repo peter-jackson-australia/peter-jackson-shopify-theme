@@ -1,9 +1,10 @@
 Todo:
 
-Install shippit  
-Blog collection template
 Locations template
 Store locator
+
+Install shippit  
+Blog collection template
 Email templates
 Gift Cards
 
