@@ -1,5 +1,7 @@
 Todo:
 
+Fix cart
+
 Locations template / Make location metaobject
 Store locator
 

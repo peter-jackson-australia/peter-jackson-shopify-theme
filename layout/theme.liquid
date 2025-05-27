@@ -31,16 +31,18 @@
     <script src="{{ 'gsap.min.js' | asset_url }}" defer></script>
     <script src="{{ 'scrolltrigger.min.js' | asset_url }}" defer></script>
     <script src="{{ 'animations.js' | asset_url }}" defer></script>
-    <script type="speculationrules">
-      {
-        "prerender": [
-          {
-            "where": { "href_matches": "/*" },
-            "eagerness": "moderate"
-          }
-        ]
-      }
-    </script>
+    {% comment %}
+      <script type="speculationrules">
+        {
+          "prerender": [
+            {
+              "where": { "href_matches": "/*" },
+              "eagerness": "moderate"
+            }
+          ]
+        }
+      </script>
+    {% endcomment %}
     {% comment %}
       GTM Head Tag
     {% endcomment %}
