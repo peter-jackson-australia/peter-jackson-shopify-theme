@@ -12,6 +12,21 @@
     "hero_slider_YwPfy7": {
       "type": "hero-slider",
       "blocks": {
+        "slide_ce6xVy": {
+          "type": "slide",
+          "settings": {
+            "media_type": "image",
+            "video": "shopify://files/videos/peter-jackson-menswear-mega-menu-video-winter-25.mp4",
+            "heading": "Half Year Sale",
+            "heading_animation": "none",
+            "description": "up to 50% Off Select Styles",
+            "description_animation": "none",
+            "button_label": "Shop Now",
+            "button_link": "",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "bottom"
+          }
+        },
         "slide_b3nJFG": {
           "type": "slide",
           "settings": {
@@ -29,6 +44,7 @@
         }
       },
       "block_order": [
+        "slide_ce6xVy",
         "slide_b3nJFG"
       ],
       "name": "Hero Slider",
@@ -73,6 +89,7 @@
           "type": "column_item",
           "settings": {
             "image": "shopify://shop_images/peter-jackson-man-wearing-winter-coat.jpg",
+            "image_link": "",
             "heading": "Outerwear",
             "heading_animation": "none",
             "text": "Winter jackets & coats",
@@ -85,6 +102,7 @@
           "type": "column_item",
           "settings": {
             "image": "shopify://shop_images/peter-jackson-man-wearing-casual-essentials.jpg",
+            "image_link": "",
             "heading": "The New Casual Code",
             "heading_animation": "none",
             "text": "Casual essentials to elevate the everyday",
@@ -97,6 +115,7 @@
           "type": "column_item",
           "settings": {
             "image": "shopify://shop_images/peter-jackson-man-wearing-winter-coat.jpg",
+            "image_link": "",
             "heading": "Column Heading",
             "heading_animation": "none",
             "text": "Add a brief description for this column item.",
@@ -109,6 +128,7 @@
           "type": "column_item",
           "settings": {
             "image": "shopify://shop_images/peter-jackson-man-wearing-sports-jacket-and-tie-walking-through-streets-of-europe.jpg",
+            "image_link": "",
             "heading": "Sports Jackets",
             "heading_animation": "none",
             "text": "A versatile wardrobe staple",
@@ -148,7 +168,6 @@
         "show_top_border": true,
         "show_bottom_border": false,
         "hero_image": "shopify://shop_images/Peter-Jackson-Man-Wearing-Green-Corduroy-Suit.jpg",
-        "hero_image_link": "shopify://blogs/the-jackson-journal",
         "show_image_overlay": true,
         "image_heading": "Winter Outerwear",
         "image_heading_animation": "none",
