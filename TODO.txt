@@ -1,6 +1,5 @@
 Todo:
-Install shippit
-Finish the sections: Contact Form     
+Install shippit  
 Blog collection template
 Locations template
 Store locator
