@@ -2,13 +2,14 @@ Todo:
 
 Locations template / Make location metaobject
 Store locator
-
-After testing order sync
-Install shippit  
 Blog collection template
 Email templates
 Gift Cards
 404 page
+
+After testing order sync: 
+Install shippit  
+
 
 /////////////////////////////////////////////////////
 
