@@ -214,16 +214,16 @@
         {% endif %}
 
         {%- for block in section.blocks -%}
-          {% capture label %}
-          <label for="{{ block.settings.name | handleize | prepend: 'contact_' }}" class="contact-form__label body">
-            {{ block.settings.title }}
-          </label>
-          {% endcapture %}
-
           {%- case block.type -%}
             {%- when 'text' -%}
               <div class="contact-form__input-group">
-                {{ label }}
+                <label
+                  for="{{ block.settings.name | handleize | prepend: 'contact_' }}"
+                  class="contact-form__label body"
+                >
+                  {{ block.settings.title -}}
+                  {%- if block.settings.required == true %} *{% endif %}
+                </label>
                 <input
                   type="text"
                   id="{{ block.settings.name | handleize | prepend: 'contact_' }}"
@@ -241,7 +241,13 @@
 
             {%- when 'textarea' -%}
               <div class="contact-form__input-group">
-                {{ label }}
+                <label
+                  for="{{ block.settings.name | handleize | prepend: 'contact_' }}"
+                  class="contact-form__label body"
+                >
+                  {{ block.settings.title -}}
+                  {%- if block.settings.required == true %} *{% endif %}
+                </label>
                 <textarea
                   name="contact[{{- block.settings.name -}}]"
                   id="{{ block.settings.name | handleize | prepend: 'contact_' }}"
@@ -259,7 +265,12 @@
 
             {%- when 'email' -%}
               <div class="contact-form__input-group">
-                {{ label }}
+                <label
+                  for="{{ block.settings.name | handleize | prepend: 'contact_' }}"
+                  class="contact-form__label body"
+                >
+                  {{ block.settings.title }} *
+                </label>
                 <input
                   type="email"
                   id="{{ block.settings.name | handleize | prepend: 'contact_' }}"
@@ -293,7 +304,8 @@
                       required
                     {% endif %}
                   >
-                  {{ block.settings.title }}
+                  {{ block.settings.title -}}
+                  {%- if block.settings.required == true %} *{% endif %}
                 </label>
               </div>
           {%- endcase -%}
