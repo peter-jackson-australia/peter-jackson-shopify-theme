@@ -1,4 +1,7 @@
 Todo:
+
+Style the block quote
+
 Install shippit  
 Blog collection template
 Locations template
