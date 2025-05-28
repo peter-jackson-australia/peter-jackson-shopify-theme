@@ -1,0 +1,119 @@
+{% assign location = page.metafields.custom.location_reference.value %}
+
+{% if location %}
+  <div class="location-hero">
+    <h1>{{ location.location_name }}</h1>
+
+    <p>{{ location.street_address }}</p>
+
+    <p>{{ location.location_state }}</p>
+
+    <p>Phone: {{ location.phone_number }}</p>
+
+    <p>Email: {{ location.email_address }}</p>
+
+    <a href="{{ location.google_maps_link }}" target="_blank">View on Google Maps</a>
+
+    {% if location.location_page %}
+      <p>
+        <a href="{{ location.location_page.value.url }}">{{ location.location_page.value.title }}</a>
+      </p>
+    {% endif %}
+
+    {% if location.location_description %}
+      <p>{{ location.location_description }}</p>
+    {% endif %}
+
+    <div>
+      <strong>Opening Hours:</strong>
+      <pre>{{ location.opening_hours }}</pre>
+    </div>
+
+    <div>
+      {% assign current_day = 'now' | date: '%A' %}
+      {% assign vic_time = 'now' | date: '%H:%M' %}
+      {% assign vic_hour = 'now' | date: '%H' | plus: 0 %}
+
+      <p>Shopify 'now' time: {{ vic_time }} ({{ current_day }})</p>
+      <p>This appears to be VIC local time</p>
+
+      {% assign wa_hour = vic_hour | minus: 2 %}
+      {% if wa_hour < 0 %}{% assign wa_hour = wa_hour | plus: 24 %}{% endif %}
+      {% assign wa_minute = 'now' | date: '%M' %}
+      <p>WA Time (VIC-2): {{ wa_hour }}:{{ wa_minute }}</p>
+
+      {% assign nt_sa_hour = vic_hour %}
+      {% assign nt_sa_minute = 'now' | date: '%M' | plus: 0 | minus: 30 %}
+      {% if nt_sa_minute < 0 %}
+        {% assign nt_sa_minute = nt_sa_minute | plus: 60 %}
+        {% assign nt_sa_hour = nt_sa_hour | minus: 1 %}
+        {% if nt_sa_hour < 0 %}{% assign nt_sa_hour = nt_sa_hour | plus: 24 %}{% endif %}
+      {% endif %}
+      {% if nt_sa_minute < 10 %}{% assign nt_sa_minute = '0' | append: nt_sa_minute %}{% endif %}
+      <p>NT/SA Time (VIC-0:30): {{ nt_sa_hour }}:{{ nt_sa_minute }}</p>
+
+      {% assign qld_hour = vic_hour | minus: 1 %}
+      {% if qld_hour < 0 %}{% assign qld_hour = qld_hour | plus: 24 %}{% endif %}
+      <p>QLD Time (VIC-1): {{ qld_hour }}:{{ wa_minute }}</p>
+
+      <p>VIC/NSW/ACT/TAS Time: {{ vic_time }}</p>
+
+      {% if location.location_state == 'WA' %}
+        {% assign current_time = wa_hour | append: ':' | append: wa_minute %}
+      {% elsif location.location_state == 'NT' or location.location_state == 'SA' %}
+        {% assign current_time = nt_sa_hour | append: ':' | append: wa_minute %}
+      {% elsif location.location_state == 'QLD' %}
+        {% assign current_time = qld_hour | append: ':' | append: wa_minute %}
+      {% else %}
+        {% assign current_time = vic_time %}
+      {% endif %}
+
+      <p>Selected State ({{ location.location_state }}) Time: {{ current_time }}</p>
+
+      {% assign hours_lines = location.opening_hours | split: '
+' %}
+      {% for line in hours_lines %}
+        {% if line contains current_day %}
+          {% assign today_hours = line | split: ': ' | last %}
+
+          {% if today_hours == 'Closed' %}
+            <strong>Today ({{ current_day }}): Closed</strong>
+          {% else %}
+            {% assign time_parts = today_hours | split: ' - ' %}
+            {% assign open_time = time_parts[0] %}
+            {% assign close_time = time_parts[1] %}
+
+            {% assign current_time_num = current_time | replace: ':', '' | plus: 0 %}
+            {% assign open_time_num = open_time | replace: ':', '' | plus: 0 %}
+            {% assign close_time_num = close_time | replace: ':', '' | plus: 0 %}
+
+            {% if current_time_num >= open_time_num and current_time_num <= close_time_num %}
+              <strong>Today ({{ current_day }}): Open ({{ today_hours }})</strong>
+            {% else %}
+              <strong>Today ({{ current_day }}): Closed ({{ today_hours }})</strong>
+            {% endif %}
+          {% endif %}
+
+          {% break %}
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <p>Latitude: {{ location.latitude }}</p>
+
+    <p>Longitude: {{ location.longitude }}</p>
+
+    {% comment %}
+      {% if location.location_image %}
+        <img src="{{ location.location_image | img_url: '400x300' }}" alt="{{ location.location_name }}">
+      {% endif %}
+    {% endcomment %}
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Location Hero",
+  "tag": "section"
+}
+{% endschema %}

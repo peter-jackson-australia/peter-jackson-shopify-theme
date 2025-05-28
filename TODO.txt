@@ -1,15 +1,6 @@
 Todo:
 
-Locations template / Make location metaobject:
-
-Location name - single line text (Required)
-Street address - single line text (Required)
-Google maps link - URL (Required)
-Phone number - Regex formatted (Required) 
-Opening Hours - Regex formatted multiline (Required) ^Monday:\s(\d{2}:\d{2}\s-\s\d{2}:\d{2}|Closed)\nTuesday:\s(\d{2}:\d{2}\s-\s\d{2}:\d{2}|Closed)\nWednesday:\s(\d{2}:\d{2}\s-\s\d{2}:\d{2}|Closed)\nThursday:\s(\d{2}:\d{2}\s-\s\d{2}:\d{2}|Closed)\nFriday:\s(\d{2}:\d{2}\s-\s\d{2}:\d{2}|Closed)\nSaturday:\s(\d{2}:\d{2}\s-\s\d{2}:\d{2}|Closed)\nSunday:\s(\d{2}:\d{2}\s-\s\d{2}:\d{2}|Closed)$
-
-Location description - Multiline text 
-Location image - with a default one if nothing is chosen 
+Locations template 
 
 Location template: 
 Contact us button 
@@ -17,10 +8,10 @@ FAQ’s
 Collection slider secondary new arrivals 
 Latest news
 Location navigation 
+
 Store locator
 
 /////////////////////////////////////////////////////
-
 
 Blog collection template
 Email templates
@@ -29,7 +20,6 @@ Gift Cards
 
 After testing order sync: 
 Install shippit  
-
 
 /////////////////////////////////////////////////////
 
