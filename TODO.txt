@@ -1,7 +1,5 @@
 Todo:
 
-Locations template 
-
 Location template: 
 Contact us button 
 FAQ’s 
@@ -9,7 +7,7 @@ Collection slider secondary new arrivals
 Latest news
 Location navigation 
 
-Store locator
+Store locator / with leaflet
 
 /////////////////////////////////////////////////////
 

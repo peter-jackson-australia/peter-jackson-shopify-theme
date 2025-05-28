@@ -1,19 +1,16 @@
 <div class="store-locator">
   <h2>Store Locations</h2>
 
-  {% assign locations = shop.metaobjects.location %}
-
-  {% if locations.size > 0 %}
-    <div class="locations-list">
-      {% for location in locations %}
-        <div class="location-item">
-          <h3>{{ location.location_name }}</h3>
-        </div>
-      {% endfor %}
+  {% for location in metaobjects.locations.values %}
+    <div class="location-item">
+      <h3>{{ location.location_name.value }}</h3>
+      <p>Email: {{ location.email_address.value }}</p>
+      <p>Phone: {{ location.phone_number.value }}</p>
+      <p>Hours: {{ location.opening_hours.value }}</p>
+      <p>Latitude: {{ location.latitude.value }}</p>
+      <p>Longitude: {{ location.longitude.value }}</p>
     </div>
-  {% else %}
-    <p>No locations found.</p>
-  {% endif %}
+  {% endfor %}
 </div>
 
 {% schema %}
