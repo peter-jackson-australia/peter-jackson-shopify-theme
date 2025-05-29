@@ -1,5 +1,7 @@
 Todo:
 
+Store locator / with leaflet
+
 Location template: 
 Contact us button 
 FAQ’s 
@@ -7,14 +9,13 @@ Collection slider secondary new arrivals
 Latest news
 Location navigation 
 
-Store locator / with leaflet
-
 /////////////////////////////////////////////////////
 
 Blog collection template
-Email templates
 Gift Cards
 404 page
+
+/////////////////////////////////////////////////////
 
 After testing order sync: 
 Install shippit  
