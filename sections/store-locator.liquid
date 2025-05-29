@@ -1,8 +1,16 @@
 {{ 'leaflet.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'leaflet.min.js' | asset_url }}" defer></script>
 
+<style>
+  #map {
+    height: 700px;
+  }
+</style>
+
 <div class="store-locator">
   <h2>Store Locations</h2>
+
+  <div id="map"></div>
 
   {% for location in metaobjects.locations.values %}
     <div class="location-item">
@@ -15,6 +23,8 @@
     </div>
   {% endfor %}
 </div>
+
+<script></script>
 
 {% schema %}
 {
