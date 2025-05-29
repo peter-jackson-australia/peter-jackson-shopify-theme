@@ -1,83 +1,162 @@
 {{ 'leaflet.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'leaflet.min.js' | asset_url }}" defer></script>
 
-<!--
-  TODO:
-
-  Map on left, location cards on right
-  Search function for locations
-  State dropdown
-
-  Location cards/markers:
-  Open or not indicator
-  Store title
-  address as clickable link to google maps
-  email | phone (both links with phone formatted as XX XXXX XXXX)
-  Open today (show todays hours)
-  Store Information (link to store landing page)
-
-  Show VIC states by default (as we can only access 50 location metaobjects at a time without pagination)
--->
-
 <style>
   #map {
     height: 700px;
     filter: grayscale(100%);
   }
+  .store-locator__container {
+    display: flex;
+    gap: 20px;
+  }
+  .store-locator__map {
+    flex: 1;
+  }
+  .store-locator__sidebar {
+    width: 400px;
+    overflow-y: auto;
+    max-height: 700px;
+  }
 </style>
 
-<div class="store-locator">
+<div class="store-locator" x-data="storeLocator()">
   <h2>Store Locations</h2>
 
-  <div id="map"></div>
+  <div class="store-locator__filters">
+    <input
+      type="text"
+      x-model="searchTerm"
+      @input="filterLocations"
+      class="store-locator__search"
+      placeholder="Search by name, address or state"
+    >
+    <select x-model="selectedState" @change="filterLocations" class="store-locator__state-select">
+      <option value="">All States</option>
+      <option value="WA">WA</option>
+      <option value="NT">NT</option>
+      <option value="SA">SA</option>
+      <option value="QLD">QLD</option>
+      <option value="NSW">NSW</option>
+      <option value="VIC">VIC</option>
+      <option value="ACT">ACT</option>
+      <option value="TAS">TAS</option>
+    </select>
+  </div>
 
-  {% for location in metaobjects.locations.values %}
-    <div class="location-item">
-      <h3>{{ location.location_name.value }}</h3>
-      <p>Email: {{ location.email_address.value }}</p>
-      <p>Phone: {{ location.phone_number.value }}</p>
-      <p>Hours: {{ location.opening_hours.value }}</p>
-      <p>Latitude: {{ location.latitude.value }}</p>
-      <p>Longitude: {{ location.longitude.value }}</p>
+  <div class="store-locator__container">
+    <div class="store-locator__map">
+      <div id="map"></div>
     </div>
-  {% endfor %}
+
+    <div class="store-locator__sidebar">
+      {% for location in metaobjects.locations.values %}
+        <div
+          class="location-item"
+          x-show="isLocationVisible('{{ location.location_name.value }}', '{{ location.address.value | default: '' }}', '{{ location.location_state.value | default: '' }}')"
+          data-lat="{{ location.latitude.value }}"
+          data-lng="{{ location.longitude.value }}"
+        >
+          <h3>{{ location.location_name.value }}</h3>
+          <p>Email: {{ location.email_address.value }}</p>
+          <p>Phone: {{ location.phone_number.value }}</p>
+          <p>Hours: {{ location.opening_hours.value }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Initialize map centered on Australia
-  var map = L.map('map').setView([-25.2744, 133.7751], 5);
+// Alpine.js component
+function storeLocator() {
+  return {
+    searchTerm: '',
+    selectedState: '',
+    markers: [],
+    map: null,
+    
+    init() {
+      // Get search term from URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const querySearch = urlParams.get('search');
+      if (querySearch) {
+        this.searchTerm = querySearch;
+      }
+      
+      // Initialize map after Alpine is ready
+      this.$nextTick(() => {
+        this.initMap();
+        this.filterLocations();
+      });
+    },
+    
+    initMap() {
+      // Initialize map centered on Australia
+      this.map = L.map('map').setView([-25.2744, 133.7751], 5);
 
-  // Add black and white tile layer
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap contributors',
-    maxZoom: 18
-  }).addTo(map);
+      // Add black and white tile layer
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors',
+        maxZoom: 18
+      }).addTo(this.map);
 
-  // Create custom icon
-  var storeIcon = L.icon({
-    iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
-    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41]
-  });
+      // Create custom icon
+      var storeIcon = L.icon({
+        iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+      });
 
-  // Add markers for each location
-  {% for location in metaobjects.locations.values %}
-    {% if location.latitude.value and location.longitude.value %}
-      L.marker([{{ location.latitude.value }}, {{ location.longitude.value }}], {icon: storeIcon})
-        .addTo(map)
-        .bindPopup(`
-          <strong>{{ location.location_name.value }}</strong><br>
-          Email: {{ location.email_address.value }}<br>
-          Phone: {{ location.phone_number.value }}<br>
-          Hours: {{ location.opening_hours.value }}
-        `);
-    {% endif %}
-  {% endfor %}
-});
+      // Add markers for each location
+      {% for location in metaobjects.locations.values %}
+        {% if location.latitude.value and location.longitude.value %}
+          var marker = L.marker([{{ location.latitude.value }}, {{ location.longitude.value }}], {icon: storeIcon})
+            .bindPopup(`
+              <strong>{{ location.location_name.value }}</strong><br>
+              Email: {{ location.email_address.value }}<br>
+              Phone: {{ location.phone_number.value }}<br>
+              Hours: {{ location.opening_hours.value }}
+            `);
+          marker.locationData = {
+            name: '{{ location.location_name.value }}',
+            address: '{{ location.address.value | default: '' }}',
+            state: '{{ location.location_state.value | default: '' }}'
+          };
+          this.markers.push(marker);
+          marker.addTo(this.map);
+        {% endif %}
+      {% endfor %}
+    },
+    
+    isLocationVisible(name, address, state) {
+      const searchLower = this.searchTerm.toLowerCase();
+      const matchesSearch = !this.searchTerm || 
+        name.toLowerCase().includes(searchLower) ||
+        address.toLowerCase().includes(searchLower) ||
+        state.toLowerCase().includes(searchLower);
+      
+      const matchesState = !this.selectedState || state === this.selectedState;
+      
+      return matchesSearch && matchesState;
+    },
+    
+    filterLocations() {
+      // Filter markers on map
+      this.markers.forEach(marker => {
+        const data = marker.locationData;
+        if (this.isLocationVisible(data.name, data.address, data.state)) {
+          marker.addTo(this.map);
+        } else {
+          marker.remove();
+        }
+      });
+    }
+  }
+}
 </script>
 
 {% schema %}
