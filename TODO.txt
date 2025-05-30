@@ -18,13 +18,14 @@ Location navigation
 /////////////////////////////////////////////////////
 
 Blog collection templates for jackson journal and empowered mind
-Gift Cards
 404 page
 
 /////////////////////////////////////////////////////
 
-After testing order sync: 
-Install shippit  
+After testing order and inventory sync: 
+Install shippit 
+Bring Gift Cards over to new site 
+Move to live Harmony environment 
 
 /////////////////////////////////////////////////////
 
