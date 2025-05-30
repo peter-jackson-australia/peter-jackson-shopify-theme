@@ -1,5 +1,5 @@
 {% comment %}
-  Collection Products
+  Collection Products - Fixed Version
 {% endcomment %}
 
 <script src="{{ 'ajaxinate.min.js' | asset_url }}" defer></script>
@@ -497,17 +497,9 @@
               </div>
             {% else %}
               {% assign inserted = false %}
-              {% assign products_shown = 0 %}
-              {% assign products_to_show = original_limit %}
-              {% assign grid_content_span = 2 %}
-              {% if paginate.current_page == 1 and has_grid_content %}
-                {% assign products_to_show = products_to_show | minus: grid_content_span %}
-                {% if products_to_show < 1 %}
-                  {% assign products_to_show = 1 %}
-                {% endif %}
-              {% endif %}
               {% for product in collection.products %}
                 {% assign current_position = forloop.index %}
+
                 {% if current_position == actual_position
                   and inserted == false
                   and paginate.current_page == 1
@@ -549,13 +541,10 @@
                   </div>
                   {% assign inserted = true %}
                 {% endif %}
-                {% if products_shown < products_to_show or paginate.current_page > 1 %}
-                  {% render 'product-card', product: product, image_width: 600 %}
-                  {% assign products_shown = products_shown | plus: 1 %}
-                {% endif %}
-                {% if paginate.current_page == 1 and products_shown >= products_to_show %}
-                {% endif %}
+
+                {% render 'product-card', product: product, image_width: 600 %}
               {% endfor %}
+
               {% if inserted == false and paginate.current_page == 1 and has_grid_content %}
                 <div class="grid-content">
                   {% if metaobject_raw.image_or_video != blank %}
@@ -575,7 +564,7 @@
 
                   <div class="grid-content__container grid-content__container--left">
                     {% if metaobject_raw.leading_text != blank %}
-                      <p class="heading--l grid-content__leading-text">{{ metaobject_raw.leading_text }}</p>
+                      <p class="heading--l grid-content__leading_text">{{ metaobject_raw.leading_text }}</p>
                     {% endif %}
 
                     <h2 class="heading--2xl grid-content__header">{{ metaobject_raw.header }}</h2>
