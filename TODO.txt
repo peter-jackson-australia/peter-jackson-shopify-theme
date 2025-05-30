@@ -1,5 +1,9 @@
 Todo:
 
+/////////////////////////////////////////////////////
+
+Create logic to hide low stock variants
+
 Store locator / with leaflet
 
 Location template: 
