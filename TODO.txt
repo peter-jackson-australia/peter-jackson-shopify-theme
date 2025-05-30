@@ -2,6 +2,8 @@ Todo:
 
 /////////////////////////////////////////////////////
 
+Make all sliders not infinite and lazy load imaages
+
 Create logic to hide low stock variants
 
 Store locator / with leaflet:
