@@ -4,7 +4,9 @@ Todo:
 
 Create logic to hide low stock variants
 
-Store locator / with leaflet
+Store locator / with leaflet:
+Store locator section only allowed on pages 
+Latest news/blog hero section
 
 Location template: 
 Contact us button 
