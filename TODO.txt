@@ -2,7 +2,8 @@ Todo:
 
 /////////////////////////////////////////////////////
 
-Make all sliders not infinite and lazy load imaages
+Make all lazy load images and slides
+Make the product card more optimised, it's too bloated
 
 Create logic to hide low stock variants
 
