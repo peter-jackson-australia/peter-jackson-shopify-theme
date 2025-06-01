@@ -2,17 +2,18 @@ Todo:
 
 /////////////////////////////////////////////////////
 
-SECTIONS:
-Store locator / with leaflet:
-Store locator section only allowed on pages 
-Latest news/blog hero section
-
 Location template: 
+Fix the time discrepencies (Account for daylight savings, fix QLD time when not in daylight savings) 
 Contact us button 
 FAQ’s 
 Collection slider secondary new arrivals 
 Latest news
 Location navigation 
+
+SECTIONS:
+Store locator / with leaflet:
+Store locator section only allowed on pages 
+Latest news/blog hero section
 
 Blog collection templates for jackson journal and empowered mind
 404 page
