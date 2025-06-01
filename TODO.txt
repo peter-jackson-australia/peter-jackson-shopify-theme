@@ -4,7 +4,7 @@ Todo:
 
 Make all lazy load images and slides
 Make the product card more optimised, it's too bloated
-
+Remove animations from collection slider 
 Create logic to hide low stock variants
 
 Store locator / with leaflet:
