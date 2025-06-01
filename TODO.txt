@@ -2,11 +2,7 @@ Todo:
 
 /////////////////////////////////////////////////////
 
-Make all lazy load images and slides
-Make the product card more optimised, it's too bloated
-Remove animations from collection slider 
-Create logic to hide low stock variants
-
+SECTIONS:
 Store locator / with leaflet:
 Store locator section only allowed on pages 
 Latest news/blog hero section
@@ -18,21 +14,26 @@ Collection slider secondary new arrivals
 Latest news
 Location navigation 
 
-/////////////////////////////////////////////////////
-
 Blog collection templates for jackson journal and empowered mind
 404 page
-
-/////////////////////////////////////////////////////
-
-After testing order and inventory sync: 
-Install shippit 
-Bring Gift Cards over to new site 
-Move to live Harmony environment 
-
-/////////////////////////////////////////////////////
 
 Main Menu:
 Preserve scroll position when menu is open
 Add ability to change video, video subtitle, newsletter title and newsletter legal spiel in theme editor
 Logic for opening and closing menus, sidebars, modals without conflicting 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ADMIN:
+Create logic to hide low stock variants
+Install shippit 
+Bring Gift Cards over to new site 
+Move to live Harmony environment 
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+PERFORMANCE:
+Make all lazy load images and slides
+Move all CSS to their own files in assets folder
+Remove animations from collection slider
+Make the product card more optimised, it's too bloated
