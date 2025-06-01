@@ -12,9 +12,39 @@
     "location_hero_ifieje": {
       "type": "location-hero",
       "settings": {}
+    },
+    "faqs_mpQL4y": {
+      "type": "faqs",
+      "blocks": {
+        "heading_UdbAmm": {
+          "type": "heading",
+          "settings": {
+            "heading": "Frequently Asked Questions",
+            "anchor_id": ""
+          }
+        },
+        "faq_item_JPcT9E": {
+          "type": "faq_item",
+          "settings": {
+            "question": "General Questions",
+            "answer": "<p><strong>What payment methods are available?<br/><br/></strong>We accept all major credit cards in-store and online. We also accept payments through Paypal for online purchases and Afterpay for in-store and online purchases. Visa, Mastercard and Amex have a small transaction percentage attached.</p><p><br/><strong>How can I search for items on the website?</strong><br/><br/>Click on the magnifying glass icon on the top-right of your screen. You can start typing a product code (SKU) if it’s known to you, or a colour, pattern, product style, etc. e.g: grey check jacket.</p><p><br/><strong>Can I hire a suit?</strong><br/><br/>Unfortunately, we do not offer hiring services.</p><p><br/><strong>How can I order online?</strong><br/><br/>Once you’ve found a product you like, you can select the size and quantity from the product page and click “add to cart”. It will give you the option to keep shopping, or head straight to check-out, where you’ll have to enter your shipping address and select a payment method.</p><p><br/>You can log in with your email and password if you already have an online account. It will assist with a faster checkout process.</p><p><br/><strong>How do I know what size I am?</strong><br/><br/>We want you to find the perfect fit, which is why we have a size chart you can access by clicking on the \"What's my size\" link after clicking \"Select size\" on any suit or sports jacket.<br/><br/><strong>Can I change or cancel my order?<br/><br/></strong>Once an order has been placed on our website, it’s not possible to cancel it. However, you might be able to change it if you get in touch with us before it has been dispatched.</p><p><br/><strong>How can I find the nearest Peter Jackson store?</strong><br/><br/>We have over 60 stores throughout the country and have listed them all by state in our store locator. You can access it by clicking on the \"find a store\" link on the top right corner of your screen.<br/><br/><strong>Was my order successful?</strong><br/><br/>If your order was successful you would receive a confirmation email shortly after completing payment. If you haven’t received any confirmation from us, check your spam folder or get in touch with us at <a href=\"mailto:sales@peterjacksons.com\">sales@peterjacksons.com</a></p><p><br/><strong>When will I get my order?</strong><br/><br/>We dispatch all orders within 3 – 5 business days. Generally, standard delivery takes between 3 – 5 business from the date of dispatch. Check our Shipping Information page <a href=\"https://www.peterjacksons.com/pages/shipping-delivery\" target=\"_self\">here</a> for more information.<br/><br/><strong>How can I track my order?</strong><br/><br/>Right after dispatch, you will receive an email from us with a confirmation and a tracking number for Australia Post.</p><p><br/><strong>I didn't receive a confirmation email for my order, did it go through?</strong><br/><br/>Check your spam folder. If you haven’t received a confirmation from us 24 hours after placing your order, contact us at <a href=\"mailto:sales@peterjacksons.com\">sales@peterjacksons.com</a> or <a href=\"tel:+0394156281\">(03) 9415 6281</a></p><p><strong>My order arrived but it’s incomplete<br/><br/></strong>In some cases, we dispatch an order in separate parcels due to the stock’s availability at the time. If you experience this, allow some extra time for the rest of the order to arrive. You can also contact us to inquire about the current status of your order.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_UdbAmm",
+        "faq_item_JPcT9E"
+      ],
+      "name": "FAQ Section",
+      "settings": {
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "animate_faqs": false
+      }
     }
   },
   "order": [
-    "location_hero_ifieje"
+    "location_hero_ifieje",
+    "faqs_mpQL4y"
   ]
 }
