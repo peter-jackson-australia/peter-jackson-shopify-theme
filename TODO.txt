@@ -33,6 +33,7 @@ Move to live Harmony environment
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 PERFORMANCE:
+
 Make all lazy load images and slides
 Move all CSS to their own files in assets folder
 Remove animations from collection slider
