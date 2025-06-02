@@ -11,7 +11,9 @@
   "sections": {
     "location_hero_ifieje": {
       "type": "location-hero",
-      "settings": {}
+      "settings": {
+        "default_image": "shopify://shop_images/Self-Improvement.webp"
+      }
     },
     "faqs_mpQL4y": {
       "type": "faqs",
