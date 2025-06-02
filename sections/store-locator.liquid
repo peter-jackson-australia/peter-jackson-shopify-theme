@@ -48,7 +48,7 @@
     margin-bottom: var(--space-xs);
   }
   .location-item__hours {
-    margin: 0;
+    margin-bottom: var(--space-xs);
   }
   .location-item a {
     color: var(--neutral-950);
@@ -116,6 +116,9 @@
             <span data-today-hours="{{ location.location_name.value | handleize }}">
               {{- location.opening_hours.value -}}
             </span>
+          </div>
+          <div class="location-item__link body">
+            <a href="{{ location.location_page.value.url }}">View Store Information</a>
           </div>
         </div>
       {% endfor %}
