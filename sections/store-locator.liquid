@@ -50,6 +50,9 @@
   .location-item__hours {
     margin: 0;
   }
+  .location-item a {
+    color: var(--neutral-950);
+  }
 </style>
 
 <div class="store-locator" x-data="storeLocator()">
@@ -175,10 +178,19 @@ function storeLocator() {
         {% if location.latitude.value and location.longitude.value %}
           var marker = L.marker([{{ location.latitude.value }}, {{ location.longitude.value }}], {icon: storeIcon})
             .bindPopup(`
-              <strong>{{ location.location_name.value }}</strong><br>
-              <a href="{{ location.google_maps_link.value }}">{{ location.street_address.value }}</a><br>
-              <a href="mailto:{{ location.email_address.value }}">{{ location.email_address.value }}</a> | <a href="tel:{{ location.phone_number.value }}">{{ location.phone_number.value }}</a><br>
-              Hours: {{ location.opening_hours.value }}
+              <div class="location-item__header">
+                <h3 class="location-item__title heading--xl">{{ location.location_name.value }}</h3>
+              </div>
+              <div class="location-item__address body">
+                <a href="{{ location.google_maps_link.value }}">{{ location.street_address.value }}</a>
+              </div>
+              <div class="location-item__contact body">
+                <a href="mailto:{{ location.email_address.value }}">{{ location.email_address.value }}</a><br>
+                <a href="tel:{{ location.phone_number.value }}">{{ location.phone_number.value }}</a>
+              </div>
+              <div class="location-item__hours body">
+                <a href="{{ location.location_page_url.value }}">View Location Details</a>
+              </div>
             `);
           marker.locationData = {
             name: '{{ location.location_name.value }}',
