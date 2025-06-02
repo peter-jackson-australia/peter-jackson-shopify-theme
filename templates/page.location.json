@@ -12,7 +12,7 @@
     "location_hero_ifieje": {
       "type": "location-hero",
       "settings": {
-        "default_image": "shopify://shop_images/Self-Improvement.webp"
+        "default_image": "shopify://shop_images/store-location-image.webp"
       }
     },
     "faqs_mpQL4y": {
