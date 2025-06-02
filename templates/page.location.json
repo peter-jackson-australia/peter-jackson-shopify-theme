@@ -87,11 +87,39 @@
         "products_to_show": 12,
         "animate_products": false
       }
+    },
+    "blog_hero_JGqjhb": {
+      "type": "blog-hero",
+      "name": "Blog Hero",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "show_image_overlay": true,
+        "image_heading": "Featured Article Title",
+        "image_heading_animation": "none",
+        "image_description": "Description text for the featured article.",
+        "image_description_animation": "none",
+        "image_link_text": "Read More",
+        "image_link_url": "",
+        "heading": "The Jackson Journal",
+        "heading_animation": "none",
+        "subheading": "Heritage Meets Heritage",
+        "subheading_animation": "none",
+        "description": "Some general information about the blog collection",
+        "description_animation": "none",
+        "cta_link": "",
+        "cta_text": "Read Now",
+        "show_recent_posts": true,
+        "animate_posts": true,
+        "blog": "the-jackson-journal"
+      }
     }
   },
   "order": [
     "location_hero_ifieje",
     "faqs_mpQL4y",
-    "collection_slider_secondary_9BDhtd"
+    "collection_slider_secondary_9BDhtd",
+    "blog_hero_JGqjhb"
   ]
 }
