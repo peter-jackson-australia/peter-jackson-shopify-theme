@@ -8,16 +8,16 @@ SECTIONS:
 Store locator / with leaflet:
 Fix forward/backwards issue with state dropdown (should always default back to VIC)
 
-
 Store locator section only allowed on pages 
 Latest news/blog hero section
 Blog collection templates for jackson journal and empowered mind
 404 page
 
 Main Menu:
+Logic for opening and closing menus, sidebars, modals without conflicting:
+    list all of the drawers and menus
 Preserve scroll position when menu is open
 Add ability to change video, video subtitle, newsletter title and newsletter legal spiel in theme editor
-Logic for opening and closing menus, sidebars, modals without conflicting 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
