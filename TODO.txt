@@ -2,14 +2,10 @@ Todo:
 
 /////////////////////////////////////////////////////
 
-Location template: 
-Contact us button 
-
 SECTIONS:
 Store locator / with leaflet:
 Store locator section only allowed on pages 
 Latest news/blog hero section
-
 Blog collection templates for jackson journal and empowered mind
 404 page
 
