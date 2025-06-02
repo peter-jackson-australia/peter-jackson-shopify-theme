@@ -1,7 +1,8 @@
 <style>
   .location-hero {
     display: flex;
-    align-items: center;
+    align-items: stretch;
+    border-top: 1px solid var(--neutral-200);
   }
 
   .location-hero__image {
@@ -11,7 +12,7 @@
 
   .location-hero__image img {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
   }
 
@@ -130,14 +131,14 @@
     <div class="location-hero__image">
       {% if location.location_image %}
         <img
-          src="{{ location.location_image | image_url: width: 600, height: 600 }}"
+          src="{{ location.location_image | image_url: width: 1400, height: 1400 }}"
           alt="{{ location.location_name }}"
           width="600"
           height="600"
         >
       {% else %}
         <img
-          src="{{ section.settings.default_image | image_url: width: 600, height: 600 }}"
+          src="{{ section.settings.default_image | image_url: width: 1400, height: 1400 }}"
           alt="{{ location.location_name }}"
           width="600"
           height="600"
@@ -354,13 +355,6 @@
         if (statusElement && openingStatus) {
           statusElement.innerHTML = openingStatus.status;
         }
-
-        console.log('Updated timezone data:', {
-          state: timeData.state,
-          time: timeData.time,
-          isDST: timeData.isDST,
-          isOpen: openingStatus ? openingStatus.isOpen : 'unknown',
-        });
       }
     }
 
