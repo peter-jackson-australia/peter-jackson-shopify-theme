@@ -1,42 +1,193 @@
+<style>
+  .location-hero {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-xl);
+    padding: var(--space-xl) var(--space-m);
+  }
+
+  .location-hero__image {
+    flex: 1;
+    max-width: 50%;
+  }
+
+  .location-hero__image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .location-hero__content {
+    flex: 1;
+    max-width: 50%;
+  }
+
+  .location-hero__header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-s);
+  }
+
+  .location-hero__status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--green-400);
+    flex-shrink: 0;
+  }
+
+  .location-hero__status-dot--closed {
+    background-color: #ff0000;
+  }
+
+  .location-hero__title {
+    margin: 0;
+  }
+
+  .location-hero__address {
+    margin-bottom: var(--space-xs);
+  }
+
+  .location-hero__address a {
+    color: var(--neutral-950);
+    text-decoration: none;
+  }
+
+  .location-hero__address a:hover {
+    text-decoration: underline;
+  }
+
+  .location-hero__phone {
+    margin-bottom: var(--space-s);
+  }
+
+  .location-hero__phone a {
+    color: var(--neutral-950);
+    text-decoration: none;
+  }
+
+  .location-hero__phone a:hover {
+    text-decoration: underline;
+  }
+
+  .location-hero__hours {
+    margin-bottom: var(--space-s);
+  }
+
+  .location-hero__hours-title {
+    margin-bottom: var(--space-3xs);
+  }
+
+  .location-hero__hours-display {
+    margin: 0;
+    white-space: pre-line;
+  }
+
+  .location-hero__description {
+    margin-bottom: var(--space-s);
+  }
+
+  .location-hero__button {
+    width: 100%;
+    height: var(--space-xl);
+    background-color: var(--neutral-950);
+    color: var(--white);
+    border: none;
+    padding: var(--space-xs) var(--space-s);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: var(--space-s);
+    text-decoration: none;
+  }
+
+  .location-hero__button:hover {
+    background-color: var(--neutral-800);
+  }
+
+  .location-hero__time-info {
+    margin-top: var(--space-s);
+  }
+
+  .location-hero__current-time {
+    margin-bottom: var(--space-3xs);
+  }
+
+  .location-hero__opening-status {
+    margin: 0;
+  }
+
+  @media screen and (max-width: 768px) {
+    .location-hero {
+      flex-direction: column;
+      gap: var(--space-m);
+      padding: var(--space-m);
+    }
+
+    .location-hero__image {
+      display: none;
+    }
+
+    .location-hero__content {
+      max-width: 100%;
+    }
+  }
+</style>
+
 {% assign location = page.metafields.custom.location_reference.value %}
 
 {% if location %}
   <div class="location-hero" data-state="{{ location.location_state }}">
-    <h1>{{ location.location_name }}</h1>
-
-    <p>{{ location.street_address }}</p>
-    <p>{{ location.location_state }}</p>
-    <p>Phone: {{ location.phone_number }}</p>
-    <p>Email: {{ location.email_address }}</p>
-
-    <a href="{{ location.google_maps_link }}" target="_blank">View on Google Maps</a>
-
-    {% if location.location_page %}
-      <p>
-        <a href="{{ location.location_page.value.url }}">{{ location.location_page.value.title }}</a>
-      </p>
-    {% endif %}
-
-    {% if location.location_description %}
-      <p>{{ location.location_description }}</p>
-    {% endif %}
-
-    <div class="opening-hours-container">
-      <strong>Opening Hours:</strong>
-      <pre id="opening-hours-display">{{ location.opening_hours }}</pre>
-
-      <div id="current-time-info">
-        <p id="current-local-time">Loading current time...</p>
-        <p id="opening-status">Checking opening status...</p>
-      </div>
+    <div class="location-hero__image">
+      {% if location.location_image %}
+        <img
+          src="{{ location.location_image | image_url: width: 600, height: 600 }}"
+          alt="{{ location.location_name }}"
+          width="600"
+          height="600"
+        >
+      {% else %}
+        <img
+          src="{{ section.settings.default_image | image_url: width: 600, height: 600 }}"
+          alt="{{ location.location_name }}"
+          width="600"
+          height="600"
+        >
+      {% endif %}
     </div>
 
-    <p>Latitude: {{ location.latitude }}</p>
-    <p>Longitude: {{ location.longitude }}</p>
+    <div class="location-hero__content">
+      <div class="location-hero__header">
+        <div class="location-hero__status-dot" id="location-status-dot"></div>
+        <h1 class="location-hero__title heading--3xl">{{ location.location_name }}</h1>
+      </div>
 
-    {% if location.location_image %}
-      <img src="{{ location.location_image | img_url: '400x300' }}" alt="{{ location.location_name }}">
-    {% endif %}
+      <div class="location-hero__address body">
+        <a href="{{ location.google_maps_link }}" target="_blank">{{ location.street_address }}</a>
+      </div>
+
+      <div class="location-hero__phone body">
+        <a href="tel:{{ location.phone_number }}">{{ location.phone_number }}</a>
+      </div>
+
+      <div class="location-hero__hours">
+        <div class="location-hero__hours-title body--bold">Opening Hours:</div>
+        <pre class="location-hero__hours-display body" id="opening-hours-display">{{ location.opening_hours }}</pre>
+      </div>
+
+      {% if location.location_description %}
+        <div class="location-hero__description body">{{ location.location_description }}</div>
+      {% endif %}
+
+      <a href="/pages/contact" class="location-hero__button body">Contact Store</a>
+
+      <div class="location-hero__time-info" id="current-time-info">
+        <div class="location-hero__current-time small" id="current-local-time">Loading current time...</div>
+        <div class="location-hero__opening-status small" id="opening-status">Checking opening status...</div>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -197,23 +348,24 @@
 
         const openingStatus = this.checkOpeningStatus(timeData, openingHours);
 
+        const statusDot = document.getElementById('location-status-dot');
+        if (statusDot && openingStatus) {
+          if (openingStatus.isOpen) {
+            statusDot.classList.remove('location-hero__status-dot--closed');
+          } else {
+            statusDot.classList.add('location-hero__status-dot--closed');
+          }
+        }
+
         const currentTimeElement = document.getElementById('current-local-time');
         if (currentTimeElement) {
           const dstIndicator = timeData.observesDST ? (timeData.isDST ? ' (DST)' : ' (Standard)') : '';
-
-          currentTimeElement.innerHTML = `
-            <strong>Current ${state} Time:</strong> ${timeData.time} on ${timeData.day}${dstIndicator}
-            <br><small>${timeData.offset}</small>
-          `;
+          currentTimeElement.innerHTML = `Current ${state} Time: ${timeData.time} on ${timeData.day}${dstIndicator}`;
         }
 
         const statusElement = document.getElementById('opening-status');
         if (statusElement && openingStatus) {
-          statusElement.innerHTML = `
-            <strong>
-              ${openingStatus.status}
-            </strong>
-          `;
+          statusElement.innerHTML = openingStatus.status;
         }
 
         console.log('Updated timezone data:', {
@@ -237,6 +389,14 @@
   "tag": "section",
   "enabled_on": {
     "templates": ["page"]
-  }
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "default_image",
+      "label": "Default Location Image",
+      "info": "Used when no image is set in the location metaobject"
+    }
+  ]
 }
 {% endschema %}
