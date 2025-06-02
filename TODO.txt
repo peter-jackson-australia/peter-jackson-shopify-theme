@@ -3,12 +3,7 @@ Todo:
 /////////////////////////////////////////////////////
 
 Location template: 
-Fix the time discrepencies (Account for daylight savings, fix QLD time when not in daylight savings) 
 Contact us button 
-FAQ’s 
-Collection slider secondary new arrivals 
-Latest news
-Location navigation 
 
 SECTIONS:
 Store locator / with leaflet:
