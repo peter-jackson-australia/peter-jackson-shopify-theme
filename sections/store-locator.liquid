@@ -92,6 +92,7 @@
           data-lng="{{ location.longitude.value }}"
           data-state="{{ location.location_state.value }}"
           data-hours="{{ location.opening_hours.value }}"
+          data-location-url="{{ location.location_page.value.url }}"
         >
           <div class="location-item__header">
             <div
@@ -176,6 +177,7 @@ function storeLocator() {
       // Add markers for each location
       {% for location in metaobjects.locations.values %}
         {% if location.latitude.value and location.longitude.value %}
+          var locationUrl = '{{ location.location_page.value.url }}';
           var marker = L.marker([{{ location.latitude.value }}, {{ location.longitude.value }}], {icon: storeIcon})
             .bindPopup(`
               <div class="location-item__header">
@@ -189,7 +191,7 @@ function storeLocator() {
                 <a href="tel:{{ location.phone_number.value }}">{{ location.phone_number.value }}</a>
               </div>
               <div class="location-item__hours body">
-                <a href="{{ location.location_page_url.value }}">View Location Details</a>
+                <a href="${locationUrl}">View Location Details</a>
               </div>
             `);
           marker.locationData = {
