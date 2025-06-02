@@ -93,18 +93,6 @@
     text-decoration: none;
   }
 
-  .location-hero__time-info {
-    margin-top: var(--space-s);
-  }
-
-  .location-hero__current-time {
-    margin-bottom: var(--space-3xs);
-  }
-
-  .location-hero__opening-status {
-    margin: 0;
-  }
-
   @media screen and (max-width: 1000px) {
     .location-hero {
       flex-direction: column;
@@ -170,11 +158,6 @@
       {% endif %}
 
       <a href="/pages/contact" class="location-hero__button body">Contact Us</a>
-
-      <div class="location-hero__time-info" id="current-time-info">
-        <div class="location-hero__current-time small" id="current-local-time">Loading current time...</div>
-        <div class="location-hero__opening-status small" id="opening-status">Checking opening status...</div>
-      </div>
     </div>
   </div>
 
@@ -343,17 +326,6 @@
           } else {
             statusDot.classList.add('location-hero__status-dot--closed');
           }
-        }
-
-        const currentTimeElement = document.getElementById('current-local-time');
-        if (currentTimeElement) {
-          const dstIndicator = timeData.observesDST ? (timeData.isDST ? ' (DST)' : ' (Standard)') : '';
-          currentTimeElement.innerHTML = `Current ${state} Time: ${timeData.time} on ${timeData.day}${dstIndicator}`;
-        }
-
-        const statusElement = document.getElementById('opening-status');
-        if (statusElement && openingStatus) {
-          statusElement.innerHTML = openingStatus.status;
         }
       }
     }
