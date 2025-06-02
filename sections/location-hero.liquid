@@ -1,9 +1,7 @@
 <style>
   .location-hero {
     display: flex;
-    align-items: flex-start;
-    gap: var(--space-xl);
-    padding: var(--space-xl) var(--space-m);
+    align-items: center;
   }
 
   .location-hero__image {
@@ -20,6 +18,7 @@
   .location-hero__content {
     flex: 1;
     max-width: 50%;
+    padding: var(--space-3xl);
   }
 
   .location-hero__header {
@@ -51,7 +50,6 @@
 
   .location-hero__address a {
     color: var(--neutral-950);
-    text-decoration: none;
   }
 
   .location-hero__phone {
@@ -60,7 +58,6 @@
 
   .location-hero__phone a {
     color: var(--neutral-950);
-    text-decoration: none;
   }
 
   .location-hero__hours {
@@ -107,7 +104,7 @@
     margin: 0;
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1000px) {
     .location-hero {
       flex-direction: column;
       gap: var(--space-m);
@@ -149,7 +146,7 @@
     <div class="location-hero__content">
       <div class="location-hero__header">
         <div class="location-hero__status-dot" id="location-status-dot"></div>
-        <h1 class="location-hero__title heading--3xl">{{ location.location_name }}</h1>
+        <h1 class="location-hero__title heading--2xl">{{ location.location_name }}</h1>
       </div>
 
       <div class="location-hero__address body">
@@ -169,7 +166,7 @@
         <div class="location-hero__description body">{{ location.location_description }}</div>
       {% endif %}
 
-      <a href="/pages/contact" class="location-hero__button body">Contact Store</a>
+      <a href="/pages/contact" class="location-hero__button body">Contact Us</a>
 
       <div class="location-hero__time-info" id="current-time-info">
         <div class="location-hero__current-time small" id="current-local-time">Loading current time...</div>
