@@ -26,26 +26,10 @@
             "horizontal_alignment": "center",
             "vertical_alignment": "bottom"
           }
-        },
-        "slide_b3nJFG": {
-          "type": "slide",
-          "settings": {
-            "media_type": "video",
-            "video": "shopify://files/videos/WT25-Homepage-Desktop-Compressed.mp4",
-            "heading": "Renaissance of Style",
-            "heading_animation": "none",
-            "description": "Winter 25 Collection",
-            "description_animation": "none",
-            "button_label": "Shop New",
-            "button_link": "shopify://collections/sale",
-            "horizontal_alignment": "center",
-            "vertical_alignment": "bottom"
-          }
         }
       },
       "block_order": [
-        "slide_ce6xVy",
-        "slide_b3nJFG"
+        "slide_ce6xVy"
       ],
       "name": "Hero Slider",
       "settings": {
