@@ -127,7 +127,7 @@
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
-        "show_bottom_border": false,
+        "show_bottom_border": true,
         "column_count": "3",
         "text_alignment": "center",
         "animate_images": false,
@@ -140,7 +140,7 @@
         "image_4_link": "",
         "image_5_link": "",
         "image_6_link": "",
-        "heading": "<h2>\"Quality is paramount for us. We own several farms in Australia which means we have totalcontrol from raw material to the finished product.\"</h2>Francesco Barberis- Vitale Barberis Canonico's Creative Director",
+        "heading": "<h2>\"Quality is paramount for us. We own several farms in Australia which means we have totalcontrol from raw material to the finished product.\"</h2><h6>Francesco Barberis- Vitale Barberis Canonico's Creative Director</h6>",
         "heading_animation": "none",
         "text": "Our collaboration is the meeting point of two philosophies — one Italian, one Australian. Both defined by heritage. Both driven by progress. Both committed to the idea that tailoring should never be rushed, compromised, or anything less than exceptional.The result? A suit that doesn’t just look refined — it feels considered. Woven from centuries of knowledge. Designed for life now.Because in a world chasing the next trend, we believe in dressing with intention. And that real style — like real craft — always moves forward.This is heritage, tailored for what’s next.",
         "text_animation": "none",
