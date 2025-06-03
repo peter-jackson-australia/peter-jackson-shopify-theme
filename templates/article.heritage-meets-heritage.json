@@ -75,25 +75,6 @@
         "button_link": ""
       }
     },
-    "image_with_text_FGfVYU": {
-      "type": "image-with-text",
-      "name": "Image With Text",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": false,
-        "first_image": "shopify://shop_images/vbc-6_900x_d2d55656-aae2-4e2a-a45d-3690ce635971.webp",
-        "image_link": "",
-        "animate_images": false,
-        "alignment": "right",
-        "heading": "",
-        "heading_animation": "none",
-        "text": "<h5>Dyeing:</h5>Utilising both traditional and innovative dyeing methods, VBC achieves vibrant and lasting colors, contributing to the fabric's aesthetic appeal.<br><br><h5>Weaving:</h5>Expert weavers employ precise techniques to interlace the yarns, creating fabrics with distinct patterns and textures that reflect VBC's commitment to craftsmanship.<br><br><h5>Finishing:</h5>The final stage involves specialised treatments to enhance the fabric's hand feel, drape, and performance characteristics, such as wrinkle resistance and breathability. <br><br>This comprehensive process, rooted in centuries of expertise and a commitment to sustainability, positions Vitale Barberis Canonico's fabrics among the finest in the world.",
-        "text_animation": "none",
-        "button_label": "",
-        "button_link": ""
-      }
-    },
     "hero_slider_zKUKdU": {
       "type": "hero-slider",
       "blocks": {
@@ -144,14 +125,14 @@
       "type": "collection-slider-secondary",
       "name": "Collection Slider Secondary",
       "settings": {
-        "heading": "European Textiles, Neapolitan Style",
-        "heading_animation": "none",
+        "heading": "The Vitale Barberis Canonico Edit",
+        "heading_animation": "animate-word-slide-up-scroll",
         "description": "",
         "description_animation": "none",
-        "collection": "suits",
-        "button_label": "Shop Winter Tailoring",
+        "collection": "vitale-barberis-canonico-edit",
+        "button_label": "Shop Suits",
         "products_to_show": 10,
-        "animate_products": false
+        "animate_products": true
       }
     },
     "variable_column_content_DECpXN": {
@@ -229,7 +210,6 @@
     "article",
     "two_column_content_JQLcTq",
     "image_with_text_KWmAa3",
-    "image_with_text_FGfVYU",
     "hero_slider_zKUKdU",
     "collection_slider_secondary_Fr3RYB",
     "variable_column_content_DECpXN",
