@@ -56,35 +56,6 @@
         "animate_columns": false
       }
     },
-    "hero_primary_AMqni9": {
-      "type": "hero-primary",
-      "name": "Hero Section",
-      "settings": {
-        "desktop_image": "shopify://shop_images/Wt25-Launch-Hero_2000x_463f760b-fb8a-497b-8b90-b7a1c37ff402.webp",
-        "heading": "Next-Level Outerwear",
-        "heading_animation": "none",
-        "description": "A refined essential for the season. Our wool coats balance structure with ease in a versatile car coat length.",
-        "description_animation": "none",
-        "button_label": "Shop Outerwear",
-        "button_link": "shopify://collections/outerwear",
-        "horizontal_alignment": "center",
-        "vertical_alignment": "bottom"
-      }
-    },
-    "collection_slider_secondary_GjGnVj": {
-      "type": "collection-slider-secondary",
-      "name": "Collection Slider Secondary",
-      "settings": {
-        "heading": "Outerwear",
-        "heading_animation": "none",
-        "description": "Premium winter jackets and coats",
-        "description_animation": "none",
-        "collection": "outerwear",
-        "button_label": "Shop All",
-        "products_to_show": 10,
-        "animate_products": true
-      }
-    },
     "image_with_text_KWmAa3": {
       "type": "image-with-text",
       "name": "Image With Text",
@@ -92,13 +63,13 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
-        "first_image": "shopify://shop_images/Higher-Ground-5_900x_b9c7f089-0715-4a89-9497-717235b82c9e.webp",
+        "first_image": "shopify://shop_images/vbc-5_900x_698ec877-f6c8-496c-9cff-7c3a34c8b13e.webp",
         "image_link": "",
         "animate_images": false,
         "alignment": "left",
-        "heading": "Quiet Command",
+        "heading": "Vitale Barberis Canonico is renowned for producing premium fabrics through a meticulous seven-step process that ensures exceptional quality and performance.",
         "heading_animation": "none",
-        "text": "The fine-gauge knit defines winter’s sharpest layer. In classic turtlenecks and clean crew styles, each piece is cut from a wool-cashmere blend that delivers warmth, breathability, and a soft, refined finish.",
+        "text": "<h5>Selection of Raw Materials:</h5>VBC sources high-quality Merino wool, including Super 180’s wool of 14.5 microns, from responsible farms that prioritise animal welfare and environmental sustainability.<br><br><h5>Shearing and Sorting:</h5>Skilled shearers carefully harvest the wool, which is then sorted to select only the finest fibers, ensuring uniformity and excellence in the final product.<br><br><h5>Scouring and Combing:</h5>The raw wool undergoes thorough cleaning to remove impurities, followed by combing to align fibers parallelly, resulting in a smooth and consistent texture.<br><br><h5>Spinning:</h5>Advanced spinning techniques transform the prepared fibers into fine yarns, balancing strength and softness to enhance the fabric's durability and comfort.",
         "text_animation": "none",
         "button_label": "Shop Knitwear",
         "button_link": ""
@@ -257,8 +228,6 @@
   "order": [
     "article",
     "two_column_content_JQLcTq",
-    "hero_primary_AMqni9",
-    "collection_slider_secondary_GjGnVj",
     "image_with_text_KWmAa3",
     "image_with_text_FGfVYU",
     "hero_slider_zKUKdU",
