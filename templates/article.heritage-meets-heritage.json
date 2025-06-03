@@ -83,6 +83,7 @@
           "settings": {
             "media_type": "image",
             "desktop_image": "shopify://shop_images/vbc-3_1944x_f80f9ce8-8ce7-4cbb-8349-3920f9cea80b.webp",
+            "mobile_image": "shopify://shop_images/vbc-14_900x_9145c0ef-15c0-404d-8a10-05faf7dd24c1.webp",
             "heading": "Woven From History",
             "heading_animation": "animate-paragraph-slide-up-scroll",
             "description": "Vitale Barberis Canonico’s archive, housing over 2,000 volumes of fabric samples dating back to 1860, is a living library of global textile history—demonstrating that true innovation is rooted in deep knowledge, where each new fabric draws from a legacy of design, technique, and timeless inspiration.",
