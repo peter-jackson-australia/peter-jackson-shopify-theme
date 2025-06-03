@@ -14,48 +14,17 @@
       "disabled": true,
       "settings": {}
     },
-    "editorial_hero_Q8bdNh": {
-      "type": "editorial-hero",
-      "name": "Hero Editorial",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": true,
-        "leading_text": "WINTER 25",
-        "leading_text_animation": "animate-paragraph-slide-up-scroll",
-        "first_title": "Higher",
-        "first_title_animation": "animate-paragraph-slide-up-scroll",
-        "media_type": "video",
-        "video": "shopify://files/videos/WT25-Homepage-Desktop-Compressed.mp4",
-        "animate_media": false,
-        "second_title": "Ground",
-        "second_title_animation": "animate-paragraph-slide-up-scroll",
-        "description": "Our winter collection embodies a mindset — one of purpose, progress, and refinement. Suits and sports jackets are reimagined in relaxed silhouettes, crafted from premium textiles that balance heritage with innovation. This is style designed not just for the day ahead, but for the journey beyond it — tailored for higher ground.",
-        "description_animation": "animate-paragraph-slide-up-scroll",
-        "cta_text": "Shop Now",
-        "cta_link": ""
-      }
-    },
-    "full_page_media_DQrgiW": {
-      "type": "full-page-media",
-      "name": "Full Page Media",
-      "settings": {
-        "media_type": "image",
-        "desktop_image": "shopify://shop_images/Higher-Ground-2_2102x_262d9e57-8b01-4718-8a37-b5c4260c1e99.webp",
-        "alt_text": "Full page media"
-      }
-    },
     "two_column_content_JQLcTq": {
       "type": "two-column-content",
       "blocks": {
         "column_E6NPhW": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/Higher-Ground-4_900x_343acf6e-e3ab-441b-9280-720a71ce8069.webp",
-            "product": "textured-rib-crew-neck-ash",
-            "heading": "The Build Up",
+            "image": "shopify://shop_images/VBC-1_720x_a0e85a06-2b36-494a-a1d4-ebf16e8bf383.webp",
+            "product": "",
+            "heading": "World Leading Wool",
             "heading_animation": "none",
-            "description": "New season knitwear. The ultimate outfit foundation piece.",
+            "description": "Vitale Barberis Canonico's wool is celebrated for its exceptional softness, durability, and refined drape, crafted from premium Australian Merino fibers",
             "description_animation": "none",
             "button_label": "Learn More",
             "button_link": ""
@@ -64,11 +33,11 @@
         "column_R9dG48": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/WT25-Suits_1512x_8ac5eb3d-e875-43bb-b6cf-13fc2f62f29c.webp",
+            "image": "shopify://shop_images/VBC-2_720x_65f43911-8662-44b8-ae79-240832404670.webp",
             "product": "",
-            "heading": "Winter Tailoring",
+            "heading": "Biella, Italy",
             "heading_animation": "none",
-            "description": "Merino wool suits for cooler days.",
+            "description": "Biella’s pristine Alpine water, ideal humidity, and historic mills create the perfect conditions for producing exceptionally fine and consistent textiles.",
             "description_animation": "none",
             "button_label": "Learn More",
             "button_link": ""
@@ -124,6 +93,7 @@
         "show_top_border": false,
         "show_bottom_border": false,
         "first_image": "shopify://shop_images/Higher-Ground-5_900x_b9c7f089-0715-4a89-9497-717235b82c9e.webp",
+        "image_link": "",
         "animate_images": false,
         "alignment": "left",
         "heading": "Quiet Command",
@@ -142,6 +112,7 @@
         "show_top_border": false,
         "show_bottom_border": false,
         "first_image": "shopify://shop_images/Higher-Ground-6_900x_e0484f2a-0263-454c-ab59-aff2b7c7618d.webp",
+        "image_link": "",
         "animate_images": false,
         "alignment": "right",
         "heading": "",
@@ -223,8 +194,14 @@
         "text_alignment": "center",
         "animate_images": false,
         "image_1": "shopify://shop_images/Higher-Ground-18_1296x_6f34e57a-a003-4ff4-846c-f56fd65a6fc1.webp",
+        "image_1_link": "",
         "image_2": "shopify://shop_images/Higher-Ground-20_1512x_bed04047-3e42-4ccc-84bf-fa81e433ba28.webp",
+        "image_2_link": "",
         "image_3": "shopify://shop_images/Higher-Ground-21_1296x_16db31b8-b465-43a2-a9e6-66f77ad4ca56.webp",
+        "image_3_link": "",
+        "image_4_link": "",
+        "image_5_link": "",
+        "image_6_link": "",
         "heading": "The Height Of Ease",
         "heading_animation": "none",
         "text": "Relaxed in form, precise in impact. These aren’t just off-duty layers — they’re refined essentials that bring structure to the everyday. Suede, denim, and soft tailoring offer a sense of polish, proving that casual can still carry weight.",
@@ -241,9 +218,12 @@
         "show_top_border": true,
         "show_bottom_border": false,
         "leading_text": "",
+        "leading_text_animation": "none",
         "heading": "The Feel Factor",
         "heading_style": "normal",
+        "heading_animation": "none",
         "content": "<p>Texture isn’t an accent — it’s the point. Wool-cashmere and corduroy add structure and depth to casual looks, making even off-duty outfits feel refined.</p>",
+        "content_animation": "none",
         "alignment": "center"
       }
     },
@@ -254,6 +234,8 @@
         "media_type": "image",
         "desktop_image": "shopify://shop_images/Higher-Ground-22_2000x_16836b81-bdc5-4650-9c30-02b0c87cdcfa.webp",
         "mobile_image": "shopify://shop_images/Higher-Ground-25_1296x_056d5532-ba31-4ca9-995b-dde481acb249.webp",
+        "link": "",
+        "link_text": "Learn more",
         "alt_text": "Full page media"
       }
     },
@@ -274,8 +256,6 @@
   },
   "order": [
     "article",
-    "editorial_hero_Q8bdNh",
-    "full_page_media_DQrgiW",
     "two_column_content_JQLcTq",
     "hero_primary_AMqni9",
     "collection_slider_secondary_GjGnVj",
