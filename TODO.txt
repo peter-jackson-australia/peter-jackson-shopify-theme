@@ -2,17 +2,16 @@ Todo:
 
 /////////////////////////////////////////////////////
 
-FIX GAP BETWEEN SLIDES FOR PRODUCT CARD
 Update Footer
 
 SECTIONS:
+
 Store locator / with leaflet:
 Fix forward/backwards issue with state dropdown (should always default back to VIC)
-
 Store locator section only allowed on pages 
 Latest news/blog hero section
+
 Blog collection templates for jackson journal and empowered mind
-404 page
 
 Main Menu:
 Logic for opening and closing menus, sidebars, modals without conflicting:
