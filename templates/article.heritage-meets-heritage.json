@@ -144,11 +144,23 @@
         "products_to_show": 10,
         "animate_products": true
       }
+    },
+    "full_page_media_hmrKEK": {
+      "type": "full-page-media",
+      "name": "Full Page Media",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/vbc-4_2102x_922bb62f-d4d5-4fc7-91ad-b4936c624edf.webp",
+        "link": "",
+        "link_text": "Learn more",
+        "alt_text": "Full page media"
+      }
     }
   },
   "order": [
     "article",
     "two_column_content_JQLcTq",
+    "full_page_media_hmrKEK",
     "image_with_text_KWmAa3",
     "hero_slider_zKUKdU",
     "variable_column_content_DECpXN",
