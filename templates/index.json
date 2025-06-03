@@ -21,10 +21,10 @@
             "heading_animation": "none",
             "description": "up to 50% Off Select Styles",
             "description_animation": "none",
-            "button_label": "Shop Now",
-            "button_link": "",
+            "button_label": "Shop Sale",
+            "button_link": "shopify://collections/sale",
             "horizontal_alignment": "center",
-            "vertical_alignment": "bottom"
+            "vertical_alignment": "middle"
           }
         }
       },
