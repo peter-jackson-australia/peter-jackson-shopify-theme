@@ -3,6 +3,7 @@ Todo:
 /////////////////////////////////////////////////////
 
 FIX GAP BETWEEN SLIDES FOR PRODUCT CARD
+Update Footer
 
 SECTIONS:
 Store locator / with leaflet:
