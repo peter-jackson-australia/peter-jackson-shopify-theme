@@ -56,6 +56,17 @@
         "animate_columns": false
       }
     },
+    "full_page_media_hmrKEK": {
+      "type": "full-page-media",
+      "name": "Full Page Media",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/vbc-4_2102x_922bb62f-d4d5-4fc7-91ad-b4936c624edf.webp",
+        "link": "",
+        "link_text": "Learn more",
+        "alt_text": "Full page media"
+      }
+    },
     "image_with_text_KWmAa3": {
       "type": "image-with-text",
       "name": "Image With Text",
@@ -69,7 +80,7 @@
         "alignment": "left",
         "heading": "Vitale Barberis Canonico is renowned for producing premium fabrics through a meticulous seven-step process that ensures exceptional quality and performance.",
         "heading_animation": "none",
-        "text": "Selection of Raw Materials:VBC sources high-quality Merino wool, including Super 180’s wool of 14.5 microns, from responsible farms that prioritise animal welfare and environmental sustainability.Shearing and Sorting:Skilled shearers carefully harvest the wool, which is then sorted to select only the finest fibers, ensuring uniformity and excellence in the final product.Scouring and Combing:The raw wool undergoes thorough cleaning to remove impurities, followed by combing to align fibers parallelly, resulting in a smooth and consistent texture.Spinning:Advanced spinning techniques transform the prepared fibers into fine yarns, balancing strength and softness to enhance the fabric's durability and comfort.",
+        "text": "<h5>Selection of Raw Materials:</h5>VBC sources high-quality Merino wool, including Super 180’s wool of 14.5 microns, from responsible farms that prioritise animal welfare and environmental sustainability.<br><br><h5>Shearing and Sorting:</h5>Skilled shearers carefully harvest the wool, which is then sorted to select only the finest fibers, ensuring uniformity and excellence in the final product.<br><br><h5>Scouring and Combing:</h5>The raw wool undergoes thorough cleaning to remove impurities, followed by combing to align fibers parallelly, resulting in a smooth and consistent texture.<br><br><h5>Spinning:</h5>Advanced spinning techniques transform the prepared fibers into fine yarns, balancing strength and softness to enhance the fabric's durability and comfort.",
         "text_animation": "none",
         "button_label": "Shop Knitwear",
         "button_link": ""
@@ -143,17 +154,6 @@
         "button_label": "Shop Suits",
         "products_to_show": 10,
         "animate_products": true
-      }
-    },
-    "full_page_media_hmrKEK": {
-      "type": "full-page-media",
-      "name": "Full Page Media",
-      "settings": {
-        "media_type": "image",
-        "desktop_image": "shopify://shop_images/vbc-4_2102x_922bb62f-d4d5-4fc7-91ad-b4936c624edf.webp",
-        "link": "",
-        "link_text": "Learn more",
-        "alt_text": "Full page media"
       }
     }
   },
