@@ -2,14 +2,13 @@ Todo:
 
 /////////////////////////////////////////////////////
 
-Update Footer
-
 SECTIONS:
 
 Store locator / with leaflet:
-Fix forward/backwards issue with state dropdown (should always default back to VIC)
 Store locator section only allowed on pages 
 Latest news/blog hero section
+
+Update Footer
 
 Blog collection templates for jackson journal and empowered mind
 

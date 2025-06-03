@@ -8,7 +8,6 @@
   }
   .store-locator__container {
     display: flex;
-    gap: 20px;
   }
   .store-locator__map {
     flex: 1;
@@ -67,12 +66,13 @@
       placeholder="Search by name, address or state"
     >
     <select x-model="selectedState" @change="filterLocations" class="store-locator__state-select">
+      <option value="" selected>All</option>
       <option value="WA">WA</option>
       <option value="NT">NT</option>
       <option value="SA">SA</option>
       <option value="QLD">QLD</option>
       <option value="NSW">NSW</option>
-      <option value="VIC" selected>VIC</option>
+      <option value="VIC">VIC</option>
       <option value="ACT">ACT</option>
       <option value="TAS">TAS</option>
     </select>
@@ -83,11 +83,11 @@
       <div id="map"></div>
     </div>
 
-    <div class="store-locator__sidebar">
+    <div class="store-locator__sidebar custom-scrollbar">
       {% for location in metaobjects.locations.values %}
         <div
           class="location-item"
-          x-show="isLocationVisible('{{ location.location_name.value }}', '{{ location.address.value | default: '' }}', '{{ location.location_state.value | default: '' }}')"
+          x-show="isLocationVisible('{{ location.location_name.value }}', '{{ location.street_address.value | default: '' }}', '{{ location.location_state.value | default: '' }}')"
           data-lat="{{ location.latitude.value }}"
           data-lng="{{ location.longitude.value }}"
           data-state="{{ location.location_state.value }}"
@@ -127,47 +127,52 @@
 </div>
 
 <script>
-// Alpine.js component
 function storeLocator() {
   return {
     searchTerm: '',
-    selectedState: 'VIC',
+    selectedState: '',
     markers: [],
     map: null,
     timezoneHandler: null,
     
     init() {
-      // Get search term from URL
       const urlParams = new URLSearchParams(window.location.search);
       const querySearch = urlParams.get('search');
       if (querySearch) {
         this.searchTerm = querySearch;
+        this.selectedState = '';
       }
       
-      // Initialize timezone handler
+      const queryState = urlParams.get('state');
+      const storedState = sessionStorage.getItem('selectedState');
+      
+      if (!querySearch) {
+        if (queryState && ['WA', 'NT', 'SA', 'QLD', 'NSW', 'VIC', 'ACT', 'TAS', ''].includes(queryState)) {
+          this.selectedState = queryState;
+          sessionStorage.setItem('selectedState', queryState);
+        } else if (storedState && ['WA', 'NT', 'SA', 'QLD', 'NSW', 'VIC', 'ACT', 'TAS', ''].includes(storedState)) {
+          this.selectedState = storedState;
+        }
+      }
+      
       this.timezoneHandler = new ShopifyTimezoneHandler();
       
-      // Initialize map after Alpine is ready
       this.$nextTick(() => {
         this.initMap();
         this.filterLocations();
         this.updateAllLocationTimes();
-        // Update times every minute
         setInterval(() => this.updateAllLocationTimes(), 60000);
       });
     },
     
     initMap() {
-      // Initialize map centered on Australia
       this.map = L.map('map').setView([-25.2744, 133.7751], 5);
 
-      // Add black and white tile layer
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors',
         maxZoom: 18
       }).addTo(this.map);
 
-      // Create custom icon
       var storeIcon = L.icon({
         iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
         shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
@@ -177,7 +182,6 @@ function storeLocator() {
         shadowSize: [41, 41]
       });
 
-      // Add markers for each location
       {% for location in metaobjects.locations.values %}
         {% if location.latitude.value and location.longitude.value %}
           var locationUrl = '{{ location.location_page.value.url }}';
@@ -199,7 +203,7 @@ function storeLocator() {
             `);
           marker.locationData = {
             name: '{{ location.location_name.value }}',
-            address: '{{ location.address.value | default: '' }}',
+            address: '{{ location.street_address.value | default: '' }}',
             state: '{{ location.location_state.value | default: '' }}'
           };
           this.markers.push(marker);
@@ -221,7 +225,8 @@ function storeLocator() {
     },
     
     filterLocations() {
-      // Filter markers on map
+      sessionStorage.setItem('selectedState', this.selectedState);
+      
       this.markers.forEach(marker => {
         const data = marker.locationData;
         if (this.isLocationVisible(data.name, data.address, data.state)) {
@@ -243,7 +248,6 @@ function storeLocator() {
           const timeData = this.timezoneHandler.getStateTime(state);
           const openingStatus = this.timezoneHandler.checkOpeningStatus(timeData, hours);
           
-          // Update status dot
           const statusDot = item.querySelector('[data-location-status]');
           if (statusDot && openingStatus) {
             if (openingStatus.isOpen) {
@@ -253,7 +257,6 @@ function storeLocator() {
             }
           }
           
-          // Update today's hours display
           const todayHoursElement = item.querySelector('[data-today-hours]');
           if (todayHoursElement && openingStatus) {
             todayHoursElement.textContent = openingStatus.hours || 'Hours not available';
@@ -264,7 +267,6 @@ function storeLocator() {
   }
 }
 
-// Timezone Handler Class (copied exactly from location-hero.liquid)
 class ShopifyTimezoneHandler {
   constructor() {
     this.timezones = {
