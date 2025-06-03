@@ -80,7 +80,26 @@
         "alignment": "left",
         "heading": "Vitale Barberis Canonico is renowned for producing premium fabrics through a meticulous seven-step process that ensures exceptional quality and performance.",
         "heading_animation": "none",
-        "text": "<h5>Selection of Raw Materials:</h5>VBC sources high-quality Merino wool, including Super 180’s wool of 14.5 microns, from responsible farms that prioritise animal welfare and environmental sustainability.<br><br><h5>Shearing and Sorting:</h5>Skilled shearers carefully harvest the wool, which is then sorted to select only the finest fibers, ensuring uniformity and excellence in the final product.<br><br><h5>Scouring and Combing:</h5>The raw wool undergoes thorough cleaning to remove impurities, followed by combing to align fibers parallelly, resulting in a smooth and consistent texture.<br><br><h5>Spinning:</h5>Advanced spinning techniques transform the prepared fibers into fine yarns, balancing strength and softness to enhance the fabric's durability and comfort.",
+        "text": "Selection of Raw Materials:VBC sources high-quality Merino wool, including Super 180’s wool of 14.5 microns, from responsible farms that prioritise animal welfare and environmental sustainability.Shearing and Sorting:Skilled shearers carefully harvest the wool, which is then sorted to select only the finest fibers, ensuring uniformity and excellence in the final product.Scouring and Combing:The raw wool undergoes thorough cleaning to remove impurities, followed by combing to align fibers parallelly, resulting in a smooth and consistent texture.Spinning:Advanced spinning techniques transform the prepared fibers into fine yarns, balancing strength and softness to enhance the fabric's durability and comfort.",
+        "text_animation": "none",
+        "button_label": "Shop Knitwear",
+        "button_link": ""
+      }
+    },
+    "image_with_text_8ePUyF": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "first_image": "shopify://shop_images/vbc-5_900x_698ec877-f6c8-496c-9cff-7c3a34c8b13e.webp",
+        "image_link": "",
+        "animate_images": false,
+        "alignment": "right",
+        "heading": "",
+        "heading_animation": "none",
+        "text": "Selection of Raw Materials:VBC sources high-quality Merino wool, including Super 180’s wool of 14.5 microns, from responsible farms that prioritise animal welfare and environmental sustainability.Shearing and Sorting:Skilled shearers carefully harvest the wool, which is then sorted to select only the finest fibers, ensuring uniformity and excellence in the final product.Scouring and Combing:The raw wool undergoes thorough cleaning to remove impurities, followed by combing to align fibers parallelly, resulting in a smooth and consistent texture.Spinning:Advanced spinning techniques transform the prepared fibers into fine yarns, balancing strength and softness to enhance the fabric's durability and comfort.",
         "text_animation": "none",
         "button_label": "Shop Knitwear",
         "button_link": ""
@@ -162,6 +181,7 @@
     "two_column_content_JQLcTq",
     "full_page_media_hmrKEK",
     "image_with_text_KWmAa3",
+    "image_with_text_8ePUyF",
     "hero_slider_zKUKdU",
     "variable_column_content_DECpXN",
     "collection_slider_secondary_Fr3RYB"
