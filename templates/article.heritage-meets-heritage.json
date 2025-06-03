@@ -121,6 +121,33 @@
         "slide_interval": 5
       }
     },
+    "variable_column_content_DECpXN": {
+      "type": "variable-column-content",
+      "name": "Variable Column Content",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "3",
+        "text_alignment": "center",
+        "animate_images": false,
+        "image_1": "shopify://shop_images/vbc-8_900x_49c97f48-4903-4f24-9db9-048259aa59f2.webp",
+        "image_1_link": "",
+        "image_2": "shopify://shop_images/vbc-7_900x_6f13bf95-dc1a-482e-ab4c-1425c53a1e4f.webp",
+        "image_2_link": "",
+        "image_3": "shopify://shop_images/vbc-9_900x_1d08ce9c-9926-400d-839c-ad55d51d870a.webp",
+        "image_3_link": "",
+        "image_4_link": "",
+        "image_5_link": "",
+        "image_6_link": "",
+        "heading": "<h2>\"Quality is paramount for us. We own several farms in Australia which means we have totalcontrol from raw material to the finished product.\"</h2>Francesco Barberis- Vitale Barberis Canonico's Creative Director",
+        "heading_animation": "none",
+        "text": "Our collaboration is the meeting point of two philosophies — one Italian, one Australian. Both defined by heritage. Both driven by progress. Both committed to the idea that tailoring should never be rushed, compromised, or anything less than exceptional.The result? A suit that doesn’t just look refined — it feels considered. Woven from centuries of knowledge. Designed for life now.Because in a world chasing the next trend, we believe in dressing with intention. And that real style — like real craft — always moves forward.This is heritage, tailored for what’s next.",
+        "text_animation": "none",
+        "button_label": "",
+        "button_link": ""
+      }
+    },
     "collection_slider_secondary_Fr3RYB": {
       "type": "collection-slider-secondary",
       "name": "Collection Slider Secondary",
@@ -134,76 +161,6 @@
         "products_to_show": 10,
         "animate_products": true
       }
-    },
-    "variable_column_content_DECpXN": {
-      "type": "variable-column-content",
-      "name": "Variable Column Content",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": false,
-        "column_count": "3",
-        "text_alignment": "center",
-        "animate_images": false,
-        "image_1": "shopify://shop_images/Higher-Ground-18_1296x_6f34e57a-a003-4ff4-846c-f56fd65a6fc1.webp",
-        "image_1_link": "",
-        "image_2": "shopify://shop_images/Higher-Ground-20_1512x_bed04047-3e42-4ccc-84bf-fa81e433ba28.webp",
-        "image_2_link": "",
-        "image_3": "shopify://shop_images/Higher-Ground-21_1296x_16db31b8-b465-43a2-a9e6-66f77ad4ca56.webp",
-        "image_3_link": "",
-        "image_4_link": "",
-        "image_5_link": "",
-        "image_6_link": "",
-        "heading": "The Height Of Ease",
-        "heading_animation": "none",
-        "text": "Relaxed in form, precise in impact. These aren’t just off-duty layers — they’re refined essentials that bring structure to the everyday. Suede, denim, and soft tailoring offer a sense of polish, proving that casual can still carry weight.",
-        "text_animation": "none",
-        "button_label": "Shop Casual Essentials",
-        "button_link": "shopify://collections/casual"
-      }
-    },
-    "heading_with_text_NFCiF4": {
-      "type": "heading-with-text",
-      "name": "Heading with Text",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": true,
-        "show_bottom_border": false,
-        "leading_text": "",
-        "leading_text_animation": "none",
-        "heading": "The Feel Factor",
-        "heading_style": "normal",
-        "heading_animation": "none",
-        "content": "<p>Texture isn’t an accent — it’s the point. Wool-cashmere and corduroy add structure and depth to casual looks, making even off-duty outfits feel refined.</p>",
-        "content_animation": "none",
-        "alignment": "center"
-      }
-    },
-    "full_page_media_fUVJVk": {
-      "type": "full-page-media",
-      "name": "Full Page Media",
-      "settings": {
-        "media_type": "image",
-        "desktop_image": "shopify://shop_images/Higher-Ground-22_2000x_16836b81-bdc5-4650-9c30-02b0c87cdcfa.webp",
-        "mobile_image": "shopify://shop_images/Higher-Ground-25_1296x_056d5532-ba31-4ca9-995b-dde481acb249.webp",
-        "link": "",
-        "link_text": "Learn more",
-        "alt_text": "Full page media"
-      }
-    },
-    "collection_slider_secondary_yGfCVj": {
-      "type": "collection-slider-secondary",
-      "name": "Collection Slider Secondary",
-      "settings": {
-        "heading": "Shop New Season",
-        "heading_animation": "none",
-        "description": "",
-        "description_animation": "none",
-        "collection": "new-arrivals",
-        "button_label": "New In",
-        "products_to_show": 10,
-        "animate_products": false
-      }
     }
   },
   "order": [
@@ -211,10 +168,7 @@
     "two_column_content_JQLcTq",
     "image_with_text_KWmAa3",
     "hero_slider_zKUKdU",
-    "collection_slider_secondary_Fr3RYB",
     "variable_column_content_DECpXN",
-    "heading_with_text_NFCiF4",
-    "full_page_media_fUVJVk",
-    "collection_slider_secondary_yGfCVj"
+    "collection_slider_secondary_Fr3RYB"
   ]
 }
