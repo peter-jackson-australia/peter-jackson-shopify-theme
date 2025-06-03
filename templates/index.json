@@ -62,7 +62,7 @@
         "description_animation": "none",
         "button_label": "Shop Now",
         "button_link": "shopify://collections/outerwear",
-        "horizontal_alignment": "left",
+        "horizontal_alignment": "center",
         "vertical_alignment": "middle"
       }
     },
@@ -78,7 +78,7 @@
             "heading_animation": "none",
             "text": "Winter jackets & coats",
             "text_animation": "none",
-            "column_link": "",
+            "column_link": "shopify://collections/accessories",
             "column_link_text": "Shop Now"
           }
         },
