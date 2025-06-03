@@ -14,6 +14,23 @@
       "disabled": true,
       "settings": {}
     },
+    "icon_callout_jLfbke": {
+      "type": "icon-callout",
+      "name": "Icon Callout",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "icon": "shopify://shop_images/Beyond-Blue-White.svg",
+        "heading": "",
+        "heading_animation": "none",
+        "text": "",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": "",
+        "background_color": "white"
+      }
+    },
     "editorial_hero_Q8bdNh": {
       "type": "editorial-hero",
       "name": "Hero Editorial",
@@ -289,6 +306,7 @@
   },
   "order": [
     "article",
+    "icon_callout_jLfbke",
     "editorial_hero_Q8bdNh",
     "full_page_media_DQrgiW",
     "two_column_content_JQLcTq",
