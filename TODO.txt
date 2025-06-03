@@ -7,6 +7,7 @@ SECTIONS:
 Store locator / with leaflet:
 Store locator section only allowed on pages 
 Latest news/blog hero section
+Styling
 
 Update Footer
 
