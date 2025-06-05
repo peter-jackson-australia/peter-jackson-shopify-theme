@@ -11,7 +11,17 @@ Latest news/blog hero section
 Styling
 Animations
 
-Update Footer
+Update Footer:
+Icon sections 
+store locator search bar 
+newsletter sign up
+
+Empowered Mind template: 
+Fix design issues from Corey
+
+Main Menu: 
+Fix hover underline on newsletter signup
+Hide newsletter sign up except for thank you message on submission
 
 Blog collection templates for jackson journal and empowered mind
 
