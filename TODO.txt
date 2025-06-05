@@ -19,15 +19,15 @@ newsletter sign up
 Empowered Mind template: 
 Fix design issues from Corey
 
-Main Menu: 
-Fix hover underline on newsletter signup
-Hide newsletter sign up except for thank you message on submission
-
 Blog collection templates for jackson journal and empowered mind
 
-Main Menu:
+Sidebar drawers: 
 Logic for opening and closing menus, sidebars, modals without conflicting:
     list all of the drawers and menus
+
+Main Menu:
+Fix hover underline on newsletter signup
+Hide newsletter sign up except for thank you message on submission
 Preserve scroll position when menu is open
 Add ability to change video, video subtitle, newsletter title and newsletter legal spiel in theme editor
 
