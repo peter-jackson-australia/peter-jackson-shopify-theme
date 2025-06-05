@@ -2,16 +2,6 @@ Todo:
 
 /////////////////////////////////////////////////////
 
-Create additional sections for Corey
-
-Create metaobjects for all location
-    Reference the pages
-Go through each location page and reference corresponding location metaobject
-
-Add meta descriptions to all location pages
-
-Test location landing page on 10 locations on store locator
-
 SECTIONS:
 
 Store locator / with leaflet:
@@ -48,8 +38,6 @@ Create logic to hide low stock variants
 Install shippit 
 Bring Gift Cards over to new site 
 Move to live Harmony environment 
-
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
