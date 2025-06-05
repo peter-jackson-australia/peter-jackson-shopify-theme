@@ -15,17 +15,29 @@ Test location landing page on 10 locations on store locator
 SECTIONS:
 
 Store locator / with leaflet:
-Store locator section only allowed on pages 
+No results found message
+Store locator section only allowed on custom pages 
 Latest news/blog hero section
 Styling
+Animations
 
-Update Footer
+Update Footer:
+Icon sections 
+store locator search bar 
+newsletter sign up
+
+Empowered Mind template: 
+Fix design issues from Corey
 
 Blog collection templates for jackson journal and empowered mind
 
-Main Menu:
+Sidebar drawers: 
 Logic for opening and closing menus, sidebars, modals without conflicting:
     list all of the drawers and menus
+
+Main Menu:
+Fix hover underline on newsletter signup
+Hide newsletter sign up except for thank you message on submission
 Preserve scroll position when menu is open
 Add ability to change video, video subtitle, newsletter title and newsletter legal spiel in theme editor
 
