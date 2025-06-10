@@ -19,7 +19,7 @@
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
-        "show_bottom_border": false,
+        "show_bottom_border": true,
         "icon": "shopify://shop_images/beyond-blue-footer-logo.svg",
         "heading": "Beyond Blue 24/7 Support Service - Call 1300 224 636",
         "heading_animation": "none",
