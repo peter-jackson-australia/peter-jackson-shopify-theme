@@ -18,10 +18,7 @@ newsletter sign up
 
 Empowered Mind template: 
 Fix design issues with Corey: 
-
-2) Add forward slash to blog tags 
-
-4) run it by nick
+    run it by nick
 
 
 Sidebar drawers: 
