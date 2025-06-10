@@ -19,13 +19,7 @@ newsletter sign up
 Empowered Mind template: 
 Fix design issues with Corey: 
 
-1) Fix the blockquote
-
-2) Add forward flash to blog tags 
-
-3) .article-content > * {
-    margin-bottom: var(--space-2xl) !important;
-}
+2) Add forward slash to blog tags 
 
 4) run it by nick
 
