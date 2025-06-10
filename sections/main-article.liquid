@@ -67,11 +67,11 @@
     margin: 0 auto;
     text-align: left;
     padding: 0px var(--space-m);
-    padding-bottom: calc(var(--space-2xl) - var(--space-m));
+    padding-bottom: var(--space-2xl);
   }
 
-  .article-content > * {
-    margin-bottom: var(--space-2xl) !important;
+  .article-content > *:not(:last-child) {
+    margin-bottom: var(--space-xl) !important;
   }
 
   .article-content p,
