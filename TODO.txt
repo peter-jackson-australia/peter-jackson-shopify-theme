@@ -21,7 +21,7 @@ Fix design issues from Corey
 
 Sidebar drawers: 
 Logic for opening and closing menus, sidebars, modals without conflicting:
-    list all of the drawers and menus
+list all of the drawers and menus
 
 Main Menu:
 Fix hover underline on newsletter signup
@@ -48,6 +48,3 @@ Make all lazy load images and slides
 Move all CSS to their own files in assets folder
 Remove animations from collection slider
 Make the product card more optimised, it's too bloated
-
-_Table_wsb50_10 _ScrollableTable_wsb50_16
-_Table_wsb50_10 _ScrollableTable_wsb50_16
