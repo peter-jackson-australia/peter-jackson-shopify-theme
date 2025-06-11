@@ -8,6 +8,9 @@ Store locator / with leaflet:
 Styling
 Animations
 
+Store location page: 
+styling
+
 Update Footer:
 Icon sections 
 store locator search bar 
@@ -17,6 +20,7 @@ Sidebar drawers:
 Logic for opening and closing menus, sidebars, modals without conflicting:
 list all of the drawers and menus
 Basically any opened menus should be closed by clicking anywhere outside of the opened menu
+animate all drawers
 
 Main Menu:
 Fix hover underline on newsletter signup

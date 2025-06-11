@@ -250,21 +250,21 @@ function storeLocator() {
       this.$nextTick(() => {
         const visibleLocations = document.querySelectorAll('.location-item[data-lat]:not([style*="display: none"])');
         this.showNoResults = this.searchTerm.length > 0 && visibleLocations.length === 0;
+        this.updateAllLocationTimes();
       });
     },
     
     updateAllLocationTimes() {
-      const locationItems = document.querySelectorAll('.location-item');
+      const locationItems = document.querySelectorAll('.location-item[data-state]');
       locationItems.forEach(item => {
         const state = item.getAttribute('data-state');
         const hours = item.getAttribute('data-hours');
-        const locationId = item.querySelector('[data-location-status]').getAttribute('data-location-status');
         
         if (state && hours) {
           const timeData = this.timezoneHandler.getStateTime(state);
           const openingStatus = this.timezoneHandler.checkOpeningStatus(timeData, hours);
           
-          const statusDot = item.querySelector('[data-location-status]');
+          const statusDot = item.querySelector('.location-item__status-dot');
           if (statusDot && openingStatus) {
             if (openingStatus.isOpen) {
               statusDot.classList.remove('location-item__status-dot--closed');
