@@ -5,7 +5,6 @@ Todo:
 SECTIONS:
 
 Store locator / with leaflet:
-No results found message
 Store locator section only allowed on custom pages 
 Styling
 Animations
