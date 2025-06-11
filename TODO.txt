@@ -4,6 +4,8 @@ Todo:
 
 SECTIONS:
 
+Update primary hero to accept video as background
+
 Store locator / with leaflet:
 Show more than 50 locations
 No results found message
