@@ -9,34 +9,6 @@
  */
 {
   "sections": {
-    "hero_slider_YwPfy7": {
-      "type": "hero-slider",
-      "blocks": {
-        "slide_ce6xVy": {
-          "type": "slide",
-          "settings": {
-            "media_type": "video",
-            "video": "shopify://files/videos/HYS_No Overlay.mp4",
-            "heading": "Half Year Sale",
-            "heading_animation": "none",
-            "description": "up to 50% Off Select Styles",
-            "description_animation": "none",
-            "button_label": "Shop Sale",
-            "button_link": "shopify://collections/sale",
-            "horizontal_alignment": "center",
-            "vertical_alignment": "middle"
-          }
-        }
-      },
-      "block_order": [
-        "slide_ce6xVy"
-      ],
-      "name": "Hero Slider",
-      "settings": {
-        "autoplay": true,
-        "slide_interval": 5
-      }
-    },
     "hero_primary_4HRPTU": {
       "type": "hero-primary",
       "name": "Hero Section",
@@ -192,7 +164,6 @@
     }
   },
   "order": [
-    "hero_slider_YwPfy7",
     "hero_primary_4HRPTU",
     "collection_slider_wUXWw3",
     "hero_primary_YCJLcF",
