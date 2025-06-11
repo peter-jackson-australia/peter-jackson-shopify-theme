@@ -12,9 +12,7 @@
     "article": {
       "type": "main-article",
       "disabled": true,
-      "settings": {
-        "max_width": 768
-      }
+      "settings": {}
     },
     "editorial_hero_Q8bdNh": {
       "type": "editorial-hero",
@@ -208,7 +206,7 @@
         "heading_animation": "none",
         "description": "",
         "description_animation": "none",
-        "collection": "suits",
+        "collection": "mens-suits",
         "button_label": "Shop Winter Tailoring",
         "products_to_show": 10,
         "animate_products": false
