@@ -29,7 +29,6 @@ Add ability to change video, video subtitle, newsletter title and newsletter leg
 
 Blog collection templates for jackson journal and empowered mind
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ADMIN:
