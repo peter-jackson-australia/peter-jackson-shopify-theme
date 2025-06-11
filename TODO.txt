@@ -37,7 +37,6 @@ Create logic to hide low stock variants
 Install shippit 
 Bring Gift Cards over to new site 
 Move to live Harmony environment 
-Find a way to have dynamic priority locations based on day of run
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
