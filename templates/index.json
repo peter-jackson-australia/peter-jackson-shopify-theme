@@ -37,6 +37,23 @@
         "slide_interval": 5
       }
     },
+    "hero_primary_4HRPTU": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "media_type": "video",
+        "video": "shopify://files/videos/HYS_No Overlay.mp4",
+        "mobile_video": "shopify://files/videos/Sale Red Fabric_Final.mp4",
+        "heading": "Half Year Sale",
+        "heading_animation": "none",
+        "description": "Up to 50% Off Select Styles",
+        "description_animation": "none",
+        "button_label": "Shop Sale",
+        "button_link": "shopify://collections/sale",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "middle"
+      }
+    },
     "collection_slider_wUXWw3": {
       "type": "collection-slider",
       "name": "Collection Slider",
@@ -55,6 +72,7 @@
       "type": "hero-primary",
       "name": "Hero Section",
       "settings": {
+        "media_type": "image",
         "desktop_image": "shopify://shop_images/Click_Frenzy_Hero.webp",
         "heading": "Outerwear",
         "heading_animation": "none",
@@ -175,6 +193,7 @@
   },
   "order": [
     "hero_slider_YwPfy7",
+    "hero_primary_4HRPTU",
     "collection_slider_wUXWw3",
     "hero_primary_YCJLcF",
     "variable_column_content_secondary_jHpEgT",
