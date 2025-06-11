@@ -7,7 +7,6 @@ SECTIONS:
 Store locator / with leaflet:
 No results found message
 Store locator section only allowed on custom pages 
-Latest news/blog hero section
 Styling
 Animations
 
