@@ -20,7 +20,6 @@ Empowered Mind template:
 Fix design issues with Corey: 
     run it by nick
 
-
 Sidebar drawers: 
 Logic for opening and closing menus, sidebars, modals without conflicting:
 list all of the drawers and menus
