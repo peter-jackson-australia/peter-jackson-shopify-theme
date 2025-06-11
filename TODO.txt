@@ -16,10 +16,6 @@ Icon sections
 store locator search bar 
 newsletter sign up
 
-Empowered Mind template: 
-Fix design issues with Corey: 
-    run it by nick
-
 Sidebar drawers: 
 Logic for opening and closing menus, sidebars, modals without conflicting:
 list all of the drawers and menus
@@ -41,6 +37,7 @@ Create logic to hide low stock variants
 Install shippit 
 Bring Gift Cards over to new site 
 Move to live Harmony environment 
+Find a way to have dynamic priority locations based on day of run
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
