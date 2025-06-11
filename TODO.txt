@@ -5,7 +5,6 @@ Todo:
 SECTIONS:
 
 Store locator / with leaflet:
-Show more than 50 locations
 No results found message
 Store locator section only allowed on custom pages 
 Latest news/blog hero section

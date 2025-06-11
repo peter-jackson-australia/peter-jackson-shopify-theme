@@ -84,44 +84,46 @@
     </div>
 
     <div class="store-locator__sidebar custom-scrollbar">
-      {% for location in metaobjects.locations.values %}
-        <div
-          class="location-item"
-          x-show="isLocationVisible('{{ location.location_name.value }}', '{{ location.street_address.value | default: '' }}', '{{ location.location_state.value | default: '' }}')"
-          data-lat="{{ location.latitude.value }}"
-          data-lng="{{ location.longitude.value }}"
-          data-state="{{ location.location_state.value }}"
-          data-hours="{{ location.opening_hours.value }}"
-          data-location-url="{{ location.location_page.value.url }}"
-        >
-          <div class="location-item__header">
-            <div
-              class="location-item__status-dot"
-              data-location-status="{{ location.location_name.value | handleize }}"
-            ></div>
-            <h3 class="location-item__title heading--xl">{{ location.location_name.value }}</h3>
-          </div>
+      {% paginate metaobjects.locations.values by 200 %}
+        {% for location in metaobjects.locations.values %}
+          <div
+            class="location-item"
+            x-show="isLocationVisible('{{ location.location_name.value }}', '{{ location.street_address.value | default: '' }}', '{{ location.location_state.value | default: '' }}')"
+            data-lat="{{ location.latitude.value }}"
+            data-lng="{{ location.longitude.value }}"
+            data-state="{{ location.location_state.value }}"
+            data-hours="{{ location.opening_hours.value }}"
+            data-location-url="{{ location.location_page.value.url }}"
+          >
+            <div class="location-item__header">
+              <div
+                class="location-item__status-dot"
+                data-location-status="{{ location.location_name.value | handleize }}"
+              ></div>
+              <h3 class="location-item__title heading--xl">{{ location.location_name.value }}</h3>
+            </div>
 
-          <div class="location-item__address body">
-            <a href="{{ location.google_maps_link.value }}">{{ location.street_address.value }}</a>
-          </div>
+            <div class="location-item__address body">
+              <a href="{{ location.google_maps_link.value }}">{{ location.street_address.value }}</a>
+            </div>
 
-          <div class="location-item__contact body">
-            <a href="mailto:{{ location.email_address.value }}">{{ location.email_address.value }}</a> |
-            <a href="tel:{{ location.phone_number.value }}">{{ location.phone_number.value }}</a>
-          </div>
+            <div class="location-item__contact body">
+              <a href="mailto:{{ location.email_address.value }}">{{ location.email_address.value }}</a> |
+              <a href="tel:{{ location.phone_number.value }}">{{ location.phone_number.value }}</a>
+            </div>
 
-          <div class="location-item__hours body">
-            <strong>Open Today:</strong>
-            <span data-today-hours="{{ location.location_name.value | handleize }}">
-              {{- location.opening_hours.value -}}
-            </span>
+            <div class="location-item__hours body">
+              <strong>Open Today:</strong>
+              <span data-today-hours="{{ location.location_name.value | handleize }}">
+                {{- location.opening_hours.value -}}
+              </span>
+            </div>
+            <div class="location-item__link body">
+              <a href="{{ location.location_page.value.url }}">View Store Information</a>
+            </div>
           </div>
-          <div class="location-item__link body">
-            <a href="{{ location.location_page.value.url }}">View Store Information</a>
-          </div>
-        </div>
-      {% endfor %}
+        {% endfor %}
+      {% endpaginate %}
     </div>
   </div>
 </div>
@@ -182,6 +184,7 @@ function storeLocator() {
         shadowSize: [41, 41]
       });
 
+      {% paginate metaobjects.locations.values by 200 %}
       {% for location in metaobjects.locations.values %}
         {% if location.latitude.value and location.longitude.value %}
           var locationUrl = '{{ location.location_page.value.url }}';
@@ -210,6 +213,7 @@ function storeLocator() {
           marker.addTo(this.map);
         {% endif %}
       {% endfor %}
+    {% endpaginate %}
     },
     
     isLocationVisible(name, address, state) {
