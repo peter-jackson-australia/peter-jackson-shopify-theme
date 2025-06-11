@@ -84,6 +84,12 @@
     </div>
 
     <div class="store-locator__sidebar custom-scrollbar">
+      <div x-show="showNoResults" class="location-item">
+        <p>
+          Sorry, your search for "<span x-text="searchTerm"></span>" returned zero results, please try another search
+          term.
+        </p>
+      </div>
       {% paginate metaobjects.locations.values by 200 %}
         {% for location in metaobjects.locations.values %}
           <div
@@ -136,6 +142,7 @@ function storeLocator() {
     markers: [],
     map: null,
     timezoneHandler: null,
+    showNoResults: false,
     
     init() {
       const urlParams = new URLSearchParams(window.location.search);
@@ -238,6 +245,11 @@ function storeLocator() {
         } else {
           marker.remove();
         }
+      });
+      
+      this.$nextTick(() => {
+        const visibleLocations = document.querySelectorAll('.location-item[data-lat]:not([style*="display: none"])');
+        this.showNoResults = this.searchTerm.length > 0 && visibleLocations.length === 0;
       });
     },
     
