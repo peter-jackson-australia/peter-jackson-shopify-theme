@@ -16,6 +16,7 @@ Update Footer:
 Icon sections 
 store locator search bar 
 newsletter sign up
+Make all sections editable 
 
 Sidebar drawers: 
 Logic for opening and closing menus, sidebars, modals without conflicting:
@@ -44,6 +45,6 @@ Move to live Harmony environment
 PERFORMANCE:
 
 Make all lazy load images and slides
-Move all CSS to their own files in assets folder
+Move all CSS to their own files in assets folder, where applicable
 Remove animations from collection slider
 Make the product card more optimised, it's too bloated
