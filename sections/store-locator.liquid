@@ -12,24 +12,10 @@
     filter: grayscale(100%);
   }
 
-  @media screen and (min-width: 769px) {
-    #map {
-      height: 700px;
-    }
-  }
-
   .store-locator__container {
     display: flex;
     flex-direction: column;
-    gap: var(--space-m);
     border-top: 1px solid var(--neutral-200);
-  }
-
-  @media screen and (min-width: 769px) {
-    .store-locator__container {
-      flex-direction: row;
-      gap: 0;
-    }
   }
 
   .store-locator__map {
@@ -37,40 +23,19 @@
     order: 1;
   }
 
-  @media screen and (min-width: 769px) {
-    .store-locator__map {
-      order: 0;
-    }
-  }
-
   .store-locator__sidebar {
     width: 100%;
     overflow-y: auto;
     max-height: 400px;
     order: 2;
-  }
-
-  @media screen and (min-width: 769px) {
-    .store-locator__sidebar {
-      width: 400px;
-      max-height: 700px;
-      order: 1;
-    }
+    border-top: 1px solid var(--neutral-200);
   }
 
   .store-locator__filters {
     display: flex;
     flex-direction: column;
-    gap: var(--space-s);
     margin-bottom: var(--space-m);
     padding: 0 var(--space-m);
-  }
-
-  @media screen and (min-width: 769px) {
-    .store-locator__filters {
-      flex-direction: row;
-      align-items: center;
-    }
   }
 
   .store-locator__search {
@@ -109,12 +74,6 @@
     background-position: right 0 center;
     background-size: 12px 7px;
     padding-right: var(--space-s);
-  }
-
-  @media screen and (min-width: 769px) {
-    .store-locator__state-select {
-      width: 200px;
-    }
   }
 
   .store-locator__state-select:focus {
@@ -175,10 +134,42 @@
 
   .no-results-message {
   }
+
+  @media screen and (min-width: 1000px) {
+    #map {
+      height: 700px;
+    }
+
+    .store-locator__container {
+      flex-direction: row;
+      gap: 0;
+    }
+
+    .store-locator__map {
+      order: 0;
+    }
+
+    .store-locator__sidebar {
+      width: 400px;
+      max-height: 700px;
+      order: 1;
+      border-top: none;
+    }
+
+    .store-locator__filters {
+      flex-direction: row;
+      align-items: center;
+      gap: var(--space-m);
+    }
+
+    .store-locator__state-select {
+      width: 200px;
+    }
+  }
 </style>
 
 <div class="store-locator" x-data="storeLocator()">
-  <h1 class="heading--xl" style="padding: 0 var(--space-m);">Store Locations</h1>
+  <h1 class="heading--xl" style="padding: 0 var(--space-m);">{{ section.settings.heading }}</h1>
 
   <div class="store-locator__filters">
     <input
@@ -544,10 +535,20 @@ class ShopifyTimezoneHandler {
   "name": "Store Locator",
   "tag": "section",
   "class": "section",
-  "settings": [],
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Store Locations"
+    }
+  ],
   "presets": [
     {
-      "name": "Store Locator"
+      "name": "Store Locator",
+      "settings": {
+        "heading": "Store Locations"
+      }
     }
   ],
   "enabled_on": {
