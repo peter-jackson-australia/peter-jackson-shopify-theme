@@ -64,6 +64,14 @@
     color: var(--neutral-950);
   }
 
+  .location-hero__email {
+    margin-bottom: var(--space-s);
+  }
+
+  .location-hero__email a {
+    color: var(--neutral-950);
+  }
+
   .location-hero__hours {
     margin-bottom: var(--space-s);
   }
@@ -147,6 +155,10 @@
         <a href="{{ location.google_maps_link }}" target="_blank">{{ location.street_address }}</a>
       </div>
 
+      <div class="location-hero__email body">
+        <a href="mailto:{{ location.email_address }}">{{ location.email_address }}</a>
+      </div>
+
       <div class="location-hero__phone body">
         <a href="tel:{{ location.phone_number }}">{{ location.phone_number }}</a>
       </div>
@@ -160,7 +172,7 @@
         <div class="location-hero__description body">{{ location.location_description }}</div>
       {% endif %}
 
-      <a href="/pages/contact" class="location-hero__button body">Contact Us</a>
+      <a href="mailto:{{ location.email_address }}" class="location-hero__button body">Contact Us</a>
     </div>
   </div>
 
