@@ -14,20 +14,18 @@
 
   .store-locator__container {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     border-top: 1px solid var(--neutral-200);
   }
 
   .store-locator__map {
     flex: 1;
-    order: 1;
   }
 
   .store-locator__sidebar {
     width: 100%;
     overflow-y: auto;
     max-height: 400px;
-    order: 2;
     border-top: 1px solid var(--neutral-200);
   }
 
@@ -137,7 +135,7 @@
 
   @media screen and (min-width: 1000px) {
     #map {
-      height: 700px;
+      height: 900px;
     }
 
     .store-locator__container {
@@ -145,14 +143,9 @@
       gap: 0;
     }
 
-    .store-locator__map {
-      order: 0;
-    }
-
     .store-locator__sidebar {
-      width: 400px;
-      max-height: 700px;
-      order: 1;
+      width: 500px;
+      max-height: 900px;
       border-top: none;
     }
 
@@ -191,10 +184,6 @@
   </div>
 
   <div class="store-locator__container">
-    <div class="store-locator__map">
-      <div id="map"></div>
-    </div>
-
     <div class="store-locator__sidebar custom-scrollbar">
       <div x-show="showNoResults" class="location-item">
         <p class="body">
@@ -242,6 +231,9 @@
           </div>
         {% endfor %}
       {% endpaginate %}
+    </div>
+    <div class="store-locator__map">
+      <div id="map"></div>
     </div>
   </div>
 </div>
