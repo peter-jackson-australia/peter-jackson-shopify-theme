@@ -1,8 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
   const isDesktop = window.innerWidth >= 768;
-  
+
   if (!isDesktop) {
-    const containerElements = document.querySelectorAll(".animate-container-cards-scroll");
+    const containerElements = document.querySelectorAll(
+      ".animate-container-cards-scroll, .animate-container-cards-load"
+    );
     if (containerElements.length > 0) {
       containerElements.forEach((container) => {
         const cards = container.children;
@@ -11,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     return;
   }
-  
+
   /*
     Classes: 
     animate-word-slide-up-scroll
@@ -19,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
     animate-word-opacity-scroll
     animate-paragraph-slide-up-scroll
     animate-container-cards-scroll
+    animate-container-cards-load
   */
 
   const headingElements = document.querySelectorAll(
@@ -26,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
   );
   const bodyElements = document.querySelectorAll(".animate-paragraph-slide-up-scroll");
   const containerElements = document.querySelectorAll(".animate-container-cards-scroll");
+  const containerLoadElements = document.querySelectorAll(".animate-container-cards-load");
   const parallaxImages = document.querySelectorAll(".animate-image-parallax");
   const parallaxHorizontalImages = document.querySelectorAll(".animate-image-parallax-horizontal");
 
@@ -146,19 +150,19 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   /* 
-    Container with cards animation
+    Container with cards animation on scroll
     Class: animate-container-cards-scroll
   */
   if (containerElements.length > 0) {
     containerElements.forEach((container) => {
       const cards = container.children;
-      
+
       if (cards.length > 0) {
         gsap.set(cards, {
           y: "50px",
           opacity: 0,
         });
-        
+
         gsap.to(cards, {
           y: "0",
           opacity: 1,
@@ -173,13 +177,38 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
-  
+
+  /* 
+    Container with cards animation on load
+    Class: animate-container-cards-load
+  */
+  if (containerLoadElements.length > 0) {
+    containerLoadElements.forEach((container) => {
+      const cards = container.children;
+
+      if (cards.length > 0) {
+        gsap.set(cards, {
+          y: "50px",
+          opacity: 0,
+        });
+
+        gsap.to(cards, {
+          y: "0",
+          opacity: 1,
+          duration: 0.2,
+          ease: "power2.out",
+          stagger: 0.05,
+        });
+      }
+    });
+  }
+
   function animateCards(cards) {
     gsap.set(cards, {
       y: "50px",
       opacity: 0,
     });
-    
+
     gsap.to(cards, {
       y: "0",
       opacity: 1,
@@ -188,15 +217,15 @@ document.addEventListener("DOMContentLoaded", function () {
       stagger: 0.15,
     });
   }
-  
+
   const ajaxContainer = document.getElementById("AjaxinateContainer");
-  
+
   if (ajaxContainer) {
     if (ajaxContainer.children.length > 0) {
       const initialCards = Array.from(ajaxContainer.children).filter(
-        node => !node.classList.contains('no-products-message')
+        (node) => !node.classList.contains("no-products-message")
       );
-      
+
       if (initialCards.length > 0) {
         gsap.set(initialCards, {
           y: "50px",
@@ -204,21 +233,48 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       }
     }
-    
-    const observer = new MutationObserver(function(mutations) {
-      mutations.forEach(function(mutation) {
+
+    const observer = new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
         if (mutation.addedNodes.length) {
           const newCards = Array.from(mutation.addedNodes).filter(
-            node => node.nodeType === 1 && !node.classList.contains('no-products-message')
+            (node) => node.nodeType === 1 && !node.classList.contains("no-products-message")
           );
-          
+
           if (newCards.length > 0) {
             animateCards(newCards);
           }
         }
       });
     });
-    
+
     observer.observe(ajaxContainer, { childList: true });
   }
+
+  // Function to trigger load animation when class is dynamically added
+  window.triggerCardLoadAnimation = function (selector) {
+    requestAnimationFrame(() => {
+      const container = document.querySelector(selector);
+      if (container) {
+        const cards = Array.from(container.children);
+
+        if (cards.length > 0) {
+          gsap.killTweensOf(cards);
+
+          gsap.set(cards, {
+            y: "50px",
+            opacity: 0,
+          });
+
+          gsap.to(cards, {
+            y: "0",
+            opacity: 1,
+            duration: 0.25,
+            ease: "power1.out",
+            stagger: 0.0125,
+          });
+        }
+      }
+    });
+  };
 });

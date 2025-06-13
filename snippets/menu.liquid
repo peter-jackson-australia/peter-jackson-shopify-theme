@@ -137,7 +137,7 @@
             >
           </a>
         </figure>
-        <ul class="menu-drawer__menu" role="menu">
+        <ul class="menu-drawer__menu menu-drawer__menu-level-2" role="menu">
           <template x-for="(item, childIndex) in submenu" :key="childIndex">
             <li
               role="none"
@@ -204,7 +204,7 @@
             x-text="decodeEntities(subMenuTitle)"
           ></h2>
         </header>
-        <ul class="menu-drawer__menu" role="menu">
+        <ul class="menu-drawer__menu menu-drawer__menu-level-3" role="menu">
           <template x-for="(item, index) in subSubmenu" :key="index">
             <li role="none">
               <a
@@ -291,6 +291,9 @@
         this.currentLevel = 1;
         document.body.classList.add('menu-open');
         document.querySelector('.hamburger-menu').classList.add('nav-open');
+        window.triggerCardLoadAnimation('#menu-drawer__menu-1');
+        window.triggerCardLoadAnimation('#menu-drawer__menu-1-secondary');
+        window.triggerCardLoadAnimation('.menu-drawer__scrollable-content');
       },
   
       closeMenu() {
@@ -423,11 +426,19 @@
               this.featuredImageAlt = this.menuData[parentIndex].featuredImageAlt || title;
             }
           }
+          this.$nextTick(() => {
+            window.triggerCardLoadAnimation('#menu-drawer-level-2');
+            window.triggerCardLoadAnimation('.menu-drawer__menu-level-2');
+          });
         } else if (level === 3) {
           this.activeLevel2Index = childIndex;
           this.subMenuTitle = title;
           this.currentChildIndex = childIndex; 
           this.subSubmenu = this.menuData[this.currentParentIndex].links[childIndex].links;
+          this.$nextTick(() => {
+            window.triggerCardLoadAnimation('#menu-drawer-level-3');
+            window.triggerCardLoadAnimation('.menu-drawer__menu-level-3');
+          });
         }
       }, 
   
