@@ -4,9 +4,6 @@ Todo:
 
 SECTIONS:
 
-Store locator: 
-Fix parity with query string and search bar (search term must always be in query string), if no search term, no query string
-
 Store location page: 
 styling
 
