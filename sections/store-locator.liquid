@@ -271,11 +271,19 @@ function storeLocator() {
       this.timezoneHandler = new ShopifyTimezoneHandler();
       
       this.$nextTick(() => {
+        this.waitForLeafletAndInit();
+      });
+    },
+    
+    waitForLeafletAndInit() {
+      if (typeof L !== 'undefined') {
         this.initMap();
         this.filterLocations();
         this.updateAllLocationTimes();
         setInterval(() => this.updateAllLocationTimes(), 60000);
-      });
+      } else {
+        setTimeout(() => this.waitForLeafletAndInit(), 50);
+      }
     },
     
     initMap() {
