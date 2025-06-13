@@ -51,8 +51,9 @@
                               sizes: '(max-width: 768px) 100vw, 50vw'
                               alt='{{ image.alt | escape | default: product.title }}'
                               class='product-card__image'
-                              width='720'
-                              loading='eager'
+                              width='520'
+                              loading='lazy'
+                              decoding='async'
                             >
                           </li>
                         {% endfor %}
@@ -139,9 +140,10 @@
           ,
           alt="{{ image_alt }}"
           class="product-card__image"
-          width="720"
+          width="520"
           height="{{ image_height }}"
           loading="eager"
+          decoding="async"
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
         >
       </div>
