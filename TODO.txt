@@ -4,11 +4,9 @@ Todo:
 
 SECTIONS:
 
-Store locator / with leaflet:
-Styling
-Animations
-
 Store location page: 
+Show store email address
+Make the contact us button a link to the stores email address 
 styling
 
 Update Footer:
