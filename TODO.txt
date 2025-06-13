@@ -5,7 +5,6 @@ Todo:
 SECTIONS:
 
 Store locator / with leaflet:
-Remove TAS and NT
 Styling
 Animations
 
