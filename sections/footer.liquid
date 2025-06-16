@@ -20,8 +20,61 @@
   }
 
   .footer__intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
     border-bottom: 1px solid var(--neutral-600);
     padding-bottom: var(--space-2xl);
+  }
+
+  .footer__store-locator {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer__search-form {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .footer__search-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--neutral-600);
+    color: var(--white);
+    padding: var(--space-s) var(--space-l) var(--space-s) 0;
+    font-family: 'Ordinary Light';
+    font-size: clamp(0.6944rem, 0.6597rem + 0.1736vw, 0.8681rem);
+    line-height: 140%;
+    letter-spacing: 0.065rem;
+  }
+
+  .footer__search-input::placeholder {
+    color: var(--neutral-600);
+  }
+
+  .footer__search-input:focus {
+    outline: none;
+  }
+
+  .footer__search-button {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-2xs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer__description--store-locator {
+    margin-top: var(--space-s);
   }
 
   .footer__heading {
@@ -101,6 +154,8 @@
       margin-bottom: var(--space-xl);
     }
     .footer__intro {
+      grid-template-columns: 1fr;
+      gap: var(--space-l);
       padding-bottom: var(--space-xl);
     }
     .footer__partnerships {
@@ -124,8 +179,30 @@
 
 <footer class="footer">
   <div class="footer__section footer__intro">
-    <h2 class="footer__heading footer__heading--intro heading--xl">{{ section.settings.intro_heading }}</h2>
-    <p class="footer__description footer__description--intro body">{{ section.settings.intro_text }}</p>
+    <div class="footer__intro-content">
+      <h2 class="footer__heading footer__heading--intro heading--xl">{{ section.settings.intro_heading }}</h2>
+      <p class="footer__description footer__description--intro body">{{ section.settings.intro_text }}</p>
+    </div>
+
+    <div class="footer__store-locator">
+      <h2 class="footer__heading footer__heading--store-locator heading--l">
+        {{ section.settings.store_locator_heading }}
+      </h2>
+      <form class="footer__search-form" action="/pages/stores-in-australia" method="get">
+        <input
+          type="text"
+          name="search"
+          class="footer__search-input"
+          placeholder="{{ section.settings.store_locator_placeholder }}"
+        >
+        <button type="submit" class="footer__search-button">
+          {% render 'icon-arrow-submit-white' %}
+        </button>
+      </form>
+      <p class="footer__description footer__description--store-locator body">
+        {{ section.settings.store_locator_description }}
+      </p>
+    </div>
   </div>
 
   <div class="footer__main">
@@ -240,6 +317,28 @@
       "id": "intro_text",
       "label": "Text",
       "default": "We acknowledge this country's First Nations peoples and their ongoing strength in practising the world's oldest living culture. We acknowledge the Traditional Owners of the lands and waters on which we live and work, and pay our respect to their Elders past, present and emerging."
+    },
+    {
+      "type": "header",
+      "content": "Store Locator"
+    },
+    {
+      "type": "text",
+      "id": "store_locator_heading",
+      "label": "Store Locator Heading",
+      "default": "Store Locator"
+    },
+    {
+      "type": "text",
+      "id": "store_locator_placeholder",
+      "label": "Search Placeholder",
+      "default": "Search by name, address or state"
+    },
+    {
+      "type": "textarea",
+      "id": "store_locator_description",
+      "label": "Store Locator Description",
+      "default": "Find your closest store from our extensive network of retailers"
     },
     {
       "type": "header",
