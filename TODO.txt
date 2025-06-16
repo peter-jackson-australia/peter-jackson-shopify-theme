@@ -5,8 +5,8 @@ Todo:
 SECTIONS:
 
 Update Footer:
-Icon sections 
 store locator search bar 
+Icon sections 
 newsletter sign up
 Make all sections editable 
 
