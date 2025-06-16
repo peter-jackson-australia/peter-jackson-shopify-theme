@@ -4,9 +4,6 @@ Todo:
 
 SECTIONS:
 
-Store location page: 
-styling
-
 Update Footer:
 Icon sections 
 store locator search bar 
