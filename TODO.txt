@@ -4,6 +4,9 @@ Todo:
 
 SECTIONS:
 
+Fix console errors in mobile animations in menu
+add placeholder image support for all sections that use video
+
 Update Footer:
 Icon sections 
 Make all sections editable in theme editor
