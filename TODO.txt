@@ -10,15 +10,9 @@ Update Footer:
 Newsletter signup
 
 Sidebar drawers: 
-Logic for opening and closing menus, sidebars, modals without conflicting:
-list all of the drawers and menus:
-    Main Menu
-    Search Drawer 
-    Cart Drawer 
-    Sidebar Filter 
-    Size Guide Modal
-Basically any opened menus should be closed by clicking anywhere outside of the opened menu
-animate all drawers and modals
+animate all drawers and modals: 
+Filters
+Size Guide
 
 Spacing for all empowered mind blog articles
 
