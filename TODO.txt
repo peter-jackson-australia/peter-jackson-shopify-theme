@@ -4,7 +4,6 @@ Todo:
 
 SECTIONS:
 
-Placeholder text input field fix
 Add hero support for more than one button
 
 Fix console errors in mobile animations in menu
