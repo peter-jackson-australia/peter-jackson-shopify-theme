@@ -14,6 +14,23 @@
       "disabled": true,
       "settings": {}
     },
+    "heading_with_text_cPBtiF": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "leading_text": "BEHIND THE TEXTILES",
+        "leading_text_animation": "none",
+        "heading": "Vitale Barberis Canonico",
+        "heading_style": "normal",
+        "heading_animation": "none",
+        "content": "<p><strong>Region: Biella, Italy<br/>EST 1663</strong></p><p>Founded in 1663 and still family-run, this legendary Italian mill has over 360 years of experience woven into every metre of cloth.<br/><br/>Thirteen generations. One region. An unbroken legacy of excellence from Biella, Italy — the heartland of fine European wool.</p>",
+        "content_animation": "none",
+        "alignment": "center"
+      }
+    },
     "video_7hxHce": {
       "type": "video",
       "name": "Video",
@@ -212,6 +229,7 @@
   },
   "order": [
     "article",
+    "heading_with_text_cPBtiF",
     "video_7hxHce",
     "heading_with_text_DqfHti",
     "two_column_content_JQLcTq",
