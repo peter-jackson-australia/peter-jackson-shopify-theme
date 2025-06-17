@@ -75,6 +75,12 @@
     max-width: 80ch;
   }
 
+  .hero__buttons {
+    display: flex;
+    gap: var(--space-s);
+    flex-wrap: wrap;
+  }
+
   @media screen and (max-width: 768px) {
     .hero__content {
       text-align: left;
@@ -87,6 +93,14 @@
 
     .hero__content--bottom {
       padding-bottom: var(--space-xl);
+    }
+
+    .hero__buttons {
+      flex-direction: column;
+    }
+
+    .hero__buttons .button {
+      width: 100%;
     }
   }
 </style>
@@ -153,15 +167,21 @@
         {{ section.settings.description }}
       </div>
 
-      {% if section.settings.button_link and section.settings.button_label %}
-        <a
-          href="{{ section.settings.button_link }}"
-          class="button button--white body"
-          aria-label="{{ section.settings.button_label | escape }}"
-        >
-          {{ section.settings.button_label }}
-        </a>
-      {% endif %}
+      <div class="hero__buttons">
+        {% for i in (1..4) %}
+          {% assign button_label = 'button_label_' | append: i %}
+          {% assign button_link = 'button_link_' | append: i %}
+          {% if section.settings[button_label] and section.settings[button_link] %}
+            <a
+              href="{{ section.settings[button_link] }}"
+              class="button button--white body"
+              aria-label="{{ section.settings[button_label] | escape }}"
+            >
+              {{ section.settings[button_label] }}
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div>
     </div>
   </div>
 
@@ -281,14 +301,44 @@
     },
     {
       "type": "text",
-      "id": "button_label",
-      "label": "Button Text",
+      "id": "button_label_1",
+      "label": "Button 1 Text",
       "default": "Shop Now"
     },
     {
       "type": "url",
-      "id": "button_link",
-      "label": "Button Link"
+      "id": "button_link_1",
+      "label": "Button 1 Link"
+    },
+    {
+      "type": "text",
+      "id": "button_label_2",
+      "label": "Button 2 Text"
+    },
+    {
+      "type": "url",
+      "id": "button_link_2",
+      "label": "Button 2 Link"
+    },
+    {
+      "type": "text",
+      "id": "button_label_3",
+      "label": "Button 3 Text"
+    },
+    {
+      "type": "url",
+      "id": "button_link_3",
+      "label": "Button 3 Link"
+    },
+    {
+      "type": "text",
+      "id": "button_label_4",
+      "label": "Button 4 Text"
+    },
+    {
+      "type": "url",
+      "id": "button_link_4",
+      "label": "Button 4 Link"
     },
     {
       "type": "select",
