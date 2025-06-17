@@ -71,6 +71,32 @@
     "variable_column_content_secondary_jHpEgT": {
       "type": "variable-column-content-secondary",
       "blocks": {
+        "column_item_CF4TLx": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-man-wearing-sports-jacket-and-tie-walking-through-streets-of-europe_copy.webp",
+            "image_link": "",
+            "heading": "The New Casual Code",
+            "heading_animation": "none",
+            "text": "Where tailoring meets the streets",
+            "text_animation": "none",
+            "column_link": "shopify://collections/casual",
+            "column_link_text": "Shop The Edit"
+          }
+        },
+        "column_item_FrJjbX": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-man-wearing-knitwear.webp",
+            "image_link": "",
+            "heading": "The Feeling Of Winter",
+            "heading_animation": "none",
+            "text": "Essential foundational layers in tactile wool",
+            "text_animation": "none",
+            "column_link": "shopify://collections/knitwear",
+            "column_link_text": "Shop The Edit"
+          }
+        },
         "column_item_c8jUhX": {
           "type": "column_item",
           "settings": {
@@ -81,19 +107,6 @@
             "text": "Winter jackets & coats",
             "text_animation": "none",
             "column_link": "shopify://collections/accessories",
-            "column_link_text": "Shop Now"
-          }
-        },
-        "column_item_FrJjbX": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/peter-jackson-man-wearing-casual-essentials.jpg",
-            "image_link": "",
-            "heading": "The New Casual Code",
-            "heading_animation": "none",
-            "text": "Casual essentials to elevate the everyday",
-            "text_animation": "none",
-            "column_link": "",
             "column_link_text": "Shop Now"
           }
         },
@@ -109,33 +122,20 @@
             "column_link": "",
             "column_link_text": "Shop Now"
           }
-        },
-        "column_item_CF4TLx": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/peter-jackson-man-wearing-sports-jacket-and-tie-walking-through-streets-of-europe.jpg",
-            "image_link": "",
-            "heading": "Sports Jackets",
-            "heading_animation": "none",
-            "text": "A versatile wardrobe staple",
-            "text_animation": "none",
-            "column_link": "",
-            "column_link_text": "Shop Now"
-          }
         }
       },
       "block_order": [
-        "column_item_c8jUhX",
+        "column_item_CF4TLx",
         "column_item_FrJjbX",
-        "column_item_DYEeGP",
-        "column_item_CF4TLx"
+        "column_item_c8jUhX",
+        "column_item_DYEeGP"
       ],
       "name": "Variable Column Content Secondary",
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
-        "column_count": "4",
+        "column_count": "3",
         "text_alignment": "left",
         "animate_columns": false,
         "heading": "",
@@ -153,8 +153,8 @@
         "anchor_id": "",
         "show_top_border": true,
         "show_bottom_border": false,
-        "hero_image": "shopify://shop_images/Peter-Jackson-Man-Wearing-Green-Corduroy-Suit.jpg",
-        "show_image_overlay": true,
+        "hero_image": "shopify://shop_images/Peter-Jackson-Man-Wearing-Green-Corduroy-Suit_HD.webp",
+        "show_image_overlay": false,
         "image_heading": "Winter Outerwear",
         "image_heading_animation": "none",
         "image_description": "Explore the must-have winter jackets & coats",
@@ -167,7 +167,7 @@
         "subheading_animation": "none",
         "description": "Vintage utility meets contemporary style. From suits to jackets and casual shirts, this classic textile is back with a vengeance.",
         "description_animation": "none",
-        "cta_link": "",
+        "cta_link": "shopify://blogs/the-jackson-journal",
         "cta_text": "Read Now",
         "show_recent_posts": true,
         "animate_posts": true,
