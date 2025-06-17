@@ -16,6 +16,8 @@ Create logic to hide low stock variants
 
 Import 1 gift card to test
 
+Contact Joseph for aws domain name transfer 
+
 Update Footer:
 Newsletter signup
 
