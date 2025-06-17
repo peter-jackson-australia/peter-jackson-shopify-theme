@@ -115,6 +115,7 @@
           muted: true,
           controls: false,
           playsinline: true,
+          poster: section.settings.video_poster,
           class: 'full-page-media__video-element'
       }}
     </div>
@@ -159,6 +160,12 @@
       "id": "video",
       "label": "Video",
       "info": "Used when Media Type is set to Video. MP4 format recommended."
+    },
+    {
+      "type": "image_picker",
+      "id": "video_poster",
+      "label": "Video Poster Image",
+      "info": "Shown while video loads. Used when Media Type is set to Video"
     },
     {
       "type": "url",
