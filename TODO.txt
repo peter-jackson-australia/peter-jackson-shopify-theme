@@ -4,8 +4,6 @@ Todo:
 
 SECTIONS:
 
-add placeholder image support for all sections that use video
-
 Update Footer:
 Newsletter signup
 Icon sections 
