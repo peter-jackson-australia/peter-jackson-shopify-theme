@@ -125,7 +125,8 @@
             loop: true,
             muted: true,
             controls: false,
-            playsinline: true
+            playsinline: true,
+            poster: section.settings.video_poster
         }}
       </div>
     {% endif %}
@@ -265,6 +266,12 @@
       "id": "video",
       "label": "Editorial Hero Video",
       "info": "Used when Media Type is set to Video. Will autoplay, loop, and be muted with no controls."
+    },
+    {
+      "type": "image_picker",
+      "id": "video_poster",
+      "label": "Video Poster Image",
+      "info": "Shown while video loads. Used when Media Type is set to Video"
     },
     {
       "type": "checkbox",
