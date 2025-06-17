@@ -21,12 +21,12 @@
         "description_animation": "none",
         "button_label_1": "Shop Sale",
         "button_link_1": "shopify://collections/sale",
-        "button_label_2": "Shop Winter",
-        "button_link_2": "shopify://collections/beanies",
-        "button_label_3": "50% Off Selected",
-        "button_link_3": "shopify://collections/accessories",
-        "button_label_4": "80% Off All Items",
-        "button_link_4": "shopify://collections/bags",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
         "horizontal_alignment": "center",
         "vertical_alignment": "middle"
       }
