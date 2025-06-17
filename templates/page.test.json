@@ -52,6 +52,7 @@
           "settings": {
             "media_type": "video",
             "video": "shopify://files/videos/HYS_No Overlay.mp4",
+            "video_poster": "shopify://shop_images/HYS_video_poster-peter-jackson-menswear-australia.webp",
             "heading": "Welcome to Our Store",
             "heading_animation": "none",
             "description": "Discover our latest collection",
