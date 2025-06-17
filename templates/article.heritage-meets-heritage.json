@@ -46,7 +46,7 @@
         "aspect_ratio": "16-9",
         "autoplay": true,
         "loop": true,
-        "muted": false
+        "muted": true
       }
     },
     "heading_with_text_DqfHti": {
