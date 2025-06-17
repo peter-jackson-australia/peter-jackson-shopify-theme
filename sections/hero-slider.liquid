@@ -227,6 +227,7 @@
                     muted: true,
                     controls: false,
                     playsinline: true,
+                    poster: block.settings.video_poster,
                     class: 'hero-slider__video-element',
                     id: 'video-'
                   | append: block.id
@@ -244,6 +245,7 @@
                     muted: true,
                     controls: false,
                     playsinline: true,
+                    poster: block.settings.mobile_video_poster,
                     class: 'hero-slider__video-element',
                     id: 'mobile-video-'
                   | append: block.id
@@ -406,6 +408,18 @@
           "id": "mobile_video",
           "label": "Mobile Video (optional)",
           "info": "If not provided, Desktop Video will be used on mobile devices"
+        },
+        {
+          "type": "image_picker",
+          "id": "video_poster",
+          "label": "Desktop Video Poster Image",
+          "info": "Shown while desktop video loads"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_video_poster",
+          "label": "Mobile Video Poster Image",
+          "info": "Shown while mobile video loads"
         },
         {
           "type": "text",
