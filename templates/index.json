@@ -15,6 +15,7 @@
       "settings": {
         "media_type": "video",
         "video": "shopify://files/videos/HYS_No Overlay.mp4",
+        "video_placeholder": "shopify://shop_images/HYS_video_poster-peter-jackson-menswear-australia.webp",
         "heading": "Half Year Sale",
         "heading_animation": "none",
         "description": "Up to 50% Off Select Styles",
