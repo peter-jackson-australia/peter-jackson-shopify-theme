@@ -6,8 +6,6 @@ SECTIONS:
 
 Update Footer:
 Newsletter signup
-Icon sections 
-Make all sections editable in theme editor
 
 Sidebar drawers: 
 Logic for opening and closing menus, sidebars, modals without conflicting:
