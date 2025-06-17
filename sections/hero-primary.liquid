@@ -35,7 +35,7 @@
     z-index: 3;
     padding: 0 var(--space-m);
     display: grid;
-    gap: var(--space-s);
+    gap: var(--space-m);
     color: var(--white);
   }
 
@@ -137,6 +137,17 @@
         {% endif %}
       </picture>
     {% elsif section.settings.media_type == 'video' %}
+      {% if section.settings.video_placeholder %}
+        {{
+          section.settings.video_placeholder
+          | image_url: width: 1440
+          | image_tag:
+            class: 'hero__background',
+            alt: section.settings.video_placeholder.alt,
+            widths: '400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2400, 3000',
+            sizes: '100vw'
+        }}
+      {% endif %}
       {% if section.settings.video %}
         <div class="hero__video">
           {{
@@ -233,6 +244,12 @@
       "id": "video",
       "label": "Background Video",
       "info": "Used when Media Type is set to Video"
+    },
+    {
+      "type": "image_picker",
+      "id": "video_placeholder",
+      "label": "Video Placeholder Image",
+      "info": "Shown while video loads or if video fails to load"
     },
     {
       "type": "text",

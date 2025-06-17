@@ -4,12 +4,10 @@ Todo:
 
 SECTIONS:
 
-Add hero support for more than one button
-
-Fix console errors in mobile animations in menu
 add placeholder image support for all sections that use video
 
 Update Footer:
+Newsletter signup
 Icon sections 
 Make all sections editable in theme editor
 
