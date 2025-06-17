@@ -20,7 +20,8 @@
         "leading_text_animation": "none",
         "first_title": "Discover",
         "first_title_animation": "none",
-        "media_type": "image",
+        "media_type": "video",
+        "video": "shopify://files/videos/HYS_No Overlay.mp4",
         "animate_media": false,
         "second_title": "Collection",
         "second_title_animation": "none",
@@ -34,7 +35,8 @@
       "type": "full-page-media",
       "name": "Full Page Media",
       "settings": {
-        "media_type": "image",
+        "media_type": "video",
+        "video": "shopify://files/videos/HYS_No Overlay.mp4",
         "link": "",
         "link_text": "Learn more",
         "alt_text": "Full page media"
@@ -46,7 +48,8 @@
         "slide_FRgBHm": {
           "type": "slide",
           "settings": {
-            "media_type": "image",
+            "media_type": "video",
+            "video": "shopify://files/videos/HYS_No Overlay.mp4",
             "heading": "Welcome to Our Store",
             "heading_animation": "none",
             "description": "Discover our latest collection",
