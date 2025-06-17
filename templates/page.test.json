@@ -38,6 +38,7 @@
       "settings": {
         "media_type": "video",
         "video": "shopify://files/videos/HYS_No Overlay.mp4",
+        "video_poster": "shopify://shop_images/HYS_video_poster-peter-jackson-menswear-australia.webp",
         "link": "",
         "link_text": "Learn more",
         "alt_text": "Full page media"
