@@ -4,6 +4,8 @@ Todo:
 
 SECTIONS:
 
+increase collection page image resolution so that 2 columns look ok
+
 Update Footer:
 Newsletter signup
 
@@ -16,7 +18,9 @@ list all of the drawers and menus:
     Sidebar Filter 
     Size Guide Modal
 Basically any opened menus should be closed by clicking anywhere outside of the opened menu
-animate all drawers
+animate all drawers and modals
+
+Spacing for all empowered mind blog articles
 
 Main Menu:
 Fix hover underline on newsletter signup
@@ -37,7 +41,6 @@ Move to live Harmony environment
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 PERFORMANCE:
-
 Make all lazy load images and slides
 Move all CSS to their own files in assets folder, where applicable
 Remove animations from collection slider
