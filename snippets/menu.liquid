@@ -293,6 +293,7 @@
         this.currentLevel = 1;
         document.body.classList.add('menu-open');
         document.querySelector('.hamburger-menu').classList.add('nav-open');
+        window.closeFilter && window.closeFilter();
         window.triggerCardLoadAnimation('#menu-drawer__menu-1');
         window.triggerCardLoadAnimation('#menu-drawer__menu-1-secondary');
         window.triggerCardLoadAnimation('.menu-drawer__scrollable-content');

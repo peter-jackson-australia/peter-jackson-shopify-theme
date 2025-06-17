@@ -360,10 +360,14 @@
     }
   "
   x-init="
-    document.addEventListener('menu-open', () => {
-      isFilterOpen = false;
+      document.addEventListener('menu-open', () => {
+        isFilterOpen = false;
+        document.body.classList.remove('filter-open');
+      });
+      window.closeFilter = () => {
+        isFilterOpen = false;
       document.body.classList.remove('filter-open');
-    });
+    };
   "
 >
   <div id="collection" class="section">
