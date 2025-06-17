@@ -10,6 +10,12 @@ increase collection page image resolution so that 2 columns look ok
 
 Spacing for all empowered mind blog articles
 
+Install shippit 
+
+Create logic to hide low stock variants
+
+Import 1 gift card to test
+
 Update Footer:
 Newsletter signup
 
@@ -24,8 +30,6 @@ Blog collection templates for jackson journal and empowered mind
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ADMIN:
-Create logic to hide low stock variants
-Install shippit 
 Bring Gift Cards over to new site 
 Move to live Harmony environment 
 
