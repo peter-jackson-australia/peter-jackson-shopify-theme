@@ -14,6 +14,58 @@
       "disabled": true,
       "settings": {}
     },
+    "heading_with_text_cPBtiF": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "leading_text": "BEHIND THE TEXTILES",
+        "leading_text_animation": "none",
+        "heading": "Vitale Barberis Canonico",
+        "heading_style": "normal",
+        "heading_animation": "none",
+        "content": "<p><strong>Region: Biella, Italy<br/>EST 1663</strong></p><p>Founded in 1663 and still family-run, this legendary Italian mill has over 360 years of experience woven into every metre of cloth.<br/><br/>Thirteen generations. One region. An unbroken legacy of excellence from Biella, Italy — the heartland of fine European wool.</p>",
+        "content_animation": "none",
+        "alignment": "center"
+      }
+    },
+    "video_7hxHce": {
+      "type": "video",
+      "name": "Video",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "video": "shopify://files/videos/VBC Video (Desktop).mov",
+        "poster_image": "shopify://shop_images/video-capture-t0000.00seg-310.png",
+        "title": "",
+        "show_title": false,
+        "width": "full-width",
+        "aspect_ratio": "16-9",
+        "autoplay": true,
+        "loop": true,
+        "muted": true
+      }
+    },
+    "heading_with_text_DqfHti": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "leading_text": "",
+        "leading_text_animation": "none",
+        "heading": "",
+        "heading_style": "normal",
+        "heading_animation": "none",
+        "content": "<p>When we set out to craft our winter collection, we weren’t just looking for a textile. We were looking for a partner whose philosophies mirrored our own. A deep respect for craftsmanship. A relentless pursuit of quality and a belief that true progress starts with knowing your foundations. That’s what led us to Vitale Barberis Canonico.<br/><br/>Vitale Barberis Canonico is steeped in history — but it’s their constant evolution that makes them timeless.Their fabrics have graced the ateliers of the world’s most prestigious fashion houses, but they aren’t looking backward. They are heritage in motion. Through cutting-edge technology, world-leading sustainability practices, and a refusal to compromise, they’re redefining what tradition looks like today.</p>",
+        "content_animation": "none",
+        "alignment": "left"
+      }
+    },
     "two_column_content_JQLcTq": {
       "type": "two-column-content",
       "blocks": {
@@ -178,6 +230,9 @@
   },
   "order": [
     "article",
+    "heading_with_text_cPBtiF",
+    "video_7hxHce",
+    "heading_with_text_DqfHti",
     "two_column_content_JQLcTq",
     "full_page_media_hmrKEK",
     "image_with_text_KWmAa3",
