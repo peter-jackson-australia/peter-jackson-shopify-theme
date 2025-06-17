@@ -4,6 +4,8 @@ Todo:
 
 SECTIONS:
 
+Search page tablet and mobile 
+
 increase collection page image resolution so that 2 columns look ok
 
 Update Footer:
