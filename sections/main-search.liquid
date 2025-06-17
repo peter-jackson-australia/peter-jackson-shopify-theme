@@ -48,7 +48,6 @@
     flex: 1;
     border: none;
     padding: var(--space-s) 0px;
-    border-bottom: 1px solid var(--neutral-200);
     background-color: var(--white);
     color: var(--neutral-950);
   }
@@ -286,6 +285,7 @@
 
     .search-header__form {
       margin-left: 0;
+      max-width: 100%;
     }
 
     .products-grid {
@@ -315,7 +315,7 @@
               type="text"
               name="q"
               value=""
-              placeholder="Enter product name or keywords..."
+              placeholder="Search Peter Jackson..."
               maxlength="128"
               class="search-header__input"
             >
