@@ -22,6 +22,7 @@
         "first_title_animation": "none",
         "media_type": "video",
         "video": "shopify://files/videos/WT25-Homepage-Desktop-Compressed.mp4",
+        "video_poster": "shopify://shop_images/WT25-homepage-video-thumbnail.webp",
         "animate_media": false,
         "second_title": "Collection",
         "second_title_animation": "none",
