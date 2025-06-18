@@ -134,19 +134,6 @@
             "column_link_text": "Shop The Edit"
           }
         },
-        "column_item_FrJjbX": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/peter-jackson-man-wearing-knitwear.webp",
-            "image_link": "",
-            "heading": "The Feeling Of Winter",
-            "heading_animation": "none",
-            "text": "Essential foundational layers in tactile wool",
-            "text_animation": "none",
-            "column_link": "shopify://collections/the-feeling-of-winter-edit",
-            "column_link_text": "Shop The Edit"
-          }
-        },
         "column_item_c8jUhX": {
           "type": "column_item",
           "settings": {
@@ -158,6 +145,19 @@
             "text_animation": "none",
             "column_link": "shopify://collections/bottoms",
             "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_FrJjbX": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-man-wearing-knitwear.webp",
+            "image_link": "",
+            "heading": "The Feeling Of Winter",
+            "heading_animation": "none",
+            "text": "Essential foundational layers in tactile wool",
+            "text_animation": "none",
+            "column_link": "shopify://collections/the-feeling-of-winter-edit",
+            "column_link_text": "Shop The Edit"
           }
         },
         "column_item_DYEeGP": {
@@ -176,8 +176,8 @@
       },
       "block_order": [
         "column_item_CF4TLx",
-        "column_item_FrJjbX",
         "column_item_c8jUhX",
+        "column_item_FrJjbX",
         "column_item_DYEeGP"
       ],
       "name": "Variable Column Content Secondary",
