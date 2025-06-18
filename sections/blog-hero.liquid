@@ -123,7 +123,7 @@
 
   .blog-hero__posts {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: var(--space-2xs);
   }
 
@@ -140,7 +140,7 @@
     aspect-ratio: 1/1;
     overflow: hidden;
     margin-bottom: var(--space-xs);
-    min-height: 650px;
+    min-height: 550px;
   }
 
   .blog-hero__post-image img {
@@ -180,7 +180,7 @@
     gap: var(--space-xs);
   }
 
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1440px) {
     .blog-hero {
       padding-top: var(--space-xl);
       padding-bottom: var(--space-xl);
@@ -246,7 +246,7 @@
     }
 
     .blog-hero__posts {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: calc(var(--space-xs) + var(--space-xs));
       column-gap: var(--space-2xs);
     }
@@ -256,7 +256,7 @@
     }
   }
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 570px) {
     .blog-hero__image {
       height: 60vh;
     }
@@ -370,7 +370,7 @@
     <div class="blog-hero__recent">
       <div class="blog-hero__posts {% if section.settings.animate_posts %}animate-container-cards-scroll{% endif %}">
         {%- assign blog = blogs[section.settings.blog] -%}
-        {% for article in blog.articles limit: 4 %}
+        {% for article in blog.articles limit: 6 %}
           <article class="blog-hero__post">
             {% if article.image %}
               <a href="{{ article.url }}" class="blog-hero__post-image">

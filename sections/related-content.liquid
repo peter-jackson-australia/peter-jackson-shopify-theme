@@ -82,7 +82,7 @@
 
   .related-articles__posts {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: var(--space-2xs);
   }
 
@@ -139,7 +139,7 @@
     gap: var(--space-xs);
   }
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1440px) {
     .related-articles {
       padding-top: var(--space-xl);
       padding-bottom: var(--space-xl);
@@ -179,7 +179,7 @@
     }
 
     .related-articles__posts {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: calc(var(--space-xs) + var(--space-xs));
       column-gap: var(--space-2xs);
     }
@@ -189,7 +189,7 @@
     }
   }
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 570px) {
     .related-articles__posts {
       grid-template-columns: 1fr;
       gap: calc(var(--space-xs) + var(--space-xs));
