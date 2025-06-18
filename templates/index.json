@@ -46,6 +46,56 @@
         "animate_products": false
       }
     },
+    "variable_column_content_secondary_kUywhc": {
+      "type": "variable-column-content-secondary",
+      "blocks": {
+        "column_item_Aafzhg": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-man-wearing-brown_tonal_suit.webp",
+            "image_link": "",
+            "heading": "Winter, Suited",
+            "heading_animation": "none",
+            "text": "Tailoring, refined for cooler days",
+            "text_animation": "none",
+            "column_link": "shopify://collections/mens-suits",
+            "column_link_text": "Shop Suits"
+          }
+        },
+        "column_item_trdcbt": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-man-wearing-casual-jacket.webp",
+            "image_link": "",
+            "heading": "Casual Jackets, Off Duty",
+            "heading_animation": "none",
+            "text": "Relaxed structure. Winter ready.",
+            "text_animation": "none",
+            "column_link": "shopify://collections/casual-jackets",
+            "column_link_text": "Shop Casual Jackets"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_Aafzhg",
+        "column_item_trdcbt"
+      ],
+      "name": "Variable Column Content Secondary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": true,
+        "column_count": "2",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "",
+        "heading_animation": "none",
+        "text": "",
+        "text_animation": "none",
+        "button_label": "",
+        "button_link": ""
+      }
+    },
     "hero_primary_YCJLcF": {
       "type": "hero-primary",
       "name": "Hero Section",
@@ -178,6 +228,7 @@
   "order": [
     "hero_primary_4HRPTU",
     "collection_slider_wUXWw3",
+    "variable_column_content_secondary_kUywhc",
     "hero_primary_YCJLcF",
     "variable_column_content_secondary_jHpEgT",
     "blog_hero_MDUFaj"
