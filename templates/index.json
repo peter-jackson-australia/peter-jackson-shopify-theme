@@ -101,20 +101,20 @@
       "name": "Hero Section",
       "settings": {
         "media_type": "image",
-        "desktop_image": "shopify://shop_images/WT25_Gui_Raincoat_Varenna_Lake_copy.webp",
-        "heading": "Outerwear",
+        "desktop_image": "shopify://shop_images/WT25_Gui_Raincoat_Varenna_Lake_copy_0846b623-7082-4236-a9b4-b43e7c0d66ce.webp",
+        "heading": "Outerwear, in all forms",
         "heading_animation": "none",
-        "description": "Wool-cashmere blends",
+        "description": "From weatherproof to luxe wool/cashmere blends, this is the season's top layer",
         "description_animation": "none",
-        "button_label_1": "Shop Now",
-        "button_link_1": "",
+        "button_label_1": "Shop Jackets & Coats",
+        "button_link_1": "shopify://collections/outerwear",
         "button_label_2": "",
         "button_link_2": "",
         "button_label_3": "",
         "button_link_3": "",
         "button_label_4": "",
         "button_link_4": "",
-        "horizontal_alignment": "left",
+        "horizontal_alignment": "center",
         "vertical_alignment": "bottom"
       }
     },
@@ -134,6 +134,19 @@
             "column_link_text": "Shop The Edit"
           }
         },
+        "column_item_c8jUhX": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-man-wearing-pants.webp",
+            "image_link": "",
+            "heading": "Chinos & Trousers",
+            "heading_animation": "none",
+            "text": "From $89.95",
+            "text_animation": "none",
+            "column_link": "shopify://collections/bottoms",
+            "column_link_text": "Shop Now"
+          }
+        },
         "column_item_FrJjbX": {
           "type": "column_item",
           "settings": {
@@ -145,19 +158,6 @@
             "text_animation": "none",
             "column_link": "shopify://collections/the-feeling-of-winter-edit",
             "column_link_text": "Shop The Edit"
-          }
-        },
-        "column_item_c8jUhX": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/peter-jackson-man-wearing-winter-coat.jpg",
-            "image_link": "",
-            "heading": "Outerwear",
-            "heading_animation": "none",
-            "text": "Winter jackets & coats",
-            "text_animation": "none",
-            "column_link": "shopify://collections/accessories",
-            "column_link_text": "Shop Now"
           }
         },
         "column_item_DYEeGP": {
@@ -176,8 +176,8 @@
       },
       "block_order": [
         "column_item_CF4TLx",
-        "column_item_FrJjbX",
         "column_item_c8jUhX",
+        "column_item_FrJjbX",
         "column_item_DYEeGP"
       ],
       "name": "Variable Column Content Secondary",
