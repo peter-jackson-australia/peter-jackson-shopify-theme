@@ -5,9 +5,11 @@ Todo:
 SECTIONS:
 
 Spacing for all empowered mind blog articles:
+    SPACES MUST BE SET AS PARAGRAPHS TO WORK CORRECTLY
     1 space between paragraphs in a section
     1 space from heading to divider
     1 space from divider to paragraph
+    2 spaces top and bottom for images/videos etc 
     4 spaces from last paragraph in a section to the next heading
     4 spaces top and bottom for blockquotes 
 
