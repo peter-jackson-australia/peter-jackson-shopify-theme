@@ -201,11 +201,11 @@
       "name": "Blog Hero",
       "settings": {
         "anchor_id": "",
-        "show_top_border": true,
+        "show_top_border": false,
         "show_bottom_border": false,
         "hero_image": "shopify://shop_images/Peter-Jackson-Man-Wearing-Green-Corduroy-Suit_HD.webp",
         "show_image_overlay": true,
-        "image_heading": "FROM THE JOURNAL",
+        "image_heading": "",
         "image_heading_animation": "none",
         "image_description": "",
         "image_description_animation": "none",
