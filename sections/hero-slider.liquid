@@ -219,6 +219,7 @@
           {% elsif block.settings.media_type == 'video' %}
             {% if block.settings.video %}
               <div class="hero-slider__video hero-slider__video--desktop">
+                {% assign poster_url_desktop = block.settings.video_poster | image_url %}
                 {{
                   block.settings.video
                   | video_tag:
@@ -227,7 +228,7 @@
                     muted: true,
                     controls: false,
                     playsinline: true,
-                    poster: block.settings.video_poster,
+                    poster: poster_url_desktop,
                     class: 'hero-slider__video-element',
                     id: 'video-'
                   | append: block.id
@@ -237,6 +238,7 @@
 
             {% if block.settings.mobile_video %}
               <div class="hero-slider__video hero-slider__video--mobile">
+                {% assign poster_url_mobile = block.settings.video_poster | image_url %}
                 {{
                   block.settings.mobile_video
                   | video_tag:
@@ -245,7 +247,7 @@
                     muted: true,
                     controls: false,
                     playsinline: true,
-                    poster: block.settings.mobile_video_poster,
+                    poster: poster_url_mobile,
                     class: 'hero-slider__video-element',
                     id: 'mobile-video-'
                   | append: block.id

@@ -116,6 +116,7 @@
       {% endif %}
     {% elsif section.settings.media_type == 'video' and section.settings.video != blank %}
       <div class="editorial-hero__video-wrapper">
+        {% assign poster_url = section.settings.video_poster | image_url %}
         {{
           section.settings.video
           | video_tag:
@@ -126,7 +127,7 @@
             muted: true,
             controls: false,
             playsinline: true,
-            poster: section.settings.video_poster
+            poster: poster_url
         }}
       </div>
     {% endif %}

@@ -139,6 +139,7 @@
     {% elsif section.settings.media_type == 'video' %}
       {% if section.settings.video %}
         <div class="hero__video">
+          {% assign poster_url = section.settings.video_placeholder | image_url %}
           {{
             section.settings.video
             | video_tag:
@@ -147,7 +148,7 @@
               muted: true,
               controls: false,
               playsinline: true,
-              poster: section.settings.video_placeholder,
+              poster: poster_url,
               class: 'hero__video-element'
           }}
         </div>

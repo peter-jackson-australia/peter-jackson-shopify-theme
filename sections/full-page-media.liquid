@@ -107,6 +107,7 @@
       ></a>
     {% endif %}
     <div class="full-page-media__video">
+      {% assign poster_url = section.settings.video_poster | image_url %}
       {{
         section.settings.video
         | video_tag:
@@ -115,7 +116,7 @@
           muted: true,
           controls: false,
           playsinline: true,
-          poster: section.settings.video_poster,
+          poster: poster_url,
           class: 'full-page-media__video-element'
       }}
     </div>
