@@ -54,7 +54,7 @@
           "settings": {
             "image": "shopify://shop_images/peter-jackson-man-wearing-brown_tonal_suit.webp",
             "image_link": "",
-            "heading": "Winter. Suited.",
+            "heading": "Winter, Suited",
             "heading_animation": "none",
             "text": "Tailoring, refined for cooler days",
             "text_animation": "none",
@@ -65,54 +65,26 @@
         "column_item_trdcbt": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/peter-jackson-man-wearing-knitwear.webp",
+            "image": "shopify://shop_images/peter-jackson-man-wearing-casual-jacket.webp",
             "image_link": "",
-            "heading": "The Feeling Of Winter",
+            "heading": "Casual Jackets, Off Duty",
             "heading_animation": "none",
-            "text": "Essential foundational layers in tactile wool",
+            "text": "Relaxed structure. Winter ready.",
             "text_animation": "none",
             "column_link": "shopify://collections/the-feeling-of-winter-edit",
-            "column_link_text": "Shop The Edit"
-          }
-        },
-        "column_item_GN9eQe": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/peter-jackson-man-wearing-winter-coat.jpg",
-            "image_link": "",
-            "heading": "Outerwear",
-            "heading_animation": "none",
-            "text": "Winter jackets & coats",
-            "text_animation": "none",
-            "column_link": "shopify://collections/accessories",
-            "column_link_text": "Shop Now"
-          }
-        },
-        "column_item_LJtdQ4": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/peter-jackson-man-wearing-winter-coat.jpg",
-            "image_link": "",
-            "heading": "Column Heading",
-            "heading_animation": "none",
-            "text": "Add a brief description for this column item.",
-            "text_animation": "none",
-            "column_link": "",
-            "column_link_text": "Shop Now"
+            "column_link_text": "Shop Casual Jackets"
           }
         }
       },
       "block_order": [
         "column_item_Aafzhg",
-        "column_item_trdcbt",
-        "column_item_GN9eQe",
-        "column_item_LJtdQ4"
+        "column_item_trdcbt"
       ],
       "name": "Variable Column Content Secondary",
       "settings": {
         "anchor_id": "",
         "show_top_border": true,
-        "show_bottom_border": false,
+        "show_bottom_border": true,
         "column_count": "2",
         "text_alignment": "left",
         "animate_columns": false,
