@@ -9,74 +9,35 @@
  */
 {
   "sections": {
-    "editorial_hero_feapWX": {
-      "type": "editorial-hero",
-      "name": "Hero Editorial",
+    "variable_column_content_xijkbG": {
+      "type": "variable-column-content",
+      "name": "Variable Column Content",
       "settings": {
         "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": false,
-        "leading_text": "",
-        "leading_text_animation": "none",
-        "first_title": "Discover",
-        "first_title_animation": "none",
-        "media_type": "video",
-        "video": "shopify://files/videos/WT25-Homepage-Desktop-Compressed.mp4",
-        "video_poster": "shopify://shop_images/WT25-homepage-video-thumbnail.webp",
-        "animate_media": false,
-        "second_title": "Collection",
-        "second_title_animation": "none",
-        "description": "",
-        "description_animation": "none",
-        "cta_text": "Shop Now",
-        "cta_link": ""
-      }
-    },
-    "full_page_media_8XyPjb": {
-      "type": "full-page-media",
-      "name": "Full Page Media",
-      "settings": {
-        "media_type": "video",
-        "video": "shopify://files/videos/HYS_No Overlay.mp4",
-        "video_poster": "shopify://shop_images/HYS_video_poster-peter-jackson-menswear-australia.webp",
-        "link": "",
-        "link_text": "Learn more",
-        "alt_text": "Full page media"
-      }
-    },
-    "hero_slider_9DFjDN": {
-      "type": "hero-slider",
-      "blocks": {
-        "slide_FRgBHm": {
-          "type": "slide",
-          "settings": {
-            "media_type": "video",
-            "video": "shopify://files/videos/HYS_No Overlay.mp4",
-            "video_poster": "shopify://shop_images/HYS_video_poster-peter-jackson-menswear-australia.webp",
-            "heading": "Welcome to Our Store",
-            "heading_animation": "none",
-            "description": "Discover our latest collection",
-            "description_animation": "none",
-            "button_label": "Shop Now",
-            "button_link": "",
-            "horizontal_alignment": "center",
-            "vertical_alignment": "bottom"
-          }
-        }
-      },
-      "block_order": [
-        "slide_FRgBHm"
-      ],
-      "name": "Hero Slider",
-      "settings": {
-        "autoplay": true,
-        "slide_interval": 5
+        "show_top_border": true,
+        "show_bottom_border": true,
+        "column_count": "3",
+        "text_alignment": "center",
+        "animate_images": false,
+        "image_1": "shopify://shop_images/peter-jackson-man-wearing-pants_copy.webp",
+        "image_1_link": "shopify://collections/accessories",
+        "image_2": "shopify://shop_images/peter-jackson-man-wearing-pants_copy.webp",
+        "image_2_link": "",
+        "image_3": "shopify://shop_images/peter-jackson-man-wearing-pants_copy.webp",
+        "image_3_link": "",
+        "image_4_link": "",
+        "image_5_link": "",
+        "image_6_link": "",
+        "heading": "Variable Column Content",
+        "heading_animation": "none",
+        "text": "Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": "shopify://collections/accessories"
       }
     }
   },
   "order": [
-    "editorial_hero_feapWX",
-    "full_page_media_8XyPjb",
-    "hero_slider_9DFjDN"
+    "variable_column_content_xijkbG"
   ]
 }
