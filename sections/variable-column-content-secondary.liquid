@@ -205,30 +205,32 @@
     </div>
   {% endif %}
 
-  <div class="variable-column-content-secondary__text-container">
-    <div class="variable-column-content-secondary__text-content variable-column-content-secondary__text-content--{{ section.settings.text_alignment }}">
-      {% if section.settings.heading != blank %}
-        <h2 class="variable-column-content-secondary__heading heading--xl {% if section.settings.heading_animation != 'none' %}{{ section.settings.heading_animation }}{% endif %}">
-          {{ section.settings.heading }}
-        </h2>
-      {% endif %}
+  {% if section.settings.heading != blank and section.settings.text != blank %}
+    <div class="variable-column-content-secondary__text-container">
+      <div class="variable-column-content-secondary__text-content variable-column-content-secondary__text-content--{{ section.settings.text_alignment }}">
+        {% if section.settings.heading != blank %}
+          <h2 class="variable-column-content-secondary__heading heading--xl {% if section.settings.heading_animation != 'none' %}{{ section.settings.heading_animation }}{% endif %}">
+            {{ section.settings.heading }}
+          </h2>
+        {% endif %}
 
-      {% if section.settings.text != blank %}
-        <div class="variable-column-content-secondary__text body {% if section.settings.text_animation != 'none' %}{{ section.settings.text_animation }}{% endif %}">
-          {{ section.settings.text }}
-        </div>
-      {% endif %}
+        {% if section.settings.text != blank %}
+          <div class="variable-column-content-secondary__text body {% if section.settings.text_animation != 'none' %}{{ section.settings.text_animation }}{% endif %}">
+            {{ section.settings.text }}
+          </div>
+        {% endif %}
 
-      {% if section.settings.button_label != blank and section.settings.button_link != blank %}
-        <a
-          href="{{ section.settings.button_link }}"
-          class="variable-column-content-secondary__button button body"
-        >
-          {{ section.settings.button_label }}
-        </a>
-      {% endif %}
+        {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+          <a
+            href="{{ section.settings.button_link }}"
+            class="variable-column-content-secondary__button button body"
+          >
+            {{ section.settings.button_label }}
+          </a>
+        {% endif %}
+      </div>
     </div>
-  </div>
+  {% endif %}
 </div>
 
 {% schema %}
