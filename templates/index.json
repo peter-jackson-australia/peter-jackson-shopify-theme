@@ -83,7 +83,7 @@
       "name": "Variable Column Content Secondary",
       "settings": {
         "anchor_id": "",
-        "show_top_border": true,
+        "show_top_border": false,
         "show_bottom_border": true,
         "column_count": "2",
         "text_alignment": "left",
