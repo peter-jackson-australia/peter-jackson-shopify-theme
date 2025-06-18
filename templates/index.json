@@ -150,13 +150,13 @@
         "column_item_c8jUhX": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/peter-jackson-man-wearing-winter-coat.jpg",
+            "image": "shopify://shop_images/peter-jackson-man-wearing-pants.webp",
             "image_link": "",
-            "heading": "Outerwear",
+            "heading": "Chinos & Trousers",
             "heading_animation": "none",
-            "text": "Winter jackets & coats",
+            "text": "From $89.95",
             "text_animation": "none",
-            "column_link": "shopify://collections/accessories",
+            "column_link": "shopify://collections/bottoms",
             "column_link_text": "Shop Now"
           }
         },
