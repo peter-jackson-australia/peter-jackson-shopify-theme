@@ -455,10 +455,15 @@
         <p class="small">{{ article.published_at | date: '%b %d, %Y' }}</p>
       </div>
 
-      {% if article.image %}
+      {% liquid
+        assign hero_image = article.metafields.custom.blog_landscape_hero_image
+        assign display_image = hero_image | default: article.image
+      %}
+
+      {% if display_image %}
         <div class="article-header__image">
           <img
-            src="{{ article.image | image_url: width: image_width }}"
+            src="{{ display_image | image_url: width: image_width }}"
             width="{{ image_width }}"
             height="{{ image_height }}"
             alt="{{ article.title | escape }}"
