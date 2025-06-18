@@ -4,8 +4,6 @@ Todo:
 
 SECTIONS:
 
-Install shippit 
-
 Create logic to hide low stock variants
 
 Import 1 gift card to test
