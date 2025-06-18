@@ -100,8 +100,8 @@
       "type": "hero-primary",
       "name": "Hero Section",
       "settings": {
-        "media_type": "image",
-        "desktop_image": "shopify://shop_images/WT25_Gui_Raincoat_Varenna_Lake_copy_0846b623-7082-4236-a9b4-b43e7c0d66ce.webp",
+        "media_type": "video",
+        "video": "shopify://files/videos/Outerwear Loop.mp4",
         "heading": "Outerwear, in all forms",
         "heading_animation": "none",
         "description": "From weatherproof to luxe wool/cashmere blends, this is the season's top layer",
