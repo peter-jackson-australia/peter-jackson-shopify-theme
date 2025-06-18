@@ -4,15 +4,6 @@ Todo:
 
 SECTIONS:
 
-Spacing for all empowered mind blog articles:
-    SPACES MUST BE SET AS PARAGRAPHS TO WORK CORRECTLY
-    1 space between paragraphs in a section
-    1 space from heading to divider
-    1 space from divider to paragraph
-    2 spaces top and bottom for images/videos etc 
-    4 spaces from last paragraph in a section to the next heading
-    4 spaces top and bottom for blockquotes 
-
 Install shippit 
 
 Create logic to hide low stock variants
@@ -20,6 +11,8 @@ Create logic to hide low stock variants
 Import 1 gift card to test
 
 Contact Joseph for aws domain name transfer 
+
+Blog collection templates for jackson journal and empowered mind
 
 Update Footer:
 Newsletter signup
@@ -29,8 +22,6 @@ Fix hover underline on newsletter signup
 Hide newsletter sign up except for thank you message on submission
 Preserve scroll position when menu is open
 Add ability to change video, video subtitle, newsletter title and newsletter legal spiel in theme editor
-
-Blog collection templates for jackson journal and empowered mind
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
