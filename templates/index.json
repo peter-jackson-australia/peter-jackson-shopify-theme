@@ -52,7 +52,7 @@
         "column_item_Aafzhg": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/peter-jackson-man-wearing-brown_tonal_suit.webp",
+            "image": "shopify://shop_images/peter-jackson-man-wearing-brown_tonal_suit_6fc12545-8e95-4f50-8106-da662687e1eb.webp",
             "image_link": "",
             "heading": "Winter, Suited",
             "heading_animation": "none",
@@ -65,7 +65,7 @@
         "column_item_trdcbt": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/peter-jackson-man-wearing-casual-jacket.webp",
+            "image": "shopify://shop_images/peter-jackson-man-wearing-casual-jacket_90cbb832-a03c-4fc9-b0b1-ae1f3aa2a8f1.webp",
             "image_link": "",
             "heading": "Casual Jackets, Off Duty",
             "heading_animation": "none",
@@ -101,7 +101,7 @@
       "name": "Hero Section",
       "settings": {
         "media_type": "image",
-        "desktop_image": "shopify://shop_images/Click_Frenzy_Hero.webp",
+        "desktop_image": "shopify://shop_images/WT25_Gui_Raincoat_Varenna_Lake_copy.webp",
         "heading": "Outerwear",
         "heading_animation": "none",
         "description": "Wool-cashmere blends",
@@ -114,8 +114,8 @@
         "button_link_3": "",
         "button_label_4": "",
         "button_link_4": "",
-        "horizontal_alignment": "center",
-        "vertical_alignment": "middle"
+        "horizontal_alignment": "left",
+        "vertical_alignment": "bottom"
       }
     },
     "variable_column_content_secondary_jHpEgT": {
