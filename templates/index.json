@@ -100,8 +100,8 @@
       "type": "hero-primary",
       "name": "Hero Section",
       "settings": {
-        "media_type": "image",
-        "desktop_image": "shopify://shop_images/WT25_Gui_Raincoat_Varenna_Lake_copy_0846b623-7082-4236-a9b4-b43e7c0d66ce.webp",
+        "media_type": "video",
+        "video": "shopify://files/videos/Outerwear Loop.mp4",
         "heading": "Outerwear, in all forms",
         "heading_animation": "none",
         "description": "From weatherproof to luxe wool/cashmere blends, this is the season's top layer",
@@ -115,7 +115,7 @@
         "button_label_4": "",
         "button_link_4": "",
         "horizontal_alignment": "center",
-        "vertical_alignment": "bottom"
+        "vertical_alignment": "middle"
       }
     },
     "variable_column_content_secondary_jHpEgT": {
@@ -137,7 +137,7 @@
         "column_item_c8jUhX": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/peter-jackson-man-wearing-pants.webp",
+            "image": "shopify://shop_images/peter-jackson-man-wearing-pants_copy.webp",
             "image_link": "",
             "heading": "Chinos & Trousers",
             "heading_animation": "none",
@@ -204,12 +204,12 @@
         "show_top_border": true,
         "show_bottom_border": false,
         "hero_image": "shopify://shop_images/Peter-Jackson-Man-Wearing-Green-Corduroy-Suit_HD.webp",
-        "show_image_overlay": false,
-        "image_heading": "Winter Outerwear",
+        "show_image_overlay": true,
+        "image_heading": "FROM THE JOURNAL",
         "image_heading_animation": "none",
-        "image_description": "Explore the must-have winter jackets & coats",
+        "image_description": "",
         "image_description_animation": "none",
-        "image_link_text": "Read More",
+        "image_link_text": "",
         "image_link_url": "shopify://blogs/the-jackson-journal",
         "heading": "The Jackson Journal",
         "heading_animation": "none",
