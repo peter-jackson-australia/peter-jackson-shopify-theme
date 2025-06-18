@@ -20,7 +20,7 @@
         "text_alignment": "center",
         "animate_images": false,
         "image_1": "shopify://shop_images/peter-jackson-man-wearing-pants_copy.webp",
-        "image_1_link": "shopify://collections/accessories",
+        "image_1_link": "shopify://collections/mens-accessories",
         "image_2": "shopify://shop_images/peter-jackson-man-wearing-pants_copy.webp",
         "image_2_link": "",
         "image_3": "shopify://shop_images/peter-jackson-man-wearing-pants_copy.webp",
@@ -33,7 +33,7 @@
         "text": "Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.",
         "text_animation": "none",
         "button_label": "Learn More",
-        "button_link": "shopify://collections/accessories"
+        "button_link": "shopify://collections/mens-accessories"
       }
     }
   },
