@@ -38,6 +38,7 @@
 
   .variable-column-content-secondary__column-content {
     padding: var(--space-m);
+    padding-bottom: 0px;
   }
 
   .variable-column-content-secondary__column-heading {
@@ -111,8 +112,14 @@
   }
 
   @media screen and (max-width: 768px) {
+
+    .variable-column-content-secondary__column-content {
+      padding: var(--space-m);
+    }
+
     .variable-column-content-secondary__image-grid {
       grid-template-columns: 1fr !important;
+      gap: 0px;
     }
 
     .variable-column-content-secondary__image {
