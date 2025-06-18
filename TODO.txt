@@ -2,6 +2,8 @@ Todo:
 
 /////////////////////////////////////////////////////
 
+Fix line item image reload in the cart
+
 SECTIONS:
 
 Create logic to hide low stock variants:
