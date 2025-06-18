@@ -7,7 +7,6 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding-top: var(--space-2xl);
     padding-bottom: var(--space-2xl);
     {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-200);{% endif %}
     {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-200);{% endif %}
@@ -17,6 +16,7 @@
     width: 100%;
     position: relative;
     overflow: hidden;
+    margin-bottom: var(--space-2xs);
   }
 
   .blog-hero__image img {
@@ -179,7 +179,6 @@
 
   @media screen and (max-width: 1440px) {
     .blog-hero {
-      padding-top: var(--space-xl);
       padding-bottom: var(--space-xl);
     }
 
@@ -256,6 +255,8 @@
   @media screen and (max-width: 570px) {
     .blog-hero__image {
       height: 60vh;
+      order: -1;
+      margin-top: var(--space-xl);
     }
 
     .blog-hero__image-content {
@@ -275,6 +276,39 @@
     id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
   {% endif %}
 >
+  <div class="blog-hero__content">
+    <div class="blog-hero__header">
+      {% if section.settings.heading != blank %}
+        <h1 class="blog-hero__title heading--decorative {% if section.settings.heading_animation != 'none' %}{{ section.settings.heading_animation }}{% endif %}">
+          {{ section.settings.heading }}
+        </h1>
+      {% endif %}
+
+      <span class="blog-hero__divider"></span>
+
+      {% if section.settings.subheading != blank %}
+        <h2 class="blog-hero__subtitle heading--l {% if section.settings.subheading_animation != 'none' %}{{ section.settings.subheading_animation }}{% endif %}">
+          {{ section.settings.subheading }}
+        </h2>
+      {% endif %}
+    </div>
+
+    <div class="blog-hero__description">
+      {% if section.settings.description != blank %}
+        <div class="blog-hero__text body {% if section.settings.description_animation != 'none' %}{{ section.settings.description_animation }}{% endif %}">
+          {{ section.settings.description }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.cta_link != blank and section.settings.cta_text != blank %}
+        <a href="{{ section.settings.cta_link }}" class="blog-hero__link body">
+          {{ section.settings.cta_text }}
+          {% render 'icon-arrow-submit-dark' %}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+
   {% if section.settings.hero_image != blank %}
     <div class="blog-hero__image">
       <picture>
@@ -329,39 +363,6 @@
       {% endif %}
     </div>
   {% endif %}
-
-  <div class="blog-hero__content">
-    <div class="blog-hero__header">
-      {% if section.settings.heading != blank %}
-        <h1 class="blog-hero__title heading--decorative {% if section.settings.heading_animation != 'none' %}{{ section.settings.heading_animation }}{% endif %}">
-          {{ section.settings.heading }}
-        </h1>
-      {% endif %}
-
-      <span class="blog-hero__divider"></span>
-
-      {% if section.settings.subheading != blank %}
-        <h2 class="blog-hero__subtitle heading--l {% if section.settings.subheading_animation != 'none' %}{{ section.settings.subheading_animation }}{% endif %}">
-          {{ section.settings.subheading }}
-        </h2>
-      {% endif %}
-    </div>
-
-    <div class="blog-hero__description">
-      {% if section.settings.description != blank %}
-        <div class="blog-hero__text body {% if section.settings.description_animation != 'none' %}{{ section.settings.description_animation }}{% endif %}">
-          {{ section.settings.description }}
-        </div>
-      {% endif %}
-
-      {% if section.settings.cta_link != blank and section.settings.cta_text != blank %}
-        <a href="{{ section.settings.cta_link }}" class="blog-hero__link body">
-          {{ section.settings.cta_text }}
-          {% render 'icon-arrow-submit-dark' %}
-        </a>
-      {% endif %}
-    </div>
-  </div>
 
   {% if section.settings.show_recent_posts %}
     <div class="blog-hero__recent">
