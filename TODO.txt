@@ -7,6 +7,9 @@ Import 1 gift card to test
 Blog collection templates for jackson journal and empowered mind
 
 Move category image below second level menu links on mobile
+
+Allow hero sections to be able to choose heading level
+
 When grid content section is present, Ajaxinate doesn't load the correct amount of product tiles
 Fix line item image reload in the cart
 
