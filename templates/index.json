@@ -126,12 +126,12 @@
           "settings": {
             "image": "shopify://shop_images/peter-jackson-man-wearing-sports-jacket.webp",
             "image_link": "",
-            "heading": "The New Casual Code",
+            "heading": "Sports Jackets",
             "heading_animation": "none",
-            "text": "Where tailoring meets the streets",
+            "text": "from $299",
             "text_animation": "none",
             "column_link": "shopify://collections/casual",
-            "column_link_text": "Shop The Edit"
+            "column_link_text": "Shop Now"
           }
         },
         "column_item_c8jUhX": {
@@ -157,7 +157,7 @@
             "text": "from $59.95",
             "text_animation": "none",
             "column_link": "shopify://collections/casual-shirts",
-            "column_link_text": "Shop Shirts"
+            "column_link_text": "Shop Now"
           }
         },
         "column_item_DYEeGP": {
