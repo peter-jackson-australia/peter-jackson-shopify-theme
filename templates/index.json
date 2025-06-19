@@ -150,14 +150,14 @@
         "column_item_FrJjbX": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/peter-jackson-man-wearing-knitwear.webp",
+            "image": "shopify://shop_images/peter-jackson-man-wearing-casual-shirt.webp",
             "image_link": "",
-            "heading": "The Feeling Of Winter",
+            "heading": "Casual Shirts",
             "heading_animation": "none",
-            "text": "Essential foundational layers in tactile wool",
+            "text": "from $59.95",
             "text_animation": "none",
-            "column_link": "shopify://collections/the-feeling-of-winter-edit",
-            "column_link_text": "Shop Knits, Scarves & Beanies"
+            "column_link": "shopify://collections/casual-shirts",
+            "column_link_text": "Shop Shirts"
           }
         },
         "column_item_DYEeGP": {
