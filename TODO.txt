@@ -1,7 +1,5 @@
 Todo:
 
-/////////////////////////////////////////////////////
-
 Move category image below second level menu links on mobile
 When grid content section is present, Ajaxinate doesn't load the correct amount of product tiles
 Fix line item image reload in the cart
@@ -16,18 +14,14 @@ Update Footer:
 Newsletter signup
 
 Main Menu:
+Preserve scroll position when menu is open
 Fix hover underline on newsletter signup
 Hide newsletter sign up except for thank you message on submission
-Preserve scroll position when menu is open
 Add ability to change video, video subtitle, newsletter title and newsletter legal spiel in theme editor
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ADMIN:
+Set up dev branch on Github
 Bring Gift Cards over to new site 
 Move to live Harmony environment 
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-PERFORMANCE:
-Move all CSS to their own files in assets folder, where applicable
