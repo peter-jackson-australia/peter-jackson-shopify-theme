@@ -172,6 +172,15 @@
     border-top: 1px solid var(--neutral-600);
   }
 
+  .footer__social {
+    display: flex;
+    gap: var(--space-s);
+  }
+
+  .footer__social-icon {
+    max-width: 17px;
+  }
+
   .footer__terms {
     display: flex;
     gap: var(--space-l);
@@ -398,6 +407,25 @@
         </svg>
       {% endif %}
     </div>
+
+    <div class="footer__social">
+      {% if section.settings.social_icon_1 != blank and section.settings.social_link_1 != blank %}
+        <a href="{{ section.settings.social_link_1 }}">
+          {{ section.settings.social_icon_1 | image_url: width: 34 | image_tag: class: 'footer__social-icon' }}
+        </a>
+      {% endif %}
+      {% if section.settings.social_icon_2 != blank and section.settings.social_link_2 != blank %}
+        <a href="{{ section.settings.social_link_2 }}">
+          {{ section.settings.social_icon_2 | image_url: width: 34 | image_tag: class: 'footer__social-icon' }}
+        </a>
+      {% endif %}
+      {% if section.settings.social_icon_3 != blank and section.settings.social_link_3 != blank %}
+        <a href="{{ section.settings.social_link_3 }}">
+          {{ section.settings.social_icon_3 | image_url: width: 34 | image_tag: class: 'footer__social-icon' }}
+        </a>
+      {% endif %}
+    </div>
+
     <div class="footer__terms">
       {% if section.settings.terms_link != blank %}
         <a href="{{ section.settings.terms_link }}" class="footer__link footer__link--terms body">
@@ -646,6 +674,40 @@
       "id": "privacy_text",
       "label": "Privacy Policy Text",
       "default": "Privacy Policy"
+    },
+    {
+      "type": "header",
+      "content": "Social Media"
+    },
+    {
+      "type": "image_picker",
+      "id": "social_icon_1",
+      "label": "Social Icon 1"
+    },
+    {
+      "type": "url",
+      "id": "social_link_1",
+      "label": "Social Link 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "social_icon_2",
+      "label": "Social Icon 2"
+    },
+    {
+      "type": "url",
+      "id": "social_link_2",
+      "label": "Social Link 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "social_icon_3",
+      "label": "Social Icon 3"
+    },
+    {
+      "type": "url",
+      "id": "social_link_3",
+      "label": "Social Link 3"
     }
   ],
   "presets": [
