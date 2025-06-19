@@ -647,7 +647,7 @@
                   id="js--variant-inventory-quantity"
                   value="{{ current_variant.inventory_quantity }}"
                 >
-                {% if current_variant.available == true %}
+                {% if current_variant.available == true and current_variant.inventory_quantity > 5 %}
                   <button
                     type="submit"
                     id="js--addtocart"
