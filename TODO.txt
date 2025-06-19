@@ -12,6 +12,8 @@ Import 1 gift card to test
 
 Blog collection templates for jackson journal and empowered mind
 
+Product gallery slider arrows show higher up before featured image loads
+
 Update Footer:
 Newsletter signup
 
