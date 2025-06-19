@@ -6,10 +6,6 @@ Move category image below second level menu links on mobile
 
 SECTIONS:
 
-Create logic to hide low stock variants:
-    If variant has less than 5 availabe in total across all locations - Turn the "Hide Low Stock" metafield to true 
-    if low stock metafield is true, do not allow add to cart button
-
 Import 1 gift card to test
 
 Blog collection templates for jackson journal and empowered mind
