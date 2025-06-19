@@ -49,7 +49,12 @@
         "terms_link": "/pages/support/#terms-and-conditions-segment",
         "terms_text": "Terms & Conditions",
         "privacy_link": "/pages/support/#privacy-policy-segment",
-        "privacy_text": "Privacy Policy"
+        "privacy_text": "Privacy Policy",
+        "social_icon_1": "shopify://shop_images/icon-facebook.svg",
+        "social_link_1": "https://www.facebook.com/peterjacksonmenswear/",
+        "social_icon_2": "shopify://shop_images/icon-instagram.svg",
+        "social_link_2": "https://www.instagram.com/peterjacksonau/?hl=en",
+        "social_link_3": ""
       }
     }
   },
