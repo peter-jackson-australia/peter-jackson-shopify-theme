@@ -154,7 +154,9 @@ ready(function () {
           });
 
           // Disable the buy button if product is unavailable
-          if (v.available === false) {
+          
+          var variantIndex = variants.findIndex(variant => variant.id === v.id);
+          if (v.available === false || variant_hide_flags[variantIndex] === true) {
             document.querySelector('#js--addtocart').disabled = true;
             document.querySelector('#js--addtocart').innerText = 'Unavailable';
           } else {
