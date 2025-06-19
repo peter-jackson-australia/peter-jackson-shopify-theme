@@ -3,6 +3,7 @@ Todo:
 /////////////////////////////////////////////////////
 
 Move category image below second level menu links on mobile
+When grid content section is present, Ajaxinate doesn't load the correct amount of product tiles
 
 SECTIONS:
 
