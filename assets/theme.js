@@ -89,7 +89,7 @@ Shopify.formatMoney = function (cents, format) {
 
 /*
  * OPTION SELECTOR
- * Works the variant option dropdowns used on the
+ * Works the variant options used on the
  * product page template.
  */
 ready(function () {

@@ -2,8 +2,6 @@ Todo:
 
 /////////////////////////////////////////////////////
 
-Fix line item image reload in the cart
-
 SECTIONS:
 
 Create logic to hide low stock variants:
@@ -16,6 +14,10 @@ Blog collection templates for jackson journal and empowered mind
 
 Update Footer:
 Newsletter signup
+Social icons
+
+Fix line item image reload in the cart
+
 
 Main Menu:
 Fix hover underline on newsletter signup
