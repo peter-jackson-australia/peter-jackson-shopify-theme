@@ -2,6 +2,8 @@ Todo:
 
 /////////////////////////////////////////////////////
 
+Move category image below second level menu links on mobile
+
 SECTIONS:
 
 Create logic to hide low stock variants:
