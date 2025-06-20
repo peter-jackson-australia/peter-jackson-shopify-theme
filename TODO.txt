@@ -21,9 +21,6 @@ Allow hero sections to be able to choose heading level (fix heading level issue 
 When grid content section is present, Ajaxinate doesn't load the correct amount of product tiles
 Fix line item image reload in the cart
 
-Update Footer:
-Newsletter signup
-
 Main Menu:
 Preserve scroll position when menu is open
 Fix hover underline on newsletter signup
