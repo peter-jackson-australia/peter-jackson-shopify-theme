@@ -3,7 +3,7 @@
 {%- endcomment -%}
 
 <div class="schedule-appointment-section">
-  <h1 style="text-align: center;">Schedule Your Appointment</h1>
+  <h1 style="text-align: center;">{{ section.settings.heading }}</h1>
   <p>
     <iframe
       src="https://app.acuityscheduling.com/schedule.php?owner=12422034"
@@ -17,7 +17,18 @@
 {% schema %}
 {
   "name": "Schedule Your Appointment",
-  "class": "section",
-  "settings": []
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Schedule Your Appointment"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Schedule Your Appointment"
+    }
+  ]
 }
 {% endschema %}
