@@ -12,8 +12,6 @@ Import gift cards when site is live and domain verified:
 Blog collection pages as custom pages: 
 	Redirect the actual blog collection page URL’s to the custom pages
 
-Made to measure template
-
 Move category image below second level menu links on mobile
 
 Allow hero sections to be able to choose heading level (fix heading level issue on home page)
