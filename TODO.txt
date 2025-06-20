@@ -4,7 +4,8 @@ SECTIONS:
 
 Import 1 gift card to test
 
-Blog collection templates for jackson journal and empowered mind
+Blog collection pages as custom pages: 
+	Redirect the actual blog collection page URL’s to the custom pages
 
 Made to measure template
 
