@@ -2,7 +2,7 @@ Todo:
 
 SECTIONS:
 
-Import 1 gift card to test:
+Import gift cards when site is live and domain verified:
     Turn off customer notifications 
     import all gift cards 
     change notification template to explain that we moved to Shopify 
