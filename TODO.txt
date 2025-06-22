@@ -11,6 +11,7 @@ Import gift cards when site is live and domain verified:
 
 Blog collection pages as custom pages: 
 	Redirect the actual blog collection page URL’s to the custom pages
+    Paginated blog posts
 
 Made to measure template fixes 
 
