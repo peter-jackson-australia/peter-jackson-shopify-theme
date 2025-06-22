@@ -48,27 +48,27 @@
         "column_E6NPhW": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/Higher-Ground-4_900x_343acf6e-e3ab-441b-9280-720a71ce8069.webp",
-            "product": "textured-rib-ash-crew-neck-knit",
-            "heading": "The Build Up",
+            "image": "shopify://shop_images/JJ_Coat_of_Arms_2.webp",
+            "product": "",
+            "heading": "The Winter Standard",
             "heading_animation": "none",
-            "description": "New season knitwear. The ultimate outfit foundation piece.",
+            "description": "The Tesero Double Breasted Overcoat in olive-green twill blends refined tailoring with winter-ready warmth in a timeless silhouette.",
             "description_animation": "none",
-            "button_label": "Learn More",
-            "button_link": ""
+            "button_label": "Shop The Tesero",
+            "button_link": "shopify://products/tesero-olive-twill-overcoat"
           }
         },
         "column_R9dG48": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/WT25-Suits_1512x_8ac5eb3d-e875-43bb-b6cf-13fc2f62f29c.webp",
+            "image": "shopify://shop_images/JJ_Coat_of_Arms_6.webp",
             "product": "",
-            "heading": "Winter Tailoring",
+            "heading": "The Italian Job",
             "heading_animation": "none",
-            "description": "Merino wool suits for cooler days.",
+            "description": "The Paracqua Raincoat in sand blends Italian-made performance fabric with refined design for elevated, all-weather style.",
             "description_animation": "none",
-            "button_label": "Learn More",
-            "button_link": ""
+            "button_label": "Shop The Paracqua Raincoat",
+            "button_link": "shopify://products/paracqua-sand-raincoat"
           }
         }
       },
