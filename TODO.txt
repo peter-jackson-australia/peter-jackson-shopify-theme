@@ -6,8 +6,9 @@ Import gift cards when site is live and domain verified:
     Turn off customer notifications
     import all gift cards before site is live
     change notification template to explain that we moved to Shopify 
-    Send the notifications 
+    Send the notifications once the site is live
     Change the notification template back to normal
+    Turn back on gift cards
 
 Blog collection pages as custom pages:
     Create header to filter by tags
