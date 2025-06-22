@@ -2,6 +2,9 @@ Todo:
 
 SECTIONS:
 
+Swap out the size guide images
+Move category image below second level menu links on mobile
+
 Import gift cards when site is live and domain verified:
     Turn off customer notifications
     import all gift cards before site is live
@@ -18,8 +21,6 @@ Blog collection pages as custom pages:
     Can choose tags to exclude
 
 Made to measure template fixes 
-
-Move category image below second level menu links on mobile
 
 Allow hero sections to be able to choose heading level (fix heading level issue on home page)
 
