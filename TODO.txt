@@ -9,8 +9,14 @@ Import gift cards when site is live and domain verified:
     Send the notifications 
     Change the notification template back to normal
 
-Blog collection pages as custom pages: 
-	Redirect the actual blog collection page URL’s to the custom pages
+Blog collection pages as custom pages:
+    Create header to filter by tags
+    Fix up the hero images and copy for both 
+    Add in featured article slider (Top 6 newest blogs)
+    Fix up main blog collection
+    Can choose tags to exclude
+
+Made to measure template fixes 
 
 Move category image below second level menu links on mobile
 
