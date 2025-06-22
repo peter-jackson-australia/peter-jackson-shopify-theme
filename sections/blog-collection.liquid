@@ -144,8 +144,10 @@
         
         {%- if excluded_tags.size > 0 -%}
           {%- for excluded_tag in excluded_tags -%}
+            {%- assign clean_excluded_tag = excluded_tag | strip | downcase -%}
             {%- for article_tag in article.tags -%}
-              {%- if article_tag | downcase == excluded_tag | strip | downcase -%}
+              {%- assign clean_article_tag = article_tag | downcase -%}
+              {%- if clean_article_tag == clean_excluded_tag -%}
                 {%- assign show_article = false -%}
                 {%- break -%}
               {%- endif -%}
