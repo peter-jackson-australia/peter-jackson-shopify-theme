@@ -1,41 +1,41 @@
 <style>
-  .main-blog-collection {
+  .blog-collection {
     display: flex;
     flex-direction: column;
     width: 100%;
     padding-bottom: var(--space-2xl);
   }
 
-  .main-blog-collection__grid {
+  .blog-collection__grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: var(--space-2xs);
   }
 
-  .main-blog-collection__post {
+  .blog-collection__post {
     display: flex;
     flex-direction: column;
     gap: var(--space-xs);
     overflow: hidden;
   }
 
-  .main-blog-collection__post-image {
+  .blog-collection__post-image {
     display: block;
     width: 100%;
     overflow: hidden;
     margin-bottom: var(--space-xs);
   }
 
-  .main-blog-collection__post-image img {
+  .blog-collection__post-image img {
     width: 100%;
     object-fit: cover;
   }
 
-  .main-blog-collection__post-content {
+  .blog-collection__post-content {
     padding-left: var(--space-m);
   }
 
-  .main-blog-collection__post-category {
+  .blog-collection__post-category {
     color: var(--neutral-600);
     text-transform: uppercase;
     margin-bottom: var(--space-s);
@@ -44,74 +44,74 @@
     text-overflow: ellipsis;
   }
 
-  .main-blog-collection__post-title {
+  .blog-collection__post-title {
     margin-bottom: var(--space-2xs);
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
 
-  .main-blog-collection__post-title a,
-  .main-blog-collection__post-link-container {
+  .blog-collection__post-title a,
+  .blog-collection__post-link-container {
     color: var(--neutral-950);
     text-decoration: none;
   }
 
-  .main-blog-collection__post-link {
+  .blog-collection__post-link {
     display: flex;
     gap: var(--space-xs);
   }
 
-  .main-blog-collection__pagination {
+  .blog-collection__pagination {
     display: flex;
     justify-content: center;
     margin-top: var(--space-xl);
     padding: var(--space-m);
   }
 
-  .main-blog-collection__pagination ul {
+  .blog-collection__pagination ul {
     display: flex;
     list-style: none;
     gap: var(--space-xs);
     align-items: center;
   }
 
-  .main-blog-collection__pagination li {
+  .blog-collection__pagination li {
     display: flex;
   }
 
-  .main-blog-collection__pagination a,
-  .main-blog-collection__pagination span {
+  .blog-collection__pagination a,
+  .blog-collection__pagination span {
     padding: var(--space-xs) var(--space-s);
     color: var(--neutral-600);
     text-decoration: none;
     border-radius: 0;
   }
 
-  .main-blog-collection__pagination a:hover,
-  .main-blog-collection__pagination .current {
+  .blog-collection__pagination a:hover,
+  .blog-collection__pagination .current {
     color: var(--neutral-950);
     background-color: var(--neutral-50);
   }
 
   @media screen and (max-width: 1440px) {
-    .main-blog-collection {
+    .blog-collection {
       padding-bottom: var(--space-xl);
     }
 
-    .main-blog-collection__grid {
+    .blog-collection__grid {
       grid-template-columns: repeat(3, 1fr);
       gap: calc(var(--space-xs) + var(--space-xs));
       column-gap: var(--space-2xs);
     }
 
-    .main-blog-collection__post-content {
+    .blog-collection__post-content {
       padding-right: var(--space-m);
     }
   }
 
   @media screen and (max-width: 570px) {
-    .main-blog-collection__grid {
+    .blog-collection__grid {
       grid-template-columns: 1fr;
       gap: calc(var(--space-xs) + var(--space-xs));
     }
@@ -119,12 +119,12 @@
 </style>
 
 {% paginate blog.articles by section.settings.limit %}
-  <div class="main-blog-collection">
-    <div class="main-blog-collection__grid">
+  <div class="blog-collection">
+    <div class="blog-collection__grid">
       {% for article in blog.articles %}
-        <article class="main-blog-collection__post">
+        <article class="blog-collection__post">
           {% if article.image %}
-            <a href="{{ article.url }}" class="main-blog-collection__post-image">
+            <a href="{{ article.url }}" class="blog-collection__post-image">
               {{
                 article.image
                 | image_url: width: 850
@@ -138,17 +138,17 @@
             </a>
           {% endif %}
 
-          <div class="main-blog-collection__post-content">
+          <div class="blog-collection__post-content">
             {% if article.tags.size > 0 %}
-              <div class="main-blog-collection__post-category small">{{ article.tags.first }}</div>
+              <div class="blog-collection__post-category small">{{ article.tags.first }}</div>
             {% endif %}
 
-            <h3 class="main-blog-collection__post-title heading--l">
+            <h3 class="blog-collection__post-title heading--l">
               <a href="{{ article.url }}">{{ article.title }}</a>
             </h3>
 
-            <a href="{{ article.url }}" class="main-blog-collection__post-link-container">
-              <span class="main-blog-collection__post-link body">Read The Article {% render 'icon-arrow-submit-dark' %}</span>
+            <a href="{{ article.url }}" class="blog-collection__post-link-container">
+              <span class="blog-collection__post-link body">Read The Article {% render 'icon-arrow-submit-dark' %}</span>
             </a>
           </div>
         </article>
@@ -156,7 +156,7 @@
     </div>
 
     {% if paginate.pages > 1 %}
-      <div class="main-blog-collection__pagination">
+      <div class="blog-collection__pagination">
         {% render 'pagination', paginate: paginate %}
       </div>
     {% endif %}
