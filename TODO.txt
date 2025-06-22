@@ -12,7 +12,7 @@ Import gift cards when site is live and domain verified:
 Blog collection pages as custom pages: 
 	Redirect the actual blog collection page URL’s to the custom pages
 
-Made to measure template
+Made to measure template fixes 
 
 Move category image below second level menu links on mobile
 
