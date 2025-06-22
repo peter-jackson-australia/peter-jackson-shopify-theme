@@ -26,7 +26,7 @@
         "heading": "Coat Of Arms",
         "heading_style": "normal",
         "heading_animation": "none",
-        "content": "<p>Armour yourself with confidence and distinction in our luxe overcoats—your defense against the season’s chill. Crafted from premium textiles, each piece exemplifies timeless style, achieving an artful balance between the classic and the contemporary.</p>",
+        "content": "<h1>Coat Of Arms</h1>",
         "content_animation": "none",
         "alignment": "center"
       }
@@ -40,6 +40,23 @@
         "link": "",
         "link_text": "Learn more",
         "alt_text": "Full page media"
+      }
+    },
+    "heading_with_text_NFCiF4": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "leading_text": "",
+        "leading_text_animation": "none",
+        "heading": "The Feel Factor",
+        "heading_style": "normal",
+        "heading_animation": "none",
+        "content": "<p>Texture isn’t an accent — it’s the point. Wool-cashmere and corduroy add structure and depth to casual looks, making even off-duty outfits feel refined.</p>",
+        "content_animation": "none",
+        "alignment": "center"
       }
     },
     "two_column_content_JQLcTq": {
@@ -245,23 +262,6 @@
         "button_link": "shopify://collections/casual"
       }
     },
-    "heading_with_text_NFCiF4": {
-      "type": "heading-with-text",
-      "name": "Heading with Text",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": true,
-        "show_bottom_border": false,
-        "leading_text": "",
-        "leading_text_animation": "none",
-        "heading": "The Feel Factor",
-        "heading_style": "normal",
-        "heading_animation": "none",
-        "content": "<p>Texture isn’t an accent — it’s the point. Wool-cashmere and corduroy add structure and depth to casual looks, making even off-duty outfits feel refined.</p>",
-        "content_animation": "none",
-        "alignment": "center"
-      }
-    },
     "full_page_media_fUVJVk": {
       "type": "full-page-media",
       "name": "Full Page Media",
@@ -293,6 +293,7 @@
     "article",
     "heading_with_text_tRcmmY",
     "full_page_media_DQrgiW",
+    "heading_with_text_NFCiF4",
     "two_column_content_JQLcTq",
     "hero_primary_AMqni9",
     "collection_slider_secondary_GjGnVj",
@@ -301,7 +302,6 @@
     "hero_slider_zKUKdU",
     "collection_slider_secondary_Fr3RYB",
     "variable_column_content_DECpXN",
-    "heading_with_text_NFCiF4",
     "full_page_media_fUVJVk",
     "collection_slider_secondary_yGfCVj"
   ]
