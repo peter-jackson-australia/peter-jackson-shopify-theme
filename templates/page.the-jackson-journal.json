@@ -35,9 +35,11 @@
       "type": "blog-collection",
       "name": "Blog Collection",
       "settings": {
+        "heading": "The Jackson Journal",
         "blog": "the-jackson-journal",
         "limit": 8,
-        "articles_per_row": 4
+        "articles_per_row": 4,
+        "excluded_tags": "lifestyle"
       }
     }
   },
