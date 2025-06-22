@@ -35,6 +35,8 @@
       "type": "blog-collection",
       "name": "Blog Collection",
       "settings": {
+        "heading": "Featured Articles",
+        "blog": "the-jackson-journal",
         "limit": 8,
         "articles_per_row": 3
       }
