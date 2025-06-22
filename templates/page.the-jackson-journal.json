@@ -30,9 +30,18 @@
         "horizontal_alignment": "center",
         "vertical_alignment": "bottom"
       }
+    },
+    "blog_collection_X9RrdY": {
+      "type": "blog-collection",
+      "name": "Blog Collection",
+      "settings": {
+        "limit": 8,
+        "articles_per_row": 3
+      }
     }
   },
   "order": [
-    "hero_primary_hgB9fC"
+    "hero_primary_hgB9fC",
+    "blog_collection_X9RrdY"
   ]
 }
