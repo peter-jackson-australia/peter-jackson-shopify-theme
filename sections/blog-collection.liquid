@@ -118,10 +118,11 @@
   }
 </style>
 
-{% paginate blog.articles by section.settings.limit %}
+{%- assign selected_blog = blogs[section.settings.blog] -%}
+{% paginate selected_blog.articles by section.settings.limit %}
   <div class="blog-collection">
     <div class="blog-collection__grid">
-      {% for article in blog.articles %}
+      {% for article in selected_blog.articles %}
         <article class="blog-collection__post">
           {% if article.image %}
             <a href="{{ article.url }}" class="blog-collection__post-image">
@@ -173,6 +174,12 @@
     "templates": ["page", "blog"]
   },
   "settings": [
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Blog",
+      "info": "Select which blog to display articles from"
+    },
     {
       "type": "range",
       "id": "limit",
