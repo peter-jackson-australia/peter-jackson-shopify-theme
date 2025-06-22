@@ -130,18 +130,8 @@
 </style>
 
 {%- assign selected_blog = blogs[section.settings.blog] -%}
-{%- assign excluded_tags = section.settings.excluded_tags | split: ',' -%}
 
-{%- comment -%} Get current page from URL parameters {%- endcomment -%}
-{%- assign current_page = request.page_url | split: 'page=' | last | split: '&' | first | default: 1 | plus: 0 -%}
-{%- if current_page < 1 -%}
-  {%- assign current_page = 1 -%}
-{%- endif -%}
-
-{%- assign articles_per_page = section.settings.limit -%}
-{%- assign start_index = current_page | minus: 1 | times: articles_per_page -%}
-{%- assign articles_shown = 0 -%}
-{%- assign articles_skipped = 0 -%}
+{% paginate selected_blog.articles by section.settings.limit %}
   <div class="blog-collection">
     {% if section.settings.heading != blank %}
       <h2 class="blog-collection__heading heading--xl">{{ section.settings.heading }}</h2>
@@ -149,88 +139,46 @@
 
     <div class="blog-collection__grid">
       {% for article in selected_blog.articles %}
-        {%- assign show_article = true -%}
-        
-        {%- if excluded_tags.size > 0 -%}
-          {%- for excluded_tag in excluded_tags -%}
-            {%- assign clean_excluded_tag = excluded_tag | strip | downcase -%}
-            {%- for article_tag in article.tags -%}
-              {%- assign clean_article_tag = article_tag | downcase -%}
-              {%- if clean_article_tag == clean_excluded_tag -%}
-                {%- assign show_article = false -%}
-                {%- break -%}
-              {%- endif -%}
-            {%- endfor -%}
-            {%- if show_article == false -%}
-              {%- break -%}
-            {%- endif -%}
-          {%- endfor -%}
-        {%- endif -%}
+        <article class="blog-collection__post">
+          {% if article.image %}
+            <a href="{{ article.url }}" class="blog-collection__post-image">
+              {{
+                article.image
+                | image_url: width: 850
+                | image_tag:
+                  loading: 'lazy',
+                  decoding: 'async',
+                  alt: article.title,
+                  widths: '400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2400, 3000',
+                  sizes: '(max-width: 400px) 400px, (max-width: 600px) 600px, (max-width: 800px) 800px, (max-width: 1000px) 1000px, (max-width: 1200px) 1200px, (max-width: 1400px) 1400px, (max-width: 1600px) 1600px, (max-width: 1800px) 1800px, (max-width: 2000px) 2000px, (max-width: 2400px) 2400px, 100vw'
+              }}
+            </a>
+          {% endif %}
 
-        {%- if show_article -%}
-          {%- if articles_skipped >= start_index and articles_shown < articles_per_page -%}
-            <article class="blog-collection__post">
-              {% if article.image %}
-                <a href="{{ article.url }}" class="blog-collection__post-image">
-                  {{
-                    article.image
-                    | image_url: width: 850
-                    | image_tag:
-                      loading: 'lazy',
-                      decoding: 'async',
-                      alt: article.title,
-                      widths: '400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2400, 3000',
-                      sizes: '(max-width: 400px) 400px, (max-width: 600px) 600px, (max-width: 800px) 800px, (max-width: 1000px) 1000px, (max-width: 1200px) 1200px, (max-width: 1400px) 1400px, (max-width: 1600px) 1600px, (max-width: 1800px) 1800px, (max-width: 2000px) 2000px, (max-width: 2400px) 2400px, 100vw'
-                  }}
-                </a>
-              {% endif %}
+          <div class="blog-collection__post-content">
+            {% if article.tags.size > 0 %}
+              <div class="blog-collection__post-category small">{{ article.tags.first }}</div>
+            {% endif %}
 
-              <div class="blog-collection__post-content">
-                {% if article.tags.size > 0 %}
-                  <div class="blog-collection__post-category small">{{ article.tags.first }}</div>
-                {% endif %}
+            <h3 class="blog-collection__post-title heading--l">
+              <a href="{{ article.url }}">{{ article.title }}</a>
+            </h3>
 
-                <h3 class="blog-collection__post-title heading--l">
-                  <a href="{{ article.url }}">{{ article.title }}</a>
-                </h3>
-
-                <a href="{{ article.url }}" class="blog-collection__post-link-container">
-                  <span class="blog-collection__post-link body">Read The Article {% render 'icon-arrow-submit-dark' %}</span>
-                </a>
-              </div>
-            </article>
-            {%- assign articles_shown = articles_shown | plus: 1 -%}
-          {%- endif -%}
-          {%- assign articles_skipped = articles_skipped | plus: 1 -%}
-        {%- endif -%}
+            <a href="{{ article.url }}" class="blog-collection__post-link-container">
+              <span class="blog-collection__post-link body">Read The Article {% render 'icon-arrow-submit-dark' %}</span>
+            </a>
+          </div>
+        </article>
       {% endfor %}
     </div>
 
-    {%- comment -%} Simple pagination - this won't be perfect but will work {%- endcomment -%}
-    {% if selected_blog.articles.size > articles_per_page %}
+    {% if paginate.pages > 1 %}
       <div class="blog-collection__pagination">
-        <ul>
-          {% if current_page > 1 %}
-            <li><a href="?page={{ current_page | minus: 1 }}">&laquo; Previous</a></li>
-          {% endif %}
-          
-          {% if current_page > 1 %}
-            <li><a href="?page={{ current_page | minus: 1 }}">{{ current_page | minus: 1 }}</a></li>
-          {% endif %}
-          
-          <li><span class="current">{{ current_page }}</span></li>
-          
-          {% if articles_shown >= articles_per_page %}
-            <li><a href="?page={{ current_page | plus: 1 }}">{{ current_page | plus: 1 }}</a></li>
-          {% endif %}
-          
-          {% if articles_shown >= articles_per_page %}
-            <li><a href="?page={{ current_page | plus: 1 }}">Next &raquo;</a></li>
-          {% endif %}
-        </ul>
+        {% render 'pagination', paginate: paginate %}
       </div>
     {% endif %}
   </div>
+{% endpaginate %}
 
 {% schema %}
 {
@@ -273,12 +221,6 @@
       "max": 4,
       "step": 1,
       "default": 3
-    },
-    {
-      "type": "text",
-      "id": "excluded_tags",
-      "label": "Excluded Tags",
-      "info": "Enter tags to exclude from the blog collection, separated by commas (e.g. lifestyle, news, updates)"
     }
   ],
   "presets": [
