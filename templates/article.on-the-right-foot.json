@@ -60,7 +60,7 @@
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
-        "show_bottom_border": true,
+        "show_bottom_border": false,
         "first_image": "shopify://shop_images/Monk-Strap_1080x_a113430f-8223-4f42-bd94-53beeac6c53f.webp",
         "image_link": "shopify://collections/mens-footwear",
         "animate_images": false,
@@ -111,6 +111,44 @@
         "button_link": "shopify://collections/mens-footwear"
       }
     },
+    "image_with_text_9MJKTq": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "first_image": "shopify://shop_images/Derby_1080x_3ec2b4a8-c8fd-488a-85b7-784c9cf455fd.webp",
+        "image_link": "shopify://collections/mens-footwear",
+        "animate_images": false,
+        "alignment": "left",
+        "heading": "The Derby",
+        "heading_animation": "none",
+        "text": "Derby shoes are a versatile must-have for any wardrobe, striking the perfect balance between relaxed charm and timeless style. Differing from Oxfords, with an open lacing system and quarters sewn on the vamp, they effortlessly blend sophistication with comfort. Whether you're suiting up for a formal event with a classic toe cap or adding some flair with some detailed brogueing, to a smart-casual look we've got you covered.",
+        "text_animation": "none",
+        "button_label": "Shop Derbys",
+        "button_link": "shopify://collections/mens-footwear"
+      }
+    },
+    "image_with_text_rXcJxz": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "first_image": "shopify://shop_images/Chelsea-Boot_1080x_38292826-1058-4520-b687-7777c53dd544.webp",
+        "image_link": "shopify://collections/mens-footwear",
+        "animate_images": false,
+        "alignment": "right",
+        "heading": "The Chelsea Boot",
+        "heading_animation": "none",
+        "text": "Extremely popular today for their simplistic and classic look, Chelsea boots are essential for men of all ages. Effortlessly transitioning between formal and casual settings, while their iconic elastic gussets ensure a tailored fit without the hassle of buttons or laces.<br><br>Bucco Olive Chelsea Boots: Our olive shade in waxed leather offers a rustic casual appeal compared to its smooth leather counterparts, which are more formal. They pair well with jeans or chinos, in particular the chocolate or khaki, suitable for informal gatherings, pub nights, or smart-casual events.<br><br>Brown Chelsea Boots: Versatile for any occasion. Pair with mid-to-light tone suits in wool or flannel for formal events, or lighter trousers for a laid-back style. For casual outings, pair them with jeans, chinos, or corduroys.<br><br>Black Chelsea Boots: Ideal for formal attire, such as office wear and cocktail events. Pair with dark business suits in navy, charcoal or black for a polished look. For a relaxed yet refined style, combine them with our wool flannel trousers, a white shirt, and navy sports jacket.",
+        "text_animation": "none",
+        "button_label": "Shop Chelsea Boots",
+        "button_link": "shopify://collections/mens-footwear"
+      }
+    },
     "collection_slider_secondary_yGfCVj": {
       "type": "collection-slider-secondary",
       "name": "Collection Slider Secondary",
@@ -133,6 +171,8 @@
     "image_with_text_HEWLMw",
     "image_with_text_8NBATX",
     "image_with_text_cVQnWK",
+    "image_with_text_9MJKTq",
+    "image_with_text_rXcJxz",
     "collection_slider_secondary_yGfCVj"
   ]
 }
