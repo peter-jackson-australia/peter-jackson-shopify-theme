@@ -152,12 +152,12 @@
       "type": "collection-slider-secondary",
       "name": "Collection Slider Secondary",
       "settings": {
-        "heading": "The Foundation of Winter Style",
+        "heading": "The Corduroy Edit",
         "heading_animation": "none",
         "description": "",
         "description_animation": "none",
         "collection": "the-corduroy-comeback",
-        "button_label": "Shop Knitwear",
+        "button_label": "Shop Now",
         "products_to_show": 10,
         "animate_products": false
       }
