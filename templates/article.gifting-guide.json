@@ -51,7 +51,7 @@
         "heading_animation": "none",
         "text": "Knitwear is a winter staple and an essential part of every man's wardrobe, offering a seamless blend of comfort, versatility, and effortless style whether worn alone as a separate piece, or layered for added interest or warmth. Be prepared for all occasions with a well-curated selection of knitwear options in various styles, weights and fabrications. Start with classic options like the crew and V-neck styles, adaptable pieces that transition from casual to more formal settings. Invest wisely in quality pieces made from long lasting materials such as our timeless merino wool turtleneck and luxurious cashmere long sleeved polo. For a more casual aesthetic opt for a stylish chunky 1/4 Zip knit, combining the practicality of a zip-up funnel neck, for style and functionality.",
         "text_animation": "none",
-        "button_label": "",
+        "button_label": "Shop Now",
         "button_link": "shopify://collections/knitwear"
       }
     },
@@ -76,16 +76,30 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
-        "first_image": "shopify://shop_images/Monk-Strap_1080x_a113430f-8223-4f42-bd94-53beeac6c53f.webp",
-        "image_link": "shopify://collections/mens-footwear",
+        "first_image": "shopify://shop_images/Winter-Playbook-3_1080x_9c3e8dc1-a4b9-4ef4-9af5-d96b8685610d.webp",
+        "image_link": "shopify://collections/bags",
         "animate_images": false,
         "alignment": "right",
-        "heading": "The Monk Strap",
+        "heading": "Leather Bags",
         "heading_animation": "none",
-        "text": "Monk straps, characterised by single or double broad straps and a distinct lack of laces, are unique and less common than Oxfords and Derbys, making them a standout choice. Whether for casual outings, business casual, or less formal business attire, monk strap shoes are a stylish must-have in a gent’s wardrobe. Single or double? It's not a matter of which is better but more so which one can serve your desired purpose more. Single monk straps boast a sleek, streamlined design, making them perfect for business, formal, and smart casual occasions.  For a timeless formal work look, opt for a pair of classic black single monk strap shoes teamed with a charcoal pinstripe suit and white shirt, or a three-piece charcoal suit.Double monk straps are great for weddings, parties, and casual settings. For a smart weekend look, you can't go wrong with deep chestnut brown double monks paired with jeans and a crewneck.If your wardrobe consists of many charcoal and grey suits, consider adding a pair of black monk straps.",
+        "text": "Crafted from premium pebbled leather, our quality range of bags combine sophistication and functionality, ensuring you’re sorted for all occasions. Step into the office with confidence with our Aldo Black Pebbled Leather Briefcase, it’s sleek design complete with ample storage space and compartments, have you covered. From your weekend road trips or overseas flights, travel in style with the Alessio Weekender Bag, with its spacious interior for all your travel essentials. With sturdy handles and a detachable shoulder strap, it's ready for any adventure!",
         "text_animation": "none",
-        "button_label": "Shop Monk Straps",
-        "button_link": "shopify://collections/mens-footwear"
+        "button_label": "Shop Now",
+        "button_link": "shopify://collections/bags"
+      }
+    },
+    "collection_slider_secondary_rHKRdG": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "Essential Knitwear",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "bags",
+        "button_label": "Shop Now",
+        "products_to_show": 3,
+        "animate_products": false
       }
     },
     "image_with_text_8NBATX": {
@@ -204,6 +218,7 @@
     "image_with_text_KWmAa3",
     "collection_slider_secondary_yGfCVj",
     "image_with_text_HEWLMw",
+    "collection_slider_secondary_rHKRdG",
     "image_with_text_8NBATX",
     "image_with_text_cVQnWK",
     "image_with_text_9MJKTq",
