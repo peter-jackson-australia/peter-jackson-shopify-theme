@@ -154,10 +154,11 @@
         "column_item_qdMaH6": {
           "type": "column_item",
           "settings": {
+            "image": "shopify://shop_images/Untitled-3_1013x_1.webp",
             "image_link": "",
-            "heading": "Column Heading",
+            "heading": "",
             "heading_animation": "none",
-            "text": "Add a brief description for this column item.",
+            "text": "<h5>Play with proportions:</h5>Use oversized items strategically. A larger coat or jacket over a slimmer sweater can create a balanced silhouette, adding style without sacrificing comfort.<br><br><h5>Add color and pattern:</h5>Layering is an excellent opportunity to experiment with colors and patterns. Combining various hues and prints can elevate a simple outfit to something eye-catching and personal.<br><br><h5>Functional yet fashionable:</h5>Remember that layering should not only look good but also be practical. Adjust your layers based on the weather, activities, and settings you anticipate for the day.",
             "text_animation": "none",
             "column_link": "",
             "column_link_text": "Shop Now"
