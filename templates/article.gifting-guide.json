@@ -109,16 +109,30 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
-        "first_image": "shopify://shop_images/Desert-Boots_1080x_a70629f2-f0cf-4811-8f1d-343097ae41fe.webp",
-        "image_link": "shopify://collections/mens-footwear",
+        "first_image": "shopify://shop_images/Winter-Playbook-4_1080x_bc7c4769-5bc2-40a6-ad5b-a20244e0a1c6.webp",
+        "image_link": "shopify://collections/beanies",
         "animate_images": false,
         "alignment": "left",
-        "heading": "The Suede Hiking Boot",
+        "heading": "Beanies",
         "heading_animation": "none",
-        "text": "Suede hiking boots are a standout choice for casual wear, especially during the colder months when their robust construction and high ankle profile come into their own. Their soft, velvet-like structure provides additional comfort with more flexibility than traditional leather, ensuring a comfortable fit and quicker break-in time. These boots blend rugged style with comfort, featuring a chunky heel that adds character without being overly formal. Perfect for weekend outings, they can be styled effortlessly with our cargo pants, a crew knit, and a chocolate corduroy or suede jacket. Durable and timeless, a well-maintained pair of suede boots can last a lifetime, making them a valuable addition to any wardrobe.",
+        "text": "Enjoy the comfort and practicality of our wool cashmere beanies. Keeping your head warm on those cold winter days, while injecting some personality and accessorising an otherwise plain outfit. Experiment with different fabric and textures for an added point of interest to your outfit.",
         "text_animation": "none",
-        "button_label": "Shop Boots",
-        "button_link": "shopify://collections/mens-footwear"
+        "button_label": "Shop Now",
+        "button_link": "shopify://collections/beanies"
+      }
+    },
+    "collection_slider_secondary_ag48mb": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "Above the line",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "beanies",
+        "button_label": "Shop Beanies",
+        "products_to_show": 3,
+        "animate_products": false
       }
     },
     "image_with_text_cVQnWK": {
@@ -220,6 +234,7 @@
     "image_with_text_HEWLMw",
     "collection_slider_secondary_rHKRdG",
     "image_with_text_8NBATX",
+    "collection_slider_secondary_ag48mb",
     "image_with_text_cVQnWK",
     "image_with_text_9MJKTq",
     "image_with_text_rXcJxz",
