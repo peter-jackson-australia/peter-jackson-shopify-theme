@@ -257,9 +257,9 @@
           {% endif %}
 
           <div class="hero-slider__content hero-slider__content--{{ block.settings.horizontal_alignment | default: 'center' }} hero-slider__content--{{ block.settings.vertical_alignment | default: 'bottom' }}">
-            <h1 class="heading--3xl {% if block.settings.heading_animation != 'none' %}{{ block.settings.heading_animation }}{% endif %}">
+            <{{ block.settings.heading_level | default: 'h1' }} class="heading--3xl {% if block.settings.heading_animation != 'none' %}{{ block.settings.heading_animation }}{% endif %}">
               {{ block.settings.heading }}
-            </h1>
+            </{{ block.settings.heading_level | default: 'h1' }}>
 
             <div class="heading--l {% if block.settings.description_animation != 'none' %}{{ block.settings.description_animation }}{% endif %}">
               {{ block.settings.description }}
@@ -428,6 +428,38 @@
           "id": "heading",
           "label": "Heading",
           "default": "Welcome to Our Store"
+        },
+        {
+          "type": "select",
+          "id": "heading_level",
+          "label": "Heading Level",
+          "options": [
+            {
+              "value": "h1",
+              "label": "H1"
+            },
+            {
+              "value": "h2",
+              "label": "H2"
+            },
+            {
+              "value": "h3",
+              "label": "H3"
+            },
+            {
+              "value": "h4",
+              "label": "H4"
+            },
+            {
+              "value": "h5",
+              "label": "H5"
+            },
+            {
+              "value": "h6",
+              "label": "H6"
+            }
+          ],
+          "default": "h1"
         },
         {
           "type": "select",
