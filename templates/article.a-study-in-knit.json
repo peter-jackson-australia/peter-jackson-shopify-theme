@@ -73,11 +73,11 @@
           "settings": {
             "image": "shopify://shop_images/A-Study-In-Knit-2_900x_78448943-4c78-432a-8239-0e73659389d9.webp",
             "product": "",
-            "heading": "The Winter Standard",
+            "heading": "",
             "heading_animation": "none",
-            "description": "The Tesero Double Breasted Overcoat in olive-green twill blends refined tailoring with winter-ready warmth in a timeless silhouette.",
+            "description": "",
             "description_animation": "none",
-            "button_label": "Shop The Tesero",
+            "button_label": "",
             "button_link": "shopify://products/tesero-olive-twill-overcoat"
           }
         },
@@ -86,11 +86,11 @@
           "settings": {
             "image": "shopify://shop_images/A-Study-In-Knit-3_900x_d5df7a83-2fea-4a19-b73a-a673b7a971cf.webp",
             "product": "",
-            "heading": "The Italian Job",
+            "heading": "",
             "heading_animation": "none",
-            "description": "The Paracqua Raincoat in sand blends Italian-made performance fabric with refined design for elevated, all-weather style.",
+            "description": "",
             "description_animation": "none",
-            "button_label": "Shop The Paracqua Raincoat",
+            "button_label": "",
             "button_link": "shopify://products/paracqua-sand-raincoat"
           }
         }
@@ -103,8 +103,22 @@
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
-        "show_bottom_border": false,
+        "show_bottom_border": true,
         "animate_columns": false
+      }
+    },
+    "collection_slider_secondary_Fr3RYB": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "The Foundation of Style",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "knitwear",
+        "button_label": "Shop Knitwear",
+        "products_to_show": 10,
+        "animate_products": false
       }
     },
     "image_with_text_KWmAa3": {
@@ -124,20 +138,6 @@
         "text_animation": "none",
         "button_label": "Shop Overcoats",
         "button_link": "shopify://collections/mens-overcoats"
-      }
-    },
-    "collection_slider_secondary_Fr3RYB": {
-      "type": "collection-slider-secondary",
-      "name": "Collection Slider Secondary",
-      "settings": {
-        "heading": "The Ultimate Final Layer",
-        "heading_animation": "none",
-        "description": "",
-        "description_animation": "none",
-        "collection": "mens-overcoats",
-        "button_label": "Shop Winter Overcoats",
-        "products_to_show": 10,
-        "animate_products": false
       }
     },
     "variable_column_content_DECpXN": {
@@ -188,8 +188,8 @@
     "full_page_media_DQrgiW",
     "heading_with_text_NFCiF4",
     "two_column_content_JQLcTq",
-    "image_with_text_KWmAa3",
     "collection_slider_secondary_Fr3RYB",
+    "image_with_text_KWmAa3",
     "variable_column_content_DECpXN",
     "collection_slider_secondary_yGfCVj"
   ]
