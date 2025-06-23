@@ -121,6 +121,23 @@
         "animate_products": false
       }
     },
+    "heading_with_text_wUhBL9": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "leading_text": "",
+        "leading_text_animation": "none",
+        "heading": "The Art Of Layering",
+        "heading_style": "normal",
+        "heading_animation": "none",
+        "content": "<p>Mastering the art of layering knitwear is a stylish way to refine your wardrobe and adapt to varying temperatures. Here are some tips on how to layer like a pro.</p>",
+        "content_animation": "none",
+        "alignment": "center"
+      }
+    },
     "variable_column_content_secondary_FNTbjR": {
       "type": "variable-column-content-secondary",
       "blocks": {
@@ -193,6 +210,7 @@
     "heading_with_text_NFCiF4",
     "two_column_content_JQLcTq",
     "collection_slider_secondary_Fr3RYB",
+    "heading_with_text_wUhBL9",
     "variable_column_content_secondary_FNTbjR",
     "collection_slider_secondary_yGfCVj"
   ]
