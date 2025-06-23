@@ -19,8 +19,6 @@ Blog collection pages as custom pages:
 
 Made to measure template fixes 
 
-Allow hero sections to be able to choose heading level (fix heading level issue on home page) - default to h1
-
 When grid content section is present, Ajaxinate doesn't load the correct amount of product tiles
 Fix line item image reload in the cart
 
