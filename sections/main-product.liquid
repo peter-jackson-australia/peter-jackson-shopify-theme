@@ -1,7 +1,7 @@
 {% comment %}
   Main product gallery and information
 {% endcomment %}
-{% assign current_variant = product.variants.first %}
+{% assign current_variant = product.selected_or_first_available_variant %}
 
 <style>
   .product-images-container {
