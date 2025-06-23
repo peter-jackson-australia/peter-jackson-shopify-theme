@@ -146,21 +146,10 @@ function prePopulateCartDrawer(cartData) {
 }
 
 function formatMoney(cents) {
+  const format = "{{amount_with_comma_separator}}";
   if (typeof cents === "string") {
     cents = cents.replace(".", "");
   }
-  
-  if (cents == null || isNaN(cents)) {
-    return '$0.00';
-  }
-  
-  cents = Number(cents);
-  
-  if (typeof Shopify !== 'undefined' && Shopify.formatMoney) {
-    return Shopify.formatMoney(cents);
-  }
-  
-  const format = "{{amount_with_comma_separator}}";
   const placeholderRegex = /\{\{\s*(\w+)\s*\}\}/;
   const formatString = (format || "{{amount}}").match(placeholderRegex)[1];
 
@@ -175,19 +164,17 @@ function formatMoney(cents) {
 
   switch (formatString) {
     case "amount":
-      return '$' + formatWithDelimiters(cents, 2);
+      return formatWithDelimiters(cents, 2);
     case "amount_with_comma_separator":
-      return '$' + formatWithDelimiters(cents, 2, ".", ",");
+      return formatWithDelimiters(cents, 2, ".", ",");
     case "amount_no_decimals":
-      return '$' + formatWithDelimiters(cents, 0);
+      return formatWithDelimiters(cents, 0);
     case "amount_with_space_separator":
-      return '$' + formatWithDelimiters(cents, 2, " ", ",");
+      return formatWithDelimiters(cents, 2, " ", ",");
     default:
-      return '$' + formatWithDelimiters(cents, 2);
+      return formatWithDelimiters(cents, 2);
   }
 }
-
-window.formatMoney = formatMoney;
 
 function createAnimatedLoader() {
   const loader = document.createElement("div");
