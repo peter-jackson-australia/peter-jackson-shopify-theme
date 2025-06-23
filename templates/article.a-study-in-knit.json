@@ -121,20 +121,6 @@
         "animate_products": false
       }
     },
-    "collection_slider_secondary_yGfCVj": {
-      "type": "collection-slider-secondary",
-      "name": "Collection Slider Secondary",
-      "settings": {
-        "heading": "Shop Knitwear Layers",
-        "heading_animation": "none",
-        "description": "",
-        "description_animation": "none",
-        "collection": "knitwear",
-        "button_label": "Shop Now",
-        "products_to_show": 10,
-        "animate_products": false
-      }
-    },
     "variable_column_content_secondary_FNTbjR": {
       "type": "variable-column-content-secondary",
       "blocks": {
@@ -173,7 +159,7 @@
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
-        "show_bottom_border": false,
+        "show_bottom_border": true,
         "column_count": "2",
         "text_alignment": "left",
         "animate_columns": false,
@@ -184,6 +170,20 @@
         "button_label": "Learn More",
         "button_link": ""
       }
+    },
+    "collection_slider_secondary_yGfCVj": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "Layer With A Jacket or Coat",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "outerwear",
+        "button_label": "Shop Now",
+        "products_to_show": 10,
+        "animate_products": false
+      }
     }
   },
   "order": [
@@ -193,7 +193,7 @@
     "heading_with_text_NFCiF4",
     "two_column_content_JQLcTq",
     "collection_slider_secondary_Fr3RYB",
-    "collection_slider_secondary_yGfCVj",
-    "variable_column_content_secondary_FNTbjR"
+    "variable_column_content_secondary_FNTbjR",
+    "collection_slider_secondary_yGfCVj"
   ]
 }
