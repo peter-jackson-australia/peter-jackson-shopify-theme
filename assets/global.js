@@ -452,7 +452,9 @@ function addCartEventListeners() {
           if (updatedRootItem) {
             addErrorWithTimeout(
               updatedRootItem,
-              `Sorry, only ${inventoryLimit} ${inventoryLimit === 1 ? "item" : "items"} available.`
+              inventoryLimit === 0 
+                ? "Sorry, this item is out of stock." 
+                : `Sorry, only ${inventoryLimit} ${inventoryLimit === 1 ? "item" : "items"} available.`
             );
           }
           return;
@@ -550,7 +552,12 @@ function handleAddToCart(form) {
 
       if (!isGiftCardProduct() && inventoryQuantity !== Infinity && totalRequestedQuantity > inventoryQuantity) {
         addButton.innerHTML = originalText;
-        showError(form, `Sorry, only ${inventoryQuantity} ${inventoryQuantity === 1 ? "item" : "items"} available.`);
+        showError(
+          form, 
+          inventoryQuantity === 0 
+            ? "Sorry, this item is out of stock." 
+            : `Sorry, only ${inventoryQuantity} ${inventoryQuantity === 1 ? "item" : "items"} available.`
+        );
         return;
       }
 
