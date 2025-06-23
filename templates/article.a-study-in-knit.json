@@ -24,12 +24,14 @@
         "leading_text": "",
         "leading_text_animation": "none",
         "first_title": "",
+        "first_title_level": "h1",
         "first_title_animation": "none",
         "media_type": "image",
         "animate_media": false,
-        "second_title": "Coat of arms",
+        "second_title": "A Study In Knit",
+        "second_title_level": "h1",
         "second_title_animation": "none",
-        "description": "WINTER OVERCOATS<br><br>\nArmour yourself with confidence and distinction in our luxe overcoats—your defense against the season’s chill. Crafted from premium textiles, each piece exemplifies timeless style, achieving an artful balance between the classic and the contemporary.",
+        "description": "PREMIUM WINTER KNITWEAR<br><br>\nDiscover our winter knitwear collection, crafted from the finest cashmere and merino wool blends. Each piece offers the warmth of wool blended with the softness of cashmere, perfectly suited for the cooler days ahead. These essentials combine comfort with contemporary style, enhancing your wardrobe with understated luxury for everyday sophistication.",
         "description_animation": "none",
         "cta_text": "Shop Now",
         "cta_link": ""
@@ -40,7 +42,7 @@
       "name": "Full Page Media",
       "settings": {
         "media_type": "image",
-        "desktop_image": "shopify://shop_images/Peter_Jackson_Coat_of_Arms_1.webp",
+        "desktop_image": "shopify://shop_images/Knits_Hero_921ef1c1-e03b-491e-a751-eb5e4824fde6.webp",
         "link": "",
         "link_text": "Learn more",
         "alt_text": "Full page media"
@@ -55,7 +57,7 @@
         "show_bottom_border": false,
         "leading_text": "",
         "leading_text_animation": "none",
-        "heading": "Rich in texture. Robust in build.",
+        "heading": "The comfort of cashmere meets the warmth of wool",
         "heading_style": "normal",
         "heading_animation": "none",
         "content": "<p>Our coats are crafted from premium wool, luxurious wool-cashmere blends, and advanced technical textiles sourced from leading European mills. These high-quality fabrics offer exceptional warmth, breathability, and durability—delivering comfort without compromising on style. From the soft insulation of cashmere to the weather-resistant innovation of technical weaves, each material is chosen to ensure our outerwear performs beautifully in any condition.</p>",
@@ -69,7 +71,7 @@
         "column_E6NPhW": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/JJ_Coat_of_Arms_2.webp",
+            "image": "shopify://shop_images/A-Study-In-Knit-2_900x_78448943-4c78-432a-8239-0e73659389d9.webp",
             "product": "",
             "heading": "The Winter Standard",
             "heading_animation": "none",
@@ -82,7 +84,7 @@
         "column_R9dG48": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/JJ_Coat_of_Arms_6.webp",
+            "image": "shopify://shop_images/A-Study-In-Knit-3_900x_d5df7a83-2fea-4a19-b73a-a673b7a971cf.webp",
             "product": "",
             "heading": "The Italian Job",
             "heading_animation": "none",
