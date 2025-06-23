@@ -20,7 +20,6 @@ Blog collection pages as custom pages:
 Made to measure template fixes 
 
 When grid content section is present, Ajaxinate doesn't load the correct amount of product tiles
-Fix line item image reload in the cart
 
 Main Menu:
 Preserve scroll position when menu is open
