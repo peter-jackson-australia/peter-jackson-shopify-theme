@@ -111,7 +111,7 @@
       "type": "collection-slider-secondary",
       "name": "Collection Slider Secondary",
       "settings": {
-        "heading": "The Foundation of Style",
+        "heading": "The Foundation of Winter Style",
         "heading_animation": "none",
         "description": "",
         "description_animation": "none",
@@ -119,52 +119,6 @@
         "button_label": "Shop Knitwear",
         "products_to_show": 10,
         "animate_products": false
-      }
-    },
-    "image_with_text_KWmAa3": {
-      "type": "image-with-text",
-      "name": "Image With Text",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": true,
-        "show_bottom_border": true,
-        "first_image": "shopify://shop_images/JJ_Coat_of_Arms.webp",
-        "image_link": "",
-        "animate_images": false,
-        "alignment": "left",
-        "heading": "Timeless coats for the modern gent",
-        "heading_animation": "none",
-        "text": "This season, our new collection showcases jackets that meld tradition with innovation. Key features include stately Ulster collars and double-breasted lapels, crafted from cutting-edge technical fabrics and luxurious materials like cashmere and Australian Merino wool blends. Embrace elegance and functionality with these sophisticated designs.",
-        "text_animation": "none",
-        "button_label": "Shop Overcoats",
-        "button_link": "shopify://collections/mens-overcoats"
-      }
-    },
-    "variable_column_content_DECpXN": {
-      "type": "variable-column-content",
-      "name": "Variable Column Content",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": true,
-        "column_count": "3",
-        "text_alignment": "center",
-        "animate_images": false,
-        "image_1": "shopify://shop_images/JJ_Coat_of_Arms_7.webp",
-        "image_1_link": "",
-        "image_2": "shopify://shop_images/JJ_Coat_of_Arms_8.webp",
-        "image_2_link": "",
-        "image_3": "shopify://shop_images/JJ_Coat_of_Arms_9.webp",
-        "image_3_link": "",
-        "image_4_link": "",
-        "image_5_link": "",
-        "image_6_link": "",
-        "heading": "Luxe In Layers",
-        "heading_animation": "none",
-        "text": "Layering coats with knitwear is an art that combines warmth with style. Choose a slim-fit sweater or turtleneck under your coat to avoid bulkiness. Opt for complementary colors and textures—a cashmere sweater under a wool coat adds a touch of luxury while maintaining a sleek profile. This approach ensures comfort and style in colder months.",
-        "text_animation": "none",
-        "button_label": "",
-        "button_link": ""
       }
     },
     "collection_slider_secondary_yGfCVj": {
@@ -180,6 +134,55 @@
         "products_to_show": 10,
         "animate_products": false
       }
+    },
+    "variable_column_content_secondary_FNTbjR": {
+      "type": "variable-column-content-secondary",
+      "blocks": {
+        "column_item_qbzpLY": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Untitled-2_1013x_1.webp",
+            "image_link": "",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "<h5>Start with a simple base:</h5>A well-fitted base layer, such as a lightweight shirt, is crucial. This layer serves as the foundation for your outfit and should be comfortable and close to the skin.<br><br><h5>Mix fabrics and textures:</h5>Pay attention to the materials of the garments you’re layering. Different textures, such as a smooth cotton base with a chunky wool sweater, can add depth and interest to your look. Ensure the fabrics complement each other in thickness and texture to maintain comfort and avoid bulk.<br><br><h5>Visible layers:</h5>Each layer should be visible to create an intentionally layered look. This can be achieved by playing with different lengths and ensuring that each layer can be seen.",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_qdMaH6": {
+          "type": "column_item",
+          "settings": {
+            "image_link": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_qbzpLY",
+        "column_item_qdMaH6"
+      ],
+      "name": "Variable Column Content Secondary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "2",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "",
+        "heading_animation": "none",
+        "text": "",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
     }
   },
   "order": [
@@ -189,8 +192,7 @@
     "heading_with_text_NFCiF4",
     "two_column_content_JQLcTq",
     "collection_slider_secondary_Fr3RYB",
-    "image_with_text_KWmAa3",
-    "variable_column_content_DECpXN",
-    "collection_slider_secondary_yGfCVj"
+    "collection_slider_secondary_yGfCVj",
+    "variable_column_content_secondary_FNTbjR"
   ]
 }
