@@ -355,4 +355,8 @@ li:has(.menu-drawer__item--active) button > span:first-child {
   .menu-drawer__featured-image {
     overflow: visible;
   }
+
+  .menu-drawer__article-content > img {
+    height: auto; 
+  }
 }
