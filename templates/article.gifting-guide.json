@@ -1,0 +1,274 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "article": {
+      "type": "main-article",
+      "disabled": true,
+      "settings": {}
+    },
+    "editorial_hero_CPzXit": {
+      "type": "editorial-hero",
+      "name": "Hero Editorial",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "leading_text": "",
+        "leading_text_animation": "none",
+        "first_title": "Winter Style",
+        "first_title_animation": "none",
+        "media_type": "image",
+        "image": "shopify://shop_images/Blog_WMH_1_copy.webp",
+        "animate_media": false,
+        "second_title": "Playbook",
+        "second_title_animation": "none",
+        "description": "A COMPREHENSIVE GUIDE TO THE DEFINING PIECES THAT COMPLETE YOUR WINTER WARDROBE\n<br><br>\nAs the temperature dips and the layering begins, winter style starts to matter more. You want warmth without the bulk, function without forgetting polish. Whether it's the 9AM meeting or Saturday plans that run long, we've put together a winter essentials guide that works hard behind the scenes—so you don’t have to think twice about what to wear.",
+        "description_animation": "none",
+        "cta_text": "Shop Now",
+        "cta_link": ""
+      }
+    },
+    "image_with_text_KWmAa3": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "first_image": "shopify://shop_images/Winter-Playbook-2_1080x_3c3fc94b-dadd-4ff8-87af-29cf42eeabe2.webp",
+        "image_link": "shopify://collections/knitwear",
+        "animate_images": false,
+        "alignment": "left",
+        "heading": "Luxe Knitwear",
+        "heading_animation": "none",
+        "text": "Knitwear is a winter staple and an essential part of every man's wardrobe, offering a seamless blend of comfort, versatility, and effortless style whether worn alone as a separate piece, or layered for added interest or warmth. Be prepared for all occasions with a well-curated selection of knitwear options in various styles, weights and fabrications. Start with classic options like the crew and V-neck styles, adaptable pieces that transition from casual to more formal settings. Invest wisely in quality pieces made from long lasting materials such as our timeless merino wool turtleneck and luxurious cashmere long sleeved polo. For a more casual aesthetic opt for a stylish chunky 1/4 Zip knit, combining the practicality of a zip-up funnel neck, for style and functionality.",
+        "text_animation": "none",
+        "button_label": "Shop Now",
+        "button_link": "shopify://collections/knitwear"
+      }
+    },
+    "collection_slider_secondary_yGfCVj": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "Essential Knitwear",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "knitwear",
+        "button_label": "Shop Now",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
+    "image_with_text_HEWLMw": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "first_image": "shopify://shop_images/Winter-Playbook-3_1080x_9c3e8dc1-a4b9-4ef4-9af5-d96b8685610d.webp",
+        "image_link": "shopify://collections/bags",
+        "animate_images": false,
+        "alignment": "right",
+        "heading": "Leather Bags",
+        "heading_animation": "none",
+        "text": "Crafted from premium pebbled leather, our quality range of bags combine sophistication and functionality, ensuring you’re sorted for all occasions. Step into the office with confidence with our Aldo Black Pebbled Leather Briefcase, it’s sleek design complete with ample storage space and compartments, have you covered. From your weekend road trips or overseas flights, travel in style with the Alessio Weekender Bag, with its spacious interior for all your travel essentials. With sturdy handles and a detachable shoulder strap, it's ready for any adventure!",
+        "text_animation": "none",
+        "button_label": "Shop Now",
+        "button_link": "shopify://collections/bags"
+      }
+    },
+    "collection_slider_secondary_rHKRdG": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "For work. For away.",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "bags",
+        "button_label": "Shop Now",
+        "products_to_show": 3,
+        "animate_products": false
+      }
+    },
+    "image_with_text_8NBATX": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "first_image": "shopify://shop_images/Winter-Playbook-4_1080x_bc7c4769-5bc2-40a6-ad5b-a20244e0a1c6.webp",
+        "image_link": "shopify://collections/beanies",
+        "animate_images": false,
+        "alignment": "left",
+        "heading": "Beanies",
+        "heading_animation": "none",
+        "text": "Enjoy the comfort and practicality of our wool cashmere beanies. Keeping your head warm on those cold winter days, while injecting some personality and accessorising an otherwise plain outfit. Experiment with different fabric and textures for an added point of interest to your outfit.",
+        "text_animation": "none",
+        "button_label": "Shop Now",
+        "button_link": "shopify://collections/beanies"
+      }
+    },
+    "collection_slider_secondary_ag48mb": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "Above the line",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "beanies",
+        "button_label": "Shop Beanies",
+        "products_to_show": 3,
+        "animate_products": false
+      }
+    },
+    "image_with_text_cVQnWK": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "first_image": "shopify://shop_images/Winter-Playbook-5_1080x_976212a2-2d52-4a26-95ab-72834c0c03b7.webp",
+        "image_link": "shopify://collections/mens-footwear",
+        "animate_images": false,
+        "alignment": "right",
+        "heading": "Leather Footwear",
+        "heading_animation": "none",
+        "text": "Step out this season in style and effortlessly transition between formal and casual settings, with our range of winter footwear, from durable boots to statement loafers. Enjoy the rustic charm of our durable wax leather Bucco Olive Chelsea Boots or the sleek profile of our modern Chelsea Boot. Benefit from the versatile lacing system and intricate detail offered by the Brogue Derby Boot styles. Add texture into your outfit with suede footwear, perfect for upgrading those more casual looks, from the comfortable and rugged style hiking boots to the rich autumnal allure of the cognac suede penny loafers.",
+        "text_animation": "none",
+        "button_label": "Shop Footwear",
+        "button_link": "shopify://collections/mens-footwear"
+      }
+    },
+    "collection_slider_secondary_y4meNp": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "Best foot forward",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "mens-footwear",
+        "button_label": "Shop Footwear",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
+    "image_with_text_9MJKTq": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "first_image": "shopify://shop_images/Winter-Playbook-6_1080x_722a2e07-4c43-44cb-aba0-baed13be1105.webp",
+        "image_link": "shopify://collections/ties",
+        "animate_images": false,
+        "alignment": "left",
+        "heading": "Ties",
+        "heading_animation": "none",
+        "text": "Ties remain a timeless essential for any gentleman's wardrobe providing that finishing touch to any formal outfit from dapper office attire to weddings and special events. Our handmade silk ties are crafted with some of the world's finest fabrics from Italy’s Como region. Cultivated, extracted and spun with artisanal expertise, these fabrics are dyed and woven into a stunning array of colours, patterns and texture. From subtle micro patterns and classic basketweaves to preppy stripes and bold medallions, our collection caters to every personality and occasion.",
+        "text_animation": "none",
+        "button_label": "Shop Ties",
+        "button_link": "shopify://collections/ties"
+      }
+    },
+    "collection_slider_secondary_mWXhVD": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "Tie it all together",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "ties",
+        "button_label": "Shop Footwear",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
+    "image_with_text_rXcJxz": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "first_image": "shopify://shop_images/Winter-Playbook-7_1080x_66c9e00f-eae6-4c5c-b4bb-0d8d33aaf08d.webp",
+        "image_link": "shopify://collections/belt",
+        "animate_images": false,
+        "alignment": "right",
+        "heading": "Leather Belts",
+        "heading_animation": "none",
+        "text": "Buckle up in style from a sleek leather option for the office or a textured suede to see you through the weekend, a belt stands as a practical essential to complete your winter looks. When selecting the perfect belt, it is important to consider key details such as leather colour, texture, and metal hardware, as these are all factors in finding the correct pairing. Most importantly, start by matching the leather colour of your belt as closely as possible to that of your shoes; while they need not be an exact match, a close resemblance is preferred, especially for formal occasions. Additionally, consider coordinating the metal colour of the buckle with other hardware elements in your outfit, such as those on your shoes or briefcase, for a cohesive look.",
+        "text_animation": "none",
+        "button_label": "Shop Leather Belts",
+        "button_link": "shopify://collections/belt"
+      }
+    },
+    "image_with_text_WwGEL6": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "first_image": "shopify://shop_images/Sneaker_1080x_fd3107ae-c54d-4a16-b6b4-b26e71270754.webp",
+        "image_link": "shopify://collections/mens-footwear",
+        "animate_images": false,
+        "alignment": "left",
+        "heading": "The Leather Sneaker",
+        "heading_animation": "none",
+        "text": "A pair of white leather low-top sneakers is the casual go-to style that should be an integral part of every man’s wardrobe from weekend kickabouts to suit-and-tie office commuters.<br><br>Casual Styling:<br>Pair them with shorts, jeans, or chinos with a  casual shirt for a relaxed yet stylish look. If black sneakers are more your style, step out effortlessly in monochrome, with shades of black, white and grey. For a stylish winter look, combine an all black base layer of black low-tops, jeans or chino with a statement jacket in chocolate suede or corduroy.<br><br>Formal Styling:<br>Though previously considered sartorial sacrilege, sneakers are now blurring the lines between casual and formal attire, making a statement in both domains. Embrace this modern trend of combining suits and sneakers, by pairing a white leather low-top sneaker with a well-tailored navy suit. The striking contrast between navy blue and crisp white creates a sophisticated and modern look that will make a statement.",
+        "text_animation": "none",
+        "button_label": "Shop Sneakers",
+        "button_link": "shopify://collections/mens-footwear"
+      }
+    },
+    "collection_slider_secondary_FKaeAM": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "All Leather Footwear",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "mens-footwear",
+        "button_label": "Shop Now",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    }
+  },
+  "order": [
+    "article",
+    "editorial_hero_CPzXit",
+    "image_with_text_KWmAa3",
+    "collection_slider_secondary_yGfCVj",
+    "image_with_text_HEWLMw",
+    "collection_slider_secondary_rHKRdG",
+    "image_with_text_8NBATX",
+    "collection_slider_secondary_ag48mb",
+    "image_with_text_cVQnWK",
+    "collection_slider_secondary_y4meNp",
+    "image_with_text_9MJKTq",
+    "collection_slider_secondary_mWXhVD",
+    "image_with_text_rXcJxz",
+    "image_with_text_WwGEL6",
+    "collection_slider_secondary_FKaeAM"
+  ]
+}
