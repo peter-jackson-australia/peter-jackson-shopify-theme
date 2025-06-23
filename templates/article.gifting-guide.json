@@ -220,6 +220,20 @@
         "button_link": "shopify://collections/belt"
       }
     },
+    "collection_slider_secondary_Pha9gy": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "Held In Place",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "belt",
+        "button_label": "Shop Belts",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
     "image_with_text_WwGEL6": {
       "type": "image-with-text",
       "name": "Image With Text",
@@ -268,6 +282,7 @@
     "image_with_text_9MJKTq",
     "collection_slider_secondary_mWXhVD",
     "image_with_text_rXcJxz",
+    "collection_slider_secondary_Pha9gy",
     "image_with_text_WwGEL6",
     "collection_slider_secondary_FKaeAM"
   ]
