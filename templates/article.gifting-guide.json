@@ -47,7 +47,7 @@
         "image_link": "shopify://collections/knitwear",
         "animate_images": false,
         "alignment": "left",
-        "heading": "Luxe Knitwear",
+        "heading": "Knitwear",
         "heading_animation": "none",
         "text": "Knitwear is a winter staple and an essential part of every man's wardrobe, offering a seamless blend of comfort, versatility, and effortless style whether worn alone as a separate piece, or layered for added interest or warmth. Be prepared for all occasions with a well-curated selection of knitwear options in various styles, weights and fabrications. Start with classic options like the crew and V-neck styles, adaptable pieces that transition from casual to more formal settings. Invest wisely in quality pieces made from long lasting materials such as our timeless merino wool turtleneck and luxurious cashmere long sleeved polo. For a more casual aesthetic opt for a stylish chunky 1/4 Zip knit, combining the practicality of a zip-up funnel neck, for style and functionality.",
         "text_animation": "none",
@@ -59,7 +59,7 @@
       "type": "collection-slider-secondary",
       "name": "Collection Slider Secondary",
       "settings": {
-        "heading": "Essential Knitwear",
+        "heading": "Luxe Layers",
         "heading_animation": "none",
         "description": "",
         "description_animation": "none",
