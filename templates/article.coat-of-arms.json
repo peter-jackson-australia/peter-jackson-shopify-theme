@@ -14,21 +14,25 @@
       "disabled": true,
       "settings": {}
     },
-    "heading_with_text_tRcmmY": {
-      "type": "heading-with-text",
-      "name": "Heading with Text",
+    "editorial_hero_CPzXit": {
+      "type": "editorial-hero",
+      "name": "Hero Editorial",
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
-        "leading_text": "Winter outwear",
+        "leading_text": "",
         "leading_text_animation": "none",
-        "heading": "Coat Of Arms",
-        "heading_style": "normal",
-        "heading_animation": "none",
-        "content": "<p>Armour yourself with confidence and distinction in our luxe overcoats—your defense against the season’s chill. Crafted from premium textiles, each piece exemplifies timeless style, achieving an artful balance between the classic and the contemporary.</p>",
-        "content_animation": "none",
-        "alignment": "center"
+        "first_title": "",
+        "first_title_animation": "none",
+        "media_type": "image",
+        "animate_media": false,
+        "second_title": "Coat of arms",
+        "second_title_animation": "none",
+        "description": "<h4>Winter Overcoats</h4><br><p>Armour yourself with confidence and distinction in our luxe overcoats—your defense against the season’s chill. Crafted from premium textiles, each piece exemplifies timeless style, achieving an artful balance between the classic and the contemporary.</p>",
+        "description_animation": "none",
+        "cta_text": "Shop Now",
+        "cta_link": ""
       }
     },
     "full_page_media_DQrgiW": {
@@ -291,7 +295,7 @@
   },
   "order": [
     "article",
-    "heading_with_text_tRcmmY",
+    "editorial_hero_CPzXit",
     "full_page_media_DQrgiW",
     "heading_with_text_NFCiF4",
     "two_column_content_JQLcTq",
