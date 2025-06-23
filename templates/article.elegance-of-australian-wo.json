@@ -1,0 +1,267 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "article": {
+      "type": "main-article",
+      "disabled": true,
+      "settings": {}
+    },
+    "editorial_hero_z9geH7": {
+      "type": "editorial-hero",
+      "name": "Hero Editorial",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "leading_text": "ORIGINS OF EXCELLENCE",
+        "leading_text_animation": "none",
+        "first_title": "THE UNMATCHED ELEGANCE",
+        "first_title_animation": "none",
+        "media_type": "image",
+        "image": "shopify://shop_images/Wool_Article_Header.webp",
+        "animate_media": false,
+        "second_title": "OF AUSTRALIAN MERINO WOOL",
+        "second_title_animation": "none",
+        "description": "Australian Merino wool represents more than just a fabric; it embodies a heritage rooted in the fertile landscale of Australia. Originating from the finest Merino sheep, renowned for their ultra-soft and delicate wool, this material is the product of a dedicated breeding and farming processes. The temperate climate and fertile terrain of Australia provide the ideal environment, ensuring a sustainable and ecologically responsible approach to wool production.",
+        "description_animation": "none",
+        "cta_text": "Shop Now",
+        "cta_link": ""
+      }
+    },
+    "heading_with_text_cPBtiF": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "leading_text": "BEHIND THE TEXTILES",
+        "leading_text_animation": "none",
+        "heading": "Vitale Barberis Canonico",
+        "heading_style": "normal",
+        "heading_animation": "none",
+        "content": "<p><strong>Region: Biella, Italy<br/>EST 1663</strong></p><p>Founded in 1663 and still family-run, this legendary Italian mill has over 360 years of experience woven into every metre of cloth.<br/><br/>Thirteen generations. One region. An unbroken legacy of excellence from Biella, Italy — the heartland of fine European wool.</p>",
+        "content_animation": "none",
+        "alignment": "center"
+      }
+    },
+    "video_7hxHce": {
+      "type": "video",
+      "name": "Video",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "video": "shopify://files/videos/VBC Video (Desktop).mov",
+        "poster_image": "shopify://shop_images/video-capture-t0000.00seg-310.png",
+        "title": "",
+        "show_title": false,
+        "width": "full-width",
+        "aspect_ratio": "16-9",
+        "autoplay": true,
+        "loop": true,
+        "muted": true
+      }
+    },
+    "heading_with_text_DqfHti": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "leading_text": "",
+        "leading_text_animation": "none",
+        "heading": "",
+        "heading_style": "normal",
+        "heading_animation": "none",
+        "content": "<p>When we set out to craft our winter collection, we weren’t just looking for a textile. We were looking for a partner whose philosophies mirrored our own. A deep respect for craftsmanship. A relentless pursuit of quality and a belief that true progress starts with knowing your foundations. That’s what led us to Vitale Barberis Canonico.<br/><br/>Vitale Barberis Canonico is steeped in history — but it’s their constant evolution that makes them timeless.Their fabrics have graced the ateliers of the world’s most prestigious fashion houses, but they aren’t looking backward. They are heritage in motion. Through cutting-edge technology, world-leading sustainability practices, and a refusal to compromise, they’re redefining what tradition looks like today.</p>",
+        "content_animation": "none",
+        "alignment": "left"
+      }
+    },
+    "two_column_content_JQLcTq": {
+      "type": "two-column-content",
+      "blocks": {
+        "column_E6NPhW": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/VBC-1_720x_a0e85a06-2b36-494a-a1d4-ebf16e8bf383.webp",
+            "product": "",
+            "heading": "World Leading Wool",
+            "heading_animation": "none",
+            "description": "Vitale Barberis Canonico's wool is celebrated for its exceptional softness, durability, and refined drape, crafted from premium Australian Merino fibers",
+            "description_animation": "none",
+            "button_label": "Learn More",
+            "button_link": ""
+          }
+        },
+        "column_R9dG48": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/VBC-2_720x_65f43911-8662-44b8-ae79-240832404670.webp",
+            "product": "",
+            "heading": "Biella, Italy",
+            "heading_animation": "none",
+            "description": "Biella’s pristine Alpine water, ideal humidity, and historic mills create the perfect conditions for producing exceptionally fine and consistent textiles.",
+            "description_animation": "none",
+            "button_label": "Learn More",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_E6NPhW",
+        "column_R9dG48"
+      ],
+      "name": "Two Column Content",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "animate_columns": false
+      }
+    },
+    "full_page_media_hmrKEK": {
+      "type": "full-page-media",
+      "name": "Full Page Media",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/vbc-4_2102x_922bb62f-d4d5-4fc7-91ad-b4936c624edf.webp",
+        "link": "",
+        "link_text": "Learn more",
+        "alt_text": "Full page media"
+      }
+    },
+    "image_with_text_KWmAa3": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "first_image": "shopify://shop_images/vbc-5_900x_698ec877-f6c8-496c-9cff-7c3a34c8b13e.webp",
+        "image_link": "",
+        "animate_images": false,
+        "alignment": "left",
+        "heading": "Vitale Barberis Canonico is renowned for producing premium fabrics through a meticulous seven-step process that ensures exceptional quality and performance.",
+        "heading_animation": "none",
+        "text": "<h5>Selection of Raw Materials:</h5>VBC sources high-quality Merino wool, including Super 180’s wool of 14.5 microns, from responsible farms that prioritise animal welfare and environmental sustainability.<br><br><h5>Shearing and Sorting:</h5>Skilled shearers carefully harvest the wool, which is then sorted to select only the finest fibers, ensuring uniformity and excellence in the final product.<br><br><h5>Scouring and Combing:</h5>The raw wool undergoes thorough cleaning to remove impurities, followed by combing to align fibers parallelly, resulting in a smooth and consistent texture.<br><br><h5>Spinning:</h5>Advanced spinning techniques transform the prepared fibers into fine yarns, balancing strength and softness to enhance the fabric's durability and comfort.",
+        "text_animation": "none",
+        "button_label": "Shop Knitwear",
+        "button_link": ""
+      }
+    },
+    "image_with_text_8ePUyF": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "first_image": "shopify://shop_images/vbc-5_900x_698ec877-f6c8-496c-9cff-7c3a34c8b13e.webp",
+        "image_link": "",
+        "animate_images": false,
+        "alignment": "right",
+        "heading": "",
+        "heading_animation": "none",
+        "text": "<h5>Dyeing:</h5>Utilising both traditional and innovative dyeing methods, VBC achieves vibrant and lasting colors, contributing to the fabric's aesthetic appeal.<br><br><h5>Weaving:</h5>Expert weavers employ precise techniques to interlace the yarns, creating fabrics with distinct patterns and textures that reflect VBC's commitment to craftsmanship.<br><br><h5>Finishing:</h5>The final stage involves specialised treatments to enhance the fabric's hand feel, drape, and performance characteristics, such as wrinkle resistance and breathability.<br><br>This comprehensive process, rooted in centuries of expertise and a commitment to sustainability, positions Vitale Barberis Canonico's fabrics among the finest in the world.",
+        "text_animation": "none",
+        "button_label": "Shop Knitwear",
+        "button_link": ""
+      }
+    },
+    "hero_slider_zKUKdU": {
+      "type": "hero-slider",
+      "blocks": {
+        "slide_PQmV7m": {
+          "type": "slide",
+          "settings": {
+            "media_type": "image",
+            "desktop_image": "shopify://shop_images/vbc-3_1944x_f80f9ce8-8ce7-4cbb-8349-3920f9cea80b.webp",
+            "mobile_image": "shopify://shop_images/vbc-14_900x_9145c0ef-15c0-404d-8a10-05faf7dd24c1.webp",
+            "heading": "Woven From History",
+            "heading_animation": "animate-paragraph-slide-up-scroll",
+            "description": "Vitale Barberis Canonico’s archive, housing over 2,000 volumes of fabric samples dating back to 1860, is a living library of global textile history—demonstrating that true innovation is rooted in deep knowledge, where each new fabric draws from a legacy of design, technique, and timeless inspiration.",
+            "description_animation": "animate-paragraph-slide-up-scroll",
+            "button_label": "Shop Now",
+            "button_link": "",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "middle"
+          }
+        }
+      },
+      "block_order": [
+        "slide_PQmV7m"
+      ],
+      "name": "Hero Slider",
+      "settings": {
+        "autoplay": true,
+        "slide_interval": 5
+      }
+    },
+    "variable_column_content_DECpXN": {
+      "type": "variable-column-content",
+      "name": "Variable Column Content",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "column_count": "3",
+        "text_alignment": "center",
+        "animate_images": false,
+        "image_1": "shopify://shop_images/vbc-8_900x_49c97f48-4903-4f24-9db9-048259aa59f2.webp",
+        "image_1_link": "",
+        "image_2": "shopify://shop_images/vbc-7_900x_6f13bf95-dc1a-482e-ab4c-1425c53a1e4f.webp",
+        "image_2_link": "",
+        "image_3": "shopify://shop_images/vbc-9_900x_1d08ce9c-9926-400d-839c-ad55d51d870a.webp",
+        "image_3_link": "",
+        "image_4_link": "",
+        "image_5_link": "",
+        "image_6_link": "",
+        "heading": "<h2>\"Quality is paramount for us.<br>We own several farms in Australia which means we have total<br>control from raw material to the finished product.\"</h2><h6>Francesco Barberis- Vitale Barberis Canonico's Creative Director</h6>",
+        "heading_animation": "none",
+        "text": "Our collaboration is the meeting point of two philosophies — one Italian, one Australian. Both defined by heritage. Both driven by progress. Both committed to the idea that tailoring should never be rushed, compromised, or anything less than exceptional.The result? A suit that doesn’t just look refined — it feels considered. Woven from centuries of knowledge. Designed for life now.Because in a world chasing the next trend, we believe in dressing with intention. And that real style — like real craft — always moves forward.This is heritage, tailored for what’s next.",
+        "text_animation": "none",
+        "button_label": "",
+        "button_link": ""
+      }
+    },
+    "collection_slider_secondary_Fr3RYB": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "The Vitale Barberis Canonico Edit",
+        "heading_animation": "animate-paragraph-slide-up-scroll",
+        "description": "",
+        "description_animation": "none",
+        "collection": "vitale-barberis-canonico-edit",
+        "button_label": "Shop Suits",
+        "products_to_show": 10,
+        "animate_products": true
+      }
+    }
+  },
+  "order": [
+    "article",
+    "editorial_hero_z9geH7",
+    "heading_with_text_cPBtiF",
+    "video_7hxHce",
+    "heading_with_text_DqfHti",
+    "two_column_content_JQLcTq",
+    "full_page_media_hmrKEK",
+    "image_with_text_KWmAa3",
+    "image_with_text_8ePUyF",
+    "hero_slider_zKUKdU",
+    "variable_column_content_DECpXN",
+    "collection_slider_secondary_Fr3RYB"
+  ]
+}
