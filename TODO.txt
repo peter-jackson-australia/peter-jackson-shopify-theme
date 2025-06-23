@@ -2,8 +2,6 @@ Todo:
 
 SECTIONS:
 
-Move category image below second level menu links on mobile
-
 Import gift cards when site is live and domain verified:
     Turn off customer notifications
     import all gift cards before site is live
