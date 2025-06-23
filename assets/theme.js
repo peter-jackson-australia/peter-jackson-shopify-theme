@@ -1,8 +1,8 @@
 // Define a convenience method and use it like
 // ready(() => {...});
 var ready = (callback) => {
-  if (document.readyState != 'loading') callback();
-  else document.addEventListener('DOMContentLoaded', callback);
+  if (document.readyState != "loading") callback();
+  else document.addEventListener("DOMContentLoaded", callback);
 };
 
 /*
@@ -18,12 +18,12 @@ function historyState() {
  * Checks for url parameter called `name`.
  */
 function getParam(name) {
-  if ('URLSearchParams' in window) {
+  if ("URLSearchParams" in window) {
     var params = new URLSearchParams(window.location.search);
     return params.get(name);
   } else {
     // Polyfill for IE11
-    var params = new RegExp('[?&]' + name + '=([^&#]*)').exec(window.location.href);
+    var params = new RegExp("[?&]" + name + "=([^&#]*)").exec(window.location.href);
     if (params == null) {
       return null;
     } else {
@@ -38,23 +38,23 @@ function getParam(name) {
  * Referenced from https://gist.github.com/stewartknapman/8d8733ea58d2314c373e94114472d44c
  */
 var Shopify = Shopify || {};
-Shopify.money_format = '${{amount}}';
+Shopify.money_format = "${{amount}}";
 Shopify.formatMoney = function (cents, format) {
-  if (typeof cents == 'string') {
-    cents = cents.replace('.', '');
+  if (typeof cents == "string") {
+    cents = cents.replace(".", "");
   }
-  var value = '';
+  var value = "";
   var placeholderRegex = /\{\{\s*(\w+)\s*\}\}/;
   var formatString = format || this.money_format;
 
   function defaultOption(opt, def) {
-    return typeof opt == 'undefined' ? def : opt;
+    return typeof opt == "undefined" ? def : opt;
   }
 
   function formatWithDelimiters(number, precision, thousands, decimal) {
     precision = defaultOption(precision, 2);
-    thousands = defaultOption(thousands, ',');
-    decimal = defaultOption(decimal, '.');
+    thousands = defaultOption(thousands, ",");
+    decimal = defaultOption(decimal, ".");
 
     if (isNaN(number) || number == null) {
       return 0;
@@ -62,25 +62,25 @@ Shopify.formatMoney = function (cents, format) {
 
     number = (number / 100.0).toFixed(precision);
 
-    var parts = number.split('.'),
-      dollars = parts[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1' + thousands),
-      cents = parts[1] ? decimal + parts[1] : '';
+    var parts = number.split("."),
+      dollars = parts[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1" + thousands),
+      cents = parts[1] ? decimal + parts[1] : "";
 
     return dollars + cents;
   }
 
   switch (formatString.match(placeholderRegex)[1]) {
-    case 'amount':
+    case "amount":
       value = formatWithDelimiters(cents, 2);
       break;
-    case 'amount_no_decimals':
+    case "amount_no_decimals":
       value = formatWithDelimiters(cents, 0);
       break;
-    case 'amount_with_comma_separator':
-      value = formatWithDelimiters(cents, 2, '.', ',');
+    case "amount_with_comma_separator":
+      value = formatWithDelimiters(cents, 2, ".", ",");
       break;
-    case 'amount_no_decimals_with_comma_separator':
-      value = formatWithDelimiters(cents, 0, '.', ',');
+    case "amount_no_decimals_with_comma_separator":
+      value = formatWithDelimiters(cents, 0, ".", ",");
       break;
   }
 
@@ -99,17 +99,17 @@ ready(function () {
   options[2] = null;
   options[3] = null;
 
-  var variantOptions = document.querySelectorAll('.js--variant-option');
+  var variantOptions = document.querySelectorAll(".js--variant-option");
   variantOptions.forEach(function (el) {
-    el.addEventListener('change', function (event) {
+    el.addEventListener("change", function (event) {
       // Disable non-existent variant options.
       checkVariants();
 
       // Set the chosen options.
       variantOptions.forEach(function (opt) {
-        if (opt.tagName.toLowerCase() == 'input' && opt.checked == true) {
-          var optionName = opt.getAttribute('name');
-          var optionPos = parseInt(optionName.replace('option', ''));
+        if (opt.tagName.toLowerCase() == "input" && opt.checked == true) {
+          var optionName = opt.getAttribute("name");
+          var optionPos = parseInt(optionName.replace("option", ""));
           var optionValue = opt.value;
           options[optionPos] = optionValue;
         }
@@ -121,11 +121,11 @@ ready(function () {
           variant = v;
 
           // Update variant id and prices
-          document.querySelector('input#js--variant-id').value = v.id;
+          document.querySelector("input#js--variant-id").value = v.id;
           // The following is used for the "purchase together" feature.
           document.querySelectorAll('input[type="checkbox"].js--variant-id').forEach(function (el) {
             el.value = v.id;
-            el.setAttribute('data-price', v.price);
+            el.setAttribute("data-price", v.price);
             if (v.available == true) {
               el.checked = true;
               el.disabled = false;
@@ -134,39 +134,44 @@ ready(function () {
               el.disabled = true;
             }
           });
-          document.querySelectorAll('.js--variant-price').forEach(function (el) {
+          document.querySelectorAll(".js--variant-price").forEach(function (el) {
             el.innerHTML = Shopify.formatMoney(v.price);
           });
 
           if (v.compare_at_price > v.price) {
-            document.querySelectorAll('.js--variant-compareatprice').forEach(function (el) {
+            document.querySelectorAll(".js--variant-compareatprice").forEach(function (el) {
               el.innerText = Shopify.formatMoney(v.compare_at_price);
             });
           } else {
-            document.querySelectorAll('.js--variant-compareatprice').forEach(function (el) {
-              el.innerText = '';
+            document.querySelectorAll(".js--variant-compareatprice").forEach(function (el) {
+              el.innerText = "";
             });
           }
 
           // Update SKU
-          document.querySelectorAll('.js--variant-sku').forEach(function (el) {
+          document.querySelectorAll(".js--variant-sku").forEach(function (el) {
             el.innerText = variant.sku;
           });
 
           // Disable the buy button if product is unavailable
-          var variantIndex = variants.findIndex(variant => variant.id === v.id);
-          if (v.available === false || variant_hide_flags[variantIndex] === true) {
-            document.querySelector('#js--addtocart').disabled = true;
-            document.querySelector('#js--addtocart').innerText = 'Unavailable';
+          var variantIndex = variants.findIndex((variant) => variant.id === v.id);
+          var inventoryQuantity = variant_inventory_quantities[variantIndex];
+
+          if (v.available === false || inventoryQuantity <= 5) {
+            document.querySelector("#js--addtocart").disabled = true;
+            document.querySelector("#js--addtocart").innerText = "Unavailable";
           } else {
-            document.querySelector('#js--addtocart').disabled = false;
-            document.querySelector('#js--addtocart').innerText = 'Add to cart';
+            document.querySelector("#js--addtocart").disabled = false;
+            document.querySelector("#js--addtocart").innerText = "Add to cart";
           }
+
+          // Update the hidden inventory quantity input
+          document.querySelector("#js--variant-inventory-quantity").value = inventoryQuantity;
 
           // Append the variant ID as a url parameter
           if (v != undefined) {
             if (historyState()) {
-              window.history.replaceState({}, document.title, '?variant=' + v.id);
+              window.history.replaceState({}, document.title, "?variant=" + v.id);
             }
           }
         }
@@ -210,7 +215,7 @@ function checkVariants() {
 
     // Then, loop through each input and check if its value is in the optionGroups
     // array created above, ignoring the clicked option group.
-    document.querySelectorAll('.js--variant-option').forEach(function (input) {
+    document.querySelectorAll(".js--variant-option").forEach(function (input) {
       if (input.name != $this.name) {
         if (optionGroups[input.name].includes(input.value) == false) {
           input.disabled = true;
@@ -223,11 +228,11 @@ function checkVariants() {
   }
 
   // Check a valid option is selected for each group.
-  document.querySelectorAll('.js--variant-options').forEach(function (group) {
+  document.querySelectorAll(".js--variant-options").forEach(function (group) {
     let firstAvailable = null;
-    let checkedOptions = group.querySelectorAll('.js--variant-option:checked').length;
+    let checkedOptions = group.querySelectorAll(".js--variant-option:checked").length;
     if (checkedOptions == 0) {
-      firstAvailable = group.querySelectorAll('.js--variant-option:not(:disabled)')[0];
+      firstAvailable = group.querySelectorAll(".js--variant-option:not(:disabled)")[0];
     }
     if (firstAvailable != null) {
       firstAvailable.checked = true;

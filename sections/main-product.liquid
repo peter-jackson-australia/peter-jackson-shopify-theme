@@ -524,9 +524,9 @@
 <script>
   var current_variant = {{ current_variant | json }};
   var variants = {{ product.variants | json }};
-  var variant_hide_flags = [{% for variant in product.variants %}{{ variant.metafields.custom.hide_low_stock_variant | default: false }}{% unless forloop.last %},{% endunless %}{% endfor %}];
   var default_image = {{ product.featured_image.id | default: 'null' }};
   var product_type = {{ product.type | json }};
+  var variant_inventory_quantities = [{% for variant in product.variants %}{{ variant.inventory_quantity }}{% unless forloop.last %},{% endunless %}{% endfor %}];
 </script>
 
 <div class="section-wrap">
@@ -761,6 +761,7 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
+    
     if (typeof Alpine === 'undefined') {
       console.warn('Alpine.js is required for the size guide modal');
     }

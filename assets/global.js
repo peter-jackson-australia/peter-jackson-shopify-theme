@@ -1,13 +1,13 @@
+window.addEventListener("load", () => {
+  quicklink.listen();
+});
+
 const cartElements = {
   indicators: document.querySelectorAll(".cart-indicator"),
   drawer: document.querySelector(".cart"),
   forms: document.querySelectorAll('form[action="/cart/add"]'),
   cartLinks: document.querySelectorAll('.js-cart-icon'), 
 };
-
-window.addEventListener("load", () => {
-  quicklink.listen();
-});
 
 document.addEventListener("DOMContentLoaded", () => {
   initCartFromStorage();
