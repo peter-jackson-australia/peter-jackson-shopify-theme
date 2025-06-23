@@ -36,13 +36,10 @@
         "prerender": [
           {
             "where": {
-              "and": [
-                { "href_matches": "/*" },
-                { "not": { "href_matches": "/cart*" } },
-                { "not": { "href_matches": "/checkout*" } },
-                { "not": { "href_matches": "*/cart*" } },
-                { "not": { "href_matches": "*/checkout*" } }
-              ]
+              "href_matches": "/*",
+              "not": {
+                "href_matches": ["/cart*", "/checkout*", "*/cart*", "*/checkout*"]
+              }
             },
             "eagerness": "immediate"
           }
