@@ -149,6 +149,25 @@
         "button_link": "shopify://collections/mens-footwear"
       }
     },
+    "image_with_text_WwGEL6": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "first_image": "shopify://shop_images/Sneaker_1080x_fd3107ae-c54d-4a16-b6b4-b26e71270754.webp",
+        "image_link": "shopify://collections/mens-footwear",
+        "animate_images": false,
+        "alignment": "left",
+        "heading": "The Leather Sneaker",
+        "heading_animation": "none",
+        "text": "A pair of white leather low-top sneakers is the casual go-to style that should be an integral part of every man’s wardrobe from weekend kickabouts to suit-and-tie office commuters.<br><br>Casual Styling:<br>Pair them with shorts, jeans, or chinos with a  casual shirt for a relaxed yet stylish look. If black sneakers are more your style, step out effortlessly in monochrome, with shades of black, white and grey. For a stylish winter look, combine an all black base layer of black low-tops, jeans or chino with a statement jacket in chocolate suede or corduroy.<br><br>Formal Styling:<br>Though previously considered sartorial sacrilege, sneakers are now blurring the lines between casual and formal attire, making a statement in both domains. Embrace this modern trend of combining suits and sneakers, by pairing a white leather low-top sneaker with a well-tailored navy suit. The striking contrast between navy blue and crisp white creates a sophisticated and modern look that will make a statement.",
+        "text_animation": "none",
+        "button_label": "Shop Sneakers",
+        "button_link": "shopify://collections/mens-footwear"
+      }
+    },
     "collection_slider_secondary_yGfCVj": {
       "type": "collection-slider-secondary",
       "name": "Collection Slider Secondary",
@@ -173,6 +192,7 @@
     "image_with_text_cVQnWK",
     "image_with_text_9MJKTq",
     "image_with_text_rXcJxz",
+    "image_with_text_WwGEL6",
     "collection_slider_secondary_yGfCVj"
   ]
 }
