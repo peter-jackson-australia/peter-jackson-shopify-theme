@@ -77,8 +77,15 @@ select {
 }
 
 .collection-slider,
+.collection-slider-secondary
 .variable-column-content-secondary,
 .blog-hero, 
+.image-with-text, 
+.related-articles, 
+.collection-expandable-content,
+.collection-navigation, 
+.full-page-media, 
+.two-column-content, 
 footer {
   content-visibility: auto;
 }
