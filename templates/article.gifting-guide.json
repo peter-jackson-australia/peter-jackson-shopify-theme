@@ -142,16 +142,30 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": true,
-        "first_image": "shopify://shop_images/Penny-Loafer_1080x_c48cbf2b-a117-4b34-8037-bd1ba1dd978c.webp",
+        "first_image": "shopify://shop_images/Winter-Playbook-5_1080x_976212a2-2d52-4a26-95ab-72834c0c03b7.webp",
         "image_link": "shopify://collections/mens-footwear",
         "animate_images": false,
         "alignment": "right",
-        "heading": "The Penny Loafer",
+        "heading": "Leather Footwear",
         "heading_animation": "none",
-        "text": "Penny loafers are a timeless style offering endless outfit possibilities for various occasions from smart casual to semi-formal events. Recognised for the decorative strip of leather, also known as a 'saddle', across the vamp. While they may not be appropriate for black tie affairs, loafers complement almost everything else in your wardrobe, pairing effortlessly with jeans, chinos, and wool flannel trousers, making them a must-have addition to any wardrobe.For a relaxed weekend look, pair brown penny loafers with denim pants or chinos and a navy knit polo. For a more polished ensemble, opt for khaki chinos, an oxford shirt, and a sports jacket. To achieve a semi-formal business style, pair black penny loafers with a well-tailored dark suit in a navy, black or charcoal. Suede loafers, on the other hand, add texture to your outfit and are perfect for more casual looks. ",
+        "text": "Step out this season in style and effortlessly transition between formal and casual settings, with our range of winter footwear, from durable boots to statement loafers. Enjoy the rustic charm of our durable wax leather Bucco Olive Chelsea Boots or the sleek profile of our modern Chelsea Boot. Benefit from the versatile lacing system and intricate detail offered by the Brogue Derby Boot styles. Add texture into your outfit with suede footwear, perfect for upgrading those more casual looks, from the comfortable and rugged style hiking boots to the rich autumnal allure of the cognac suede penny loafers.",
         "text_animation": "none",
-        "button_label": "Shop Loafers",
+        "button_label": "Shop Footwear",
         "button_link": "shopify://collections/mens-footwear"
+      }
+    },
+    "collection_slider_secondary_y4meNp": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "Best foot forward",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "mens-footwear",
+        "button_label": "Shop Footwear",
+        "products_to_show": 10,
+        "animate_products": false
       }
     },
     "image_with_text_9MJKTq": {
@@ -236,6 +250,7 @@
     "image_with_text_8NBATX",
     "collection_slider_secondary_ag48mb",
     "image_with_text_cVQnWK",
+    "collection_slider_secondary_y4meNp",
     "image_with_text_9MJKTq",
     "image_with_text_rXcJxz",
     "image_with_text_WwGEL6",
