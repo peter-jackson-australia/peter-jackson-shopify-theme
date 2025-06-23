@@ -1,0 +1,217 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "article": {
+      "type": "main-article",
+      "disabled": true,
+      "settings": {}
+    },
+    "editorial_hero_CPzXit": {
+      "type": "editorial-hero",
+      "name": "Hero Editorial",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "leading_text": "",
+        "leading_text_animation": "none",
+        "first_title": "",
+        "first_title_level": "h1",
+        "first_title_animation": "none",
+        "media_type": "image",
+        "animate_media": false,
+        "second_title": "A Study In Knit",
+        "second_title_level": "h1",
+        "second_title_animation": "none",
+        "description": "PREMIUM WINTER KNITWEAR<br><br>\nDiscover our winter knitwear collection, crafted from the finest cashmere and merino wool blends. Each piece offers the warmth of wool blended with the softness of cashmere, perfectly suited for the cooler days ahead. These essentials combine comfort with contemporary style, enhancing your wardrobe with understated luxury for everyday sophistication.",
+        "description_animation": "none",
+        "cta_text": "Shop Now",
+        "cta_link": ""
+      }
+    },
+    "full_page_media_DQrgiW": {
+      "type": "full-page-media",
+      "name": "Full Page Media",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/Knits_Hero_921ef1c1-e03b-491e-a751-eb5e4824fde6.webp",
+        "link": "",
+        "link_text": "Learn more",
+        "alt_text": "Full page media"
+      }
+    },
+    "heading_with_text_NFCiF4": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "leading_text": "",
+        "leading_text_animation": "none",
+        "heading": "The comfort of cashmere meets the warmth of wool",
+        "heading_style": "normal",
+        "heading_animation": "none",
+        "content": "<p>Our coats are crafted from premium wool, luxurious wool-cashmere blends, and advanced technical textiles sourced from leading European mills. These high-quality fabrics offer exceptional warmth, breathability, and durability—delivering comfort without compromising on style. From the soft insulation of cashmere to the weather-resistant innovation of technical weaves, each material is chosen to ensure our outerwear performs beautifully in any condition.</p>",
+        "content_animation": "none",
+        "alignment": "center"
+      }
+    },
+    "two_column_content_JQLcTq": {
+      "type": "two-column-content",
+      "blocks": {
+        "column_E6NPhW": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/A-Study-In-Knit-2_900x_78448943-4c78-432a-8239-0e73659389d9.webp",
+            "product": "",
+            "heading": "",
+            "heading_animation": "none",
+            "description": "",
+            "description_animation": "none",
+            "button_label": "",
+            "button_link": "shopify://products/tesero-olive-twill-overcoat"
+          }
+        },
+        "column_R9dG48": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/A-Study-In-Knit-3_900x_d5df7a83-2fea-4a19-b73a-a673b7a971cf.webp",
+            "product": "",
+            "heading": "",
+            "heading_animation": "none",
+            "description": "",
+            "description_animation": "none",
+            "button_label": "",
+            "button_link": "shopify://products/paracqua-sand-raincoat"
+          }
+        }
+      },
+      "block_order": [
+        "column_E6NPhW",
+        "column_R9dG48"
+      ],
+      "name": "Two Column Content",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "animate_columns": false
+      }
+    },
+    "collection_slider_secondary_Fr3RYB": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "The Foundation of Winter Style",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "knitwear",
+        "button_label": "Shop Knitwear",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
+    "heading_with_text_wUhBL9": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "leading_text": "",
+        "leading_text_animation": "none",
+        "heading": "The Art Of Layering",
+        "heading_style": "normal",
+        "heading_animation": "none",
+        "content": "<p>Mastering the art of layering knitwear is a stylish way to refine your wardrobe and adapt to varying temperatures. Here are some tips on how to layer like a pro.</p>",
+        "content_animation": "none",
+        "alignment": "center"
+      }
+    },
+    "variable_column_content_secondary_FNTbjR": {
+      "type": "variable-column-content-secondary",
+      "blocks": {
+        "column_item_qbzpLY": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Untitled-2_1013x_1.webp",
+            "image_link": "",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "<h5>Start with a simple base:</h5>A well-fitted base layer, such as a lightweight shirt, is crucial. This layer serves as the foundation for your outfit and should be comfortable and close to the skin.<br><br><h5>Mix fabrics and textures:</h5>Pay attention to the materials of the garments you’re layering. Different textures, such as a smooth cotton base with a chunky wool sweater, can add depth and interest to your look. Ensure the fabrics complement each other in thickness and texture to maintain comfort and avoid bulk.<br><br><h5>Visible layers:</h5>Each layer should be visible to create an intentionally layered look. This can be achieved by playing with different lengths and ensuring that each layer can be seen.",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_qdMaH6": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Untitled-3_1013x_1.webp",
+            "image_link": "",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "<h5>Play with proportions:</h5>Use oversized items strategically. A larger coat or jacket over a slimmer sweater can create a balanced silhouette, adding style without sacrificing comfort.<br><br><h5>Add color and pattern:</h5>Layering is an excellent opportunity to experiment with colors and patterns. Combining various hues and prints can elevate a simple outfit to something eye-catching and personal.<br><br><h5>Functional yet fashionable:</h5>Remember that layering should not only look good but also be practical. Adjust your layers based on the weather, activities, and settings you anticipate for the day.",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_qbzpLY",
+        "column_item_qdMaH6"
+      ],
+      "name": "Variable Column Content Secondary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "column_count": "2",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "",
+        "heading_animation": "none",
+        "text": "",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    },
+    "collection_slider_secondary_yGfCVj": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "Layer With A Jacket or Coat",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "outerwear",
+        "button_label": "Shop Now",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    }
+  },
+  "order": [
+    "article",
+    "editorial_hero_CPzXit",
+    "full_page_media_DQrgiW",
+    "heading_with_text_NFCiF4",
+    "two_column_content_JQLcTq",
+    "collection_slider_secondary_Fr3RYB",
+    "heading_with_text_wUhBL9",
+    "variable_column_content_secondary_FNTbjR",
+    "collection_slider_secondary_yGfCVj"
+  ]
+}
