@@ -1,6 +1,6 @@
-window.addEventListener("load", () => {
-  quicklink.listen();
-});
+// window.addEventListener("load", () => {
+//   quicklink.listen();
+// });
 
 const cartElements = {
   indicators: document.querySelectorAll(".cart-indicator"),
