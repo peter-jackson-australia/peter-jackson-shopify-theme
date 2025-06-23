@@ -187,6 +187,20 @@
         "button_link": "shopify://collections/ties"
       }
     },
+    "collection_slider_secondary_mWXhVD": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "Tie it all together",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "ties",
+        "button_label": "Shop Footwear",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
     "image_with_text_rXcJxz": {
       "type": "image-with-text",
       "name": "Image With Text",
@@ -252,6 +266,7 @@
     "image_with_text_cVQnWK",
     "collection_slider_secondary_y4meNp",
     "image_with_text_9MJKTq",
+    "collection_slider_secondary_mWXhVD",
     "image_with_text_rXcJxz",
     "image_with_text_WwGEL6",
     "collection_slider_secondary_FKaeAM"
