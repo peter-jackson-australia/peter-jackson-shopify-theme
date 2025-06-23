@@ -43,16 +43,30 @@
         "anchor_id": "",
         "show_top_border": true,
         "show_bottom_border": false,
-        "first_image": "shopify://shop_images/Derby-Boot_1080x_e7b44cbc-72db-4233-9a90-e0bc7b67a857.webp",
+        "first_image": "shopify://shop_images/Winter-Playbook-2_1080x_3c3fc94b-dadd-4ff8-87af-29cf42eeabe2.webp",
         "image_link": "shopify://collections/mens-footwear",
         "animate_images": false,
         "alignment": "left",
-        "heading": "The Brogued Derby Boot",
+        "heading": "Luxe Knitwear",
         "heading_animation": "none",
-        "text": "If you're looking for a boot that combines style and personality for your casual winter outfits, a stylish brogue Derby boot is the perfect choice. Choose between the classic black with a simple perforated toe cap, or the more decorative full brogue in a rich brown, complete with the additional medallion toe detail and a wing tip. Benefit from their robust lacing system, offering a range of adjustments, for a perfect fit and versatility. Open your laces and let your feet breathe on a warm autumn day or, in the coolness of winter enjoy the ability to fit a thick pair of socks underneath, making it the perfect transeasonal boot.Shop Derby Boots",
+        "text": "Knitwear is a winter staple and an essential part of every man's wardrobe, offering a seamless blend of comfort, versatility, and effortless style whether worn alone as a separate piece, or layered for added interest or warmth. Be prepared for all occasions with a well-curated selection of knitwear options in various styles, weights and fabrications. Start with classic options like the crew and V-neck styles, adaptable pieces that transition from casual to more formal settings. Invest wisely in quality pieces made from long lasting materials such as our timeless merino wool turtleneck and luxurious cashmere long sleeved polo. For a more casual aesthetic opt for a stylish chunky 1/4 Zip knit, combining the practicality of a zip-up funnel neck, for style and functionality.",
         "text_animation": "none",
-        "button_label": "Shop Boots",
-        "button_link": "shopify://collections/mens-footwear"
+        "button_label": "Shop Knitwear",
+        "button_link": "shopify://collections/knitwear"
+      }
+    },
+    "collection_slider_secondary_yGfCVj": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "knitwear",
+        "button_label": "",
+        "products_to_show": 10,
+        "animate_products": false
       }
     },
     "image_with_text_HEWLMw": {
@@ -169,7 +183,7 @@
         "button_link": "shopify://collections/mens-footwear"
       }
     },
-    "collection_slider_secondary_yGfCVj": {
+    "collection_slider_secondary_FKaeAM": {
       "type": "collection-slider-secondary",
       "name": "Collection Slider Secondary",
       "settings": {
@@ -188,12 +202,13 @@
     "article",
     "editorial_hero_CPzXit",
     "image_with_text_KWmAa3",
+    "collection_slider_secondary_yGfCVj",
     "image_with_text_HEWLMw",
     "image_with_text_8NBATX",
     "image_with_text_cVQnWK",
     "image_with_text_9MJKTq",
     "image_with_text_rXcJxz",
     "image_with_text_WwGEL6",
-    "collection_slider_secondary_yGfCVj"
+    "collection_slider_secondary_FKaeAM"
   ]
 }
