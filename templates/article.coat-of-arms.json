@@ -110,8 +110,8 @@
       "name": "Image With Text",
       "settings": {
         "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": false,
+        "show_top_border": true,
+        "show_bottom_border": true,
         "first_image": "shopify://shop_images/JJ_Coat_of_Arms.webp",
         "image_link": "",
         "animate_images": false,
