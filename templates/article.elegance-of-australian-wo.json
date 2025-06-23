@@ -14,6 +14,28 @@
       "disabled": true,
       "settings": {}
     },
+    "editorial_hero_z9geH7": {
+      "type": "editorial-hero",
+      "name": "Hero Editorial",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "leading_text": "ORIGINS OF EXCELLENCE",
+        "leading_text_animation": "none",
+        "first_title": "THE UNMATCHED ELEGANCE",
+        "first_title_animation": "none",
+        "media_type": "image",
+        "image": "shopify://shop_images/Wool_Article_Header.webp",
+        "animate_media": false,
+        "second_title": "OF AUSTRALIAN MERINO WOOL",
+        "second_title_animation": "none",
+        "description": "Australian Merino wool represents more than just a fabric; it embodies a heritage rooted in the fertile landscale of Australia. Originating from the finest Merino sheep, renowned for their ultra-soft and delicate wool, this material is the product of a dedicated breeding and farming processes. The temperate climate and fertile terrain of Australia provide the ideal environment, ensuring a sustainable and ecologically responsible approach to wool production.",
+        "description_animation": "none",
+        "cta_text": "Shop Now",
+        "cta_link": ""
+      }
+    },
     "heading_with_text_cPBtiF": {
       "type": "heading-with-text",
       "name": "Heading with Text",
@@ -230,6 +252,7 @@
   },
   "order": [
     "article",
+    "editorial_hero_z9geH7",
     "heading_with_text_cPBtiF",
     "video_7hxHce",
     "heading_with_text_DqfHti",
