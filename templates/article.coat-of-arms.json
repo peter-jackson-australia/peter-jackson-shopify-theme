@@ -144,49 +144,37 @@
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
-        "show_bottom_border": false,
+        "show_bottom_border": true,
         "column_count": "3",
         "text_alignment": "center",
         "animate_images": false,
-        "image_1": "shopify://shop_images/Higher-Ground-18_1296x_6f34e57a-a003-4ff4-846c-f56fd65a6fc1.webp",
+        "image_1": "shopify://shop_images/JJ_Coat_of_Arms_7.webp",
         "image_1_link": "",
-        "image_2": "shopify://shop_images/Higher-Ground-20_1512x_bed04047-3e42-4ccc-84bf-fa81e433ba28.webp",
+        "image_2": "shopify://shop_images/JJ_Coat_of_Arms_8.webp",
         "image_2_link": "",
-        "image_3": "shopify://shop_images/Higher-Ground-21_1296x_16db31b8-b465-43a2-a9e6-66f77ad4ca56.webp",
+        "image_3": "shopify://shop_images/JJ_Coat_of_Arms_9.webp",
         "image_3_link": "",
         "image_4_link": "",
         "image_5_link": "",
         "image_6_link": "",
-        "heading": "The Height Of Ease",
+        "heading": "Luxe In Layers",
         "heading_animation": "none",
-        "text": "Relaxed in form, precise in impact. These aren’t just off-duty layers — they’re refined essentials that bring structure to the everyday. Suede, denim, and soft tailoring offer a sense of polish, proving that casual can still carry weight.",
+        "text": "Layering coats with knitwear is an art that combines warmth with style. Choose a slim-fit sweater or turtleneck under your coat to avoid bulkiness. Opt for complementary colors and textures—a cashmere sweater under a wool coat adds a touch of luxury while maintaining a sleek profile. This approach ensures comfort and style in colder months.",
         "text_animation": "none",
-        "button_label": "Shop Casual Essentials",
-        "button_link": "shopify://collections/casual"
-      }
-    },
-    "full_page_media_fUVJVk": {
-      "type": "full-page-media",
-      "name": "Full Page Media",
-      "settings": {
-        "media_type": "image",
-        "desktop_image": "shopify://shop_images/Higher-Ground-22_2000x_16836b81-bdc5-4650-9c30-02b0c87cdcfa.webp",
-        "mobile_image": "shopify://shop_images/Higher-Ground-25_1296x_056d5532-ba31-4ca9-995b-dde481acb249.webp",
-        "link": "",
-        "link_text": "Learn more",
-        "alt_text": "Full page media"
+        "button_label": "",
+        "button_link": ""
       }
     },
     "collection_slider_secondary_yGfCVj": {
       "type": "collection-slider-secondary",
       "name": "Collection Slider Secondary",
       "settings": {
-        "heading": "Shop New Season",
+        "heading": "Shop Knitwear Layers",
         "heading_animation": "none",
         "description": "",
         "description_animation": "none",
-        "collection": "new-arrivals",
-        "button_label": "New In",
+        "collection": "knitwear",
+        "button_label": "Shop Now",
         "products_to_show": 10,
         "animate_products": false
       }
@@ -201,7 +189,6 @@
     "image_with_text_KWmAa3",
     "collection_slider_secondary_Fr3RYB",
     "variable_column_content_DECpXN",
-    "full_page_media_fUVJVk",
     "collection_slider_secondary_yGfCVj"
   ]
 }
