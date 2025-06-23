@@ -35,76 +35,6 @@
         "cta_link": ""
       }
     },
-    "full_page_media_DQrgiW": {
-      "type": "full-page-media",
-      "name": "Full Page Media",
-      "settings": {
-        "media_type": "image",
-        "desktop_image": "shopify://shop_images/Peter_Jackson_Coat_of_Arms_1.webp",
-        "link": "",
-        "link_text": "Learn more",
-        "alt_text": "Full page media"
-      }
-    },
-    "heading_with_text_NFCiF4": {
-      "type": "heading-with-text",
-      "name": "Heading with Text",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": true,
-        "show_bottom_border": false,
-        "leading_text": "",
-        "leading_text_animation": "none",
-        "heading": "Rich in texture. Robust in build.",
-        "heading_style": "normal",
-        "heading_animation": "none",
-        "content": "<p>Our coats are crafted from premium wool, luxurious wool-cashmere blends, and advanced technical textiles sourced from leading European mills. These high-quality fabrics offer exceptional warmth, breathability, and durability—delivering comfort without compromising on style. From the soft insulation of cashmere to the weather-resistant innovation of technical weaves, each material is chosen to ensure our outerwear performs beautifully in any condition.</p>",
-        "content_animation": "none",
-        "alignment": "center"
-      }
-    },
-    "two_column_content_JQLcTq": {
-      "type": "two-column-content",
-      "blocks": {
-        "column_E6NPhW": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/JJ_Coat_of_Arms_2.webp",
-            "product": "",
-            "heading": "The Winter Standard",
-            "heading_animation": "none",
-            "description": "The Tesero Double Breasted Overcoat in olive-green twill blends refined tailoring with winter-ready warmth in a timeless silhouette.",
-            "description_animation": "none",
-            "button_label": "Shop The Tesero",
-            "button_link": "shopify://products/tesero-olive-twill-overcoat"
-          }
-        },
-        "column_R9dG48": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/JJ_Coat_of_Arms_6.webp",
-            "product": "",
-            "heading": "The Italian Job",
-            "heading_animation": "none",
-            "description": "The Paracqua Raincoat in sand blends Italian-made performance fabric with refined design for elevated, all-weather style.",
-            "description_animation": "none",
-            "button_label": "Shop The Paracqua Raincoat",
-            "button_link": "shopify://products/paracqua-sand-raincoat"
-          }
-        }
-      },
-      "block_order": [
-        "column_E6NPhW",
-        "column_R9dG48"
-      ],
-      "name": "Two Column Content",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": false,
-        "animate_columns": false
-      }
-    },
     "image_with_text_KWmAa3": {
       "type": "image-with-text",
       "name": "Image With Text",
@@ -112,68 +42,27 @@
         "anchor_id": "",
         "show_top_border": true,
         "show_bottom_border": true,
-        "first_image": "shopify://shop_images/JJ_Coat_of_Arms.webp",
+        "first_image": "shopify://shop_images/Derby-Boot_1080x_e7b44cbc-72db-4233-9a90-e0bc7b67a857.webp",
         "image_link": "",
         "animate_images": false,
         "alignment": "left",
-        "heading": "Timeless coats for the modern gent",
+        "heading": "The Brogued Derby Boot",
         "heading_animation": "none",
-        "text": "This season, our new collection showcases jackets that meld tradition with innovation. Key features include stately Ulster collars and double-breasted lapels, crafted from cutting-edge technical fabrics and luxurious materials like cashmere and Australian Merino wool blends. Embrace elegance and functionality with these sophisticated designs.",
+        "text": "If you're looking for a boot that combines style and personality for your casual winter outfits, a stylish brogue Derby boot is the perfect choice. Choose between the classic black with a simple perforated toe cap, or the more decorative full brogue in a rich brown, complete with the additional medallion toe detail and a wing tip. Benefit from their robust lacing system, offering a range of adjustments, for a perfect fit and versatility. Open your laces and let your feet breathe on a warm autumn day or, in the coolness of winter enjoy the ability to fit a thick pair of socks underneath, making it the perfect transeasonal boot.Shop Derby Boots",
         "text_animation": "none",
         "button_label": "Shop Overcoats",
         "button_link": "shopify://collections/mens-overcoats"
-      }
-    },
-    "collection_slider_secondary_Fr3RYB": {
-      "type": "collection-slider-secondary",
-      "name": "Collection Slider Secondary",
-      "settings": {
-        "heading": "The Ultimate Final Layer",
-        "heading_animation": "none",
-        "description": "",
-        "description_animation": "none",
-        "collection": "mens-overcoats",
-        "button_label": "Shop Winter Overcoats",
-        "products_to_show": 10,
-        "animate_products": false
-      }
-    },
-    "variable_column_content_DECpXN": {
-      "type": "variable-column-content",
-      "name": "Variable Column Content",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": true,
-        "column_count": "3",
-        "text_alignment": "center",
-        "animate_images": false,
-        "image_1": "shopify://shop_images/JJ_Coat_of_Arms_7.webp",
-        "image_1_link": "",
-        "image_2": "shopify://shop_images/JJ_Coat_of_Arms_8.webp",
-        "image_2_link": "",
-        "image_3": "shopify://shop_images/JJ_Coat_of_Arms_9.webp",
-        "image_3_link": "",
-        "image_4_link": "",
-        "image_5_link": "",
-        "image_6_link": "",
-        "heading": "Luxe In Layers",
-        "heading_animation": "none",
-        "text": "Layering coats with knitwear is an art that combines warmth with style. Choose a slim-fit sweater or turtleneck under your coat to avoid bulkiness. Opt for complementary colors and textures—a cashmere sweater under a wool coat adds a touch of luxury while maintaining a sleek profile. This approach ensures comfort and style in colder months.",
-        "text_animation": "none",
-        "button_label": "",
-        "button_link": ""
       }
     },
     "collection_slider_secondary_yGfCVj": {
       "type": "collection-slider-secondary",
       "name": "Collection Slider Secondary",
       "settings": {
-        "heading": "Shop Knitwear Layers",
+        "heading": "All Leather Footwear",
         "heading_animation": "none",
         "description": "",
         "description_animation": "none",
-        "collection": "knitwear",
+        "collection": "mens-footwear",
         "button_label": "Shop Now",
         "products_to_show": 10,
         "animate_products": false
@@ -183,12 +72,7 @@
   "order": [
     "article",
     "editorial_hero_CPzXit",
-    "full_page_media_DQrgiW",
-    "heading_with_text_NFCiF4",
-    "two_column_content_JQLcTq",
     "image_with_text_KWmAa3",
-    "collection_slider_secondary_Fr3RYB",
-    "variable_column_content_DECpXN",
     "collection_slider_secondary_yGfCVj"
   ]
 }
