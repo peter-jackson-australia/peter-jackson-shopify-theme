@@ -26,7 +26,7 @@
         "first_title": "THE UNMATCHED ELEGANCE",
         "first_title_animation": "none",
         "media_type": "image",
-        "image": "shopify://shop_images/Wool_Article_Header.webp",
+        "image": "shopify://shop_images/Wool_Article_Header_2.webp",
         "animate_media": false,
         "second_title": "OF AUSTRALIAN MERINO WOOL",
         "second_title_animation": "none",
@@ -61,72 +61,16 @@
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
-        "show_bottom_border": false,
-        "first_image": "shopify://shop_images/vbc-5_900x_698ec877-f6c8-496c-9cff-7c3a34c8b13e.webp",
+        "show_bottom_border": true,
+        "first_image": "shopify://shop_images/Wool_Hero_Article_2.webp",
         "image_link": "",
         "animate_images": false,
         "alignment": "right",
-        "heading": "",
+        "heading": "Craftmanship & Style:<br>Merino wool in men's suiting",
         "heading_animation": "none",
-        "text": "<h5>Dyeing:</h5>Utilising both traditional and innovative dyeing methods, VBC achieves vibrant and lasting colors, contributing to the fabric's aesthetic appeal.<br><br><h5>Weaving:</h5>Expert weavers employ precise techniques to interlace the yarns, creating fabrics with distinct patterns and textures that reflect VBC's commitment to craftsmanship.<br><br><h5>Finishing:</h5>The final stage involves specialised treatments to enhance the fabric's hand feel, drape, and performance characteristics, such as wrinkle resistance and breathability.<br><br>This comprehensive process, rooted in centuries of expertise and a commitment to sustainability, positions Vitale Barberis Canonico's fabrics among the finest in the world.",
+        "text": "When it come's to men's suiting, the choice of fabric lays in the groundwork for style, sophistication and individuality. A Merino wool suit symbolises a commitment to excellence and an appreciation for artisinal craftmanship.<br><br>TAILORING EXCELLENCE<br>Merino wool's versatility allows tailors to showcase their skill and meticulous designs.<br><br>ADAPTIVE STYLE<br>With a wide range of weaves and finishes, Merino wool caters to diverse tastes, from understated and classic to bold and contemporary.<br><br>PRESTIGE & RECOGNITION<br>Donning a Merino wool suits is a statement of discernment.",
         "text_animation": "none",
         "button_label": "Shop Knitwear",
-        "button_link": ""
-      }
-    },
-    "hero_slider_zKUKdU": {
-      "type": "hero-slider",
-      "blocks": {
-        "slide_PQmV7m": {
-          "type": "slide",
-          "settings": {
-            "media_type": "image",
-            "desktop_image": "shopify://shop_images/vbc-3_1944x_f80f9ce8-8ce7-4cbb-8349-3920f9cea80b.webp",
-            "mobile_image": "shopify://shop_images/vbc-14_900x_9145c0ef-15c0-404d-8a10-05faf7dd24c1.webp",
-            "heading": "Woven From History",
-            "heading_animation": "animate-paragraph-slide-up-scroll",
-            "description": "Vitale Barberis Canonico’s archive, housing over 2,000 volumes of fabric samples dating back to 1860, is a living library of global textile history—demonstrating that true innovation is rooted in deep knowledge, where each new fabric draws from a legacy of design, technique, and timeless inspiration.",
-            "description_animation": "animate-paragraph-slide-up-scroll",
-            "button_label": "Shop Now",
-            "button_link": "",
-            "horizontal_alignment": "center",
-            "vertical_alignment": "middle"
-          }
-        }
-      },
-      "block_order": [
-        "slide_PQmV7m"
-      ],
-      "name": "Hero Slider",
-      "settings": {
-        "autoplay": true,
-        "slide_interval": 5
-      }
-    },
-    "variable_column_content_DECpXN": {
-      "type": "variable-column-content",
-      "name": "Variable Column Content",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": true,
-        "column_count": "3",
-        "text_alignment": "center",
-        "animate_images": false,
-        "image_1": "shopify://shop_images/vbc-8_900x_49c97f48-4903-4f24-9db9-048259aa59f2.webp",
-        "image_1_link": "",
-        "image_2": "shopify://shop_images/vbc-7_900x_6f13bf95-dc1a-482e-ab4c-1425c53a1e4f.webp",
-        "image_2_link": "",
-        "image_3": "shopify://shop_images/vbc-9_900x_1d08ce9c-9926-400d-839c-ad55d51d870a.webp",
-        "image_3_link": "",
-        "image_4_link": "",
-        "image_5_link": "",
-        "image_6_link": "",
-        "heading": "<h2>\"Quality is paramount for us.<br>We own several farms in Australia which means we have total<br>control from raw material to the finished product.\"</h2><h6>Francesco Barberis- Vitale Barberis Canonico's Creative Director</h6>",
-        "heading_animation": "none",
-        "text": "Our collaboration is the meeting point of two philosophies — one Italian, one Australian. Both defined by heritage. Both driven by progress. Both committed to the idea that tailoring should never be rushed, compromised, or anything less than exceptional.The result? A suit that doesn’t just look refined — it feels considered. Woven from centuries of knowledge. Designed for life now.Because in a world chasing the next trend, we believe in dressing with intention. And that real style — like real craft — always moves forward.This is heritage, tailored for what’s next.",
-        "text_animation": "none",
-        "button_label": "",
         "button_link": ""
       }
     },
@@ -134,14 +78,14 @@
       "type": "collection-slider-secondary",
       "name": "Collection Slider Secondary",
       "settings": {
-        "heading": "The Vitale Barberis Canonico Edit",
+        "heading": "The Informed Choice",
         "heading_animation": "animate-paragraph-slide-up-scroll",
-        "description": "",
+        "description": "As the fashion landscape evolves, the appeal of a meticulously crafted suit remains constant. Merino wool, with its myriad benefits, stands as the preferred choice for men's suits, offering premium, functional and timeless elegance.\n\n \n\nIt's not just about making a style statement; it's about embracing a legacy of quality, sustainability and unmatched sophistication.",
         "description_animation": "none",
-        "collection": "vitale-barberis-canonico-edit",
+        "collection": "mens-suits",
         "button_label": "Shop Suits",
         "products_to_show": 10,
-        "animate_products": true
+        "animate_products": false
       }
     }
   },
@@ -150,8 +94,6 @@
     "editorial_hero_z9geH7",
     "image_with_text_KWmAa3",
     "image_with_text_8ePUyF",
-    "hero_slider_zKUKdU",
-    "variable_column_content_DECpXN",
     "collection_slider_secondary_Fr3RYB"
   ]
 }
