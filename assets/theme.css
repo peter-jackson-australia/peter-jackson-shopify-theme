@@ -76,6 +76,13 @@ select {
   navigation: auto;
 }
 
+.collection-slider,
+.variable-column-content-secondary,
+.blog-hero, 
+footer {
+  content-visibility: auto;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
     scroll-behavior: auto;
