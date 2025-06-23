@@ -43,7 +43,7 @@
       "settings": {
         "media_type": "image",
         "desktop_image": "shopify://shop_images/Peter-Jackson-Man-Wearing-Green-Corduroy-Suit_HD_9a061f7b-da2f-403f-b920-db49fb573421.webp",
-        "link": "",
+        "link": "shopify://collections/suit-separates",
         "link_text": "Learn more",
         "alt_text": "Full page media"
       }
@@ -65,46 +65,68 @@
         "alignment": "center"
       }
     },
-    "two_column_content_JQLcTq": {
-      "type": "two-column-content",
+    "variable_column_content_secondary_FNTbjR": {
+      "type": "variable-column-content-secondary",
       "blocks": {
-        "column_E6NPhW": {
-          "type": "column",
+        "column_item_qbzpLY": {
+          "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/A-Study-In-Knit-2_900x_78448943-4c78-432a-8239-0e73659389d9.webp",
-            "product": "",
+            "image": "shopify://shop_images/Corduroy_Shirt_3.webp",
+            "image_link": "shopify://products/piercarlo-babycord-camel-shirt",
             "heading": "",
             "heading_animation": "none",
-            "description": "",
-            "description_animation": "none",
-            "button_label": "",
-            "button_link": "shopify://products/tesero-olive-twill-overcoat"
+            "text": "",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
           }
         },
-        "column_R9dG48": {
-          "type": "column",
+        "column_item_qdMaH6": {
+          "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/A-Study-In-Knit-3_900x_d5df7a83-2fea-4a19-b73a-a673b7a971cf.webp",
-            "product": "",
+            "image": "shopify://shop_images/Corduroy_Shirt_2.webp",
+            "image_link": "shopify://products/piercarlo-babycord-camel-shirt",
             "heading": "",
             "heading_animation": "none",
-            "description": "",
-            "description_animation": "none",
-            "button_label": "",
-            "button_link": "shopify://products/paracqua-sand-raincoat"
+            "text": "",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_U3qTQh": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Corduroy_Shirt_4.webp",
+            "image_link": "shopify://products/piercarlo-babycord-camel-shirt",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
           }
         }
       },
       "block_order": [
-        "column_E6NPhW",
-        "column_R9dG48"
+        "column_item_qbzpLY",
+        "column_item_qdMaH6",
+        "column_item_U3qTQh"
       ],
-      "name": "Two Column Content",
+      "name": "Variable Column Content Secondary",
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": true,
-        "animate_columns": false
+        "column_count": "3",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "",
+        "heading_animation": "none",
+        "text": "",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
       }
     },
     "collection_slider_secondary_Fr3RYB": {
@@ -138,56 +160,6 @@
         "alignment": "center"
       }
     },
-    "variable_column_content_secondary_FNTbjR": {
-      "type": "variable-column-content-secondary",
-      "blocks": {
-        "column_item_qbzpLY": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/Untitled-2_1013x_1.webp",
-            "image_link": "",
-            "heading": "",
-            "heading_animation": "none",
-            "text": "<h5>Start with a simple base:</h5>A well-fitted base layer, such as a lightweight shirt, is crucial. This layer serves as the foundation for your outfit and should be comfortable and close to the skin.<br><br><h5>Mix fabrics and textures:</h5>Pay attention to the materials of the garments you’re layering. Different textures, such as a smooth cotton base with a chunky wool sweater, can add depth and interest to your look. Ensure the fabrics complement each other in thickness and texture to maintain comfort and avoid bulk.<br><br><h5>Visible layers:</h5>Each layer should be visible to create an intentionally layered look. This can be achieved by playing with different lengths and ensuring that each layer can be seen.",
-            "text_animation": "none",
-            "column_link": "",
-            "column_link_text": "Shop Now"
-          }
-        },
-        "column_item_qdMaH6": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/Untitled-3_1013x_1.webp",
-            "image_link": "",
-            "heading": "",
-            "heading_animation": "none",
-            "text": "<h5>Play with proportions:</h5>Use oversized items strategically. A larger coat or jacket over a slimmer sweater can create a balanced silhouette, adding style without sacrificing comfort.<br><br><h5>Add color and pattern:</h5>Layering is an excellent opportunity to experiment with colors and patterns. Combining various hues and prints can elevate a simple outfit to something eye-catching and personal.<br><br><h5>Functional yet fashionable:</h5>Remember that layering should not only look good but also be practical. Adjust your layers based on the weather, activities, and settings you anticipate for the day.",
-            "text_animation": "none",
-            "column_link": "",
-            "column_link_text": "Shop Now"
-          }
-        }
-      },
-      "block_order": [
-        "column_item_qbzpLY",
-        "column_item_qdMaH6"
-      ],
-      "name": "Variable Column Content Secondary",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": true,
-        "column_count": "2",
-        "text_alignment": "left",
-        "animate_columns": false,
-        "heading": "",
-        "heading_animation": "none",
-        "text": "",
-        "text_animation": "none",
-        "button_label": "Learn More",
-        "button_link": ""
-      }
-    },
     "collection_slider_secondary_yGfCVj": {
       "type": "collection-slider-secondary",
       "name": "Collection Slider Secondary",
@@ -208,10 +180,9 @@
     "editorial_hero_CPzXit",
     "full_page_media_DQrgiW",
     "heading_with_text_NFCiF4",
-    "two_column_content_JQLcTq",
+    "variable_column_content_secondary_FNTbjR",
     "collection_slider_secondary_Fr3RYB",
     "heading_with_text_wUhBL9",
-    "variable_column_content_secondary_FNTbjR",
     "collection_slider_secondary_yGfCVj"
   ]
 }
