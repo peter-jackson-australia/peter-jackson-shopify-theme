@@ -67,7 +67,7 @@
         "alignment": "right",
         "heading": "The Monk Strap",
         "heading_animation": "none",
-        "text": "Monk straps, characterised by single or double broad straps and a distinct lack of laces, are unique and less common than Oxfords and Derbys, making them a standout choice. Whether for casual outings, business casual, or less formal business attire, monk strap shoes are a stylish must-have in a gent’s wardrobe. <br><br>Single or double? It's not a matter of which is better but more so which one can serve your desired purpose more.<br><br> Single monk straps boast a sleek, streamlined design, making them perfect for business, formal, and smart casual occasions.  For a timeless formal work look, opt for a pair of classic black single monk strap shoes teamed with a charcoal pinstripe suit and white shirt, or a three-piece charcoal suit.<br><br>Double monk straps are great for weddings, parties, and casual settings. For a smart weekend look, you can't go wrong with deep chestnut brown double monks paired with jeans and a crewneck.<br><br>If your wardrobe consists of many charcoal and grey suits, consider adding a pair of black monk straps.",
+        "text": "Monk straps, characterised by single or double broad straps and a distinct lack of laces, are unique and less common than Oxfords and Derbys, making them a standout choice. Whether for casual outings, business casual, or less formal business attire, monk strap shoes are a stylish must-have in a gent’s wardrobe. Single or double? It's not a matter of which is better but more so which one can serve your desired purpose more. Single monk straps boast a sleek, streamlined design, making them perfect for business, formal, and smart casual occasions.  For a timeless formal work look, opt for a pair of classic black single monk strap shoes teamed with a charcoal pinstripe suit and white shirt, or a three-piece charcoal suit.Double monk straps are great for weddings, parties, and casual settings. For a smart weekend look, you can't go wrong with deep chestnut brown double monks paired with jeans and a crewneck.If your wardrobe consists of many charcoal and grey suits, consider adding a pair of black monk straps.",
         "text_animation": "none",
         "button_label": "Shop Monk Straps",
         "button_link": "shopify://collections/mens-footwear"
@@ -92,6 +92,25 @@
         "button_link": "shopify://collections/mens-footwear"
       }
     },
+    "image_with_text_cVQnWK": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": true,
+        "first_image": "shopify://shop_images/Penny-Loafer_1080x_c48cbf2b-a117-4b34-8037-bd1ba1dd978c.webp",
+        "image_link": "shopify://collections/mens-footwear",
+        "animate_images": false,
+        "alignment": "right",
+        "heading": "The Penny Loafer",
+        "heading_animation": "none",
+        "text": "Penny loafers are a timeless style offering endless outfit possibilities for various occasions from smart casual to semi-formal events. Recognised for the decorative strip of leather, also known as a 'saddle', across the vamp. While they may not be appropriate for black tie affairs, loafers complement almost everything else in your wardrobe, pairing effortlessly with jeans, chinos, and wool flannel trousers, making them a must-have addition to any wardrobe.<br><br>For a relaxed weekend look, pair brown penny loafers with denim pants or chinos and a navy knit polo. For a more polished ensemble, opt for khaki chinos, an oxford shirt, and a sports jacket. To achieve a semi-formal business style, pair black penny loafers with a well-tailored dark suit in a navy, black or charcoal. Suede loafers, on the other hand, add texture to your outfit and are perfect for more casual looks. ",
+        "text_animation": "none",
+        "button_label": "Shop Loafers",
+        "button_link": "shopify://collections/mens-footwear"
+      }
+    },
     "collection_slider_secondary_yGfCVj": {
       "type": "collection-slider-secondary",
       "name": "Collection Slider Secondary",
@@ -113,6 +132,7 @@
     "image_with_text_KWmAa3",
     "image_with_text_HEWLMw",
     "image_with_text_8NBATX",
+    "image_with_text_cVQnWK",
     "collection_slider_secondary_yGfCVj"
   ]
 }
