@@ -1,0 +1,198 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "article": {
+      "type": "main-article",
+      "disabled": true,
+      "settings": {}
+    },
+    "editorial_hero_CPzXit": {
+      "type": "editorial-hero",
+      "name": "Hero Editorial",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "leading_text": "",
+        "leading_text_animation": "none",
+        "first_title": "",
+        "first_title_animation": "none",
+        "media_type": "image",
+        "animate_media": false,
+        "second_title": "On The Right Foot",
+        "second_title_animation": "none",
+        "description": "YOUR GUIDE TO THE ULTIMATE YEAR-ROUND FOOTWEAR COLLECTION\n<br><br>\nIt's time to reassess your shoe collection and ensure you have the footwear essentials for every season. From effortless Chelsea boots to timeless Derbys and contemporary loafers, we're here to assist you in building a well-rounded collection to put your best foot forward for every occasion.",
+        "description_animation": "none",
+        "cta_text": "Shop Now",
+        "cta_link": ""
+      }
+    },
+    "image_with_text_KWmAa3": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "first_image": "shopify://shop_images/Derby-Boot_1080x_e7b44cbc-72db-4233-9a90-e0bc7b67a857.webp",
+        "image_link": "shopify://collections/mens-footwear",
+        "animate_images": false,
+        "alignment": "left",
+        "heading": "The Brogued Derby Boot",
+        "heading_animation": "none",
+        "text": "If you're looking for a boot that combines style and personality for your casual winter outfits, a stylish brogue Derby boot is the perfect choice. Choose between the classic black with a simple perforated toe cap, or the more decorative full brogue in a rich brown, complete with the additional medallion toe detail and a wing tip. Benefit from their robust lacing system, offering a range of adjustments, for a perfect fit and versatility. Open your laces and let your feet breathe on a warm autumn day or, in the coolness of winter enjoy the ability to fit a thick pair of socks underneath, making it the perfect transeasonal boot.Shop Derby Boots",
+        "text_animation": "none",
+        "button_label": "Shop Boots",
+        "button_link": "shopify://collections/mens-footwear"
+      }
+    },
+    "image_with_text_HEWLMw": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "first_image": "shopify://shop_images/Monk-Strap_1080x_a113430f-8223-4f42-bd94-53beeac6c53f.webp",
+        "image_link": "shopify://collections/mens-footwear",
+        "animate_images": false,
+        "alignment": "right",
+        "heading": "The Monk Strap",
+        "heading_animation": "none",
+        "text": "Monk straps, characterised by single or double broad straps and a distinct lack of laces, are unique and less common than Oxfords and Derbys, making them a standout choice. Whether for casual outings, business casual, or less formal business attire, monk strap shoes are a stylish must-have in a gent’s wardrobe. Single or double? It's not a matter of which is better but more so which one can serve your desired purpose more. Single monk straps boast a sleek, streamlined design, making them perfect for business, formal, and smart casual occasions.  For a timeless formal work look, opt for a pair of classic black single monk strap shoes teamed with a charcoal pinstripe suit and white shirt, or a three-piece charcoal suit.Double monk straps are great for weddings, parties, and casual settings. For a smart weekend look, you can't go wrong with deep chestnut brown double monks paired with jeans and a crewneck.If your wardrobe consists of many charcoal and grey suits, consider adding a pair of black monk straps.",
+        "text_animation": "none",
+        "button_label": "Shop Monk Straps",
+        "button_link": "shopify://collections/mens-footwear"
+      }
+    },
+    "image_with_text_8NBATX": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "first_image": "shopify://shop_images/Desert-Boots_1080x_a70629f2-f0cf-4811-8f1d-343097ae41fe.webp",
+        "image_link": "shopify://collections/mens-footwear",
+        "animate_images": false,
+        "alignment": "left",
+        "heading": "The Suede Hiking Boot",
+        "heading_animation": "none",
+        "text": "Suede hiking boots are a standout choice for casual wear, especially during the colder months when their robust construction and high ankle profile come into their own. Their soft, velvet-like structure provides additional comfort with more flexibility than traditional leather, ensuring a comfortable fit and quicker break-in time. These boots blend rugged style with comfort, featuring a chunky heel that adds character without being overly formal. Perfect for weekend outings, they can be styled effortlessly with our cargo pants, a crew knit, and a chocolate corduroy or suede jacket. Durable and timeless, a well-maintained pair of suede boots can last a lifetime, making them a valuable addition to any wardrobe.",
+        "text_animation": "none",
+        "button_label": "Shop Boots",
+        "button_link": "shopify://collections/mens-footwear"
+      }
+    },
+    "image_with_text_cVQnWK": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "first_image": "shopify://shop_images/Penny-Loafer_1080x_c48cbf2b-a117-4b34-8037-bd1ba1dd978c.webp",
+        "image_link": "shopify://collections/mens-footwear",
+        "animate_images": false,
+        "alignment": "right",
+        "heading": "The Penny Loafer",
+        "heading_animation": "none",
+        "text": "Penny loafers are a timeless style offering endless outfit possibilities for various occasions from smart casual to semi-formal events. Recognised for the decorative strip of leather, also known as a 'saddle', across the vamp. While they may not be appropriate for black tie affairs, loafers complement almost everything else in your wardrobe, pairing effortlessly with jeans, chinos, and wool flannel trousers, making them a must-have addition to any wardrobe.For a relaxed weekend look, pair brown penny loafers with denim pants or chinos and a navy knit polo. For a more polished ensemble, opt for khaki chinos, an oxford shirt, and a sports jacket. To achieve a semi-formal business style, pair black penny loafers with a well-tailored dark suit in a navy, black or charcoal. Suede loafers, on the other hand, add texture to your outfit and are perfect for more casual looks. ",
+        "text_animation": "none",
+        "button_label": "Shop Loafers",
+        "button_link": "shopify://collections/mens-footwear"
+      }
+    },
+    "image_with_text_9MJKTq": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "first_image": "shopify://shop_images/Derby_1080x_3ec2b4a8-c8fd-488a-85b7-784c9cf455fd.webp",
+        "image_link": "shopify://collections/mens-footwear",
+        "animate_images": false,
+        "alignment": "left",
+        "heading": "The Derby",
+        "heading_animation": "none",
+        "text": "Derby shoes are a versatile must-have for any wardrobe, striking the perfect balance between relaxed charm and timeless style. Differing from Oxfords, with an open lacing system and quarters sewn on the vamp, they effortlessly blend sophistication with comfort. Whether you're suiting up for a formal event with a classic toe cap or adding some flair with some detailed brogueing, to a smart-casual look we've got you covered.",
+        "text_animation": "none",
+        "button_label": "Shop Derbys",
+        "button_link": "shopify://collections/mens-footwear"
+      }
+    },
+    "image_with_text_rXcJxz": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "first_image": "shopify://shop_images/Chelsea-Boot_1080x_38292826-1058-4520-b687-7777c53dd544.webp",
+        "image_link": "shopify://collections/mens-footwear",
+        "animate_images": false,
+        "alignment": "right",
+        "heading": "The Chelsea Boot",
+        "heading_animation": "none",
+        "text": "Extremely popular today for their simplistic and classic look, Chelsea boots are essential for men of all ages. Effortlessly transitioning between formal and casual settings, while their iconic elastic gussets ensure a tailored fit without the hassle of buttons or laces.<br><br>Bucco Olive Chelsea Boots: Our olive shade in waxed leather offers a rustic casual appeal compared to its smooth leather counterparts, which are more formal. They pair well with jeans or chinos, in particular the chocolate or khaki, suitable for informal gatherings, pub nights, or smart-casual events.<br><br>Brown Chelsea Boots: Versatile for any occasion. Pair with mid-to-light tone suits in wool or flannel for formal events, or lighter trousers for a laid-back style. For casual outings, pair them with jeans, chinos, or corduroys.<br><br>Black Chelsea Boots: Ideal for formal attire, such as office wear and cocktail events. Pair with dark business suits in navy, charcoal or black for a polished look. For a relaxed yet refined style, combine them with our wool flannel trousers, a white shirt, and navy sports jacket.",
+        "text_animation": "none",
+        "button_label": "Shop Chelsea Boots",
+        "button_link": "shopify://collections/mens-footwear"
+      }
+    },
+    "image_with_text_WwGEL6": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "first_image": "shopify://shop_images/Sneaker_1080x_fd3107ae-c54d-4a16-b6b4-b26e71270754.webp",
+        "image_link": "shopify://collections/mens-footwear",
+        "animate_images": false,
+        "alignment": "left",
+        "heading": "The Leather Sneaker",
+        "heading_animation": "none",
+        "text": "A pair of white leather low-top sneakers is the casual go-to style that should be an integral part of every man’s wardrobe from weekend kickabouts to suit-and-tie office commuters.<br><br>Casual Styling:<br>Pair them with shorts, jeans, or chinos with a  casual shirt for a relaxed yet stylish look. If black sneakers are more your style, step out effortlessly in monochrome, with shades of black, white and grey. For a stylish winter look, combine an all black base layer of black low-tops, jeans or chino with a statement jacket in chocolate suede or corduroy.<br><br>Formal Styling:<br>Though previously considered sartorial sacrilege, sneakers are now blurring the lines between casual and formal attire, making a statement in both domains. Embrace this modern trend of combining suits and sneakers, by pairing a white leather low-top sneaker with a well-tailored navy suit. The striking contrast between navy blue and crisp white creates a sophisticated and modern look that will make a statement.",
+        "text_animation": "none",
+        "button_label": "Shop Sneakers",
+        "button_link": "shopify://collections/mens-footwear"
+      }
+    },
+    "collection_slider_secondary_yGfCVj": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "All Leather Footwear",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "mens-footwear",
+        "button_label": "Shop Now",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    }
+  },
+  "order": [
+    "article",
+    "editorial_hero_CPzXit",
+    "image_with_text_KWmAa3",
+    "image_with_text_HEWLMw",
+    "image_with_text_8NBATX",
+    "image_with_text_cVQnWK",
+    "image_with_text_9MJKTq",
+    "image_with_text_rXcJxz",
+    "image_with_text_WwGEL6",
+    "collection_slider_secondary_yGfCVj"
+  ]
+}
