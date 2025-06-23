@@ -6,7 +6,7 @@ const cartElements = {
   indicators: document.querySelectorAll(".cart-indicator"),
   drawer: document.querySelector(".cart"),
   forms: document.querySelectorAll('form[action="/cart/add"]'),
-  cartLinks: document.querySelectorAll('.js-cart-icon'), 
+  cartLinks: document.querySelectorAll(".js-cart-icon"),
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -412,13 +412,13 @@ function addErrorWithTimeout(item, message) {
 }
 
 function isGiftCardItem(rootItem) {
-  const itemTitle = rootItem.querySelector('.cart-item__title a')?.textContent || '';
-  return itemTitle.toLowerCase().includes('gift card');
+  const itemTitle = rootItem.querySelector(".cart-item__title a")?.textContent || "";
+  return itemTitle.toLowerCase().includes("gift card");
 }
 
 function isGiftCardProduct() {
-  const productTitle = document.querySelector(".product-details__title")?.textContent || '';
-  return productTitle.toLowerCase().includes('gift card');
+  const productTitle = document.querySelector(".product-details__title")?.textContent || "";
+  return productTitle.toLowerCase().includes("gift card");
 }
 
 function addCartEventListeners() {
@@ -431,8 +431,9 @@ function addCartEventListeners() {
 
       if (isUp && !isGiftCardItem(rootItem)) {
         const inventoryLimit = parseInt(rootItem.getAttribute("data-inventory-quantity") || "Infinity", 10);
+        const adjustedInventoryLimit = inventoryLimit === Infinity ? Infinity : Math.max(0, inventoryLimit - 5);
 
-        if (currentQuantity >= inventoryLimit) {
+        if (currentQuantity >= adjustedInventoryLimit) {
           applyCartTotalLoaders();
 
           const actionsEl = rootItem.querySelector(".cart-item__actions");
@@ -452,9 +453,9 @@ function addCartEventListeners() {
           if (updatedRootItem) {
             addErrorWithTimeout(
               updatedRootItem,
-              inventoryLimit === 0 
+              adjustedInventoryLimit === 0 
                 ? "Sorry, this item is out of stock." 
-                : `Sorry, only ${inventoryLimit} ${inventoryLimit === 1 ? "item" : "items"} available.`
+                : `Sorry, only ${adjustedInventoryLimit} ${adjustedInventoryLimit === 1 ? "item" : "items"} available.`
             );
           }
           return;
@@ -541,6 +542,7 @@ function handleAddToCart(form) {
         document.querySelector("#js--variant-inventory-quantity")?.value || "Infinity",
         10
       );
+      const adjustedInventoryQuantity = inventoryQuantity === Infinity ? Infinity : Math.max(0, inventoryQuantity - 5);
       const cart = await fetchCart();
 
       let existingItem = null;
@@ -550,13 +552,13 @@ function handleAddToCart(form) {
 
       const totalRequestedQuantity = (existingItem ? existingItem.quantity : 0) + quantity;
 
-      if (!isGiftCardProduct() && inventoryQuantity !== Infinity && totalRequestedQuantity > inventoryQuantity) {
+      if (!isGiftCardProduct() && adjustedInventoryQuantity !== Infinity && totalRequestedQuantity > adjustedInventoryQuantity) {
         addButton.innerHTML = originalText;
         showError(
           form, 
-          inventoryQuantity === 0 
+          adjustedInventoryQuantity === 0 
             ? "Sorry, this item is out of stock." 
-            : `Sorry, only ${inventoryQuantity} ${inventoryQuantity === 1 ? "item" : "items"} available.`
+            : `Sorry, only ${adjustedInventoryQuantity} ${adjustedInventoryQuantity === 1 ? "item" : "items"} available.`
         );
         return;
       }
