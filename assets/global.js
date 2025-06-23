@@ -261,6 +261,16 @@ async function updateCartDrawer() {
     const html = document.createElement("div");
     html.innerHTML = text;
 
+    const images = html.querySelectorAll(".cart-item__image img");
+    await Promise.all(Array.from(images).map(img => {
+      return new Promise(resolve => {
+        const preloadImg = new Image();
+        preloadImg.onload = resolve;
+        preloadImg.onerror = resolve;
+        preloadImg.src = img.src;
+      });
+    }));
+
     cartElements.drawer.innerHTML = html.querySelector(".cart").innerHTML;
     addCartEventListeners();
     return true;
