@@ -43,15 +43,34 @@
         "show_top_border": true,
         "show_bottom_border": true,
         "first_image": "shopify://shop_images/Derby-Boot_1080x_e7b44cbc-72db-4233-9a90-e0bc7b67a857.webp",
-        "image_link": "",
+        "image_link": "shopify://collections/mens-footwear",
         "animate_images": false,
         "alignment": "left",
         "heading": "The Brogued Derby Boot",
         "heading_animation": "none",
         "text": "If you're looking for a boot that combines style and personality for your casual winter outfits, a stylish brogue Derby boot is the perfect choice. Choose between the classic black with a simple perforated toe cap, or the more decorative full brogue in a rich brown, complete with the additional medallion toe detail and a wing tip. Benefit from their robust lacing system, offering a range of adjustments, for a perfect fit and versatility. Open your laces and let your feet breathe on a warm autumn day or, in the coolness of winter enjoy the ability to fit a thick pair of socks underneath, making it the perfect transeasonal boot.Shop Derby Boots",
         "text_animation": "none",
-        "button_label": "Shop Overcoats",
-        "button_link": "shopify://collections/mens-overcoats"
+        "button_label": "Shop Boots",
+        "button_link": "shopify://collections/mens-footwear"
+      }
+    },
+    "image_with_text_HEWLMw": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": true,
+        "first_image": "shopify://shop_images/Monk-Strap_1080x_a113430f-8223-4f42-bd94-53beeac6c53f.webp",
+        "image_link": "shopify://collections/mens-footwear",
+        "animate_images": false,
+        "alignment": "right",
+        "heading": "The Monk Strap",
+        "heading_animation": "none",
+        "text": "Monk straps, characterised by single or double broad straps and a distinct lack of laces, are unique and less common than Oxfords and Derbys, making them a standout choice. Whether for casual outings, business casual, or less formal business attire, monk strap shoes are a stylish must-have in a gent’s wardrobe. <br><br>Single or double? It's not a matter of which is better but more so which one can serve your desired purpose more.<br><br> Single monk straps boast a sleek, streamlined design, making them perfect for business, formal, and smart casual occasions.  For a timeless formal work look, opt for a pair of classic black single monk strap shoes teamed with a charcoal pinstripe suit and white shirt, or a three-piece charcoal suit.<br><br>Double monk straps are great for weddings, parties, and casual settings. For a smart weekend look, you can't go wrong with deep chestnut brown double monks paired with jeans and a crewneck.<br><br>If your wardrobe consists of many charcoal and grey suits, consider adding a pair of black monk straps.",
+        "text_animation": "none",
+        "button_label": "Shop Monk Straps",
+        "button_link": "shopify://collections/mens-footwear"
       }
     },
     "collection_slider_secondary_yGfCVj": {
@@ -73,6 +92,7 @@
     "article",
     "editorial_hero_CPzXit",
     "image_with_text_KWmAa3",
+    "image_with_text_HEWLMw",
     "collection_slider_secondary_yGfCVj"
   ]
 }
