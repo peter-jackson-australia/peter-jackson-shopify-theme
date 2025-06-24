@@ -305,7 +305,7 @@
                                 {{- option_value | remove: '.0' -}}
                               {%- else -%}
                                 {{- option_value -}}
-                              {%- endif %}
+                              {%- endif -%}
                               {%- unless forloop.last %}, {% endunless %}
                             {% endif %}
                           {% endfor %}
