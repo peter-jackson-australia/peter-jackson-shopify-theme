@@ -14,6 +14,23 @@
       "disabled": true,
       "settings": {}
     },
+    "heading_with_text_nfkrDa": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "leading_text": "",
+        "leading_text_animation": "none",
+        "heading": "The Jackson Journal",
+        "heading_style": "decorative",
+        "heading_animation": "none",
+        "content": "<p>STYLE</p>",
+        "content_animation": "none",
+        "alignment": "center"
+      }
+    },
     "editorial_hero_CPzXit": {
       "type": "editorial-hero",
       "name": "Hero Editorial",
@@ -205,6 +222,7 @@
   },
   "order": [
     "article",
+    "heading_with_text_nfkrDa",
     "editorial_hero_CPzXit",
     "full_page_media_DQrgiW",
     "heading_with_text_NFCiF4",
