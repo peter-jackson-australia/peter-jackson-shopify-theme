@@ -50,46 +50,79 @@
         "alt_text": "Full page media"
       }
     },
-    "two_column_content_c9HPaX": {
-      "type": "two-column-content",
-      "blocks": {
-        "column_tyHjeL": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/VBC_1.webp",
-            "product": "gabriel-indigo-suit",
-            "heading": "",
-            "heading_animation": "none",
-            "description": "",
-            "description_animation": "none",
-            "button_label": "Learn More",
-            "button_link": ""
-          }
-        },
-        "column_LzEe3U": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/VBC_2.webp",
-            "product": "",
-            "heading": "",
-            "heading_animation": "none",
-            "description": "",
-            "description_animation": "none",
-            "button_label": "Learn More",
-            "button_link": ""
-          }
-        }
-      },
-      "block_order": [
-        "column_tyHjeL",
-        "column_LzEe3U"
-      ],
-      "name": "Two Column Content",
+    "block_quote_ka8G49": {
+      "type": "block-quote",
+      "name": "Block Quote",
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
-        "animate_columns": false
+        "quote_text": "<h2>\"Quality is paramount for us.\nWe own several farms in Australia which means we have total\ncontrol from raw material to the finished product.\"</h2><br>\n<h5>Francesco Barberis- Vitale Barberis Canonico's Creative Director</h5>",
+        "quote_animation": "none",
+        "background_color": "white"
+      }
+    },
+    "variable_column_content_secondary_6XU3a8": {
+      "type": "variable-column-content-secondary",
+      "blocks": {
+        "column_item_Xcpic8": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/VBC_1.webp",
+            "image_link": "shopify://products/gabriel-indigo-suit",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_pc77mt": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/VBC_2.webp",
+            "image_link": "shopify://products/gabriel-indigo-suit",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_Qwcp7p": {
+          "type": "column_item",
+          "settings": {
+            "image_link": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_Xcpic8",
+        "column_item_pc77mt",
+        "column_item_Qwcp7p"
+      ],
+      "name": "Variable Column Content Secondary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "2",
+        "text_alignment": "center",
+        "animate_columns": false,
+        "heading": "The Gabriel Indigo Overcheck Suit",
+        "heading_animation": "none",
+        "text": "The Gabriel Indigo Overcheck Suit is a refined winter essential, crafted from pure Australian Merino wool and woven at Italy’s prestigious Vitale Barberis Canonico mill. Featuring a rich dark grey mouliné base with a subtle indigo overcheck, this suit blends traditional tailoring with modern sophistication. Finished with a notch lapel and straight flap pockets, it’s a versatile choice for both professional and formal winter occasions.",
+        "text_animation": "none",
+        "button_label": "Shop The Suit",
+        "button_link": "shopify://products/gabriel-indigo-suit"
       }
     },
     "image_with_text_qXeBbG": {
@@ -181,7 +214,8 @@
     "article",
     "editorial_hero_CPzXit",
     "full_page_media_DQrgiW",
-    "two_column_content_c9HPaX",
+    "block_quote_ka8G49",
+    "variable_column_content_secondary_6XU3a8",
     "image_with_text_qXeBbG",
     "collection_slider_secondary_Fr3RYB",
     "image_with_text_ctFag9",
