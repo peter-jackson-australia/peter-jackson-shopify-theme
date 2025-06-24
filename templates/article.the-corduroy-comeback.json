@@ -169,13 +169,13 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": true,
-        "first_image": "shopify://shop_images/Corduroy_Suit_1.webp",
+        "first_image": "shopify://shop_images/Corduroy_Suit_5.webp",
         "image_link": "",
         "animate_images": false,
         "alignment": "right",
         "heading": "The Modern Look: Corduroy as Statement",
         "heading_animation": "none",
-        "text": "Take the green corduroy suit. Structured with a peak lapel and side-adjuster trousers, it brings authority without rigidity. Paired with a cream turtleneck, the look gains softness and balance — a nod to classic elegance made current. Add sand loafers, and the palette becomes grounded and wearable, bridging the divide between formal and relaxed.<br><br>This is how corduroy functions best in today’s wardrobe: not as a costume piece, but as a stylish counterpoint to denim, flannel, or suiting wool. It’s a material that plays with contrasts — polished yet tactile, tailored yet easy.",
+        "text": "Take the green corduroy suit. Structured with a peak lapel and side-adjuster trousers, it brings authority without rigidity. Paired with a cream turtleneck, the look gains softness and balance — a nod to classic elegance made current. Add sand loafers, and the palette becomes grounded and wearable, bridging the divide between formal and relaxed.This is how corduroy functions best in today’s wardrobe: not as a costume piece, but as a stylish counterpoint to denim, flannel, or suiting wool. It’s a material that plays with contrasts — polished yet tactile, tailored yet easy.",
         "text_animation": "none",
         "button_label": "Shop The Look",
         "button_link": ""
@@ -205,26 +205,12 @@
         "show_bottom_border": false,
         "leading_text": "",
         "leading_text_animation": "none",
-        "heading": "The Art Of Layering",
+        "heading": "How To Wear Corduroy",
         "heading_style": "normal",
         "heading_animation": "none",
-        "content": "<p>Mastering the art of layering knitwear is a stylish way to refine your wardrobe and adapt to varying temperatures. Here are some tips on how to layer like a pro.</p>",
+        "content": "<p><strong>Tailored Statements</strong><br/>Corduroy overshirts and jackets work over knits and under coats. They’re a key player in smart casual dressing.<br/></p><p><strong>Layering Piece</strong><br/>Corduroy overshirts and jackets work over knits and under coats. They’re a key player in smart casual dressing.<br/></p><p><strong>Tonal Dressing<br/></strong>Monochrome looks in corduroy — sand-on-sand, forest-on-forest — create impact through texture rather than print or colour.</p><p>Corduroy has become a quiet disruptor in the modern wardrobe. It’s a fabric that honours tradition while pushing forward — rich in heritage, relevant in today’s style language. Its return is not a trend, but a considered reintroduction — and this time, it’s here to stay.</p>",
         "content_animation": "none",
-        "alignment": "center"
-      }
-    },
-    "collection_slider_secondary_yGfCVj": {
-      "type": "collection-slider-secondary",
-      "name": "Collection Slider Secondary",
-      "settings": {
-        "heading": "Layer With A Jacket or Coat",
-        "heading_animation": "none",
-        "description": "",
-        "description_animation": "none",
-        "collection": "outerwear",
-        "button_label": "Shop Now",
-        "products_to_show": 10,
-        "animate_products": false
+        "alignment": "left"
       }
     }
   },
@@ -238,7 +224,6 @@
     "collection_slider_secondary_Fr3RYB",
     "image_with_text_ctFag9",
     "shop_the_look_global_fYig83",
-    "heading_with_text_wUhBL9",
-    "collection_slider_secondary_yGfCVj"
+    "heading_with_text_wUhBL9"
   ]
 }
