@@ -49,6 +49,20 @@
         "alt_text": "Full page media"
       }
     },
+    "collection_slider_FhJrMG": {
+      "type": "collection-slider",
+      "name": "Collection Slider",
+      "settings": {
+        "heading": "Winter Tailoring",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "mens-suits",
+        "button_label": "Shop Now",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
     "image_with_text_qXeBbG": {
       "type": "image-with-text",
       "name": "Image With Text",
@@ -224,6 +238,7 @@
     "article",
     "editorial_hero_CPzXit",
     "full_page_media_DQrgiW",
+    "collection_slider_FhJrMG",
     "image_with_text_qXeBbG",
     "image_with_text_mqPJah",
     "variable_column_content_secondary_FNTbjR",
