@@ -49,9 +49,26 @@
         "alt_text": "Full page media"
       }
     },
-    "collection_slider_secondary_Fr3RYB": {
-      "type": "collection-slider-secondary",
-      "name": "Collection Slider Secondary",
+    "heading_with_text_NFCiF4": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "leading_text": "",
+        "leading_text_animation": "none",
+        "heading": "",
+        "heading_style": "normal",
+        "heading_animation": "none",
+        "content": "<p>The tonal turtleneck grounds this look - styled under soft tailoring or a brushed overshirt giving warmth and refinement without the bulk. Paired with suede loafers, this palette is relaxed yet sharp, making it ideal for navigating the season with minimal effort and maximum polish.</p>",
+        "content_animation": "none",
+        "alignment": "left"
+      }
+    },
+    "collection_slider_zwXnK8": {
+      "type": "collection-slider",
+      "name": "Collection Slider",
       "settings": {
         "heading": "Explore Winter Layers",
         "heading_animation": "none",
@@ -63,21 +80,19 @@
         "animate_products": false
       }
     },
-    "heading_with_text_NFCiF4": {
-      "type": "heading-with-text",
-      "name": "Heading with Text",
+    "collection_slider_secondary_Fr3RYB": {
+      "type": "collection-slider-secondary",
+      "disabled": true,
+      "name": "Collection Slider Secondary",
       "settings": {
-        "anchor_id": "",
-        "show_top_border": true,
-        "show_bottom_border": true,
-        "leading_text": "",
-        "leading_text_animation": "none",
-        "heading": "",
-        "heading_style": "normal",
+        "heading": "Explore Winter Layers",
         "heading_animation": "none",
-        "content": "<p>The tonal turtleneck grounds this look - styled under soft tailoring or a brushed overshirt giving warmth and refinement without the bulk. Paired with suede loafers, this palette is relaxed yet sharp, making it ideal for navigating the season with minimal effort and maximum polish.</p>",
-        "content_animation": "none",
-        "alignment": "left"
+        "description": "",
+        "description_animation": "none",
+        "collection": "new-arrivals",
+        "button_label": "Shop Now",
+        "products_to_show": 10,
+        "animate_products": false
       }
     },
     "variable_column_content_secondary_FNTbjR": {
@@ -219,8 +234,9 @@
     "article",
     "editorial_hero_CPzXit",
     "full_page_media_DQrgiW",
-    "collection_slider_secondary_Fr3RYB",
     "heading_with_text_NFCiF4",
+    "collection_slider_zwXnK8",
+    "collection_slider_secondary_Fr3RYB",
     "variable_column_content_secondary_FNTbjR",
     "image_with_text_qXeBbG",
     "image_with_text_ctFag9",
