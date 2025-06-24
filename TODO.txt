@@ -16,7 +16,7 @@ Blog collection pages as custom pages:
     Create header to filter by tags
     Fix up the hero images and copy for both 
     Add in featured article slider (Top 6 newest blogs)
-    Fix up main blog collection
+    Fix up main blog collections
     Can choose tags to exclude
 
 Made to measure template fixes 
@@ -34,4 +34,3 @@ Add ability to change video, video subtitle, newsletter title and newsletter leg
 ADMIN:
 Set up dev branch on Github
 Bring Gift Cards over to new site 
-Move to live Harmony environment 
