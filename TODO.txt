@@ -1,5 +1,7 @@
 Todo:
 
+Move blog hero image copy to bottom of image
+
 Set up DEV site with everything needed to replicate the live site
 
 SECTIONS:
