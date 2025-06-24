@@ -21,17 +21,18 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
-        "leading_text": "",
+        "leading_text": "A TRANSEASONAL STYLE GUIDE",
         "leading_text_animation": "none",
-        "first_title": "",
+        "first_title": "Layered",
         "first_title_level": "h1",
         "first_title_animation": "none",
         "media_type": "image",
+        "image": "shopify://shop_images/Layered_Logic_Hero.webp",
         "animate_media": false,
-        "second_title": "The Corduroy comeback",
+        "second_title": "Logic",
         "second_title_level": "h1",
         "second_title_animation": "none",
-        "description": "A HERITAGE RECAST FOR MODERN MENSWEAR<br><br>\nCorduroy has long walked the line between function and fashion. Once a symbol of workwear utility and collegiate nonchalance, the ribbed textile is finding new purpose in modern menswear, transformed by refined tailoring, innovative finishes, and a fresh design perspective. Today’s corduroy isn’t about nostalgia — it’s about contrast, character, and confidence.",
+        "description": "Welcome to a masterclass in transeasonal dressing - where luxurious layering, versatile tailoring, and textural contrasts effortlessly bridge the gap between seasons. From softly structured suits paired with fine-knit turtlenecks, to casual overshirts and textured outerwear layered with refined basics, each look exemplifies a sophisticated ease that adapts seamlessly to changing climates.",
         "description_animation": "none",
         "cta_text": "Shop Now",
         "cta_link": ""
@@ -42,7 +43,7 @@
       "name": "Full Page Media",
       "settings": {
         "media_type": "image",
-        "desktop_image": "shopify://shop_images/Peter-Jackson-Man-Wearing-Green-Corduroy-Suit_HD_9a061f7b-da2f-403f-b920-db49fb573421.webp",
+        "desktop_image": "shopify://shop_images/Layered_Logic_2.webp",
         "link": "shopify://collections/suit-separates",
         "link_text": "Learn more",
         "alt_text": "Full page media"
@@ -54,13 +55,13 @@
       "settings": {
         "anchor_id": "",
         "show_top_border": true,
-        "show_bottom_border": false,
+        "show_bottom_border": true,
         "leading_text": "",
         "leading_text_animation": "none",
-        "heading": "From Field To Front Row",
+        "heading": "",
         "heading_style": "normal",
         "heading_animation": "none",
-        "content": "<p>Corduroy traces its roots back to ancient Egypt, evolving through centuries into the hardwearing “cord du roi” of 18th-century France, worn by the aristocracy before finding a home in the wardrobes of workers and intellectuals in the 19th and 20th centuries. By the 1970s, it had become a countercultural uniform — rugged, rebellious, and richly tactile.</p><p>Fast forward to now: designers are recasting corduroy in lighter, more luxurious iterations. No longer stiff or heavy, it’s being spun from finer cottons and blended fibres to create garments that drape like wool and feel like velvet — a sartorial shift that has placed corduroy back in the fashion spotlight.</p>",
+        "content": "<p>The tonal turtleneck grounds this look - styled under soft tailoring or a brushed overshirt giving warmth and refinement without the bulk. Paired with suede loafers, this palette is relaxed yet sharp, making it ideal for navigating the season with minimal effort and maximum polish.</p>",
         "content_animation": "none",
         "alignment": "left"
       }
