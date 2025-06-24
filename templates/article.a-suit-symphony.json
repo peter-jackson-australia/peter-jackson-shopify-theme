@@ -163,6 +163,70 @@
         "button_link": "shopify://products/furio-brown-suit"
       }
     },
+    "variable_column_content_secondary_xzwnEt": {
+      "type": "variable-column-content-secondary",
+      "blocks": {
+        "column_item_ygGzhX": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/VBC_5.webp",
+            "image_link": "shopify://collections/vitale-barberis-canonico-edit",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_PfHPNJ": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/VBC_7.webp",
+            "image_link": "shopify://collections/vitale-barberis-canonico-edit",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_CRWx6a": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/VBC_6.webp",
+            "image_link": "shopify://collections/vitale-barberis-canonico-edit",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_ygGzhX",
+        "column_item_PfHPNJ",
+        "column_item_CRWx6a"
+      ],
+      "name": "Variable Column Content Secondary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": true,
+        "column_count": "3",
+        "text_alignment": "center",
+        "animate_columns": false,
+        "heading": "",
+        "heading_animation": "none",
+        "text": "",
+        "text_animation": "none",
+        "button_label": "Shop The Suit",
+        "button_link": "shopify://products/gabriel-indigo-suit"
+      }
+    },
     "collection_slider_secondary_Fr3RYB": {
       "type": "collection-slider-secondary",
       "name": "Collection Slider Secondary",
@@ -186,6 +250,7 @@
     "variable_column_content_secondary_6XU3a8",
     "image_with_text_qXeBbG",
     "image_with_text_CcP6qz",
+    "variable_column_content_secondary_xzwnEt",
     "collection_slider_secondary_Fr3RYB"
   ]
 }
