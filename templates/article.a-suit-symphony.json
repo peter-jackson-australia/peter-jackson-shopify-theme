@@ -21,17 +21,18 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
-        "leading_text": "",
+        "leading_text": "LIMITED EDITION COLLECTION",
         "leading_text_animation": "none",
         "first_title": "",
         "first_title_level": "h1",
         "first_title_animation": "none",
         "media_type": "image",
+        "image": "shopify://shop_images/VBC_Logo_fbb6ecf8-8d95-41f4-88c9-84ee58a31c8c.svg",
         "animate_media": false,
-        "second_title": "The Corduroy comeback",
+        "second_title": "A Suit Symphony",
         "second_title_level": "h1",
         "second_title_animation": "none",
-        "description": "A HERITAGE RECAST FOR MODERN MENSWEAR<br><br>\nCorduroy has long walked the line between function and fashion. Once a symbol of workwear utility and collegiate nonchalance, the ribbed textile is finding new purpose in modern menswear, transformed by refined tailoring, innovative finishes, and a fresh design perspective. Today’s corduroy isn’t about nostalgia — it’s about contrast, character, and confidence.",
+        "description": "There's something unmistakable about the way great fabric moves - the way it drapes cleanly, catches air, and falls into place without effort.",
         "description_animation": "none",
         "cta_text": "Shop Now",
         "cta_link": ""
@@ -42,8 +43,9 @@
       "name": "Full Page Media",
       "settings": {
         "media_type": "image",
-        "desktop_image": "shopify://shop_images/Peter-Jackson-Man-Wearing-Green-Corduroy-Suit_HD_9a061f7b-da2f-403f-b920-db49fb573421.webp",
-        "link": "shopify://collections/suit-separates",
+        "desktop_image": "shopify://shop_images/Suit_Symphony_Hero.webp",
+        "mobile_image": "shopify://shop_images/WT25_Seb_VBC_Hero_copy.webp",
+        "link": "shopify://collections/vitale-barberis-canonico-edit",
         "link_text": "Learn more",
         "alt_text": "Full page media"
       }
