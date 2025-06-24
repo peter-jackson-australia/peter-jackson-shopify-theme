@@ -71,14 +71,14 @@
         "show_top_border": false,
         "show_bottom_border": false,
         "first_image": "shopify://shop_images/Renaissance_2.webp",
-        "image_link": "",
+        "image_link": "shopify://collections/business-shirts",
         "animate_images": false,
         "alignment": "left",
         "heading": "A Cut-Away Above The Rest",
         "heading_animation": "none",
         "text": "A sharp cutaway collar, structured cuffs and a clean tailored fit - this is the shirt that pulls everything together. Made to sit perfectly under a suit and hold its own without one.",
         "text_animation": "none",
-        "button_label": "Shop Business Shirts",
+        "button_label": "",
         "button_link": "shopify://collections/business-shirts"
       }
     },
