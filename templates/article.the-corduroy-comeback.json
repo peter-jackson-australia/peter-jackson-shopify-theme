@@ -169,7 +169,7 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": true,
-        "first_image": "shopify://shop_images/Corduroy_Shirt_5.webp",
+        "first_image": "shopify://shop_images/Corduroy_Suit_1.webp",
         "image_link": "",
         "animate_images": false,
         "alignment": "right",
@@ -177,7 +177,7 @@
         "heading_animation": "none",
         "text": "Take the green corduroy suit. Structured with a peak lapel and side-adjuster trousers, it brings authority without rigidity. Paired with a cream turtleneck, the look gains softness and balance — a nod to classic elegance made current. Add sand loafers, and the palette becomes grounded and wearable, bridging the divide between formal and relaxed.<br><br>This is how corduroy functions best in today’s wardrobe: not as a costume piece, but as a stylish counterpoint to denim, flannel, or suiting wool. It’s a material that plays with contrasts — polished yet tactile, tailored yet easy.",
         "text_animation": "none",
-        "button_label": "Learn More",
+        "button_label": "Shop The Look",
         "button_link": ""
       }
     },
@@ -211,6 +211,21 @@
         "products_to_show": 10,
         "animate_products": false
       }
+    },
+    "shop_the_look_global_fYig83": {
+      "type": "shop-the-look-global",
+      "name": "Shop the Look Global",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "heading": "Shop the Look",
+        "heading_animation": "none",
+        "featured_image": "shopify://shop_images/Corduroy_Suit_1.webp",
+        "product1": "portici-corduroy-green-jacket",
+        "product2": "merino-wool-cream-turtleneck-knit",
+        "product3": "sienna-corduroy-olive-trousers"
+      }
     }
   },
   "order": [
@@ -223,6 +238,7 @@
     "collection_slider_secondary_Fr3RYB",
     "image_with_text_ctFag9",
     "heading_with_text_wUhBL9",
-    "collection_slider_secondary_yGfCVj"
+    "collection_slider_secondary_yGfCVj",
+    "shop_the_look_global_fYig83"
   ]
 }
