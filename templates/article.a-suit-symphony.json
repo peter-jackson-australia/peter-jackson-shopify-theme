@@ -21,7 +21,7 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
-        "leading_text": "LIMITED EDITION COLLECTION",
+        "leading_text": "LIMITED EDITION CAPSULE COLLECTION",
         "leading_text_animation": "none",
         "first_title": "",
         "first_title_level": "h1",
@@ -50,85 +50,46 @@
         "alt_text": "Full page media"
       }
     },
-    "heading_with_text_NFCiF4": {
-      "type": "heading-with-text",
-      "name": "Heading with Text",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": true,
-        "show_bottom_border": false,
-        "leading_text": "",
-        "leading_text_animation": "none",
-        "heading": "From Field To Front Row",
-        "heading_style": "normal",
-        "heading_animation": "none",
-        "content": "<p>Corduroy traces its roots back to ancient Egypt, evolving through centuries into the hardwearing “cord du roi” of 18th-century France, worn by the aristocracy before finding a home in the wardrobes of workers and intellectuals in the 19th and 20th centuries. By the 1970s, it had become a countercultural uniform — rugged, rebellious, and richly tactile.</p><p>Fast forward to now: designers are recasting corduroy in lighter, more luxurious iterations. No longer stiff or heavy, it’s being spun from finer cottons and blended fibres to create garments that drape like wool and feel like velvet — a sartorial shift that has placed corduroy back in the fashion spotlight.</p>",
-        "content_animation": "none",
-        "alignment": "left"
-      }
-    },
-    "variable_column_content_secondary_FNTbjR": {
-      "type": "variable-column-content-secondary",
+    "two_column_content_c9HPaX": {
+      "type": "two-column-content",
       "blocks": {
-        "column_item_qbzpLY": {
-          "type": "column_item",
+        "column_tyHjeL": {
+          "type": "column",
           "settings": {
-            "image": "shopify://shop_images/Corduroy_Shirt_3.webp",
-            "image_link": "shopify://products/piercarlo-babycord-camel-shirt",
+            "image": "shopify://shop_images/VBC_1.webp",
+            "product": "gabriel-indigo-suit",
             "heading": "",
             "heading_animation": "none",
-            "text": "",
-            "text_animation": "none",
-            "column_link": "",
-            "column_link_text": "Shop Now"
+            "description": "",
+            "description_animation": "none",
+            "button_label": "Learn More",
+            "button_link": ""
           }
         },
-        "column_item_qdMaH6": {
-          "type": "column_item",
+        "column_LzEe3U": {
+          "type": "column",
           "settings": {
-            "image": "shopify://shop_images/Corduroy_Shirt_2.webp",
-            "image_link": "shopify://products/piercarlo-babycord-camel-shirt",
+            "image": "shopify://shop_images/VBC_2.webp",
+            "product": "",
             "heading": "",
             "heading_animation": "none",
-            "text": "",
-            "text_animation": "none",
-            "column_link": "",
-            "column_link_text": "Shop Now"
-          }
-        },
-        "column_item_U3qTQh": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/Corduroy_Shirt_4.webp",
-            "image_link": "shopify://products/piercarlo-babycord-camel-shirt",
-            "heading": "",
-            "heading_animation": "none",
-            "text": "",
-            "text_animation": "none",
-            "column_link": "",
-            "column_link_text": "Shop Now"
+            "description": "",
+            "description_animation": "none",
+            "button_label": "Learn More",
+            "button_link": ""
           }
         }
       },
       "block_order": [
-        "column_item_qbzpLY",
-        "column_item_qdMaH6",
-        "column_item_U3qTQh"
+        "column_tyHjeL",
+        "column_LzEe3U"
       ],
-      "name": "Variable Column Content Secondary",
+      "name": "Two Column Content",
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
-        "show_bottom_border": true,
-        "column_count": "3",
-        "text_alignment": "left",
-        "animate_columns": false,
-        "heading": "",
-        "heading_animation": "none",
-        "text": "",
-        "text_animation": "none",
-        "button_label": "Learn More",
-        "button_link": ""
+        "show_bottom_border": false,
+        "animate_columns": false
       }
     },
     "image_with_text_qXeBbG": {
@@ -220,8 +181,7 @@
     "article",
     "editorial_hero_CPzXit",
     "full_page_media_DQrgiW",
-    "heading_with_text_NFCiF4",
-    "variable_column_content_secondary_FNTbjR",
+    "two_column_content_c9HPaX",
     "image_with_text_qXeBbG",
     "collection_slider_secondary_Fr3RYB",
     "image_with_text_ctFag9",
