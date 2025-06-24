@@ -27,7 +27,6 @@
         "first_title_level": "h1",
         "first_title_animation": "none",
         "media_type": "image",
-        "image": "shopify://shop_images/Layered_Logic_Hero.webp",
         "animate_media": false,
         "second_title": "Logic",
         "second_title_level": "h1",
@@ -67,6 +66,20 @@
       }
     },
     "collection_slider_zwXnK8": {
+      "type": "collection-slider",
+      "name": "Collection Slider",
+      "settings": {
+        "heading": "Explore Winter Layers",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "new-arrivals",
+        "button_label": "Shop Now",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
+    "collection_slider_eRxt8x": {
       "type": "collection-slider",
       "name": "Collection Slider",
       "settings": {
@@ -238,6 +251,7 @@
     "collection_slider_zwXnK8",
     "collection_slider_secondary_Fr3RYB",
     "variable_column_content_secondary_FNTbjR",
+    "collection_slider_eRxt8x",
     "image_with_text_qXeBbG",
     "image_with_text_ctFag9",
     "shop_the_look_global_fYig83",
