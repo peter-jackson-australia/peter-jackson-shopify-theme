@@ -191,7 +191,7 @@
               <ul class="splide__list">
                 {% for item in product.metafields.custom.shop_the_look.value %}
                   <li class="splide__slide shop-the-look__slide">
-                    <a href="/products/{{ item.handle }}" target="_blank" class="shop-the-look__product-link">
+                    <a href="/products/{{ item.handle }}" class="shop-the-look__product-link">
                       <div class="shop-the-look__product-image-wrapper">
                         {% if item.featured_image != blank %}
                           <img
