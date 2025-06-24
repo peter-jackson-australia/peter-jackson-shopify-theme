@@ -19,19 +19,52 @@
         "leading_text": "",
         "leading_text_animation": "none",
         "first_title": "Discover",
+        "first_title_level": "h1",
         "first_title_animation": "none",
         "media_type": "image",
         "animate_media": false,
         "second_title": "Collection",
+        "second_title_level": "h1",
         "second_title_animation": "none",
         "description": "",
         "description_animation": "none",
         "cta_text": "Shop Now",
         "cta_link": ""
       }
+    },
+    "hero_slider_z3LEj3": {
+      "type": "hero-slider",
+      "blocks": {
+        "slide_y3xnQT": {
+          "type": "slide",
+          "settings": {
+            "media_type": "image",
+            "desktop_image": "shopify://shop_images/Male-Role-Model_1456x_copy.webp",
+            "mobile_image": "shopify://shop_images/Higher-Ground-2_2102x_262d9e57-8b01-4718-8a37-b5c4260c1e99-1_copy.webp",
+            "heading": "Welcome to Our Store",
+            "heading_level": "h1",
+            "heading_animation": "none",
+            "description": "Discover our latest collection",
+            "description_animation": "none",
+            "button_label": "Shop Now",
+            "button_link": "",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "bottom"
+          }
+        }
+      },
+      "block_order": [
+        "slide_y3xnQT"
+      ],
+      "name": "Hero Slider",
+      "settings": {
+        "autoplay": true,
+        "slide_interval": 5
+      }
     }
   },
   "order": [
-    "editorial_hero_hceC9g"
+    "editorial_hero_hceC9g",
+    "hero_slider_z3LEj3"
   ]
 }
