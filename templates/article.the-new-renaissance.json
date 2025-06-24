@@ -260,23 +260,6 @@
         "product2": "merino-wool-cream-turtleneck-knit",
         "product3": "sienna-corduroy-olive-trousers"
       }
-    },
-    "heading_with_text_wUhBL9": {
-      "type": "heading-with-text",
-      "name": "Heading with Text",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": true,
-        "show_bottom_border": false,
-        "leading_text": "",
-        "leading_text_animation": "none",
-        "heading": "How To Wear Corduroy",
-        "heading_style": "normal",
-        "heading_animation": "none",
-        "content": "<p><strong>Tailored Statements</strong><br/>Corduroy overshirts and jackets work over knits and under coats. They’re a key player in smart casual dressing.<br/></p><p><strong>Layering Piece</strong><br/>Corduroy overshirts and jackets work over knits and under coats. They’re a key player in smart casual dressing.<br/></p><p><strong>Tonal Dressing<br/></strong>Monochrome looks in corduroy — sand-on-sand, forest-on-forest — create impact through texture rather than print or colour.</p><p>Corduroy has become a quiet disruptor in the modern wardrobe. It’s a fabric that honours tradition while pushing forward — rich in heritage, relevant in today’s style language. Its return is not a trend, but a considered reintroduction — and this time, it’s here to stay.</p>",
-        "content_animation": "none",
-        "alignment": "left"
-      }
     }
   },
   "order": [
@@ -291,7 +274,6 @@
     "collection_slider_secondary_4KcKbQ",
     "heading_with_text_NFCiF4",
     "variable_column_content_secondary_JGXmnH",
-    "shop_the_look_global_fYig83",
-    "heading_with_text_wUhBL9"
+    "shop_the_look_global_fYig83"
   ]
 }
