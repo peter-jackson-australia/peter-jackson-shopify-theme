@@ -69,7 +69,7 @@
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
-        "show_bottom_border": true,
+        "show_bottom_border": false,
         "first_image": "shopify://shop_images/Renaissance_2.webp",
         "image_link": "",
         "animate_images": false,
@@ -80,6 +80,20 @@
         "text_animation": "none",
         "button_label": "Shop Business Shirts",
         "button_link": "shopify://collections/business-shirts"
+      }
+    },
+    "collection_slider_secondary_Fr3RYB": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "Business Shirts",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "business-shirts",
+        "button_label": "Shop Now",
+        "products_to_show": 10,
+        "animate_products": false
       }
     },
     "image_with_text_mqPJah": {
@@ -168,20 +182,6 @@
         "alignment": "left"
       }
     },
-    "collection_slider_secondary_Fr3RYB": {
-      "type": "collection-slider-secondary",
-      "name": "Collection Slider Secondary",
-      "settings": {
-        "heading": "The Corduroy Edit",
-        "heading_animation": "none",
-        "description": "",
-        "description_animation": "none",
-        "collection": "the-corduroy-comeback",
-        "button_label": "Shop Now",
-        "products_to_show": 10,
-        "animate_products": false
-      }
-    },
     "image_with_text_ctFag9": {
       "type": "image-with-text",
       "name": "Image With Text",
@@ -240,10 +240,10 @@
     "full_page_media_DQrgiW",
     "collection_slider_FhJrMG",
     "image_with_text_qXeBbG",
+    "collection_slider_secondary_Fr3RYB",
     "image_with_text_mqPJah",
     "variable_column_content_secondary_FNTbjR",
     "heading_with_text_NFCiF4",
-    "collection_slider_secondary_Fr3RYB",
     "image_with_text_ctFag9",
     "shop_the_look_global_fYig83",
     "heading_with_text_wUhBL9"
