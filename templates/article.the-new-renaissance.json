@@ -68,6 +68,25 @@
         "button_link": "shopify://collections/business-shirts"
       }
     },
+    "image_with_text_mqPJah": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "first_image": "shopify://shop_images/Renaissance_3.webp",
+        "image_link": "",
+        "animate_images": false,
+        "alignment": "right",
+        "heading": "Teal, Tailored, Timeless",
+        "heading_animation": "none",
+        "text": "A Prince of Wales check suit in a sharp green hue, tailored with a relaxed fit for all-day comfort. Paired with a bold cutaway collar shirt and knit tie. This is an update to the corporate uniform with refined texture, modern proportions and European influence,",
+        "text_animation": "none",
+        "button_label": "Shop Suits",
+        "button_link": "shopify://collections/mens-suits"
+      }
+    },
     "heading_with_text_NFCiF4": {
       "type": "heading-with-text",
       "name": "Heading with Text",
@@ -220,6 +239,7 @@
     "editorial_hero_CPzXit",
     "full_page_media_DQrgiW",
     "image_with_text_qXeBbG",
+    "image_with_text_mqPJah",
     "heading_with_text_NFCiF4",
     "variable_column_content_secondary_FNTbjR",
     "collection_slider_secondary_Fr3RYB",
