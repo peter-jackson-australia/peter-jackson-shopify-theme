@@ -49,6 +49,20 @@
         "alt_text": "Full page media"
       }
     },
+    "collection_slider_secondary_Fr3RYB": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "Explore Winter Layers",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "new-arrivals",
+        "button_label": "Shop Now",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
     "heading_with_text_NFCiF4": {
       "type": "heading-with-text",
       "name": "Heading with Text",
@@ -149,20 +163,6 @@
         "button_link": ""
       }
     },
-    "collection_slider_secondary_Fr3RYB": {
-      "type": "collection-slider-secondary",
-      "name": "Collection Slider Secondary",
-      "settings": {
-        "heading": "The Corduroy Edit",
-        "heading_animation": "none",
-        "description": "",
-        "description_animation": "none",
-        "collection": "the-corduroy-comeback",
-        "button_label": "Shop Now",
-        "products_to_show": 10,
-        "animate_products": false
-      }
-    },
     "image_with_text_ctFag9": {
       "type": "image-with-text",
       "name": "Image With Text",
@@ -219,10 +219,10 @@
     "article",
     "editorial_hero_CPzXit",
     "full_page_media_DQrgiW",
+    "collection_slider_secondary_Fr3RYB",
     "heading_with_text_NFCiF4",
     "variable_column_content_secondary_FNTbjR",
     "image_with_text_qXeBbG",
-    "collection_slider_secondary_Fr3RYB",
     "image_with_text_ctFag9",
     "shop_the_look_global_fYig83",
     "heading_with_text_wUhBL9"
