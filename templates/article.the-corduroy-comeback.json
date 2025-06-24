@@ -142,7 +142,7 @@
         "alignment": "left",
         "heading": "Why Corduroy Works Today",
         "heading_animation": "none",
-        "text": "Corduroy’s appeal lies in its texture — a subtle but striking element that lends depth to everything from suits to overshirts. Where traditional suiting often leans sleek and flat, corduroy adds visual intrigue and tactile richness. A peak-lapel corduroy blazer or a cuffed trouser with side tabs speaks not just to detail, but to modern sophistication.<br><br>Its adaptability is another draw. Modern corduroy is far lighter and softer than past versions, making it seasonally agile. It holds warmth through the cooler months without feeling bulky — ideal for layering or as a standalone statement. In rich greens, sand tones, and deep navy, corduroy invites tonal dressing with nuance and dimension.",
+        "text": "Corduroy’s appeal lies in its texture — a subtle but striking element that lends depth to everything from suits to overshirts. Where traditional suiting often leans sleek and flat, corduroy adds visual intrigue and tactile richness. A peak-lapel corduroy blazer or a cuffed trouser with side tabs speaks not just to detail, but to modern sophistication.Its adaptability is another draw. Modern corduroy is far lighter and softer than past versions, making it seasonally agile. It holds warmth through the cooler months without feeling bulky — ideal for layering or as a standalone statement. In rich greens, sand tones, and deep navy, corduroy invites tonal dressing with nuance and dimension.",
         "text_animation": "none",
         "button_label": "Learn More",
         "button_link": ""
@@ -152,14 +152,33 @@
       "type": "collection-slider-secondary",
       "name": "Collection Slider Secondary",
       "settings": {
-        "heading": "The Foundation of Winter Style",
+        "heading": "The Corduroy Edit",
         "heading_animation": "none",
         "description": "",
         "description_animation": "none",
-        "collection": "knitwear",
-        "button_label": "Shop Knitwear",
+        "collection": "the-corduroy-comeback",
+        "button_label": "Shop Now",
         "products_to_show": 10,
         "animate_products": false
+      }
+    },
+    "image_with_text_ctFag9": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "first_image": "shopify://shop_images/Corduroy_Shirt_5.webp",
+        "image_link": "",
+        "animate_images": false,
+        "alignment": "right",
+        "heading": "The Modern Look: Corduroy as Statement",
+        "heading_animation": "none",
+        "text": "Take the green corduroy suit. Structured with a peak lapel and side-adjuster trousers, it brings authority without rigidity. Paired with a cream turtleneck, the look gains softness and balance — a nod to classic elegance made current. Add sand loafers, and the palette becomes grounded and wearable, bridging the divide between formal and relaxed.<br><br>This is how corduroy functions best in today’s wardrobe: not as a costume piece, but as a stylish counterpoint to denim, flannel, or suiting wool. It’s a material that plays with contrasts — polished yet tactile, tailored yet easy.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
       }
     },
     "heading_with_text_wUhBL9": {
@@ -202,6 +221,7 @@
     "variable_column_content_secondary_FNTbjR",
     "image_with_text_qXeBbG",
     "collection_slider_secondary_Fr3RYB",
+    "image_with_text_ctFag9",
     "heading_with_text_wUhBL9",
     "collection_slider_secondary_yGfCVj"
   ]
