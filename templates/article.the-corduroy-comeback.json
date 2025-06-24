@@ -181,6 +181,21 @@
         "button_link": ""
       }
     },
+    "shop_the_look_global_fYig83": {
+      "type": "shop-the-look-global",
+      "name": "Shop the Look Global",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "heading": "Shop the Look",
+        "heading_animation": "none",
+        "featured_image": "shopify://shop_images/mens-blazer-green-corduroy-cotton-WT25-SP20-3_1946x_65ebec76-d675-4e77-bc5a-37259bcbca58.webp",
+        "product1": "portici-corduroy-green-jacket",
+        "product2": "merino-wool-cream-turtleneck-knit",
+        "product3": "sienna-corduroy-olive-trousers"
+      }
+    },
     "heading_with_text_wUhBL9": {
       "type": "heading-with-text",
       "name": "Heading with Text",
@@ -211,21 +226,6 @@
         "products_to_show": 10,
         "animate_products": false
       }
-    },
-    "shop_the_look_global_fYig83": {
-      "type": "shop-the-look-global",
-      "name": "Shop the Look Global",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": false,
-        "heading": "Shop the Look",
-        "heading_animation": "none",
-        "featured_image": "shopify://shop_images/Corduroy_Suit_1.webp",
-        "product1": "portici-corduroy-green-jacket",
-        "product2": "merino-wool-cream-turtleneck-knit",
-        "product3": "sienna-corduroy-olive-trousers"
-      }
     }
   },
   "order": [
@@ -237,8 +237,8 @@
     "image_with_text_qXeBbG",
     "collection_slider_secondary_Fr3RYB",
     "image_with_text_ctFag9",
+    "shop_the_look_global_fYig83",
     "heading_with_text_wUhBL9",
-    "collection_slider_secondary_yGfCVj",
-    "shop_the_look_global_fYig83"
+    "collection_slider_secondary_yGfCVj"
   ]
 }
