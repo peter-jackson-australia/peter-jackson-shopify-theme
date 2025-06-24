@@ -61,7 +61,8 @@
       "settings": {
         "media_type": "image",
         "desktop_image": "shopify://shop_images/Higher-Ground-2_2102x_262d9e57-8b01-4718-8a37-b5c4260c1e99.webp",
-        "link": "",
+        "mobile_image": "shopify://shop_images/Higher-Ground-2_2102x_262d9e57-8b01-4718-8a37-b5c4260c1e99-1_copy.webp",
+        "link": "shopify://collections/new-arrivals",
         "link_text": "Learn more",
         "alt_text": "Full page media"
       }
