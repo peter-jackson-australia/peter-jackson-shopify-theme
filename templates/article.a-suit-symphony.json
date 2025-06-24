@@ -144,6 +144,25 @@
         "button_link": "shopify://products/heras-pinstripe-navy-suit"
       }
     },
+    "image_with_text_CcP6qz": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "first_image": "shopify://shop_images/VBC_4.webp",
+        "image_link": "",
+        "animate_images": false,
+        "alignment": "right",
+        "heading": "The Furio Mouline Suit",
+        "heading_animation": "none",
+        "text": "The Furio Suit is a timeless winter essential, crafted from pure Australian Merino wool in a luxurious deep chocolate twill. Woven at the renowned Vitale Barberis Canonico mill in Italy, it features a sharp notch lapel and straight pocket flaps that define its clean, modern silhouette. Designed for versatility, it blends classic tailoring with comfort, making it the ideal choice for both formal and professional settings throughout the colder months.",
+        "text_animation": "none",
+        "button_label": "Shop The Suit",
+        "button_link": "shopify://products/furio-brown-suit"
+      }
+    },
     "collection_slider_secondary_Fr3RYB": {
       "type": "collection-slider-secondary",
       "name": "Collection Slider Secondary",
@@ -157,57 +176,6 @@
         "products_to_show": 4,
         "animate_products": false
       }
-    },
-    "image_with_text_ctFag9": {
-      "type": "image-with-text",
-      "name": "Image With Text",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": true,
-        "first_image": "shopify://shop_images/Corduroy_Suit_5.webp",
-        "image_link": "",
-        "animate_images": false,
-        "alignment": "right",
-        "heading": "The Modern Look: Corduroy as Statement",
-        "heading_animation": "none",
-        "text": "Take the green corduroy suit. Structured with a peak lapel and side-adjuster trousers, it brings authority without rigidity. Paired with a cream turtleneck, the look gains softness and balance — a nod to classic elegance made current. Add sand loafers, and the palette becomes grounded and wearable, bridging the divide between formal and relaxed.This is how corduroy functions best in today’s wardrobe: not as a costume piece, but as a stylish counterpoint to denim, flannel, or suiting wool. It’s a material that plays with contrasts — polished yet tactile, tailored yet easy.",
-        "text_animation": "none",
-        "button_label": "Shop The Look",
-        "button_link": ""
-      }
-    },
-    "shop_the_look_global_fYig83": {
-      "type": "shop-the-look-global",
-      "name": "Shop the Look Global",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": false,
-        "heading": "Shop the Look",
-        "heading_animation": "none",
-        "featured_image": "shopify://shop_images/mens-blazer-green-corduroy-cotton-WT25-SP20-3_1946x_65ebec76-d675-4e77-bc5a-37259bcbca58.webp",
-        "product1": "portici-corduroy-green-jacket",
-        "product2": "merino-wool-cream-turtleneck-knit",
-        "product3": "sienna-corduroy-olive-trousers"
-      }
-    },
-    "heading_with_text_wUhBL9": {
-      "type": "heading-with-text",
-      "name": "Heading with Text",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": true,
-        "show_bottom_border": false,
-        "leading_text": "",
-        "leading_text_animation": "none",
-        "heading": "How To Wear Corduroy",
-        "heading_style": "normal",
-        "heading_animation": "none",
-        "content": "<p><strong>Tailored Statements</strong><br/>Corduroy overshirts and jackets work over knits and under coats. They’re a key player in smart casual dressing.<br/></p><p><strong>Layering Piece</strong><br/>Corduroy overshirts and jackets work over knits and under coats. They’re a key player in smart casual dressing.<br/></p><p><strong>Tonal Dressing<br/></strong>Monochrome looks in corduroy — sand-on-sand, forest-on-forest — create impact through texture rather than print or colour.</p><p>Corduroy has become a quiet disruptor in the modern wardrobe. It’s a fabric that honours tradition while pushing forward — rich in heritage, relevant in today’s style language. Its return is not a trend, but a considered reintroduction — and this time, it’s here to stay.</p>",
-        "content_animation": "none",
-        "alignment": "left"
-      }
     }
   },
   "order": [
@@ -217,9 +185,7 @@
     "block_quote_ka8G49",
     "variable_column_content_secondary_6XU3a8",
     "image_with_text_qXeBbG",
-    "collection_slider_secondary_Fr3RYB",
-    "image_with_text_ctFag9",
-    "shop_the_look_global_fYig83",
-    "heading_with_text_wUhBL9"
+    "image_with_text_CcP6qz",
+    "collection_slider_secondary_Fr3RYB"
   ]
 }
