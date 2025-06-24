@@ -79,20 +79,6 @@
         "animate_products": false
       }
     },
-    "collection_slider_eRxt8x": {
-      "type": "collection-slider",
-      "name": "Collection Slider",
-      "settings": {
-        "heading": "Explore Winter Layers",
-        "heading_animation": "none",
-        "description": "",
-        "description_animation": "none",
-        "collection": "new-arrivals",
-        "button_label": "Shop Now",
-        "products_to_show": 10,
-        "animate_products": false
-      }
-    },
     "collection_slider_secondary_Fr3RYB": {
       "type": "collection-slider-secondary",
       "disabled": true,
@@ -170,6 +156,20 @@
         "text_animation": "none",
         "button_label": "Learn More",
         "button_link": ""
+      }
+    },
+    "collection_slider_eRxt8x": {
+      "type": "collection-slider",
+      "name": "Collection Slider",
+      "settings": {
+        "heading": "Corduroy Layers",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "the-corduroy-comeback",
+        "button_label": "Shop Now",
+        "products_to_show": 10,
+        "animate_products": false
       }
     },
     "image_with_text_qXeBbG": {
