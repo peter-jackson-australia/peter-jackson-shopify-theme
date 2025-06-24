@@ -246,6 +246,39 @@
         "products_to_show": 10,
         "animate_products": false
       }
+    },
+    "image_with_text_dEBQYh": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "first_image": "shopify://shop_images/Layered_Logic_Hero_6_74bd209e-10e6-47b2-9d21-7da542a0bdbf.webp",
+        "image_link": "",
+        "animate_images": false,
+        "alignment": "left",
+        "heading": "The New Rules of Tailoring",
+        "heading_animation": "none",
+        "text": "Soft, tonal and razor-sharp - this look proves tailoring doesn't need to shout to make a statement. A cream turtleneck adds warmth and texture under a beige blazer, while side-adjuster trousers and suede loafers keep it polished yet relaxed. A modern uniform for days that don't demand a tie but still call for style.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    },
+    "collection_slider_RPxEkT": {
+      "type": "collection-slider",
+      "name": "Collection Slider",
+      "settings": {
+        "heading": "Suits",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "mens-suits",
+        "button_label": "Shop Now",
+        "products_to_show": 10,
+        "animate_products": false
+      }
     }
   },
   "order": [
@@ -259,6 +292,8 @@
     "collection_slider_eRxt8x",
     "heading_with_text_jEXLcE",
     "two_column_content_jGLLBk",
-    "collection_slider_3bcEkk"
+    "collection_slider_3bcEkk",
+    "image_with_text_dEBQYh",
+    "collection_slider_RPxEkT"
   ]
 }
