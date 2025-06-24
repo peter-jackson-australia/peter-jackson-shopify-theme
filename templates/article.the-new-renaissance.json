@@ -87,6 +87,56 @@
         "button_link": "shopify://collections/mens-suits"
       }
     },
+    "variable_column_content_secondary_FNTbjR": {
+      "type": "variable-column-content-secondary",
+      "blocks": {
+        "column_item_qbzpLY": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Renaissance_4.webp",
+            "image_link": "shopify://collections/mens-accessories",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "column_link": "shopify://collections/mens-accessories",
+            "column_link_text": ""
+          }
+        },
+        "column_item_qdMaH6": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Renaissance_6.webp",
+            "image_link": "shopify://collections/mens-accessories",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_qbzpLY",
+        "column_item_qdMaH6"
+      ],
+      "name": "Variable Column Content Secondary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "column_count": "2",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "The Finer Details",
+        "heading_animation": "none",
+        "text": "A textured knit tie crafted by Bottinelli in Lake Como, paired with a minimalist belt. Accessories that balance each other, adding depth, structure and refinement to tailored dressing.",
+        "text_animation": "none",
+        "button_label": "Shop Accessories",
+        "button_link": "shopify://collections/mens-accessories"
+      }
+    },
     "heading_with_text_NFCiF4": {
       "type": "heading-with-text",
       "name": "Heading with Text",
@@ -102,70 +152,6 @@
         "content": "<p>Corduroy traces its roots back to ancient Egypt, evolving through centuries into the hardwearing “cord du roi” of 18th-century France, worn by the aristocracy before finding a home in the wardrobes of workers and intellectuals in the 19th and 20th centuries. By the 1970s, it had become a countercultural uniform — rugged, rebellious, and richly tactile.</p><p>Fast forward to now: designers are recasting corduroy in lighter, more luxurious iterations. No longer stiff or heavy, it’s being spun from finer cottons and blended fibres to create garments that drape like wool and feel like velvet — a sartorial shift that has placed corduroy back in the fashion spotlight.</p>",
         "content_animation": "none",
         "alignment": "left"
-      }
-    },
-    "variable_column_content_secondary_FNTbjR": {
-      "type": "variable-column-content-secondary",
-      "blocks": {
-        "column_item_qbzpLY": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/Corduroy_Shirt_3.webp",
-            "image_link": "shopify://products/piercarlo-babycord-camel-shirt",
-            "heading": "",
-            "heading_animation": "none",
-            "text": "",
-            "text_animation": "none",
-            "column_link": "",
-            "column_link_text": "Shop Now"
-          }
-        },
-        "column_item_qdMaH6": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/Corduroy_Shirt_2.webp",
-            "image_link": "shopify://products/piercarlo-babycord-camel-shirt",
-            "heading": "",
-            "heading_animation": "none",
-            "text": "",
-            "text_animation": "none",
-            "column_link": "",
-            "column_link_text": "Shop Now"
-          }
-        },
-        "column_item_U3qTQh": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/Corduroy_Shirt_4.webp",
-            "image_link": "shopify://products/piercarlo-babycord-camel-shirt",
-            "heading": "",
-            "heading_animation": "none",
-            "text": "",
-            "text_animation": "none",
-            "column_link": "",
-            "column_link_text": "Shop Now"
-          }
-        }
-      },
-      "block_order": [
-        "column_item_qbzpLY",
-        "column_item_qdMaH6",
-        "column_item_U3qTQh"
-      ],
-      "name": "Variable Column Content Secondary",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": true,
-        "column_count": "3",
-        "text_alignment": "left",
-        "animate_columns": false,
-        "heading": "",
-        "heading_animation": "none",
-        "text": "",
-        "text_animation": "none",
-        "button_label": "Learn More",
-        "button_link": ""
       }
     },
     "collection_slider_secondary_Fr3RYB": {
@@ -240,8 +226,8 @@
     "full_page_media_DQrgiW",
     "image_with_text_qXeBbG",
     "image_with_text_mqPJah",
-    "heading_with_text_NFCiF4",
     "variable_column_content_secondary_FNTbjR",
+    "heading_with_text_NFCiF4",
     "collection_slider_secondary_Fr3RYB",
     "image_with_text_ctFag9",
     "shop_the_look_global_fYig83",
