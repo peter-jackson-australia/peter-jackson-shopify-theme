@@ -1,0 +1,229 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "article": {
+      "type": "main-article",
+      "disabled": true,
+      "settings": {}
+    },
+    "editorial_hero_CPzXit": {
+      "type": "editorial-hero",
+      "name": "Hero Editorial",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "leading_text": "",
+        "leading_text_animation": "none",
+        "first_title": "",
+        "first_title_level": "h1",
+        "first_title_animation": "none",
+        "media_type": "image",
+        "animate_media": false,
+        "second_title": "The Corduroy comeback",
+        "second_title_level": "h1",
+        "second_title_animation": "none",
+        "description": "A HERITAGE RECAST FOR MODERN MENSWEAR<br><br>\nCorduroy has long walked the line between function and fashion. Once a symbol of workwear utility and collegiate nonchalance, the ribbed textile is finding new purpose in modern menswear, transformed by refined tailoring, innovative finishes, and a fresh design perspective. Today’s corduroy isn’t about nostalgia — it’s about contrast, character, and confidence.",
+        "description_animation": "none",
+        "cta_text": "Shop Now",
+        "cta_link": ""
+      }
+    },
+    "full_page_media_DQrgiW": {
+      "type": "full-page-media",
+      "name": "Full Page Media",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/Peter-Jackson-Man-Wearing-Green-Corduroy-Suit_HD_9a061f7b-da2f-403f-b920-db49fb573421.webp",
+        "link": "shopify://collections/suit-separates",
+        "link_text": "Learn more",
+        "alt_text": "Full page media"
+      }
+    },
+    "heading_with_text_NFCiF4": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "leading_text": "",
+        "leading_text_animation": "none",
+        "heading": "From Field To Front Row",
+        "heading_style": "normal",
+        "heading_animation": "none",
+        "content": "<p>Corduroy traces its roots back to ancient Egypt, evolving through centuries into the hardwearing “cord du roi” of 18th-century France, worn by the aristocracy before finding a home in the wardrobes of workers and intellectuals in the 19th and 20th centuries. By the 1970s, it had become a countercultural uniform — rugged, rebellious, and richly tactile.</p><p>Fast forward to now: designers are recasting corduroy in lighter, more luxurious iterations. No longer stiff or heavy, it’s being spun from finer cottons and blended fibres to create garments that drape like wool and feel like velvet — a sartorial shift that has placed corduroy back in the fashion spotlight.</p>",
+        "content_animation": "none",
+        "alignment": "left"
+      }
+    },
+    "variable_column_content_secondary_FNTbjR": {
+      "type": "variable-column-content-secondary",
+      "blocks": {
+        "column_item_qbzpLY": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Corduroy_Shirt_3.webp",
+            "image_link": "shopify://products/piercarlo-babycord-camel-shirt",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_qdMaH6": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Corduroy_Shirt_2.webp",
+            "image_link": "shopify://products/piercarlo-babycord-camel-shirt",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_U3qTQh": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Corduroy_Shirt_4.webp",
+            "image_link": "shopify://products/piercarlo-babycord-camel-shirt",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_qbzpLY",
+        "column_item_qdMaH6",
+        "column_item_U3qTQh"
+      ],
+      "name": "Variable Column Content Secondary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "column_count": "3",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "",
+        "heading_animation": "none",
+        "text": "",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    },
+    "image_with_text_qXeBbG": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "first_image": "shopify://shop_images/Corduroy_Shirt_5.webp",
+        "image_link": "",
+        "animate_images": false,
+        "alignment": "left",
+        "heading": "Why Corduroy Works Today",
+        "heading_animation": "none",
+        "text": "Corduroy’s appeal lies in its texture — a subtle but striking element that lends depth to everything from suits to overshirts. Where traditional suiting often leans sleek and flat, corduroy adds visual intrigue and tactile richness. A peak-lapel corduroy blazer or a cuffed trouser with side tabs speaks not just to detail, but to modern sophistication.Its adaptability is another draw. Modern corduroy is far lighter and softer than past versions, making it seasonally agile. It holds warmth through the cooler months without feeling bulky — ideal for layering or as a standalone statement. In rich greens, sand tones, and deep navy, corduroy invites tonal dressing with nuance and dimension.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    },
+    "collection_slider_secondary_Fr3RYB": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "The Corduroy Edit",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "the-corduroy-comeback",
+        "button_label": "Shop Now",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
+    "image_with_text_ctFag9": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "first_image": "shopify://shop_images/Corduroy_Suit_5.webp",
+        "image_link": "",
+        "animate_images": false,
+        "alignment": "right",
+        "heading": "The Modern Look: Corduroy as Statement",
+        "heading_animation": "none",
+        "text": "Take the green corduroy suit. Structured with a peak lapel and side-adjuster trousers, it brings authority without rigidity. Paired with a cream turtleneck, the look gains softness and balance — a nod to classic elegance made current. Add sand loafers, and the palette becomes grounded and wearable, bridging the divide between formal and relaxed.This is how corduroy functions best in today’s wardrobe: not as a costume piece, but as a stylish counterpoint to denim, flannel, or suiting wool. It’s a material that plays with contrasts — polished yet tactile, tailored yet easy.",
+        "text_animation": "none",
+        "button_label": "Shop The Look",
+        "button_link": ""
+      }
+    },
+    "shop_the_look_global_fYig83": {
+      "type": "shop-the-look-global",
+      "name": "Shop the Look Global",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "heading": "Shop the Look",
+        "heading_animation": "none",
+        "featured_image": "shopify://shop_images/mens-blazer-green-corduroy-cotton-WT25-SP20-3_1946x_65ebec76-d675-4e77-bc5a-37259bcbca58.webp",
+        "product1": "portici-corduroy-green-jacket",
+        "product2": "merino-wool-cream-turtleneck-knit",
+        "product3": "sienna-corduroy-olive-trousers"
+      }
+    },
+    "heading_with_text_wUhBL9": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "leading_text": "",
+        "leading_text_animation": "none",
+        "heading": "How To Wear Corduroy",
+        "heading_style": "normal",
+        "heading_animation": "none",
+        "content": "<p><strong>Tailored Statements</strong><br/>Corduroy overshirts and jackets work over knits and under coats. They’re a key player in smart casual dressing.<br/></p><p><strong>Layering Piece</strong><br/>Corduroy overshirts and jackets work over knits and under coats. They’re a key player in smart casual dressing.<br/></p><p><strong>Tonal Dressing<br/></strong>Monochrome looks in corduroy — sand-on-sand, forest-on-forest — create impact through texture rather than print or colour.</p><p>Corduroy has become a quiet disruptor in the modern wardrobe. It’s a fabric that honours tradition while pushing forward — rich in heritage, relevant in today’s style language. Its return is not a trend, but a considered reintroduction — and this time, it’s here to stay.</p>",
+        "content_animation": "none",
+        "alignment": "left"
+      }
+    }
+  },
+  "order": [
+    "article",
+    "editorial_hero_CPzXit",
+    "full_page_media_DQrgiW",
+    "heading_with_text_NFCiF4",
+    "variable_column_content_secondary_FNTbjR",
+    "image_with_text_qXeBbG",
+    "collection_slider_secondary_Fr3RYB",
+    "image_with_text_ctFag9",
+    "shop_the_look_global_fYig83",
+    "heading_with_text_wUhBL9"
+  ]
+}
