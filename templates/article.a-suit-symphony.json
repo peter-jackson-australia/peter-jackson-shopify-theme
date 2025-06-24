@@ -112,8 +112,8 @@
       "name": "Variable Column Content Secondary",
       "settings": {
         "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": false,
+        "show_top_border": true,
+        "show_bottom_border": true,
         "column_count": "2",
         "text_alignment": "center",
         "animate_columns": false,
@@ -132,29 +132,29 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": true,
-        "first_image": "shopify://shop_images/Corduroy_Shirt_5.webp",
+        "first_image": "shopify://shop_images/VBC_3.webp",
         "image_link": "",
         "animate_images": false,
         "alignment": "left",
-        "heading": "Why Corduroy Works Today",
+        "heading": "The Perennial Suit",
         "heading_animation": "none",
-        "text": "Corduroy’s appeal lies in its texture — a subtle but striking element that lends depth to everything from suits to overshirts. Where traditional suiting often leans sleek and flat, corduroy adds visual intrigue and tactile richness. A peak-lapel corduroy blazer or a cuffed trouser with side tabs speaks not just to detail, but to modern sophistication.Its adaptability is another draw. Modern corduroy is far lighter and softer than past versions, making it seasonally agile. It holds warmth through the cooler months without feeling bulky — ideal for layering or as a standalone statement. In rich greens, sand tones, and deep navy, corduroy invites tonal dressing with nuance and dimension.",
+        "text": "Born from centuries of Italian weaving mastery, the Perennial fabric draws on Vitale Barberis Canonico’s legacy—established in 1663—to create a modern wardrobe essential. Conceived as a versatile everyday cloth, it became a constant in the classic suiting collection. Woven from Super 110s wool, Perennial offers a soft feel, natural drape, and reliable durability. Its understated sheen and structured resilience make it ideal for regular wear, effortlessly transitioning from the office to evening. Timeless in character yet always contemporary, it’s the quiet anchor of a well-rounded suit wardrobe.",
         "text_animation": "none",
-        "button_label": "Learn More",
-        "button_link": ""
+        "button_label": "Shop The Heras",
+        "button_link": "shopify://products/heras-pinstripe-navy-suit"
       }
     },
     "collection_slider_secondary_Fr3RYB": {
       "type": "collection-slider-secondary",
       "name": "Collection Slider Secondary",
       "settings": {
-        "heading": "The Corduroy Edit",
+        "heading": "The Vitale Barberis Canonico Quartet",
         "heading_animation": "none",
         "description": "",
         "description_animation": "none",
-        "collection": "the-corduroy-comeback",
+        "collection": "vitale-barberis-canonico-edit",
         "button_label": "Shop Now",
-        "products_to_show": 10,
+        "products_to_show": 4,
         "animate_products": false
       }
     },
