@@ -4,8 +4,8 @@ Import gift cards when site is live and domain verified:
     Turn off customer notifications - DONE
     import all gift cards before site is live - DONE
     change notification template to explain that we moved to Shopify - DONE
-    Send the notifications once the site is live
-    Change the notification template back to normal
+    Send the notifications once the site is live - DONE
+    Change the notification template back to normal - DONE
     Turn back on gift cards
     Create the missing gift cards for customers that had no email
 
