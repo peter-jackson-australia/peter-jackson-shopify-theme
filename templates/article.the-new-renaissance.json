@@ -206,10 +206,10 @@
             "image_link": "shopify://collections/outerwear",
             "heading": "",
             "heading_animation": "none",
-            "text": "",
+            "text": "OUTERWEAR",
             "text_animation": "none",
             "column_link": "shopify://collections/outerwear",
-            "column_link_text": "Shop Outerwear"
+            "column_link_text": "Shop Now"
           }
         },
         "column_item_W6WAfH": {
@@ -219,9 +219,9 @@
             "image_link": "shopify://collections/sport-jackets",
             "heading": "",
             "heading_animation": "none",
-            "text": "",
+            "text": "SPORTS JACKETS",
             "text_animation": "none",
-            "column_link": "",
+            "column_link": "shopify://collections/sport-jackets",
             "column_link_text": "Shop Now"
           }
         },
