@@ -79,19 +79,21 @@
         "animate_products": false
       }
     },
-    "collection_slider_secondary_Fr3RYB": {
-      "type": "collection-slider-secondary",
-      "disabled": true,
-      "name": "Collection Slider Secondary",
+    "heading_with_text_6ahyTW": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
       "settings": {
-        "heading": "Explore Winter Layers",
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "leading_text": "",
+        "leading_text_animation": "none",
+        "heading": "In Corduroy We Trust",
+        "heading_style": "normal",
         "heading_animation": "none",
-        "description": "",
-        "description_animation": "none",
-        "collection": "new-arrivals",
-        "button_label": "Shop Now",
-        "products_to_show": 10,
-        "animate_products": false
+        "content": "<p>Corduroy jackets and shirts offer a refined take on transeasonal layering — warm enough for crisp mornings, light enough for mild afternoons. The texture adds depth without bulk, pairing effortlessly over knits or under outerwear. Whether thrown over a tee or buttoned beneath a coat, corduroy brings structure, softness, and a tactile edge to in-between dressing.</p>",
+        "content_animation": "none",
+        "alignment": "left"
       }
     },
     "variable_column_content_secondary_FNTbjR": {
@@ -146,7 +148,7 @@
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
-        "show_bottom_border": true,
+        "show_bottom_border": false,
         "column_count": "3",
         "text_alignment": "left",
         "animate_columns": false,
@@ -172,60 +174,7 @@
         "animate_products": false
       }
     },
-    "image_with_text_qXeBbG": {
-      "type": "image-with-text",
-      "name": "Image With Text",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": true,
-        "first_image": "shopify://shop_images/Corduroy_Shirt_5.webp",
-        "image_link": "",
-        "animate_images": false,
-        "alignment": "left",
-        "heading": "Why Corduroy Works Today",
-        "heading_animation": "none",
-        "text": "Corduroy’s appeal lies in its texture — a subtle but striking element that lends depth to everything from suits to overshirts. Where traditional suiting often leans sleek and flat, corduroy adds visual intrigue and tactile richness. A peak-lapel corduroy blazer or a cuffed trouser with side tabs speaks not just to detail, but to modern sophistication.Its adaptability is another draw. Modern corduroy is far lighter and softer than past versions, making it seasonally agile. It holds warmth through the cooler months without feeling bulky — ideal for layering or as a standalone statement. In rich greens, sand tones, and deep navy, corduroy invites tonal dressing with nuance and dimension.",
-        "text_animation": "none",
-        "button_label": "Learn More",
-        "button_link": ""
-      }
-    },
-    "image_with_text_ctFag9": {
-      "type": "image-with-text",
-      "name": "Image With Text",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": true,
-        "first_image": "shopify://shop_images/Corduroy_Suit_5.webp",
-        "image_link": "",
-        "animate_images": false,
-        "alignment": "right",
-        "heading": "The Modern Look: Corduroy as Statement",
-        "heading_animation": "none",
-        "text": "Take the green corduroy suit. Structured with a peak lapel and side-adjuster trousers, it brings authority without rigidity. Paired with a cream turtleneck, the look gains softness and balance — a nod to classic elegance made current. Add sand loafers, and the palette becomes grounded and wearable, bridging the divide between formal and relaxed.This is how corduroy functions best in today’s wardrobe: not as a costume piece, but as a stylish counterpoint to denim, flannel, or suiting wool. It’s a material that plays with contrasts — polished yet tactile, tailored yet easy.",
-        "text_animation": "none",
-        "button_label": "Shop The Look",
-        "button_link": ""
-      }
-    },
-    "shop_the_look_global_fYig83": {
-      "type": "shop-the-look-global",
-      "name": "Shop the Look Global",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": false,
-        "heading": "Shop the Look",
-        "heading_animation": "none",
-        "featured_image": "shopify://shop_images/mens-blazer-green-corduroy-cotton-WT25-SP20-3_1946x_65ebec76-d675-4e77-bc5a-37259bcbca58.webp",
-        "product1": "portici-corduroy-green-jacket",
-        "product2": "merino-wool-cream-turtleneck-knit",
-        "product3": "sienna-corduroy-olive-trousers"
-      }
-    },
-    "heading_with_text_wUhBL9": {
+    "heading_with_text_jEXLcE": {
       "type": "heading-with-text",
       "name": "Heading with Text",
       "settings": {
@@ -234,12 +183,68 @@
         "show_bottom_border": false,
         "leading_text": "",
         "leading_text_animation": "none",
-        "heading": "How To Wear Corduroy",
+        "heading": "The Versatile Style Staple: THE TURTLENECK",
         "heading_style": "normal",
         "heading_animation": "none",
-        "content": "<p><strong>Tailored Statements</strong><br/>Corduroy overshirts and jackets work over knits and under coats. They’re a key player in smart casual dressing.<br/></p><p><strong>Layering Piece</strong><br/>Corduroy overshirts and jackets work over knits and under coats. They’re a key player in smart casual dressing.<br/></p><p><strong>Tonal Dressing<br/></strong>Monochrome looks in corduroy — sand-on-sand, forest-on-forest — create impact through texture rather than print or colour.</p><p>Corduroy has become a quiet disruptor in the modern wardrobe. It’s a fabric that honours tradition while pushing forward — rich in heritage, relevant in today’s style language. Its return is not a trend, but a considered reintroduction — and this time, it’s here to stay.</p>",
+        "content": "<p>This season, the turtleneck steps in as the ultimate style move - refined, versatile and effortless. Layered under casual outerwear or sharp tailoring, it adds warmth without sacrificing polish. Casual refinement in its finest form.</p>",
         "content_animation": "none",
         "alignment": "left"
+      }
+    },
+    "two_column_content_jGLLBk": {
+      "type": "two-column-content",
+      "blocks": {
+        "column_yhccki": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Layered_Logic_Hero_4.webp",
+            "product": "",
+            "heading": "",
+            "heading_animation": "none",
+            "description": "",
+            "description_animation": "none",
+            "button_label": "Learn More",
+            "button_link": ""
+          }
+        },
+        "column_fWj6pL": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Layered_Logic_Hero_5.webp",
+            "product": "",
+            "heading": "",
+            "heading_animation": "none",
+            "description": "",
+            "description_animation": "none",
+            "button_label": "Learn More",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_yhccki",
+        "column_fWj6pL"
+      ],
+      "name": "Two Column Content",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "animate_columns": false
+      }
+    },
+    "collection_slider_3bcEkk": {
+      "type": "collection-slider",
+      "name": "Collection Slider",
+      "settings": {
+        "heading": "Turtlenecks",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "staple-turtle-neck-knits",
+        "button_label": "Shop Now",
+        "products_to_show": 10,
+        "animate_products": false
       }
     }
   },
@@ -249,12 +254,11 @@
     "full_page_media_DQrgiW",
     "heading_with_text_NFCiF4",
     "collection_slider_zwXnK8",
-    "collection_slider_secondary_Fr3RYB",
+    "heading_with_text_6ahyTW",
     "variable_column_content_secondary_FNTbjR",
     "collection_slider_eRxt8x",
-    "image_with_text_qXeBbG",
-    "image_with_text_ctFag9",
-    "shop_the_look_global_fYig83",
-    "heading_with_text_wUhBL9"
+    "heading_with_text_jEXLcE",
+    "two_column_content_jGLLBk",
+    "collection_slider_3bcEkk"
   ]
 }
