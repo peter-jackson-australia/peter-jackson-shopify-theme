@@ -161,7 +161,7 @@
         "heading_animation": "none",
         "text": "A textured knit tie crafted by Bottinelli in Lake Como, paired with a minimalist belt. Accessories that balance each other, adding depth, structure and refinement to tailored dressing.",
         "text_animation": "none",
-        "button_label": "Shop Accessories",
+        "button_label": "",
         "button_link": "shopify://collections/mens-accessories"
       }
     },
@@ -188,31 +188,62 @@
         "show_bottom_border": false,
         "leading_text": "",
         "leading_text_animation": "none",
-        "heading": "From Field To Front Row",
+        "heading": "Classically Casual: The Art Of Winter Layering",
         "heading_style": "normal",
         "heading_animation": "none",
-        "content": "<p>Corduroy traces its roots back to ancient Egypt, evolving through centuries into the hardwearing “cord du roi” of 18th-century France, worn by the aristocracy before finding a home in the wardrobes of workers and intellectuals in the 19th and 20th centuries. By the 1970s, it had become a countercultural uniform — rugged, rebellious, and richly tactile.</p><p>Fast forward to now: designers are recasting corduroy in lighter, more luxurious iterations. No longer stiff or heavy, it’s being spun from finer cottons and blended fibres to create garments that drape like wool and feel like velvet — a sartorial shift that has placed corduroy back in the fashion spotlight.</p>",
+        "content": "<p>This winter, relaxed tailoring and refined textures mark a fresh approach to classic dressing. Inspired by European streetstyle, structured overcoats, softly tailored trousers, and luxurious knitwear blend seamlessly, ushering in a new era of effortless, versatile style.</p>",
         "content_animation": "none",
-        "alignment": "left"
+        "alignment": "center"
       }
     },
-    "image_with_text_ctFag9": {
-      "type": "image-with-text",
-      "name": "Image With Text",
+    "variable_column_content_secondary_JGXmnH": {
+      "type": "variable-column-content-secondary",
+      "blocks": {
+        "column_item_rUCcTF": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Renaissance_7.webp",
+            "image_link": "shopify://collections/outerwear",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "column_link": "shopify://collections/mens-accessories",
+            "column_link_text": ""
+          }
+        },
+        "column_item_W6WAfH": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Renaissance_8.webp",
+            "image_link": "shopify://collections/sport-jackets",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_rUCcTF",
+        "column_item_W6WAfH"
+      ],
+      "name": "Variable Column Content Secondary",
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": true,
-        "first_image": "shopify://shop_images/Corduroy_Suit_5.webp",
-        "image_link": "",
-        "animate_images": false,
-        "alignment": "right",
-        "heading": "The Modern Look: Corduroy as Statement",
+        "column_count": "3",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "",
         "heading_animation": "none",
-        "text": "Take the green corduroy suit. Structured with a peak lapel and side-adjuster trousers, it brings authority without rigidity. Paired with a cream turtleneck, the look gains softness and balance — a nod to classic elegance made current. Add sand loafers, and the palette becomes grounded and wearable, bridging the divide between formal and relaxed.This is how corduroy functions best in today’s wardrobe: not as a costume piece, but as a stylish counterpoint to denim, flannel, or suiting wool. It’s a material that plays with contrasts — polished yet tactile, tailored yet easy.",
+        "text": "",
         "text_animation": "none",
-        "button_label": "Shop The Look",
-        "button_link": ""
+        "button_label": "",
+        "button_link": "shopify://collections/mens-accessories"
       }
     },
     "shop_the_look_global_fYig83": {
@@ -259,7 +290,7 @@
     "variable_column_content_secondary_FNTbjR",
     "collection_slider_secondary_4KcKbQ",
     "heading_with_text_NFCiF4",
-    "image_with_text_ctFag9",
+    "variable_column_content_secondary_JGXmnH",
     "shop_the_look_global_fYig83",
     "heading_with_text_wUhBL9"
   ]
