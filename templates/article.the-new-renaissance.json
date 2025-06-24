@@ -165,6 +165,20 @@
         "button_link": "shopify://collections/mens-accessories"
       }
     },
+    "collection_slider_secondary_4KcKbQ": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "Accessories",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "mens-accessories",
+        "button_label": "Shop Now",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
     "heading_with_text_NFCiF4": {
       "type": "heading-with-text",
       "name": "Heading with Text",
@@ -243,6 +257,7 @@
     "collection_slider_secondary_Fr3RYB",
     "image_with_text_mqPJah",
     "variable_column_content_secondary_FNTbjR",
+    "collection_slider_secondary_4KcKbQ",
     "heading_with_text_NFCiF4",
     "image_with_text_ctFag9",
     "shop_the_look_global_fYig83",
