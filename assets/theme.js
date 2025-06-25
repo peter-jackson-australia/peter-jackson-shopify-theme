@@ -159,7 +159,7 @@ ready(function () {
 
           if (v.available === false || inventoryQuantity <= 5) {
             document.querySelector("#js--addtocart").disabled = true;
-            document.querySelector("#js--addtocart").innerText = "Unavailable";
+            document.querySelector("#js--addtocart").innerText = "Size Unavailable";
           } else {
             document.querySelector("#js--addtocart").disabled = false;
             document.querySelector("#js--addtocart").innerText = "Add to cart";
