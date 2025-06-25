@@ -1,14 +1,14 @@
 Todo:
 
-Swap out hero section poster image
-
-Breadcrumbs above product images
-
 Add AfterPay 
 
 Change Shop Button showing first on express checkout
 
 Remove the notification for split shipments
+
+Breadcrumbs above product images
+
+Discount kit code for PDP page
 
 All collections page
 
@@ -23,8 +23,6 @@ Import gift cards when site is live and domain verified:
 
 Set up DEV site with everything needed to replicate the live site
 
-Change out the newsletter signup 
-
 SECTIONS:
 
 Blog collection pages as custom pages:
@@ -33,6 +31,8 @@ Blog collection pages as custom pages:
     Add in featured article slider (Top 6 newest blogs)
     Fix up main blog collections
     Can choose tags to exclude
+
+Change out the newsletter signup 
 
 Made to measure template fixes 
 
