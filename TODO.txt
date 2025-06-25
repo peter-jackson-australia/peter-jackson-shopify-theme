@@ -12,6 +12,8 @@ GA not picking up purchases
 
 Breadcrumbs above product images
 
+All collections page
+
 Import gift cards when site is live and domain verified:
     Turn off customer notifications - DONE
     import all gift cards before site is live - DONE
