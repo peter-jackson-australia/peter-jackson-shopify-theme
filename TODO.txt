@@ -2,11 +2,11 @@ Todo:
 
 Add AfterPay 
 
+Set up DEV site with everything needed to replicate the live site
+
 Change Shop Button showing first on express checkout
 
 Remove the notification for split shipments
-
-Set up DEV site with everything needed to replicate the live site
 
 Breadcrumbs above product images
 
