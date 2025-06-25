@@ -25,6 +25,20 @@ Import gift cards when site is live and domain verified:
     Create the missing gift cards for customers that had no email
     Turn back on gift cards
 
+    Turn related content on PDP page into a slider on mobile (show 1 blog per slide)
+
+    Stop zoom for search bar input
+
+    check all form fields for zoom in safari
+
+    Store Locator on mobile (stores above map below change the zoom level so its zoomed out)
+
+    Contact form submission notification should be more prominent
+
+    contact form styling
+
+    back navigation for pages
+
 SECTIONS:
 
 Blog collection pages as custom pages:
