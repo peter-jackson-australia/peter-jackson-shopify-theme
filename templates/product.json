@@ -42,6 +42,12 @@
         "heading": "Complete the Look"
       }
     },
+    "recently_viewed_yG6Mdn": {
+      "type": "recently-viewed",
+      "settings": {
+        "heading": "Recently Viewed"
+      }
+    },
     "product_related_content_B9BLgW": {
       "type": "product-related-content",
       "settings": {
@@ -50,12 +56,6 @@
         "description": "<p>Discover our world through campaign features, interviews, and editorial made to inform and inspire your next move to live a life well lived.</p>",
         "cta_link": "shopify://blogs/the-jackson-journal",
         "cta_text": "View Articles"
-      }
-    },
-    "recently_viewed_yG6Mdn": {
-      "type": "recently-viewed",
-      "settings": {
-        "heading": "Recently Viewed"
       }
     },
     "product_navigation_AwEGJc": {
@@ -67,8 +67,8 @@
   "order": [
     "product",
     "shop_the_look_cCQwPG",
-    "product_related_content_B9BLgW",
     "recently_viewed_yG6Mdn",
+    "product_related_content_B9BLgW",
     "product_navigation_AwEGJc"
   ]
 }
