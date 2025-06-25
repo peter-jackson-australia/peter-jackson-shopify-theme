@@ -1,7 +1,18 @@
 {% comment %}
   Main product gallery and information
 {% endcomment %}
-{% assign current_variant = product.selected_or_first_available_variant %}
+{% assign current_variant = null %}
+
+{% for variant in product.variants %}
+  {% if variant.available and variant.inventory_quantity > 5 %}
+    {% assign current_variant = variant %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% if current_variant == null %}
+  {% assign current_variant = product.selected_or_first_available_variant %}
+{% endif %}
 
 <style>
   .product-images-container {
