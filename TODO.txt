@@ -1,5 +1,7 @@
 Todo:
 
+Get all 404's 
+
 Add AfterPay 
 
 Set up DEV site with everything needed to replicate the live site
