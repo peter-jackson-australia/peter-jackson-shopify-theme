@@ -2,8 +2,6 @@ Todo:
 
 Fix the variant selector stuff (starting on first available variant)
 
-Change out the newsletter signup 
-
 GA not picking up purchases
 
 Breadcrumbs above product images
@@ -20,6 +18,8 @@ Import gift cards when site is live and domain verified:
     Create the missing gift cards for customers that had no email
 
 Set up DEV site with everything needed to replicate the live site
+
+Change out the newsletter signup 
 
 SECTIONS:
 
