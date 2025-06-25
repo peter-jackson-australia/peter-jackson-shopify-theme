@@ -6,6 +6,8 @@ Change Shop Button showing first on express checkout
 
 Remove the notification for split shipments
 
+Set up DEV site with everything needed to replicate the live site
+
 Breadcrumbs above product images
 
 Discount kit code for PDP page
@@ -21,8 +23,6 @@ Import gift cards when site is live and domain verified:
     Create the missing gift cards for customers that had no email
     Turn back on gift cards
 
-Set up DEV site with everything needed to replicate the live site
-
 SECTIONS:
 
 Blog collection pages as custom pages:
@@ -33,6 +33,8 @@ Blog collection pages as custom pages:
     Can choose tags to exclude
 
 Change out the newsletter signup 
+
+Install invoice app
 
 Made to measure template fixes 
 
