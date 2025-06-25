@@ -1,7 +1,5 @@
 Todo:
 
-Fix the variant selector stuff (starting on first available variant)
-
 Breadcrumbs above product images
 
 All collections page
