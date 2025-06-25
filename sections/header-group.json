@@ -17,14 +17,14 @@
         "announcement_mQFJhL": {
           "type": "announcement",
           "settings": {
-            "text": "Half Year Sale | up to 50% Off*",
+            "text": "<a href=\"/collections/sale\" title=\"Sale\">Half Year Sale | up to 50% Off*</a>",
             "alignment": "center"
           }
         },
         "announcement_iJMTjg": {
           "type": "announcement",
           "settings": {
-            "text": "Merino Wool Suits starting from $399",
+            "text": "<a href=\"/collections/mens-suits\" title=\"Suits\">Merino Wool Suits starting from $399</a>",
             "alignment": "center"
           }
         }
