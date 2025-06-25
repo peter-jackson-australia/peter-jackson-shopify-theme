@@ -1,7 +1,5 @@
 Todo:
 
-title and meta description
-
 Fix the variant selector stuff (button text unavailable and starting on first available variant)
 
 Change out the newsletter signup 
