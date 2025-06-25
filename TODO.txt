@@ -1,5 +1,7 @@
 Todo:
 
+Swap out hero section poster image
+
 Breadcrumbs above product images
 
 Add AfterPay 
