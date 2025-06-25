@@ -2,6 +2,12 @@ Todo:
 
 Breadcrumbs above product images
 
+Add AfterPay 
+
+Change Shop Button showing first on express checkout
+
+Remove the notification for split shipments
+
 All collections page
 
 Import gift cards when site is live and domain verified:
@@ -10,8 +16,8 @@ Import gift cards when site is live and domain verified:
     change notification template to explain that we moved to Shopify - DONE
     Send the notifications once the site is live - DONE
     Change the notification template back to normal - DONE
-    Turn back on gift cards
     Create the missing gift cards for customers that had no email
+    Turn back on gift cards
 
 Set up DEV site with everything needed to replicate the live site
 
@@ -40,4 +46,4 @@ Add ability to change video, video subtitle, newsletter title and newsletter leg
 
 ADMIN:
 Set up dev branch on Github
-Bring Gift Cards over to new site 
+Bring Gift Cards over to new site (Half done) 
