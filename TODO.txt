@@ -1,5 +1,15 @@
 Todo:
 
+Site Favicon/title and meta description
+
+Fix the variant selector stuff (button text unavailable and starting on first available variant)
+
+Change out the newsletter signup 
+
+GA not picking up purchases
+
+Breadcrumbs above product images
+
 Import gift cards when site is live and domain verified:
     Turn off customer notifications - DONE
     import all gift cards before site is live - DONE
