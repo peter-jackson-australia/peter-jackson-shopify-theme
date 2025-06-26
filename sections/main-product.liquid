@@ -619,7 +619,9 @@
         </div>
 
         <div class="product-details__info-container">
-          {{ product.metafields.custom.discount_bundle_name }}
+          <p class="body">
+            {{ product.metafields.custom.discount_bundle_name | metafield_tag }}
+          </p>
           <button
             type="button"
             class="size-guide-button small"
