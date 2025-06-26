@@ -10,8 +10,6 @@ Change Shop Button showing first on express checkout
 
 Remove the notification for split shipments
 
-Size guide links
-
 All collections page
 
 Import gift cards when site is live and domain verified:
