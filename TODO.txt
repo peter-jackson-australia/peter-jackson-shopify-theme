@@ -1,5 +1,8 @@
 Todo:
 
+location item is sourced from 
+comments
+
 Discount kit code for PDP page:
     Change the display none settings for desktop and mobile discount code elements
 
