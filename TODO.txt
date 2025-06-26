@@ -1,7 +1,5 @@
 Todo:
 
-Breadcrumbs no wrapping to a new line
-
 Discount kit code for PDP page
 
 Get all 404's 
