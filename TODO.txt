@@ -29,6 +29,8 @@ Import gift cards when site is live and domain verified:
 
     Contact form submission notification should be more prominent
 
+    Cart icon 404
+
     contact form styling
 
     back navigation for pages
