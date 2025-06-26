@@ -157,7 +157,7 @@ ready(function () {
           var variantIndex = variants.findIndex((variant) => variant.id === v.id);
           var inventoryQuantity = variant_inventory_quantities[variantIndex];
 
-          if (v.available === false || inventoryQuantity <= 5) {
+          if (v.available === false || (inventoryQuantity <= 5 && !v.name.includes('Digital Gift Card'))) {
             document.querySelector("#js--addtocart").disabled = true;
             document.querySelector("#js--addtocart").innerText = "Size Unavailable";
           } else {

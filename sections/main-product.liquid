@@ -682,7 +682,17 @@
                   id="js--variant-inventory-quantity"
                   value="{{ current_variant.inventory_quantity }}"
                 >
-                {% if current_variant.available == true and current_variant.inventory_quantity > 5 %}
+
+                {% if current_variant.available and product.gift_card? %}
+                  <button
+                    type="submit"
+                    id="js--addtocart"
+                    class="body"
+                    style="height: var(--space-xl);"
+                  >
+                    Add To Cart
+                  </button>
+                {% elsif current_variant.available and current_variant.inventory_quantity > 5 %}
                   <button
                     type="submit"
                     id="js--addtocart"
