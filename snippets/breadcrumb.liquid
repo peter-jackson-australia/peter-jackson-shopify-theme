@@ -13,7 +13,9 @@
 
         {% assign collection_list = '' %}
         {% for collection in product.collections %}
-          {% capture collection_list %}{{ collection_list }}|{{ collection.handle }}{% endcapture %}
+          {% unless collection.handle == 'sale' %}
+            {% capture collection_list %}{{ collection_list }}|{{ collection.handle }}{% endcapture %}
+          {% endunless %}
         {% endfor %}
         {% assign collection_list = collection_list | remove_first: '|' | split: '|' %}
 
