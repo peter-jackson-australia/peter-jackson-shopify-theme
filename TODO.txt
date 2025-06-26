@@ -27,8 +27,6 @@ Import gift cards when site is live and domain verified:
 
     contact form styling
 
-    back navigation for pages
-
 SECTIONS:
 
 Blog collection pages as custom pages:
