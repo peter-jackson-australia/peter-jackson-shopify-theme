@@ -2,7 +2,7 @@ Todo:
 
 Get all 404's 
 
-Add AfterPay 
+Discount kit code for PDP page
 
 Set up DEV site with everything needed to replicate the live site
 
@@ -12,7 +12,7 @@ Remove the notification for split shipments
 
 Breadcrumbs above product images
 
-Discount kit code for PDP page
+
 
 All collections page
 
