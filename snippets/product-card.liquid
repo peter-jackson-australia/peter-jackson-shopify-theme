@@ -59,6 +59,12 @@
       {% if product.compare_at_price > product.price %}
         <span class="product-card__price--compare">{{ product.compare_at_price | money }}</span>
       {% endif %}
+      <span class="product-card__discount-code-desktop">
+        {{ product.metafields.custom.discount_bundle_name | metafield_tag }}
+      </span>
+    </p>
+    <p class="small product-card__discount-code-mobile">
+      {{ product.metafields.custom.discount_bundle_name | metafield_tag }}
     </p>
   </div>
 </div>

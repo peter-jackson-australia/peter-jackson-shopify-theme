@@ -344,6 +344,17 @@
     margin-left: var(--space-2xs);
   }
 
+  .product-card__discount-code-desktop {
+    display: none; /* Remove when it can go live */
+    color: var(--neutral-400);
+    margin-left: var(--space-2xs);
+  }
+
+  .product-card__discount-code-mobile {
+    display: none;
+    color: var(--neutral-400);
+  }
+
   #AjaxinatePagination {
     margin: var(--space-m);
   }
@@ -376,6 +387,14 @@
       padding-bottom: var(--space-xl);
       text-align: left;
       justify-items: start;
+    }
+
+    .product-card__discount-code-desktop {
+      display: none;
+    }
+
+    .product-card__discount-code-mobile {
+      display: none; /* Change to block when it can go live */
     }
   }
 </style>
