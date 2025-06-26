@@ -10,7 +10,7 @@ Change Shop Button showing first on express checkout
 
 Remove the notification for split shipments
 
-Breadcrumbs above product images
+Size guide links
 
 All collections page
 
