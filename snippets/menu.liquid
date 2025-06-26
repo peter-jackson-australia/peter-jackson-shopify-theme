@@ -294,9 +294,12 @@
         document.body.classList.add('menu-open');
         document.querySelector('.hamburger-menu').classList.add('nav-open');
         window.closeFilter && window.closeFilter();
-        window.triggerCardLoadAnimation('#menu-drawer__menu-1');
-        window.triggerCardLoadAnimation('#menu-drawer__menu-1-secondary');
-        window.triggerCardLoadAnimation('.menu-drawer__scrollable-content');
+
+        if (window.triggerCardLoadAnimation) {
+          window.triggerCardLoadAnimation('#menu-drawer__menu-1');
+          window.triggerCardLoadAnimation('#menu-drawer__menu-1-secondary');
+          window.triggerCardLoadAnimation('.menu-drawer__scrollable-content');
+        }
       },
   
       closeMenu() {
@@ -430,8 +433,8 @@
             }
           }
           this.$nextTick(() => {
-            window.triggerCardLoadAnimation('#menu-drawer-level-2');
-            window.triggerCardLoadAnimation('.menu-drawer__menu-level-2');
+            window.triggerCardLoadAnimation && window.triggerCardLoadAnimation('#menu-drawer-level-2');
+            window.triggerCardLoadAnimation && window.triggerCardLoadAnimation('.menu-drawer__menu-level-2');
           });
         } else if (level === 3) {
           this.activeLevel2Index = childIndex;
@@ -439,8 +442,8 @@
           this.currentChildIndex = childIndex; 
           this.subSubmenu = this.menuData[this.currentParentIndex].links[childIndex].links;
           this.$nextTick(() => {
-            window.triggerCardLoadAnimation('#menu-drawer-level-3');
-            window.triggerCardLoadAnimation('.menu-drawer__menu-level-3');
+            window.triggerCardLoadAnimation && window.triggerCardLoadAnimation('#menu-drawer-level-3');
+            window.triggerCardLoadAnimation && window.triggerCardLoadAnimation('.menu-drawer__menu-level-3');
           });
         }
       }, 
