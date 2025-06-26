@@ -1,5 +1,7 @@
 Todo:
 
+Make the mobile add to cart button sticky
+
 Get all 404's 
 
 Set up DEV site with everything needed to replicate the live site
