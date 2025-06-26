@@ -160,6 +160,10 @@
     gap: 0;
   }
 
+  #product .product-top-breadcrumb-container .breadcrumb__list {
+    display: none;
+  }
+
   .product-details__container {
     position: relative;
     overflow-y: auto;
@@ -477,6 +481,13 @@
       flex-direction: column;
     }
 
+    #product .product-top-breadcrumb-container .breadcrumb__list {
+      display: flex;
+      justify-content: start;
+      padding: var(--space-s) var(--space-m);
+      border-top: 1px solid var(--neutral-200);
+    }
+
     .product-details__container {
       width: 100%;
       height: auto;
@@ -542,6 +553,9 @@
 
 <div class="section-wrap">
   <div id="product">
+    <div class="product-top-breadcrumb-container">
+      {% render 'breadcrumb' %}
+    </div>
     <div class="product-images-container">
       <div class="splide product-images-splide">
         <div class="splide__arrows">
