@@ -16,8 +16,8 @@ Import gift cards when site is live and domain verified:
     change notification template to explain that we moved to Shopify - DONE
     Send the notifications once the site is live - DONE
     Change the notification template back to normal - DONE
+    Turn back on gift cards DONE
     Create the missing gift cards for customers that had no email
-    Turn back on gift cards
 
     Turn related content on PDP page into a slider on mobile (show 1 blog per slide)
 
