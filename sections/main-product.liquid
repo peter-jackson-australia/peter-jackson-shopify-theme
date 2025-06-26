@@ -222,7 +222,7 @@
 
   .product-details__sku {
     color: var(--neutral-600);
-    margin-bottom: 0;
+    margin-bottom: var(--space-2xs);
   }
 
   .size-guide-button {
@@ -600,6 +600,10 @@
 
     <section class="product-details__container custom-scrollbar">
       <div id="product-details">
+        <p class="product-details__sku small">
+          Product Code:
+          <span class="js--variant-sku">{{ current_variant.sku }}</span>
+        </p>
         <div class="product-details__header">
           <h1 class="product-details__title heading--xl" data-title="{{ product.title }}">{{ product.title }}</h1>
           <div class="product-details__price">
@@ -615,10 +619,6 @@
         </div>
 
         <div class="product-details__sku-container">
-          <p class="product-details__sku small">
-            Product Code:
-            <span class="js--variant-sku">{{ current_variant.sku }}</span>
-          </p>
           <button
             type="button"
             class="size-guide-button small"
