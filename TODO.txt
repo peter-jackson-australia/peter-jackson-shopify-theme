@@ -38,8 +38,6 @@ Blog collection pages as custom pages:
 
 Change out the newsletter signup 
 
-Install invoice app
-
 Made to measure template fixes 
 
 When grid content section is present, Ajaxinate doesn't load the correct amount of product tiles
