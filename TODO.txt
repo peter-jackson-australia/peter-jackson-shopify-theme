@@ -5,8 +5,6 @@ Discount kit code for PDP page:
 
 Get all 404's 
 
-Remove underlines in announcement links
-
 Set up DEV site with everything needed to replicate the live site
 
 Change Shop Button showing first on express checkout
