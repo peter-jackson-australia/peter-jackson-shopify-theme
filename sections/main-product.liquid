@@ -619,8 +619,7 @@
         </div>
 
         <div class="product-details__info-container">
-          {% comment %} Remove display none when discounts come back online {% endcomment %}
-          <p class="small" style="color: var(--neutral-600); display: none;">
+          <p class="small" style="color: var(--neutral-600);">
             {{ product.metafields.custom.discount_bundle_name | metafield_tag }}
           </p>
           <button
