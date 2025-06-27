@@ -153,6 +153,10 @@ ready(function () {
             el.innerText = variant.sku;
           });
 
+          if (document.querySelector('.js--pants-size')) {
+            document.querySelector('.js--pants-size').textContent = v.option1 - 12;
+          }
+
           // Disable the buy button if product is unavailable
           var variantIndex = variants.findIndex((variant) => variant.id === v.id);
           var inventoryQuantity = variant_inventory_quantities[variantIndex];
