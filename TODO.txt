@@ -1,7 +1,5 @@
 Todo:
 
-Add pant size (create metafield for suits, if turned on, show a text field below fit where it grabs the value in chest and subtracts 12)
-
 Make the mobile add to cart button sticky
 
 Get all 404's 
