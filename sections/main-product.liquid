@@ -672,7 +672,8 @@
                   {% endfor %}
                   {% if product.metafields.custom.show_pants_size_for_suits %}
                     <p class="small" style="margin-bottom: var(--space-m); color: var(--neutral-600);">
-                      Pants Size: <span class="js--pants-size">{{ current_variant.option1 | minus: 12 }}</span>
+                      Suit includes trousers size:
+                      <span class="js--pants-size">{{ current_variant.option1 | minus: 12 }}</span>
                     </p>
                   {% endif %}
                 {% endunless %}
