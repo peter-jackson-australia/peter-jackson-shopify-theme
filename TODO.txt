@@ -6,8 +6,6 @@ Make the mobile add to cart button sticky:
     Place the button in a div 
     When div is out of view, show bottom bar
 
-Change Shop Button showing first on express checkout
-
 Remove the notification for split shipments
 
 // Automate removing web keyword 
