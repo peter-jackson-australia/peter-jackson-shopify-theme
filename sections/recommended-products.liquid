@@ -164,102 +164,84 @@
   }
 </style>
 
-<div class="recommended-products-test" id="section-{{ section.id }}">
-  <h2>Testing Recommendations Object Access</h2>
+<div
+  class="recommended-products"
+  id="section-{{ section.id }}"
+  data-base-url="{{ routes.product_recommendations_url }}"
+  data-product-id="{{ product.id }}"
+  data-limit="4"
+  data-section-id="{{ section.id }}"
+  data-intent="related"
+>
+  <h2>Recommended Products</h2>
 
-  <!-- Approach 1: Direct recommendations object -->
-  <div>
-    <h3>Approach 1: Direct recommendations</h3>
-    <p>recommendations: {{ recommendations }}</p>
-    <p>recommendations.products: {{ recommendations.products }}</p>
-    <p>recommendations.products_count: {{ recommendations.products_count }}</p>
-    <p>recommendations.performed: {{ recommendations.performed }}</p>
-  </div>
-
-  <!-- Approach 2: Check if object exists -->
-  <div>
-    <h3>Approach 2: Checking existence</h3>
-    {% if recommendations %}
-      <p>✅ recommendations object exists</p>
-      {% if recommendations.products %}
-        <p>✅ recommendations.products exists with {{ recommendations.products.size }} items</p>
-      {% else %}
-        <p>❌ recommendations.products is empty or doesn't exist</p>
-      {% endif %}
+  {% if recommendations.performed %}
+    {% if recommendations.products_count > 0 %}
+      <div class="recommendations-loaded">
+        <p>✅ Recommendations loaded! Found {{ recommendations.products_count }} products</p>
+        <div class="products-grid">
+          {% for product in recommendations.products limit: 4 %}
+            <div class="product-item">
+              <h3>{{ product.title }}</h3>
+              <p>{{ product.price | money }}</p>
+              {% if product.featured_image %}
+                <img src="{{ product.featured_image | image_url: width: 200 }}" alt="{{ product.title }}" width="200">
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
     {% else %}
-      <p>❌ recommendations object doesn't exist</p>
+      <p>No recommendations found</p>
     {% endif %}
-  </div>
-
-  <!-- Approach 3: Try product.related_products -->
-  <div>
-    <h3>Approach 3: product.related_products</h3>
-    {% if product.related_products %}
-      <p>✅ product.related_products exists with {{ product.related_products.size }} items</p>
-    {% else %}
-      <p>❌ product.related_products doesn't exist</p>
-    {% endif %}
-  </div>
-
-  <!-- Approach 4: Try collections approach -->
-  <div>
-    <h3>Approach 4: Same collection products</h3>
-    {% if product.collections.first %}
-      <p>
-        First collection: {{ product.collections.first.title }} with
-        {{ product.collections.first.products.size }} products
-      </p>
-    {% endif %}
-  </div>
-
-  <!-- Approach 5: Try product recommendations via routes -->
-  <div>
-    <h3>Approach 5: Routes object</h3>
-    <p>routes.product_recommendations_url: {{ routes.product_recommendations_url }}</p>
-  </div>
-
-  <!-- Approach 6: Try global objects -->
-  <div>
-    <h3>Approach 6: Check template and request</h3>
-    <p>template.name: {{ template.name }}</p>
-    <p>request.page_type: {{ request.page_type }}</p>
-    <p>product.id: {{ product.id }}</p>
-  </div>
-
-  <!-- Approach 7: Try shop object -->
-  <div>
-    <h3>Approach 7: Shop object</h3>
-    <p>shop.name: {{ shop.name }}</p>
-  </div>
-
-  <!-- Approach 8: Try all_products approach -->
-  <div>
-    <h3>Approach 8: all_products sample</h3>
-    {% assign sample_products = collections.all.products %}
-    {% if sample_products.size > 0 %}
-      <p>✅ Found {{ sample_products.size }} sample products from all collection</p>
-      <p>First 3 products:</p>
-      {% for product_item in sample_products limit: 3 %}
-        <p>- {{ product_item.title }}</p>
-      {% endfor %}
-    {% endif %}
-  </div>
-
-  <!-- Approach 9: Try with assign -->
-  <div>
-    <h3>Approach 9: Assign and check</h3>
-    {% assign rec_products = recommendations.products %}
-    {% assign rec_count = recommendations.products_count %}
-    <p>Assigned rec_products: {{ rec_products }}</p>
-    <p>Assigned rec_count: {{ rec_count }}</p>
-  </div>
-
-  <!-- Approach 10: Raw output -->
-  <div>
-    <h3>Approach 10: Raw recommendations</h3>
-    <pre>{{ recommendations | json }}</pre>
-  </div>
+  {% else %}
+    <div class="recommendations-loading">
+      <p>Loading recommendations...</p>
+      <button onclick="loadRecommendations()">Load Recommendations</button>
+    </div>
+  {% endif %}
 </div>
+
+<script>
+  function loadRecommendations() {
+    const container = document.getElementById('section-{{ section.id }}');
+    const baseUrl = container.dataset.baseUrl;
+    const productId = container.dataset.productId;
+    const sectionId = container.dataset.sectionId;
+    const limit = container.dataset.limit;
+    const intent = container.dataset.intent;
+
+    const url = `${baseUrl}?section_id=${sectionId}&product_id=${productId}&limit=${limit}&intent=${intent}`;
+
+    console.log('Loading recommendations from:', url);
+
+    fetch(url)
+      .then((response) => {
+        console.log('Response status:', response.status);
+        return response.text();
+      })
+      .then((html) => {
+        console.log('Response HTML length:', html.length);
+        console.log('First 500 chars:', html.substring(0, 500));
+
+        const parser = new DOMParser();
+        const newDocument = parser.parseFromString(html, 'text/html');
+        const newSection = newDocument.querySelector('#section-{{ section.id }}');
+
+        if (newSection) {
+          container.innerHTML = newSection.innerHTML;
+        } else {
+          console.log('No section found in response');
+          container.innerHTML =
+            '<p>Error: Could not load recommendations</p><pre>' + html.substring(0, 1000) + '</pre>';
+        }
+      })
+      .catch((error) => {
+        console.error('Error loading recommendations:', error);
+        container.innerHTML = '<p>Error loading recommendations: ' + error.message + '</p>';
+      });
+  }
+</script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
