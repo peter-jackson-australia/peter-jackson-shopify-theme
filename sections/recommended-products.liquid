@@ -2,310 +2,157 @@
   Recommended Products Section
 {% endcomment %}
 
-<style>
-  .recommended-products {
-    padding: var(--space-2xl) 0;
-    overflow: hidden;
-    border-bottom: 1px solid var(--neutral-200);
-  }
+{% comment %}
+  Testing Different Recommendation Sources
+{% endcomment %}
 
-  .recommended-products__container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    overflow: visible;
-  }
+<div class="recommended-products-test" id="section-{{ section.id }}">
+  <h2>Testing Recommendation Sources</h2>
 
-  .recommended-products__content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 var(--space-m);
-    margin-bottom: var(--space-xl);
-  }
+  <!-- Test 1: Default recommendations (what we're currently getting) -->
+  <div class="test-section">
+    <h3>Test 1: Default Recommendations (Current)</h3>
+    <button onclick="loadRecommendations('related')">Load Related Products</button>
+    <button onclick="loadRecommendations('complementary')">Load Complementary Products</button>
+    <div id="test1-results"></div>
+  </div>
 
-  .recommended-products__heading {
-    margin-bottom: var(--space-2xs);
-    color: var(--neutral-950);
-  }
+  <!-- Test 2: Check product metafields for custom recommendations -->
+  <div class="test-section">
+    <h3>Test 2: Product Metafields</h3>
+    <p>Checking for Search & Discovery metafields...</p>
 
-  .recommended-products__description {
-    max-width: 80ch;
-    margin-bottom: var(--space-l);
-    color: var(--neutral-600);
-  }
-
-  .recommended-products__slider-wrapper {
-    overflow: visible;
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-  }
-
-  .recommended-products__slider {
-    width: 100%;
-  }
-
-  .recommended-products__product-link {
-    display: block;
-    text-decoration: none;
-    color: var(--neutral-950);
-  }
-
-  .recommended-products__product-image-wrapper {
-    margin-bottom: var(--space-xs);
-    overflow: hidden;
-    background-color: var(--neutral-50);
-  }
-
-  .recommended-products__product-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .recommended-products__product-title {
-    margin: var(--space-xs) 0 var(--space-2xs);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: var(--neutral-950);
-    padding-left: var(--space-m);
-  }
-
-  .recommended-products__product-material {
-    margin-bottom: var(--space-2xs);
-    color: var(--neutral-600);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    padding-left: var(--space-m);
-  }
-
-  .recommended-products__product-price {
-    padding-left: var(--space-m);
-  }
-
-  .recommended-products__product-price--compare {
-    text-decoration: line-through;
-    color: var(--neutral-600);
-    margin-left: var(--space-2xs);
-  }
-
-  .recommended-products__loading-dots {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: var(--space-xl) 0;
-    gap: var(--space-xs);
-  }
-
-  .recommended-products__loading-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: var(--neutral-400);
-    animation: recommended-products-loading 1.4s ease-in-out infinite both;
-  }
-
-  .recommended-products__loading-dot:nth-child(1) {
-    animation-delay: -0.32s;
-  }
-
-  .recommended-products__loading-dot:nth-child(2) {
-    animation-delay: -0.16s;
-  }
-
-  @keyframes recommended-products-loading {
-    0%,
-    80%,
-    100% {
-      transform: scale(0);
-    }
-    40% {
-      transform: scale(1);
-    }
-  }
-
-  @media screen and (max-width: 768px) {
-    .recommended-products__slider {
-      padding: 0px var(--space-m);
-    }
-
-    .recommended-products__product-price {
-      padding-left: 0px;
-    }
-
-    .recommended-products__product-title {
-      padding-left: 0px;
-    }
-
-    .recommended-products__product-material {
-      padding-left: 0px;
-    }
-
-    .recommended-products {
-      padding-top: var(--space-xl);
-      padding-bottom: var(--space-xl);
-    }
-
-    .recommended-products__content {
-      margin-bottom: var(--space-xl);
-    }
-
-    .recommended-products__product-title {
-      width: calc(100% - var(--space-m));
-    }
-  }
-
-  @media screen and (max-width: 470px) {
-    .recommended-products__slider-wrapper {
-      overflow: hidden;
-    }
-  }
-</style>
-
-<div
-  class="recommended-products"
-  id="section-{{ section.id }}"
-  data-base-url="{{ routes.product_recommendations_url }}"
-  data-product-id="{{ product.id }}"
-  data-limit="4"
-  data-section-id="{{ section.id }}"
-  data-intent="related"
->
-  <h2>Recommended Products</h2>
-
-  {% if recommendations.performed %}
-    {% if recommendations.products_count > 0 %}
-      <div class="recommendations-loaded">
-        <p>✅ Recommendations loaded! Found {{ recommendations.products_count }} products</p>
-        <div class="products-grid">
-          {% for product in recommendations.products limit: 10 %}
-            <div class="product-item">
-              <h3>{{ product.title }}</h3>
-              <p>{{ product.price | money }}</p>
-              {% if product.featured_image %}
-                <img src="{{ product.featured_image | image_url: width: 200 }}" alt="{{ product.title }}" width="200">
-              {% endif %}
-            </div>
-          {% endfor %}
-        </div>
-      </div>
+    <!-- Check for potential metafields that Search & Discovery might use -->
+    {% if product.metafields.shopify %}
+      <p>✅ product.metafields.shopify exists</p>
+      {% for metafield in product.metafields.shopify %}
+        <p>- shopify.{{ metafield[0] }}: {{ metafield[1] }}</p>
+      {% endfor %}
     {% else %}
-      <p>No recommendations found</p>
+      <p>❌ No product.metafields.shopify</p>
     {% endif %}
-  {% else %}
-    <div class="recommendations-loading">
-      <p>Loading recommendations...</p>
-      <button onclick="loadRecommendations()">Load Recommendations</button>
-    </div>
-  {% endif %}
+
+    {% if product.metafields.recommendations %}
+      <p>✅ product.metafields.recommendations exists</p>
+      {% for metafield in product.metafields.recommendations %}
+        <p>- recommendations.{{ metafield[0] }}: {{ metafield[1] }}</p>
+      {% endfor %}
+    {% else %}
+      <p>❌ No product.metafields.recommendations</p>
+    {% endif %}
+
+    {% if product.metafields.search_discovery %}
+      <p>✅ product.metafields.search_discovery exists</p>
+      {% for metafield in product.metafields.search_discovery %}
+        <p>- search_discovery.{{ metafield[0] }}: {{ metafield[1] }}</p>
+      {% endfor %}
+    {% else %}
+      <p>❌ No product.metafields.search_discovery</p>
+    {% endif %}
+
+    <!-- Check for custom namespace -->
+    {% if product.metafields.custom %}
+      <p>✅ product.metafields.custom exists</p>
+      {% assign custom_fields = product.metafields.custom %}
+      {% for metafield in custom_fields %}
+        {% if metafield[0] contains 'recommend'
+          or metafield[0] contains 'related'
+          or metafield[0] contains 'complement'
+        %}
+          <p>- custom.{{ metafield[0] }}: {{ metafield[1] }}</p>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  </div>
+
+  <!-- Test 3: Try different API parameters -->
+  <div class="test-section">
+    <h3>Test 3: API Parameter Testing</h3>
+    <button onclick="loadWithParams('related', 4)">Related (limit 4)</button>
+    <button onclick="loadWithParams('complementary', 4)">Complementary (limit 4)</button>
+    <button onclick="loadWithParams('related', 10)">Related (limit 10)</button>
+    <div id="test3-results"></div>
+  </div>
+
+  <!-- Current state info -->
+  <div class="test-section">
+    <h3>Current State</h3>
+    <p>Product ID: {{ product.id }}</p>
+    <p>Product Handle: {{ product.handle }}</p>
+    <p>Recommendations performed: {{ recommendations.performed }}</p>
+    <p>Recommendations count: {{ recommendations.products_count }}</p>
+    <p>Recommendations intent: {{ recommendations.intent }}</p>
+  </div>
 </div>
 
 <script>
-  function loadRecommendations() {
-    const container = document.getElementById('section-{{ section.id }}');
-    const baseUrl = container.dataset.baseUrl;
-    const productId = container.dataset.productId;
-    const sectionId = container.dataset.sectionId;
-    const limit = container.dataset.limit;
-    const intent = container.dataset.intent;
+  function loadRecommendations(intent) {
+    const container = document.getElementById('test1-results');
+    const baseUrl = '{{ routes.product_recommendations_url }}';
+    const productId = '{{ product.id }}';
+    const sectionId = '{{ section.id }}';
 
-    const url = `${baseUrl}?section_id=${sectionId}&product_id=${productId}&limit=${limit}&intent=${intent}`;
+    const url = `${baseUrl}?section_id=${sectionId}&product_id=${productId}&limit=4&intent=${intent}`;
 
-    console.log('Loading recommendations from:', url);
+    container.innerHTML = `<p>Loading ${intent} recommendations...</p>`;
+    console.log('Loading from:', url);
 
     fetch(url)
-      .then((response) => {
-        console.log('Response status:', response.status);
-        return response.text();
-      })
+      .then((response) => response.text())
       .then((html) => {
-        console.log('Response HTML length:', html.length);
-        console.log('First 500 chars:', html.substring(0, 500));
+        console.log(`${intent} response:`, html.substring(0, 500));
 
         const parser = new DOMParser();
         const newDocument = parser.parseFromString(html, 'text/html');
         const newSection = newDocument.querySelector('#section-{{ section.id }}');
 
         if (newSection) {
-          container.innerHTML = newSection.innerHTML;
+          const testDiv = newSection.querySelector('.test-section');
+          if (testDiv) {
+            container.innerHTML = `<h4>${intent} Results:</h4>` + testDiv.innerHTML;
+          } else {
+            container.innerHTML = `<h4>${intent} Results:</h4><pre>${html.substring(0, 1000)}</pre>`;
+          }
         } else {
-          console.log('No section found in response');
-          container.innerHTML =
-            '<p>Error: Could not load recommendations</p><pre>' + html.substring(0, 1000) + '</pre>';
+          container.innerHTML = `<h4>${intent} Error:</h4><pre>${html.substring(0, 1000)}</pre>`;
         }
       })
       .catch((error) => {
-        console.error('Error loading recommendations:', error);
-        container.innerHTML = '<p>Error loading recommendations: ' + error.message + '</p>';
+        console.error('Error:', error);
+        container.innerHTML = `<p>Error: ${error.message}</p>`;
       });
   }
-</script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const recommendedProductsSection = document.querySelector('#section-{{ section.id }}');
-      const splideElement = recommendedProductsSection.querySelector('.recommended-products__slider');
-  
-      // Function to initialize Splide slider
-      function initializeSlider() {
-        if (splideElement && splideElement.querySelector('.splide__list').children.length > 0) {
-          new Splide(splideElement, {
-            perPage: 4,
-            type: 'loop',
-            gap: 'var(--space-2xs)',
-            arrows: false,
-            pagination: false,
-            drag: true,
-            snap: true,
-            breakpoints: {
-              470: {
-                perPage: 1,
-              },
-              768: {
-                perPage: 2,
-                arrows: true,
-              },
-            },
-          }).mount();
-        }
-      }
-  
-      // Load recommendations if not already performed
-      if (!recommendedProductsSection.querySelector('.recommended-products__slider .splide__list')) {
-        const baseUrl = '{{ routes.product_recommendations_url }}';
-        const productId = '{{ product.id }}';
-        const sectionId = '{{ section.id }}';
-        const limit = {{ section.settings.products_to_show | default: 10 }};
-        const intent = '{{ section.settings.recommendation_intent | default: "related" }}';
-        
-        const url = `${baseUrl}?section_id=${sectionId}&product_id=${productId}&limit=${limit}&intent=${intent}`;
-        
-        fetch(url)
-          .then(response => response.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const newDocument = parser.parseFromString(html, 'text/html');
-            const newSection = newDocument.querySelector('#section-{{ section.id }}');
-            
-            if (newSection) {
-              recommendedProductsSection.innerHTML = newSection.innerHTML;
-              initializeSlider();
-            }
-          })
-          .catch(error => {
-            console.error('Error loading recommendations:', error);
-            // Hide loading dots on error
-            const loadingDots = recommendedProductsSection.querySelector('.recommended-products__loading-dots');
-            if (loadingDots) {
-              loadingDots.style.display = 'none';
-            }
-          });
-      } else {
-        initializeSlider();
-      }
+  function loadWithParams(intent, limit) {
+    const container = document.getElementById('test3-results');
+    const baseUrl = '{{ routes.product_recommendations_url }}';
+    const productId = '{{ product.id }}';
+    const sectionId = '{{ section.id }}';
+
+    // Try different parameter combinations
+    const urls = [
+      `${baseUrl}?section_id=${sectionId}&product_id=${productId}&limit=${limit}&intent=${intent}`,
+      `${baseUrl}?section_id=${sectionId}&product_id=${productId}&limit=${limit}&intent=${intent}&source=search_discovery`,
+      `${baseUrl}?section_id=${sectionId}&product_id=${productId}&limit=${limit}&intent=${intent}&include_custom=true`,
+    ];
+
+    container.innerHTML = `<p>Testing ${intent} with limit ${limit}...</p>`;
+
+    urls.forEach((url, index) => {
+      console.log(`Testing URL ${index + 1}:`, url);
+
+      fetch(url)
+        .then((response) => response.text())
+        .then((html) => {
+          console.log(`URL ${index + 1} response length:`, html.length);
+          container.innerHTML += `<p>URL ${index + 1}: ${html.length} chars received</p>`;
+        })
+        .catch((error) => {
+          console.error(`URL ${index + 1} error:`, error);
+          container.innerHTML += `<p>URL ${index + 1}: Error - ${error.message}</p>`;
+        });
     });
+  }
 </script>
 
 {% schema %}
