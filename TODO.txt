@@ -1,8 +1,10 @@
 Todo:
 
-Make the mobile add to cart button sticky
+Swap out the SVG icons for the size guide
 
-Get all 404's 
+Recommend products and upsell
+
+Make the mobile add to cart button sticky
 
 Change Shop Button showing first on express checkout
 
