@@ -235,9 +235,13 @@
   <!-- Approach 8: Try all_products approach -->
   <div>
     <h3>Approach 8: all_products sample</h3>
-    {% assign sample_products = collections.all.products | limit: 3 %}
+    {% assign sample_products = collections.all.products %}
     {% if sample_products.size > 0 %}
       <p>✅ Found {{ sample_products.size }} sample products from all collection</p>
+      <p>First 3 products:</p>
+      {% for product_item in sample_products limit: 3 %}
+        <p>- {{ product_item.title }}</p>
+      {% endfor %}
     {% endif %}
   </div>
 
