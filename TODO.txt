@@ -56,6 +56,5 @@ Fix hover underline on newsletter signup
 Hide newsletter sign up except for thank you message on submission
 Add ability to change video, video subtitle, newsletter title and newsletter legal spiel in theme editor
 
-
 STEVIE: 
 Discount bundle names need clarification of what currency is being used - i.e 2 suits for 895 (AUD) for internationalisation

@@ -451,6 +451,32 @@
     margin-bottom: var(--space-3xs);
   }
 
+  .sticky-cart-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--white);
+    border-top: 1px solid var(--neutral-200);
+    padding: var(--space-m);
+    z-index: 50;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+  }
+
+  .sticky-cart-bar.is-visible {
+    transform: translateY(0);
+  }
+
+  .sticky-cart-bar__container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .sticky-cart-bar #js--addtocart {
+    margin-bottom: 0;
+  }
+
   @media screen and (min-width: 1100px) {
     #product {
       align-items: flex-start;
@@ -805,6 +831,10 @@
   </div>
 </div>
 
+<div class="sticky-cart-bar">
+  <div class="sticky-cart-bar__container"></div>
+</div>
+
 <div class="modal-overlay">
   <div class="modal-content custom-scrollbar">
     {% render 'size-guide' %}
@@ -975,6 +1005,67 @@
         });
       });
     }
+
+    function initStickyCartBar() {
+      const originalButton = document.querySelector('#js--addtocart');
+      const stickyBar = document.querySelector('.sticky-cart-bar');
+      const stickyContainer = document.querySelector('.sticky-cart-bar__container');
+      
+      if (!originalButton || !stickyBar || !stickyContainer) return;
+
+      const clonedButton = originalButton.cloneNode(true);
+      stickyContainer.appendChild(clonedButton);
+
+      let hasScrolledPastButton = false;
+
+      function syncButtons() {
+        clonedButton.disabled = originalButton.disabled;
+        clonedButton.innerHTML = originalButton.innerHTML;
+        clonedButton.className = originalButton.className;
+        
+        const originalStyle = originalButton.getAttribute('style');
+        if (originalStyle) {
+          clonedButton.setAttribute('style', originalStyle);
+        }
+      }
+
+      clonedButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        originalButton.click();
+      });
+
+      const observer = new IntersectionObserver(
+        function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              if (hasScrolledPastButton) {
+                stickyBar.classList.remove('is-visible');
+              }
+            } else {
+              hasScrolledPastButton = true;
+              stickyBar.classList.add('is-visible');
+            }
+          });
+        },
+        {
+          threshold: 0,
+          rootMargin: '0px'
+        }
+      );
+
+      observer.observe(originalButton);
+
+      const mutationObserver = new MutationObserver(syncButtons);
+      mutationObserver.observe(originalButton, {
+        attributes: true,
+        childList: true,
+        subtree: true
+      });
+
+      syncButtons();
+    }
+
+    initStickyCartBar();
   });
 </script>
 
