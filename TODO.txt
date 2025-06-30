@@ -1,6 +1,6 @@
 Todo:
 
-Recommend products and upsell
+Recommend products and upsell - Cart
 
 Make the mobile add to cart button sticky
 
