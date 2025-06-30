@@ -1016,8 +1016,6 @@
       const clonedButton = originalButton.cloneNode(true);
       stickyContainer.appendChild(clonedButton);
 
-      let hasScrolledPastButton = false;
-
       function syncButtons() {
         clonedButton.disabled = originalButton.disabled;
         clonedButton.innerHTML = originalButton.innerHTML;
@@ -1034,26 +1032,19 @@
         originalButton.click();
       });
 
-      const observer = new IntersectionObserver(
-        function(entries) {
-          entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-              if (hasScrolledPastButton) {
-                stickyBar.classList.remove('is-visible');
-              }
-            } else {
-              hasScrolledPastButton = true;
-              stickyBar.classList.add('is-visible');
-            }
-          });
-        },
-        {
-          threshold: 0,
-          rootMargin: '0px'
+      function checkButtonPosition() {
+        const buttonRect = originalButton.getBoundingClientRect();
+        const buttonBottom = buttonRect.bottom;
+        
+        if (buttonBottom < 0) {
+          stickyBar.classList.add('is-visible');
+        } else {
+          stickyBar.classList.remove('is-visible');
         }
-      );
+      }
 
-      observer.observe(originalButton);
+      window.addEventListener('scroll', checkButtonPosition);
+      window.addEventListener('resize', checkButtonPosition);
 
       const mutationObserver = new MutationObserver(syncButtons);
       mutationObserver.observe(originalButton, {
@@ -1062,6 +1053,7 @@
         subtree: true
       });
 
+      checkButtonPosition();
       syncButtons();
     }
 
