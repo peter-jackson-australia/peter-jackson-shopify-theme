@@ -3,8 +3,7 @@ Todo:
 Recommend products and upsell - Cart
 
 Make the mobile add to cart button sticky:
-    Place the button in a div 
-    When div is out of view, show bottom bar
+    Add in product title and variants on desktop
 
 Remove the notification for split shipments
 
