@@ -2,15 +2,12 @@
   Recommended Products Section
 {% endcomment %}
 
-{% comment %}
-  Recommended Products Section
-{% endcomment %}
-
 <style>
   .recommended-products {
     padding: var(--space-2xl) 0;
     overflow: hidden;
-    border-bottom: 1px solid var(--neutral-200);
+    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-200);{% endif %}
+    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-200);{% endif %}
   }
 
   .recommended-products__container {
@@ -120,9 +117,7 @@
   }
 
   @keyframes recommended-products-loading {
-    0%,
-    80%,
-    100% {
+    0%, 80%, 100% {
       transform: scale(0);
     }
     40% {
@@ -174,12 +169,22 @@
   data-base-url="{{ routes.product_recommendations_url }}"
   data-product-id="{{ product.id }}"
   data-section-id="{{ section.id }}"
-  data-intent="related"
+  data-intent="{{ section.settings.recommendation_intent | default: 'related' }}"
+  data-products-to-show="{{ section.settings.products_to_show | default: 10 }}"
 >
   <div class="recommended-products__container">
     <div class="recommended-products__content">
-      <h2 class="heading--2xl recommended-products__heading">You May Also Like</h2>
-      <p class="body recommended-products__description">Discover products that perfectly complement your selection.</p>
+      {% if section.settings.heading != blank %}
+        <h2 class="heading--2xl recommended-products__heading {% if section.settings.heading_animation != 'none' %}{{ section.settings.heading_animation }}{% endif %}">
+          {{ section.settings.heading }}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <p class="body recommended-products__description {% if section.settings.description_animation != 'none' %}{{ section.settings.description_animation }}{% endif %}">
+          {{ section.settings.description }}
+        </p>
+      {% endif %}
     </div>
 
     {% if recommendations.performed %}
@@ -191,8 +196,9 @@
               <button class="splide__arrow splide__arrow--next">{% render 'icon-arrow-see-more' %}</button>
             </div>
             <div class="splide__track">
-              <ul class="splide__list">
-                {% for product in recommendations.products limit: 10 %}
+              <ul class="splide__list {% if section.settings.animate_products %}animate-container-cards-scroll{% endif %}">
+                {% assign product_limit = section.settings.products_to_show | default: 10 %}
+                {% for product in recommendations.products limit: product_limit %}
                   <li class="splide__slide recommended-products__slide">
                     <a href="{{ product.url }}" class="recommended-products__product-link">
                       <div class="recommended-products__product-image-wrapper">
@@ -287,7 +293,9 @@
       const sectionId = recommendedProductsSection.dataset.sectionId;
       const intent = recommendedProductsSection.dataset.intent;
 
-      const url = `${baseUrl}?section_id=${sectionId}&product_id=${productId}&limit=10&intent=${intent}`;
+      const url = `${baseUrl}?section_id=${sectionId}&product_id=${productId}&limit=${
+        recommendedProductsSection.dataset.productsToShow || 10
+      }&intent=${intent}`;
 
       fetch(url)
         .then((response) => response.text())
@@ -320,6 +328,18 @@
   "name": "Recommended Products",
   "tag": "section",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_top_border",
+      "label": "Show top border",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bottom_border",
+      "label": "Show bottom border",
+      "default": true
+    },
     {
       "type": "text",
       "id": "heading",
