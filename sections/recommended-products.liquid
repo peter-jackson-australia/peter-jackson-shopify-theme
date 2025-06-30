@@ -2,6 +2,10 @@
   Recommended Products Section
 {% endcomment %}
 
+{% comment %}
+  Recommended Products Section
+{% endcomment %}
+
 <style>
   .recommended-products {
     padding: var(--space-2xl) 0;
@@ -164,20 +168,18 @@
   }
 </style>
 
-<div class="recommended-products" id="section-{{ section.id }}">
+<div
+  class="recommended-products"
+  id="section-{{ section.id }}"
+  data-base-url="{{ routes.product_recommendations_url }}"
+  data-product-id="{{ product.id }}"
+  data-section-id="{{ section.id }}"
+  data-intent="related"
+>
   <div class="recommended-products__container">
     <div class="recommended-products__content">
-      {% if section.settings.heading != blank %}
-        <h2 class="heading--2xl recommended-products__heading {% if section.settings.heading_animation != 'none' %}{{ section.settings.heading_animation }}{% endif %}">
-          {{ section.settings.heading }}
-        </h2>
-      {% endif %}
-
-      {% if section.settings.description != blank %}
-        <p class="body recommended-products__description {% if section.settings.description_animation != 'none' %}{{ section.settings.description_animation }}{% endif %}">
-          {{ section.settings.description }}
-        </p>
-      {% endif %}
+      <h2 class="heading--2xl recommended-products__heading">You May Also Like</h2>
+      <p class="body recommended-products__description">Discover products that perfectly complement your selection.</p>
     </div>
 
     {% if recommendations.performed %}
@@ -189,9 +191,8 @@
               <button class="splide__arrow splide__arrow--next">{% render 'icon-arrow-see-more' %}</button>
             </div>
             <div class="splide__track">
-              <ul class="splide__list {% if section.settings.animate_products %}animate-container-cards-scroll{% endif %}">
-                {% assign product_limit = section.settings.products_to_show | default: 10 %}
-                {% for product in recommendations.products limit: product_limit %}
+              <ul class="splide__list">
+                {% for product in recommendations.products limit: 10 %}
                   <li class="splide__slide recommended-products__slide">
                     <a href="{{ product.url }}" class="recommended-products__product-link">
                       <div class="recommended-products__product-image-wrapper">
@@ -251,68 +252,67 @@
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const recommendedProductsSection = document.querySelector('#section-{{ section.id }}');
+  document.addEventListener('DOMContentLoaded', function () {
+    const recommendedProductsSection = document.querySelector('#section-{{ section.id }}');
+
+    // Function to initialize Splide slider
+    function initializeSlider() {
       const splideElement = recommendedProductsSection.querySelector('.recommended-products__slider');
-  
-      // Function to initialize Splide slider
-      function initializeSlider() {
-        if (splideElement && splideElement.querySelector('.splide__list').children.length > 0) {
-          new Splide(splideElement, {
-            perPage: 4,
-            type: 'loop',
-            gap: 'var(--space-2xs)',
-            arrows: false,
-            pagination: false,
-            drag: true,
-            snap: true,
-            breakpoints: {
-              470: {
-                perPage: 1,
-              },
-              768: {
-                perPage: 2,
-                arrows: true,
-              },
+      if (splideElement && splideElement.querySelector('.splide__list').children.length > 0) {
+        new Splide(splideElement, {
+          perPage: 4,
+          type: 'loop',
+          gap: 'var(--space-2xs)',
+          arrows: false,
+          pagination: false,
+          drag: true,
+          snap: true,
+          breakpoints: {
+            470: {
+              perPage: 1,
             },
-          }).mount();
-        }
+            768: {
+              perPage: 2,
+              arrows: true,
+            },
+          },
+        }).mount();
       }
-  
-      // Load recommendations if not already performed
-      if (!recommendedProductsSection.querySelector('.recommended-products__slider .splide__list')) {
-        const baseUrl = '{{ routes.product_recommendations_url }}';
-        const productId = '{{ product.id }}';
-        const sectionId = '{{ section.id }}';
-        const limit = {{ section.settings.products_to_show | default: 10 }};
-        const intent = '{{ section.settings.recommendation_intent | default: "related" }}';
-        
-        const url = `${baseUrl}?section_id=${sectionId}&product_id=${productId}&limit=${limit}&intent=${intent}`;
-        
-        fetch(url)
-          .then(response => response.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const newDocument = parser.parseFromString(html, 'text/html');
-            const newSection = newDocument.querySelector('#section-{{ section.id }}');
-            
-            if (newSection) {
-              recommendedProductsSection.innerHTML = newSection.innerHTML;
-              initializeSlider();
-            }
-          })
-          .catch(error => {
-            console.error('Error loading recommendations:', error);
-            // Hide loading dots on error
-            const loadingDots = recommendedProductsSection.querySelector('.recommended-products__loading-dots');
-            if (loadingDots) {
-              loadingDots.style.display = 'none';
-            }
-          });
-      } else {
-        initializeSlider();
-      }
-    });
+    }
+
+    // Load recommendations if not already performed
+    if (!recommendedProductsSection.querySelector('.recommended-products__slider .splide__list')) {
+      const baseUrl = recommendedProductsSection.dataset.baseUrl;
+      const productId = recommendedProductsSection.dataset.productId;
+      const sectionId = recommendedProductsSection.dataset.sectionId;
+      const intent = recommendedProductsSection.dataset.intent;
+
+      const url = `${baseUrl}?section_id=${sectionId}&product_id=${productId}&limit=10&intent=${intent}`;
+
+      fetch(url)
+        .then((response) => response.text())
+        .then((html) => {
+          const parser = new DOMParser();
+          const newDocument = parser.parseFromString(html, 'text/html');
+          const newSection = newDocument.querySelector('#section-{{ section.id }}');
+
+          if (newSection) {
+            recommendedProductsSection.innerHTML = newSection.innerHTML;
+            initializeSlider();
+          }
+        })
+        .catch((error) => {
+          console.error('Error loading recommendations:', error);
+          // Hide loading dots on error
+          const loadingDots = recommendedProductsSection.querySelector('.recommended-products__loading-dots');
+          if (loadingDots) {
+            loadingDots.style.display = 'none';
+          }
+        });
+    } else {
+      initializeSlider();
+    }
+  });
 </script>
 
 {% schema %}
