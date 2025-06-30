@@ -42,6 +42,19 @@
         "heading": "Complete the Look"
       }
     },
+    "recommended_products_C7ie7W": {
+      "type": "recommended-products",
+      "name": "Recommended Products",
+      "settings": {
+        "heading": "You May Also Like",
+        "heading_animation": "none",
+        "description": "Discover products that perfectly complement your selection.",
+        "description_animation": "none",
+        "recommendation_intent": "related",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
     "recently_viewed_yG6Mdn": {
       "type": "recently-viewed",
       "settings": {
@@ -58,19 +71,6 @@
         "cta_text": "View Articles"
       }
     },
-    "recommended_products_C7ie7W": {
-      "type": "recommended-products",
-      "name": "Recommended Products",
-      "settings": {
-        "heading": "You May Also Like",
-        "heading_animation": "none",
-        "description": "Discover products that perfectly complement your selection.",
-        "description_animation": "none",
-        "recommendation_intent": "related",
-        "products_to_show": 10,
-        "animate_products": false
-      }
-    },
     "product_navigation_AwEGJc": {
       "type": "product-navigation",
       "name": "Product Navigation",
@@ -80,9 +80,9 @@
   "order": [
     "product",
     "shop_the_look_cCQwPG",
-    "recently_viewed_yG6Mdn",
-    "product_related_content_B9BLgW",
     "recommended_products_C7ie7W",
+    "product_related_content_B9BLgW",
+    "recently_viewed_yG6Mdn",
     "product_navigation_AwEGJc"
   ]
 }
