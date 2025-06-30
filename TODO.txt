@@ -11,11 +11,13 @@ Remove the notification for split shipments
 
 IF all product variants <=5 :
 	THEN archive product 
-	Send alert that is forwarded to Anna
+	Send alert that is forwarded to Anna and online team 
 ELSE 
 	unarchive product 
 
 All collections page
+
+Schema markup
 
 Import gift cards when site is live and domain verified:
     Turn off customer notifications - DONE
