@@ -180,7 +180,7 @@
       <div class="recommendations-loaded">
         <p>✅ Recommendations loaded! Found {{ recommendations.products_count }} products</p>
         <div class="products-grid">
-          {% for product in recommendations.products limit: 4 %}
+          {% for product in recommendations.products limit: 10 %}
             <div class="product-item">
               <h3>{{ product.title }}</h3>
               <p>{{ product.price | money }}</p>
