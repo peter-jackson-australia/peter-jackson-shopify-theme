@@ -62,6 +62,19 @@
       "type": "product-navigation",
       "name": "Product Navigation",
       "settings": {}
+    },
+    "recommended_products_C7ie7W": {
+      "type": "recommended-products",
+      "name": "Recommended Products",
+      "settings": {
+        "heading": "You May Also Like",
+        "heading_animation": "none",
+        "description": "Discover products that perfectly complement your selection.",
+        "description_animation": "none",
+        "recommendation_intent": "related",
+        "products_to_show": 10,
+        "animate_products": false
+      }
     }
   },
   "order": [
@@ -69,6 +82,7 @@
     "shop_the_look_cCQwPG",
     "recently_viewed_yG6Mdn",
     "product_related_content_B9BLgW",
-    "product_navigation_AwEGJc"
+    "product_navigation_AwEGJc",
+    "recommended_products_C7ie7W"
   ]
 }
