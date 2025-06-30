@@ -44,7 +44,7 @@ Blog collection pages as custom pages:
     Fix up main blog collections
     Can choose tags to exclude
 
-Change out the newsletter signup 
+Change out the newsletter signup popup 
 
 Made to measure template fixes 
 
