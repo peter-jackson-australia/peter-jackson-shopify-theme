@@ -58,11 +58,6 @@
         "cta_text": "View Articles"
       }
     },
-    "product_navigation_AwEGJc": {
-      "type": "product-navigation",
-      "name": "Product Navigation",
-      "settings": {}
-    },
     "recommended_products_C7ie7W": {
       "type": "recommended-products",
       "name": "Recommended Products",
@@ -75,6 +70,11 @@
         "products_to_show": 10,
         "animate_products": false
       }
+    },
+    "product_navigation_AwEGJc": {
+      "type": "product-navigation",
+      "name": "Product Navigation",
+      "settings": {}
     }
   },
   "order": [
@@ -82,7 +82,7 @@
     "shop_the_look_cCQwPG",
     "recently_viewed_yG6Mdn",
     "product_related_content_B9BLgW",
-    "product_navigation_AwEGJc",
-    "recommended_products_C7ie7W"
+    "recommended_products_C7ie7W",
+    "product_navigation_AwEGJc"
   ]
 }
