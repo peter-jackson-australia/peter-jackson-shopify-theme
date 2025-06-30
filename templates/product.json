@@ -46,6 +46,8 @@
       "type": "recommended-products",
       "name": "Recommended Products",
       "settings": {
+        "show_top_border": true,
+        "show_bottom_border": false,
         "heading": "You May Also Like",
         "heading_animation": "none",
         "description": "Discover products that perfectly complement your selection.",
@@ -53,12 +55,6 @@
         "recommendation_intent": "related",
         "products_to_show": 10,
         "animate_products": false
-      }
-    },
-    "recently_viewed_yG6Mdn": {
-      "type": "recently-viewed",
-      "settings": {
-        "heading": "Recently Viewed"
       }
     },
     "product_related_content_B9BLgW": {
@@ -69,6 +65,12 @@
         "description": "<p>Discover our world through campaign features, interviews, and editorial made to inform and inspire your next move to live a life well lived.</p>",
         "cta_link": "shopify://blogs/the-jackson-journal",
         "cta_text": "View Articles"
+      }
+    },
+    "recently_viewed_yG6Mdn": {
+      "type": "recently-viewed",
+      "settings": {
+        "heading": "Recently Viewed"
       }
     },
     "product_navigation_AwEGJc": {
