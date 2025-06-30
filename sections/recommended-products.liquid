@@ -170,7 +170,6 @@
   data-product-id="{{ product.id }}"
   data-section-id="{{ section.id }}"
   data-intent="{{ section.settings.recommendation_intent | default: 'related' }}"
-  data-products-to-show="{{ section.settings.products_to_show | default: 10 }}"
 >
   <div class="recommended-products__container">
     <div class="recommended-products__content">
@@ -197,8 +196,7 @@
             </div>
             <div class="splide__track">
               <ul class="splide__list {% if section.settings.animate_products %}animate-container-cards-scroll{% endif %}">
-                {% assign product_limit = section.settings.products_to_show | default: 10 %}
-                {% for product in recommendations.products limit: product_limit %}
+                {% for product in recommendations.products limit: 10 %}
                   <li class="splide__slide recommended-products__slide">
                     <a href="{{ product.url }}" class="recommended-products__product-link">
                       <div class="recommended-products__product-image-wrapper">
@@ -293,9 +291,7 @@
       const sectionId = recommendedProductsSection.dataset.sectionId;
       const intent = recommendedProductsSection.dataset.intent;
 
-      const url = `${baseUrl}?section_id=${sectionId}&product_id=${productId}&limit=${
-        recommendedProductsSection.dataset.productsToShow || 10
-      }&intent=${intent}`;
+      const url = `${baseUrl}?section_id=${sectionId}&product_id=${productId}&limit=10&intent=${intent}`;
 
       fetch(url)
         .then((response) => response.text())
@@ -416,15 +412,6 @@
       ],
       "default": "related",
       "info": "Related products are similar items, complementary products are items often bought together"
-    },
-    {
-      "type": "range",
-      "id": "products_to_show",
-      "min": 3,
-      "max": 12,
-      "step": 1,
-      "default": 10,
-      "label": "Maximum products to show"
     },
     {
       "type": "header",
