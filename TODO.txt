@@ -1,7 +1,5 @@
 Todo:
 
-Swap out the SVG icons for the size guide
-
 Recommend products and upsell
 
 Make the mobile add to cart button sticky
