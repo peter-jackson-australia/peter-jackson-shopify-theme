@@ -166,7 +166,7 @@ ready(function () {
             document.querySelector("#js--addtocart").innerText = "Size Unavailable";
           } else {
             document.querySelector("#js--addtocart").disabled = false;
-            document.querySelector("#js--addtocart").innerText = "Add To Cart";
+            document.querySelector("#js--addtocart").innerText = "Add to cart";
           }
 
           // Update the hidden inventory quantity input
