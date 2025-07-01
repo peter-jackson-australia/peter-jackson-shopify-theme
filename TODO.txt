@@ -1,5 +1,9 @@
 Todo:
 
+Schema markup plugin
+Alt Text
+SEO Boosts
+
 Remove size guide on gift card template
 
 Update PDP page shipping info (it's over $99 not over $100)
@@ -17,8 +21,6 @@ ELSE
 	unarchive product 
 
 All collections page
-
-Schema markup plugin
 
 Import gift cards when site is live and domain verified:
     Turn off customer notifications - DONE
