@@ -471,10 +471,20 @@
   .sticky-cart-bar__container {
     max-width: 1200px;
     margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: var(--space-m);
+  }
+
+  .sticky-cart-bar__product-info {
+    flex: 1;
+    color: var(--neutral-950);
   }
 
   .sticky-cart-bar #js--addtocart {
     margin-bottom: 0;
+    max-width: 200px;
+    flex-shrink: 0;
   }
 
   @media screen and (min-width: 1100px) {
@@ -572,6 +582,10 @@
     .product-tabs__tab {
       font-size: 10px !important;
     }
+
+    .sticky-cart-bar__product-info {
+      display: none;
+    }
   }
 </style>
 
@@ -581,6 +595,8 @@
   var default_image = {{ product.featured_image.id | default: 'null' }};
   var product_type = {{ product.type | json }};
   var variant_inventory_quantities = [{% for variant in product.variants %}{{ variant.inventory_quantity }}{% unless forloop.last %},{% endunless %}{% endfor %}];
+  var product_title = {{ product.title | json }};
+  var product_options = {{ product.options | json }};
 </script>
 
 <div class="section-wrap">
@@ -832,7 +848,11 @@
 </div>
 
 <div class="sticky-cart-bar">
-  <div class="sticky-cart-bar__container"></div>
+  <div class="sticky-cart-bar__container">
+    <div class="sticky-cart-bar__product-info body">
+      <span class="js--sticky-product-info"></span>
+    </div>
+  </div>
 </div>
 
 <div class="modal-overlay">
@@ -1006,6 +1026,62 @@
       });
     }
 
+    function getSelectedVariantOptions() {
+      const selectedOptions = [];
+      const optionInputs = document.querySelectorAll('.js--variant-option:checked');
+      
+      optionInputs.forEach(function(input) {
+        let value = input.value;
+        // Handle the size formatting (remove .0 from sizes)
+        if (input.name === 'option1' && value.includes('.0')) {
+          value = value.replace('.0', '');
+        }
+        selectedOptions.push(value);
+      });
+      
+      return selectedOptions;
+    }
+
+    function getCurrentVariant() {
+      const selectedOptions = [];
+      const optionInputs = document.querySelectorAll('.js--variant-option:checked');
+      
+      optionInputs.forEach(function(input) {
+        selectedOptions.push(input.value);
+      });
+
+      return variants.find(function(variant) {
+        return variant.option1 === selectedOptions[0] &&
+               variant.option2 === selectedOptions[1] &&
+               variant.option3 === selectedOptions[2];
+      }) || current_variant;
+    }
+
+    function formatPrice(price) {
+      return (price / 100).toLocaleString('en-US', {
+        style: 'currency',
+        currency: 'USD'
+      });
+    }
+
+    function updateStickyProductInfo() {
+      const stickyInfo = document.querySelector('.js--sticky-product-info');
+      if (!stickyInfo) return;
+
+      const selectedOptions = getSelectedVariantOptions();
+      const currentVar = getCurrentVariant();
+      
+      let variantString = '';
+      if (selectedOptions.length > 0) {
+        variantString = ' - ' + selectedOptions.join(' / ');
+      }
+      
+      const priceString = ' - ' + formatPrice(currentVar.price);
+      const fullString = product_title + variantString + priceString;
+      
+      stickyInfo.textContent = fullString;
+    }
+
     function initStickyCartBar() {
       const originalButton = document.querySelector('#js--addtocart');
       const stickyBar = document.querySelector('.sticky-cart-bar');
@@ -1027,6 +1103,11 @@
         }
       }
 
+      function syncAll() {
+        syncButtons();
+        updateStickyProductInfo();
+      }
+
       clonedButton.addEventListener('click', function(e) {
         e.preventDefault();
         originalButton.click();
@@ -1043,10 +1124,18 @@
         }
       }
 
+      // Listen for variant option changes
+      const variantOptions = document.querySelectorAll('.js--variant-option');
+      variantOptions.forEach(function(option) {
+        option.addEventListener('change', function() {
+          setTimeout(syncAll, 10); // Small delay to ensure other scripts have updated
+        });
+      });
+
       window.addEventListener('scroll', checkButtonPosition);
       window.addEventListener('resize', checkButtonPosition);
 
-      const mutationObserver = new MutationObserver(syncButtons);
+      const mutationObserver = new MutationObserver(syncAll);
       mutationObserver.observe(originalButton, {
         attributes: true,
         childList: true,
@@ -1054,7 +1143,7 @@
       });
 
       checkButtonPosition();
-      syncButtons();
+      syncAll();
     }
 
     initStickyCartBar();
