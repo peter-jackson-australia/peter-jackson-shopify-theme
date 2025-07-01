@@ -1239,8 +1239,12 @@
               clonedButton.setAttribute('style', originalStyle);
             }
           } else {
-            // Has variants - show "Select Your Size"
-            clonedButton.textContent = 'Select Your Size';
+            // Has variants - check if it's a gift card
+            if ({{ product.gift_card | json }}) {
+              clonedButton.textContent = 'Select Gift Card Amount';
+            } else {
+              clonedButton.textContent = 'Select Your Size';
+            }
             clonedButton.disabled = false;
             clonedButton.className = originalButton.className;
             const originalStyle = originalButton.getAttribute('style');
