@@ -524,6 +524,13 @@
     color: var(--neutral-950);
   }
 
+  .sticky-cart-bar__mobile-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-s) var(--space-m);
+  }
+
   @media screen and (min-width: 1100px) {
     #product {
       align-items: flex-start;
@@ -562,6 +569,9 @@
 
     .sticky-cart-bar__price-container {
       display: flex;
+    }
+    .sticky-cart-bar__mobile-info {
+      display: none;
     }
   }
 
@@ -640,20 +650,39 @@
       font-size: 10px !important;
     }
 
+    .sticky-cart-bar {
+      padding: 0;
+    }
+
+    .sticky-cart-bar__container {
+      flex-direction: column;
+      gap: 0;
+    }
+
     .sticky-cart-bar__thumbnail {
       display: none;
     }
 
     .sticky-cart-bar__product-title {
-      display: none;
+      display: block;
     }
 
     .sticky-cart-bar__price-container {
-      display: none;
+      display: flex;
     }
 
     .sticky-cart-bar__product-info {
-      display: block;
+      display: none;
+    }
+
+    .sticky-cart-bar__mobile-info {
+      display: flex;
+    }
+
+    .sticky-cart-bar #js--addtocart {
+      max-width: none;
+      width: 100%;
+      margin: 0;
     }
   }
 </style>
@@ -939,6 +968,22 @@
       <span class="sticky-cart-bar__price body js--sticky-price">
         {{ current_variant.price | money }}
       </span>
+    </div>
+
+    <div class="sticky-cart-bar__mobile-info">
+      <div class="sticky-cart-bar__product-title body">
+        {{ product.title }}
+      </div>
+      <div class="sticky-cart-bar__price-container">
+        {% if current_variant.compare_at_price > current_variant.price %}
+          <span class="sticky-cart-bar__compare-price body js--sticky-compare-price">
+            {{ current_variant.compare_at_price | money }}
+          </span>
+        {% endif %}
+        <span class="sticky-cart-bar__price body js--sticky-price">
+          {{ current_variant.price | money }}
+        </span>
+      </div>
     </div>
 
     <div class="sticky-cart-bar__product-info body">
@@ -1246,7 +1291,7 @@
           } else {
             // Has variants - check if it's a gift card
             if ({{ product.gift_card? | json }}) {
-              clonedButton.textContent = 'Select Card Amount';
+              clonedButton.textContent = 'Select Gift Card Amount';
             } else {
               clonedButton.textContent = 'Select Your Size';
             }
