@@ -1,14 +1,8 @@
 Todo:
 
-Recommend products and upsell - Cart
+Update PDP page shipping info (it's over $99 not over $100)
 
-Make the mobile add to cart button sticky:
-    On desktop: 
-        will have a "Select your size button" - when clicked will take you to the variant selectors 
-        Show product thumbnail 
-        Decrease the padding
-    On mobile: Will have a button that opens up a drawer above it, with the variant selectors, when the drawer is open, will change the button to an 
-    add to cart button, if the drawer is open it will also have a close icon, that will close the drawer and turn the button back to a "select size button"
+Recommend products and upsell - Cart
 
 Remove the notification for split shipments
 
