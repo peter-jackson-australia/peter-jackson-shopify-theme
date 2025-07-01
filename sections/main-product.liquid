@@ -469,6 +469,7 @@
   }
 
   .sticky-cart-bar__container {
+    max-width: 1200px;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -478,6 +479,10 @@
   .sticky-cart-bar__product-info {
     flex: 1;
     color: var(--neutral-950);
+  }
+
+  .sticky-cart-bar__product-info .heading--l {
+    display: inline;
   }
 
   .sticky-cart-bar #js--addtocart {
@@ -1072,13 +1077,12 @@
       
       let variantString = '';
       if (selectedOptions.length > 0) {
-        variantString = ' - ' + selectedOptions.join(' / ');
+        variantString = ' ' + selectedOptions.join(' / ');
       }
       
       const priceString = ' - ' + formatPrice(currentVar.price);
-      const fullString = product_title + variantString + priceString;
       
-      stickyInfo.textContent = fullString;
+      stickyInfo.innerHTML = '<span class="heading--l">' + product_title + ':</span>' + variantString + priceString;
     }
 
     function initStickyCartBar() {
