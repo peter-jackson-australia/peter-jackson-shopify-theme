@@ -1217,14 +1217,39 @@
 
       function syncButtons() {
         if (isDesktop()) {
-          clonedButton.textContent = 'Select Your Size';
-          clonedButton.disabled = false;
-          clonedButton.className = originalButton.className;
-          const originalStyle = originalButton.getAttribute('style');
-          if (originalStyle) {
-            clonedButton.setAttribute('style', originalStyle);
+          // Check if product has variants
+          if ({{ product.has_only_default_variant | json }}) {
+            // No variants - make it an exact copy of add to cart button
+            clonedButton.disabled = originalButton.disabled;
+            clonedButton.innerHTML = originalButton.innerHTML;
+            clonedButton.className = originalButton.className;
+            clonedButton.type = originalButton.type;
+            clonedButton.name = originalButton.name;
+            clonedButton.value = originalButton.value;
+            
+            // Copy all attributes from original button
+            Array.from(originalButton.attributes).forEach(attr => {
+              if (attr.name !== 'id') { // Don't copy ID to avoid duplicates
+                clonedButton.setAttribute(attr.name, attr.value);
+              }
+            });
+            
+            const originalStyle = originalButton.getAttribute('style');
+            if (originalStyle) {
+              clonedButton.setAttribute('style', originalStyle);
+            }
+          } else {
+            // Has variants - show "Select Your Size"
+            clonedButton.textContent = 'Select Your Size';
+            clonedButton.disabled = false;
+            clonedButton.className = originalButton.className;
+            const originalStyle = originalButton.getAttribute('style');
+            if (originalStyle) {
+              clonedButton.setAttribute('style', originalStyle);
+            }
           }
         } else {
+          // Mobile - always exact copy
           clonedButton.disabled = originalButton.disabled;
           clonedButton.innerHTML = originalButton.innerHTML;
           clonedButton.className = originalButton.className;
@@ -1243,9 +1268,11 @@
 
       clonedButton.addEventListener('click', function(e) {
         e.preventDefault();
-        if (isDesktop()) {
+        if (isDesktop() && !{{ product.has_only_default_variant | json }}) {
+          // Desktop with variants - scroll to product details
           scrollToVariantForm();
         } else {
+          // Mobile or no variants - trigger original button
           originalButton.click();
         }
       });
