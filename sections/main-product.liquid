@@ -490,6 +490,42 @@
     flex-shrink: 0;
   }
 
+  .sticky-cart-bar__thumbnail {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    background-color: var(--neutral-50);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sticky-cart-bar__thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .sticky-cart-bar__product-title {
+    flex: 1;
+    color: var(--neutral-950);
+  }
+
+  .sticky-cart-bar__price-container {
+    display: flex;
+    gap: var(--space-xs);
+    align-items: center;
+  }
+
+  .sticky-cart-bar__compare-price {
+    color: var(--neutral-600);
+    text-decoration: line-through;
+  }
+
+  .sticky-cart-bar__price {
+    color: var(--neutral-950);
+  }
+
   @media screen and (min-width: 1100px) {
     #product {
       align-items: flex-start;
@@ -508,6 +544,26 @@
 
     .product-details__container::-webkit-scrollbar {
       display: none;
+    }
+
+    .sticky-cart-bar__product-info {
+      display: none;
+    }
+
+    .sticky-cart-bar__container {
+      justify-content: space-between;
+    }
+
+    .sticky-cart-bar__thumbnail {
+      display: flex;
+    }
+
+    .sticky-cart-bar__product-title {
+      display: block;
+    }
+
+    .sticky-cart-bar__price-container {
+      display: flex;
     }
   }
 
@@ -586,8 +642,20 @@
       font-size: 10px !important;
     }
 
-    .sticky-cart-bar__product-info {
+    .sticky-cart-bar__thumbnail {
       display: none;
+    }
+
+    .sticky-cart-bar__product-title {
+      display: none;
+    }
+
+    .sticky-cart-bar__price-container {
+      display: none;
+    }
+
+    .sticky-cart-bar__product-info {
+      display: block;
     }
   }
 </style>
@@ -677,7 +745,7 @@
           </button>
         </div>
 
-        <form action="/cart/add" method="post" onsubmit="return false;">
+        <form action="/cart/add" method="post" onsubmit="return false;" id="js--variant-form">
           {%- for block in section.blocks -%}
             {% case block.type %}
               {%- when '@app' -%}
@@ -852,6 +920,29 @@
 
 <div class="sticky-cart-bar">
   <div class="sticky-cart-bar__container">
+    <div class="sticky-cart-bar__thumbnail">
+      {% if product.featured_image %}
+        {{ product.featured_image | image_url: width: 120 | image_tag: alt: product.title }}
+      {% else %}
+        {{ 'collection-4' | placeholder_svg_tag: 'placeholder' }}
+      {% endif %}
+    </div>
+
+    <div class="sticky-cart-bar__product-title body">
+      {{ product.title }}
+    </div>
+
+    <div class="sticky-cart-bar__price-container">
+      {% if current_variant.compare_at_price > current_variant.price %}
+        <span class="sticky-cart-bar__compare-price body js--sticky-compare-price">
+          {{ current_variant.compare_at_price | money }}
+        </span>
+      {% endif %}
+      <span class="sticky-cart-bar__price body js--sticky-price">
+        {{ current_variant.price | money }}
+      </span>
+    </div>
+
     <div class="sticky-cart-bar__product-info body">
       <span class="js--sticky-product-info"></span>
     </div>
@@ -1035,7 +1126,6 @@
       
       optionInputs.forEach(function(input) {
         let value = input.value;
-        // Handle the size formatting (remove .0 from sizes)
         if (input.name === 'option1' && value.includes('.0')) {
           value = value.replace('.0', '');
         }
@@ -1084,6 +1174,35 @@
       stickyInfo.innerHTML = '<span class="heading--l">' + product_title + ':</span>' + variantString + priceString;
     }
 
+    function updateStickyPrices() {
+      const currentVar = getCurrentVariant();
+      const stickyPrice = document.querySelector('.js--sticky-price');
+      const stickyComparePrice = document.querySelector('.js--sticky-compare-price');
+      
+      if (stickyPrice) {
+        stickyPrice.textContent = formatPrice(currentVar.price);
+      }
+      
+      if (stickyComparePrice) {
+        if (currentVar.compare_at_price > currentVar.price) {
+          stickyComparePrice.textContent = formatPrice(currentVar.compare_at_price);
+          stickyComparePrice.style.display = 'inline';
+        } else {
+          stickyComparePrice.style.display = 'none';
+        }
+      }
+    }
+
+    function scrollToVariantForm() {
+      const variantForm = document.querySelector('#js--variant-form');
+      if (variantForm) {
+        variantForm.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }
+
     function initStickyCartBar() {
       const originalButton = document.querySelector('#js--addtocart');
       const stickyBar = document.querySelector('.sticky-cart-bar');
@@ -1094,25 +1213,43 @@
       const clonedButton = originalButton.cloneNode(true);
       stickyContainer.appendChild(clonedButton);
 
+      function isDesktop() {
+        return window.innerWidth >= 1100;
+      }
+
       function syncButtons() {
-        clonedButton.disabled = originalButton.disabled;
-        clonedButton.innerHTML = originalButton.innerHTML;
-        clonedButton.className = originalButton.className;
-        
-        const originalStyle = originalButton.getAttribute('style');
-        if (originalStyle) {
-          clonedButton.setAttribute('style', originalStyle);
+        if (isDesktop()) {
+          clonedButton.textContent = 'Select Your Size';
+          clonedButton.disabled = false;
+          clonedButton.className = originalButton.className;
+          const originalStyle = originalButton.getAttribute('style');
+          if (originalStyle) {
+            clonedButton.setAttribute('style', originalStyle);
+          }
+        } else {
+          clonedButton.disabled = originalButton.disabled;
+          clonedButton.innerHTML = originalButton.innerHTML;
+          clonedButton.className = originalButton.className;
+          const originalStyle = originalButton.getAttribute('style');
+          if (originalStyle) {
+            clonedButton.setAttribute('style', originalStyle);
+          }
         }
       }
 
       function syncAll() {
         syncButtons();
         updateStickyProductInfo();
+        updateStickyPrices();
       }
 
       clonedButton.addEventListener('click', function(e) {
         e.preventDefault();
-        originalButton.click();
+        if (isDesktop()) {
+          scrollToVariantForm();
+        } else {
+          originalButton.click();
+        }
       });
 
       function checkButtonPosition() {
@@ -1126,16 +1263,18 @@
         }
       }
 
-      // Listen for variant option changes
       const variantOptions = document.querySelectorAll('.js--variant-option');
       variantOptions.forEach(function(option) {
         option.addEventListener('change', function() {
-          setTimeout(syncAll, 10); // Small delay to ensure other scripts have updated
+          setTimeout(syncAll, 10);
         });
       });
 
       window.addEventListener('scroll', checkButtonPosition);
-      window.addEventListener('resize', checkButtonPosition);
+      window.addEventListener('resize', function() {
+        checkButtonPosition();
+        syncAll();
+      });
 
       const mutationObserver = new MutationObserver(syncAll);
       mutationObserver.observe(originalButton, {
@@ -1189,7 +1328,7 @@
           "type": "text",
           "id": "button_label",
           "label": "Button Label",
-          "default": "Add to Cart"
+          "default": "Add to cart"
         }
       ]
     }
