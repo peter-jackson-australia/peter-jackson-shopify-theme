@@ -657,6 +657,7 @@
     .sticky-cart-bar__container {
       flex-direction: column;
       gap: 0;
+      padding: var(--space-s) var(--space-m);
     }
 
     .sticky-cart-bar__thumbnail {
@@ -665,6 +666,7 @@
 
     .sticky-cart-bar__product-title {
       display: block;
+      flex: 1;
     }
 
     .sticky-cart-bar__price-container {
@@ -675,8 +677,11 @@
       display: none;
     }
 
-    .sticky-cart-bar__mobile-info {
-      display: flex;
+    .sticky-cart-bar__container {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-s);
     }
 
     .sticky-cart-bar #js--addtocart {
@@ -968,22 +973,6 @@
       <span class="sticky-cart-bar__price body js--sticky-price">
         {{ current_variant.price | money }}
       </span>
-    </div>
-
-    <div class="sticky-cart-bar__mobile-info">
-      <div class="sticky-cart-bar__product-title body">
-        {{ product.title }}
-      </div>
-      <div class="sticky-cart-bar__price-container">
-        {% if current_variant.compare_at_price > current_variant.price %}
-          <span class="sticky-cart-bar__compare-price body js--sticky-compare-price">
-            {{ current_variant.compare_at_price | money }}
-          </span>
-        {% endif %}
-        <span class="sticky-cart-bar__price body js--sticky-price">
-          {{ current_variant.price | money }}
-        </span>
-      </div>
     </div>
 
     <div class="sticky-cart-bar__product-info body">
