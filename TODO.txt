@@ -3,7 +3,9 @@ Todo:
 Recommend products and upsell - Cart
 
 Make the mobile add to cart button sticky:
-    Add in product title and variants on desktop
+    On desktop: will have a "Select your size button" - when clicked will take you to the variant selectors 
+    On mobile: Will have a button that opens up a drawer above it, with the variant selectors, when the drawer is open, will change the button to an 
+    add to cart button, if the drawer is open it will also have a close icon, that will close the drawer and turn the button back to a "select size button"
 
 Remove the notification for split shipments
 
@@ -17,7 +19,7 @@ ELSE
 
 All collections page
 
-Schema markup
+Schema markup plugin
 
 Import gift cards when site is live and domain verified:
     Turn off customer notifications - DONE
