@@ -1176,14 +1176,19 @@
       const currentVar = getCurrentVariant();
       const stickyPrice = document.querySelector('.js--sticky-price');
       const stickyComparePrice = document.querySelector('.js--sticky-compare-price');
+      const stickyComparePriceContainer = stickyComparePrice ? stickyComparePrice.parentElement : null;
       
-      if (stickyPrice) {
-        stickyPrice.textContent = formatPrice(currentVar.price);
+      // Get the actual displayed prices from the main product section
+      const mainPrice = document.querySelector('.js--variant-price');
+      const mainComparePrice = document.querySelector('.js--variant-compareatprice');
+      
+      if (stickyPrice && mainPrice) {
+        stickyPrice.textContent = mainPrice.textContent;
       }
       
-      if (stickyComparePrice) {
-        if (currentVar.compare_at_price > currentVar.price) {
-          stickyComparePrice.textContent = formatPrice(currentVar.compare_at_price);
+      if (stickyComparePrice && stickyComparePriceContainer) {
+        if (mainComparePrice && mainComparePrice.textContent.trim() !== '') {
+          stickyComparePrice.textContent = mainComparePrice.textContent;
           stickyComparePrice.style.display = 'inline';
         } else {
           stickyComparePrice.style.display = 'none';
@@ -1217,7 +1222,9 @@
 
       function syncButtons() {
         if (isDesktop()) {
+          // Check if product has variants
           if ({{ product.has_only_default_variant | json }}) {
+            // No variants - make it an exact copy of add to cart button
             clonedButton.disabled = originalButton.disabled;
             clonedButton.innerHTML = originalButton.innerHTML;
             clonedButton.className = originalButton.className;
@@ -1225,8 +1232,9 @@
             clonedButton.name = originalButton.name;
             clonedButton.value = originalButton.value;
             
+            // Copy all attributes from original button
             Array.from(originalButton.attributes).forEach(attr => {
-              if (attr.name !== 'id') { 
+              if (attr.name !== 'id') { // Don't copy ID to avoid duplicates
                 clonedButton.setAttribute(attr.name, attr.value);
               }
             });
@@ -1236,8 +1244,9 @@
               clonedButton.setAttribute('style', originalStyle);
             }
           } else {
+            // Has variants - check if it's a gift card
             if ({{ product.gift_card? | json }}) {
-              clonedButton.textContent = 'Select Amount';
+              clonedButton.textContent = 'Select Gift Card Amount';
             } else {
               clonedButton.textContent = 'Select Your Size';
             }
@@ -1249,6 +1258,7 @@
             }
           }
         } else {
+          // Mobile - always exact copy
           clonedButton.disabled = originalButton.disabled;
           clonedButton.innerHTML = originalButton.innerHTML;
           clonedButton.className = originalButton.className;
@@ -1268,8 +1278,10 @@
       clonedButton.addEventListener('click', function(e) {
         e.preventDefault();
         if (isDesktop() && !{{ product.has_only_default_variant | json }}) {
+          // Desktop with variants - scroll to product details
           scrollToVariantForm();
         } else {
+          // Mobile or no variants - trigger original button
           originalButton.click();
         }
       });
