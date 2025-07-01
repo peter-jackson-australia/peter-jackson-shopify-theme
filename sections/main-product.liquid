@@ -531,6 +531,26 @@
     padding: var(--space-s) var(--space-m);
   }
 
+  .sticky-cart-bar__mobile-title {
+    flex: 1;
+    color: var(--neutral-950);
+  }
+
+  .sticky-cart-bar__mobile-price-container {
+    display: flex;
+    gap: var(--space-xs);
+    align-items: center;
+  }
+
+  .sticky-cart-bar__mobile-compare-price {
+    color: var(--neutral-600);
+    text-decoration: line-through;
+  }
+
+  .sticky-cart-bar__mobile-price {
+    color: var(--neutral-950);
+  }
+
   @media screen and (min-width: 1100px) {
     #product {
       align-items: flex-start;
@@ -975,16 +995,16 @@
     </div>
 
     <div class="sticky-cart-bar__mobile-info">
-      <div class="sticky-cart-bar__product-title body">
+      <div class="sticky-cart-bar__mobile-title body">
         {{ product.title }}
       </div>
-      <div class="sticky-cart-bar__price-container">
+      <div class="sticky-cart-bar__mobile-price-container">
         {% if current_variant.compare_at_price > current_variant.price %}
-          <span class="sticky-cart-bar__compare-price body js--sticky-compare-price">
+          <span class="sticky-cart-bar__mobile-compare-price body js--sticky-mobile-compare-price">
             {{ current_variant.compare_at_price | money }}
           </span>
         {% endif %}
-        <span class="sticky-cart-bar__price body js--sticky-price">
+        <span class="sticky-cart-bar__mobile-price body js--sticky-mobile-price">
           {{ current_variant.price | money }}
         </span>
       </div>
@@ -1227,10 +1247,15 @@
       const stickyComparePrice = document.querySelector('.js--sticky-compare-price');
       const stickyComparePriceContainer = stickyComparePrice ? stickyComparePrice.parentElement : null;
       
+      // Mobile elements
+      const stickyMobilePrice = document.querySelector('.js--sticky-mobile-price');
+      const stickyMobileComparePrice = document.querySelector('.js--sticky-mobile-compare-price');
+      
       // Get the actual displayed prices from the main product section
       const mainPrice = document.querySelector('.js--variant-price');
       const mainComparePrice = document.querySelector('.js--variant-compareatprice');
       
+      // Update desktop prices
       if (stickyPrice && mainPrice) {
         stickyPrice.textContent = mainPrice.textContent;
       }
@@ -1241,6 +1266,20 @@
           stickyComparePrice.style.display = 'inline';
         } else {
           stickyComparePrice.style.display = 'none';
+        }
+      }
+      
+      // Update mobile prices
+      if (stickyMobilePrice && mainPrice) {
+        stickyMobilePrice.textContent = mainPrice.textContent;
+      }
+      
+      if (stickyMobileComparePrice) {
+        if (mainComparePrice && mainComparePrice.textContent.trim() !== '') {
+          stickyMobileComparePrice.textContent = mainComparePrice.textContent;
+          stickyMobileComparePrice.style.display = 'inline';
+        } else {
+          stickyMobileComparePrice.style.display = 'none';
         }
       }
     }
