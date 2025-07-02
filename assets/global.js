@@ -572,7 +572,7 @@ function handleAddToCart(form) {
       openCartDrawer();
       applyOptimisticUI();
 
-      await fetch("/cart/add", {
+      await fetch("/cart/add.js", {
         method: "post",
         body: new FormData(form),
       });
