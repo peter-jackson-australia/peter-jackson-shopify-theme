@@ -797,7 +797,7 @@
           </button>
         </div>
 
-        <form action="/cart/add" method="post" onsubmit="return false;" id="js--variant-form">
+        <form action="{{ routes.cart_add_url }}" method="post" onsubmit="return false;" id="js--variant-form">
           {%- for block in section.blocks -%}
             {% case block.type %}
               {%- when '@app' -%}
