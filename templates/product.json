@@ -52,7 +52,7 @@
         "heading_animation": "none",
         "description": "Discover products that perfectly complement your selection.",
         "description_animation": "none",
-        "recommendation_intent": "related",
+        "recommendation_intent": "complementary",
         "animate_products": false
       }
     },
