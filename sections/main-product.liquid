@@ -859,8 +859,8 @@
                 {% if current_variant.available and product.gift_card? %}
                   <button
                     type="submit"
-                    id="js--addtocart ga-add-to-cart"
-                    class="body"
+                    id="js--addtocart"
+                    class="body ga-add-to-cart"
                     style="height: var(--space-xl);"
                   >
                     Add To Cart
@@ -868,8 +868,8 @@
                 {% elsif current_variant.available and current_variant.inventory_quantity > 5 %}
                   <button
                     type="submit"
-                    id="js--addtocart ga-add-to-cart"
-                    class="body"
+                    id="js--addtocart"
+                    class="body ga-add-to-cart"
                     style="height: var(--space-xl);"
                   >
                     Add To Cart
