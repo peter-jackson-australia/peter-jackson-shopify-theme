@@ -3,7 +3,6 @@ Todo:
 Schema markup plugin
 Alt Text
 SEO Boosts
-Check all pages for title and meta description
 
 Remove size guide on gift card template
 
