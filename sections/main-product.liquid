@@ -859,7 +859,7 @@
                 {% if current_variant.available and product.gift_card? %}
                   <button
                     type="submit"
-                    id="js--addtocart ga-add-to-cart"
+                    id="js--addtocart"
                     class="body"
                     style="height: var(--space-xl);"
                   >
@@ -868,7 +868,7 @@
                 {% elsif current_variant.available and current_variant.inventory_quantity > 5 %}
                   <button
                     type="submit"
-                    id="js--addtocart ga-add-to-cart"
+                    id="js--addtocart"
                     class="body"
                     style="height: var(--space-xl);"
                   >
@@ -1434,7 +1434,7 @@
           "type": "text",
           "id": "button_label",
           "label": "Button Label",
-          "default": "Add To Cart"
+          "default": "Add to cart"
         }
       ]
     }
