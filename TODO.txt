@@ -20,6 +20,8 @@ IF all product variants <=5 :
 ELSE 
 	unarchive product 
 
+Shop the look link outside of the slider (If you click beyond the arrows its a link)
+
 All collections page
 
 Import gift cards when site is live and domain verified:
