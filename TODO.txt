@@ -1,6 +1,5 @@
 Todo:
 
-Schema markup plugin
 SEO Boosts
 
 Remove size guide on gift card template
