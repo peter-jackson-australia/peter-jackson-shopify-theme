@@ -8,7 +8,7 @@ Remove size guide on gift card template
 
 Update PDP page shipping info (it's over $99 not over $100)
 
-Recommend products and upsell - Cart
+Recommend products and upsell - Cart (No more than 50% margin price i.e if shirt, only show max $75 if item in cart is $50, offer 3 options - low, middle, high price)
 
 Remove the notification for split shipments
 
