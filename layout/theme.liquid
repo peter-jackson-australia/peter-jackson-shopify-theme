@@ -25,26 +25,12 @@
     <script src="{{ 'predictive-search.js' | asset_url }}" defer></script>
     <script src="{{ 'splide.min.js' | asset_url }}" defer></script>
     <script src="{{ 'ploiu-vanilla-js-accordion.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'quicklink.umd.js' | asset_url }}" defer></script>
     <script src="{{ 'global.js' | asset_url }}" defer></script>
     <script src="{{ 'split-type.min.js' | asset_url }}" defer></script>
     <script src="{{ 'gsap.min.js' | asset_url }}" defer></script>
     <script src="{{ 'scrolltrigger.min.js' | asset_url }}" defer></script>
     <script src="{{ 'animations.js' | asset_url }}" defer></script>
-    <script type="speculationrules">
-      {
-        "prerender": [
-          {
-            "where": {
-              "href_matches": "/*",
-              "not": {
-                "href_matches": ["/cart*", "/checkout*", "*/cart*", "*/checkout*"]
-              }
-            },
-            "eagerness": "immediate"
-          }
-        ]
-      }
-    </script>
     {% comment %}
       GTM Head Tag
     {% endcomment %}
