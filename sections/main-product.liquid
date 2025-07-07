@@ -1,7 +1,6 @@
 {% comment %}
   Main product gallery and information
 {% endcomment %}
-
 {% assign current_variant = null %}
 
 {% for variant in product.variants %}
@@ -169,7 +168,9 @@
     position: relative;
     overflow-y: auto;
     scrollbar-gutter: stable both-edges;
-    width: 50vw;
+    width: 50%;
+    margin: 0 auto;
+    max-width: 800px;
   }
 
   .product-details__fade-overlay {
@@ -184,7 +185,6 @@
 
   #product-details {
     padding: var(--space-2xl);
-    margin: 0 auto;
   }
 
   .product-details__header {
@@ -556,23 +556,14 @@
       align-items: flex-start;
     }
 
-    #product-details {
-      max-width: 800px;
-    }
-
-    .product-top-breadcrumb-container {
-      display: none;
-    }
-
     .product-images-container {
-      width: 50vw;
-      max-width: 50vw;
+      max-width: 50dvw;
     }
 
     .product-details__container {
       -ms-overflow-style: none;
       scrollbar-width: none;
-      max-height: calc({{product.images[0].height}} * 50vw / {{product.images[0].width}});
+      max-height: calc(100dvh - var(--space-xl) - 35px);
       overflow-y: auto;
     }
 
@@ -761,9 +752,9 @@
             {% for image in product.images %}
               <li class="splide__slide" data-imageid="{{ image.id }}">
                 {% if forloop.first %}
-                  {{ image | image_url: width: 1440 | image_tag: alt: image.alt, loading: 'eager' }}
+                  {{ image | image_url: width: 800 | image_tag: alt: image.alt, loading: 'eager' }}
                 {% else %}
-                  {{ image | image_url: width: 1440 | image_tag: alt: image.alt, loading: 'lazy' }}
+                  {{ image | image_url: width: 800 | image_tag: alt: image.alt, loading: 'lazy' }}
                 {% endif %}
               </li>
             {% endfor %}
@@ -1090,7 +1081,8 @@
 
         const options = {
           direction: 'ttb',
-          height: {{product.images[0].height}} * (window.innerWidth * 0.5 / {{product.images[0].width}}),
+          height: Math.min({{product.images[0].height}} * (window.innerWidth * 0.5 / {{product.images[0].width}}), 
+          window.innerHeight * 1),
           wheel: true,
           waitForTransition: true,
           arrows: false,
@@ -1101,7 +1093,8 @@
             1100: {
               type: 'loop',
               direction: 'ltr',
-              height: {{product.images[0].height}} * (window.innerWidth * 1 / {{product.images[0].width}}),
+              height: Math.min({{product.images[0].height}} * (window.innerWidth * 1 / {{product.images[0].width}}), 
+              window.innerHeight * 1), 
               arrows: true,
               perPage: 1,
               pagination: false,
