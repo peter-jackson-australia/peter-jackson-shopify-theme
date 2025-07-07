@@ -168,9 +168,8 @@
     position: relative;
     overflow-y: auto;
     scrollbar-gutter: stable both-edges;
-    width: 50%;
+    width: 50vw;
     margin: 0 auto;
-    max-width: 800px;
   }
 
   .product-details__fade-overlay {
@@ -185,6 +184,7 @@
 
   #product-details {
     padding: var(--space-2xl);
+    max-width: 800px;
   }
 
   .product-details__header {
@@ -554,6 +554,10 @@
   @media screen and (min-width: 1100px) {
     #product {
       align-items: flex-start;
+    }
+
+    .product-top-breadcrumb-container {
+      display: none;
     }
 
     .product-images-container {
