@@ -568,11 +568,6 @@
       max-width: 50vw;
     }
 
-    .product-images-container,
-    .product-details__container {
-      height: 100%;
-    }
-
     .product-details__container {
       -ms-overflow-style: none;
       scrollbar-width: none;
@@ -1041,6 +1036,21 @@
 </div>
 
 <script>
+
+  function matchContainerHeights() {
+    if (window.innerWidth >= 1100) {
+      const imageContainer = document.querySelector('.product-images-container');
+      const detailsContainer = document.querySelector('.product-details__container');
+      
+      if (imageContainer && detailsContainer) {
+        detailsContainer.style.maxHeight = imageContainer.offsetHeight + 'px';
+      }
+    }
+  }
+  
+  matchContainerHeights();
+  window.addEventListener('resize', matchContainerHeights);
+
   document.addEventListener('DOMContentLoaded', function () {
     
     if (typeof Alpine === 'undefined') {
