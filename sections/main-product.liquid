@@ -1081,7 +1081,7 @@
 
         const options = {
           direction: 'ttb',
-          height: Math.min({{product.images[0].height}} * (window.innerWidth * 0.5 / {{product.images[0].width}}), 
+          height: {{product.images[0].height}} * (window.innerWidth * 0.5 / {{product.images[0].width}}),
           window.innerHeight * 1),
           wheel: true,
           waitForTransition: true,
