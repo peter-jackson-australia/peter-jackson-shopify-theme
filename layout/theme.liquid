@@ -20,6 +20,17 @@
 
     <link rel="canonical" href="{{ canonical_url }}">
     {{ 'theme.css' | asset_url | stylesheet_tag }}
+    <link
+      rel="preload"
+      href="https://peterjacksons.com/cdn/shopifycloud/portable-wallets/latest/accelerated-checkout-backwards-compat.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    >
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="https://peterjacksons.com/cdn/shopifycloud/portable-wallets/latest/accelerated-checkout-backwards-compat.css"
+    ></noscript>
     <script src="{{ 'theme.js' | asset_url }}" defer></script>
     <script src="{{ 'alpine.min.js' | asset_url }}" defer></script>
     <script src="{{ 'predictive-search.js' | asset_url }}" defer></script>
