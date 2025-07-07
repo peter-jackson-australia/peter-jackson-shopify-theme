@@ -2,10 +2,6 @@
   Main product gallery and information
 {% endcomment %}
 
-{% if product.featured_image %}
-  {{ product.featured_image | image_url: width: 1440 | image_tag: preload: true }}
-{% endif %}
-
 {% assign current_variant = null %}
 
 {% for variant in product.variants %}
