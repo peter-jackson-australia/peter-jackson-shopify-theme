@@ -764,7 +764,7 @@
                   {{
                     image
                     | image_url: width: 1440
-                    | image_tag: alt: image.alt, loading: 'eager', fetchpriority: high
+                    | image_tag: alt: image.alt, loading: 'eager', fetchpriority: fetchpriority
                   }}
                 {% else %}
                   {{ image | image_url: width: 1440 | image_tag: alt: image.alt, loading: 'lazy' }}
