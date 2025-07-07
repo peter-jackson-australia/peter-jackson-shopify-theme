@@ -552,9 +552,7 @@
 
   @media screen and (min-width: 1100px) {
     #product {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: start;
+      align-items: flex-start;
     }
 
     #product-details {
@@ -573,7 +571,7 @@
     .product-details__container {
       -ms-overflow-style: none;
       scrollbar-width: none;
-      max-height: calc(100dvh - var(--space-xl) - 35px);
+      max-height: calc({{product.images[0].height}} * 50vw / {{product.images[0].width}});
       overflow-y: auto;
     }
 
