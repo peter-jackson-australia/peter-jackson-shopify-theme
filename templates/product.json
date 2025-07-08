@@ -34,7 +34,7 @@
       ],
       "settings": {
         "shipping_content": "<p>Free shipping on orders over $100. Ships within 2-3 business days.</p>",
-        "show_low_stock_warning": true
+        "show_low_stock_warning": false
       }
     },
     "shop_the_look_cCQwPG": {
