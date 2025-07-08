@@ -262,6 +262,10 @@
     background-color: var(--neutral-50);
   }
 
+  .product-card__discount-code-mobile {
+    display: none;
+  }
+
   @media screen and (max-width: 768px) {
     .search-header {
       padding: 0px;
@@ -290,6 +294,10 @@
 
     .products-grid {
       grid-template-columns: repeat(2, 1fr);
+    }
+
+    .product-card__discount-code-mobile {
+      display: block;
     }
   }
 </style>
