@@ -729,6 +729,7 @@
   var variant_inventory_quantities = [{% for variant in product.variants %}{{ variant.inventory_quantity }}{% unless forloop.last %},{% endunless %}{% endfor %}];
   var product_title = {{ product.title | json }};
   var product_options = {{ product.options | json }};
+  var show_low_stock_warning = {{ section.settings.show_low_stock_warning | json }};
 </script>
 
 <div class="section-wrap">
