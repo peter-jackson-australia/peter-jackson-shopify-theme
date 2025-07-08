@@ -729,6 +729,7 @@
   var variant_inventory_quantities = [{% for variant in product.variants %}{{ variant.inventory_quantity }}{% unless forloop.last %},{% endunless %}{% endfor %}];
   var product_title = {{ product.title | json }};
   var product_options = {{ product.options | json }};
+  var show_low_stock_warning = {{ section.settings.show_low_stock_warning | json }};
 </script>
 
 <div class="section-wrap">
@@ -889,7 +890,16 @@
                     class="body"
                     style="height: var(--space-xl);"
                   >
-                    Add To Cart
+                    {% if section.settings.show_low_stock_warning
+                      and current_variant.available
+                      and current_variant.inventory_quantity >= 6
+                      and current_variant.inventory_quantity <= 10
+                      and product.gift_card? == false
+                    %}
+                      Low In Stock - Add To Cart
+                    {% else %}
+                      Add To Cart
+                    {% endif %}
                   </button>
                 {% else %}
                   <button
@@ -1423,6 +1433,12 @@
       "id": "shipping_content",
       "label": "Shipping Information",
       "default": "<p>Free shipping on orders over $100. Ships within 2-3 business days.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_low_stock_warning",
+      "label": "Show low stock warning",
+      "default": false
     }
   ],
   "blocks": [
