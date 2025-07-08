@@ -395,6 +395,16 @@
     .product-card__discount-code-mobile {
       display: block;
     }
+
+    .product-card__discount-code-prominent {
+      position: absolute;
+      bottom: 0px;
+      width: 100%;
+      color: var(--white);
+      background-color: var(--neutral-950);
+      text-align: center;
+      padding: var(--space-3xs);
+    }
   }
 </style>
 
@@ -607,7 +617,11 @@
                   {% assign inserted = true %}
                 {% endif %}
 
-                {% render 'product-card', product: product, image_width: 520 %}
+                {% render 'product-card',
+                  product: product,
+                  image_width: 520,
+                  prominent_discount_mobile: section.settings.prominent_discount_mobile
+                %}
               {% endfor %}
 
               {% if inserted == false and paginate.current_page == 1 and has_grid_content %}
@@ -706,6 +720,12 @@
       "max": 16,
       "step": 1,
       "default": 8
+    },
+    {
+      "type": "checkbox",
+      "id": "prominent_discount_mobile",
+      "label": "Show prominent discount codes on mobile",
+      "default": false
     }
   ],
   "enabled_on": {

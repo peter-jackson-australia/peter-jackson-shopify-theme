@@ -35,6 +35,11 @@
           decoding="async"
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
         >
+        {% if prominent_discount_mobile and product.metafields.custom.discount_bundle_name != blank %}
+          <p class="small product-card__discount-code-prominent">
+            {{ product.metafields.custom.discount_bundle_name | metafield_tag }}
+          </p>
+        {% endif %}
       </div>
 
       {% if product.images.size > 1 %}
@@ -63,8 +68,10 @@
         {{ product.metafields.custom.discount_bundle_name | metafield_tag }}
       </span>
     </p>
-    <p class="small product-card__discount-code-mobile">
-      {{ product.metafields.custom.discount_bundle_name | metafield_tag }}
-    </p>
+    {% unless prominent_discount_mobile %}
+      <p class="small product-card__discount-code-mobile">
+        {{ product.metafields.custom.discount_bundle_name | metafield_tag }}
+      </p>
+    {% endunless %}
   </div>
 </div>
