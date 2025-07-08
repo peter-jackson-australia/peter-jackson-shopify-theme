@@ -607,7 +607,11 @@
                   {% assign inserted = true %}
                 {% endif %}
 
-                {% render 'product-card', product: product, image_width: 520 %}
+                {% render 'product-card',
+                  product: product,
+                  image_width: 520,
+                  prominent_discount_mobile: section.settings.prominent_discount_mobile
+                %}
               {% endfor %}
 
               {% if inserted == false and paginate.current_page == 1 and has_grid_content %}
