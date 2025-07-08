@@ -63,8 +63,10 @@
         {{ product.metafields.custom.discount_bundle_name | metafield_tag }}
       </span>
     </p>
-    <p class="small product-card__discount-code-mobile">
-      {{ product.metafields.custom.discount_bundle_name | metafield_tag }}
-    </p>
+    {% unless prominent_discount_mobile %}
+      <p class="small product-card__discount-code-mobile">
+        {{ product.metafields.custom.discount_bundle_name | metafield_tag }}
+      </p>
+    {% endunless %}
   </div>
 </div>
