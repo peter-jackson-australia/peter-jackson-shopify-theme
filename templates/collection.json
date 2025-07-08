@@ -20,8 +20,7 @@
     "products": {
       "type": "main-collection-products",
       "settings": {
-        "limit": 8,
-        "prominent_discount_mobile": true
+        "limit": 8
       }
     },
     "related_content_HfzyTd": {
