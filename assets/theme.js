@@ -166,7 +166,8 @@ ready(function () {
             document.querySelector("#js--addtocart").innerText = "Size Unavailable";
           } else {
             document.querySelector("#js--addtocart").disabled = false;
-            document.querySelector("#js--addtocart").innerText = "Add To Cart";
+var buttonText = (show_low_stock_warning && inventoryQuantity >= 6 && inventoryQuantity <= 10 && !product_title.includes('Gift Card')) ? "Low In Stock - Add To Cart" : "Add To Cart";
+document.querySelector("#js--addtocart").innerText = buttonText;
           }
 
           // Update the hidden inventory quantity input
