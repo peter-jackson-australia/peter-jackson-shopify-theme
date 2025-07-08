@@ -1,0 +1,127 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "location_hero_ifieje": {
+      "type": "location-hero",
+      "settings": {
+        "default_image": "shopify://shop_images/store-location-image.webp"
+      }
+    },
+    "faqs_mpQL4y": {
+      "type": "faqs",
+      "blocks": {
+        "heading_UdbAmm": {
+          "type": "heading",
+          "settings": {
+            "heading": "Frequently Asked Questions",
+            "anchor_id": ""
+          }
+        },
+        "faq_item_JPcT9E": {
+          "type": "faq_item",
+          "settings": {
+            "question": "General Questions",
+            "answer": "<p><strong>What payment methods are available?<br/><br/></strong>We accept all major credit cards in-store and online. We also accept payments through Paypal for online purchases and Afterpay for in-store and online purchases. Visa, Mastercard and Amex have a small transaction percentage attached.</p><p><br/><strong>How can I search for items on the website?</strong><br/><br/>Click on the magnifying glass icon on the top-right of your screen. You can start typing a product code (SKU) if it’s known to you, or a colour, pattern, product style, etc. e.g: grey check jacket.</p><p><br/><strong>Can I hire a suit?</strong><br/><br/>Unfortunately, we do not offer hiring services.</p><p><br/><strong>How can I order online?</strong><br/><br/>Once you’ve found a product you like, you can select the size and quantity from the product page and click “add to cart”. It will give you the option to keep shopping, or head straight to check-out, where you’ll have to enter your shipping address and select a payment method.</p><p><br/>You can log in with your email and password if you already have an online account. It will assist with a faster checkout process.</p><p><br/><strong>How do I know what size I am?</strong><br/><br/>We want you to find the perfect fit, which is why we have a size chart you can access by clicking on the \"What's my size\" link after clicking \"Select size\" on any suit or sports jacket.<br/><br/><strong>Can I change or cancel my order?<br/><br/></strong>Once an order has been placed on our website, it’s not possible to cancel it. However, you might be able to change it if you get in touch with us before it has been dispatched.</p><p><br/><strong>How can I find the nearest Peter Jackson store?</strong><br/><br/>We have over 60 stores throughout the country and have listed them all by state in our store locator. You can access it by clicking on the \"find a store\" link on the top right corner of your screen.<br/><br/><strong>Was my order successful?</strong><br/><br/>If your order was successful you would receive a confirmation email shortly after completing payment. If you haven’t received any confirmation from us, check your spam folder or get in touch with us at <a href=\"mailto:sales@peterjacksons.com\">sales@peterjacksons.com</a></p><p><br/><strong>When will I get my order?</strong><br/><br/>We dispatch all orders within 3 – 5 business days. Generally, standard delivery takes between 3 – 5 business from the date of dispatch. Check our Shipping Information page <a href=\"https://www.peterjacksons.com/pages/shipping-delivery\" target=\"_self\">here</a> for more information.<br/><br/><strong>How can I track my order?</strong><br/><br/>Right after dispatch, you will receive an email from us with a confirmation and a tracking number for Australia Post.</p><p><br/><strong>I didn't receive a confirmation email for my order, did it go through?</strong><br/><br/>Check your spam folder. If you haven’t received a confirmation from us 24 hours after placing your order, contact us at <a href=\"mailto:sales@peterjacksons.com\">sales@peterjacksons.com</a> or <a href=\"tel:+0394156281\">(03) 9415 6281</a></p><p><strong>My order arrived but it’s incomplete<br/><br/></strong>In some cases, we dispatch an order in separate parcels due to the stock’s availability at the time. If you experience this, allow some extra time for the rest of the order to arrive. You can also contact us to inquire about the current status of your order.</p>"
+          }
+        },
+        "faq_item_JLbMry": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Product & Stock",
+            "answer": "<p><strong>I can’t find my size online<br/><br/></strong>Sometimes our availability online differs from our in-store inventory. If you can’t find your size feel free to contact us at <a href=\"mailto:sales@peterjacksons.com\">sales@peterjacksons.com</a> or <a href=\"tel:+0394156281\">(03) 9415 6281</a> to inquire about stock availability at our warehouse or your nearest store.<br/><br/><strong>I saw something in-store that I can’t find online</strong><br/><br/>We try to maintain cohesiveness between our in-store and online experiences. However, sometimes we might opt not to display a certain range of products due to availability or seasonality. If you’ve seen something in-store that you can’t find online, get in touch with us. One of our team members will help you locate that item if it’s still available.</p><p><br/><strong>The price has changed since I ordered. Can I get a refund?</strong><br/><br/>We run different promotions and sales throughout the year. Some of these promotions are exclusive to our online shopping experience. If an item you bought went on sale shortly after, unfortunately, we can’t issue a refund for the item or the price difference. <a href=\"https://www.peterjacksons.com/pages/returns\" target=\"_self\">Click here</a> for more information on our refund policy.</p>"
+          }
+        },
+        "faq_item_aU3zLe": {
+          "type": "faq_item",
+          "settings": {
+            "question": "My Account",
+            "answer": "<p><strong>How can I reset my password?</strong><br/><br/>Click on the top right sign-in icon (when browsing on a desktop computer), or open the burger menu. (when browsing on mobile) Then click on the sign-in icon. Click “Forgot password?” and enter your email address, then click “reset password.” You will be sent an email with a link to reset your password.</p><p><br/><strong>How can I create an account?</strong><br/><br/>Click on the top right sign-in icon if browsing on a desktop computer, or open the burger menu if browsing on mobile, and then on the sign-in icon. You can create an account by signing in with your Facebook or clicking on “Not a member? Sign up here.” Fill in with your name, last name, e-mail address and a password of your choice. Then you can click on “create an account”</p><p><br/><strong>How can I change my email, phone or address?</strong><br/><br/>After signing in, click on the sign-in icon. It will take you to your account overview. You can update any of your personal information there. You can also add a new address, see your wishlist or even check a gift card’s balance.</p><p><br/><strong>I want to unsubscribe from the newsletter.</strong><br/><br/>At the bottom of every one of our newsletter emails, there’s a link to unsubscribe. Alternatively, you can also write to us at <a href=\"mailto:info@peterjacksons.com\">info@peterjacksons.com</a> with the request.</p>"
+          }
+        },
+        "faq_item_zyTP4r": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Payments",
+            "answer": "<p><strong>Can I use a credit note to make online purchases?</strong><br/><br/>Initially, all credit notes issued in-store are only redeemable in-store. However, we can activate them for online purchases upon request. Contact us at <a href=\"mailto:sales@peterjacksons.com\">sales@peterjacksons.com</a> or <a href=\"tel:+0394156281\">(03) 9415 6281.</a> We’ll process it for you right away.</p><p><br/><strong>Can I use more than one promo code on my order?</strong><br/><br/>You're only able to use one promo code per transaction.</p><p><br/><strong>How can I redeem a promo code?</strong><br/><br/>Enter your promo code in the “promo code” field at checkout. Then, either press Enter or click on the right-pointing arrow icon.</p>"
+          }
+        },
+        "faq_item_yaADYd": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Gift Cards",
+            "answer": "<p><strong>I lost my Virtual Gift card. Could you send it again?</strong><br/><br/>Of course. Just get in touch with us at <a href=\"mailto:info@peterjacksons.com\">info@peterjacksons.com</a> or <a href=\"tel:+0394156281\">(03) 9415 6281.</a> Have the email address you used for the purchase, and we’ll resend it there.</p><p><br/><strong>Can I use a physical gift card for online purchases?</strong><br/><br/>In short, Yes. However, our physical gift cards are mainly for in-store purchases, so we’ll need to activate them for online usage from our head office. Get in touch with us, and we’ll sort it out for you.</p><p><br/><strong>Can I use a virtual gift card for in-store purchases?</strong><br/><br/>Yes. However, virtual gift cards are issued for online purchases originally. We will have to activate them for you to be redeemable in-store. Contact us, and we’ll process that request for you.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_UdbAmm",
+        "faq_item_JPcT9E",
+        "faq_item_JLbMry",
+        "faq_item_aU3zLe",
+        "faq_item_zyTP4r",
+        "faq_item_yaADYd"
+      ],
+      "name": "FAQ Section",
+      "settings": {
+        "show_top_border": true,
+        "show_bottom_border": true,
+        "animate_faqs": false
+      }
+    },
+    "collection_slider_secondary_9BDhtd": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "New In Now",
+        "heading_animation": "none",
+        "description": "Layer up with premium wool/cashmere blends.",
+        "description_animation": "none",
+        "collection": "new-arrivals",
+        "button_label": "Shop Now",
+        "products_to_show": 12,
+        "animate_products": false
+      }
+    },
+    "blog_hero_JGqjhb": {
+      "type": "blog-hero",
+      "name": "Blog Hero",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "show_image_overlay": true,
+        "image_heading": "Featured Article Title",
+        "image_heading_animation": "none",
+        "image_description": "Description text for the featured article.",
+        "image_description_animation": "none",
+        "image_link_text": "Read More",
+        "image_link_url": "",
+        "heading": "The Jackson Journal",
+        "heading_animation": "none",
+        "subheading": "Heritage Meets Heritage",
+        "subheading_animation": "none",
+        "description": "Some general information about the blog collection",
+        "description_animation": "none",
+        "cta_link": "shopify://blogs/the-jackson-journal",
+        "cta_text": "Read Now",
+        "show_recent_posts": true,
+        "animate_posts": true,
+        "blog": "the-jackson-journal"
+      }
+    }
+  },
+  "order": [
+    "location_hero_ifieje",
+    "faqs_mpQL4y",
+    "collection_slider_secondary_9BDhtd",
+    "blog_hero_JGqjhb"
+  ]
+}
