@@ -1,32 +1,14 @@
 Todo:
 
-Remove size guide on gift card template
-
 Update PDP page shipping info (it's over $99 not over $100)
 
 Recommend products and upsell - Cart (No more than 50% margin price i.e if shirt, only show max $75 if item in cart is $50, offer 3 options - low, middle, high price)
-
-Remove the notification for split shipments
-
-// Automate removing web keyword 
-
-IF all product variants <=5 :
-	THEN archive product 
-	Send alert that is forwarded to Anna and online team 
-ELSE 
-	unarchive product 
 
 Shop the look link outside of the slider (If you click beyond the arrows its a link)
 
 All collections page
 
 Import gift cards when site is live and domain verified:
-    Turn off customer notifications - DONE
-    import all gift cards before site is live - DONE
-    change notification template to explain that we moved to Shopify - DONE
-    Send the notifications once the site is live - DONE
-    Change the notification template back to normal - DONE
-    Turn back on gift cards DONE
     Create the missing gift cards for customers that had no email
 
     Turn related content on PDP page into a slider on mobile (show 1 blog per slide)
@@ -37,8 +19,6 @@ Import gift cards when site is live and domain verified:
 
     contact form styling
 
-SECTIONS:
-
 Blog collection pages as custom pages:
     Create header to filter by tags
     Fix up the hero images and copy for both 
@@ -46,9 +26,11 @@ Blog collection pages as custom pages:
     Fix up main blog collections
     Can choose tags to exclude
 
-Change out the newsletter signup popup 
+Change out the newsletter signup popup design
 
 Made to measure template fixes 
+
+Beyond blue stuff / about us page
 
 When grid content section is present, Ajaxinate doesn't load the correct amount of product tiles
 
@@ -57,6 +39,3 @@ Preserve scroll position when menu is open
 Fix hover underline on newsletter signup
 Hide newsletter sign up except for thank you message on submission
 Add ability to change video, video subtitle, newsletter title and newsletter legal spiel in theme editor
-
-STEVIE: 
-Discount bundle names need clarification of what currency is being used - i.e 2 suits for 895 (AUD) for internationalisation
