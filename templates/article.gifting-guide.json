@@ -209,7 +209,7 @@
         "show_top_border": false,
         "show_bottom_border": true,
         "first_image": "shopify://shop_images/Winter-Playbook-7_1080x_66c9e00f-eae6-4c5c-b4bb-0d8d33aaf08d.webp",
-        "image_link": "shopify://collections/belt",
+        "image_link": "shopify://collections/mens-leather-belts",
         "animate_images": false,
         "alignment": "right",
         "heading": "Leather Belts",
@@ -217,7 +217,7 @@
         "text": "Buckle up in style from a sleek leather option for the office or a textured suede to see you through the weekend, a belt stands as a practical essential to complete your winter looks. When selecting the perfect belt, it is important to consider key details such as leather colour, texture, and metal hardware, as these are all factors in finding the correct pairing. Most importantly, start by matching the leather colour of your belt as closely as possible to that of your shoes; while they need not be an exact match, a close resemblance is preferred, especially for formal occasions. Additionally, consider coordinating the metal colour of the buckle with other hardware elements in your outfit, such as those on your shoes or briefcase, for a cohesive look.",
         "text_animation": "none",
         "button_label": "Shop Leather Belts",
-        "button_link": "shopify://collections/belt"
+        "button_link": "shopify://collections/mens-leather-belts"
       }
     },
     "collection_slider_secondary_Pha9gy": {
@@ -228,7 +228,7 @@
         "heading_animation": "none",
         "description": "",
         "description_animation": "none",
-        "collection": "belt",
+        "collection": "mens-leather-belts",
         "button_label": "Shop Belts",
         "products_to_show": 10,
         "animate_products": false
