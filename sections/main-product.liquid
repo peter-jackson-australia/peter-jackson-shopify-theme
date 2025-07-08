@@ -890,7 +890,16 @@
                     class="body"
                     style="height: var(--space-xl);"
                   >
-                    Add To Cart
+                    {% if section.settings.show_low_stock_warning
+                      and current_variant.available
+                      and current_variant.inventory_quantity >= 6
+                      and current_variant.inventory_quantity <= 10
+                      and product.gift_card? == false
+                    %}
+                      Low In Stock - Add To Cart
+                    {% else %}
+                      Add To Cart
+                    {% endif %}
                   </button>
                 {% else %}
                   <button
