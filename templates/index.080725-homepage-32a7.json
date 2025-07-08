@@ -35,6 +35,7 @@
     },
     "collection_slider_wUXWw3": {
       "type": "collection-slider",
+      "disabled": true,
       "name": "Collection Slider",
       "settings": {
         "heading": "Best Of Sale",
@@ -44,6 +45,20 @@
         "collection": "sale",
         "button_label": "Shop Now",
         "products_to_show": 10,
+        "animate_products": false
+      }
+    },
+    "collection_slider_secondary_zrRTbg": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "Best Of Sale",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "sale",
+        "button_label": "Shop Now",
+        "products_to_show": 12,
         "animate_products": false
       }
     },
@@ -230,6 +245,7 @@
   "order": [
     "hero_primary_4HRPTU",
     "collection_slider_wUXWw3",
+    "collection_slider_secondary_zrRTbg",
     "variable_column_content_secondary_kUywhc",
     "hero_primary_YCJLcF",
     "variable_column_content_secondary_jHpEgT",
