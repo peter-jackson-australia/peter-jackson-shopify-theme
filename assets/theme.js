@@ -250,5 +250,3 @@ function checkVariants() {
     }
   });
 }
-
-new ScrollMirror(document.querySelectorAll("#site-header"));
