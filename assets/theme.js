@@ -256,14 +256,15 @@ document.addEventListener('DOMContentLoaded', function() {
   const spacer = document.querySelector('#header-spacer');
   const triggerPoint = header.offsetHeight + 50;
   let isFixed = false;
+  let ticking = false;
 
-  window.addEventListener('scroll', function() {
+  function updateHeader() {
     const scrollY = window.scrollY;
     
     if (scrollY > triggerPoint && !isFixed) {
       isFixed = true;
-      header.classList.add('header-fixed');
       spacer.classList.remove('hide');
+      header.classList.add('header-fixed');
       requestAnimationFrame(() => {
         header.classList.add('is-visible');
       });
@@ -276,6 +277,14 @@ document.addEventListener('DOMContentLoaded', function() {
           spacer.classList.add('hide');
         }
       }, 300);
+    }
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      requestAnimationFrame(updateHeader);
+      ticking = true;
     }
   });
 });
