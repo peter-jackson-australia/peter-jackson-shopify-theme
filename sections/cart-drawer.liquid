@@ -368,6 +368,53 @@
   </div>
 </aside>
 
+<script>
+  (function () {
+    let scrollY = 0;
+
+    // Cart open function
+    window.openCart = function () {
+      scrollY = window.scrollY;
+
+      // Lock body scroll
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+
+      document.body.classList.add('cart-open');
+      document.querySelector('.cart').classList.add('cart--active');
+    };
+
+    // Cart close function
+    window.closeCart = function () {
+      if (!document.body.classList.contains('cart-open')) return;
+
+      document.body.classList.remove('cart-open');
+      document.querySelector('.cart').classList.remove('cart--active');
+
+      // Set scroll-behavior to auto temporarily
+      document.documentElement.style.scrollBehavior = 'auto';
+
+      // Restore body scroll
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      window.scrollTo(0, scrollY);
+
+      // Reset scroll-behavior
+      document.documentElement.style.scrollBehavior = '';
+    };
+
+    // Close button handler
+    document.querySelector('.cart__close').addEventListener('click', closeCart);
+
+    // Close on overlay click
+    document.querySelector('.cart').addEventListener('click', function (e) {
+      if (e.target === this) closeCart();
+    });
+  })();
+</script>
+
 {% schema %}
 {
   "name": "Cart drawer"
