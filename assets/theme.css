@@ -558,15 +558,6 @@ header {
   position: relative;
 }
 
-#site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 9996; 
-  background: var(--white);
-}
-
 .header {
   background-color: var(--white);
   display: flex;
