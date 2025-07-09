@@ -82,33 +82,35 @@
   }
 </style>
 
-<aside
-  x-data="searchDrawer"
-  x-init="init()"
-  @keydown.escape.window="closeSearch()"
-  class="search-drawer"
-  role="dialog"
-  aria-labelledby="search-title"
-  @click="closeSearch()"
->
-  <div class="search-drawer__container" @click.stop>
-    <header class="search-drawer__header">
-      <h2 id="search-title" class="search-drawer__title heading--xl">Search</h2>
-      <button
-        class="search-drawer__close"
-        type="button"
-        aria-label="Close search"
-        @click="closeSearch()"
-      >
-        {% render 'icon-close' %}
-      </button>
-    </header>
+<div x-data="searchDrawer" x-init="init()">
+  <aside
+    x-data="searchDrawer"
+    x-init="init()"
+    @keydown.escape.window="closeSearch()"
+    class="search-drawer"
+    role="dialog"
+    aria-labelledby="search-title"
+    @click="closeSearch()"
+  >
+    <div class="search-drawer__container" @click.stop>
+      <header class="search-drawer__header">
+        <h2 id="search-title" class="search-drawer__title heading--xl">Search</h2>
+        <button
+          class="search-drawer__close"
+          type="button"
+          aria-label="Close search"
+          @click="closeSearch()"
+        >
+          {% render 'icon-close' %}
+        </button>
+      </header>
 
-    <div class="search-drawer__content">
-      {% render 'search-form' %}
+      <div class="search-drawer__content">
+        {% render 'search-form' %}
+      </div>
     </div>
-  </div>
-</aside>
+  </aside>
+</div>
 
 <script>
   document.addEventListener('alpine:init', () => {
