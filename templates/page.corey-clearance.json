@@ -27,10 +27,27 @@
             "horizontal_alignment": "center",
             "vertical_alignment": "middle"
           }
+        },
+        "slide_HGqEkq": {
+          "type": "slide",
+          "settings": {
+            "media_type": "image",
+            "desktop_image": "shopify://shop_images/Jackets_Coats_Hero.webp",
+            "heading": "Welcome to Our Store",
+            "heading_level": "h1",
+            "heading_animation": "none",
+            "description": "Discover our latest collection",
+            "description_animation": "none",
+            "button_label": "Shop Now",
+            "button_link": "",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "bottom"
+          }
         }
       },
       "block_order": [
-        "slide_m99thc"
+        "slide_m99thc",
+        "slide_HGqEkq"
       ],
       "name": "Hero Slider",
       "settings": {
