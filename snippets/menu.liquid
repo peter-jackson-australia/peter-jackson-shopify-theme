@@ -223,6 +223,7 @@
   document.addEventListener('alpine:init', () => {
     Alpine.data('menuDrawer', () => ({
       isOpen: false,
+      scrollPosition: 0, 
       currentLevel: 1,
       menuTitle: '',
       subMenuTitle: '',
