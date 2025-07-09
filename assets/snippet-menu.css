@@ -3,7 +3,10 @@
 }
 
 body.menu-open {
-  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
 }
 
 .menu-drawer__container {
