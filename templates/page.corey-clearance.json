@@ -33,6 +33,7 @@
           "settings": {
             "media_type": "image",
             "desktop_image": "shopify://shop_images/Jackets_Coats_Hero.webp",
+            "mobile_image": "shopify://shop_images/Jackets_Coats_Hero_Mobile.webp",
             "heading": "Winter Jackets & Coats",
             "heading_level": "h1",
             "heading_animation": "none",
@@ -65,7 +66,7 @@
         "heading": "Half Year Sale",
         "heading_level": "h1",
         "heading_animation": "none",
-        "description": "FINAL DAYS <br>up to 50% Off",
+        "description": "FINAL DAYS up to 50% Off",
         "description_animation": "none",
         "button_label_1": "Shop All Sale",
         "button_link_1": "shopify://collections/sale",
