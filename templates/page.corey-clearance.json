@@ -9,8 +9,38 @@
  */
 {
   "sections": {
+    "hero_slider_hNLRHx": {
+      "type": "hero-slider",
+      "blocks": {
+        "slide_m99thc": {
+          "type": "slide",
+          "settings": {
+            "media_type": "video",
+            "video": "shopify://files/videos/HYS_Red Video Banner.mp4",
+            "heading": "Half Year Sale",
+            "heading_level": "h1",
+            "heading_animation": "none",
+            "description": "FINAL DAYS<br>up to 50% Off",
+            "description_animation": "none",
+            "button_label": "Shop Sale",
+            "button_link": "shopify://collections/sale",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "middle"
+          }
+        }
+      },
+      "block_order": [
+        "slide_m99thc"
+      ],
+      "name": "Hero Slider",
+      "settings": {
+        "autoplay": true,
+        "slide_interval": 5
+      }
+    },
     "hero_primary_4HRPTU": {
       "type": "hero-primary",
+      "disabled": true,
       "name": "Hero Section",
       "settings": {
         "media_type": "video",
@@ -224,44 +254,15 @@
         "animate_posts": true,
         "blog": "the-jackson-journal"
       }
-    },
-    "hero_slider_hNLRHx": {
-      "type": "hero-slider",
-      "blocks": {
-        "slide_m99thc": {
-          "type": "slide",
-          "settings": {
-            "media_type": "video",
-            "video": "shopify://files/videos/HYS_Red Video Banner.mp4",
-            "heading": "Half Year Sale",
-            "heading_level": "h1",
-            "heading_animation": "none",
-            "description": "FINAL DAYS<br>up to 50% Off",
-            "description_animation": "none",
-            "button_label": "Shop Now",
-            "button_link": "shopify://collections/sale",
-            "horizontal_alignment": "center",
-            "vertical_alignment": "middle"
-          }
-        }
-      },
-      "block_order": [
-        "slide_m99thc"
-      ],
-      "name": "Hero Slider",
-      "settings": {
-        "autoplay": true,
-        "slide_interval": 5
-      }
     }
   },
   "order": [
+    "hero_slider_hNLRHx",
     "hero_primary_4HRPTU",
     "collection_slider_wUXWw3",
     "variable_column_content_secondary_kUywhc",
     "hero_primary_YCJLcF",
     "variable_column_content_secondary_jHpEgT",
-    "blog_hero_MDUFaj",
-    "hero_slider_hNLRHx"
+    "blog_hero_MDUFaj"
   ]
 }
