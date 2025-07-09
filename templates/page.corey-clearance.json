@@ -236,10 +236,10 @@
             "heading": "Half Year Sale",
             "heading_level": "h1",
             "heading_animation": "none",
-            "description": "FINAL DAYS<br>",
+            "description": "FINAL DAYS<br>up to 50% Off",
             "description_animation": "none",
             "button_label": "Shop Now",
-            "button_link": "",
+            "button_link": "shopify://collections/sale",
             "horizontal_alignment": "center",
             "vertical_alignment": "middle"
           }
