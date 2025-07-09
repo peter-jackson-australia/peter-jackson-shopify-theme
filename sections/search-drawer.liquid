@@ -122,25 +122,9 @@
       },
 
       openSearch() {
-        // Call scroll manager before opening
-        if (window.scrollManager) {
-          window.scrollManager.openDrawer();
-        }
-
         this.isOpen = true;
         document.body.classList.add('search-open');
         document.querySelector('.search-drawer').classList.add('search-drawer--active');
-      },
-
-      closeSearch() {
-        this.isOpen = false;
-        document.body.classList.remove('search-open');
-        document.querySelector('.search-drawer').classList.remove('search-drawer--active');
-
-        // Call scroll manager after closing
-        if (window.scrollManager) {
-          window.scrollManager.closeDrawer();
-        }
       },
 
       closeSearch() {
