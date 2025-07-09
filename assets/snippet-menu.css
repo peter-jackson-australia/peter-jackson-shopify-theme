@@ -4,7 +4,6 @@
 
 body.menu-open {
   height: 100vh; 
-  overflow: scroll;
 }
 
 .menu-drawer__container {
