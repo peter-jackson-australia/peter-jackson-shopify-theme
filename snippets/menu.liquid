@@ -287,12 +287,17 @@
       },
   
       openMenu() {
+        this.scrollPosition = window.pageYOffset;
         this.isOpen = true;
         this.currentLevel = 1;
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${this.scrollPosition}px`;
+        document.body.style.width = '100%';
+        
         document.body.classList.add('menu-open');
         document.querySelector('.hamburger-menu').classList.add('nav-open');
         window.closeFilter && window.closeFilter();
-
+      
         if (window.triggerCardLoadAnimation) {
           window.triggerCardLoadAnimation('#menu-drawer__menu-1');
           window.triggerCardLoadAnimation('#menu-drawer__menu-1-secondary');
@@ -302,14 +307,22 @@
   
       closeMenu() {
         this.isOpen = false;
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        
         document.body.classList.remove('menu-open');
         document.querySelector('.hamburger-menu').classList.remove('nav-open');
-  
+      
+        if (this.scrollPosition !== undefined) {
+          window.scrollTo(0, this.scrollPosition);
+        }
+      
         if (this.splideSlider) {
           this.splideSlider.destroy(); 
           this.splideSlider = null; 
         }
-  
+      
         this.filteredArticles = []; 
       },
   
