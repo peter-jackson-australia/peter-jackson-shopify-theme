@@ -629,35 +629,6 @@ header {
   display: none;
 }
 
-/* Sticky Header */
-
-.header--sticky {
-  position: fixed !important;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  transform: translateY(0);
-  transition: transform 0.3s ease;
-  border-bottom: 1px solid var(--neutral-200);
-}
-
-.header--drawer-open {
-  position: relative !important;
-  transform: none !important;
-  border-bottom: none !important;
-}
-
-body.header-sticky-active {
-  padding-top: var(--space-xl);
-}
-
-body.header-sticky-active.menu-open,
-body.header-sticky-active.search-open,
-body.header-sticky-active.cart-open {
-  padding-top: 0;
-}
-
 @media screen and (min-width: 769px) {
   .header__search-desktop {
     display: block;
