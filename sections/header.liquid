@@ -48,152 +48,153 @@
       </button>
     </li>
   </ul>
-  <script>
-    document.addEventListener('alpine:init', () => {
-      Alpine.data('scrollManager', () => ({
-        // Current scroll position
-        scrollY: 0,
-
-        // Whether header should be sticky based on scroll position
-        isSticky: false,
-
-        // Whether any drawer is currently open
-        isDrawerOpen: false,
-
-        // Stored scroll position when drawer opens
-        storedScrollPosition: 0,
-
-        // Header height for calculations
-        headerHeight: 0,
-
-        // Sticky trigger distance (header height + 200px buffer)
-        stickyTrigger: 0,
-
-        init() {
-          // Calculate header height on initialization
-          this.calculateHeaderHeight();
-
-          // Set up scroll listener with debouncing for performance
-          this.setupScrollListener();
-
-          // Recalculate on window resize
-          window.addEventListener('resize', () => {
-            this.calculateHeaderHeight();
-          });
-
-          // Make methods globally available for other components
-          window.scrollManager = {
-            openDrawer: () => this.openDrawer(),
-            closeDrawer: () => this.closeDrawer(),
-            getState: () => ({
-              isSticky: this.isSticky,
-              isDrawerOpen: this.isDrawerOpen,
-              scrollY: this.scrollY,
-            }),
-          };
-        },
-
-        calculateHeaderHeight() {
-          const header = document.getElementById('site-header');
-          if (header) {
-            this.headerHeight = header.offsetHeight;
-            this.stickyTrigger = this.headerHeight + 200; // 200px buffer
-          }
-        },
-
-        setupScrollListener() {
-          let ticking = false;
-
-          const updateScrollPosition = () => {
-            this.scrollY = window.scrollY;
-
-            // Only update sticky state if no drawer is open
-            if (!this.isDrawerOpen) {
-              this.updateStickyState();
-            }
-
-            ticking = false;
-          };
-
-          window.addEventListener('scroll', () => {
-            if (!ticking) {
-              requestAnimationFrame(updateScrollPosition);
-              ticking = true;
-            }
-          });
-        },
-
-        updateStickyState() {
-          const shouldBeSticky = this.scrollY > this.stickyTrigger;
-
-          if (shouldBeSticky !== this.isSticky) {
-            this.isSticky = shouldBeSticky;
-            this.applyHeaderStyling();
-          }
-        },
-
-        applyHeaderStyling() {
-          const header = document.getElementById('site-header');
-          if (!header) return;
-
-          if (this.isSticky && !this.isDrawerOpen) {
-            header.classList.add('header--sticky');
-            header.classList.remove('header--drawer-open');
-          } else {
-            header.classList.remove('header--sticky');
-            if (this.isDrawerOpen) {
-              header.classList.add('header--drawer-open');
-            }
-          }
-        },
-
-        openDrawer() {
-          // Store current scroll position
-          this.storedScrollPosition = window.scrollY;
-
-          // Mark drawer as open
-          this.isDrawerOpen = true;
-
-          // Update header styling to remove sticky if active
-          this.applyHeaderStyling();
-
-          // Lock body scroll
-          this.lockBodyScroll();
-        },
-
-        closeDrawer() {
-          // Mark drawer as closed
-          this.isDrawerOpen = false;
-
-          // Unlock body scroll
-          this.unlockBodyScroll();
-
-          // Restore scroll position
-          window.scrollTo(0, this.storedScrollPosition);
-
-          // Update scroll position tracking
-          this.scrollY = this.storedScrollPosition;
-
-          // Re-evaluate sticky state
-          this.updateStickyState();
-        },
-
-        lockBodyScroll() {
-          document.body.style.overflow = 'hidden';
-          document.body.style.position = 'fixed';
-          document.body.style.top = `-${this.storedScrollPosition}px`;
-          document.body.style.width = '100%';
-        },
-
-        unlockBodyScroll() {
-          document.body.style.overflow = '';
-          document.body.style.position = '';
-          document.body.style.top = '';
-          document.body.style.width = '';
-        },
-      }));
-    });
-  </script>
 </div>
 
 {% render 'menu', id: 'site-navigation' %}
+
+<script>
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('scrollManager', () => ({
+      // Current scroll position
+      scrollY: 0,
+
+      // Whether header should be sticky based on scroll position
+      isSticky: false,
+
+      // Whether any drawer is currently open
+      isDrawerOpen: false,
+
+      // Stored scroll position when drawer opens
+      storedScrollPosition: 0,
+
+      // Header height for calculations
+      headerHeight: 0,
+
+      // Sticky trigger distance (header height + 200px buffer)
+      stickyTrigger: 0,
+
+      init() {
+        // Calculate header height on initialization
+        this.calculateHeaderHeight();
+
+        // Set up scroll listener with debouncing for performance
+        this.setupScrollListener();
+
+        // Recalculate on window resize
+        window.addEventListener('resize', () => {
+          this.calculateHeaderHeight();
+        });
+
+        // Make methods globally available for other components
+        window.scrollManager = {
+          openDrawer: () => this.openDrawer(),
+          closeDrawer: () => this.closeDrawer(),
+          getState: () => ({
+            isSticky: this.isSticky,
+            isDrawerOpen: this.isDrawerOpen,
+            scrollY: this.scrollY,
+          }),
+        };
+      },
+
+      calculateHeaderHeight() {
+        const header = document.getElementById('site-header');
+        if (header) {
+          this.headerHeight = header.offsetHeight;
+          this.stickyTrigger = this.headerHeight + 200; // 200px buffer
+        }
+      },
+
+      setupScrollListener() {
+        let ticking = false;
+
+        const updateScrollPosition = () => {
+          this.scrollY = window.scrollY;
+
+          // Only update sticky state if no drawer is open
+          if (!this.isDrawerOpen) {
+            this.updateStickyState();
+          }
+
+          ticking = false;
+        };
+
+        window.addEventListener('scroll', () => {
+          if (!ticking) {
+            requestAnimationFrame(updateScrollPosition);
+            ticking = true;
+          }
+        });
+      },
+
+      updateStickyState() {
+        const shouldBeSticky = this.scrollY > this.stickyTrigger;
+
+        if (shouldBeSticky !== this.isSticky) {
+          this.isSticky = shouldBeSticky;
+          this.applyHeaderStyling();
+        }
+      },
+
+      applyHeaderStyling() {
+        const header = document.getElementById('site-header');
+        if (!header) return;
+
+        if (this.isSticky && !this.isDrawerOpen) {
+          header.classList.add('header--sticky');
+          header.classList.remove('header--drawer-open');
+        } else {
+          header.classList.remove('header--sticky');
+          if (this.isDrawerOpen) {
+            header.classList.add('header--drawer-open');
+          }
+        }
+      },
+
+      openDrawer() {
+        // Store current scroll position
+        this.storedScrollPosition = window.scrollY;
+
+        // Mark drawer as open
+        this.isDrawerOpen = true;
+
+        // Update header styling to remove sticky if active
+        this.applyHeaderStyling();
+
+        // Lock body scroll
+        this.lockBodyScroll();
+      },
+
+      closeDrawer() {
+        // Mark drawer as closed
+        this.isDrawerOpen = false;
+
+        // Unlock body scroll
+        this.unlockBodyScroll();
+
+        // Restore scroll position
+        window.scrollTo(0, this.storedScrollPosition);
+
+        // Update scroll position tracking
+        this.scrollY = this.storedScrollPosition;
+
+        // Re-evaluate sticky state
+        this.updateStickyState();
+      },
+
+      lockBodyScroll() {
+        document.body.style.overflow = 'hidden';
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${this.storedScrollPosition}px`;
+        document.body.style.width = '100%';
+      },
+
+      unlockBodyScroll() {
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+      },
+    }));
+  });
+</script>
