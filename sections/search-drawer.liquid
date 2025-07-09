@@ -123,10 +123,8 @@
       },
 
       openSearch() {
-        // Save scroll position
         this.scrollY = window.scrollY;
 
-        // Lock body scroll
         document.body.style.position = 'fixed';
         document.body.style.top = `-${this.scrollY}px`;
         document.body.style.width = '100%';
@@ -143,16 +141,13 @@
         document.body.classList.remove('search-open');
         document.querySelector('.search-drawer').classList.remove('search-drawer--active');
 
-        // Set scroll-behavior to auto temporarily
         document.documentElement.style.scrollBehavior = 'auto';
 
-        // Restore body scroll
         document.body.style.position = '';
         document.body.style.top = '';
         document.body.style.width = '';
         window.scrollTo(0, this.scrollY);
 
-        // Reset scroll-behavior
         document.documentElement.style.scrollBehavior = '';
       },
     }));
