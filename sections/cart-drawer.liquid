@@ -373,19 +373,15 @@
       scrollY: 0,
 
       init() {
-        // Set up global functions
         window.openCart = () => this.openCart();
         window.closeCart = () => this.closeCart();
 
-        // Set up event listeners
         this.$nextTick(() => {
-          // Close button
           const closeBtn = document.querySelector('.cart__close');
           if (closeBtn) {
             closeBtn.addEventListener('click', () => this.closeCart());
           }
 
-          // Overlay click
           const cart = document.querySelector('.cart');
           if (cart) {
             cart.addEventListener('click', (e) => {
@@ -396,10 +392,8 @@
       },
 
       openCart() {
-        // Save scroll position
         this.scrollY = window.scrollY;
 
-        // Lock body scroll
         document.body.style.position = 'fixed';
         document.body.style.top = `-${this.scrollY}px`;
         document.body.style.width = '100%';
@@ -416,16 +410,13 @@
         document.body.classList.remove('cart-open');
         document.querySelector('.cart').classList.remove('cart--active');
 
-        // Set scroll-behavior to auto temporarily
         document.documentElement.style.scrollBehavior = 'auto';
 
-        // Restore body scroll
         document.body.style.position = '';
         document.body.style.top = '';
         document.body.style.width = '';
         window.scrollTo(0, this.scrollY);
 
-        // Reset scroll-behavior
         document.documentElement.style.scrollBehavior = '';
       },
     }));
