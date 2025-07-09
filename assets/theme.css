@@ -1,21 +1,21 @@
 @font-face {
-  font-family: 'Ordinary Regular';
-  src: url('https://cdn.shopify.com/s/files/1/0898/1859/5696/files/ordinary-display-regular.woff2?v=1742796201')
-    format('woff2');
+  font-family: "Ordinary Regular";
+  src: url("https://cdn.shopify.com/s/files/1/0898/1859/5696/files/ordinary-display-regular.woff2?v=1742796201")
+    format("woff2");
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Ordinary Light';
-  src: url('https://cdn.shopify.com/s/files/1/0898/1859/5696/files/ordinary-display-light.woff2?v=1742796170')
-    format('woff2');
+  font-family: "Ordinary Light";
+  src: url("https://cdn.shopify.com/s/files/1/0898/1859/5696/files/ordinary-display-light.woff2?v=1742796170")
+    format("woff2");
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'The Wedding Signature';
-  src: url('https://cdn.shopify.com/s/files/1/0898/1859/5696/files/the-wedding-signature-regular.woff2?v=1743742147')
-    format('woff2');
+  font-family: "The Wedding Signature";
+  src: url("https://cdn.shopify.com/s/files/1/0898/1859/5696/files/the-wedding-signature-regular.woff2?v=1743742147")
+    format("woff2");
   font-display: swap;
 }
 
@@ -40,8 +40,8 @@ html {
   overflow-y: scroll;
 }
 
-ul[role='list'],
-ol[role='list'] {
+ul[role="list"],
+ol[role="list"] {
   list-style: none;
 }
 
@@ -153,7 +153,7 @@ select {
 .metafield-rich_text_field > p > strong,
 .metafield-rich_text_field > * > li > strong {
   color: var(--neutral-950) !important;
-  font-family: 'Ordinary Regular', sans-serif;
+  font-family: "Ordinary Regular", sans-serif;
   font-weight: 500;
 }
 
@@ -341,7 +341,7 @@ accordion-element > .ploiu-accordion-title {
 }
 
 accordion-element > .ploiu-accordion-title::after {
-  content: '';
+  content: "";
   position: absolute;
   right: var(--space-m);
   top: 50%;
@@ -370,7 +370,7 @@ accordion-element > .ploiu-accordion-body {
 accordion-element > .ploiu-accordion-body > .body > p > strong,
 accordion-element > .ploiu-accordion-body > .body > * > li > strong {
   color: var(--neutral-950);
-  font-family: 'Ordinary Regular';
+  font-family: "Ordinary Regular";
   font-weight: 500;
 }
 
@@ -416,7 +416,7 @@ accordion-fan > accordion-element > .ploiu-accordion-title {
 .small {
   line-height: 140%;
   letter-spacing: 0.065rem;
-  font-family: 'Ordinary Light';
+  font-family: "Ordinary Light";
   font-size: clamp(0.5787rem, 0.5498rem + 0.1447vw, 0.7234rem);
 }
 
@@ -425,7 +425,7 @@ p,
 li {
   line-height: 140%;
   letter-spacing: 0.065rem;
-  font-family: 'Ordinary Light';
+  font-family: "Ordinary Light";
   font-size: clamp(0.6944rem, 0.6597rem + 0.1736vw, 0.8681rem);
   font-weight: 300;
 }
@@ -433,7 +433,7 @@ li {
 .body--uppercase {
   line-height: 140%;
   letter-spacing: 0.065rem;
-  font-family: 'Ordinary Light';
+  font-family: "Ordinary Light";
   text-transform: uppercase;
   font-size: clamp(0.6944rem, 0.6597rem + 0.1736vw, 0.8681rem);
   font-weight: 300;
@@ -444,7 +444,7 @@ h5,
 h6 {
   line-height: 140%;
   letter-spacing: 0.065rem;
-  font-family: 'Ordinary Regular';
+  font-family: "Ordinary Regular";
   font-size: clamp(0.6944rem, 0.6597rem + 0.1736vw, 0.8681rem);
   font-weight: 500;
 }
@@ -453,7 +453,7 @@ h6 {
 h4 {
   line-height: 140%;
   letter-spacing: 0.125rem;
-  font-family: 'Ordinary Regular';
+  font-family: "Ordinary Regular";
   font-size: clamp(0.8333rem, 0.7917rem + 0.2083vw, 1.0417rem);
   font-weight: 500;
   -moz-osx-font-smoothing: grayscale;
@@ -463,7 +463,7 @@ h4 {
 .heading--xl,
 h3 {
   line-height: 140%;
-  font-family: 'Ordinary Regular';
+  font-family: "Ordinary Regular";
   font-size: clamp(1rem, 0.95rem + 0.25vw, 1.25rem);
   font-weight: 500;
 }
@@ -472,13 +472,13 @@ h3 {
 h2 {
   line-height: 140%;
   letter-spacing: 0.125rem;
-  font-family: 'Ordinary Regular';
+  font-family: "Ordinary Regular";
   font-size: clamp(1.2rem, 1.14rem + 0.3vw, 1.5rem);
   font-weight: 500;
 }
 
 .heading--decorative {
-  font-family: 'The Wedding Signature';
+  font-family: "The Wedding Signature";
   line-height: 100%;
   font-size: clamp(2.4883rem, 2.3639rem + 0.6221vw, 3.1104rem);
   font-weight: 500;
@@ -491,7 +491,7 @@ h2 {
 h1 {
   line-height: 100%;
   letter-spacing: 0.2rem;
-  font-family: 'Ordinary Light';
+  font-family: "Ordinary Light";
   font-size: clamp(2.986rem, 2.8367rem + 0.7465vw, 3.7325rem);
   font-weight: 300;
 }
@@ -499,7 +499,7 @@ h1 {
 .heading--4xl {
   line-height: 100%;
   letter-spacing: 0.2rem;
-  font-family: 'Ordinary Regular';
+  font-family: "Ordinary Regular";
   font-size: clamp(3.5832rem, 3.404rem + 0.8958vw, 4.479rem);
   font-weight: 500;
 }
@@ -518,7 +518,7 @@ h1 {
 .button,
 .klaviyo-form-WH7CVh > div > form > div > div > div > button.needsclick {
   padding: var(--space-xs) var(--space-l) !important;
-  font-family: 'Ordinary Light' !important;
+  font-family: "Ordinary Light" !important;
   text-align: center !important;
 }
 
@@ -530,7 +530,7 @@ input,
 input::placeholder {
   line-height: 140% !important;
   letter-spacing: 0.1rem !important;
-  font-family: 'Ordinary Light' !important;
+  font-family: "Ordinary Light" !important;
   font-size: clamp(0.6944rem, 0.6597rem + 0.1736vw, 0.8681rem) !important;
 }
 
@@ -556,6 +556,15 @@ input:focus-visible {
 
 header {
   position: relative;
+}
+
+#site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9996; /* Below menu but above content */
+  background: var(--white); /* Ensure it has a background */
 }
 
 .header {
@@ -679,7 +688,7 @@ footer ul {
   -webkit-tap-highlight-color: transparent;
 }
 
-input[type='search'] {
+input[type="search"] {
   -webkit-appearance: none;
   appearance: none;
 }
@@ -831,7 +840,7 @@ a.skip-to-content:focus-visible {
 #rich-text-01JQ7PY3EVQV63T4NT5GGT9J67 > * > * {
   line-height: 140% !important;
   letter-spacing: 0.065rem !important;
-  font-family: 'Ordinary Light' !important;
+  font-family: "Ordinary Light" !important;
   font-size: clamp(0.6944rem, 0.6597rem + 0.1736vw, 0.8681rem) !important;
   font-weight: 300 !important;
   margin-right: auto !important;
