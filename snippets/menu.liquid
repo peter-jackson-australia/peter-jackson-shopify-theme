@@ -314,22 +314,25 @@
         document.body.classList.remove('menu-open');
         document.querySelector('.hamburger-menu').classList.remove('nav-open');
         
-        // Restore body scroll
+        // Get the current top position before removing fixed
+        const scrollY = Math.abs(parseInt(document.body.style.top || '0'));
+        
+        // Remove fixed positioning
         document.body.style.position = '';
         document.body.style.top = '';
         document.body.style.width = '';
         
-        // Restore scroll position
-        window.scrollTo(0, this.scrollY);
-  
+        // Immediately set scroll position (no animation)
+        window.scrollTo(0, scrollY);
+      
         if (this.splideSlider) {
           this.splideSlider.destroy(); 
           this.splideSlider = null; 
         }
-  
+      
         this.filteredArticles = [];
       },
-      
+
       refreshSliderContent() {
         const track = this.$refs.splideSlider?.querySelector('.splide__list');
         
