@@ -310,6 +310,9 @@
       },
   
       closeMenu() {
+        // Only do anything if menu is actually open
+        if (!this.isOpen) return;
+        
         this.isOpen = false;
         document.body.classList.remove('menu-open');
         document.querySelector('.hamburger-menu').classList.remove('nav-open');
