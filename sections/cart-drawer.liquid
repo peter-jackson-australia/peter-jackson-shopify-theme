@@ -3,10 +3,6 @@
 {% endcomment %}
 
 <style>
-  body.cart-open {
-    overflow: hidden;
-  }
-
   .cart {
     position: fixed;
     top: 0;
@@ -256,117 +252,176 @@
   }
 </style>
 
-<aside class="cart" role="dialog" aria-labelledby="cart-title">
-  <div class="cart__container">
-    <header class="cart__header">
-      <h2 id="cart-title" class="cart__title heading--xl">Cart</h2>
-      <div class="cart__controls">
-        <button class="cart__close" type="button" aria-label="Close cart">
-          {% render 'icon-close' %}
-        </button>
-      </div>
-    </header>
+<div x-data="cartDrawer" x-init="init()">
+  <aside class="cart" role="dialog" aria-labelledby="cart-title">
+    <div class="cart__container">
+      <header class="cart__header">
+        <h2 id="cart-title" class="cart__title heading--xl">Cart</h2>
+        <div class="cart__controls">
+          <button class="cart__close" type="button" aria-label="Close cart">
+            {% render 'icon-close' %}
+          </button>
+        </div>
+      </header>
 
-    {% form 'cart', cart, class: 'cart__form' %}
-      {% if cart.item_count == 0 %}
-        <p class="cart__empty body">Your cart is empty</p>
-      {% else %}
-        <div class="cart__items custom-scrollbar">
-          {% for item in cart.items %}
-            <article
-              class="cart-item"
-              data-line-item-key="{{ item.key }}"
-              data-inventory-quantity="{{ item.variant.inventory_quantity }}"
-            >
-              <div class="cart-item__image">
-                <img
-                  src="{{ item.image | image_url: width: '200x' }}"
-                  alt="{{ item.title }}"
-                  width="100"
-                  height="auto"
-                >
-              </div>
-              <div class="cart-item__content">
-                <div class="cart-item__row">
-                  <div class="cart-item__details">
-                    <h3 class="cart-item__title body--bold">
-                      <a href="{{ item.url }}">{{ item.product.title }}</a>
-                    </h3>
-                    <div class="cart-item__specifics">
-                      {% if item.variant.title != 'Default Title' %}
-                        <p class="cart-item__variant small">
-                          {% assign variant_parts = item.variant.title | split: ' / ' %}
-                          {% for option in item.product.options %}
-                            {% if forloop.index <= variant_parts.size %}
-                              {% assign option_index = forloop.index | minus: 1 %}
-                              {% assign option_value = variant_parts[option_index] %}
-                              {{ option }}:
-                              {% if option contains 'Size' and option_value contains '.0' -%}
-                                {{- option_value | remove: '.0' -}}
-                              {%- else -%}
-                                {{- option_value -}}
-                              {%- endif -%}
-                              {%- unless forloop.last %}, {% endunless %}
-                            {% endif %}
-                          {% endfor %}
-                        </p>
-                      {% else %}
-                        <p class="cart-item__variant small">One Size</p>
-                      {% endif %}
-                      <div class="cart-item__price">
-                        <p class="small">{{ item.final_line_price | money }}</p>
+      {% form 'cart', cart, class: 'cart__form' %}
+        {% if cart.item_count == 0 %}
+          <p class="cart__empty body">Your cart is empty</p>
+        {% else %}
+          <div class="cart__items custom-scrollbar">
+            {% for item in cart.items %}
+              <article
+                class="cart-item"
+                data-line-item-key="{{ item.key }}"
+                data-inventory-quantity="{{ item.variant.inventory_quantity }}"
+              >
+                <div class="cart-item__image">
+                  <img
+                    src="{{ item.image | image_url: width: '200x' }}"
+                    alt="{{ item.title }}"
+                    width="100"
+                    height="auto"
+                  >
+                </div>
+                <div class="cart-item__content">
+                  <div class="cart-item__row">
+                    <div class="cart-item__details">
+                      <h3 class="cart-item__title body--bold">
+                        <a href="{{ item.url }}">{{ item.product.title }}</a>
+                      </h3>
+                      <div class="cart-item__specifics">
+                        {% if item.variant.title != 'Default Title' %}
+                          <p class="cart-item__variant small">
+                            {% assign variant_parts = item.variant.title | split: ' / ' %}
+                            {% for option in item.product.options %}
+                              {% if forloop.index <= variant_parts.size %}
+                                {% assign option_index = forloop.index | minus: 1 %}
+                                {% assign option_value = variant_parts[option_index] %}
+                                {{ option }}:
+                                {% if option contains 'Size' and option_value contains '.0' -%}
+                                  {{- option_value | remove: '.0' -}}
+                                {%- else -%}
+                                  {{- option_value -}}
+                                {%- endif -%}
+                                {%- unless forloop.last %}, {% endunless %}
+                              {% endif %}
+                            {% endfor %}
+                          </p>
+                        {% else %}
+                          <p class="cart-item__variant small">One Size</p>
+                        {% endif %}
+                        <div class="cart-item__price">
+                          <p class="small">{{ item.final_line_price | money }}</p>
+                        </div>
                       </div>
-                    </div>
-                    <div class="cart-item__actions">
-                      <div class="cart-item__quantity">
-                        <button
-                          class="cart-item__quantity-button cart-item__quantity-button--minus body"
-                          type="button"
-                          aria-label="Decrease quantity"
-                        >
-                          -
-                        </button>
-                        <input
-                          type="text"
-                          class="cart-item__quantity-input small"
-                          readonly
-                          value="{{ item.quantity }}"
-                          aria-label="Quantity"
-                        >
-                        <button
-                          class="cart-item__quantity-button cart-item__quantity-button--plus body"
-                          type="button"
-                          aria-label="Increase quantity"
-                        >
-                          +
-                        </button>
+                      <div class="cart-item__actions">
+                        <div class="cart-item__quantity">
+                          <button
+                            class="cart-item__quantity-button cart-item__quantity-button--minus body"
+                            type="button"
+                            aria-label="Decrease quantity"
+                          >
+                            -
+                          </button>
+                          <input
+                            type="text"
+                            class="cart-item__quantity-input small"
+                            readonly
+                            value="{{ item.quantity }}"
+                            aria-label="Quantity"
+                          >
+                          <button
+                            class="cart-item__quantity-button cart-item__quantity-button--plus body"
+                            type="button"
+                            aria-label="Increase quantity"
+                          >
+                            +
+                          </button>
+                        </div>
+                        <button type="button" class="cart-item__remove small">Remove</button>
                       </div>
-                      <button type="button" class="cart-item__remove small">Remove</button>
                     </div>
                   </div>
                 </div>
-              </div>
-            </article>
-          {% endfor %}
-        </div>
-
-        <footer class="cart__footer">
-          {% if cart.total_discounts > 0 %}
-            <div class="cart__footer-row">
-              <h3 class="cart__footer-label body">Discounts</h3>
-              <span class="cart__footer-value body--bold">{{ cart.total_discounts | money }}</span>
-            </div>
-          {% endif %}
-          <div class="cart__footer-row">
-            <h3 class="cart__footer-label body">Subtotal</h3>
-            <span class="cart__footer-value body--bold">{{ cart.total_price | money }}</span>
+              </article>
+            {% endfor %}
           </div>
-          <button type="submit" name="checkout" class="cart__checkout body">Checkout</button>
-        </footer>
-      {% endif %}
-    {% endform %}
-  </div>
-</aside>
+
+          <footer class="cart__footer">
+            {% if cart.total_discounts > 0 %}
+              <div class="cart__footer-row">
+                <h3 class="cart__footer-label body">Discounts</h3>
+                <span class="cart__footer-value body--bold">{{ cart.total_discounts | money }}</span>
+              </div>
+            {% endif %}
+            <div class="cart__footer-row">
+              <h3 class="cart__footer-label body">Subtotal</h3>
+              <span class="cart__footer-value body--bold">{{ cart.total_price | money }}</span>
+            </div>
+            <button type="submit" name="checkout" class="cart__checkout body">Checkout</button>
+          </footer>
+        {% endif %}
+      {% endform %}
+    </div>
+  </aside>
+</div>
+
+<script>
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('cartDrawer', () => ({
+      isOpen: false,
+      scrollY: 0,
+
+      init() {
+        window.openCart = () => this.openCart();
+        window.closeCart = () => this.closeCart();
+
+        this.$nextTick(() => {
+          const closeBtn = document.querySelector('.cart__close');
+          if (closeBtn) {
+            closeBtn.addEventListener('click', () => this.closeCart());
+          }
+
+          const cart = document.querySelector('.cart');
+          if (cart) {
+            cart.addEventListener('click', (e) => {
+              if (e.target === cart) this.closeCart();
+            });
+          }
+        });
+      },
+
+      openCart() {
+        this.scrollY = window.scrollY;
+
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${this.scrollY}px`;
+        document.body.style.width = '100%';
+
+        this.isOpen = true;
+        document.body.classList.add('cart-open');
+        document.querySelector('.cart').classList.add('cart--active');
+      },
+
+      closeCart() {
+        if (!this.isOpen) return;
+
+        this.isOpen = false;
+        document.body.classList.remove('cart-open');
+        document.querySelector('.cart').classList.remove('cart--active');
+
+        document.documentElement.style.scrollBehavior = 'auto';
+
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        window.scrollTo(0, this.scrollY);
+
+        document.documentElement.style.scrollBehavior = '';
+      },
+    }));
+  });
+</script>
 
 {% schema %}
 {
