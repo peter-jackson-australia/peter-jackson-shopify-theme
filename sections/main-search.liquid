@@ -381,7 +381,7 @@
           </p>
         </div>
 
-        {{ search.results | json }}
+        {{ search.sort_options | json }}
 
         {% paginate search.results by section.settings.limit %}
           <div id="AjaxinateContainer" class="products-grid animate-container-cards-scroll">
