@@ -250,3 +250,19 @@ function checkVariants() {
     }
   });
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  const header = document.querySelector('#site-header');
+  const spacer = document.querySelector('#header-spacer');
+  const triggerPoint = header.offsetHeight + 50;
+
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > triggerPoint) {
+      header.classList.add('header-fixed', 'is-visible');
+      spacer.classList.remove('hide');
+    } else {
+      header.classList.remove('header-fixed', 'is-visible');
+      spacer.classList.add('hide');
+    }
+  });
+});
