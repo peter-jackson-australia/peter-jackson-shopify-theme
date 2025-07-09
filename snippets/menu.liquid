@@ -314,7 +314,7 @@
         document.body.classList.remove('menu-open');
         document.querySelector('.hamburger-menu').classList.remove('nav-open');
         
-        // Get the current top position before removing fixed
+        // Get the scroll position from the negative top value
         const scrollY = Math.abs(parseInt(document.body.style.top || '0'));
         
         // Remove fixed positioning
@@ -322,8 +322,10 @@
         document.body.style.top = '';
         document.body.style.width = '';
         
-        // Immediately set scroll position (no animation)
-        window.scrollTo(0, scrollY);
+        // Force immediate scroll restoration before next paint
+        requestAnimationFrame(() => {
+          window.scrollTo(0, scrollY);
+        });
       
         if (this.splideSlider) {
           this.splideSlider.destroy(); 
