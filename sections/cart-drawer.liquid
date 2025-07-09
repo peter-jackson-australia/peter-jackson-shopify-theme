@@ -366,16 +366,18 @@
 
 <script>
   (function () {
+    let savedScrollY = 0;
+
     // Cart open function
     window.openCart = function () {
-      // Only proceed if cart isn't already open
       if (document.body.classList.contains('cart-open')) return;
 
-      const scrollY = window.scrollY;
+      // Save current scroll position
+      savedScrollY = window.scrollY;
 
       // Lock body scroll
       document.body.style.position = 'fixed';
-      document.body.style.top = `-${scrollY}px`;
+      document.body.style.top = `-${savedScrollY}px`;
       document.body.style.width = '100%';
 
       document.body.classList.add('cart-open');
@@ -384,22 +386,29 @@
 
     // Cart close function
     window.closeCart = function () {
-      // Only proceed if cart is actually open
       if (!document.body.classList.contains('cart-open')) return;
-
-      // Get the scroll position from the negative top value
-      const scrollY = Math.abs(parseInt(document.body.style.top || '0'));
 
       document.body.classList.remove('cart-open');
       document.querySelector('.cart').classList.remove('cart--active');
 
-      // Restore body scroll
+      // Get the current top position before removing fixed
+      const scrollY = Math.abs(parseInt(document.body.style.top || '0'));
+
+      // Set scroll-behavior to auto temporarily to prevent smooth scrolling
+      const htmlElement = document.documentElement;
+      const originalScrollBehavior = htmlElement.style.scrollBehavior;
+      htmlElement.style.scrollBehavior = 'auto';
+
+      // Remove fixed positioning
       document.body.style.position = '';
       document.body.style.top = '';
       document.body.style.width = '';
 
-      // Force immediate scroll restoration
-      window.scrollTo(0, scrollY);
+      // Restore scroll position
+      window.scrollTo(0, scrollY || savedScrollY);
+
+      // Reset scroll-behavior
+      htmlElement.style.scrollBehavior = originalScrollBehavior;
     };
 
     // Wait for DOM to be ready
