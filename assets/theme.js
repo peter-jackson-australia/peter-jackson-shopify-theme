@@ -255,17 +255,26 @@ document.addEventListener('DOMContentLoaded', function() {
   const header = document.querySelector('#site-header');
   const spacer = document.querySelector('#header-spacer');
   const triggerPoint = header.offsetHeight + 50;
+  let isFixed = false;
 
   window.addEventListener('scroll', function() {
-    if (window.scrollY > triggerPoint) {
+    const scrollY = window.scrollY;
+    
+    if (scrollY > triggerPoint && !isFixed) {
+      isFixed = true;
       header.classList.add('header-fixed');
       spacer.classList.remove('hide');
-      setTimeout(() => header.classList.add('is-visible'), 10);
-    } else {
+      requestAnimationFrame(() => {
+        header.classList.add('is-visible');
+      });
+    } else if (scrollY <= triggerPoint && isFixed) {
+      isFixed = false;
       header.classList.remove('is-visible');
       setTimeout(() => {
-        header.classList.remove('header-fixed');
-        spacer.classList.add('hide');
+        if (!isFixed) {
+          header.classList.remove('header-fixed');
+          spacer.classList.add('hide');
+        }
       }, 300);
     }
   });
