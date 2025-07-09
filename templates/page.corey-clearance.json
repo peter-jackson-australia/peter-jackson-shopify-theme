@@ -233,10 +233,10 @@
           "settings": {
             "media_type": "video",
             "video": "shopify://files/videos/HYS_Red Video Banner.mp4",
-            "heading": "Welcome to Our Store",
+            "heading": "Half Year Sale",
             "heading_level": "h1",
             "heading_animation": "none",
-            "description": "Discover our latest collection",
+            "description": "FINAL DAYS<br>",
             "description_animation": "none",
             "button_label": "Shop Now",
             "button_link": "",
