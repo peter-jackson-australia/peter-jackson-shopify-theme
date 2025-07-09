@@ -314,18 +314,20 @@
         document.body.classList.remove('menu-open');
         document.querySelector('.hamburger-menu').classList.remove('nav-open');
         
-        // Get the scroll position from the negative top value
+        // Prepare for restoration
         const scrollY = Math.abs(parseInt(document.body.style.top || '0'));
         
-        // Remove fixed positioning
+        // Set scroll-behavior to auto temporarily to prevent smooth scrolling
+        document.documentElement.style.scrollBehavior = 'auto';
+        
+        // Remove fixed and restore scroll in one go
         document.body.style.position = '';
         document.body.style.top = '';
         document.body.style.width = '';
+        window.scrollTo(0, scrollY);
         
-        // Force immediate scroll restoration before next paint
-        requestAnimationFrame(() => {
-          window.scrollTo(0, scrollY);
-        });
+        // Reset scroll-behavior
+        document.documentElement.style.scrollBehavior = '';
       
         if (this.splideSlider) {
           this.splideSlider.destroy(); 
