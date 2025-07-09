@@ -366,11 +366,12 @@
 
 <script>
   (function () {
-    let scrollY = 0;
-
     // Cart open function
     window.openCart = function () {
-      scrollY = window.scrollY;
+      // Only proceed if cart isn't already open
+      if (document.body.classList.contains('cart-open')) return;
+
+      const scrollY = window.scrollY;
 
       // Lock body scroll
       document.body.style.position = 'fixed';
@@ -383,33 +384,39 @@
 
     // Cart close function
     window.closeCart = function () {
+      // Only proceed if cart is actually open
       if (!document.body.classList.contains('cart-open')) return;
 
       // Get the scroll position from the negative top value
-      const restoredScrollY = Math.abs(parseInt(document.body.style.top || '0'));
+      const scrollY = Math.abs(parseInt(document.body.style.top || '0'));
 
       document.body.classList.remove('cart-open');
       document.querySelector('.cart').classList.remove('cart--active');
-
-      // Set scroll-behavior to auto temporarily
-      document.documentElement.style.scrollBehavior = 'auto';
 
       // Restore body scroll
       document.body.style.position = '';
       document.body.style.top = '';
       document.body.style.width = '';
-      window.scrollTo(0, restoredScrollY);
 
-      // Reset scroll-behavior
-      document.documentElement.style.scrollBehavior = '';
+      // Force immediate scroll restoration
+      window.scrollTo(0, scrollY);
     };
 
-    // Close button handler
-    document.querySelector('.cart__close').addEventListener('click', closeCart);
+    // Wait for DOM to be ready
+    document.addEventListener('DOMContentLoaded', function () {
+      // Close button handler
+      const closeBtn = document.querySelector('.cart__close');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', closeCart);
+      }
 
-    // Close on overlay click
-    document.querySelector('.cart').addEventListener('click', function (e) {
-      if (e.target === this) closeCart();
+      // Close on overlay click
+      const cart = document.querySelector('.cart');
+      if (cart) {
+        cart.addEventListener('click', function (e) {
+          if (e.target === this) closeCart();
+        });
+      }
     });
   })();
 </script>
