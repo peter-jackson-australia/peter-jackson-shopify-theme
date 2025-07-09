@@ -33,15 +33,15 @@
           "settings": {
             "media_type": "image",
             "desktop_image": "shopify://shop_images/Jackets_Coats_Hero.webp",
-            "heading": "Welcome to Our Store",
+            "heading": "Winter Jackets & Coats",
             "heading_level": "h1",
             "heading_animation": "none",
-            "description": "Discover our latest collection",
+            "description": "up tp $200 Off",
             "description_animation": "none",
             "button_label": "Shop Now",
-            "button_link": "",
+            "button_link": "shopify://collections/outerwear",
             "horizontal_alignment": "center",
-            "vertical_alignment": "bottom"
+            "vertical_alignment": "middle"
           }
         }
       },
