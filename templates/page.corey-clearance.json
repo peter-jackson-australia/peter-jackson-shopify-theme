@@ -7,31 +7,232 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{
+ {
   "sections": {
-    "editorial_hero_hceC9g": {
-      "type": "editorial-hero",
-      "name": "Hero Editorial",
+    "hero_primary_4HRPTU": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "media_type": "video",
+        "video": "shopify://files/videos/Homepage Hero Video (HD).mp4",
+        "video_placeholder": "shopify://shop_images/peter-jackson-homepage-hero-image-2025-poster-image.webp",
+        "heading": "Half Year Sale Continues",
+        "heading_level": "h1",
+        "heading_animation": "none",
+        "description": "Up to 50% Off Select Styles / New Styles Added",
+        "description_animation": "none",
+        "button_label_1": "Shop All Sale",
+        "button_link_1": "shopify://collections/sale",
+        "button_label_2": "Suits from $399",
+        "button_link_2": "shopify://collections/mens-suits",
+        "button_label_3": "Sports Jackets from $299",
+        "button_link_3": "shopify://collections/sport-jackets",
+        "button_label_4": "Knitwear / Two for $200",
+        "button_link_4": "shopify://collections/knitwear",
+        "horizontal_alignment": "left",
+        "vertical_alignment": "bottom"
+      }
+    },
+    "collection_slider_wUXWw3": {
+      "type": "collection-slider",
+      "name": "Collection Slider",
+      "settings": {
+        "heading": "Best Of Sale",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "sale",
+        "button_label": "Shop Now",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
+    "variable_column_content_secondary_kUywhc": {
+      "type": "variable-column-content-secondary",
+      "blocks": {
+        "column_item_Aafzhg": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-man-wearing-brown_tonal_suit_6fc12545-8e95-4f50-8106-da662687e1eb.webp",
+            "image_link": "",
+            "heading": "Winter, Suited",
+            "heading_animation": "none",
+            "text": "Tailoring, refined for cooler days",
+            "text_animation": "none",
+            "column_link": "shopify://collections/mens-suits",
+            "column_link_text": "Shop Suits"
+          }
+        },
+        "column_item_trdcbt": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-man-wearing-casual-jacket_90cbb832-a03c-4fc9-b0b1-ae1f3aa2a8f1.webp",
+            "image_link": "",
+            "heading": "Casual Jackets, Off Duty",
+            "heading_animation": "none",
+            "text": "Relaxed structure. Winter ready.",
+            "text_animation": "none",
+            "column_link": "shopify://collections/casual-jackets",
+            "column_link_text": "Shop Casual Jackets"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_Aafzhg",
+        "column_item_trdcbt"
+      ],
+      "name": "Variable Column Content Secondary",
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
-        "leading_text": "",
-        "leading_text_animation": "none",
-        "first_title": "Discover",
-        "first_title_animation": "none",
-        "media_type": "image",
-        "animate_media": false,
-        "second_title": "Collection",
-        "second_title_animation": "none",
-        "description": "",
+        "column_count": "2",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "",
+        "heading_animation": "none",
+        "text": "",
+        "text_animation": "none",
+        "button_label": "",
+        "button_link": ""
+      }
+    },
+    "hero_primary_YCJLcF": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "media_type": "video",
+        "video": "shopify://files/videos/Outerwear Loop HP (Comp).mp4",
+        "heading": "Outerwear, in all forms",
+        "heading_level": "h2",
+        "heading_animation": "none",
+        "description": "From weatherproof to luxe wool/cashmere blends, this is the season's top layer",
         "description_animation": "none",
-        "cta_text": "Shop Now",
-        "cta_link": ""
+        "button_label_1": "Shop Jackets & Coats",
+        "button_link_1": "shopify://collections/outerwear",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "middle"
+      }
+    },
+    "variable_column_content_secondary_jHpEgT": {
+      "type": "variable-column-content-secondary",
+      "blocks": {
+        "column_item_CF4TLx": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-man-wearing-sports-jacket.webp",
+            "image_link": "",
+            "heading": "Sports Jackets",
+            "heading_animation": "none",
+            "text": "from $299",
+            "text_animation": "none",
+            "column_link": "shopify://collections/sport-jackets",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_c8jUhX": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-man-wearing-trousers.webp",
+            "image_link": "",
+            "heading": "Chinos & Trousers",
+            "heading_animation": "none",
+            "text": "From $89.95",
+            "text_animation": "none",
+            "column_link": "shopify://collections/bottoms",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_FrJjbX": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-man-wearing-casual-shirt.webp",
+            "image_link": "",
+            "heading": "Casual Shirts",
+            "heading_animation": "none",
+            "text": "from $59.95",
+            "text_animation": "none",
+            "column_link": "shopify://collections/casual-shirts",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_DYEeGP": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-man-wearing-winter-coat.jpg",
+            "image_link": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_CF4TLx",
+        "column_item_c8jUhX",
+        "column_item_FrJjbX",
+        "column_item_DYEeGP"
+      ],
+      "name": "Variable Column Content Secondary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "column_count": "3",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "",
+        "heading_animation": "none",
+        "text": "",
+        "text_animation": "none",
+        "button_label": "",
+        "button_link": ""
+      }
+    },
+    "blog_hero_MDUFaj": {
+      "type": "blog-hero",
+      "name": "Blog Hero",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "hero_image": "shopify://shop_images/Peter-Jackson-Man-Wearing-Green-Corduroy-Suit_HD.webp",
+        "show_image_overlay": true,
+        "image_heading": "The Corduroy Comeback",
+        "image_heading_animation": "none",
+        "image_description": "Vintage utility meets contemporary style. From suits to jackets and casual shirts, this classic textile is back with a vengeance.",
+        "image_description_animation": "none",
+        "image_link_text": "Read Article",
+        "image_link_url": "shopify://blogs/the-jackson-journal/the-corduroy-comeback",
+        "heading": "The Jackson Journal",
+        "heading_animation": "none",
+        "subheading": "The Stories Behind The Threads",
+        "subheading_animation": "none",
+        "description": "Discover our world through campaigns, interviews, and features designed to inform your style and inspire a life well lived.",
+        "description_animation": "none",
+        "cta_link": "shopify://pages/the-jackson-journal",
+        "cta_text": "Read Now",
+        "show_recent_posts": true,
+        "animate_posts": true,
+        "blog": "the-jackson-journal"
       }
     }
   },
   "order": [
-    "editorial_hero_hceC9g"
+    "hero_primary_4HRPTU",
+    "collection_slider_wUXWw3",
+    "variable_column_content_secondary_kUywhc",
+    "hero_primary_YCJLcF",
+    "variable_column_content_secondary_jHpEgT",
+    "blog_hero_MDUFaj"
   ]
 }
