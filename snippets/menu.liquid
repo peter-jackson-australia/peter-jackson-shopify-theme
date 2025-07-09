@@ -288,10 +288,8 @@
       },
   
       openMenu() {
-        // Save scroll position
         this.scrollY = window.scrollY;
         
-        // Lock body scroll
         document.body.style.position = 'fixed';
         document.body.style.top = `-${this.scrollY}px`;
         document.body.style.width = '100%';
@@ -310,26 +308,21 @@
       },
   
       closeMenu() {
-        // Only do anything if menu is actually open
         if (!this.isOpen) return;
         
         this.isOpen = false;
         document.body.classList.remove('menu-open');
         document.querySelector('.hamburger-menu').classList.remove('nav-open');
         
-        // Prepare for restoration
         const scrollY = Math.abs(parseInt(document.body.style.top || '0'));
         
-        // Set scroll-behavior to auto temporarily to prevent smooth scrolling
         document.documentElement.style.scrollBehavior = 'auto';
         
-        // Remove fixed and restore scroll in one go
         document.body.style.position = '';
         document.body.style.top = '';
         document.body.style.width = '';
         window.scrollTo(0, scrollY);
         
-        // Reset scroll-behavior
         document.documentElement.style.scrollBehavior = '';
       
         if (this.splideSlider) {
