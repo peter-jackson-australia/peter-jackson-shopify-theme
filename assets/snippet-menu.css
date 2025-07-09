@@ -2,12 +2,9 @@
   display: none !important;
 }
 
-body.menu-open {
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-}
+/* body.menu-open {
+  overflow: hidden;
+} */
 
 .menu-drawer__container {
   position: relative;
