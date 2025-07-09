@@ -3,7 +3,7 @@
 }
 
 body.menu-open {
-  height: 100vh; 
+  overflow: hidden;
 }
 
 .menu-drawer__container {
