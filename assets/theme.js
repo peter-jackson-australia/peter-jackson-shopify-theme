@@ -258,11 +258,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
   window.addEventListener('scroll', function() {
     if (window.scrollY > triggerPoint) {
-      header.classList.add('header-fixed', 'is-visible');
+      header.classList.add('header-fixed');
       spacer.classList.remove('hide');
+      setTimeout(() => header.classList.add('is-visible'), 10);
     } else {
-      header.classList.remove('header-fixed', 'is-visible');
-      spacer.classList.add('hide');
+      header.classList.remove('is-visible');
+      setTimeout(() => {
+        header.classList.remove('header-fixed');
+        spacer.classList.add('hide');
+      }, 300);
     }
   });
 });
