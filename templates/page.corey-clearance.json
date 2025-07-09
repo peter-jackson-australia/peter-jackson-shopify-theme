@@ -7,19 +7,18 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "hero_primary_4HRPTU": {
       "type": "hero-primary",
       "name": "Hero Section",
       "settings": {
         "media_type": "video",
-        "video": "shopify://files/videos/Homepage Hero Video (HD).mp4",
-        "video_placeholder": "shopify://shop_images/peter-jackson-homepage-hero-image-2025-poster-image.webp",
-        "heading": "Half Year Sale Continues",
+        "video": "shopify://files/videos/HYS_Red Video Banner.mp4",
+        "heading": "Half Year Sale",
         "heading_level": "h1",
         "heading_animation": "none",
-        "description": "Up to 50% Off Select Styles / New Styles Added",
+        "description": "FINAL DAYS <br>up to 50% Off",
         "description_animation": "none",
         "button_label_1": "Shop All Sale",
         "button_link_1": "shopify://collections/sale",
@@ -29,8 +28,8 @@
         "button_link_3": "shopify://collections/sport-jackets",
         "button_label_4": "Knitwear / Two for $200",
         "button_link_4": "shopify://collections/knitwear",
-        "horizontal_alignment": "left",
-        "vertical_alignment": "bottom"
+        "horizontal_alignment": "center",
+        "vertical_alignment": "middle"
       }
     },
     "collection_slider_wUXWw3": {
@@ -225,6 +224,35 @@
         "animate_posts": true,
         "blog": "the-jackson-journal"
       }
+    },
+    "hero_slider_hNLRHx": {
+      "type": "hero-slider",
+      "blocks": {
+        "slide_m99thc": {
+          "type": "slide",
+          "settings": {
+            "media_type": "video",
+            "video": "shopify://files/videos/HYS_Red Video Banner.mp4",
+            "heading": "Welcome to Our Store",
+            "heading_level": "h1",
+            "heading_animation": "none",
+            "description": "Discover our latest collection",
+            "description_animation": "none",
+            "button_label": "Shop Now",
+            "button_link": "",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "bottom"
+          }
+        }
+      },
+      "block_order": [
+        "slide_m99thc"
+      ],
+      "name": "Hero Slider",
+      "settings": {
+        "autoplay": true,
+        "slide_interval": 5
+      }
     }
   },
   "order": [
@@ -233,6 +261,7 @@
     "variable_column_content_secondary_kUywhc",
     "hero_primary_YCJLcF",
     "variable_column_content_secondary_jHpEgT",
-    "blog_hero_MDUFaj"
+    "blog_hero_MDUFaj",
+    "hero_slider_hNLRHx"
   ]
 }
