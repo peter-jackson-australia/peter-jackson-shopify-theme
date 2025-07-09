@@ -563,21 +563,20 @@ header {
   z-index: 9996; 
 }
 
-/* Add these new rules */
 #header-spacer {
   height: var(--space-xl);
 }
 
-.header-fixed {
+#site-header.header-fixed {
   position: fixed;
-  top: 0;
-  transform: translateY(-100%);
-  transition: transform 0.3s ease;
+  top: -100%;
+  transition: top 0.3s ease;
 }
 
-.header-fixed.is-visible {
-  transform: translateY(0);
+#site-header.header-fixed.is-visible {
+  top: 0;
 }
+
 .header {
   background-color: var(--white);
   display: flex;
