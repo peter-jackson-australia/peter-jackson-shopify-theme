@@ -83,87 +83,14 @@
       "type": "collection-slider",
       "name": "Collection Slider",
       "settings": {
-        "heading": "Best Of Sale",
+        "heading": "The Suits of Sale",
         "heading_animation": "none",
         "description": "",
         "description_animation": "none",
-        "collection": "sale",
+        "collection": "mens-suits",
         "button_label": "Shop Now",
         "products_to_show": 10,
         "animate_products": false
-      }
-    },
-    "variable_column_content_secondary_kUywhc": {
-      "type": "variable-column-content-secondary",
-      "blocks": {
-        "column_item_Aafzhg": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/peter-jackson-man-wearing-brown_tonal_suit_6fc12545-8e95-4f50-8106-da662687e1eb.webp",
-            "image_link": "",
-            "heading": "Winter, Suited",
-            "heading_animation": "none",
-            "text": "Tailoring, refined for cooler days",
-            "text_animation": "none",
-            "column_link": "shopify://collections/mens-suits",
-            "column_link_text": "Shop Suits"
-          }
-        },
-        "column_item_trdcbt": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/peter-jackson-man-wearing-casual-jacket_90cbb832-a03c-4fc9-b0b1-ae1f3aa2a8f1.webp",
-            "image_link": "",
-            "heading": "Casual Jackets, Off Duty",
-            "heading_animation": "none",
-            "text": "Relaxed structure. Winter ready.",
-            "text_animation": "none",
-            "column_link": "shopify://collections/casual-jackets",
-            "column_link_text": "Shop Casual Jackets"
-          }
-        }
-      },
-      "block_order": [
-        "column_item_Aafzhg",
-        "column_item_trdcbt"
-      ],
-      "name": "Variable Column Content Secondary",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": false,
-        "column_count": "2",
-        "text_alignment": "left",
-        "animate_columns": false,
-        "heading": "",
-        "heading_animation": "none",
-        "text": "",
-        "text_animation": "none",
-        "button_label": "",
-        "button_link": ""
-      }
-    },
-    "hero_primary_YCJLcF": {
-      "type": "hero-primary",
-      "name": "Hero Section",
-      "settings": {
-        "media_type": "video",
-        "video": "shopify://files/videos/Outerwear Loop HP (Comp).mp4",
-        "heading": "Outerwear, in all forms",
-        "heading_level": "h2",
-        "heading_animation": "none",
-        "description": "From weatherproof to luxe wool/cashmere blends, this is the season's top layer",
-        "description_animation": "none",
-        "button_label_1": "Shop Jackets & Coats",
-        "button_link_1": "shopify://collections/outerwear",
-        "button_label_2": "",
-        "button_link_2": "",
-        "button_label_3": "",
-        "button_link_3": "",
-        "button_label_4": "",
-        "button_link_4": "",
-        "horizontal_alignment": "center",
-        "vertical_alignment": "middle"
       }
     },
     "variable_column_content_secondary_jHpEgT": {
@@ -244,6 +171,80 @@
         "button_link": ""
       }
     },
+    "variable_column_content_secondary_kUywhc": {
+      "type": "variable-column-content-secondary",
+      "blocks": {
+        "column_item_Aafzhg": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-man-wearing-brown_tonal_suit_6fc12545-8e95-4f50-8106-da662687e1eb.webp",
+            "image_link": "",
+            "heading": "Winter, Suited",
+            "heading_animation": "none",
+            "text": "Tailoring, refined for cooler days",
+            "text_animation": "none",
+            "column_link": "shopify://collections/mens-suits",
+            "column_link_text": "Suits from $399"
+          }
+        },
+        "column_item_trdcbt": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-man-wearing-casual-jacket_90cbb832-a03c-4fc9-b0b1-ae1f3aa2a8f1.webp",
+            "image_link": "",
+            "heading": "Casual Jackets, Off Duty",
+            "heading_animation": "none",
+            "text": "Relaxed structure. Winter ready.",
+            "text_animation": "none",
+            "column_link": "shopify://collections/casual-jackets",
+            "column_link_text": "Up to $200 Off"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_Aafzhg",
+        "column_item_trdcbt"
+      ],
+      "name": "Variable Column Content Secondary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "2",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "",
+        "heading_animation": "none",
+        "text": "",
+        "text_animation": "none",
+        "button_label": "",
+        "button_link": ""
+      }
+    },
+    "hero_primary_YCJLcF": {
+      "type": "hero-primary",
+      "disabled": true,
+      "name": "Hero Section",
+      "settings": {
+        "media_type": "video",
+        "video": "shopify://files/videos/Outerwear Loop HP (Comp).mp4",
+        "heading": "Outerwear, in all forms",
+        "heading_level": "h2",
+        "heading_animation": "none",
+        "description": "From weatherproof to luxe wool/cashmere blends, this is the season's top layer",
+        "description_animation": "none",
+        "button_label_1": "Shop Jackets & Coats",
+        "button_link_1": "shopify://collections/outerwear",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "middle"
+      }
+    },
     "blog_hero_MDUFaj": {
       "type": "blog-hero",
       "name": "Blog Hero",
@@ -277,9 +278,9 @@
     "hero_slider_hNLRHx",
     "hero_primary_4HRPTU",
     "collection_slider_wUXWw3",
+    "variable_column_content_secondary_jHpEgT",
     "variable_column_content_secondary_kUywhc",
     "hero_primary_YCJLcF",
-    "variable_column_content_secondary_jHpEgT",
     "blog_hero_MDUFaj"
   ]
 }
