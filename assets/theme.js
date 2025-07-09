@@ -153,27 +153,20 @@ ready(function () {
             el.innerText = variant.sku;
           });
 
-          if (document.querySelector(".js--pants-size")) {
-            document.querySelector(".js--pants-size").textContent = v.option1 - 12;
+          if (document.querySelector('.js--pants-size')) {
+            document.querySelector('.js--pants-size').textContent = v.option1 - 12;
           }
 
           // Disable the buy button if product is unavailable
           var variantIndex = variants.findIndex((variant) => variant.id === v.id);
           var inventoryQuantity = variant_inventory_quantities[variantIndex];
 
-          if (v.available === false || (inventoryQuantity <= 5 && !v.name.includes("Digital Gift Card"))) {
+          if (v.available === false || (inventoryQuantity <= 5 && !v.name.includes('Digital Gift Card'))) {
             document.querySelector("#js--addtocart").disabled = true;
             document.querySelector("#js--addtocart").innerText = "Size Unavailable";
           } else {
             document.querySelector("#js--addtocart").disabled = false;
-            var buttonText =
-              show_low_stock_warning &&
-              inventoryQuantity >= 6 &&
-              inventoryQuantity <= 10 &&
-              !product_title.includes("Gift Card")
-                ? "Low In Stock - Add To Cart"
-                : "Add To Cart";
-            document.querySelector("#js--addtocart").innerText = buttonText;
+            document.querySelector("#js--addtocart").innerText = "Add To Cart";
           }
 
           // Update the hidden inventory quantity input
