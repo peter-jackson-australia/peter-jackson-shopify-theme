@@ -565,6 +565,7 @@ header {
 
 #header-spacer {
   height: var(--space-xl);
+  background-color: var(--white);
 }
 
 #site-header.header-fixed {
