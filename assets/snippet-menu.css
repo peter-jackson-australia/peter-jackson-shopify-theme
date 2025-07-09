@@ -2,7 +2,7 @@
   display: none !important;
 }
 
-html .body.menu-open {
+html body.menu-open {
   overflow: hidden;
 }
 
