@@ -3,7 +3,8 @@
 }
 
 body.menu-open {
-  overflow: auto;
+  height: 100vh; 
+  overflow: scroll;
 }
 
 .menu-drawer__container {
