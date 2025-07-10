@@ -256,7 +256,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const header = document.querySelector('#site-header');
   const spacer = document.querySelector('#header-spacer');
   const headerHeight = header.offsetHeight;
-  const showFixedAt = headerHeight + 200; // Show fixed header 200px after normal header is gone
+  const showFixedAt = headerHeight + 500; // Show fixed header 200px after normal header is gone
   const hideFixedAt = 0; // Hide fixed header when back at top
   let isFixed = false;
 
