@@ -97,6 +97,24 @@
     max-width: 80ch;
   }
 
+  .hero-slider__svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .hero-slider__svg--small {
+    max-width: min(200px, 90vw);
+  }
+
+  .hero-slider__svg--medium {
+    max-width: min(400px, 90vw);
+  }
+
+  .hero-slider__svg--large {
+    max-width: min(600px, 90vw);
+  }
+
   .hero-slider .splide__pagination {
     position: absolute;
     bottom: var(--space-m);
@@ -243,9 +261,18 @@
           {% endif %}
 
           <div class="hero-slider__content hero-slider__content--{{ block.settings.horizontal_alignment | default: 'center' }} hero-slider__content--{{ block.settings.vertical_alignment | default: 'bottom' }}">
-            <{{ block.settings.heading_level | default: 'h1' }} class="heading--3xl {% if block.settings.heading_animation != 'none' %}{{ block.settings.heading_animation }}{% endif %}">
-              {{ block.settings.heading }}
-            </{{ block.settings.heading_level | default: 'h1' }}>
+            {% if block.settings.svg_image %}
+              <img
+                src="{{ block.settings.svg_image | image_url }}"
+                alt="{{ block.settings.heading | escape }}"
+                class="hero-slider__svg hero-slider__svg--{{ block.settings.svg_size | default: 'medium' }}"
+                loading="lazy"
+              >
+            {% elsif block.settings.heading %}
+              <{{ block.settings.heading_level | default: 'h1' }} class="heading--3xl {% if block.settings.heading_animation != 'none' %}{{ block.settings.heading_animation }}{% endif %}">
+                {{ block.settings.heading }}
+              </{{ block.settings.heading_level | default: 'h1' }}>
+            {% endif %}
 
             <div class="heading--l {% if block.settings.description_animation != 'none' %}{{ block.settings.description_animation }}{% endif %}">
               {{ block.settings.description }}
@@ -414,6 +441,33 @@
           "id": "heading",
           "label": "Heading",
           "default": "Welcome to Our Store"
+        },
+        {
+          "type": "image_picker",
+          "id": "svg_image",
+          "label": "SVG Image (replaces heading)",
+          "info": "Upload an SVG file. If selected, this will be used instead of the heading text above."
+        },
+        {
+          "type": "select",
+          "id": "svg_size",
+          "label": "SVG Size",
+          "options": [
+            {
+              "value": "small",
+              "label": "Small (200px max)"
+            },
+            {
+              "value": "medium",
+              "label": "Medium (400px max)"
+            },
+            {
+              "value": "large",
+              "label": "Large (600px max)"
+            }
+          ],
+          "default": "medium",
+          "info": "Maximum width for SVG image. Image will never exceed screen width."
         },
         {
           "type": "select",
