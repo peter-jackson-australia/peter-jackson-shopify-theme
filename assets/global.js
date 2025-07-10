@@ -1,4 +1,4 @@
-window.addEventListener('load', () => {
+window.addEventListener("load", () => {
   quicklink.listen();
 });
 
@@ -41,7 +41,7 @@ function initCartFromStorage() {
 function prePopulateCartDrawer(cartData) {
   const cartEmpty = document.querySelector(".cart__empty-state");
   if (!cartEmpty) return;
-  
+
   cartEmpty.remove();
   const cartForm = document.querySelector(".cart__form");
 
@@ -255,7 +255,7 @@ async function fetchCart() {
         items: cart.items,
         total: cart.total_price,
         timestamp: Date.now(),
-        hasItems: cart.item_count > 0
+        hasItems: cart.item_count > 0,
       })
     );
 
@@ -269,11 +269,9 @@ async function fetchCart() {
 
 async function updateCartDrawer() {
   try {
-    const currentShippingDisplay = document.querySelector('.cart__shipping')?.style.display;
-    const currentShippingText = document.querySelector('.cart__shipping-text')?.textContent;
-    const currentProgressWidth = document.querySelector('.cart__shipping-progress')?.style.width;
-    const hasSkeletonLoader = document.querySelector('.cart__shipping-text .animated-loader');
-
+    const currentProgress = document.querySelector(".cart__shipping-progress");
+    const currentWidth = currentProgress ? currentProgress.style.width || "0%" : "0%";
+    
     const [drawerRes, cartData] = await Promise.all([fetch("/?section_id=cart-drawer"), fetchCart()]);
 
     const text = await drawerRes.text();
@@ -281,37 +279,49 @@ async function updateCartDrawer() {
     html.innerHTML = text;
 
     const images = html.querySelectorAll(".cart-item__image img");
-    await Promise.all(Array.from(images).map(img => {
-      return new Promise(resolve => {
-        const preloadImg = new Image();
-        preloadImg.onload = resolve;
-        preloadImg.onerror = resolve;
-        preloadImg.src = img.src;
-      });
-    }));
+    await Promise.all(
+      Array.from(images).map((img) => {
+        return new Promise((resolve) => {
+          const preloadImg = new Image();
+          preloadImg.onload = resolve;
+          preloadImg.onerror = resolve;
+          preloadImg.src = img.src;
+        });
+      })
+    );
 
-    cartElements.drawer.innerHTML = html.querySelector(".cart").innerHTML;
+    const newShippingBar = html.querySelector(".cart__shipping");
+    const hasItems = html.querySelector(".cart-item");
 
-    const newShippingBar = document.querySelector('.cart__shipping');
-    const newShippingText = document.querySelector('.cart__shipping-text');
-    const newProgress = document.querySelector('.cart__shipping-progress');
-    
-    if (newShippingBar && currentShippingDisplay === 'block') {
-      newShippingBar.style.display = 'block';
-      
-      if (!hasSkeletonLoader && newShippingText && currentShippingText) {
-        newShippingText.textContent = currentShippingText;
-      }
-      if (!hasSkeletonLoader && newProgress && currentProgressWidth) {
-        newProgress.style.width = currentProgressWidth;
+    if (newShippingBar && hasItems) {
+      newShippingBar.style.display = "block";
+      newShippingBar.style.height = "93px";
+
+      const threshold = 9900;
+      const newText = newShippingBar.querySelector(".cart__shipping-text");
+      const newProgress = newShippingBar.querySelector(".cart__shipping-progress");
+
+      if (cartData && newText && newProgress) {
+        if (cartData.total_price >= threshold) {
+          newText.textContent = "Your order has free shipping!";
+        } else {
+          const remaining = formatMoney(threshold - cartData.total_price);
+          newText.textContent = `$${remaining} away from free shipping`;
+        }
+        newProgress.style.width = currentWidth;
       }
     }
 
+    cartElements.drawer.innerHTML = html.querySelector(".cart").innerHTML;
     addCartEventListeners();
 
     const cart = await fetchCart();
-    if (cart) updateFreeShippingBar(cart.total_price);
-    
+    if (cart) {
+      setTimeout(() => {
+        animateShippingProgress(cart.total_price);
+      }, 100);
+    }
+
     return true;
   } catch (e) {
     console.error("Error updating cart drawer:", e);
@@ -320,33 +330,53 @@ async function updateCartDrawer() {
 }
 
 function updateFreeShippingBar(cartTotal) {
-  const shipping = document.querySelector('.cart__shipping');
-  const text = document.querySelector('.cart__shipping-text');
-  const progress = document.querySelector('.cart__shipping-progress');
-  
+  const shipping = document.querySelector(".cart__shipping");
+  const text = document.querySelector(".cart__shipping-text");
+  const progress = document.querySelector(".cart__shipping-progress");
+
   if (!shipping) return;
-  
-  shipping.classList.remove('cart__shipping--loading');
-  
+
+  shipping.classList.remove("cart__shipping--loading");
+
   const threshold = 9900;
-  const hasItems = document.querySelector('.cart-item');
-  
+  const hasItems = document.querySelector(".cart-item");
+
   if (!hasItems) {
-    shipping.style.display = 'none';
+    shipping.style.display = "none";
     return;
   }
-  
-  if (shipping.style.display === 'none') {
-    shipping.style.display = 'block';
+
+  shipping.style.height = "93px";
+  if (shipping.style.display === "none") {
+    shipping.style.display = "block";
   }
-  
+
   if (cartTotal >= threshold) {
-    text.textContent = 'Your order has free shipping!';
-    progress.style.width = '100%';
+    text.textContent = "Your order has free shipping!";
+    progress.style.width = "100%";
   } else {
     const remaining = formatMoney(threshold - cartTotal);
     text.textContent = `${remaining} away from free shipping`;
     progress.style.width = `${(cartTotal / threshold) * 100}%`;
+  }
+}
+
+function animateShippingProgress(cartTotal) {
+  const progress = document.querySelector(".cart__shipping-progress");
+  if (!progress) return;
+
+  const threshold = 9900;
+  const targetPercent = cartTotal >= threshold ? 100 : (cartTotal / threshold) * 100;
+
+  const currentWidth = progress.style.width || "0%";
+  const currentPercent = parseFloat(currentWidth) || 0;
+
+  if (Math.abs(targetPercent - currentPercent) > 1) {
+    progress.offsetWidth;
+    
+    progress.style.width = `${targetPercent}%`;
+  } else {
+    progress.style.width = `${targetPercent}%`;
   }
 }
 
@@ -386,7 +416,31 @@ function applyOptimisticUI() {
         .join(" / ") || "One Size";
   }
 
-  const productImage = document.querySelector(".splide__slide img")?.src || "";
+  let productImage = "";
+  
+  const selectors = [
+    ".splide__slide.is-active img", 
+    ".splide__slide:first-child img", 
+    ".product-gallery img:first-child", 
+    ".product-image img", 
+    ".splide__slide img"
+  ];
+  
+  for (const selector of selectors) {
+    const img = document.querySelector(selector);
+    if (img && img.src) {
+      productImage = img.src;
+      break;
+    }
+  }
+  
+  if (!productImage) {
+    const metaImage = document.querySelector('meta[property="og:image"]');
+    if (metaImage) {
+      productImage = metaImage.content;
+    }
+  }
+
   const variantId = document.querySelector("#js--variant-id")?.value || "";
 
   applyCartTotalLoaders();
@@ -403,6 +457,7 @@ function applyOptimisticUI() {
     const shippingBar = document.createElement("div");
     shippingBar.className = "cart__shipping cart__shipping--loading";
     shippingBar.style.display = "block";
+    shippingBar.style.height = "93px";
     shippingBar.innerHTML = `
       <p class="cart__shipping-text small"></p>
       <div class="cart__shipping-bar">
@@ -411,7 +466,7 @@ function applyOptimisticUI() {
     `;
     cartForm.insertBefore(shippingBar, itemsContainer);
 
-    const textLoader = shippingBar.querySelector('.cart__shipping-text');
+    const textLoader = shippingBar.querySelector(".cart__shipping-text");
     textLoader.appendChild(createAnimatedLoader());
 
     if (!document.querySelector(".cart__footer")) {
@@ -547,8 +602,8 @@ function addCartEventListeners() {
           if (updatedRootItem) {
             addErrorWithTimeout(
               updatedRootItem,
-              adjustedInventoryLimit === 0 
-                ? "Sorry, this item is out of stock." 
+              adjustedInventoryLimit === 0
+                ? "Sorry, this item is out of stock."
                 : `Sorry, only ${adjustedInventoryLimit} ${adjustedInventoryLimit === 1 ? "item" : "items"} available.`
             );
           }
@@ -595,12 +650,12 @@ function addCartEventListeners() {
       const remainingItems = document.querySelectorAll(".cart-item").length;
 
       cartItem.style.display = "none";
-      
+
       if (remainingItems === 1) {
         const shippingBar = document.querySelector(".cart__shipping");
         if (shippingBar) shippingBar.style.display = "none";
       }
-      
+
       applyCartTotalLoaders();
 
       try {
@@ -657,13 +712,19 @@ function handleAddToCart(form) {
 
       const totalRequestedQuantity = (existingItem ? existingItem.quantity : 0) + quantity;
 
-      if (!isGiftCardProduct() && adjustedInventoryQuantity !== Infinity && totalRequestedQuantity > adjustedInventoryQuantity) {
+      if (
+        !isGiftCardProduct() &&
+        adjustedInventoryQuantity !== Infinity &&
+        totalRequestedQuantity > adjustedInventoryQuantity
+      ) {
         addButton.innerHTML = originalText;
         showError(
-          form, 
-          adjustedInventoryQuantity === 0 
-            ? "Sorry, this item is out of stock." 
-            : `Sorry, only ${adjustedInventoryQuantity} ${adjustedInventoryQuantity === 1 ? "item" : "items"} available.`
+          form,
+          adjustedInventoryQuantity === 0
+            ? "Sorry, this item is out of stock."
+            : `Sorry, only ${adjustedInventoryQuantity} ${
+                adjustedInventoryQuantity === 1 ? "item" : "items"
+              } available.`
         );
         return;
       }

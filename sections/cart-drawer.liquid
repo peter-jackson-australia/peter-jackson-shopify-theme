@@ -247,6 +247,11 @@
 
   .cart__shipping {
     padding: var(--space-m);
+    height: 93px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-top: 1px solid var(--neutral-200);
     border-bottom: 1px solid var(--neutral-200);
   }
 
@@ -255,6 +260,8 @@
     height: 2px;
     background: var(--neutral-200);
     margin: var(--space-xs) 0;
+    opacity: 1;
+    transition: opacity 0.3s ease;
   }
 
   .cart__shipping-progress {
@@ -265,7 +272,7 @@
   }
 
   .cart__shipping--loading .cart__shipping-bar {
-    display: none;
+    opacity: 0;
   }
 
   .cart__new-arrivals {
