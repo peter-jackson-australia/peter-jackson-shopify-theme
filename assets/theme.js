@@ -259,7 +259,6 @@ document.addEventListener('DOMContentLoaded', function() {
   let ticking = false;
 
   function checkScroll() {
-    // Don't run if body has modal classes (menu/cart/search open)
     if (document.body.classList.contains('menu-open') || 
         document.body.classList.contains('cart-open') || 
         document.body.classList.contains('search-open')) {
