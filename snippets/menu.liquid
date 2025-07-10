@@ -251,7 +251,7 @@
         window.addEventListener('resize', () => {
           this.updateHeaderHeight();
         });
-      
+
         this.menuData = [
           {% for link in linklists['main-menu'].links %}
             {
@@ -279,14 +279,14 @@
             }{% unless forloop.last %},{% endunless %}
           {% endfor %}
         ];
-      
+  
         window.toggleNav = () => {
           this.isOpen ? this.closeMenu() : this.openMenu();
         };
-      
+
         window.closeMenu = () => this.closeMenu();
       },
-      
+
       updateHeaderHeight() {
         const header = document.querySelector('header');
         if (!header) return;
@@ -296,17 +296,13 @@
         const drawer = document.querySelector('.menu-drawer');
         
         if (isFixed) {
-          // When fixed, always use --space-xl
           if (overlay) overlay.style.top = 'var(--space-xl)';
           if (drawer) drawer.style.top = 'var(--space-xl)';
-          console.log('Header fixed: set top to var(--space-xl)');
         } else {
-          // When not fixed, calculate visible bottom
           const headerBottom = header.getBoundingClientRect().bottom;
           const topPosition = Math.max(0, headerBottom) + 'px';
           if (overlay) overlay.style.top = topPosition;
           if (drawer) drawer.style.top = topPosition;
-          console.log('Header not fixed: set top to', topPosition);
         }
       },
   
@@ -317,33 +313,29 @@
         return textarea.value;
       },
   
-      // Update your openMenu function to force the header height calculation:
+      openMenu() {
+        this.scrollY = window.scrollY;
+        
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${this.scrollY}px`;
+        document.body.style.width = '100%';
+        
+        this.isOpen = true;
+        this.currentLevel = 1;
+        document.body.classList.add('menu-open');
+        document.querySelector('.hamburger-menu').classList.add('nav-open');
+        window.closeFilter && window.closeFilter();
 
-openMenu() {
-  this.scrollY = window.scrollY;
+        this.$nextTick(() => {
+          this.updateHeaderHeight();
+        });
   
-  document.body.style.position = 'fixed';
-  document.body.style.top = `-${this.scrollY}px`;
-  document.body.style.width = '100%';
-  
-  this.isOpen = true;
-  this.currentLevel = 1;
-  document.body.classList.add('menu-open');
-  document.querySelector('.hamburger-menu').classList.add('nav-open');
-  window.closeFilter && window.closeFilter();
-
-  // Force update header height when menu opens
-  this.$nextTick(() => {
-    this.updateHeaderHeight();
-  });
-
-  if (window.triggerCardLoadAnimation) {
-    window.triggerCardLoadAnimation('#menu-drawer__menu-1');
-    window.triggerCardLoadAnimation('#menu-drawer__menu-1-secondary');
-    window.triggerCardLoadAnimation('.menu-drawer__scrollable-content');
-  }
-},
-
+        if (window.triggerCardLoadAnimation) {
+          window.triggerCardLoadAnimation('#menu-drawer__menu-1');
+          window.triggerCardLoadAnimation('#menu-drawer__menu-1-secondary');
+          window.triggerCardLoadAnimation('.menu-drawer__scrollable-content');
+        }
+      },
   
       closeMenu() {
         if (!this.isOpen) return;
