@@ -289,6 +289,7 @@ async function fetchCart() {
         items: cart.items,
         total: cart.total_price,
         timestamp: Date.now(),
+        hasItems: cart.item_count > 0
       })
     );
 
