@@ -558,24 +558,6 @@ header {
   position: relative;
 }
 
-#site-header {
-  width: 100%; 
-  z-index: 9996; 
-}
-
-#header-spacer {
-  height: var(--space-xl);
-}
-
-#site-header.header-fixed {
-  position: fixed;
-  top: 0;
-}
-
-#site-header.header-fixed.is-visible {
-  top: 0;
-}
-
 .header {
   background-color: var(--white);
   display: flex;
