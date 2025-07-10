@@ -255,7 +255,9 @@ function checkVariants() {
 document.addEventListener('DOMContentLoaded', function() {
   const header = document.querySelector('#site-header');
   const spacer = document.querySelector('#header-spacer');
-  const triggerPoint = header.offsetHeight + 50;
+  const headerHeight = header.offsetHeight;
+  const showFixedAt = headerHeight + 200; // Show fixed header 200px after normal header is gone
+  const hideFixedAt = 0; // Hide fixed header when back at top
   let isFixed = false;
 
   function checkScroll() {
@@ -268,19 +270,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const scrollY = window.scrollY;
     
-    if (scrollY > triggerPoint && !isFixed) {
+    if (scrollY > showFixedAt && !isFixed) {
+      // Show fixed header
       isFixed = true;
       header.classList.add('header-fixed');
       spacer.classList.remove('hide');
       requestAnimationFrame(() => {
         header.classList.add('is-visible');
       });
-    } else if (scrollY <= triggerPoint && isFixed) {
+    } else if (scrollY <= hideFixedAt && isFixed) {
+      // Hide fixed header only when normal header is back in view
       isFixed = false;
       header.classList.remove('is-visible');
-      spacer.classList.add('hide');
       setTimeout(() => {
         header.classList.remove('header-fixed');
+        spacer.classList.add('hide');
       }, 300);
     }
   }
