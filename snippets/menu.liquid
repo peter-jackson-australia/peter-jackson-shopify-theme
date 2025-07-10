@@ -288,25 +288,33 @@
       },
 
       
-updateHeaderHeight() {
-  const header = document.querySelector('header');
-  const overlay = document.querySelector('.menu-drawer__overlay');
-  const drawer = document.querySelector('.menu-drawer');
-  
-  if (!header || !overlay || !drawer) return;
-  
-  const isFixed = getComputedStyle(header).position === 'fixed';
-  
-  if (isFixed) {
-    overlay.style.setProperty('top', 'var(--space-xl)', 'important');
-    drawer.style.setProperty('top', 'var(--space-xl)', 'important');
-  } else {
-    const headerBottom = header.getBoundingClientRect().bottom;
-    const topPosition = Math.max(0, headerBottom) + 'px';
-    overlay.style.setProperty('top', topPosition, 'important');
-    drawer.style.setProperty('top', topPosition, 'important');
-  }
-},
+      updateHeaderHeight() {
+        const header = document.querySelector('header');
+        const overlay = document.querySelector('.menu-drawer__overlay');
+        const drawer = document.querySelector('.menu-drawer');
+        
+        if (!header || !overlay || !drawer) return;
+        
+        const isFixed = getComputedStyle(header).position === 'fixed';
+        
+        if (isFixed) {
+          // Header is fixed - use CSS variable
+          overlay.style.top = 'var(--space-xl)';
+          drawer.style.top = 'var(--space-xl)';
+          console.log('FIXED: Set to var(--space-xl)');
+        } else {
+          // Header is not fixed - use viewport height
+          const headerBottom = header.getBoundingClientRect().bottom;
+          const topPosition = Math.max(0, headerBottom) + 'px';
+          overlay.style.top = topPosition;
+          drawer.style.top = topPosition;
+          console.log('NOT FIXED: Set to', topPosition);
+        }
+        
+        // Log what was actually set
+        console.log('Overlay top:', overlay.style.top);
+        console.log('Drawer top:', drawer.style.top);
+      },
   
       decodeEntities(text) {
         if (!text) return '';
