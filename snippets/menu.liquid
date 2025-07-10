@@ -242,9 +242,32 @@
       currentChildIndex: null,
   
       init() {
-        const headerHeight = document.querySelector('header')?.offsetHeight || 60;
-        document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
-  
+        this.updateHeaderHeight();
+        
+        const siteHeader = document.querySelector('#site-header');
+        if (siteHeader) {
+          const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+              if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                this.updateHeaderHeight();
+              }
+            });
+          });
+          
+          observer.observe(siteHeader, {
+            attributes: true,
+            attributeFilter: ['class']
+          });
+        }
+        
+        window.addEventListener('scroll', () => {
+          this.updateHeaderHeight();
+        });
+        
+        window.addEventListener('resize', () => {
+          this.updateHeaderHeight();
+        });
+
         this.menuData = [
           {% for link in linklists['main-menu'].links %}
             {
@@ -279,6 +302,26 @@
 
         window.closeMenu = () => this.closeMenu();
       },
+
+      updateHeaderHeight() {
+        const siteHeader = document.querySelector('#site-header');
+        const overlay = document.querySelector('.menu-drawer__overlay');
+        const drawer = document.querySelector('.menu-drawer');
+        
+        if (!siteHeader || !overlay || !drawer) return;
+        
+        const isFixed = siteHeader.classList.contains('header-fixed');
+        
+        if (isFixed) {
+          overlay.style.top = 'var(--space-xl)';
+          drawer.style.top = 'var(--space-xl)';
+        } else {
+          const headerRect = siteHeader.getBoundingClientRect();
+          const topPosition = Math.max(0, headerRect.bottom) + 'px';
+          overlay.style.top = topPosition;
+          drawer.style.top = topPosition;
+        }
+      },
   
       decodeEntities(text) {
         if (!text) return '';
@@ -299,6 +342,10 @@
         document.body.classList.add('menu-open');
         document.querySelector('.hamburger-menu').classList.add('nav-open');
         window.closeFilter && window.closeFilter();
+
+        this.$nextTick(() => {
+          this.updateHeaderHeight();
+        });
   
         if (window.triggerCardLoadAnimation) {
           window.triggerCardLoadAnimation('#menu-drawer__menu-1');
