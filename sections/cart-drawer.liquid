@@ -248,6 +248,10 @@
   .cart__shipping {
     padding: var(--space-m);
     border-bottom: 1px solid var(--neutral-200);
+    min-height: 93px; /* Set explicit minimum height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .cart__shipping-bar {
@@ -255,6 +259,8 @@
     height: 2px;
     background: var(--neutral-200);
     margin: var(--space-xs) 0;
+    opacity: 1;
+    transition: opacity 0.3s ease;
   }
 
   .cart__shipping-progress {
@@ -264,8 +270,14 @@
     transition: width 0.5s ease;
   }
 
+  /* Instead of hiding the bar completely, make it invisible */
   .cart__shipping--loading .cart__shipping-bar {
-    display: none;
+    opacity: 0;
+  }
+
+  /* Ensure the text area maintains consistent height */
+  .cart__shipping-text {
+    min-height: 1.2em; /* Maintain text line height */
   }
 
   .cart__new-arrivals {
