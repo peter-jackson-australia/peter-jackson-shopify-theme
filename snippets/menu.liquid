@@ -367,33 +367,23 @@ updateHeaderHeight() {
   const header = document.querySelector('header');
   if (!header) return;
   
-  const headerStyles = getComputedStyle(header);
-  const isFixed = headerStyles.position === 'fixed';
+  const isFixed = getComputedStyle(header).position === 'fixed';
   const overlay = document.querySelector('.menu-drawer__overlay');
   const drawer = document.querySelector('.menu-drawer');
   
-  let topPosition;
-  
   if (isFixed) {
-    // When header is fixed, use the CSS variable value
-    const spaceXl = getComputedStyle(document.documentElement).getPropertyValue('--space-xl').trim();
-    topPosition = spaceXl;
-    console.log('Header is fixed, using:', spaceXl);
+    // When fixed, always use --space-xl
+    if (overlay) overlay.style.top = 'var(--space-xl)';
+    if (drawer) drawer.style.top = 'var(--space-xl)';
+    console.log('Header fixed: set top to var(--space-xl)');
   } else {
-    // When header is not fixed, calculate the visible bottom position
-    const headerRect = header.getBoundingClientRect();
-    topPosition = Math.max(0, headerRect.bottom) + 'px';
-    console.log('Header not fixed, bottom position:', Math.max(0, headerRect.bottom));
+    // When not fixed, calculate visible bottom
+    const headerBottom = header.getBoundingClientRect().bottom;
+    const topPosition = Math.max(0, headerBottom) + 'px';
+    if (overlay) overlay.style.top = topPosition;
+    if (drawer) drawer.style.top = topPosition;
+    console.log('Header not fixed: set top to', topPosition);
   }
-  
-  if (overlay) {
-    overlay.style.top = topPosition;
-  }
-  if (drawer) {
-    drawer.style.top = topPosition;
-  }
-  
-  console.log('Set menu top to:', topPosition);
 },
   
       closeMenu() {
