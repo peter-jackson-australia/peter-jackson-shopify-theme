@@ -9,7 +9,7 @@
 
 .menu-drawer__overlay {
   position: fixed;
-  top: var(--header-height);
+  top: var(--header-height); /* Change this line */
   left: 0;
   right: 0;
   bottom: 0;
@@ -19,7 +19,7 @@
 
 .menu-drawer {
   position: fixed;
-  top: var(--header-height);
+  top: var(--header-height); /* Change this line */
   bottom: 0;
   background: var(--white);
   overflow-x: hidden;
