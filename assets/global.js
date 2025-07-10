@@ -45,9 +45,20 @@ function prePopulateCartDrawer(cartData) {
   cartEmpty.remove();
   const cartForm = document.querySelector(".cart__form");
 
+  const shippingBar = document.createElement("div");
+  shippingBar.className = "cart__shipping";
+  shippingBar.style.display = "block";
+  shippingBar.innerHTML = `
+    <p class="cart__shipping-text small"></p>
+    <div class="cart__shipping-bar">
+      <div class="cart__shipping-progress"></div>
+    </div>
+  `;
+  cartForm.appendChild(shippingBar);
+
   const itemsContainer = document.createElement("div");
   itemsContainer.className = "cart__items";
-  cartForm.prepend(itemsContainer);
+  cartForm.appendChild(itemsContainer);
 
   cartData.items.forEach((item) => {
     const cartItem = document.createElement("article");
@@ -143,6 +154,8 @@ function prePopulateCartDrawer(cartData) {
     `;
     cartForm.appendChild(footer);
   }
+
+  updateFreeShippingBar(cartData.total);
 }
 
 function formatMoney(cents) {
@@ -242,6 +255,7 @@ async function fetchCart() {
         items: cart.items,
         total: cart.total_price,
         timestamp: Date.now(),
+        hasItems: cart.item_count > 0
       })
     );
 
@@ -255,6 +269,11 @@ async function fetchCart() {
 
 async function updateCartDrawer() {
   try {
+    const currentShippingDisplay = document.querySelector('.cart__shipping')?.style.display;
+    const currentShippingText = document.querySelector('.cart__shipping-text')?.textContent;
+    const currentProgressWidth = document.querySelector('.cart__shipping-progress')?.style.width;
+    const hasSkeletonLoader = document.querySelector('.cart__shipping-text .animated-loader');
+
     const [drawerRes, cartData] = await Promise.all([fetch("/?section_id=cart-drawer"), fetchCart()]);
 
     const text = await drawerRes.text();
@@ -272,11 +291,62 @@ async function updateCartDrawer() {
     }));
 
     cartElements.drawer.innerHTML = html.querySelector(".cart").innerHTML;
+
+    const newShippingBar = document.querySelector('.cart__shipping');
+    const newShippingText = document.querySelector('.cart__shipping-text');
+    const newProgress = document.querySelector('.cart__shipping-progress');
+    
+    if (newShippingBar && currentShippingDisplay === 'block') {
+      newShippingBar.style.display = 'block';
+      
+      if (!hasSkeletonLoader && newShippingText && currentShippingText) {
+        newShippingText.textContent = currentShippingText;
+      }
+      if (!hasSkeletonLoader && newProgress && currentProgressWidth) {
+        newProgress.style.width = currentProgressWidth;
+      }
+    }
+
     addCartEventListeners();
+
+    const cart = await fetchCart();
+    if (cart) updateFreeShippingBar(cart.total_price);
+    
     return true;
   } catch (e) {
     console.error("Error updating cart drawer:", e);
     return false;
+  }
+}
+
+function updateFreeShippingBar(cartTotal) {
+  const shipping = document.querySelector('.cart__shipping');
+  const text = document.querySelector('.cart__shipping-text');
+  const progress = document.querySelector('.cart__shipping-progress');
+  
+  if (!shipping) return;
+  
+  shipping.classList.remove('cart__shipping--loading');
+  
+  const threshold = 9900;
+  const hasItems = document.querySelector('.cart-item');
+  
+  if (!hasItems) {
+    shipping.style.display = 'none';
+    return;
+  }
+  
+  if (shipping.style.display === 'none') {
+    shipping.style.display = 'block';
+  }
+  
+  if (cartTotal >= threshold) {
+    text.textContent = 'Your order has free shipping!';
+    progress.style.width = '100%';
+  } else {
+    const remaining = formatMoney(threshold - cartTotal);
+    text.textContent = `${remaining} away from free shipping`;
+    progress.style.width = `${(cartTotal / threshold) * 100}%`;
   }
 }
 
@@ -329,6 +399,20 @@ function applyOptimisticUI() {
     const itemsContainer = document.createElement("div");
     itemsContainer.className = "cart__items";
     cartForm.prepend(itemsContainer);
+
+    const shippingBar = document.createElement("div");
+    shippingBar.className = "cart__shipping cart__shipping--loading";
+    shippingBar.style.display = "block";
+    shippingBar.innerHTML = `
+      <p class="cart__shipping-text small"></p>
+      <div class="cart__shipping-bar">
+        <div class="cart__shipping-progress"></div>
+      </div>
+    `;
+    cartForm.insertBefore(shippingBar, itemsContainer);
+
+    const textLoader = shippingBar.querySelector('.cart__shipping-text');
+    textLoader.appendChild(createAnimatedLoader());
 
     if (!document.querySelector(".cart__footer")) {
       const footer = document.createElement("footer");
@@ -508,8 +592,15 @@ function addCartEventListeners() {
     button.addEventListener("click", async () => {
       const cartItem = button.closest(".cart-item");
       const key = cartItem.getAttribute("data-line-item-key");
+      const remainingItems = document.querySelectorAll(".cart-item").length;
 
       cartItem.style.display = "none";
+      
+      if (remainingItems === 1) {
+        const shippingBar = document.querySelector(".cart__shipping");
+        if (shippingBar) shippingBar.style.display = "none";
+      }
+      
       applyCartTotalLoaders();
 
       try {
@@ -522,6 +613,10 @@ function addCartEventListeners() {
       } catch (e) {
         console.error("Error removing item:", e);
         cartItem.style.display = "";
+        if (remainingItems === 1) {
+          const shippingBar = document.querySelector(".cart__shipping");
+          if (shippingBar) shippingBar.style.display = "block";
+        }
         updateCartDrawer();
       }
     });

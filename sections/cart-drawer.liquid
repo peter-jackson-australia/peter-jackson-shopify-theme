@@ -245,6 +245,29 @@
     text-align: center;
   }
 
+  .cart__shipping {
+    padding: var(--space-m);
+    border-bottom: 1px solid var(--neutral-200);
+  }
+
+  .cart__shipping-bar {
+    width: 100%;
+    height: 2px;
+    background: var(--neutral-200);
+    margin: var(--space-xs) 0;
+  }
+
+  .cart__shipping-progress {
+    height: 100%;
+    background: var(--neutral-950);
+    width: 0%;
+    transition: width 0.5s ease;
+  }
+
+  .cart__shipping--loading .cart__shipping-bar {
+    display: none;
+  }
+
   .cart__new-arrivals {
     width: 100%;
     max-width: 300px;
@@ -291,6 +314,13 @@
           </button>
         </div>
       </header>
+
+      <div class="cart__shipping" style="display: none;">
+        <p class="cart__shipping-text small"></p>
+        <div class="cart__shipping-bar">
+          <div class="cart__shipping-progress"></div>
+        </div>
+      </div>
 
       {% form 'cart', cart, class: 'cart__form' %}
         {% if cart.item_count == 0 %}
