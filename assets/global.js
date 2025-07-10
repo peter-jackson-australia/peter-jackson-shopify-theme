@@ -306,7 +306,7 @@ async function updateCartDrawer() {
           newText.textContent = "Your order has free shipping!";
         } else {
           const remaining = formatMoney(threshold - cartData.total_price);
-          newText.textContent = `${remaining} away from free shipping`;
+          newText.textContent = `$${remaining} away from free shipping`;
         }
         newProgress.style.width = currentWidth;
       }
