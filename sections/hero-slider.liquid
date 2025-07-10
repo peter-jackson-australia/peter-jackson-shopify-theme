@@ -97,6 +97,12 @@
     max-width: 80ch;
   }
 
+  .hero-slider__buttons {
+    display: flex;
+    gap: var(--space-s);
+    flex-wrap: wrap;
+  }
+
   .hero-slider__svg {
     max-width: 100%;
     height: auto;
@@ -104,15 +110,15 @@
   }
 
   .hero-slider__svg--small {
-    max-width: min(320px, 90vw);
+    max-width: min(200px, 90vw);
   }
 
   .hero-slider__svg--medium {
-    max-width: min(650px, 90vw);
+    max-width: min(400px, 90vw);
   }
 
   .hero-slider__svg--large {
-    max-width: min(900px, 90vw);
+    max-width: min(600px, 90vw);
   }
 
   .hero-slider .splide__pagination {
@@ -169,6 +175,14 @@
 
     .hero-slider .splide__pagination {
       bottom: var(--space-s);
+    }
+
+    .hero-slider__buttons {
+      flex-direction: column;
+    }
+
+    .hero-slider__buttons .button {
+      width: 100%;
     }
 
     {% for block in section.blocks %}
@@ -280,15 +294,21 @@
               {{ block.settings.description }}
             </div>
 
-            {% if block.settings.button_link and block.settings.button_label %}
-              <a
-                href="{{ block.settings.button_link }}"
-                class="button button--white body"
-                aria-label="{{ block.settings.button_label | escape }}"
-              >
-                {{ block.settings.button_label }}
-              </a>
-            {% endif %}
+            <div class="hero-slider__buttons">
+              {% for i in (1..4) %}
+                {% assign button_label = 'button_label_' | append: i %}
+                {% assign button_link = 'button_link_' | append: i %}
+                {% if block.settings[button_label] and block.settings[button_link] %}
+                  <a
+                    href="{{ block.settings[button_link] }}"
+                    class="button button--white body"
+                    aria-label="{{ block.settings[button_label] | escape }}"
+                  >
+                    {{ block.settings[button_label] }}
+                  </a>
+                {% endif %}
+              {% endfor %}
+            </div>
           </div>
         </li>
       {% endfor %}
@@ -457,15 +477,15 @@
           "options": [
             {
               "value": "small",
-              "label": "Small (320px max)"
+              "label": "Small (200px max)"
             },
             {
               "value": "medium",
-              "label": "Medium (650px max)"
+              "label": "Medium (400px max)"
             },
             {
               "value": "large",
-              "label": "Large (900px max)"
+              "label": "Large (600px max)"
             }
           ],
           "default": "medium",
@@ -559,14 +579,44 @@
         },
         {
           "type": "text",
-          "id": "button_label",
-          "label": "Button Text",
+          "id": "button_label_1",
+          "label": "Button 1 Text",
           "default": "Shop Now"
         },
         {
           "type": "url",
-          "id": "button_link",
-          "label": "Button Link"
+          "id": "button_link_1",
+          "label": "Button 1 Link"
+        },
+        {
+          "type": "text",
+          "id": "button_label_2",
+          "label": "Button 2 Text"
+        },
+        {
+          "type": "url",
+          "id": "button_link_2",
+          "label": "Button 2 Link"
+        },
+        {
+          "type": "text",
+          "id": "button_label_3",
+          "label": "Button 3 Text"
+        },
+        {
+          "type": "url",
+          "id": "button_link_3",
+          "label": "Button 3 Link"
+        },
+        {
+          "type": "text",
+          "id": "button_label_4",
+          "label": "Button 4 Text"
+        },
+        {
+          "type": "url",
+          "id": "button_link_4",
+          "label": "Button 4 Link"
         },
         {
           "type": "select",
