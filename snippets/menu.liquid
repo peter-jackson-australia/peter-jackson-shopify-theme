@@ -336,25 +336,49 @@
         return textarea.value;
       },
   
-      openMenu() {
-        this.scrollY = window.scrollY;
-        
-        document.body.style.position = 'fixed';
-        document.body.style.top = `-${this.scrollY}px`;
-        document.body.style.width = '100%';
-        
-        this.isOpen = true;
-        this.currentLevel = 1;
-        document.body.classList.add('menu-open');
-        document.querySelector('.hamburger-menu').classList.add('nav-open');
-        window.closeFilter && window.closeFilter();
+      // Update your openMenu function to force the header height calculation:
+
+openMenu() {
+  this.scrollY = window.scrollY;
   
-        if (window.triggerCardLoadAnimation) {
-          window.triggerCardLoadAnimation('#menu-drawer__menu-1');
-          window.triggerCardLoadAnimation('#menu-drawer__menu-1-secondary');
-          window.triggerCardLoadAnimation('.menu-drawer__scrollable-content');
-        }
-      },
+  document.body.style.position = 'fixed';
+  document.body.style.top = `-${this.scrollY}px`;
+  document.body.style.width = '100%';
+  
+  this.isOpen = true;
+  this.currentLevel = 1;
+  document.body.classList.add('menu-open');
+  document.querySelector('.hamburger-menu').classList.add('nav-open');
+  window.closeFilter && window.closeFilter();
+
+  // Force update header height when menu opens
+  this.$nextTick(() => {
+    this.updateHeaderHeight();
+  });
+
+  if (window.triggerCardLoadAnimation) {
+    window.triggerCardLoadAnimation('#menu-drawer__menu-1');
+    window.triggerCardLoadAnimation('#menu-drawer__menu-1-secondary');
+    window.triggerCardLoadAnimation('.menu-drawer__scrollable-content');
+  }
+},
+
+// Simplified updateHeaderHeight that always uses var(--space-xl):
+updateHeaderHeight() {
+  const overlay = document.querySelector('.menu-drawer__overlay');
+  const drawer = document.querySelector('.menu-drawer');
+  
+  // Get the computed value of --space-xl
+  const spaceXl = getComputedStyle(document.documentElement).getPropertyValue('--space-xl').trim();
+  console.log('Using header height:', spaceXl);
+  
+  if (overlay) {
+    overlay.style.top = spaceXl;
+  }
+  if (drawer) {
+    drawer.style.top = spaceXl;
+  }
+},
   
       closeMenu() {
         if (!this.isOpen) return;
