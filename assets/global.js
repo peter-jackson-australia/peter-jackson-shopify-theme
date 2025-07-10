@@ -513,14 +513,14 @@ function addCartEventListeners() {
       const key = rootItem.getAttribute("data-line-item-key");
       const currentQuantity = Number(button.parentElement.querySelector("input").value);
       const isUp = button.classList.contains("cart-item__quantity-button--plus");
-
+ 
       if (isUp && !isGiftCardItem(rootItem)) {
         const inventoryLimit = parseInt(rootItem.getAttribute("data-inventory-quantity") || "Infinity", 10);
         const adjustedInventoryLimit = inventoryLimit === Infinity ? Infinity : Math.max(0, inventoryLimit - 5);
-
+ 
         if (currentQuantity >= adjustedInventoryLimit) {
           applyCartTotalLoaders();
-
+ 
           const actionsEl = rootItem.querySelector(".cart-item__actions");
           createLoadingPlaceholder(actionsEl);
           actionsEl.innerHTML = `
@@ -528,12 +528,12 @@ function addCartEventListeners() {
             <div class="placeholder-remove"></div>
           `;
           actionsEl.querySelector(".placeholder-loader").appendChild(createAnimatedLoader());
-
+ 
           createLoadingPlaceholder(rootItem.querySelector(".cart-item__price"));
-
+ 
           await new Promise((resolve) => setTimeout(resolve, 800));
           await updateCartDrawer();
-
+ 
           const updatedRootItem = document.querySelector(`[data-line-item-key="${key}"]`);
           if (updatedRootItem) {
             addErrorWithTimeout(
@@ -546,10 +546,10 @@ function addCartEventListeners() {
           return;
         }
       }
-
+ 
       try {
         applyCartTotalLoaders();
-
+ 
         const actionsEl = rootItem.querySelector(".cart-item__actions");
         createLoadingPlaceholder(actionsEl);
         actionsEl.innerHTML = `
@@ -557,20 +557,20 @@ function addCartEventListeners() {
           <div class="placeholder-remove"></div>
         `;
         actionsEl.querySelector(".placeholder-loader").appendChild(createAnimatedLoader());
-
+ 
         createLoadingPlaceholder(rootItem.querySelector(".cart-item__price"));
-
+ 
         await fetch("/cart/update.js", {
           method: "post",
           headers: { Accept: "application/json", "Content-Type": "application/json" },
           body: JSON.stringify({ updates: { [key]: isUp ? currentQuantity + 1 : currentQuantity - 1 } }),
         });
-
+ 
         await updateCartDrawer();
       } catch (e) {
         console.error("Error updating quantity:", e);
         await updateCartDrawer();
-
+ 
         const updatedRootItem = document.querySelector(`[data-line-item-key="${key}"]`);
         if (updatedRootItem) {
           addErrorWithTimeout(updatedRootItem, "Could not update quantity. Please try again.");
@@ -578,15 +578,22 @@ function addCartEventListeners() {
       }
     });
   });
-
+ 
   document.querySelectorAll(".cart-item__remove").forEach((button) => {
     button.addEventListener("click", async () => {
       const cartItem = button.closest(".cart-item");
       const key = cartItem.getAttribute("data-line-item-key");
-
+      const remainingItems = document.querySelectorAll(".cart-item").length;
+ 
       cartItem.style.display = "none";
+      
+      if (remainingItems === 1) {
+        const shippingBar = document.querySelector(".cart__shipping");
+        if (shippingBar) shippingBar.style.display = "none";
+      }
+      
       applyCartTotalLoaders();
-
+ 
       try {
         await fetch("/cart/update.js", {
           method: "post",
@@ -597,16 +604,20 @@ function addCartEventListeners() {
       } catch (e) {
         console.error("Error removing item:", e);
         cartItem.style.display = "";
+        if (remainingItems === 1) {
+          const shippingBar = document.querySelector(".cart__shipping");
+          if (shippingBar) shippingBar.style.display = "block";
+        }
         updateCartDrawer();
       }
     });
   });
-
+ 
   document.querySelector(".cart__container")?.addEventListener("click", (e) => e.stopPropagation());
   document.querySelectorAll(".cart__close, .cart").forEach((el) => {
     el.addEventListener("click", closeCartDrawer);
   });
-}
+ }
 
 function handleAddToCart(form) {
   return async (e) => {
