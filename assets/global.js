@@ -669,15 +669,6 @@ function handleAddToCart(form) {
       }
 
       openCartDrawer();
-
-      const isCartEmpty = document.querySelector(".cart__empty-state");
-      if (isCartEmpty) {
-        const shippingBar = document.querySelector(".cart__shipping");
-        if (shippingBar) {
-          shippingBar.style.display = "block";
-        }
-      }
-
       applyOptimisticUI();
 
       await fetch("/cart/add.js", {
