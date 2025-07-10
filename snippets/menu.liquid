@@ -289,43 +289,24 @@
       
       updateHeaderHeight() {
         const header = document.querySelector('header');
-        if (header) {
-          const headerStyles = getComputedStyle(header);
-          const isFixed = headerStyles.position === 'fixed';
-          
-          console.log('Header is fixed:', isFixed);
-          
-          const overlay = document.querySelector('.menu-drawer__overlay');
-          const drawer = document.querySelector('.menu-drawer');
-          
-          if (isFixed) {
-            // When header is fixed, use the CSS variable
-            if (overlay) {
-              overlay.style.top = 'var(--space-xl)';
-            }
-            if (drawer) {
-              drawer.style.top = 'var(--space-xl)';
-            }
-            console.log('Set top to var(--space-xl)');
-          } else {
-            // When header is not fixed, calculate visible portion
-            const headerRect = header.getBoundingClientRect();
-            let visibleHeight;
-            
-            if (headerRect.top < 0) {
-              visibleHeight = Math.max(0, headerRect.bottom);
-            } else {
-              visibleHeight = headerRect.height;
-            }
-            
-            if (overlay) {
-              overlay.style.top = `${visibleHeight}px`;
-            }
-            if (drawer) {
-              drawer.style.top = `${visibleHeight}px`;
-            }
-            console.log('Set top to:', visibleHeight + 'px');
-          }
+        if (!header) return;
+        
+        const isFixed = getComputedStyle(header).position === 'fixed';
+        const overlay = document.querySelector('.menu-drawer__overlay');
+        const drawer = document.querySelector('.menu-drawer');
+        
+        if (isFixed) {
+          // When fixed, always use --space-xl
+          if (overlay) overlay.style.top = 'var(--space-xl)';
+          if (drawer) drawer.style.top = 'var(--space-xl)';
+          console.log('Header fixed: set top to var(--space-xl)');
+        } else {
+          // When not fixed, calculate visible bottom
+          const headerBottom = header.getBoundingClientRect().bottom;
+          const topPosition = Math.max(0, headerBottom) + 'px';
+          if (overlay) overlay.style.top = topPosition;
+          if (drawer) drawer.style.top = topPosition;
+          console.log('Header not fixed: set top to', topPosition);
         }
       },
   
