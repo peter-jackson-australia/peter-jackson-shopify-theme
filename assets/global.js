@@ -403,18 +403,18 @@ function applyOptimisticUI() {
     cartForm.prepend(itemsContainer);
 
     const shippingBar = document.createElement("div");
-    shippingBar.className = "cart__shipping";
-    shippingBar.style.display = "block";
-    shippingBar.innerHTML = `
-      <p class="cart__shipping-text small"></p>
-      <div class="cart__shipping-bar">
-        <div class="cart__shipping-progress" style="width: 0%; background: transparent;"></div>
-      </div>
-    `;
-    cartForm.insertBefore(shippingBar, itemsContainer);
+shippingBar.className = "cart__shipping cart__shipping--loading";
+shippingBar.style.display = "block";
+shippingBar.innerHTML = `
+  <p class="cart__shipping-text small"></p>
+  <div class="cart__shipping-bar">
+    <div class="cart__shipping-progress"></div>
+  </div>
+`;
+cartForm.insertBefore(shippingBar, itemsContainer);
 
-    const textLoader = shippingBar.querySelector(".cart__shipping-text");
-    textLoader.appendChild(createAnimatedLoader());
+const textLoader = shippingBar.querySelector('.cart__shipping-text');
+textLoader.appendChild(createAnimatedLoader());
 
     if (!document.querySelector(".cart__footer")) {
       const footer = document.createElement("footer");
