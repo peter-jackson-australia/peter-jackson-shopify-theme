@@ -290,35 +290,41 @@
       updateHeaderHeight() {
         const header = document.querySelector('header');
         if (header) {
-          // Get the header's position relative to the viewport
-          const headerRect = header.getBoundingClientRect();
+          const headerStyles = getComputedStyle(header);
+          const isFixed = headerStyles.position === 'fixed';
           
-          // Calculate visible height - if header is partially scrolled out of view
-          let visibleHeight;
+          console.log('Header is fixed:', isFixed);
           
-          if (headerRect.top < 0) {
-            // Header is partially scrolled out of view
-            visibleHeight = Math.max(0, headerRect.bottom);
-          } else {
-            // Header is fully in view
-            visibleHeight = headerRect.height;
-          }
-          
-          console.log('Header rect:', headerRect);
-          console.log('Visible height:', visibleHeight);
-          
-          // Set the CSS custom property to the visible height
-          document.documentElement.style.setProperty('--header-height', `${visibleHeight}px`);
-          
-          // Also directly set the top position as backup
           const overlay = document.querySelector('.menu-drawer__overlay');
           const drawer = document.querySelector('.menu-drawer');
           
-          if (overlay) {
-            overlay.style.top = `${visibleHeight}px`;
-          }
-          if (drawer) {
-            drawer.style.top = `${visibleHeight}px`;
+          if (isFixed) {
+            // When header is fixed, use the CSS variable
+            if (overlay) {
+              overlay.style.top = 'var(--space-xl)';
+            }
+            if (drawer) {
+              drawer.style.top = 'var(--space-xl)';
+            }
+            console.log('Set top to var(--space-xl)');
+          } else {
+            // When header is not fixed, calculate visible portion
+            const headerRect = header.getBoundingClientRect();
+            let visibleHeight;
+            
+            if (headerRect.top < 0) {
+              visibleHeight = Math.max(0, headerRect.bottom);
+            } else {
+              visibleHeight = headerRect.height;
+            }
+            
+            if (overlay) {
+              overlay.style.top = `${visibleHeight}px`;
+            }
+            if (drawer) {
+              drawer.style.top = `${visibleHeight}px`;
+            }
+            console.log('Set top to:', visibleHeight + 'px');
           }
         }
       },
