@@ -251,22 +251,21 @@ function checkVariants() {
   });
 }
 
+// Add this to your theme's main JavaScript file
 document.addEventListener('DOMContentLoaded', function() {
   const header = document.querySelector('#site-header');
   const spacer = document.querySelector('#header-spacer');
   const triggerPoint = header.offsetHeight + 50;
   let isFixed = false;
-  let isInteracting = false;
 
-  // Prevent header changes during user interactions
-  header.addEventListener('click', () => {
-    isInteracting = true;
-    setTimeout(() => isInteracting = false, 500);
-  });
+  function checkScroll() {
+    // Don't run if body has modal classes (menu/cart/search open)
+    if (document.body.classList.contains('menu-open') || 
+        document.body.classList.contains('cart-open') || 
+        document.body.classList.contains('search-open')) {
+      return;
+    }
 
-  function updateHeader() {
-    if (isInteracting) return;
-    
     const scrollY = window.scrollY;
     
     if (scrollY > triggerPoint && !isFixed) {
@@ -281,21 +280,10 @@ document.addEventListener('DOMContentLoaded', function() {
       header.classList.remove('is-visible');
       spacer.classList.add('hide');
       setTimeout(() => {
-        if (!isFixed) {
-          header.classList.remove('header-fixed');
-        }
+        header.classList.remove('header-fixed');
       }, 300);
     }
   }
 
-  let ticking = false;
-  window.addEventListener('scroll', function() {
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        updateHeader();
-        ticking = false;
-      });
-      ticking = true;
-    }
-  });
+  window.addEventListener('scroll', checkScroll);
 });
