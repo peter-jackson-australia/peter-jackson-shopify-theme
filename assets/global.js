@@ -39,9 +39,9 @@ function initCartFromStorage() {
 }
 
 function prePopulateCartDrawer(cartData) {
-  const cartEmpty = document.querySelector(".cart__empty");
+  const cartEmpty = document.querySelector(".cart__empty-state");
   if (!cartEmpty) return;
-
+  
   cartEmpty.remove();
   const cartForm = document.querySelector(".cart__form");
 
@@ -321,7 +321,7 @@ function applyOptimisticUI() {
 
   applyCartTotalLoaders();
 
-  const isCartEmpty = document.querySelector(".cart__empty");
+  const isCartEmpty = document.querySelector(".cart__empty-state");
   if (isCartEmpty) {
     const cartForm = document.querySelector(".cart__form");
     isCartEmpty.remove();
