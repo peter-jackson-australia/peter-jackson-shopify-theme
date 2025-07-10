@@ -143,6 +143,8 @@ function prePopulateCartDrawer(cartData) {
     `;
     cartForm.appendChild(footer);
   }
+
+  updateFreeShippingBar(cartData.total);
 }
 
 function formatMoney(cents) {
