@@ -321,7 +321,7 @@ function applyOptimisticUI() {
 
   applyCartTotalLoaders();
 
-  const isCartEmpty = document.querySelector(".cart__empty");
+  const isCartEmpty = document.querySelector(".cart__empty-state");
   if (isCartEmpty) {
     const cartForm = document.querySelector(".cart__form");
     isCartEmpty.remove();
