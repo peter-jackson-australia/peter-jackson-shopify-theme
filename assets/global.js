@@ -269,11 +269,10 @@ async function fetchCart() {
 
 async function updateCartDrawer() {
   try {
-    const currentShippingDisplay = document.querySelector('.cart__shipping')?.style.display;
-    const currentShippingText = document.querySelector('.cart__shipping-text')?.textContent;
-    const currentProgressWidth = document.querySelector('.cart__shipping-progress')?.style.width;
-    const hasSkeletonLoader = document.querySelector('.cart__shipping-text .animated-loader');
-
+    // Preserve shipping bar state before update
+    const currentShippingBar = document.querySelector('.cart__shipping');
+    const hasOptimisticShipping = currentShippingBar && currentShippingBar.classList.contains('cart__shipping--loading');
+    
     const [drawerRes, cartData] = await Promise.all([fetch("/?section_id=cart-drawer"), fetchCart()]);
 
     const text = await drawerRes.text();
@@ -290,32 +289,76 @@ async function updateCartDrawer() {
       });
     }));
 
-    cartElements.drawer.innerHTML = html.querySelector(".cart").innerHTML;
-
-    const newShippingBar = document.querySelector('.cart__shipping');
-    const newShippingText = document.querySelector('.cart__shipping-text');
-    const newProgress = document.querySelector('.cart__shipping-progress');
-    
-    if (newShippingBar && currentShippingDisplay === 'block') {
-      newShippingBar.style.display = 'block';
-      
-      if (!hasSkeletonLoader && newShippingText && currentShippingText) {
-        newShippingText.textContent = currentShippingText;
-      }
-      if (!hasSkeletonLoader && newProgress && currentProgressWidth) {
-        newProgress.style.width = currentProgressWidth;
+    // If we have optimistic shipping, preserve it during the update
+    if (hasOptimisticShipping) {
+      const newShippingBar = html.querySelector('.cart__shipping');
+      if (newShippingBar) {
+        newShippingBar.className = 'cart__shipping cart__shipping--loading';
+        newShippingBar.style.display = 'block';
+        newShippingBar.innerHTML = `
+          <p class="cart__shipping-text small"></p>
+          <div class="cart__shipping-bar">
+            <div class="cart__shipping-progress"></div>
+          </div>
+        `;
+        const textLoader = newShippingBar.querySelector('.cart__shipping-text');
+        textLoader.appendChild(createAnimatedLoader());
       }
     }
 
+    cartElements.drawer.innerHTML = html.querySelector(".cart").innerHTML;
     addCartEventListeners();
 
+    // Now update the shipping bar with real data, but keep it visible
     const cart = await fetchCart();
-    if (cart) updateFreeShippingBar(cart.total_price);
+    if (cart) {
+      updateFreeShippingBar(cart.total_price);
+    }
     
     return true;
   } catch (e) {
     console.error("Error updating cart drawer:", e);
     return false;
+  }
+}
+
+function updateFreeShippingBar(cartTotal) {
+  const shipping = document.querySelector('.cart__shipping');
+  const text = document.querySelector('.cart__shipping-text');
+  const progress = document.querySelector('.cart__shipping-progress');
+  
+  if (!shipping) return;
+  
+  const threshold = 9900;
+  const hasItems = document.querySelector('.cart-item');
+  
+  if (!hasItems) {
+    shipping.style.display = 'none';
+    return;
+  }
+  
+  // Remove loading state and update content
+  shipping.classList.remove('cart__shipping--loading');
+  
+  // Clear any existing loader in the text element
+  const loader = text.querySelector('.animated-loader');
+  if (loader) {
+    loader.remove();
+  }
+  
+  if (cartTotal >= threshold) {
+    text.textContent = 'Your order has free shipping!';
+    progress.style.width = '100%';
+  } else {
+    const remaining = formatMoney(threshold - cartTotal);
+    text.textContent = `${remaining} away from free shipping`;
+    progress.style.width = `${(cartTotal / threshold) * 100}%`;
+  }
+  
+  // Show the progress bar now that we have real data
+  const progressBar = shipping.querySelector('.cart__shipping-bar');
+  if (progressBar) {
+    progressBar.style.display = 'block';
   }
 }
 
