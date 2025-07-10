@@ -266,6 +266,8 @@
                 src="{{ block.settings.svg_image | image_url }}"
                 alt="{{ block.settings.heading | escape }}"
                 class="hero-slider__svg hero-slider__svg--{{ block.settings.svg_size | default: 'medium' }}"
+                width="{{ block.settings.svg_image.width }}"
+                height="{{ block.settings.svg_image.height }}"
                 loading="lazy"
               >
             {% elsif block.settings.heading %}
