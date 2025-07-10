@@ -291,9 +291,10 @@ async function fetchCart() {
 
 async function updateCartDrawer() {
   try {
-    const currentShippingDisplay = document.querySelector(".cart__shipping")?.style.display;
-    const currentShippingText = document.querySelector(".cart__shipping-text")?.textContent;
-    const currentProgressWidth = document.querySelector(".cart__shipping-progress")?.style.width;
+    const currentShippingDisplay = document.querySelector('.cart__shipping')?.style.display;
+    const currentShippingText = document.querySelector('.cart__shipping-text')?.textContent;
+    const currentProgressWidth = document.querySelector('.cart__shipping-progress')?.style.width;
+    const hasSkeletonLoader = document.querySelector('.cart__shipping-text .animated-loader');
 
     const [drawerRes, cartData] = await Promise.all([fetch("/?section_id=cart-drawer"), fetchCart()]);
 
@@ -302,29 +303,28 @@ async function updateCartDrawer() {
     html.innerHTML = text;
 
     const images = html.querySelectorAll(".cart-item__image img");
-    await Promise.all(
-      Array.from(images).map((img) => {
-        return new Promise((resolve) => {
-          const preloadImg = new Image();
-          preloadImg.onload = resolve;
-          preloadImg.onerror = resolve;
-          preloadImg.src = img.src;
-        });
-      })
-    );
+    await Promise.all(Array.from(images).map(img => {
+      return new Promise(resolve => {
+        const preloadImg = new Image();
+        preloadImg.onload = resolve;
+        preloadImg.onerror = resolve;
+        preloadImg.src = img.src;
+      });
+    }));
 
     cartElements.drawer.innerHTML = html.querySelector(".cart").innerHTML;
 
-    const newShippingBar = document.querySelector(".cart__shipping");
-    const newShippingText = document.querySelector(".cart__shipping-text");
-    const newProgress = document.querySelector(".cart__shipping-progress");
-
-    if (newShippingBar && currentShippingDisplay === "block") {
-      newShippingBar.style.display = "block";
-      if (newShippingText && currentShippingText) {
+    const newShippingBar = document.querySelector('.cart__shipping');
+    const newShippingText = document.querySelector('.cart__shipping-text');
+    const newProgress = document.querySelector('.cart__shipping-progress');
+    
+    if (newShippingBar && currentShippingDisplay === 'block') {
+      newShippingBar.style.display = 'block';
+      
+      if (!hasSkeletonLoader && newShippingText && currentShippingText) {
         newShippingText.textContent = currentShippingText;
       }
-      if (newProgress && currentProgressWidth) {
+      if (!hasSkeletonLoader && newProgress && currentProgressWidth) {
         newProgress.style.width = currentProgressWidth;
       }
     }
@@ -333,7 +333,7 @@ async function updateCartDrawer() {
 
     const cart = await fetchCart();
     if (cart) updateFreeShippingBar(cart.total_price);
-
+    
     return true;
   } catch (e) {
     console.error("Error updating cart drawer:", e);
@@ -395,10 +395,10 @@ function applyOptimisticUI() {
     shippingBar.className = "cart__shipping";
     shippingBar.style.display = "block";
     shippingBar.innerHTML = `
-    <p class="cart__shipping-text small"></p>
-    <div class="cart__shipping-bar">
-      <div class="cart__shipping-progress" style="width: 0%; background: transparent;"></div>
-    </div>
+      <p class="cart__shipping-text small"></p>
+      <div class="cart__shipping-bar">
+        <div class="cart__shipping-progress" style="width: 0%; background: transparent;"></div>
+      </div>
     `;
     cartForm.insertBefore(shippingBar, itemsContainer);
 
