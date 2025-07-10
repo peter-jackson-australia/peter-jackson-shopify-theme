@@ -563,7 +563,6 @@ header {
   z-index: 9996; 
 }
 
-/* Add these new rules */
 #header-spacer {
   height: var(--space-xl);
 }
