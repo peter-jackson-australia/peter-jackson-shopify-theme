@@ -185,7 +185,7 @@ function updateFreeShippingBar(cartTotal) {
   
   if (!shipping) return;
   
-  const threshold = 9900; 
+  const threshold = 9900;
   const hasItems = document.querySelector('.cart-item');
   
   if (!hasItems) {
@@ -193,7 +193,9 @@ function updateFreeShippingBar(cartTotal) {
     return;
   }
   
-  shipping.style.display = 'block';
+  if (shipping.style.display === 'none') {
+    shipping.style.display = 'block';
+  }
   
   if (cartTotal >= threshold) {
     text.textContent = 'Your order has free shipping!';
