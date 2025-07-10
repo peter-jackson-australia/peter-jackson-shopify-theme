@@ -2,10 +2,6 @@
   display: none !important;
 }
 
-body.menu-open {
-  overflow: hidden;
-}
-
 .menu-drawer__container {
   position: relative;
   z-index: 9997;
@@ -13,7 +9,6 @@ body.menu-open {
 
 .menu-drawer__overlay {
   position: fixed;
-  top: calc(var(--space-xl) + 35px);
   left: 0;
   right: 0;
   bottom: 0;
@@ -23,7 +18,6 @@ body.menu-open {
 
 .menu-drawer {
   position: fixed;
-  top: calc(var(--space-xl) + 35px);
   bottom: 0;
   background: var(--white);
   overflow-x: hidden;
