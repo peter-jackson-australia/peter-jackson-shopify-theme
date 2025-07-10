@@ -290,8 +290,36 @@
       updateHeaderHeight() {
         const header = document.querySelector('header');
         if (header) {
-          const headerHeight = header.offsetHeight;
-          document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
+          // Get the header's position relative to the viewport
+          const headerRect = header.getBoundingClientRect();
+          
+          // Calculate visible height - if header is partially scrolled out of view
+          let visibleHeight;
+          
+          if (headerRect.top < 0) {
+            // Header is partially scrolled out of view
+            visibleHeight = Math.max(0, headerRect.bottom);
+          } else {
+            // Header is fully in view
+            visibleHeight = headerRect.height;
+          }
+          
+          console.log('Header rect:', headerRect);
+          console.log('Visible height:', visibleHeight);
+          
+          // Set the CSS custom property to the visible height
+          document.documentElement.style.setProperty('--header-height', `${visibleHeight}px`);
+          
+          // Also directly set the top position as backup
+          const overlay = document.querySelector('.menu-drawer__overlay');
+          const drawer = document.querySelector('.menu-drawer');
+          
+          if (overlay) {
+            overlay.style.top = `${visibleHeight}px`;
+          }
+          if (drawer) {
+            drawer.style.top = `${visibleHeight}px`;
+          }
         }
       },
   
