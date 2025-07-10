@@ -58,7 +58,6 @@
     },
     "hero_primary_4HRPTU": {
       "type": "hero-primary",
-      "disabled": true,
       "name": "Hero Section",
       "settings": {
         "media_type": "video",
