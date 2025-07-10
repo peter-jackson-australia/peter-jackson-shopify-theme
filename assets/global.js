@@ -176,6 +176,33 @@ function formatMoney(cents) {
   }
 }
 
+function updateFreeShippingBar(cartTotal) {
+  const shipping = document.querySelector('.cart__shipping');
+  const text = document.querySelector('.cart__shipping-text');
+  const progress = document.querySelector('.cart__shipping-progress');
+  
+  if (!shipping) return;
+  
+  const threshold = 9900; // $99 in cents
+  const hasItems = document.querySelector('.cart-item');
+  
+  if (!hasItems) {
+    shipping.style.display = 'none';
+    return;
+  }
+  
+  shipping.style.display = 'block';
+  
+  if (cartTotal >= threshold) {
+    text.textContent = 'Your order has free shipping!';
+    progress.style.width = '100%';
+  } else {
+    const remaining = formatMoney(threshold - cartTotal);
+    text.textContent = `${remaining} away from free shipping`;
+    progress.style.width = `${(cartTotal / threshold) * 100}%`;
+  }
+}
+
 function createAnimatedLoader() {
   const loader = document.createElement("div");
   loader.className = "animated-loader";
