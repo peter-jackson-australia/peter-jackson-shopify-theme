@@ -224,8 +224,12 @@ function applyCartTotalLoaders() {
 }
 
 function openCartDrawer() {
-  cartElements.drawer.classList.add("cart--active");
-  document.body.classList.add("cart-open");
+  if (window.openCart) {
+    window.openCart();
+  } else {
+    cartElements.drawer.classList.add("cart--active");
+    document.body.classList.add("cart-open");
+  }
 }
 
 function closeCartDrawer() {
