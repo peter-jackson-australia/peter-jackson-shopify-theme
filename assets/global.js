@@ -144,6 +144,11 @@ function prePopulateCartDrawer(cartData) {
     cartForm.appendChild(footer);
   }
 
+  const shippingBar = document.querySelector('.cart__shipping');
+if (shippingBar && cartData.items.length > 0) {
+  shippingBar.style.display = 'block';
+}
+
   updateFreeShippingBar(cartData.total);
 }
 
