@@ -251,7 +251,6 @@ function checkVariants() {
   });
 }
 
-// Add this to your theme's main JavaScript file
 document.addEventListener('DOMContentLoaded', function() {
   const header = document.querySelector('#site-header');
   const spacer = document.querySelector('#header-spacer');
@@ -272,20 +271,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (scrollY >= headerOffsetTop && !isFixed) {
       isFixed = true;
-      spacer.classList.remove('hide');
       header.classList.add('header-fixed');
-      requestAnimationFrame(() => {
-        header.classList.add('is-visible');
-      });
+      spacer.classList.remove('hide');
     } else if (scrollY < headerOffsetTop && isFixed) {
       isFixed = false;
-      header.classList.remove('is-visible');
-      setTimeout(() => {
-        if (!isFixed) {
-          header.classList.remove('header-fixed');
-          spacer.classList.add('hide');
-        }
-      }, 300);
+      header.classList.remove('header-fixed');
+      spacer.classList.add('hide');
     }
     
     ticking = false;
