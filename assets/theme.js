@@ -256,34 +256,45 @@ document.addEventListener('DOMContentLoaded', function() {
   const spacer = document.querySelector('#header-spacer');
   const triggerPoint = header.offsetHeight + 50;
   let isFixed = false;
-  let ticking = false;
+  let isInteracting = false;
+
+  // Prevent header changes during user interactions
+  header.addEventListener('click', () => {
+    isInteracting = true;
+    setTimeout(() => isInteracting = false, 500);
+  });
 
   function updateHeader() {
+    if (isInteracting) return;
+    
     const scrollY = window.scrollY;
     
     if (scrollY > triggerPoint && !isFixed) {
       isFixed = true;
-      spacer.classList.remove('hide');
       header.classList.add('header-fixed');
+      spacer.classList.remove('hide');
       requestAnimationFrame(() => {
         header.classList.add('is-visible');
       });
     } else if (scrollY <= triggerPoint && isFixed) {
       isFixed = false;
       header.classList.remove('is-visible');
+      spacer.classList.add('hide');
       setTimeout(() => {
         if (!isFixed) {
           header.classList.remove('header-fixed');
-          spacer.classList.add('hide');
         }
       }, 300);
     }
-    ticking = false;
   }
 
+  let ticking = false;
   window.addEventListener('scroll', function() {
     if (!ticking) {
-      requestAnimationFrame(updateHeader);
+      requestAnimationFrame(() => {
+        updateHeader();
+        ticking = false;
+      });
       ticking = true;
     }
   });
