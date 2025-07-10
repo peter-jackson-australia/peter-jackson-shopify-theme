@@ -183,7 +183,7 @@ function updateFreeShippingBar(cartTotal) {
   
   if (!shipping) return;
   
-  const threshold = 9900; // $99 in cents
+  const threshold = 9900; 
   const hasItems = document.querySelector('.cart-item');
   
   if (!hasItems) {
@@ -300,6 +300,10 @@ async function updateCartDrawer() {
 
     cartElements.drawer.innerHTML = html.querySelector(".cart").innerHTML;
     addCartEventListeners();
+
+    const cart = await fetchCart();
+    if (cart) updateFreeShippingBar(cart.total_price);
+
     return true;
   } catch (e) {
     console.error("Error updating cart drawer:", e);
