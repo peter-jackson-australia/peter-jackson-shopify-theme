@@ -255,37 +255,46 @@ function checkVariants() {
 document.addEventListener('DOMContentLoaded', function() {
   const header = document.querySelector('#site-header');
   const spacer = document.querySelector('#header-spacer');
-  const headerOffsetTop = header.offsetTop; // Distance from top of page to header
+  const headerOffsetTop = header.offsetTop;
   let isFixed = false;
+  let ticking = false;
 
   function checkScroll() {
     // Don't run if body has modal classes (menu/cart/search open)
     if (document.body.classList.contains('menu-open') || 
         document.body.classList.contains('cart-open') || 
         document.body.classList.contains('search-open')) {
+      ticking = false;
       return;
     }
 
     const scrollY = window.scrollY;
     
     if (scrollY >= headerOffsetTop && !isFixed) {
-      // Header touches top of viewport - make it fixed
       isFixed = true;
-      header.classList.add('header-fixed');
       spacer.classList.remove('hide');
+      header.classList.add('header-fixed');
       requestAnimationFrame(() => {
         header.classList.add('is-visible');
       });
     } else if (scrollY < headerOffsetTop && isFixed) {
-      // Scrolled back above header position - make it normal
       isFixed = false;
       header.classList.remove('is-visible');
       setTimeout(() => {
-        header.classList.remove('header-fixed');
-        spacer.classList.add('hide');
+        if (!isFixed) {
+          header.classList.remove('header-fixed');
+          spacer.classList.add('hide');
+        }
       }, 300);
     }
+    
+    ticking = false;
   }
 
-  window.addEventListener('scroll', checkScroll);
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      requestAnimationFrame(checkScroll);
+      ticking = true;
+    }
+  });
 });
