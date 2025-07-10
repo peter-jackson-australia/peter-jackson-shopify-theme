@@ -287,36 +287,26 @@
         window.closeMenu = () => this.closeMenu();
       },
 
-      updateHeaderHeight() {
-        const header = document.querySelector('header');
-        if (!header) return;
-        
-        const isFixed = getComputedStyle(header).position === 'fixed';
-        const overlay = document.querySelector('.menu-drawer__overlay');
-        const drawer = document.querySelector('.menu-drawer');
-        
-        // Store the previous state to detect transitions
-        if (!this.headerWasFixed) this.headerWasFixed = false;
-        
-        if (isFixed) {
-          // Header is fixed - always use --space-xl and don't change it
-          if (overlay && overlay.style.top !== 'var(--space-xl)') {
-            overlay.style.top = 'var(--space-xl)';
-          }
-          if (drawer && drawer.style.top !== 'var(--space-xl)') {
-            drawer.style.top = 'var(--space-xl)';
-          }
-          this.headerWasFixed = true;
-        } else {
-          // Header is not fixed - calculate position normally
-          const headerBottom = header.getBoundingClientRect().bottom;
-          const topPosition = Math.max(0, headerBottom) + 'px';
-          
-          if (overlay) overlay.style.top = topPosition;
-          if (drawer) drawer.style.top = topPosition;
-          this.headerWasFixed = false;
-        }
-      },
+      
+updateHeaderHeight() {
+  const header = document.querySelector('header');
+  const overlay = document.querySelector('.menu-drawer__overlay');
+  const drawer = document.querySelector('.menu-drawer');
+  
+  if (!header || !overlay || !drawer) return;
+  
+  const isFixed = getComputedStyle(header).position === 'fixed';
+  
+  if (isFixed) {
+    overlay.style.setProperty('top', 'var(--space-xl)', 'important');
+    drawer.style.setProperty('top', 'var(--space-xl)', 'important');
+  } else {
+    const headerBottom = header.getBoundingClientRect().bottom;
+    const topPosition = Math.max(0, headerBottom) + 'px';
+    overlay.style.setProperty('top', topPosition, 'important');
+    drawer.style.setProperty('top', topPosition, 'important');
+  }
+},
   
       decodeEntities(text) {
         if (!text) return '';
