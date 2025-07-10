@@ -272,7 +272,6 @@ async function updateCartDrawer() {
     const currentShippingDisplay = document.querySelector('.cart__shipping')?.style.display;
     const currentShippingText = document.querySelector('.cart__shipping-text')?.textContent;
     const currentProgressWidth = document.querySelector('.cart__shipping-progress')?.style.width;
-    const hasSkeletonLoader = document.querySelector('.cart__shipping-text .animated-loader');
 
     const [drawerRes, cartData] = await Promise.all([fetch("/?section_id=cart-drawer"), fetchCart()]);
 
@@ -298,11 +297,10 @@ async function updateCartDrawer() {
     
     if (newShippingBar && currentShippingDisplay === 'block') {
       newShippingBar.style.display = 'block';
-      
-      if (!hasSkeletonLoader && newShippingText && currentShippingText) {
+      if (newShippingText && currentShippingText) {
         newShippingText.textContent = currentShippingText;
       }
-      if (!hasSkeletonLoader && newProgress && currentProgressWidth) {
+      if (newProgress && currentProgressWidth) {
         newProgress.style.width = currentProgressWidth;
       }
     }
