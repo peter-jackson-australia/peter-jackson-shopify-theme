@@ -363,21 +363,37 @@ openMenu() {
   }
 },
 
-// Simplified updateHeaderHeight that always uses var(--space-xl):
 updateHeaderHeight() {
+  const header = document.querySelector('header');
+  if (!header) return;
+  
+  const headerStyles = getComputedStyle(header);
+  const isFixed = headerStyles.position === 'fixed';
   const overlay = document.querySelector('.menu-drawer__overlay');
   const drawer = document.querySelector('.menu-drawer');
   
-  // Get the computed value of --space-xl
-  const spaceXl = getComputedStyle(document.documentElement).getPropertyValue('--space-xl').trim();
-  console.log('Using header height:', spaceXl);
+  let topPosition;
+  
+  if (isFixed) {
+    // When header is fixed, use the CSS variable value
+    const spaceXl = getComputedStyle(document.documentElement).getPropertyValue('--space-xl').trim();
+    topPosition = spaceXl;
+    console.log('Header is fixed, using:', spaceXl);
+  } else {
+    // When header is not fixed, calculate the visible bottom position
+    const headerRect = header.getBoundingClientRect();
+    topPosition = Math.max(0, headerRect.bottom) + 'px';
+    console.log('Header not fixed, bottom position:', Math.max(0, headerRect.bottom));
+  }
   
   if (overlay) {
-    overlay.style.top = spaceXl;
+    overlay.style.top = topPosition;
   }
   if (drawer) {
-    drawer.style.top = spaceXl;
+    drawer.style.top = topPosition;
   }
+  
+  console.log('Set menu top to:', topPosition);
 },
   
       closeMenu() {
