@@ -472,6 +472,16 @@ function applyOptimisticUI() {
               <div class="placeholder-remove"></div>
             </div>
           </div>
+        </div>
+      </div>
+    `;
+
+    cartItem.querySelector(".price-placeholder").appendChild(createAnimatedLoader());
+    cartItem.querySelector(".placeholder-loader").appendChild(createAnimatedLoader());
+
+    itemsContainer.prepend(cartItem);
+  }
+}
 
 function addErrorWithTimeout(item, message) {
   const errorElement = showError(item, message, "cart-item__error small cart-item__error--permanent");
