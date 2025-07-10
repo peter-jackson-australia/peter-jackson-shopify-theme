@@ -195,27 +195,29 @@ function formatMoney(cents) {
 }
 
 function updateFreeShippingBar(cartTotal) {
-  const shipping = document.querySelector(".cart__shipping");
-  const text = document.querySelector(".cart__shipping-text");
-  const progress = document.querySelector(".cart__shipping-progress");
-
+  const shipping = document.querySelector('.cart__shipping');
+  const text = document.querySelector('.cart__shipping-text');
+  const progress = document.querySelector('.cart__shipping-progress');
+  
   if (!shipping) return;
-
+  
+  shipping.classList.remove('cart__shipping--loading');
+  
   const threshold = 9900;
-  const hasItems = document.querySelector(".cart-item");
-
+  const hasItems = document.querySelector('.cart-item');
+  
   if (!hasItems) {
-    shipping.style.display = "none";
+    shipping.style.display = 'none';
     return;
   }
-
-  if (shipping.style.display === "none") {
-    shipping.style.display = "block";
+  
+  if (shipping.style.display === 'none') {
+    shipping.style.display = 'block';
   }
-
+  
   if (cartTotal >= threshold) {
-    text.textContent = "Your order has free shipping!";
-    progress.style.width = "100%";
+    text.textContent = 'Your order has free shipping!';
+    progress.style.width = '100%';
   } else {
     const remaining = formatMoney(threshold - cartTotal);
     text.textContent = `${remaining} away from free shipping`;
