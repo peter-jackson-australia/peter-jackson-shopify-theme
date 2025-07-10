@@ -1,4 +1,4 @@
-window.addEventListener("load", () => {
+window.addEventListener('load', () => {
   quicklink.listen();
 });
 
@@ -155,11 +155,6 @@ function prePopulateCartDrawer(cartData) {
     cartForm.appendChild(footer);
   }
 
-  const shippingBar = document.querySelector(".cart__shipping");
-  if (shippingBar && cartData.items.length > 0) {
-    shippingBar.style.display = "block";
-  }
-
   updateFreeShippingBar(cartData.total);
 }
 
@@ -191,37 +186,6 @@ function formatMoney(cents) {
       return formatWithDelimiters(cents, 2, " ", ",");
     default:
       return formatWithDelimiters(cents, 2);
-  }
-}
-
-function updateFreeShippingBar(cartTotal) {
-  const shipping = document.querySelector('.cart__shipping');
-  const text = document.querySelector('.cart__shipping-text');
-  const progress = document.querySelector('.cart__shipping-progress');
-  
-  if (!shipping) return;
-  
-  shipping.classList.remove('cart__shipping--loading');
-  
-  const threshold = 9900;
-  const hasItems = document.querySelector('.cart-item');
-  
-  if (!hasItems) {
-    shipping.style.display = 'none';
-    return;
-  }
-  
-  if (shipping.style.display === 'none') {
-    shipping.style.display = 'block';
-  }
-  
-  if (cartTotal >= threshold) {
-    text.textContent = 'Your order has free shipping!';
-    progress.style.width = '100%';
-  } else {
-    const remaining = formatMoney(threshold - cartTotal);
-    text.textContent = `${remaining} away from free shipping`;
-    progress.style.width = `${(cartTotal / threshold) * 100}%`;
   }
 }
 
@@ -355,6 +319,37 @@ async function updateCartDrawer() {
   }
 }
 
+function updateFreeShippingBar(cartTotal) {
+  const shipping = document.querySelector('.cart__shipping');
+  const text = document.querySelector('.cart__shipping-text');
+  const progress = document.querySelector('.cart__shipping-progress');
+  
+  if (!shipping) return;
+  
+  shipping.classList.remove('cart__shipping--loading');
+  
+  const threshold = 9900;
+  const hasItems = document.querySelector('.cart-item');
+  
+  if (!hasItems) {
+    shipping.style.display = 'none';
+    return;
+  }
+  
+  if (shipping.style.display === 'none') {
+    shipping.style.display = 'block';
+  }
+  
+  if (cartTotal >= threshold) {
+    text.textContent = 'Your order has free shipping!';
+    progress.style.width = '100%';
+  } else {
+    const remaining = formatMoney(threshold - cartTotal);
+    text.textContent = `${remaining} away from free shipping`;
+    progress.style.width = `${(cartTotal / threshold) * 100}%`;
+  }
+}
+
 function applyOptimisticUI() {
   const productTitle = document.querySelector(".product-details__title")?.textContent || "";
 
@@ -406,18 +401,18 @@ function applyOptimisticUI() {
     cartForm.prepend(itemsContainer);
 
     const shippingBar = document.createElement("div");
-shippingBar.className = "cart__shipping cart__shipping--loading";
-shippingBar.style.display = "block";
-shippingBar.innerHTML = `
-  <p class="cart__shipping-text small"></p>
-  <div class="cart__shipping-bar">
-    <div class="cart__shipping-progress"></div>
-  </div>
-`;
-cartForm.insertBefore(shippingBar, itemsContainer);
+    shippingBar.className = "cart__shipping cart__shipping--loading";
+    shippingBar.style.display = "block";
+    shippingBar.innerHTML = `
+      <p class="cart__shipping-text small"></p>
+      <div class="cart__shipping-bar">
+        <div class="cart__shipping-progress"></div>
+      </div>
+    `;
+    cartForm.insertBefore(shippingBar, itemsContainer);
 
-const textLoader = shippingBar.querySelector('.cart__shipping-text');
-textLoader.appendChild(createAnimatedLoader());
+    const textLoader = shippingBar.querySelector('.cart__shipping-text');
+    textLoader.appendChild(createAnimatedLoader());
 
     if (!document.querySelector(".cart__footer")) {
       const footer = document.createElement("footer");
@@ -552,8 +547,8 @@ function addCartEventListeners() {
           if (updatedRootItem) {
             addErrorWithTimeout(
               updatedRootItem,
-              adjustedInventoryLimit === 0
-                ? "Sorry, this item is out of stock."
+              adjustedInventoryLimit === 0 
+                ? "Sorry, this item is out of stock." 
                 : `Sorry, only ${adjustedInventoryLimit} ${adjustedInventoryLimit === 1 ? "item" : "items"} available.`
             );
           }
@@ -600,12 +595,12 @@ function addCartEventListeners() {
       const remainingItems = document.querySelectorAll(".cart-item").length;
 
       cartItem.style.display = "none";
-
+      
       if (remainingItems === 1) {
         const shippingBar = document.querySelector(".cart__shipping");
         if (shippingBar) shippingBar.style.display = "none";
       }
-
+      
       applyCartTotalLoaders();
 
       try {
@@ -662,19 +657,13 @@ function handleAddToCart(form) {
 
       const totalRequestedQuantity = (existingItem ? existingItem.quantity : 0) + quantity;
 
-      if (
-        !isGiftCardProduct() &&
-        adjustedInventoryQuantity !== Infinity &&
-        totalRequestedQuantity > adjustedInventoryQuantity
-      ) {
+      if (!isGiftCardProduct() && adjustedInventoryQuantity !== Infinity && totalRequestedQuantity > adjustedInventoryQuantity) {
         addButton.innerHTML = originalText;
         showError(
-          form,
-          adjustedInventoryQuantity === 0
-            ? "Sorry, this item is out of stock."
-            : `Sorry, only ${adjustedInventoryQuantity} ${
-                adjustedInventoryQuantity === 1 ? "item" : "items"
-              } available.`
+          form, 
+          adjustedInventoryQuantity === 0 
+            ? "Sorry, this item is out of stock." 
+            : `Sorry, only ${adjustedInventoryQuantity} ${adjustedInventoryQuantity === 1 ? "item" : "items"} available.`
         );
         return;
       }
