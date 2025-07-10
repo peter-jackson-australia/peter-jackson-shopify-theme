@@ -292,6 +292,7 @@ async function updateCartDrawer() {
     if (newShippingBar && hasItems) {
       // Pre-configure the shipping bar with the correct content and visibility
       newShippingBar.style.display = 'block';
+      newShippingBar.style.height = '93px';
       
       const threshold = 9900;
       const newText = newShippingBar.querySelector('.cart__shipping-text');
@@ -335,7 +336,8 @@ function updateFreeShippingBar(cartTotal) {
     return;
   }
   
-  // Only update if not already configured
+  // Set explicit height and ensure visibility
+  shipping.style.height = '93px';
   if (shipping.style.display !== 'block') {
     shipping.style.display = 'block';
   }
