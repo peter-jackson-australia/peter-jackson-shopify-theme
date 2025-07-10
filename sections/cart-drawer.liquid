@@ -232,6 +232,40 @@
     color: var(--neutral-950);
   }
 
+  .cart__empty-state {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-m);
+  }
+
+  .cart__empty {
+    color: var(--neutral-950);
+    text-align: center;
+  }
+
+  .cart__new-arrivals {
+    width: 100%;
+    max-width: 300px;
+    height: var(--space-xl);
+    background-color: var(--neutral-950);
+    color: var(--white);
+    border: none;
+    padding: var(--space-s) var(--space-m);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+  }
+
+  .cart__new-arrivals:hover {
+    background-color: var(--neutral-800);
+    color: var(--white);
+  }
+
   .cart-item__actions {
     display: flex;
     justify-content: space-between;
