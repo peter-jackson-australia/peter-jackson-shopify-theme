@@ -276,47 +276,95 @@ async function updateCartDrawer() {
     html.innerHTML = text;
 
     const images = html.querySelectorAll(".cart-item__image img");
-    await Promise.all(
-      Array.from(images).map((img) => {
-        return new Promise((resolve) => {
-          const preloadImg = new Image();
-          preloadImg.onload = resolve;
-          preloadImg.onerror = resolve;
-          preloadImg.src = img.src;
-        });
-      })
-    );
+    await Promise.all(Array.from(images).map(img => {
+      return new Promise(resolve => {
+        const preloadImg = new Image();
+        preloadImg.onload = resolve;
+        preloadImg.onerror = resolve;
+        preloadImg.src = img.src;
+      });
+    }));
 
-    const newShippingBar = html.querySelector(".cart__shipping");
-    const hasItems = html.querySelector(".cart-item");
-
+    // CRITICAL: Prepare the shipping bar in the new HTML before replacing
+    const newShippingBar = html.querySelector('.cart__shipping');
+    const hasItems = html.querySelector('.cart-item');
+    
     if (newShippingBar && hasItems) {
-      newShippingBar.style.display = "block";
-      newShippingBar.style.height = "93px";
-
+      // Pre-configure the shipping bar with the correct content and visibility
+      newShippingBar.style.display = 'block';
+      newShippingBar.style.height = '93px';
+      
       const threshold = 9900;
-      const newText = newShippingBar.querySelector(".cart__shipping-text");
-      const newProgress = newShippingBar.querySelector(".cart__shipping-progress");
-
+      const newText = newShippingBar.querySelector('.cart__shipping-text');
+      const newProgress = newShippingBar.querySelector('.cart__shipping-progress');
+      
       if (cartData && newText && newProgress) {
         if (cartData.total_price >= threshold) {
-          newText.textContent = "Your order has free shipping!";
-          newProgress.style.width = "100%";
+          newText.textContent = 'Your order has free shipping!';
+          // Set width to 0 first, then animate to 100%
+          newProgress.style.width = '0%';
+          setTimeout(() => {
+            newProgress.style.width = '100%';
+          }, 50);
         } else {
           const remaining = formatMoney(threshold - cartData.total_price);
           newText.textContent = `${remaining} away from free shipping`;
-          newProgress.style.width = `${(cartData.total_price / threshold) * 100}%`;
+          const targetWidth = `${(cartData.total_price / threshold) * 100}%`;
+          // Set width to 0 first, then animate to target
+          newProgress.style.width = '0%';
+          setTimeout(() => {
+            newProgress.style.width = targetWidth;
+          }, 50);
         }
       }
     }
 
+    // Now replace the cart content - shipping bar will already be in correct state
     cartElements.drawer.innerHTML = html.querySelector(".cart").innerHTML;
     addCartEventListeners();
-
+    
     return true;
   } catch (e) {
     console.error("Error updating cart drawer:", e);
     return false;
+  }
+}
+
+function updateFreeShippingBar(cartTotal) {
+  const shipping = document.querySelector('.cart__shipping');
+  const text = document.querySelector('.cart__shipping-text');
+  const progress = document.querySelector('.cart__shipping-progress');
+  
+  if (!shipping) return;
+  
+  const threshold = 9900;
+  const hasItems = document.querySelector('.cart-item');
+  
+  if (!hasItems) {
+    shipping.style.display = 'none';
+    return;
+  }
+  
+  // Set explicit height and ensure visibility
+  shipping.style.height = '93px';
+  if (shipping.style.display !== 'block') {
+    shipping.style.display = 'block';
+  }
+  
+  if (cartTotal >= threshold) {
+    text.textContent = 'Your order has free shipping!';
+    // Animate from current width to 100%
+    setTimeout(() => {
+      progress.style.width = '100%';
+    }, 50);
+  } else {
+    const remaining = formatMoney(threshold - cartTotal);
+    text.textContent = `${remaining} away from free shipping`;
+    const targetWidth = `${(cartTotal / threshold) * 100}%`;
+    // Animate to the target width
+    setTimeout(() => {
+      progress.style.width = targetWidth;
+    }, 50);
   }
 }
 
