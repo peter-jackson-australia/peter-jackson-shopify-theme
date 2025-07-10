@@ -273,6 +273,7 @@ async function updateCartDrawer() {
     const currentShippingText = document.querySelector('.cart__shipping-text')?.textContent;
     const currentProgressWidth = document.querySelector('.cart__shipping-progress')?.style.width;
     const hasSkeletonLoader = document.querySelector('.cart__shipping-text .animated-loader');
+    const isLoadingState = document.querySelector('.cart__shipping--loading');
 
     const [drawerRes, cartData] = await Promise.all([fetch("/?section_id=cart-drawer"), fetchCart()]);
 
@@ -290,20 +291,35 @@ async function updateCartDrawer() {
       });
     }));
 
-    cartElements.drawer.innerHTML = html.querySelector(".cart").innerHTML;
-
-    const newShippingBar = document.querySelector('.cart__shipping');
-    const newShippingText = document.querySelector('.cart__shipping-text');
-    const newProgress = document.querySelector('.cart__shipping-progress');
-    
-    if (newShippingBar && currentShippingDisplay === 'block') {
-      newShippingBar.style.display = 'block';
+    if (isLoadingState) {
+      const cartItems = html.querySelector(".cart__items");
+      const cartFooter = html.querySelector(".cart__footer");
       
-      if (!hasSkeletonLoader && newShippingText && currentShippingText) {
-        newShippingText.textContent = currentShippingText;
+      const currentItemsContainer = document.querySelector(".cart__items");
+      const currentFooter = document.querySelector(".cart__footer");
+      
+      if (cartItems && currentItemsContainer) {
+        currentItemsContainer.innerHTML = cartItems.innerHTML;
       }
-      if (!hasSkeletonLoader && newProgress && currentProgressWidth) {
-        newProgress.style.width = currentProgressWidth;
+      if (cartFooter && currentFooter) {
+        currentFooter.innerHTML = cartFooter.innerHTML;
+      }
+    } else {
+      cartElements.drawer.innerHTML = html.querySelector(".cart").innerHTML;
+
+      const newShippingBar = document.querySelector('.cart__shipping');
+      const newShippingText = document.querySelector('.cart__shipping-text');
+      const newProgress = document.querySelector('.cart__shipping-progress');
+      
+      if (newShippingBar && currentShippingDisplay === 'block') {
+        newShippingBar.style.display = 'block';
+        
+        if (newShippingText && currentShippingText) {
+          newShippingText.textContent = currentShippingText;
+        }
+        if (newProgress && currentProgressWidth) {
+          newProgress.style.width = currentProgressWidth;
+        }
       }
     }
 
