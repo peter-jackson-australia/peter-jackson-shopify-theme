@@ -75,6 +75,24 @@
     max-width: 80ch;
   }
 
+  .hero__svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .hero__svg--small {
+    max-width: min(320px, 90vw);
+  }
+
+  .hero__svg--medium {
+    max-width: min(650px, 90vw);
+  }
+
+  .hero__svg--large {
+    max-width: min(900px, 90vw);
+  }
+
   .hero__buttons {
     display: flex;
     gap: var(--space-s);
@@ -156,9 +174,20 @@
     {% endif %}
 
     <div class="hero__content hero__content--{{ section.settings.horizontal_alignment | default: 'center' }} hero__content--{{ section.settings.vertical_alignment | default: 'bottom' }}">
-      <{{ section.settings.heading_level | default: 'h1' }} class="heading--3xl {% if section.settings.heading_animation != 'none' %}{{ section.settings.heading_animation }}{% endif %}">
-        {{ section.settings.heading }}
-      </{{ section.settings.heading_level | default: 'h1' }}>
+      {% if section.settings.svg_image %}
+        <img
+          src="{{ section.settings.svg_image | image_url }}"
+          alt="{{ section.settings.heading | escape }}"
+          class="hero__svg hero__svg--{{ section.settings.svg_size | default: 'medium' }}"
+          width="{{ section.settings.svg_image.width }}"
+          height="{{ section.settings.svg_image.height }}"
+          loading="lazy"
+        >
+      {% elsif section.settings.heading %}
+        <{{ section.settings.heading_level | default: 'h1' }} class="heading--3xl {% if section.settings.heading_animation != 'none' %}{{ section.settings.heading_animation }}{% endif %}">
+          {{ section.settings.heading }}
+        </{{ section.settings.heading_level | default: 'h1' }}>
+      {% endif %}
 
       <div class="heading--l {% if section.settings.description_animation != 'none' %}{{ section.settings.description_animation }}{% endif %}">
         {{ section.settings.description }}
@@ -247,6 +276,33 @@
       "id": "heading",
       "label": "Heading",
       "default": "Welcome to Our Store"
+    },
+    {
+      "type": "image_picker",
+      "id": "svg_image",
+      "label": "SVG Image (replaces heading)",
+      "info": "Upload an SVG file. If selected, this will be used instead of the heading text above."
+    },
+    {
+      "type": "select",
+      "id": "svg_size",
+      "label": "SVG Size",
+      "options": [
+        {
+          "value": "small",
+          "label": "Small (320px max)"
+        },
+        {
+          "value": "medium",
+          "label": "Medium (650px max)"
+        },
+        {
+          "value": "large",
+          "label": "Large (900px max)"
+        }
+      ],
+      "default": "medium",
+      "info": "Maximum width for SVG image. Image will never exceed screen width."
     },
     {
       "type": "select",
