@@ -291,12 +291,14 @@ async function fetchCart() {
 
 async function updateCartDrawer() {
   try {
+    const currentShippingDisplay = document.querySelector('.cart__shipping')?.style.display;
+ 
     const [drawerRes, cartData] = await Promise.all([fetch("/?section_id=cart-drawer"), fetchCart()]);
-
+ 
     const text = await drawerRes.text();
     const html = document.createElement("div");
     html.innerHTML = text;
-
+ 
     const images = html.querySelectorAll(".cart-item__image img");
     await Promise.all(Array.from(images).map(img => {
       return new Promise(resolve => {
@@ -306,19 +308,25 @@ async function updateCartDrawer() {
         preloadImg.src = img.src;
       });
     }));
-
+ 
     cartElements.drawer.innerHTML = html.querySelector(".cart").innerHTML;
+ 
+    const newShippingBar = document.querySelector('.cart__shipping');
+    if (newShippingBar && currentShippingDisplay === 'block') {
+      newShippingBar.style.display = 'block';
+    }
+ 
     addCartEventListeners();
-
+ 
     const cart = await fetchCart();
     if (cart) updateFreeShippingBar(cart.total_price);
-
+    
     return true;
   } catch (e) {
     console.error("Error updating cart drawer:", e);
     return false;
   }
-}
+ }
 
 function applyOptimisticUI() {
   const productTitle = document.querySelector(".product-details__title")?.textContent || "";
