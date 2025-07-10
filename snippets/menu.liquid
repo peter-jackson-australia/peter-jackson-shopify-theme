@@ -287,13 +287,20 @@
         window.closeMenu = () => this.closeMenu();
       },
       
-      updateHeaderHeight() {
-        const header = document.querySelector('header');
-        if (header) {
-          const headerHeight = header.offsetHeight;
-          document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
-        }
-      },
+// Add this temporary debugging code to see what's happening
+updateHeaderHeight() {
+  const header = document.querySelector('header');
+  console.log('Header element:', header);
+  if (header) {
+    const headerHeight = header.offsetHeight;
+    console.log('Header height:', headerHeight);
+    document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
+    
+    // Check if it was actually set
+    const computedValue = getComputedStyle(document.documentElement).getPropertyValue('--header-height');
+    console.log('CSS custom property value:', computedValue);
+  }
+},
   
       decodeEntities(text) {
         if (!text) return '';
