@@ -30,8 +30,8 @@
             "button_link_2": "shopify://pages/burwood",
             "button_label_3": "third button",
             "button_link_3": "shopify://collections/mens-leather-belts",
-            "button_label_4": "",
-            "button_link_4": "",
+            "button_label_4": "fourth button",
+            "button_link_4": "shopify://pages/birkenhead-point",
             "horizontal_alignment": "center",
             "vertical_alignment": "middle"
           }
