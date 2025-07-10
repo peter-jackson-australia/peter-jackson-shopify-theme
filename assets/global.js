@@ -223,18 +223,13 @@ function applyCartTotalLoaders() {
   if (checkoutButton) checkoutButton.innerHTML = '<span class="loader--spinner"></span>';
 }
 
-
 function openCartDrawer() {
-  // Small delay to ensure any DOM changes are complete
-  requestAnimationFrame(() => {
-    if (window.openCart) {
-      window.openCart();
-    } else {
-      // Fallback if Alpine isn't ready yet
-      cartElements.drawer.classList.add("cart--active");
-      document.body.classList.add("cart-open");
-    }
-  });
+  if (window.openCart) {
+    window.openCart();
+  } else {
+    cartElements.drawer.classList.add("cart--active");
+    document.body.classList.add("cart-open");
+  }
 }
 
 function closeCartDrawer() {
