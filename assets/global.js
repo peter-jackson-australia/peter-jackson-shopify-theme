@@ -292,13 +292,15 @@ async function fetchCart() {
 async function updateCartDrawer() {
   try {
     const currentShippingDisplay = document.querySelector('.cart__shipping')?.style.display;
- 
+    const currentShippingText = document.querySelector('.cart__shipping-text')?.textContent;
+    const currentProgressWidth = document.querySelector('.cart__shipping-progress')?.style.width;
+
     const [drawerRes, cartData] = await Promise.all([fetch("/?section_id=cart-drawer"), fetchCart()]);
- 
+
     const text = await drawerRes.text();
     const html = document.createElement("div");
     html.innerHTML = text;
- 
+
     const images = html.querySelectorAll(".cart-item__image img");
     await Promise.all(Array.from(images).map(img => {
       return new Promise(resolve => {
@@ -308,16 +310,25 @@ async function updateCartDrawer() {
         preloadImg.src = img.src;
       });
     }));
- 
+
     cartElements.drawer.innerHTML = html.querySelector(".cart").innerHTML;
- 
+
     const newShippingBar = document.querySelector('.cart__shipping');
+    const newShippingText = document.querySelector('.cart__shipping-text');
+    const newProgress = document.querySelector('.cart__shipping-progress');
+    
     if (newShippingBar && currentShippingDisplay === 'block') {
       newShippingBar.style.display = 'block';
+      if (newShippingText && currentShippingText) {
+        newShippingText.textContent = currentShippingText;
+      }
+      if (newProgress && currentProgressWidth) {
+        newProgress.style.width = currentProgressWidth;
+      }
     }
- 
+
     addCartEventListeners();
- 
+
     const cart = await fetchCart();
     if (cart) updateFreeShippingBar(cart.total_price);
     
@@ -326,7 +337,7 @@ async function updateCartDrawer() {
     console.error("Error updating cart drawer:", e);
     return false;
   }
- }
+}
 
 function applyOptimisticUI() {
   const productTitle = document.querySelector(".product-details__title")?.textContent || "";
