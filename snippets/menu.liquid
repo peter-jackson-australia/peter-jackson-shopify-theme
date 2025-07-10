@@ -242,9 +242,16 @@
       currentChildIndex: null,
   
       init() {
-        const headerHeight = document.querySelector('header')?.offsetHeight || 60;
-        document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
-  
+        this.updateHeaderHeight();
+        
+        window.addEventListener('scroll', () => {
+          this.updateHeaderHeight();
+        });
+        
+        window.addEventListener('resize', () => {
+          this.updateHeaderHeight();
+        });
+      
         this.menuData = [
           {% for link in linklists['main-menu'].links %}
             {
@@ -272,12 +279,20 @@
             }{% unless forloop.last %},{% endunless %}
           {% endfor %}
         ];
-  
+      
         window.toggleNav = () => {
           this.isOpen ? this.closeMenu() : this.openMenu();
         };
-
+      
         window.closeMenu = () => this.closeMenu();
+      },
+      
+      updateHeaderHeight() {
+        const header = document.querySelector('header');
+        if (header) {
+          const headerHeight = header.offsetHeight;
+          document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
+        }
       },
   
       decodeEntities(text) {
