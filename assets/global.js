@@ -269,9 +269,10 @@ async function fetchCart() {
 
 async function updateCartDrawer() {
   try {
+    // Store current progress state BEFORE updating
     const currentProgress = document.querySelector(".cart__shipping-progress");
     const currentWidth = currentProgress ? currentProgress.style.width || "0%" : "0%";
-
+    
     const [drawerRes, cartData] = await Promise.all([fetch("/?section_id=cart-drawer"), fetchCart()]);
 
     const text = await drawerRes.text();
@@ -290,10 +291,12 @@ async function updateCartDrawer() {
       })
     );
 
+    // CRITICAL: Prepare the shipping bar in the new HTML before replacing
     const newShippingBar = html.querySelector(".cart__shipping");
     const hasItems = html.querySelector(".cart-item");
 
     if (newShippingBar && hasItems) {
+      // Pre-configure the shipping bar with the correct content and visibility
       newShippingBar.style.display = "block";
       newShippingBar.style.height = "93px";
 
@@ -302,21 +305,26 @@ async function updateCartDrawer() {
       const newProgress = newShippingBar.querySelector(".cart__shipping-progress");
 
       if (cartData && newText && newProgress) {
+        // Set the text and preserve current width for animation
         if (cartData.total_price >= threshold) {
           newText.textContent = "Your order has free shipping!";
         } else {
           const remaining = formatMoney(threshold - cartData.total_price);
           newText.textContent = `${remaining} away from free shipping`;
         }
+        // Start from current width, not 0%
         newProgress.style.width = currentWidth;
       }
     }
 
+    // Now replace the cart content - shipping bar will start at current state
     cartElements.drawer.innerHTML = html.querySelector(".cart").innerHTML;
     addCartEventListeners();
 
+    // IMPORTANT: Trigger animation after DOM update
     const cart = await fetchCart();
     if (cart) {
+      // Small delay to ensure DOM is ready, then animate from current to new
       setTimeout(() => {
         animateShippingProgress(cart.total_price);
       }, 100);
@@ -368,14 +376,19 @@ function animateShippingProgress(cartTotal) {
   const threshold = 9900;
   const targetPercent = cartTotal >= threshold ? 100 : (cartTotal / threshold) * 100;
 
+  // Get current width (it should already be set from before the update)
   const currentWidth = progress.style.width || "0%";
   const currentPercent = parseFloat(currentWidth) || 0;
 
+  // Only animate if there's a meaningful difference
   if (Math.abs(targetPercent - currentPercent) > 1) {
+    // Force reflow to ensure starting position is rendered
     progress.offsetWidth;
-
+    
+    // Now animate to target
     progress.style.width = `${targetPercent}%`;
   } else {
+    // No significant change, just set it
     progress.style.width = `${targetPercent}%`;
   }
 }
@@ -416,7 +429,34 @@ function applyOptimisticUI() {
         .join(" / ") || "One Size";
   }
 
-  const productImage = document.querySelector(".splide__slide img")?.src || "";
+  // More reliable image selection - try multiple selectors
+  let productImage = "";
+  
+  // Try to get the featured/main product image first
+  const selectors = [
+    ".splide__slide.is-active img", // Active slide first
+    ".splide__slide:first-child img", // First slide as fallback
+    ".product-gallery img:first-child", // Alternative gallery structure
+    ".product-image img", // Simple product image
+    ".splide__slide img" // Original selector as last resort
+  ];
+  
+  for (const selector of selectors) {
+    const img = document.querySelector(selector);
+    if (img && img.src) {
+      productImage = img.src;
+      break;
+    }
+  }
+  
+  // If still no image, try getting the main product image from meta or data attributes
+  if (!productImage) {
+    const metaImage = document.querySelector('meta[property="og:image"]');
+    if (metaImage) {
+      productImage = metaImage.content;
+    }
+  }
+
   const variantId = document.querySelector("#js--variant-id")?.value || "";
 
   applyCartTotalLoaders();
