@@ -41,13 +41,24 @@ function initCartFromStorage() {
 function prePopulateCartDrawer(cartData) {
   const cartEmpty = document.querySelector(".cart__empty-state");
   if (!cartEmpty) return;
-
+  
   cartEmpty.remove();
   const cartForm = document.querySelector(".cart__form");
 
+  const shippingBar = document.createElement("div");
+  shippingBar.className = "cart__shipping";
+  shippingBar.style.display = "block";
+  shippingBar.innerHTML = `
+    <p class="cart__shipping-text small"></p>
+    <div class="cart__shipping-bar">
+      <div class="cart__shipping-progress"></div>
+    </div>
+  `;
+  cartForm.appendChild(shippingBar);
+
   const itemsContainer = document.createElement("div");
   itemsContainer.className = "cart__items";
-  cartForm.prepend(itemsContainer);
+  cartForm.appendChild(itemsContainer);
 
   cartData.items.forEach((item) => {
     const cartItem = document.createElement("article");
