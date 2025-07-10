@@ -44,8 +44,8 @@
             "description_animation": "none",
             "button_label": "Shop Sale",
             "button_link": "shopify://collections/outerwear",
-            "horizontal_alignment": "left",
-            "vertical_alignment": "bottom"
+            "horizontal_alignment": "center",
+            "vertical_alignment": "middle"
           }
         }
       },
