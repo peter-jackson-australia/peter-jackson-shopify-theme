@@ -1,4 +1,4 @@
-window.addEventListener('load', () => {
+window.addEventListener("load", () => {
   quicklink.listen();
 });
 
@@ -41,7 +41,7 @@ function initCartFromStorage() {
 function prePopulateCartDrawer(cartData) {
   const cartEmpty = document.querySelector(".cart__empty-state");
   if (!cartEmpty) return;
-  
+
   cartEmpty.remove();
   const cartForm = document.querySelector(".cart__form");
 
@@ -144,9 +144,9 @@ function prePopulateCartDrawer(cartData) {
     cartForm.appendChild(footer);
   }
 
-  const shippingBar = document.querySelector('.cart__shipping');
+  const shippingBar = document.querySelector(".cart__shipping");
   if (shippingBar && cartData.items.length > 0) {
-    shippingBar.style.display = 'block';
+    shippingBar.style.display = "block";
   }
 
   updateFreeShippingBar(cartData.total);
@@ -184,27 +184,27 @@ function formatMoney(cents) {
 }
 
 function updateFreeShippingBar(cartTotal) {
-  const shipping = document.querySelector('.cart__shipping');
-  const text = document.querySelector('.cart__shipping-text');
-  const progress = document.querySelector('.cart__shipping-progress');
-  
+  const shipping = document.querySelector(".cart__shipping");
+  const text = document.querySelector(".cart__shipping-text");
+  const progress = document.querySelector(".cart__shipping-progress");
+
   if (!shipping) return;
-  
+
   const threshold = 9900;
-  const hasItems = document.querySelector('.cart-item');
-  
+  const hasItems = document.querySelector(".cart-item");
+
   if (!hasItems) {
-    shipping.style.display = 'none';
+    shipping.style.display = "none";
     return;
   }
-  
-  if (shipping.style.display === 'none') {
-    shipping.style.display = 'block';
+
+  if (shipping.style.display === "none") {
+    shipping.style.display = "block";
   }
-  
+
   if (cartTotal >= threshold) {
-    text.textContent = 'Your order has free shipping!';
-    progress.style.width = '100%';
+    text.textContent = "Your order has free shipping!";
+    progress.style.width = "100%";
   } else {
     const remaining = formatMoney(threshold - cartTotal);
     text.textContent = `${remaining} away from free shipping`;
@@ -291,9 +291,9 @@ async function fetchCart() {
 
 async function updateCartDrawer() {
   try {
-    const currentShippingDisplay = document.querySelector('.cart__shipping')?.style.display;
-    const currentShippingText = document.querySelector('.cart__shipping-text')?.textContent;
-    const currentProgressWidth = document.querySelector('.cart__shipping-progress')?.style.width;
+    const currentShippingDisplay = document.querySelector(".cart__shipping")?.style.display;
+    const currentShippingText = document.querySelector(".cart__shipping-text")?.textContent;
+    const currentProgressWidth = document.querySelector(".cart__shipping-progress")?.style.width;
 
     const [drawerRes, cartData] = await Promise.all([fetch("/?section_id=cart-drawer"), fetchCart()]);
 
@@ -302,23 +302,25 @@ async function updateCartDrawer() {
     html.innerHTML = text;
 
     const images = html.querySelectorAll(".cart-item__image img");
-    await Promise.all(Array.from(images).map(img => {
-      return new Promise(resolve => {
-        const preloadImg = new Image();
-        preloadImg.onload = resolve;
-        preloadImg.onerror = resolve;
-        preloadImg.src = img.src;
-      });
-    }));
+    await Promise.all(
+      Array.from(images).map((img) => {
+        return new Promise((resolve) => {
+          const preloadImg = new Image();
+          preloadImg.onload = resolve;
+          preloadImg.onerror = resolve;
+          preloadImg.src = img.src;
+        });
+      })
+    );
 
     cartElements.drawer.innerHTML = html.querySelector(".cart").innerHTML;
 
-    const newShippingBar = document.querySelector('.cart__shipping');
-    const newShippingText = document.querySelector('.cart__shipping-text');
-    const newProgress = document.querySelector('.cart__shipping-progress');
-    
-    if (newShippingBar && currentShippingDisplay === 'block') {
-      newShippingBar.style.display = 'block';
+    const newShippingBar = document.querySelector(".cart__shipping");
+    const newShippingText = document.querySelector(".cart__shipping-text");
+    const newProgress = document.querySelector(".cart__shipping-progress");
+
+    if (newShippingBar && currentShippingDisplay === "block") {
+      newShippingBar.style.display = "block";
       if (newShippingText && currentShippingText) {
         newShippingText.textContent = currentShippingText;
       }
@@ -331,7 +333,7 @@ async function updateCartDrawer() {
 
     const cart = await fetchCart();
     if (cart) updateFreeShippingBar(cart.total_price);
-    
+
     return true;
   } catch (e) {
     console.error("Error updating cart drawer:", e);
@@ -341,28 +343,28 @@ async function updateCartDrawer() {
 
 function applyOptimisticUI() {
   const productTitle = document.querySelector(".product-details__title")?.textContent || "";
- 
+
   let variantSelections = "One Size";
- 
+
   try {
     const options = [];
     document.querySelectorAll(".js--variant-options").forEach((optGroup) => {
       const legend = optGroup.querySelector("legend");
       if (!legend) return;
- 
+
       const optionName = legend.textContent.replace(":", "").trim();
       const selectedInput = optGroup.querySelector(".js--variant-option:checked");
       if (!selectedInput) return;
- 
+
       const label = selectedInput.nextElementSibling;
       if (!label) return;
- 
+
       const optionValue = label.textContent.trim();
       if (optionName && optionValue) {
         options.push(`${optionName}: ${optionValue}`);
       }
     });
- 
+
     if (options.length > 0) {
       variantSelections = options.join(", ");
     }
@@ -374,35 +376,35 @@ function applyOptimisticUI() {
         .filter(Boolean)
         .join(" / ") || "One Size";
   }
- 
+
   const productImage = document.querySelector(".splide__slide img")?.src || "";
   const variantId = document.querySelector("#js--variant-id")?.value || "";
- 
+
   applyCartTotalLoaders();
- 
+
   const isCartEmpty = document.querySelector(".cart__empty-state");
   if (isCartEmpty) {
     const cartForm = document.querySelector(".cart__form");
     isCartEmpty.remove();
- 
+
     const itemsContainer = document.createElement("div");
     itemsContainer.className = "cart__items";
     cartForm.prepend(itemsContainer);
- 
-    const shippingBar = document.createElement("div");
-shippingBar.className = "cart__shipping";
-shippingBar.style.display = "block";
-shippingBar.innerHTML = `
-  <p class="cart__shipping-text small"></p>
-  <div class="cart__shipping-bar">
-    <div class="cart__shipping-progress" style="width: 0%; background: transparent;"></div>
-  </div>
-`;
-cartForm.insertBefore(shippingBar, itemsContainer);
 
-const textLoader = shippingBar.querySelector('.cart__shipping-text');
-textLoader.appendChild(createAnimatedLoader());
- 
+    const shippingBar = document.createElement("div");
+    shippingBar.className = "cart__shipping";
+    shippingBar.style.display = "block";
+    shippingBar.innerHTML = `
+    <p class="cart__shipping-text small"></p>
+    <div class="cart__shipping-bar">
+      <div class="cart__shipping-progress" style="width: 0%; background: transparent;"></div>
+    </div>
+    `;
+    cartForm.insertBefore(shippingBar, itemsContainer);
+
+    const textLoader = shippingBar.querySelector(".cart__shipping-text");
+    textLoader.appendChild(createAnimatedLoader());
+
     if (!document.querySelector(".cart__footer")) {
       const footer = document.createElement("footer");
       footer.className = "cart__footer";
@@ -414,24 +416,24 @@ textLoader.appendChild(createAnimatedLoader());
         <button type="submit" name="checkout" class="cart__checkout body"></button>
       `;
       cartForm.appendChild(footer);
- 
+
       const newCheckoutButton = footer.querySelector(".cart__checkout");
       newCheckoutButton.innerHTML = '<span class="loader--spinner"></span>';
- 
+
       const footerValue = footer.querySelector(".cart__footer-value");
       footerValue.appendChild(createAnimatedLoader());
     }
   }
- 
+
   const itemsContainer = document.querySelector(".cart__items");
   if (!itemsContainer) return;
- 
+
   const existingItem = document.querySelector(`.cart-item[data-line-item-key*="${variantId}"]`);
- 
+
   if (existingItem) {
     const priceElement = existingItem.querySelector(".cart-item__price");
     if (priceElement) createLoadingPlaceholder(priceElement);
- 
+
     const actionsEl = existingItem.querySelector(".cart-item__actions");
     if (actionsEl) {
       actionsEl.innerHTML = `
@@ -444,7 +446,7 @@ textLoader.appendChild(createAnimatedLoader());
     const cartItem = document.createElement("article");
     cartItem.className = "cart-item";
     cartItem.setAttribute("data-line-item-key", `temp-${variantId}`);
- 
+
     cartItem.innerHTML = `
       <div class="cart-item__image">
         <img src="${productImage}" alt="${productTitle}" width="100" height="150">
@@ -469,13 +471,13 @@ textLoader.appendChild(createAnimatedLoader());
         </div>
       </div>
     `;
- 
+
     cartItem.querySelector(".price-placeholder").appendChild(createAnimatedLoader());
     cartItem.querySelector(".placeholder-loader").appendChild(createAnimatedLoader());
- 
+
     itemsContainer.prepend(cartItem);
   }
- }
+}
 
 function addErrorWithTimeout(item, message) {
   const errorElement = showError(item, message, "cart-item__error small cart-item__error--permanent");
@@ -511,14 +513,14 @@ function addCartEventListeners() {
       const key = rootItem.getAttribute("data-line-item-key");
       const currentQuantity = Number(button.parentElement.querySelector("input").value);
       const isUp = button.classList.contains("cart-item__quantity-button--plus");
- 
+
       if (isUp && !isGiftCardItem(rootItem)) {
         const inventoryLimit = parseInt(rootItem.getAttribute("data-inventory-quantity") || "Infinity", 10);
         const adjustedInventoryLimit = inventoryLimit === Infinity ? Infinity : Math.max(0, inventoryLimit - 5);
- 
+
         if (currentQuantity >= adjustedInventoryLimit) {
           applyCartTotalLoaders();
- 
+
           const actionsEl = rootItem.querySelector(".cart-item__actions");
           createLoadingPlaceholder(actionsEl);
           actionsEl.innerHTML = `
@@ -526,28 +528,28 @@ function addCartEventListeners() {
             <div class="placeholder-remove"></div>
           `;
           actionsEl.querySelector(".placeholder-loader").appendChild(createAnimatedLoader());
- 
+
           createLoadingPlaceholder(rootItem.querySelector(".cart-item__price"));
- 
+
           await new Promise((resolve) => setTimeout(resolve, 800));
           await updateCartDrawer();
- 
+
           const updatedRootItem = document.querySelector(`[data-line-item-key="${key}"]`);
           if (updatedRootItem) {
             addErrorWithTimeout(
               updatedRootItem,
-              adjustedInventoryLimit === 0 
-                ? "Sorry, this item is out of stock." 
+              adjustedInventoryLimit === 0
+                ? "Sorry, this item is out of stock."
                 : `Sorry, only ${adjustedInventoryLimit} ${adjustedInventoryLimit === 1 ? "item" : "items"} available.`
             );
           }
           return;
         }
       }
- 
+
       try {
         applyCartTotalLoaders();
- 
+
         const actionsEl = rootItem.querySelector(".cart-item__actions");
         createLoadingPlaceholder(actionsEl);
         actionsEl.innerHTML = `
@@ -555,20 +557,20 @@ function addCartEventListeners() {
           <div class="placeholder-remove"></div>
         `;
         actionsEl.querySelector(".placeholder-loader").appendChild(createAnimatedLoader());
- 
+
         createLoadingPlaceholder(rootItem.querySelector(".cart-item__price"));
- 
+
         await fetch("/cart/update.js", {
           method: "post",
           headers: { Accept: "application/json", "Content-Type": "application/json" },
           body: JSON.stringify({ updates: { [key]: isUp ? currentQuantity + 1 : currentQuantity - 1 } }),
         });
- 
+
         await updateCartDrawer();
       } catch (e) {
         console.error("Error updating quantity:", e);
         await updateCartDrawer();
- 
+
         const updatedRootItem = document.querySelector(`[data-line-item-key="${key}"]`);
         if (updatedRootItem) {
           addErrorWithTimeout(updatedRootItem, "Could not update quantity. Please try again.");
@@ -576,22 +578,22 @@ function addCartEventListeners() {
       }
     });
   });
- 
+
   document.querySelectorAll(".cart-item__remove").forEach((button) => {
     button.addEventListener("click", async () => {
       const cartItem = button.closest(".cart-item");
       const key = cartItem.getAttribute("data-line-item-key");
       const remainingItems = document.querySelectorAll(".cart-item").length;
- 
+
       cartItem.style.display = "none";
-      
+
       if (remainingItems === 1) {
         const shippingBar = document.querySelector(".cart__shipping");
         if (shippingBar) shippingBar.style.display = "none";
       }
-      
+
       applyCartTotalLoaders();
- 
+
       try {
         await fetch("/cart/update.js", {
           method: "post",
@@ -610,12 +612,12 @@ function addCartEventListeners() {
       }
     });
   });
- 
+
   document.querySelector(".cart__container")?.addEventListener("click", (e) => e.stopPropagation());
   document.querySelectorAll(".cart__close, .cart").forEach((el) => {
     el.addEventListener("click", closeCartDrawer);
   });
- }
+}
 
 function handleAddToCart(form) {
   return async (e) => {
@@ -646,13 +648,19 @@ function handleAddToCart(form) {
 
       const totalRequestedQuantity = (existingItem ? existingItem.quantity : 0) + quantity;
 
-      if (!isGiftCardProduct() && adjustedInventoryQuantity !== Infinity && totalRequestedQuantity > adjustedInventoryQuantity) {
+      if (
+        !isGiftCardProduct() &&
+        adjustedInventoryQuantity !== Infinity &&
+        totalRequestedQuantity > adjustedInventoryQuantity
+      ) {
         addButton.innerHTML = originalText;
         showError(
-          form, 
-          adjustedInventoryQuantity === 0 
-            ? "Sorry, this item is out of stock." 
-            : `Sorry, only ${adjustedInventoryQuantity} ${adjustedInventoryQuantity === 1 ? "item" : "items"} available.`
+          form,
+          adjustedInventoryQuantity === 0
+            ? "Sorry, this item is out of stock."
+            : `Sorry, only ${adjustedInventoryQuantity} ${
+                adjustedInventoryQuantity === 1 ? "item" : "items"
+              } available.`
         );
         return;
       }
