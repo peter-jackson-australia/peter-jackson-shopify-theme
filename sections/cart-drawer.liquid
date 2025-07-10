@@ -441,10 +441,10 @@
       scrollY: 0,
 
       init() {
-        window.openCart = () => this.openCart();
-        window.closeCart = () => this.closeCart();
-
         this.$nextTick(() => {
+          window.openCart = () => this.openCart();
+          window.closeCart = () => this.closeCart();
+
           const closeBtn = document.querySelector('.cart__close');
           if (closeBtn) {
             closeBtn.addEventListener('click', () => this.closeCart());
