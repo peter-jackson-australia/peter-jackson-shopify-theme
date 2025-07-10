@@ -244,6 +244,22 @@
       init() {
         this.updateHeaderHeight();
         
+        const siteHeader = document.querySelector('#site-header');
+        if (siteHeader) {
+          const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+              if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                this.updateHeaderHeight();
+              }
+            });
+          });
+          
+          observer.observe(siteHeader, {
+            attributes: true,
+            attributeFilter: ['class']
+          });
+        }
+        
         window.addEventListener('scroll', () => {
           this.updateHeaderHeight();
         });
@@ -288,42 +304,23 @@
       },
 
       updateHeaderHeight() {
-        const header = document.querySelector('header');
+        const siteHeader = document.querySelector('#site-header');
         const overlay = document.querySelector('.menu-drawer__overlay');
         const drawer = document.querySelector('.menu-drawer');
         
-        if (!header || !overlay || !drawer) return;
+        if (!siteHeader || !overlay || !drawer) return;
         
-        const headerStyles = getComputedStyle(header);
-        const position = headerStyles.position;
-        const headerRect = header.getBoundingClientRect();
-        
-        console.log('Header position property:', position);
-        console.log('Header classes:', header.className);
-        console.log('Header rect:', headerRect);
-        console.log('Header top:', headerRect.top);
-        console.log('Header bottom:', headerRect.bottom);
-        console.log('Header height:', headerRect.height);
-        
-        // Let's try a different way to detect if header is fixed
-        // If header.top is 0 and height is around your --space-xl value, it's probably fixed
-        const isFixed = position === 'fixed' || (headerRect.top === 0 && headerRect.height > 50);
-        
-        console.log('Is fixed (computed):', isFixed);
+        const isFixed = siteHeader.classList.contains('header-fixed');
         
         if (isFixed) {
           overlay.style.top = 'var(--space-xl)';
           drawer.style.top = 'var(--space-xl)';
-          console.log('FIXED: Set to var(--space-xl)');
         } else {
+          const headerRect = siteHeader.getBoundingClientRect();
           const topPosition = Math.max(0, headerRect.bottom) + 'px';
           overlay.style.top = topPosition;
           drawer.style.top = topPosition;
-          console.log('NOT FIXED: Set to', topPosition);
         }
-        
-        console.log('Final overlay top:', overlay.style.top);
-        console.log('Final drawer top:', drawer.style.top);
       },
   
       decodeEntities(text) {
