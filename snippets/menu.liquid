@@ -287,7 +287,6 @@
         window.closeMenu = () => this.closeMenu();
       },
 
-      
       updateHeaderHeight() {
         const header = document.querySelector('header');
         const overlay = document.querySelector('.menu-drawer__overlay');
@@ -295,25 +294,36 @@
         
         if (!header || !overlay || !drawer) return;
         
-        const isFixed = getComputedStyle(header).position === 'fixed';
+        const headerStyles = getComputedStyle(header);
+        const position = headerStyles.position;
+        const headerRect = header.getBoundingClientRect();
+        
+        console.log('Header position property:', position);
+        console.log('Header classes:', header.className);
+        console.log('Header rect:', headerRect);
+        console.log('Header top:', headerRect.top);
+        console.log('Header bottom:', headerRect.bottom);
+        console.log('Header height:', headerRect.height);
+        
+        // Let's try a different way to detect if header is fixed
+        // If header.top is 0 and height is around your --space-xl value, it's probably fixed
+        const isFixed = position === 'fixed' || (headerRect.top === 0 && headerRect.height > 50);
+        
+        console.log('Is fixed (computed):', isFixed);
         
         if (isFixed) {
-          // Header is fixed - use CSS variable
           overlay.style.top = 'var(--space-xl)';
           drawer.style.top = 'var(--space-xl)';
           console.log('FIXED: Set to var(--space-xl)');
         } else {
-          // Header is not fixed - use viewport height
-          const headerBottom = header.getBoundingClientRect().bottom;
-          const topPosition = Math.max(0, headerBottom) + 'px';
+          const topPosition = Math.max(0, headerRect.bottom) + 'px';
           overlay.style.top = topPosition;
           drawer.style.top = topPosition;
           console.log('NOT FIXED: Set to', topPosition);
         }
         
-        // Log what was actually set
-        console.log('Overlay top:', overlay.style.top);
-        console.log('Drawer top:', drawer.style.top);
+        console.log('Final overlay top:', overlay.style.top);
+        console.log('Final drawer top:', drawer.style.top);
       },
   
       decodeEntities(text) {
