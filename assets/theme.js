@@ -255,9 +255,7 @@ function checkVariants() {
 document.addEventListener('DOMContentLoaded', function() {
   const header = document.querySelector('#site-header');
   const spacer = document.querySelector('#header-spacer');
-  const headerHeight = header.offsetHeight;
-  const showFixedAt = headerHeight + 500; // Show fixed header 200px after normal header is gone
-  const hideFixedAt = 0; // Hide fixed header when back at top
+  const headerOffsetTop = header.offsetTop; // Distance from top of page to header
   let isFixed = false;
 
   function checkScroll() {
@@ -270,16 +268,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const scrollY = window.scrollY;
     
-    if (scrollY > showFixedAt && !isFixed) {
-      // Show fixed header
+    if (scrollY >= headerOffsetTop && !isFixed) {
+      // Header touches top of viewport - make it fixed
       isFixed = true;
       header.classList.add('header-fixed');
       spacer.classList.remove('hide');
       requestAnimationFrame(() => {
         header.classList.add('is-visible');
       });
-    } else if (scrollY <= hideFixedAt && isFixed) {
-      // Hide fixed header only when normal header is back in view
+    } else if (scrollY < headerOffsetTop && isFixed) {
+      // Scrolled back above header position - make it normal
       isFixed = false;
       header.classList.remove('is-visible');
       setTimeout(() => {
