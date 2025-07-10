@@ -295,14 +295,26 @@
         const overlay = document.querySelector('.menu-drawer__overlay');
         const drawer = document.querySelector('.menu-drawer');
         
+        // Store the previous state to detect transitions
+        if (!this.headerWasFixed) this.headerWasFixed = false;
+        
         if (isFixed) {
-          if (overlay) overlay.style.top = 'var(--space-xl)';
-          if (drawer) drawer.style.top = 'var(--space-xl)';
+          // Header is fixed - always use --space-xl and don't change it
+          if (overlay && overlay.style.top !== 'var(--space-xl)') {
+            overlay.style.top = 'var(--space-xl)';
+          }
+          if (drawer && drawer.style.top !== 'var(--space-xl)') {
+            drawer.style.top = 'var(--space-xl)';
+          }
+          this.headerWasFixed = true;
         } else {
+          // Header is not fixed - calculate position normally
           const headerBottom = header.getBoundingClientRect().bottom;
           const topPosition = Math.max(0, headerBottom) + 'px';
+          
           if (overlay) overlay.style.top = topPosition;
           if (drawer) drawer.style.top = topPosition;
+          this.headerWasFixed = false;
         }
       },
   
