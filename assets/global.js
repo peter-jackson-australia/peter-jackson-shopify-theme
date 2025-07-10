@@ -301,14 +301,15 @@ async function updateCartDrawer() {
       const newProgress = newShippingBar.querySelector(".cart__shipping-progress");
 
       if (cartData && newText && newProgress) {
+        // Set the text but start progress at 0% for animation
         if (cartData.total_price >= threshold) {
           newText.textContent = "Your order has free shipping!";
-          newProgress.style.width = "100%";
         } else {
           const remaining = formatMoney(threshold - cartData.total_price);
           newText.textContent = `${remaining} away from free shipping`;
-          newProgress.style.width = `${(cartData.total_price / threshold) * 100}%`;
         }
+        // Always start at 0% so we can animate
+        newProgress.style.width = "0%";
       }
     }
 
@@ -319,10 +320,10 @@ async function updateCartDrawer() {
     // IMPORTANT: Trigger animation after DOM update
     const cart = await fetchCart();
     if (cart) {
-      // Use requestAnimationFrame to ensure DOM is fully updated
-      requestAnimationFrame(() => {
-        updateFreeShippingBarWithAnimation(cart.total_price);
-      });
+      // Small delay to ensure DOM is ready, then animate
+      setTimeout(() => {
+        animateShippingProgress(cart.total_price);
+      }, 100);
     }
 
     return true;
@@ -364,61 +365,21 @@ function updateFreeShippingBar(cartTotal) {
   }
 }
 
-function updateFreeShippingBarWithAnimation(cartTotal) {
-  const shipping = document.querySelector(".cart__shipping");
-  const text = document.querySelector(".cart__shipping-text");
+function animateShippingProgress(cartTotal) {
   const progress = document.querySelector(".cart__shipping-progress");
-
-  if (!shipping) return;
-
-  shipping.classList.remove("cart__shipping--loading");
+  if (!progress) return;
 
   const threshold = 9900;
-  const hasItems = document.querySelector(".cart-item");
+  const targetPercent = cartTotal >= threshold ? 100 : (cartTotal / threshold) * 100;
 
-  if (!hasItems) {
-    shipping.style.display = "none";
-    return;
-  }
-
-  shipping.style.height = "93px";
-  if (shipping.style.display === "none") {
-    shipping.style.display = "block";
-  }
-
-  // Get current width for animation
-  const currentWidth = progress.style.width || "0%";
-  const currentPercent = parseFloat(currentWidth) || 0;
-
-  let targetPercent;
-  if (cartTotal >= threshold) {
-    text.textContent = "Your order has free shipping!";
-    targetPercent = 100;
-  } else {
-    const remaining = formatMoney(threshold - cartTotal);
-    text.textContent = `${remaining} away from free shipping`;
-    targetPercent = (cartTotal / threshold) * 100;
-  }
-
-  // Only animate if there's a meaningful change
-  if (Math.abs(targetPercent - currentPercent) > 1) {
-    // Force reflow by reading the current width
-    progress.offsetWidth;
-    
-    // Remove transition temporarily
-    progress.style.transition = "none";
-    progress.style.width = currentPercent + "%";
-    
-    // Force another reflow
-    progress.offsetWidth;
-    
-    // Re-enable transition and set target width
-    progress.style.transition = "width 0.5s ease";
-    progress.style.width = targetPercent + "%";
-  } else {
-    // No animation needed, just set the width
-    progress.style.width = targetPercent + "%";
-  }
+  // Ensure we start from 0% and animate to target
+  progress.style.width = "0%";
+  
+  // Force reflow
+  progress.offsetWidth;
+  
+  // Now animate to target
+  progress.style.width = `${targetPercent}%`;
 }
 
 function applyOptimisticUI() {
