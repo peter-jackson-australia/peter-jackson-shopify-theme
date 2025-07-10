@@ -287,94 +287,12 @@ async function updateCartDrawer() {
       })
     );
 
-    async function updateCartDrawer() {
-      try {
-        const [drawerRes, cartData] = await Promise.all([fetch("/?section_id=cart-drawer"), fetchCart()]);
-    
-        const text = await drawerRes.text();
-        const html = document.createElement("div");
-        html.innerHTML = text;
-    
-        const images = html.querySelectorAll(".cart-item__image img");
-        await Promise.all(Array.from(images).map(img => {
-          return new Promise(resolve => {
-            const preloadImg = new Image();
-            preloadImg.onload = resolve;
-            preloadImg.onerror = resolve;
-            preloadImg.src = img.src;
-          });
-        }));
-    
-        // CRITICAL: Prepare the shipping bar in the new HTML before replacing
-        const newShippingBar = html.querySelector('.cart__shipping');
-        const hasItems = html.querySelector('.cart-item');
-        
-        if (newShippingBar && hasItems) {
-          // Pre-configure the shipping bar with the correct content and visibility
-          newShippingBar.style.display = 'block';
-          newShippingBar.style.height = '93px';
-          
-          const threshold = 9900;
-          const newText = newShippingBar.querySelector('.cart__shipping-text');
-          const newProgress = newShippingBar.querySelector('.cart__shipping-progress');
-          
-          if (cartData && newText && newProgress) {
-            if (cartData.total_price >= threshold) {
-              newText.textContent = 'Your order has free shipping!';
-              newProgress.style.width = '100%';
-            } else {
-              const remaining = formatMoney(threshold - cartData.total_price);
-              newText.textContent = `${remaining} away from free shipping`;
-              newProgress.style.width = `${(cartData.total_price / threshold) * 100}%`;
-            }
-          }
-        }
-    
-        // Now replace the cart content - shipping bar will already be in correct state
-        cartElements.drawer.innerHTML = html.querySelector(".cart").innerHTML;
-        addCartEventListeners();
-        
-        return true;
-      } catch (e) {
-        console.error("Error updating cart drawer:", e);
-        return false;
-      }
-    }
-    
-    function updateFreeShippingBar(cartTotal) {
-      const shipping = document.querySelector('.cart__shipping');
-      const text = document.querySelector('.cart__shipping-text');
-      const progress = document.querySelector('.cart__shipping-progress');
-      
-      if (!shipping) return;
-      
-      const threshold = 9900;
-      const hasItems = document.querySelector('.cart-item');
-      
-      if (!hasItems) {
-        shipping.style.display = 'none';
-        return;
-      }
-      
-      // Set explicit height and ensure visibility
-      shipping.style.height = '93px';
-      if (shipping.style.display !== 'block') {
-        shipping.style.display = 'block';
-      }
-      
-      if (cartTotal >= threshold) {
-        text.textContent = 'Your order has free shipping!';
-        progress.style.width = '100%';
-      } else {
-        const remaining = formatMoney(threshold - cartTotal);
-        text.textContent = `${remaining} away from free shipping`;
-        progress.style.width = `${(cartTotal / threshold) * 100}%`;
-      }
-    }
+    // CRITICAL: Prepare the shipping bar in the new HTML before replacing
     const newShippingBar = html.querySelector(".cart__shipping");
     const hasItems = html.querySelector(".cart-item");
 
     if (newShippingBar && hasItems) {
+      // Pre-configure the shipping bar with the correct content and visibility
       newShippingBar.style.display = "block";
       newShippingBar.style.height = "93px";
 
@@ -394,43 +312,23 @@ async function updateCartDrawer() {
       }
     }
 
+    // Now replace the cart content - shipping bar will already be in correct state
     cartElements.drawer.innerHTML = html.querySelector(".cart").innerHTML;
     addCartEventListeners();
+
+    // IMPORTANT: Trigger animation after DOM update
+    const cart = await fetchCart();
+    if (cart) {
+      // Use requestAnimationFrame to ensure DOM is fully updated
+      requestAnimationFrame(() => {
+        updateFreeShippingBarWithAnimation(cart.total_price);
+      });
+    }
 
     return true;
   } catch (e) {
     console.error("Error updating cart drawer:", e);
     return false;
-  }
-}
-
-function updateFreeShippingBar(cartTotal) {
-  const shipping = document.querySelector(".cart__shipping");
-  const text = document.querySelector(".cart__shipping-text");
-  const progress = document.querySelector(".cart__shipping-progress");
-
-  if (!shipping) return;
-
-  const threshold = 9900;
-  const hasItems = document.querySelector(".cart-item");
-
-  if (!hasItems) {
-    shipping.style.display = "none";
-    return;
-  }
-
-  shipping.style.height = "93px";
-  if (shipping.style.display !== "block") {
-    shipping.style.display = "block";
-  }
-
-  if (cartTotal >= threshold) {
-    text.textContent = "Your order has free shipping!";
-    progress.style.width = "100%";
-  } else {
-    const remaining = formatMoney(threshold - cartTotal);
-    text.textContent = `${remaining} away from free shipping`;
-    progress.style.width = `${(cartTotal / threshold) * 100}%`;
   }
 }
 
@@ -451,6 +349,7 @@ function updateFreeShippingBar(cartTotal) {
     return;
   }
 
+  shipping.style.height = "93px";
   if (shipping.style.display === "none") {
     shipping.style.display = "block";
   }
@@ -462,6 +361,63 @@ function updateFreeShippingBar(cartTotal) {
     const remaining = formatMoney(threshold - cartTotal);
     text.textContent = `${remaining} away from free shipping`;
     progress.style.width = `${(cartTotal / threshold) * 100}%`;
+  }
+}
+
+function updateFreeShippingBarWithAnimation(cartTotal) {
+  const shipping = document.querySelector(".cart__shipping");
+  const text = document.querySelector(".cart__shipping-text");
+  const progress = document.querySelector(".cart__shipping-progress");
+
+  if (!shipping) return;
+
+  shipping.classList.remove("cart__shipping--loading");
+
+  const threshold = 9900;
+  const hasItems = document.querySelector(".cart-item");
+
+  if (!hasItems) {
+    shipping.style.display = "none";
+    return;
+  }
+
+  shipping.style.height = "93px";
+  if (shipping.style.display === "none") {
+    shipping.style.display = "block";
+  }
+
+  // Get current width for animation
+  const currentWidth = progress.style.width || "0%";
+  const currentPercent = parseFloat(currentWidth) || 0;
+
+  let targetPercent;
+  if (cartTotal >= threshold) {
+    text.textContent = "Your order has free shipping!";
+    targetPercent = 100;
+  } else {
+    const remaining = formatMoney(threshold - cartTotal);
+    text.textContent = `${remaining} away from free shipping`;
+    targetPercent = (cartTotal / threshold) * 100;
+  }
+
+  // Only animate if there's a meaningful change
+  if (Math.abs(targetPercent - currentPercent) > 1) {
+    // Force reflow by reading the current width
+    progress.offsetWidth;
+    
+    // Remove transition temporarily
+    progress.style.transition = "none";
+    progress.style.width = currentPercent + "%";
+    
+    // Force another reflow
+    progress.offsetWidth;
+    
+    // Re-enable transition and set target width
+    progress.style.transition = "width 0.5s ease";
+    progress.style.width = targetPercent + "%";
+  } else {
+    // No animation needed, just set the width
+    progress.style.width = targetPercent + "%";
   }
 }
 
@@ -518,6 +474,7 @@ function applyOptimisticUI() {
     const shippingBar = document.createElement("div");
     shippingBar.className = "cart__shipping cart__shipping--loading";
     shippingBar.style.display = "block";
+    shippingBar.style.height = "93px";
     shippingBar.innerHTML = `
       <p class="cart__shipping-text small"></p>
       <div class="cart__shipping-bar">
