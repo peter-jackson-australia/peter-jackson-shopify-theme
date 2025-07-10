@@ -296,7 +296,7 @@
         {% if cart.item_count == 0 %}
           <div class="cart__empty-state">
             <p class="cart__empty body">Your cart is empty</p>
-            <a href="/collections/new-arrivals" class="cart__new-arrivals body">Shop New Arrivals</a>
+            <a href="{{ routes.collections_url }}/new-arrivals" class="cart__new-arrivals body">Shop New Arrivals</a>
           </div>
         {% else %}
           <div class="cart__items custom-scrollbar">
