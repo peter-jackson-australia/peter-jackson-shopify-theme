@@ -341,28 +341,28 @@ async function updateCartDrawer() {
 
 function applyOptimisticUI() {
   const productTitle = document.querySelector(".product-details__title")?.textContent || "";
-
+ 
   let variantSelections = "One Size";
-
+ 
   try {
     const options = [];
     document.querySelectorAll(".js--variant-options").forEach((optGroup) => {
       const legend = optGroup.querySelector("legend");
       if (!legend) return;
-
+ 
       const optionName = legend.textContent.replace(":", "").trim();
       const selectedInput = optGroup.querySelector(".js--variant-option:checked");
       if (!selectedInput) return;
-
+ 
       const label = selectedInput.nextElementSibling;
       if (!label) return;
-
+ 
       const optionValue = label.textContent.trim();
       if (optionName && optionValue) {
         options.push(`${optionName}: ${optionValue}`);
       }
     });
-
+ 
     if (options.length > 0) {
       variantSelections = options.join(", ");
     }
@@ -374,21 +374,37 @@ function applyOptimisticUI() {
         .filter(Boolean)
         .join(" / ") || "One Size";
   }
-
+ 
   const productImage = document.querySelector(".splide__slide img")?.src || "";
   const variantId = document.querySelector("#js--variant-id")?.value || "";
-
+ 
   applyCartTotalLoaders();
-
+ 
   const isCartEmpty = document.querySelector(".cart__empty-state");
   if (isCartEmpty) {
     const cartForm = document.querySelector(".cart__form");
     isCartEmpty.remove();
-
+ 
     const itemsContainer = document.createElement("div");
     itemsContainer.className = "cart__items";
     cartForm.prepend(itemsContainer);
-
+ 
+    const shippingBar = document.createElement("div");
+    shippingBar.className = "cart__shipping";
+    shippingBar.style.display = "block";
+    shippingBar.innerHTML = `
+      <p class="cart__shipping-text small"></p>
+      <div class="cart__shipping-bar">
+        <div class="cart__shipping-progress"></div>
+      </div>
+    `;
+    cartForm.insertBefore(shippingBar, itemsContainer);
+    
+    const textLoader = shippingBar.querySelector('.cart__shipping-text');
+    const progressLoader = shippingBar.querySelector('.cart__shipping-progress');
+    textLoader.appendChild(createAnimatedLoader());
+    progressLoader.style.width = '0%';
+ 
     if (!document.querySelector(".cart__footer")) {
       const footer = document.createElement("footer");
       footer.className = "cart__footer";
@@ -400,24 +416,24 @@ function applyOptimisticUI() {
         <button type="submit" name="checkout" class="cart__checkout body"></button>
       `;
       cartForm.appendChild(footer);
-
+ 
       const newCheckoutButton = footer.querySelector(".cart__checkout");
       newCheckoutButton.innerHTML = '<span class="loader--spinner"></span>';
-
+ 
       const footerValue = footer.querySelector(".cart__footer-value");
       footerValue.appendChild(createAnimatedLoader());
     }
   }
-
+ 
   const itemsContainer = document.querySelector(".cart__items");
   if (!itemsContainer) return;
-
+ 
   const existingItem = document.querySelector(`.cart-item[data-line-item-key*="${variantId}"]`);
-
+ 
   if (existingItem) {
     const priceElement = existingItem.querySelector(".cart-item__price");
     if (priceElement) createLoadingPlaceholder(priceElement);
-
+ 
     const actionsEl = existingItem.querySelector(".cart-item__actions");
     if (actionsEl) {
       actionsEl.innerHTML = `
@@ -430,7 +446,7 @@ function applyOptimisticUI() {
     const cartItem = document.createElement("article");
     cartItem.className = "cart-item";
     cartItem.setAttribute("data-line-item-key", `temp-${variantId}`);
-
+ 
     cartItem.innerHTML = `
       <div class="cart-item__image">
         <img src="${productImage}" alt="${productTitle}" width="100" height="150">
@@ -455,13 +471,13 @@ function applyOptimisticUI() {
         </div>
       </div>
     `;
-
+ 
     cartItem.querySelector(".price-placeholder").appendChild(createAnimatedLoader());
     cartItem.querySelector(".placeholder-loader").appendChild(createAnimatedLoader());
-
+ 
     itemsContainer.prepend(cartItem);
   }
-}
+ }
 
 function addErrorWithTimeout(item, message) {
   const errorElement = showError(item, message, "cart-item__error small cart-item__error--permanent");
