@@ -398,19 +398,16 @@ function applyOptimisticUI() {
     itemsContainer.className = "cart__items";
     cartForm.prepend(itemsContainer);
 
-    const shippingBar = document.createElement("div");
-    shippingBar.className = "cart__shipping cart__shipping--loading";
-    shippingBar.style.display = "block";
-    shippingBar.innerHTML = `
-      <p class="cart__shipping-text small"></p>
-      <div class="cart__shipping-bar">
-        <div class="cart__shipping-progress"></div>
-      </div>
-    `;
-    cartForm.insertBefore(shippingBar, itemsContainer);
-
-    const textLoader = shippingBar.querySelector('.cart__shipping-text');
-    textLoader.appendChild(createAnimatedLoader());
+    const existingShippingBar = document.querySelector(".cart__shipping");
+    if (existingShippingBar) {
+      existingShippingBar.style.display = "block";
+      existingShippingBar.classList.add("cart__shipping--loading");
+      const textLoader = existingShippingBar.querySelector('.cart__shipping-text');
+      if (textLoader) {
+        textLoader.innerHTML = "";
+        textLoader.appendChild(createAnimatedLoader());
+      }
+    }
 
     if (!document.querySelector(".cart__footer")) {
       const footer = document.createElement("footer");
@@ -475,16 +472,6 @@ function applyOptimisticUI() {
               <div class="placeholder-remove"></div>
             </div>
           </div>
-        </div>
-      </div>
-    `;
-
-    cartItem.querySelector(".price-placeholder").appendChild(createAnimatedLoader());
-    cartItem.querySelector(".placeholder-loader").appendChild(createAnimatedLoader());
-
-    itemsContainer.prepend(cartItem);
-  }
-}
 
 function addErrorWithTimeout(item, message) {
   const errorElement = showError(item, message, "cart-item__error small cart-item__error--permanent");
