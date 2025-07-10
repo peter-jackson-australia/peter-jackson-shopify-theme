@@ -363,28 +363,6 @@ openMenu() {
   }
 },
 
-updateHeaderHeight() {
-  const header = document.querySelector('header');
-  if (!header) return;
-  
-  const isFixed = getComputedStyle(header).position === 'fixed';
-  const overlay = document.querySelector('.menu-drawer__overlay');
-  const drawer = document.querySelector('.menu-drawer');
-  
-  if (isFixed) {
-    // When fixed, always use --space-xl
-    if (overlay) overlay.style.top = 'var(--space-xl)';
-    if (drawer) drawer.style.top = 'var(--space-xl)';
-    console.log('Header fixed: set top to var(--space-xl)');
-  } else {
-    // When not fixed, calculate visible bottom
-    const headerBottom = header.getBoundingClientRect().bottom;
-    const topPosition = Math.max(0, headerBottom) + 'px';
-    if (overlay) overlay.style.top = topPosition;
-    if (drawer) drawer.style.top = topPosition;
-    console.log('Header not fixed: set top to', topPosition);
-  }
-},
   
       closeMenu() {
         if (!this.isOpen) return;
