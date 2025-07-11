@@ -71,6 +71,41 @@
     padding-top: 0px;
   }
 
+  .popular-searches {
+    margin-bottom: var(--space-m);
+  }
+
+  .popular-searches__title {
+    color: var(--neutral-950);
+    margin-bottom: var(--space-s);
+  }
+
+  .popular-searches__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .popular-searches__item {
+    margin: 0;
+    padding: 0;
+  }
+
+  .popular-searches__link {
+    color: var(--neutral-600);
+    text-decoration: none;
+    display: block;
+    padding: var(--space-2xs) 0;
+    transition: color 0.2s ease;
+  }
+
+  .popular-searches__link:hover {
+    color: var(--neutral-950);
+  }
+
   @media screen and (max-width: 768px) {
     .search-drawer {
       display: none;
@@ -103,41 +138,42 @@
 
       <div class="search-drawer__content">
         {% render 'search-form' %}
+
+        {% assign popular_searches = '' %}
+        {% assign popular_searches = popular_searches | append: section.settings.popular_search_1 | append: '|' %}
+        {% assign popular_searches = popular_searches | append: section.settings.popular_search_2 | append: '|' %}
+        {% assign popular_searches = popular_searches | append: section.settings.popular_search_3 | append: '|' %}
+        {% assign popular_searches = popular_searches | append: section.settings.popular_search_4 %}
+        {% assign popular_searches_array = popular_searches | split: '|' %}
+
+        {% assign has_popular_searches = false %}
+        {% for search_term in popular_searches_array %}
+          {% unless search_term == blank %}
+            {% assign has_popular_searches = true %}
+            {% break %}
+          {% endunless %}
+        {% endfor %}
+
+        {% if has_popular_searches %}
+          <div class="popular-searches">
+            <h3 class="popular-searches__title heading--xl">Popular Searches</h3>
+            <ul class="popular-searches__list">
+              {% for search_term in popular_searches_array %}
+                {% unless search_term == blank %}
+                  <li class="popular-searches__item">
+                    <a
+                      href="{{ routes.search_url }}?q={{ search_term | url_param_escape }}&type=product&options[prefix]=last"
+                      class="popular-searches__link body"
+                    >
+                      {{ search_term }}
+                    </a>
+                  </li>
+                {% endunless %}
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
       </div>
-      {% assign popular_searches = '' %}
-      {% assign popular_searches = popular_searches | append: section.settings.popular_search_1 | append: '|' %}
-      {% assign popular_searches = popular_searches | append: section.settings.popular_search_2 | append: '|' %}
-      {% assign popular_searches = popular_searches | append: section.settings.popular_search_3 | append: '|' %}
-      {% assign popular_searches = popular_searches | append: section.settings.popular_search_4 %}
-      {% assign popular_searches_array = popular_searches | split: '|' %}
-
-      {% assign has_popular_searches = false %}
-      {% for search_term in popular_searches_array %}
-        {% unless search_term == blank %}
-          {% assign has_popular_searches = true %}
-          {% break %}
-        {% endunless %}
-      {% endfor %}
-
-      {% if has_popular_searches %}
-        <div class="popular-searches">
-          <h3 class="popular-searches__title heading--xl">Popular Searches</h3>
-          <ul class="popular-searches__list">
-            {% for search_term in popular_searches_array %}
-              {% unless search_term == blank %}
-                <li class="popular-searches__item">
-                  <a
-                    href="{{ routes.search_url }}?q={{ search_term | url_param_escape }}&type=product&options[prefix]=last"
-                    class="popular-searches__link body"
-                  >
-                    {{ search_term }}
-                  </a>
-                </li>
-              {% endunless %}
-            {% endfor %}
-          </ul>
-        </div>
-      {% endif %}
     </div>
   </aside>
 </div>
