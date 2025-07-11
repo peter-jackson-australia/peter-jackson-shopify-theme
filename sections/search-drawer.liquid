@@ -135,7 +135,7 @@
       </button>
     </header>
 
-    <div class="search-drawer__content">
+    <div class="search-drawer__content" x-data="{ searchQuery: '' }">
       {% render 'search-form' %}
 
       {% assign popular_searches = '' %}
@@ -181,7 +181,6 @@
     Alpine.data('searchDrawer', () => ({
       isOpen: false,
       scrollY: 0,
-      searchQuery: '',
 
       init() {
         window.toggleSearch = () => {
@@ -207,7 +206,6 @@
         if (!this.isOpen) return;
 
         this.isOpen = false;
-        this.searchQuery = '';
         document.body.classList.remove('search-open');
         document.querySelector('.search-drawer').classList.remove('search-drawer--active');
 
