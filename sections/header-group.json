@@ -43,15 +43,20 @@
     "header": {
       "type": "header",
       "settings": {}
-    }, 
+    },
     "search-drawer": {
       "type": "search-drawer",
-      "settings": {}
+      "settings": {
+        "popular_search_1": "Suits",
+        "popular_search_2": "Men's Suits",
+        "popular_search_3": "Black Jackets",
+        "popular_search_4": "Linen Shirts"
+      }
     }
   },
   "order": [
     "announcement",
-    "header", 
+    "header",
     "search-drawer"
   ]
 }
