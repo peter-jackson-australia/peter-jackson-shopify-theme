@@ -123,12 +123,12 @@
           "type": "column_item",
           "settings": {
             "image": "shopify://shop_images/peter-jackson-man-wearing-brown_tonal_suit_6fc12545-8e95-4f50-8106-da662687e1eb_copy.webp",
-            "image_link": "",
+            "image_link": "shopify://collections/knitwear",
             "heading": "Luxe Layers",
             "heading_animation": "none",
             "text": "Premium wool & cashmere blend knitwear",
             "text_animation": "none",
-            "column_link": "shopify://collections/mens-suits",
+            "column_link": "shopify://collections/knitwear",
             "column_link_text": "Two for $200"
           }
         },
