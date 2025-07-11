@@ -46,12 +46,7 @@
     },
     "search-drawer": {
       "type": "search-drawer",
-      "settings": {
-        "popular_search_1": "Suits",
-        "popular_search_2": "Men's Suits",
-        "popular_search_3": "Black Jackets",
-        "popular_search_4": "Linen Shirts"
-      }
+      "settings": {}
     }
   },
   "order": [
