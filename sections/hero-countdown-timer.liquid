@@ -132,7 +132,7 @@
   {% if section.settings.background_image %}
     {{
       section.settings.background_image
-      | image_url: width: 1440
+      | image_url: width: 1920
       | image_tag: class: 'countdown-timer__background', alt: section.settings.background_image.alt
       | default: section.settings.heading,
         loading: 'eager',
