@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "hero_slider_hNLRHx": {
       "type": "hero-slider",
@@ -45,7 +45,7 @@
             "desktop_image": "shopify://shop_images/Jackets_Coats_Hero_copy.jpg",
             "mobile_image": "shopify://shop_images/Jackets_Hero_Mob.webp",
             "heading": "Winter Jackets & Coats",
-            "svg_image": "shopify://shop_images/Jackets_Coats_HP.svg",
+            "svg_image": "shopify://shop_images/Jackets_Coats_HP_0a3e42cf-9a61-4189-90a5-f24613852780.svg",
             "svg_size": "medium",
             "mobile_svg_image": "shopify://shop_images/Jackets_Coats_HP.svg",
             "heading_level": "h1",
