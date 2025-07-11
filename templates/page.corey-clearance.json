@@ -15,7 +15,7 @@
         "slide_m99thc": {
           "type": "slide",
           "settings": {
-            "media_type": "image",
+            "media_type": "video",
             "desktop_image": "shopify://shop_images/Suits_Hero_copy.jpg",
             "heading": "Half Year Sale",
             "svg_image": "shopify://shop_images/WT25_Homepage_Hero_Desktop.svg",
@@ -44,9 +44,8 @@
             "desktop_image": "shopify://shop_images/Jackets_Coats_Hero_copy.jpg",
             "mobile_image": "shopify://shop_images/Jackets_Coats_Hero_Mobile.webp",
             "heading": "Winter Jackets & Coats",
-            "svg_image": "shopify://shop_images/Jackets_Coats_HP.svg",
+            "svg_image": "shopify://shop_images/Jackets_Coats.svg",
             "svg_size": "medium",
-            "mobile_svg_image": "shopify://shop_images/Jackets_Coats_HP.svg",
             "heading_level": "h1",
             "heading_animation": "none",
             "description": "$200 Off Selected Styles",
