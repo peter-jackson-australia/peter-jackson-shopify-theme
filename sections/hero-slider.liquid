@@ -287,11 +287,21 @@
               <img
                 src="{{ block.settings.svg_image | image_url }}"
                 alt="{{ block.settings.heading | escape }}"
-                class="hero-slider__svg hero-slider__svg--{{ block.settings.svg_size | default: 'medium' }}"
+                class="hero-slider__svg hero-slider__svg--{{ block.settings.svg_size | default: 'medium' }} hero-slider__svg--desktop"
                 width="{{ block.settings.svg_image.width }}"
                 height="{{ block.settings.svg_image.height }}"
                 loading="lazy"
               >
+              {% if block.settings.mobile_svg_image %}
+                <img
+                  src="{{ block.settings.mobile_svg_image | image_url }}"
+                  alt="{{ block.settings.heading | escape }}"
+                  class="hero-slider__svg hero-slider__svg--{{ block.settings.svg_size | default: 'medium' }} hero-slider__svg--mobile"
+                  width="{{ block.settings.mobile_svg_image.width }}"
+                  height="{{ block.settings.mobile_svg_image.height }}"
+                  loading="lazy"
+                >
+              {% endif %}
             {% elsif block.settings.heading %}
               <{{ block.settings.heading_level | default: 'h1' }} class="heading--3xl {% if block.settings.heading_animation != 'none' %}{{ block.settings.heading_animation }}{% endif %}">
                 {{ block.settings.heading }}
