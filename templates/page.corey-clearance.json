@@ -16,7 +16,8 @@
           "type": "slide",
           "settings": {
             "media_type": "image",
-            "desktop_image": "shopify://shop_images/Suits_Hero_copy.jpg",
+            "desktop_image": "shopify://shop_images/Suits_Hero_Desk_f3d9c815-21ae-4c8f-a090-c5a7658f88c0.webp",
+            "mobile_image": "shopify://shop_images/Suits_Hero_Mob.webp",
             "heading": "Half Year Sale",
             "svg_image": "shopify://shop_images/WT25_Homepage_Hero_Desktop.svg",
             "svg_size": "large",
@@ -171,8 +172,8 @@
         "column_item_CF4TLx": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/peter-jackson-man-wearing-sports-jacket.webp",
-            "image_link": "",
+            "image": "shopify://shop_images/HYS_Sports_Jackets.webp",
+            "image_link": "shopify://collections/sport-jackets",
             "heading": "Sports Jackets",
             "heading_animation": "none",
             "text": "from $299",
@@ -185,7 +186,7 @@
           "type": "column_item",
           "settings": {
             "image": "shopify://shop_images/HYS_Denim.webp",
-            "image_link": "",
+            "image_link": "shopify://collections/bottoms",
             "heading": "Chinos, Trousers & Jeans",
             "heading_animation": "none",
             "text": "From $89.95",
