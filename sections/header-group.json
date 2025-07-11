@@ -43,6 +43,10 @@
     "header": {
       "type": "header",
       "settings": {}
+    }, 
+    "search-drawer": {
+      "type": "search-drawer",
+      "settings": {}
     }
   },
   "order": [
