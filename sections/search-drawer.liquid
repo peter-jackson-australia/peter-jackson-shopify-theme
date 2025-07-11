@@ -155,7 +155,7 @@
         {% endfor %}
 
         {% if has_popular_searches %}
-          <div class="popular-searches">
+          <div class="popular-searches" x-show="searchQuery.length === 0">
             <h3 class="popular-searches__title heading--l">Popular Searches</h3>
             <ul class="popular-searches__list">
               {% for search_term in popular_searches_array %}
@@ -183,6 +183,7 @@
     Alpine.data('searchDrawer', () => ({
       isOpen: false,
       scrollY: 0,
+      searchQuery: '',
 
       init() {
         window.toggleSearch = () => {
@@ -208,6 +209,7 @@
         if (!this.isOpen) return;
 
         this.isOpen = false;
+        this.searchQuery = '';
         document.body.classList.remove('search-open');
         document.querySelector('.search-drawer').classList.remove('search-drawer--active');
 
