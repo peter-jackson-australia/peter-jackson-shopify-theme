@@ -185,7 +185,7 @@
           "type": "column_item",
           "settings": {
             "image": "shopify://shop_images/HYS_Denim.webp",
-            "image_link": "",
+            "image_link": "shopify://collections/bottoms",
             "heading": "Chinos, Trousers & Jeans",
             "heading_animation": "none",
             "text": "From $89.95",
