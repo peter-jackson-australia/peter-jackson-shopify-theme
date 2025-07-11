@@ -171,8 +171,8 @@
         "column_item_CF4TLx": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/peter-jackson-man-wearing-sports-jacket.webp",
-            "image_link": "",
+            "image": "shopify://shop_images/HYS_Sports_Jackets.webp",
+            "image_link": "shopify://collections/sport-jackets",
             "heading": "Sports Jackets",
             "heading_animation": "none",
             "text": "from $299",
