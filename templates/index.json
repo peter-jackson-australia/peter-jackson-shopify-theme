@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "hero_slider_hNLRHx": {
       "type": "hero-slider",
@@ -16,7 +16,7 @@
           "type": "slide",
           "settings": {
             "media_type": "image",
-            "desktop_image": "shopify://shop_images/Suits_Hero_Desk_01.webp",
+            "desktop_image": "shopify://shop_images/HYS_Suits_HP.webp",
             "mobile_image": "shopify://shop_images/Suits_Hero_Mob_6a27b3b7-6af8-4960-8b7b-574c2faf28c9.webp",
             "heading": "Half Year Sale",
             "svg_image": "shopify://shop_images/HYS_HP.svg",
@@ -43,9 +43,9 @@
           "settings": {
             "media_type": "image",
             "desktop_image": "shopify://shop_images/Jackets_Coats_Hero_copy.jpg",
-            "mobile_image": "shopify://shop_images/Jackets_Hero_Mob.webp",
+            "mobile_image": "shopify://shop_images/Jackets_Coats_HP_e2c86847-1244-4b75-9a3b-839cf86ca84b.svg",
             "heading": "Winter Jackets & Coats",
-            "svg_image": "shopify://shop_images/Jackets_Coats_HP.svg",
+            "svg_image": "shopify://shop_images/Jackets_Coats_HP_0a3e42cf-9a61-4189-90a5-f24613852780.svg",
             "svg_size": "medium",
             "mobile_svg_image": "shopify://shop_images/Jackets_Coats_HP.svg",
             "heading_level": "h1",
