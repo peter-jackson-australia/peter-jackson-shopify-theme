@@ -51,6 +51,7 @@
   },
   "order": [
     "announcement",
-    "header"
+    "header", 
+    "search-drawer"
   ]
 }
