@@ -104,6 +104,40 @@
       <div class="search-drawer__content">
         {% render 'search-form' %}
       </div>
+      {% assign popular_searches = '' %}
+      {% assign popular_searches = popular_searches | append: section.settings.popular_search_1 | append: '|' %}
+      {% assign popular_searches = popular_searches | append: section.settings.popular_search_2 | append: '|' %}
+      {% assign popular_searches = popular_searches | append: section.settings.popular_search_3 | append: '|' %}
+      {% assign popular_searches = popular_searches | append: section.settings.popular_search_4 %}
+      {% assign popular_searches_array = popular_searches | split: '|' %}
+
+      {% assign has_popular_searches = false %}
+      {% for search_term in popular_searches_array %}
+        {% unless search_term == blank %}
+          {% assign has_popular_searches = true %}
+          {% break %}
+        {% endunless %}
+      {% endfor %}
+
+      {% if has_popular_searches %}
+        <div class="popular-searches">
+          <h3 class="popular-searches__title heading--xl">Popular Searches</h3>
+          <ul class="popular-searches__list">
+            {% for search_term in popular_searches_array %}
+              {% unless search_term == blank %}
+                <li class="popular-searches__item">
+                  <a
+                    href="{{ routes.search_url }}?q={{ search_term | url_param_escape }}&type=product&options[prefix]=last"
+                    class="popular-searches__link body"
+                  >
+                    {{ search_term }}
+                  </a>
+                </li>
+              {% endunless %}
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
     </div>
   </aside>
 </div>
@@ -166,45 +200,24 @@
       "content": "Popular Searches"
     },
     {
-      "type": "select",
-      "id": "popular_searches_type",
-      "label": "Popular searches type",
-      "options": [
-        {
-          "value": "manual",
-          "label": "Manual"
-        },
-        {
-          "value": "automatic",
-          "label": "Automatic"
-        }
-      ],
-      "default": "manual",
-      "info": "Choose between manually entered search terms or automatically generated popular searches"
-    },
-    {
       "type": "text",
       "id": "popular_search_1",
-      "label": "Popular search 1",
-      "info": "Enter a search term (only used when Manual is selected)"
+      "label": "Popular search 1"
     },
     {
       "type": "text",
       "id": "popular_search_2",
-      "label": "Popular search 2",
-      "info": "Enter a search term (only used when Manual is selected)"
+      "label": "Popular search 2"
     },
     {
       "type": "text",
       "id": "popular_search_3",
-      "label": "Popular search 3",
-      "info": "Enter a search term (only used when Manual is selected)"
+      "label": "Popular search 3"
     },
     {
       "type": "text",
       "id": "popular_search_4",
-      "label": "Popular search 4",
-      "info": "Enter a search term (only used when Manual is selected)"
+      "label": "Popular search 4"
     }
   ]
 }
