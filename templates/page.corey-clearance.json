@@ -15,7 +15,7 @@
         "slide_m99thc": {
           "type": "slide",
           "settings": {
-            "media_type": "video",
+            "media_type": "image",
             "desktop_image": "shopify://shop_images/Suits_Hero_copy.jpg",
             "heading": "Half Year Sale",
             "svg_image": "shopify://shop_images/WT25_Homepage_Hero_Desktop.svg",
