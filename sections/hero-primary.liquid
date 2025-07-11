@@ -190,11 +190,21 @@
         <img
           src="{{ section.settings.svg_image | image_url }}"
           alt="{{ section.settings.heading | escape }}"
-          class="hero__svg hero__svg--{{ section.settings.svg_size | default: 'medium' }}"
+          class="hero__svg hero__svg--{{ section.settings.svg_size | default: 'medium' }} hero__svg--desktop"
           width="{{ section.settings.svg_image.width }}"
           height="{{ section.settings.svg_image.height }}"
           loading="lazy"
         >
+        {% if section.settings.mobile_svg_image %}
+          <img
+            src="{{ section.settings.mobile_svg_image | image_url }}"
+            alt="{{ section.settings.heading | escape }}"
+            class="hero__svg hero__svg--{{ section.settings.svg_size | default: 'medium' }} hero__svg--mobile"
+            width="{{ section.settings.mobile_svg_image.width }}"
+            height="{{ section.settings.mobile_svg_image.height }}"
+            loading="lazy"
+          >
+        {% endif %}
       {% elsif section.settings.heading %}
         <{{ section.settings.heading_level | default: 'h1' }} class="heading--3xl {% if section.settings.heading_animation != 'none' %}{{ section.settings.heading_animation }}{% endif %}">
           {{ section.settings.heading }}
