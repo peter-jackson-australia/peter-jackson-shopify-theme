@@ -46,6 +46,7 @@
             "heading": "Winter Jackets & Coats",
             "svg_image": "shopify://shop_images/Jackets_Coats_HP.svg",
             "svg_size": "medium",
+            "mobile_svg_image": "shopify://shop_images/Jackets_Coats_HP.svg",
             "heading_level": "h1",
             "heading_animation": "none",
             "description": "$200 Off Selected Styles",
