@@ -41,7 +41,7 @@
           "type": "slide",
           "settings": {
             "media_type": "image",
-            "desktop_image": "shopify://shop_images/Jackets_Coats_Hero.webp",
+            "desktop_image": "shopify://shop_images/Jackets_Coats_Hero_copy.jpg",
             "mobile_image": "shopify://shop_images/Jackets_Coats_Hero_Mobile.webp",
             "heading": "Winter Jackets & Coats",
             "svg_size": "medium",
@@ -112,6 +112,56 @@
         "animate_products": false
       }
     },
+    "variable_column_content_secondary_kUywhc": {
+      "type": "variable-column-content-secondary",
+      "blocks": {
+        "column_item_Aafzhg": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-man-wearing-brown_tonal_suit_6fc12545-8e95-4f50-8106-da662687e1eb_copy.webp",
+            "image_link": "",
+            "heading": "Luxe Layers",
+            "heading_animation": "none",
+            "text": "Premium wool & cashmere blend knitwear",
+            "text_animation": "none",
+            "column_link": "shopify://collections/mens-suits",
+            "column_link_text": "Two for $200"
+          }
+        },
+        "column_item_trdcbt": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-man-wearing-casual-jacket_90cbb832-a03c-4fc9-b0b1-ae1f3aa2a8f1.webp",
+            "image_link": "",
+            "heading": "Casual Jackets, Off Duty",
+            "heading_animation": "none",
+            "text": "Relaxed structure. Winter ready.",
+            "text_animation": "none",
+            "column_link": "shopify://collections/casual-jackets",
+            "column_link_text": "Up to $200 Off"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_Aafzhg",
+        "column_item_trdcbt"
+      ],
+      "name": "Variable Column Content Secondary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "2",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "",
+        "heading_animation": "none",
+        "text": "",
+        "text_animation": "none",
+        "button_label": "",
+        "button_link": ""
+      }
+    },
     "variable_column_content_secondary_jHpEgT": {
       "type": "variable-column-content-secondary",
       "blocks": {
@@ -131,9 +181,9 @@
         "column_item_c8jUhX": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/peter-jackson-man-wearing-trousers.webp",
+            "image": "shopify://shop_images/HYS_Denim.webp",
             "image_link": "",
-            "heading": "Chinos & Trousers",
+            "heading": "Chinos, Trousers & Jeans",
             "heading_animation": "none",
             "text": "From $89.95",
             "text_animation": "none",
@@ -179,56 +229,6 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": true,
-        "column_count": "3",
-        "text_alignment": "left",
-        "animate_columns": false,
-        "heading": "",
-        "heading_animation": "none",
-        "text": "",
-        "text_animation": "none",
-        "button_label": "",
-        "button_link": ""
-      }
-    },
-    "variable_column_content_secondary_kUywhc": {
-      "type": "variable-column-content-secondary",
-      "blocks": {
-        "column_item_Aafzhg": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/peter-jackson-man-wearing-brown_tonal_suit_6fc12545-8e95-4f50-8106-da662687e1eb.webp",
-            "image_link": "",
-            "heading": "Winter, Suited",
-            "heading_animation": "none",
-            "text": "Tailoring, refined for cooler days",
-            "text_animation": "none",
-            "column_link": "shopify://collections/mens-suits",
-            "column_link_text": "Suits from $399"
-          }
-        },
-        "column_item_trdcbt": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/peter-jackson-man-wearing-casual-jacket_90cbb832-a03c-4fc9-b0b1-ae1f3aa2a8f1.webp",
-            "image_link": "",
-            "heading": "Casual Jackets, Off Duty",
-            "heading_animation": "none",
-            "text": "Relaxed structure. Winter ready.",
-            "text_animation": "none",
-            "column_link": "shopify://collections/casual-jackets",
-            "column_link_text": "Up to $200 Off"
-          }
-        }
-      },
-      "block_order": [
-        "column_item_Aafzhg",
-        "column_item_trdcbt"
-      ],
-      "name": "Variable Column Content Secondary",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": false,
         "column_count": "2",
         "text_alignment": "left",
         "animate_columns": false,
@@ -298,8 +298,8 @@
     "hero_slider_hNLRHx",
     "hero_primary_4HRPTU",
     "collection_slider_wUXWw3",
-    "variable_column_content_secondary_jHpEgT",
     "variable_column_content_secondary_kUywhc",
+    "variable_column_content_secondary_jHpEgT",
     "hero_primary_YCJLcF",
     "blog_hero_MDUFaj"
   ]
