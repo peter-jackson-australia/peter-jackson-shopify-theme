@@ -113,70 +113,68 @@
   }
 </style>
 
-<div x-data="searchDrawer" x-init="init()">
-  <aside
-    x-data="searchDrawer"
-    x-init="init()"
-    @keydown.escape.window="closeSearch()"
-    class="search-drawer"
-    role="dialog"
-    aria-labelledby="search-title"
-    @click="closeSearch()"
-  >
-    <div class="search-drawer__container" @click.stop>
-      <header class="search-drawer__header">
-        <h2 id="search-title" class="search-drawer__title heading--xl">Search</h2>
-        <button
-          class="search-drawer__close"
-          type="button"
-          aria-label="Close search"
-          @click="closeSearch()"
-        >
-          {% render 'icon-close' %}
-        </button>
-      </header>
+<aside
+  x-data="searchDrawer"
+  x-init="init()"
+  @keydown.escape.window="closeSearch()"
+  class="search-drawer"
+  role="dialog"
+  aria-labelledby="search-title"
+  @click="closeSearch()"
+>
+  <div class="search-drawer__container" @click.stop>
+    <header class="search-drawer__header">
+      <h2 id="search-title" class="search-drawer__title heading--xl">Search</h2>
+      <button
+        class="search-drawer__close"
+        type="button"
+        aria-label="Close search"
+        @click="closeSearch()"
+      >
+        {% render 'icon-close' %}
+      </button>
+    </header>
 
-      <div class="search-drawer__content">
-        {% render 'search-form' %}
+    <div class="search-drawer__content">
+      {% render 'search-form' %}
 
-        {% assign popular_searches = '' %}
-        {% assign popular_searches = popular_searches | append: section.settings.popular_search_1 | append: '|' %}
-        {% assign popular_searches = popular_searches | append: section.settings.popular_search_2 | append: '|' %}
-        {% assign popular_searches = popular_searches | append: section.settings.popular_search_3 | append: '|' %}
-        {% assign popular_searches = popular_searches | append: section.settings.popular_search_4 %}
-        {% assign popular_searches_array = popular_searches | split: '|' %}
+      {% assign popular_searches = '' %}
+      {% assign popular_searches = popular_searches | append: section.settings.popular_search_1 | append: '|' %}
+      {% assign popular_searches = popular_searches | append: section.settings.popular_search_2 | append: '|' %}
+      {% assign popular_searches = popular_searches | append: section.settings.popular_search_3 | append: '|' %}
+      {% assign popular_searches = popular_searches | append: section.settings.popular_search_4 %}
+      {% assign popular_searches_array = popular_searches | split: '|' %}
 
-        {% assign has_popular_searches = false %}
-        {% for search_term in popular_searches_array %}
-          {% unless search_term == blank %}
-            {% assign has_popular_searches = true %}
-            {% break %}
-          {% endunless %}
-        {% endfor %}
+      {% assign has_popular_searches = false %}
+      {% for search_term in popular_searches_array %}
+        {% unless search_term == blank %}
+          {% assign has_popular_searches = true %}
+          {% break %}
+        {% endunless %}
+      {% endfor %}
 
-        {% if has_popular_searches %}
-          <div class="popular-searches" x-show="searchQuery.length === 0">
-            <h3 class="popular-searches__title heading--l">Popular Searches</h3>
-            <ul class="popular-searches__list">
-              {% for search_term in popular_searches_array %}
-                {% unless search_term == blank %}
-                  <li class="popular-searches__item">
-                    <a
-                      href="{{ routes.search_url }}?q={{ search_term | url_param_escape }}&type=product&options[prefix]=last"
-                      class="popular-searches__link body"
-                    >
-                      {{ search_term }}
-                    </a>
-                  </li>
-                {% endunless %}
-              {% endfor %}
-            </ul>
-          </div>
-        {% endif %}
-      </div>
+      {% if has_popular_searches %}
+        <div class="popular-searches" x-show="searchQuery.length === 0">
+          <h3 class="popular-searches__title heading--l">Popular Searches</h3>
+          <ul class="popular-searches__list">
+            {% for search_term in popular_searches_array %}
+              {% unless search_term == blank %}
+                <li class="popular-searches__item">
+                  <a
+                    href="{{ routes.search_url }}?q={{ search_term | url_param_escape }}&type=product&options[prefix]=last"
+                    class="popular-searches__link body"
+                  >
+                    {{ search_term }}
+                  </a>
+                </li>
+              {% endunless %}
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
     </div>
-  </aside>
-</div>
+  </div>
+</aside>
 
 <script>
   document.addEventListener('alpine:init', () => {
