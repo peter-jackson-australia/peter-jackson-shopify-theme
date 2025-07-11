@@ -159,6 +159,53 @@
   "name": "Search drawer",
   "enabled_on": {
     "groups": ["header"]
-  }
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Popular Searches"
+    },
+    {
+      "type": "select",
+      "id": "popular_searches_type",
+      "label": "Popular searches type",
+      "options": [
+        {
+          "value": "manual",
+          "label": "Manual"
+        },
+        {
+          "value": "automatic",
+          "label": "Automatic"
+        }
+      ],
+      "default": "manual",
+      "info": "Choose between manually entered search terms or automatically generated popular searches"
+    },
+    {
+      "type": "text",
+      "id": "popular_search_1",
+      "label": "Popular search 1",
+      "info": "Enter a search term (only used when Manual is selected)"
+    },
+    {
+      "type": "text",
+      "id": "popular_search_2",
+      "label": "Popular search 2",
+      "info": "Enter a search term (only used when Manual is selected)"
+    },
+    {
+      "type": "text",
+      "id": "popular_search_3",
+      "label": "Popular search 3",
+      "info": "Enter a search term (only used when Manual is selected)"
+    },
+    {
+      "type": "text",
+      "id": "popular_search_4",
+      "label": "Popular search 4",
+      "info": "Enter a search term (only used when Manual is selected)"
+    }
+  ]
 }
 {% endschema %}
