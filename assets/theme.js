@@ -292,39 +292,48 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   const collectionControls = document.querySelector(".collection-controls");
-  const controlsOffsetTop = collectionControls ? collectionControls.offsetTop : 0;
-  let isControlsFixed = false;
+  console.log("Collection controls found:", collectionControls);
 
-  function checkControlsScroll() {
-    if (
-      !collectionControls ||
-      document.body.classList.contains("menu-open") ||
-      document.body.classList.contains("cart-open") ||
-      document.body.classList.contains("search-open")
-    ) {
-      return;
+  if (collectionControls) {
+    const controlsOffsetTop = collectionControls.offsetTop;
+    console.log("Controls offset top:", controlsOffsetTop);
+    let isControlsFixed = false;
+
+    function checkControlsScroll() {
+      if (
+        document.body.classList.contains("menu-open") ||
+        document.body.classList.contains("cart-open") ||
+        document.body.classList.contains("search-open")
+      ) {
+        return;
+      }
+
+      const scrollY = window.scrollY;
+      const headerHeight = header.offsetHeight;
+      const triggerPoint = controlsOffsetTop - headerHeight;
+
+      console.log("ScrollY:", scrollY, "Trigger point:", triggerPoint, "Header height:", headerHeight);
+
+      if (scrollY >= triggerPoint && !isControlsFixed) {
+        isControlsFixed = true;
+        collectionControls.classList.add("controls-fixed");
+        console.log("Controls fixed");
+      } else if (scrollY < triggerPoint && isControlsFixed) {
+        isControlsFixed = false;
+        collectionControls.classList.remove("controls-fixed");
+        console.log("Controls unfixed");
+      }
     }
 
-    const scrollY = window.scrollY;
-    const headerHeight = header.offsetHeight;
-
-    if (scrollY >= controlsOffsetTop - headerHeight && !isControlsFixed) {
-      isControlsFixed = true;
-      collectionControls.classList.add("controls-fixed");
-    } else if (scrollY < controlsOffsetTop - headerHeight && isControlsFixed) {
-      isControlsFixed = false;
-      collectionControls.classList.remove("controls-fixed");
-    }
+    window.addEventListener("scroll", function () {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          checkScroll();
+          checkControlsScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
   }
-
-  window.addEventListener("scroll", function () {
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        checkScroll();
-        checkControlsScroll();
-        ticking = false;
-      });
-      ticking = true;
-    }
-  });
 });
