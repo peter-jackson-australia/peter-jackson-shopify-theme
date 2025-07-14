@@ -669,6 +669,18 @@ footer ul {
   text-align: center;
 }
 
+/* Fixed filtering */
+
+.collection-controls.controls-fixed {
+  position: fixed;
+  top: var(--space-xl);
+  left: 0;
+  right: 0;
+  z-index: 9995;
+  background-color: var(--white);
+  border-bottom: 1px solid var(--neutral-200);
+}
+
 /* Search */
 
 .predictive-search__form {
