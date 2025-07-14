@@ -283,19 +283,6 @@ document.addEventListener('DOMContentLoaded', function() {
     clone.style.zIndex = '9996';
     clone.style.backgroundColor = 'white';
     clone.style.animation = 'slideUpFade 0.3s ease forwards';
-    
-    // Remove Alpine.js directives to prevent errors
-    clone.querySelectorAll('[x-show]').forEach(el => el.removeAttribute('x-show'));
-    clone.querySelectorAll('[x-cloak]').forEach(el => el.removeAttribute('x-cloak'));
-    clone.querySelectorAll('[x-data]').forEach(el => el.removeAttribute('x-data'));
-    clone.querySelectorAll('[x-init]').forEach(el => el.removeAttribute('x-init'));
-    clone.querySelectorAll('@click').forEach(el => el.removeAttribute('@click'));
-    
-    // Show all elements that might be hidden by Alpine
-    clone.querySelectorAll('[style*="display: none"]').forEach(el => {
-      el.style.display = '';
-    });
-    
     document.body.appendChild(clone);
     
     setTimeout(() => {
