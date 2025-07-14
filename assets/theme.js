@@ -251,7 +251,6 @@ function checkVariants() {
   });
 }
 
-// Sticky Header & filter controls
 document.addEventListener('DOMContentLoaded', function() {
   const header = document.querySelector('#site-header');
   const spacer = document.querySelector('#header-spacer');
@@ -263,6 +262,7 @@ document.addEventListener('DOMContentLoaded', function() {
   let ticking = false;
   let productsGridOffsetTop = 0;
   let controlsSpacer = null;
+  let isTransitioning = false;
 
   if (collectionControls && productsGrid) {
     productsGridOffsetTop = productsGrid.offsetTop;
@@ -271,6 +271,25 @@ document.addEventListener('DOMContentLoaded', function() {
     controlsSpacer.className = 'hide';
     controlsSpacer.style.height = collectionControls.offsetHeight + 'px';
     collectionControls.parentNode.insertBefore(controlsSpacer, collectionControls.nextSibling);
+  }
+
+  function createSlidingClone() {
+    const clone = collectionControls.cloneNode(true);
+    clone.classList.add('controls-sliding-clone');
+    clone.style.position = 'fixed';
+    clone.style.top = 'var(--space-xl)';
+    clone.style.left = '0';
+    clone.style.right = '0';
+    clone.style.zIndex = '9996';
+    clone.style.backgroundColor = 'white';
+    clone.style.animation = 'slideUpFade 0.3s ease forwards';
+    document.body.appendChild(clone);
+    
+    setTimeout(() => {
+      if (document.body.contains(clone)) {
+        document.body.removeChild(clone);
+      }
+    }, 300);
   }
 
   function checkScroll() {
@@ -295,7 +314,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Collection controls sticky logic
-    if (collectionControls && controlsSpacer && productsGrid) {
+    if (collectionControls && controlsSpacer && productsGrid && !isTransitioning) {
       const headerHeight = header.offsetHeight;
       const triggerPoint = productsGridOffsetTop - headerHeight;
       
@@ -304,16 +323,20 @@ document.addEventListener('DOMContentLoaded', function() {
         collectionControls.classList.add('controls-fixed');
         controlsSpacer.classList.remove('hide');
       } else if (scrollY < triggerPoint && isControlsFixed) {
-        // Immediately restore the original position to prevent layout shift
+        isTransitioning = true;
+        
+        // Create a clone that will slide up
+        createSlidingClone();
+        
+        // Immediately show the original controls
         isControlsFixed = false;
         collectionControls.classList.remove('controls-fixed');
         controlsSpacer.classList.add('hide');
         
-        // Add smooth fade-out animation AFTER restoring position
-        collectionControls.classList.add('smooth-fadeout');
+        // Reset transition flag after animation
         setTimeout(() => {
-          collectionControls.classList.remove('smooth-fadeout');
-        }, 400);
+          isTransitioning = false;
+        }, 300);
       }
     }
     
