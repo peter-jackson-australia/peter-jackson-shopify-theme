@@ -494,11 +494,12 @@
   id="{{ section.id }}"
   class="section-wrap"
   x-data="
-            {
-              expandedGrid: true,
-              isFilterOpen: false,
-              scrollY: 0,
-    openFilter() {
+                {
+                  expandedGrid: true,
+                  isFilterOpen: false,
+                  scrollY: 0,
+
+                  openFilter() {
       this.scrollY = window.scrollY;
 
       document.body.style.position = 'fixed';
@@ -513,21 +514,27 @@
     closeFilter() {
       if (!this.isFilterOpen) return;
 
-      this.isFilterOpen = false;
-      document.body.classList.remove('filter-open');
+      document.querySelector('.filter-sidebar').classList.add('closing');
 
-      const scrollY = Math.abs(parseInt(document.body.style.top || '0'));
+      setTimeout(() => {
+        this.isFilterOpen = false;
+        document.body.classList.remove('filter-open');
+        document.querySelector('.filter-sidebar').classList.remove('closing');
 
-      document.documentElement.style.scrollBehavior = 'auto';
+        const scrollY = this.scrollY;
 
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-      window.scrollTo(0, scrollY);
+        document.documentElement.style.scrollBehavior = 'auto';
 
-      document.documentElement.style.scrollBehavior = '';
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        window.scrollTo(0, scrollY);
+
+        document.documentElement.style.scrollBehavior = '';
+      }, 300);
     }
-            }
+
+                }
   "
   x-init="  window.closeFilter = () => closeFilter();"
 >
