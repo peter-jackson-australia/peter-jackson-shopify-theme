@@ -31,12 +31,25 @@
     animation: slideDown 0.3s ease forwards;
   }
 
+  .collection-controls.controls-fixed.sliding-up {
+    animation: slideUp 0.3s ease forwards;
+  }
+
   @keyframes slideDown {
     from {
       transform: translateY(-100%);
     }
     to {
       transform: translateY(0);
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-100%);
     }
   }
 
