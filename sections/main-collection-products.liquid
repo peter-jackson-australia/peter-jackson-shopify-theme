@@ -496,46 +496,36 @@
   x-data="
     {
       expandedGrid: true,
-      isFilterOpen: false,
-
-      openFilter() {
-        const scrollPos = lastScrollPosition;
-        console.log('Opening filter, captured scroll:', scrollPos);
-
-        document.body.style.position = 'fixed';
-        document.body.style.top = `-${scrollPos}px`;
-        document.body.style.width = '100%';
-
-        this.isFilterOpen = true;
-        document.body.classList.add('filter-open');
-        window.closeMenu && window.closeMenu();
-
-        window.filterScrollY = scrollPos;
-      },
-
-      closeFilter() {
-        if (!this.isFilterOpen) return;
-
-        console.log('Closing filter, restoring scroll to:', window.filterScrollY);
-
-        this.isFilterOpen = false;
-        document.body.classList.remove('filter-open');
-
-        document.body.style.position = '';
-        document.body.style.top = '';
-        document.body.style.width = '';
-
-        window.scrollTo(0, window.filterScrollY);
-      }
+      isFilterOpen: false
     }
   "
-  x-init="  window.closeFilter = () => closeFilter();"
+  x-init="
+    document.addEventListener('menu-open', () => {
+      isFilterOpen = false;
+      document.body.classList.remove('filter-open');
+    });
+    window.closeFilter = () => {
+      document.querySelector('.filter-sidebar').classList.add('closing');
+      setTimeout(() => {
+        isFilterOpen = false;
+        document.body.classList.remove('filter-open');
+        document.querySelector('.filter-sidebar').classList.remove('closing');
+      }, 300);
+    };
+  "
 >
   <div id="collection" class="section">
     <div x-show="isFilterOpen" x-cloak>
       <div
         class="filter-sidebar__overlay"
-        @click="closeFilter()"
+        @click="
+          document.querySelector('.filter-sidebar').classList.add('closing');
+          setTimeout(() => {
+            isFilterOpen = false;
+            document.body.classList.remove('filter-open');
+            document.querySelector('.filter-sidebar').classList.remove('closing');
+          }, 300)
+        "
       ></div>
       <aside class="filter-sidebar">
         <div class="filter-sidebar-header">
@@ -545,7 +535,14 @@
           </p>
           <button
             class="filter-close-btn"
-            @click="isFilterOpen ? closeFilter() : openFilter()"
+            @click="
+              document.querySelector('.filter-sidebar').classList.add('closing');
+              setTimeout(() => {
+                isFilterOpen = false;
+                document.body.classList.remove('filter-open');
+                document.querySelector('.filter-sidebar').classList.remove('closing');
+              }, 300)
+            "
             aria-label="Close filters"
           >
             {% render 'icon-close' %}
