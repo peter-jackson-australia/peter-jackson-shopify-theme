@@ -499,25 +499,24 @@
       isFilterOpen: false,
 
       openFilter() {
-        if (!window.filterScrollPosition) {
-          window.filterScrollPosition = window.scrollY;
-        }
-        console.log('Opening filter, captured scroll:', window.filterScrollPosition);
+        const scrollPos = lastScrollPosition;
+        console.log('Opening filter, captured scroll:', scrollPos);
 
         document.body.style.position = 'fixed';
-        document.body.style.top = `-${window.filterScrollPosition}px`;
+        document.body.style.top = `-${scrollPos}px`;
         document.body.style.width = '100%';
 
         this.isFilterOpen = true;
         document.body.classList.add('filter-open');
         window.closeMenu && window.closeMenu();
+
+        window.filterScrollY = scrollPos;
       },
 
       closeFilter() {
         if (!this.isFilterOpen) return;
 
-        const savedScroll = window.filterScrollPosition || 0;
-        console.log('Closing filter, restoring scroll to:', savedScroll);
+        console.log('Closing filter, restoring scroll to:', window.filterScrollY);
 
         this.isFilterOpen = false;
         document.body.classList.remove('filter-open');
@@ -526,9 +525,7 @@
         document.body.style.top = '';
         document.body.style.width = '';
 
-        window.scrollTo(0, savedScroll);
-        window.filterScrollPosition = null;
-        console.log('Scrolled to:', savedScroll);
+        window.scrollTo(0, window.filterScrollY);
       }
     }
   "
