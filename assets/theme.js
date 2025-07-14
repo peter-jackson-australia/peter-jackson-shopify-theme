@@ -251,105 +251,7 @@ function checkVariants() {
   });
 }
 
-// Filter drawer scroll position management
-document.addEventListener('DOMContentLoaded', function() {
-  let filterScrollY = 0;
-  
-  // Function to open filter drawer
-  window.openFilter = function() {
-    // Store current scroll position
-    filterScrollY = window.scrollY;
-    
-    // Fix body position like the menu does
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${filterScrollY}px`;
-    document.body.style.width = '100%';
-    
-    // Add filter-open class to body
-    document.body.classList.add('filter-open');
-    
-    // Show the filter drawer (adjust selector to match your filter element)
-    const filterDrawer = document.querySelector('.filter-drawer, .collection-filters, .sidebar-filters');
-    if (filterDrawer) {
-      filterDrawer.style.display = 'block';
-      filterDrawer.classList.add('filter-open');
-    }
-    
-    // Close menu if it's open
-    if (window.closeMenu) {
-      window.closeMenu();
-    }
-  };
-  
-  // Function to close filter drawer
-  window.closeFilter = function() {
-    // Remove filter-open class
-    document.body.classList.remove('filter-open');
-    
-    // Hide the filter drawer
-    const filterDrawer = document.querySelector('.filter-drawer, .collection-filters, .sidebar-filters');
-    if (filterDrawer) {
-      filterDrawer.style.display = 'none';
-      filterDrawer.classList.remove('filter-open');
-    }
-    
-    // Restore scroll position (same as menu)
-    const scrollY = Math.abs(parseInt(document.body.style.top || '0'));
-    
-    // Temporarily disable smooth scrolling
-    document.documentElement.style.scrollBehavior = 'auto';
-    
-    // Reset body styles
-    document.body.style.position = '';
-    document.body.style.top = '';
-    document.body.style.width = '';
-    
-    // Restore scroll position
-    window.scrollTo(0, scrollY);
-    
-    // Re-enable smooth scrolling
-    document.documentElement.style.scrollBehavior = '';
-  };
-  
-  // Toggle filter function
-  window.toggleFilter = function() {
-    const isFilterOpen = document.body.classList.contains('filter-open');
-    if (isFilterOpen) {
-      window.closeFilter();
-    } else {
-      window.openFilter();
-    }
-  };
-  
-  // Close filter when clicking overlay or outside filter area
-  document.addEventListener('click', function(event) {
-    const filterDrawer = document.querySelector('.filter-drawer, .collection-filters, .sidebar-filters');
-    const filterToggle = document.querySelector('.filter-toggle, .js-filter-toggle, [data-filter-toggle]');
-    
-    if (document.body.classList.contains('filter-open') && 
-        filterDrawer && 
-        !filterDrawer.contains(event.target) && 
-        !filterToggle?.contains(event.target)) {
-      window.closeFilter();
-    }
-  });
-  
-  // Close filter on escape key
-  document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape' && document.body.classList.contains('filter-open')) {
-      window.closeFilter();
-    }
-  });
-  
-  // Prevent scrolling when filter is open (like the menu)
-  document.addEventListener('touchmove', function(event) {
-    if (document.body.classList.contains('filter-open')) {
-      event.preventDefault();
-    }
-  }, { passive: false });
-});
-
-// Update your existing scroll handler to work with both menu and filter
+// Fixed header & filtering
 document.addEventListener('DOMContentLoaded', function() {
   const header = document.querySelector('#site-header');
   const spacer = document.querySelector('#header-spacer');
@@ -372,11 +274,9 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function checkScroll() {
-    // Don't update scroll behavior when menu OR filter is open
     if (document.body.classList.contains('menu-open') || 
         document.body.classList.contains('cart-open') || 
-        document.body.classList.contains('search-open') ||
-        document.body.classList.contains('filter-open')) {
+        document.body.classList.contains('search-open')) {
       ticking = false;
       return;
     }
