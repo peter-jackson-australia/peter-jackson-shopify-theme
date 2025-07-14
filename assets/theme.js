@@ -256,15 +256,16 @@ document.addEventListener('DOMContentLoaded', function() {
   const header = document.querySelector('#site-header');
   const spacer = document.querySelector('#header-spacer');
   const collectionControls = document.querySelector('.collection-controls');
+  const productsGrid = document.querySelector('.products-grid');
   const headerOffsetTop = header.offsetTop;
   let isFixed = false;
   let isControlsFixed = false;
   let ticking = false;
-  let controlsOffsetTop = 0;
+  let productsGridOffsetTop = 0;
   let controlsSpacer = null;
 
-  if (collectionControls) {
-    controlsOffsetTop = collectionControls.offsetTop;
+  if (collectionControls && productsGrid) {
+    productsGridOffsetTop = productsGrid.offsetTop;
     controlsSpacer = document.createElement('div');
     controlsSpacer.id = 'controls-spacer';
     controlsSpacer.className = 'hide';
@@ -292,9 +293,9 @@ document.addEventListener('DOMContentLoaded', function() {
       spacer.classList.add('hide');
     }
 
-    if (collectionControls && controlsSpacer) {
+    if (collectionControls && controlsSpacer && productsGrid) {
       const headerHeight = header.offsetHeight;
-      const triggerPoint = controlsOffsetTop - headerHeight;
+      const triggerPoint = productsGridOffsetTop - headerHeight;
       
       if (scrollY >= triggerPoint && !isControlsFixed) {
         isControlsFixed = true;
