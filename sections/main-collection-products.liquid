@@ -560,17 +560,9 @@
   "
   x-init="
     document.addEventListener('menu-open', () => {
-      isFilterOpen = false;
-      document.body.classList.remove('filter-open');
+      closeFilter();
     });
-    window.closeFilter = () => {
-      document.querySelector('.filter-sidebar').classList.add('closing');
-      setTimeout(() => {
-        isFilterOpen = false;
-        document.body.classList.remove('filter-open');
-        document.querySelector('.filter-sidebar').classList.remove('closing');
-      }, 300);
-    };
+    window.closeFilter = () => closeFilter();
   "
 >
   <div id="collection" class="section">
