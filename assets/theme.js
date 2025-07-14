@@ -251,7 +251,7 @@ function checkVariants() {
   });
 }
 
-// Sticky Header
+// Sticky Header & filter controls
 document.addEventListener('DOMContentLoaded', function() {
   const header = document.querySelector('#site-header');
   const spacer = document.querySelector('#header-spacer');
@@ -302,9 +302,12 @@ document.addEventListener('DOMContentLoaded', function() {
         collectionControls.classList.add('controls-fixed');
         controlsSpacer.classList.remove('hide');
       } else if (scrollY < triggerPoint && isControlsFixed) {
-        isControlsFixed = false;
-        collectionControls.classList.remove('controls-fixed');
-        controlsSpacer.classList.add('hide');
+        collectionControls.classList.add('sliding-up');
+        setTimeout(() => {
+          isControlsFixed = false;
+          collectionControls.classList.remove('controls-fixed', 'sliding-up');
+          controlsSpacer.classList.add('hide');
+        }, 300);
       }
     }
     
