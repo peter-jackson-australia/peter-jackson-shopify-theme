@@ -283,6 +283,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const scrollY = window.scrollY;
     
+    // Header sticky logic
     if (scrollY >= headerOffsetTop && !isFixed) {
       isFixed = true;
       header.classList.add('header-fixed');
@@ -293,6 +294,7 @@ document.addEventListener('DOMContentLoaded', function() {
       spacer.classList.add('hide');
     }
 
+    // Collection controls sticky logic
     if (collectionControls && controlsSpacer && productsGrid) {
       const headerHeight = header.offsetHeight;
       const triggerPoint = productsGridOffsetTop - headerHeight;
@@ -302,8 +304,12 @@ document.addEventListener('DOMContentLoaded', function() {
         collectionControls.classList.add('controls-fixed');
         controlsSpacer.classList.remove('hide');
       } else if (scrollY < triggerPoint && isControlsFixed) {
+        // Start animation but keep spacer visible to prevent layout shift
         collectionControls.classList.add('sliding-up');
+        
+        // After animation completes, clean up
         setTimeout(() => {
+          if (!isControlsFixed) return; // Prevent race condition
           isControlsFixed = false;
           collectionControls.classList.remove('controls-fixed', 'sliding-up');
           controlsSpacer.classList.add('hide');
