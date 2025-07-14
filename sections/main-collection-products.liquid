@@ -499,11 +499,13 @@
       isFilterOpen: false,
 
       openFilter() {
-        window.filterScrollY = window.scrollY;
-        console.log('Opening filter, captured scroll:', window.filterScrollY);
+        if (!window.filterScrollPosition) {
+          window.filterScrollPosition = window.scrollY;
+        }
+        console.log('Opening filter, captured scroll:', window.filterScrollPosition);
 
         document.body.style.position = 'fixed';
-        document.body.style.top = `-${window.filterScrollY}px`;
+        document.body.style.top = `-${window.filterScrollPosition}px`;
         document.body.style.width = '100%';
 
         this.isFilterOpen = true;
@@ -514,7 +516,8 @@
       closeFilter() {
         if (!this.isFilterOpen) return;
 
-        console.log('Closing filter, restoring scroll to:', window.filterScrollY);
+        const savedScroll = window.filterScrollPosition || 0;
+        console.log('Closing filter, restoring scroll to:', savedScroll);
 
         this.isFilterOpen = false;
         document.body.classList.remove('filter-open');
@@ -523,10 +526,9 @@
         document.body.style.top = '';
         document.body.style.width = '';
 
-        setTimeout(() => {
-          window.scrollTo(0, window.filterScrollY || 0);
-          console.log('Scrolled to:', window.filterScrollY);
-        }, 50);
+        window.scrollTo(0, savedScroll);
+        window.filterScrollPosition = null;
+        console.log('Scrolled to:', savedScroll);
       }
     }
   "
