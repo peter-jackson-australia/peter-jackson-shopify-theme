@@ -33,10 +33,22 @@
     padding: 0px;
   }
 
-  .collection-controls.controls-fixed.sliding-up {
-    animation: slideUpFade 0.3s ease forwards;
+  .collection-controls.smooth-fadeout {
+    animation: smoothFadeOut 0.4s ease-out forwards;
   }
 
+  @keyframes smoothFadeOut {
+    0% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+  }
+
+  /* Keep the existing slide-down animation for when it becomes fixed */
   @keyframes slideDownFade {
     from {
       transform: translateY(-100%);
@@ -45,17 +57,6 @@
     to {
       transform: translateY(0);
       opacity: 1;
-    }
-  }
-
-  @keyframes slideUpFade {
-    from {
-      transform: translateY(0);
-      opacity: 1;
-    }
-    to {
-      transform: translateY(-100%);
-      opacity: 0;
     }
   }
 
