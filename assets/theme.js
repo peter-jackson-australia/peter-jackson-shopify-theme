@@ -309,11 +309,11 @@ document.addEventListener('DOMContentLoaded', function() {
         collectionControls.classList.remove('controls-fixed');
         controlsSpacer.classList.add('hide');
         
-        // Add slide-up animation AFTER restoring position
-        collectionControls.classList.add('sliding-up');
+        // Add smooth fade-out animation AFTER restoring position
+        collectionControls.classList.add('smooth-fadeout');
         setTimeout(() => {
-          collectionControls.classList.remove('sliding-up');
-        }, 300);
+          collectionControls.classList.remove('smooth-fadeout');
+        }, 400);
       }
     }
     
