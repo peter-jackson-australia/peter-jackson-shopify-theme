@@ -496,81 +496,36 @@
   x-data="
     {
       expandedGrid: true,
-      isFilterOpen: false,
-      scrollY: 0,
-
-      openFilter() {
-        this.scrollY = window.scrollY;
-
-        document.body.style.position = 'fixed';
-        document.body.style.top = `-${this.scrollY}px`;
-        document.body.style.width = '100%';
-        document.body.style.overflow = 'hidden';
-
-        this.isFilterOpen = true;
-        document.body.classList.add('filter-open');
-
-        this.$nextTick(() => {
-          this.updateFilterPosition();
-        });
-
-        window.closeMenu && window.closeMenu();
-      },
-
-      closeFilter() {
-        if (!this.isFilterOpen) return;
-
-        document.querySelector('.filter-sidebar').classList.add('closing');
-
-        setTimeout(() => {
-          this.isFilterOpen = false;
-          document.body.classList.remove('filter-open');
-          document.querySelector('.filter-sidebar').classList.remove('closing');
-
-          const scrollY = Math.abs(parseInt(document.body.style.top || '0'));
-
-          document.documentElement.style.scrollBehavior = 'auto';
-
-          document.body.style.position = '';
-          document.body.style.top = '';
-          document.body.style.width = '';
-          window.scrollTo(0, scrollY);
-
-          document.documentElement.style.scrollBehavior = '';
-        }, 300);
-      },
-
-      updateFilterPosition() {
-        const siteHeader = document.querySelector('#site-header');
-        const overlay = document.querySelector('.filter-sidebar__overlay');
-        const sidebar = document.querySelector('.filter-sidebar');
-
-        if (!siteHeader || !overlay || !sidebar) return;
-
-        const isFixed = siteHeader.classList.contains('header-fixed');
-
-        if (isFixed) {
-          overlay.style.top = 'var(--space-xl)';
-          sidebar.style.top = 'var(--space-xl)';
-        } else {
-          overlay.style.top = '';
-          sidebar.style.top = '';
-        }
-      }
+      isFilterOpen: false
     }
   "
   x-init="
     document.addEventListener('menu-open', () => {
-      closeFilter();
+      isFilterOpen = false;
+      document.body.classList.remove('filter-open');
     });
-    window.closeFilter = () => closeFilter();
+    window.closeFilter = () => {
+      document.querySelector('.filter-sidebar').classList.add('closing');
+      setTimeout(() => {
+        isFilterOpen = false;
+        document.body.classList.remove('filter-open');
+        document.querySelector('.filter-sidebar').classList.remove('closing');
+      }, 300);
+    };
   "
 >
   <div id="collection" class="section">
     <div x-show="isFilterOpen" x-cloak>
       <div
         class="filter-sidebar__overlay"
-        @click="closeFilter()"
+        @click="
+          document.querySelector('.filter-sidebar').classList.add('closing');
+          setTimeout(() => {
+            isFilterOpen = false;
+            document.body.classList.remove('filter-open');
+            document.querySelector('.filter-sidebar').classList.remove('closing');
+          }, 300)
+        "
       ></div>
       <aside class="filter-sidebar">
         <div class="filter-sidebar-header">
@@ -580,7 +535,14 @@
           </p>
           <button
             class="filter-close-btn"
-            @click="closeFilter()"
+            @click="
+              document.querySelector('.filter-sidebar').classList.add('closing');
+              setTimeout(() => {
+                isFilterOpen = false;
+                document.body.classList.remove('filter-open');
+                document.querySelector('.filter-sidebar').classList.remove('closing');
+              }, 300)
+            "
             aria-label="Close filters"
           >
             {% render 'icon-close' %}
@@ -640,7 +602,7 @@
           <div class="collection-controls">
             <button
               class="collection-controls__filter-button body"
-              @click="isFilterOpen ? closeFilter() : openFilter()"
+              @click="isFilterOpen = !isFilterOpen; document.body.classList.toggle('filter-open', isFilterOpen)"
             >
               Filters
               <span>{% render 'icon-filter' %}</span>

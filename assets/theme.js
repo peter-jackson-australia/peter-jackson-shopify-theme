@@ -320,12 +320,5 @@ document.addEventListener('DOMContentLoaded', function() {
       requestAnimationFrame(checkScroll);
       ticking = true;
     }
-    
-    if (document.body.classList.contains('filter-open')) {
-      const filterComponent = document.querySelector('[x-data]').__x;
-      if (filterComponent && filterComponent.$data.updateFilterPosition) {
-        filterComponent.$data.updateFilterPosition();
-      }
-    }
   });
 });
