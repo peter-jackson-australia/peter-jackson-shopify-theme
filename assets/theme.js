@@ -252,88 +252,56 @@ function checkVariants() {
 }
 
 // Sticky Header
-document.addEventListener("DOMContentLoaded", function () {
-  const header = document.querySelector("#site-header");
-  const spacer = document.querySelector("#header-spacer");
+document.addEventListener('DOMContentLoaded', function() {
+  const header = document.querySelector('#site-header');
+  const spacer = document.querySelector('#header-spacer');
   const headerOffsetTop = header.offsetTop;
   let isFixed = false;
+  let isControlsFixed = false;
   let ticking = false;
 
   function checkScroll() {
-    if (
-      document.body.classList.contains("menu-open") ||
-      document.body.classList.contains("cart-open") ||
-      document.body.classList.contains("search-open")
-    ) {
+    if (document.body.classList.contains('menu-open') || 
+        document.body.classList.contains('cart-open') || 
+        document.body.classList.contains('search-open')) {
       ticking = false;
       return;
     }
 
     const scrollY = window.scrollY;
-
+    
     if (scrollY >= headerOffsetTop && !isFixed) {
       isFixed = true;
-      header.classList.add("header-fixed");
-      spacer.classList.remove("hide");
+      header.classList.add('header-fixed');
+      spacer.classList.remove('hide');
     } else if (scrollY < headerOffsetTop && isFixed) {
       isFixed = false;
-      header.classList.remove("header-fixed");
-      spacer.classList.add("hide");
+      header.classList.remove('header-fixed');
+      spacer.classList.add('hide');
     }
 
+    const collectionControls = document.querySelector('.collection-controls');
+    if (collectionControls) {
+      const controlsOffsetTop = collectionControls.offsetTop;
+      const headerHeight = header.offsetHeight;
+      const triggerPoint = controlsOffsetTop - headerHeight;
+      
+      if (scrollY >= triggerPoint && !isControlsFixed) {
+        isControlsFixed = true;
+        collectionControls.classList.add('controls-fixed');
+      } else if (scrollY < triggerPoint && isControlsFixed) {
+        isControlsFixed = false;
+        collectionControls.classList.remove('controls-fixed');
+      }
+    }
+    
     ticking = false;
   }
 
-  window.addEventListener("scroll", function () {
+  window.addEventListener('scroll', function() {
     if (!ticking) {
       requestAnimationFrame(checkScroll);
       ticking = true;
     }
   });
-
-  const collectionControls = document.querySelector(".collection-controls");
-  console.log("Collection controls found:", collectionControls);
-
-  if (collectionControls) {
-    const controlsOffsetTop = collectionControls.offsetTop;
-    console.log("Controls offset top:", controlsOffsetTop);
-    let isControlsFixed = false;
-
-    function checkControlsScroll() {
-      if (
-        document.body.classList.contains("menu-open") ||
-        document.body.classList.contains("cart-open") ||
-        document.body.classList.contains("search-open")
-      ) {
-        return;
-      }
-
-      const scrollY = window.scrollY;
-      const headerHeight = header.offsetHeight;
-      const triggerPoint = controlsOffsetTop - headerHeight;
-
-      console.log("ScrollY:", scrollY, "Trigger point:", triggerPoint, "Header height:", headerHeight);
-
-      if (scrollY >= triggerPoint && !isControlsFixed) {
-        isControlsFixed = true;
-        collectionControls.classList.add("controls-fixed");
-        console.log("Controls fixed");
-      } else if (scrollY < triggerPoint && isControlsFixed) {
-        isControlsFixed = false;
-        collectionControls.classList.remove("controls-fixed");
-        console.log("Controls unfixed");
-      }
-    }
-
-    window.addEventListener("scroll", function () {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          checkScroll();
-          checkControlsScroll();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    });
-  }
 });
