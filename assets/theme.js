@@ -251,12 +251,27 @@ function checkVariants() {
   });
 }
 
+// Sticky Header & filter controls
 document.addEventListener('DOMContentLoaded', function() {
   const header = document.querySelector('#site-header');
   const spacer = document.querySelector('#header-spacer');
+  const collectionControls = document.querySelector('.collection-controls');
+  const productsGrid = document.querySelector('.products-grid');
   const headerOffsetTop = header.offsetTop;
   let isFixed = false;
+  let isControlsFixed = false;
   let ticking = false;
+  let productsGridOffsetTop = 0;
+  let controlsSpacer = null;
+
+  if (collectionControls && productsGrid) {
+    productsGridOffsetTop = productsGrid.offsetTop;
+    controlsSpacer = document.createElement('div');
+    controlsSpacer.id = 'controls-spacer';
+    controlsSpacer.className = 'hide';
+    controlsSpacer.style.height = collectionControls.offsetHeight + 'px';
+    collectionControls.parentNode.insertBefore(controlsSpacer, collectionControls.nextSibling);
+  }
 
   function checkScroll() {
     if (document.body.classList.contains('menu-open') || 
@@ -276,6 +291,24 @@ document.addEventListener('DOMContentLoaded', function() {
       isFixed = false;
       header.classList.remove('header-fixed');
       spacer.classList.add('hide');
+    }
+
+    if (collectionControls && controlsSpacer && productsGrid) {
+      const headerHeight = header.offsetHeight;
+      const triggerPoint = productsGridOffsetTop - headerHeight;
+      
+      if (scrollY >= triggerPoint && !isControlsFixed) {
+        isControlsFixed = true;
+        collectionControls.classList.add('controls-fixed');
+        controlsSpacer.classList.remove('hide');
+      } else if (scrollY < triggerPoint && isControlsFixed) {
+        collectionControls.classList.add('sliding-up');
+        setTimeout(() => {
+          isControlsFixed = false;
+          collectionControls.classList.remove('controls-fixed', 'sliding-up');
+          controlsSpacer.classList.add('hide');
+        }, 300);
+      }
     }
     
     ticking = false;
