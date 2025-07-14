@@ -494,47 +494,42 @@
   id="{{ section.id }}"
   class="section-wrap"
   x-data="
-                {
-                  expandedGrid: true,
-                  isFilterOpen: false,
-                  scrollY: 0,
+    {
+      expandedGrid: true,
+      isFilterOpen: false,
+      scrollY: 0,
 
-                  openFilter() {
-      this.scrollY = window.scrollY;
+      openFilter() {
+        this.scrollY = window.scrollY;
+        console.log('Opening filter, captured scroll:', this.scrollY);
 
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${this.scrollY}px`;
-      document.body.style.width = '100%';
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${this.scrollY}px`;
+        document.body.style.width = '100%';
 
-      this.isFilterOpen = true;
-      document.body.classList.add('filter-open');
-      window.closeMenu && window.closeMenu();
-    },
+        this.isFilterOpen = true;
+        document.body.classList.add('filter-open');
+        window.closeMenu && window.closeMenu();
+      },
 
-    closeFilter() {
-      if (!this.isFilterOpen) return;
+      closeFilter() {
+        if (!this.isFilterOpen) return;
 
-      document.querySelector('.filter-sidebar').classList.add('closing');
+        console.log('Closing filter, restoring scroll to:', this.scrollY);
 
-      setTimeout(() => {
         this.isFilterOpen = false;
         document.body.classList.remove('filter-open');
-        document.querySelector('.filter-sidebar').classList.remove('closing');
-
-        const scrollY = this.scrollY;
-
-        document.documentElement.style.scrollBehavior = 'auto';
 
         document.body.style.position = '';
         document.body.style.top = '';
         document.body.style.width = '';
-        window.scrollTo(0, scrollY);
 
-        document.documentElement.style.scrollBehavior = '';
-      }, 300);
+        setTimeout(() => {
+          window.scrollTo(0, this.scrollY);
+          console.log('Scrolled to:', this.scrollY);
+        }, 50);
+      }
     }
-
-                }
   "
   x-init="  window.closeFilter = () => closeFilter();"
 >
