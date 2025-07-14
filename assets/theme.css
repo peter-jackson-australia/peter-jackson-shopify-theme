@@ -570,7 +570,7 @@ header {
 #site-header.header-fixed {
   position: fixed;
   top: 0;
-  border-bottom: var(--neutral-950); 
+  border-bottom: 1px solid var(--neutral-200); 
 }
 
 #site-header.header-fixed.is-visible {
