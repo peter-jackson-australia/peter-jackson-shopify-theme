@@ -27,6 +27,17 @@
     right: 0;
     z-index: 9995;
     background-color: transparent;
+    transform: translateY(-100%);
+    animation: slideDown 0.3s ease forwards;
+  }
+
+  @keyframes slideDown {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0);
+    }
   }
 
   .controls-fixed > .collection-controls__filter-button {
