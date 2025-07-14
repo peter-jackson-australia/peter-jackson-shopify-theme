@@ -681,6 +681,14 @@ footer ul {
   border-bottom: 1px solid var(--neutral-200);
 }
 
+#controls-spacer {
+  display: block;
+}
+
+#controls-spacer.hide {
+  display: none;
+}
+
 /* Search */
 
 .predictive-search__form {
