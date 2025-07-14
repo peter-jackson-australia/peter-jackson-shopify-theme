@@ -653,7 +653,7 @@
           <div class="collection-controls">
             <button
               class="collection-controls__filter-button body"
-              @click="isFilterOpen = !isFilterOpen; document.body.classList.toggle('filter-open', isFilterOpen)"
+              @click="isFilterOpen ? closeFilter() : openFilter()"
             >
               Filters
               <span>{% render 'icon-filter' %}</span>
