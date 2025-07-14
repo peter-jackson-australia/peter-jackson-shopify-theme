@@ -251,6 +251,7 @@ function checkVariants() {
   });
 }
 
+// Sticky Header
 document.addEventListener("DOMContentLoaded", function () {
   const header = document.querySelector("#site-header");
   const spacer = document.querySelector("#header-spacer");
@@ -290,6 +291,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  // Fixed filter bar
   const collectionControls = document.querySelector(".collection-controls");
   if (collectionControls) {
     const controlsOffsetTop = collectionControls.offsetTop;
