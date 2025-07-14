@@ -678,8 +678,7 @@ footer ul {
   left: 0;
   right: 0;
   z-index: 9995;
-  background-color: var(--white);
-  border-bottom: 1px solid var(--neutral-200);
+  background-color: transparent;
 }
 
 #controls-spacer {
