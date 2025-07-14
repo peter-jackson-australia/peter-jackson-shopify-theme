@@ -251,6 +251,7 @@ function checkVariants() {
   });
 }
 
+// Fixed header & filtering
 document.addEventListener('DOMContentLoaded', function() {
   const header = document.querySelector('#site-header');
   const spacer = document.querySelector('#header-spacer');
@@ -282,7 +283,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const scrollY = window.scrollY;
     
-    // Header sticky logic
     if (scrollY >= headerOffsetTop && !isFixed) {
       isFixed = true;
       header.classList.add('header-fixed');
@@ -293,7 +293,6 @@ document.addEventListener('DOMContentLoaded', function() {
       spacer.classList.add('hide');
     }
 
-    // Collection controls sticky logic
     if (collectionControls && controlsSpacer && productsGrid) {
       const headerHeight = header.offsetHeight;
       const triggerPoint = productsGridOffsetTop - headerHeight;
@@ -303,12 +302,9 @@ document.addEventListener('DOMContentLoaded', function() {
         collectionControls.classList.add('controls-fixed');
         controlsSpacer.classList.remove('hide');
       } else if (scrollY < triggerPoint && isControlsFixed) {
-        // Immediately restore the original position to prevent layout shift
         isControlsFixed = false;
         collectionControls.classList.remove('controls-fixed');
         controlsSpacer.classList.add('hide');
-        
-        // Add slide-up animation AFTER restoring position
         collectionControls.classList.add('sliding-up');
         setTimeout(() => {
           collectionControls.classList.remove('sliding-up');
