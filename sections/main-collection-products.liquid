@@ -22,39 +22,43 @@
 
   .collection-controls.controls-fixed {
     position: fixed;
-    top: var(--space-xl);
+    top: calc(var(--space-xl) - 50px); /* Start hidden above viewport */
     left: 0;
     right: 0;
     z-index: 9995;
     background-color: white;
-    transform: translateY(-100%);
     opacity: 0;
-    animation: slideDownFade 0.3s ease forwards;
     padding: 0px;
+    animation: slideDown 0.3s ease forwards;
+
+    /* Anti-blur properties */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    backface-visibility: hidden;
   }
 
   .collection-controls.controls-fixed.sliding-up {
-    animation: slideUpFade 0.3s ease forwards;
+    animation: slideUp 0.3s ease forwards;
   }
 
-  @keyframes slideDownFade {
+  @keyframes slideDown {
     from {
-      transform: translateY(-100%);
+      top: calc(var(--space-xl) - 50px);
       opacity: 0;
     }
     to {
-      transform: translateY(0);
+      top: var(--space-xl);
       opacity: 1;
     }
   }
 
-  @keyframes slideUpFade {
+  @keyframes slideUp {
     from {
-      transform: translateY(0);
+      top: var(--space-xl);
       opacity: 1;
     }
     to {
-      transform: translateY(-100%);
+      top: calc(var(--space-xl) - 50px);
       opacity: 0;
     }
   }
