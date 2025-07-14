@@ -304,15 +304,15 @@ document.addEventListener('DOMContentLoaded', function() {
         collectionControls.classList.add('controls-fixed');
         controlsSpacer.classList.remove('hide');
       } else if (scrollY < triggerPoint && isControlsFixed) {
-        // Start animation but keep spacer visible to prevent layout shift
-        collectionControls.classList.add('sliding-up');
+        // Immediately restore the original position to prevent layout shift
+        isControlsFixed = false;
+        collectionControls.classList.remove('controls-fixed');
+        controlsSpacer.classList.add('hide');
         
-        // After animation completes, clean up
+        // Add slide-up animation AFTER restoring position
+        collectionControls.classList.add('sliding-up');
         setTimeout(() => {
-          if (!isControlsFixed) return; // Prevent race condition
-          isControlsFixed = false;
-          collectionControls.classList.remove('controls-fixed', 'sliding-up');
-          controlsSpacer.classList.add('hide');
+          collectionControls.classList.remove('sliding-up');
         }, 300);
       }
     }
