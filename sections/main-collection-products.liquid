@@ -31,43 +31,32 @@
     opacity: 0;
     animation: slideDownFade 0.3s ease forwards;
     padding: 0px;
-
-    /* Add these to prevent blurriness */
-    will-change: transform, opacity;
-    backface-visibility: hidden;
-    transform-style: preserve-3d;
-    -webkit-font-smoothing: subpixel-antialiased;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0) translateY(-100%);
   }
 
-  /* Update your keyframes to use transform3d for hardware acceleration */
+  .collection-controls.controls-fixed.sliding-up {
+    animation: slideUpFade 0.3s ease forwards;
+  }
+
   @keyframes slideDownFade {
     from {
-      transform: translateZ(0) translateY(-100%);
+      transform: translateY(-100%);
       opacity: 0;
     }
     to {
-      transform: translateZ(0) translateY(0);
+      transform: translateY(0);
       opacity: 1;
     }
   }
 
   @keyframes slideUpFade {
     from {
-      transform: translateZ(0) translateY(0);
+      transform: translateY(0);
       opacity: 1;
     }
     to {
-      transform: translateZ(0) translateY(-100%);
+      transform: translateY(-100%);
       opacity: 0;
     }
-  }
-
-  /* Also update the sliding up class */
-  .collection-controls.controls-fixed.sliding-up {
-    animation: slideUpFade 0.3s ease forwards;
-    will-change: transform, opacity;
   }
 
   .collection-controls.controls-fixed > p,
