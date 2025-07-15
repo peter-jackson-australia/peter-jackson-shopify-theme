@@ -1,324 +1,829 @@
-// Define a convenience method and use it like
-// ready(() => {...});
-var ready = (callback) => {
-  if (document.readyState != "loading") callback();
-  else document.addEventListener("DOMContentLoaded", callback);
-};
+<script src="{{ 'ajaxinate.min.js' | asset_url }}" defer></script>
 
-/*
- * HISTORY STATE
- * Check if window.history is supported
- */
-function historyState() {
-  return window.history && window.history.replaceState;
-}
+<style>
+  #collection {
+    display: grid;
+    grid-template-columns: auto;
+    border-bottom: 1px solid var(--neutral-200);
+  }
 
-/*
- * GET URL PARAMETER
- * Checks for url parameter called `name`.
- */
-function getParam(name) {
-  if ("URLSearchParams" in window) {
-    var params = new URLSearchParams(window.location.search);
-    return params.get(name);
-  } else {
-    // Polyfill for IE11
-    var params = new RegExp("[?&]" + name + "=([^&#]*)").exec(window.location.href);
-    if (params == null) {
-      return null;
-    } else {
-      return decodeURI(params[1]) || 0;
+  .collection-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: var(--space-m);
+    padding-top: var(--space-s);
+    gap: var(--space-xs);
+  }
+
+  .collection-controls.controls-fixed {
+    position: fixed;
+    top: calc(var(--space-xl) - 50px);
+    left: 0;
+    right: 0;
+    z-index: 9995;
+    background-color: white;
+    opacity: 0;
+    padding: 0px;
+    animation: slideDown 0.3s ease forwards;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    backface-visibility: hidden;
+  }
+
+  .collection-controls.controls-fixed.sliding-up {
+    animation: slideUp 0.3s ease forwards;
+  }
+
+  @keyframes slideDown {
+    from {
+      top: calc(var(--space-xl) - 50px);
+      opacity: 0;
+    }
+    to {
+      top: var(--space-xl);
+      opacity: 1;
     }
   }
-}
 
-/*
- * FORMAT MONEY
- * Formats the passed value as money with currency symbol.
- * Referenced from https://gist.github.com/stewartknapman/8d8733ea58d2314c373e94114472d44c
- */
-var Shopify = Shopify || {};
-Shopify.money_format = "${{amount}}";
-Shopify.formatMoney = function (cents, format) {
-  if (typeof cents == "string") {
-    cents = cents.replace(".", "");
-  }
-  var value = "";
-  var placeholderRegex = /\{\{\s*(\w+)\s*\}\}/;
-  var formatString = format || this.money_format;
-
-  function defaultOption(opt, def) {
-    return typeof opt == "undefined" ? def : opt;
+  @keyframes slideUp {
+    from {
+      top: var(--space-xl);
+      opacity: 1;
+    }
+    to {
+      top: calc(var(--space-xl) - 50px);
+      opacity: 0;
+    }
   }
 
-  function formatWithDelimiters(number, precision, thousands, decimal) {
-    precision = defaultOption(precision, 2);
-    thousands = defaultOption(thousands, ",");
-    decimal = defaultOption(decimal, ".");
+  .collection-controls.controls-fixed > p,
+  .collection-controls.controls-fixed > .collection-controls__actions {
+    display: none;
+  }
 
-    if (isNaN(number) || number == null) {
-      return 0;
+  .collection-controls.controls-fixed > .collection-controls__filter-button {
+    border: none;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: var(--space-2xs) var(--space-m);
+    background-color: var(--neutral-950);
+    color: var(--white);
+  }
+
+  .collection-controls.controls-fixed > .collection-controls__filter-button > span {
+    filter: invert(1);
+  }
+
+  #controls-spacer {
+    display: block;
+  }
+
+  #controls-spacer.hide {
+    display: none;
+  }
+
+  .collection-controls > p {
+    margin-left: auto;
+    color: var(--neutral-600);
+    align-self: center;
+  }
+
+  .collection-controls__filter-button {
+    background-color: transparent;
+    cursor: pointer;
+    padding: var(--space-2xs) var(--space-s);
+    border: 1px solid var(--neutral-200);
+    color: var(--neutral-950);
+    transition: 0.3 ease-in;
+  }
+
+  .collection-controls__actions {
+    display: flex;
+    gap: var(--space-s);
+    align-items: center;
+  }
+
+  .filter-sidebar {
+    position: fixed;
+    top: calc(var(--space-xl) + 35px);
+    bottom: 0;
+    left: 0;
+    width: 400px;
+    background-color: var(--white);
+    z-index: 9998;
+    overflow-y: hidden;
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: transform 0.3s ease;
+    animation: slideIn 0.3s ease forwards;
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  .filter-sidebar.closing {
+    animation: slideOut 0.3s ease forwards;
+  }
+
+  @keyframes slideOut {
+    from {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+  }
+
+  .filter-sidebar__overlay {
+    position: fixed;
+    top: calc(var(--space-xl) + 35px);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9997;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-2xs);
+    overflow: hidden;
+  }
+
+  .products-grid--cols-1 {
+    grid-template-columns: 1fr !important;
+  }
+
+  .products-grid--cols-2 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .products-grid--cols-2 > .grid-content {
+    min-height: 850px !important;
+  }
+
+  .products-grid--cols-4 {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+
+  .product-card {
+    display: block;
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    contain: layout style paint;
+  }
+
+  .product-card__image-link {
+    display: block;
+  }
+
+  .product-card__image-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--neutral-50);
+    contain: paint;
+  }
+
+  .product-card__discount-code-prominent {
+    display: block;
+    position: absolute;
+    top: var(--space-xs);
+    left: var(--space-xs);
+    color: var(--white);
+    background-color: var(--neutral-950);
+    text-align: center;
+    padding: var(--space-3xs) var(--space-xs);
+    width: auto;
+  }
+
+  .product-card__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .product-card__content {
+    padding: var(--space-xs) var(--space-m);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+  }
+
+  .product-card__title {
+    color: var(--neutral-950);
+  }
+
+  .product-card__title-link {
+    text-decoration: none;
+  }
+
+  .product-card__material {
+    color: var(--neutral-600);
+  }
+
+  .product-card__title,
+  .product-card__material,
+  .product-card__price {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .product-card__price {
+    margin-top: auto;
+  }
+
+  .product-card__slider-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .product-card__slider {
+    width: 100%;
+    height: auto;
+  }
+
+  .product-card__slider .splide__track,
+  .product-card__slider .splide__list,
+  .product-card__slider .splide__slide {
+    height: auto;
+  }
+
+  .product-card__slider .splide__slide img {
+    width: 100%;
+    height: auto;
+  }
+
+  .product-card__slider .splide__arrows {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .product-card__slider .splide__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: auto;
+    cursor: pointer;
+    width: var(--space-l);
+    height: 100%;
+  }
+
+  .product-card__slider .splide__arrow--prev {
+    left: calc(var(--space-3xs) - 6px);
+  }
+
+  .product-card__slider .splide__arrow--next {
+    right: calc(var(--space-3xs) - 6px);
+  }
+
+  .product-card__slider .splide__arrow:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  .product-card__slider .splide__progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: transparent;
+    z-index: 2;
+  }
+
+  .product-card__slider .splide__progress__bar {
+    background: var(--neutral-950);
+    height: 2px;
+    transition: width 300ms ease;
+    width: 0;
+  }
+
+  .grid-content {
+    position: relative;
+    overflow: hidden;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 350px;
+    grid-column: span 2;
+  }
+
+  .grid-content__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .grid-content__background--image {
+    background-size: cover;
+    background-position: top center;
+  }
+
+  .grid-content__background--video {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .grid-content__background--video video {
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    position: absolute;
+  }
+
+  .grid-content__container {
+    position: relative;
+    z-index: 2;
+    padding: var(--space-m);
+    text-align: center;
+    display: grid;
+    margin-top: auto;
+  }
+
+  .grid-content__header {
+    margin-bottom: var(--space-xs);
+  }
+
+  .grid-content__description {
+    margin-bottom: var(--space-s);
+  }
+
+  .grid-content__container--left {
+    text-align: left;
+    justify-items: start;
+  }
+
+  .grid-content__description {
+    max-width: 80ch;
+  }
+
+  .grid-toggle-btn {
+    background-color: transparent;
+    padding: var(--space-2xs);
+    border: 1px solid var(--neutral-200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+  }
+
+  .grid-toggle-btn > span {
+    vertical-align: middle;
+    height: 14px;
+    display: inline-block;
+  }
+
+  .grid-toggle-btn > span > svg {
+    vertical-align: baseline;
+  }
+
+  .product-card__price--compare {
+    text-decoration: line-through;
+    color: var(--neutral-600);
+    margin-left: var(--space-2xs);
+  }
+
+  .product-card__discount-code-desktop {
+    color: var(--neutral-400);
+    margin-left: var(--space-2xs);
+  }
+
+  .product-card__discount-code-mobile {
+    display: none;
+    color: var(--neutral-400);
+  }
+
+  #AjaxinatePagination {
+    margin: var(--space-m);
+  }
+
+  .no-products-message {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: var(--space-xl);
+    background-color: var(--neutral-50);
+  }
+
+  @media (max-width: 768px) {
+    .products-grid {
+      grid-template-columns: repeat(2, 1fr);
     }
 
-    number = (number / 100.0).toFixed(precision);
-
-    var parts = number.split("."),
-      dollars = parts[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1" + thousands),
-      cents = parts[1] ? decimal + parts[1] : "";
-
-    return dollars + cents;
-  }
-
-  switch (formatString.match(placeholderRegex)[1]) {
-    case "amount":
-      value = formatWithDelimiters(cents, 2);
-      break;
-    case "amount_no_decimals":
-      value = formatWithDelimiters(cents, 0);
-      break;
-    case "amount_with_comma_separator":
-      value = formatWithDelimiters(cents, 2, ".", ",");
-      break;
-    case "amount_no_decimals_with_comma_separator":
-      value = formatWithDelimiters(cents, 0, ".", ",");
-      break;
-  }
-
-  return formatString.replace(placeholderRegex, value);
-};
-
-/*
- * OPTION SELECTOR
- * Works the variant option dropdowns used on the
- * product page template.
- */
-ready(function () {
-  var variant;
-  var options = [];
-  options[1] = null;
-  options[2] = null;
-  options[3] = null;
-
-  var variantOptions = document.querySelectorAll(".js--variant-option");
-  variantOptions.forEach(function (el) {
-    el.addEventListener("change", function (event) {
-      // Disable non-existent variant options.
-      checkVariants();
-
-      // Set the chosen options.
-      variantOptions.forEach(function (opt) {
-        if (opt.tagName.toLowerCase() == "input" && opt.checked == true) {
-          var optionName = opt.getAttribute("name");
-          var optionPos = parseInt(optionName.replace("option", ""));
-          var optionValue = opt.value;
-          options[optionPos] = optionValue;
-        }
-      });
-
-      // Loop through the variants and get the selected one.
-      variants.filter(function (v) {
-        if (v.option1 == options[1] && v.option2 == options[2] && v.option3 == options[3]) {
-          variant = v;
-
-          // Update variant id and prices
-          document.querySelector("input#js--variant-id").value = v.id;
-          // The following is used for the "purchase together" feature.
-          document.querySelectorAll('input[type="checkbox"].js--variant-id').forEach(function (el) {
-            el.value = v.id;
-            el.setAttribute("data-price", v.price);
-            if (v.available == true) {
-              el.checked = true;
-              el.disabled = false;
-            } else {
-              el.checked = false;
-              el.disabled = true;
-            }
-          });
-          document.querySelectorAll(".js--variant-price").forEach(function (el) {
-            el.innerHTML = Shopify.formatMoney(v.price);
-          });
-
-          if (v.compare_at_price > v.price) {
-            document.querySelectorAll(".js--variant-compareatprice").forEach(function (el) {
-              el.innerText = Shopify.formatMoney(v.compare_at_price);
-            });
-          } else {
-            document.querySelectorAll(".js--variant-compareatprice").forEach(function (el) {
-              el.innerText = "";
-            });
-          }
-
-          // Update SKU
-          document.querySelectorAll(".js--variant-sku").forEach(function (el) {
-            el.innerText = variant.sku;
-          });
-
-          if (document.querySelector(".js--pants-size")) {
-            document.querySelector(".js--pants-size").textContent = v.option1 - 12;
-          }
-
-          // Disable the buy button if product is unavailable
-          var variantIndex = variants.findIndex((variant) => variant.id === v.id);
-          var inventoryQuantity = variant_inventory_quantities[variantIndex];
-
-          if (v.available === false || (inventoryQuantity <= 5 && !v.name.includes("Digital Gift Card"))) {
-            document.querySelector("#js--addtocart").disabled = true;
-            document.querySelector("#js--addtocart").innerText = "Size Unavailable";
-          } else {
-            document.querySelector("#js--addtocart").disabled = false;
-            var buttonText =
-              show_low_stock_warning &&
-              inventoryQuantity >= 6 &&
-              inventoryQuantity <= 10 &&
-              !product_title.includes("Gift Card")
-                ? "Low In Stock - Add To Cart"
-                : "Add To Cart";
-            document.querySelector("#js--addtocart").innerText = buttonText;
-          }
-
-          // Update the hidden inventory quantity input
-          document.querySelector("#js--variant-inventory-quantity").value = inventoryQuantity;
-
-          // Append the variant ID as a url parameter
-          if (v != undefined) {
-            if (historyState()) {
-              window.history.replaceState({}, document.title, "?variant=" + v.id);
-            }
-          }
-        }
-      });
-    });
-  });
-});
-
-/*
- * CHECK VARIANT EXISTS
- * This checks if the variant actually exists - e.g you may have small, medium,
- * and large in blue and black, but blue/medium is not a variant. Disables the
- * related inputs.
- */
-function checkVariants() {
-  let $this = event.target;
-  if ($this !== undefined) {
-    let availableVariants = new Set();
-    variants.filter(function (variant, k) {
-      if (variant[$this.name] == $this.value) {
-        availableVariants.add(variant);
-      }
-    });
-
-    // Loop through the array above to create an array containing available
-    // option values.
-    let optionGroups = {};
-    availableVariants.forEach(function (variant) {
-      let options = Object.entries(variant);
-      for (const [key, value] of options) {
-        if (value != null) {
-          if (optionGroups[key] == undefined) {
-            optionGroups[key] = [];
-          }
-          if (optionGroups[key].includes(value) == false) {
-            optionGroups[key].push(value);
-          }
-        }
-      }
-    });
-
-    // Then, loop through each input and check if its value is in the optionGroups
-    // array created above, ignoring the clicked option group.
-    document.querySelectorAll(".js--variant-option").forEach(function (input) {
-      if (input.name != $this.name) {
-        if (optionGroups[input.name].includes(input.value) == false) {
-          input.disabled = true;
-          input.checked = false;
-        } else {
-          input.disabled = false;
-        }
-      }
-    });
-  }
-
-  // Check a valid option is selected for each group.
-  document.querySelectorAll(".js--variant-options").forEach(function (group) {
-    let firstAvailable = null;
-    let checkedOptions = group.querySelectorAll(".js--variant-option:checked").length;
-    if (checkedOptions == 0) {
-      firstAvailable = group.querySelectorAll(".js--variant-option:not(:disabled)")[0];
-    }
-    if (firstAvailable != null) {
-      firstAvailable.checked = true;
-    }
-  });
-}
-
-// Fixed header & filtering
-document.addEventListener('DOMContentLoaded', function() {
-  const header = document.querySelector('#site-header');
-  const spacer = document.querySelector('#header-spacer');
-  const collectionControls = document.querySelector('.collection-controls');
-  const productsGrid = document.querySelector('.products-grid');
-  const headerOffsetTop = header.offsetTop;
-  let isFixed = false;
-  let isControlsFixed = false;
-  let ticking = false;
-  let productsGridOffsetTop = 0;
-  let controlsSpacer = null;
-
-  if (collectionControls && productsGrid) {
-    productsGridOffsetTop = productsGrid.offsetTop;
-    controlsSpacer = document.createElement('div');
-    controlsSpacer.id = 'controls-spacer';
-    controlsSpacer.className = 'hide';
-    controlsSpacer.style.height = collectionControls.offsetHeight + 'px';
-    collectionControls.parentNode.insertBefore(controlsSpacer, collectionControls.nextSibling);
-  }
-
-  function checkScroll() {
-    if (document.body.classList.contains('menu-open') || 
-        document.body.classList.contains('cart-open') || 
-        document.body.classList.contains('search-open')) {
-      ticking = false;
-      return;
+    .products-grid--cols-2 {
+      grid-template-columns: 1fr !important;
     }
 
-    const scrollY = window.scrollY;
-    
-    if (scrollY >= headerOffsetTop && !isFixed) {
-      isFixed = true;
-      header.classList.add('header-fixed');
-      spacer.classList.remove('hide');
-    } else if (scrollY < headerOffsetTop && isFixed) {
-      isFixed = false;
-      header.classList.remove('header-fixed');
-      spacer.classList.add('hide');
+    .products-grid--cols-4 {
+      grid-template-columns: repeat(2, 1fr) !important;
     }
 
-    if (collectionControls && controlsSpacer && productsGrid) {
-      const headerHeight = header.offsetHeight;
-      const triggerPoint = productsGridOffsetTop - headerHeight;
-      
-      if (scrollY >= triggerPoint && !isControlsFixed) {
-        isControlsFixed = true;
-        collectionControls.classList.add('controls-fixed');
-        controlsSpacer.classList.remove('hide');
-      } else if (scrollY < triggerPoint && isControlsFixed) {
-        isControlsFixed = false;
-        collectionControls.classList.remove('controls-fixed');
-        controlsSpacer.classList.add('hide');
-        collectionControls.classList.add('sliding-up');
+    .products-grid--cols-2 .grid-content {
+      grid-column: span 1;
+    }
+
+    .grid-content__container {
+      padding-bottom: var(--space-xl);
+      text-align: left;
+      justify-items: start;
+    }
+
+    .product-card__discount-code-desktop {
+      display: none;
+    }
+
+    .product-card__discount-code-mobile {
+      display: block;
+    }
+
+    .product-card__discount-code-prominent {
+      display: block;
+      position: absolute;
+      top: auto;
+      bottom: 0px;
+      left: 0px;
+      width: 100%;
+      color: var(--white);
+      background-color: var(--neutral-950);
+      text-align: center;
+      padding: var(--space-3xs);
+    }
+  }
+</style>
+
+<div
+  id="{{ section.id }}"
+  class="section-wrap"
+  x-data="
+    {
+      expandedGrid: true,
+      isFilterOpen: false,
+      scrollY: 0,
+
+      openFilter() {
+        this.scrollY = window.scrollY;
+
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${this.scrollY}px`;
+        document.body.style.width = '100%';
+
+        this.isFilterOpen = true;
+        window.closeMenu && window.closeMenu();
+      },
+
+      closeFilter() {
+        if (!this.isFilterOpen) return;
+
+        document.querySelector('.filter-sidebar').classList.add('closing');
         setTimeout(() => {
-          collectionControls.classList.remove('sliding-up');
+          this.isFilterOpen = false;
+
+          document.documentElement.style.scrollBehavior = 'auto';
+
+          document.body.style.position = '';
+          document.body.style.top = '';
+          document.body.style.width = '';
+          window.scrollTo(0, this.scrollY);
+
+          document.documentElement.style.scrollBehavior = '';
+
+          document.querySelector('.filter-sidebar').classList.remove('closing');
         }, 300);
       }
     }
-    
-    ticking = false;
-  }
+  "
+  x-init="
+    document.addEventListener('menu-open', () => {
+      this.closeFilter();
+    });
 
-  window.addEventListener('scroll', function() {
-    if (!ticking) {
-      requestAnimationFrame(checkScroll);
-      ticking = true;
-    }
+    window.closeFilter = () => {
+      const filterComponent = document.querySelector('#{{ section.id }}');
+      if (filterComponent && filterComponent._x_dataStack && filterComponent._x_dataStack[0]) {
+        const data = filterComponent._x_dataStack[0];
+        if (data.isFilterOpen) {
+          data.closeFilter();
+        }
+      }
+    };
+  "
+>
+  <div id="collection" class="section">
+    <div x-show="isFilterOpen" x-cloak>
+      <div
+        class="filter-sidebar__overlay"
+        @click="closeFilter()"
+      ></div>
+      <aside class="filter-sidebar">
+        <div class="filter-sidebar-header">
+          <h3 class="heading--xl">Filters</h3>
+          <p>
+            <a class="body" href="{{ collection.url }}?sort_by={{ collection.sort_by }}">Clear all</a>
+          </p>
+          <button
+            class="filter-close-btn"
+            @click="closeFilter()"
+            aria-label="Close filters"
+          >
+            {% render 'icon-close' %}
+          </button>
+        </div>
+        {% render 'collection-filters' %}
+      </aside>
+    </div>
+    {% liquid
+      assign has_grid_content = false
+
+      if collection.metafields.custom.collection_grid_content != blank
+        assign has_grid_content = true
+        for filter in collection.filters
+          for active_filter in filter.active_values
+            assign has_grid_content = false
+            break
+          endfor
+          if has_grid_content == false
+            break
+          endif
+        endfor
+
+        if has_grid_content
+          assign metaobject_raw = collection.metafields.custom.collection_grid_content.value
+        endif
+      endif
+
+      assign original_limit = section.settings.limit | plus: 0
+
+      assign grid_position = 3
+      if has_grid_content and metaobject_raw.grid_position != blank
+        assign grid_position = metaobject_raw.grid_position | plus: 0
+      endif
+
+      assign actual_position = grid_position
+
+      if grid_position > original_limit
+        assign actual_position = original_limit
+      endif
+
+      if actual_position < 1
+        assign actual_position = 1
+      endif
+
+      assign is_even = actual_position | modulo: 2
+      if is_even == 0
+        assign actual_position = actual_position | minus: 1
+        if actual_position < 1
+          assign actual_position = 1
+        endif
+      endif
+    %}
+    {% paginate collection.products by original_limit %}
+      <div>
+        <div class="section">
+          <div class="collection-controls">
+            <button
+              class="collection-controls__filter-button body"
+              @click="openFilter()"
+            >
+              Filters
+              <span>{% render 'icon-filter' %}</span>
+            </button>
+
+            <p class="body">
+              {{ collection.products_count }}
+              {% if collection.products_count == 1 %}Product{% else %}Products{% endif %}
+            </p>
+
+            <div class="collection-controls__actions">
+              <button
+                aria-label="Change the grid view"
+                class="btn grid-toggle-btn"
+                @click="expandedGrid = !expandedGrid"
+                x-data="{ isMobile: window.innerWidth < 768 }"
+                x-init="
+                  window.addEventListener('resize', () => {
+                    isMobile = window.innerWidth < 768;
+                  })
+                "
+              >
+                <span x-cloak x-show="!isMobile && expandedGrid">{% render 'icon-grid-2' %}</span>
+                <span x-cloak x-show="!isMobile && !expandedGrid">{% render 'icon-grid-4' %}</span>
+
+                <span x-cloak x-show="isMobile && expandedGrid">{% render 'icon-grid-1' %}</span>
+                <span x-cloak x-show="isMobile && !expandedGrid">{% render 'icon-grid-2' %}</span>
+              </button>
+            </div>
+          </div>
+
+          <div
+            id="AjaxinateContainer"
+            class="products-grid animate-container-cards-scroll"
+            :class="
+              {
+                'products-grid--cols-2': !expandedGrid,
+                'products-grid--cols-4': expandedGrid
+              }
+            "
+          >
+            {% if collection.products.size == 0 %}
+              <div class="no-products-message">
+                <p class="heading--l" style="color: var(--neutral-950)">Sorry, there are no products to show</p>
+                <p class="body">
+                  Try adjusting your filters or
+                  <a href="/" style="color: var(--neutral-950)">return home</a>
+                </p>
+              </div>
+            {% else %}
+              {% assign inserted = false %}
+              {% for product in collection.products %}
+                {% assign current_position = forloop.index %}
+
+                {% if current_position == actual_position
+                  and inserted == false
+                  and paginate.current_page == 1
+                  and has_grid_content
+                %}
+                  <div class="grid-content">
+                    {% if metaobject_raw.image_or_video != blank %}
+                      {% if metaobject_raw.image_or_video.value.media_type == 'video' %}
+                        <div class="grid-content__background grid-content__background--video">
+                          <video autoplay muted loop playsinline>
+                            <source src="{{ metaobject_raw.image_or_video | file_url }}" type="video/mp4">
+                          </video>
+                        </div>
+                      {% else %}
+                        <div
+                          class="grid-content__background grid-content__background--image"
+                          style="background-image: url('{{ metaobject_raw.image_or_video | image_url: width: 1200 }}');"
+                        ></div>
+                      {% endif %}
+                    {% endif %}
+
+                    <div class="grid-content__container grid-content__container--left">
+                      {% if metaobject_raw.leading_text != blank %}
+                        <p class="heading--l grid-content__leading-text">{{ metaobject_raw.leading_text }}</p>
+                      {% endif %}
+
+                      <h2 class="heading--2xl grid-content__header">{{ metaobject_raw.header }}</h2>
+
+                      <div class="body grid-content__description">{{ metaobject_raw.description }}</div>
+
+                      {% if metaobject_raw.link != blank %}
+                        {{
+                          metaobject_raw.link
+                          | metafield_tag
+                          | replace: 'class="', 'class="button button--white body'
+                        }}
+                      {% endif %}
+                    </div>
+                  </div>
+                  {% assign inserted = true %}
+                {% endif %}
+
+                {% render 'product-card',
+                  product: product,
+                  image_width: 520,
+                  prominent_discount_mobile: section.settings.prominent_discount_mobile
+                %}
+              {% endfor %}
+
+              {% if inserted == false and paginate.current_page == 1 and has_grid_content %}
+                <div class="grid-content">
+                  {% if metaobject_raw.image_or_video != blank %}
+                    {% if metaobject_raw.image_or_video.value.media_type == 'video' %}
+                      <div class="grid-content__background grid-content__background--video">
+                        <video autoplay muted loop playsinline>
+                          <source src="{{ metaobject_raw.image_or_video | file_url }}" type="video/mp4">
+                        </video>
+                      </div>
+                    {% else %}
+                      <div
+                        class="grid-content__background grid-content__background--image"
+                        style="background-image: url('{{ metaobject_raw.image_or_video | image_url: width: 1200 }}');"
+                      ></div>
+                    {% endif %}
+                  {% endif %}
+
+                  <div class="grid-content__container grid-content__container--left">
+                    {% if metaobject_raw.leading_text != blank %}
+                      <p class="heading--l grid-content__leading-text">{{ metaobject_raw.leading_text }}</p>
+                    {% endif %}
+
+                    <h2 class="heading--2xl grid-content__header">{{ metaobject_raw.header }}</h2>
+
+                    <div class="body grid-content__description">{{ metaobject_raw.description }}</div>
+
+                    {% if metaobject_raw.link != blank %}
+                      {{ metaobject_raw.link | metafield_tag | replace: 'class="', 'class="button button--white body' }}
+                    {% endif %}
+                  </div>
+                </div>
+              {% endif %}
+            {% endif %}
+          </div>
+          <div id="AjaxinatePagination">
+            {% if paginate.next %}
+              <a aria-label="Loading More" href="{{ paginate.next.url }}"></a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% endpaginate %}
+  </div>
+</div>
+
+{% javascript %}
+  window.addEventListener('load', function () {
+    var endlessScroll = new Ajaxinate({
+      method: 'scroll',
+      container: '#AjaxinateContainer',
+      pagination: '#AjaxinatePagination',
+      offset: '400',
+      loadingText:
+        '<div style="margin: auto 0; display:flex;justify-content:center;align-items:center;padding:var(--space-m) 0;width:100%;height:1px;overflow:hidden"><svg fill=#E7E7E7 height=1 style=max-width:300px viewBox="0 0 100 1"width=100% xmlns=http://www.w3.org/2000/svg><style>.react{animation:moving 1s ease-in-out infinite;transform-origin:0 50%}@keyframes moving{0%{width:0%}50%{width:100%;transform:translateX(0)}100%{width:0;transform:translateX(100%)}}</style><rect class=react fill=#E7E7E7 height=1 width=100% /></svg></div>',
+    });
+
+    document.addEventListener(
+      'click',
+      function (event) {
+        if (event.target.closest('.splide__arrow')) {
+          event.preventDefault();
+        }
+      },
+      true
+    );
+
+    document.querySelectorAll('[x-data]').forEach((el) => {
+      if (el.hasAttribute('x-data') && el.__x) {
+        if (el.__x.$data.hasOwnProperty('isMobile')) {
+          el.__x.$data.isMobile = window.innerWidth < 768;
+        }
+      }
+    });
   });
-});
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Products",
+  "limit": 1,
+  "tag": "section",
+  "class": "collection-products-section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Display current collection's products."
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "label": "Products",
+      "info": "Determines how many products to show before loading more.",
+      "min": 4,
+      "max": 16,
+      "step": 1,
+      "default": 8
+    },
+    {
+      "type": "checkbox",
+      "id": "prominent_discount_mobile",
+      "label": "Show prominent discount codes",
+      "info": "Display discount codes as overlay badges on product images",
+      "default": false
+    }
+  ],
+  "enabled_on": {
+    "templates": ["collection"]
+  }
+}
+{% endschema %}
