@@ -39,7 +39,7 @@
 
   .blog-collection__post-content {
     padding-left: var(--space-m);
-    margin-bottom: var(--space-m); 
+    margin-bottom: var(--space-m);
   }
 
   .blog-collection__post-category {
@@ -165,7 +165,9 @@
             </h3>
 
             <a href="{{ article.url }}" class="blog-collection__post-link-container">
-              <span class="blog-collection__post-link body">Read The Article {% render 'icon-arrow-submit-dark' %}</span>
+              <span class="blog-collection__post-link body"
+                >Read The Article {% render '_icon-arrow-submit-dark' -%}
+              </span>
             </a>
           </div>
         </article>
