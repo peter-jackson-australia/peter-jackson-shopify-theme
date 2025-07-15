@@ -498,6 +498,18 @@
         document.body.style.top = `-${this.scrollY}px`;
         document.body.style.width = '100%';
 
+        // MANUALLY FORCE HEADER TO BE VISIBLE AND FIXED
+        const siteHeader = document.querySelector('#site-header');
+        if (siteHeader) {
+          siteHeader.style.position = 'fixed !important';
+          siteHeader.style.top = '0 !important';
+          siteHeader.style.left = '0 !important';
+          siteHeader.style.right = '0 !important';
+          siteHeader.style.zIndex = '10000 !important';
+          siteHeader.style.display = 'block !important';
+          siteHeader.style.visibility = 'visible !important';
+        }
+
         this.isFilterOpen = true;
 
         this.$nextTick(() => {
@@ -551,9 +563,21 @@
         setTimeout(() => {
           this.isFilterOpen = false;
 
+          const siteHeader = document.querySelector('#site-header');
           const filterSidebar = document.querySelector('.filter-sidebar');
           const filterOverlay = document.querySelector('.filter-sidebar__overlay');
           const collectionControls = document.querySelector('.collection-controls');
+
+          // REMOVE ALL FORCED HEADER STYLES
+          if (siteHeader) {
+            siteHeader.style.position = '';
+            siteHeader.style.top = '';
+            siteHeader.style.left = '';
+            siteHeader.style.right = '';
+            siteHeader.style.zIndex = '';
+            siteHeader.style.display = '';
+            siteHeader.style.visibility = '';
+          }
 
           if (filterSidebar) {
             filterSidebar.style.top = '';
