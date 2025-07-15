@@ -1,3 +1,22 @@
+openFilter() { // Store current scroll position this.scrollY = window.scrollY; // Get elements const siteHeader =
+document.querySelector('#site-header'); const collectionControls = document.querySelector('.collection-controls'); const
+filterSidebar = document.querySelector('.filter-sidebar'); const filterOverlay =
+document.querySelector('.filter-sidebar__overlay'); // Check current states const wasHeaderFixed =
+siteHeader?.classList.contains('header-fixed'); const wasControlsFixed =
+collectionControls?.classList.contains('controls-fixed'); // Calculate header height for consistent positioning const
+headerHeight = siteHeader ? siteHeader.getBoundingClientRect().height : 0; // Calculate the correct top position for
+filter elements let filterTop = 0; if (wasHeaderFixed) { filterTop = headerHeight; if (wasControlsFixed) { // If
+controls are also fixed, add their height const controlsHeight = collectionControls ?
+collectionControls.getBoundingClientRect().height : 0; filterTop += controlsHeight; } } else if (siteHeader) { // Header
+is not fixed, use its bottom position const headerRect = siteHeader.getBoundingClientRect(); filterTop = Math.max(0,
+headerRect.bottom); } // Fix the body in place - account for header height if it's fixed const bodyTopOffset =
+wasHeaderFixed ? this.scrollY : this.scrollY; document.body.style.position = 'fixed'; document.body.style.top =
+`-${bodyTopOffset}px`; document.body.style.width = '100%'; // Position filter elements if (filterSidebar) {
+filterSidebar.style.top = `${filterTop}px`; } if (filterOverlay) { filterOverlay.style.top = `${filterTop}px`; } //
+Ensure fixed elements maintain their state if (wasHeaderFixed && siteHeader) { siteHeader.classList.add('header-fixed');
+} if (wasControlsFixed && collectionControls) { collectionControls.classList.add('controls-fixed');
+collectionControls.classList.remove('sliding-up'); collectionControls.style.top = `${headerHeight}px`; }
+this.isFilterOpen = true; }
 <script src="{{ 'ajaxinate.min.js' | asset_url }}" defer></script>
 
 <style>
@@ -494,44 +513,50 @@
       openFilter() {
         this.scrollY = window.scrollY;
 
-        document.body.style.position = 'fixed';
-        document.body.style.top = `-${this.scrollY}px`;
-        document.body.style.width = '100%';
-
-        this.isFilterOpen = true;
-
-        this.$nextTick(() => {
-          this.updateFilterPositioning();
-        });
-      },
-
-      updateFilterPositioning() {
         const siteHeader = document.querySelector('#site-header');
         const collectionControls = document.querySelector('.collection-controls');
         const filterSidebar = document.querySelector('.filter-sidebar');
         const filterOverlay = document.querySelector('.filter-sidebar__overlay');
 
-        if (!siteHeader) return;
+        const wasHeaderFixed = siteHeader?.classList.contains('header-fixed');
+        const wasControlsFixed = collectionControls?.classList.contains('controls-fixed');
 
-        const isFixed = siteHeader.classList.contains('header-fixed');
+        const headerHeight = siteHeader ? siteHeader.getBoundingClientRect().height : 0;
 
-        if (isFixed) {
-          if (filterSidebar) {
-            filterSidebar.style.top = 'var(--space-xl)';
+        let filterTop = 0;
+        if (wasHeaderFixed) {
+          filterTop = headerHeight;
+          if (wasControlsFixed) {
+            const controlsHeight = collectionControls ? collectionControls.getBoundingClientRect().height : 0;
+            filterTop += controlsHeight;
           }
-          if (filterOverlay) {
-            filterOverlay.style.top = 'var(--space-xl)';
-          }
-        } else {
+        } else if (siteHeader) {
           const headerRect = siteHeader.getBoundingClientRect();
-          const topPosition = Math.max(0, headerRect.bottom) + 'px';
-          if (filterSidebar) {
-            filterSidebar.style.top = topPosition;
-          }
-          if (filterOverlay) {
-            filterOverlay.style.top = topPosition;
-          }
+          filterTop = Math.max(0, headerRect.bottom);
         }
+
+        const bodyTopOffset = wasHeaderFixed ? this.scrollY : this.scrollY;
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${bodyTopOffset}px`;
+        document.body.style.width = '100%';
+
+        if (filterSidebar) {
+          filterSidebar.style.top = `${filterTop}px`;
+        }
+        if (filterOverlay) {
+          filterOverlay.style.top = `${filterTop}px`;
+        }
+
+        if (wasHeaderFixed && siteHeader) {
+          siteHeader.classList.add('header-fixed');
+        }
+        if (wasControlsFixed && collectionControls) {
+          collectionControls.classList.add('controls-fixed');
+          collectionControls.classList.remove('sliding-up');
+          collectionControls.style.top = `${headerHeight}px`;
+        }
+
+        this.isFilterOpen = true;
       },
 
       closeFilter() {
@@ -543,22 +568,26 @@
 
           const filterSidebar = document.querySelector('.filter-sidebar');
           const filterOverlay = document.querySelector('.filter-sidebar__overlay');
+          const collectionControls = document.querySelector('.collection-controls');
 
           if (filterSidebar) {
             filterSidebar.style.top = '';
           }
+
           if (filterOverlay) {
             filterOverlay.style.top = '';
           }
 
-          const scrollY = Math.abs(parseInt(document.body.style.top || '0'));
+          if (collectionControls) {
+            collectionControls.style.top = '';
+          }
 
           document.documentElement.style.scrollBehavior = 'auto';
 
           document.body.style.position = '';
           document.body.style.top = '';
           document.body.style.width = '';
-          window.scrollTo(0, scrollY);
+          window.scrollTo(0, this.scrollY);
 
           document.documentElement.style.scrollBehavior = '';
 
