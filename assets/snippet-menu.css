@@ -26,7 +26,7 @@
 }
 
 .header-fixed ~ .menu-drawer {
-  border-top: none; 
+  border-top: none !important; 
 }
 
 .menu-drawer__inner {
