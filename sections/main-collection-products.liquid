@@ -578,10 +578,17 @@
             filterOverlay.style.top = '';
           }
 
+          // Disable smooth scrolling before restoring position
+          document.documentElement.style.scrollBehavior = 'auto';
+
           document.body.style.position = '';
           document.body.style.top = '';
           document.body.style.width = '';
           window.scrollTo(0, this.scrollY);
+
+          // Re-enable smooth scrolling
+          document.documentElement.style.scrollBehavior = '';
+
           document.querySelector('.filter-sidebar').classList.remove('closing');
 
           console.log('Filter closed and scroll restored to:', this.scrollY);
