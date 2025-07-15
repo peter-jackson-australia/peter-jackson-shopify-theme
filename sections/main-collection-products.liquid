@@ -494,32 +494,6 @@
       openFilter() {
         this.scrollY = window.scrollY;
 
-        const siteHeader = document.querySelector('#site-header');
-        const collectionControls = document.querySelector('.collection-controls');
-
-        // FORCE header to stay fixed to viewport before fixing body
-        if (siteHeader) {
-          siteHeader.style.position = 'fixed';
-          siteHeader.style.top = '0';
-          siteHeader.style.left = '0';
-          siteHeader.style.right = '0';
-          siteHeader.style.zIndex = '10000';
-        }
-
-        // FORCE controls to stay fixed to viewport if they were fixed
-        if (collectionControls && collectionControls.classList.contains('controls-fixed')) {
-          const headerHeight = siteHeader ? siteHeader.getBoundingClientRect().height : 56.953125;
-          collectionControls.style.position = 'fixed';
-          collectionControls.style.top = `${headerHeight}px`;
-          collectionControls.style.left = '0';
-          collectionControls.style.right = '0';
-          collectionControls.style.zIndex = '9995';
-          collectionControls.style.visibility = 'visible';
-        } else if (collectionControls) {
-          // Hide the original controls if they weren't fixed to prevent duplication
-          collectionControls.style.visibility = 'hidden';
-        }
-
         document.body.style.position = 'fixed';
         document.body.style.top = `-${this.scrollY}px`;
         document.body.style.width = '100%';
@@ -542,14 +516,25 @@
         const wasHeaderFixed = siteHeader.classList.contains('header-fixed');
         const wasControlsFixed = collectionControls?.classList.contains('controls-fixed');
 
+        // Ensure fixed classes are applied
+        if (wasHeaderFixed) {
+          siteHeader.classList.add('header-fixed');
+        }
+        if (wasControlsFixed && collectionControls) {
+          collectionControls.classList.add('controls-fixed');
+          collectionControls.classList.remove('sliding-up');
+        }
+
+        // Calculate positioning AFTER classes are applied
         let requiredFilterTop = 0;
 
-        if (wasHeaderFixed && wasControlsFixed) {
+        if (wasHeaderFixed) {
           const headerHeight = siteHeader.getBoundingClientRect().height;
           requiredFilterTop = headerHeight;
-        } else if (wasHeaderFixed) {
-          const headerHeight = siteHeader.getBoundingClientRect().height;
-          requiredFilterTop = headerHeight;
+
+          if (wasControlsFixed && collectionControls) {
+            collectionControls.style.top = `${headerHeight}px`;
+          }
         } else {
           const headerRect = siteHeader.getBoundingClientRect();
           requiredFilterTop = Math.max(0, headerRect.bottom);
@@ -557,16 +542,6 @@
 
         filterSidebar.style.top = `${requiredFilterTop}px`;
         filterOverlay.style.top = `${requiredFilterTop}px`;
-
-        if (wasHeaderFixed && siteHeader) {
-          siteHeader.classList.add('header-fixed');
-        }
-        if (wasControlsFixed && collectionControls) {
-          collectionControls.classList.add('controls-fixed');
-          collectionControls.classList.remove('sliding-up');
-          const headerHeight = siteHeader.getBoundingClientRect().height;
-          collectionControls.style.top = `${headerHeight}px`;
-        }
       },
 
       closeFilter() {
@@ -576,29 +551,9 @@
         setTimeout(() => {
           this.isFilterOpen = false;
 
-          const siteHeader = document.querySelector('#site-header');
-          const collectionControls = document.querySelector('.collection-controls');
           const filterSidebar = document.querySelector('.filter-sidebar');
           const filterOverlay = document.querySelector('.filter-sidebar__overlay');
-
-          // Clean up forced header styles
-          if (siteHeader) {
-            siteHeader.style.position = '';
-            siteHeader.style.top = '';
-            siteHeader.style.left = '';
-            siteHeader.style.right = '';
-            siteHeader.style.zIndex = '';
-          }
-
-          // Clean up forced controls styles and restore visibility
-          if (collectionControls) {
-            collectionControls.style.position = '';
-            collectionControls.style.top = '';
-            collectionControls.style.left = '';
-            collectionControls.style.right = '';
-            collectionControls.style.zIndex = '';
-            collectionControls.style.visibility = '';
-          }
+          const collectionControls = document.querySelector('.collection-controls');
 
           if (filterSidebar) {
             filterSidebar.style.top = '';
@@ -606,6 +561,10 @@
 
           if (filterOverlay) {
             filterOverlay.style.top = '';
+          }
+
+          if (collectionControls) {
+            collectionControls.style.top = '';
           }
 
           document.documentElement.style.scrollBehavior = 'auto';
