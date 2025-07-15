@@ -195,8 +195,13 @@
       },
 
       openSearch() {
+        // Always capture the current scroll position
+        this.scrollY =
+          document.body.style.position === 'fixed'
+            ? Math.abs(parseInt(document.body.style.top || '0'))
+            : window.scrollY;
+
         if (document.body.style.position !== 'fixed') {
-          this.scrollY = window.scrollY;
           document.body.style.position = 'fixed';
           document.body.style.top = `-${this.scrollY}px`;
           document.body.style.width = '100%';
@@ -206,6 +211,7 @@
         document.body.classList.add('search-open');
         document.querySelector('.search-drawer').classList.add('search-drawer--active');
 
+        // Close menu without restoring scroll
         if (window.closeMenu) {
           window.closeMenu(true);
         }
@@ -224,9 +230,7 @@
         document.body.style.position = '';
         document.body.style.top = '';
         document.body.style.width = '';
-        const scrollY =
-          document.body.style.position === 'fixed' ? Math.abs(parseInt(document.body.style.top || '0')) : this.scrollY;
-        window.scrollTo(0, scrollY);
+        window.scrollTo(0, this.scrollY);
 
         document.documentElement.style.scrollBehavior = '';
       },
