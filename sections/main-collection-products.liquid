@@ -494,68 +494,11 @@
       openFilter() {
         this.scrollY = window.scrollY;
 
-        // Fix body to preserve scroll position
         document.body.style.position = 'fixed';
         document.body.style.top = `-${this.scrollY}px`;
         document.body.style.width = '100%';
 
-        // FORCE header to stay visible using setProperty with important
-        const siteHeader = document.querySelector('#site-header');
-        if (siteHeader) {
-          siteHeader.style.setProperty('position', 'fixed', 'important');
-          siteHeader.style.setProperty('top', '0', 'important');
-          siteHeader.style.setProperty('left', '0', 'important');
-          siteHeader.style.setProperty('right', '0', 'important');
-          siteHeader.style.setProperty('z-index', '10000', 'important');
-          siteHeader.style.setProperty('display', 'block', 'important');
-          siteHeader.style.setProperty('visibility', 'visible', 'important');
-          siteHeader.style.setProperty('opacity', '1', 'important');
-        }
-
         this.isFilterOpen = true;
-
-        this.$nextTick(() => {
-          this.updateFilterPositioning();
-        });
-      },
-
-      updateFilterPositioning() {
-        const siteHeader = document.querySelector('#site-header');
-        const collectionControls = document.querySelector('.collection-controls');
-        const filterSidebar = document.querySelector('.filter-sidebar');
-        const filterOverlay = document.querySelector('.filter-sidebar__overlay');
-
-        if (!siteHeader || !filterSidebar || !filterOverlay) return;
-
-        const wasHeaderFixed = siteHeader.classList.contains('header-fixed');
-        const wasControlsFixed = collectionControls?.classList.contains('controls-fixed');
-
-        // Ensure fixed classes are applied
-        if (wasHeaderFixed) {
-          siteHeader.classList.add('header-fixed');
-        }
-        if (wasControlsFixed && collectionControls) {
-          collectionControls.classList.add('controls-fixed');
-          collectionControls.classList.remove('sliding-up');
-        }
-
-        // Calculate positioning AFTER classes are applied
-        let requiredFilterTop = 0;
-
-        if (wasHeaderFixed) {
-          const headerHeight = siteHeader.getBoundingClientRect().height;
-          requiredFilterTop = headerHeight;
-
-          if (wasControlsFixed && collectionControls) {
-            collectionControls.style.top = `${headerHeight}px`;
-          }
-        } else {
-          const headerRect = siteHeader.getBoundingClientRect();
-          requiredFilterTop = Math.max(0, headerRect.bottom);
-        }
-
-        filterSidebar.style.top = `${requiredFilterTop}px`;
-        filterOverlay.style.top = `${requiredFilterTop}px`;
       },
 
       closeFilter() {
@@ -565,41 +508,14 @@
         setTimeout(() => {
           this.isFilterOpen = false;
 
-          const siteHeader = document.querySelector('#site-header');
-          const filterSidebar = document.querySelector('.filter-sidebar');
-          const filterOverlay = document.querySelector('.filter-sidebar__overlay');
-          const collectionControls = document.querySelector('.collection-controls');
-
-          // Remove all forced header properties
-          if (siteHeader) {
-            siteHeader.style.removeProperty('position');
-            siteHeader.style.removeProperty('top');
-            siteHeader.style.removeProperty('left');
-            siteHeader.style.removeProperty('right');
-            siteHeader.style.removeProperty('z-index');
-            siteHeader.style.removeProperty('display');
-            siteHeader.style.removeProperty('visibility');
-            siteHeader.style.removeProperty('opacity');
-          }
-
-          if (filterSidebar) {
-            filterSidebar.style.top = '';
-          }
-
-          if (filterOverlay) {
-            filterOverlay.style.top = '';
-          }
-
-          if (collectionControls) {
-            collectionControls.style.top = '';
-          }
+          const scrollY = Math.abs(parseInt(document.body.style.top || '0'));
 
           document.documentElement.style.scrollBehavior = 'auto';
 
           document.body.style.position = '';
           document.body.style.top = '';
           document.body.style.width = '';
-          window.scrollTo(0, this.scrollY);
+          window.scrollTo(0, scrollY);
 
           document.documentElement.style.scrollBehavior = '';
 
