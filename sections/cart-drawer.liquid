@@ -460,22 +460,15 @@
       },
 
       openCart() {
-        // Don't capture scrollY if body is already fixed (menu is open)
-        if (document.body.style.position !== 'fixed') {
-          this.scrollY = window.scrollY;
-          document.body.style.position = 'fixed';
-          document.body.style.top = `-${this.scrollY}px`;
-          document.body.style.width = '100%';
-        }
+        this.scrollY = window.scrollY;
+
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${this.scrollY}px`;
+        document.body.style.width = '100%';
 
         this.isOpen = true;
         document.body.classList.add('cart-open');
         document.querySelector('.cart').classList.add('cart--active');
-
-        // Close menu without restoring scroll
-        if (window.closeMenu) {
-          window.closeMenu();
-        }
       },
 
       closeCart() {
