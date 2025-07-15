@@ -506,7 +506,10 @@
         const wasHeaderFixed = siteHeader?.classList.contains('header-fixed');
         const wasControlsFixed = collectionControls?.classList.contains('controls-fixed');
 
-        console.log('Stored states - Header fixed:', wasHeaderFixed, 'Controls fixed:', wasControlsFixed);
+        console.log('=== OPENING FILTER ===');
+        console.log('Original scroll position:', this.scrollY);
+        console.log('Header was fixed:', wasHeaderFixed);
+        console.log('Controls were fixed:', wasControlsFixed);
 
         // Calculate correct positioning BEFORE body fix
         let requiredFilterTop = 0;
@@ -533,6 +536,9 @@
         document.body.style.top = `-${this.scrollY}px`;
         document.body.style.width = '100%';
 
+        console.log('Body fixed with top:', `-${this.scrollY}px`);
+        console.log('Window scroll after body fix:', window.scrollY);
+
         // Apply positioning to filter elements
         if (filterSidebar) {
           filterSidebar.style.top = `${requiredFilterTop}px`;
@@ -554,6 +560,7 @@
             collectionControls.classList.add('controls-fixed');
             collectionControls.classList.remove('sliding-up');
             console.log('Restored controls-fixed class');
+            console.log('Controls rect after restore:', collectionControls.getBoundingClientRect());
           }
         });
 
