@@ -497,39 +497,27 @@
 
       openFilter() {
         this.scrollY = window.scrollY;
-        console.log('Opening filter at scroll position:', this.scrollY);
 
         document.body.style.position = 'fixed';
         document.body.style.top = `-${this.scrollY}px`;
         document.body.style.width = '100%';
 
-        // Find fixed elements and compensate for body displacement
+        // Instead of compensating, override positioning to viewport-relative
         const siteHeader = document.querySelector('#site-header');
         const collectionControls = document.querySelector('.collection-controls.controls-fixed');
 
-        console.log('Site header found:', !!siteHeader);
-        console.log('Collection controls found:', !!collectionControls);
-
-        if (siteHeader) {
-          const isHeaderFixed = siteHeader.classList.contains('header-fixed');
-          console.log('Header is fixed:', isHeaderFixed);
-          if (isHeaderFixed) {
-            // Move header down by scrollY to compensate for body moving up
-            siteHeader.style.top = `${this.scrollY}px`;
-            console.log('Set header top to:', this.scrollY + 'px');
-          }
+        if (siteHeader && siteHeader.classList.contains('header-fixed')) {
+          // Set header to always be at top of viewport
+          siteHeader.style.position = 'fixed';
+          siteHeader.style.top = '0';
+          siteHeader.style.zIndex = '9999';
         }
 
         if (collectionControls) {
-          console.log('Collection controls original top:', getComputedStyle(collectionControls).top);
-          // Get the original top value and add scrollY
-          const originalTop = getComputedStyle(collectionControls).top;
-          if (originalTop && originalTop !== 'auto') {
-            const topValue = parseFloat(originalTop);
-            const newTop = topValue + this.scrollY;
-            collectionControls.style.top = `${newTop}px`;
-            console.log('Set collection controls top to:', newTop + 'px');
-          }
+          // Set collection controls to be just below header
+          collectionControls.style.position = 'fixed';
+          collectionControls.style.top = 'var(--space-xl)';
+          collectionControls.style.zIndex = '9995';
         }
 
         this.isFilterOpen = true;
@@ -541,16 +529,20 @@
         setTimeout(() => {
           this.isFilterOpen = false;
 
-          // Reset fixed element positions
+          // Reset all positioning overrides
           const siteHeader = document.querySelector('#site-header');
           const collectionControls = document.querySelector('.collection-controls.controls-fixed');
 
           if (siteHeader) {
+            siteHeader.style.position = '';
             siteHeader.style.top = '';
+            siteHeader.style.zIndex = '';
           }
 
           if (collectionControls) {
+            collectionControls.style.position = '';
             collectionControls.style.top = '';
+            collectionControls.style.zIndex = '';
           }
 
           document.body.style.position = '';
