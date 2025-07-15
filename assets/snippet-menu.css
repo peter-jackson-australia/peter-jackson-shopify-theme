@@ -25,7 +25,7 @@
   border-top: 1px solid var(--neutral-200);
 }
 
-.header-fixed .menu-drawer {
+.header-fixed ~ .menu-drawer__container > .menu-drawer {
   border-top: none !important;
 }
 
