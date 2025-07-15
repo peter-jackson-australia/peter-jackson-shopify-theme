@@ -16,6 +16,8 @@
         "media_type": "image",
         "desktop_image": "shopify://shop_images/peter-jackson-menswear-green-jacket-white-turtleneck.webp",
         "heading": "Wellbeing For The Modern Man",
+        "svg_size": "medium",
+        "heading_level": "h1",
         "heading_animation": "none",
         "description": "",
         "description_animation": "none",
@@ -37,8 +39,8 @@
       "settings": {
         "heading": "Featured Articles",
         "blog": "the-jackson-journal",
-        "limit": 8,
-        "articles_per_row": 3
+        "limit": 12,
+        "articles_per_row": 4
       }
     }
   },
