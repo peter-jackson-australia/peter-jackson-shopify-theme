@@ -494,21 +494,10 @@
       openFilter() {
         this.scrollY = window.scrollY;
 
-        document.body.style.position = 'fixed';
-        document.body.style.top = `-${this.scrollY}px`;
-        document.body.style.width = '100%';
-
-        // MANUALLY FORCE HEADER TO BE VISIBLE AND FIXED
-        const siteHeader = document.querySelector('#site-header');
-        if (siteHeader) {
-          siteHeader.style.position = 'fixed !important';
-          siteHeader.style.top = '0 !important';
-          siteHeader.style.left = '0 !important';
-          siteHeader.style.right = '0 !important';
-          siteHeader.style.zIndex = '10000 !important';
-          siteHeader.style.display = 'block !important';
-          siteHeader.style.visibility = 'visible !important';
-        }
+        // Instead of fixing body position, prevent scrolling with overflow
+        document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
+        document.body.style.height = '100vh';
 
         this.isFilterOpen = true;
 
@@ -563,21 +552,9 @@
         setTimeout(() => {
           this.isFilterOpen = false;
 
-          const siteHeader = document.querySelector('#site-header');
           const filterSidebar = document.querySelector('.filter-sidebar');
           const filterOverlay = document.querySelector('.filter-sidebar__overlay');
           const collectionControls = document.querySelector('.collection-controls');
-
-          // REMOVE ALL FORCED HEADER STYLES
-          if (siteHeader) {
-            siteHeader.style.position = '';
-            siteHeader.style.top = '';
-            siteHeader.style.left = '';
-            siteHeader.style.right = '';
-            siteHeader.style.zIndex = '';
-            siteHeader.style.display = '';
-            siteHeader.style.visibility = '';
-          }
 
           if (filterSidebar) {
             filterSidebar.style.top = '';
@@ -591,14 +568,10 @@
             collectionControls.style.top = '';
           }
 
-          document.documentElement.style.scrollBehavior = 'auto';
-
-          document.body.style.position = '';
-          document.body.style.top = '';
-          document.body.style.width = '';
-          window.scrollTo(0, this.scrollY);
-
-          document.documentElement.style.scrollBehavior = '';
+          // Restore scrolling
+          document.body.style.overflow = '';
+          document.documentElement.style.overflow = '';
+          document.body.style.height = '';
 
           document.querySelector('.filter-sidebar').classList.remove('closing');
         }, 300);
