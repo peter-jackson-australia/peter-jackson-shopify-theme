@@ -569,6 +569,11 @@
 
       closeFilter() {
         if (!this.isFilterOpen) return;
+
+        console.log('=== CLOSING FILTER ===');
+        console.log('Scroll position to restore:', this.scrollY);
+        console.log('Current window scroll before restore:', window.scrollY);
+
         document.querySelector('.filter-sidebar').classList.add('closing');
         setTimeout(() => {
           this.isFilterOpen = false;
@@ -588,10 +593,14 @@
           // Disable smooth scrolling before restoring position
           document.documentElement.style.scrollBehavior = 'auto';
 
+          console.log('About to restore body and scroll...');
           document.body.style.position = '';
           document.body.style.top = '';
           document.body.style.width = '';
+
+          console.log('Window scroll after body restore, before scrollTo:', window.scrollY);
           window.scrollTo(0, this.scrollY);
+          console.log('Window scroll after scrollTo:', window.scrollY);
 
           // Re-enable smooth scrolling
           document.documentElement.style.scrollBehavior = '';
