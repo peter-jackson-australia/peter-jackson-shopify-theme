@@ -1,5 +1,5 @@
 {% comment %}
-  Collection Products - Fixed Version with Scroll Preservation
+  Collection Products - Fixed Version
 {% endcomment %}
 
 <script src="{{ 'ajaxinate.min.js' | asset_url }}" defer></script>
@@ -158,6 +158,10 @@
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 9997;
+  }
+
+  body.filter-open {
+    overflow: hidden;
   }
 
   .products-grid {
@@ -492,109 +496,21 @@
   x-data="
     {
       expandedGrid: true,
-      isFilterOpen: false,
-      scrollY: 0,
-
-      openFilter() {
-        this.scrollY = window.scrollY;
-
-        const siteHeader = document.querySelector('#site-header');
-        const collectionControls = document.querySelector('.collection-controls');
-        const filterSidebar = document.querySelector('.filter-sidebar');
-        const filterOverlay = document.querySelector('.filter-sidebar__overlay');
-        const wasHeaderFixed = siteHeader?.classList.contains('header-fixed');
-        const wasControlsFixed = collectionControls?.classList.contains('controls-fixed');
-        let requiredFilterTop = 0;
-
-        if (wasHeaderFixed && wasControlsFixed) {
-          const headerHeight = siteHeader.getBoundingClientRect().height;
-          requiredFilterTop = headerHeight;
-        } else if (wasHeaderFixed) {
-          const headerHeight = siteHeader.getBoundingClientRect().height;
-          requiredFilterTop = headerHeight;
-        } else if (siteHeader) {
-          const headerRect = siteHeader.getBoundingClientRect();
-          requiredFilterTop = Math.max(0, headerRect.bottom);
-        }
-
-        document.body.style.position = 'fixed';
-        document.body.style.top = `-${this.scrollY}px`;
-        document.body.style.width = '100%';
-
-        if (filterSidebar) {
-          filterSidebar.style.top = `${requiredFilterTop}px`;
-        }
-
-        if (filterOverlay) {
-          filterOverlay.style.top = `${requiredFilterTop}px`;
-        }
-
-        this.$nextTick(() => {
-          if (wasHeaderFixed && siteHeader) {
-            siteHeader.classList.add('header-fixed');
-          }
-          if (wasControlsFixed && collectionControls) {
-            collectionControls.classList.add('controls-fixed');
-            collectionControls.classList.remove('sliding-up');
-
-            const headerHeight = siteHeader ? siteHeader.getBoundingClientRect().height : 56.953125;
-            collectionControls.style.top = `${headerHeight}px`;
-          }
-        });
-
-        this.isFilterOpen = true;
-      },
-
-      closeFilter() {
-        if (!this.isFilterOpen) return;
-
-        document.querySelector('.filter-sidebar').classList.add('closing');
-        setTimeout(() => {
-          this.isFilterOpen = false;
-
-          const filterSidebar = document.querySelector('.filter-sidebar');
-          const filterOverlay = document.querySelector('.filter-sidebar__overlay');
-          const collectionControls = document.querySelector('.collection-controls');
-
-          if (filterSidebar) {
-            filterSidebar.style.top = '';
-          }
-
-          if (filterOverlay) {
-            filterOverlay.style.top = '';
-          }
-
-          if (collectionControls) {
-            collectionControls.style.top = '';
-          }
-
-          document.documentElement.style.scrollBehavior = 'auto';
-
-          document.body.style.position = '';
-          document.body.style.top = '';
-          document.body.style.width = '';
-          window.scrollTo(0, this.scrollY);
-
-          document.documentElement.style.scrollBehavior = '';
-
-          document.querySelector('.filter-sidebar').classList.remove('closing');
-        }, 300);
-      }
+      isFilterOpen: false
     }
   "
   x-init="
     document.addEventListener('menu-open', () => {
-      this.closeFilter();
+      isFilterOpen = false;
+      document.body.classList.remove('filter-open');
     });
-
     window.closeFilter = () => {
-      const filterComponent = document.querySelector('#{{ section.id }}');
-      if (filterComponent && filterComponent._x_dataStack && filterComponent._x_dataStack[0]) {
-        const data = filterComponent._x_dataStack[0];
-        if (data.isFilterOpen) {
-          data.closeFilter();
-        }
-      }
+      document.querySelector('.filter-sidebar').classList.add('closing');
+      setTimeout(() => {
+        isFilterOpen = false;
+        document.body.classList.remove('filter-open');
+        document.querySelector('.filter-sidebar').classList.remove('closing');
+      }, 300);
     };
   "
 >
@@ -602,7 +518,14 @@
     <div x-show="isFilterOpen" x-cloak>
       <div
         class="filter-sidebar__overlay"
-        @click="closeFilter()"
+        @click="
+          document.querySelector('.filter-sidebar').classList.add('closing');
+          setTimeout(() => {
+            isFilterOpen = false;
+            document.body.classList.remove('filter-open');
+            document.querySelector('.filter-sidebar').classList.remove('closing');
+          }, 300)
+        "
       ></div>
       <aside class="filter-sidebar">
         <div class="filter-sidebar-header">
@@ -612,7 +535,14 @@
           </p>
           <button
             class="filter-close-btn"
-            @click="closeFilter()"
+            @click="
+              document.querySelector('.filter-sidebar').classList.add('closing');
+              setTimeout(() => {
+                isFilterOpen = false;
+                document.body.classList.remove('filter-open');
+                document.querySelector('.filter-sidebar').classList.remove('closing');
+              }, 300)
+            "
             aria-label="Close filters"
           >
             {% render 'icon-close' %}
@@ -672,7 +602,7 @@
           <div class="collection-controls">
             <button
               class="collection-controls__filter-button body"
-              @click="openFilter()"
+              @click="isFilterOpen = !isFilterOpen; document.body.classList.toggle('filter-open', isFilterOpen)"
             >
               Filters
               <span>{% render 'icon-filter' %}</span>
@@ -795,7 +725,7 @@
 
                   <div class="grid-content__container grid-content__container--left">
                     {% if metaobject_raw.leading_text != blank %}
-                      <p class="heading--l grid-content__leading-text">{{ metaobject_raw.leading_text }}</p>
+                      <p class="heading--l grid-content__leading_text">{{ metaobject_raw.leading_text }}</p>
                     {% endif %}
 
                     <h2 class="heading--2xl grid-content__header">{{ metaobject_raw.header }}</h2>
