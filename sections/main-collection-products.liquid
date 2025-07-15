@@ -516,18 +516,11 @@
           filterTop = Math.max(0, headerRect.bottom);
         }
 
-        const bodyTopOffset = wasHeaderFixed ? this.scrollY : this.scrollY;
         document.body.style.position = 'fixed';
-        document.body.style.top = `-${bodyTopOffset}px`;
+        document.body.style.top = `-${this.scrollY}px`;
         document.body.style.width = '100%';
 
-        if (filterSidebar) {
-          filterSidebar.style.top = `${filterTop}px`;
-        }
-        if (filterOverlay) {
-          filterOverlay.style.top = `${filterTop}px`;
-        }
-
+        // Force the classes to stay applied after body becomes fixed
         if (wasHeaderFixed && siteHeader) {
           siteHeader.classList.add('header-fixed');
         }
@@ -537,8 +530,17 @@
           collectionControls.style.top = `${headerHeight}px`;
         }
 
+        if (filterSidebar) {
+          filterSidebar.style.top = `${filterTop}px`;
+        }
+        if (filterOverlay) {
+          filterOverlay.style.top = `${filterTop}px`;
+        }
+
         this.isFilterOpen = true;
       },
+
+
 
       closeFilter() {
         if (!this.isFilterOpen) return;
