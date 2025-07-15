@@ -498,75 +498,47 @@
       openFilter() {
         this.scrollY = window.scrollY;
 
-        // Store the current fixed states before body fix
         const siteHeader = document.querySelector('#site-header');
         const collectionControls = document.querySelector('.collection-controls');
         const filterSidebar = document.querySelector('.filter-sidebar');
         const filterOverlay = document.querySelector('.filter-sidebar__overlay');
         const wasHeaderFixed = siteHeader?.classList.contains('header-fixed');
         const wasControlsFixed = collectionControls?.classList.contains('controls-fixed');
-
-        console.log('=== OPENING FILTER ===');
-        console.log('Original scroll position:', this.scrollY);
-        console.log('Header was fixed:', wasHeaderFixed);
-        console.log('Controls were fixed:', wasControlsFixed);
-
-        // Calculate correct positioning BEFORE body fix
         let requiredFilterTop = 0;
 
         if (wasHeaderFixed && wasControlsFixed) {
-          // Both header and controls are fixed - filter sits below header only
           const headerHeight = siteHeader.getBoundingClientRect().height;
           requiredFilterTop = headerHeight;
-          console.log('Both fixed - Filter top will be:', requiredFilterTop, '(header height only)');
         } else if (wasHeaderFixed) {
-          // Only header is fixed - filter sits below header
           const headerHeight = siteHeader.getBoundingClientRect().height;
           requiredFilterTop = headerHeight;
-          console.log('Header fixed - Filter top will be:', requiredFilterTop, '(header height)');
         } else if (siteHeader) {
-          // Header is not fixed - filter sits below visible header
           const headerRect = siteHeader.getBoundingClientRect();
           requiredFilterTop = Math.max(0, headerRect.bottom);
-          console.log('Header not fixed - Filter top will be:', requiredFilterTop, '(header bottom position)');
         }
 
-        // Fix body
         document.body.style.position = 'fixed';
         document.body.style.top = `-${this.scrollY}px`;
         document.body.style.width = '100%';
 
-        console.log('Body fixed with top:', `-${this.scrollY}px`);
-        console.log('Window scroll after body fix:', window.scrollY);
-
-        // Apply positioning to filter elements
         if (filterSidebar) {
           filterSidebar.style.top = `${requiredFilterTop}px`;
-          console.log('Set filter sidebar top to:', requiredFilterTop + 'px');
         }
 
         if (filterOverlay) {
           filterOverlay.style.top = `${requiredFilterTop}px`;
-          console.log('Set filter overlay top to:', requiredFilterTop + 'px');
         }
 
-        // Restore the fixed classes that will be lost due to scroll becoming 0
         this.$nextTick(() => {
           if (wasHeaderFixed && siteHeader) {
             siteHeader.classList.add('header-fixed');
-            console.log('Restored header-fixed class');
           }
           if (wasControlsFixed && collectionControls) {
             collectionControls.classList.add('controls-fixed');
             collectionControls.classList.remove('sliding-up');
 
-            // Manually set the correct top position for controls
             const headerHeight = siteHeader ? siteHeader.getBoundingClientRect().height : 56.953125;
             collectionControls.style.top = `${headerHeight}px`;
-
-            console.log('Restored controls-fixed class');
-            console.log('Set controls top to:', headerHeight + 'px');
-            console.log('Controls rect after restore:', collectionControls.getBoundingClientRect());
           }
         });
 
@@ -576,15 +548,10 @@
       closeFilter() {
         if (!this.isFilterOpen) return;
 
-        console.log('=== CLOSING FILTER ===');
-        console.log('Scroll position to restore:', this.scrollY);
-        console.log('Current window scroll before restore:', window.scrollY);
-
         document.querySelector('.filter-sidebar').classList.add('closing');
         setTimeout(() => {
           this.isFilterOpen = false;
 
-          // Reset filter positioning and any inline styles
           const filterSidebar = document.querySelector('.filter-sidebar');
           const filterOverlay = document.querySelector('.filter-sidebar__overlay');
           const collectionControls = document.querySelector('.collection-controls');
@@ -601,24 +568,16 @@
             collectionControls.style.top = '';
           }
 
-          // Disable smooth scrolling before restoring position
           document.documentElement.style.scrollBehavior = 'auto';
 
-          console.log('About to restore body and scroll...');
           document.body.style.position = '';
           document.body.style.top = '';
           document.body.style.width = '';
-
-          console.log('Window scroll after body restore, before scrollTo:', window.scrollY);
           window.scrollTo(0, this.scrollY);
-          console.log('Window scroll after scrollTo:', window.scrollY);
 
-          // Re-enable smooth scrolling
           document.documentElement.style.scrollBehavior = '';
 
           document.querySelector('.filter-sidebar').classList.remove('closing');
-
-          console.log('Filter closed and scroll restored to:', this.scrollY);
         }, 300);
       }
     }
@@ -628,13 +587,10 @@
       this.closeFilter();
     });
 
-    // Set up window.closeFilter function using Alpine's component access
     window.closeFilter = () => {
-      console.log('window.closeFilter called');
       const filterComponent = document.querySelector('#{{ section.id }}');
       if (filterComponent && filterComponent._x_dataStack && filterComponent._x_dataStack[0]) {
         const data = filterComponent._x_dataStack[0];
-        console.log('Found component data, isFilterOpen:', data.isFilterOpen);
         if (data.isFilterOpen) {
           data.closeFilter();
         }
