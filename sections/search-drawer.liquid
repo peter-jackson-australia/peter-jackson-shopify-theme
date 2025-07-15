@@ -195,7 +195,6 @@
       },
 
       openSearch() {
-        // Always capture the current scroll position
         this.scrollY =
           document.body.style.position === 'fixed'
             ? Math.abs(parseInt(document.body.style.top || '0'))
@@ -211,7 +210,6 @@
         document.body.classList.add('search-open');
         document.querySelector('.search-drawer').classList.add('search-drawer--active');
 
-        // Close menu without restoring scroll
         if (window.closeMenu) {
           window.closeMenu(true);
         }
