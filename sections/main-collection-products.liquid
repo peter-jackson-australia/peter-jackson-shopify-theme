@@ -494,51 +494,50 @@
       openFilter() {
         this.scrollY = window.scrollY;
 
+        const siteHeader = document.querySelector('#site-header');
+        const collectionControls = document.querySelector('.collection-controls');
+        const filterSidebar = document.querySelector('.filter-sidebar');
+        const filterOverlay = document.querySelector('.filter-sidebar__overlay');
+
+        const wasHeaderFixed = siteHeader?.classList.contains('header-fixed');
+        const wasControlsFixed = collectionControls?.classList.contains('controls-fixed');
+
+        const headerHeight = siteHeader ? siteHeader.getBoundingClientRect().height : 0;
+
+        let filterTop = 0;
+        if (wasHeaderFixed) {
+          filterTop = headerHeight;
+          if (wasControlsFixed) {
+            const controlsHeight = collectionControls ? collectionControls.getBoundingClientRect().height : 0;
+            filterTop += controlsHeight;
+          }
+        } else if (siteHeader) {
+          const headerRect = siteHeader.getBoundingClientRect();
+          filterTop = Math.max(0, headerRect.bottom);
+        }
+
         document.body.style.position = 'fixed';
         document.body.style.top = `-${this.scrollY}px`;
         document.body.style.width = '100%';
 
+        // Force the classes to stay applied after body becomes fixed
+        if (wasHeaderFixed && siteHeader) {
+          siteHeader.classList.add('header-fixed');
+        }
+        if (wasControlsFixed && collectionControls) {
+          collectionControls.classList.add('controls-fixed');
+          collectionControls.classList.remove('sliding-up');
+          collectionControls.style.top = `${headerHeight}px`;
+        }
+
+        if (filterSidebar) {
+          filterSidebar.style.top = `${filterTop}px`;
+        }
+        if (filterOverlay) {
+          filterOverlay.style.top = `${filterTop}px`;
+        }
+
         this.isFilterOpen = true;
-
-        this.$nextTick(() => {
-          const siteHeader = document.querySelector('#site-header');
-          const collectionControls = document.querySelector('.collection-controls');
-          const filterSidebar = document.querySelector('.filter-sidebar');
-          const filterOverlay = document.querySelector('.filter-sidebar__overlay');
-
-          const wasHeaderFixed = siteHeader?.classList.contains('header-fixed');
-          const wasControlsFixed = collectionControls?.classList.contains('controls-fixed');
-
-          // Force classes back on AFTER body is fixed
-          if (wasHeaderFixed && siteHeader) {
-            siteHeader.classList.add('header-fixed');
-          }
-          if (wasControlsFixed && collectionControls) {
-            collectionControls.classList.add('controls-fixed');
-            collectionControls.classList.remove('sliding-up');
-          }
-
-          // Now position filter elements
-          let filterTop = 0;
-          if (wasHeaderFixed) {
-            const headerHeight = siteHeader.getBoundingClientRect().height;
-            filterTop = headerHeight;
-
-            if (wasControlsFixed && collectionControls) {
-              collectionControls.style.top = `${headerHeight}px`;
-            }
-          } else if (siteHeader) {
-            const headerRect = siteHeader.getBoundingClientRect();
-            filterTop = Math.max(0, headerRect.bottom);
-          }
-
-          if (filterSidebar) {
-            filterSidebar.style.top = `${filterTop}px`;
-          }
-          if (filterOverlay) {
-            filterOverlay.style.top = `${filterTop}px`;
-          }
-        });
       },
 
 
