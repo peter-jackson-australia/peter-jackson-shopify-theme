@@ -1,18 +1,10 @@
 {% comment %}
-  Collection Products - Fixed Version with Scroll Preservation
+  Collection Products - Fixed Version
 {% endcomment %}
 
 <script src="{{ 'ajaxinate.min.js' | asset_url }}" defer></script>
 
 <style>
-  body.filter-open {
-    overflow: hidden;
-  }
-
-  body.filter-open .collection-controls.controls-fixed {
-    display: none;
-  }
-
   #collection {
     display: grid;
     grid-template-columns: auto;
@@ -166,6 +158,10 @@
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 9997;
+  }
+
+  body.filter-open {
+    overflow: hidden;
   }
 
   .products-grid {
@@ -500,115 +496,21 @@
   x-data="
     {
       expandedGrid: true,
-      isFilterOpen: false,
-      scrollY: 0,
-
-      openFilter() {
-        this.scrollY = window.scrollY;
-
-        // Store the current fixed states before body fix
-        const siteHeader = document.querySelector('#site-header');
-        const collectionControls = document.querySelector('.collection-controls');
-        const filterSidebar = document.querySelector('.filter-sidebar');
-        const filterOverlay = document.querySelector('.filter-sidebar__overlay');
-        const wasHeaderFixed = siteHeader?.classList.contains('header-fixed');
-        const wasControlsFixed = collectionControls?.classList.contains('controls-fixed');
-
-        // Calculate correct positioning BEFORE body fix
-        let requiredFilterTop = 0;
-
-        if (wasHeaderFixed && wasControlsFixed) {
-          // Both header and controls are fixed - filter sits below header only
-          const headerHeight = siteHeader.getBoundingClientRect().height;
-          requiredFilterTop = headerHeight;
-        } else if (wasHeaderFixed) {
-          // Only header is fixed - filter sits below header
-          const headerHeight = siteHeader.getBoundingClientRect().height;
-          requiredFilterTop = headerHeight;
-        } else if (siteHeader) {
-          // Header is not fixed - filter sits below visible header
-          const headerRect = siteHeader.getBoundingClientRect();
-          requiredFilterTop = Math.max(0, headerRect.bottom);
-        }
-
-        // Fix body
-        document.body.style.position = 'fixed';
-        document.body.style.top = `-${this.scrollY}px`;
-        document.body.style.width = '100%';
-
-        // Apply positioning to filter elements
-        if (filterSidebar) {
-          filterSidebar.style.top = `${requiredFilterTop}px`;
-        }
-
-        if (filterOverlay) {
-          filterOverlay.style.top = `${requiredFilterTop}px`;
-        }
-
-        // Restore the fixed classes that will be lost due to scroll becoming 0
-        this.$nextTick(() => {
-          if (wasHeaderFixed && siteHeader) {
-            siteHeader.classList.add('header-fixed');
-          }
-          if (wasControlsFixed && collectionControls) {
-            collectionControls.classList.add('controls-fixed');
-            collectionControls.classList.remove('sliding-up');
-          }
-        });
-
-        this.isFilterOpen = true;
-        document.body.classList.add('filter-open');
-      },
-
-      closeFilter() {
-        if (!this.isFilterOpen) return;
-        document.querySelector('.filter-sidebar').classList.add('closing');
-        setTimeout(() => {
-          this.isFilterOpen = false;
-          document.body.classList.remove('filter-open');
-
-          // Reset filter positioning
-          const filterSidebar = document.querySelector('.filter-sidebar');
-          const filterOverlay = document.querySelector('.filter-sidebar__overlay');
-
-          if (filterSidebar) {
-            filterSidebar.style.top = '';
-          }
-
-          if (filterOverlay) {
-            filterOverlay.style.top = '';
-          }
-
-          document.documentElement.style.scrollBehavior = 'auto';
-
-          document.body.style.position = '';
-          document.body.style.top = '';
-          document.body.style.width = '';
-          window.scrollTo(0, this.scrollY);
-
-          document.documentElement.style.scrollBehavior = '';
-
-          document.querySelector('.filter-sidebar').classList.remove('closing');
-        }, 300);
-      }
+      isFilterOpen: false
     }
   "
   x-init="
     document.addEventListener('menu-open', () => {
-      this.closeFilter();
+      isFilterOpen = false;
+      document.body.classList.remove('filter-open');
     });
-
-    // Set up window.closeFilter function using Alpine's component access
     window.closeFilter = () => {
-      console.log('window.closeFilter called');
-      const filterComponent = document.querySelector('#{{ section.id }}');
-      if (filterComponent && filterComponent._x_dataStack && filterComponent._x_dataStack[0]) {
-        const data = filterComponent._x_dataStack[0];
-        console.log('Found component data, isFilterOpen:', data.isFilterOpen);
-        if (data.isFilterOpen) {
-          data.closeFilter();
-        }
-      }
+      document.querySelector('.filter-sidebar').classList.add('closing');
+      setTimeout(() => {
+        isFilterOpen = false;
+        document.body.classList.remove('filter-open');
+        document.querySelector('.filter-sidebar').classList.remove('closing');
+      }, 300);
     };
   "
 >
@@ -616,7 +518,14 @@
     <div x-show="isFilterOpen" x-cloak>
       <div
         class="filter-sidebar__overlay"
-        @click="closeFilter()"
+        @click="
+          document.querySelector('.filter-sidebar').classList.add('closing');
+          setTimeout(() => {
+            isFilterOpen = false;
+            document.body.classList.remove('filter-open');
+            document.querySelector('.filter-sidebar').classList.remove('closing');
+          }, 300)
+        "
       ></div>
       <aside class="filter-sidebar">
         <div class="filter-sidebar-header">
@@ -626,7 +535,14 @@
           </p>
           <button
             class="filter-close-btn"
-            @click="closeFilter()"
+            @click="
+              document.querySelector('.filter-sidebar').classList.add('closing');
+              setTimeout(() => {
+                isFilterOpen = false;
+                document.body.classList.remove('filter-open');
+                document.querySelector('.filter-sidebar').classList.remove('closing');
+              }, 300)
+            "
             aria-label="Close filters"
           >
             {% render 'icon-close' %}
@@ -686,7 +602,7 @@
           <div class="collection-controls">
             <button
               class="collection-controls__filter-button body"
-              @click="openFilter()"
+              @click="isFilterOpen = !isFilterOpen; document.body.classList.toggle('filter-open', isFilterOpen)"
             >
               Filters
               <span>{% render 'icon-filter' %}</span>
@@ -809,7 +725,7 @@
 
                   <div class="grid-content__container grid-content__container--left">
                     {% if metaobject_raw.leading_text != blank %}
-                      <p class="heading--l grid-content__leading-text">{{ metaobject_raw.leading_text }}</p>
+                      <p class="heading--l grid-content__leading_text">{{ metaobject_raw.leading_text }}</p>
                     {% endif %}
 
                     <h2 class="heading--2xl grid-content__header">{{ metaobject_raw.header }}</h2>
