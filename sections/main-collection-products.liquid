@@ -492,14 +492,29 @@
       scrollY: 0,
 
       openFilter() {
+        this.scrollY = window.scrollY;
+
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${this.scrollY}px`;
+        document.body.style.width = '100%';
+
+        this.isFilterOpen = true;
+
+        this.$nextTick(() => {
+          this.updateFilterPositioning();
+        });
+      },
+
+      updateFilterPositioning() {
         const siteHeader = document.querySelector('#site-header');
         const collectionControls = document.querySelector('.collection-controls');
         const filterSidebar = document.querySelector('.filter-sidebar');
         const filterOverlay = document.querySelector('.filter-sidebar__overlay');
-        const wasHeaderFixed = siteHeader?.classList.contains('header-fixed');
-        const wasControlsFixed = collectionControls?.classList.contains('controls-fixed');
 
-        this.scrollY = window.scrollY;
+        if (!siteHeader || !filterSidebar || !filterOverlay) return;
+
+        const wasHeaderFixed = siteHeader.classList.contains('header-fixed');
+        const wasControlsFixed = collectionControls?.classList.contains('controls-fixed');
 
         let requiredFilterTop = 0;
 
@@ -509,37 +524,23 @@
         } else if (wasHeaderFixed) {
           const headerHeight = siteHeader.getBoundingClientRect().height;
           requiredFilterTop = headerHeight;
-        } else if (siteHeader) {
+        } else {
           const headerRect = siteHeader.getBoundingClientRect();
           requiredFilterTop = Math.max(0, headerRect.bottom);
         }
 
-        document.body.style.position = 'fixed';
-        document.body.style.top = `-${this.scrollY}px`;
-        document.body.style.width = '100%';
+        filterSidebar.style.top = `${requiredFilterTop}px`;
+        filterOverlay.style.top = `${requiredFilterTop}px`;
 
-        if (filterSidebar) {
-          filterSidebar.style.top = `${requiredFilterTop}px`;
+        if (wasHeaderFixed && siteHeader) {
+          siteHeader.classList.add('header-fixed');
         }
-
-        if (filterOverlay) {
-          filterOverlay.style.top = `${requiredFilterTop}px`;
+        if (wasControlsFixed && collectionControls) {
+          collectionControls.classList.add('controls-fixed');
+          collectionControls.classList.remove('sliding-up');
+          const headerHeight = siteHeader.getBoundingClientRect().height;
+          collectionControls.style.top = `${headerHeight}px`;
         }
-
-        this.$nextTick(() => {
-          if (wasHeaderFixed && siteHeader) {
-            siteHeader.classList.add('header-fixed');
-          }
-          if (wasControlsFixed && collectionControls) {
-            collectionControls.classList.add('controls-fixed');
-            collectionControls.classList.remove('sliding-up');
-
-            const headerHeight = siteHeader ? siteHeader.getBoundingClientRect().height : 56.953125;
-            collectionControls.style.top = `${headerHeight}px`;
-          }
-        });
-
-        this.isFilterOpen = true;
       },
 
       closeFilter() {
