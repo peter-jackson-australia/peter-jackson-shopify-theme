@@ -514,6 +514,10 @@
           collectionControls.style.left = '0';
           collectionControls.style.right = '0';
           collectionControls.style.zIndex = '9995';
+          collectionControls.style.visibility = 'visible';
+        } else if (collectionControls) {
+          // Hide the original controls if they weren't fixed to prevent duplication
+          collectionControls.style.visibility = 'hidden';
         }
 
         document.body.style.position = 'fixed';
@@ -586,13 +590,14 @@
             siteHeader.style.zIndex = '';
           }
 
-          // Clean up forced controls styles
+          // Clean up forced controls styles and restore visibility
           if (collectionControls) {
             collectionControls.style.position = '';
             collectionControls.style.top = '';
             collectionControls.style.left = '';
             collectionControls.style.right = '';
             collectionControls.style.zIndex = '';
+            collectionControls.style.visibility = '';
           }
 
           if (filterSidebar) {
