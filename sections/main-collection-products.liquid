@@ -498,34 +498,31 @@
         const collectionControls = document.querySelector('.collection-controls');
         const filterSidebar = document.querySelector('.filter-sidebar');
         const filterOverlay = document.querySelector('.filter-sidebar__overlay');
-
         const wasHeaderFixed = siteHeader?.classList.contains('header-fixed');
         const wasControlsFixed = collectionControls?.classList.contains('controls-fixed');
+        let requiredFilterTop = 0;
 
-        const headerHeight = siteHeader ? siteHeader.getBoundingClientRect().height : 0;
-
-        let filterTop = 0;
-        if (wasHeaderFixed) {
-          filterTop = headerHeight;
-          if (wasControlsFixed) {
-            const controlsHeight = collectionControls ? collectionControls.getBoundingClientRect().height : 0;
-            filterTop += controlsHeight;
-          }
+        if (wasHeaderFixed && wasControlsFixed) {
+          const headerHeight = siteHeader.getBoundingClientRect().height;
+          requiredFilterTop = headerHeight;
+        } else if (wasHeaderFixed) {
+          const headerHeight = siteHeader.getBoundingClientRect().height;
+          requiredFilterTop = headerHeight;
         } else if (siteHeader) {
           const headerRect = siteHeader.getBoundingClientRect();
-          filterTop = Math.max(0, headerRect.bottom);
+          requiredFilterTop = Math.max(0, headerRect.bottom);
         }
 
-        const bodyTopOffset = wasHeaderFixed ? this.scrollY : this.scrollY;
         document.body.style.position = 'fixed';
-        document.body.style.top = `-${bodyTopOffset}px`;
+        document.body.style.top = `-${this.scrollY}px`;
         document.body.style.width = '100%';
 
         if (filterSidebar) {
-          filterSidebar.style.top = `${filterTop}px`;
+          filterSidebar.style.top = `${requiredFilterTop}px`;
         }
+
         if (filterOverlay) {
-          filterOverlay.style.top = `${filterTop}px`;
+          filterOverlay.style.top = `${requiredFilterTop}px`;
         }
 
         if (wasHeaderFixed && siteHeader) {
@@ -534,6 +531,8 @@
         if (wasControlsFixed && collectionControls) {
           collectionControls.classList.add('controls-fixed');
           collectionControls.classList.remove('sliding-up');
+
+          const headerHeight = siteHeader ? siteHeader.getBoundingClientRect().height : 56.953125;
           collectionControls.style.top = `${headerHeight}px`;
         }
 
