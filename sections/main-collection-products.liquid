@@ -494,10 +494,23 @@
       openFilter() {
         this.scrollY = window.scrollY;
 
-        // Instead of fixing body position, prevent scrolling with overflow
-        document.body.style.overflow = 'hidden';
-        document.documentElement.style.overflow = 'hidden';
-        document.body.style.height = '100vh';
+        // Fix body to preserve scroll position
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${this.scrollY}px`;
+        document.body.style.width = '100%';
+
+        // FORCE header to stay visible using setProperty with important
+        const siteHeader = document.querySelector('#site-header');
+        if (siteHeader) {
+          siteHeader.style.setProperty('position', 'fixed', 'important');
+          siteHeader.style.setProperty('top', '0', 'important');
+          siteHeader.style.setProperty('left', '0', 'important');
+          siteHeader.style.setProperty('right', '0', 'important');
+          siteHeader.style.setProperty('z-index', '10000', 'important');
+          siteHeader.style.setProperty('display', 'block', 'important');
+          siteHeader.style.setProperty('visibility', 'visible', 'important');
+          siteHeader.style.setProperty('opacity', '1', 'important');
+        }
 
         this.isFilterOpen = true;
 
@@ -552,9 +565,22 @@
         setTimeout(() => {
           this.isFilterOpen = false;
 
+          const siteHeader = document.querySelector('#site-header');
           const filterSidebar = document.querySelector('.filter-sidebar');
           const filterOverlay = document.querySelector('.filter-sidebar__overlay');
           const collectionControls = document.querySelector('.collection-controls');
+
+          // Remove all forced header properties
+          if (siteHeader) {
+            siteHeader.style.removeProperty('position');
+            siteHeader.style.removeProperty('top');
+            siteHeader.style.removeProperty('left');
+            siteHeader.style.removeProperty('right');
+            siteHeader.style.removeProperty('z-index');
+            siteHeader.style.removeProperty('display');
+            siteHeader.style.removeProperty('visibility');
+            siteHeader.style.removeProperty('opacity');
+          }
 
           if (filterSidebar) {
             filterSidebar.style.top = '';
@@ -568,10 +594,14 @@
             collectionControls.style.top = '';
           }
 
-          // Restore scrolling
-          document.body.style.overflow = '';
-          document.documentElement.style.overflow = '';
-          document.body.style.height = '';
+          document.documentElement.style.scrollBehavior = 'auto';
+
+          document.body.style.position = '';
+          document.body.style.top = '';
+          document.body.style.width = '';
+          window.scrollTo(0, this.scrollY);
+
+          document.documentElement.style.scrollBehavior = '';
 
           document.querySelector('.filter-sidebar').classList.remove('closing');
         }, 300);
