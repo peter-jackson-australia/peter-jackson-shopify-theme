@@ -275,8 +275,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function checkScroll() {
     if (document.body.classList.contains('menu-open') || 
-        document.body.classList.contains('cart-open') || 
-        document.body.classList.contains('search-open')) {
+    document.body.classList.contains('cart-open') || 
+    document.body.classList.contains('search-open') || 
+    document.body.classList.contains('filter-open')) {
       ticking = false;
       return;
     }
