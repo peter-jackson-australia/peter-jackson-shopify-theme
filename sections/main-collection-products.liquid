@@ -559,7 +559,13 @@
           if (wasControlsFixed && collectionControls) {
             collectionControls.classList.add('controls-fixed');
             collectionControls.classList.remove('sliding-up');
+
+            // Manually set the correct top position for controls
+            const headerHeight = siteHeader ? siteHeader.getBoundingClientRect().height : 56.953125;
+            collectionControls.style.top = `${headerHeight}px`;
+
             console.log('Restored controls-fixed class');
+            console.log('Set controls top to:', headerHeight + 'px');
             console.log('Controls rect after restore:', collectionControls.getBoundingClientRect());
           }
         });
@@ -578,9 +584,10 @@
         setTimeout(() => {
           this.isFilterOpen = false;
 
-          // Reset filter positioning
+          // Reset filter positioning and any inline styles
           const filterSidebar = document.querySelector('.filter-sidebar');
           const filterOverlay = document.querySelector('.filter-sidebar__overlay');
+          const collectionControls = document.querySelector('.collection-controls');
 
           if (filterSidebar) {
             filterSidebar.style.top = '';
@@ -588,6 +595,10 @@
 
           if (filterOverlay) {
             filterOverlay.style.top = '';
+          }
+
+          if (collectionControls) {
+            collectionControls.style.top = '';
           }
 
           // Disable smooth scrolling before restoring position
