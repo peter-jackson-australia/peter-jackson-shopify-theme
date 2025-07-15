@@ -594,7 +594,14 @@
       this.closeFilter();
     });
 
-    window.closeFilter = () => this.closeFilter();
+    // Set up window.closeFilter function
+    const component = this;
+    window.closeFilter = () => {
+      console.log('window.closeFilter called, isFilterOpen:', component.isFilterOpen);
+      if (component.isFilterOpen) {
+        component.closeFilter();
+      }
+    };
   "
 >
   <div id="collection" class="section">
