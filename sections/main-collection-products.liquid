@@ -109,54 +109,55 @@
     align-items: center;
   }
 
-  .filter-drawer {
+  .filter-sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 400px;
+    background-color: var(--white);
+    z-index: 9998;
+    overflow-y: hidden;
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: transform 0.3s ease;
+    animation: slideIn 0.3s ease forwards;
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  .filter-sidebar.closing {
+    animation: slideOut 0.3s ease forwards;
+  }
+
+  @keyframes slideOut {
+    from {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+  }
+
+  .filter-sidebar__overlay {
     position: fixed;
     top: 0;
     left: 0;
-    opacity: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 99999;
-    display: flex;
-    flex-direction: column;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s linear;
-  }
-
-  .filter-drawer--active {
-    left: 0;
-    opacity: 1;
-    visibility: visible;
-  }
-
-  .filter-drawer__container {
-    width: 400px;
-    max-width: 100%;
-    background-color: var(--white);
-    flex: 1;
-    margin-right: auto;
-    display: flex;
-    flex-direction: column;
-    overflow: auto;
-    opacity: 0;
-    transform: translateX(-100%);
-    transition: transform 0.4s ease, opacity 0.3s linear;
-  }
-
-  .filter-drawer--active .filter-drawer__container {
-    transform: translateX(0);
-    opacity: 1;
-  }
-
-  .filter-drawer.closing {
-    transition: opacity 0.3s ease, visibility 0.3s linear;
-  }
-
-  .filter-drawer.closing .filter-drawer__container {
-    transform: translateX(-100%);
-    opacity: 0;
-    transition: transform 0.3s ease, opacity 0.3s linear;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9997;
   }
 
   body.filter-open {
@@ -507,18 +508,16 @@
 
         this.isFilterOpen = true;
         document.body.classList.add('filter-open');
-        document.querySelector('.filter-drawer').classList.add('filter-drawer--active');
       },
 
       closeFilter() {
         if (!this.isFilterOpen) return;
 
-        document.querySelector('.filter-drawer').classList.add('closing');
+        document.querySelector('.filter-sidebar').classList.add('closing');
         setTimeout(() => {
           this.isFilterOpen = false;
           document.body.classList.remove('filter-open');
-          document.querySelector('.filter-drawer').classList.remove('filter-drawer--active');
-          document.querySelector('.filter-drawer').classList.remove('closing');
+          document.querySelector('.filter-sidebar').classList.remove('closing');
 
           document.documentElement.style.scrollBehavior = 'auto';
 
@@ -541,28 +540,25 @@
 >
   <div id="collection" class="section">
     <div x-show="isFilterOpen" x-cloak>
-      <aside
-        class="filter-drawer"
-        role="dialog"
-        aria-labelledby="filter-title"
+      <div
+        class="filter-sidebar__overlay"
         @click="closeFilter()"
-      >
-        <div class="filter-drawer__container" @click.stop>
-          <div class="filter-sidebar-header">
-            <h3 id="filter-title" class="heading--xl">Filters</h3>
-            <p>
-              <a class="body" href="{{ collection.url }}?sort_by={{ collection.sort_by }}">Clear all</a>
-            </p>
-            <button
-              class="filter-close-btn"
-              @click="closeFilter()"
-              aria-label="Close filters"
-            >
-              {% render 'icon-close' %}
-            </button>
-          </div>
-          {% render 'collection-filters' %}
+      ></div>
+      <aside class="filter-sidebar">
+        <div class="filter-sidebar-header">
+          <h3 class="heading--xl">Filters</h3>
+          <p>
+            <a class="body" href="{{ collection.url }}?sort_by={{ collection.sort_by }}">Clear all</a>
+          </p>
+          <button
+            class="filter-close-btn"
+            @click="closeFilter()"
+            aria-label="Close filters"
+          >
+            {% render 'icon-close' %}
+          </button>
         </div>
+        {% render 'collection-filters' %}
       </aside>
     </div>
     {% liquid
