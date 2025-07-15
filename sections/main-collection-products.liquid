@@ -557,6 +557,17 @@
         document.body.style.width = '100%';
         console.log('Body fixed with top:', `-${this.scrollY}px`);
 
+        // Boost z-index of fixed elements so they stay above the filter overlay
+        if (siteHeader) {
+          siteHeader.style.zIndex = '9999';
+          console.log('Boosted header z-index to 9999');
+        }
+
+        if (collectionControlsFixed) {
+          collectionControlsFixed.style.zIndex = '9999';
+          console.log('Boosted controls z-index to 9999');
+        }
+
         // Check what happened to FIXED header after body fix
         if (siteHeader) {
           console.log('--- FIXED HEADER AFTER BODY FIX ---');
@@ -612,6 +623,20 @@
         document.querySelector('.filter-sidebar').classList.add('closing');
         setTimeout(() => {
           this.isFilterOpen = false;
+
+          // Reset z-index of fixed elements
+          const siteHeader = document.querySelector('#site-header.header-fixed');
+          const collectionControlsFixed = document.querySelector('.collection-controls.controls-fixed');
+
+          if (siteHeader) {
+            siteHeader.style.zIndex = '';
+            console.log('Reset header z-index');
+          }
+
+          if (collectionControlsFixed) {
+            collectionControlsFixed.style.zIndex = '';
+            console.log('Reset controls z-index');
+          }
 
           // Reset filter positioning
           const filterSidebar = document.querySelector('.filter-sidebar');
