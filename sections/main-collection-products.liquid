@@ -1,6 +1,18 @@
+{% comment %}
+  Collection Products - Fixed Version with Scroll Preservation
+{% endcomment %}
+
 <script src="{{ 'ajaxinate.min.js' | asset_url }}" defer></script>
 
 <style>
+  body.filter-open {
+    overflow: hidden;
+  }
+
+  body.filter-open .collection-controls.controls-fixed {
+    display: none;
+  }
+
   #collection {
     display: grid;
     grid-template-columns: auto;
@@ -107,7 +119,7 @@
 
   .filter-sidebar {
     position: fixed;
-    top: 0px;
+    top: calc(var(--space-xl) + 35px);
     bottom: 0;
     left: 0;
     width: 400px;
@@ -148,7 +160,7 @@
 
   .filter-sidebar__overlay {
     position: fixed;
-    top: 0px;
+    top: calc(var(--space-xl) + 35px);
     left: 0;
     right: 0;
     bottom: 0;
@@ -494,62 +506,70 @@
       openFilter() {
         this.scrollY = window.scrollY;
 
+        // Store the current fixed states before body fix
         const siteHeader = document.querySelector('#site-header');
         const collectionControls = document.querySelector('.collection-controls');
         const filterSidebar = document.querySelector('.filter-sidebar');
         const filterOverlay = document.querySelector('.filter-sidebar__overlay');
-
         const wasHeaderFixed = siteHeader?.classList.contains('header-fixed');
         const wasControlsFixed = collectionControls?.classList.contains('controls-fixed');
 
-        const headerHeight = siteHeader ? siteHeader.getBoundingClientRect().height : 0;
+        // Calculate correct positioning BEFORE body fix
+        let requiredFilterTop = 0;
 
-        let filterTop = 0;
-        if (wasHeaderFixed) {
-          filterTop = headerHeight;
-          if (wasControlsFixed) {
-            const controlsHeight = collectionControls ? collectionControls.getBoundingClientRect().height : 0;
-            filterTop += controlsHeight;
-          }
+        if (wasHeaderFixed && wasControlsFixed) {
+          // Both header and controls are fixed - filter sits below header only
+          const headerHeight = siteHeader.getBoundingClientRect().height;
+          requiredFilterTop = headerHeight;
+        } else if (wasHeaderFixed) {
+          // Only header is fixed - filter sits below header
+          const headerHeight = siteHeader.getBoundingClientRect().height;
+          requiredFilterTop = headerHeight;
         } else if (siteHeader) {
+          // Header is not fixed - filter sits below visible header
           const headerRect = siteHeader.getBoundingClientRect();
-          filterTop = Math.max(0, headerRect.bottom);
+          requiredFilterTop = Math.max(0, headerRect.bottom);
         }
 
-        const bodyTopOffset = wasHeaderFixed ? this.scrollY : this.scrollY;
+        // Fix body
         document.body.style.position = 'fixed';
-        document.body.style.top = `-${bodyTopOffset}px`;
+        document.body.style.top = `-${this.scrollY}px`;
         document.body.style.width = '100%';
 
+        // Apply positioning to filter elements
         if (filterSidebar) {
-          filterSidebar.style.top = `${filterTop}px`;
-        }
-        if (filterOverlay) {
-          filterOverlay.style.top = `${filterTop}px`;
+          filterSidebar.style.top = `${requiredFilterTop}px`;
         }
 
-        if (wasHeaderFixed && siteHeader) {
-          siteHeader.classList.add('header-fixed');
+        if (filterOverlay) {
+          filterOverlay.style.top = `${requiredFilterTop}px`;
         }
-        if (wasControlsFixed && collectionControls) {
-          collectionControls.classList.add('controls-fixed');
-          collectionControls.classList.remove('sliding-up');
-          collectionControls.style.top = `${headerHeight}px`;
-        }
+
+        // Restore the fixed classes that will be lost due to scroll becoming 0
+        this.$nextTick(() => {
+          if (wasHeaderFixed && siteHeader) {
+            siteHeader.classList.add('header-fixed');
+          }
+          if (wasControlsFixed && collectionControls) {
+            collectionControls.classList.add('controls-fixed');
+            collectionControls.classList.remove('sliding-up');
+          }
+        });
 
         this.isFilterOpen = true;
+        document.body.classList.add('filter-open');
       },
 
       closeFilter() {
         if (!this.isFilterOpen) return;
-
         document.querySelector('.filter-sidebar').classList.add('closing');
         setTimeout(() => {
           this.isFilterOpen = false;
+          document.body.classList.remove('filter-open');
 
+          // Reset filter positioning
           const filterSidebar = document.querySelector('.filter-sidebar');
           const filterOverlay = document.querySelector('.filter-sidebar__overlay');
-          const collectionControls = document.querySelector('.collection-controls');
 
           if (filterSidebar) {
             filterSidebar.style.top = '';
@@ -557,10 +577,6 @@
 
           if (filterOverlay) {
             filterOverlay.style.top = '';
-          }
-
-          if (collectionControls) {
-            collectionControls.style.top = '';
           }
 
           document.documentElement.style.scrollBehavior = 'auto';
@@ -582,10 +598,13 @@
       this.closeFilter();
     });
 
+    // Set up window.closeFilter function using Alpine's component access
     window.closeFilter = () => {
+      console.log('window.closeFilter called');
       const filterComponent = document.querySelector('#{{ section.id }}');
       if (filterComponent && filterComponent._x_dataStack && filterComponent._x_dataStack[0]) {
         const data = filterComponent._x_dataStack[0];
+        console.log('Found component data, isFilterOpen:', data.isFilterOpen);
         if (data.isFilterOpen) {
           data.closeFilter();
         }
