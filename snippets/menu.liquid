@@ -108,7 +108,9 @@
       >
         <header class="menu-drawer__header">
           <button @click="backLevel()" class="menu-drawer__back" aria-label="Back to previous menu">
-            <span :class="{'menu-drawer__media--inactive': currentLevel >= 3}">{% render 'icon-arrow-see-less' %}</span>
+            <span :class="{'menu-drawer__media--inactive': currentLevel >= 3}">
+              {%- render '_icon-arrow-see-less' -%}
+            </span>
             <span class="body--uppercase" :class="{'menu-drawer__media--inactive': currentLevel >= 3}">Back</span>
           </button>
           <h2
@@ -176,7 +178,7 @@
             <h2 class="menu-drawer__heading-journal body--uppercase">The Jackson Journal</h2>
             <div class="splide" x-ref="splideSlider">
               <div class="splide__arrows">
-                <button class="splide__arrow splide__arrow--prev">{% render 'icon-arrow-see-less' %}</button>
+                <button class="splide__arrow splide__arrow--prev">{% render '_icon-arrow-see-less' %}</button>
                 <button class="splide__arrow splide__arrow--next">{% render 'icon-arrow-see-more' %}</button>
               </div>
               <div class="splide__track">
@@ -193,7 +195,7 @@
       >
         <header class="menu-drawer__header">
           <button @click="backLevel()" class="menu-drawer__back" aria-label="Back to previous menu">
-            {% render 'icon-arrow-see-less' %}
+            {% render '_icon-arrow-see-less' %}
             <span class="body--uppercase">Back</span>
           </button>
           <h2
