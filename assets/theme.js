@@ -499,7 +499,6 @@
         document.body.style.width = '100%';
 
         this.isFilterOpen = true;
-        window.closeMenu && window.closeMenu();
       },
 
       closeFilter() {
@@ -509,12 +508,14 @@
         setTimeout(() => {
           this.isFilterOpen = false;
 
+          const scrollY = Math.abs(parseInt(document.body.style.top || '0'));
+
           document.documentElement.style.scrollBehavior = 'auto';
 
           document.body.style.position = '';
           document.body.style.top = '';
           document.body.style.width = '';
-          window.scrollTo(0, this.scrollY);
+          window.scrollTo(0, scrollY);
 
           document.documentElement.style.scrollBehavior = '';
 
