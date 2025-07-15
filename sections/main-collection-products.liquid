@@ -501,6 +501,9 @@
         document.body.style.top = `-${this.scrollY}px`;
         document.body.style.width = '100%';
         this.isFilterOpen = true;
+        this.$nextTick(() => {
+          this.updateFilterPosition();
+        });
       },
 
       closeFilter() {
@@ -513,7 +516,36 @@
           document.body.style.width = '';
           window.scrollTo(0, this.scrollY);
           document.querySelector('.filter-sidebar').classList.remove('closing');
+          this.resetFilterPosition();
         }, 300);
+      },
+
+      updateFilterPosition() {
+        const siteHeader = document.querySelector('#site-header');
+        const overlay = document.querySelector('.filter-sidebar__overlay');
+        const sidebar = document.querySelector('.filter-sidebar');
+
+        if (!siteHeader || !overlay || !sidebar) return;
+
+        const isFixed = siteHeader.classList.contains('header-fixed');
+
+        if (isFixed) {
+          overlay.style.top = 'var(--space-xl)';
+          sidebar.style.top = 'var(--space-xl)';
+        } else {
+          const headerRect = siteHeader.getBoundingClientRect();
+          const topPosition = Math.max(0, headerRect.bottom) + 'px';
+          overlay.style.top = topPosition;
+          sidebar.style.top = topPosition;
+        }
+      },
+
+      resetFilterPosition() {
+        const overlay = document.querySelector('.filter-sidebar__overlay');
+        const sidebar = document.querySelector('.filter-sidebar');
+
+        if (overlay) overlay.style.top = '';
+        if (sidebar) sidebar.style.top = '';
       }
     }
   "
