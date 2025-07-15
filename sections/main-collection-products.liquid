@@ -1,22 +1,3 @@
-openFilter() { // Store current scroll position this.scrollY = window.scrollY; // Get elements const siteHeader =
-document.querySelector('#site-header'); const collectionControls = document.querySelector('.collection-controls'); const
-filterSidebar = document.querySelector('.filter-sidebar'); const filterOverlay =
-document.querySelector('.filter-sidebar__overlay'); // Check current states const wasHeaderFixed =
-siteHeader?.classList.contains('header-fixed'); const wasControlsFixed =
-collectionControls?.classList.contains('controls-fixed'); // Calculate header height for consistent positioning const
-headerHeight = siteHeader ? siteHeader.getBoundingClientRect().height : 0; // Calculate the correct top position for
-filter elements let filterTop = 0; if (wasHeaderFixed) { filterTop = headerHeight; if (wasControlsFixed) { // If
-controls are also fixed, add their height const controlsHeight = collectionControls ?
-collectionControls.getBoundingClientRect().height : 0; filterTop += controlsHeight; } } else if (siteHeader) { // Header
-is not fixed, use its bottom position const headerRect = siteHeader.getBoundingClientRect(); filterTop = Math.max(0,
-headerRect.bottom); } // Fix the body in place - account for header height if it's fixed const bodyTopOffset =
-wasHeaderFixed ? this.scrollY : this.scrollY; document.body.style.position = 'fixed'; document.body.style.top =
-`-${bodyTopOffset}px`; document.body.style.width = '100%'; // Position filter elements if (filterSidebar) {
-filterSidebar.style.top = `${filterTop}px`; } if (filterOverlay) { filterOverlay.style.top = `${filterTop}px`; } //
-Ensure fixed elements maintain their state if (wasHeaderFixed && siteHeader) { siteHeader.classList.add('header-fixed');
-} if (wasControlsFixed && collectionControls) { collectionControls.classList.add('controls-fixed');
-collectionControls.classList.remove('sliding-up'); collectionControls.style.top = `${headerHeight}px`; }
-this.isFilterOpen = true; }
 <script src="{{ 'ajaxinate.min.js' | asset_url }}" defer></script>
 
 <style>
