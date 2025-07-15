@@ -494,53 +494,45 @@
       openFilter() {
         this.scrollY = window.scrollY;
 
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${this.scrollY}px`;
+        document.body.style.width = '100%';
+
+        this.isFilterOpen = true;
+
+        this.$nextTick(() => {
+          this.updateFilterPositioning();
+        });
+      },
+
+      updateFilterPositioning() {
         const siteHeader = document.querySelector('#site-header');
         const collectionControls = document.querySelector('.collection-controls');
         const filterSidebar = document.querySelector('.filter-sidebar');
         const filterOverlay = document.querySelector('.filter-sidebar__overlay');
 
-        const wasHeaderFixed = siteHeader?.classList.contains('header-fixed');
-        const wasControlsFixed = collectionControls?.classList.contains('controls-fixed');
+        if (!siteHeader) return;
 
-        const headerHeight = siteHeader ? siteHeader.getBoundingClientRect().height : 0;
+        const isFixed = siteHeader.classList.contains('header-fixed');
 
-        let filterTop = 0;
-        if (wasHeaderFixed) {
-          filterTop = headerHeight;
-          if (wasControlsFixed) {
-            const controlsHeight = collectionControls ? collectionControls.getBoundingClientRect().height : 0;
-            filterTop += controlsHeight;
+        if (isFixed) {
+          if (filterSidebar) {
+            filterSidebar.style.top = 'var(--space-xl)';
           }
-        } else if (siteHeader) {
+          if (filterOverlay) {
+            filterOverlay.style.top = 'var(--space-xl)';
+          }
+        } else {
           const headerRect = siteHeader.getBoundingClientRect();
-          filterTop = Math.max(0, headerRect.bottom);
+          const topPosition = Math.max(0, headerRect.bottom) + 'px';
+          if (filterSidebar) {
+            filterSidebar.style.top = topPosition;
+          }
+          if (filterOverlay) {
+            filterOverlay.style.top = topPosition;
+          }
         }
-
-        document.body.style.position = 'fixed';
-        document.body.style.top = `-${this.scrollY}px`;
-        document.body.style.width = '100%';
-
-        // Force the classes to stay applied after body becomes fixed
-        if (wasHeaderFixed && siteHeader) {
-          siteHeader.classList.add('header-fixed');
-        }
-        if (wasControlsFixed && collectionControls) {
-          collectionControls.classList.add('controls-fixed');
-          collectionControls.classList.remove('sliding-up');
-          collectionControls.style.top = `${headerHeight}px`;
-        }
-
-        if (filterSidebar) {
-          filterSidebar.style.top = `${filterTop}px`;
-        }
-        if (filterOverlay) {
-          filterOverlay.style.top = `${filterTop}px`;
-        }
-
-        this.isFilterOpen = true;
       },
-
-
 
       closeFilter() {
         if (!this.isFilterOpen) return;
@@ -551,26 +543,22 @@
 
           const filterSidebar = document.querySelector('.filter-sidebar');
           const filterOverlay = document.querySelector('.filter-sidebar__overlay');
-          const collectionControls = document.querySelector('.collection-controls');
 
           if (filterSidebar) {
             filterSidebar.style.top = '';
           }
-
           if (filterOverlay) {
             filterOverlay.style.top = '';
           }
 
-          if (collectionControls) {
-            collectionControls.style.top = '';
-          }
+          const scrollY = Math.abs(parseInt(document.body.style.top || '0'));
 
           document.documentElement.style.scrollBehavior = 'auto';
 
           document.body.style.position = '';
           document.body.style.top = '';
           document.body.style.width = '';
-          window.scrollTo(0, this.scrollY);
+          window.scrollTo(0, scrollY);
 
           document.documentElement.style.scrollBehavior = '';
 
