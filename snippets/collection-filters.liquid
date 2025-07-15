@@ -15,13 +15,19 @@
     height: 57px;
   }
 
-  .filter-sidebar-header > p > a {
-    color: var(--neutral-950);
-  }
-
   .filter__group {
     border-bottom: 1px solid var(--neutral-200);
     padding: var(--space-m);
+  }
+
+  .filter__group.filter__clear-all {
+    padding: var(--space-m) var(--space-m) 0;
+    border-bottom: none;
+  }
+
+  .filter__group.filter__clear-all a {
+    color: var(--neutral-950);
+    text-decoration: underline;
   }
 
   .filter__group-title {
@@ -194,7 +200,7 @@
   }
 
   .filter-close-btn {
-    display: none;
+    display: block;
     background: transparent;
     border: none;
     padding: 0;
@@ -209,15 +215,15 @@
     .filter-sidebar-header {
       height: 50px;
     }
-
-    .filter-close-btn {
-      display: block;
-    }
   }
 </style>
 
 <form class="filter">
   <div class="filter__content custom-scrollbar">
+    <div class="filter__group filter__clear-all">
+      <a class="body" href="{{ collection.url }}?sort_by={{ collection.sort_by }}">Clear all</a>
+    </div>
+
     <div class="filter__group filter__sort-by">
       <h3 class="filter__group-title body--bold">Sort by</h3>
       <ul class="filter__options">
