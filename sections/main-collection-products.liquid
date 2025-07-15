@@ -498,36 +498,31 @@
       openFilter() {
         this.scrollY = window.scrollY;
 
-        // Debug what classes exist before and after
+        // Store the current fixed states before body fix
         const siteHeader = document.querySelector('#site-header');
         const collectionControls = document.querySelector('.collection-controls');
+        const wasHeaderFixed = siteHeader?.classList.contains('header-fixed');
+        const wasControlsFixed = collectionControls?.classList.contains('controls-fixed');
 
-        console.log('=== BEFORE BODY FIX ===');
-        console.log('Header classes:', siteHeader?.className);
-        console.log('Controls classes:', collectionControls?.className);
-        console.log('Window scroll Y:', window.scrollY);
-        console.log('Document scroll Y:', document.documentElement.scrollTop);
+        console.log('Stored states - Header fixed:', wasHeaderFixed, 'Controls fixed:', wasControlsFixed);
 
         // Fix body
         document.body.style.position = 'fixed';
         document.body.style.top = `-${this.scrollY}px`;
         document.body.style.width = '100%';
 
-        // Check immediately after
-        console.log('=== AFTER BODY FIX ===');
-        console.log('Header classes:', siteHeader?.className);
-        console.log('Controls classes:', collectionControls?.className);
-        console.log('Window scroll Y:', window.scrollY);
-        console.log('Document scroll Y:', document.documentElement.scrollTop);
-
-        // Check again after a small delay to see if classes change
-        setTimeout(() => {
-          console.log('=== AFTER TIMEOUT ===');
-          console.log('Header classes:', siteHeader?.className);
-          console.log('Controls classes:', collectionControls?.className);
-          console.log('Window scroll Y:', window.scrollY);
-          console.log('Document scroll Y:', document.documentElement.scrollTop);
-        }, 100);
+        // Restore the fixed classes that will be lost due to scroll becoming 0
+        this.$nextTick(() => {
+          if (wasHeaderFixed && siteHeader) {
+            siteHeader.classList.add('header-fixed');
+            console.log('Restored header-fixed class');
+          }
+          if (wasControlsFixed && collectionControls) {
+            collectionControls.classList.add('controls-fixed');
+            collectionControls.classList.remove('sliding-up');
+            console.log('Restored controls-fixed class');
+          }
+        });
 
         this.isFilterOpen = true;
       },
