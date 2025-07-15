@@ -66,6 +66,148 @@
     white-space: nowrap;
   }
 
+  .search-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: var(--space-m);
+    padding-top: var(--space-s);
+    gap: var(--space-xs);
+  }
+
+  .search-controls.controls-fixed {
+    position: fixed;
+    top: calc(var(--space-xl) - 50px);
+    left: 0;
+    right: 0;
+    z-index: 9995;
+    background-color: white;
+    opacity: 0;
+    padding: 0px;
+    animation: slideDown 0.3s ease forwards;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    backface-visibility: hidden;
+  }
+
+  .search-controls.controls-fixed.sliding-up {
+    animation: slideUp 0.3s ease forwards;
+  }
+
+  @keyframes slideDown {
+    from {
+      top: calc(var(--space-xl) - 50px);
+      opacity: 0;
+    }
+    to {
+      top: var(--space-xl);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      top: var(--space-xl);
+      opacity: 1;
+    }
+    to {
+      top: calc(var(--space-xl) - 50px);
+      opacity: 0;
+    }
+  }
+
+  .search-controls.controls-fixed > p {
+    display: none;
+  }
+
+  .search-controls.controls-fixed > .search-controls__filter-button {
+    border: none;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: var(--space-2xs) var(--space-m);
+    background-color: var(--neutral-950);
+    color: var(--white);
+  }
+
+  .search-controls.controls-fixed > .search-controls__filter-button > span {
+    filter: invert(1);
+  }
+
+  #controls-spacer {
+    display: block;
+  }
+
+  #controls-spacer.hide {
+    display: none;
+  }
+
+  .search-controls > p {
+    margin-left: auto;
+    color: var(--neutral-600);
+    align-self: center;
+  }
+
+  .search-controls__filter-button {
+    background-color: transparent;
+    cursor: pointer;
+    padding: var(--space-2xs) var(--space-s);
+    border: 1px solid var(--neutral-200);
+    color: var(--neutral-950);
+    transition: 0.3 ease-in;
+  }
+
+  .search-filter-sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 400px;
+    background-color: var(--white);
+    z-index: 9998;
+    overflow-y: hidden;
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: transform 0.3s ease;
+    animation: slideIn 0.3s ease forwards;
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  .search-filter-sidebar.closing {
+    animation: slideOut 0.3s ease forwards;
+  }
+
+  @keyframes slideOut {
+    from {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+  }
+
+  .search-filter-sidebar__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9997;
+  }
+
   .products-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -210,47 +352,6 @@
     margin-left: var(--space-2xs);
   }
 
-  .search-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-    margin-bottom: var(--space-m);
-    padding: 0 var(--space-m);
-    gap: var(--space-xs);
-  }
-
-  .search-controls__filter-button {
-    background-color: transparent;
-    cursor: pointer;
-    padding: var(--space-2xs) var(--space-s);
-    border: 1px solid var(--neutral-200);
-    color: var(--neutral-950);
-  }
-
-  .search-filter-sidebar {
-    position: fixed;
-    top: calc(var(--space-xl) + 35px);
-    bottom: 0;
-    left: 0;
-    width: 400px;
-    background-color: var(--white);
-    z-index: 9998;
-  }
-
-  .search-filter-sidebar__overlay {
-    position: fixed;
-    top: calc(var(--space-xl) + 35px);
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.6);
-    z-index: 9997;
-  }
-
-  body.search-filter-open {
-    overflow: hidden;
-  }
-
   #AjaxinatePagination {
     margin: var(--space-m);
   }
@@ -305,10 +406,60 @@
       display: block;
       color: var(--neutral-600);
     }
+
+    .search-filter-sidebar {
+      width: 100%;
+    }
   }
 </style>
 
-<div id="{{ section.id }}" class="section-wrap">
+<div
+  id="{{ section.id }}"
+  class="section-wrap"
+  x-data="
+    {
+      isFilterOpen: false,
+      scrollY: 0,
+
+      openFilter() {
+        this.scrollY = window.scrollY;
+
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${this.scrollY}px`;
+        document.body.style.width = '100%';
+
+        this.isFilterOpen = true;
+        document.body.classList.add('search-filter-open');
+      },
+
+      closeFilter() {
+        if (!this.isFilterOpen) return;
+
+        document.querySelector('.search-filter-sidebar').classList.add('closing');
+        setTimeout(() => {
+          this.isFilterOpen = false;
+          document.body.classList.remove('search-filter-open');
+          document.querySelector('.search-filter-sidebar').classList.remove('closing');
+
+          document.documentElement.style.scrollBehavior = 'auto';
+
+          document.body.style.position = '';
+          document.body.style.top = '';
+          document.body.style.width = '';
+          window.scrollTo(0, this.scrollY);
+
+          document.documentElement.style.scrollBehavior = '';
+        }, 300);
+      }
+    }
+  "
+  x-init="
+    document.addEventListener('menu-open', () => {
+      closeFilter();
+    });
+    window.closeFilter = () => closeFilter();
+  "
+>
   <div class="section">
     <div class="search-header">
       <div class="search-header__wrapper">
@@ -340,70 +491,63 @@
     </div>
 
     {% if search.performed %}
-      <div
-        x-data="{ isFilterOpen: false }"
-      >
-        <div x-show="isFilterOpen" x-cloak>
-          <div
-            class="search-filter-sidebar__overlay"
-            @click="isFilterOpen = false; document.body.classList.remove('search-filter-open')"
-          ></div>
-          <aside class="search-filter-sidebar">
-            <div class="search-filter-sidebar-header">
-              <h3 class="heading--xl">Filters</h3>
-              <p>
-                <a class="body" href="{{ routes.search_url }}?q={{ search.terms | escape }}&type=product">Clear all</a>
-              </p>
-              <button
-                class="search-filter-close-btn"
-                @click="isFilterOpen = false; document.body.classList.remove('search-filter-open')"
-                aria-label="Close filters"
-              >
-                {% render 'icon-close' %}
-              </button>
-            </div>
-            {% render 'search-filters' %}
-          </aside>
-        </div>
-
-        <div class="search-controls">
-          <button
-            class="search-controls__filter-button body"
-            @click="isFilterOpen = !isFilterOpen; document.body.classList.toggle('search-filter-open', isFilterOpen)"
-          >
-            Filters
-            <span>{% render 'icon-filter' %}</span>
-          </button>
-
-          <p class="small">
-            {{ search.results_count }}
-            {% if search.results_count == 1 %}Result{% else %}Results{% endif %}
-          </p>
-        </div>
-
-        {% paginate search.results by section.settings.limit %}
-          <div id="AjaxinateContainer" class="products-grid animate-container-cards-scroll">
-            {% if search.results_count == 0 %}
-              <div class="no-products-message">
-                <p class="heading--l" style="color: var(--neutral-950)">No products found</p>
-                <p class="body">
-                  Try adjusting your search terms or <a href="/" style="color: var(--neutral-950)">return home</a>
-                </p>
-              </div>
-            {% else %}
-              {% for product in search.results %}
-                {% render 'product-card', product: product, image_width: 600 %}
-              {% endfor %}
-            {% endif %}
+      <div x-show="isFilterOpen" x-cloak>
+        <div
+          class="search-filter-sidebar__overlay"
+          @click="closeFilter()"
+        ></div>
+        <aside class="search-filter-sidebar">
+          <div class="search-filter-sidebar-header">
+            <h3 class="heading--xl">Filters</h3>
+            <button
+              class="search-filter-close-btn"
+              @click="closeFilter()"
+              aria-label="Close filters"
+            >
+              {% render 'icon-close' %}
+            </button>
           </div>
-
-          <div id="AjaxinatePagination">
-            {% if paginate.next %}
-              <a aria-label="Loading More" href="{{ paginate.next.url }}">Load More</a>
-            {% endif %}
-          </div>
-        {% endpaginate %}
+          {% render 'search-filters' %}
+        </aside>
       </div>
+
+      <div class="search-controls">
+        <button
+          class="search-controls__filter-button body"
+          @click="openFilter()"
+        >
+          Filters
+          <span>{% render 'icon-filter' %}</span>
+        </button>
+
+        <p class="body">
+          {{ search.results_count }}
+          {% if search.results_count == 1 %}Result{% else %}Results{% endif %}
+        </p>
+      </div>
+
+      {% paginate search.results by section.settings.limit %}
+        <div id="AjaxinateContainer" class="products-grid animate-container-cards-scroll">
+          {% if search.results_count == 0 %}
+            <div class="no-products-message">
+              <p class="heading--l" style="color: var(--neutral-950)">No products found</p>
+              <p class="body">
+                Try adjusting your search terms or <a href="/" style="color: var(--neutral-950)">return home</a>
+              </p>
+            </div>
+          {% else %}
+            {% for product in search.results %}
+              {% render 'product-card', product: product, image_width: 600 %}
+            {% endfor %}
+          {% endif %}
+        </div>
+
+        <div id="AjaxinatePagination">
+          {% if paginate.next %}
+            <a aria-label="Loading More" href="{{ paginate.next.url }}">Load More</a>
+          {% endif %}
+        </div>
+      {% endpaginate %}
     {% endif %}
   </div>
 </div>

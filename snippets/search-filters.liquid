@@ -12,16 +12,22 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 57px;
-  }
-
-  .search-filter-sidebar-header > p > a {
-    color: var(--neutral-950);
+    height: var(--space-xl);
   }
 
   .search-filter__group {
     border-bottom: 1px solid var(--neutral-200);
     padding: var(--space-m);
+  }
+
+  .search-filter__group.search-filter__clear-all {
+    padding: var(--space-m) var(--space-m) 0;
+    border-bottom: none;
+  }
+
+  .search-filter__group.search-filter__clear-all a {
+    color: var(--neutral-950);
+    text-decoration: underline;
   }
 
   .search-filter__group-title {
@@ -194,7 +200,7 @@
   }
 
   .search-filter-close-btn {
-    display: none;
+    display: block;
     background: transparent;
     border: none;
     padding: 0;
@@ -205,24 +211,13 @@
     .search-filter-sidebar {
       width: 100%;
     }
-
-    .search-filter-sidebar-header {
-      height: 50px;
-    }
-
-    .search-filter-close-btn {
-      display: block;
-    }
   }
 </style>
 
-<form class="search-filter" action="{{ routes.search_url }}" method="get">
-  <input type="hidden" name="type" value="product">
-  <input type="hidden" name="q" value="{{ search.terms }}">
-
-  <div class="search-filter__content">
-    <div class="search-filter__group">
-      <h3 class="search-filter__group-title">Sort by</h3>
+<form class="search-filter">
+  <div class="search-filter__content custom-scrollbar">
+    <div class="search-filter__group search-filter__sort-by">
+      <h3 class="search-filter__group-title body--bold">Sort by</h3>
       <ul class="search-filter__options">
         <li class="search-filter__option">
           <label class="search-filter__radio-label">
@@ -235,49 +230,7 @@
                 checked
               {% endunless %}
             >
-            <span>Relevance</span>
-          </label>
-        </li>
-        <li class="search-filter__option">
-          <label class="search-filter__radio-label">
-            <input
-              type="radio"
-              name="sort_by"
-              value="price-ascending"
-              class="search-filter__radio"
-              {% if request.params.sort_by == 'price-ascending' %}
-                checked
-              {% endif %}
-            >
-            <span>Price low to high</span>
-          </label>
-        </li>
-        <li class="search-filter__option">
-          <label class="search-filter__radio-label">
-            <input
-              type="radio"
-              name="sort_by"
-              value="price-descending"
-              class="search-filter__radio"
-              {% if request.params.sort_by == 'price-descending' %}
-                checked
-              {% endif %}
-            >
-            <span>Price high to low</span>
-          </label>
-        </li>
-        <li class="search-filter__option">
-          <label class="search-filter__radio-label">
-            <input
-              type="radio"
-              name="sort_by"
-              value="created-descending"
-              class="search-filter__radio"
-              {% if request.params.sort_by == 'created-descending' %}
-                checked
-              {% endif %}
-            >
-            <span>Newest first</span>
+            <span class="body">Relevance</span>
           </label>
         </li>
         <li class="search-filter__option">
@@ -291,7 +244,63 @@
                 checked
               {% endif %}
             >
-            <span>Best selling</span>
+            <span class="body">Best selling</span>
+          </label>
+        </li>
+        <li class="search-filter__option">
+          <label class="search-filter__radio-label">
+            <input
+              type="radio"
+              name="sort_by"
+              value="price-ascending"
+              class="search-filter__radio"
+              {% if request.params.sort_by == 'price-ascending' %}
+                checked
+              {% endif %}
+            >
+            <span class="body">Price low to high</span>
+          </label>
+        </li>
+        <li class="search-filter__option">
+          <label class="search-filter__radio-label">
+            <input
+              type="radio"
+              name="sort_by"
+              value="price-descending"
+              class="search-filter__radio"
+              {% if request.params.sort_by == 'price-descending' %}
+                checked
+              {% endif %}
+            >
+            <span class="body">Price high to low</span>
+          </label>
+        </li>
+        <li class="search-filter__option">
+          <label class="search-filter__radio-label">
+            <input
+              type="radio"
+              name="sort_by"
+              value="created-descending"
+              class="search-filter__radio"
+              {% if request.params.sort_by == 'created-descending' %}
+                checked
+              {% endif %}
+            >
+            <span class="body">Newly added</span>
+          </label>
+        </li>
+        <li class="search-filter__option">
+          <label class="search-filter__radio-label">
+            <input
+              type="radio"
+              name="sort_by"
+              value="created-ascending"
+              class="search-filter__radio"
+              {% if request.params.sort_by == 'created-ascending' %}
+                checked
+              {% endif %}
+            >
+            <span class="body">Oldest first</span>
           </label>
         </li>
       </ul>
@@ -301,10 +310,10 @@
   <div class="search-filter__footer">
     <button type="submit" class="search-filter__apply-button body">Apply Filters</button>
   </div>
+  <script>
+    document.querySelector('.search-filter').addEventListener('submit', function (e) {
+      const button = document.querySelector('.search-filter__apply-button');
+      button.innerHTML = `<span class="loader--spinner"></span>`;
+    });
+  </script>
 </form>
-<script>
-  document.querySelector('.search-filter').addEventListener('submit', function (e) {
-    const button = document.querySelector('.search-filter__apply-button');
-    button.innerHTML = `<span class="loader--spinner"></span>`;
-  });
-</script>
