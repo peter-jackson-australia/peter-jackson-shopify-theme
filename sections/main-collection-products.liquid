@@ -501,15 +501,48 @@
         // Store the current fixed states before body fix
         const siteHeader = document.querySelector('#site-header');
         const collectionControls = document.querySelector('.collection-controls');
+        const filterSidebar = document.querySelector('.filter-sidebar');
+        const filterOverlay = document.querySelector('.filter-sidebar__overlay');
         const wasHeaderFixed = siteHeader?.classList.contains('header-fixed');
         const wasControlsFixed = collectionControls?.classList.contains('controls-fixed');
 
         console.log('Stored states - Header fixed:', wasHeaderFixed, 'Controls fixed:', wasControlsFixed);
 
+        // Calculate correct positioning BEFORE body fix
+        let requiredFilterTop = 0;
+
+        if (wasHeaderFixed && wasControlsFixed) {
+          // Both header and controls are fixed - filter sits below header only
+          const headerHeight = siteHeader.getBoundingClientRect().height;
+          requiredFilterTop = headerHeight;
+          console.log('Both fixed - Filter top will be:', requiredFilterTop, '(header height only)');
+        } else if (wasHeaderFixed) {
+          // Only header is fixed - filter sits below header
+          const headerHeight = siteHeader.getBoundingClientRect().height;
+          requiredFilterTop = headerHeight;
+          console.log('Header fixed - Filter top will be:', requiredFilterTop, '(header height)');
+        } else if (siteHeader) {
+          // Header is not fixed - filter sits below visible header
+          const headerRect = siteHeader.getBoundingClientRect();
+          requiredFilterTop = Math.max(0, headerRect.bottom);
+          console.log('Header not fixed - Filter top will be:', requiredFilterTop, '(header bottom position)');
+        }
+
         // Fix body
         document.body.style.position = 'fixed';
         document.body.style.top = `-${this.scrollY}px`;
         document.body.style.width = '100%';
+
+        // Apply positioning to filter elements
+        if (filterSidebar) {
+          filterSidebar.style.top = `${requiredFilterTop}px`;
+          console.log('Set filter sidebar top to:', requiredFilterTop + 'px');
+        }
+
+        if (filterOverlay) {
+          filterOverlay.style.top = `${requiredFilterTop}px`;
+          console.log('Set filter overlay top to:', requiredFilterTop + 'px');
+        }
 
         // Restore the fixed classes that will be lost due to scroll becoming 0
         this.$nextTick(() => {
@@ -532,6 +565,18 @@
         document.querySelector('.filter-sidebar').classList.add('closing');
         setTimeout(() => {
           this.isFilterOpen = false;
+
+          // Reset filter positioning
+          const filterSidebar = document.querySelector('.filter-sidebar');
+          const filterOverlay = document.querySelector('.filter-sidebar__overlay');
+
+          if (filterSidebar) {
+            filterSidebar.style.top = '';
+          }
+
+          if (filterOverlay) {
+            filterOverlay.style.top = '';
+          }
 
           document.body.style.position = '';
           document.body.style.top = '';
