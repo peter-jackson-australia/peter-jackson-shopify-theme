@@ -217,7 +217,7 @@
         {% if section.settings.cta_link != blank and section.settings.cta_text != blank %}
           <a href="{{ section.settings.cta_link }}" class="related-articles__link body">
             {{ section.settings.cta_text }}
-            {% render 'icon-arrow-submit-dark' %}
+            {% render '_icon-arrow-submit-dark' %}
           </a>
         {% endif %}
       </div>
@@ -253,7 +253,9 @@
               </h3>
 
               <a href="{{ article.url }}" class="related-articles__post-link-container">
-                <span class="related-articles__post-link body">Read Article {% render 'icon-arrow-submit-dark' %}</span>
+                <span class="related-articles__post-link body"
+                  >Read Article {% render '_icon-arrow-submit-dark' -%}
+                </span>
               </a>
             </div>
           </article>
