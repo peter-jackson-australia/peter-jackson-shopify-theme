@@ -494,33 +494,31 @@
       openFilter() {
         this.scrollY = window.scrollY;
 
-        const siteHeader = document.querySelector('#site-header');
-        const collectionControls = document.querySelector('.collection-controls');
-
-        // CAPTURE THE STATE BEFORE ANYTHING CHANGES
-        const wasHeaderFixed = siteHeader?.classList.contains('header-fixed');
-        const wasControlsFixed = collectionControls?.classList.contains('controls-fixed');
-
         document.body.style.position = 'fixed';
         document.body.style.top = `-${this.scrollY}px`;
         document.body.style.width = '100%';
 
-        // IMMEDIATELY FORCE THE CLASSES BACK ON
-        if (wasHeaderFixed && siteHeader) {
-          siteHeader.classList.add('header-fixed');
-        }
-        if (wasControlsFixed && collectionControls) {
-          collectionControls.classList.add('controls-fixed');
-          collectionControls.classList.remove('sliding-up');
-        }
-
         this.isFilterOpen = true;
 
         this.$nextTick(() => {
+          const siteHeader = document.querySelector('#site-header');
+          const collectionControls = document.querySelector('.collection-controls');
           const filterSidebar = document.querySelector('.filter-sidebar');
           const filterOverlay = document.querySelector('.filter-sidebar__overlay');
 
-          // Position filter elements
+          const wasHeaderFixed = siteHeader?.classList.contains('header-fixed');
+          const wasControlsFixed = collectionControls?.classList.contains('controls-fixed');
+
+          // Force classes back on AFTER body is fixed
+          if (wasHeaderFixed && siteHeader) {
+            siteHeader.classList.add('header-fixed');
+          }
+          if (wasControlsFixed && collectionControls) {
+            collectionControls.classList.add('controls-fixed');
+            collectionControls.classList.remove('sliding-up');
+          }
+
+          // Now position filter elements
           let filterTop = 0;
           if (wasHeaderFixed) {
             const headerHeight = siteHeader.getBoundingClientRect().height;
