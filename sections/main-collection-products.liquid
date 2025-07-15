@@ -594,12 +594,16 @@
       this.closeFilter();
     });
 
-    // Set up window.closeFilter function
-    const component = this;
+    // Set up window.closeFilter function using Alpine's component access
     window.closeFilter = () => {
-      console.log('window.closeFilter called, isFilterOpen:', component.isFilterOpen);
-      if (component.isFilterOpen) {
-        component.closeFilter();
+      console.log('window.closeFilter called');
+      const filterComponent = document.querySelector('#{{ section.id }}');
+      if (filterComponent && filterComponent._x_dataStack && filterComponent._x_dataStack[0]) {
+        const data = filterComponent._x_dataStack[0];
+        console.log('Found component data, isFilterOpen:', data.isFilterOpen);
+        if (data.isFilterOpen) {
+          data.closeFilter();
+        }
       }
     };
   "
