@@ -496,59 +496,15 @@
       scrollY: 0,
 
       openFilter() {
-        console.log('=== OPENING FILTER - DEBUGGING START ===');
         this.scrollY = window.scrollY;
-        console.log('Current scroll position:', this.scrollY);
 
-        // Get all elements and their states BEFORE fixing body
+        // Calculate required positioning
         const siteHeader = document.querySelector('#site-header');
         const collectionControls = document.querySelector('.collection-controls');
         const collectionControlsFixed = document.querySelector('.collection-controls.controls-fixed');
         const filterSidebar = document.querySelector('.filter-sidebar');
         const filterOverlay = document.querySelector('.filter-sidebar__overlay');
 
-        console.log('--- ELEMENT DETECTION ---');
-        console.log('Site header found:', !!siteHeader);
-        console.log('Collection controls found:', !!collectionControls);
-        console.log('Collection controls fixed found:', !!collectionControlsFixed);
-        console.log('Filter sidebar found:', !!filterSidebar);
-        console.log('Filter overlay found:', !!filterOverlay);
-
-        if (siteHeader) {
-          const headerRect = siteHeader.getBoundingClientRect();
-          const isHeaderFixed = siteHeader.classList.contains('header-fixed');
-          console.log('--- SITE HEADER STATE ---');
-          console.log('Header is fixed:', isHeaderFixed);
-          console.log('Header rect:', {
-            top: headerRect.top,
-            bottom: headerRect.bottom,
-            height: headerRect.height
-          });
-          console.log('Header computed styles:', {
-            position: getComputedStyle(siteHeader).position,
-            top: getComputedStyle(siteHeader).top,
-            zIndex: getComputedStyle(siteHeader).zIndex
-          });
-        }
-
-        if (collectionControls) {
-          const controlsRect = collectionControls.getBoundingClientRect();
-          const isControlsFixed = collectionControls.classList.contains('controls-fixed');
-          console.log('--- COLLECTION CONTROLS STATE ---');
-          console.log('Controls are fixed:', isControlsFixed);
-          console.log('Controls rect:', {
-            top: controlsRect.top,
-            bottom: controlsRect.bottom,
-            height: controlsRect.height
-          });
-          console.log('Controls computed styles:', {
-            position: getComputedStyle(collectionControls).position,
-            top: getComputedStyle(collectionControls).top,
-            zIndex: getComputedStyle(collectionControls).zIndex
-          });
-        }
-
-        // Calculate what the filter top position should be
         let requiredFilterTop = 0;
 
         if (siteHeader && collectionControlsFixed) {
@@ -556,79 +512,62 @@
           const headerHeight = siteHeader.getBoundingClientRect().height;
           const controlsHeight = collectionControls.getBoundingClientRect().height;
           requiredFilterTop = headerHeight + controlsHeight;
-          console.log('--- POSITIONING CALCULATION ---');
-          console.log('Scenario: Both header and controls fixed');
-          console.log('Header height:', headerHeight);
-          console.log('Controls height:', controlsHeight);
-          console.log('Required filter top:', requiredFilterTop);
+          console.log('Both fixed - Filter top:', requiredFilterTop);
         } else if (siteHeader && siteHeader.classList.contains('header-fixed')) {
           // Only header is fixed
           const headerHeight = siteHeader.getBoundingClientRect().height;
           requiredFilterTop = headerHeight;
-          console.log('--- POSITIONING CALCULATION ---');
-          console.log('Scenario: Only header fixed');
-          console.log('Header height:', headerHeight);
-          console.log('Required filter top:', requiredFilterTop);
+          console.log('Header fixed - Filter top:', requiredFilterTop);
         } else if (siteHeader) {
           // Header is not fixed
           const headerRect = siteHeader.getBoundingClientRect();
           requiredFilterTop = Math.max(0, headerRect.bottom);
-          console.log('--- POSITIONING CALCULATION ---');
-          console.log('Scenario: Header not fixed');
-          console.log('Header bottom position:', headerRect.bottom);
-          console.log('Required filter top:', requiredFilterTop);
+          console.log('Header not fixed - Filter top:', requiredFilterTop);
         }
 
-        console.log('--- BEFORE BODY FIXING ---');
-        console.log('Body position:', getComputedStyle(document.body).position);
-        console.log('Body top:', getComputedStyle(document.body).top);
-
-        // Now fix the body for scroll preservation
+        // Fix body for scroll preservation
         document.body.style.position = 'fixed';
         document.body.style.top = `-${this.scrollY}px`;
         document.body.style.width = '100%';
 
-        console.log('--- AFTER BODY FIXING ---');
-        console.log('Body position:', getComputedStyle(document.body).position);
-        console.log('Body top:', getComputedStyle(document.body).top);
-
-        // Check how this affects our elements
-        if (siteHeader) {
-          const headerRectAfter = siteHeader.getBoundingClientRect();
-          console.log('--- HEADER AFTER BODY FIX ---');
-          console.log('Header rect after:', {
-            top: headerRectAfter.top,
-            bottom: headerRectAfter.bottom,
-            height: headerRectAfter.height
-          });
+        // Apply the calculated positioning to filter elements
+        if (filterSidebar) {
+          filterSidebar.style.top = `${requiredFilterTop}px`;
+          console.log('Set filter sidebar top to:', requiredFilterTop + 'px');
         }
 
-        if (collectionControls) {
-          const controlsRectAfter = collectionControls.getBoundingClientRect();
-          console.log('--- CONTROLS AFTER BODY FIX ---');
-          console.log('Controls rect after:', {
-            top: controlsRectAfter.top,
-            bottom: controlsRectAfter.bottom,
-            height: controlsRectAfter.height
-          });
+        if (filterOverlay) {
+          filterOverlay.style.top = `${requiredFilterTop}px`;
+          console.log('Set filter overlay top to:', requiredFilterTop + 'px');
         }
 
         this.isFilterOpen = true;
-        console.log('=== FILTER OPENED - DEBUGGING END ===');
       },
 
       closeFilter() {
         if (!this.isFilterOpen) return;
-        console.log('=== CLOSING FILTER ===');
         document.querySelector('.filter-sidebar').classList.add('closing');
         setTimeout(() => {
           this.isFilterOpen = false;
+
+          // Reset filter positioning
+          const filterSidebar = document.querySelector('.filter-sidebar');
+          const filterOverlay = document.querySelector('.filter-sidebar__overlay');
+
+          if (filterSidebar) {
+            filterSidebar.style.top = '';
+          }
+
+          if (filterOverlay) {
+            filterOverlay.style.top = '';
+          }
+
           document.body.style.position = '';
           document.body.style.top = '';
           document.body.style.width = '';
           window.scrollTo(0, this.scrollY);
           document.querySelector('.filter-sidebar').classList.remove('closing');
-          console.log('Filter closed and scroll restored to:', this.scrollY);
+          console.log('Filter closed and positioning reset');
         }, 300);
       }
     }
