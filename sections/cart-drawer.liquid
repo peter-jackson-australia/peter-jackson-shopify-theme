@@ -460,15 +460,20 @@
       },
 
       openCart() {
-        this.scrollY = window.scrollY;
-
-        document.body.style.position = 'fixed';
-        document.body.style.top = `-${this.scrollY}px`;
-        document.body.style.width = '100%';
+        if (document.body.style.position !== 'fixed') {
+          this.scrollY = window.scrollY;
+          document.body.style.position = 'fixed';
+          document.body.style.top = `-${this.scrollY}px`;
+          document.body.style.width = '100%';
+        }
 
         this.isOpen = true;
         document.body.classList.add('cart-open');
         document.querySelector('.cart').classList.add('cart--active');
+
+        if (window.closeMenu) {
+          window.closeMenu(true);
+        }
       },
 
       closeCart() {

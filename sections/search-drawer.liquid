@@ -195,15 +195,24 @@
       },
 
       openSearch() {
-        this.scrollY = window.scrollY;
+        this.scrollY =
+          document.body.style.position === 'fixed'
+            ? Math.abs(parseInt(document.body.style.top || '0'))
+            : window.scrollY;
 
-        document.body.style.position = 'fixed';
-        document.body.style.top = `-${this.scrollY}px`;
-        document.body.style.width = '100%';
+        if (document.body.style.position !== 'fixed') {
+          document.body.style.position = 'fixed';
+          document.body.style.top = `-${this.scrollY}px`;
+          document.body.style.width = '100%';
+        }
 
         this.isOpen = true;
         document.body.classList.add('search-open');
         document.querySelector('.search-drawer').classList.add('search-drawer--active');
+
+        if (window.closeMenu) {
+          window.closeMenu(true);
+        }
       },
 
       closeSearch() {
