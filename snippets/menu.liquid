@@ -300,7 +300,7 @@
           this.isOpen ? this.closeMenu() : this.openMenu();
         };
 
-        window.closeMenu = () => this.closeMenu();
+        window.closeMenu = (keepScrollLocked = false) => this.closeMenu(keepScrollLocked);
       },
 
       updateHeaderHeight() {
