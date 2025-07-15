@@ -494,6 +494,28 @@
       openFilter() {
         this.scrollY = window.scrollY;
 
+        const siteHeader = document.querySelector('#site-header');
+        const collectionControls = document.querySelector('.collection-controls');
+
+        // FORCE header to stay fixed to viewport before fixing body
+        if (siteHeader) {
+          siteHeader.style.position = 'fixed';
+          siteHeader.style.top = '0';
+          siteHeader.style.left = '0';
+          siteHeader.style.right = '0';
+          siteHeader.style.zIndex = '10000';
+        }
+
+        // FORCE controls to stay fixed to viewport if they were fixed
+        if (collectionControls && collectionControls.classList.contains('controls-fixed')) {
+          const headerHeight = siteHeader ? siteHeader.getBoundingClientRect().height : 56.953125;
+          collectionControls.style.position = 'fixed';
+          collectionControls.style.top = `${headerHeight}px`;
+          collectionControls.style.left = '0';
+          collectionControls.style.right = '0';
+          collectionControls.style.zIndex = '9995';
+        }
+
         document.body.style.position = 'fixed';
         document.body.style.top = `-${this.scrollY}px`;
         document.body.style.width = '100%';
@@ -550,9 +572,28 @@
         setTimeout(() => {
           this.isFilterOpen = false;
 
+          const siteHeader = document.querySelector('#site-header');
+          const collectionControls = document.querySelector('.collection-controls');
           const filterSidebar = document.querySelector('.filter-sidebar');
           const filterOverlay = document.querySelector('.filter-sidebar__overlay');
-          const collectionControls = document.querySelector('.collection-controls');
+
+          // Clean up forced header styles
+          if (siteHeader) {
+            siteHeader.style.position = '';
+            siteHeader.style.top = '';
+            siteHeader.style.left = '';
+            siteHeader.style.right = '';
+            siteHeader.style.zIndex = '';
+          }
+
+          // Clean up forced controls styles
+          if (collectionControls) {
+            collectionControls.style.position = '';
+            collectionControls.style.top = '';
+            collectionControls.style.left = '';
+            collectionControls.style.right = '';
+            collectionControls.style.zIndex = '';
+          }
 
           if (filterSidebar) {
             filterSidebar.style.top = '';
@@ -560,10 +601,6 @@
 
           if (filterOverlay) {
             filterOverlay.style.top = '';
-          }
-
-          if (collectionControls) {
-            collectionControls.style.top = '';
           }
 
           document.documentElement.style.scrollBehavior = 'auto';
