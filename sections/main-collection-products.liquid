@@ -594,9 +594,9 @@
       this.closeFilter();
     });
 
-    // Close filter when clicking outside
-    document.addEventListener('click', (e) => {
-      if (this.isFilterOpen && !e.target.closest('.filter-sidebar') && !e.target.closest('.collection-controls__filter-button')) {
+    // Close filter when clicking on header
+    document.querySelector('#site-header')?.addEventListener('click', () => {
+      if (this.isFilterOpen) {
         this.closeFilter();
       }
     });
