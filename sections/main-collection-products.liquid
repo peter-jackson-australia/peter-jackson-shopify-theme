@@ -489,9 +489,13 @@
     {
       expandedGrid: true,
       isFilterOpen: false,
+      isOpening: false,
       scrollY: 0,
 
       openFilter() {
+        // Prevent any interference during opening
+        this.isOpening = true;
+
         this.scrollY = window.scrollY;
 
         const siteHeader = document.querySelector('#site-header');
@@ -505,9 +509,19 @@
         document.body.style.top = `-${this.scrollY}px`;
         document.body.style.width = '100%';
 
-        // IMMEDIATELY FORCE THE CLASSES BACK ON
+        // FORCE THE CLASSES TO STAY ON - NEVER REMOVE THEM
         if (wasHeaderFixed && siteHeader) {
           siteHeader.classList.add('header-fixed');
+          // Lock the class so it can't be removed
+          Object.defineProperty(siteHeader, 'className', {
+            get: function() { return this.getAttribute('class'); },
+            set: function(value) {
+              if (!value.includes('header-fixed')) {
+                value += ' header-fixed';
+              }
+              this.setAttribute('class', value);
+            }
+          });
         }
         if (wasControlsFixed && collectionControls) {
           collectionControls.classList.add('controls-fixed');
@@ -515,6 +529,7 @@
         }
 
         this.isFilterOpen = true;
+        this.isOpening = false;
 
         this.$nextTick(() => {
           const filterSidebar = document.querySelector('.filter-sidebar');
@@ -546,15 +561,21 @@
 
 
       closeFilter() {
-        if (!this.isFilterOpen) return;
+        if (!this.isFilterOpen || this.isOpening) return;
 
         document.querySelector('.filter-sidebar').classList.add('closing');
         setTimeout(() => {
           this.isFilterOpen = false;
 
+          const siteHeader = document.querySelector('#site-header');
           const filterSidebar = document.querySelector('.filter-sidebar');
           const filterOverlay = document.querySelector('.filter-sidebar__overlay');
           const collectionControls = document.querySelector('.collection-controls');
+
+          // Restore normal className behavior
+          if (siteHeader) {
+            delete siteHeader.className;
+          }
 
           if (filterSidebar) {
             filterSidebar.style.top = '';
