@@ -497,21 +497,39 @@
 
       openFilter() {
         this.scrollY = window.scrollY;
+        console.log('Opening filter at scroll position:', this.scrollY);
+
         document.body.style.position = 'fixed';
         document.body.style.top = `-${this.scrollY}px`;
         document.body.style.width = '100%';
 
-        // Compensate for the body displacement on fixed elements
+        // Find fixed elements and compensate for body displacement
         const siteHeader = document.querySelector('#site-header');
         const collectionControls = document.querySelector('.collection-controls.controls-fixed');
 
-        if (siteHeader && siteHeader.classList.contains('header-fixed')) {
-          siteHeader.style.top = `${this.scrollY}px`;
+        console.log('Site header found:', !!siteHeader);
+        console.log('Collection controls found:', !!collectionControls);
+
+        if (siteHeader) {
+          const isHeaderFixed = siteHeader.classList.contains('header-fixed');
+          console.log('Header is fixed:', isHeaderFixed);
+          if (isHeaderFixed) {
+            // Move header down by scrollY to compensate for body moving up
+            siteHeader.style.top = `${this.scrollY}px`;
+            console.log('Set header top to:', this.scrollY + 'px');
+          }
         }
 
         if (collectionControls) {
-          const currentTop = parseFloat(getComputedStyle(collectionControls).top);
-          collectionControls.style.top = `${currentTop + this.scrollY}px`;
+          console.log('Collection controls original top:', getComputedStyle(collectionControls).top);
+          // Get the original top value and add scrollY
+          const originalTop = getComputedStyle(collectionControls).top;
+          if (originalTop && originalTop !== 'auto') {
+            const topValue = parseFloat(originalTop);
+            const newTop = topValue + this.scrollY;
+            collectionControls.style.top = `${newTop}px`;
+            console.log('Set collection controls top to:', newTop + 'px');
+          }
         }
 
         this.isFilterOpen = true;
