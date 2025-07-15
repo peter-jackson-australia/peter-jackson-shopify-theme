@@ -1,5 +1,5 @@
 {% comment %}
-  Collection Products - Fixed Version with Scroll Position Preservation
+  Collection Products - Fixed Version
 {% endcomment %}
 
 <script src="{{ 'ajaxinate.min.js' | asset_url }}" defer></script>
@@ -111,7 +111,7 @@
 
   .filter-sidebar {
     position: fixed;
-    top: 0;
+    top: calc(var(--space-xl) + 35px);
     bottom: 0;
     left: 0;
     width: 400px;
@@ -152,7 +152,7 @@
 
   .filter-sidebar__overlay {
     position: fixed;
-    top: 0;
+    top: calc(var(--space-xl) + 35px);
     left: 0;
     right: 0;
     bottom: 0;
@@ -496,53 +496,36 @@
   x-data="
     {
       expandedGrid: true,
-      isFilterOpen: false,
-      scrollY: 0,
-
-      openFilter() {
-        this.scrollY = window.scrollY;
-
-        document.body.style.position = 'fixed';
-        document.body.style.top = `-${this.scrollY}px`;
-        document.body.style.width = '100%';
-
-        this.isFilterOpen = true;
-        document.body.classList.add('filter-open');
-      },
-
-      closeFilter() {
-        if (!this.isFilterOpen) return;
-
-        document.querySelector('.filter-sidebar').classList.add('closing');
-        setTimeout(() => {
-          this.isFilterOpen = false;
-          document.body.classList.remove('filter-open');
-          document.querySelector('.filter-sidebar').classList.remove('closing');
-
-          document.documentElement.style.scrollBehavior = 'auto';
-
-          document.body.style.position = '';
-          document.body.style.top = '';
-          document.body.style.width = '';
-          window.scrollTo(0, this.scrollY);
-
-          document.documentElement.style.scrollBehavior = '';
-        }, 300);
-      }
+      isFilterOpen: false
     }
   "
   x-init="
     document.addEventListener('menu-open', () => {
-      closeFilter();
+      isFilterOpen = false;
+      document.body.classList.remove('filter-open');
     });
-    window.closeFilter = () => closeFilter();
+    window.closeFilter = () => {
+      document.querySelector('.filter-sidebar').classList.add('closing');
+      setTimeout(() => {
+        isFilterOpen = false;
+        document.body.classList.remove('filter-open');
+        document.querySelector('.filter-sidebar').classList.remove('closing');
+      }, 300);
+    };
   "
 >
   <div id="collection" class="section">
     <div x-show="isFilterOpen" x-cloak>
       <div
         class="filter-sidebar__overlay"
-        @click="closeFilter()"
+        @click="
+          document.querySelector('.filter-sidebar').classList.add('closing');
+          setTimeout(() => {
+            isFilterOpen = false;
+            document.body.classList.remove('filter-open');
+            document.querySelector('.filter-sidebar').classList.remove('closing');
+          }, 300)
+        "
       ></div>
       <aside class="filter-sidebar">
         <div class="filter-sidebar-header">
@@ -552,7 +535,14 @@
           </p>
           <button
             class="filter-close-btn"
-            @click="closeFilter()"
+            @click="
+              document.querySelector('.filter-sidebar').classList.add('closing');
+              setTimeout(() => {
+                isFilterOpen = false;
+                document.body.classList.remove('filter-open');
+                document.querySelector('.filter-sidebar').classList.remove('closing');
+              }, 300)
+            "
             aria-label="Close filters"
           >
             {% render 'icon-close' %}
@@ -612,7 +602,7 @@
           <div class="collection-controls">
             <button
               class="collection-controls__filter-button body"
-              @click="openFilter()"
+              @click="isFilterOpen = !isFilterOpen; document.body.classList.toggle('filter-open', isFilterOpen)"
             >
               Filters
               <span>{% render 'icon-filter' %}</span>
@@ -735,7 +725,7 @@
 
                   <div class="grid-content__container grid-content__container--left">
                     {% if metaobject_raw.leading_text != blank %}
-                      <p class="heading--l grid-content__leading-text">{{ metaobject_raw.leading_text }}</p>
+                      <p class="heading--l grid-content__leading_text">{{ metaobject_raw.leading_text }}</p>
                     {% endif %}
 
                     <h2 class="heading--2xl grid-content__header">{{ metaobject_raw.header }}</h2>
