@@ -302,7 +302,7 @@
       {% if section.settings.cta_link != blank and section.settings.cta_text != blank %}
         <a href="{{ section.settings.cta_link }}" class="blog-hero__link body">
           {{ section.settings.cta_text }}
-          {% render 'icon-arrow-submit-dark' %}
+          {% render '_icon-arrow-submit-dark' %}
         </a>
       {% endif %}
     </div>
@@ -354,7 +354,7 @@
             {% if section.settings.image_link_url != blank and section.settings.image_link_text != blank %}
               <a href="{{ section.settings.image_link_url }}" class="blog-hero__image-link body">
                 {{ section.settings.image_link_text }}
-                {% render 'icon-arrow-submit-white' %}
+                {% render '_icon-arrow-submit-white' %}
               </a>
             {% endif %}
           </div>
@@ -394,7 +394,7 @@
               </h3>
 
               <a href="{{ article.url }}" class="blog-hero__post-link-container">
-                <span class="blog-hero__post-link body">Read Article {% render 'icon-arrow-submit-dark' %}</span>
+                <span class="blog-hero__post-link body">Read Article {% render '_icon-arrow-submit-dark' %}</span>
               </a>
             </div>
           </article>

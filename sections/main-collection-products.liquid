@@ -548,7 +548,7 @@
             @click="closeFilter()"
             aria-label="Close filters"
           >
-            {% render 'icon-close' %}
+            {% render '_icon-close' %}
           </button>
         </div>
         {% render 'collection-filters' %}
@@ -608,7 +608,7 @@
               @click="openFilter()"
             >
               Filters
-              <span>{% render 'icon-filter' %}</span>
+              <span>{% render '_icon-filter' %}</span>
             </button>
 
             <p class="body">
@@ -628,11 +628,11 @@
                   })
                 "
               >
-                <span x-cloak x-show="!isMobile && expandedGrid">{% render 'icon-grid-2' %}</span>
-                <span x-cloak x-show="!isMobile && !expandedGrid">{% render 'icon-grid-4' %}</span>
+                <span x-cloak x-show="!isMobile && expandedGrid">{% render '_icon-grid-2' %}</span>
+                <span x-cloak x-show="!isMobile && !expandedGrid">{% render '_icon-grid-4' %}</span>
 
-                <span x-cloak x-show="isMobile && expandedGrid">{% render 'icon-grid-1' %}</span>
-                <span x-cloak x-show="isMobile && !expandedGrid">{% render 'icon-grid-2' %}</span>
+                <span x-cloak x-show="isMobile && expandedGrid">{% render '_icon-grid-1' %}</span>
+                <span x-cloak x-show="isMobile && !expandedGrid">{% render '_icon-grid-2' %}</span>
               </button>
             </div>
           </div>

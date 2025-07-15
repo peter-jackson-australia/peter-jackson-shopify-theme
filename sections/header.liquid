@@ -12,12 +12,12 @@
     aria-label="Toggle menu"
   >
     <div class="hamburger-icon">
-      {% render 'icon-hamburger-menu', accessible_name: 'Menu' %}
+      {% render '_icon-hamburger-menu', accessible_name: 'Menu' %}
     </div>
   </button>
   <div class="header__logo">
     <a href="/" aria-label="Peter Jackson - Home">
-      {% render 'icon-peter-jackson', accessible_name: 'Peter Jackson', role: 'img' %}
+      {% render '_icon-peter-jackson', accessible_name: 'Peter Jackson', role: 'img' %}
     </a>
   </div>
   <ul class="header__icons">
@@ -28,12 +28,12 @@
         aria-label="Search"
         style="background: none; border: none; padding: 0; cursor: pointer; display: flex; align-items: center; justify-content: center;"
       >
-        {% render 'icon-site-search', accessible_name: 'Search', role: 'img' %}
+        {% render '_icon-site-search', accessible_name: 'Search', role: 'img' %}
       </button>
     </li>
     <li>
       <a href="{{ routes.account_url }}" aria-label="Account">
-        {% render 'icon-account', accessible_name: 'Account', role: 'img' %}
+        {% render '_icon-account', accessible_name: 'Account', role: 'img' %}
       </a>
     </li>
     <li>
@@ -43,7 +43,7 @@
         aria-label="Cart{% if cart.item_count > 0 %} with items{% endif %}"
         style="background: none; border: none; padding: 0; cursor: pointer; text-decoration: none; position: relative;"
       >
-        {%- render 'icon-cart', accessible_name: 'Shopping Cart', role: 'img' %}
+        {%- render '_icon-cart', accessible_name: 'Shopping Cart', role: 'img' %}
         <span class="cart-indicator {% if cart.item_count == 0 %}hide{% endif %}" aria-hidden="true"></span>
       </button>
     </li>

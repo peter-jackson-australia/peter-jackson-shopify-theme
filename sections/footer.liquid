@@ -234,7 +234,7 @@
     .footer__bottom {
       flex-direction: column;
       align-items: flex-start;
-      gap: var(--space-s); 
+      gap: var(--space-s);
     }
 
     .footer__terms {
@@ -248,7 +248,7 @@
     <div class="footer__features-grid">
       <div class="footer__feature">
         <div class="footer__feature-icon">
-          {% render 'icon-shipping' %}
+          {% render '_icon-shipping' %}
         </div>
         <h3 class="footer__feature-title heading--s">{{ section.settings.feature_1_title }}</h3>
         <p class="footer__feature-description body">{{ section.settings.feature_1_description }}</p>
@@ -261,7 +261,7 @@
 
       <div class="footer__feature">
         <div class="footer__feature-icon">
-          {% render 'icon-returns' %}
+          {% render '_icon-returns' %}
         </div>
         <h3 class="footer__feature-title heading--s">{{ section.settings.feature_2_title }}</h3>
         <p class="footer__feature-description body">{{ section.settings.feature_2_description }}</p>
@@ -274,7 +274,7 @@
 
       <div class="footer__feature">
         <div class="footer__feature-icon">
-          {% render 'icon-made-to-measure' %}
+          {% render '_icon-made-to-measure' %}
         </div>
         <h3 class="footer__feature-title heading--s">{{ section.settings.feature_3_title }}</h3>
         <p class="footer__feature-description body">{{ section.settings.feature_3_description }}</p>
@@ -287,7 +287,7 @@
 
       <div class="footer__feature">
         <div class="footer__feature-icon">
-          {% render 'icon-click-and-collect' %}
+          {% render '_icon-click-and-collect' %}
         </div>
         <h3 class="footer__feature-title heading--s">{{ section.settings.feature_4_title }}</h3>
         <p class="footer__feature-description body">{{ section.settings.feature_4_description }}</p>
@@ -318,7 +318,7 @@
           placeholder="{{ section.settings.store_locator_placeholder }}"
         >
         <button type="submit" class="footer__search-button" aria-label="Search Peter Jackson Stores">
-          {% render 'icon-arrow-submit-white' %}
+          {% render '_icon-arrow-submit-white' %}
         </button>
       </form>
       <p class="footer__description footer__description--store-locator body">

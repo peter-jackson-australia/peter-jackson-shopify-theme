@@ -506,7 +506,7 @@
 
                 <a href="{{ related_article.url }}" class="article-related__post-link-container">
                   <span class="article-related__post-link body"
-                    >Read Article {% render 'icon-arrow-submit-dark' -%}
+                    >Read Article {% render '_icon-arrow-submit-dark' -%}
                   </span>
                 </a>
               </div>
@@ -554,7 +554,7 @@
               title="            {{- prev_article.title -}}"
             >
               <span class="article-navigation__arrow article-navigation__arrow--prev">
-                {% render 'icon-arrow-submit-dark' %}
+                {% render '_icon-arrow-submit-dark' %}
               </span>
               <span class="article-navigation__link-text">{{ prev_article.title }}</span>
             </a>
@@ -575,7 +575,7 @@
             >
               <span class="article-navigation__link-text">{{ next_article.title }}</span>
               <span class="article-navigation__arrow article-navigation__arrow--next">
-                {% render 'icon-arrow-submit-dark' %}
+                {% render '_icon-arrow-submit-dark' %}
               </span>
             </a>
           {% endif %}
