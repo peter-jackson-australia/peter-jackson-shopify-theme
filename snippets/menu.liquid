@@ -47,7 +47,7 @@
                       {{- link.title -}}
                     </span>
                     <span :class="{ 'menu-drawer__item--inactive': currentLevel >= 2 && {{ forloop.index0 }} !== activeLevel1Index }">
-                      {% render 'icon-arrow-see-more' %}
+                      {% render '_icon-arrow-see-more' %}
                     </span>
                   </button>
                 {% else %}
@@ -156,7 +156,7 @@
                     x-text="decodeEntities(item.title)"
                   ></span>
                   <span :class="{'menu-drawer__item--inactive': currentLevel >= 3 && childIndex !== activeLevel2Index}">
-                    {% render 'icon-arrow-see-more' %}
+                    {% render '_icon-arrow-see-more' %}
                   </span>
                 </button>
               </template>
@@ -179,7 +179,7 @@
             <div class="splide" x-ref="splideSlider">
               <div class="splide__arrows">
                 <button class="splide__arrow splide__arrow--prev">{% render '_icon-arrow-see-less' %}</button>
-                <button class="splide__arrow splide__arrow--next">{% render 'icon-arrow-see-more' %}</button>
+                <button class="splide__arrow splide__arrow--next">{% render '_icon-arrow-see-more' %}</button>
               </div>
               <div class="splide__track">
                 <ul class="splide__list"></ul>
