@@ -497,8 +497,9 @@
 
       openFilter() {
         this.scrollY = window.scrollY;
+        console.log('=== OPENING FILTER - Current scroll:', this.scrollY);
 
-        // Calculate required positioning
+        // Calculate required positioning BEFORE body fix
         const siteHeader = document.querySelector('#site-header');
         const collectionControls = document.querySelector('.collection-controls');
         const collectionControlsFixed = document.querySelector('.collection-controls.controls-fixed');
@@ -507,28 +508,66 @@
 
         let requiredFilterTop = 0;
 
+        // Check header state before body fix
+        if (siteHeader) {
+          const isHeaderFixed = siteHeader.classList.contains('header-fixed');
+          console.log('Header is fixed before body fix:', isHeaderFixed);
+          console.log('Header position before:', getComputedStyle(siteHeader).position);
+          console.log('Header top before:', getComputedStyle(siteHeader).top);
+          console.log('Header rect before:', siteHeader.getBoundingClientRect());
+        }
+
+        // Check controls state before body fix
+        if (collectionControls) {
+          const isControlsFixed = collectionControls.classList.contains('controls-fixed');
+          console.log('Controls fixed before body fix:', isControlsFixed);
+          console.log('Controls position before:', getComputedStyle(collectionControls).position);
+          console.log('Controls top before:', getComputedStyle(collectionControls).top);
+          console.log('Controls rect before:', collectionControls.getBoundingClientRect());
+        }
+
         if (siteHeader && collectionControlsFixed) {
           // Both header and controls are fixed
           const headerHeight = siteHeader.getBoundingClientRect().height;
           const controlsHeight = collectionControls.getBoundingClientRect().height;
           requiredFilterTop = headerHeight + controlsHeight;
-          console.log('Both fixed - Filter top:', requiredFilterTop);
+          console.log('Both fixed - Filter top will be:', requiredFilterTop);
         } else if (siteHeader && siteHeader.classList.contains('header-fixed')) {
           // Only header is fixed
           const headerHeight = siteHeader.getBoundingClientRect().height;
           requiredFilterTop = headerHeight;
-          console.log('Header fixed - Filter top:', requiredFilterTop);
+          console.log('Header fixed - Filter top will be:', requiredFilterTop);
         } else if (siteHeader) {
           // Header is not fixed
           const headerRect = siteHeader.getBoundingClientRect();
           requiredFilterTop = Math.max(0, headerRect.bottom);
-          console.log('Header not fixed - Filter top:', requiredFilterTop);
+          console.log('Header not fixed - Filter top will be:', requiredFilterTop);
         }
 
         // Fix body for scroll preservation
+        console.log('--- FIXING BODY POSITION ---');
         document.body.style.position = 'fixed';
         document.body.style.top = `-${this.scrollY}px`;
         document.body.style.width = '100%';
+        console.log('Body fixed with top:', `-${this.scrollY}px`);
+
+        // Check what happened to header after body fix
+        if (siteHeader) {
+          console.log('--- HEADER AFTER BODY FIX ---');
+          console.log('Header position after:', getComputedStyle(siteHeader).position);
+          console.log('Header top after:', getComputedStyle(siteHeader).top);
+          console.log('Header rect after:', siteHeader.getBoundingClientRect());
+          console.log('Header visible in viewport?', siteHeader.getBoundingClientRect().top >= 0 && siteHeader.getBoundingClientRect().bottom <= window.innerHeight);
+        }
+
+        // Check what happened to controls after body fix
+        if (collectionControls) {
+          console.log('--- CONTROLS AFTER BODY FIX ---');
+          console.log('Controls position after:', getComputedStyle(collectionControls).position);
+          console.log('Controls top after:', getComputedStyle(collectionControls).top);
+          console.log('Controls rect after:', collectionControls.getBoundingClientRect());
+          console.log('Controls visible in viewport?', collectionControls.getBoundingClientRect().top >= 0 && collectionControls.getBoundingClientRect().bottom <= window.innerHeight);
+        }
 
         // Apply the calculated positioning to filter elements
         if (filterSidebar) {
@@ -542,6 +581,7 @@
         }
 
         this.isFilterOpen = true;
+        console.log('=== FILTER OPENED ===');
       },
 
       closeFilter() {
