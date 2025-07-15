@@ -45,6 +45,7 @@
         "media_type": "image",
         "desktop_image": "shopify://shop_images/two-men-one-suit.webp",
         "heading": "Higher Ground / Winter 25",
+        "svg_size": "medium",
         "heading_level": "h1",
         "heading_animation": "none",
         "description": "Explore Our Winter 25 Campaign. Captured in Lake Como, Italy",
@@ -67,7 +68,7 @@
       "settings": {
         "heading": "DISCOVER MORE",
         "blog": "the-jackson-journal",
-        "limit": 29,
+        "limit": 12,
         "articles_per_row": 4
       }
     }
