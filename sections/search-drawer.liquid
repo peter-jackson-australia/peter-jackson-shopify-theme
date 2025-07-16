@@ -59,10 +59,6 @@
     border: none;
   }
 
-  .search-drawer__close:hover {
-    color: var(--neutral-950);
-  }
-
   .search-drawer__content {
     flex: 1;
     display: flex;
@@ -80,7 +76,7 @@
   }
 
   .predictive-search {
-    margin-top: var(--space-s);
+    margin-top: 0;
   }
 
   .predictive-search__title {
@@ -109,20 +105,12 @@
     align-items: center;
     gap: var(--space-s);
     padding: var(--space-2xs);
-    border-radius: 4px;
     transition: all 0.2s ease;
-  }
-
-  .predictive-search__link:hover {
-    color: var(--neutral-950);
-    background-color: var(--neutral-50);
   }
 
   .predictive-search__image {
     width: 40px;
     height: 40px;
-    object-fit: cover;
-    border-radius: 4px;
   }
 
   .predictive-search__text {
@@ -134,14 +122,9 @@
     background-color: var(--neutral-950);
     color: var(--white);
     border: none;
-    border-radius: 4px;
     cursor: pointer;
     margin-top: var(--space-s);
     transition: background-color 0.2s ease;
-  }
-
-  .predictive-search__search-button:hover {
-    background-color: var(--neutral-800);
   }
 
   .popular-searches {
@@ -173,10 +156,6 @@
     text-decoration: none;
     display: block;
     transition: color 0.2s ease;
-  }
-
-  .popular-searches__link:hover {
-    color: var(--neutral-950);
   }
 
   @media screen and (max-width: 768px) {
@@ -402,11 +381,25 @@
             const title = element.querySelector('span');
 
             if (link && title) {
+              let imageUrl = null;
+              if (img) {
+                // Get the original image URL and resize it to 150px
+                const originalSrc = img.getAttribute('src');
+                if (originalSrc) {
+                  // Replace any existing width parameter with 150px
+                  imageUrl = originalSrc.replace(/width=\d+/, 'width=150');
+                  // If no width parameter exists, add it
+                  if (!imageUrl.includes('width=')) {
+                    imageUrl = originalSrc + (originalSrc.includes('?') ? '&' : '?') + 'width=150';
+                  }
+                }
+              }
+
               products.push({
                 id: link.getAttribute('href'),
                 url: link.getAttribute('href'),
                 title: title.textContent.trim(),
-                image: img ? img.getAttribute('src') : null,
+                image: imageUrl,
               });
             }
           });
