@@ -71,32 +71,21 @@
     padding-top: 0px;
   }
 
-  .search-form {
-    margin-bottom: var(--space-m);
-  }
-
-  .search-form__input {
-    width: 100%;
-    padding: var(--space-s);
-    border: 1px solid var(--neutral-300);
-    border-radius: 4px;
-    font-size: 16px;
-  }
-
-  .search-form__input:focus {
-    outline: none;
-    border-color: var(--neutral-950);
+  .search-drawer__loading {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    padding: var(--space-s) 0;
+    color: var(--neutral-600);
   }
 
   .predictive-search {
-    margin-bottom: var(--space-m);
+    margin-top: var(--space-s);
   }
 
   .predictive-search__title {
     color: var(--neutral-950);
     margin-bottom: var(--space-s);
-    font-size: 14px;
-    font-weight: 600;
   }
 
   .predictive-search__results {
@@ -105,7 +94,7 @@
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: var(--space-xs);
+    gap: var(--space-2xs);
   }
 
   .predictive-search__item {
@@ -119,7 +108,7 @@
     display: flex;
     align-items: center;
     gap: var(--space-s);
-    padding: var(--space-xs);
+    padding: var(--space-2xs);
     border-radius: 4px;
     transition: all 0.2s ease;
   }
@@ -142,7 +131,6 @@
 
   .predictive-search__search-button {
     width: 100%;
-    padding: var(--space-s);
     background-color: var(--neutral-950);
     color: var(--white);
     border: none;
@@ -221,26 +209,25 @@
     </header>
 
     <div class="search-drawer__content">
-      <form class="search-form" @submit.prevent="performSearch()">
-        <input
-          type="text"
-          class="search-form__input"
-          placeholder="Search products..."
-          x-model="searchQuery"
-          @input="handleSearchInput()"
-          @focus="handleSearchInput()"
-          autocomplete="off"
-        >
-      </form>
+      {% render 'search-form' %}
+
+      <div
+        class="search-drawer__loading small"
+        x-show="isLoading"
+        x-transition
+      >
+        <span class="loader--spinner"></span>
+        Searching...
+      </div>
 
       <div
         class="predictive-search"
-        x-show="searchQuery.length > 0 && predictiveResults"
+        x-show="searchQuery.length > 0 && predictiveResults && !isLoading"
         x-transition
       >
         <template x-if="predictiveResults && predictiveResults.products && predictiveResults.products.length > 0">
           <div>
-            <h3 class="predictive-search__title">Products</h3>
+            <h3 class="predictive-search__title heading--l">Products</h3>
             <ul class="predictive-search__results">
               <template x-for="product in predictiveResults.products" :key="product.id">
                 <li class="predictive-search__item">
@@ -251,7 +238,7 @@
                       class="predictive-search__image"
                       loading="lazy"
                     >
-                    <span class="predictive-search__text" x-text="product.title"></span>
+                    <span class="predictive-search__text body" x-text="product.title"></span>
                   </a>
                 </li>
               </template>
@@ -262,7 +249,7 @@
         <template x-if="searchQuery.length > 0">
           <button
             type="button"
-            class="predictive-search__search-button"
+            class="predictive-search__search-button button body"
             @click="performSearch()"
             x-text="`Search for '${searchQuery}'`"
           ></button>
@@ -285,7 +272,7 @@
       {% endfor %}
 
       {% if has_popular_searches %}
-        <div class="popular-searches" x-show="searchQuery.length === 0">
+        <div class="popular-searches" x-show="searchQuery.length === 0 && !isLoading">
           <h3 class="popular-searches__title heading--l">Popular Searches</h3>
           <ul class="popular-searches__list">
             {% for search_term in popular_searches_array %}
@@ -315,6 +302,7 @@
       searchQuery: '',
       predictiveResults: null,
       searchTimeout: null,
+      isLoading: false,
 
       init() {
         window.toggleSearch = () => {
@@ -322,6 +310,12 @@
         };
 
         window.closeSearch = () => this.closeSearch();
+
+        // Watch for changes in the search input from the search-form
+        this.$watch('$store.search.query', (value) => {
+          this.searchQuery = value;
+          this.handleSearchInput();
+        });
       },
 
       openSearch() {
@@ -346,7 +340,7 @@
 
         // Focus the search input after opening
         setTimeout(() => {
-          document.querySelector('.search-form__input')?.focus();
+          document.querySelector('.predictive-search__input')?.focus();
         }, 100);
       },
 
@@ -356,6 +350,8 @@
         this.isOpen = false;
         this.searchQuery = '';
         this.predictiveResults = null;
+        this.isLoading = false;
+        Alpine.store('search').query = '';
         document.body.classList.remove('search-open');
         document.querySelector('.search-drawer').classList.remove('search-drawer--active');
 
@@ -374,9 +370,11 @@
 
         if (this.searchQuery.length < 2) {
           this.predictiveResults = null;
+          this.isLoading = false;
           return;
         }
 
+        this.isLoading = true;
         this.searchTimeout = setTimeout(() => {
           this.fetchPredictiveResults();
         }, 300);
@@ -390,7 +388,10 @@
             )}&resources[type]=product&resources[limit]=6&section_id=predictive-search`
           );
 
-          if (!response.ok) return;
+          if (!response.ok) {
+            this.isLoading = false;
+            return;
+          }
 
           const text = await response.text();
           const parser = new DOMParser();
@@ -415,8 +416,10 @@
           });
 
           this.predictiveResults = { products };
+          this.isLoading = false;
         } catch (error) {
           console.error('Predictive search error:', error);
+          this.isLoading = false;
         }
       },
 
