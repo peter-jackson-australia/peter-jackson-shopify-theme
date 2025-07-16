@@ -76,7 +76,7 @@
   }
 
   .predictive-search {
-    margin-top: 0;
+    margin-top: var(--space-m);
   }
 
   .predictive-search__title {
@@ -110,7 +110,8 @@
 
   .predictive-search__image {
     width: 40px;
-    height: 40px;
+    height: auto;
+    max-width: 40px;
   }
 
   .predictive-search__text {
@@ -216,6 +217,8 @@
                       :alt="product.title"
                       class="predictive-search__image"
                       loading="lazy"
+                      width="40"
+                      height="40"
                     >
                     <span class="predictive-search__text body" x-text="product.title"></span>
                   </a>
