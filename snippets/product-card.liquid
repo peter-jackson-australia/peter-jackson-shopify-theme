@@ -41,14 +41,8 @@
         {% if product.images.size > 1 %}
           <!-- Second Image (Hover) -->
           <div
-            x-show="showSecondImage"
-            x-transition:enter="transition ease-out duration-300"
-            x-transition:enter-start="opacity-0"
-            x-transition:enter-end="opacity-100"
-            x-transition:leave="transition ease-in duration-200"
-            x-transition:leave-start="opacity-100"
-            x-transition:leave-end="opacity-0"
-            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.3s ease;"
+            x-bind:style="showSecondImage ? 'opacity: 1; transition: opacity 0.3s ease;' : 'opacity: 0; transition: opacity 0.3s ease;'"
           >
             {{
               product.images[1]
