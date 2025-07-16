@@ -71,6 +71,91 @@
     padding-top: 0px;
   }
 
+  .search-form {
+    margin-bottom: var(--space-m);
+  }
+
+  .search-form__input {
+    width: 100%;
+    padding: var(--space-s);
+    border: 1px solid var(--neutral-300);
+    border-radius: 4px;
+    font-size: 16px;
+  }
+
+  .search-form__input:focus {
+    outline: none;
+    border-color: var(--neutral-950);
+  }
+
+  .predictive-search {
+    margin-bottom: var(--space-m);
+  }
+
+  .predictive-search__title {
+    color: var(--neutral-950);
+    margin-bottom: var(--space-s);
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .predictive-search__results {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .predictive-search__item {
+    margin: 0;
+    padding: 0;
+  }
+
+  .predictive-search__link {
+    color: var(--neutral-600);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: var(--space-s);
+    padding: var(--space-xs);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+
+  .predictive-search__link:hover {
+    color: var(--neutral-950);
+    background-color: var(--neutral-50);
+  }
+
+  .predictive-search__image {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  .predictive-search__text {
+    flex: 1;
+  }
+
+  .predictive-search__search-button {
+    width: 100%;
+    padding: var(--space-s);
+    background-color: var(--neutral-950);
+    color: var(--white);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: var(--space-s);
+    transition: background-color 0.2s ease;
+  }
+
+  .predictive-search__search-button:hover {
+    background-color: var(--neutral-800);
+  }
+
   .popular-searches {
     margin-top: var(--space-m);
     margin-bottom: var(--space-m);
@@ -136,7 +221,53 @@
     </header>
 
     <div class="search-drawer__content">
-      {% render 'search-form' %}
+      <form class="search-form" @submit.prevent="performSearch()">
+        <input
+          type="text"
+          class="search-form__input"
+          placeholder="Search products..."
+          x-model="searchQuery"
+          @input="handleSearchInput()"
+          @focus="handleSearchInput()"
+          autocomplete="off"
+        >
+      </form>
+
+      <div
+        class="predictive-search"
+        x-show="searchQuery.length > 0 && predictiveResults"
+        x-transition
+      >
+        <template x-if="predictiveResults && predictiveResults.products && predictiveResults.products.length > 0">
+          <div>
+            <h3 class="predictive-search__title">Products</h3>
+            <ul class="predictive-search__results">
+              <template x-for="product in predictiveResults.products" :key="product.id">
+                <li class="predictive-search__item">
+                  <a :href="product.url" class="predictive-search__link">
+                    <img
+                      :src="product.image"
+                      :alt="product.title"
+                      class="predictive-search__image"
+                      loading="lazy"
+                    >
+                    <span class="predictive-search__text" x-text="product.title"></span>
+                  </a>
+                </li>
+              </template>
+            </ul>
+          </div>
+        </template>
+
+        <template x-if="searchQuery.length > 0">
+          <button
+            type="button"
+            class="predictive-search__search-button"
+            @click="performSearch()"
+            x-text="`Search for '${searchQuery}'`"
+          ></button>
+        </template>
+      </div>
 
       {% assign popular_searches = '' %}
       {% assign popular_searches = popular_searches | append: section.settings.popular_search_1 | append: '|' %}
@@ -154,7 +285,7 @@
       {% endfor %}
 
       {% if has_popular_searches %}
-        <div class="popular-searches" x-show="$store.search.query.length === 0">
+        <div class="popular-searches" x-show="searchQuery.length === 0">
           <h3 class="popular-searches__title heading--l">Popular Searches</h3>
           <ul class="popular-searches__list">
             {% for search_term in popular_searches_array %}
@@ -178,13 +309,12 @@
 
 <script>
   document.addEventListener('alpine:init', () => {
-    Alpine.store('search', {
-      query: '',
-    });
-
     Alpine.data('searchDrawer', () => ({
       isOpen: false,
       scrollY: 0,
+      searchQuery: '',
+      predictiveResults: null,
+      searchTimeout: null,
 
       init() {
         window.toggleSearch = () => {
@@ -213,13 +343,19 @@
         if (window.closeMenu) {
           window.closeMenu(true);
         }
+
+        // Focus the search input after opening
+        setTimeout(() => {
+          document.querySelector('.search-form__input')?.focus();
+        }, 100);
       },
 
       closeSearch() {
         if (!this.isOpen) return;
 
         this.isOpen = false;
-        Alpine.store('search').query = '';
+        this.searchQuery = '';
+        this.predictiveResults = null;
         document.body.classList.remove('search-open');
         document.querySelector('.search-drawer').classList.remove('search-drawer--active');
 
@@ -231,6 +367,65 @@
         window.scrollTo(0, this.scrollY);
 
         document.documentElement.style.scrollBehavior = '';
+      },
+
+      handleSearchInput() {
+        clearTimeout(this.searchTimeout);
+
+        if (this.searchQuery.length < 2) {
+          this.predictiveResults = null;
+          return;
+        }
+
+        this.searchTimeout = setTimeout(() => {
+          this.fetchPredictiveResults();
+        }, 300);
+      },
+
+      async fetchPredictiveResults() {
+        try {
+          const response = await fetch(
+            `{{ routes.predictive_search_url }}?q=${encodeURIComponent(
+              this.searchQuery
+            )}&resources[type]=product&resources[limit]=6&section_id=predictive-search`
+          );
+
+          if (!response.ok) return;
+
+          const text = await response.text();
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(text, 'text/html');
+
+          const products = [];
+          const productElements = doc.querySelectorAll('[role="option"]');
+
+          productElements.forEach((element) => {
+            const link = element.querySelector('a');
+            const img = element.querySelector('img');
+            const title = element.querySelector('span');
+
+            if (link && title) {
+              products.push({
+                id: link.getAttribute('href'),
+                url: link.getAttribute('href'),
+                title: title.textContent.trim(),
+                image: img ? img.getAttribute('src') : null,
+              });
+            }
+          });
+
+          this.predictiveResults = { products };
+        } catch (error) {
+          console.error('Predictive search error:', error);
+        }
+      },
+
+      performSearch() {
+        if (this.searchQuery.length > 0) {
+          window.location.href = `{{ routes.search_url }}?q=${encodeURIComponent(
+            this.searchQuery
+          )}&type=product&options[prefix]=last`;
+        }
       },
     }));
   });
