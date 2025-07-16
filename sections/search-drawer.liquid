@@ -222,7 +222,7 @@
 
       <div
         class="predictive-search"
-        x-show="searchQuery.length > 0 && predictiveResults && !isLoading"
+        x-show="$store.search.query.length > 0 && predictiveResults && !isLoading"
         x-transition
       >
         <template x-if="predictiveResults && predictiveResults.products && predictiveResults.products.length > 0">
@@ -246,12 +246,12 @@
           </div>
         </template>
 
-        <template x-if="searchQuery.length > 0">
+        <template x-if="$store.search.query.length > 0">
           <button
             type="button"
             class="predictive-search__search-button button body"
             @click="performSearch()"
-            x-text="`Search for '${searchQuery}'`"
+            x-text="`Search for '${$store.search.query}'`"
           ></button>
         </template>
       </div>
@@ -272,7 +272,7 @@
       {% endfor %}
 
       {% if has_popular_searches %}
-        <div class="popular-searches" x-show="searchQuery.length === 0 && !isLoading">
+        <div class="popular-searches" x-show="$store.search.query.length === 0 && !isLoading">
           <h3 class="popular-searches__title heading--l">Popular Searches</h3>
           <ul class="popular-searches__list">
             {% for search_term in popular_searches_array %}
@@ -296,10 +296,13 @@
 
 <script>
   document.addEventListener('alpine:init', () => {
+    Alpine.store('search', {
+      query: '',
+    });
+
     Alpine.data('searchDrawer', () => ({
       isOpen: false,
       scrollY: 0,
-      searchQuery: '',
       predictiveResults: null,
       searchTimeout: null,
       isLoading: false,
@@ -311,10 +314,9 @@
 
         window.closeSearch = () => this.closeSearch();
 
-        // Watch for changes in the search input from the search-form
+        // Watch for changes in the search query
         this.$watch('$store.search.query', (value) => {
-          this.searchQuery = value;
-          this.handleSearchInput();
+          this.handleSearchInput(value);
         });
       },
 
@@ -337,21 +339,15 @@
         if (window.closeMenu) {
           window.closeMenu(true);
         }
-
-        // Focus the search input after opening
-        setTimeout(() => {
-          document.querySelector('.predictive-search__input')?.focus();
-        }, 100);
       },
 
       closeSearch() {
         if (!this.isOpen) return;
 
         this.isOpen = false;
-        this.searchQuery = '';
+        Alpine.store('search').query = '';
         this.predictiveResults = null;
         this.isLoading = false;
-        Alpine.store('search').query = '';
         document.body.classList.remove('search-open');
         document.querySelector('.search-drawer').classList.remove('search-drawer--active');
 
@@ -365,10 +361,10 @@
         document.documentElement.style.scrollBehavior = '';
       },
 
-      handleSearchInput() {
+      handleSearchInput(query) {
         clearTimeout(this.searchTimeout);
 
-        if (this.searchQuery.length < 2) {
+        if (query.length < 2) {
           this.predictiveResults = null;
           this.isLoading = false;
           return;
@@ -376,15 +372,15 @@
 
         this.isLoading = true;
         this.searchTimeout = setTimeout(() => {
-          this.fetchPredictiveResults();
+          this.fetchPredictiveResults(query);
         }, 300);
       },
 
-      async fetchPredictiveResults() {
+      async fetchPredictiveResults(query) {
         try {
           const response = await fetch(
             `{{ routes.predictive_search_url }}?q=${encodeURIComponent(
-              this.searchQuery
+              query
             )}&resources[type]=product&resources[limit]=6&section_id=predictive-search`
           );
 
@@ -424,9 +420,10 @@
       },
 
       performSearch() {
-        if (this.searchQuery.length > 0) {
+        const query = Alpine.store('search').query;
+        if (query.length > 0) {
           window.location.href = `{{ routes.search_url }}?q=${encodeURIComponent(
-            this.searchQuery
+            query
           )}&type=product&options[prefix]=last`;
         }
       },
