@@ -768,7 +768,7 @@
                     | image_tag: alt: image.alt, loading: 'eager', fetchpriority: 'high'
                   }}
                 {% else %}
-                  {{ image | image_url: width: 1440 | image_tag: alt: image.alt, loading: 'lazy' }}
+                  {{ image | image_url: width: image.width | image_tag: alt: image.alt, loading: 'lazy' }}
                 {% endif %}
               </li>
             {% endfor %}
