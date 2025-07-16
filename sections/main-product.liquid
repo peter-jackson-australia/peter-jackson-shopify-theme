@@ -764,11 +764,24 @@
                 {% if forloop.first %}
                   {{
                     image
-                    | image_url: width: 1440
-                    | image_tag: alt: image.alt, loading: 'eager', fetchpriority: 'high'
+                    | image_url: width: image.width
+                    | image_tag:
+                      sizes: '(max-width: 768px) 400px, 1200px',
+                      alt: image.alt,
+                      loading: 'eager',
+                      decoding: 'async',
+                      fetchpriority: 'high'
                   }}
                 {% else %}
-                  {{ image | image_url: width: 1440 | image_tag: alt: image.alt, loading: 'lazy' }}
+                  {{
+                    image
+                    | image_url: width: image.width
+                    | image_tag:
+                      sizes: '(max-width: 768px) 400px, 1200px',
+                      alt: image.alt,
+                      loading: 'lazy',
+                      decoding: 'async'
+                  }}
                 {% endif %}
               </li>
             {% endfor %}
