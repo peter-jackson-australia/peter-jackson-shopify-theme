@@ -765,7 +765,11 @@
                   {{
                     image
                     | image_url: width: image.width
-                    | image_tag: alt: image.alt, loading: 'eager', fetchpriority: 'high'
+                    | image_tag:
+                      sizes: '(max-width: 768px) 100px, 720px',
+                      alt: image.alt,
+                      loading: 'eager',
+                      fetchpriority: 'high'
                   }}
                 {% else %}
                   {{ image | image_url: width: image.width | image_tag: alt: image.alt, loading: 'lazy' }}
