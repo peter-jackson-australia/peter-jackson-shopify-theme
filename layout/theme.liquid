@@ -23,7 +23,7 @@
     <link rel="canonical" href="{{ canonical_url }}">
 
     {% comment %}
-      Inlined critical CSS
+      Critical CSS
     {% endcomment %}
     <style>
       @font-face {
@@ -157,6 +157,108 @@
         --neutral-800: #272727;
         --neutral-900: #191919;
         --neutral-950: #0f0f0f;
+      }
+
+      /* Typography */
+
+      .small {
+        line-height: 140%;
+        letter-spacing: 0.065rem;
+        font-family: 'Ordinary Light';
+        font-size: clamp(0.5787rem, 0.5498rem + 0.1447vw, 0.7234rem);
+      }
+
+      .body,
+      p,
+      li {
+        line-height: 140%;
+        letter-spacing: 0.065rem;
+        font-family: 'Ordinary Light';
+        font-size: clamp(0.6944rem, 0.6597rem + 0.1736vw, 0.8681rem);
+        font-weight: 300;
+      }
+
+      .body--uppercase {
+        line-height: 140%;
+        letter-spacing: 0.065rem;
+        font-family: 'Ordinary Light';
+        text-transform: uppercase;
+        font-size: clamp(0.6944rem, 0.6597rem + 0.1736vw, 0.8681rem);
+        font-weight: 300;
+      }
+
+      .body--bold,
+      h5,
+      h6 {
+        line-height: 140%;
+        letter-spacing: 0.065rem;
+        font-family: 'Ordinary Regular';
+        font-size: clamp(0.6944rem, 0.6597rem + 0.1736vw, 0.8681rem);
+        font-weight: 500;
+      }
+
+      .heading--l,
+      h4 {
+        line-height: 140%;
+        letter-spacing: 0.125rem;
+        font-family: 'Ordinary Regular';
+        font-size: clamp(0.8333rem, 0.7917rem + 0.2083vw, 1.0417rem);
+        font-weight: 500;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .heading--xl,
+      h3 {
+        line-height: 140%;
+        font-family: 'Ordinary Regular';
+        font-size: clamp(1rem, 0.95rem + 0.25vw, 1.25rem);
+        font-weight: 500;
+      }
+
+      .heading--2xl,
+      h2 {
+        line-height: 140%;
+        letter-spacing: 0.125rem;
+        font-family: 'Ordinary Regular';
+        font-size: clamp(1.2rem, 1.14rem + 0.3vw, 1.5rem);
+        font-weight: 500;
+      }
+
+      .heading--decorative {
+        font-family: 'The Wedding Signature';
+        line-height: 100%;
+        font-size: clamp(2.4883rem, 2.3639rem + 0.6221vw, 3.1104rem);
+        font-weight: 500;
+        letter-spacing: 0 !important;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .heading--3xl,
+      h1 {
+        line-height: 100%;
+        letter-spacing: 0.2rem;
+        font-family: 'Ordinary Light';
+        font-size: clamp(2.986rem, 2.8367rem + 0.7465vw, 3.7325rem);
+        font-weight: 300;
+      }
+
+      .heading--4xl {
+        line-height: 100%;
+        letter-spacing: 0.2rem;
+        font-family: 'Ordinary Regular';
+        font-size: clamp(3.5832rem, 3.404rem + 0.8958vw, 4.479rem);
+        font-weight: 500;
+      }
+
+      @media screen and (max-width: 768px) {
+        .small,
+        .body,
+        .body--uppercase,
+        .body--bold {
+          font-size: 12px !important;
+        }
       }
     </style>
 
