@@ -773,7 +773,11 @@
                       fetchpriority: 'high'
                   }}
                 {% else %}
-                  {{ image | image_url: width: image.width | image_tag: alt: image.alt, loading: 'lazy' }}
+                  {{
+                    image
+                    | image_url: width: image.width
+                    | image_tag: sizes: '(max-width: 768px) 500px, 720px', alt: image.alt, loading: 'lazy'
+                  }}
                 {% endif %}
               </li>
             {% endfor %}
