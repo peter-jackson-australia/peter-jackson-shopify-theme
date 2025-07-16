@@ -410,20 +410,6 @@ input[type='search'] {
   }
 }
 
-/* Accessibility */
-
-a.skip-to-content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  transform: translateX(-100%);
-}
-
-a.skip-to-content:focus-visible {
-  position: relative;
-  transform: translateX(0%);
-}
-
 /* Splide Slider */
 
 .splide__arrows {
