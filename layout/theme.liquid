@@ -159,6 +159,20 @@
         --neutral-950: #0f0f0f;
       }
 
+      /* Accessibility */
+
+      a.skip-to-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translateX(-100%);
+      }
+
+      a.skip-to-content:focus-visible {
+        position: relative;
+        transform: translateX(0%);
+      }
+
       /* Typography */
 
       .small {
@@ -258,6 +272,115 @@
         .body--uppercase,
         .body--bold {
           font-size: 12px !important;
+        }
+      }
+
+      /* Header */
+
+      header {
+        position: relative;
+      }
+
+      #site-header {
+        width: 100%;
+        z-index: 9996;
+      }
+
+      #header-spacer {
+        height: var(--space-xl);
+      }
+
+      #site-header.header-fixed {
+        position: fixed;
+        top: 0;
+        border-bottom: 1px solid var(--neutral-200);
+      }
+
+      #site-header.header-fixed.is-visible {
+        top: 0;
+      }
+
+      .header {
+        background-color: var(--white);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: var(--space-xl);
+        padding: 0 var(--space-m);
+      }
+
+      .header__logo {
+        display: flex;
+        align-items: center;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .header__icons {
+        display: flex;
+        list-style: none;
+        gap: var(--space-s);
+        align-items: center;
+      }
+
+      .hamburger-menu {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 17px;
+        height: 17px;
+      }
+
+      .hamburger-svg {
+        display: block;
+        width: 17px;
+        height: 17px;
+      }
+
+      .hamburger-line {
+        transition: all 0.3s ease;
+        transform-origin: center;
+        transform-box: fill-box;
+      }
+
+      .nav-open .top-line {
+        transform: translate(0, 4px) rotate(45deg);
+      }
+
+      .nav-open .bottom-line {
+        transform: translate(0, -4px) rotate(-45deg);
+      }
+
+      .cart-indicator {
+        display: block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #ff0000;
+        position: absolute;
+        bottom: -2px;
+        right: -5px;
+      }
+
+      .header__search-desktop {
+        display: none;
+      }
+
+      @media screen and (min-width: 769px) {
+        .header__search-desktop {
+          display: block;
+          margin-top: 3px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .header__logo {
+          width: 160px;
         }
       }
     </style>
