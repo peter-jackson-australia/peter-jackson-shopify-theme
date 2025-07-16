@@ -12,26 +12,29 @@
     <div
       class="product-card__image-wrapper"
       {% if product.images.size > 1 %}
-        x-data="{isHovering:false,splideInstance:null,isSplideLoaded:false,showSlider:false,bar:null,initSlider(){if(!this.isHovering||!this.isSplideLoaded||this.splideInstance)return;const sliderHTML=`<div class='product-card__slider-wrapper' style='position: absolute; top: 0; left: 0; width: 100%; height: 100%;'><div class='splide product-card__slider' style='height: 100%;'><div class='splide__arrows' style='position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; pointer-events: none;'><button class='splide__arrow splide__arrow--prev' style='position: absolute; left: calc(var(--space-3xs) - 6px); top: 50%; transform: translateY(-50%); pointer-events: auto;'><svg width='7' height='12' viewBox='0 0 7 12' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M6 1L1 6L6 11' stroke='#0F0F0F' stroke-linecap='square'/></svg></button><button class='splide__arrow splide__arrow--next' style='position: absolute; right: calc(var(--space-3xs) - 6px); top: 50%; transform: translateY(-50%); pointer-events: auto;'><svg width='7' height='12' viewBox='0 0 7 12' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M1 1L6 6L1 11' stroke='#0F0F0F' stroke-linecap='square'/></svg></button></div><div class='splide__track'><ul class='splide__list'>{% for image in product.images %}<li class='splide__slide'><img src='{{ image | image_url: width: product.featured_image.width }}' sizes='(max-width: 768px) 100px, 1200px', alt='{{ image.alt | escape | default: product.title }}' class='product-card__image' width='720' loading='eager' decoding='async'></li>{% endfor %}</ul></div><div class='splide__progress'><div class='splide__progress__bar'></div></div></div></div>`;this.$refs.sliderContainer.innerHTML=sliderHTML;try{this.splideInstance=new Splide(this.$refs.sliderContainer.querySelector('.splide'),{start:0,type:'slide',arrows:true,perPage:1,perMove:1,pagination:false,rewind:false,drag:true,waitForTransition:true,speed:300});this.bar=this.$refs.sliderContainer.querySelector('.splide__progress__bar');const self=this;this.splideInstance.on('mounted move',function(){var end=self.splideInstance.Components.Controller.getEnd()+1;var rate=Math.min((self.splideInstance.index+1)/end,1);self.bar.style.width=String(100*rate)+'%'});this.splideInstance.mount();this.showSlider=true;{% if prominent_discount_mobile and product.metafields.custom.discount_bundle_name != blank %}const discountEl=document.createElement('p');discountEl.className='small product-card__discount-code-prominent';discountEl.innerHTML='{{ product.metafields.custom.discount_bundle_name | metafield_tag | escape }}';this.$refs.sliderContainer.querySelector('.splide').appendChild(discountEl);{% endif %}}catch(e){console.error('Failed to initialize Splide',e);this.isSplideLoaded=false}}}"
+        x-data="{isHovering:false,splideInstance:null,isSplideLoaded:false,showSlider:false,bar:null,initSlider(){if(!this.isHovering||!this.isSplideLoaded||this.splideInstance)return;const sliderHTML=`<div class='product-card__slider-wrapper' style='position: absolute; top: 0; left: 0; width: 100%; height: 100%;'><div class='splide product-card__slider' style='height: 100%;'><div class='splide__arrows' style='position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; pointer-events: none;'><button class='splide__arrow splide__arrow--prev' style='position: absolute; left: calc(var(--space-3xs) - 6px); top: 50%; transform: translateY(-50%); pointer-events: auto;'><svg width='7' height='12' viewBox='0 0 7 12' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M6 1L1 6L6 11' stroke='#0F0F0F' stroke-linecap='square'/></svg></button><button class='splide__arrow splide__arrow--next' style='position: absolute; right: calc(var(--space-3xs) - 6px); top: 50%; transform: translateY(-50%); pointer-events: auto;'><svg width='7' height='12' viewBox='0 0 7 12' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M1 1L6 6L1 11' stroke='#0F0F0F' stroke-linecap='square'/></svg></button></div><div class='splide__track'><ul class='splide__list'>{% for image in product.images %}<li class='splide__slide'><img src='{{ image | image_url: width: 720 }}' srcset='{{ image | image_url: width: 200 }} 200w,{{ image | image_url: width: 400 }} 400w,{{ image | image_url: width: 720 }} 720w,' sizes='(max-width: 768px) 100vw, 50vw' alt='{{ image.alt | escape | default: product.title }}' class='product-card__image' width='720' loading='eager' decoding='async'></li>{% endfor %}</ul></div><div class='splide__progress'><div class='splide__progress__bar'></div></div></div></div>`;this.$refs.sliderContainer.innerHTML=sliderHTML;try{this.splideInstance=new Splide(this.$refs.sliderContainer.querySelector('.splide'),{start:0,type:'slide',arrows:true,perPage:1,perMove:1,pagination:false,rewind:false,drag:true,waitForTransition:true,speed:300});this.bar=this.$refs.sliderContainer.querySelector('.splide__progress__bar');const self=this;this.splideInstance.on('mounted move',function(){var end=self.splideInstance.Components.Controller.getEnd()+1;var rate=Math.min((self.splideInstance.index+1)/end,1);self.bar.style.width=String(100*rate)+'%'});this.splideInstance.mount();this.showSlider=true;{% if prominent_discount_mobile and product.metafields.custom.discount_bundle_name != blank %}const discountEl=document.createElement('p');discountEl.className='small product-card__discount-code-prominent';discountEl.innerHTML='{{ product.metafields.custom.discount_bundle_name | metafield_tag | escape }}';this.$refs.sliderContainer.querySelector('.splide').appendChild(discountEl);{% endif %}}catch(e){console.error('Failed to initialize Splide',e);this.isSplideLoaded=false}}}"
         x-init="const checkSplide=()=>{if(typeof window.Splide!=='undefined'){isSplideLoaded=true;if(isHovering)initSlider()}else{setTimeout(checkSplide,100)}};checkSplide()"
         @mouseenter="isHovering=true;if(isSplideLoaded){initSlider()}"
         @mouseleave="isHovering=false;showSlider=false;if(splideInstance){splideInstance.destroy();splideInstance=null;$refs.sliderContainer.innerHTML=''}"
       {% endif %}
     >
       <div style="background-color: var(--neutral-50); position: relative; width: 100%; padding-bottom: calc({{ image_height | times: 1.0 | divided_by: image_width | times: 100 }}%);">
-        {{
-          product.featured_image
-          | image_url: width: product.featured_image.width
-          | image_tag:
-            class: 'product-card__image',
-            sizes: '(max-width: 768px) 100px, 1200px',
-            loading: 'eager',
-            decoding: 'async',
-            alt: image_alt,
-            width: 720,
-            height: image_height,
-            style: 'position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;'
-        }}
+        <img
+          src="{{ product.featured_image | image_url: width: 720 }}"
+          srcset="
+            {{ product.featured_image | image_url: width: 100 }} 100w,
+            {{ product.featured_image | image_url: width: 200 }} 200w,
+            {{ product.featured_image | image_url: width: 720 }} 720w,
+          "
+          sizes="(max-width: 768px) 100vw, 50vw"
+          alt="{{ image_alt }}"
+          class="product-card__image"
+          width="720"
+          height="{{ image_height }}"
+          loading="eager"
+          decoding="async"
+          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
+        >
         {% if prominent_discount_mobile and product.metafields.custom.discount_bundle_name != blank %}
           <p class="small product-card__discount-code-prominent">
             {{ product.metafields.custom.discount_bundle_name | metafield_tag }}
