@@ -21,7 +21,7 @@
       <div style="background-color: var(--neutral-50); position: relative; width: 100%; padding-bottom: calc({{ image_height | times: 1.0 | divided_by: image_width | times: 100 }}%);">
         {{
           product.featured_image
-          | image_url: product.featured_image.width
+          | image_url: product.featured_image
           | image_tag:
             class: 'product-card__image',
             sizes: '(max-width: 768px) 100px, 720px',
