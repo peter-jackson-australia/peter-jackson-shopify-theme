@@ -73,10 +73,17 @@
     gap: var(--space-2xs);
     padding: var(--space-s) 0;
     color: var(--neutral-600);
+    margin-top: var(--space-m);
   }
 
   .predictive-search {
     margin-top: var(--space-m);
+  }
+
+  .predictive-search__no-results {
+    color: var(--neutral-600);
+    margin-top: var(--space-m);
+    padding: var(--space-s) 0;
   }
 
   .predictive-search__title {
@@ -198,6 +205,14 @@
       >
         <span class="loader--spinner"></span>
         Searching...
+      </div>
+
+      <div
+        class="predictive-search__no-results body"
+        x-show="$store.search.query.length > 0 && !isLoading && predictiveResults && (!predictiveResults.products || predictiveResults.products.length === 0)"
+        x-transition
+      >
+        No results found
       </div>
 
       <div
