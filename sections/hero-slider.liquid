@@ -217,8 +217,10 @@
           {% if block.settings.media_type == 'image' %}
             {% if block.settings.desktop_image %}
               {% assign loading_attr = 'lazy' %}
+              {% assign fetch_priority = 'low' %}
               {% if forloop.first %}
                 {% assign loading_attr = 'eager' %}
+                {% assign fetch_priority = 'high' %}
               {% endif %}
 
               <picture>
