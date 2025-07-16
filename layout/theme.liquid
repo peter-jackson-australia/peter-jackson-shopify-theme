@@ -21,8 +21,10 @@
     {% endif %}
 
     <link rel="canonical" href="{{ canonical_url }}">
+    {% comment %}
+      Klaviyo Newsletter Image Preloading
+    {% endcomment %}
     {{ 'theme.css' | asset_url | stylesheet_tag }}
-    {{ 'snippet-menu.css' | asset_url | stylesheet_tag }}
 
     {% comment %}
       Klaviyo Newsletter Image Preloading
