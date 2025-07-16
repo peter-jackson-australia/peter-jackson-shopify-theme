@@ -236,7 +236,7 @@
 
                 {{
                   block.settings.desktop_image
-                  | image_url: width: 3000
+                  | image_url: width: block.settings.desktop_image.width
                   | image_tag:
                     class: 'hero-slider__background',
                     loading: loading_attr,
