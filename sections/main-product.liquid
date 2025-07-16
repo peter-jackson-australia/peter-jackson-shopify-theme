@@ -776,7 +776,11 @@
                   {{
                     image
                     | image_url: width: image.width
-                    | image_tag: sizes: '(max-width: 768px) 500px, 720px', alt: image.alt, loading: 'lazy'
+                    | image_tag:
+                      sizes: '(max-width: 768px) 500px, 720px',
+                      alt: image.alt,
+                      loading: 'lazy',
+                      decoding: 'async'
                   }}
                 {% endif %}
               </li>
