@@ -385,7 +385,7 @@
       }
     </style>
 
-    <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}" media="print" onload="this.media='all'">
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
 
     {% comment %}
       Klaviyo Newsletter Image Preloading
