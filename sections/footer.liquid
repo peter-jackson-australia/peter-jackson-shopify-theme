@@ -408,17 +408,29 @@
     <div class="footer__social">
       {% if section.settings.social_icon_1 != blank and section.settings.social_link_1 != blank %}
         <a href="{{ section.settings.social_link_1 }}" target="_blank">
-          {{ section.settings.social_icon_1 | image_url: width: 34 | image_tag: class: 'footer__social-icon' }}
+          {{
+            section.settings.social_icon_1
+            | image_url: width: 34
+            | image_tag: class: 'footer__social-icon', loading: 'lazy', decoding: 'async'
+          }}
         </a>
       {% endif %}
       {% if section.settings.social_icon_2 != blank and section.settings.social_link_2 != blank %}
         <a href="{{ section.settings.social_link_2 }}" target="_blank">
-          {{ section.settings.social_icon_2 | image_url: width: 34 | image_tag: class: 'footer__social-icon' }}
+          {{
+            section.settings.social_icon_2
+            | image_url: width: 34
+            | image_tag: class: 'footer__social-icon', loading: 'lazy', decoding: 'async'
+          }}
         </a>
       {% endif %}
       {% if section.settings.social_icon_3 != blank and section.settings.social_link_3 != blank %}
         <a href="{{ section.settings.social_link_3 }}" target="_blank">
-          {{ section.settings.social_icon_3 | image_url: width: 34 | image_tag: class: 'footer__social-icon' }}
+          {{
+            section.settings.social_icon_3
+            | image_url: width: 34
+            | image_tag: class: 'footer__social-icon', loading: 'lazy', decoding: 'async'
+          }}
         </a>
       {% endif %}
     </div>
