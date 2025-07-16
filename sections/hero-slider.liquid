@@ -227,10 +227,6 @@
                 {% if block.settings.mobile_image %}
                   <source
                     media="(max-width: 768px)"
-                    srcset="
-                      {{ block.settings.mobile_image | image_url: width: 400 }} 1x,
-                      {{ block.settings.mobile_image | image_url: width: 800 }} 2x
-                    "
                   >
                 {% endif %}
 
