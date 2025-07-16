@@ -305,7 +305,6 @@
 
         window.closeSearch = () => this.closeSearch();
 
-        // Watch for changes in the search query
         this.$watch('$store.search.query', (value) => {
           this.handleSearchInput(value);
         });
@@ -395,12 +394,9 @@
             if (link && title) {
               let imageUrl = null;
               if (img) {
-                // Get the original image URL and resize it to 150px
                 const originalSrc = img.getAttribute('src');
                 if (originalSrc) {
-                  // Replace any existing width parameter with 150px
                   imageUrl = originalSrc.replace(/width=\d+/, 'width=150');
-                  // If no width parameter exists, add it
                   if (!imageUrl.includes('width=')) {
                     imageUrl = originalSrc + (originalSrc.includes('?') ? '&' : '?') + 'width=150';
                   }
