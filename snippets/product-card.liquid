@@ -21,6 +21,11 @@
       <div style="background-color: var(--neutral-50); position: relative; width: 100%; padding-bottom: calc({{ image_height | times: 1.0 | divided_by: image_width | times: 100 }}%);">
         <img
           src="{{ product.featured_image | image_url: width: 720 }}"
+          srcset="
+            {{ product.featured_image | image_url: width: 100 }} 100w,
+            {{ product.featured_image | image_url: width: 200 }} 200w,
+            {{ product.featured_image | image_url: width: 720 }} 720w,
+          "
           sizes="(max-width: 768px) 100vw, 50vw"
           alt="{{ image_alt }}"
           class="product-card__image"
