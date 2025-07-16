@@ -157,7 +157,7 @@
                 {% endif %}
                 {{
                   block.settings.image
-                  | image_url: width: 412
+                  | image_url: width: block.settings.image.width
                   | image_tag:
                     class: 'variable-column-content-secondary__image',
                     loading: 'lazy',
