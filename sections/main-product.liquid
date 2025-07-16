@@ -764,7 +764,7 @@
                 {% if forloop.first %}
                   {{
                     image
-                    | image_url: width: 1440
+                    | image_url: width: image.width
                     | image_tag: alt: image.alt, loading: 'eager', fetchpriority: 'high'
                   }}
                 {% else %}
