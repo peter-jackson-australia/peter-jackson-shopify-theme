@@ -158,12 +158,9 @@
                 {{
                   block.settings.image
                   | image_url: width: block.settings.image.width
-                  | image_tag:
-                    class: 'variable-column-content-secondary__image',
-                    sizes: '(max-width: 767px) 200px, 1440px',
-                    loading: 'lazy',
-                    decoding: 'async',
-                    alt: block.settings.image.alt
+                  | image_tag: class: 'variable-column-content-secondary__image', sizes: '(max-width: 767px) 200px, '
+                  | append: block.settings.image.width
+                  | append: 'px', loading: 'lazy', decoding: 'async', alt: block.settings.image.alt
                 }}
                 {% if block.settings.image_link != blank %}
                   </a>
