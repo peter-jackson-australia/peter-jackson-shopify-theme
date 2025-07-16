@@ -23,12 +23,13 @@
       {% endif %}
     >
       <div style="background-color: var(--neutral-50); position: relative; width: 100%; padding-bottom: calc({{ image_height | times: 1.0 | divided_by: image_width | times: 100 }}%);">
+        <!-- First Image (Default) -->
         {{
           product.featured_image
-          | image_url: width: product.featured_image.width
+          | image_url: width: 720
           | image_tag:
             class: 'product-card__image',
-            sizes: '(max-width: 768px) 100px, 720px',
+            sizes: '(max-width: 768px) 100px, 1200px',
             loading: 'eager',
             decoding: 'async',
             alt: image_alt,
@@ -38,14 +39,24 @@
         }}
 
         {% if product.images.size > 1 %}
-          <div x-show="showSecondImage" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+          <!-- Second Image (Hover) -->
+          <div
+            x-show="showSecondImage"
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100"
+            x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+          >
             {{
               product.images[1]
-              | image_url: width: product.featured_image.width
+              | image_url: width: 720
               | image_tag:
                 class: 'product-card__image',
-                sizes: '(max-width: 768px) 100px, 720px',
-                loading: 'eager',
+                sizes: '(max-width: 768px) 100px, 1200px',
+                loading: 'lazy',
                 decoding: 'async',
                 alt: product.images[1].alt
               | escape
