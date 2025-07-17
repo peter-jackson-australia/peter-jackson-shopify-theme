@@ -421,9 +421,9 @@
           const products = [];
           const collections = [];
 
-          // Process products
+          // Process products (max 5)
           if (data.resources && data.resources.results && data.resources.results.products) {
-            data.resources.results.products.forEach((product) => {
+            data.resources.results.products.slice(0, 5).forEach((product) => {
               let imageUrl = null;
               if (product.image) {
                 imageUrl = product.image.replace(/width=\d+/, 'width=150');
@@ -441,14 +441,15 @@
             });
           }
 
-          // Process collections
+          // Process collections (max 3)
           if (data.resources && data.resources.results && data.resources.results.collections) {
-            data.resources.results.collections.forEach((collection) => {
+            data.resources.results.collections.slice(0, 3).forEach((collection) => {
               let imageUrl = null;
-              if (collection.image) {
-                imageUrl = collection.image.replace(/width=\d+/, 'width=150');
+              if (collection.featured_image) {
+                imageUrl = collection.featured_image.replace(/width=\d+/, 'width=150');
                 if (!imageUrl.includes('width=')) {
-                  imageUrl = collection.image + (collection.image.includes('?') ? '&' : '?') + 'width=150';
+                  imageUrl =
+                    collection.featured_image + (collection.featured_image.includes('?') ? '&' : '?') + 'width=150';
                 }
               }
 
@@ -463,7 +464,7 @@
 
           this.predictiveResults = {
             products,
-            collections: collections.slice(0, 3),
+            collections,
           };
           this.isLoading = false;
         } catch (error) {
