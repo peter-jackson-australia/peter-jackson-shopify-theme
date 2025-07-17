@@ -213,7 +213,7 @@
   .sub-drawer {
     position: fixed;
     top: 0;
-    right: 0px;
+    right: -400px;
     width: 400px;
     height: 100%;
     background: var(--white);
@@ -225,7 +225,7 @@
   }
 
   .sub-drawer--active {
-    right: 400px;
+    right: 0px;
   }
 
   .sub-drawer__content {
@@ -434,7 +434,7 @@
     </div>
   </div>
 
-  <div class="sub-drawer" :class="{ 'sub-drawer--active': subDrawerOpen }">
+  <div class="sub-drawer" :class="{ 'sub-drawer--active': subDrawerOpen }" @click.stop>
     <div class="sub-drawer__content">
       <div class="faq-list">
         {% if section.settings.faq_1_title != blank %}
@@ -452,7 +452,7 @@
 
         {% if section.settings.faq_2_title != blank %}
           <div class="faq-item">
-            <h3 class="faq-item__title heading--m">{{ section.settings.faq_2_title }}</h3>
+            <h3 class="faq-item__title body--bold">{{ section.settings.faq_2_title }}</h3>
             <p
               class="faq-item__description body"
               x-text="truncateText('{{ section.settings.faq_2_description | escape }}', 200)"
@@ -465,7 +465,7 @@
 
         {% if section.settings.faq_3_title != blank %}
           <div class="faq-item">
-            <h3 class="faq-item__title heading--m">{{ section.settings.faq_3_title }}</h3>
+            <h3 class="faq-item__title body--bold">{{ section.settings.faq_3_title }}</h3>
             <p
               class="faq-item__description body"
               x-text="truncateText('{{ section.settings.faq_3_description | escape }}', 200)"
@@ -478,7 +478,7 @@
 
         {% if section.settings.faq_4_title != blank %}
           <div class="faq-item">
-            <h3 class="faq-item__title heading--m">{{ section.settings.faq_4_title }}</h3>
+            <h3 class="faq-item__title body--bold">{{ section.settings.faq_4_title }}</h3>
             <p
               class="faq-item__description body"
               x-text="truncateText('{{ section.settings.faq_4_description | escape }}', 200)"
