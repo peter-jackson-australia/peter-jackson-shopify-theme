@@ -378,11 +378,11 @@
       <div class="sub-drawer-trigger" @click.stop="toggleSubDrawer()">Click to open sub-drawer</div>
     </div>
   </div>
-</aside>
 
-<div class="sub-drawer" :class="{ 'sub-drawer--active': subDrawerOpen }">
-  <!-- Empty sub-drawer content -->
-</div>
+  <div class="sub-drawer" :class="{ 'sub-drawer--active': subDrawerOpen }">
+    <!-- Empty sub-drawer content -->
+  </div>
+</aside>
 
 <script>
   document.addEventListener('alpine:init', () => {
