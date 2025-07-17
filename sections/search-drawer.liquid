@@ -406,9 +406,9 @@
       async fetchPredictiveResults(query) {
         try {
           const response = await fetch(
-            `{{ routes.predictive_search_url }}?q=${encodeURIComponent(
+            `/search/suggest.json?q=${encodeURIComponent(
               query
-            )}&resources[type]=product&resources[type]=collection&resources[limit]=10&section_id=predictive-search`
+            )}&resources[type]=product,collection&resources[limit]=10&resources[limit_scope]=each`
           );
 
           if (!response.ok) {
@@ -416,47 +416,50 @@
             return;
           }
 
-          const text = await response.text();
-          const parser = new DOMParser();
-          const doc = parser.parseFromString(text, 'text/html');
+          const data = await response.json();
 
           const products = [];
           const collections = [];
-          const allElements = doc.querySelectorAll('[role="option"]');
 
-          allElements.forEach((element) => {
-            const link = element.querySelector('a');
-            const img = element.querySelector('img');
-            const title = element.querySelector('span');
-
-            if (link && title) {
+          // Process products
+          if (data.resources && data.resources.results && data.resources.results.products) {
+            data.resources.results.products.forEach((product) => {
               let imageUrl = null;
-              if (img) {
-                const originalSrc = img.getAttribute('src');
-                if (originalSrc) {
-                  imageUrl = originalSrc.replace(/width=\d+/, 'width=150');
-                  if (!imageUrl.includes('width=')) {
-                    imageUrl = originalSrc + (originalSrc.includes('?') ? '&' : '?') + 'width=150';
-                  }
+              if (product.image) {
+                imageUrl = product.image.replace(/width=\d+/, 'width=150');
+                if (!imageUrl.includes('width=')) {
+                  imageUrl = product.image + (product.image.includes('?') ? '&' : '?') + 'width=150';
                 }
               }
 
-              const url = link.getAttribute('href');
-              const item = {
-                id: url,
-                url: url,
-                title: title.textContent.trim(),
+              products.push({
+                id: product.id,
+                url: product.url,
+                title: product.title,
                 image: imageUrl,
-              };
+              });
+            });
+          }
 
-              // Check if it's a collection URL
-              if (url.includes('/collections/')) {
-                collections.push(item);
-              } else {
-                products.push(item);
+          // Process collections
+          if (data.resources && data.resources.results && data.resources.results.collections) {
+            data.resources.results.collections.forEach((collection) => {
+              let imageUrl = null;
+              if (collection.image) {
+                imageUrl = collection.image.replace(/width=\d+/, 'width=150');
+                if (!imageUrl.includes('width=')) {
+                  imageUrl = collection.image + (collection.image.includes('?') ? '&' : '?') + 'width=150';
+                }
               }
-            }
-          });
+
+              collections.push({
+                id: collection.id,
+                url: collection.url,
+                title: collection.title,
+                image: imageUrl,
+              });
+            });
+          }
 
           this.predictiveResults = {
             products,
