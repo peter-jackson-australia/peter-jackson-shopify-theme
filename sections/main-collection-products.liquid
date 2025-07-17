@@ -1,5 +1,5 @@
 {% comment %}
-  Collection Products - Mobile Grid Toggle Removed
+  Collection Products - Fixed Version
 {% endcomment %}
 
 <script src="{{ 'ajaxinate.min.js' | asset_url }}" defer></script>
@@ -72,8 +72,12 @@
     display: flex;
     justify-content: space-between;
     padding: var(--space-2xs) var(--space-m);
-    background-color: var(--white);
-    color: var(--neutral-950);
+    background-color: var(--neutral-950);
+    color: var(--white);
+  }
+
+  .collection-controls.controls-fixed > .collection-controls__filter-button > span {
+    filter: invert(1);
   }
 
   #controls-spacer {
@@ -455,10 +459,18 @@
 
   @media (max-width: 768px) {
     .products-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .products-grid--cols-2 {
+      grid-template-columns: 1fr !important;
+    }
+
+    .products-grid--cols-4 {
       grid-template-columns: repeat(2, 1fr) !important;
     }
 
-    .grid-content {
+    .products-grid--cols-2 .grid-content {
       grid-column: span 1;
     }
 
@@ -487,11 +499,6 @@
       background-color: var(--neutral-950);
       text-align: center;
       padding: var(--space-3xs);
-    }
-
-    /* Hide grid toggle button on mobile */
-    .grid-toggle-btn {
-      display: none;
     }
   }
 </style>
@@ -631,9 +638,18 @@
                 aria-label="Change the grid view"
                 class="btn grid-toggle-btn"
                 @click="expandedGrid = !expandedGrid"
+                x-data="{ isMobile: window.innerWidth < 768 }"
+                x-init="
+                  window.addEventListener('resize', () => {
+                    isMobile = window.innerWidth < 768;
+                  })
+                "
               >
-                <span x-cloak x-show="expandedGrid">{% render '_icon-grid-2' %}</span>
-                <span x-cloak x-show="!expandedGrid">{% render '_icon-grid-4' %}</span>
+                <span x-cloak x-show="!isMobile && expandedGrid">{% render '_icon-grid-2' %}</span>
+                <span x-cloak x-show="!isMobile && !expandedGrid">{% render '_icon-grid-4' %}</span>
+
+                <span x-cloak x-show="isMobile && expandedGrid">{% render '_icon-grid-1' %}</span>
+                <span x-cloak x-show="isMobile && !expandedGrid">{% render '_icon-grid-2' %}</span>
               </button>
             </div>
           </div>
@@ -775,6 +791,14 @@
       },
       true
     );
+
+    document.querySelectorAll('[x-data]').forEach((el) => {
+      if (el.hasAttribute('x-data') && el.__x) {
+        if (el.__x.$data.hasOwnProperty('isMobile')) {
+          el.__x.$data.isMobile = window.innerWidth < 768;
+        }
+      }
+    });
   });
 {% endjavascript %}
 
