@@ -391,7 +391,7 @@
       handleSearchInput(query) {
         clearTimeout(this.searchTimeout);
 
-        if (query.length < 1) {
+        if (query.length < 2) {
           this.predictiveResults = null;
           this.isLoading = false;
           return;
