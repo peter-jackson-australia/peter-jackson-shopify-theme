@@ -462,7 +462,6 @@
       handleSearchInput(query) {
         clearTimeout(this.searchTimeout);
 
-        // Cancel any existing request
         if (this.currentController) {
           this.currentController.abort();
           this.currentController = null;
