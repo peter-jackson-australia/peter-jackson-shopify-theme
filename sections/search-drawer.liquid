@@ -256,16 +256,6 @@
               <template x-for="collection in predictiveResults.collections" :key="collection.id">
                 <li class="predictive-search__item">
                   <a :href="collection.url" class="predictive-search__link">
-                    <div class="predictive-search__image-container">
-                      <img
-                        :src="collection.image"
-                        :alt="collection.title"
-                        class="predictive-search__image"
-                        loading="lazy"
-                        width="40"
-                        height="40"
-                      >
-                    </div>
                     <span class="predictive-search__text body" x-text="collection.title"></span>
                   </a>
                 </li>
