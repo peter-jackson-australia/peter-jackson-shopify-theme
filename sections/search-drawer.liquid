@@ -421,7 +421,6 @@
           const products = [];
           const collections = [];
 
-          // Process products
           if (data.resources && data.resources.results && data.resources.results.products) {
             data.resources.results.products.forEach((product) => {
               let imageUrl = null;
@@ -441,7 +440,6 @@
             });
           }
 
-          // Process collections
           if (data.resources && data.resources.results && data.resources.results.collections) {
             data.resources.results.collections.forEach((collection) => {
               let imageUrl = null;
