@@ -408,7 +408,7 @@
           const response = await fetch(
             `{{ routes.predictive_search_url }}?q=${encodeURIComponent(
               query
-            )}&resources[type]=product,collection&resources[limit]=6&resources[limit_scope]=each&section_id=predictive-search`
+            )}&resources[type]=product&resources[type]=collection&resources[limit]=10&section_id=predictive-search`
           );
 
           if (!response.ok) {
