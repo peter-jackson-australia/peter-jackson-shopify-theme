@@ -109,10 +109,20 @@
     transition: all 0.2s ease;
   }
 
-  .predictive-search__image {
+  .predictive-search__image-container {
     width: 40px;
-    height: auto;
-    max-width: 40px;
+    height: 40px;
+    background-color: var(--neutral-200);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .predictive-search__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .predictive-search__text {
@@ -203,7 +213,7 @@
 
       <div
         class="predictive-search__no-results small"
-        x-show="$store.search.query.length > 0 && !isLoading && predictiveResults && (!predictiveResults.products || predictiveResults.products.length === 0)"
+        x-show="$store.search.query.length > 0 && !isLoading && predictiveResults && (!predictiveResults.products || predictiveResults.products.length === 0) && (!predictiveResults.collections || predictiveResults.collections.length === 0)"
         x-transition
       >
         No results found
@@ -221,15 +231,38 @@
               <template x-for="product in predictiveResults.products" :key="product.id">
                 <li class="predictive-search__item">
                   <a :href="product.url" class="predictive-search__link">
-                    <img
-                      :src="product.image"
-                      :alt="product.title"
-                      class="predictive-search__image"
-                      loading="lazy"
-                      width="40"
-                      height="40"
-                    >
+                    <div class="predictive-search__image-container">
+                      <img
+                        :src="product.image"
+                        :alt="product.title"
+                        class="predictive-search__image"
+                        loading="lazy"
+                      >
+                    </div>
                     <span class="predictive-search__text body" x-text="product.title"></span>
+                  </a>
+                </li>
+              </template>
+            </ul>
+          </div>
+        </template>
+
+        <template x-if="predictiveResults && predictiveResults.collections && predictiveResults.collections.length > 0">
+          <div>
+            <h3 class="predictive-search__title heading--l">Collections</h3>
+            <ul class="predictive-search__results">
+              <template x-for="collection in predictiveResults.collections" :key="collection.id">
+                <li class="predictive-search__item">
+                  <a :href="collection.url" class="predictive-search__link">
+                    <div class="predictive-search__image-container">
+                      <img
+                        :src="collection.image"
+                        :alt="collection.title"
+                        class="predictive-search__image"
+                        loading="lazy"
+                      >
+                    </div>
+                    <span class="predictive-search__text body" x-text="collection.title"></span>
                   </a>
                 </li>
               </template>
@@ -371,7 +404,7 @@
           const response = await fetch(
             `{{ routes.predictive_search_url }}?q=${encodeURIComponent(
               query
-            )}&resources[type]=product&resources[limit]=6&section_id=predictive-search`
+            )}&resources[type]=product,collection&resources[limit]=6&resources[limit_scope]=each&section_id=predictive-search`
           );
 
           if (!response.ok) {
@@ -384,7 +417,10 @@
           const doc = parser.parseFromString(text, 'text/html');
 
           const products = [];
-          const productElements = doc.querySelectorAll('[role="option"]');
+          const collections = [];
+
+          const productElements = doc.querySelectorAll('[data-predictive-search-type="product"]');
+          const collectionElements = doc.querySelectorAll('[data-predictive-search-type="collection"]');
 
           productElements.forEach((element) => {
             const link = element.querySelector('a');
@@ -412,7 +448,36 @@
             }
           });
 
-          this.predictiveResults = { products };
+          collectionElements.forEach((element) => {
+            const link = element.querySelector('a');
+            const img = element.querySelector('img');
+            const title = element.querySelector('span');
+
+            if (link && title) {
+              let imageUrl = null;
+              if (img) {
+                const originalSrc = img.getAttribute('src');
+                if (originalSrc) {
+                  imageUrl = originalSrc.replace(/width=\d+/, 'width=150');
+                  if (!imageUrl.includes('width=')) {
+                    imageUrl = originalSrc + (originalSrc.includes('?') ? '&' : '?') + 'width=150';
+                  }
+                }
+              }
+
+              collections.push({
+                id: link.getAttribute('href'),
+                url: link.getAttribute('href'),
+                title: title.textContent.trim(),
+                image: imageUrl,
+              });
+            }
+          });
+
+          this.predictiveResults = {
+            products,
+            collections: collections.slice(0, 3),
+          };
           this.isLoading = false;
         } catch (error) {
           console.error('Predictive search error:', error);
