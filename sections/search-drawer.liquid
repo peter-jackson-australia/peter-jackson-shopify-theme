@@ -210,12 +210,6 @@
       <div
         class="search-drawer__loading small"
         x-show="isLoading"
-        x-transition:enter="transition ease-out duration-150"
-        x-transition:enter-start="opacity-0"
-        x-transition:enter-end="opacity-100"
-        x-transition:leave="transition ease-in duration-100"
-        x-transition:leave-start="opacity-100"
-        x-transition:leave-end="opacity-0"
       >
         <div class="animated-loader">
           <svg fill="#E7E7E7" style="height:4px;display:block" viewBox="0 0 40 4" xmlns="http://www.w3.org/2000/svg">
@@ -231,9 +225,6 @@
       <div
         class="predictive-search__no-results small"
         x-show="$store.search.query.length > 0 && !isLoading && predictiveResults && (!predictiveResults.products || predictiveResults.products.length === 0) && (!predictiveResults.collections || predictiveResults.collections.length === 0)"
-        x-transition:enter="transition ease-out duration-150 delay-75"
-        x-transition:enter-start="opacity-0"
-        x-transition:enter-end="opacity-100"
       >
         No results found
       </div>
@@ -241,9 +232,6 @@
       <div
         class="predictive-search"
         x-show="$store.search.query.length > 0 && predictiveResults && !isLoading"
-        x-transition:enter="transition ease-out duration-150 delay-75"
-        x-transition:enter-start="opacity-0"
-        x-transition:enter-end="opacity-100"
       >
         <template x-if="predictiveResults && predictiveResults.products && predictiveResults.products.length > 0">
           <div>
