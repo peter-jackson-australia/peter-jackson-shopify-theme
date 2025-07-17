@@ -377,13 +377,18 @@
         {% endif %}
       </div>
 
-      <div class="sub-drawer-trigger body--uppercase" @click.stop="toggleSubDrawer()">Knowledge Base</div>
+      <div
+        class="sub-drawer-trigger body--uppercase search-state-transition"
+        x-show="$store.search.query.length === 0 && !isLoading"
+        x-transition.opacity.duration.200ms
+        @click.stop="toggleSubDrawer()"
+      >
+        Knowledge Base
+      </div>
     </div>
   </div>
 
-  <div class="sub-drawer" :class="{ 'sub-drawer--active': subDrawerOpen }">
-    <!-- Empty sub-drawer content -->
-  </div>
+  <div class="sub-drawer" :class="{ 'sub-drawer--active': subDrawerOpen }"></div>
 </aside>
 
 <script>
@@ -465,6 +470,10 @@
         if (this.currentController) {
           this.currentController.abort();
           this.currentController = null;
+        }
+
+        if (query.length > 0 && this.subDrawerOpen) {
+          this.subDrawerOpen = false;
         }
 
         if (query.length < 1) {
