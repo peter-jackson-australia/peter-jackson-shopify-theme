@@ -175,6 +175,14 @@
     height: 4px;
   }
 
+  .search-state-transition {
+    transition: opacity 200ms ease-out;
+  }
+
+  .search-state-transition[x-cloak] {
+    opacity: 0;
+  }
+
   @media screen and (max-width: 768px) {
     .search-drawer {
       display: none;
@@ -208,14 +216,9 @@
       {% render 'search-form' %}
 
       <div
-        class="search-drawer__loading small"
+        class="search-drawer__loading small search-state-transition"
         x-show="isLoading"
-        x-transition:enter="transition-opacity ease-out duration-200"
-        x-transition:enter-start="opacity-0"
-        x-transition:enter-end="opacity-100"
-        x-transition:leave="transition-opacity ease-in duration-150"
-        x-transition:leave-start="opacity-100"
-        x-transition:leave-end="opacity-0"
+        x-transition.opacity.duration.200ms
       >
         <div class="animated-loader">
           <svg fill="#E7E7E7" style="height:4px;display:block" viewBox="0 0 40 4" xmlns="http://www.w3.org/2000/svg">
@@ -229,27 +232,17 @@
       </div>
 
       <div
-        class="predictive-search__no-results small"
+        class="predictive-search__no-results small search-state-transition"
         x-show="$store.search.query.length > 0 && !isLoading && predictiveResults && (!predictiveResults.products || predictiveResults.products.length === 0) && (!predictiveResults.collections || predictiveResults.collections.length === 0)"
-        x-transition:enter="transition-opacity ease-out duration-200 delay-100"
-        x-transition:enter-start="opacity-0"
-        x-transition:enter-end="opacity-100"
-        x-transition:leave="transition-opacity ease-in duration-150"
-        x-transition:leave-start="opacity-100"
-        x-transition:leave-end="opacity-0"
+        x-transition.opacity.duration.200ms
       >
         No results found
       </div>
 
       <div
-        class="predictive-search"
+        class="predictive-search search-state-transition"
         x-show="$store.search.query.length > 0 && predictiveResults && !isLoading"
-        x-transition:enter="transition-opacity ease-out duration-200 delay-100"
-        x-transition:enter-start="opacity-0"
-        x-transition:enter-end="opacity-100"
-        x-transition:leave="transition-opacity ease-in duration-150"
-        x-transition:leave-start="opacity-100"
-        x-transition:leave-end="opacity-0"
+        x-transition.opacity.duration.200ms
       >
         <template x-if="predictiveResults && predictiveResults.products && predictiveResults.products.length > 0">
           <div>
@@ -318,14 +311,9 @@
 
       {% if has_popular_searches %}
         <div
-          class="popular-searches"
+          class="popular-searches search-state-transition"
           x-show="$store.search.query.length === 0 && !isLoading"
-          x-transition:enter="transition-opacity ease-out duration-200"
-          x-transition:enter-start="opacity-0"
-          x-transition:enter-end="opacity-100"
-          x-transition:leave="transition-opacity ease-in duration-150"
-          x-transition:leave-start="opacity-100"
-          x-transition:leave-end="opacity-0"
+          x-transition.opacity.duration.200ms
         >
           <h3 class="popular-searches__title heading--l">Popular Searches</h3>
           <ul class="popular-searches__list">
