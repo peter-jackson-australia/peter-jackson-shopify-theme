@@ -59,16 +59,74 @@
     border: none;
   }
 
-  .search-drawer__close:hover {
-    color: var(--neutral-950);
-  }
-
   .search-drawer__content {
     flex: 1;
     display: flex;
     flex-direction: column;
     padding: var(--space-m);
     padding-top: 0px;
+  }
+
+  .search-drawer__loading {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    color: var(--neutral-600);
+    margin-top: var(--space-m);
+  }
+
+  .predictive-search__no-results {
+    color: var(--neutral-600);
+    margin-top: var(--space-m);
+  }
+
+  .predictive-search__title {
+    color: var(--neutral-950);
+    margin-top: var(--space-m);
+    margin-bottom: var(--space-s);
+  }
+
+  .predictive-search__results {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .predictive-search__item {
+    margin: 0;
+    padding: 0;
+  }
+
+  .predictive-search__link {
+    color: var(--neutral-600);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: var(--space-s);
+    transition: all 0.2s ease;
+  }
+
+  .predictive-search__image {
+    width: 40px;
+    height: auto;
+    max-width: 40px;
+  }
+
+  .predictive-search__text {
+    flex: 1;
+  }
+
+  .predictive-search__search-button {
+    width: 100%;
+    background-color: var(--neutral-950);
+    color: var(--white);
+    border: none;
+    cursor: pointer;
+    margin-top: var(--space-s);
+    transition: background-color 0.2s ease;
   }
 
   .popular-searches {
@@ -100,10 +158,6 @@
     text-decoration: none;
     display: block;
     transition: color 0.2s ease;
-  }
-
-  .popular-searches__link:hover {
-    color: var(--neutral-950);
   }
 
   @media screen and (max-width: 768px) {
@@ -138,6 +192,61 @@
     <div class="search-drawer__content">
       {% render 'search-form' %}
 
+      <div
+        class="search-drawer__loading small"
+        x-show="isLoading"
+        x-transition
+      >
+        <span class="loader--spinner"></span>
+        Searching...
+      </div>
+
+      <div
+        class="predictive-search__no-results small"
+        x-show="$store.search.query.length > 0 && !isLoading && predictiveResults && (!predictiveResults.products || predictiveResults.products.length === 0)"
+        x-transition
+      >
+        No results found
+      </div>
+
+      <div
+        class="predictive-search"
+        x-show="$store.search.query.length > 0 && predictiveResults && !isLoading"
+        x-transition
+      >
+        <template x-if="predictiveResults && predictiveResults.products && predictiveResults.products.length > 0">
+          <div>
+            <h3 class="predictive-search__title heading--l">Products</h3>
+            <ul class="predictive-search__results">
+              <template x-for="product in predictiveResults.products" :key="product.id">
+                <li class="predictive-search__item">
+                  <a :href="product.url" class="predictive-search__link">
+                    <img
+                      :src="product.image"
+                      :alt="product.title"
+                      class="predictive-search__image"
+                      loading="lazy"
+                      width="40"
+                      height="40"
+                    >
+                    <span class="predictive-search__text body" x-text="product.title"></span>
+                  </a>
+                </li>
+              </template>
+            </ul>
+          </div>
+        </template>
+
+        <template x-if="$store.search.query.length > 0">
+          <button
+            type="button"
+            class="predictive-search__search-button button body"
+            @click="performSearch()"
+            x-text="`Search for '${$store.search.query}'`"
+          ></button>
+        </template>
+      </div>
+
       {% assign popular_searches = '' %}
       {% assign popular_searches = popular_searches | append: section.settings.popular_search_1 | append: '|' %}
       {% assign popular_searches = popular_searches | append: section.settings.popular_search_2 | append: '|' %}
@@ -154,7 +263,7 @@
       {% endfor %}
 
       {% if has_popular_searches %}
-        <div class="popular-searches" x-show="$store.search.query.length === 0">
+        <div class="popular-searches" x-show="$store.search.query.length === 0 && !isLoading">
           <h3 class="popular-searches__title heading--l">Popular Searches</h3>
           <ul class="popular-searches__list">
             {% for search_term in popular_searches_array %}
@@ -185,6 +294,9 @@
     Alpine.data('searchDrawer', () => ({
       isOpen: false,
       scrollY: 0,
+      predictiveResults: null,
+      searchTimeout: null,
+      isLoading: false,
 
       init() {
         window.toggleSearch = () => {
@@ -192,6 +304,10 @@
         };
 
         window.closeSearch = () => this.closeSearch();
+
+        this.$watch('$store.search.query', (value) => {
+          this.handleSearchInput(value);
+        });
       },
 
       openSearch() {
@@ -220,6 +336,8 @@
 
         this.isOpen = false;
         Alpine.store('search').query = '';
+        this.predictiveResults = null;
+        this.isLoading = false;
         document.body.classList.remove('search-open');
         document.querySelector('.search-drawer').classList.remove('search-drawer--active');
 
@@ -231,6 +349,84 @@
         window.scrollTo(0, this.scrollY);
 
         document.documentElement.style.scrollBehavior = '';
+      },
+
+      handleSearchInput(query) {
+        clearTimeout(this.searchTimeout);
+
+        if (query.length < 2) {
+          this.predictiveResults = null;
+          this.isLoading = false;
+          return;
+        }
+
+        this.isLoading = true;
+        this.searchTimeout = setTimeout(() => {
+          this.fetchPredictiveResults(query);
+        }, 300);
+      },
+
+      async fetchPredictiveResults(query) {
+        try {
+          const response = await fetch(
+            `{{ routes.predictive_search_url }}?q=${encodeURIComponent(
+              query
+            )}&resources[type]=product&resources[limit]=6&section_id=predictive-search`
+          );
+
+          if (!response.ok) {
+            this.isLoading = false;
+            return;
+          }
+
+          const text = await response.text();
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(text, 'text/html');
+
+          const products = [];
+          const productElements = doc.querySelectorAll('[role="option"]');
+
+          productElements.forEach((element) => {
+            const link = element.querySelector('a');
+            const img = element.querySelector('img');
+            const title = element.querySelector('span');
+
+            if (link && title) {
+              let imageUrl = null;
+              if (img) {
+                const originalSrc = img.getAttribute('src');
+                if (originalSrc) {
+                  imageUrl = originalSrc.replace(/width=\d+/, 'width=150');
+                  if (!imageUrl.includes('width=')) {
+                    imageUrl = originalSrc + (originalSrc.includes('?') ? '&' : '?') + 'width=150';
+                  }
+                }
+              }
+
+              products.push({
+                id: link.getAttribute('href'),
+                url: link.getAttribute('href'),
+                title: title.textContent.trim(),
+                image: imageUrl,
+              });
+            }
+          });
+
+          this.predictiveResults = { products };
+          this.isLoading = false;
+        } catch (error) {
+          console.error('Predictive search error:', error);
+          this.isLoading = false;
+        }
+      },
+
+      performSearch() {
+        const query = Alpine.store('search').query;
+        if (query.length > 0) {
+          window.location.href = `{{ routes.search_url }}?q=${encodeURIComponent(
+            query
+          )}&type=product&options[prefix]=last`;
+        }
       },
     }));
   });
