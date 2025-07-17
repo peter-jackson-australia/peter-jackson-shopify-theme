@@ -73,6 +73,13 @@
     gap: var(--space-2xs);
     color: var(--neutral-600);
     margin-top: var(--space-m);
+    position: absolute;
+    width: calc(100% - var(--space-m) * 2);
+    z-index: 1;
+  }
+
+  .search-content-wrapper {
+    position: relative;
   }
 
   .predictive-search__no-results {
@@ -215,123 +222,125 @@
     <div class="search-drawer__content">
       {% render 'search-form' %}
 
-      <div
-        class="search-drawer__loading small search-state-transition"
-        x-show="isLoading"
-        x-transition.opacity.duration.200ms
-      >
-        <div class="animated-loader">
-          <svg fill="#E7E7E7" style="height:4px;display:block" viewBox="0 0 40 4" xmlns="http://www.w3.org/2000/svg">
-            <style>
-              .react{animation:moving 1s ease-in-out infinite}
-              @keyframes moving{0%{width:0%}50%{width:100%;transform:translate(0,0)}100%{width:0;right:0;transform:translate(100%,0)}}
-            </style>
-            <rect class="react" fill="#E7E7E7" height="4" width="40" />
-          </svg>
-        </div>
-      </div>
-
-      <div
-        class="predictive-search__no-results small search-state-transition"
-        x-show="$store.search.query.length > 0 && !isLoading && predictiveResults && (!predictiveResults.products || predictiveResults.products.length === 0) && (!predictiveResults.collections || predictiveResults.collections.length === 0)"
-        x-transition.opacity.duration.200ms
-      >
-        No results found
-      </div>
-
-      <div
-        class="predictive-search search-state-transition"
-        x-show="$store.search.query.length > 0 && predictiveResults && !isLoading"
-        x-transition.opacity.duration.200ms
-      >
-        <template x-if="predictiveResults && predictiveResults.products && predictiveResults.products.length > 0">
-          <div>
-            <h3 class="predictive-search__title heading--l">Products</h3>
-            <ul class="predictive-search__results">
-              <template x-for="product in predictiveResults.products" :key="product.id">
-                <li class="predictive-search__item">
-                  <a :href="product.url" class="predictive-search__link">
-                    <div class="predictive-search__image-container">
-                      <img
-                        :src="product.image"
-                        :alt="product.title"
-                        class="predictive-search__image"
-                        loading="lazy"
-                        width="40"
-                        height="40"
-                      >
-                    </div>
-                    <span class="predictive-search__text body" x-text="product.title"></span>
-                  </a>
-                </li>
-              </template>
-            </ul>
-          </div>
-        </template>
-
-        <template x-if="predictiveResults && predictiveResults.collections && predictiveResults.collections.length > 0">
-          <div>
-            <h3 class="predictive-search__title heading--l">Collections</h3>
-            <ul class="predictive-search__results">
-              <template x-for="collection in predictiveResults.collections" :key="collection.id">
-                <li class="predictive-search__item">
-                  <a :href="collection.url" class="predictive-search__link">
-                    <span class="predictive-search__text body" x-text="collection.title"></span>
-                  </a>
-                </li>
-              </template>
-            </ul>
-          </div>
-        </template>
-
-        <template x-if="$store.search.query.length > 0 && predictiveResults && (predictiveResults.products.length > 0 || predictiveResults.collections.length > 0)">
-          <button
-            type="button"
-            class="predictive-search__search-button button body"
-            @click="performSearch()"
-            x-text="`Search for '${$store.search.query}'`"
-          ></button>
-        </template>
-      </div>
-
-      {% assign popular_searches = '' %}
-      {% assign popular_searches = popular_searches | append: section.settings.popular_search_1 | append: '|' %}
-      {% assign popular_searches = popular_searches | append: section.settings.popular_search_2 | append: '|' %}
-      {% assign popular_searches = popular_searches | append: section.settings.popular_search_3 | append: '|' %}
-      {% assign popular_searches = popular_searches | append: section.settings.popular_search_4 %}
-      {% assign popular_searches_array = popular_searches | split: '|' %}
-
-      {% assign has_popular_searches = false %}
-      {% for search_term in popular_searches_array %}
-        {% unless search_term == blank %}
-          {% assign has_popular_searches = true %}
-          {% break %}
-        {% endunless %}
-      {% endfor %}
-
-      {% if has_popular_searches %}
+      <div class="search-content-wrapper">
         <div
-          class="popular-searches search-state-transition"
-          x-show="$store.search.query.length === 0 && !isLoading"
+          class="search-drawer__loading small search-state-transition"
+          x-show="isLoading"
           x-transition.opacity.duration.200ms
         >
-          <h3 class="popular-searches__title heading--l">Popular Searches</h3>
-          <ul class="popular-searches__list">
-            {% for search_term in popular_searches_array %}
-              {% unless search_term == blank %}
-                <li class="popular-searches__item">
-                  <a
-                    href="{{ routes.search_url }}?q={{ search_term | url_param_escape }}&type=product&options[prefix]=last"
-                    class="popular-searches__link body"
-                  >
-                    {{ search_term }}
-                  </a>
-                </li>
-              {% endunless %}
-            {% endfor %}
-          </ul>
+          <div class="animated-loader">
+            <svg fill="#E7E7E7" style="height:4px;display:block" viewBox="0 0 40 4" xmlns="http://www.w3.org/2000/svg">
+              <style>
+                .react{animation:moving 1s ease-in-out infinite}
+                @keyframes moving{0%{width:0%}50%{width:100%;transform:translate(0,0)}100%{width:0;right:0;transform:translate(100%,0)}}
+              </style>
+              <rect class="react" fill="#E7E7E7" height="4" width="40" />
+            </svg>
+          </div>
         </div>
-      {% endif %}
+
+        <div
+          class="predictive-search__no-results small search-state-transition"
+          x-show="$store.search.query.length > 0 && !isLoading && predictiveResults && (!predictiveResults.products || predictiveResults.products.length === 0) && (!predictiveResults.collections || predictiveResults.collections.length === 0)"
+          x-transition.opacity.duration.200ms
+        >
+          No results found
+        </div>
+
+        <div
+          class="predictive-search search-state-transition"
+          x-show="$store.search.query.length > 0 && predictiveResults && !isLoading"
+          x-transition.opacity.duration.200ms
+        >
+          <template x-if="predictiveResults && predictiveResults.products && predictiveResults.products.length > 0">
+            <div>
+              <h3 class="predictive-search__title heading--l">Products</h3>
+              <ul class="predictive-search__results">
+                <template x-for="product in predictiveResults.products" :key="product.id">
+                  <li class="predictive-search__item">
+                    <a :href="product.url" class="predictive-search__link">
+                      <div class="predictive-search__image-container">
+                        <img
+                          :src="product.image"
+                          :alt="product.title"
+                          class="predictive-search__image"
+                          loading="lazy"
+                          width="40"
+                          height="40"
+                        >
+                      </div>
+                      <span class="predictive-search__text body" x-text="product.title"></span>
+                    </a>
+                  </li>
+                </template>
+              </ul>
+            </div>
+          </template>
+
+          <template x-if="predictiveResults && predictiveResults.collections && predictiveResults.collections.length > 0">
+            <div>
+              <h3 class="predictive-search__title heading--l">Collections</h3>
+              <ul class="predictive-search__results">
+                <template x-for="collection in predictiveResults.collections" :key="collection.id">
+                  <li class="predictive-search__item">
+                    <a :href="collection.url" class="predictive-search__link">
+                      <span class="predictive-search__text body" x-text="collection.title"></span>
+                    </a>
+                  </li>
+                </template>
+              </ul>
+            </div>
+          </template>
+
+          <template x-if="$store.search.query.length > 0 && predictiveResults && (predictiveResults.products.length > 0 || predictiveResults.collections.length > 0)">
+            <button
+              type="button"
+              class="predictive-search__search-button button body"
+              @click="performSearch()"
+              x-text="`Search for '${$store.search.query}'`"
+            ></button>
+          </template>
+        </div>
+
+        {% assign popular_searches = '' %}
+        {% assign popular_searches = popular_searches | append: section.settings.popular_search_1 | append: '|' %}
+        {% assign popular_searches = popular_searches | append: section.settings.popular_search_2 | append: '|' %}
+        {% assign popular_searches = popular_searches | append: section.settings.popular_search_3 | append: '|' %}
+        {% assign popular_searches = popular_searches | append: section.settings.popular_search_4 %}
+        {% assign popular_searches_array = popular_searches | split: '|' %}
+
+        {% assign has_popular_searches = false %}
+        {% for search_term in popular_searches_array %}
+          {% unless search_term == blank %}
+            {% assign has_popular_searches = true %}
+            {% break %}
+          {% endunless %}
+        {% endfor %}
+
+        {% if has_popular_searches %}
+          <div
+            class="popular-searches search-state-transition"
+            x-show="$store.search.query.length === 0 && !isLoading"
+            x-transition.opacity.duration.200ms
+          >
+            <h3 class="popular-searches__title heading--l">Popular Searches</h3>
+            <ul class="popular-searches__list">
+              {% for search_term in popular_searches_array %}
+                {% unless search_term == blank %}
+                  <li class="popular-searches__item">
+                    <a
+                      href="{{ routes.search_url }}?q={{ search_term | url_param_escape }}&type=product&options[prefix]=last"
+                      class="popular-searches__link body"
+                    >
+                      {{ search_term }}
+                    </a>
+                  </li>
+                {% endunless %}
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+      </div>
     </div>
   </div>
 </aside>
