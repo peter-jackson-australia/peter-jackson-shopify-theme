@@ -357,6 +357,7 @@
       predictiveResults: null,
       searchTimeout: null,
       isLoading: false,
+      currentController: null,
 
       init() {
         window.toggleSearch = () => {
@@ -414,6 +415,12 @@
       handleSearchInput(query) {
         clearTimeout(this.searchTimeout);
 
+        // Cancel any existing request
+        if (this.currentController) {
+          this.currentController.abort();
+          this.currentController = null;
+        }
+
         if (query.length < 1) {
           this.predictiveResults = null;
           this.isLoading = false;
@@ -428,10 +435,19 @@
 
       async fetchPredictiveResults(query) {
         try {
+          // Cancel any existing request
+          if (this.currentController) {
+            this.currentController.abort();
+          }
+
+          // Create new controller for this request
+          this.currentController = new AbortController();
+
           const response = await fetch(
             `/search/suggest.json?q=${encodeURIComponent(
               query
-            )}&resources[type]=product,collection&resources[limit]=5&resources[limit_scope]=each`
+            )}&resources[type]=product,collection&resources[limit]=5&resources[limit_scope]=each`,
+            { signal: this.currentController.signal }
           );
 
           if (!response.ok) {
@@ -487,9 +503,15 @@
             collections: collections.slice(0, 3),
           };
           this.isLoading = false;
+          this.currentController = null;
         } catch (error) {
+          if (error.name === 'AbortError') {
+            // Request was cancelled, ignore this error
+            return;
+          }
           console.error('Predictive search error:', error);
           this.isLoading = false;
+          this.currentController = null;
         }
       },
 
