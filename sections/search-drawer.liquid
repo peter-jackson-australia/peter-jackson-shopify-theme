@@ -412,16 +412,18 @@
           );
 
           if (!response.ok) {
+            console.error('Search API error:', response.status, response.statusText);
             this.isLoading = false;
             return;
           }
 
           const data = await response.json();
+          console.log('Search results:', data); // Debug log
 
           const products = [];
           const collections = [];
 
-          // Process products (max 5)
+          // Process products
           if (data.resources && data.resources.results && data.resources.results.products) {
             data.resources.results.products.slice(0, 5).forEach((product) => {
               let imageUrl = null;
@@ -441,15 +443,15 @@
             });
           }
 
-          // Process collections (max 3)
+          // Process collections - try both image properties
           if (data.resources && data.resources.results && data.resources.results.collections) {
             data.resources.results.collections.slice(0, 3).forEach((collection) => {
               let imageUrl = null;
-              if (collection.featured_image) {
-                imageUrl = collection.featured_image.replace(/width=\d+/, 'width=150');
+              const collectionImage = collection.featured_image || collection.image;
+              if (collectionImage) {
+                imageUrl = collectionImage.replace(/width=\d+/, 'width=150');
                 if (!imageUrl.includes('width=')) {
-                  imageUrl =
-                    collection.featured_image + (collection.featured_image.includes('?') ? '&' : '?') + 'width=150';
+                  imageUrl = collectionImage + (collectionImage.includes('?') ? '&' : '?') + 'width=150';
                 }
               }
 
@@ -462,6 +464,8 @@
             });
           }
 
+          console.log('Processed results:', { products: products.length, collections: collections.length }); // Debug log
+
           this.predictiveResults = {
             products,
             collections,
@@ -469,6 +473,7 @@
           this.isLoading = false;
         } catch (error) {
           console.error('Predictive search error:', error);
+          this.predictiveResults = { products: [], collections: [] };
           this.isLoading = false;
         }
       },
