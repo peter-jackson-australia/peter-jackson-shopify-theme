@@ -118,7 +118,7 @@
 
   .predictive-search__image-container {
     width: 40px;
-    height: 50px;
+    height: auto;
     background-color: var(--neutral-200);
     flex-shrink: 0;
     display: flex;
@@ -524,6 +524,13 @@
         }
       },
     }));
+
+    // Suppress Alpine.js transition cancellation errors
+    window.addEventListener('unhandledrejection', (event) => {
+      if (event.reason && event.reason.isFromCancelledTransition) {
+        event.preventDefault();
+      }
+    });
   });
 </script>
 
