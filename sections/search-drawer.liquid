@@ -220,7 +220,7 @@
   }
 
   .sub-drawer--active {
-    right: 0;
+    right: 400px;
   }
 
   @media screen and (max-width: 768px) {
@@ -254,8 +254,6 @@
 
     <div class="search-drawer__content">
       {% render 'search-form' %}
-
-      <div class="sub-drawer-trigger" @click.stop="toggleSubDrawer()">Click to open sub-drawer</div>
 
       <div class="search-content-wrapper">
         <div
@@ -376,6 +374,8 @@
           </div>
         {% endif %}
       </div>
+
+      <div class="sub-drawer-trigger" @click.stop="toggleSubDrawer()">Click to open sub-drawer</div>
     </div>
   </div>
 </aside>
