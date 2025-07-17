@@ -196,6 +196,33 @@
     opacity: 0;
   }
 
+  .sub-drawer-trigger {
+    width: 100%;
+    padding: var(--space-m);
+    border-top: 1px solid var(--neutral-200);
+    border-bottom: 1px solid var(--neutral-200);
+    cursor: pointer;
+    background: none;
+    border-left: none;
+    border-right: none;
+    color: var(--neutral-950);
+  }
+
+  .sub-drawer {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 400px;
+    height: 100%;
+    background: var(--white);
+    z-index: 100000;
+    transition: right 0.3s ease;
+  }
+
+  .sub-drawer--active {
+    right: 0;
+  }
+
   @media screen and (max-width: 768px) {
     .search-drawer {
       display: none;
@@ -227,6 +254,8 @@
 
     <div class="search-drawer__content">
       {% render 'search-form' %}
+
+      <div class="sub-drawer-trigger" @click.stop="toggleSubDrawer()">Click to open sub-drawer</div>
 
       <div class="search-content-wrapper">
         <div
@@ -351,6 +380,10 @@
   </div>
 </aside>
 
+<div class="sub-drawer" :class="{ 'sub-drawer--active': subDrawerOpen }">
+  <!-- Empty sub-drawer content -->
+</div>
+
 <script>
   document.addEventListener('alpine:init', () => {
     Alpine.store('search', {
@@ -364,6 +397,7 @@
       searchTimeout: null,
       isLoading: false,
       currentController: null,
+      subDrawerOpen: false,
 
       init() {
         window.toggleSearch = () => {
@@ -402,6 +436,7 @@
         if (!this.isOpen) return;
 
         this.isOpen = false;
+        this.subDrawerOpen = false;
         Alpine.store('search').query = '';
         this.predictiveResults = null;
         this.isLoading = false;
@@ -416,6 +451,10 @@
         window.scrollTo(0, this.scrollY);
 
         document.documentElement.style.scrollBehavior = '';
+      },
+
+      toggleSubDrawer() {
+        this.subDrawerOpen = !this.subDrawerOpen;
       },
 
       handleSearchInput(query) {
