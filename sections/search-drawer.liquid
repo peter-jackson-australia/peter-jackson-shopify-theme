@@ -422,11 +422,9 @@
 
           const products = [];
           const collections = [];
+          const allElements = doc.querySelectorAll('[role="option"]');
 
-          const productElements = doc.querySelectorAll('[data-predictive-search-type="product"]');
-          const collectionElements = doc.querySelectorAll('[data-predictive-search-type="collection"]');
-
-          productElements.forEach((element) => {
+          allElements.forEach((element) => {
             const link = element.querySelector('a');
             const img = element.querySelector('img');
             const title = element.querySelector('span');
@@ -443,38 +441,20 @@
                 }
               }
 
-              products.push({
-                id: link.getAttribute('href'),
-                url: link.getAttribute('href'),
+              const url = link.getAttribute('href');
+              const item = {
+                id: url,
+                url: url,
                 title: title.textContent.trim(),
                 image: imageUrl,
-              });
-            }
-          });
+              };
 
-          collectionElements.forEach((element) => {
-            const link = element.querySelector('a');
-            const img = element.querySelector('img');
-            const title = element.querySelector('span');
-
-            if (link && title) {
-              let imageUrl = null;
-              if (img) {
-                const originalSrc = img.getAttribute('src');
-                if (originalSrc) {
-                  imageUrl = originalSrc.replace(/width=\d+/, 'width=150');
-                  if (!imageUrl.includes('width=')) {
-                    imageUrl = originalSrc + (originalSrc.includes('?') ? '&' : '?') + 'width=150';
-                  }
-                }
+              // Check if it's a collection URL
+              if (url.includes('/collections/')) {
+                collections.push(item);
+              } else {
+                products.push(item);
               }
-
-              collections.push({
-                id: link.getAttribute('href'),
-                url: link.getAttribute('href'),
-                title: title.textContent.trim(),
-                image: imageUrl,
-              });
             }
           });
 
