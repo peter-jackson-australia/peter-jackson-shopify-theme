@@ -436,12 +436,10 @@
 
       async fetchPredictiveResults(query) {
         try {
-          // Cancel any existing request
           if (this.currentController) {
             this.currentController.abort();
           }
 
-          // Create new controller for this request
           this.currentController = new AbortController();
 
           const response = await fetch(
@@ -507,7 +505,6 @@
           this.currentController = null;
         } catch (error) {
           if (error.name === 'AbortError') {
-            // Request was cancelled, ignore this error
             return;
           }
           console.error('Predictive search error:', error);
@@ -526,7 +523,6 @@
       },
     }));
 
-    // Suppress Alpine.js transition cancellation errors
     window.addEventListener('unhandledrejection', (event) => {
       if (event.reason && event.reason.isFromCancelledTransition) {
         event.preventDefault();
