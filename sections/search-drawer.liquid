@@ -117,12 +117,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
   }
 
   .predictive-search__image {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
   }
 
   .predictive-search__text {
@@ -170,6 +172,11 @@
     transition: color 0.2s ease;
   }
 
+  .animated-loader {
+    width: 100%;
+    height: 4px;
+  }
+
   @media screen and (max-width: 768px) {
     .search-drawer {
       display: none;
@@ -207,8 +214,15 @@
         x-show="isLoading"
         x-transition
       >
-        <span class="loader--spinner"></span>
-        Searching...
+        <div class="animated-loader">
+          <svg fill="#E7E7E7" style="height:4px;display:block" viewBox="0 0 40 4" xmlns="http://www.w3.org/2000/svg">
+            <style>
+              .react{animation:moving 1s ease-in-out infinite}
+              @keyframes moving{0%{width:0%}50%{width:100%;transform:translate(0,0)}100%{width:0;right:0;transform:translate(100%,0)}}
+            </style>
+            <rect class="react" fill="#E7E7E7" height="4" width="40" />
+          </svg>
+        </div>
       </div>
 
       <div
@@ -238,7 +252,7 @@
                         class="predictive-search__image"
                         loading="lazy"
                         width="40"
-                        height="60"
+                        height="40"
                       >
                     </div>
                     <span class="predictive-search__text body" x-text="product.title"></span>
@@ -264,7 +278,7 @@
           </div>
         </template>
 
-        <template x-if="$store.search.query.length > 0">
+        <template x-if="$store.search.query.length > 0 && predictiveResults && (predictiveResults.products.length > 0 || predictiveResults.collections.length > 0)">
           <button
             type="button"
             class="predictive-search__search-button button body"
