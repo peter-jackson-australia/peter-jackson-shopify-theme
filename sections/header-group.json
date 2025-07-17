@@ -50,7 +50,19 @@
         "popular_search_1": "Suits",
         "popular_search_2": "Jackets",
         "popular_search_3": "Coat",
-        "popular_search_4": "Linen Shirts"
+        "popular_search_4": "Linen Shirts",
+        "faq_1_title": "Returns",
+        "faq_1_description": "We understand there are some differences between an online and an in-store shopping experience, which is why there are a few slight variations in the way we handle returns and exchanges for both.",
+        "faq_1_link": "shopify://pages/support",
+        "faq_2_title": "",
+        "faq_2_description": "",
+        "faq_2_link": "",
+        "faq_3_title": "",
+        "faq_3_description": "",
+        "faq_3_link": "",
+        "faq_4_title": "",
+        "faq_4_description": "",
+        "faq_4_link": ""
       }
     }
   },
