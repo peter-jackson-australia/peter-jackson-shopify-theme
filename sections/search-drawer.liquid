@@ -219,10 +219,56 @@
     background: var(--white);
     z-index: 99990;
     transition: right 0.3s ease;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
   }
 
   .sub-drawer--active {
     right: 400px;
+  }
+
+  .sub-drawer__content {
+    flex: 1;
+    padding: var(--space-m);
+    padding-top: var(--space-m);
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+  }
+
+  .faq-item {
+    padding-bottom: var(--space-m);
+    border-bottom: 1px solid var(--neutral-200);
+  }
+
+  .faq-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .faq-item__title {
+    color: var(--neutral-950);
+    margin-bottom: var(--space-xs);
+  }
+
+  .faq-item__description {
+    color: var(--neutral-600);
+    margin-bottom: var(--space-s);
+    line-height: 1.5;
+  }
+
+  .faq-item__link {
+    color: var(--neutral-950);
+    text-decoration: underline;
+    transition: color 0.2s ease;
+  }
+
+  .faq-item__link:hover {
+    color: var(--neutral-600);
   }
 
   @media screen and (max-width: 768px) {
@@ -388,7 +434,63 @@
     </div>
   </div>
 
-  <div class="sub-drawer" :class="{ 'sub-drawer--active': subDrawerOpen }"></div>
+  <div class="sub-drawer" :class="{ 'sub-drawer--active': subDrawerOpen }">
+    <div class="sub-drawer__content">
+      <div class="faq-list">
+        {% if section.settings.faq_1_title != blank %}
+          <div class="faq-item">
+            <h3 class="faq-item__title heading--m">{{ section.settings.faq_1_title }}</h3>
+            <p
+              class="faq-item__description body"
+              x-text="truncateText('{{ section.settings.faq_1_description | escape }}', 200)"
+            ></p>
+            {% if section.settings.faq_1_link != blank %}
+              <a href="{{ section.settings.faq_1_link }}" class="faq-item__link body">Learn more</a>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% if section.settings.faq_2_title != blank %}
+          <div class="faq-item">
+            <h3 class="faq-item__title heading--m">{{ section.settings.faq_2_title }}</h3>
+            <p
+              class="faq-item__description body"
+              x-text="truncateText('{{ section.settings.faq_2_description | escape }}', 200)"
+            ></p>
+            {% if section.settings.faq_2_link != blank %}
+              <a href="{{ section.settings.faq_2_link }}" class="faq-item__link body">Learn more</a>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% if section.settings.faq_3_title != blank %}
+          <div class="faq-item">
+            <h3 class="faq-item__title heading--m">{{ section.settings.faq_3_title }}</h3>
+            <p
+              class="faq-item__description body"
+              x-text="truncateText('{{ section.settings.faq_3_description | escape }}', 200)"
+            ></p>
+            {% if section.settings.faq_3_link != blank %}
+              <a href="{{ section.settings.faq_3_link }}" class="faq-item__link body">Learn more</a>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% if section.settings.faq_4_title != blank %}
+          <div class="faq-item">
+            <h3 class="faq-item__title heading--m">{{ section.settings.faq_4_title }}</h3>
+            <p
+              class="faq-item__description body"
+              x-text="truncateText('{{ section.settings.faq_4_description | escape }}', 200)"
+            ></p>
+            {% if section.settings.faq_4_link != blank %}
+              <a href="{{ section.settings.faq_4_link }}" class="faq-item__link body">Learn more</a>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
 </aside>
 
 <script>
@@ -462,6 +564,11 @@
 
       toggleSubDrawer() {
         this.subDrawerOpen = !this.subDrawerOpen;
+      },
+
+      truncateText(text, maxLength) {
+        if (text.length <= maxLength) return text;
+        return text.substring(0, maxLength) + '...';
       },
 
       handleSearchInput(query) {
@@ -615,6 +722,70 @@
       "type": "text",
       "id": "popular_search_4",
       "label": "Popular search 4"
+    },
+    {
+      "type": "header",
+      "content": "FAQ Settings"
+    },
+    {
+      "type": "text",
+      "id": "faq_1_title",
+      "label": "FAQ 1 - Title"
+    },
+    {
+      "type": "textarea",
+      "id": "faq_1_description",
+      "label": "FAQ 1 - Description"
+    },
+    {
+      "type": "url",
+      "id": "faq_1_link",
+      "label": "FAQ 1 - Link"
+    },
+    {
+      "type": "text",
+      "id": "faq_2_title",
+      "label": "FAQ 2 - Title"
+    },
+    {
+      "type": "textarea",
+      "id": "faq_2_description",
+      "label": "FAQ 2 - Description"
+    },
+    {
+      "type": "url",
+      "id": "faq_2_link",
+      "label": "FAQ 2 - Link"
+    },
+    {
+      "type": "text",
+      "id": "faq_3_title",
+      "label": "FAQ 3 - Title"
+    },
+    {
+      "type": "textarea",
+      "id": "faq_3_description",
+      "label": "FAQ 3 - Description"
+    },
+    {
+      "type": "url",
+      "id": "faq_3_link",
+      "label": "FAQ 3 - Link"
+    },
+    {
+      "type": "text",
+      "id": "faq_4_title",
+      "label": "FAQ 4 - Title"
+    },
+    {
+      "type": "textarea",
+      "id": "faq_4_description",
+      "label": "FAQ 4 - Description"
+    },
+    {
+      "type": "url",
+      "id": "faq_4_link",
+      "label": "FAQ 4 - Link"
     }
   ]
 }
