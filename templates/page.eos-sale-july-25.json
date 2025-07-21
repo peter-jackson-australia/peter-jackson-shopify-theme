@@ -1,0 +1,195 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero_slider_KzJH89": {
+      "type": "hero-slider",
+      "blocks": {
+        "slide_LYzTaq": {
+          "type": "slide",
+          "settings": {
+            "media_type": "image",
+            "desktop_image": "shopify://shop_images/EOS_Hero_4f74f38d-f6c7-4d6d-be92-ab06f2df9e20.webp",
+            "heading": "",
+            "svg_image": "shopify://shop_images/EOS_HP_080d9f6e-15c2-453b-8e4b-e2502e94277b.svg",
+            "svg_size": "medium",
+            "heading_level": "h1",
+            "heading_animation": "none",
+            "description": "ALL SUITS $399 - $499",
+            "description_animation": "none",
+            "button_label_1": "Shop All Sale",
+            "button_link_1": "shopify://collections/sale",
+            "button_label_2": "Shop Suits",
+            "button_link_2": "shopify://collections/mens-suits",
+            "button_label_3": "Knitwear / Two for $200",
+            "button_link_3": "shopify://collections/knitwear",
+            "button_label_4": "Sports Jackets from $299",
+            "button_link_4": "shopify://collections/sport-jackets",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "middle"
+          }
+        },
+        "slide_cnf4Hg": {
+          "type": "slide",
+          "settings": {
+            "media_type": "image",
+            "desktop_image": "shopify://shop_images/EOS_Jacket_Hero.webp",
+            "heading": "",
+            "svg_image": "shopify://shop_images/EOS_HP_080d9f6e-15c2-453b-8e4b-e2502e94277b.svg",
+            "svg_size": "medium",
+            "heading_level": "h1",
+            "heading_animation": "none",
+            "description": "up to $200 Off Jackets & Coats",
+            "description_animation": "none",
+            "button_label_1": "Shop Outerwear",
+            "button_link_1": "shopify://collections/outerwear",
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_label_3": "",
+            "button_link_3": "",
+            "button_label_4": "",
+            "button_link_4": "",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "middle"
+          }
+        }
+      },
+      "block_order": [
+        "slide_LYzTaq",
+        "slide_cnf4Hg"
+      ],
+      "name": "Hero Slider",
+      "settings": {
+        "autoplay": true,
+        "slide_interval": 5
+      }
+    },
+    "collection_slider_HA3Jen": {
+      "type": "collection-slider",
+      "name": "Collection Slider",
+      "settings": {
+        "heading": "End Of Season Bestsellers",
+        "heading_animation": "none",
+        "description": "The most popular items of the season - from Merino wool suits to jackets, coats, cashmere blend knits and more",
+        "description_animation": "none",
+        "collection": "sale",
+        "button_label": "Shop Sale",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
+    "variable_column_content_secondary_QMCKDY": {
+      "type": "variable-column-content-secondary",
+      "blocks": {
+        "column_item_heBtBV": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-man-wearing-black-knitwear.webp",
+            "image_link": "shopify://collections/knitwear",
+            "heading": "Luxe Layers",
+            "heading_animation": "none",
+            "text": "Premium wool & cashmere blend knitwear",
+            "text_animation": "none",
+            "column_link": "shopify://collections/knitwear",
+            "column_link_text": "Two for $200"
+          }
+        },
+        "column_item_nd3pzi": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-man-wearing-casual-jacket_90cbb832-a03c-4fc9-b0b1-ae1f3aa2a8f1_copy.webp",
+            "image_link": "shopify://collections/outerwear",
+            "heading": "Casual Jackets, Off Duty",
+            "heading_animation": "none",
+            "text": "Relaxed structure. Winter Ready",
+            "text_animation": "none",
+            "column_link": "shopify://collections/outerwear",
+            "column_link_text": "Up to $200 Off"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_heBtBV",
+        "column_item_nd3pzi"
+      ],
+      "name": "Variable Column Content Secondary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "2",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "",
+        "heading_animation": "none",
+        "text": "",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    },
+    "variable_column_content_secondary_FNhWPi": {
+      "type": "variable-column-content-secondary",
+      "blocks": {
+        "column_item_kqV9jj": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/HYS_Sports_Jackets_BW.webp",
+            "image_link": "shopify://collections/sport-jackets",
+            "heading": "Sports Jackets",
+            "heading_animation": "none",
+            "text": "from $299",
+            "text_animation": "none",
+            "column_link": "shopify://collections/sport-jackets",
+            "column_link_text": "Shop Sale"
+          }
+        },
+        "column_item_3WBWce": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/HYS_Denim_BW.webp",
+            "image_link": "shopify://collections/bottoms",
+            "heading": "Chinos, Trousers & Jeans",
+            "heading_animation": "none",
+            "text": "from $89.95",
+            "text_animation": "none",
+            "column_link": "shopify://collections/bottoms",
+            "column_link_text": "Shop Sale"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_kqV9jj",
+        "column_item_3WBWce"
+      ],
+      "name": "Variable Column Content Secondary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "column_count": "2",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "",
+        "heading_animation": "none",
+        "text": "",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    }
+  },
+  "order": [
+    "hero_slider_KzJH89",
+    "collection_slider_HA3Jen",
+    "variable_column_content_secondary_QMCKDY",
+    "variable_column_content_secondary_FNhWPi"
+  ]
+}
