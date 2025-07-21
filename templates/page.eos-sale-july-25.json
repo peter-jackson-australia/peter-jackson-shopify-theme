@@ -70,9 +70,24 @@
         "autoplay": true,
         "slide_interval": 5
       }
+    },
+    "collection_slider_secondary_nmDxCM": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "New In Now",
+        "heading_animation": "none",
+        "description": "Layer up with premium wool/cashmere blends.",
+        "description_animation": "none",
+        "collection": "sale",
+        "button_label": "Shop Now",
+        "products_to_show": 10,
+        "animate_products": false
+      }
     }
   },
   "order": [
-    "hero_slider_KzJH89"
+    "hero_slider_KzJH89",
+    "collection_slider_secondary_nmDxCM"
   ]
 }
