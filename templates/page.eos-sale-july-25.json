@@ -17,11 +17,11 @@
           "settings": {
             "media_type": "image",
             "desktop_image": "shopify://shop_images/EOS_Hero.webp",
-            "heading": "Welcome to Our Store",
+            "heading": "",
             "svg_size": "medium",
             "heading_level": "h1",
             "heading_animation": "none",
-            "description": "Discover our latest collection",
+            "description": "ALL SUITS $399 - $499",
             "description_animation": "none",
             "button_label_1": "Shop Now",
             "button_link_1": "",
