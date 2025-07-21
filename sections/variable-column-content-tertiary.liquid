@@ -1,0 +1,506 @@
+{% comment %}
+  Section: Variable Column Content Tertiary
+{% endcomment %}
+
+<style>
+  .variable-column-content-tertiary {
+    width: 100%;
+    margin: 0;
+    padding: var(--space-2xl) 0;
+    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-200);{% endif %}
+    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-200);{% endif %}
+  }
+
+  .variable-column-content-tertiary__image-grid {
+    display: grid;
+    gap: var(--space-2xs);
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .variable-column-content-tertiary__column {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .variable-column-content-tertiary__image-wrapper {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .variable-column-content-tertiary__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .variable-column-content-tertiary__column-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: var(--space-m);
+    width: 90%;
+    box-sizing: border-box;
+    z-index: 2;
+  }
+
+  .variable-column-content-tertiary__column-heading {
+    margin-bottom: var(--space-3xs);
+    color: var(--white);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .variable-column-content-tertiary__column-text {
+    color: var(--white);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .variable-column-content-tertiary__text-container {
+    padding: var(--space-m);
+    padding-bottom: 0px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .variable-column-content-tertiary__text-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+  }
+
+  .variable-column-content-tertiary__heading {
+    color: var(--neutral-950);
+  }
+
+  .variable-column-content-tertiary__text {
+    color: var(--neutral-600);
+    max-width: 80ch;
+  }
+
+  .variable-column-content-tertiary__text-content--left {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .variable-column-content-tertiary__text-content--center {
+    align-items: center;
+    text-align: center;
+  }
+
+  .variable-column-content-tertiary__text-content--right {
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .variable-column-content-tertiary__button {
+    display: inline-block;
+    background-color: var(--white);
+    color: var(--neutral-950);
+    border: 1px solid var(--neutral-200);
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .variable-column-content-tertiary__column-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .variable-column-content-tertiary__column-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    text-decoration: none;
+    color: var(--white);
+    margin-top: var(--space-2xs);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  @media screen and (max-width: 768px) {
+
+    .variable-column-content-tertiary__column-content {
+      padding: var(--space-s);
+      width: 95%;
+    }
+
+    .variable-column-content-tertiary__image-grid {
+      grid-template-columns: 1fr !important;
+      gap: 0px;
+    }
+
+    .variable-column-content-tertiary__image {
+      height: auto;
+    }
+
+    .variable-column-content-tertiary__text-content {
+      text-align: left;
+      align-items: flex-start;
+    }
+  }
+</style>
+
+<div class="variable-column-content-tertiary" id="shopify-section-{{ section.id }}">
+  {% if section.settings.column_count != blank %}
+    {% assign column_count = section.settings.column_count | plus: 0 %}
+    <div
+      class="variable-column-content-tertiary__image-grid {% if section.settings.animate_columns %}animate-container-cards-scroll{% endif %}"
+      style="grid-template-columns: repeat({{ column_count }}, 1fr);"
+      {% if section.settings.anchor_id != blank %}
+        id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
+      {% endif %}
+    >
+      {%- for block in section.blocks limit: column_count -%}
+        {% if block.type == 'column_item' %}
+          <div class="variable-column-content-tertiary__column" {{ block.shopify_attributes }}>
+            {% if block.settings.column_link != blank %}
+              <a href="{{ block.settings.column_link }}" class="variable-column-content-tertiary__column-link">
+            {% endif %}
+
+            {% if block.settings.image != blank %}
+              <div class="variable-column-content-tertiary__image-wrapper">
+                {% if block.settings.image_link != blank %}
+                  <a href="{{ block.settings.image_link }}">
+                {% endif %}
+                {{
+                  block.settings.image
+                  | image_url: width: 1200
+                  | image_tag:
+                    class: 'variable-column-content-tertiary__image',
+                    sizes: '(max-width: 767px) 100px, 1200px',
+                    loading: 'lazy',
+                    decoding: 'async',
+                    alt: block.settings.image.alt
+                }}
+                {% if block.settings.image_link != blank %}
+                  </a>
+                {% endif %}
+
+                {% if block.settings.heading != blank or block.settings.text != blank %}
+                  <div class="variable-column-content-tertiary__column-content">
+                    {% if block.settings.heading != blank %}
+                      <h3 class="variable-column-content-tertiary__column-heading heading--l {% if block.settings.heading_animation != 'none' %}{{ block.settings.heading_animation }}{% endif %}">
+                        {{ block.settings.heading }}
+                      </h3>
+                    {% endif %}
+
+                    {% if block.settings.text != blank %}
+                      <div class="variable-column-content-tertiary__column-text body {% if block.settings.text_animation != 'none' %}{{ block.settings.text_animation }}{% endif %}">
+                        {{ block.settings.text }}
+                      </div>
+                    {% endif %}
+
+                    {% if block.settings.column_link != blank and block.settings.column_link_text != blank %}
+                      <div class="variable-column-content-tertiary__column-cta body">
+                        {{ block.settings.column_link_text }}
+                      </div>
+                    {% endif %}
+                  </div>
+                {% endif %}
+              </div>
+            {% endif %}
+
+            {% if block.settings.column_link != blank %}
+              </a>
+            {% endif %}
+          </div>
+        {% endif %}
+      {%- endfor -%}
+    </div>
+  {% endif %}
+
+  {% if section.settings.heading != blank and section.settings.text != blank %}
+    <div class="variable-column-content-tertiary__text-container">
+      <div class="variable-column-content-tertiary__text-content variable-column-content-tertiary__text-content--{{ section.settings.text_alignment }}">
+        {% if section.settings.heading != blank %}
+          <h2 class="variable-column-content-tertiary__heading heading--xl {% if section.settings.heading_animation != 'none' %}{{ section.settings.heading_animation }}{% endif %}">
+            {{ section.settings.heading }}
+          </h2>
+        {% endif %}
+
+        {% if section.settings.text != blank %}
+          <div class="variable-column-content-tertiary__text body {% if section.settings.text_animation != 'none' %}{{ section.settings.text_animation }}{% endif %}">
+            {{ section.settings.text }}
+          </div>
+        {% endif %}
+
+        {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+          <a
+            href="{{ section.settings.button_link }}"
+            class="variable-column-content-tertiary__button button body"
+          >
+            {{ section.settings.button_label }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Variable Column Content 3",
+  "tag": "section",
+  "class": "variable-column-content-tertiary-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Anchor ID (lowercase with hyphens)",
+      "info": "Example: history or about-us"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_top_border",
+      "label": "Show top border",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bottom_border",
+      "label": "Show bottom border",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "column_count",
+      "label": "Number of Columns",
+      "options": [
+        {
+          "value": "2",
+          "label": "2 Columns"
+        },
+        {
+          "value": "3",
+          "label": "3 Columns"
+        },
+        {
+          "value": "4",
+          "label": "4 Columns"
+        }
+      ],
+      "default": "3"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Desktop Content Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "checkbox",
+      "id": "animate_columns",
+      "label": "Animate Columns",
+      "default": false,
+      "info": "Adds a staggered animation to columns as they scroll into view"
+    },
+    {
+      "type": "header",
+      "content": "Main Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Variable Column Content Tertiary"
+    },
+    {
+      "type": "select",
+      "id": "heading_animation",
+      "label": "Heading Animation",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "animate-word-slide-up-scroll",
+          "label": "Slide Up Words"
+        },
+        {
+          "value": "animate-word-rotate-scroll",
+          "label": "Rotate In Words"
+        },
+        {
+          "value": "animate-paragraph-slide-up-scroll",
+          "label": "Slide Up"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text",
+      "default": "Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store."
+    },
+    {
+      "type": "select",
+      "id": "text_animation",
+      "label": "Text Animation",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "animate-word-slide-up-scroll",
+          "label": "Slide Up Words"
+        },
+        {
+          "value": "animate-word-rotate-scroll",
+          "label": "Rotate In Words"
+        },
+        {
+          "value": "animate-paragraph-slide-up-scroll",
+          "label": "Slide Up"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Column Item",
+      "type": "column_item",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "image_link",
+          "label": "Image Link",
+          "info": "Add a link to make just the image clickable"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Column Heading"
+        },
+        {
+          "type": "select",
+          "id": "heading_animation",
+          "label": "Heading Animation",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "animate-word-slide-up-scroll",
+              "label": "Slide Up Words"
+            },
+            {
+              "value": "animate-word-rotate-scroll",
+              "label": "Rotate In Words"
+            },
+            {
+              "value": "animate-paragraph-slide-up-scroll",
+              "label": "Slide Up"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Add a brief description for this column item."
+        },
+        {
+          "type": "select",
+          "id": "text_animation",
+          "label": "Text Animation",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "animate-word-slide-up-scroll",
+              "label": "Slide Up Words"
+            },
+            {
+              "value": "animate-word-rotate-scroll",
+              "label": "Rotate In Words"
+            },
+            {
+              "value": "animate-paragraph-slide-up-scroll",
+              "label": "Slide Up"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "url",
+          "id": "column_link",
+          "label": "Column Link",
+          "info": "This will make the entire column clickable"
+        },
+        {
+          "type": "text",
+          "id": "column_link_text",
+          "label": "Link Text",
+          "default": "Shop Now"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Variable Column Content Tertiary",
+      "blocks": [
+        {
+          "type": "column_item"
+        },
+        {
+          "type": "column_item"
+        },
+        {
+          "type": "column_item"
+        }
+      ],
+      "category": "Image"
+    }
+  ],
+  "enabled_on": {
+    "templates": ["index", "page", "article", "blog"]
+  }
+}
+{% endschema %}
