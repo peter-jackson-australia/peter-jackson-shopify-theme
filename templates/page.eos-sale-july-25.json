@@ -75,12 +75,12 @@
       "type": "collection-slider-secondary",
       "name": "Collection Slider Secondary",
       "settings": {
-        "heading": "New In Now",
+        "heading": "Best Of Sale",
         "heading_animation": "none",
-        "description": "Layer up with premium wool/cashmere blends.",
+        "description": "From Merino Wool Suits to Cashmere Blend Knits",
         "description_animation": "none",
         "collection": "sale",
-        "button_label": "Shop Now",
+        "button_label": "Shop Sale",
         "products_to_show": 10,
         "animate_products": false
       }
