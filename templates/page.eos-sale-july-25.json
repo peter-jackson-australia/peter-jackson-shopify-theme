@@ -105,13 +105,13 @@
           "type": "column_item",
           "settings": {
             "image": "shopify://shop_images/peter-jackson-man-wearing-casual-jacket_90cbb832-a03c-4fc9-b0b1-ae1f3aa2a8f1_copy.webp",
-            "image_link": "",
-            "heading": "Column Heading",
+            "image_link": "shopify://collections/outerwear",
+            "heading": "Casual Jackets, Off Duty",
             "heading_animation": "none",
-            "text": "Add a brief description for this column item.",
+            "text": "Relaxed structure. Winter Ready",
             "text_animation": "none",
-            "column_link": "",
-            "column_link_text": "Shop Now"
+            "column_link": "shopify://collections/outerwear",
+            "column_link_text": "Up to $200 Off"
           }
         }
       },
