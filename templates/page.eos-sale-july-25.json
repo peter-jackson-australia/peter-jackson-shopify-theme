@@ -71,20 +71,6 @@
         "slide_interval": 5
       }
     },
-    "collection_slider_secondary_nmDxCM": {
-      "type": "collection-slider-secondary",
-      "name": "Collection Slider Secondary",
-      "settings": {
-        "heading": "Best Of Sale",
-        "heading_animation": "none",
-        "description": "From Merino Wool Suits to Cashmere Blend Knits",
-        "description_animation": "none",
-        "collection": "sale",
-        "button_label": "Shop Sale",
-        "products_to_show": 10,
-        "animate_products": false
-      }
-    },
     "collection_slider_HA3Jen": {
       "type": "collection-slider",
       "name": "Collection Slider",
@@ -98,11 +84,61 @@
         "products_to_show": 10,
         "animate_products": false
       }
+    },
+    "variable_column_content_secondary_QMCKDY": {
+      "type": "variable-column-content-secondary",
+      "blocks": {
+        "column_item_heBtBV": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-man-wearing-black-knitwear.webp",
+            "image_link": "shopify://collections/knitwear",
+            "heading": "Luxe Layers",
+            "heading_animation": "none",
+            "text": "Premium wool & cashmere blend knitwear",
+            "text_animation": "none",
+            "column_link": "shopify://collections/knitwear",
+            "column_link_text": "Two for $200"
+          }
+        },
+        "column_item_nd3pzi": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-man-wearing-casual-jacket_90cbb832-a03c-4fc9-b0b1-ae1f3aa2a8f1_copy.webp",
+            "image_link": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_heBtBV",
+        "column_item_nd3pzi"
+      ],
+      "name": "Variable Column Content Secondary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "2",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "",
+        "heading_animation": "none",
+        "text": "",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
     }
   },
   "order": [
     "hero_slider_KzJH89",
-    "collection_slider_secondary_nmDxCM",
-    "collection_slider_HA3Jen"
+    "collection_slider_HA3Jen",
+    "variable_column_content_secondary_QMCKDY"
   ]
 }
