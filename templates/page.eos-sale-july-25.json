@@ -18,6 +18,7 @@
             "media_type": "image",
             "desktop_image": "shopify://shop_images/EOS_Hero.webp",
             "heading": "",
+            "svg_image": "shopify://shop_images/EOS_HP.svg",
             "svg_size": "medium",
             "heading_level": "h1",
             "heading_animation": "none",
