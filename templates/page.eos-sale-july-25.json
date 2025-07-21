@@ -35,10 +35,35 @@
             "horizontal_alignment": "center",
             "vertical_alignment": "middle"
           }
+        },
+        "slide_cnf4Hg": {
+          "type": "slide",
+          "settings": {
+            "media_type": "image",
+            "desktop_image": "shopify://shop_images/EOS_Jacket_Hero.webp",
+            "heading": "",
+            "svg_image": "shopify://shop_images/EOS_HP_080d9f6e-15c2-453b-8e4b-e2502e94277b.svg",
+            "svg_size": "medium",
+            "heading_level": "h1",
+            "heading_animation": "none",
+            "description": "ALL SUITS $399 - $499",
+            "description_animation": "none",
+            "button_label_1": "Shop All Sale",
+            "button_link_1": "shopify://collections/sale",
+            "button_label_2": "Shop Suits",
+            "button_link_2": "shopify://collections/mens-suits",
+            "button_label_3": "Knitwear / Two for $200",
+            "button_link_3": "shopify://collections/knitwear",
+            "button_label_4": "Sports Jackets from $299",
+            "button_link_4": "shopify://collections/sport-jackets",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "middle"
+          }
         }
       },
       "block_order": [
-        "slide_LYzTaq"
+        "slide_LYzTaq",
+        "slide_cnf4Hg"
       ],
       "name": "Hero Slider",
       "settings": {
