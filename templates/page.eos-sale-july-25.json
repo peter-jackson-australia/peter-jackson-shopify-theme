@@ -84,10 +84,25 @@
         "products_to_show": 10,
         "animate_products": false
       }
+    },
+    "collection_slider_HA3Jen": {
+      "type": "collection-slider",
+      "name": "Collection Slider",
+      "settings": {
+        "heading": "End Of Season Bestsellers",
+        "heading_animation": "none",
+        "description": "The most popular items of the season - from Merino Wool Suits to Cashmere blend knitwear.",
+        "description_animation": "none",
+        "collection": "sale",
+        "button_label": "Shop Sale",
+        "products_to_show": 10,
+        "animate_products": false
+      }
     }
   },
   "order": [
     "hero_slider_KzJH89",
-    "collection_slider_secondary_nmDxCM"
+    "collection_slider_secondary_nmDxCM",
+    "collection_slider_HA3Jen"
   ]
 }
