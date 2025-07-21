@@ -154,14 +154,14 @@
         "column_item_3WBWce": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/peter-jackson-man-wearing-casual-jacket_90cbb832-a03c-4fc9-b0b1-ae1f3aa2a8f1_copy.webp",
-            "image_link": "shopify://collections/outerwear",
-            "heading": "Casual Jackets, Off Duty",
+            "image": "shopify://shop_images/HYS_Denim_BW.webp",
+            "image_link": "shopify://collections/bottoms",
+            "heading": "Chinos, Trousers & Jeans",
             "heading_animation": "none",
-            "text": "Relaxed structure. Winter Ready",
+            "text": "from $89.95",
             "text_animation": "none",
-            "column_link": "shopify://collections/outerwear",
-            "column_link_text": "Up to $200 Off"
+            "column_link": "shopify://collections/bottoms",
+            "column_link_text": "Shop Sale"
           }
         }
       },
