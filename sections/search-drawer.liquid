@@ -352,7 +352,7 @@
   aria-labelledby="search-title"
   @click="closeSearch()"
 >
-  <div class="search-drawer__container" @click.stop>
+  <div class="search-drawer__container custom-scrollbar" @click.stop>
     <header class="search-drawer__header">
       <h2 id="search-title" class="search-drawer__title heading--xl">Search</h2>
       <button
@@ -505,7 +505,7 @@
     </div>
   </div>
 
-  <div class="sub-drawer" :class="{ 'sub-drawer--active': subDrawerOpen }" @click.stop>
+  <div class="sub-drawer custom-scrollbar" :class="{ 'sub-drawer--active': subDrawerOpen }" @click.stop>
     <header class="sub-drawer__header">
       <button @click="toggleSubDrawer()" class="sub-drawer__back" aria-label="Back to search">
         <span>
