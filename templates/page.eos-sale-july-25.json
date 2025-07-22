@@ -184,63 +184,12 @@
         "button_label": "Learn More",
         "button_link": ""
       }
-    },
-    "variable_column_content_tertiary_KnkUth": {
-      "type": "variable-column-content-tertiary",
-      "blocks": {
-        "column_item_hdwrfi": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/HYS_Sports_Jackets_BW.webp",
-            "image_link": "",
-            "heading": "Column Heading",
-            "heading_animation": "none",
-            "text": "Add a brief description for this column item.",
-            "text_animation": "none",
-            "column_link": "shopify://products/abstract-sunshine-pocket-square",
-            "column_link_text": "Shop Now"
-          }
-        },
-        "column_item_BBbC6m": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/HYS_Sports_Jackets_BW.webp",
-            "image_link": "",
-            "heading": "Column Heading",
-            "heading_animation": "none",
-            "text": "Add a brief description for this column item.",
-            "text_animation": "none",
-            "column_link": "shopify://collections/mens-leather-belts",
-            "column_link_text": "Shop Now"
-          }
-        }
-      },
-      "block_order": [
-        "column_item_hdwrfi",
-        "column_item_BBbC6m"
-      ],
-      "name": "Variable Column Content Tertiary",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": false,
-        "column_count": "2",
-        "text_alignment": "left",
-        "animate_columns": false,
-        "heading": "",
-        "heading_animation": "none",
-        "text": "",
-        "text_animation": "none",
-        "button_label": "Learn More",
-        "button_link": ""
-      }
     }
   },
   "order": [
     "hero_slider_KzJH89",
     "collection_slider_HA3Jen",
     "variable_column_content_secondary_QMCKDY",
-    "variable_column_content_secondary_FNhWPi",
-    "variable_column_content_tertiary_KnkUth"
+    "variable_column_content_secondary_FNhWPi"
   ]
 }
