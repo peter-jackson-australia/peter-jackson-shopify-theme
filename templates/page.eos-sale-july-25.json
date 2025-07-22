@@ -148,10 +148,10 @@
             "image_link": "shopify://collections/sport-jackets",
             "heading": "SPORTS JACKETS",
             "heading_animation": "none",
-            "text": "from $299",
+            "text": "",
             "text_animation": "none",
             "column_link": "shopify://collections/sport-jackets",
-            "column_link_text": "Shop Sale"
+            "column_link_text": "from $299"
           }
         },
         "column_item_ED9DrG": {
@@ -161,10 +161,10 @@
             "image_link": "shopify://collections/bottoms",
             "heading": "CHINOS, TROUSERS & JEANS",
             "heading_animation": "none",
-            "text": "from $89.95",
+            "text": "",
             "text_animation": "none",
             "column_link": "shopify://collections/bottoms",
-            "column_link_text": "Shop Sale"
+            "column_link_text": "from $299"
           }
         }
       },
