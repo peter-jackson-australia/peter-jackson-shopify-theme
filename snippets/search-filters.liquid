@@ -193,7 +193,6 @@
               {% unless request.params.sort_by %}
                 checked
               {% endunless %}
-              onchange="applySort(this.value)"
             >
             <span class="body">Relevance</span>
           </label>
@@ -208,7 +207,6 @@
               {% if request.params.sort_by == 'best-selling' %}
                 checked
               {% endif %}
-              onchange="applySort(this.value)"
             >
             <span class="body">Best selling</span>
           </label>
@@ -223,7 +221,6 @@
               {% if request.params.sort_by == 'price-ascending' %}
                 checked
               {% endif %}
-              onchange="applySort(this.value)"
             >
             <span class="body">Price low to high</span>
           </label>
@@ -238,7 +235,6 @@
               {% if request.params.sort_by == 'price-descending' %}
                 checked
               {% endif %}
-              onchange="applySort(this.value)"
             >
             <span class="body">Price high to low</span>
           </label>
@@ -253,7 +249,6 @@
               {% if request.params.sort_by == 'created-descending' %}
                 checked
               {% endif %}
-              onchange="applySort(this.value)"
             >
             <span class="body">Newly added</span>
           </label>
@@ -268,7 +263,6 @@
               {% if request.params.sort_by == 'created-ascending' %}
                 checked
               {% endif %}
-              onchange="applySort(this.value)"
             >
             <span class="body">Oldest first</span>
           </label>
@@ -278,17 +272,25 @@
   </div>
 
   <div class="search-filter__footer">
-    <button type="button" class="search-filter__apply-button body" onclick="closeFilter()">Apply Filters</button>
+    <button type="button" class="search-filter__apply-button body" onclick="applyFilters()">Apply Filters</button>
   </div>
 </div>
 
 <script>
-  function applySort(sortValue) {
+  function applyFilters() {
+    // Show loading spinner
+    const button = document.querySelector('.search-filter__apply-button');
+    button.innerHTML = `<span class="loader--spinner"></span>`;
+
     const url = new URL(window.location);
 
     // Keep existing parameters
     const searchQuery = url.searchParams.get('q');
     const type = url.searchParams.get('type');
+
+    // Get selected sort value
+    const selectedSort = document.querySelector('input[name="sort_by"]:checked');
+    const sortValue = selectedSort ? selectedSort.value : '';
 
     // Clear and rebuild URL
     url.search = '';
