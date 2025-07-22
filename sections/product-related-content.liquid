@@ -377,7 +377,7 @@
     document.addEventListener('DOMContentLoaded', function () {
       const splideElement = document.querySelector('#section-{{ section.id }} .related-articles__slider');
 
-      if (splideElement && window.innerWidth <= 570) {
+      if (splideElement && window.innerWidth <= 768) {
         new Splide(splideElement, {
           perPage: 1,
           type: 'loop',
