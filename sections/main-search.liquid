@@ -546,7 +546,8 @@
             <div class="no-products-message">
               <p class="heading--l" style="color: var(--neutral-950)">No products found</p>
               <p class="body">
-                Try adjusting your search terms or <a href="/" style="color: var(--neutral-950)">return home</a>
+                Try adjusting your search terms or
+                <a href="{{ routes.root_url }}" style="color: var(--neutral-950)">return home</a>
               </p>
             </div>
           {% else %}
@@ -562,6 +563,15 @@
           {% endif %}
         </div>
       {% endpaginate %}
+    {% else %}
+      <div class="products-grid">
+        <div class="no-products-message">
+          <p class="heading--l" style="color: var(--neutral-950)">Start your search</p>
+          <p class="body">
+            Enter a search term above to find products, or <a href="/" style="color: var(--neutral-950)">return home</a>
+          </p>
+        </div>
+      </div>
     {% endif %}
   </div>
 </div>
