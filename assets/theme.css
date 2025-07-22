@@ -719,7 +719,7 @@ input[type='search'] {
 
 .predictive-search__button {
   position: absolute;
-  right: var(--space-m);
+  right: 0px;
   top: 50%;
   transform: translateY(-50%);
   background: none;
