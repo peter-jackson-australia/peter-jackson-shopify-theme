@@ -197,13 +197,10 @@
                     {% endif %}
 
                     {% if block.settings.column_link != blank and block.settings.column_link_text != blank %}
-                      <a
-                        href="{{ block.settings.column_link }}"
-                        class="variable-column-content-tertiary__column-cta body"
-                      >
+                      <div class="variable-column-content-tertiary__column-cta body">
                         {{ block.settings.column_link_text }}
                         {% render '_icon-arrow-submit-light' %}
-                      </a>
+                      </div>
                     {% endif %}
                   </div>
                 {% endif %}
