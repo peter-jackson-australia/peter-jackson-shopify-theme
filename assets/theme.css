@@ -660,12 +660,6 @@ header {
 }
 
 @media screen and (min-width: 769px) {
-  .header__search-mobile {
-    display: none;
-  }
-}
-
-@media screen and (min-width: 769px) {
   .header__search-desktop {
     display: block;
     margin-top: 3px;
