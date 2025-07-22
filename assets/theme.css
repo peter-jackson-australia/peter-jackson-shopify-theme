@@ -665,7 +665,7 @@ header {
     margin-top: 3px;
   } 
   .header__search-mobile {
-    display: none;
+    display: none !important;
   }
 }
 
