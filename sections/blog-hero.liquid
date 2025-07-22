@@ -177,6 +177,10 @@
     gap: var(--space-xs);
   }
 
+  .blog-hero__slider-wrapper {
+    display: none;
+  }
+
   @media screen and (max-width: 1440px) {
     .blog-hero {
       padding-bottom: var(--space-xl);
@@ -252,6 +256,33 @@
     }
   }
 
+  @media screen and (max-width: 768px) {
+    .blog-hero__posts {
+      display: none;
+    }
+
+    .blog-hero__slider-wrapper {
+      display: block;
+      overflow: hidden;
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+    }
+
+    .blog-hero__slider {
+      width: 100%;
+      padding: 0 var(--space-m);
+    }
+
+    .blog-hero__post-content {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .blog-hero__post-title {
+      width: calc(100% - var(--space-m));
+    }
+  }
+
   @media screen and (max-width: 570px) {
     .blog-hero__image {
       height: 60vh;
@@ -262,16 +293,12 @@
     .blog-hero__image-content {
       padding: var(--space-l) var(--space-m);
     }
-
-    .blog-hero__posts {
-      grid-template-columns: 1fr;
-      gap: calc(var(--space-xs) + var(--space-xs));
-    }
   }
 </style>
 
 <div
   class="blog-hero"
+  id="section-{{ section.id }}"
   {% if section.settings.anchor_id != blank %}
     id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
   {% endif %}
@@ -401,7 +428,71 @@
           </article>
         {% endfor %}
       </div>
+
+      <div class="blog-hero__slider-wrapper">
+        <div class="blog-hero__slider splide">
+          <div class="splide__arrows">
+            <button class="splide__arrow splide__arrow--prev">{% render '_icon-arrow-see-less' %}</button>
+            <button class="splide__arrow splide__arrow--next">{% render '_icon-arrow-see-more' %}</button>
+          </div>
+          <div class="splide__track">
+            <ul class="splide__list">
+              {%- assign blog = blogs[section.settings.blog] -%}
+              {% for article in blog.articles limit: 6 %}
+                <li class="splide__slide">
+                  <article class="blog-hero__post">
+                    {% if article.image %}
+                      <a href="{{ article.url }}" class="blog-hero__post-image">
+                        {{
+                          article.image
+                          | image_url: width: 600
+                          | image_tag: loading: 'lazy', decoding: 'async', alt: article.title
+                        }}
+                      </a>
+                    {% endif %}
+
+                    <div class="blog-hero__post-content">
+                      {% if article.tags.size > 0 %}
+                        <div class="blog-hero__post-category small">{{ article.tags.first }}</div>
+                      {% endif %}
+
+                      <h3 class="blog-hero__post-title heading--l">
+                        <a href="{{ article.url }}">{{ article.title }}</a>
+                      </h3>
+
+                      <a href="{{ article.url }}" class="blog-hero__post-link-container">
+                        <span class="blog-hero__post-link body"
+                          >Read Article {% render '_icon-arrow-submit-dark' -%}
+                        </span>
+                      </a>
+                    </div>
+                  </article>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const splideElement = document.querySelector('#section-{{ section.id }} .blog-hero__slider');
+
+        if (splideElement && window.innerWidth <= 768) {
+          new Splide(splideElement, {
+            perPage: 1,
+            type: 'loop',
+            gap: 'var(--space-2xs)',
+            arrows: true,
+            pagination: false,
+            drag: true,
+            snap: true,
+            autoWidth: false,
+          }).mount();
+        }
+      });
+    </script>
   {% endif %}
 </div>
 
