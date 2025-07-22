@@ -228,6 +228,35 @@
     right: 400px;
   }
 
+  .sub-drawer__header {
+    display: flex;
+    align-items: center;
+    height: var(--space-xl);
+    padding: var(--space-m);
+    border-bottom: 1px solid var(--neutral-200);
+  }
+
+  .sub-drawer__back {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: var(--neutral-950);
+  }
+
+  .sub-drawer__back > :first-child {
+    margin-right: var(--space-xs);
+    margin-top: -2px;
+  }
+
+  .sub-drawer__title {
+    flex-grow: 1;
+    color: var(--neutral-950);
+    text-align: right;
+  }
+
   .sub-drawer__content {
     flex: 1;
     padding: var(--space-m);
@@ -271,9 +300,36 @@
     color: var(--neutral-600);
   }
 
+  /* Mobile Styles */
   @media screen and (max-width: 768px) {
-    .search-drawer {
-      display: none;
+    .search-drawer__container {
+      width: 100%;
+      margin-left: 0;
+      transform: translateX(-100%);
+      border-left: none;
+      border-right: 1px solid var(--neutral-200);
+    }
+
+    .search-drawer--active .search-drawer__container {
+      transform: translateX(0);
+    }
+
+    .sub-drawer {
+      right: -100%;
+      width: 100%;
+      z-index: 100000;
+    }
+
+    .sub-drawer--active {
+      right: 0;
+    }
+
+    .sub-drawer__header {
+      border-bottom: 1px solid var(--neutral-200);
+    }
+
+    .sub-drawer__title {
+      text-align: right;
     }
   }
 </style>
@@ -441,6 +497,15 @@
   </div>
 
   <div class="sub-drawer" :class="{ 'sub-drawer--active': subDrawerOpen }" @click.stop>
+    <header class="sub-drawer__header">
+      <button @click="toggleSubDrawer()" class="sub-drawer__back" aria-label="Back to search">
+        <span>
+          {%- render '_icon-arrow-see-less' -%}
+        </span>
+        <span class="body--uppercase">Back</span>
+      </button>
+      <h2 class="sub-drawer__title heading--xl">Knowledge Base</h2>
+    </header>
     <div class="sub-drawer__content">
       <div class="faq-list">
         {% if section.settings.faq_1_title != blank %}
@@ -524,6 +589,49 @@
         this.$watch('$store.search.query', (value) => {
           this.handleSearchInput(value);
         });
+
+        // Update positioning based on header state
+        this.updateSearchPosition();
+
+        const siteHeader = document.querySelector('#site-header');
+        if (siteHeader) {
+          const observer = new MutationObserver(() => {
+            this.updateSearchPosition();
+          });
+
+          observer.observe(siteHeader, {
+            attributes: true,
+            attributeFilter: ['class'],
+          });
+        }
+
+        window.addEventListener('scroll', () => {
+          this.updateSearchPosition();
+        });
+
+        window.addEventListener('resize', () => {
+          this.updateSearchPosition();
+        });
+      },
+
+      updateSearchPosition() {
+        const siteHeader = document.querySelector('#site-header');
+        const searchDrawer = document.querySelector('.search-drawer');
+        const subDrawer = document.querySelector('.sub-drawer');
+
+        if (!siteHeader || !searchDrawer) return;
+
+        const isFixed = siteHeader.classList.contains('header-fixed');
+
+        if (isFixed) {
+          searchDrawer.style.top = 'var(--space-xl)';
+          if (subDrawer) subDrawer.style.top = 'var(--space-xl)';
+        } else {
+          const headerRect = siteHeader.getBoundingClientRect();
+          const topPosition = Math.max(0, headerRect.bottom) + 'px';
+          searchDrawer.style.top = topPosition;
+          if (subDrawer) subDrawer.style.top = topPosition;
+        }
       },
 
       openSearch() {
@@ -545,6 +653,10 @@
         if (window.closeMenu) {
           window.closeMenu(true);
         }
+
+        this.$nextTick(() => {
+          this.updateSearchPosition();
+        });
       },
 
       closeSearch() {
