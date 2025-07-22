@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "name": "Header",
   "type": "header",
   "sections": {
@@ -17,7 +17,7 @@
         "announcement_mQFJhL": {
           "type": "announcement",
           "settings": {
-            "text": "<a href=\"/collections/sale\" title=\"Sale\">Half Year Sale | up to 50% Off*</a>",
+            "text": "<a href=\"/collections/sale\" title=\"Sale\">End of Season Sale Begins</a>",
             "alignment": "center"
           }
         },
