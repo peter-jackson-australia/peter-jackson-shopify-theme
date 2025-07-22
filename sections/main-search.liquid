@@ -481,7 +481,7 @@
           {% if search.performed %}
             {% assign search_term = search.terms | capitalize | prepend: '&quot;' | append: '&quot;' %}
             {% capture title %}Found {{ search.results_count }} results for {{ search_term }}{% endcapture %}
-            <h1 data-title="{{ title }}" class="heading--xl">{{ title }}</h1>
+            <h1 data-title="{{ title }}" class="body--bold">{{ title }}</h1>
           {% else %}
             <h1 data-title="Search" class="body--bold">Search Products</h1>
           {% endif %}
