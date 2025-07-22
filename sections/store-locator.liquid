@@ -291,7 +291,15 @@
       },
       
       initMap() {
-        this.map = L.map('map').setView([-25.2744, 133.7751], 5);
+        const isMobile = window.innerWidth < 1000;
+        const zoomLevel = isMobile ? 4 : 5; 
+          
+          this.map = L.map('map').setView([-25.2744, 133.7751], zoomLevel);
+        
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors',
+            maxZoom: 18
+          }).addTo(this.map);
   
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           attribution: '© OpenStreetMap contributors',
