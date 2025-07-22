@@ -648,10 +648,24 @@ header {
   display: none;
 }
 
+.header__left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+}
+
+.header__search-mobile {
+  display: block;
+  list-style: none;
+}
+
 @media screen and (min-width: 769px) {
   .header__search-desktop {
     display: block;
     margin-top: 3px;
+  } 
+  .header__search-mobile {
+    display: none;
   }
 }
 
