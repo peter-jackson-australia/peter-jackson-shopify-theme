@@ -85,15 +85,15 @@
         "animate_products": false
       }
     },
-    "variable_column_content_secondary_QMCKDY": {
-      "type": "variable-column-content-secondary",
+    "variable_column_content_tertiary_H3qPja": {
+      "type": "variable-column-content-tertiary",
       "blocks": {
-        "column_item_heBtBV": {
+        "column_item_LAzrb9": {
           "type": "column_item",
           "settings": {
             "image": "shopify://shop_images/peter-jackson-man-wearing-black-knitwear.webp",
-            "image_link": "shopify://collections/knitwear",
-            "heading": "Luxe Layers",
+            "image_link": "",
+            "heading": "LUXE LAYERS",
             "heading_animation": "none",
             "text": "Premium wool & cashmere blend knitwear",
             "text_animation": "none",
@@ -101,25 +101,25 @@
             "column_link_text": "Two for $200"
           }
         },
-        "column_item_nd3pzi": {
+        "column_item_BpgmEz": {
           "type": "column_item",
           "settings": {
             "image": "shopify://shop_images/peter-jackson-man-wearing-casual-jacket_90cbb832-a03c-4fc9-b0b1-ae1f3aa2a8f1_copy.webp",
             "image_link": "shopify://collections/outerwear",
-            "heading": "Casual Jackets, Off Duty",
+            "heading": "CASUAL JACKETS, OFF DUTY",
             "heading_animation": "none",
             "text": "Relaxed structure. Winter Ready",
             "text_animation": "none",
             "column_link": "shopify://collections/outerwear",
-            "column_link_text": "Up to $200 Off"
+            "column_link_text": "$200 Off Select Styles"
           }
         }
       },
       "block_order": [
-        "column_item_heBtBV",
-        "column_item_nd3pzi"
+        "column_item_LAzrb9",
+        "column_item_BpgmEz"
       ],
-      "name": "Variable Column Content Secondary",
+      "name": "Variable Column Content Tertiary",
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
@@ -189,7 +189,7 @@
   "order": [
     "hero_slider_KzJH89",
     "collection_slider_HA3Jen",
-    "variable_column_content_secondary_QMCKDY",
+    "variable_column_content_tertiary_H3qPja",
     "variable_column_content_secondary_FNhWPi"
   ]
 }
