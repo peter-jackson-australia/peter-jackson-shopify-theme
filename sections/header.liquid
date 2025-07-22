@@ -16,16 +16,15 @@
         {% render '_icon-hamburger-menu', accessible_name: 'Menu' %}
       </div>
     </button>
-    <li class="header__search-mobile">
-      <button
-        type="button"
-        onclick="window.toggleSearch();"
-        aria-label="Search"
-        style="background: none; border: none; padding: 0; cursor: pointer; display: flex; align-items: center; justify-content: center;"
-      >
-        {% render '_icon-site-search', accessible_name: 'Search', role: 'img' %}
-      </button>
-    </li>
+    <button
+      type="button"
+      class="header__search-mobile"
+      onclick="window.toggleSearch();"
+      aria-label="Search"
+      style="background: none; border: none; padding: 0; cursor: pointer; display: flex; align-items: center; justify-content: center;"
+    >
+      {% render '_icon-site-search', accessible_name: 'Search', role: 'img' %}
+    </button>
   </div>
   <div class="header__logo">
     <a href="{{ routes.root_url }}" aria-label="Peter Jackson - Home">
