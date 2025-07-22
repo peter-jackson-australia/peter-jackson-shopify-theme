@@ -697,7 +697,7 @@ footer ul {
   border-bottom: 1px solid var(--neutral-200);
   background: transparent;
   color: var(--neutral-950);
-  padding: var(--space-m);
+  padding: var(--space-m) 0px;
 }
 
 .predictive-search__input::-webkit-search-cancel-button {
