@@ -591,49 +591,6 @@
         this.$watch('$store.search.query', (value) => {
           this.handleSearchInput(value);
         });
-
-        // Update positioning based on header state
-        this.updateSearchPosition();
-
-        const siteHeader = document.querySelector('#site-header');
-        if (siteHeader) {
-          const observer = new MutationObserver(() => {
-            this.updateSearchPosition();
-          });
-
-          observer.observe(siteHeader, {
-            attributes: true,
-            attributeFilter: ['class'],
-          });
-        }
-
-        window.addEventListener('scroll', () => {
-          this.updateSearchPosition();
-        });
-
-        window.addEventListener('resize', () => {
-          this.updateSearchPosition();
-        });
-      },
-
-      updateSearchPosition() {
-        const siteHeader = document.querySelector('#site-header');
-        const searchDrawer = document.querySelector('.search-drawer');
-        const subDrawer = document.querySelector('.sub-drawer');
-
-        if (!siteHeader || !searchDrawer) return;
-
-        const isFixed = siteHeader.classList.contains('header-fixed');
-
-        if (isFixed) {
-          searchDrawer.style.top = 'var(--space-xl)';
-          if (subDrawer) subDrawer.style.top = 'var(--space-xl)';
-        } else {
-          const headerRect = siteHeader.getBoundingClientRect();
-          const topPosition = Math.max(0, headerRect.bottom) + 'px';
-          searchDrawer.style.top = topPosition;
-          if (subDrawer) subDrawer.style.top = topPosition;
-        }
       },
 
       openSearch() {
@@ -655,10 +612,6 @@
         if (window.closeMenu) {
           window.closeMenu(true);
         }
-
-        this.$nextTick(() => {
-          this.updateSearchPosition();
-        });
       },
 
       closeSearch() {
