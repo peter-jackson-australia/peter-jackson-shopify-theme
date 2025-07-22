@@ -123,6 +123,56 @@
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
+        "show_bottom_border": true,
+        "column_count": "2",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "",
+        "heading_animation": "none",
+        "text": "",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    },
+    "variable_column_content_tertiary_WYRPR7": {
+      "type": "variable-column-content-tertiary",
+      "blocks": {
+        "column_item_dUUAMm": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/HYS_Sports_Jackets_BW_4635679b-1f7b-45a9-878c-7f92b4109851.webp",
+            "image_link": "shopify://collections/sport-jackets",
+            "heading": "SPORTS JACKETS",
+            "heading_animation": "none",
+            "text": "from $299",
+            "text_animation": "none",
+            "column_link": "shopify://collections/knitwear",
+            "column_link_text": "Shop Sale"
+          }
+        },
+        "column_item_ED9DrG": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/HYS_Denim_BW_d25023ac-a384-4961-9bba-ca2d1bc84ecf.webp",
+            "image_link": "shopify://collections/outerwear",
+            "heading": "CHINOS, TROUSERS & JEANS",
+            "heading_animation": "none",
+            "text": "from $89.95",
+            "text_animation": "none",
+            "column_link": "shopify://collections/outerwear",
+            "column_link_text": "Shop Sale"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_dUUAMm",
+        "column_item_ED9DrG"
+      ],
+      "name": "Variable Column Content Tertiary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
         "show_bottom_border": false,
         "column_count": "2",
         "text_alignment": "left",
@@ -135,54 +185,33 @@
         "button_link": ""
       }
     },
-    "variable_column_content_secondary_FNhWPi": {
-      "type": "variable-column-content-secondary",
-      "blocks": {
-        "column_item_kqV9jj": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/HYS_Sports_Jackets_BW.webp",
-            "image_link": "shopify://collections/sport-jackets",
-            "heading": "Sports Jackets",
-            "heading_animation": "none",
-            "text": "from $299",
-            "text_animation": "none",
-            "column_link": "shopify://collections/sport-jackets",
-            "column_link_text": "Shop Sale"
-          }
-        },
-        "column_item_3WBWce": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/HYS_Denim_BW.webp",
-            "image_link": "shopify://collections/bottoms",
-            "heading": "Chinos, Trousers & Jeans",
-            "heading_animation": "none",
-            "text": "from $89.95",
-            "text_animation": "none",
-            "column_link": "shopify://collections/bottoms",
-            "column_link_text": "Shop Sale"
-          }
-        }
-      },
-      "block_order": [
-        "column_item_kqV9jj",
-        "column_item_3WBWce"
-      ],
-      "name": "Variable Column Content Secondary",
+    "blog_hero_hkqRmp": {
+      "type": "blog-hero",
+      "name": "Blog Hero",
       "settings": {
         "anchor_id": "",
-        "show_top_border": true,
+        "show_top_border": false,
         "show_bottom_border": false,
-        "column_count": "2",
-        "text_alignment": "left",
-        "animate_columns": false,
-        "heading": "",
+        "hero_image": "shopify://shop_images/Peter-Jackson-Two_Men_Wearing_Suits.webp",
+        "hero_image_mobile": "shopify://shop_images/Peter-Jackson-Man-Suit.webp",
+        "show_image_overlay": true,
+        "image_heading": "The New Renaissance",
+        "image_heading_animation": "none",
+        "image_description": "Classic Neapolitan style reimagined for today",
+        "image_description_animation": "none",
+        "image_link_text": "Read More",
+        "image_link_url": "shopify://blogs/the-jackson-journal/the-corduroy-comeback",
+        "heading": "The Jackson Journal",
         "heading_animation": "none",
-        "text": "",
-        "text_animation": "none",
-        "button_label": "Learn More",
-        "button_link": ""
+        "subheading": "The Stories Behind The Threads",
+        "subheading_animation": "none",
+        "description": "Discover our world through campaigns, interviews, and features designed to inform your style and inspire a life well lived.",
+        "description_animation": "none",
+        "cta_link": "shopify://blogs/the-jackson-journal",
+        "cta_text": "Read Now",
+        "show_recent_posts": true,
+        "animate_posts": true,
+        "blog": "the-jackson-journal"
       }
     }
   },
@@ -190,6 +219,7 @@
     "hero_slider_KzJH89",
     "collection_slider_HA3Jen",
     "variable_column_content_tertiary_H3qPja",
-    "variable_column_content_secondary_FNhWPi"
+    "variable_column_content_tertiary_WYRPR7",
+    "blog_hero_hkqRmp"
   ]
 }
