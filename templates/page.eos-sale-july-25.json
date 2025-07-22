@@ -212,24 +212,11 @@
             "column_link": "",
             "column_link_text": "Shop Now"
           }
-        },
-        "column_item_UqJH44": {
-          "type": "column_item",
-          "settings": {
-            "image_link": "",
-            "heading": "Column Heading",
-            "heading_animation": "none",
-            "text": "Add a brief description for this column item.",
-            "text_animation": "none",
-            "column_link": "",
-            "column_link_text": "Shop Now"
-          }
         }
       },
       "block_order": [
         "column_item_hdwrfi",
-        "column_item_BBbC6m",
-        "column_item_UqJH44"
+        "column_item_BBbC6m"
       ],
       "name": "Variable Column Content Tertiary",
       "settings": {
@@ -239,9 +226,9 @@
         "column_count": "2",
         "text_alignment": "left",
         "animate_columns": false,
-        "heading": "Variable Column Content Tertiary",
+        "heading": "",
         "heading_animation": "none",
-        "text": "Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.",
+        "text": "",
         "text_animation": "none",
         "button_label": "Learn More",
         "button_link": ""
