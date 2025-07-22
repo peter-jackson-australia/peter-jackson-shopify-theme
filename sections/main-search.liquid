@@ -542,20 +542,12 @@
 
       {% paginate search.results by section.settings.limit %}
         <div id="AjaxinateContainer" class="products-grid animate-container-cards-scroll">
-          {% if search.results_count == 0 or search.terms == blank %}
+          {% if search.results_count == 0 %}
             <div class="no-products-message">
-              {% if search.terms == blank %}
-                <p class="heading--l" style="color: var(--neutral-950)">Start your search</p>
-                <p class="body">
-                  Enter a search term above to find products, or
-                  <a href="/" style="color: var(--neutral-950)">return home</a>
-                </p>
-              {% else %}
-                <p class="heading--l" style="color: var(--neutral-950)">No products found</p>
-                <p class="body">
-                  Try adjusting your search terms or <a href="/" style="color: var(--neutral-950)">return home</a>
-                </p>
-              {% endif %}
+              <p class="heading--l" style="color: var(--neutral-950)">No products found</p>
+              <p class="body">
+                Try adjusting your search terms or <a href="/" style="color: var(--neutral-950)">return home</a>
+              </p>
             </div>
           {% else %}
             {% for product in search.results %}
