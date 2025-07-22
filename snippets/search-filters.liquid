@@ -110,39 +110,6 @@
     outline: none;
   }
 
-  .search-filter__option:has(.search-filter__checkbox[disabled]) {
-    display: none !important;
-  }
-
-  .search-filter__price-range {
-    display: flex;
-    align-items: center;
-    gap: var(--space-m);
-    margin-bottom: var(--space-s);
-  }
-
-  .search-filter__price-input-wrapper {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .search-filter__price-label {
-    margin-bottom: var(--space-3xs);
-    color: var(--neutral-600);
-  }
-
-  .search-filter__price-input {
-    border: 1px solid var(--neutral-200);
-    padding: var(--space-2xs) var(--space-xs);
-    color: var(--neutral-950);
-    min-width: 120px;
-  }
-
-  .search-filter__price-separator {
-    color: var(--neutral-400);
-    margin: 0 var(--space-2xs);
-  }
-
   .search-filter__content {
     flex: 1;
     overflow-y: auto;
@@ -175,18 +142,6 @@
     align-items: center;
   }
 
-  .search-filter__color-swatch {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    display: inline-block;
-    border: 1px solid var(--neutral-200);
-  }
-
-  .search-filter__active-count {
-    color: var(--neutral-600);
-  }
-
   .search-filter__reset {
     color: var(--neutral-950);
     text-decoration: underline;
@@ -214,8 +169,17 @@
   }
 </style>
 
-<form class="search-filter">
+<div class="search-filter">
   <div class="search-filter__content custom-scrollbar">
+    <!-- Clear All Option -->
+    <div class="search-filter__group search-filter__clear-all">
+      <a
+        href="{{ routes.search_url }}?q={{ search.terms | url_param_escape }}&type=product"
+        class="search-filter__reset body"
+        >Clear all filters</a
+      >
+    </div>
+
     <div class="search-filter__group search-filter__sort-by">
       <h3 class="search-filter__group-title body--bold">Sort by</h3>
       <ul class="search-filter__options">
@@ -224,11 +188,12 @@
             <input
               type="radio"
               name="sort_by"
-              value="relevance"
+              value=""
               class="search-filter__radio"
               {% unless request.params.sort_by %}
                 checked
               {% endunless %}
+              onchange="applySort(this.value)"
             >
             <span class="body">Relevance</span>
           </label>
@@ -243,6 +208,7 @@
               {% if request.params.sort_by == 'best-selling' %}
                 checked
               {% endif %}
+              onchange="applySort(this.value)"
             >
             <span class="body">Best selling</span>
           </label>
@@ -257,6 +223,7 @@
               {% if request.params.sort_by == 'price-ascending' %}
                 checked
               {% endif %}
+              onchange="applySort(this.value)"
             >
             <span class="body">Price low to high</span>
           </label>
@@ -271,6 +238,7 @@
               {% if request.params.sort_by == 'price-descending' %}
                 checked
               {% endif %}
+              onchange="applySort(this.value)"
             >
             <span class="body">Price high to low</span>
           </label>
@@ -285,6 +253,7 @@
               {% if request.params.sort_by == 'created-descending' %}
                 checked
               {% endif %}
+              onchange="applySort(this.value)"
             >
             <span class="body">Newly added</span>
           </label>
@@ -299,6 +268,7 @@
               {% if request.params.sort_by == 'created-ascending' %}
                 checked
               {% endif %}
+              onchange="applySort(this.value)"
             >
             <span class="body">Oldest first</span>
           </label>
@@ -308,12 +278,37 @@
   </div>
 
   <div class="search-filter__footer">
-    <button type="submit" class="search-filter__apply-button body">Apply Filters</button>
+    <button type="button" class="search-filter__apply-button body" onclick="closeFilter()">Close</button>
   </div>
-  <script>
-    document.querySelector('.search-filter').addEventListener('submit', function (e) {
-      const button = document.querySelector('.search-filter__apply-button');
-      button.innerHTML = `<span class="loader--spinner"></span>`;
-    });
-  </script>
-</form>
+</div>
+
+<script>
+  function applySort(sortValue) {
+    const url = new URL(window.location);
+
+    // Keep existing parameters
+    const searchQuery = url.searchParams.get('q');
+    const type = url.searchParams.get('type');
+
+    // Clear and rebuild URL
+    url.search = '';
+    if (searchQuery) {
+      url.searchParams.set('q', searchQuery);
+    }
+    if (type) {
+      url.searchParams.set('type', type);
+    }
+    if (sortValue) {
+      url.searchParams.set('sort_by', sortValue);
+    }
+
+    // Navigate to new URL
+    window.location.href = url.toString();
+  }
+
+  function closeFilter() {
+    if (window.closeFilter) {
+      window.closeFilter();
+    }
+  }
+</script>
