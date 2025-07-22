@@ -278,21 +278,17 @@
 
 <script>
   function applyFilters() {
-    // Show loading spinner
     const button = document.querySelector('.search-filter__apply-button');
     button.innerHTML = `<span class="loader--spinner"></span>`;
 
     const url = new URL(window.location);
 
-    // Keep existing parameters
     const searchQuery = url.searchParams.get('q');
     const type = url.searchParams.get('type');
 
-    // Get selected sort value
     const selectedSort = document.querySelector('input[name="sort_by"]:checked');
     const sortValue = selectedSort ? selectedSort.value : '';
 
-    // Clear and rebuild URL
     url.search = '';
     if (searchQuery) {
       url.searchParams.set('q', searchQuery);
@@ -304,7 +300,6 @@
       url.searchParams.set('sort_by', sortValue);
     }
 
-    // Navigate to new URL
     window.location.href = url.toString();
   }
 
