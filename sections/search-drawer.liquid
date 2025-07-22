@@ -325,7 +325,12 @@
           x-show="$store.search.query.length > 0 && !isLoading && predictiveResults && (!predictiveResults.products || predictiveResults.products.length === 0) && (!predictiveResults.collections || predictiveResults.collections.length === 0)"
           x-transition.opacity.duration.200ms
         >
-          No results found
+          <button
+            type="button"
+            class="predictive-search__search-button button body"
+            @click="performSearch()"
+            x-text="`Search for '${$store.search.query}'`"
+          ></button>
         </div>
 
         <div
