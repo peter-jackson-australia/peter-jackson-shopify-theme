@@ -3,18 +3,30 @@
   class="header container"
   onclick="window.closeMenu(); window.closeFilter && window.closeFilter();"
 >
-  <button
-    type="button"
-    class="hamburger-menu"
-    onclick="event.stopPropagation(); window.toggleNav();"
-    aria-expanded="false"
-    aria-controls="site-navigation"
-    aria-label="Toggle menu"
-  >
-    <div class="hamburger-icon">
-      {% render '_icon-hamburger-menu', accessible_name: 'Menu' %}
-    </div>
-  </button>
+  <div class="header__left">
+    <button
+      type="button"
+      class="hamburger-menu"
+      onclick="event.stopPropagation(); window.toggleNav();"
+      aria-expanded="false"
+      aria-controls="site-navigation"
+      aria-label="Toggle menu"
+    >
+      <div class="hamburger-icon">
+        {% render '_icon-hamburger-menu', accessible_name: 'Menu' %}
+      </div>
+    </button>
+    <li class="header__search-mobile">
+      <button
+        type="button"
+        onclick="window.toggleSearch();"
+        aria-label="Search"
+        style="background: none; border: none; padding: 0; cursor: pointer; display: flex; align-items: center; justify-content: center;"
+      >
+        {% render '_icon-site-search', accessible_name: 'Search', role: 'img' %}
+      </button>
+    </li>
+  </div>
   <div class="header__logo">
     <a href="{{ routes.root_url }}" aria-label="Peter Jackson - Home">
       {% render '_icon-peter-jackson', accessible_name: 'Peter Jackson', role: 'img' %}
