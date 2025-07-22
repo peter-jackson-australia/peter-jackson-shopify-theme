@@ -92,7 +92,7 @@
           "type": "column_item",
           "settings": {
             "image": "shopify://shop_images/peter-jackson-man-wearing-black-knitwear.webp",
-            "image_link": "",
+            "image_link": "shopify://collections/knitwear",
             "heading": "LUXE LAYERS",
             "heading_animation": "none",
             "text": "Premium wool & cashmere blend knitwear",
@@ -147,7 +147,7 @@
             "heading_animation": "none",
             "text": "from $299",
             "text_animation": "none",
-            "column_link": "shopify://collections/knitwear",
+            "column_link": "shopify://collections/sport-jackets",
             "column_link_text": "Shop Sale"
           }
         },
@@ -155,12 +155,12 @@
           "type": "column_item",
           "settings": {
             "image": "shopify://shop_images/HYS_Denim_BW_d25023ac-a384-4961-9bba-ca2d1bc84ecf.webp",
-            "image_link": "shopify://collections/outerwear",
+            "image_link": "shopify://collections/bottoms",
             "heading": "CHINOS, TROUSERS & JEANS",
             "heading_animation": "none",
             "text": "from $89.95",
             "text_animation": "none",
-            "column_link": "shopify://collections/outerwear",
+            "column_link": "shopify://collections/bottoms",
             "column_link_text": "Shop Sale"
           }
         }
