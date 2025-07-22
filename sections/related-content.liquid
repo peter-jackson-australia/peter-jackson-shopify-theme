@@ -136,6 +136,10 @@
     gap: var(--space-xs);
   }
 
+  .related-articles__slider-wrapper {
+    display: none;
+  }
+
   @media screen and (max-width: 1440px) {
     .related-articles {
       padding-top: var(--space-xl);
@@ -186,16 +190,36 @@
     }
   }
 
-  @media screen and (max-width: 570px) {
+  @media screen and (max-width: 768px) {
     .related-articles__posts {
-      grid-template-columns: 1fr;
-      gap: calc(var(--space-xs) + var(--space-xs));
+      display: none;
+    }
+
+    .related-articles__slider-wrapper {
+      display: block;
+      overflow: hidden;
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+    }
+
+    .related-articles__slider {
+      width: 100%;
+      padding: 0 var(--space-m);
+    }
+
+    .related-articles__post-content {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .related-articles__post-title {
+      width: calc(100% - var(--space-m));
     }
   }
 </style>
 
 {% if has_related_articles %}
-  <div class="related-articles">
+  <div class="related-articles" id="section-{{ section.id }}">
     <div class="related-articles__content">
       <div class="related-articles__header">
         {% if section.settings.heading != blank %}
@@ -266,7 +290,82 @@
         {% endif %}
       {% endfor %}
     </div>
+
+    <div class="related-articles__slider-wrapper">
+      <div class="related-articles__slider splide">
+        <div class="splide__arrows">
+          <button class="splide__arrow splide__arrow--prev">{% render '_icon-arrow-see-less' %}</button>
+          <button class="splide__arrow splide__arrow--next">{% render '_icon-arrow-see-more' %}</button>
+        </div>
+        <div class="splide__track">
+          <ul class="splide__list">
+            {% assign related_count = 0 %}
+
+            {% for article in blogs['the-jackson-journal'].articles limit: 50 %}
+              {% assign is_related = false %}
+              {% for related_collection in article.metafields.custom.related_collections.value %}
+                {% if related_collection.id == collection_id %}
+                  {% assign is_related = true %}
+                  {% break %}
+                {% endif %}
+              {% endfor %}
+
+              {% if is_related %}
+                <li class="splide__slide">
+                  <article class="related-articles__post">
+                    {% if article.image %}
+                      <a href="{{ article.url }}" class="related-articles__post-image">
+                        {{ article.image | image_url: width: 600 | image_tag: loading: 'lazy', alt: article.title }}
+                      </a>
+                    {% endif %}
+
+                    <div class="related-articles__post-content">
+                      {% if article.tags.size > 0 %}
+                        <div class="related-articles__post-category small">{{ article.tags.first }}</div>
+                      {% endif %}
+
+                      <h3 class="related-articles__post-title heading--l">
+                        <a href="{{ article.url }}">{{ article.title }}</a>
+                      </h3>
+
+                      <a href="{{ article.url }}" class="related-articles__post-link-container">
+                        <span class="related-articles__post-link body"
+                          >Read Article {% render '_icon-arrow-submit-dark' -%}
+                        </span>
+                      </a>
+                    </div>
+                  </article>
+                </li>
+                {% assign related_count = related_count | plus: 1 %}
+                {% if related_count >= 6 %}
+                  {% break %}
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const splideElement = document.querySelector('#section-{{ section.id }} .related-articles__slider');
+
+      if (splideElement && window.innerWidth <= 768) {
+        new Splide(splideElement, {
+          perPage: 1,
+          type: 'loop',
+          gap: 'var(--space-2xs)',
+          arrows: true,
+          pagination: false,
+          drag: true,
+          snap: true,
+          autoWidth: false,
+        }).mount();
+      }
+    });
+  </script>
 {% endif %}
 
 {% schema %}
