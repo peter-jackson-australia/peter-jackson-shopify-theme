@@ -1459,7 +1459,16 @@
       });
 
       function checkButtonPosition() {
-        const buttonRect = originalButton.getBoundingClientRect();
+        const originalNotifyButton = document.querySelector('#js--notify-me');
+        const isShowingNotifyMe = originalNotifyButton && originalNotifyButton.style.display !== 'none';
+        
+        let buttonRect;
+        if (isShowingNotifyMe) {
+          buttonRect = originalNotifyButton.getBoundingClientRect();
+        } else {
+          buttonRect = originalButton.getBoundingClientRect();
+        }
+        
         const buttonBottom = buttonRect.bottom;
         
         if (buttonBottom < 0) {
