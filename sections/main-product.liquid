@@ -1294,15 +1294,12 @@
       const stickyComparePrice = document.querySelector('.js--sticky-compare-price');
       const stickyComparePriceContainer = stickyComparePrice ? stickyComparePrice.parentElement : null;
       
-      // Mobile elements
       const stickyMobilePrice = document.querySelector('.js--sticky-mobile-price');
       const stickyMobileComparePrice = document.querySelector('.js--sticky-mobile-compare-price');
       
-      // Get the actual displayed prices from the main product section
       const mainPrice = document.querySelector('.js--variant-price');
       const mainComparePrice = document.querySelector('.js--variant-compareatprice');
       
-      // Update desktop prices
       if (stickyPrice && mainPrice) {
         stickyPrice.textContent = mainPrice.textContent;
       }
@@ -1316,7 +1313,6 @@
         }
       }
       
-      // Update mobile prices
       if (stickyMobilePrice && mainPrice) {
         stickyMobilePrice.textContent = mainPrice.textContent;
       }
