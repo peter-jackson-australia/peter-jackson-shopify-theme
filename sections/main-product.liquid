@@ -1377,35 +1377,58 @@
       }
 
       function syncButtons() {
+        const originalNotifyButton = document.querySelector('#js--notify-me');
+        const isShowingNotifyMe = originalNotifyButton && originalNotifyButton.style.display !== 'none';
+        
         if ({{ product.has_only_default_variant | json }}) {
-          clonedButton.disabled = originalButton.disabled;
-          clonedButton.innerHTML = originalButton.innerHTML;
-          clonedButton.className = originalButton.className;
-          clonedButton.type = originalButton.type;
-          clonedButton.name = originalButton.name;
-          clonedButton.value = originalButton.value;
-          
-          Array.from(originalButton.attributes).forEach(attr => {
-            if (attr.name !== 'id') { 
-              clonedButton.setAttribute(attr.name, attr.value);
+          if (isShowingNotifyMe) {
+            clonedButton.textContent = 'Size Unavailable - Notify Me';
+            clonedButton.disabled = false;
+            clonedButton.className = originalButton.className;
+            const originalStyle = originalButton.getAttribute('style');
+            if (originalStyle) {
+              clonedButton.setAttribute('style', originalStyle);
             }
-          });
-          
-          const originalStyle = originalButton.getAttribute('style');
-          if (originalStyle) {
-            clonedButton.setAttribute('style', originalStyle);
+          } else {
+            clonedButton.disabled = originalButton.disabled;
+            clonedButton.innerHTML = originalButton.innerHTML;
+            clonedButton.className = originalButton.className;
+            clonedButton.type = originalButton.type;
+            clonedButton.name = originalButton.name;
+            clonedButton.value = originalButton.value;
+            
+            Array.from(originalButton.attributes).forEach(attr => {
+              if (attr.name !== 'id') { 
+                clonedButton.setAttribute(attr.name, attr.value);
+              }
+            });
+            
+            const originalStyle = originalButton.getAttribute('style');
+            if (originalStyle) {
+              clonedButton.setAttribute('style', originalStyle);
+            }
           }
         } else {
-          if ({{ product.gift_card? | json }}) {
-            clonedButton.textContent = 'Select Card Amount';
+          if (isShowingNotifyMe) {
+            clonedButton.textContent = 'Size Unavailable - Notify Me';
+            clonedButton.disabled = false;
+            clonedButton.className = originalButton.className;
+            const originalStyle = originalButton.getAttribute('style');
+            if (originalStyle) {
+              clonedButton.setAttribute('style', originalStyle);
+            }
           } else {
-            clonedButton.textContent = 'Select Your Size';
-          }
-          clonedButton.disabled = false;
-          clonedButton.className = originalButton.className;
-          const originalStyle = originalButton.getAttribute('style');
-          if (originalStyle) {
-            clonedButton.setAttribute('style', originalStyle);
+            if ({{ product.gift_card? | json }}) {
+              clonedButton.textContent = 'Select Card Amount';
+            } else {
+              clonedButton.textContent = 'Select Your Size';
+            }
+            clonedButton.disabled = false;
+            clonedButton.className = originalButton.className;
+            const originalStyle = originalButton.getAttribute('style');
+            if (originalStyle) {
+              clonedButton.setAttribute('style', originalStyle);
+            }
           }
         }
       }
@@ -1418,7 +1441,17 @@
 
       clonedButton.addEventListener('click', function(e) {
         e.preventDefault();
-        if (!{{ product.has_only_default_variant | json }}) {
+        const originalNotifyButton = document.querySelector('#js--notify-me');
+        const isShowingNotifyMe = originalNotifyButton && originalNotifyButton.style.display !== 'none';
+        
+        if (isShowingNotifyMe) {
+          scrollToVariantForm();
+          setTimeout(() => {
+            if (originalNotifyButton) {
+              originalNotifyButton.click();
+            }
+          }, 300);
+        } else if (!{{ product.has_only_default_variant | json }}) {
           scrollToVariantForm();
         } else {
           originalButton.click();
@@ -1455,6 +1488,16 @@
         childList: true,
         subtree: true
       });
+
+      const notifyButton = document.querySelector('#js--notify-me');
+      if (notifyButton) {
+        const notifyMutationObserver = new MutationObserver(syncAll);
+        notifyMutationObserver.observe(notifyButton, {
+          attributes: true,
+          childList: true,
+          subtree: true
+        });
+      }
 
       checkButtonPosition();
       syncAll();
