@@ -1374,17 +1374,28 @@
           if (originalStyle) {
             clonedButton.setAttribute('style', originalStyle);
           }
-        } else {
-          if ({{ product.gift_card? | json }}) {
-            clonedButton.textContent = 'Select Card Amount';
-          } else {
-            clonedButton.textContent = 'Select Your Size';
+          
+          // Check if original button is hidden due to unavailable variant
+          if (originalButton.style.display === 'none') {
+            clonedButton.style.display = 'none';
           }
-          clonedButton.disabled = false;
-          clonedButton.className = originalButton.className;
-          const originalStyle = originalButton.getAttribute('style');
-          if (originalStyle) {
-            clonedButton.setAttribute('style', originalStyle);
+        } else {
+          // Check if original button is hidden (variant unavailable)
+          if (originalButton.style.display === 'none') {
+            clonedButton.style.display = 'none';
+          } else {
+            clonedButton.style.display = 'block';
+            if ({{ product.gift_card? | json }}) {
+              clonedButton.textContent = 'Select Card Amount';
+            } else {
+              clonedButton.textContent = 'Select Your Size';
+            }
+            clonedButton.disabled = false;
+            clonedButton.className = originalButton.className;
+            const originalStyle = originalButton.getAttribute('style');
+            if (originalStyle) {
+              clonedButton.setAttribute('style', originalStyle);
+            }
           }
         }
       }
