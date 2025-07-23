@@ -945,6 +945,15 @@
                   </button>
                 {% endif %}
 
+                <button
+                  type="button"
+                  id="js--notify-me"
+                  class="body"
+                  style="height: var(--space-xl); width: 100%; background-color: var(--neutral-950); color: var(--white); border: none; padding: var(--space-s) var(--space-m); cursor: pointer; margin-bottom: var(--space-s); display: {% unless current_variant.available == false or current_variant.inventory_quantity <= 5 %}none{% endunless %};"
+                >
+                  Notify Me
+                </button>
+
                 <div
                   class="klaviyo-form-WMidEs"
                   style="{% unless current_variant.available == false or current_variant.inventory_quantity <= 5 %}display: none;{% endunless %}"
