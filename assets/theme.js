@@ -1,28 +1,17 @@
-// Define a convenience method and use it like
-// ready(() => {...});
 var ready = (callback) => {
   if (document.readyState != "loading") callback();
   else document.addEventListener("DOMContentLoaded", callback);
 };
 
-/*
- * HISTORY STATE
- * Check if window.history is supported
- */
 function historyState() {
   return window.history && window.history.replaceState;
 }
 
-/*
- * GET URL PARAMETER
- * Checks for url parameter called `name`.
- */
 function getParam(name) {
   if ("URLSearchParams" in window) {
     var params = new URLSearchParams(window.location.search);
     return params.get(name);
   } else {
-    // Polyfill for IE11
     var params = new RegExp("[?&]" + name + "=([^&#]*)").exec(window.location.href);
     if (params == null) {
       return null;
@@ -32,11 +21,6 @@ function getParam(name) {
   }
 }
 
-/*
- * FORMAT MONEY
- * Formats the passed value as money with currency symbol.
- * Referenced from https://gist.github.com/stewartknapman/8d8733ea58d2314c373e94114472d44c
- */
 var Shopify = Shopify || {};
 Shopify.money_format = "${{amount}}";
 Shopify.formatMoney = function (cents, format) {
@@ -87,11 +71,6 @@ Shopify.formatMoney = function (cents, format) {
   return formatString.replace(placeholderRegex, value);
 };
 
-/*
- * OPTION SELECTOR
- * Works the variant option dropdowns used on the
- * product page template.
- */
 ready(function () {
   var variant;
   var options = [];
@@ -102,10 +81,8 @@ ready(function () {
   var variantOptions = document.querySelectorAll(".js--variant-option");
   variantOptions.forEach(function (el) {
     el.addEventListener("change", function (event) {
-      // Disable non-existent variant options.
       checkVariants();
 
-      // Set the chosen options.
       variantOptions.forEach(function (opt) {
         if (opt.tagName.toLowerCase() == "input" && opt.checked == true) {
           var optionName = opt.getAttribute("name");
@@ -115,14 +92,11 @@ ready(function () {
         }
       });
 
-      // Loop through the variants and get the selected one.
       variants.filter(function (v) {
         if (v.option1 == options[1] && v.option2 == options[2] && v.option3 == options[3]) {
           variant = v;
 
-          // Update variant id and prices
           document.querySelector("input#js--variant-id").value = v.id;
-          // The following is used for the "purchase together" feature.
           document.querySelectorAll('input[type="checkbox"].js--variant-id').forEach(function (el) {
             el.value = v.id;
             el.setAttribute("data-price", v.price);
@@ -148,7 +122,6 @@ ready(function () {
             });
           }
 
-          // Update SKU
           document.querySelectorAll(".js--variant-sku").forEach(function (el) {
             el.innerText = variant.sku;
           });
@@ -157,19 +130,25 @@ ready(function () {
             document.querySelector(".js--pants-size").textContent = v.option1 - 12;
           }
 
-          // Disable the buy button if product is unavailable
           var variantIndex = variants.findIndex((variant) => variant.id === v.id);
           var inventoryQuantity = variant_inventory_quantities[variantIndex];
 
           var addToCartButton = document.querySelector("#js--addtocart");
+          var notifyMeButton = document.querySelector("#js--notify-me");
           var klaviyoForm = document.querySelector(".klaviyo-form-WMidEs");
 
-          if (v.available === false || (inventoryQuantity <= 5 && !v.name.includes("Digital Gift Card"))) {
+          var isUnavailable = v.available === false || (inventoryQuantity <= 5 && !v.name.includes("Digital Gift Card"));
+
+          if (isUnavailable) {
             if (addToCartButton) {
               addToCartButton.style.display = "none";
             }
-            if (klaviyoForm) {
-              klaviyoForm.style.display = "block";
+            if (notifyMeButton) {
+              notifyMeButton.style.display = "block";
+              notifyMeButton.innerText = "Out of Stock - Notify Me";
+              if (klaviyoForm) {
+                klaviyoForm.style.display = "none";
+              }
             }
           } else {
             if (addToCartButton) {
@@ -184,15 +163,16 @@ ready(function () {
                   : "Add To Cart";
               addToCartButton.innerText = buttonText;
             }
+            if (notifyMeButton) {
+              notifyMeButton.style.display = "none";
+            }
             if (klaviyoForm) {
               klaviyoForm.style.display = "none";
             }
           }
 
-          // Update the hidden inventory quantity input
           document.querySelector("#js--variant-inventory-quantity").value = inventoryQuantity;
 
-          // Append the variant ID as a url parameter
           if (v != undefined) {
             if (historyState()) {
               window.history.replaceState({}, document.title, "?variant=" + v.id);
@@ -202,14 +182,20 @@ ready(function () {
       });
     });
   });
+
+  var notifyMeButton = document.querySelector("#js--notify-me");
+  var klaviyoForm = document.querySelector(".klaviyo-form-WMidEs");
+
+  if (notifyMeButton && klaviyoForm) {
+    notifyMeButton.addEventListener("click", function() {
+      if (klaviyoForm.style.display === "none" || klaviyoForm.style.display === "") {
+        klaviyoForm.style.display = "block";
+        notifyMeButton.style.display = "none";
+      }
+    });
+  }
 });
 
-/*
- * CHECK VARIANT EXISTS
- * This checks if the variant actually exists - e.g you may have small, medium,
- * and large in blue and black, but blue/medium is not a variant. Disables the
- * related inputs.
- */
 function checkVariants() {
   let $this = event.target;
   if ($this !== undefined) {
@@ -220,8 +206,6 @@ function checkVariants() {
       }
     });
 
-    // Loop through the array above to create an array containing available
-    // option values.
     let optionGroups = {};
     availableVariants.forEach(function (variant) {
       let options = Object.entries(variant);
@@ -237,8 +221,6 @@ function checkVariants() {
       }
     });
 
-    // Then, loop through each input and check if its value is in the optionGroups
-    // array created above, ignoring the clicked option group.
     document.querySelectorAll(".js--variant-option").forEach(function (input) {
       if (input.name != $this.name) {
         if (optionGroups[input.name].includes(input.value) == false) {
@@ -251,7 +233,6 @@ function checkVariants() {
     });
   }
 
-  // Check a valid option is selected for each group.
   document.querySelectorAll(".js--variant-options").forEach(function (group) {
     let firstAvailable = null;
     let checkedOptions = group.querySelectorAll(".js--variant-option:checked").length;
@@ -264,7 +245,6 @@ function checkVariants() {
   });
 }
 
-// Fixed header & filtering
 document.addEventListener('DOMContentLoaded', function() {
   const header = document.querySelector('#site-header');
   const spacer = document.querySelector('#header-spacer');

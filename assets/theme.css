@@ -545,13 +545,6 @@ input:focus-visible {
   backdrop-filter: blur(0.25rem);
 }
 
-@media screen and (max-width: 768px) {
-  input,
-  input::placeholder {
-    font-size: 16px !important;
-  }
-}
-
 /* Header */
 
 header {
