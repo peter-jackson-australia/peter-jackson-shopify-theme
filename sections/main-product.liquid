@@ -1385,19 +1385,11 @@
             clonedButton.textContent = 'Size Unavailable - Notify Me';
             clonedButton.disabled = false;
             clonedButton.className = originalButton.className;
+            const originalStyle = originalButton.getAttribute('style');
+            if (originalStyle) {
+              clonedButton.setAttribute('style', originalStyle);
+            }
             clonedButton.style.display = 'flex';
-            clonedButton.style.height = 'var(--space-xl)';
-            clonedButton.style.width = '100%';
-            clonedButton.style.backgroundColor = 'var(--neutral-950)';
-            clonedButton.style.color = 'var(--white)';
-            clonedButton.style.border = 'none';
-            clonedButton.style.padding = 'var(--space-s) var(--space-m)';
-            clonedButton.style.cursor = 'pointer';
-            clonedButton.style.marginBottom = '0';
-            clonedButton.style.maxWidth = 'none';
-            clonedButton.style.flexShrink = '0';
-            clonedButton.style.justifyContent = 'center';
-            clonedButton.style.alignItems = 'center';
           } else {
             clonedButton.disabled = originalButton.disabled;
             clonedButton.innerHTML = originalButton.innerHTML;
@@ -1422,19 +1414,11 @@
             clonedButton.textContent = 'Size Unavailable - Notify Me';
             clonedButton.disabled = false;
             clonedButton.className = originalButton.className;
+            const originalStyle = originalButton.getAttribute('style');
+            if (originalStyle) {
+              clonedButton.setAttribute('style', originalStyle);
+            }
             clonedButton.style.display = 'flex';
-            clonedButton.style.height = 'var(--space-xl)';
-            clonedButton.style.width = '100%';
-            clonedButton.style.backgroundColor = 'var(--neutral-950)';
-            clonedButton.style.color = 'var(--white)';
-            clonedButton.style.border = 'none';
-            clonedButton.style.padding = 'var(--space-s) var(--space-m)';
-            clonedButton.style.cursor = 'pointer';
-            clonedButton.style.marginBottom = '0';
-            clonedButton.style.maxWidth = 'none';
-            clonedButton.style.flexShrink = '0';
-            clonedButton.style.justifyContent = 'center';
-            clonedButton.style.alignItems = 'center';
           } else {
             if ({{ product.gift_card? | json }}) {
               clonedButton.textContent = 'Select Card Amount';
