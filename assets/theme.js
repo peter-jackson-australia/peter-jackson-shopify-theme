@@ -99,52 +99,6 @@ ready(function () {
   options[2] = null;
   options[3] = null;
 
-  function updateButtonAndForm(v, inventoryQuantity) {
-    var addToCartButton = document.querySelector("#js--addtocart");
-    var klaviyoForm = document.querySelector(".klaviyo-form-WMidEs");
-
-    console.log('Updating button and form:', {
-      variant: v,
-      inventory: inventoryQuantity,
-      available: v.available,
-      buttonExists: !!addToCartButton,
-      formExists: !!klaviyoForm
-    });
-
-    if (v.available === false || (inventoryQuantity <= 5 && !v.name.includes("Digital Gift Card"))) {
-      if (addToCartButton) {
-        addToCartButton.style.display = "none";
-      }
-      if (klaviyoForm) {
-        klaviyoForm.style.display = "block";
-        klaviyoForm.style.visibility = "visible";
-      }
-    } else {
-      if (addToCartButton) {
-        addToCartButton.disabled = false;
-        addToCartButton.style.display = "block";
-        var buttonText =
-          show_low_stock_warning &&
-          inventoryQuantity >= 6 &&
-          inventoryQuantity <= 10 &&
-          !product_title.includes("Gift Card")
-            ? "Low In Stock - Add To Cart"
-            : "Add To Cart";
-        addToCartButton.innerText = buttonText;
-      }
-      if (klaviyoForm) {
-        klaviyoForm.style.display = "none";
-      }
-    }
-  }
-
-  // Initial setup for current variant
-  if (typeof current_variant !== 'undefined' && current_variant) {
-    var variantIndex = variants.findIndex((variant) => variant.id === current_variant.id);
-    var inventoryQuantity = variant_inventory_quantities[variantIndex];
-    updateButtonAndForm(current_variant, inventoryQuantity);
-  }
-
   var variantOptions = document.querySelectorAll(".js--variant-option");
   variantOptions.forEach(function (el) {
     el.addEventListener("change", function (event) {
@@ -207,7 +161,33 @@ ready(function () {
           var variantIndex = variants.findIndex((variant) => variant.id === v.id);
           var inventoryQuantity = variant_inventory_quantities[variantIndex];
 
-          updateButtonAndForm(v, inventoryQuantity);
+          var addToCartButton = document.querySelector("#js--addtocart");
+          var klaviyoForm = document.querySelector(".klaviyo-form-WMidEs");
+
+          if (v.available === false || (inventoryQuantity <= 5 && !v.name.includes("Digital Gift Card"))) {
+            if (addToCartButton) {
+              addToCartButton.style.display = "none";
+            }
+            if (klaviyoForm) {
+              klaviyoForm.style.display = "block";
+            }
+          } else {
+            if (addToCartButton) {
+              addToCartButton.disabled = false;
+              addToCartButton.style.display = "block";
+              var buttonText =
+                show_low_stock_warning &&
+                inventoryQuantity >= 6 &&
+                inventoryQuantity <= 10 &&
+                !product_title.includes("Gift Card")
+                  ? "Low In Stock - Add To Cart"
+                  : "Add To Cart";
+              addToCartButton.innerText = buttonText;
+            }
+            if (klaviyoForm) {
+              klaviyoForm.style.display = "none";
+            }
+          }
 
           // Update the hidden inventory quantity input
           document.querySelector("#js--variant-inventory-quantity").value = inventoryQuantity;
