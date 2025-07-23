@@ -377,6 +377,22 @@
     margin-bottom: var(--space-s);
   }
 
+  .klaviyo-form-WMidEs > div > form > div > div > div > div > input,
+  .klaviyo-form-WMidEs > div > form > div > div > div > button {
+    height: var(--space-xl) !important;
+    padding: 0px !important;
+    border: 1px solid transparent !important;
+    border-bottom: 1px solid black !important;
+    box-sizing: border-box !important;
+  }
+
+  .klaviyo-form-WMidEs > div > form > div > div > div > div > input:hover,
+  .go2415937031.go2415937031.go2415937031:hover {
+    border-top: 1px solid transparent !important;
+    border-left: 1px solid transparent !important;
+    border-right: 1px solid transparent !important;
+  }
+
   .product-tabs__list {
     display: flex;
     gap: var(--space-l);
@@ -919,8 +935,20 @@
                     {% endif %}
                   </button>
                 {% else %}
-                  <div class="klaviyo-form-WMidEs"></div>
+                  <button
+                    type="submit"
+                    id="js--addtocart"
+                    class="body"
+                    style="height: var(--space-xl); display: none;"
+                  >
+                    Add To Cart
+                  </button>
                 {% endif %}
+
+                <div
+                  class="klaviyo-form-WMidEs"
+                  style="{% unless current_variant.available == false or current_variant.inventory_quantity <= 5 %}display: none;{% endunless %}"
+                ></div>
             {%- endcase -%}
           {%- endfor -%}
         </form>
@@ -1282,15 +1310,12 @@
       const stickyComparePrice = document.querySelector('.js--sticky-compare-price');
       const stickyComparePriceContainer = stickyComparePrice ? stickyComparePrice.parentElement : null;
       
-      // Mobile elements
       const stickyMobilePrice = document.querySelector('.js--sticky-mobile-price');
       const stickyMobileComparePrice = document.querySelector('.js--sticky-mobile-compare-price');
       
-      // Get the actual displayed prices from the main product section
       const mainPrice = document.querySelector('.js--variant-price');
       const mainComparePrice = document.querySelector('.js--variant-compareatprice');
       
-      // Update desktop prices
       if (stickyPrice && mainPrice) {
         stickyPrice.textContent = mainPrice.textContent;
       }
@@ -1304,7 +1329,6 @@
         }
       }
       
-      // Update mobile prices
       if (stickyMobilePrice && mainPrice) {
         stickyMobilePrice.textContent = mainPrice.textContent;
       }

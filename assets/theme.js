@@ -161,19 +161,32 @@ ready(function () {
           var variantIndex = variants.findIndex((variant) => variant.id === v.id);
           var inventoryQuantity = variant_inventory_quantities[variantIndex];
 
+          var addToCartButton = document.querySelector("#js--addtocart");
+          var klaviyoForm = document.querySelector(".klaviyo-form-WMidEs");
+
           if (v.available === false || (inventoryQuantity <= 5 && !v.name.includes("Digital Gift Card"))) {
-            document.querySelector("#js--addtocart").disabled = true;
-            document.querySelector("#js--addtocart").innerText = "Size Unavailable";
+            if (addToCartButton) {
+              addToCartButton.style.display = "none";
+            }
+            if (klaviyoForm) {
+              klaviyoForm.style.display = "block";
+            }
           } else {
-            document.querySelector("#js--addtocart").disabled = false;
-            var buttonText =
-              show_low_stock_warning &&
-              inventoryQuantity >= 6 &&
-              inventoryQuantity <= 10 &&
-              !product_title.includes("Gift Card")
-                ? "Low In Stock - Add To Cart"
-                : "Add To Cart";
-            document.querySelector("#js--addtocart").innerText = buttonText;
+            if (addToCartButton) {
+              addToCartButton.disabled = false;
+              addToCartButton.style.display = "block";
+              var buttonText =
+                show_low_stock_warning &&
+                inventoryQuantity >= 6 &&
+                inventoryQuantity <= 10 &&
+                !product_title.includes("Gift Card")
+                  ? "Low In Stock - Add To Cart"
+                  : "Add To Cart";
+              addToCartButton.innerText = buttonText;
+            }
+            if (klaviyoForm) {
+              klaviyoForm.style.display = "none";
+            }
           }
 
           // Update the hidden inventory quantity input
