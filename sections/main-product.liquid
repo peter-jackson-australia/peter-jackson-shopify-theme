@@ -373,6 +373,10 @@
     background-color: var(--neutral-950);
   }
 
+  .klaviyo-form-WMidEs {
+    margin-bottom: var(--space-s);
+  }
+
   .product-tabs__list {
     display: flex;
     gap: var(--space-l);
@@ -915,15 +919,7 @@
                     {% endif %}
                   </button>
                 {% else %}
-                  <button
-                    type="submit"
-                    id="js--addtocart"
-                    class="body--uppercase"
-                    style="height: var(--space-xl);"
-                    disabled
-                  >
-                    Size Unavailable
-                  </button>
+                  <div class="klaviyo-form-WMidEs"></div>
                 {% endif %}
             {%- endcase -%}
           {%- endfor -%}
