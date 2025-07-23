@@ -441,7 +441,8 @@ li {
 
 .body--bold,
 h5,
-h6 {
+h6, 
+#label-email_01K0TJKMBA3VDEFYQ0GC07SFN3 {
   line-height: 140%;
   letter-spacing: 0.065rem;
   font-family: 'Ordinary Regular';
