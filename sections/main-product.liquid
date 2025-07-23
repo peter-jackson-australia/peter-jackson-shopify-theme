@@ -1382,7 +1382,7 @@
         
         if ({{ product.has_only_default_variant | json }}) {
           if (isShowingNotifyMe) {
-            clonedButton.textContent = 'Size Unavailable - Notify Me';
+            clonedButton.textContent = 'Notify Me';
             clonedButton.disabled = false;
             clonedButton.className = originalButton.className;
             const originalStyle = originalButton.getAttribute('style');
