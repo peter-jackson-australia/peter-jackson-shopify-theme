@@ -945,18 +945,19 @@
                   </button>
                 {% endif %}
 
+                <!-- Notify Me Button -->
                 <button
                   type="button"
                   id="js--notify-me"
                   class="body"
-                  style="height: var(--space-xl); width: 100%; background-color: var(--neutral-950); color: var(--white); border: none; padding: var(--space-s) var(--space-m); cursor: pointer; margin-bottom: var(--space-s); display: {% unless current_variant.available == false or current_variant.inventory_quantity <= 5 %}none{% endunless %};"
+                  style="height: var(--space-xl); width: 100%; background-color: var(--neutral-950); color: var(--white); border: none; padding: var(--space-s) var(--space-m); cursor: pointer; margin-bottom: var(--space-s); {% if current_variant.available and product.gift_card? %}display: none;{% elsif current_variant.available and current_variant.inventory_quantity > 5 %}display: none;{% else %}display: block;{% endif %}"
                 >
                   Notify Me
                 </button>
 
                 <div
                   class="klaviyo-form-WMidEs"
-                  style="{% unless current_variant.available == false or current_variant.inventory_quantity <= 5 %}display: none;{% endunless %}"
+                  style="{% if current_variant.available and product.gift_card? %}display: none;{% elsif current_variant.available and current_variant.inventory_quantity > 5 %}display: none;{% else %}display: none;{% endif %}"
                 ></div>
             {%- endcase -%}
           {%- endfor -%}
@@ -1378,12 +1379,10 @@
 
       function syncButtons() {
         const originalNotifyButton = document.querySelector('#js--notify-me');
-        const klaviyoForm = document.querySelector('.klaviyo-form-WMidEs');
         const isShowingNotifyMe = originalNotifyButton && originalNotifyButton.style.display !== 'none';
-        const isShowingKlaviyoForm = klaviyoForm && klaviyoForm.style.display !== 'none';
         
         if ({{ product.has_only_default_variant | json }}) {
-          if (isShowingNotifyMe || isShowingKlaviyoForm) {
+          if (isShowingNotifyMe) {
             clonedButton.textContent = 'Notify Me';
             clonedButton.disabled = false;
             clonedButton.className = originalButton.className;
@@ -1412,8 +1411,8 @@
             }
           }
         } else {
-          if (isShowingNotifyMe || isShowingKlaviyoForm) {
-            clonedButton.textContent = 'Notify Me';
+          if (isShowingNotifyMe) {
+            clonedButton.textContent = 'Size Unavailable - Notify Me';
             clonedButton.disabled = false;
             clonedButton.className = originalButton.className;
             const originalStyle = originalButton.getAttribute('style');
@@ -1446,19 +1445,15 @@
       clonedButton.addEventListener('click', function(e) {
         e.preventDefault();
         const originalNotifyButton = document.querySelector('#js--notify-me');
-        const klaviyoForm = document.querySelector('.klaviyo-form-WMidEs');
         const isShowingNotifyMe = originalNotifyButton && originalNotifyButton.style.display !== 'none';
-        const isShowingKlaviyoForm = klaviyoForm && klaviyoForm.style.display !== 'none';
         
-        if (isShowingNotifyMe || isShowingKlaviyoForm) {
+        if (isShowingNotifyMe) {
           scrollToVariantForm();
-          if (isShowingNotifyMe) {
-            setTimeout(() => {
-              if (originalNotifyButton) {
-                originalNotifyButton.click();
-              }
-            }, 300);
-          }
+          setTimeout(() => {
+            if (originalNotifyButton) {
+              originalNotifyButton.click();
+            }
+          }, 300);
         } else if (!{{ product.has_only_default_variant | json }}) {
           scrollToVariantForm();
         } else {
@@ -1468,15 +1463,11 @@
 
       function checkButtonPosition() {
         const originalNotifyButton = document.querySelector('#js--notify-me');
-        const klaviyoForm = document.querySelector('.klaviyo-form-WMidEs');
         const isShowingNotifyMe = originalNotifyButton && originalNotifyButton.style.display !== 'none';
-        const isShowingKlaviyoForm = klaviyoForm && klaviyoForm.style.display !== 'none';
         
         let buttonRect;
         if (isShowingNotifyMe) {
           buttonRect = originalNotifyButton.getBoundingClientRect();
-        } else if (isShowingKlaviyoForm) {
-          buttonRect = klaviyoForm.getBoundingClientRect();
         } else {
           buttonRect = originalButton.getBoundingClientRect();
         }
