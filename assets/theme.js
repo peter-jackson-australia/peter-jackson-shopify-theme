@@ -99,6 +99,30 @@ ready(function () {
   options[2] = null;
   options[3] = null;
 
+  // Initial setup for current variant
+  if (typeof current_variant !== 'undefined' && current_variant) {
+    var addToCartButton = document.querySelector("#js--addtocart");
+    var klaviyoForm = document.querySelector(".klaviyo-form-WMidEs");
+    var variantIndex = variants.findIndex((variant) => variant.id === current_variant.id);
+    var inventoryQuantity = variant_inventory_quantities[variantIndex];
+
+    if (current_variant.available === false || (inventoryQuantity <= 5 && !current_variant.name.includes("Digital Gift Card"))) {
+      if (addToCartButton) {
+        addToCartButton.style.display = "none";
+      }
+      if (klaviyoForm) {
+        klaviyoForm.style.display = "block";
+      }
+    } else {
+      if (addToCartButton) {
+        addToCartButton.style.display = "block";
+      }
+      if (klaviyoForm) {
+        klaviyoForm.style.display = "none";
+      }
+    }
+  }
+
   var variantOptions = document.querySelectorAll(".js--variant-option");
   variantOptions.forEach(function (el) {
     el.addEventListener("change", function (event) {
@@ -265,13 +289,13 @@ function checkVariants() {
 }
 
 // Fixed header & filtering
-document.addEventListener("DOMContentLoaded", function () {
-  const header = document.querySelector("#site-header");
-  const spacer = document.querySelector("#header-spacer");
-  const collectionControls = document.querySelector(".collection-controls");
-  const searchControls = document.querySelector(".search-controls");
-  const controls = collectionControls || searchControls;
-  const productsGrid = document.querySelector(".products-grid");
+document.addEventListener('DOMContentLoaded', function() {
+  const header = document.querySelector('#site-header');
+  const spacer = document.querySelector('#header-spacer');
+  const collectionControls = document.querySelector('.collection-controls');
+  const searchControls = document.querySelector('.search-controls');
+  const controls = collectionControls || searchControls; 
+  const productsGrid = document.querySelector('.products-grid');
   const headerOffsetTop = header.offsetTop;
   let isFixed = false;
   let isControlsFixed = false;
@@ -281,60 +305,58 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (controls && productsGrid) {
     productsGridOffsetTop = productsGrid.offsetTop;
-    controlsSpacer = document.createElement("div");
-    controlsSpacer.id = "controls-spacer";
-    controlsSpacer.className = "hide";
-    controlsSpacer.style.height = controls.offsetHeight + "px";
+    controlsSpacer = document.createElement('div');
+    controlsSpacer.id = 'controls-spacer';
+    controlsSpacer.className = 'hide';
+    controlsSpacer.style.height = controls.offsetHeight + 'px';
     controls.parentNode.insertBefore(controlsSpacer, controls.nextSibling);
   }
 
   function checkScroll() {
-    if (
-      document.body.classList.contains("menu-open") ||
-      document.body.classList.contains("cart-open") ||
-      document.body.classList.contains("search-open") ||
-      document.body.classList.contains("filter-open") ||
-      document.body.classList.contains("search-filter-open")
-    ) {
+    if (document.body.classList.contains('menu-open') || 
+    document.body.classList.contains('cart-open') || 
+    document.body.classList.contains('search-open') || 
+    document.body.classList.contains('filter-open') ||
+    document.body.classList.contains('search-filter-open')) {
       ticking = false;
       return;
     }
 
     const scrollY = window.scrollY;
-
+    
     if (scrollY >= headerOffsetTop && !isFixed) {
       isFixed = true;
-      header.classList.add("header-fixed");
-      spacer.classList.remove("hide");
+      header.classList.add('header-fixed');
+      spacer.classList.remove('hide');
     } else if (scrollY < headerOffsetTop && isFixed) {
       isFixed = false;
-      header.classList.remove("header-fixed");
-      spacer.classList.add("hide");
+      header.classList.remove('header-fixed');
+      spacer.classList.add('hide');
     }
 
     if (controls && controlsSpacer && productsGrid) {
       const headerHeight = header.offsetHeight;
       const triggerPoint = productsGridOffsetTop - headerHeight;
-
+      
       if (scrollY >= triggerPoint && !isControlsFixed) {
         isControlsFixed = true;
-        controls.classList.add("controls-fixed");
-        controlsSpacer.classList.remove("hide");
+        controls.classList.add('controls-fixed');
+        controlsSpacer.classList.remove('hide');
       } else if (scrollY < triggerPoint && isControlsFixed) {
         isControlsFixed = false;
-        controls.classList.remove("controls-fixed");
-        controlsSpacer.classList.add("hide");
-        controls.classList.add("sliding-up");
+        controls.classList.remove('controls-fixed');
+        controlsSpacer.classList.add('hide');
+        controls.classList.add('sliding-up');
         setTimeout(() => {
-          controls.classList.remove("sliding-up");
+          controls.classList.remove('sliding-up');
         }, 300);
       }
     }
-
+    
     ticking = false;
   }
 
-  window.addEventListener("scroll", function () {
+  window.addEventListener('scroll', function() {
     if (!ticking) {
       requestAnimationFrame(checkScroll);
       ticking = true;
