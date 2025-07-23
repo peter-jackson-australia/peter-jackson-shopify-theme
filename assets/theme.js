@@ -145,7 +145,7 @@ ready(function () {
             }
             if (notifyMeButton) {
               notifyMeButton.style.display = "block";
-              notifyMeButton.innerText = "Notify Me";
+              notifyMeButton.innerText = "Out of Stock - Notify Me";
               if (klaviyoForm) {
                 klaviyoForm.style.display = "none";
               }
