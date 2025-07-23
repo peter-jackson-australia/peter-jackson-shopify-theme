@@ -919,8 +919,20 @@
                     {% endif %}
                   </button>
                 {% else %}
-                  <div class="klaviyo-form-WMidEs"></div>
+                  <button
+                    type="submit"
+                    id="js--addtocart"
+                    class="body"
+                    style="height: var(--space-xl); display: none;"
+                  >
+                    Add To Cart
+                  </button>
                 {% endif %}
+
+                <div
+                  class="klaviyo-form-WMidEs"
+                  style="{% unless current_variant.available == false or current_variant.inventory_quantity <= 5 %}display: none;{% endunless %}"
+                ></div>
             {%- endcase -%}
           {%- endfor -%}
         </form>
