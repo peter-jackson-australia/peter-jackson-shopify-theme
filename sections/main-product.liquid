@@ -1356,12 +1356,6 @@
       }
 
       function syncButtons() {
-        // Check if original button is hidden due to unavailable variant
-        if (originalButton.style.display === 'none') {
-          clonedButton.style.display = 'none';
-          return;
-        }
-      
         if ({{ product.has_only_default_variant | json }}) {
           clonedButton.disabled = originalButton.disabled;
           clonedButton.innerHTML = originalButton.innerHTML;
@@ -1381,7 +1375,6 @@
             clonedButton.setAttribute('style', originalStyle);
           }
         } else {
-          clonedButton.style.display = 'block';
           if ({{ product.gift_card? | json }}) {
             clonedButton.textContent = 'Select Card Amount';
           } else {
