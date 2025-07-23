@@ -861,7 +861,8 @@ a.skip-to-content:focus-visible {
 }
 
 #rich-text-01JQ7PY3EM88BD6RSMQFFCS2QW > * > *,
-#rich-text-01JQ7PY3EVQV63T4NT5GGT9J67 > * > * {
+#rich-text-01JQ7PY3EVQV63T4NT5GGT9J67 > * > *, 
+#label-email_01K0TJKMBA3VDEFYQ0GC07SFN3 {
   line-height: 140% !important;
   letter-spacing: 0.065rem !important;
   font-family: 'Ordinary Light' !important;
