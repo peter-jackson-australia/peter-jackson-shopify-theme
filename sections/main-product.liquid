@@ -1378,10 +1378,12 @@
 
       function syncButtons() {
         const originalNotifyButton = document.querySelector('#js--notify-me');
+        const klaviyoForm = document.querySelector('.klaviyo-form-WMidEs');
         const isShowingNotifyMe = originalNotifyButton && originalNotifyButton.style.display !== 'none';
+        const isShowingKlaviyoForm = klaviyoForm && klaviyoForm.style.display !== 'none';
         
         if ({{ product.has_only_default_variant | json }}) {
-          if (isShowingNotifyMe) {
+          if (isShowingNotifyMe || isShowingKlaviyoForm) {
             clonedButton.textContent = 'Notify Me';
             clonedButton.disabled = false;
             clonedButton.className = originalButton.className;
@@ -1410,8 +1412,8 @@
             }
           }
         } else {
-          if (isShowingNotifyMe) {
-            clonedButton.textContent = 'Size Unavailable - Notify Me';
+          if (isShowingNotifyMe || isShowingKlaviyoForm) {
+            clonedButton.textContent = 'Notify Me';
             clonedButton.disabled = false;
             clonedButton.className = originalButton.className;
             const originalStyle = originalButton.getAttribute('style');
@@ -1444,15 +1446,19 @@
       clonedButton.addEventListener('click', function(e) {
         e.preventDefault();
         const originalNotifyButton = document.querySelector('#js--notify-me');
+        const klaviyoForm = document.querySelector('.klaviyo-form-WMidEs');
         const isShowingNotifyMe = originalNotifyButton && originalNotifyButton.style.display !== 'none';
+        const isShowingKlaviyoForm = klaviyoForm && klaviyoForm.style.display !== 'none';
         
-        if (isShowingNotifyMe) {
+        if (isShowingNotifyMe || isShowingKlaviyoForm) {
           scrollToVariantForm();
-          setTimeout(() => {
-            if (originalNotifyButton) {
-              originalNotifyButton.click();
-            }
-          }, 300);
+          if (isShowingNotifyMe) {
+            setTimeout(() => {
+              if (originalNotifyButton) {
+                originalNotifyButton.click();
+              }
+            }, 300);
+          }
         } else if (!{{ product.has_only_default_variant | json }}) {
           scrollToVariantForm();
         } else {
@@ -1462,11 +1468,15 @@
 
       function checkButtonPosition() {
         const originalNotifyButton = document.querySelector('#js--notify-me');
+        const klaviyoForm = document.querySelector('.klaviyo-form-WMidEs');
         const isShowingNotifyMe = originalNotifyButton && originalNotifyButton.style.display !== 'none';
+        const isShowingKlaviyoForm = klaviyoForm && klaviyoForm.style.display !== 'none';
         
         let buttonRect;
         if (isShowingNotifyMe) {
           buttonRect = originalNotifyButton.getBoundingClientRect();
+        } else if (isShowingKlaviyoForm) {
+          buttonRect = klaviyoForm.getBoundingClientRect();
         } else {
           buttonRect = originalButton.getBoundingClientRect();
         }
