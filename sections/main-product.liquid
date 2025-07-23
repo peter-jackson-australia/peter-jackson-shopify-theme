@@ -1379,10 +1379,13 @@
 
       function syncButtons() {
         const originalNotifyButton = document.querySelector('#js--notify-me');
-        const isShowingNotifyMe = originalNotifyButton && originalNotifyButton.style.display !== 'none';
+        const klaviyoForm = document.querySelector('.klaviyo-form-WMidEs');
+        
+        const isNotifyMeVisible = originalNotifyButton && originalNotifyButton.style.display !== 'none';
+        const isKlaviyoVisible = klaviyoForm && klaviyoForm.style.display !== 'none' && klaviyoForm.style.display !== '';
         
         if ({{ product.has_only_default_variant | json }}) {
-          if (isShowingNotifyMe) {
+          if (isNotifyMeVisible || isKlaviyoVisible) {
             clonedButton.textContent = 'Notify Me';
             clonedButton.disabled = false;
             clonedButton.className = originalButton.className;
@@ -1411,8 +1414,8 @@
             }
           }
         } else {
-          if (isShowingNotifyMe) {
-            clonedButton.textContent = 'Size Unavailable - Notify Me';
+          if (isNotifyMeVisible || isKlaviyoVisible) {
+            clonedButton.textContent = 'Notify Me';
             clonedButton.disabled = false;
             clonedButton.className = originalButton.className;
             const originalStyle = originalButton.getAttribute('style');
@@ -1445,15 +1448,20 @@
       clonedButton.addEventListener('click', function(e) {
         e.preventDefault();
         const originalNotifyButton = document.querySelector('#js--notify-me');
-        const isShowingNotifyMe = originalNotifyButton && originalNotifyButton.style.display !== 'none';
+        const klaviyoForm = document.querySelector('.klaviyo-form-WMidEs');
         
-        if (isShowingNotifyMe) {
+        const isNotifyMeVisible = originalNotifyButton && originalNotifyButton.style.display !== 'none';
+        const isKlaviyoVisible = klaviyoForm && klaviyoForm.style.display !== 'none' && klaviyoForm.style.display !== '';
+        
+        if (isNotifyMeVisible || isKlaviyoVisible) {
           scrollToVariantForm();
-          setTimeout(() => {
-            if (originalNotifyButton) {
-              originalNotifyButton.click();
-            }
-          }, 300);
+          if (isNotifyMeVisible) {
+            setTimeout(() => {
+              if (originalNotifyButton) {
+                originalNotifyButton.click();
+              }
+            }, 300);
+          }
         } else if (!{{ product.has_only_default_variant | json }}) {
           scrollToVariantForm();
         } else {
@@ -1463,11 +1471,20 @@
 
       function checkButtonPosition() {
         const originalNotifyButton = document.querySelector('#js--notify-me');
-        const isShowingNotifyMe = originalNotifyButton && originalNotifyButton.style.display !== 'none';
+        const klaviyoForm = document.querySelector('.klaviyo-form-WMidEs');
+        const addToCartButton = document.querySelector('#js--addtocart');
+        
+        const isNotifyMeVisible = originalNotifyButton && originalNotifyButton.style.display !== 'none';
+        const isKlaviyoVisible = klaviyoForm && klaviyoForm.style.display !== 'none' && klaviyoForm.style.display !== '';
+        const isAddToCartVisible = addToCartButton && addToCartButton.style.display !== 'none';
         
         let buttonRect;
-        if (isShowingNotifyMe) {
+        if (isKlaviyoVisible) {
+          buttonRect = klaviyoForm.getBoundingClientRect();
+        } else if (isNotifyMeVisible) {
           buttonRect = originalNotifyButton.getBoundingClientRect();
+        } else if (isAddToCartVisible) {
+          buttonRect = addToCartButton.getBoundingClientRect();
         } else {
           buttonRect = originalButton.getBoundingClientRect();
         }
