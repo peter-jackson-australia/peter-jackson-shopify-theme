@@ -92,29 +92,25 @@
   }
 
   .search-drawer__new-arrivals-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-wrap: wrap;
     gap: var(--space-xs);
     margin-top: var(--space-s);
-  }
-
-  .search-drawer__new-arrivals-grid > article {
-    max-width: 50%;
   }
 
   .search-drawer__product-card {
     display: block;
     text-decoration: none;
     color: var(--neutral-950);
+    width: calc(50% - var(--space-xs) / 2);
   }
 
   .search-drawer__product-image-wrapper {
     margin-bottom: var(--space-xs);
     overflow: hidden;
     background-color: var(--neutral-50);
-    max-width: 50%;
-    height: 160px;
-    aspect-ratio: 1;
+    width: 100%;
+    height: auto;
   }
 
   .search-drawer__product-image {
