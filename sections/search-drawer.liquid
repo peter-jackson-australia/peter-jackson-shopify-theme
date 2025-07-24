@@ -89,25 +89,22 @@
   .search-drawer__new-arrivals {
     padding: 0 var(--space-m);
     margin-top: var(--space-m);
-    max-width: 100%;
-    overflow: hidden;
+    box-sizing: border-box;
   }
 
   .search-drawer__new-arrivals-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--space-xs);
+    gap: 8px;
     margin-top: var(--space-s);
-    width: 100%;
-    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .search-drawer__product-card {
     display: block;
     text-decoration: none;
     color: var(--neutral-950);
-    min-width: 0;
-    width: 100%;
+    box-sizing: border-box;
   }
 
   .search-drawer__product-image-wrapper {
@@ -115,14 +112,15 @@
     overflow: hidden;
     background-color: var(--neutral-50);
     width: 100%;
-    aspect-ratio: 3/4;
+    height: 200px;
+    box-sizing: border-box;
   }
 
   .search-drawer__product-image {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    background-color: var(--neutral-50);
+    display: block;
   }
 
   .search-drawer__product-title {
@@ -131,6 +129,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     color: var(--neutral-950);
+    box-sizing: border-box;
   }
 
   .search-drawer__product-material {
@@ -139,6 +138,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    box-sizing: border-box;
   }
 
   .search-drawer__product-price--compare {
