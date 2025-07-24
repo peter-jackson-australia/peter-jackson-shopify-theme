@@ -86,62 +86,19 @@
     padding: 0px var(--space-m);
   }
 
-  .search-drawer__new-arrivals {
-    padding: 0 var(--space-m);
-    margin-top: var(--space-m);
-    width: 100%;
-    box-sizing: border-box;
-  }
-
   .search-drawer__new-arrivals-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: var(--space-s);
-    row-gap: var(--space-m);
-    margin-top: var(--space-s);
-    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
   }
 
   .search-drawer__product-card {
-    display: block;
-    text-decoration: none;
-    color: var(--neutral-950);
-    width: 100%;
-  }
-
-  .search-drawer__product-image-wrapper {
-    margin-bottom: var(--space-xs);
-    overflow: hidden;
-    background-color: var(--neutral-50);
-    width: 100%;
+    width: calc(50% - 4px);
+    margin: 2px;
   }
 
   .search-drawer__product-image {
     width: 100%;
     height: auto;
-    display: block;
-  }
-
-  .search-drawer__product-title {
-    margin: var(--space-xs) 0 var(--space-2xs);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: var(--neutral-950);
-  }
-
-  .search-drawer__product-material {
-    margin-bottom: var(--space-2xs);
-    color: var(--neutral-600);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .search-drawer__product-price--compare {
-    text-decoration: line-through;
-    color: var(--neutral-600);
-    margin-left: var(--space-2xs);
   }
 
   .predictive-search {
