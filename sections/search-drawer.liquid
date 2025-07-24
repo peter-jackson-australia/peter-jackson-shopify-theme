@@ -86,51 +86,6 @@
     padding: 0px var(--space-m);
   }
 
-  .search-drawer__new-arrivals-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-2xs);
-  }
-
-  .search-drawer__product-card {
-    width: calc(50% - 4px);
-    margin: 2px;
-  }
-
-  .search-drawer__product-image {
-    width: 100%;
-    height: auto;
-  }
-
-  .search-drawer__product-image-wrapper {
-    width: 100%;
-    aspect-ratio: 3/4;
-    overflow: hidden;
-    background-color: var(--neutral-50);
-  }
-
-  .search-drawer__product-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .search-drawer__product-title {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: var(--neutral-950);
-    width: 100%;
-  }
-
-  .search-drawer__product-material {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: var(--neutral-600);
-    width: 100%;
-  }
-
   .predictive-search {
     padding: 0px var(--space-m);
   }
@@ -329,6 +284,60 @@
 
   .faq-item__link:hover {
     color: var(--neutral-600);
+  }
+
+  .search-drawer__new-arrivals {
+    padding: var(--space-m);
+    margin-top: var(--space-m);
+  }
+
+  .search-drawer__new-arrivals-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2xs);
+    margin-top: var(--space-s);
+  }
+
+  .search-drawer__product-card {
+    width: calc(50% - (var(--space-2xs) / 2));
+    display: block;
+    text-decoration: none;
+    color: var(--neutral-950);
+  }
+
+  .search-drawer__product-image-wrapper {
+    margin-bottom: var(--space-xs);
+    overflow: hidden;
+    background-color: var(--neutral-50);
+    aspect-ratio: 3/4;
+  }
+
+  .search-drawer__product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .search-drawer__product-title {
+    margin: var(--space-xs) 0 var(--space-2xs);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--neutral-950);
+  }
+
+  .search-drawer__product-material {
+    margin-bottom: var(--space-2xs);
+    color: var(--neutral-600);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .search-drawer__product-price--compare {
+    text-decoration: line-through;
+    color: var(--neutral-600);
+    margin-left: var(--space-2xs);
   }
 
   @media screen and (max-width: 768px) {
@@ -547,6 +556,7 @@
       >
         Knowledge Base
       </div>
+
       {% assign new_arrivals = collections['new-arrivals'] %}
       {% if new_arrivals and new_arrivals.products.size > 0 %}
         <div
@@ -557,8 +567,8 @@
           <h3 class="predictive-search__title heading--l">New Arrivals</h3>
           <div class="search-drawer__new-arrivals-grid">
             {% for product in new_arrivals.products limit: 4 %}
-              <article>
-                <a href="{{ product.url }}" class="search-drawer__product-card">
+              <article class="search-drawer__product-card">
+                <a href="{{ product.url }}">
                   <div class="search-drawer__product-image-wrapper">
                     {% if product.featured_image != blank %}
                       <img
