@@ -287,7 +287,8 @@
   }
 
   .search-drawer__new-arrivals {
-    padding: 0px var(--space-m);
+    padding: var(--space-m);
+    margin-top: var(--space-m);
   }
 
   .search-drawer__new-arrivals-grid {
@@ -575,47 +576,45 @@
           <h3 class="predictive-search__title heading--l">New Arrivals</h3>
           <div class="search-drawer__new-arrivals-grid">
             {% for product in new_arrivals.products limit: 4 %}
-              <article class="search-drawer__product-card">
-                <a href="{{ product.url }}">
-                  <div class="search-drawer__product-image-wrapper">
-                    {% if product.featured_image != blank %}
-                      {% assign image_aspect_ratio = product.featured_image.aspect_ratio | default: 1 %}
-                      {% assign image_height = 300 | divided_by: image_aspect_ratio | round %}
-                      {{
-                        product.featured_image
-                        | image_url: width: product.featured_image.width
-                        | image_tag:
-                          class: 'search-drawer__product-image',
-                          sizes: '(max-width: 768px) 150px, 300px',
-                          loading: 'lazy',
-                          decoding: 'async',
-                          alt: product.featured_image.alt
-                        | escape
-                        | default: product.title, width: 300, height: image_height
-                      }}
-                    {% else %}
-                      {{ 'product-1' | placeholder_svg_tag: 'search-drawer__product-image placeholder' }}
-                    {% endif %}
-                  </div>
-
-                  <h3 class="body--bold search-drawer__product-title">{{ product.title }}</h3>
-
-                  {% if product.metafields.custom.fabric_description != blank %}
-                    <p class="small search-drawer__product-material">
-                      {{ product.metafields.custom.fabric_description }}
-                    </p>
+              <a href="{{ product.url }}" class="search-drawer__product-card">
+                <div class="search-drawer__product-image-wrapper">
+                  {% if product.featured_image != blank %}
+                    {% assign image_aspect_ratio = product.featured_image.aspect_ratio | default: 1 %}
+                    {% assign image_height = 300 | divided_by: image_aspect_ratio | round %}
+                    {{
+                      product.featured_image
+                      | image_url: width: product.featured_image.width
+                      | image_tag:
+                        class: 'search-drawer__product-image',
+                        sizes: '(max-width: 768px) 150px, 300px',
+                        loading: 'lazy',
+                        decoding: 'async',
+                        alt: product.featured_image.alt
+                      | escape
+                      | default: product.title, width: 300, height: image_height
+                    }}
+                  {% else %}
+                    {{ 'product-1' | placeholder_svg_tag: 'search-drawer__product-image placeholder' }}
                   {% endif %}
+                </div>
 
-                  <p class="small search-drawer__product-price">
-                    <span class="search-drawer__product-price--current">{{ product.price | money }}</span>
-                    {% if product.compare_at_price > product.price %}
-                      <span class="search-drawer__product-price--compare">
-                        {{- product.compare_at_price | money -}}
-                      </span>
-                    {% endif %}
+                <h3 class="body--bold search-drawer__product-title">{{ product.title }}</h3>
+
+                {% if product.metafields.custom.fabric_description != blank %}
+                  <p class="small search-drawer__product-material">
+                    {{ product.metafields.custom.fabric_description }}
                   </p>
-                </a>
-              </article>
+                {% endif %}
+
+                <p class="small search-drawer__product-price">
+                  <span class="search-drawer__product-price--current">{{ product.price | money }}</span>
+                  {% if product.compare_at_price > product.price %}
+                    <span class="search-drawer__product-price--compare">
+                      {{- product.compare_at_price | money -}}
+                    </span>
+                  {% endif %}
+                </p>
+              </a>
             {% endfor %}
           </div>
         </div>
