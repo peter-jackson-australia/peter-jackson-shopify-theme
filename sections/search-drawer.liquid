@@ -309,10 +309,15 @@
     margin-bottom: var(--space-xs);
     overflow: hidden;
     background-color: var(--neutral-50);
-    aspect-ratio: 3/4;
+    position: relative;
+    width: 100%;
+    padding-bottom: 133.33%;
   }
 
   .search-drawer__product-image {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -575,15 +580,20 @@
                 <a href="{{ product.url }}">
                   <div class="search-drawer__product-image-wrapper">
                     {% if product.featured_image != blank %}
-                      <img
-                        src="{{ product.featured_image | image_url: width: '600' }}"
-                        alt="{{ product.featured_image.alt | escape }}"
-                        loading="lazy"
-                        width="{{ product.featured_image.width }}"
-                        height="{{ product.featured_image.height }}"
-                        class="search-drawer__product-image"
-                        decoding="async"
-                      >
+                      {% assign image_aspect_ratio = product.featured_image.aspect_ratio | default: 1 %}
+                      {% assign image_height = 300 | divided_by: image_aspect_ratio | round %}
+                      {{
+                        product.featured_image
+                        | image_url: width: product.featured_image.width
+                        | image_tag:
+                          class: 'search-drawer__product-image',
+                          sizes: '(max-width: 768px) 150px, 300px',
+                          loading: 'lazy',
+                          decoding: 'async',
+                          alt: product.featured_image.alt
+                        | escape
+                        | default: product.title, width: 300, height: image_height
+                      }}
                     {% else %}
                       {{ 'product-1' | placeholder_svg_tag: 'search-drawer__product-image placeholder' }}
                     {% endif %}
@@ -598,13 +608,11 @@
                   {% endif %}
 
                   <p class="small search-drawer__product-price">
+                    <span class="search-drawer__product-price--current">{{ product.price | money }}</span>
                     {% if product.compare_at_price > product.price %}
-                      <span class="search-drawer__product-price--sale">{{ product.price | money }}</span>
                       <span class="search-drawer__product-price--compare">
                         {{- product.compare_at_price | money -}}
                       </span>
-                    {% else %}
-                      {{ product.price | money }}
                     {% endif %}
                   </p>
                 </a>
