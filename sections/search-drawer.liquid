@@ -286,6 +286,69 @@
     color: var(--neutral-600);
   }
 
+  .search-drawer__new-arrivals {
+    padding: 0px var(--space-m);
+    margin-bottom: var(--space-m);
+  }
+
+  .search-drawer__new-arrivals-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2xs);
+    margin-top: var(--space-s);
+  }
+
+  .search-drawer__product-card {
+    width: calc(50% - (var(--space-2xs) / 2));
+    display: block;
+    text-decoration: none;
+    color: var(--neutral-950);
+  }
+
+  .search-drawer__product-image-wrapper {
+    margin-bottom: var(--space-xs);
+    overflow: hidden;
+    background-color: var(--neutral-50);
+    position: relative;
+    width: 100%;
+    padding-bottom: 133.33%;
+  }
+
+  .search-drawer__product-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .search-drawer__product-title {
+    margin: var(--space-xs) 0 var(--space-2xs);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--neutral-950);
+  }
+
+  .search-drawer__product-material {
+    margin-bottom: var(--space-2xs);
+    color: var(--neutral-600);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .search-drawer__product-price {
+    color: var(--neutral-950);
+  }
+
+  .search-drawer__product-price--compare {
+    text-decoration: line-through;
+    color: var(--neutral-600);
+    margin-left: var(--space-2xs);
+  }
+
   @media screen and (max-width: 768px) {
     .search-drawer__container {
       width: 100%;
@@ -502,6 +565,60 @@
       >
         Knowledge Base
       </div>
+
+      {% assign new_arrivals = collections['new-arrivals'] %}
+      {% if new_arrivals and new_arrivals.products.size > 0 %}
+        <div
+          class="search-drawer__new-arrivals search-state-transition"
+          x-show="$store.search.query.length === 0 && !isLoading"
+          x-transition.opacity.duration.200ms
+        >
+          <h3 class="predictive-search__title heading--l">New Arrivals</h3>
+          <div class="search-drawer__new-arrivals-grid">
+            {% for product in new_arrivals.products limit: 6 %}
+              <a href="{{ product.url }}" class="search-drawer__product-card">
+                <div class="search-drawer__product-image-wrapper">
+                  {% if product.featured_image != blank %}
+                    {% assign image_aspect_ratio = product.featured_image.aspect_ratio | default: 1 %}
+                    {% assign image_height = 300 | divided_by: image_aspect_ratio | round %}
+                    {{
+                      product.featured_image
+                      | image_url: width: product.featured_image.width
+                      | image_tag:
+                        class: 'search-drawer__product-image',
+                        sizes: '(max-width: 768px) 150px, 300px',
+                        loading: 'lazy',
+                        decoding: 'async',
+                        alt: product.featured_image.alt
+                      | escape
+                      | default: product.title, width: 300, height: image_height
+                    }}
+                  {% else %}
+                    {{ 'product-1' | placeholder_svg_tag: 'search-drawer__product-image placeholder' }}
+                  {% endif %}
+                </div>
+
+                <h3 class="body--bold search-drawer__product-title">{{ product.title }}</h3>
+
+                {% if product.metafields.custom.fabric_description != blank %}
+                  <p class="small search-drawer__product-material">
+                    {{ product.metafields.custom.fabric_description }}
+                  </p>
+                {% endif %}
+
+                <p class="small search-drawer__product-price">
+                  <span class="search-drawer__product-price--current">{{ product.price | money }}</span>
+                  {% if product.compare_at_price > product.price %}
+                    <span class="search-drawer__product-price--compare">
+                      {{- product.compare_at_price | money -}}
+                    </span>
+                  {% endif %}
+                </p>
+              </a>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
     </div>
   </div>
 
