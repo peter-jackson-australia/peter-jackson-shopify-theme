@@ -11,8 +11,6 @@
   {% endif %}
 {% endfor %}
 
-<p>{{ variant.inventory_quantity }}</p>
-
 {% if current_variant == null %}
   {% assign current_variant = product.selected_or_first_available_variant %}
 {% endif %}
