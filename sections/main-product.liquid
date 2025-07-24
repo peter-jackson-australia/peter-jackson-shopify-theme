@@ -811,6 +811,7 @@
 
     <section class="product-details__container custom-scrollbar">
       <div id="product-details">
+        {{ current_variant.inventory_quantity }}
         {% if current_variant.sku %}
           <p class="product-details__sku small">
             Product Code:
