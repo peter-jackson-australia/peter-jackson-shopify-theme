@@ -92,17 +92,18 @@
   }
 
   .search-drawer__new-arrivals-grid {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: var(--space-xs);
     margin-top: var(--space-s);
+    width: 100%;
   }
 
   .search-drawer__product-card {
     display: block;
     text-decoration: none;
     color: var(--neutral-950);
-    width: calc(50% - var(--space-xs) / 2);
+    min-width: 0;
   }
 
   .search-drawer__product-image-wrapper {
@@ -110,7 +111,6 @@
     overflow: hidden;
     background-color: var(--neutral-50);
     width: 100%;
-    height: auto;
   }
 
   .search-drawer__product-image {
