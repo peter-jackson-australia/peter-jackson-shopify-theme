@@ -848,7 +848,7 @@
             {% case block.type %}
               {%- when '@app' -%}
                 {% render block %}
-                <p>{{ current_variant.inventory_quantity }}</p>
+
               {%- when 'options' %}
                 {% unless product.has_only_default_variant %}
                   {% for option_group in product.options_with_values %}
