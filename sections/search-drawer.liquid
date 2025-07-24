@@ -600,12 +600,6 @@
 
                 <h3 class="body--bold search-drawer__product-title">{{ product.title }}</h3>
 
-                {% if product.metafields.custom.fabric_description != blank %}
-                  <p class="small search-drawer__product-material">
-                    {{ product.metafields.custom.fabric_description }}
-                  </p>
-                {% endif %}
-
                 <p class="small search-drawer__product-price">
                   <span class="search-drawer__product-price--current">{{ product.price | money }}</span>
                   {% if product.compare_at_price > product.price %}
