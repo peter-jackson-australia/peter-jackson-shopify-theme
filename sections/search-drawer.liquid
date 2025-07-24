@@ -524,38 +524,44 @@
           <h3 class="predictive-search__title heading--l">New Arrivals</h3>
           <div class="search-drawer__new-arrivals-grid">
             {% for product in new_arrivals.products limit: 4 %}
-              <a href="{{ product.url }}" class="collection-slider__product-link">
-                <div class="collection-slider__product-image-wrapper">
-                  {% if product.featured_image != blank %}
-                    <img
-                      src="{{ product.featured_image | image_url: width: '300' }}"
-                      alt="{{ product.featured_image.alt | escape }}"
-                      loading="lazy"
-                      width="150"
-                      height="150"
-                      class="collection-slider__product-image"
-                    >
-                  {% else %}
-                    {{ 'product-1' | placeholder_svg_tag: 'collection-slider__product-image placeholder' }}
+              <article>
+                <a href="{{ product.url }}" class="search-drawer__product-card">
+                  <div class="search-drawer__product-image-wrapper">
+                    {% if product.featured_image != blank %}
+                      <img
+                        src="{{ product.featured_image | image_url: width: '600' }}"
+                        alt="{{ product.featured_image.alt | escape }}"
+                        loading="lazy"
+                        width="{{ product.featured_image.width }}"
+                        height="{{ product.featured_image.height }}"
+                        class="search-drawer__product-image"
+                        decoding="async"
+                      >
+                    {% else %}
+                      {{ 'product-1' | placeholder_svg_tag: 'search-drawer__product-image placeholder' }}
+                    {% endif %}
+                  </div>
+
+                  <h3 class="body--bold search-drawer__product-title">{{ product.title }}</h3>
+
+                  {% if product.metafields.custom.fabric_description != blank %}
+                    <p class="small search-drawer__product-material">
+                      {{ product.metafields.custom.fabric_description }}
+                    </p>
                   {% endif %}
-                </div>
-                <h4 class="body--bold collection-slider__product-title">{{ product.title }}</h4>
-                {% if product.metafields.custom.fabric_description != blank %}
-                  <p class="small collection-slider__product-material">
-                    {{ product.metafields.custom.fabric_description }}
+
+                  <p class="small search-drawer__product-price">
+                    {% if product.compare_at_price > product.price %}
+                      <span class="search-drawer__product-price--sale">{{ product.price | money }}</span>
+                      <span class="search-drawer__product-price--compare">
+                        {{- product.compare_at_price | money -}}
+                      </span>
+                    {% else %}
+                      {{ product.price | money }}
+                    {% endif %}
                   </p>
-                {% endif %}
-                <p class="small collection-slider__product-price">
-                  {% if product.compare_at_price > product.price %}
-                    <span class="collection-slider__product-price--sale">{{ product.price | money }}</span>
-                    <span class="collection-slider__product-price--compare">
-                      {{- product.compare_at_price | money -}}
-                    </span>
-                  {% else %}
-                    {{ product.price | money }}
-                  {% endif %}
-                </p>
-              </a>
+                </a>
+              </article>
             {% endfor %}
           </div>
         </div>
