@@ -848,7 +848,7 @@
             {% case block.type %}
               {%- when '@app' -%}
                 {% render block %}
-
+                <p>{{ current_variant.inventory_quantity }}</p>
               {%- when 'options' %}
                 {% unless product.has_only_default_variant %}
                   {% for option_group in product.options_with_values %}
@@ -886,7 +886,6 @@
                       Suit Includes Trousers Size:
                       <span class="js--pants-size">{{ current_variant.option1 | minus: 12 }}</span>
                     </p>
-                    <p>{{ current_variant.inventory_quantity }}</p>
                   {% endif %}
                 {% endunless %}
 
