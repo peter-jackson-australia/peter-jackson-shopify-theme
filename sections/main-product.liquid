@@ -1162,31 +1162,32 @@
 
         const isMobile = window.innerWidth < 1100;
 
-        const options = {
-          direction: 'ttb',
-          height: {{product.images[0].height}} * (window.innerWidth * 0.5 / {{product.images[0].width}}),
-          wheel: true,
-          waitForTransition: true,
-          arrows: false,
-          pagination: false,
-          speed: 300,
-          drag: true,
-          breakpoints: {
-            1100: {
-              type: 'loop',
-              direction: 'ltr',
-              height: {{product.images[0].height}} * (window.innerWidth * 1 / {{product.images[0].width}}),
-              arrows: true,
-              perPage: 1,
-              pagination: false,
-              rewind: false,
-              wheel: false,
-              drag: true,
-              speed: 300,
-              waitForTransition: true,
+          const options = {
+            direction: 'ttb',
+            height: {{product.images[0].height}} * (window.innerWidth * 0.5 / {{product.images[0].width}}),
+            wheel: true,
+            waitForTransition: true,
+            arrows: false,
+            pagination: false,
+            speed: 300,
+            drag: 'free',  // Enable free drag mode
+            snap: false,   // Disable snapping
+            breakpoints: {
+              1100: {
+                type: 'loop',
+                direction: 'ltr',
+                height: {{product.images[0].height}} * (window.innerWidth * 1 / {{product.images[0].width}}),
+                arrows: true,
+                perPage: 1,
+                pagination: false,
+                rewind: false,
+                wheel: false,
+                drag: true,
+                speed: 300,
+                waitForTransition: true,
+              },
             },
-          },
-        };
+          };
 
         splideInstance = new Splide('.product-images-splide', options);
 
