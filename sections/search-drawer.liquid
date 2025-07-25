@@ -575,7 +575,7 @@
         >
           <h3 class="predictive-search__title heading--l">New Arrivals</h3>
           <div class="search-drawer__new-arrivals-grid">
-            {% for product in new_arrivals.products limit: 4 %}
+            {% for product in new_arrivals.products limit: 6 %}
               <a href="{{ product.url }}" class="search-drawer__product-card">
                 <div class="search-drawer__product-image-wrapper">
                   {% if product.featured_image != blank %}
