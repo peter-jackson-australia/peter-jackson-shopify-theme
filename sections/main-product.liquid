@@ -1164,6 +1164,7 @@
 
         const options = {
           direction: 'ttb',
+          type: 'loop'
           height: {{product.images[0].height}} * (window.innerWidth * 0.5 / {{product.images[0].width}}),
           wheel: true,
           snap: false, 
@@ -1173,7 +1174,7 @@
           arrows: false,
           pagination: false,
           speed: 300,
-          drag: true,
+          drag: 'free',
           breakpoints: {
             1100: {
               type: 'loop',
