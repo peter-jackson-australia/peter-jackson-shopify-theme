@@ -1164,17 +1164,13 @@
 
         const options = {
           direction: 'ttb',
-          type: 'slide', 
           height: {{product.images[0].height}} * (window.innerWidth * 0.5 / {{product.images[0].width}}),
           wheel: true,
-          snap: false, 
-          waitForTransition: false,
-          updateOnMove: true, 
-          trimSpace: false,
+          waitForTransition: true,
           arrows: false,
           pagination: false,
           speed: 300,
-          drag: 'free',
+          drag: true,
           breakpoints: {
             1100: {
               type: 'loop',
