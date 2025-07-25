@@ -48,6 +48,7 @@
     align-items: center;
     height: var(--space-xl);
     padding: var(--space-m);
+    border-bottom: 1px solid var(--neutral-200);
   }
 
   .cart__title {
@@ -230,6 +231,8 @@
   .cart__empty {
     margin: auto;
     color: var(--neutral-950);
+    padding-bottom: var(--space-m);
+    border-bottom: 1px solid var(--neutral-200);
   }
 
   .cart__empty-state {
@@ -238,11 +241,71 @@
     flex-direction: column;
     align-items: center;
     gap: var(--space-m);
+    padding: var(--space-m) var(--space-m) 0px var(--space-m);
   }
 
   .cart__empty {
     color: var(--neutral-950);
     text-align: center;
+  }
+
+  .cart__new-arrivals-section {
+    width: 100%;
+  }
+
+  .cart__new-arrivals-section-title {
+    color: var(--neutral-950);
+    text-align: center;
+    margin-bottom: var(--space-m);
+  }
+
+  .cart__new-arrivals-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-s);
+  }
+
+  .cart__new-arrivals-card {
+    width: calc(50% - (var(--space-s) / 2));
+    display: block;
+    text-decoration: none;
+    color: var(--neutral-950);
+  }
+
+  .cart__new-arrivals-image-wrapper {
+    margin-bottom: var(--space-xs);
+    overflow: hidden;
+    background-color: var(--neutral-50);
+    position: relative;
+    width: 100%;
+    padding-bottom: 133.33%;
+  }
+
+  .cart__new-arrivals-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .cart__new-arrivals-title {
+    margin: var(--space-xs) 0 var(--space-2xs);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--neutral-950);
+  }
+
+  .cart__new-arrivals-price {
+    color: var(--neutral-950);
+  }
+
+  .cart__new-arrivals-price--compare {
+    text-decoration: line-through;
+    color: var(--neutral-600);
+    margin-left: var(--space-2xs);
   }
 
   .cart__shipping {
@@ -277,7 +340,6 @@
 
   .cart__new-arrivals {
     width: 100%;
-    max-width: 300px;
     height: var(--space-xl);
     background-color: var(--neutral-950);
     color: var(--white);
@@ -288,6 +350,7 @@
     align-items: center;
     cursor: pointer;
     text-decoration: none;
+    margin-bottom: var(--space-m);
   }
 
   .cart-item__actions {
@@ -332,8 +395,49 @@
       {% form 'cart', cart, class: 'cart__form' %}
         {% if cart.item_count == 0 %}
           <div class="cart__empty-state">
-            <p class="cart__empty body">Your cart is empty</p>
-            <a href="{{ routes.collections_url }}/new-arrivals" class="cart__new-arrivals body">Shop New Arrivals</a>
+            <p class="cart__empty heading--l">Your Cart Is Empty</p>
+            {% assign new_arrivals = collections['mens-suits'] %}
+            {% if new_arrivals and new_arrivals.products.size > 0 %}
+              <div class="cart__new-arrivals-section">
+                <h3 class="cart__new-arrivals-section-title body">Shop Premium Merino Wool Suits from $399</h3>
+                <div class="cart__new-arrivals-grid">
+                  {% for product in new_arrivals.products limit: 4 %}
+                    <a href="{{ product.url }}" class="cart__new-arrivals-card">
+                      <div class="cart__new-arrivals-image-wrapper">
+                        {% if product.featured_image != blank %}
+                          {% assign image_aspect_ratio = product.featured_image.aspect_ratio | default: 1 %}
+                          {% assign image_height = 300 | divided_by: image_aspect_ratio | round %}
+                          {{
+                            product.featured_image
+                            | image_url: width: product.featured_image.width
+                            | image_tag:
+                              class: 'cart__new-arrivals-image',
+                              sizes: '(max-width: 768px) 150px, 300px',
+                              loading: 'lazy',
+                              decoding: 'async',
+                              alt: product.featured_image.alt
+                            | escape
+                            | default: product.title, width: 300, height: image_height
+                          }}
+                        {% else %}
+                          {{ 'product-1' | placeholder_svg_tag: 'cart__new-arrivals-image placeholder' }}
+                        {% endif %}
+                      </div>
+                      <h3 class="body--bold cart__new-arrivals-title">{{ product.title }}</h3>
+                      <p class="small cart__new-arrivals-price">
+                        <span class="cart__new-arrivals-price--current">{{ product.price | money }}</span>
+                        {% if product.compare_at_price > product.price %}
+                          <span class="cart__new-arrivals-price--compare">
+                            {{- product.compare_at_price | money -}}
+                          </span>
+                        {% endif %}
+                      </p>
+                    </a>
+                  {% endfor %}
+                </div>
+              </div>
+            {% endif %}
+            <a href="{{ routes.collections_url }}/mens-suits" class="cart__new-arrivals body">View Full Collection</a>
           </div>
         {% else %}
           <div class="cart__items custom-scrollbar">
