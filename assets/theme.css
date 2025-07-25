@@ -19,7 +19,7 @@
   font-display: swap;
 }
 
-button {
+button, .button {
   border-radius: 4px !important;
 }
 
