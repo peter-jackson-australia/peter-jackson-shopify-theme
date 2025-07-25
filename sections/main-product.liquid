@@ -1166,12 +1166,16 @@
             direction: 'ttb',
             height: {{product.images[0].height}} * (window.innerWidth * 0.5 / {{product.images[0].width}}),
             wheel: true,
-            waitForTransition: true,
+            wheelSleep: 100,           // Add wheel sleep duration
+            wheelMinThreshold: 5,      // Lower threshold for wheel sensitivity  
+            releaseWheel: true,        // Release wheel at boundaries
+            waitForTransition: false,  // Don't wait for transitions
+            perMove: 1,               // Move only 1 slide at a time
+            flickMaxPages: 1,         // Limit flick to 1 page
             arrows: false,
             pagination: false,
-            speed: 300,
-            drag: 'free',  // Enable free drag mode
-            snap: false,   // Disable snapping
+            speed: 100,               // Faster speed for smoother feel
+            drag: true,
             breakpoints: {
               1100: {
                 type: 'loop',
