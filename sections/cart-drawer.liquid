@@ -400,7 +400,7 @@
               <div class="cart__new-arrivals-section">
                 <h3 class="cart__new-arrivals-section-title heading--l">Shop New Arrivals</h3>
                 <div class="cart__new-arrivals-grid">
-                  {% for product in new_arrivals.products limit: 6 %}
+                  {% for product in new_arrivals.products limit: 8 %}
                     <a href="{{ product.url }}" class="cart__new-arrivals-card">
                       <div class="cart__new-arrivals-image-wrapper">
                         {% if product.featured_image != blank %}
