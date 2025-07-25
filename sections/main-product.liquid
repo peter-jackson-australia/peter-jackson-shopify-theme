@@ -1369,9 +1369,11 @@
 
     function scrollToVariantForm() {
       const productDetails = document.querySelector('#product-details');
+      const fixedHeader = document.querySelector('.header-fixed'); 
+      
       if (productDetails) {
         const rect = productDetails.getBoundingClientRect();
-        const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--space-xl')) || 48;
+        const headerHeight = fixedHeader ? fixedHeader.offsetHeight : 0;
         const targetPosition = window.pageYOffset + rect.top - headerHeight;
         
         window.scrollTo({
