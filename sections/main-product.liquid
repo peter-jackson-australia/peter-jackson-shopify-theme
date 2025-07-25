@@ -1371,11 +1371,11 @@
       const productDetails = document.querySelector('#product-details');
       if (productDetails) {
         const rect = productDetails.getBoundingClientRect();
-        const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--space-xl'));
-        const scrollTop = window.pageYOffset + rect.top - headerHeight;
+        const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--space-xl')) || 48; // fallback value
+        const targetPosition = window.pageYOffset + rect.top - headerHeight;
         
         window.scrollTo({
-          top: scrollTop,
+          top: targetPosition,
           behavior: 'smooth'
         });
       }
