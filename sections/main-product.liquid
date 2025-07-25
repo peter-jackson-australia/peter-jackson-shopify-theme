@@ -1374,7 +1374,7 @@
       if (productDetails) {
         const rect = productDetails.getBoundingClientRect();
         const headerHeight = fixedHeader ? fixedHeader.offsetHeight : 0;
-        const targetPosition = window.pageYOffset + rect.top - headerHeight;
+        const targetPosition = window.pageYOffset + rect.top - headerHeight + 1;
         
         window.scrollTo({
           top: targetPosition,
