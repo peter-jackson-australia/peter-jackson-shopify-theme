@@ -575,7 +575,7 @@
         >
           <h3 class="predictive-search__title heading--l">Best Sellers</h3>
           <div class="search-drawer__best-of-sale-grid">
-            {% for product in best_of_sale.products limit: 8 %}
+            {% for product in best_of_sale.products limit: 4 %}
               <a href="{{ product.url }}" class="search-drawer__product-card">
                 <div class="search-drawer__product-image-wrapper">
                   {% if product.featured_image != blank %}
