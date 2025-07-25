@@ -1165,16 +1165,11 @@
           const options = {
             direction: 'ttb',
             height: {{product.images[0].height}} * (window.innerWidth * 0.5 / {{product.images[0].width}}),
-            wheel: true,
-            wheelSleep: 100,           // Add wheel sleep duration
-            wheelMinThreshold: 5,      // Lower threshold for wheel sensitivity  
-            releaseWheel: true,        // Release wheel at boundaries
-            waitForTransition: false,  // Don't wait for transitions
-            perMove: 1,               // Move only 1 slide at a time
-            flickMaxPages: 1,         // Limit flick to 1 page
+            wheel: false,  // Disable Splide's wheel handling
+            waitForTransition: true,
             arrows: false,
             pagination: false,
-            speed: 100,               // Faster speed for smoother feel
+            speed: 300,
             drag: true,
             breakpoints: {
               1100: {
@@ -1192,6 +1187,15 @@
               },
             },
           };
+          
+          const splide = new Splide('.splide', options).mount();
+          
+          // Custom wheel handling for free scroll
+          const track = splide.Components.Elements.track;
+          track.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            track.scrollTop += e.deltaY * 0.5; // Adjust multiplier for scroll speed
+          }, { passive: false });
 
         splideInstance = new Splide('.product-images-splide', options);
 
