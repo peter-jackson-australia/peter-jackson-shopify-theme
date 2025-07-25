@@ -311,7 +311,7 @@
   .variant-options__list {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-m);
+    gap: var(--space-xs);
     align-items: center;
   }
 
@@ -335,11 +335,12 @@
   }
 
   .variant-option label {
-    border-bottom: 1px solid transparent;
+    border: 1px solid var(--neutral-200);
+    padding: var(--space-2xs) var(--space-2xs);
   }
 
   .variant-option input[type='radio']:checked + label {
-    border-bottom: 1px solid var(--neutral-950);
+    border: 1px solid var(--neutral-950);
   }
 
   .variant-option input[type='radio']:checked + label::after {
