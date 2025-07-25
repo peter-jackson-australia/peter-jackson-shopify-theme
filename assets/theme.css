@@ -281,7 +281,7 @@ select {
 
 .splide__spinner {
   animation: splide-loading 1s linear infinite;
-  border: 1px solid var(--neutral-200);
+  border: 1px solid var(--neutral-50);
   border-left-color: transparent;
   border-radius: 50%;
   bottom: 0;
