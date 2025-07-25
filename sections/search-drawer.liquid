@@ -573,7 +573,7 @@
           x-show="$store.search.query.length === 0 && !isLoading"
           x-transition.opacity.duration.200ms
         >
-          <h3 class="predictive-search__title heading--l">Best Sellers</h3>
+          <h3 class="predictive-search__title heading--l">New Arrivals</h3>
           <div class="search-drawer__best-of-sale-grid">
             {% for product in best_of_sale.products limit: 4 %}
               <a href="{{ product.url }}" class="search-drawer__product-card">
