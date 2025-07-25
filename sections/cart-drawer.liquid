@@ -394,11 +394,11 @@
       {% form 'cart', cart, class: 'cart__form' %}
         {% if cart.item_count == 0 %}
           <div class="cart__empty-state">
-            <p class="cart__empty body">Your cart is empty</p>
+            <p class="cart__empty heading--l">Your cart is empty</p>
             {% assign new_arrivals = collections['mens-suits'] %}
             {% if new_arrivals and new_arrivals.products.size > 0 %}
               <div class="cart__new-arrivals-section">
-                <h3 class="cart__new-arrivals-section-title heading--l">Shop New Arrivals</h3>
+                <h3 class="cart__new-arrivals-section-title body">Shop New Arrivals</h3>
                 <div class="cart__new-arrivals-grid">
                   {% for product in new_arrivals.products limit: 8 %}
                     <a href="{{ product.url }}" class="cart__new-arrivals-card">
