@@ -87,7 +87,7 @@
     <div>
       {% paginate metaobjects['shopify--color-pattern'].values by 20 %}
         {% for color in metaobjects['shopify--color-pattern'].values %}
-          <p>{{ color.entries | json }}</p>
+          <p>{{ color.image }}</p>
         {% endfor %}
       {% endpaginate %}
     </div>
