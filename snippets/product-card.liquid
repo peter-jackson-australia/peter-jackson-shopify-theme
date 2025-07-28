@@ -85,7 +85,7 @@
       </p>
     {% endunless %}
     <div>
-      {{ product.metafields.values }}
+      {{ product.metafields.values | json }}
     </div>
   </div>
 </div>
