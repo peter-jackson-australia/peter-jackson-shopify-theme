@@ -126,6 +126,19 @@
     margin-bottom: var(--space-xs);
   }
 
+  .location-item__contact-button {
+    width: 100%;
+    height: var(--space-xl);
+    background-color: var(--neutral-950);
+    color: var(--white) !important;
+    border: none;
+    padding: var(--space-xs) var(--space-s);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .location-item__hours {
     margin-bottom: var(--space-xs);
   }
@@ -328,6 +341,9 @@
                 </div>
                 <div class="location-item__hours body">
                   <a href="${locationUrl}">View Location Details</a>
+                </div>
+                <div>
+                  <a href="mailto:{{ location.email_address.value }}" class="location-item__contact-button body">Contact Store</a>
                 </div>
               `);
             marker.locationData = {
