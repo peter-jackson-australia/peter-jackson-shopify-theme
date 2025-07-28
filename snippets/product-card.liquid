@@ -84,6 +84,6 @@
         {{ product.metafields.custom.discount_bundle_name | metafield_tag }}
       </p>
     {% endunless %}
-    <div>{{ product.options_with_values.swatch }}</div>
+    <div>{{ product.options_with_values.swatch | metafield_tag }}</div>
   </div>
 </div>
