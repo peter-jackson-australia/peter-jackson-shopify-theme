@@ -279,7 +279,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   outline-offset: 1px;
 }
 .leaflet-container a {
-  color: #0078a8;
+  color: var(--white);
 }
 .leaflet-zoom-box {
   border: 2px dotted #38f;
