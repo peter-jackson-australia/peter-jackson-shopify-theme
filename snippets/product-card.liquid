@@ -85,8 +85,8 @@
       </p>
     {% endunless %}
     <div>
-      {% paginate metaobjects['shopify--color-pattern'].values by 20 %}
-        {% for color in metaobjects['shopify--color-pattern'].values %}
+      {% paginate metaobjects['shopify--color-pattern'].entries by 20 %}
+        {% for color in metaobjects['shopify--color-pattern'].entries %}
           <p>{{ color.label }}</p>
         {% endfor %}
       {% endpaginate %}
