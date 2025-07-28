@@ -343,7 +343,7 @@
                   <a href="${locationUrl}">View Location Details</a>
                 </div>
                 <div>
-                  <a class="location-item__contact-button body">Contact Store</a>
+                  <a href="mailto:{{ location.email_address.value }}" class="location-item__contact-button body">Contact Store</a>
                 </div>
               `);
             marker.locationData = {
