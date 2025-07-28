@@ -84,12 +84,6 @@
         {{ product.metafields.custom.discount_bundle_name | metafield_tag }}
       </p>
     {% endunless %}
-    <div>
-      {% paginate metaobjects['shopify--color-pattern'].values by 20 %}
-        {% for color in metaobjects['shopify--color-pattern'].values %}
-          <p>{{ color.entries | json }}</p>
-        {% endfor %}
-      {% endpaginate %}
-    </div>
+    <div></div>
   </div>
 </div>
