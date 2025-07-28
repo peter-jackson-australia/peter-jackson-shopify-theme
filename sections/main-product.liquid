@@ -477,6 +477,10 @@
     margin-bottom: var(--space-m);
   }
 
+  .product-tabs__content-shipping > * {
+    margin-bottom: var(--space-m);
+  }
+
   .product-tabs__metafield h4 {
     margin-bottom: var(--space-xs);
     color: var(--neutral-950);
@@ -1045,7 +1049,7 @@
 
             {% if has_shipping %}
               <div class="product-tabs__content" data-content="shipping">
-                <div class="body">
+                <div class="body product-tabs__content-shipping">
                   {{ section.settings.shipping_content }}
                 </div>
               </div>
