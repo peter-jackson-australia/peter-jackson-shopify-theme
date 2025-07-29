@@ -1018,7 +1018,10 @@
               <div class="product-tabs__content" data-content="description">
                 <div class="product-tabs__description rte body">
                   {{ product.description }}
-                  <hr class="product-tabs__description-usp-hr" style="border-top: 1px solid var(--neutral-50);">
+                  <hr
+                    class="product-tabs__description-usp-hr"
+                    style="border: 0; border-top: 1px solid var(--neutral-50);"
+                  >
                   {% if product.price > 9900 %}
                     <strong class="body--bold">This item qualifies for Free Standard shipping within Australia.</strong>
                   {% else %}
