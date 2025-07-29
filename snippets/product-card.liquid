@@ -89,7 +89,7 @@
       {% for productColourVariant in product.metafields.custom.product_colour_variants.value %}
         <p>
           {{ productColourVariant.url | url_escape }}
-          <span>{{ productColourVariant.metafields.custom.swatch_colour | metafield_tag }}</span>
+          <span>{{ productColourVariant.metafields.custom.swatch_colour | json }}</span>
         </p>
       {% endfor %}
     </div>
