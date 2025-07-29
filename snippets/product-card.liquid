@@ -84,10 +84,12 @@
         {{ product.metafields.custom.discount_bundle_name | metafield_tag }}
       </p>
     {% endunless %}
-    <div>
-      {% for colour in product.metafields.custom.swatch_colour.values %}
-        <p>{{ colour | metafield_text }}</p>
-      {% endfor %}
-    </div>
+    {% comment %}
+      <div>
+        {% for colour in product.metafields.custom.swatch_colour.values %}
+          <p>{{ colour | metafield_text }}</p>
+        {% endfor %}
+      </div>
+    {% endcomment %}
   </div>
 </div>
