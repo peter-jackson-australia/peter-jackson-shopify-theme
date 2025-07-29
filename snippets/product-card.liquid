@@ -85,7 +85,7 @@
       </p>
     {% endunless %}
     <div>
-      {{ product.metafields.custom.swatch_colour | json }}
+      {{ product.metafields.custom.swatch_colour.values | metafield_tag }}
     </div>
   </div>
 </div>
