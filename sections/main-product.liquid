@@ -479,6 +479,10 @@
     margin-bottom: var(--space-m);
   }
 
+  .product-tabs__description-usp {
+    color: var(--neutral-600);
+  }
+
   .product-tabs__metafield {
     margin-bottom: var(--space-m);
   }
@@ -1030,23 +1034,21 @@
                   <ul>
                     <li>
                       {% if product.price > 9900 %}
-                        <strong class="body--bold product-tabs__description-usp" style="color: var(--neutral-600);"
+                        <strong class="body--bold product-tabs__description-usp"
                           >Complimentary standard shipping on this item.</strong
                         >
                       {% else %}
-                        <strong class="body--bold product-tabs__description-usp" style="color: var(--neutral-600);"
+                        <strong class="body--bold product-tabs__description-usp"
                           >Complimentary standard shipping over $99.</strong
                         >
                       {% endif %}
                     </li>
                     <li>
-                      <strong class="body--bold product-tabs__description-usp" style="color: var(--neutral-600);"
-                        >30 Day Returns Policy</strong
-                      >
+                      <strong class="body--bold product-tabs__description-usp">30 Day Returns Policy</strong>
                     </li>
                     {% if product.metafields.custom.fabric_description %}
                       <li>
-                        <strong class="body--bold product-tabs__description-usp" style="color: var(--neutral-600);">
+                        <strong class="body--bold product-tabs__description-usp">
                           {{- product.metafields.custom.fabric_description -}}
                         </strong>
                       </li>
