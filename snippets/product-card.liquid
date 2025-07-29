@@ -85,7 +85,8 @@
       </p>
     {% endunless %}
     <div>
-      {% for colour in product.metafields.custom.swatch_colour %}
+      {% for colour in product.metafields.custom.swatch_colour.values %}
+        <p>{{ colour }}</p>
       {% endfor %}
     </div>
   </div>
