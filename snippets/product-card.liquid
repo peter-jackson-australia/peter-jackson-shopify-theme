@@ -87,7 +87,7 @@
     <div>
       {% comment %} {{ product.metafields.custom.swatch_colour.value | json }} {% endcomment %}
       {% for productColourVariant in product.metafields.custom.product_colour_variants %}
-        {{ productColourVariant | json }}
+        <p>{{ productColourVariant.id | json }}</p>
       {% endfor %}
     </div>
   </div>
