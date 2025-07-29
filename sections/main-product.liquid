@@ -1028,32 +1028,34 @@
               <div class="product-tabs__content" data-content="description">
                 <div class="product-tabs__description rte body">
                   {{ product.description }}
-                  <hr
-                    class="product-tabs__description-usp-hr"
-                  >
-                  <ul>
-                    <li>
-                      {% if product.price > 9900 %}
-                        <strong class="body--bold product-tabs__description-usp"
-                          >Complimentary standard shipping on this item.</strong
-                        >
-                      {% else %}
-                        <strong class="body--bold product-tabs__description-usp"
-                          >Complimentary standard shipping over $99.</strong
-                        >
-                      {% endif %}
-                    </li>
-                    <li>
-                      <strong class="body--bold product-tabs__description-usp">30 Day Returns Policy</strong>
-                    </li>
-                    {% if product.metafields.custom.fabric_description %}
+                  {% if section.settings.show_usps %}
+                    <hr
+                      class="product-tabs__description-usp-hr"
+                    >
+                    <ul>
                       <li>
-                        <strong class="body--bold product-tabs__description-usp">
-                          {{- product.metafields.custom.fabric_description -}}
-                        </strong>
+                        {% if product.price > 9900 %}
+                          <strong class="body--bold product-tabs__description-usp"
+                            >Complimentary standard shipping on this item.</strong
+                          >
+                        {% else %}
+                          <strong class="body--bold product-tabs__description-usp"
+                            >Complimentary standard shipping over $99.</strong
+                          >
+                        {% endif %}
                       </li>
-                    {% endif %}
-                  </ul>
+                      <li>
+                        <strong class="body--bold product-tabs__description-usp">30 Day Returns Policy</strong>
+                      </li>
+                      {% if product.metafields.custom.fabric_description %}
+                        <li>
+                          <strong class="body--bold product-tabs__description-usp">
+                            {{- product.metafields.custom.fabric_description -}}
+                          </strong>
+                        </li>
+                      {% endif %}
+                    </ul>
+                  {% endif %}
                 </div>
               </div>
             {% endif %}
