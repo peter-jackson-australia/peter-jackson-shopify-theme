@@ -20,7 +20,8 @@
     "products": {
       "type": "main-collection-products",
       "settings": {
-        "limit": 8
+        "limit": 8,
+        "prominent_discount_mobile": false
       }
     },
     "related_content_HfzyTd": {
@@ -29,7 +30,7 @@
         "heading": "The Jackson Journal",
         "subheading": "The Stories Behind The Threads",
         "description": "<p>Discover our world through campaign features, interviews, and editorial made to inform and inspire your next move to live a life well lived.</p>",
-        "cta_link": "shopify://blogs/the-jackson-journal",
+        "cta_link": "shopify://pages/the-jackson-journal",
         "cta_text": "View All Articles"
       }
     },
