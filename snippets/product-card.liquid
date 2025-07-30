@@ -87,8 +87,8 @@
     {% if product.metafields.custom.product_colour_variants.value.size > 0 %}
       <div class="product-card__swatches">
         {% for productColourVariant in product.metafields.custom.product_colour_variants.value %}
-          {% assign swatch_colour = productColourVariant.metafields.custom.swatch_colour.value.colour | strip %}
-          {% assign swatch_colour_name = productColourVariant.metafields.custom.swatch_colour.value.name | strip %}
+          {% assign swatch_colour = productColourVariant.metafields.custom.swatch_colour.colour | strip %}
+          {% assign swatch_colour_name = productColourVariant.metafields.custom.swatch_colour.name | strip %}
           <a
             href="{{ productColourVariant.url }}"
             class="product-card__swatch-link"
