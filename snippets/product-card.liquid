@@ -84,7 +84,7 @@
         {{ product.metafields.custom.discount_bundle_name | metafield_tag }}
       </p>
     {% endunless %}
-    <div>
+    <div style="display: flex; gap: var(--space-2xs);">
       {% for productColourVariant in product.metafields.custom.product_colour_variants.value %}
         <a href="{{ productColourVariant.url }}">
           {% for colour in productColourVariant.metafields.custom.swatch_colour.value %}
