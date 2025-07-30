@@ -88,7 +88,7 @@
       {% comment %} {{ product.metafields.custom.swatch_colour.value | json }} {% endcomment %}
       {% for productColourVariant in product.metafields.custom.product_colour_variants.value %}
         <a href="{{ productColourVariant.url }}">
-          <p>Test</p>
+          <div style="width: 30px; height: 30px; background-colour: red;"></div>
         </a>
         <p>
           {{ productColourVariant.url | url_escape }}
