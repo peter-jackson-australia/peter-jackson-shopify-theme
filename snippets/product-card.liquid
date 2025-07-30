@@ -89,7 +89,7 @@
         <a href="{{ productColourVariant.url }}">
           {% for colour in productColourVariant.metafields.custom.swatch_colour.value %}
             <div
-              style="width: var(--space-2xs); height: var(--space-2xs); background-color: {{ colour.colour }}; border-radius: 50%; border: 1px solid {% if colour.colour == "#FFFFFF" %} var(--neutral-950); {% else %} transparent; {% endif %}"
+              style="width: var(--space-2xs); height: var(--space-2xs); background-color: {{ colour.colour }}; border-radius: 50%; border: 1px solid {% if colour.colour == "#FFFFFF" %} var(--neutral-950) {% else %} transparent {% endif %};"
             ></div>
           {% endfor %}
         </a>
