@@ -88,7 +88,7 @@
       {% for productColourVariant in product.metafields.custom.product_colour_variants.value %}
         <a href="{{ productColourVariant.url }}">
           {% for colour in productColourVariant.metafields.custom.swatch_colour.value %}
-            {% assign swatch_colour = colour.colour | strip %}
+            {%- assign swatch_colour = colour.colour | strip -%}
             {{ swatch_colour }}
             <div
               style="
