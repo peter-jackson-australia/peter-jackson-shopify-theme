@@ -92,6 +92,8 @@
         </a>
         <p>
           {{ productColourVariant.url | url_escape }}
+          {% for colour in productColourVariant.metafields.custom.swatch_colour.value %}
+          {% endfor %}
           <span>{{ productColourVariant.metafields.custom.swatch_colour.value | json }}</span>
         </p>
       {% endfor %}
