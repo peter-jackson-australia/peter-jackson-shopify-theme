@@ -96,7 +96,7 @@
           >
             <div
               class="product-card__swatch{% if swatch_colour_name == 'White' %} product-card__swatch--white{% endif %}"
-              style="background-color: {% if swatch_colour %} {{ swatch_colour }} {% else %} #b1b1b1 {% endif %};"
+              style="background-color: {% if swatch_colour != nil %} {{ swatch_colour }} {% else %} #b1b1b1 {% endif %};"
               aria-hidden="true"
             ></div>
           </a>
