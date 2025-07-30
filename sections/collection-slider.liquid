@@ -196,8 +196,7 @@
                         {{ product.price | money }}
                       {% endif %}
                     </p>
-                    <p>Debug: {{ product.metafields.custom.product_colour_variants | json }}</p>
-                    <p>Debug value: {{ product.metafields.custom.product_colour_variants.value | json }}</p>
+                    <p>{{ product }}</p>
                   </a>
                 </article>
               {% endfor %}
