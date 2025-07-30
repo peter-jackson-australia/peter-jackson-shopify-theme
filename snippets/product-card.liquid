@@ -94,6 +94,7 @@
             class="product-card__swatch-link"
             aria-label="View {{ productColourVariant.title }} variant"
           >
+            {{ swatch_colour | json }}
             <div
               class="product-card__swatch{% if swatch_colour_name == 'White' %} product-card__swatch--white{% endif %}"
               style="background-color: {% if swatch_colour != nil %} {{ swatch_colour }} {% else %} #b1b1b1 {% endif %};"
