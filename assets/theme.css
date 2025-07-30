@@ -545,6 +545,26 @@ input:focus-visible {
   backdrop-filter: blur(0.25rem);
 }
 
+.product-card__swatches {
+  display: flex;
+  gap: var(--space-3xs);
+}
+
+.product-card__swatch-link {
+  text-decoration: none;
+}
+
+.product-card__swatch {
+  width: var(--space-2xs);
+  height: var(--space-2xs);
+  border-radius: 50%;
+  border: 1px solid transparent;
+}
+
+.product-card__swatch--white {
+  border-color: var(--neutral-400);
+}
+
 @media screen and (max-width: 768px) {
   input,
   input::placeholder {
