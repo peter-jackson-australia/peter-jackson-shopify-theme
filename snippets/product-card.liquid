@@ -84,8 +84,7 @@
         {{ product.metafields.custom.discount_bundle_name | metafield_tag }}
       </p>
     {% endunless %}
-
-    {% if product.metafields.custom.product_colour_variants.value.size > 0 %}
+    {% if product.metafields.custom.product_colour_variants %}
       <div class="product-card__swatches">
         {% for productColourVariant in product.metafields.custom.product_colour_variants.value %}
           <p>{{ productColourVariant.metafields.custom.swatch_colour.value }}</p>
