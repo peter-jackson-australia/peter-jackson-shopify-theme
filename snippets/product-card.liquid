@@ -85,7 +85,7 @@
       </p>
     {% endunless %}
     {% comment %}
-      Swatches
+      Swatches logic
     {% endcomment %}
     <div style="display: flex; gap: var(--space-3xs);">
       {% for productColourVariant in product.metafields.custom.product_colour_variants.value %}
@@ -100,5 +100,8 @@
         </a>
       {% endfor %}
     </div>
+    {% comment %}
+      Swatches logic
+    {% endcomment %}
   </div>
 </div>
