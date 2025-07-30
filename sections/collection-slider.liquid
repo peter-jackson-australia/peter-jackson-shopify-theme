@@ -196,7 +196,7 @@
                         {{ product.price | money }}
                       {% endif %}
                     </p>
-                    <p>{{ product.metafields | json }}</p>
+                    <p>{{ product.metafields | metafield_tag }}</p>
                   </a>
                 </article>
               {% endfor %}
