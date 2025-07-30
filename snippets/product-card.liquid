@@ -85,6 +85,23 @@
       </p>
     {% endunless %}
     {% if product.metafields.custom.product_colour_variants.value.size > 0 %}
+      {% if product.metafields.custom.product_colour_variants.value.size > 0 %}
+        <div>
+          <p>Product colour variants exist: {{ product.metafields.custom.product_colour_variants.value.size }}</p>
+          {% for productColourVariant in product.metafields.custom.product_colour_variants.value %}
+            <div style="border: 1px solid red; margin: 10px; padding: 10px;">
+              <p>Variant title: {{ productColourVariant.title }}</p>
+              <p>Variant URL: {{ productColourVariant.url }}</p>
+              <p>Swatch colour raw: {{ productColourVariant.metafields.custom.swatch_colour }}</p>
+              <p>Swatch colour value: {{ productColourVariant.metafields.custom.swatch_colour.value }}</p>
+              <p>Swatch colour colour: {{ productColourVariant.metafields.custom.swatch_colour.colour }}</p>
+              <p>Swatch colour name: {{ productColourVariant.metafields.custom.swatch_colour.name }}</p>
+              <p>Swatch colour value colour: {{ productColourVariant.metafields.custom.swatch_colour.value.colour }}</p>
+              <p>Swatch colour value name: {{ productColourVariant.metafields.custom.swatch_colour.value.name }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
       <div class="product-card__swatches">
         {% for productColourVariant in product.metafields.custom.product_colour_variants.value %}
           {% assign swatch_colour = productColourVariant.metafields.custom.swatch_colour.colour | strip %}
