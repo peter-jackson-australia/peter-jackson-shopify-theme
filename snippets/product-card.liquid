@@ -84,24 +84,26 @@
         {{ product.metafields.custom.discount_bundle_name | metafield_tag }}
       </p>
     {% endunless %}
-    <div class="product-card__swatches">
-      {% for productColourVariant in product.metafields.custom.product_colour_variants.value %}
-        <a
-          href="{{ productColourVariant.url }}"
-          class="product-card__swatch-link"
-          aria-label="View {{ productColourVariant.title }} variant"
-        >
-          {% for colour in productColourVariant.metafields.custom.swatch_colour.value %}
-            {% assign swatch_colour = colour.colour | strip %}
-            {% assign swatch_colour_name = colour.name | strip %}
-            <div
-              class="product-card__swatch{% if swatch_colour_name == 'White' %} product-card__swatch--white{% endif %}"
-              style="background-color: {{ swatch_colour }};"
-              aria-hidden="true"
-            ></div>
-          {% endfor %}
-        </a>
-      {% endfor %}
-    </div>
+    {% if product.metafields.custom.product_colour_variants.value.size > 0 %}
+      <div class="product-card__swatches">
+        {% for productColourVariant in product.metafields.custom.product_colour_variants.value %}
+          <a
+            href="{{ productColourVariant.url }}"
+            class="product-card__swatch-link"
+            aria-label="View {{ productColourVariant.title }} variant"
+          >
+            {% for colour in productColourVariant.metafields.custom.swatch_colour.value %}
+              {% assign swatch_colour = colour.colour | strip %}
+              {% assign swatch_colour_name = colour.name | strip %}
+              <div
+                class="product-card__swatch{% if swatch_colour_name == 'White' %} product-card__swatch--white{% endif %}"
+                style="background-color: {{ swatch_colour }};"
+                aria-hidden="true"
+              ></div>
+            {% endfor %}
+          </a>
+        {% endfor %}
+      </div>
+    {% endif %}
   </div>
 </div>
