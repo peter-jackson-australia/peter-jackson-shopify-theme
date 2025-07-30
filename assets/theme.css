@@ -548,6 +548,7 @@ input:focus-visible {
 .product-card__swatches {
   display: flex;
   gap: var(--space-3xs);
+  padding-top: var(--space-3xs); 
 }
 
 .product-card__swatch-link {
