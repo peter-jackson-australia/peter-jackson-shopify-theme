@@ -88,7 +88,7 @@
       {% for productColourVariant in product.metafields.custom.product_colour_variants.value %}
         <a href="{{ productColourVariant.url }}">
           {% for colour in productColourVariant.metafields.custom.swatch_colour.value %}
-            <div style="width: 30px; height: 30px; background-color: {{ colour.colour }};"></div>
+            <div style="width: 16px; height: 16px; background-color: {{ colour.colour }}; border-radius: 50%;"></div>
           {% endfor %}
         </a>
       {% endfor %}
