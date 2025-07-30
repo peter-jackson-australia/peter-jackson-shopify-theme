@@ -92,7 +92,7 @@
             {{ swatch_colour_name }}
             <div
               style="
-                                                                                width: var(--space-2xs); height: var(--space-2xs); background-color: {{ swatch_colour }}; border-radius: 50%; border: 1px solid {% if swatch_colour == " #ffffff " %} var(--neutral-950) {% else %} transparent {% endif %};
+                                                                                                width: var(--space-2xs); height: var(--space-2xs); background-color: {{ swatch_colour }}; border-radius: 50%; border: 1px solid {% if swatch_colour_name == "White" %} var(--neutral-950) {% else %} transparent {% endif %};
               "
             ></div>
           {% endfor %}
