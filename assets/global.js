@@ -865,6 +865,9 @@ function showComplementaryLoading() {
 }
 
 async function updateComplementarySlider() {
+  console.log('updateComplementarySlider called - checking who called it');
+  console.trace();
+  
   const container = document.querySelector('.cart__complementary-products');
   if (!container) return;
   
@@ -893,7 +896,11 @@ async function updateComplementarySlider() {
   
   // Rule 2: If products haven't changed, don't reload AT ALL
   const currentProductIds = JSON.stringify(productIds.sort());
+  console.log('Current product IDs:', currentProductIds);
+  console.log('Stored product IDs:', container.dataset.productIds);
+  
   if (container.dataset.productIds === currentProductIds) {
+    console.log('Product IDs match - skipping reload');
     // Just ensure it's visible, don't reload anything
     if (container._x_dataStack && container._x_dataStack[0]) {
       container._x_dataStack[0].hasProducts = true;
@@ -901,6 +908,8 @@ async function updateComplementarySlider() {
     }
     return;
   }
+  
+  console.log('Product IDs different - reloading slider');
   
   // Show loading state if not already loading
   if (container._x_dataStack && container._x_dataStack[0]) {
