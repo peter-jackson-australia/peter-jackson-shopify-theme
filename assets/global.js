@@ -955,7 +955,6 @@ async function updateComplementarySlider() {
     }
   }).mount();
   
-  // Show content, hide loading
   loading.style.display = 'none';
   content.style.display = 'block';
 }
