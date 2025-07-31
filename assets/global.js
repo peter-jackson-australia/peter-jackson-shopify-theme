@@ -844,10 +844,10 @@ function handleAddToCart(form) {
         body: new FormData(form),
       });
       
-      const cart = await fetchCart();
-      if (cart) {
-        updateFreeShippingBar(cart.total_price);
-        animateShippingProgress(cart.total_price);
+      const cartData = await fetchCart();
+      if (cartData) {
+        updateFreeShippingBar(cartData.total_price);
+        animateShippingProgress(cartData.total_price);
       }
     } catch (e) {
       console.error("Error adding to cart:", e);
