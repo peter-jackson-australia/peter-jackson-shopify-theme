@@ -1150,3 +1150,23 @@ async function updateComplementarySlider() {
   const products = await fetchComplementaryProducts(productIds);
   renderComplementarySlider(products, currentProductIds);
 }
+
+function updateComplementarySliderFromCache() {
+  if (!window.prefetchedComplementaryProducts) return;
+  
+  const container = document.querySelector('.cart__complementary-products');
+  const content = document.querySelector('.cart__complementary-products-content');
+  
+  if (!container || !content) return;
+  
+  // Only render if we don't already have content showing for this product set
+  const currentProductIds = window.prefetchedComplementaryProducts.productIds;
+  if (container.dataset.productIds === currentProductIds && content.style.display !== 'none') {
+    return;
+  }
+  
+  renderComplementarySlider(
+    window.prefetchedComplementaryProducts.products, 
+    window.prefetchedComplementaryProducts.productIds
+  );
+}
