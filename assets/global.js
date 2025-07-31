@@ -503,6 +503,37 @@ function applyOptimisticUI() {
     itemsContainer.className = "cart__items";
     cartForm.prepend(itemsContainer);
 
+    // Create complementary products container INSIDE cart__items to match server markup
+    const complementaryContainer = document.createElement("div");
+    complementaryContainer.className = "cart__complementary-products";
+    complementaryContainer.style.display = "block";
+    complementaryContainer.innerHTML = `
+      <div class="cart__complementary-products-loading">
+        <div class="animated-loader">
+          <svg fill="#E7E7E7" style="height:4px;display:block" viewBox="0 0 40 4" xmlns="http://www.w3.org/2000/svg">
+            <style>
+              .react{animation:moving 1s ease-in-out infinite}
+              @keyframes moving{0%{width:0%}50%{width:100%;transform:translate(0,0)}100%{width:0;right:0;transform:translate(100%,0)}}
+            </style>
+            <rect class="react" fill="#E7E7E7" height="4" width="40" />
+          </svg>
+        </div>
+      </div>
+      <div class="cart__complementary-products-content" style="display: none;">
+        <h3 class="cart__complementary-products-title">Complement Your Look</h3>
+        <div class="cart__complementary-products-slider splide">
+          <div class="splide__arrows">
+            <button class="splide__arrow splide__arrow--prev" type="button"></button>
+            <button class="splide__arrow splide__arrow--next" type="button"></button>
+          </div>
+          <div class="splide__track">
+            <ul class="splide__list"></ul>
+          </div>
+        </div>
+      </div>
+    `;
+    itemsContainer.appendChild(complementaryContainer);
+
     const shippingBar = document.createElement("div");
     shippingBar.className = "cart__shipping cart__shipping--loading";
     shippingBar.style.display = "block";
