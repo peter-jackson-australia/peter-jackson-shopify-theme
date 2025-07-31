@@ -305,68 +305,13 @@ async function fetchCart() {
   }
 }
 
-function applyComplementaryOptimisticUI() {
-  const currentProductHandle = window.location.pathname.split('/products/')[1]?.split('?')[0];
-  if (!currentProductHandle) return;
-
-  let existingContainer = document.querySelector('.cart__complementary-products');
-  
-  if (!existingContainer) {
-    const cartForm = document.querySelector(".cart__form");
-    const footer = document.querySelector(".cart__footer");
-    
-    existingContainer = document.createElement("div");
-    existingContainer.className = "cart__complementary-products";
-    existingContainer.style.display = "block";
-    existingContainer.innerHTML = `
-      <div class="cart__complementary-products-loading">
-        <div class="animated-loader">
-          <svg fill="#E7E7E7" style="height:4px;display:block" viewBox="0 0 40 4" xmlns="http://www.w3.org/2000/svg">
-            <style>
-              .react{animation:moving 1s ease-in-out infinite}
-              @keyframes moving{0%{width:0%}50%{width:100%;transform:translate(0,0)}100%{width:0;right:0;transform:translate(100%,0)}}
-            </style>
-            <rect class="react" fill="#E7E7E7" height="4" width="40" />
-          </svg>
-        </div>
-      </div>
-      <div class="cart__complementary-products-content" style="display: none;">
-        <h3 class="cart__complementary-products-title">Complement Your Look</h3>
-        <div class="cart__complementary-products-slider splide">
-            <div class="splide__arrows">
-              <button class="splide__arrow splide__arrow--prev" type="button">
-                <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M6 1L1 6L6 11" stroke="#0F0F0F" stroke-linecap="square"/>
-                </svg>
-              </button>
-              <button class="splide__arrow splide__arrow--next" type="button">
-                <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 1L6 6L1 11" stroke="#0F0F0F" stroke-linecap="square"/>
-                </svg>
-              </button>
-            </div>
-          <div class="splide__track">
-            <ul class="splide__list"></ul>
-          </div>
-        </div>
-      </div>
-    `;
-    
-    cartForm.insertBefore(existingContainer, footer);
-  }
-  
-  // Mark this container as optimistic so updateCartDrawer won't touch it
-  existingContainer.setAttribute('data-optimistic', 'true');
-}
-
 async function updateCartDrawer() {
   try {
     const currentProgress = document.querySelector(".cart__shipping-progress");
     const currentWidth = currentProgress ? currentProgress.style.width || "0%" : "0%";
     
-    // Preserve optimistic complementary products
-    const optimisticComplementary = document.querySelector(".cart__complementary-products[data-optimistic='true']");
-    const optimisticComplementaryHTML = optimisticComplementary ? optimisticComplementary.outerHTML : null;
+    const currentComplementary = document.querySelector(".cart__complementary-products");
+    const currentComplementaryHTML = currentComplementary ? currentComplementary.outerHTML : null;
     
     const [drawerRes, cartData] = await Promise.all([fetch("/?section_id=cart-drawer"), fetchCart()]);
 
@@ -408,31 +353,23 @@ async function updateCartDrawer() {
       }
     }
 
-    cartElements.drawer.innerHTML = html.querySelector(".cart").innerHTML;
-    
-    // Restore optimistic complementary products if they exist
-    if (optimisticComplementaryHTML && hasItems) {
-      const newComplementaryContainer = document.querySelector(".cart__complementary-products");
+    if (currentComplementaryHTML && hasItems) {
+      const newComplementaryContainer = html.querySelector(".cart__complementary-products");
       if (newComplementaryContainer) {
         const tempDiv = document.createElement("div");
-        tempDiv.innerHTML = optimisticComplementaryHTML;
+        tempDiv.innerHTML = currentComplementaryHTML;
         const restoredComplementary = tempDiv.firstChild;
         newComplementaryContainer.parentNode.replaceChild(restoredComplementary, newComplementaryContainer);
       }
     }
-    
+
+    cartElements.drawer.innerHTML = html.querySelector(".cart").innerHTML;
     addCartEventListeners();
 
     const cart = await fetchCart();
     if (cart) {
       setTimeout(() => {
         animateShippingProgress(cart.total_price);
-        
-        // Only update complementary slider if not optimistic
-        const isOptimistic = document.querySelector(".cart__complementary-products[data-optimistic='true']");
-        if (!isOptimistic) {
-          updateComplementarySlider();
-        }
       }, 100);
     }
 
@@ -558,7 +495,6 @@ function applyOptimisticUI() {
   const variantId = document.querySelector("#js--variant-id")?.value || "";
 
   applyCartTotalLoaders();
-  applyComplementaryOptimisticUI();
   prefetchComplementaryProducts();
 
   const isCartEmpty = document.querySelector(".cart__empty-state");
