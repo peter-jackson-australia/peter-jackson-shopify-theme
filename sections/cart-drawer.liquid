@@ -94,6 +94,83 @@
     padding-bottom: 128px;
   }
 
+  .cart__complementary-products {
+    border-top: 1px solid var(--neutral-50);
+    transition: opacity 300ms ease-out;
+  }
+
+  .cart__complementary-products[x-cloak] {
+    opacity: 0;
+  }
+
+  .cart__complementary-products-content {
+    padding: var(--space-m);
+  }
+
+  .cart__complementary-products-loading {
+    padding: var(--space-m);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cart__complementary-products-loading .animated-loader {
+    width: 100%;
+    height: 4px;
+    max-width: 200px;
+  }
+
+  .cart__complementary-products-title {
+    color: var(--neutral-950);
+    margin-bottom: var(--space-m);
+  }
+
+  .cart__complementary-products-slider {
+    width: 100%;
+  }
+
+  .cart__complementary-products .splide__slide {
+    display: block;
+    text-decoration: none;
+    color: var(--neutral-950);
+  }
+
+  .cart__complementary-products .splide__slide a {
+    display: block;
+    text-decoration: none;
+    color: var(--neutral-950);
+  }
+
+  .cart__complementary-products-image-wrapper {
+    margin-bottom: var(--space-xs);
+    overflow: hidden;
+    background-color: var(--neutral-50);
+    position: relative;
+    width: 100%;
+    padding-bottom: 133.33%;
+  }
+
+  .cart__complementary-products-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .cart__complementary-products-title-product {
+    margin: var(--space-xs) 0 var(--space-2xs);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--neutral-950);
+  }
+
+  .cart__complementary-products-price {
+    color: var(--neutral-950);
+  }
+
   .cart-item {
     display: flex;
     align-items: start;
@@ -190,29 +267,8 @@
   }
 
   .cart__complementary-products {
+    padding: var(--space-m);
     border-top: 1px solid var(--neutral-50);
-    transition: opacity 300ms ease-out;
-  }
-
-  .cart__complementary-products[x-cloak] {
-    opacity: 0;
-  }
-
-  .cart__complementary-products-content {
-    padding: var(--space-m);
-  }
-
-  .cart__complementary-products-loading {
-    padding: var(--space-m);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .cart__complementary-products-loading .animated-loader {
-    width: 100%;
-    height: 4px;
-    max-width: 200px;
   }
 
   .cart__complementary-products-title {
@@ -595,50 +651,15 @@
                 </div>
               </article>
             {% endfor %}
-
-            <div
-              class="cart__complementary-products"
-              x-data="{ isLoading: false, hasProducts: false }"
-              x-show="hasProducts"
-              x-transition:enter.opacity.duration.300ms
-              style="display: none;"
-            >
-              <div
-                class="cart__complementary-products-loading"
-                x-show="isLoading"
-              >
-                <div class="animated-loader">
-                  <svg
-                    fill="#E7E7E7"
-                    style="height:4px;display:block"
-                    viewBox="0 0 40 4"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <style>
-                      .react{animation:moving 1s ease-in-out infinite}
-                      @keyframes moving{0%{width:0%}50%{width:100%;transform:translate(0,0)}100%{width:0;right:0;transform:translate(100%,0)}}
-                    </style>
-                    <rect class="react" fill="#E7E7E7" height="4" width="40" />
-                  </svg>
+            <div class="cart__complementary-products" style="display: none;">
+              <h3 class="cart__complementary-products-title">Complement Your Look</h3>
+              <div class="cart__complementary-products-slider splide">
+                <div class="splide__arrows">
+                  <button class="splide__arrow splide__arrow--prev">{% render '_icon-arrow-see-less' %}</button>
+                  <button class="splide__arrow splide__arrow--next">{% render '_icon-arrow-see-more' %}</button>
                 </div>
-              </div>
-              <div
-                class="cart__complementary-products-content"
-                x-show="!isLoading"
-              >
-                <h3 class="cart__complementary-products-title">Complement Your Look</h3>
-                <div class="cart__complementary-products-slider splide">
-                  <div class="splide__arrows">
-                    <button class="splide__arrow splide__arrow--prev" type="button">
-                      {% render '_icon-arrow-see-less' %}
-                    </button>
-                    <button class="splide__arrow splide__arrow--next" type="button">
-                      {% render '_icon-arrow-see-more' %}
-                    </button>
-                  </div>
-                  <div class="splide__track">
-                    <ul class="splide__list"></ul>
-                  </div>
+                <div class="splide__track">
+                  <ul class="splide__list"></ul>
                 </div>
               </div>
             </div>
