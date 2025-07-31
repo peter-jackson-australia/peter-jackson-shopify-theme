@@ -857,8 +857,16 @@ async function updateComplementarySlider() {
   const cartItems = document.querySelectorAll('.cart-item');
   
   if (cartItems.length === 0) {
-    container.style.display = 'none';
+    if (container._x_dataStack && container._x_dataStack[0]) {
+      container._x_dataStack[0].hasProducts = false;
+    }
     return;
+  }
+  
+  // Show loading state
+  if (container._x_dataStack && container._x_dataStack[0]) {
+    container._x_dataStack[0].isLoading = true;
+    container._x_dataStack[0].hasProducts = true;
   }
   
   const productIds = [];
@@ -879,6 +887,9 @@ async function updateComplementarySlider() {
   const currentProductIds = JSON.stringify(productIds.sort());
   if (container.dataset.productIds === currentProductIds) {
     console.log('Product IDs unchanged, skipping update');
+    if (container._x_dataStack && container._x_dataStack[0]) {
+      container._x_dataStack[0].isLoading = false;
+    }
     return;
   }
   
@@ -886,7 +897,10 @@ async function updateComplementarySlider() {
   console.log('Final products:', products);
   
   if (products.length === 0) {
-    container.style.display = 'none';
+    if (container._x_dataStack && container._x_dataStack[0]) {
+      container._x_dataStack[0].hasProducts = false;
+      container._x_dataStack[0].isLoading = false;
+    }
     return;
   }
   
@@ -909,8 +923,6 @@ async function updateComplementarySlider() {
     splideList.appendChild(slide);
   });
   
-  container.style.display = 'block';
-  
   if (window.complementarySlider) {
     window.complementarySlider.destroy();
   }
@@ -926,4 +938,9 @@ async function updateComplementarySlider() {
       }
     }
   }).mount();
+  
+  // Hide loading state
+  if (container._x_dataStack && container._x_dataStack[0]) {
+    container._x_dataStack[0].isLoading = false;
+  }
 }
