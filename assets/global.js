@@ -786,7 +786,7 @@ async function fetchComplementaryProducts(productIds) {
       console.log('Product ID:', actualProductId);
       
       // Now use the correct API endpoint from the docs
-      const response = await fetch(`/recommendations/products.json?product_id=${actualProductId}&limit=2&intent=related`);
+      const response = await fetch(`/recommendations/products.json?product_id=${actualProductId}&limit=2&intent=complementary`);
       console.log(`Response status: ${response.status}`);
       
       if (response.ok) {
