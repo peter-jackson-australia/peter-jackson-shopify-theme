@@ -370,7 +370,6 @@ async function updateCartDrawer() {
     if (cart) {
       setTimeout(() => {
         animateShippingProgress(cart.total_price);
-        updateComplementarySlider();
       }, 100);
     }
 
@@ -749,7 +748,7 @@ function addCartEventListeners() {
         
         hideComplementaryProducts();
       } else {
-        showComplementaryLoading();
+        updateComplementarySlider();
       }
 
       applyCartTotalLoaders();
@@ -1058,7 +1057,7 @@ function renderComplementarySlider(products, productIds = null) {
   window.complementarySlider = new Splide(container.querySelector('.cart__complementary-products-slider'), {
     type: 'loop', 
     perPage: 2,
-    gap: 'var(--space-2xs)',
+    gap: '16px',
     arrows: true,
     pagination: false,
     breakpoints: {
