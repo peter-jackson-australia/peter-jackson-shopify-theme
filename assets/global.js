@@ -776,7 +776,7 @@ async function fetchComplementaryProducts(productIds) {
   for (const productId of productIds) {
     try {
       console.log(`Fetching recommendations for: ${productId}`);
-      const response = await fetch(`/products/${productId}/recommendations.json?intent=complementary&limit=2`);
+      const response = await fetch(`/products/${productId}/recommendations.json?intent=related&limit=2`);
       console.log(`Response status: ${response.status}`);
       
       if (response.ok) {
