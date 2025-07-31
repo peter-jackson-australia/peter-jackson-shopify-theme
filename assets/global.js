@@ -777,37 +777,25 @@ async function fetchComplementaryProducts(productIds) {
     try {
       console.log(`Fetching recommendations for: ${productId}`);
       
-      // Use the same approach as recommended-products.liquid
-      const url = `/products/${productId}?section_id=recommended-products&product_id=${productId}&limit=2&intent=related`;
-      console.log('Fetching URL:', url);
+      // First need to get the actual product ID (not handle)
+      const productResponse = await fetch(`/products/${productId}.js`);
+      if (!productResponse.ok) continue;
       
-      const response = await fetch(url);
+      const productData = await productResponse.json();
+      const actualProductId = productData.id;
+      console.log('Product ID:', actualProductId);
+      
+      // Now use the correct API endpoint from the docs
+      const response = await fetch(`/recommendations/products.json?product_id=${actualProductId}&limit=2&intent=related`);
       console.log(`Response status: ${response.status}`);
       
       if (response.ok) {
-        const html = await response.text();
-        console.log('HTML response length:', html.length);
+        const data = await response.json();
+        console.log('API response:', data);
         
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-        
-        // Extract products from the HTML response
-        const productLinks = doc.querySelectorAll('.recommended-products__product-link');
-        console.log('Found product links:', productLinks.length);
-        
-        productLinks.forEach(link => {
-          const href = link.getAttribute('href');
-          const title = link.querySelector('.recommended-products__product-title');
-          
-          if (href && title) {
-            const handle = href.split('/products/')[1]?.split('?')[0];
-            console.log('Extracted product:', title.textContent.trim());
-            allProducts.push({
-              handle: handle,
-              title: title.textContent.trim()
-            });
-          }
-        });
+        if (data.products && data.products.length > 0) {
+          allProducts.push(...data.products);
+        }
       }
     } catch (e) {
       console.error('Error fetching:', e);
