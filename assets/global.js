@@ -518,6 +518,37 @@ function applyOptimisticUI() {
     const textLoader = shippingBar.querySelector(".cart__shipping-text");
     textLoader.appendChild(createAnimatedLoader());
 
+    // Create complementary products container with loading state
+    const complementaryContainer = document.createElement("div");
+    complementaryContainer.className = "cart__complementary-products";
+    complementaryContainer.style.display = "block";
+    complementaryContainer.innerHTML = `
+      <div class="cart__complementary-products-loading">
+        <div class="animated-loader">
+          <svg fill="#E7E7E7" style="height:4px;display:block" viewBox="0 0 40 4" xmlns="http://www.w3.org/2000/svg">
+            <style>
+              .react{animation:moving 1s ease-in-out infinite}
+              @keyframes moving{0%{width:0%}50%{width:100%;transform:translate(0,0)}100%{width:0;right:0;transform:translate(100%,0)}}
+            </style>
+            <rect class="react" fill="#E7E7E7" height="4" width="40" />
+          </svg>
+        </div>
+      </div>
+      <div class="cart__complementary-products-content" style="display: none;">
+        <h3 class="cart__complementary-products-title">Complement Your Look</h3>
+        <div class="cart__complementary-products-slider splide">
+          <div class="splide__arrows">
+            <button class="splide__arrow splide__arrow--prev" type="button"></button>
+            <button class="splide__arrow splide__arrow--next" type="button"></button>
+          </div>
+          <div class="splide__track">
+            <ul class="splide__list"></ul>
+          </div>
+        </div>
+      </div>
+    `;
+    cartForm.appendChild(complementaryContainer);
+
     if (!document.querySelector(".cart__footer")) {
       const footer = document.createElement("footer");
       footer.className = "cart__footer";
@@ -824,6 +855,7 @@ async function fetchComplementaryProducts(productIds) {
     try {
       console.log(`Fetching recommendations for: ${productId}`);
       
+      // First need to get the actual product ID (not handle)
       const productResponse = await fetch(`/products/${productId}.js`);
       if (!productResponse.ok) continue;
       
@@ -831,6 +863,7 @@ async function fetchComplementaryProducts(productIds) {
       const actualProductId = productData.id;
       console.log('Product ID:', actualProductId);
       
+      // Now use the correct API endpoint from the docs
       const response = await fetch(`/recommendations/products.json?product_id=${actualProductId}&limit=2&intent=complementary`);
       console.log(`Response status: ${response.status}`);
       
@@ -879,6 +912,7 @@ async function updateComplementarySlider() {
   
   const cartItems = document.querySelectorAll('.cart-item');
   
+  // Hide immediately if no cart items
   if (cartItems.length === 0) {
     hideComplementaryProducts();
     return;
@@ -896,14 +930,17 @@ async function updateComplementarySlider() {
     }
   });
   
+  // Don't reload if products haven't changed
   const currentProductIds = JSON.stringify(productIds.sort());
   if (container.dataset.productIds === currentProductIds) {
+    // Just ensure it's visible
     container.style.display = 'block';
     loading.style.display = 'none';
     content.style.display = 'block';
     return;
   }
   
+  // Show loading (should already be showing from optimistic UI)
   container.style.display = 'block';
   loading.style.display = 'block';
   content.style.display = 'none';
@@ -949,6 +986,7 @@ async function updateComplementarySlider() {
     }
   }).mount();
   
+  // Show content, hide loading
   loading.style.display = 'none';
   content.style.display = 'block';
 }
