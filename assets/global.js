@@ -895,59 +895,7 @@ async function prefetchComplementaryProducts() {
   }
 }
 
-async function updateComplementarySlider() {
-  const container = document.querySelector('.cart__complementary-products');
-  const loading = document.querySelector('.cart__complementary-products-loading');
-  const content = document.querySelector('.cart__complementary-products-content');
-  const splideList = document.querySelector('.cart__complementary-products .splide__list');
-  
-  if (!container || !loading || !content || !splideList) return;
-  
-  const cartItems = document.querySelectorAll('.cart-item');
-  
-  if (cartItems.length === 0) {
-    hideComplementaryProducts();
-    return;
-  }
-  
-  const productIds = [];
-  cartItems.forEach(item => {
-    const link = item.querySelector('.cart-item__title a');
-    if (link) {
-      const url = link.getAttribute('href');
-      const productHandle = url.split('/products/')[1]?.split('?')[0];
-      if (productHandle) {
-        productIds.push(productHandle);
-      }
-    }
-  });
-  
-  const currentProductIds = JSON.stringify(productIds.sort());
-  
-  // Prevent duplicate renders for the same product set
-  if (container.dataset.productIds === currentProductIds && content.style.display !== 'none') {
-    return;
-  }
-  
-  // Check if we have cached data that matches
-  if (window.prefetchedComplementaryProducts && 
-      window.prefetchedComplementaryProducts.productIds === currentProductIds &&
-      Date.now() - window.prefetchedComplementaryProducts.timestamp < 30000) { // 30 second cache
-    
-    renderComplementarySlider(window.prefetchedComplementaryProducts.products, currentProductIds);
-    return;
-  }
-  
-  // Only show loading if we don't already have content displayed
-  if (content.style.display === 'none' || !container.dataset.productIds) {
-    container.style.display = 'block';
-    loading.style.display = 'block';
-    content.style.display = 'none';
-  }
-  
-  const products = await fetchComplementaryProducts(productIds);
-  renderComplementarySlider(products, currentProductIds);
-}
+// updateComplementarySlider
 
 function updateComplementarySliderFromCache() {
   if (!window.prefetchedComplementaryProducts) return;
@@ -1179,59 +1127,26 @@ async function updateComplementarySlider() {
   });
   
   const currentProductIds = JSON.stringify(productIds.sort());
-  if (container.dataset.productIds === currentProductIds) {
-    container.style.display = 'block';
-    loading.style.display = 'none';
-    content.style.display = 'block';
+  
+  // Prevent duplicate renders for the same product set
+  if (container.dataset.productIds === currentProductIds && content.style.display !== 'none') {
     return;
   }
   
+  // Check cache FIRST before showing any loading state
+  if (window.prefetchedComplementaryProducts && 
+      window.prefetchedComplementaryProducts.productIds === currentProductIds &&
+      Date.now() - window.prefetchedComplementaryProducts.timestamp < 30000) { // 30 second cache
+    
+    renderComplementarySlider(window.prefetchedComplementaryProducts.products, currentProductIds);
+    return;
+  }
+  
+  // Only show loading if we actually need to fetch new data
   container.style.display = 'block';
   loading.style.display = 'block';
   content.style.display = 'none';
   
   const products = await fetchComplementaryProducts(productIds);
-  
-  if (products.length === 0) {
-    hideComplementaryProducts();
-    return;
-  }
-  
-  container.dataset.productIds = currentProductIds;
-  
-  splideList.innerHTML = '';
-  products.forEach(product => {
-    const slide = document.createElement('li');
-    slide.className = 'splide__slide';
-    slide.innerHTML = `
-      <a href="/products/${product.handle}">
-        <div class="cart__complementary-products-image-wrapper">
-          <img src="${product.featured_image}" alt="${product.title}" class="cart__complementary-products-image">
-        </div>
-        <h3 class="body--bold cart__complementary-products-title-product">${product.title}</h3>
-        <p class="small cart__complementary-products-price">${formatMoney(product.price)}</p>
-      </a>
-    `;
-    splideList.appendChild(slide);
-  });
-  
-  if (window.complementarySlider) {
-    window.complementarySlider.destroy();
-  }
-  
-  window.complementarySlider = new Splide(container.querySelector('.cart__complementary-products-slider'), {
-    type: 'loop', 
-    perPage: 2,
-    gap: '16px',
-    arrows: true,
-    pagination: false,
-    breakpoints: {
-      768: {
-        perPage: 1,
-      }
-    }
-  }).mount();
-  
-  loading.style.display = 'none';
-  content.style.display = 'block';
+  renderComplementarySlider(products, currentProductIds);
 }
