@@ -495,7 +495,6 @@ function applyOptimisticUI() {
   const variantId = document.querySelector("#js--variant-id")?.value || "";
 
   applyCartTotalLoaders();
-  showComplementaryLoading();
   prefetchComplementaryProducts();
 
   const isCartEmpty = document.querySelector(".cart__empty-state");
