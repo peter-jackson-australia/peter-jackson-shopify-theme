@@ -850,9 +850,11 @@ async function updateComplementarySlider() {
     slide.className = 'splide__slide';
     slide.innerHTML = `
       <a href="/products/${product.handle}">
-        <img src="${product.featured_image}" alt="${product.title}" width="150" height="200">
-        <h4 class="body--bold">${product.title}</h4>
-        <p class="body">${formatMoney(product.price)}</p>
+        <div class="cart__complementary-products-image-wrapper">
+          <img src="${product.featured_image}" alt="${product.title}" class="cart__complementary-products-image">
+        </div>
+        <h3 class="body--bold cart__complementary-products-title-product">${product.title}</h3>
+        <p class="small cart__complementary-products-price">${formatMoney(product.price)}</p>
       </a>
     `;
     splideList.appendChild(slide);
@@ -864,8 +866,7 @@ async function updateComplementarySlider() {
     window.complementarySlider.destroy();
   }
   
-  window.complementarySlider = new Splide(container.querySelector('.splide'), {
-    type: 'loop',
+  window.complementarySlider = new Splide(container.querySelector('.cart__complementary-products-slider'), {
     perPage: 2,
     gap: '16px',
     arrows: true,
