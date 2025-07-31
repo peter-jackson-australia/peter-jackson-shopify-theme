@@ -865,6 +865,7 @@ async function updateComplementarySlider() {
   }
   
   window.complementarySlider = new Splide(container.querySelector('.splide'), {
+    type: 'loop',
     perPage: 2,
     gap: '16px',
     arrows: true,
