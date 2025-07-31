@@ -645,7 +645,7 @@ function addCartEventListeners() {
           createLoadingPlaceholder(rootItem.querySelector(".cart-item__price"));
 
           await new Promise((resolve) => setTimeout(resolve, 800));
-          await updateCartDrawer();
+          await updateCartDrawer(true); // Skip complementary products update for quantity changes
 
           const updatedRootItem = document.querySelector(`[data-line-item-key="${key}"]`);
           if (updatedRootItem) {
@@ -680,7 +680,7 @@ function addCartEventListeners() {
           body: JSON.stringify({ updates: { [key]: isUp ? currentQuantity + 1 : currentQuantity - 1 } }),
         });
 
-        await updateCartDrawer();
+        await updateCartDrawer(true); // Skip complementary products update for quantity changes
       } catch (e) {
         console.error("Error updating quantity:", e);
         await updateCartDrawer();
