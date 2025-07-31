@@ -592,9 +592,39 @@
                 </div>
               </article>
             {% endfor %}
-            <div class="cart__complementary-products" style="display: none;">
+            <div
+              class="cart__complementary-products"
+              style="display: none;"
+              x-data="{ isLoading: false, hasProducts: false }"
+              x-show="hasProducts"
+              x-transition.opacity.duration.300ms
+            >
               <h3 class="cart__complementary-products-title">Complement Your Look</h3>
-              <div class="cart__complementary-products-slider splide">
+              <div
+                class="cart__complementary-products-loading small"
+                x-show="isLoading"
+                x-transition.opacity.duration.200ms
+              >
+                <div class="animated-loader">
+                  <svg
+                    fill="#E7E7E7"
+                    style="height:4px;display:block"
+                    viewBox="0 0 40 4"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <style>
+                      .react{animation:moving 1s ease-in-out infinite}
+                      @keyframes moving{0%{width:0%}50%{width:100%;transform:translate(0,0)}100%{width:0;right:0;transform:translate(100%,0)}}
+                    </style>
+                    <rect class="react" fill="#E7E7E7" height="4" width="40" />
+                  </svg>
+                </div>
+              </div>
+              <div
+                class="cart__complementary-products-slider splide"
+                x-show="!isLoading"
+                x-transition.opacity.duration.200ms
+              >
                 <div class="splide__arrows">
                   <button class="splide__arrow splide__arrow--prev" type="button">
                     {% render '_icon-arrow-see-less' %}
@@ -608,21 +638,20 @@
                 </div>
               </div>
             </div>
-          </div>
 
-          <footer class="cart__footer">
-            {% if cart.total_discounts > 0 %}
+            <footer class="cart__footer">
+              {% if cart.total_discounts > 0 %}
+                <div class="cart__footer-row">
+                  <h3 class="cart__footer-label body">Discounts</h3>
+                  <span class="cart__footer-value body--bold">{{ cart.total_discounts | money }}</span>
+                </div>
+              {% endif %}
               <div class="cart__footer-row">
-                <h3 class="cart__footer-label body">Discounts</h3>
-                <span class="cart__footer-value body--bold">{{ cart.total_discounts | money }}</span>
+                <h3 class="cart__footer-label body">Subtotal</h3>
+                <span class="cart__footer-value body--bold">{{ cart.total_price | money }}</span>
               </div>
-            {% endif %}
-            <div class="cart__footer-row">
-              <h3 class="cart__footer-label body">Subtotal</h3>
-              <span class="cart__footer-value body--bold">{{ cart.total_price | money }}</span>
-            </div>
-            <button type="submit" name="checkout" class="cart__checkout body">Checkout</button>
-          </footer>
+              <button type="submit" name="checkout" class="cart__checkout body">Checkout</button>
+            </footer>
         {% endif %}
       {% endform %}
     </div>
