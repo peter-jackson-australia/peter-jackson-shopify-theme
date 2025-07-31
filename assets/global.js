@@ -311,14 +311,7 @@ async function updateCartDrawer() {
     const currentWidth = currentProgress ? currentProgress.style.width || "0%" : "0%";
     
     const currentComplementary = document.querySelector(".cart__complementary-products");
-    let currentComplementaryHTML = null;
-    
-    if (currentComplementary) {
-      const content = currentComplementary.querySelector(".cart__complementary-products-content");
-      if (content && content.style.display !== "none") {
-        currentComplementaryHTML = currentComplementary.outerHTML;
-      }
-    }
+    const currentComplementaryHTML = currentComplementary ? currentComplementary.outerHTML : null;
     
     const [drawerRes, cartData] = await Promise.all([fetch("/?section_id=cart-drawer"), fetchCart()]);
 
@@ -377,14 +370,7 @@ async function updateCartDrawer() {
     if (cart) {
       setTimeout(() => {
         animateShippingProgress(cart.total_price);
-        
-        // Only update slider if we haven't just prefetched (within last 5 seconds)
-        const justPrefetched = window.prefetchedComplementaryProducts && 
-          Date.now() - window.prefetchedComplementaryProducts.timestamp < 2000;
-        
-        if (!justPrefetched) {
-          updateComplementarySlider();
-        }
+        updateComplementarySlider();
       }, 100);
     }
 
@@ -572,7 +558,7 @@ function applyOptimisticUI() {
         </div>
       </div>
     `;
-    cartForm.parentNode.insertBefore(complementaryContainer, cartForm.nextSibling);
+    cartForm.appendChild(complementaryContainer);
 
     if (!document.querySelector(".cart__footer")) {
       const footer = document.createElement("footer");
@@ -851,7 +837,21 @@ function handleAddToCart(form) {
         method: "post",
         body: new FormData(form),
       });
-      await updateCartDrawer();
+      
+      // Only update cart drawer if we haven't just prefetched
+      const justPrefetched = window.prefetchedComplementaryProducts && 
+        Date.now() - window.prefetchedComplementaryProducts.timestamp < 3000;
+      
+      if (!justPrefetched) {
+        await updateCartDrawer();
+      } else {
+        // Just update the cart data and shipping bar without replacing HTML
+        const cart = await fetchCart();
+        if (cart) {
+          updateFreeShippingBar(cart.total_price);
+          animateShippingProgress(cart.total_price);
+        }
+      }
     } catch (e) {
       console.error("Error adding to cart:", e);
       addButton.innerHTML = originalText;
