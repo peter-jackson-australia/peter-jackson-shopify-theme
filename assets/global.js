@@ -775,98 +775,39 @@ async function fetchComplementaryProducts(productIds) {
   
   for (const productId of productIds) {
     try {
-      const response = await fetch(`/products/${productId}/recommendations.json?intent=complementary&limit=2`);
-      const data = await response.json();
-      if (data.products) {
-        allProducts.push(...data.products);
+      // Try the route that your recommended-products section uses
+      const response = await fetch(`${window.location.origin}/products/${productId}?section_id=recommended-products&intent=complementary&limit=2`);
+      
+      if (response.ok) {
+        const html = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        
+        // Extract products from the HTML response
+        const productLinks = doc.querySelectorAll('.recommended-products__product-link');
+        productLinks.forEach(link => {
+          const href = link.getAttribute('href');
+          const img = link.querySelector('.recommended-products__product-image');
+          const title = link.querySelector('.recommended-products__product-title');
+          const price = link.querySelector('.recommended-products__product-price');
+          
+          if (href && img && title && price) {
+            const handle = href.split('/products/')[1]?.split('?')[0];
+            allProducts.push({
+              handle: handle,
+              title: title.textContent.trim(),
+              featured_image: img.src,
+              price: price.textContent.trim()
+            });
+          }
+        });
+      } else {
+        console.log(`Failed to fetch recommendations for ${productId}:`, response.status);
       }
     } catch (e) {
       console.error('Error fetching complementary products:', e);
     }
   }
   
-  return allProducts;
-}
-
-async function updateComplementarySlider() {
-  console.log('updateComplementarySlider called');
-  
-  const complementaryContainer = document.querySelector('.cart__complementary-products');
-  
-  if (!complementaryContainer) {
-    console.log('No complementary container found');
-    return;
-  }
-  
-  const splideList = complementaryContainer.querySelector('.splide__list');
-  const cartItems = document.querySelectorAll('.cart-item');
-  
-  console.log('Cart items found:', cartItems.length);
-  
-  if (cartItems.length === 0) {
-    complementaryContainer.style.display = 'none';
-    return;
-  }
-  
-  const productIds = [];
-  cartItems.forEach(item => {
-    const link = item.querySelector('.cart-item__title a');
-    if (link) {
-      const url = link.getAttribute('href');
-      console.log('Product URL found:', url);
-      const productHandle = url.split('/products/')[1]?.split('?')[0];
-      if (productHandle) {
-        productIds.push(productHandle);
-        console.log('Product handle extracted:', productHandle);
-      }
-    }
-  });
-  
-  console.log('Product IDs to fetch recommendations for:', productIds);
-  
-  const products = await fetchComplementaryProducts(productIds);
-  
-  console.log('Complementary products returned:', products);
-  
-  if (products.length === 0) {
-    console.log('No complementary products found, hiding container');
-    complementaryContainer.style.display = 'none';
-    return;
-  }
-  
-  splideList.innerHTML = '';
-  products.forEach(product => {
-    console.log('Adding product to slider:', product.title);
-    const slide = document.createElement('li');
-    slide.className = 'splide__slide';
-    slide.innerHTML = `
-      <a href="/products/${product.handle}">
-        <img src="${product.featured_image}" alt="${product.title}" width="150" height="200">
-        <h3>${product.title}</h3>
-        <p>${formatMoney(product.price)}</p>
-      </a>
-    `;
-    splideList.appendChild(slide);
-  });
-  
-  console.log('Showing complementary container');
-  complementaryContainer.style.display = 'block';
-  
-  if (window.complementarySlider) {
-    window.complementarySlider.destroy();
-  }
-  
-  window.complementarySlider = new Splide(complementaryContainer.querySelector('.splide'), {
-    perPage: 2,
-    gap: '16px',
-    arrows: false,
-    pagination: false,
-    breakpoints: {
-      768: {
-        perPage: 1,
-      }
-    }
-  }).mount();
-  
-  console.log('Splide slider mounted');
+  return allProducts.slice(0, 6); // Limit to 6 total products
 }
