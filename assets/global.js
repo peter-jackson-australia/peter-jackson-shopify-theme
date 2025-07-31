@@ -902,9 +902,10 @@ async function updateComplementarySlider() {
     return;
   }
   
-  // Only show loading if not already loading (prevents double loading)
-  if (container._x_dataStack && container._x_dataStack[0] && !container._x_dataStack[0].isLoading) {
-    return; // Loading should already be triggered by optimistic UI
+  // Show loading state if not already loading
+  if (container._x_dataStack && container._x_dataStack[0]) {
+    container._x_dataStack[0].isLoading = true;
+    container._x_dataStack[0].hasProducts = true;
   }
   
   const products = await fetchComplementaryProducts(productIds);
