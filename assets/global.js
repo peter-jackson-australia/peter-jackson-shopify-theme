@@ -808,15 +808,17 @@ async function fetchComplementaryProducts(productIds) {
 async function updateComplementarySlider() {
   console.log('Function called');
   
-  const ul = document.querySelector('.cart__complementary-products');
-  if (!ul) {
-    console.log('UL not found');
+  const container = document.querySelector('.cart__complementary-products');
+  if (!container) {
+    console.log('Container not found');
     return;
   }
   
+  const splideList = container.querySelector('.splide__list');
   const cartItems = document.querySelectorAll('.cart-item');
+  
   if (cartItems.length === 0) {
-    ul.style.display = 'none';
+    container.style.display = 'none';
     return;
   }
   
@@ -838,10 +840,39 @@ async function updateComplementarySlider() {
   console.log('Final products:', products);
   
   if (products.length === 0) {
-    ul.innerHTML = '<li>No complementary products found</li>';
-  } else {
-    ul.innerHTML = products.map(product => `<li>${product.title}</li>`).join('');
+    container.style.display = 'none';
+    return;
   }
   
-  ul.style.display = 'block';
+  splideList.innerHTML = '';
+  products.forEach(product => {
+    const slide = document.createElement('li');
+    slide.className = 'splide__slide';
+    slide.innerHTML = `
+      <a href="/products/${product.handle}">
+        <img src="${product.featured_image}" alt="${product.title}" width="150" height="200">
+        <h3>${product.title}</h3>
+        <p>${formatMoney(product.price)}</p>
+      </a>
+    `;
+    splideList.appendChild(slide);
+  });
+  
+  container.style.display = 'block';
+  
+  if (window.complementarySlider) {
+    window.complementarySlider.destroy();
+  }
+  
+  window.complementarySlider = new Splide(container.querySelector('.splide'), {
+    perPage: 2,
+    gap: '16px',
+    arrows: true,
+    pagination: false,
+    breakpoints: {
+      768: {
+        perPage: 1,
+      }
+    }
+  }).mount();
 }
