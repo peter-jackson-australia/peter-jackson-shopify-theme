@@ -492,6 +492,7 @@ function applyOptimisticUI() {
   const variantId = document.querySelector("#js--variant-id")?.value || "";
 
   applyCartTotalLoaders();
+  showComplementaryLoading();
 
   const isCartEmpty = document.querySelector(".cart__empty-state");
   if (isCartEmpty) {
@@ -661,6 +662,7 @@ function addCartEventListeners() {
 
       try {
         applyCartTotalLoaders();
+        showComplementaryLoading();
 
         const actionsEl = rootItem.querySelector(".cart-item__actions");
         createLoadingPlaceholder(actionsEl);
@@ -705,6 +707,7 @@ function addCartEventListeners() {
       }
 
       applyCartTotalLoaders();
+      showComplementaryLoading();
 
       try {
         await fetch("/cart/update.js", {
@@ -844,18 +847,21 @@ async function fetchComplementaryProducts(productIds) {
   return allProducts;
 }
 
-async function updateComplementarySlider() {
-  console.log('Function called');
-  
+function showComplementaryLoading() {
   const container = document.querySelector('.cart__complementary-products');
-  if (!container) {
-    console.log('Container not found');
-    return;
+  if (container && container._x_dataStack && container._x_dataStack[0]) {
+    container._x_dataStack[0].isLoading = true;
+    container._x_dataStack[0].hasProducts = true;
   }
+}
+
+async function updateComplementarySlider() {
+  const container = document.querySelector('.cart__complementary-products');
+  if (!container) return;
   
-  const splideList = container.querySelector('.splide__list');
   const cartItems = document.querySelectorAll('.cart-item');
   
+  // Rule 4: If no cart items, hide immediately
   if (cartItems.length === 0) {
     if (container._x_dataStack && container._x_dataStack[0]) {
       container._x_dataStack[0].hasProducts = false;
@@ -876,27 +882,23 @@ async function updateComplementarySlider() {
     }
   });
   
-  console.log('Product handles:', productIds);
-  
-  // Check if the products have actually changed
+  // Rule 2: If products haven't changed, don't reload
   const currentProductIds = JSON.stringify(productIds.sort());
   if (container.dataset.productIds === currentProductIds) {
-    console.log('Product IDs unchanged, skipping update');
-    if (container._x_dataStack && container._x_dataStack[0] && !container._x_dataStack[0].hasProducts) {
+    if (container._x_dataStack && container._x_dataStack[0]) {
       container._x_dataStack[0].hasProducts = true;
       container._x_dataStack[0].isLoading = false;
     }
     return;
   }
   
-  // Show loading state for the entire section
+  // Show loading state
   if (container._x_dataStack && container._x_dataStack[0]) {
     container._x_dataStack[0].isLoading = true;
     container._x_dataStack[0].hasProducts = true;
   }
   
   const products = await fetchComplementaryProducts(productIds);
-  console.log('Final products:', products);
   
   if (products.length === 0) {
     if (container._x_dataStack && container._x_dataStack[0]) {
@@ -906,9 +908,9 @@ async function updateComplementarySlider() {
     return;
   }
   
-  // Store the current product IDs to avoid unnecessary updates
   container.dataset.productIds = currentProductIds;
   
+  const splideList = container.querySelector('.splide__list');
   splideList.innerHTML = '';
   products.forEach(product => {
     const slide = document.createElement('li');
