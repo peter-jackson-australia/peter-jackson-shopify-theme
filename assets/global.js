@@ -843,7 +843,12 @@ function handleAddToCart(form) {
         method: "post",
         body: new FormData(form),
       });
-      await updateCartDrawer();
+      
+      const cart = await fetchCart();
+      if (cart) {
+        updateFreeShippingBar(cart.total_price);
+        animateShippingProgress(cart.total_price);
+      }
     } catch (e) {
       console.error("Error adding to cart:", e);
       addButton.innerHTML = originalText;
