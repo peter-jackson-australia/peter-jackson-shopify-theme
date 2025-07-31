@@ -824,7 +824,6 @@ async function fetchComplementaryProducts(productIds) {
     try {
       console.log(`Fetching recommendations for: ${productId}`);
       
-      // First need to get the actual product ID (not handle)
       const productResponse = await fetch(`/products/${productId}.js`);
       if (!productResponse.ok) continue;
       
@@ -832,7 +831,6 @@ async function fetchComplementaryProducts(productIds) {
       const actualProductId = productData.id;
       console.log('Product ID:', actualProductId);
       
-      // Now use the correct API endpoint from the docs
       const response = await fetch(`/recommendations/products.json?product_id=${actualProductId}&limit=2&intent=complementary`);
       console.log(`Response status: ${response.status}`);
       
@@ -881,7 +879,6 @@ async function updateComplementarySlider() {
   
   const cartItems = document.querySelectorAll('.cart-item');
   
-  // Hide immediately if no cart items
   if (cartItems.length === 0) {
     hideComplementaryProducts();
     return;
@@ -899,17 +896,14 @@ async function updateComplementarySlider() {
     }
   });
   
-  // Don't reload if products haven't changed
   const currentProductIds = JSON.stringify(productIds.sort());
   if (container.dataset.productIds === currentProductIds) {
-    // Just ensure it's visible
     container.style.display = 'block';
     loading.style.display = 'none';
     content.style.display = 'block';
     return;
   }
   
-  // Show loading (should already be showing from optimistic UI)
   container.style.display = 'block';
   loading.style.display = 'block';
   content.style.display = 'none';
