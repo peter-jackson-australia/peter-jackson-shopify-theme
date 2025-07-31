@@ -532,10 +532,18 @@ function applyOptimisticUI() {
       <div class="cart__complementary-products-content" style="display: none;">
         <h3 class="cart__complementary-products-title">Complement Your Look</h3>
         <div class="cart__complementary-products-slider splide">
-          <div class="splide__arrows">
-            <button class="splide__arrow splide__arrow--prev" type="button"></button>
-            <button class="splide__arrow splide__arrow--next" type="button"></button>
-          </div>
+<div class="splide__arrows">
+  <button class="splide__arrow splide__arrow--prev" type="button">
+    <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6 1L1 6L6 11" stroke="#0F0F0F" stroke-linecap="square"/>
+    </svg>
+  </button>
+  <button class="splide__arrow splide__arrow--next" type="button">
+    <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M1 1L6 6L1 11" stroke="#0F0F0F" stroke-linecap="square"/>
+    </svg>
+  </button>
+</div>
           <div class="splide__track">
             <ul class="splide__list"></ul>
           </div>
@@ -961,6 +969,7 @@ async function updateComplementarySlider() {
   }
   
   window.complementarySlider = new Splide(container.querySelector('.cart__complementary-products-slider'), {
+    type: 'loop', 
     perPage: 2,
     gap: '16px',
     arrows: true,
