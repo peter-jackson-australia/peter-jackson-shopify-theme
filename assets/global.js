@@ -280,6 +280,10 @@ async function updateCartDrawer() {
     const currentProgress = document.querySelector(".cart__shipping-progress");
     const currentWidth = currentProgress ? currentProgress.style.width || "0%" : "0%";
     
+    // Preserve current complementary products state
+    const currentComplementary = document.querySelector(".cart__complementary-products");
+    const currentComplementaryHTML = currentComplementary ? currentComplementary.outerHTML : null;
+    
     const [drawerRes, cartData] = await Promise.all([fetch("/?section_id=cart-drawer"), fetchCart()]);
 
     const text = await drawerRes.text();
@@ -314,9 +318,20 @@ async function updateCartDrawer() {
           newText.textContent = "Your Order Has Free Shipping!";
         } else {
           const remaining = formatMoney(threshold - cartData.total_price);
-          newText.textContent = `$${remaining} Away From Free Shipping`;
+          newText.textContent = `${remaining} Away From Free Shipping`;
         }
         newProgress.style.width = currentWidth;
+      }
+    }
+
+    // Restore complementary products if they existed
+    if (currentComplementaryHTML && hasItems) {
+      const newComplementaryContainer = html.querySelector(".cart__complementary-products");
+      if (newComplementaryContainer) {
+        const tempDiv = document.createElement("div");
+        tempDiv.innerHTML = currentComplementaryHTML;
+        const restoredComplementary = tempDiv.firstChild;
+        newComplementaryContainer.parentNode.replaceChild(restoredComplementary, newComplementaryContainer);
       }
     }
 
@@ -777,6 +792,7 @@ async function fetchComplementaryProducts(productIds) {
     try {
       console.log(`Fetching recommendations for: ${productId}`);
       
+      // First need to get the actual product ID (not handle)
       const productResponse = await fetch(`/products/${productId}.js`);
       if (!productResponse.ok) continue;
       
@@ -784,6 +800,7 @@ async function fetchComplementaryProducts(productIds) {
       const actualProductId = productData.id;
       console.log('Product ID:', actualProductId);
       
+      // Now use the correct API endpoint from the docs
       const response = await fetch(`/recommendations/products.json?product_id=${actualProductId}&limit=2&intent=complementary`);
       console.log(`Response status: ${response.status}`);
       
