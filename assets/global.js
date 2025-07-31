@@ -366,10 +366,7 @@ async function updateCartDrawer() {
     if (cart) {
       setTimeout(() => {
         animateShippingProgress(cart.total_price);
-        // Only load complementary products if they don't already exist
-        if (!document.querySelector('.cart__complementary-products .splide__slide')) {
-          updateComplementarySlider();
-        }
+        updateComplementarySlider();
       }, 100);
     }
 
@@ -861,7 +858,6 @@ async function updateComplementarySlider() {
   
   if (cartItems.length === 0) {
     container.style.display = 'none';
-    localStorage.removeItem('complementaryProducts');
     return;
   }
   
@@ -879,22 +875,11 @@ async function updateComplementarySlider() {
   
   console.log('Product handles:', productIds);
   
-  // Check if we have cached complementary products for these exact products
-  const cachedData = localStorage.getItem('complementaryProducts');
-  if (cachedData) {
-    try {
-      const cached = JSON.parse(cachedData);
-      const cachedProductIds = cached.productIds || [];
-      
-      // If the product IDs match, use cached data
-      if (JSON.stringify(cachedProductIds.sort()) === JSON.stringify(productIds.sort())) {
-        console.log('Using cached complementary products');
-        displayComplementaryProducts(cached.products, container, splideList);
-        return;
-      }
-    } catch (e) {
-      console.error('Error parsing cached complementary products:', e);
-    }
+  // Check if the products have actually changed
+  const currentProductIds = JSON.stringify(productIds.sort());
+  if (container.dataset.productIds === currentProductIds) {
+    console.log('Product IDs unchanged, skipping update');
+    return;
   }
   
   const products = await fetchComplementaryProducts(productIds);
@@ -902,21 +887,12 @@ async function updateComplementarySlider() {
   
   if (products.length === 0) {
     container.style.display = 'none';
-    localStorage.removeItem('complementaryProducts');
     return;
   }
   
-  // Cache the results
-  localStorage.setItem('complementaryProducts', JSON.stringify({
-    productIds: productIds,
-    products: products,
-    timestamp: Date.now()
-  }));
+  // Store the current product IDs to avoid unnecessary updates
+  container.dataset.productIds = currentProductIds;
   
-  displayComplementaryProducts(products, container, splideList);
-}
-
-function displayComplementaryProducts(products, container, splideList) {
   splideList.innerHTML = '';
   products.forEach(product => {
     const slide = document.createElement('li');
