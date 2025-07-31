@@ -34,7 +34,16 @@ function initCartFromStorage() {
   }
 
   fetchCart().then((cart) => {
-    if (cart) updateCartDrawer();
+    if (cart) {
+      updateCartDrawer().then(() => {
+        // Load complementary products if cart has items
+        if (cart.item_count > 0) {
+          setTimeout(() => {
+            updateComplementarySlider();
+          }, 100);
+        }
+      });
+    }
   });
 }
 
@@ -858,15 +867,7 @@ cartElements.cartLinks.forEach((link) => {
   link.addEventListener("click", (e) => {
     e.preventDefault();
     openCartDrawer();
-    updateCartDrawer().then(() => {
-      // Show complementary products if cart has items
-      setTimeout(() => {
-        const hasItems = document.querySelectorAll('.cart-item').length > 0;
-        if (hasItems) {
-          updateComplementarySlider();
-        }
-      }, 100);
-    });
+    updateCartDrawer();
   });
 });
 
