@@ -142,6 +142,25 @@ function prePopulateCartDrawer(cartData) {
     itemsContainer.appendChild(cartItem);
   });
 
+  // Add complementary products placeholder
+  const complementaryContainer = document.createElement("div");
+  complementaryContainer.className = "cart__complementary-products";
+  complementaryContainer.style.display = "none";
+  complementaryContainer.innerHTML = `
+    <h3 class="cart__complementary-products-title">Complement Your Look</h3>
+    <div class="cart__complementary-products-slider splide">
+      <div class="splide__arrows">
+        <button class="splide__arrow splide__arrow--prev" type="button"></button>
+        <button class="splide__arrow splide__arrow--next" type="button"></button>
+      </div>
+      <div class="splide__track">
+        <ul class="splide__list">
+        </ul>
+      </div>
+    </div>
+  `;
+  cartForm.appendChild(complementaryContainer);
+
   if (!document.querySelector(".cart__footer")) {
     const footer = document.createElement("footer");
     footer.className = "cart__footer";
@@ -156,6 +175,11 @@ function prePopulateCartDrawer(cartData) {
   }
 
   updateFreeShippingBar(cartData.total);
+  
+  // Load complementary products
+  setTimeout(() => {
+    updateComplementarySlider();
+  }, 100);
 }
 
 function formatMoney(cents) {
