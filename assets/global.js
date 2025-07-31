@@ -645,7 +645,7 @@ function addCartEventListeners() {
           createLoadingPlaceholder(rootItem.querySelector(".cart-item__price"));
 
           await new Promise((resolve) => setTimeout(resolve, 800));
-          await updateCartDrawer(true); // Skip complementary products update for quantity changes
+          await updateCartDrawer(); // Skip complementary products update for quantity changes
 
           const updatedRootItem = document.querySelector(`[data-line-item-key="${key}"]`);
           if (updatedRootItem) {
@@ -683,7 +683,7 @@ function addCartEventListeners() {
         await updateCartDrawer(true); // Skip complementary products update for quantity changes
       } catch (e) {
         console.error("Error updating quantity:", e);
-                  await updateCartDrawer(true);
+                  await updateCartDrawer();
 
         const updatedRootItem = document.querySelector(`[data-line-item-key="${key}"]`);
         if (updatedRootItem) {
@@ -706,13 +706,9 @@ function addCartEventListeners() {
         if (shippingBar) shippingBar.style.display = "none";
         
         // Hide complementary products immediately when removing last item
-        const container = document.querySelector('.cart__complementary-products');
-        if (container && container._x_dataStack && container._x_dataStack[0]) {
-          container._x_dataStack[0].hasProducts = false;
-          container._x_dataStack[0].isLoading = false;
-        }
+        hideComplementaryProducts();
       } else {
-        // Only show loading if there will still be items left
+        // Show loading for complementary products when removing item (but not last item)
         showComplementaryLoading();
       }
 
@@ -858,27 +854,36 @@ async function fetchComplementaryProducts(productIds) {
 
 function showComplementaryLoading() {
   const container = document.querySelector('.cart__complementary-products');
-  if (container && container._x_dataStack && container._x_dataStack[0]) {
-    container._x_dataStack[0].isLoading = true;
-    container._x_dataStack[0].hasProducts = true;
+  const loading = document.querySelector('.cart__complementary-products-loading');
+  const content = document.querySelector('.cart__complementary-products-content');
+  
+  if (container && loading && content) {
+    container.style.display = 'block';
+    loading.style.display = 'block';
+    content.style.display = 'none';
+  }
+}
+
+function hideComplementaryProducts() {
+  const container = document.querySelector('.cart__complementary-products');
+  if (container) {
+    container.style.display = 'none';
   }
 }
 
 async function updateComplementarySlider() {
-  console.log('updateComplementarySlider called - checking who called it');
-  console.trace();
-  
   const container = document.querySelector('.cart__complementary-products');
-  if (!container) return;
+  const loading = document.querySelector('.cart__complementary-products-loading');
+  const content = document.querySelector('.cart__complementary-products-content');
+  const splideList = document.querySelector('.cart__complementary-products .splide__list');
+  
+  if (!container || !loading || !content || !splideList) return;
   
   const cartItems = document.querySelectorAll('.cart-item');
   
-  // Rule 4: If no cart items, hide immediately
+  // Hide immediately if no cart items
   if (cartItems.length === 0) {
-    if (container._x_dataStack && container._x_dataStack[0]) {
-      container._x_dataStack[0].hasProducts = false;
-      container._x_dataStack[0].isLoading = false;
-    }
+    hideComplementaryProducts();
     return;
   }
   
@@ -894,42 +899,30 @@ async function updateComplementarySlider() {
     }
   });
   
-  // Rule 2: If products haven't changed, don't reload AT ALL
+  // Don't reload if products haven't changed
   const currentProductIds = JSON.stringify(productIds.sort());
-  console.log('Current product IDs:', currentProductIds);
-  console.log('Stored product IDs:', container.dataset.productIds);
-  
   if (container.dataset.productIds === currentProductIds) {
-    console.log('Product IDs match - skipping reload');
-    // Just ensure it's visible, don't reload anything
-    if (container._x_dataStack && container._x_dataStack[0]) {
-      container._x_dataStack[0].hasProducts = true;
-      container._x_dataStack[0].isLoading = false;
-    }
+    // Just ensure it's visible
+    container.style.display = 'block';
+    loading.style.display = 'none';
+    content.style.display = 'block';
     return;
   }
   
-  console.log('Product IDs different - reloading slider');
-  
-  // Show loading state if not already loading
-  if (container._x_dataStack && container._x_dataStack[0]) {
-    container._x_dataStack[0].isLoading = true;
-    container._x_dataStack[0].hasProducts = true;
-  }
+  // Show loading (should already be showing from optimistic UI)
+  container.style.display = 'block';
+  loading.style.display = 'block';
+  content.style.display = 'none';
   
   const products = await fetchComplementaryProducts(productIds);
   
   if (products.length === 0) {
-    if (container._x_dataStack && container._x_dataStack[0]) {
-      container._x_dataStack[0].hasProducts = false;
-      container._x_dataStack[0].isLoading = false;
-    }
+    hideComplementaryProducts();
     return;
   }
   
   container.dataset.productIds = currentProductIds;
   
-  const splideList = container.querySelector('.splide__list');
   splideList.innerHTML = '';
   products.forEach(product => {
     const slide = document.createElement('li');
@@ -962,8 +955,7 @@ async function updateComplementarySlider() {
     }
   }).mount();
   
-  // Hide loading state
-  if (container._x_dataStack && container._x_dataStack[0]) {
-    container._x_dataStack[0].isLoading = false;
-  }
+  // Show content, hide loading
+  loading.style.display = 'none';
+  content.style.display = 'block';
 }
