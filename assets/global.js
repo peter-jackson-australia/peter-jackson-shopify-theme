@@ -851,8 +851,8 @@ async function updateComplementarySlider() {
     slide.innerHTML = `
       <a href="/products/${product.handle}">
         <img src="${product.featured_image}" alt="${product.title}" width="150" height="200">
-        <h3>${product.title}</h3>
-        <p>${formatMoney(product.price)}</p>
+        <h4 class="body--bold">${product.title}</h4>
+        <p class="body">${formatMoney(product.price)}</p>
       </a>
     `;
     splideList.appendChild(slide);
