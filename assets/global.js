@@ -142,7 +142,6 @@ function prePopulateCartDrawer(cartData) {
     itemsContainer.appendChild(cartItem);
   });
 
-  // Add complementary products placeholder
   const complementaryContainer = document.createElement("div");
   complementaryContainer.className = "cart__complementary-products";
   complementaryContainer.style.display = "none";
@@ -176,7 +175,6 @@ function prePopulateCartDrawer(cartData) {
 
   updateFreeShippingBar(cartData.total);
   
-  // Load complementary products
   setTimeout(() => {
     updateComplementarySlider();
   }, 100);
@@ -304,7 +302,6 @@ async function updateCartDrawer() {
     const currentProgress = document.querySelector(".cart__shipping-progress");
     const currentWidth = currentProgress ? currentProgress.style.width || "0%" : "0%";
     
-    // Preserve current complementary products state
     const currentComplementary = document.querySelector(".cart__complementary-products");
     const currentComplementaryHTML = currentComplementary ? currentComplementary.outerHTML : null;
     
@@ -348,7 +345,6 @@ async function updateCartDrawer() {
       }
     }
 
-    // Restore complementary products if they existed
     if (currentComplementaryHTML && hasItems) {
       const newComplementaryContainer = html.querySelector(".cart__complementary-products");
       if (newComplementaryContainer) {
@@ -518,7 +514,6 @@ function applyOptimisticUI() {
     const textLoader = shippingBar.querySelector(".cart__shipping-text");
     textLoader.appendChild(createAnimatedLoader());
 
-    // Create complementary products container with loading state
     const complementaryContainer = document.createElement("div");
     complementaryContainer.className = "cart__complementary-products";
     complementaryContainer.style.display = "block";
@@ -676,7 +671,7 @@ function addCartEventListeners() {
           createLoadingPlaceholder(rootItem.querySelector(".cart-item__price"));
 
           await new Promise((resolve) => setTimeout(resolve, 800));
-          await updateCartDrawer(); // Skip complementary products update for quantity changes
+          await updateCartDrawer(); 
 
           const updatedRootItem = document.querySelector(`[data-line-item-key="${key}"]`);
           if (updatedRootItem) {
@@ -693,7 +688,6 @@ function addCartEventListeners() {
 
       try {
         applyCartTotalLoaders();
-        // Don't show complementary loading for quantity changes - same products!
 
         const actionsEl = rootItem.querySelector(".cart-item__actions");
         createLoadingPlaceholder(actionsEl);
@@ -711,7 +705,7 @@ function addCartEventListeners() {
           body: JSON.stringify({ updates: { [key]: isUp ? currentQuantity + 1 : currentQuantity - 1 } }),
         });
 
-        await updateCartDrawer(true); // Skip complementary products update for quantity changes
+        await updateCartDrawer(true); 
       } catch (e) {
         console.error("Error updating quantity:", e);
                   await updateCartDrawer();
@@ -736,10 +730,8 @@ function addCartEventListeners() {
         const shippingBar = document.querySelector(".cart__shipping");
         if (shippingBar) shippingBar.style.display = "none";
         
-        // Hide complementary products immediately when removing last item
         hideComplementaryProducts();
       } else {
-        // Show loading for complementary products when removing item (but not last item)
         showComplementaryLoading();
       }
 
@@ -855,7 +847,6 @@ async function fetchComplementaryProducts(productIds) {
     try {
       console.log(`Fetching recommendations for: ${productId}`);
       
-      // First need to get the actual product ID (not handle)
       const productResponse = await fetch(`/products/${productId}.js`);
       if (!productResponse.ok) continue;
       
@@ -863,8 +854,7 @@ async function fetchComplementaryProducts(productIds) {
       const actualProductId = productData.id;
       console.log('Product ID:', actualProductId);
       
-      // Now use the correct API endpoint from the docs
-      const response = await fetch(`/recommendations/products.json?product_id=${actualProductId}&limit=2&intent=complementary`);
+      const response = await fetch(`/recommendations/products.json?product_id=${actualProductId}&limit=2&intent=related`);
       console.log(`Response status: ${response.status}`);
       
       if (response.ok) {
@@ -912,7 +902,6 @@ async function updateComplementarySlider() {
   
   const cartItems = document.querySelectorAll('.cart-item');
   
-  // Hide immediately if no cart items
   if (cartItems.length === 0) {
     hideComplementaryProducts();
     return;
@@ -930,17 +919,14 @@ async function updateComplementarySlider() {
     }
   });
   
-  // Don't reload if products haven't changed
   const currentProductIds = JSON.stringify(productIds.sort());
   if (container.dataset.productIds === currentProductIds) {
-    // Just ensure it's visible
     container.style.display = 'block';
     loading.style.display = 'none';
     content.style.display = 'block';
     return;
   }
   
-  // Show loading (should already be showing from optimistic UI)
   container.style.display = 'block';
   loading.style.display = 'block';
   content.style.display = 'none';
@@ -986,7 +972,6 @@ async function updateComplementarySlider() {
     }
   }).mount();
   
-  // Show content, hide loading
   loading.style.display = 'none';
   content.style.display = 'block';
 }
