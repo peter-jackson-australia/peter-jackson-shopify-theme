@@ -327,7 +327,6 @@ async function updateCartDrawer() {
     if (cart) {
       setTimeout(() => {
         animateShippingProgress(cart.total_price);
-        updateComplementarySlider();
       }, 100);
     }
 
@@ -770,44 +769,23 @@ cartElements.cartLinks.forEach((link) => {
   });
 });
 
-async function fetchComplementaryProducts(productIds) {
-  const allProducts = [];
+function updateComplementarySlider() {
+  console.log('Function called!');
   
-  for (const productId of productIds) {
-    try {
-      // Try the route that your recommended-products section uses
-      const response = await fetch(`${window.location.origin}/products/${productId}?section_id=recommended-products&intent=complementary&limit=2`);
-      
-      if (response.ok) {
-        const html = await response.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-        
-        // Extract products from the HTML response
-        const productLinks = doc.querySelectorAll('.recommended-products__product-link');
-        productLinks.forEach(link => {
-          const href = link.getAttribute('href');
-          const img = link.querySelector('.recommended-products__product-image');
-          const title = link.querySelector('.recommended-products__product-title');
-          const price = link.querySelector('.recommended-products__product-price');
-          
-          if (href && img && title && price) {
-            const handle = href.split('/products/')[1]?.split('?')[0];
-            allProducts.push({
-              handle: handle,
-              title: title.textContent.trim(),
-              featured_image: img.src,
-              price: price.textContent.trim()
-            });
-          }
-        });
-      } else {
-        console.log(`Failed to fetch recommendations for ${productId}:`, response.status);
-      }
-    } catch (e) {
-      console.error('Error fetching complementary products:', e);
-    }
+  const ul = document.querySelector('.cart__complementary-products');
+  if (!ul) {
+    console.log('UL not found');
+    return;
   }
   
-  return allProducts.slice(0, 6); // Limit to 6 total products
+  const cartItems = document.querySelectorAll('.cart-item');
+  console.log('Cart items:', cartItems.length);
+  
+  if (cartItems.length === 0) {
+    ul.style.display = 'none';
+    return;
+  }
+  
+  ul.innerHTML = '<li>Testing - cart has items!</li>';
+  ul.style.display = 'block';
 }
