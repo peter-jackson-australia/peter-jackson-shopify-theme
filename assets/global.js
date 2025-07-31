@@ -327,6 +327,7 @@ async function updateCartDrawer() {
     if (cart) {
       setTimeout(() => {
         animateShippingProgress(cart.total_price);
+        updateComplementarySlider();
       }, 100);
     }
 
