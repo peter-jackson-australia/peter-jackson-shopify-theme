@@ -768,3 +768,83 @@ cartElements.cartLinks.forEach((link) => {
     updateCartDrawer();
   });
 });
+
+async function fetchComplementaryProducts(productIds) {
+  const allProducts = [];
+  
+  for (const productId of productIds) {
+    try {
+      const response = await fetch(`/products/${productId}/recommendations.json?intent=complementary&limit=2`);
+      const data = await response.json();
+      if (data.products) {
+        allProducts.push(...data.products);
+      }
+    } catch (e) {
+      console.error('Error fetching complementary products:', e);
+    }
+  }
+  
+  return allProducts;
+}
+
+async function updateComplementarySlider() {
+  const complementaryContainer = document.querySelector('.cart__complementary-products');
+  const splideList = complementaryContainer.querySelector('.splide__list');
+  
+  const cartItems = document.querySelectorAll('.cart-item');
+  if (cartItems.length === 0) {
+    complementaryContainer.style.display = 'none';
+    return;
+  }
+  
+  const productIds = [];
+  cartItems.forEach(item => {
+    const link = item.querySelector('.cart-item__title a');
+    if (link) {
+      const url = link.getAttribute('href');
+      const productHandle = url.split('/products/')[1]?.split('?')[0];
+      if (productHandle) {
+        productIds.push(productHandle);
+      }
+    }
+  });
+  
+  const products = await fetchComplementaryProducts(productIds);
+  
+  if (products.length === 0) {
+    complementaryContainer.style.display = 'none';
+    return;
+  }
+  
+  splideList.innerHTML = '';
+  products.forEach(product => {
+    const slide = document.createElement('li');
+    slide.className = 'splide__slide';
+    slide.innerHTML = `
+      <a href="/products/${product.handle}">
+        <img src="${product.featured_image}" alt="${product.title}" width="150" height="200">
+        <h3>${product.title}</h3>
+        <p>${formatMoney(product.price)}</p>
+      </a>
+    `;
+    splideList.appendChild(slide);
+  });
+  
+  complementaryContainer.style.display = 'block';
+  
+  if (window.complementarySlider) {
+    window.complementarySlider.destroy();
+  }
+  
+  window.complementarySlider = new Splide(complementaryContainer.querySelector('.splide'), {
+    perPage: 2,
+    gap: '16px',
+    arrows: false,
+    pagination: false,
+    breakpoints: {
+      768: {
+        perPage: 1,
+      }
+    }
+  }).mount();
+}
