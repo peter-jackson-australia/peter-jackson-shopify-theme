@@ -190,8 +190,13 @@
   }
 
   .cart__complementary-products {
-    padding-top: var(--space-m);
+    padding: var(--space-m);
     border-top: 1px solid var(--neutral-50);
+    transition: opacity 300ms ease-out;
+  }
+
+  .cart__complementary-products[x-cloak] {
+    opacity: 0;
   }
 
   .cart__complementary-products-title {
@@ -243,6 +248,19 @@
 
   .cart__complementary-products-price {
     color: var(--neutral-950);
+  }
+
+  .cart__complementary-products-loading {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    color: var(--neutral-600);
+    margin-top: var(--space-s);
+  }
+
+  .cart__complementary-products-loading .animated-loader {
+    width: 100%;
+    height: 4px;
   }
 
   .cart__footer {
