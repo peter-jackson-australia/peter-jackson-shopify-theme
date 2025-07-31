@@ -854,6 +854,167 @@ function handleAddToCart(form) {
   };
 }
 
+async function prefetchComplementaryProducts() {
+  // Get current product handle from the page URL
+  const currentProductHandle = window.location.pathname.split('/products/')[1]?.split('?')[0];
+  if (!currentProductHandle) return;
+
+  // Get existing cart items
+  const cartItems = document.querySelectorAll('.cart-item');
+  const existingProductIds = [];
+  
+  cartItems.forEach(item => {
+    const link = item.querySelector('.cart-item__title a');
+    if (link) {
+      const url = link.getAttribute('href');
+      const productHandle = url.split('/products/')[1]?.split('?')[0];
+      if (productHandle) {
+        existingProductIds.push(productHandle);
+      }
+    }
+  });
+
+  // Add current product to the list (since it will be in cart after add)
+  const allProductIds = [...existingProductIds, currentProductHandle];
+  
+  try {
+    const products = await fetchComplementaryProducts(allProductIds);
+    
+    // Store the fetched products temporarily
+    window.prefetchedComplementaryProducts = {
+      products,
+      productIds: JSON.stringify(allProductIds.sort()),
+      timestamp: Date.now()
+    };
+    
+    // Update the slider immediately if the data is fresh
+    updateComplementarySliderFromCache();
+    
+  } catch (e) {
+    console.error('Error prefetching complementary products:', e);
+  }
+}
+
+async function updateComplementarySlider() {
+  const container = document.querySelector('.cart__complementary-products');
+  const loading = document.querySelector('.cart__complementary-products-loading');
+  const content = document.querySelector('.cart__complementary-products-content');
+  const splideList = document.querySelector('.cart__complementary-products .splide__list');
+  
+  if (!container || !loading || !content || !splideList) return;
+  
+  const cartItems = document.querySelectorAll('.cart-item');
+  
+  if (cartItems.length === 0) {
+    hideComplementaryProducts();
+    return;
+  }
+  
+  const productIds = [];
+  cartItems.forEach(item => {
+    const link = item.querySelector('.cart-item__title a');
+    if (link) {
+      const url = link.getAttribute('href');
+      const productHandle = url.split('/products/')[1]?.split('?')[0];
+      if (productHandle) {
+        productIds.push(productHandle);
+      }
+    }
+  });
+  
+  const currentProductIds = JSON.stringify(productIds.sort());
+  
+  // Check if we have cached data that matches
+  if (window.prefetchedComplementaryProducts && 
+      window.prefetchedComplementaryProducts.productIds === currentProductIds &&
+      Date.now() - window.prefetchedComplementaryProducts.timestamp < 30000) { // 30 second cache
+    
+    renderComplementarySlider(window.prefetchedComplementaryProducts.products);
+    return;
+  }
+  
+  // If no cache or cache miss, proceed with normal flow
+  if (container.dataset.productIds === currentProductIds) {
+    container.style.display = 'block';
+    loading.style.display = 'none';
+    content.style.display = 'block';
+    return;
+  }
+  
+  container.style.display = 'block';
+  loading.style.display = 'block';
+  content.style.display = 'none';
+  
+  const products = await fetchComplementaryProducts(productIds);
+  renderComplementarySlider(products, currentProductIds);
+}
+
+function updateComplementarySliderFromCache() {
+  if (!window.prefetchedComplementaryProducts) return;
+  
+  const container = document.querySelector('.cart__complementary-products');
+  if (!container) return;
+  
+  renderComplementarySlider(
+    window.prefetchedComplementaryProducts.products, 
+    window.prefetchedComplementaryProducts.productIds
+  );
+}
+
+function renderComplementarySlider(products, productIds = null) {
+  const container = document.querySelector('.cart__complementary-products');
+  const loading = document.querySelector('.cart__complementary-products-loading');
+  const content = document.querySelector('.cart__complementary-products-content');
+  const splideList = document.querySelector('.cart__complementary-products .splide__list');
+  
+  if (!container || !loading || !content || !splideList) return;
+  
+  if (products.length === 0) {
+    hideComplementaryProducts();
+    return;
+  }
+  
+  if (productIds) {
+    container.dataset.productIds = productIds;
+  }
+  
+  splideList.innerHTML = '';
+  products.forEach(product => {
+    const slide = document.createElement('li');
+    slide.className = 'splide__slide';
+    slide.innerHTML = `
+      <a href="/products/${product.handle}">
+        <div class="cart__complementary-products-image-wrapper">
+          <img src="${product.featured_image}" alt="${product.title}" class="cart__complementary-products-image">
+        </div>
+        <h3 class="body--bold cart__complementary-products-title-product">${product.title}</h3>
+        <p class="small cart__complementary-products-price">${formatMoney(product.price)}</p>
+      </a>
+    `;
+    splideList.appendChild(slide);
+  });
+  
+  if (window.complementarySlider) {
+    window.complementarySlider.destroy();
+  }
+  
+  window.complementarySlider = new Splide(container.querySelector('.cart__complementary-products-slider'), {
+    type: 'loop', 
+    perPage: 2,
+    gap: '16px',
+    arrows: true,
+    pagination: false,
+    breakpoints: {
+      768: {
+        perPage: 1,
+      }
+    }
+  }).mount();
+  
+  loading.style.display = 'none';
+  content.style.display = 'block';
+}
+
 cartElements.forms.forEach((form) => {
   form.addEventListener("submit", handleAddToCart(form));
 });
