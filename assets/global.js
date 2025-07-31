@@ -311,7 +311,14 @@ async function updateCartDrawer() {
     const currentWidth = currentProgress ? currentProgress.style.width || "0%" : "0%";
     
     const currentComplementary = document.querySelector(".cart__complementary-products");
-    const currentComplementaryHTML = currentComplementary ? currentComplementary.outerHTML : null;
+    let currentComplementaryHTML = null;
+    
+    if (currentComplementary) {
+      const content = currentComplementary.querySelector(".cart__complementary-products-content");
+      if (content && content.style.display !== "none") {
+        currentComplementaryHTML = currentComplementary.outerHTML;
+      }
+    }
     
     const [drawerRes, cartData] = await Promise.all([fetch("/?section_id=cart-drawer"), fetchCart()]);
 
