@@ -1058,7 +1058,7 @@ function renderComplementarySlider(products, productIds = null) {
   window.complementarySlider = new Splide(container.querySelector('.cart__complementary-products-slider'), {
     type: 'loop', 
     perPage: 2,
-    gap: '16px',
+    gap: 'var(--space-m)',
     arrows: true,
     pagination: false,
     breakpoints: {
