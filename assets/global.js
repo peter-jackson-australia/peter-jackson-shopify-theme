@@ -924,26 +924,26 @@ async function updateComplementarySlider() {
   
   const currentProductIds = JSON.stringify(productIds.sort());
   
+  // Prevent duplicate renders for the same product set
+  if (container.dataset.productIds === currentProductIds && content.style.display !== 'none') {
+    return;
+  }
+  
   // Check if we have cached data that matches
   if (window.prefetchedComplementaryProducts && 
       window.prefetchedComplementaryProducts.productIds === currentProductIds &&
       Date.now() - window.prefetchedComplementaryProducts.timestamp < 30000) { // 30 second cache
     
-    renderComplementarySlider(window.prefetchedComplementaryProducts.products);
+    renderComplementarySlider(window.prefetchedComplementaryProducts.products, currentProductIds);
     return;
   }
   
-  // If no cache or cache miss, proceed with normal flow
-  if (container.dataset.productIds === currentProductIds) {
+  // Only show loading if we don't already have content displayed
+  if (content.style.display === 'none' || !container.dataset.productIds) {
     container.style.display = 'block';
-    loading.style.display = 'none';
-    content.style.display = 'block';
-    return;
+    loading.style.display = 'block';
+    content.style.display = 'none';
   }
-  
-  container.style.display = 'block';
-  loading.style.display = 'block';
-  content.style.display = 'none';
   
   const products = await fetchComplementaryProducts(productIds);
   renderComplementarySlider(products, currentProductIds);
