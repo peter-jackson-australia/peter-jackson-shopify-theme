@@ -790,9 +790,14 @@ async function fetchComplementaryProducts(productIds) {
 
 async function updateComplementarySlider() {
   const complementaryContainer = document.querySelector('.cart__complementary-products');
-  const splideList = complementaryContainer.querySelector('.splide__list');
   
+  if (!complementaryContainer) {
+    return;
+  }
+  
+  const splideList = complementaryContainer.querySelector('.splide__list');
   const cartItems = document.querySelectorAll('.cart-item');
+  
   if (cartItems.length === 0) {
     complementaryContainer.style.display = 'none';
     return;
