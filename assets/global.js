@@ -377,6 +377,14 @@ async function updateCartDrawer() {
     if (cart) {
       setTimeout(() => {
         animateShippingProgress(cart.total_price);
+        
+        // Only update slider if we haven't just prefetched (within last 5 seconds)
+        const justPrefetched = window.prefetchedComplementaryProducts && 
+          Date.now() - window.prefetchedComplementaryProducts.timestamp < 5000;
+        
+        if (!justPrefetched) {
+          updateComplementarySlider();
+        }
       }, 100);
     }
 
@@ -843,12 +851,7 @@ function handleAddToCart(form) {
         method: "post",
         body: new FormData(form),
       });
-      
-      const cartData = await fetchCart();
-      if (cartData) {
-        updateFreeShippingBar(cartData.total_price);
-        animateShippingProgress(cartData.total_price);
-      }
+      await updateCartDrawer();
     } catch (e) {
       console.error("Error adding to cart:", e);
       addButton.innerHTML = originalText;
