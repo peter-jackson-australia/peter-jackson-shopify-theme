@@ -939,7 +939,7 @@ async function updateComplementarySlider() {
     }
   }).mount();
   
-  // Hide loading state
+
   if (container._x_dataStack && container._x_dataStack[0]) {
     container._x_dataStack[0].isLoading = false;
   }
