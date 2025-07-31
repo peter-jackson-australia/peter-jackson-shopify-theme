@@ -747,8 +747,6 @@ function addCartEventListeners() {
         if (shippingBar) shippingBar.style.display = "none";
         
         hideComplementaryProducts();
-      } else {
-        updateComplementarySlider();
       }
 
       applyCartTotalLoaders();
@@ -759,7 +757,11 @@ function addCartEventListeners() {
           headers: { Accept: "application/json", "Content-Type": "application/json" },
           body: JSON.stringify({ updates: { [key]: 0 } }),
         });
-        updateCartDrawer();
+        updateCartDrawer().then(() => {
+          if (remainingItems > 1) {
+            updateComplementarySlider();
+          }
+        });
       } catch (e) {
         console.error("Error removing item:", e);
         cartItem.style.display = "";
@@ -767,7 +769,11 @@ function addCartEventListeners() {
           const shippingBar = document.querySelector(".cart__shipping");
           if (shippingBar) shippingBar.style.display = "block";
         }
-        updateCartDrawer();
+        updateCartDrawer().then(() => {
+          if (remainingItems > 1) {
+            updateComplementarySlider();
+          }
+        });
       }
     });
   });
