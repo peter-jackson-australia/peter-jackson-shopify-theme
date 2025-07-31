@@ -380,7 +380,7 @@ async function updateCartDrawer() {
         
         // Only update slider if we haven't just prefetched (within last 5 seconds)
         const justPrefetched = window.prefetchedComplementaryProducts && 
-          Date.now() - window.prefetchedComplementaryProducts.timestamp < 5000;
+          Date.now() - window.prefetchedComplementaryProducts.timestamp < 2000;
         
         if (!justPrefetched) {
           updateComplementarySlider();
@@ -572,7 +572,7 @@ function applyOptimisticUI() {
         </div>
       </div>
     `;
-    cartForm.appendChild(complementaryContainer);
+    cartForm.parentNode.insertBefore(complementaryContainer, cartForm.nextSibling);
 
     if (!document.querySelector(".cart__footer")) {
       const footer = document.createElement("footer");
