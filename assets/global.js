@@ -891,9 +891,10 @@ async function updateComplementarySlider() {
     }
   });
   
-  // Rule 2: If products haven't changed, don't reload
+  // Rule 2: If products haven't changed, don't reload AT ALL
   const currentProductIds = JSON.stringify(productIds.sort());
   if (container.dataset.productIds === currentProductIds) {
+    // Just ensure it's visible, don't reload anything
     if (container._x_dataStack && container._x_dataStack[0]) {
       container._x_dataStack[0].hasProducts = true;
       container._x_dataStack[0].isLoading = false;
@@ -901,10 +902,9 @@ async function updateComplementarySlider() {
     return;
   }
   
-  // Show loading state
-  if (container._x_dataStack && container._x_dataStack[0]) {
-    container._x_dataStack[0].isLoading = true;
-    container._x_dataStack[0].hasProducts = true;
+  // Only show loading if not already loading (prevents double loading)
+  if (container._x_dataStack && container._x_dataStack[0] && !container._x_dataStack[0].isLoading) {
+    return; // Loading should already be triggered by optimistic UI
   }
   
   const products = await fetchComplementaryProducts(productIds);
