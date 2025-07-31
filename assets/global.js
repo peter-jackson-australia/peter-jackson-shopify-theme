@@ -769,8 +769,33 @@ cartElements.cartLinks.forEach((link) => {
   });
 });
 
-function updateComplementarySlider() {
-  console.log('Function called!');
+async function fetchComplementaryProducts(productIds) {
+  const allProducts = [];
+  
+  for (const productId of productIds) {
+    try {
+      console.log(`Fetching recommendations for: ${productId}`);
+      const response = await fetch(`/products/${productId}/recommendations.json?intent=complementary&limit=2`);
+      console.log(`Response status: ${response.status}`);
+      
+      if (response.ok) {
+        const data = await response.json();
+        console.log('API response:', data);
+        
+        if (data.products && data.products.length > 0) {
+          allProducts.push(...data.products);
+        }
+      }
+    } catch (e) {
+      console.error('Error fetching:', e);
+    }
+  }
+  
+  return allProducts;
+}
+
+async function updateComplementarySlider() {
+  console.log('Function called');
   
   const ul = document.querySelector('.cart__complementary-products');
   if (!ul) {
@@ -779,13 +804,33 @@ function updateComplementarySlider() {
   }
   
   const cartItems = document.querySelectorAll('.cart-item');
-  console.log('Cart items:', cartItems.length);
-  
   if (cartItems.length === 0) {
     ul.style.display = 'none';
     return;
   }
   
-  ul.innerHTML = '<li>Testing - cart has items!</li>';
+  const productIds = [];
+  cartItems.forEach(item => {
+    const link = item.querySelector('.cart-item__title a');
+    if (link) {
+      const url = link.getAttribute('href');
+      const productHandle = url.split('/products/')[1]?.split('?')[0];
+      if (productHandle) {
+        productIds.push(productHandle);
+      }
+    }
+  });
+  
+  console.log('Product handles:', productIds);
+  
+  const products = await fetchComplementaryProducts(productIds);
+  console.log('Final products:', products);
+  
+  if (products.length === 0) {
+    ul.innerHTML = '<li>No complementary products found</li>';
+  } else {
+    ul.innerHTML = products.map(product => `<li>${product.title}</li>`).join('');
+  }
+  
   ul.style.display = 'block';
 }
