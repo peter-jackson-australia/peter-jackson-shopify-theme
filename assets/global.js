@@ -497,6 +497,7 @@ function applyOptimisticUI() {
 
   applyCartTotalLoaders();
   showComplementaryLoading();
+  prefetchComplementaryProducts();
 
   const isCartEmpty = document.querySelector(".cart__empty-state");
   if (isCartEmpty) {
@@ -827,16 +828,11 @@ function handleAddToCart(form) {
       openCartDrawer();
       applyOptimisticUI();
 
-      const complementaryPromise = prefetchComplementaryProducts();
-
       await fetch("/cart/add.js", {
         method: "post",
         body: new FormData(form),
       });
-
       await updateCartDrawer();
-      await complementaryPromise;
-      
     } catch (e) {
       console.error("Error adding to cart:", e);
       addButton.innerHTML = originalText;
@@ -847,4 +843,232 @@ function handleAddToCart(form) {
       }
     }
   };
+}
+
+cartElements.forms.forEach((form) => {
+  form.addEventListener("submit", handleAddToCart(form));
+});
+
+cartElements.cartLinks.forEach((link) => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+    openCartDrawer();
+    updateCartDrawer();
+  });
+});
+
+async function prefetchComplementaryProducts() {
+  const currentProductHandle = window.location.pathname.split('/products/')[1]?.split('?')[0];
+  if (!currentProductHandle) return;
+
+  const cartItems = document.querySelectorAll('.cart-item');
+  const existingProductIds = [];
+  
+  cartItems.forEach(item => {
+    const link = item.querySelector('.cart-item__title a');
+    if (link) {
+      const url = link.getAttribute('href');
+      const productHandle = url.split('/products/')[1]?.split('?')[0];
+      if (productHandle) {
+        existingProductIds.push(productHandle);
+      }
+    }
+  });
+
+  const allProductIds = [...existingProductIds, currentProductHandle];
+  
+  try {
+    const products = await fetchComplementaryProducts(allProductIds);
+    
+    window.prefetchedComplementaryProducts = {
+      products,
+      productIds: JSON.stringify(allProductIds.sort()),
+      timestamp: Date.now()
+    };
+    
+    updateComplementarySliderFromCache();
+    
+  } catch (e) {
+    console.error('Error prefetching complementary products:', e);
+  }
+}
+
+async function fetchComplementaryProducts(productIds) {
+  const allProducts = [];
+  
+  for (const productId of productIds) {
+    try {
+      console.log(`Fetching recommendations for: ${productId}`);
+      
+      const productResponse = await fetch(`/products/${productId}.js`);
+      if (!productResponse.ok) continue;
+      
+      const productData = await productResponse.json();
+      const actualProductId = productData.id;
+      console.log('Product ID:', actualProductId);
+      
+      const response = await fetch(`/recommendations/products.json?product_id=${actualProductId}&limit=2&intent=related`);
+      console.log(`Response status: ${response.status}`);
+      
+      if (response.ok) {
+        const data = await response.json();
+        console.log('API response:', data);
+        
+        if (data.products && data.products.length > 0) {
+          allProducts.push(...data.products);
+        }
+      }
+    } catch (e) {
+      console.error('Error fetching:', e);
+    }
+  }
+  
+  return allProducts;
+}
+
+function showComplementaryLoading() {
+  const container = document.querySelector('.cart__complementary-products');
+  const loading = document.querySelector('.cart__complementary-products-loading');
+  const content = document.querySelector('.cart__complementary-products-content');
+  
+  if (container && loading && content) {
+    container.style.display = 'block';
+    loading.style.display = 'block';
+    content.style.display = 'none';
+  }
+}
+
+function hideComplementaryProducts() {
+  const container = document.querySelector('.cart__complementary-products');
+  if (container) {
+    container.style.display = 'none';
+  }
+}
+
+function updateComplementarySliderFromCache() {
+  if (!window.prefetchedComplementaryProducts) return;
+  
+  const container = document.querySelector('.cart__complementary-products');
+  const content = document.querySelector('.cart__complementary-products-content');
+  
+  if (!container || !content) return;
+  
+  const currentProductIds = window.prefetchedComplementaryProducts.productIds;
+  if (container.dataset.productIds === currentProductIds && content.style.display !== 'none') {
+    return;
+  }
+  
+  renderComplementarySlider(
+    window.prefetchedComplementaryProducts.products, 
+    window.prefetchedComplementaryProducts.productIds
+  );
+}
+
+async function updateComplementarySlider() {
+  const container = document.querySelector('.cart__complementary-products');
+  const loading = document.querySelector('.cart__complementary-products-loading');
+  const content = document.querySelector('.cart__complementary-products-content');
+  const splideList = document.querySelector('.cart__complementary-products .splide__list');
+  
+  if (!container || !loading || !content || !splideList) return;
+  
+  const cartItems = document.querySelectorAll('.cart-item');
+  
+  if (cartItems.length === 0) {
+    hideComplementaryProducts();
+    return;
+  }
+  
+  const productIds = [];
+  cartItems.forEach(item => {
+    const link = item.querySelector('.cart-item__title a');
+    if (link) {
+      const url = link.getAttribute('href');
+      const productHandle = url.split('/products/')[1]?.split('?')[0];
+      if (productHandle) {
+        productIds.push(productHandle);
+      }
+    }
+  });
+  
+  const currentProductIds = JSON.stringify(productIds.sort());
+  
+  if (container.dataset.productIds === currentProductIds && content.style.display !== 'none') {
+    return;
+  }
+  
+  if (window.prefetchedComplementaryProducts && 
+      window.prefetchedComplementaryProducts.productIds === currentProductIds &&
+      Date.now() - window.prefetchedComplementaryProducts.timestamp < 30000) {
+    
+    renderComplementarySlider(window.prefetchedComplementaryProducts.products, currentProductIds);
+    return;
+  }
+  
+  container.style.display = 'block';
+  loading.style.display = 'block';
+  content.style.display = 'none';
+  
+  const products = await fetchComplementaryProducts(productIds);
+  renderComplementarySlider(products, currentProductIds);
+}
+
+function renderComplementarySlider(products, productIds = null) {
+  const container = document.querySelector('.cart__complementary-products');
+  const loading = document.querySelector('.cart__complementary-products-loading');
+  const content = document.querySelector('.cart__complementary-products-content');
+  const splideList = document.querySelector('.cart__complementary-products .splide__list');
+  
+  if (!container || !loading || !content || !splideList) return;
+  
+  if (products.length === 0) {
+    hideComplementaryProducts();
+    return;
+  }
+  
+  if (productIds && container.dataset.productIds === productIds && content.style.display !== 'none') {
+    return;
+  }
+  
+  if (productIds) {
+    container.dataset.productIds = productIds;
+  }
+  
+  if (window.complementarySlider) {
+    window.complementarySlider.destroy();
+    window.complementarySlider = null;
+  }
+  
+  splideList.innerHTML = '';
+  products.forEach(product => {
+    const slide = document.createElement('li');
+    slide.className = 'splide__slide';
+    slide.innerHTML = `
+      <a href="/products/${product.handle}">
+        <div class="cart__complementary-products-image-wrapper">
+          <img src="${product.featured_image}" alt="${product.title}" class="cart__complementary-products-image">
+        </div>
+        <h3 class="body--bold cart__complementary-products-title-product">${product.title}</h3>
+        <p class="small cart__complementary-products-price">${formatMoney(product.price)}</p>
+      </a>
+    `;
+    splideList.appendChild(slide);
+  });
+  
+  window.complementarySlider = new Splide(container.querySelector('.cart__complementary-products-slider'), {
+    type: 'loop', 
+    perPage: 2,
+    gap: '16px',
+    arrows: true,
+    pagination: false,
+    breakpoints: {
+      768: {
+        perPage: 1,
+      }
+    }
+  }).mount();
+  
+  container.style.display = 'block';
+  loading.style.display = 'none';
+  content.style.display = 'block';
 }
