@@ -662,7 +662,7 @@ function addCartEventListeners() {
 
       try {
         applyCartTotalLoaders();
-        showComplementaryLoading();
+        // Don't show complementary loading for quantity changes - same products!
 
         const actionsEl = rootItem.querySelector(".cart-item__actions");
         createLoadingPlaceholder(actionsEl);
@@ -704,10 +704,19 @@ function addCartEventListeners() {
       if (remainingItems === 1) {
         const shippingBar = document.querySelector(".cart__shipping");
         if (shippingBar) shippingBar.style.display = "none";
+        
+        // Hide complementary products immediately when removing last item
+        const container = document.querySelector('.cart__complementary-products');
+        if (container && container._x_dataStack && container._x_dataStack[0]) {
+          container._x_dataStack[0].hasProducts = false;
+          container._x_dataStack[0].isLoading = false;
+        }
+      } else {
+        // Only show loading if there will still be items left
+        showComplementaryLoading();
       }
 
       applyCartTotalLoaders();
-      showComplementaryLoading();
 
       try {
         await fetch("/cart/update.js", {
