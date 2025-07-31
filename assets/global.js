@@ -859,14 +859,9 @@ async function updateComplementarySlider() {
   if (cartItems.length === 0) {
     if (container._x_dataStack && container._x_dataStack[0]) {
       container._x_dataStack[0].hasProducts = false;
+      container._x_dataStack[0].isLoading = false;
     }
     return;
-  }
-  
-  // Show loading state
-  if (container._x_dataStack && container._x_dataStack[0]) {
-    container._x_dataStack[0].isLoading = true;
-    container._x_dataStack[0].hasProducts = true;
   }
   
   const productIds = [];
@@ -887,10 +882,17 @@ async function updateComplementarySlider() {
   const currentProductIds = JSON.stringify(productIds.sort());
   if (container.dataset.productIds === currentProductIds) {
     console.log('Product IDs unchanged, skipping update');
-    if (container._x_dataStack && container._x_dataStack[0]) {
+    if (container._x_dataStack && container._x_dataStack[0] && !container._x_dataStack[0].hasProducts) {
+      container._x_dataStack[0].hasProducts = true;
       container._x_dataStack[0].isLoading = false;
     }
     return;
+  }
+  
+  // Show loading state for the entire section
+  if (container._x_dataStack && container._x_dataStack[0]) {
+    container._x_dataStack[0].isLoading = true;
+    container._x_dataStack[0].hasProducts = true;
   }
   
   const products = await fetchComplementaryProducts(productIds);
@@ -939,7 +941,7 @@ async function updateComplementarySlider() {
     }
   }).mount();
   
-
+  // Hide loading state
   if (container._x_dataStack && container._x_dataStack[0]) {
     container._x_dataStack[0].isLoading = false;
   }
