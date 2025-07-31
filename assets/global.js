@@ -776,16 +776,38 @@ async function fetchComplementaryProducts(productIds) {
   for (const productId of productIds) {
     try {
       console.log(`Fetching recommendations for: ${productId}`);
-      const response = await fetch(`/products/${productId}/recommendations.json?intent=related&limit=2`);
+      
+      // Use the same approach as recommended-products.liquid
+      const url = `/products/${productId}?section_id=recommended-products&product_id=${productId}&limit=2&intent=related`;
+      console.log('Fetching URL:', url);
+      
+      const response = await fetch(url);
       console.log(`Response status: ${response.status}`);
       
       if (response.ok) {
-        const data = await response.json();
-        console.log('API response:', data);
+        const html = await response.text();
+        console.log('HTML response length:', html.length);
         
-        if (data.products && data.products.length > 0) {
-          allProducts.push(...data.products);
-        }
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        
+        // Extract products from the HTML response
+        const productLinks = doc.querySelectorAll('.recommended-products__product-link');
+        console.log('Found product links:', productLinks.length);
+        
+        productLinks.forEach(link => {
+          const href = link.getAttribute('href');
+          const title = link.querySelector('.recommended-products__product-title');
+          
+          if (href && title) {
+            const handle = href.split('/products/')[1]?.split('?')[0];
+            console.log('Extracted product:', title.textContent.trim());
+            allProducts.push({
+              handle: handle,
+              title: title.textContent.trim()
+            });
+          }
+        });
       }
     } catch (e) {
       console.error('Error fetching:', e);
