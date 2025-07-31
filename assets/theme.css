@@ -819,6 +819,7 @@ a.skip-to-content:focus-visible {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 /* Custom Scrollbar */
