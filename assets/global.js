@@ -827,11 +827,21 @@ function handleAddToCart(form) {
       openCartDrawer();
       applyOptimisticUI();
 
+      // Start complementary products fetch immediately, in parallel
+      const complementaryPromise = prefetchComplementaryProducts();
+
+      // Add to cart
       await fetch("/cart/add.js", {
         method: "post",
         body: new FormData(form),
       });
+
+      // Update cart drawer
       await updateCartDrawer();
+
+      // Wait for complementary products and update slider
+      await complementaryPromise;
+      
     } catch (e) {
       console.error("Error adding to cart:", e);
       addButton.innerHTML = originalText;
