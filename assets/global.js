@@ -683,7 +683,7 @@ function addCartEventListeners() {
         await updateCartDrawer(true); // Skip complementary products update for quantity changes
       } catch (e) {
         console.error("Error updating quantity:", e);
-        await updateCartDrawer();
+                  await updateCartDrawer(true);
 
         const updatedRootItem = document.querySelector(`[data-line-item-key="${key}"]`);
         if (updatedRootItem) {
