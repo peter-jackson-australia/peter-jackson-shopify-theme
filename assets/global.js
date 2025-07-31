@@ -366,7 +366,10 @@ async function updateCartDrawer() {
     if (cart) {
       setTimeout(() => {
         animateShippingProgress(cart.total_price);
-        updateComplementarySlider();
+        // Only load complementary products if they don't already exist
+        if (!document.querySelector('.cart__complementary-products .splide__slide')) {
+          updateComplementarySlider();
+        }
       }, 100);
     }
 
