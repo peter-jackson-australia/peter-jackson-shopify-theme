@@ -789,14 +789,19 @@ async function fetchComplementaryProducts(productIds) {
 }
 
 async function updateComplementarySlider() {
+  console.log('updateComplementarySlider called');
+  
   const complementaryContainer = document.querySelector('.cart__complementary-products');
   
   if (!complementaryContainer) {
+    console.log('No complementary container found');
     return;
   }
   
   const splideList = complementaryContainer.querySelector('.splide__list');
   const cartItems = document.querySelectorAll('.cart-item');
+  
+  console.log('Cart items found:', cartItems.length);
   
   if (cartItems.length === 0) {
     complementaryContainer.style.display = 'none';
@@ -808,22 +813,30 @@ async function updateComplementarySlider() {
     const link = item.querySelector('.cart-item__title a');
     if (link) {
       const url = link.getAttribute('href');
+      console.log('Product URL found:', url);
       const productHandle = url.split('/products/')[1]?.split('?')[0];
       if (productHandle) {
         productIds.push(productHandle);
+        console.log('Product handle extracted:', productHandle);
       }
     }
   });
   
+  console.log('Product IDs to fetch recommendations for:', productIds);
+  
   const products = await fetchComplementaryProducts(productIds);
   
+  console.log('Complementary products returned:', products);
+  
   if (products.length === 0) {
+    console.log('No complementary products found, hiding container');
     complementaryContainer.style.display = 'none';
     return;
   }
   
   splideList.innerHTML = '';
   products.forEach(product => {
+    console.log('Adding product to slider:', product.title);
     const slide = document.createElement('li');
     slide.className = 'splide__slide';
     slide.innerHTML = `
@@ -836,6 +849,7 @@ async function updateComplementarySlider() {
     splideList.appendChild(slide);
   });
   
+  console.log('Showing complementary container');
   complementaryContainer.style.display = 'block';
   
   if (window.complementarySlider) {
@@ -853,4 +867,6 @@ async function updateComplementarySlider() {
       }
     }
   }).mount();
+  
+  console.log('Splide slider mounted');
 }
