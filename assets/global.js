@@ -313,6 +313,96 @@ async function fetchCart() {
 
 let sliderUpdateInProgress = false;
 
+function destroyComplementarySlider() {
+  if (window.complementarySlider) {
+    window.complementarySlider.destroy();
+    window.complementarySlider = null;
+  }
+  
+  const container = document.querySelector('.cart__complementary-products');
+  if (container) {
+    container.style.display = 'none';
+    const splideList = container.querySelector('.splide__list');
+    if (splideList) {
+      splideList.innerHTML = '';
+    }
+  }
+}
+
+function rebuildComplementarySlider(productIds) {
+  if (sliderUpdateInProgress) return;
+  sliderUpdateInProgress = true;
+  
+  destroyComplementarySlider();
+  
+  const container = document.querySelector('.cart__complementary-products');
+  const loading = document.querySelector('.cart__complementary-products-loading');
+  const content = document.querySelector('.cart__complementary-products-content');
+  
+  if (!container || !loading || !content) {
+    sliderUpdateInProgress = false;
+    return;
+  }
+  
+  if (productIds.length === 0) {
+    container.style.display = 'none';
+    sliderUpdateInProgress = false;
+    return;
+  }
+  
+  container.style.display = 'block';
+  loading.style.display = 'block';
+  content.style.display = 'none';
+  
+  fetchComplementaryProducts(productIds).then(products => {
+    if (products.length === 0) {
+      container.style.display = 'none';
+      return;
+    }
+    
+    const splideList = container.querySelector('.splide__list');
+    if (splideList) {
+      splideList.innerHTML = '';
+      
+      products.forEach(product => {
+        const slide = document.createElement('li');
+        slide.className = 'splide__slide';
+        slide.innerHTML = `
+          <a href="/products/${product.handle}">
+            <div class="cart__complementary-products-image-wrapper">
+              <img src="${product.featured_image}" alt="${product.title}" class="cart__complementary-products-image">
+            </div>
+            <h3 class="body--bold cart__complementary-products-title-product">${product.title}</h3>
+            <p class="small cart__complementary-products-price">${formatMoney(product.price)}</p>
+          </a>
+        `;
+        splideList.appendChild(slide);
+      });
+      
+      window.complementarySlider = new Splide(container.querySelector('.cart__complementary-products-slider'), {
+        type: 'loop', 
+        perPage: 2,
+        gap: '16px',
+        arrows: true,
+        pagination: false,
+        breakpoints: {
+          768: {
+            perPage: 1,
+          }
+        }
+      }).mount();
+      
+      loading.style.display = 'none';
+      content.style.display = 'block';
+    }
+  }).catch(e => {
+    console.error('Error rebuilding slider:', e);
+    container.style.display = 'none';
+  }).finally(() => {
+    sliderUpdateInProgress = false;
+  });
+}
+
 async function updateCartDrawer() {
   try {
     const currentProgress = document.querySelector(".cart__shipping-progress");
@@ -577,15 +667,10 @@ function applyOptimisticUI() {
 
   applyCartTotalLoaders();
   ensureSliderContainerExists();
-  showComplementaryLoading();
-  
-  window.prefetchedComplementaryProducts = null;
 
   const currentProductHandle = window.location.pathname.split('/products/')[1]?.split('?')[0];
   
-  if (!sliderUpdateInProgress && currentProductHandle) {
-    sliderUpdateInProgress = true;
-    
+  if (currentProductHandle) {
     const existingCartItems = document.querySelectorAll('.cart-item');
     const existingProductIds = [];
     
@@ -601,12 +686,7 @@ function applyOptimisticUI() {
     });
     
     const allProductIds = [...existingProductIds, currentProductHandle];
-    
-    fetchComplementaryProducts(allProductIds).then(products => {
-      renderComplementarySlider(products, JSON.stringify(allProductIds.sort()));
-    }).finally(() => {
-      sliderUpdateInProgress = false;
-    });
+    rebuildComplementarySlider(allProductIds);
   }
 
   const isCartEmpty = document.querySelector(".cart__empty-state");
@@ -895,39 +975,25 @@ function addCartEventListeners() {
         }
 
         applyCartTotalLoaders();
-        showComplementaryLoading();
 
-        if (!sliderUpdateInProgress) {
-          sliderUpdateInProgress = true;
-          
-          const remainingCartItems = document.querySelectorAll('.cart-item:not([style*="display: none"])');
-          const remainingProductIds = [];
-          
-          remainingCartItems.forEach(item => {
-            const itemKey = item.getAttribute("data-line-item-key");
-            if (itemKey !== key) {
-              const link = item.querySelector('.cart-item__title a');
-              if (link) {
-                const url = link.getAttribute('href');
-                const productHandle = url.split('/products/')[1]?.split('?')[0];
-                if (productHandle) {
-                  remainingProductIds.push(productHandle);
-                }
+        const remainingCartItems = document.querySelectorAll('.cart-item:not([style*="display: none"])');
+        const remainingProductIds = [];
+        
+        remainingCartItems.forEach(item => {
+          const itemKey = item.getAttribute("data-line-item-key");
+          if (itemKey !== key) {
+            const link = item.querySelector('.cart-item__title a');
+            if (link) {
+              const url = link.getAttribute('href');
+              const productHandle = url.split('/products/')[1]?.split('?')[0];
+              if (productHandle) {
+                remainingProductIds.push(productHandle);
               }
             }
-          });
-          
-          if (remainingProductIds.length > 0) {
-            fetchComplementaryProducts(remainingProductIds).then(products => {
-              renderComplementarySlider(products, JSON.stringify(remainingProductIds.sort()));
-            }).finally(() => {
-              sliderUpdateInProgress = false;
-            });
-          } else {
-            hideComplementaryProducts();
-            sliderUpdateInProgress = false;
           }
-        }
+        });
+        
+        rebuildComplementarySlider(remainingProductIds);
 
         try {
           await fetch("/cart/update.js", {
@@ -994,39 +1060,25 @@ function addCartEventListeners() {
       }
 
       applyCartTotalLoaders();
-      showComplementaryLoading();
 
-      if (!sliderUpdateInProgress) {
-        sliderUpdateInProgress = true;
-        
-        const remainingCartItems = document.querySelectorAll('.cart-item:not([style*="display: none"])');
-        const remainingProductIds = [];
-        
-        remainingCartItems.forEach(item => {
-          const itemKey = item.getAttribute("data-line-item-key");
-          if (itemKey !== key) {
-            const link = item.querySelector('.cart-item__title a');
-            if (link) {
-              const url = link.getAttribute('href');
-              const productHandle = url.split('/products/')[1]?.split('?')[0];
-              if (productHandle) {
-                remainingProductIds.push(productHandle);
-              }
+      const remainingCartItems = document.querySelectorAll('.cart-item:not([style*="display: none"])');
+      const remainingProductIds = [];
+      
+      remainingCartItems.forEach(item => {
+        const itemKey = item.getAttribute("data-line-item-key");
+        if (itemKey !== key) {
+          const link = item.querySelector('.cart-item__title a');
+          if (link) {
+            const url = link.getAttribute('href');
+            const productHandle = url.split('/products/')[1]?.split('?')[0];
+            if (productHandle) {
+              remainingProductIds.push(productHandle);
             }
           }
-        });
-        
-        if (remainingProductIds.length > 0) {
-          fetchComplementaryProducts(remainingProductIds).then(products => {
-            renderComplementarySlider(products, JSON.stringify(remainingProductIds.sort()));
-          }).finally(() => {
-            sliderUpdateInProgress = false;
-          });
-        } else {
-          hideComplementaryProducts();
-          sliderUpdateInProgress = false;
         }
-      }
+      });
+      
+      rebuildComplementarySlider(remainingProductIds);
 
       try {
         await fetch("/cart/update.js", {
