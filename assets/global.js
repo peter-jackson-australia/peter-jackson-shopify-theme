@@ -750,6 +750,51 @@ function isGiftCardProduct() {
   return productTitle.toLowerCase().includes("gift card");
 }
 
+function getRemainingProductIds(excludeKey) {
+  const cartItems = document.querySelectorAll('.cart-item');
+  const productIds = [];
+  
+  cartItems.forEach(item => {
+    const key = item.getAttribute('data-line-item-key');
+    if (key !== excludeKey) {
+      const link = item.querySelector('.cart-item__title a');
+      if (link) {
+        const url = link.getAttribute('href');
+        const productHandle = url.split('/products/')[1]?.split('?')[0];
+        if (productHandle) {
+          productIds.push(productHandle);
+        }
+      }
+    }
+  });
+  
+  return productIds;
+}
+
+function updateSliderForProducts(productIds) {
+  if (productIds.length === 0) {
+    hideComplementaryProducts();
+    return;
+  }
+  
+  const container = document.querySelector('.cart__complementary-products');
+  const loading = document.querySelector('.cart__complementary-products-loading');
+  const content = document.querySelector('.cart__complementary-products-content');
+  
+  if (!container || !loading || !content) return;
+  
+  container.style.display = 'block';
+  loading.style.display = 'block';
+  content.style.display = 'none';
+  
+  fetchComplementaryProducts(productIds).then(products => {
+    renderComplementarySlider(products, JSON.stringify(productIds.sort()));
+  }).catch(e => {
+    console.error('Error updating slider for products:', e);
+    hideComplementaryProducts();
+  });
+}
+
 function addCartEventListeners() {
   document.querySelectorAll(".cart-item__quantity button").forEach((button) => {
     button.addEventListener("click", async () => {
@@ -791,6 +836,17 @@ function addCartEventListeners() {
         }
       }
 
+      const newQuantity = isUp ? currentQuantity + 1 : currentQuantity - 1;
+
+      if (newQuantity === 0) {
+        const remainingProductIds = getRemainingProductIds(key);
+        if (remainingProductIds.length > 0) {
+          updateSliderForProducts(remainingProductIds);
+        } else {
+          hideComplementaryProducts();
+        }
+      }
+
       try {
         applyCartTotalLoaders();
 
@@ -807,12 +863,11 @@ function addCartEventListeners() {
         await fetch("/cart/update.js", {
           method: "post",
           headers: { Accept: "application/json", "Content-Type": "application/json" },
-          body: JSON.stringify({ updates: { [key]: isUp ? currentQuantity + 1 : currentQuantity - 1 } }),
+          body: JSON.stringify({ updates: { [key]: newQuantity } }),
         });
 
         await updateCartDrawer(true);
         
-        const newQuantity = isUp ? currentQuantity + 1 : currentQuantity - 1;
         if (newQuantity === 0) {
           const remainingItems = document.querySelectorAll(".cart-item").length;
           
@@ -826,7 +881,7 @@ function addCartEventListeners() {
         } 
       } catch (e) {
         console.error("Error updating quantity:", e);
-                  await updateCartDrawer();
+        await updateCartDrawer();
 
         const updatedRootItem = document.querySelector(`[data-line-item-key="${key}"]`);
         if (updatedRootItem) {
@@ -842,13 +897,18 @@ function addCartEventListeners() {
       const key = cartItem.getAttribute("data-line-item-key");
       const remainingItems = document.querySelectorAll(".cart-item").length;
 
+      const remainingProductIds = getRemainingProductIds(key);
+      if (remainingProductIds.length > 0) {
+        updateSliderForProducts(remainingProductIds);
+      } else {
+        hideComplementaryProducts();
+      }
+
       cartItem.style.display = "none";
 
       if (remainingItems === 1) {
         const shippingBar = document.querySelector(".cart__shipping");
         if (shippingBar) shippingBar.style.display = "none";
-        
-        hideComplementaryProducts();
       }
 
       applyCartTotalLoaders();
