@@ -1307,6 +1307,7 @@ function hideComplementaryProducts() {
   }
 }
 
+// Replace your updateComplementarySlider function with this:
 async function updateComplementarySlider() {
   const container = document.querySelector(".cart__complementary-products");
   const loading = document.querySelector(".cart__complementary-products-loading");
@@ -1335,10 +1336,6 @@ async function updateComplementarySlider() {
   });
 
   const currentProductIds = JSON.stringify(productIds.sort());
-
-  if (container.dataset.productIds === currentProductIds && content.style.display !== "none") {
-    return;
-  }
 
   container.style.display = "block";
   loading.style.display = "block";
