@@ -585,6 +585,7 @@ function applyOptimisticUI() {
 
   applyCartTotalLoaders();
   ensureSliderContainerExists();
+  showComplementaryLoading();
   prefetchComplementaryProducts();
 
   const isCartEmpty = document.querySelector(".cart__empty-state");
