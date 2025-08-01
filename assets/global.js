@@ -396,6 +396,13 @@ function rebuildComplementarySlider(productIds) {
         }
       }).mount();
       
+      const arrows = container.querySelectorAll('.splide__arrow');
+      if (products.length <= 2) {
+        arrows.forEach(arrow => arrow.style.display = 'none');
+      } else {
+        arrows.forEach(arrow => arrow.style.display = 'block');
+      }
+      
       loading.style.display = 'none';
       content.style.display = 'block';
     }
@@ -1398,6 +1405,13 @@ function renderComplementarySlider(products, productIds = null) {
       }
     }
   }).mount();
+  
+  const arrows = container.querySelectorAll('.splide__arrow');
+  if (products.length <= 2) {
+    arrows.forEach(arrow => arrow.style.display = 'none');
+  } else {
+    arrows.forEach(arrow => arrow.style.display = 'block');
+  }
   
   container.style.display = 'block';
   loading.style.display = 'none';
