@@ -394,15 +394,6 @@ async function updateCartDrawer() {
       setTimeout(() => {
         animateShippingProgress(cart.total_price);
       }, 100);
-      
-      if (!sliderUpdateInProgress) {
-        sliderUpdateInProgress = true;
-        setTimeout(() => {
-          updateComplementarySlider().finally(() => {
-            sliderUpdateInProgress = false;
-          });
-        }, 200);
-      }
     }
 
     return true;
@@ -589,6 +580,13 @@ function applyOptimisticUI() {
   showComplementaryLoading();
   
   window.prefetchedComplementaryProducts = null;
+
+  if (!sliderUpdateInProgress) {
+    sliderUpdateInProgress = true;
+    updateComplementarySlider().finally(() => {
+      sliderUpdateInProgress = false;
+    });
+  }
 
   const isCartEmpty = document.querySelector(".cart__empty-state");
   if (isCartEmpty) {
