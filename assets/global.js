@@ -35,7 +35,11 @@ function initCartFromStorage() {
 
   fetchCart().then((cart) => {
     if (cart) {
-      updateCartDrawer();
+      updateCartDrawer().then(() => {
+        if (cart.item_count > 0) {
+          handleSliderIndependently();
+        }
+      });
     }
   });
 }
@@ -352,18 +356,23 @@ async function updateCartDrawer() {
       }
     }
 
+    // Remove complementary products from server HTML so AJAX can't touch it
+    const complementaryInServerHTML = html.querySelector(".cart__complementary-products");
+    if (complementaryInServerHTML) {
+      complementaryInServerHTML.remove();
+    }
+
     cartElements.drawer.innerHTML = html.querySelector(".cart").innerHTML;
+    
+    // Ensure our independent slider container exists
+    ensureSliderContainerExists();
+    
     addCartEventListeners();
 
     const cart = await fetchCart();
     if (cart) {
       setTimeout(() => {
         animateShippingProgress(cart.total_price);
-        
-        // Recreate slider state after cart replacement (like line items do)
-        if (cart.item_count > 0) {
-          recreateComplementarySlider();
-        }
       }, 100);
     }
 
@@ -372,6 +381,76 @@ async function updateCartDrawer() {
     console.error("Error updating cart drawer:", e);
     return false;
   }
+}
+
+function ensureSliderContainerExists() {
+  if (document.querySelector('.cart__complementary-products')) return;
+  
+  const cartForm = document.querySelector('.cart__form');
+  const footer = document.querySelector('.cart__footer');
+  if (!cartForm || !footer) return;
+  
+  const sliderContainer = document.createElement('div');
+  sliderContainer.className = 'cart__complementary-products';
+  sliderContainer.style.display = 'none';
+  sliderContainer.innerHTML = `
+    <div class="cart__complementary-products-loading">
+      <div class="animated-loader">
+        <svg fill="#E7E7E7" style="height:4px;display:block" viewBox="0 0 40 4" xmlns="http://www.w3.org/2000/svg">
+          <style>
+            .react{animation:moving 1s ease-in-out infinite}
+            @keyframes moving{0%{width:0%}50%{width:100%;transform:translate(0,0)}100%{width:0;right:0;transform:translate(100%,0)}}
+          </style>
+          <rect class="react" fill="#E7E7E7" height="4" width="40" />
+        </svg>
+      </div>
+    </div>
+    <div class="cart__complementary-products-content" style="display: none;">
+      <h3 class="cart__complementary-products-title">Complement Your Look</h3>
+      <div class="cart__complementary-products-slider splide">
+        <div class="splide__arrows">
+          <button class="splide__arrow splide__arrow--prev" type="button">
+            <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 1L1 6L6 11" stroke="#0F0F0F" stroke-linecap="square"/>
+            </svg>
+          </button>
+          <button class="splide__arrow splide__arrow--next" type="button">
+            <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1L6 6L1 11" stroke="#0F0F0F" stroke-linecap="square"/>
+            </svg>
+          </button>
+        </div>
+        <div class="splide__track">
+          <ul class="splide__list"></ul>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  cartForm.insertBefore(sliderContainer, footer);
+}
+
+function handleSliderIndependently() {
+  const cartItems = document.querySelectorAll('.cart-item');
+  
+  if (cartItems.length === 0) {
+    hideComplementaryProducts();
+    return;
+  }
+  
+  // Check if we have cached data from prefetch
+  if (window.prefetchedComplementaryProducts && 
+      Date.now() - window.prefetchedComplementaryProducts.timestamp < 30000) {
+    
+    renderComplementarySlider(
+      window.prefetchedComplementaryProducts.products, 
+      window.prefetchedComplementaryProducts.productIds
+    );
+    return;
+  }
+  
+  // Otherwise fetch fresh data
+  updateComplementarySlider();
 }
 
 function updateFreeShippingBar(cartTotal) {
@@ -489,6 +568,7 @@ function applyOptimisticUI() {
   const variantId = document.querySelector("#js--variant-id")?.value || "";
 
   applyCartTotalLoaders();
+  ensureSliderContainerExists();
   prefetchComplementaryProducts();
 
   const isCartEmpty = document.querySelector(".cart__empty-state");
