@@ -313,6 +313,47 @@ async function fetchCart() {
 
 let sliderUpdateInProgress = false;
 
+if (!window.productRecommendationsCache) {
+  window.productRecommendationsCache = new Map();
+}
+
+async function getCachedProductData(handle) {
+  const cacheKey = `product_${handle}`;
+  if (window.productRecommendationsCache.has(cacheKey)) {
+    return window.productRecommendationsCache.get(cacheKey);
+  }
+  
+  try {
+    const response = await fetch(`/products/${handle}.js`);
+    if (!response.ok) return null;
+    const productData = await response.json();
+    window.productRecommendationsCache.set(cacheKey, productData);
+    return productData;
+  } catch (e) {
+    console.error('Error fetching product data:', e);
+    return null;
+  }
+}
+
+async function getCachedRecommendations(productId) {
+  const cacheKey = `recommendations_${productId}`;
+  if (window.productRecommendationsCache.has(cacheKey)) {
+    return window.productRecommendationsCache.get(cacheKey);
+  }
+  
+  try {
+    const response = await fetch(`/recommendations/products.json?product_id=${productId}&limit=10&intent=related`);
+    if (!response.ok) return [];
+    const data = await response.json();
+    const products = data.products || [];
+    window.productRecommendationsCache.set(cacheKey, products);
+    return products;
+  } catch (e) {
+    console.error('Error fetching recommendations:', e);
+    return [];
+  }
+}
+
 function destroyComplementarySlider() {
   if (window.complementarySlider) {
     window.complementarySlider.destroy();
@@ -1202,44 +1243,39 @@ cartElements.cartLinks.forEach((link) => {
 
 
 async function fetchComplementaryProducts(productIds) {
+  const limitedProductIds = productIds.slice(0, 4);
   const cartProductIds = await getCartProductIds();
   const seenProductIds = new Set();
   const finalProducts = [];
   
   console.log('Cart product IDs:', Array.from(cartProductIds));
   
-  for (const productId of productIds) {
+  for (const productId of limitedProductIds) {
     let productsAddedForThisItem = 0;
     
     try {
       console.log(`Fetching recommendations for: ${productId}`);
       
-      const productResponse = await fetch(`/products/${productId}.js`);
-      if (!productResponse.ok) continue;
+      const productData = await getCachedProductData(productId);
+      if (!productData) continue;
       
-      const productData = await productResponse.json();
       const actualProductId = productData.id;
       console.log('Product ID:', actualProductId);
       
-      const response = await fetch(`/recommendations/products.json?product_id=${actualProductId}&limit=10&intent=related`);
-      console.log(`Response status: ${response.status}`);
+      const products = await getCachedRecommendations(actualProductId);
+      console.log('API response:', products);
       
-      if (response.ok) {
-        const data = await response.json();
-        console.log('API response:', data);
-        
-        if (data.products && data.products.length > 0) {
-          for (const product of data.products) {
-            if (productsAddedForThisItem >= 2) break;
-            
-            console.log(`Checking product ID: ${product.id}, in cart: ${cartProductIds.has(product.id)}, seen: ${seenProductIds.has(product.id)}`);
-            
-            if (!seenProductIds.has(product.id) && !cartProductIds.has(product.id)) {
-              seenProductIds.add(product.id);
-              finalProducts.push(product);
-              productsAddedForThisItem++;
-              console.log(`Added product: ${product.handle} (ID: ${product.id}) (${productsAddedForThisItem}/2 for this cart item)`);
-            }
+      if (products && products.length > 0) {
+        for (const product of products) {
+          if (productsAddedForThisItem >= 2) break;
+          
+          console.log(`Checking product ID: ${product.id}, in cart: ${cartProductIds.has(product.id)}, seen: ${seenProductIds.has(product.id)}`);
+          
+          if (!seenProductIds.has(product.id) && !cartProductIds.has(product.id)) {
+            seenProductIds.add(product.id);
+            finalProducts.push(product);
+            productsAddedForThisItem++;
+            console.log(`Added product: ${product.handle} (ID: ${product.id}) (${productsAddedForThisItem}/2 for this cart item)`);
           }
         }
       }
