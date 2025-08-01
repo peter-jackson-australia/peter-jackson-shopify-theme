@@ -365,8 +365,27 @@ function rebuildComplementarySlider(productIds) {
     
     const splideList = container.querySelector('.splide__list');
     if (splideList) {
-      splideList.innerHTML = '';
-      splideList.style.transform = '';
+      // Completely rebuild the slider structure instead of just clearing content
+      const sliderWrapper = container.querySelector('.cart__complementary-products-slider');
+      sliderWrapper.innerHTML = `
+        <div class="splide__arrows">
+          <button class="splide__arrow splide__arrow--prev" type="button">
+            <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 1L1 6L6 11" stroke="#0F0F0F" stroke-linecap="square"/>
+            </svg>
+          </button>
+          <button class="splide__arrow splide__arrow--next" type="button">
+            <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1L6 6L1 11" stroke="#0F0F0F" stroke-linecap="square"/>
+            </svg>
+          </button>
+        </div>
+        <div class="splide__track">
+          <ul class="splide__list"></ul>
+        </div>
+      `;
+      
+      const newSplideList = sliderWrapper.querySelector('.splide__list');
       
       products.forEach(product => {
         const slide = document.createElement('li');
@@ -380,30 +399,24 @@ function rebuildComplementarySlider(productIds) {
             <p class="small cart__complementary-products-price">${formatMoney(product.price)}</p>
           </a>
         `;
-        splideList.appendChild(slide);
+        newSplideList.appendChild(slide);
       });
       
+      // Give the DOM a moment to update before mounting Splide
       setTimeout(() => {
-        const sliderElement = container.querySelector('.cart__complementary-products-slider');
-        sliderElement.classList.remove('splide--initialized');
-        splideList.style.transform = 'translateX(0px)';
-        
-        window.complementarySlider = new Splide(sliderElement, {
+        window.complementarySlider = new Splide(sliderWrapper, {
           type: 'loop', 
           perPage: 2,
           gap: '16px',
           arrows: true,
           pagination: false,
           start: 0,
-          resetProgress: false, 
           breakpoints: {
             768: {
               perPage: 1,
             }
           }
         }).mount();
-        
-        window.complementarySlider.go(0);
         
         loading.style.display = 'none';
         content.style.display = 'block';
