@@ -524,7 +524,7 @@ function ensureSliderContainerExists() {
       </div>
     </div>
     <div class="cart__complementary-products-content" style="display: none;">
-      <h3 class="cart__complementary-products-title">Complement Your Look</h3>
+      <h3 class="cart__complementary-products-title heading--l">Complement Your Look</h3>
       <div class="cart__complementary-products-slider splide">
         <div class="splide__arrows">
           <button class="splide__arrow splide__arrow--prev" type="button">
