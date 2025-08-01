@@ -334,38 +334,56 @@ async function updateCartDrawer() {
       })
     );
 
+    // Update only specific sections, NOT the entire cart
     const newShippingBar = html.querySelector(".cart__shipping");
-    const hasItems = html.querySelector(".cart-item");
+    const existingShippingBar = document.querySelector(".cart__shipping");
+    if (newShippingBar && existingShippingBar) {
+      const hasItems = html.querySelector(".cart-item");
+      if (hasItems) {
+        newShippingBar.style.display = "block";
+        newShippingBar.style.height = "93px";
 
-    if (newShippingBar && hasItems) {
-      newShippingBar.style.display = "block";
-      newShippingBar.style.height = "93px";
+        const threshold = 9900;
+        const newText = newShippingBar.querySelector(".cart__shipping-text");
+        const newProgress = newShippingBar.querySelector(".cart__shipping-progress");
 
-      const threshold = 9900;
-      const newText = newShippingBar.querySelector(".cart__shipping-text");
-      const newProgress = newShippingBar.querySelector(".cart__shipping-progress");
-
-      if (cartData && newText && newProgress) {
-        if (cartData.total_price >= threshold) {
-          newText.textContent = "Your Order Has Free Shipping!";
-        } else {
-          const remaining = formatMoney(threshold - cartData.total_price);
-          newText.textContent = `${remaining} Away From Free Shipping`;
+        if (cartData && newText && newProgress) {
+          if (cartData.total_price >= threshold) {
+            newText.textContent = "Your Order Has Free Shipping!";
+          } else {
+            const remaining = formatMoney(threshold - cartData.total_price);
+            newText.textContent = `${remaining} Away From Free Shipping`;
+          }
+          newProgress.style.width = currentWidth;
         }
-        newProgress.style.width = currentWidth;
       }
+      existingShippingBar.replaceWith(newShippingBar);
     }
 
-    // Remove complementary products from server HTML so AJAX can't touch it
-    const complementaryInServerHTML = html.querySelector(".cart__complementary-products");
-    if (complementaryInServerHTML) {
-      complementaryInServerHTML.remove();
+    // Update cart items
+    const newCartItems = html.querySelector(".cart__items");
+    const existingCartItems = document.querySelector(".cart__items");
+    if (newCartItems && existingCartItems) {
+      existingCartItems.replaceWith(newCartItems);
     }
 
-    cartElements.drawer.innerHTML = html.querySelector(".cart").innerHTML;
-    
-    // Ensure our independent slider container exists
-    ensureSliderContainerExists();
+    // Update footer
+    const newFooter = html.querySelector(".cart__footer");
+    const existingFooter = document.querySelector(".cart__footer");
+    if (newFooter && existingFooter) {
+      existingFooter.replaceWith(newFooter);
+    }
+
+    // Handle empty state
+    const newEmptyState = html.querySelector(".cart__empty-state");
+    const existingEmptyState = document.querySelector(".cart__empty-state");
+    if (newEmptyState && !existingEmptyState) {
+      const cartForm = document.querySelector(".cart__form");
+      cartForm.innerHTML = "";
+      cartForm.appendChild(newEmptyState);
+    } else if (!newEmptyState && existingEmptyState) {
+      existingEmptyState.remove();
+    }
     
     addCartEventListeners();
 
