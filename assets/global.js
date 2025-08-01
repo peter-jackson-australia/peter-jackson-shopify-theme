@@ -390,11 +390,6 @@ function rebuildComplementarySlider(productIds) {
           gap: "var(--space-2xs)",
           arrows: true,
           pagination: false,
-          breakpoints: {
-            768: {
-              perPage: 1,
-            },
-          },
         }).mount();
 
         const arrowsContainer = container.querySelector(".splide__arrows");
@@ -1399,11 +1394,6 @@ function renderComplementarySlider(products, productIds = null) {
     gap: "var(--space-2xs)",
     arrows: true,
     pagination: false,
-    breakpoints: {
-      768: {
-        perPage: 1,
-      },
-    },
   }).mount();
 
   const arrows = container.querySelectorAll(".splide__arrow");
