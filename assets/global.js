@@ -357,6 +357,7 @@ function rebuildComplementarySlider(productIds) {
   fetchComplementaryProducts(productIds).then(products => {
     if (products.length === 0) {
       container.style.display = 'none';
+      sliderUpdateInProgress = false;
       return;
     }
     
@@ -395,10 +396,10 @@ function rebuildComplementarySlider(productIds) {
       loading.style.display = 'none';
       content.style.display = 'block';
     }
+    sliderUpdateInProgress = false;
   }).catch(e => {
     console.error('Error rebuilding slider:', e);
     container.style.display = 'none';
-  }).finally(() => {
     sliderUpdateInProgress = false;
   });
 }
