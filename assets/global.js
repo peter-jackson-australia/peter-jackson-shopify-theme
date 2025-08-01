@@ -822,7 +822,6 @@ function applyOptimisticUI() {
     itemsContainer.prepend(cartItem);
   }
 
-  // Get current cart items including the newly added optimistic item
   const cartItems = document.querySelectorAll('.cart-item');
   const productIds = [];
   
@@ -837,12 +836,10 @@ function applyOptimisticUI() {
     }
   });
   
-  // Wait a bit to ensure slider initialization is complete, then rebuild
   setTimeout(() => {
     if (productIds.length > 0) {
       rebuildComplementarySlider(productIds);
     } else {
-      // Fallback to the existing logic if product extraction failed
       handleSliderIndependently();
     }
   }, 100);
