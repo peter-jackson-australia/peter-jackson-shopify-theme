@@ -750,6 +750,24 @@ function isGiftCardProduct() {
   return productTitle.toLowerCase().includes("gift card");
 }
 
+function getCartProductIds() {
+  const cartItems = document.querySelectorAll('.cart-item');
+  const productIds = new Set();
+  
+  cartItems.forEach(item => {
+    const link = item.querySelector('.cart-item__title a');
+    if (link) {
+      const url = link.getAttribute('href');
+      const productHandle = url.split('/products/')[1]?.split('?')[0];
+      if (productHandle) {
+        productIds.add(productHandle);
+      }
+    }
+  });
+  
+  return productIds;
+}
+
 function getRemainingProductIds(excludeKey) {
   const cartItems = document.querySelectorAll('.cart-item');
   const productIds = [];
@@ -1088,6 +1106,8 @@ async function prefetchComplementaryProducts() {
 
 async function fetchComplementaryProducts(productIds) {
   const allProducts = [];
+  const seenProductIds = new Set();
+  const cartProductHandles = getCartProductIds();
   
   for (const productId of productIds) {
     try {
@@ -1100,7 +1120,7 @@ async function fetchComplementaryProducts(productIds) {
       const actualProductId = productData.id;
       console.log('Product ID:', actualProductId);
       
-      const response = await fetch(`/recommendations/products.json?product_id=${actualProductId}&limit=2&intent=related`);
+      const response = await fetch(`/recommendations/products.json?product_id=${actualProductId}&limit=4&intent=related`);
       console.log(`Response status: ${response.status}`);
       
       if (response.ok) {
@@ -1108,7 +1128,20 @@ async function fetchComplementaryProducts(productIds) {
         console.log('API response:', data);
         
         if (data.products && data.products.length > 0) {
-          allProducts.push(...data.products);
+          const filteredProducts = data.products.filter(product => {
+            if (seenProductIds.has(product.id)) {
+              return false;
+            }
+            
+            if (cartProductHandles.has(product.handle)) {
+              return false;
+            }
+            
+            seenProductIds.add(product.id);
+            return true;
+          });
+          
+          allProducts.push(...filteredProducts);
         }
       }
     } catch (e) {
@@ -1116,7 +1149,17 @@ async function fetchComplementaryProducts(productIds) {
     }
   }
   
-  return allProducts;
+  const uniqueProducts = [];
+  const finalSeenIds = new Set();
+  
+  for (const product of allProducts) {
+    if (!finalSeenIds.has(product.id)) {
+      finalSeenIds.add(product.id);
+      uniqueProducts.push(product);
+    }
+  }
+  
+  return uniqueProducts;
 }
 
 function showComplementaryLoading() {
