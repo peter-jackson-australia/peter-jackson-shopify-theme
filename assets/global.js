@@ -1253,14 +1253,12 @@ async function fetchComplementaryProducts(productIds) {
   
   console.log('Cart product IDs:', Array.from(cartProductIds));
   
-  for (const productId of limitedProductIds) {
-    let productsAddedForThisItem = 0;
-    
+  const productPromises = limitedProductIds.map(async (productId) => {
     try {
       console.log(`Fetching recommendations for: ${productId}`);
       
       const productData = await getCachedProductData(productId);
-      if (!productData) continue;
+      if (!productData) return [];
       
       const actualProductId = productData.id;
       console.log('Product ID:', actualProductId);
@@ -1268,22 +1266,31 @@ async function fetchComplementaryProducts(productIds) {
       const products = await getCachedRecommendations(actualProductId);
       console.log('API response:', products);
       
-      if (products && products.length > 0) {
-        for (const product of products) {
-          if (productsAddedForThisItem >= 2) break;
-          
-          console.log(`Checking product ID: ${product.id}, in cart: ${cartProductIds.has(product.id)}, seen: ${seenProductIds.has(product.id)}`);
-          
-          if (!seenProductIds.has(product.id) && !cartProductIds.has(product.id)) {
-            seenProductIds.add(product.id);
-            finalProducts.push(product);
-            productsAddedForThisItem++;
-            console.log(`Added product: ${product.handle} (ID: ${product.id}) (${productsAddedForThisItem}/2 for this cart item)`);
-          }
-        }
-      }
+      return { productId, products: products || [] };
     } catch (e) {
       console.error('Error fetching:', e);
+      return [];
+    }
+  });
+  
+  const allResults = await Promise.all(productPromises);
+  
+  for (const result of allResults) {
+    if (!result.products || result.products.length === 0) continue;
+    
+    let productsAddedForThisItem = 0;
+    
+    for (const product of result.products) {
+      if (productsAddedForThisItem >= 2) break;
+      
+      console.log(`Checking product ID: ${product.id}, in cart: ${cartProductIds.has(product.id)}, seen: ${seenProductIds.has(product.id)}`);
+      
+      if (!seenProductIds.has(product.id) && !cartProductIds.has(product.id)) {
+        seenProductIds.add(product.id);
+        finalProducts.push(product);
+        productsAddedForThisItem++;
+        console.log(`Added product: ${product.handle} (ID: ${product.id}) (${productsAddedForThisItem}/2 for this cart item)`);
+      }
     }
   }
   
