@@ -35,14 +35,7 @@ function initCartFromStorage() {
 
   fetchCart().then((cart) => {
     if (cart) {
-      updateCartDrawer().then(() => {
-        // Load complementary products if cart has items
-        if (cart.item_count > 0) {
-          setTimeout(() => {
-            updateComplementarySlider();
-          }, 100);
-        }
-      });
+      updateCartDrawer();
     }
   });
 }
@@ -319,9 +312,6 @@ async function updateCartDrawer() {
     const currentProgress = document.querySelector(".cart__shipping-progress");
     const currentWidth = currentProgress ? currentProgress.style.width || "0%" : "0%";
     
-    const currentComplementary = document.querySelector(".cart__complementary-products");
-    const currentComplementaryHTML = currentComplementary ? currentComplementary.outerHTML : null;
-    
     const [drawerRes, cartData] = await Promise.all([fetch("/?section_id=cart-drawer"), fetchCart()]);
 
     const text = await drawerRes.text();
@@ -362,16 +352,6 @@ async function updateCartDrawer() {
       }
     }
 
-    if (currentComplementaryHTML && hasItems) {
-      const newComplementaryContainer = html.querySelector(".cart__complementary-products");
-      if (newComplementaryContainer) {
-        const tempDiv = document.createElement("div");
-        tempDiv.innerHTML = currentComplementaryHTML;
-        const restoredComplementary = tempDiv.firstChild;
-        newComplementaryContainer.parentNode.replaceChild(restoredComplementary, newComplementaryContainer);
-      }
-    }
-
     cartElements.drawer.innerHTML = html.querySelector(".cart").innerHTML;
     addCartEventListeners();
 
@@ -379,6 +359,11 @@ async function updateCartDrawer() {
     if (cart) {
       setTimeout(() => {
         animateShippingProgress(cart.total_price);
+        
+        // Recreate slider state after cart replacement (like line items do)
+        if (cart.item_count > 0) {
+          recreateComplementarySlider();
+        }
       }, 100);
     }
 
@@ -1027,6 +1012,22 @@ async function updateComplementarySlider() {
   renderComplementarySlider(products, currentProductIds);
 }
 
+function recreateComplementarySlider() {
+  // Check if we have cached data that's still valid
+  if (window.prefetchedComplementaryProducts && 
+      Date.now() - window.prefetchedComplementaryProducts.timestamp < 30000) {
+    
+    renderComplementarySlider(
+      window.prefetchedComplementaryProducts.products, 
+      window.prefetchedComplementaryProducts.productIds
+    );
+    return;
+  }
+  
+  // Otherwise, update normally
+  updateComplementarySlider();
+}
+
 function renderComplementarySlider(products, productIds = null) {
   const container = document.querySelector('.cart__complementary-products');
   const loading = document.querySelector('.cart__complementary-products-loading');
@@ -1037,10 +1038,6 @@ function renderComplementarySlider(products, productIds = null) {
   
   if (products.length === 0) {
     hideComplementaryProducts();
-    return;
-  }
-  
-  if (productIds && container.dataset.productIds === productIds && content.style.display !== 'none') {
     return;
   }
   
