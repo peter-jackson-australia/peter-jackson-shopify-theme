@@ -188,7 +188,7 @@ function prePopulateCartDrawer(cartData) {
   }
 
   updateFreeShippingBar(cartData.total);
-
+  
   setTimeout(() => {
     updateComplementarySlider();
   }, 100);
@@ -315,7 +315,7 @@ async function updateCartDrawer() {
   try {
     const currentProgress = document.querySelector(".cart__shipping-progress");
     const currentWidth = currentProgress ? currentProgress.style.width || "0%" : "0%";
-
+    
     const [drawerRes, cartData] = await Promise.all([fetch("/?section_id=cart-drawer"), fetchCart()]);
 
     const text = await drawerRes.text();
@@ -384,7 +384,7 @@ async function updateCartDrawer() {
     } else if (!newEmptyState && existingEmptyState) {
       existingEmptyState.remove();
     }
-
+    
     addCartEventListeners();
 
     const cart = await fetchCart();
@@ -402,15 +402,15 @@ async function updateCartDrawer() {
 }
 
 function ensureSliderContainerExists() {
-  if (document.querySelector(".cart__complementary-products")) return;
-
-  const cartForm = document.querySelector(".cart__form");
-  const footer = document.querySelector(".cart__footer");
+  if (document.querySelector('.cart__complementary-products')) return;
+  
+  const cartForm = document.querySelector('.cart__form');
+  const footer = document.querySelector('.cart__footer');
   if (!cartForm || !footer) return;
-
-  const sliderContainer = document.createElement("div");
-  sliderContainer.className = "cart__complementary-products";
-  sliderContainer.style.display = "none";
+  
+  const sliderContainer = document.createElement('div');
+  sliderContainer.className = 'cart__complementary-products';
+  sliderContainer.style.display = 'none';
   sliderContainer.innerHTML = `
     <div class="cart__complementary-products-loading">
       <div class="animated-loader">
@@ -444,27 +444,29 @@ function ensureSliderContainerExists() {
       </div>
     </div>
   `;
-
+  
   cartForm.insertBefore(sliderContainer, footer);
 }
 
 function handleSliderIndependently() {
-  const cartItems = document.querySelectorAll(".cart-item");
-
+  const cartItems = document.querySelectorAll('.cart-item');
+  
   if (cartItems.length === 0) {
     hideComplementaryProducts();
     return;
   }
-
+  
   // Check if we have cached data from prefetch
-  if (window.prefetchedComplementaryProducts && Date.now() - window.prefetchedComplementaryProducts.timestamp < 30000) {
+  if (window.prefetchedComplementaryProducts && 
+      Date.now() - window.prefetchedComplementaryProducts.timestamp < 30000) {
+    
     renderComplementarySlider(
-      window.prefetchedComplementaryProducts.products,
+      window.prefetchedComplementaryProducts.products, 
       window.prefetchedComplementaryProducts.productIds
     );
     return;
   }
-
+  
   // Otherwise fetch fresh data
   updateComplementarySlider();
 }
@@ -513,7 +515,7 @@ function animateShippingProgress(cartTotal) {
 
   if (Math.abs(targetPercent - currentPercent) > 1) {
     progress.offsetWidth;
-
+    
     progress.style.width = `${targetPercent}%`;
   } else {
     progress.style.width = `${targetPercent}%`;
@@ -557,15 +559,15 @@ function applyOptimisticUI() {
   }
 
   let productImage = "";
-
+  
   const selectors = [
-    ".splide__slide.is-active img",
-    ".splide__slide:first-child img",
-    ".product-gallery img:first-child",
-    ".product-image img",
-    ".splide__slide img",
+    ".splide__slide.is-active img", 
+    ".splide__slide:first-child img", 
+    ".product-gallery img:first-child", 
+    ".product-image img", 
+    ".splide__slide img"
   ];
-
+  
   for (const selector of selectors) {
     const img = document.querySelector(selector);
     if (img && img.src) {
@@ -573,7 +575,7 @@ function applyOptimisticUI() {
       break;
     }
   }
-
+  
   if (!productImage) {
     const metaImage = document.querySelector('meta[property="og:image"]');
     if (metaImage) {
@@ -776,7 +778,7 @@ function addCartEventListeners() {
           createLoadingPlaceholder(rootItem.querySelector(".cart-item__price"));
 
           await new Promise((resolve) => setTimeout(resolve, 800));
-          await updateCartDrawer();
+          await updateCartDrawer(); 
 
           const updatedRootItem = document.querySelector(`[data-line-item-key="${key}"]`);
           if (updatedRootItem) {
@@ -810,26 +812,25 @@ function addCartEventListeners() {
           body: JSON.stringify({ updates: { [key]: isUp ? currentQuantity + 1 : currentQuantity - 1 } }),
         });
 
+        await updateCartDrawer(true);
+        
+        // If quantity goes to 0, treat it like removing an item (AFTER cart update)
         const newQuantity = isUp ? currentQuantity + 1 : currentQuantity - 1;
-
-        // If quantity goes to 0, treat it like removing an item
         if (newQuantity === 0) {
           const remainingItems = document.querySelectorAll(".cart-item").length;
-
+          
           // Clear prefetch cache so we get fresh recommendations
           window.prefetchedComplementaryProducts = null;
-
-          if (remainingItems === 1) {
+          
+          if (remainingItems === 0) {
             hideComplementaryProducts();
           } else {
             handleSliderIndependently();
           }
-        }
-
-        await updateCartDrawer(true);
+        } 
       } catch (e) {
         console.error("Error updating quantity:", e);
-        await updateCartDrawer();
+                  await updateCartDrawer();
 
         const updatedRootItem = document.querySelector(`[data-line-item-key="${key}"]`);
         if (updatedRootItem) {
@@ -850,7 +851,7 @@ function addCartEventListeners() {
       if (remainingItems === 1) {
         const shippingBar = document.querySelector(".cart__shipping");
         if (shippingBar) shippingBar.style.display = "none";
-
+        
         hideComplementaryProducts();
       }
 
@@ -942,7 +943,7 @@ function handleAddToCart(form) {
         method: "post",
         body: new FormData(form),
       });
-
+      
       await updateCartDrawer();
     } catch (e) {
       console.error("Error adding to cart:", e);
@@ -969,17 +970,17 @@ cartElements.cartLinks.forEach((link) => {
 });
 
 async function prefetchComplementaryProducts() {
-  const currentProductHandle = window.location.pathname.split("/products/")[1]?.split("?")[0];
+  const currentProductHandle = window.location.pathname.split('/products/')[1]?.split('?')[0];
   if (!currentProductHandle) return;
 
-  const cartItems = document.querySelectorAll(".cart-item");
+  const cartItems = document.querySelectorAll('.cart-item');
   const existingProductIds = [];
-
-  cartItems.forEach((item) => {
-    const link = item.querySelector(".cart-item__title a");
+  
+  cartItems.forEach(item => {
+    const link = item.querySelector('.cart-item__title a');
     if (link) {
-      const url = link.getAttribute("href");
-      const productHandle = url.split("/products/")[1]?.split("?")[0];
+      const url = link.getAttribute('href');
+      const productHandle = url.split('/products/')[1]?.split('?')[0];
       if (productHandle) {
         existingProductIds.push(productHandle);
       }
@@ -987,185 +988,185 @@ async function prefetchComplementaryProducts() {
   });
 
   const allProductIds = [...existingProductIds, currentProductHandle];
-
+  
   try {
     const products = await fetchComplementaryProducts(allProductIds);
-
+    
     window.prefetchedComplementaryProducts = {
       products,
       productIds: JSON.stringify(allProductIds.sort()),
-      timestamp: Date.now(),
+      timestamp: Date.now()
     };
-
+    
     updateComplementarySliderFromCache();
+    
   } catch (e) {
-    console.error("Error prefetching complementary products:", e);
+    console.error('Error prefetching complementary products:', e);
   }
 }
 
 async function fetchComplementaryProducts(productIds) {
   const allProducts = [];
-
+  
   for (const productId of productIds) {
     try {
       console.log(`Fetching recommendations for: ${productId}`);
-
+      
       const productResponse = await fetch(`/products/${productId}.js`);
       if (!productResponse.ok) continue;
-
+      
       const productData = await productResponse.json();
       const actualProductId = productData.id;
-      console.log("Product ID:", actualProductId);
-
-      const response = await fetch(
-        `/recommendations/products.json?product_id=${actualProductId}&limit=2&intent=related`
-      );
+      console.log('Product ID:', actualProductId);
+      
+      const response = await fetch(`/recommendations/products.json?product_id=${actualProductId}&limit=2&intent=related`);
       console.log(`Response status: ${response.status}`);
-
+      
       if (response.ok) {
         const data = await response.json();
-        console.log("API response:", data);
-
+        console.log('API response:', data);
+        
         if (data.products && data.products.length > 0) {
           allProducts.push(...data.products);
         }
       }
     } catch (e) {
-      console.error("Error fetching:", e);
+      console.error('Error fetching:', e);
     }
   }
-
+  
   return allProducts;
 }
 
 function showComplementaryLoading() {
-  const container = document.querySelector(".cart__complementary-products");
-  const loading = document.querySelector(".cart__complementary-products-loading");
-  const content = document.querySelector(".cart__complementary-products-content");
-
+  const container = document.querySelector('.cart__complementary-products');
+  const loading = document.querySelector('.cart__complementary-products-loading');
+  const content = document.querySelector('.cart__complementary-products-content');
+  
   if (container && loading && content) {
-    container.style.display = "block";
-    loading.style.display = "block";
-    content.style.display = "none";
+    container.style.display = 'block';
+    loading.style.display = 'block';
+    content.style.display = 'none';
   }
 }
 
 function hideComplementaryProducts() {
-  const container = document.querySelector(".cart__complementary-products");
+  const container = document.querySelector('.cart__complementary-products');
   if (container) {
-    container.style.display = "none";
+    container.style.display = 'none';
   }
 }
 
 function updateComplementarySliderFromCache() {
   if (!window.prefetchedComplementaryProducts) return;
-
-  const container = document.querySelector(".cart__complementary-products");
-  const content = document.querySelector(".cart__complementary-products-content");
-
+  
+  const container = document.querySelector('.cart__complementary-products');
+  const content = document.querySelector('.cart__complementary-products-content');
+  
   if (!container || !content) return;
-
+  
   const currentProductIds = window.prefetchedComplementaryProducts.productIds;
-  if (container.dataset.productIds === currentProductIds && content.style.display !== "none") {
+  if (container.dataset.productIds === currentProductIds && content.style.display !== 'none') {
     return;
   }
-
+  
   renderComplementarySlider(
-    window.prefetchedComplementaryProducts.products,
+    window.prefetchedComplementaryProducts.products, 
     window.prefetchedComplementaryProducts.productIds
   );
 }
 
 async function updateComplementarySlider() {
-  const container = document.querySelector(".cart__complementary-products");
-  const loading = document.querySelector(".cart__complementary-products-loading");
-  const content = document.querySelector(".cart__complementary-products-content");
-  const splideList = document.querySelector(".cart__complementary-products .splide__list");
-
+  const container = document.querySelector('.cart__complementary-products');
+  const loading = document.querySelector('.cart__complementary-products-loading');
+  const content = document.querySelector('.cart__complementary-products-content');
+  const splideList = document.querySelector('.cart__complementary-products .splide__list');
+  
   if (!container || !loading || !content || !splideList) return;
-
-  const cartItems = document.querySelectorAll(".cart-item");
-
+  
+  const cartItems = document.querySelectorAll('.cart-item');
+  
   if (cartItems.length === 0) {
     hideComplementaryProducts();
     return;
   }
-
+  
   const productIds = [];
-  cartItems.forEach((item) => {
-    const link = item.querySelector(".cart-item__title a");
+  cartItems.forEach(item => {
+    const link = item.querySelector('.cart-item__title a');
     if (link) {
-      const url = link.getAttribute("href");
-      const productHandle = url.split("/products/")[1]?.split("?")[0];
+      const url = link.getAttribute('href');
+      const productHandle = url.split('/products/')[1]?.split('?')[0];
       if (productHandle) {
         productIds.push(productHandle);
       }
     }
   });
-
+  
   const currentProductIds = JSON.stringify(productIds.sort());
-
-  if (container.dataset.productIds === currentProductIds && content.style.display !== "none") {
+  
+  if (container.dataset.productIds === currentProductIds && content.style.display !== 'none') {
     return;
   }
-
-  if (
-    window.prefetchedComplementaryProducts &&
-    window.prefetchedComplementaryProducts.productIds === currentProductIds &&
-    Date.now() - window.prefetchedComplementaryProducts.timestamp < 30000
-  ) {
+  
+  if (window.prefetchedComplementaryProducts && 
+      window.prefetchedComplementaryProducts.productIds === currentProductIds &&
+      Date.now() - window.prefetchedComplementaryProducts.timestamp < 30000) {
+    
     renderComplementarySlider(window.prefetchedComplementaryProducts.products, currentProductIds);
     return;
   }
-
-  container.style.display = "block";
-  loading.style.display = "block";
-  content.style.display = "none";
-
+  
+  container.style.display = 'block';
+  loading.style.display = 'block';
+  content.style.display = 'none';
+  
   const products = await fetchComplementaryProducts(productIds);
   renderComplementarySlider(products, currentProductIds);
 }
 
 function recreateComplementarySlider() {
   // Check if we have cached data that's still valid
-  if (window.prefetchedComplementaryProducts && Date.now() - window.prefetchedComplementaryProducts.timestamp < 30000) {
+  if (window.prefetchedComplementaryProducts && 
+      Date.now() - window.prefetchedComplementaryProducts.timestamp < 30000) {
+    
     renderComplementarySlider(
-      window.prefetchedComplementaryProducts.products,
+      window.prefetchedComplementaryProducts.products, 
       window.prefetchedComplementaryProducts.productIds
     );
     return;
   }
-
+  
   // Otherwise, update normally
   updateComplementarySlider();
 }
 
 function renderComplementarySlider(products, productIds = null) {
-  const container = document.querySelector(".cart__complementary-products");
-  const loading = document.querySelector(".cart__complementary-products-loading");
-  const content = document.querySelector(".cart__complementary-products-content");
-  const splideList = document.querySelector(".cart__complementary-products .splide__list");
-
+  const container = document.querySelector('.cart__complementary-products');
+  const loading = document.querySelector('.cart__complementary-products-loading');
+  const content = document.querySelector('.cart__complementary-products-content');
+  const splideList = document.querySelector('.cart__complementary-products .splide__list');
+  
   if (!container || !loading || !content || !splideList) return;
-
+  
   if (products.length === 0) {
     hideComplementaryProducts();
     return;
   }
-
+  
   if (productIds) {
     container.dataset.productIds = productIds;
   }
-
+  
   if (window.complementarySlider) {
     window.complementarySlider.destroy();
     window.complementarySlider = null;
   }
-
-  splideList.innerHTML = "";
-  products.forEach((product) => {
-    const slide = document.createElement("li");
-    slide.className = "splide__slide";
+  
+  splideList.innerHTML = '';
+  products.forEach(product => {
+    const slide = document.createElement('li');
+    slide.className = 'splide__slide';
     slide.innerHTML = `
       <a href="/products/${product.handle}">
         <div class="cart__complementary-products-image-wrapper">
@@ -1177,21 +1178,21 @@ function renderComplementarySlider(products, productIds = null) {
     `;
     splideList.appendChild(slide);
   });
-
-  window.complementarySlider = new Splide(container.querySelector(".cart__complementary-products-slider"), {
-    type: "loop",
+  
+  window.complementarySlider = new Splide(container.querySelector('.cart__complementary-products-slider'), {
+    type: 'loop', 
     perPage: 2,
-    gap: "16px",
+    gap: '16px',
     arrows: true,
     pagination: false,
     breakpoints: {
       768: {
         perPage: 1,
-      },
-    },
+      }
+    }
   }).mount();
-
-  container.style.display = "block";
-  loading.style.display = "none";
-  content.style.display = "block";
+  
+  container.style.display = 'block';
+  loading.style.display = 'none';
+  content.style.display = 'block';
 }
