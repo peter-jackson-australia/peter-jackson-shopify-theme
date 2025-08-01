@@ -591,6 +591,24 @@ function handleSliderIndependently() {
     hideComplementaryProducts();
     return;
   }
+  
+  ensureSliderContainerExists();
+  
+  const productIds = [];
+  cartItems.forEach(item => {
+    const link = item.querySelector('.cart-item__title a');
+    if (link) {
+      const url = link.getAttribute('href');
+      const productHandle = url.split('/products/')[1]?.split('?')[0];
+      if (productHandle) {
+        productIds.push(productHandle);
+      }
+    }
+  });
+  
+  if (productIds.length > 0) {
+    rebuildComplementarySlider(productIds);
+  }
 }
 
 function updateFreeShippingBar(cartTotal) {
