@@ -385,7 +385,6 @@ function rebuildComplementarySlider(productIds) {
 
         window.complementarySlider = new Splide(container.querySelector(".cart__complementary-products-slider"), {
           type: "slide",
-          rewind: true,
           perPage: 2,
           gap: "var(--space-2xs)",
           arrows: true,
@@ -1389,7 +1388,6 @@ function renderComplementarySlider(products, productIds = null) {
 
   window.complementarySlider = new Splide(container.querySelector(".cart__complementary-products-slider"), {
     type: "slide",
-    rewind: true,
     perPage: 2,
     gap: "var(--space-2xs)",
     arrows: true,
