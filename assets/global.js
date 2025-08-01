@@ -837,10 +837,15 @@ function applyOptimisticUI() {
     }
   });
   
-  // Rebuild slider with all current cart products (including the new one)
-  if (productIds.length > 0) {
-    rebuildComplementarySlider(productIds);
-  }
+  // Wait a bit to ensure slider initialization is complete, then rebuild
+  setTimeout(() => {
+    if (productIds.length > 0) {
+      rebuildComplementarySlider(productIds);
+    } else {
+      // Fallback to the existing logic if product extraction failed
+      handleSliderIndependently();
+    }
+  }, 100);
 }
 
 function addErrorWithTimeout(item, message) {
