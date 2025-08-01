@@ -313,47 +313,6 @@ async function fetchCart() {
 
 let sliderUpdateInProgress = false;
 
-if (!window.productRecommendationsCache) {
-  window.productRecommendationsCache = new Map();
-}
-
-async function getCachedProductData(handle) {
-  const cacheKey = `product_${handle}`;
-  if (window.productRecommendationsCache.has(cacheKey)) {
-    return window.productRecommendationsCache.get(cacheKey);
-  }
-  
-  try {
-    const response = await fetch(`/products/${handle}.js`);
-    if (!response.ok) return null;
-    const productData = await response.json();
-    window.productRecommendationsCache.set(cacheKey, productData);
-    return productData;
-  } catch (e) {
-    console.error('Error fetching product data:', e);
-    return null;
-  }
-}
-
-async function getCachedRecommendations(productId) {
-  const cacheKey = `recommendations_${productId}`;
-  if (window.productRecommendationsCache.has(cacheKey)) {
-    return window.productRecommendationsCache.get(cacheKey);
-  }
-  
-  try {
-    const response = await fetch(`/recommendations/products.json?product_id=${productId}&limit=10&intent=related`);
-    if (!response.ok) return [];
-    const data = await response.json();
-    const products = data.products || [];
-    window.productRecommendationsCache.set(cacheKey, products);
-    return products;
-  } catch (e) {
-    console.error('Error fetching recommendations:', e);
-    return [];
-  }
-}
-
 function destroyComplementarySlider() {
   if (window.complementarySlider) {
     window.complementarySlider.destroy();
@@ -925,8 +884,9 @@ async function getCartProductIds() {
       if (productHandle) {
         productHandles.add(productHandle);
         try {
-          const productData = await getCachedProductData(productHandle);
-          if (productData) {
+          const response = await fetch(`/products/${productHandle}.js`);
+          if (response.ok) {
+            const productData = await response.json();
             productIds.add(productData.id);
           }
         } catch (e) {
@@ -1277,13 +1237,19 @@ async function fetchComplementaryProducts(productIds) {
   
   const productPromises = limitedProductIds.map(async (productId) => {
     try {
-      const productData = await getCachedProductData(productId);
-      if (!productData) return { productId, products: [] };
+      const productResponse = await fetch(`/products/${productId}.js`);
+      if (!productResponse.ok) return { productId, products: [] };
       
+      const productData = await productResponse.json();
       const actualProductId = productData.id;
-      const products = await getCachedRecommendations(actualProductId);
       
-      return { productId, products: products || [] };
+      const response = await fetch(`/recommendations/products.json?product_id=${actualProductId}&limit=10&intent=related`);
+      if (!response.ok) return { productId, products: [] };
+      
+      const data = await response.json();
+      const products = data.products || [];
+      
+      return { productId, products };
     } catch (e) {
       console.error('Error fetching:', e);
       return { productId, products: [] };
