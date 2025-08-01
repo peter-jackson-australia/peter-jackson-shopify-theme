@@ -1385,9 +1385,10 @@ function renderComplementarySlider(products, productIds = null) {
   });
   
   window.complementarySlider = new Splide(container.querySelector('.cart__complementary-products-slider'), {
+    type: 'slide', 
     rewind: false, 
     perPage: 2,
-    gap: '16px',
+    gap: 'var(--space-2xs)',
     arrows: true,
     pagination: false,
     breakpoints: {
