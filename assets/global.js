@@ -922,11 +922,12 @@ async function getCartProductIds() {
       const productHandle = url.split('/products/')[1]?.split('?')[0];
       if (productHandle) {
         try {
-          const response = await fetch(`/products/${productHandle}.js`);
-          const productData = await response.json();
-          productIds.add(productData.id);
+          const productData = await getCachedProductData(productHandle);
+          if (productData) {
+            productIds.add(productData.id);
+          }
         } catch (e) {
-          console.error('Error fetching product ID:', e);
+          console.error('Error getting cart product ID:', e);
         }
       }
     }
