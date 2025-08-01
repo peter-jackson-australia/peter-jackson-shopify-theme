@@ -401,7 +401,7 @@ function rebuildComplementarySlider(productIds) {
         if (products.length <= 2) {
           arrowsContainer.style.display = "none";
         } else {
-          arrowsContainer.style.display = "block";
+          arrowsContainer.style.display = "flex";
         }
 
         loading.style.display = "none";
