@@ -334,7 +334,6 @@ async function updateCartDrawer() {
       })
     );
 
-    // Update shipping bar
     const newShippingBar = html.querySelector(".cart__shipping");
     const existingShippingBar = document.querySelector(".cart__shipping");
     if (newShippingBar && existingShippingBar) {
@@ -358,28 +357,24 @@ async function updateCartDrawer() {
         }
       }
       
-      // Remove any loading shipping bars from the form
       const loadingShippingBars = document.querySelectorAll(".cart__shipping--loading");
       loadingShippingBars.forEach(bar => bar.remove());
       
       existingShippingBar.replaceWith(newShippingBar);
     }
 
-    // Update cart items
     const newCartItems = html.querySelector(".cart__items");
     const existingCartItems = document.querySelector(".cart__items");
     if (newCartItems && existingCartItems) {
       existingCartItems.replaceWith(newCartItems);
     }
 
-    // Update footer
     const newFooter = html.querySelector(".cart__footer");
     const existingFooter = document.querySelector(".cart__footer");
     if (newFooter && existingFooter) {
       existingFooter.replaceWith(newFooter);
     }
 
-    // Handle empty state
     const newEmptyState = html.querySelector(".cart__empty-state");
     const existingEmptyState = document.querySelector(".cart__empty-state");
     if (newEmptyState && !existingEmptyState) {
@@ -461,7 +456,6 @@ function handleSliderIndependently() {
     return;
   }
   
-  // Check if we have cached data from prefetch
   if (window.prefetchedComplementaryProducts && 
       Date.now() - window.prefetchedComplementaryProducts.timestamp < 30000) {
     
@@ -472,7 +466,6 @@ function handleSliderIndependently() {
     return;
   }
   
-  // Otherwise fetch fresh data
   updateComplementarySlider();
 }
 
@@ -819,12 +812,10 @@ function addCartEventListeners() {
 
         await updateCartDrawer(true);
         
-        // If quantity goes to 0, treat it like removing an item (AFTER cart update)
         const newQuantity = isUp ? currentQuantity + 1 : currentQuantity - 1;
         if (newQuantity === 0) {
           const remainingItems = document.querySelectorAll(".cart-item").length;
           
-          // Clear prefetch cache so we get fresh recommendations
           window.prefetchedComplementaryProducts = null;
           
           if (remainingItems === 0) {
@@ -1131,7 +1122,6 @@ async function updateComplementarySlider() {
 }
 
 function recreateComplementarySlider() {
-  // Check if we have cached data that's still valid
   if (window.prefetchedComplementaryProducts && 
       Date.now() - window.prefetchedComplementaryProducts.timestamp < 30000) {
     
@@ -1142,7 +1132,6 @@ function recreateComplementarySlider() {
     return;
   }
   
-  // Otherwise, update normally
   updateComplementarySlider();
 }
 
