@@ -769,27 +769,6 @@ function applyOptimisticUI() {
     }
   }
 
-  const currentProductHandle = window.location.pathname.split('/products/')[1]?.split('?')[0];
-  
-  if (currentProductHandle) {
-    const existingCartItems = document.querySelectorAll('.cart-item');
-    const existingProductIds = [];
-    
-    existingCartItems.forEach(item => {
-      const link = item.querySelector('.cart-item__title a');
-      if (link) {
-        const url = link.getAttribute('href');
-        const productHandle = url.split('/products/')[1]?.split('?')[0];
-        if (productHandle) {
-          existingProductIds.push(productHandle);
-        }
-      }
-    });
-    
-    const allProductIds = [...existingProductIds, currentProductHandle];
-    rebuildComplementarySlider(allProductIds);
-  }
-
   const itemsContainer = document.querySelector(".cart__items");
   if (!itemsContainer) return;
 
@@ -842,6 +821,9 @@ function applyOptimisticUI() {
 
     itemsContainer.prepend(cartItem);
   }
+
+  // Use the existing working slider logic instead of manual calculation
+  handleSliderIndependently();
 }
 
 function addErrorWithTimeout(item, message) {
