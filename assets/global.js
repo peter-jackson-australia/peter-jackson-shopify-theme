@@ -392,6 +392,10 @@ async function updateCartDrawer() {
       setTimeout(() => {
         animateShippingProgress(cart.total_price);
       }, 100);
+      
+      setTimeout(() => {
+        updateComplementarySlider();
+      }, 200);
     }
 
     return true;
@@ -864,13 +868,6 @@ function addCartEventListeners() {
       const newQuantity = isUp ? currentQuantity + 1 : currentQuantity - 1;
 
       if (newQuantity === 0) {
-        const remainingProductIds = getRemainingProductIds(key);
-        if (remainingProductIds.length > 0) {
-          updateSliderForProducts(remainingProductIds);
-        } else {
-          hideComplementaryProducts();
-        }
-
         const remainingItems = document.querySelectorAll(".cart-item").length;
 
         rootItem.style.display = "none";
@@ -881,6 +878,7 @@ function addCartEventListeners() {
         }
 
         applyCartTotalLoaders();
+        showComplementaryLoading();
 
         try {
           await fetch("/cart/update.js", {
@@ -888,11 +886,7 @@ function addCartEventListeners() {
             headers: { Accept: "application/json", "Content-Type": "application/json" },
             body: JSON.stringify({ updates: { [key]: 0 } }),
           });
-          updateCartDrawer().then(() => {
-            if (remainingItems > 1) {
-              updateComplementarySlider();
-            }
-          });
+          await updateCartDrawer();
         } catch (e) {
           console.error("Error removing item:", e);
           rootItem.style.display = "";
@@ -900,11 +894,7 @@ function addCartEventListeners() {
             const shippingBar = document.querySelector(".cart__shipping");
             if (shippingBar) shippingBar.style.display = "block";
           }
-          updateCartDrawer().then(() => {
-            if (remainingItems > 1) {
-              updateComplementarySlider();
-            }
-          });
+          await updateCartDrawer();
         }
         return;
       }
@@ -947,13 +937,6 @@ function addCartEventListeners() {
       const key = cartItem.getAttribute("data-line-item-key");
       const remainingItems = document.querySelectorAll(".cart-item").length;
 
-      const remainingProductIds = getRemainingProductIds(key);
-      if (remainingProductIds.length > 0) {
-        updateSliderForProducts(remainingProductIds);
-      } else {
-        hideComplementaryProducts();
-      }
-
       cartItem.style.display = "none";
 
       if (remainingItems === 1) {
@@ -962,6 +945,7 @@ function addCartEventListeners() {
       }
 
       applyCartTotalLoaders();
+      showComplementaryLoading();
 
       try {
         await fetch("/cart/update.js", {
@@ -969,11 +953,7 @@ function addCartEventListeners() {
           headers: { Accept: "application/json", "Content-Type": "application/json" },
           body: JSON.stringify({ updates: { [key]: 0 } }),
         });
-        updateCartDrawer().then(() => {
-          if (remainingItems > 1) {
-            updateComplementarySlider();
-          }
-        });
+        await updateCartDrawer();
       } catch (e) {
         console.error("Error removing item:", e);
         cartItem.style.display = "";
@@ -981,11 +961,7 @@ function addCartEventListeners() {
           const shippingBar = document.querySelector(".cart__shipping");
           if (shippingBar) shippingBar.style.display = "block";
         }
-        updateCartDrawer().then(() => {
-          if (remainingItems > 1) {
-            updateComplementarySlider();
-          }
-        });
+        await updateCartDrawer();
       }
     });
   });
