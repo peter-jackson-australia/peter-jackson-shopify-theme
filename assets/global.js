@@ -404,6 +404,11 @@ function rebuildComplementarySlider(productIds) {
   content.style.display = 'none';
   
   fetchComplementaryProducts(productIds).then(products => {
+    if (!sliderUpdateInProgress) {
+      console.log('Slider update was cancelled, aborting');
+      return;
+    }
+    
     console.log('Got products:', products);
     
     if (products.length === 0) {
@@ -603,8 +608,6 @@ function handleSliderIndependently() {
     hideComplementaryProducts();
     return;
   }
-  
-  updateComplementarySlider();
 }
 
 function updateFreeShippingBar(cartTotal) {
