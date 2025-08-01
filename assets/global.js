@@ -330,7 +330,12 @@ function destroyComplementarySlider() {
 }
 
 function rebuildComplementarySlider(productIds) {
-  if (sliderUpdateInProgress) return;
+  console.log('rebuildComplementarySlider called with:', productIds);
+  
+  if (sliderUpdateInProgress) {
+    console.log('Slider update already in progress, skipping');
+    return;
+  }
   sliderUpdateInProgress = true;
   
   destroyComplementarySlider();
@@ -340,22 +345,28 @@ function rebuildComplementarySlider(productIds) {
   const content = document.querySelector('.cart__complementary-products-content');
   
   if (!container || !loading || !content) {
+    console.log('Missing container elements');
     sliderUpdateInProgress = false;
     return;
   }
   
   if (productIds.length === 0) {
+    console.log('No product IDs, hiding container');
     container.style.display = 'none';
     sliderUpdateInProgress = false;
     return;
   }
   
+  console.log('Starting to fetch products...');
   container.style.display = 'block';
   loading.style.display = 'block';
   content.style.display = 'none';
   
   fetchComplementaryProducts(productIds).then(products => {
+    console.log('Got products:', products);
+    
     if (products.length === 0) {
+      console.log('No products returned, hiding container');
       container.style.display = 'none';
       sliderUpdateInProgress = false;
       return;
@@ -380,6 +391,7 @@ function rebuildComplementarySlider(productIds) {
         splideList.appendChild(slide);
       });
       
+      console.log('Building slider...');
       window.complementarySlider = new Splide(container.querySelector('.cart__complementary-products-slider'), {
         type: 'loop', 
         perPage: 2,
@@ -393,10 +405,12 @@ function rebuildComplementarySlider(productIds) {
         }
       }).mount();
       
+      console.log('Slider built, hiding loading');
       loading.style.display = 'none';
       content.style.display = 'block';
     }
     sliderUpdateInProgress = false;
+    console.log('Slider rebuild complete');
   }).catch(e => {
     console.error('Error rebuilding slider:', e);
     container.style.display = 'none';
