@@ -342,7 +342,6 @@ async function updateCartDrawer() {
       if (hasItems) {
         newShippingBar.style.display = "block";
         newShippingBar.style.height = "93px";
-        newShippingBar.classList.remove("cart__shipping--loading");
 
         const threshold = 9900;
         const newText = newShippingBar.querySelector(".cart__shipping-text");
@@ -392,13 +391,6 @@ async function updateCartDrawer() {
     if (cart) {
       setTimeout(() => {
         animateShippingProgress(cart.total_price);
-        
-        // Update slider when cart contents change
-        if (cart.item_count > 0) {
-          handleSliderIndependently();
-        } else {
-          hideComplementaryProducts();
-        }
       }, 100);
     }
 
@@ -819,6 +811,19 @@ function addCartEventListeners() {
           headers: { Accept: "application/json", "Content-Type": "application/json" },
           body: JSON.stringify({ updates: { [key]: isUp ? currentQuantity + 1 : currentQuantity - 1 } }),
         });
+
+        const newQuantity = isUp ? currentQuantity + 1 : currentQuantity - 1;
+        
+        // If quantity goes to 0, treat it like removing an item
+        if (newQuantity === 0) {
+          const remainingItems = document.querySelectorAll(".cart-item").length;
+          
+          if (remainingItems === 1) {
+            hideComplementaryProducts();
+          } else {
+            handleSliderIndependently();
+          }
+        }
 
         await updateCartDrawer(true); 
       } catch (e) {
