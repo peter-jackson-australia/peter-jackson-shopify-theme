@@ -1256,7 +1256,7 @@ async function fetchComplementaryProducts(productIds) {
   const productPromises = limitedProductIds.map(async (productId) => {
     try {
       const productData = await getCachedProductData(productId);
-      if (!productData) return [];
+      if (!productData) return { productId, products: [] };
       
       const actualProductId = productData.id;
       const products = await getCachedRecommendations(actualProductId);
@@ -1264,7 +1264,7 @@ async function fetchComplementaryProducts(productIds) {
       return { productId, products: products || [] };
     } catch (e) {
       console.error('Error fetching:', e);
-      return [];
+      return { productId, products: [] };
     }
   });
   
@@ -1286,7 +1286,7 @@ async function fetchComplementaryProducts(productIds) {
     }
   }
   
-  return finalProducts;
+  return finalProducts.slice(0, 8);
 }
 
 function showComplementaryLoading() {
