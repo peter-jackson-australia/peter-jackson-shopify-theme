@@ -374,7 +374,7 @@ function rebuildComplementarySlider(productIds) {
           slide.innerHTML = `
           <a href="/products/${product.handle}">
             <div class="cart__complementary-products-image-wrapper">
-              <img src="${product.featured_image}" alt="${product.title}" class="cart__complementary-products-image">
+              <img src="https:${product.featured_image}&width=300" alt="${product.title}" class="cart__complementary-products-image">
             </div>
             <h3 class="body--bold cart__complementary-products-title-product">${product.title}</h3>
             <p class="small cart__complementary-products-price">${formatMoney(product.price)}</p>
@@ -1307,6 +1307,7 @@ function hideComplementaryProducts() {
   }
 }
 
+// Replace your updateComplementarySlider function with this:
 async function updateComplementarySlider() {
   const container = document.querySelector(".cart__complementary-products");
   const loading = document.querySelector(".cart__complementary-products-loading");
@@ -1335,10 +1336,6 @@ async function updateComplementarySlider() {
   });
 
   const currentProductIds = JSON.stringify(productIds.sort());
-
-  if (container.dataset.productIds === currentProductIds && content.style.display !== "none") {
-    return;
-  }
 
   container.style.display = "block";
   loading.style.display = "block";
@@ -1377,7 +1374,7 @@ function renderComplementarySlider(products, productIds = null) {
     slide.innerHTML = `
       <a href="/products/${product.handle}">
         <div class="cart__complementary-products-image-wrapper">
-          <img src="${product.featured_image}" alt="${product.title}" class="cart__complementary-products-image">
+          <img src="https:${product.featured_image}&width=300" alt="${product.title}" class="cart__complementary-products-image">
         </div>
         <h3 class="body--bold cart__complementary-products-title-product">${product.title}</h3>
         <p class="small cart__complementary-products-price">${formatMoney(product.price)}</p>
