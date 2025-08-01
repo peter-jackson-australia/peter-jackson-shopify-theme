@@ -382,11 +382,9 @@ function rebuildComplementarySlider(productIds) {
         splideList.appendChild(slide);
       });
       
-      // Give the DOM a moment to update before mounting Splide
       setTimeout(() => {
         const sliderElement = container.querySelector('.cart__complementary-products-slider');
         
-        // Force reset any existing Splide state
         sliderElement.classList.remove('splide--initialized');
         
         window.complementarySlider = new Splide(sliderElement, {
@@ -396,7 +394,7 @@ function rebuildComplementarySlider(productIds) {
           arrows: true,
           pagination: false,
           start: 0,
-          resetProgress: false, // Prevent position memory
+          resetProgress: false, 
           breakpoints: {
             768: {
               perPage: 1,
@@ -404,7 +402,6 @@ function rebuildComplementarySlider(productIds) {
           }
         }).mount();
         
-        // Force go to first slide after mount
         window.complementarySlider.go(0);
         
         loading.style.display = 'none';
