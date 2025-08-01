@@ -366,6 +366,7 @@ function rebuildComplementarySlider(productIds) {
     const splideList = container.querySelector('.splide__list');
     if (splideList) {
       splideList.innerHTML = '';
+      splideList.style.transform = '';
       
       products.forEach(product => {
         const slide = document.createElement('li');
@@ -384,8 +385,8 @@ function rebuildComplementarySlider(productIds) {
       
       setTimeout(() => {
         const sliderElement = container.querySelector('.cart__complementary-products-slider');
-        
         sliderElement.classList.remove('splide--initialized');
+        splideList.style.transform = 'translateX(0px)';
         
         window.complementarySlider = new Splide(sliderElement, {
           type: 'loop', 
