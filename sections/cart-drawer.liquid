@@ -90,7 +90,6 @@
 
   .cart__items {
     padding: var(--space-m) var(--space-m) 0px var(--space-m);
-    overflow-y: auto;
   }
 
   .cart-item {
@@ -501,7 +500,7 @@
             <a href="{{ routes.collections_url }}/mens-suits" class="cart__new-arrivals body">View Full Collection</a>
           </div>
         {% else %}
-          <div class="custom-scrollbar">
+          <div class="custom-scrollbar" style="overflow-y: auto;">
             <div class="cart__items">
               {% for item in cart.items %}
                 <article
