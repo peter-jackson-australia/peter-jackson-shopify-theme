@@ -581,9 +581,30 @@ function applyOptimisticUI() {
   
   window.prefetchedComplementaryProducts = null;
 
-  if (!sliderUpdateInProgress) {
+  const currentProductHandle = window.location.pathname.split('/products/')[1]?.split('?')[0];
+  
+  if (!sliderUpdateInProgress && currentProductHandle) {
     sliderUpdateInProgress = true;
-    updateComplementarySlider().finally(() => {
+    
+    const existingCartItems = document.querySelectorAll('.cart-item');
+    const existingProductIds = [];
+    
+    existingCartItems.forEach(item => {
+      const link = item.querySelector('.cart-item__title a');
+      if (link) {
+        const url = link.getAttribute('href');
+        const productHandle = url.split('/products/')[1]?.split('?')[0];
+        if (productHandle) {
+          existingProductIds.push(productHandle);
+        }
+      }
+    });
+    
+    const allProductIds = [...existingProductIds, currentProductHandle];
+    
+    fetchComplementaryProducts(allProductIds).then(products => {
+      renderComplementarySlider(products, JSON.stringify(allProductIds.sort()));
+    }).finally(() => {
       sliderUpdateInProgress = false;
     });
   }
