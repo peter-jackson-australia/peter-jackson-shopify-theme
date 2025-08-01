@@ -822,8 +822,25 @@ function applyOptimisticUI() {
     itemsContainer.prepend(cartItem);
   }
 
-  // Use the existing working slider logic instead of manual calculation
-  handleSliderIndependently();
+  // Get current cart items including the newly added optimistic item
+  const cartItems = document.querySelectorAll('.cart-item');
+  const productIds = [];
+  
+  cartItems.forEach(item => {
+    const link = item.querySelector('.cart-item__title a');
+    if (link) {
+      const url = link.getAttribute('href');
+      const productHandle = url.split('/products/')[1]?.split('?')[0];
+      if (productHandle) {
+        productIds.push(productHandle);
+      }
+    }
+  });
+  
+  // Rebuild slider with all current cart products (including the new one)
+  if (productIds.length > 0) {
+    rebuildComplementarySlider(productIds);
+  }
 }
 
 function addErrorWithTimeout(item, message) {
