@@ -357,6 +357,11 @@ async function updateCartDrawer() {
           newProgress.style.width = currentWidth;
         }
       }
+      
+      // Remove any loading shipping bars from the form
+      const loadingShippingBars = document.querySelectorAll(".cart__shipping--loading");
+      loadingShippingBars.forEach(bar => bar.remove());
+      
       existingShippingBar.replaceWith(newShippingBar);
     }
 
