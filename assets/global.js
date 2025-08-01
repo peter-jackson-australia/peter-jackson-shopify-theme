@@ -382,24 +382,31 @@ function rebuildComplementarySlider(productIds) {
         splideList.appendChild(slide);
       });
       
-      window.complementarySlider = new Splide(container.querySelector('.cart__complementary-products-slider'), {
-        type: 'loop', 
-        rewind: false, 
-        perPage: 2,
-        gap: 'var(--space-2xs)',
-        arrows: true,
-        pagination: false,
-        breakpoints: {
-          768: {
-            perPage: 1,
+      // Give the DOM a moment to update before mounting Splide
+      setTimeout(() => {
+        window.complementarySlider = new Splide(container.querySelector('.cart__complementary-products-slider'), {
+          type: 'loop', 
+          perPage: 2,
+          gap: '16px',
+          arrows: true,
+          pagination: false,
+          start: 0,
+          breakpoints: {
+            768: {
+              perPage: 1,
+            }
           }
-        }
-      }).mount();
-      
-      loading.style.display = 'none';
-      content.style.display = 'block';
+        }).mount();
+        
+        setTimeout(() => {
+          loading.style.display = 'none';
+          content.style.display = 'block';
+          sliderUpdateInProgress = false;
+        }, 50);
+      }, 50);
+    } else {
+      sliderUpdateInProgress = false;
     }
-    sliderUpdateInProgress = false;
   }).catch(e => {
     console.error('Error rebuilding slider:', e);
     container.style.display = 'none';
