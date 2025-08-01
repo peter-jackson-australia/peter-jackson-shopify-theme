@@ -377,7 +377,7 @@ function rebuildComplementarySlider(productIds) {
               <img src="https:${product.featured_image}&width=300" alt="${product.title}" class="cart__complementary-products-image">
             </div>
             <h3 class="body--bold cart__complementary-products-title-product">${product.title}</h3>
-            <p class="small cart__complementary-products-price">${formatMoney(product.price)}</p>
+            <p class="small cart__complementary-products-price">$${formatMoney(product.price)}</p>
           </a>
         `;
           splideList.appendChild(slide);
@@ -1377,7 +1377,7 @@ function renderComplementarySlider(products, productIds = null) {
           <img src="https:${product.featured_image}&width=300" alt="${product.title}" class="cart__complementary-products-image">
         </div>
         <h3 class="body--bold cart__complementary-products-title-product">${product.title}</h3>
-        <p class="small cart__complementary-products-price">${formatMoney(product.price)}</p>
+        <p class="small cart__complementary-products-price">$${formatMoney(product.price)}</p>
       </a>
     `;
     splideList.appendChild(slide);
