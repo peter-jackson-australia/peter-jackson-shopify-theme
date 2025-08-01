@@ -750,20 +750,26 @@ function isGiftCardProduct() {
   return productTitle.toLowerCase().includes("gift card");
 }
 
-function getCartProductIds() {
+async function getCartProductIds() {
   const cartItems = document.querySelectorAll('.cart-item');
   const productIds = new Set();
   
-  cartItems.forEach(item => {
+  for (const item of cartItems) {
     const link = item.querySelector('.cart-item__title a');
     if (link) {
       const url = link.getAttribute('href');
       const productHandle = url.split('/products/')[1]?.split('?')[0];
       if (productHandle) {
-        productIds.add(productHandle);
+        try {
+          const response = await fetch(`/products/${productHandle}.js`);
+          const productData = await response.json();
+          productIds.add(productData.id);
+        } catch (e) {
+          console.error('Error fetching product ID:', e);
+        }
       }
     }
-  });
+  }
   
   return productIds;
 }
@@ -1105,11 +1111,15 @@ async function prefetchComplementaryProducts() {
 }
 
 async function fetchComplementaryProducts(productIds) {
-  const allProducts = [];
+  const cartProductIds = await getCartProductIds();
   const seenProductIds = new Set();
-  const cartProductHandles = getCartProductIds();
+  const finalProducts = [];
+  
+  console.log('Cart product IDs:', Array.from(cartProductIds));
   
   for (const productId of productIds) {
+    let productsAddedForThisItem = 0;
+    
     try {
       console.log(`Fetching recommendations for: ${productId}`);
       
@@ -1120,7 +1130,7 @@ async function fetchComplementaryProducts(productIds) {
       const actualProductId = productData.id;
       console.log('Product ID:', actualProductId);
       
-      const response = await fetch(`/recommendations/products.json?product_id=${actualProductId}&limit=4&intent=related`);
+      const response = await fetch(`/recommendations/products.json?product_id=${actualProductId}&limit=10&intent=related`);
       console.log(`Response status: ${response.status}`);
       
       if (response.ok) {
@@ -1128,20 +1138,18 @@ async function fetchComplementaryProducts(productIds) {
         console.log('API response:', data);
         
         if (data.products && data.products.length > 0) {
-          const filteredProducts = data.products.filter(product => {
-            if (seenProductIds.has(product.id)) {
-              return false;
-            }
+          for (const product of data.products) {
+            if (productsAddedForThisItem >= 2) break;
             
-            if (cartProductHandles.has(product.handle)) {
-              return false;
-            }
+            console.log(`Checking product ID: ${product.id}, in cart: ${cartProductIds.has(product.id)}, seen: ${seenProductIds.has(product.id)}`);
             
-            seenProductIds.add(product.id);
-            return true;
-          });
-          
-          allProducts.push(...filteredProducts);
+            if (!seenProductIds.has(product.id) && !cartProductIds.has(product.id)) {
+              seenProductIds.add(product.id);
+              finalProducts.push(product);
+              productsAddedForThisItem++;
+              console.log(`Added product: ${product.handle} (ID: ${product.id}) (${productsAddedForThisItem}/2 for this cart item)`);
+            }
+          }
         }
       }
     } catch (e) {
@@ -1149,17 +1157,8 @@ async function fetchComplementaryProducts(productIds) {
     }
   }
   
-  const uniqueProducts = [];
-  const finalSeenIds = new Set();
-  
-  for (const product of allProducts) {
-    if (!finalSeenIds.has(product.id)) {
-      finalSeenIds.add(product.id);
-      uniqueProducts.push(product);
-    }
-  }
-  
-  return uniqueProducts;
+  console.log(`Final products count: ${finalProducts.length}`);
+  return finalProducts;
 }
 
 function showComplementaryLoading() {
