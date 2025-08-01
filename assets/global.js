@@ -915,6 +915,7 @@ function isGiftCardProduct() {
 async function getCartProductIds() {
   const cartItems = document.querySelectorAll('.cart-item');
   const productIds = new Set();
+  const productHandles = new Set();
   
   for (const item of cartItems) {
     const link = item.querySelector('.cart-item__title a');
@@ -922,6 +923,7 @@ async function getCartProductIds() {
       const url = link.getAttribute('href');
       const productHandle = url.split('/products/')[1]?.split('?')[0];
       if (productHandle) {
+        productHandles.add(productHandle);
         try {
           const productData = await getCachedProductData(productHandle);
           if (productData) {
@@ -934,7 +936,26 @@ async function getCartProductIds() {
     }
   }
   
-  return productIds;
+  return { productIds, productHandles };
+}
+
+function isProductInCart(product, cartProductIds, cartProductHandles) {
+  if (cartProductIds.has(product.id)) return true;
+  if (cartProductHandles.has(product.handle)) return true;
+  
+  if (product.variants && Array.isArray(product.variants)) {
+    for (const variant of product.variants) {
+      if (cartProductIds.has(variant.product_id)) return true;
+    }
+  }
+  
+  const urlParts = (product.url || '').split('/products/');
+  if (urlParts.length > 1) {
+    const handleFromUrl = urlParts[1].split('?')[0];
+    if (handleFromUrl && cartProductHandles.has(handleFromUrl)) return true;
+  }
+  
+  return false;
 }
 
 function getRemainingProductIds(excludeKey) {
@@ -1249,8 +1270,9 @@ cartElements.cartLinks.forEach((link) => {
 
 async function fetchComplementaryProducts(productIds) {
   const limitedProductIds = productIds.slice(0, 4);
-  const cartProductIds = await getCartProductIds();
+  const { productIds: cartProductIds, productHandles: cartProductHandles } = await getCartProductIds();
   const seenProductIds = new Set();
+  const seenProductHandles = new Set();
   const finalProducts = [];
   
   const productPromises = limitedProductIds.map(async (productId) => {
@@ -1278,11 +1300,15 @@ async function fetchComplementaryProducts(productIds) {
     for (const product of result.products) {
       if (productsAddedForThisItem >= 2) break;
       
-      if (!seenProductIds.has(product.id) && !cartProductIds.has(product.id)) {
-        seenProductIds.add(product.id);
-        finalProducts.push(product);
-        productsAddedForThisItem++;
-      }
+      if (seenProductIds.has(product.id)) continue;
+      if (seenProductHandles.has(product.handle)) continue;
+      
+      if (isProductInCart(product, cartProductIds, cartProductHandles)) continue;
+      
+      seenProductIds.add(product.id);
+      seenProductHandles.add(product.handle);
+      finalProducts.push(product);
+      productsAddedForThisItem++;
     }
   }
   
