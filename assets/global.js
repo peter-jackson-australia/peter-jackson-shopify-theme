@@ -311,6 +311,8 @@ async function fetchCart() {
   }
 }
 
+let sliderUpdateInProgress = false;
+
 async function updateCartDrawer() {
   try {
     const currentProgress = document.querySelector(".cart__shipping-progress");
@@ -393,10 +395,13 @@ async function updateCartDrawer() {
         animateShippingProgress(cart.total_price);
       }, 100);
       
-      if (cart.item_count > 0) {
+      if (!sliderUpdateInProgress) {
+        sliderUpdateInProgress = true;
         setTimeout(() => {
-          updateComplementarySlider();
-        }, 300);
+          updateComplementarySlider().finally(() => {
+            sliderUpdateInProgress = false;
+          });
+        }, 200);
       }
     }
 
@@ -459,16 +464,6 @@ function handleSliderIndependently() {
   
   if (cartItems.length === 0) {
     hideComplementaryProducts();
-    return;
-  }
-  
-  if (window.prefetchedComplementaryProducts && 
-      Date.now() - window.prefetchedComplementaryProducts.timestamp < 30000) {
-    
-    renderComplementarySlider(
-      window.prefetchedComplementaryProducts.products, 
-      window.prefetchedComplementaryProducts.productIds
-    );
     return;
   }
   
@@ -592,6 +587,8 @@ function applyOptimisticUI() {
   applyCartTotalLoaders();
   ensureSliderContainerExists();
   showComplementaryLoading();
+  
+  window.prefetchedComplementaryProducts = null;
 
   const isCartEmpty = document.querySelector(".cart__empty-state");
   if (isCartEmpty) {
@@ -1052,6 +1049,8 @@ cartElements.cartLinks.forEach((link) => {
   });
 });
 
+
+
 async function fetchComplementaryProducts(productIds) {
   const cartProductIds = await getCartProductIds();
   const seenProductIds = new Set();
@@ -1122,12 +1121,15 @@ function hideComplementaryProducts() {
   }
 }
 
+
+
 async function updateComplementarySlider() {
   const container = document.querySelector('.cart__complementary-products');
   const loading = document.querySelector('.cart__complementary-products-loading');
   const content = document.querySelector('.cart__complementary-products-content');
+  const splideList = document.querySelector('.cart__complementary-products .splide__list');
   
-  if (!container || !loading || !content) return;
+  if (!container || !loading || !content || !splideList) return;
   
   const cartItems = document.querySelectorAll('.cart-item');
   
@@ -1148,8 +1150,9 @@ async function updateComplementarySlider() {
     }
   });
   
-  if (productIds.length === 0) {
-    hideComplementaryProducts();
+  const currentProductIds = JSON.stringify(productIds.sort());
+  
+  if (container.dataset.productIds === currentProductIds && content.style.display !== 'none') {
     return;
   }
   
@@ -1157,16 +1160,13 @@ async function updateComplementarySlider() {
   loading.style.display = 'block';
   content.style.display = 'none';
   
-  try {
-    const products = await fetchComplementaryProducts(productIds);
-    renderComplementarySlider(products);
-  } catch (e) {
-    console.error('Error updating complementary slider:', e);
-    hideComplementaryProducts();
-  }
+  const products = await fetchComplementaryProducts(productIds);
+  renderComplementarySlider(products, currentProductIds);
 }
 
-function renderComplementarySlider(products) {
+
+
+function renderComplementarySlider(products, productIds = null) {
   const container = document.querySelector('.cart__complementary-products');
   const loading = document.querySelector('.cart__complementary-products-loading');
   const content = document.querySelector('.cart__complementary-products-content');
@@ -1175,59 +1175,6 @@ function renderComplementarySlider(products) {
   if (!container || !loading || !content || !splideList) return;
   
   if (products.length === 0) {
-    hideComplementaryProducts();
-    return;
-  }
-  
-  if (window.complementarySlider) {
-    window.complementarySlider.destroy();
-    window.complementarySlider = null;
-  }
-  
-  splideList.innerHTML = '';
-  products.forEach(product => {
-    const slide = document.createElement('li');
-    slide.className = 'splide__slide';
-    slide.innerHTML = `
-      <a href="/products/${product.handle}">
-        <div class="cart__complementary-products-image-wrapper">
-          <img src="${product.featured_image}" alt="${product.title}" class="cart__complementary-products-image">
-        </div>
-        <h3 class="body--bold cart__complementary-products-title-product">${product.title}</h3>
-        <p class="small cart__complementary-products-price">${formatMoney(product.price)}</p>
-      </a>
-    `;
-    splideList.appendChild(slide);
-  });
-  
-  window.complementarySlider = new Splide(container.querySelector('.cart__complementary-products-slider'), {
-    type: 'loop', 
-    perPage: 2,
-    gap: '16px',
-    arrows: true,
-    pagination: false,
-    breakpoints: {
-      768: {
-        perPage: 1,
-      }
-    }
-  }).mount();
-  
-  container.style.display = 'block';
-  loading.style.display = 'none';
-  content.style.display = 'block';
-}
-
-function handleSliderIndependently() {
-  const cartItems = document.querySelectorAll('.cart-item');
-  
-  if (cartItems.length === 0) {
-    hideComplementaryProducts();
-    return;
-  }
-  
-  updateComplementarySlider();
-} {
     hideComplementaryProducts();
     return;
   }
