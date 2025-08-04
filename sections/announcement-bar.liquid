@@ -12,7 +12,7 @@
 {% endcomment %}
 {% assign slider_background_colour = section.settings.background_color %}
 {% assign slider_text_colour = section.settings.text_color %}
-{% assign autoplay = section.settings.autoplay %}
+{% assign slider_autoplay = section.settings.autoplay %}
 {% assign slider_interval = section.settings.slide_interval | times: 1000 %}
 
 {% comment %}
@@ -76,8 +76,8 @@
       arrows: false,
       pagination: false,
       drag: true,
-      autoplay: {{ autoplay }},
-      interval: {{ section.settings.slide_interval | times: 1000 }}
+      autoplay: {{ slider_autoplay }},
+      interval: {{ slider_interval }}
     });
     slider.mount();
   });
