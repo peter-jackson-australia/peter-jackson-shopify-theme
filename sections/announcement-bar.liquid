@@ -60,14 +60,14 @@
 >
   <div class="splide__track">
     <ul class="splide__list">
-      {% for block in section.blocks %}
-        {% assign slide_alignment = block.settings.alignment %}
-        <li class="splide__slide" {{ block.shopify_attributes }}>
+      {% for slide in section.blocks %}
+        {% assign slide_alignment = slide.settings.alignment %}
+        <li class="splide__slide" {{ slide.shopify_attributes }}>
           <div
-            class="announcement-bar__content small announcement-bar__content--{{ block.settings.alignment | default: 'center' }}"
+            class="announcement-bar__content small announcement-bar__content--{{ slide.settings.alignment | default: 'center' }}"
             style="text-align: {% if slide_alignment == 'left' %} left; {% elsif slide_alignment == 'center' %} center; {% else %} right; {% endif %}"
           >
-            {{ block.settings.text }}
+            {{ slide.settings.text }}
           </div>
         </li>
       {% endfor %}
