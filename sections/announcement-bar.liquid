@@ -16,9 +16,6 @@
   role="banner"
   aria-label="Site announcements"
   aria-live="{% if slider_autoplay %}polite{% else %}off{% endif %}"
-  {% if section.blocks.size > 1 %}
-    aria-describedby="announcement-controls"
-  {% endif %}
 >
   <div class="splide__track">
     <ul class="splide__list">
