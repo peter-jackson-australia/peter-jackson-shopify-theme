@@ -39,7 +39,6 @@
         {% assign slide_text = announcement_slide.settings.text %}
         <li class="splide__slide">
           <div
-            class="small announcement-bar__content--{{ slide_alignment }}"
             style="text-align: {% if slide_alignment == 'left' %} left; {% elsif slide_alignment == 'center' %} center; {% else %} right; {% endif %}"
           >
             <div class="announcement-bar__content-text-container" style="color: var(--{{slider_text_colour}});">
