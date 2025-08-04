@@ -4,7 +4,7 @@
   } {% endcomment %}
 
   .announcement-bar {
-    background-color: {% if section.settings.background_color != 'transparent' %}var(--{{ section.settings.background_color }}){% else %}transparent{% endif %};
+    {% comment %} background-color: {% if section.settings.background_color != 'transparent' %}var(--{{ section.settings.background_color }}){% else %}transparent{% endif %}; {% endcomment %}
     {% comment %} color: var(--{{ section.settings.text_color }}); {% endcomment %}
     padding: var(--space-2xs);
     {% comment %} width: 100%; {% endcomment %}
