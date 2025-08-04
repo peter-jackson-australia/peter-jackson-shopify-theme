@@ -58,10 +58,11 @@
   <div class="splide__track">
     <ul class="splide__list">
       {% for block in section.blocks %}
+        {% assign slide_alignment = section.block.settings.alignment %}
         <li class="splide__slide" {{ block.shopify_attributes }}>
           <div
             class="announcement-bar__content small announcement-bar__content--{{ block.settings.alignment | default: 'center' }}"
-            style="text-align: {% if block.settings.alignment == 'left' %} left; {% endif %} {% if block.settings.alignment == 'center' %} center; {% endif %} {% if block.settings.alignment == 'right' %} right; {% endif %}"
+            style="text-align: {% if slide_alignment == 'left' %} left; {% endif %} {% if slide_alignment == 'center' %} center; {% endif %} {% if slide_alignment == 'right' %} right; {% endif %}"
           >
             {{ block.settings.text }}
           </div>
