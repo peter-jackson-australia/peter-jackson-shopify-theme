@@ -133,6 +133,10 @@ a {
   --neutral-800: #272727;
   --neutral-900: #191919;
   --neutral-950: #0f0f0f;
+
+    /* Typography */
+  --ordinary: 'Ordinary Regular', sans-serif;
+
 }
 
 /* Global Styles */
