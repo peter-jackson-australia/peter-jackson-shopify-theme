@@ -1,28 +1,11 @@
 {% comment %}
-  Refactoring main concepts:
-    Seperation of Concerns (CSS, HTML/Liquid/Schema, JS)
-    Simplicitiy - Less code
-    Readability - Use variables instead of direct references i.e. id instead of section.id
-    Modularity - Seperated files, pure functions that don't mutate external state
+  Slider announcement bar that sits at the top of all pages on the site, used for calling out sale and campaigns
 {% endcomment %}
 
-{% comment %}
-  Section Liquid Variables:
-    Theme editor settings for the entire section saved as semantically named variables ✔
-{% endcomment %}
 {% assign slider_background_colour = section.settings.background_color %}
 {% assign slider_text_colour = section.settings.text_color %}
 {% assign slider_autoplay = section.settings.autoplay %}
 {% assign slider_interval = section.settings.slide_interval | times: 1000 %}
-
-{% comment %}
-  Stylesheet:
-    BEM Validated ✔
-    Classes in order of use ✔
-    No Liquid ✔
-    No hardcoded pixel values ✔
-    New font family variable to reduce duplication ✔
-{% endcomment %}
 
 {{ 'section-announcement-bar.css' | asset_url | stylesheet_tag }}
 
@@ -50,22 +33,12 @@
   </div>
 </div>
 
-{% comment %}
-  JavaScript
-   No need for number id, can just use the announcement-bar ID without it
-   Created variables for autoplay and interval to make it more clean and readable
-{% endcomment %}
-
 <script
   src="{{ 'section-announcement-bar.js' | asset_url }}"
   data-autoplay="{{ slider_autoplay }}"
   data-interval="{{ slider_interval }}"
   defer
 ></script>
-
-{% comment %}
-  Added section tag for semantics
-{% endcomment %}
 
 {% schema %}
 {
