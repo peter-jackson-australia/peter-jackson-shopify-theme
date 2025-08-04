@@ -35,7 +35,7 @@
             class="announcement-bar__content small announcement-bar__content--{{ slide_alignment | default: 'center' }}"
             style="text-align: {% if slide_alignment == 'left' %} left; {% elsif slide_alignment == 'center' %} center; {% else %} right; {% endif %}"
           >
-            {{ slide_text }}
+            <div style="color: var(--{{slider_text_colour}});">{{ slide_text }}</div>
           </div>
         </li>
       {% endfor %}
