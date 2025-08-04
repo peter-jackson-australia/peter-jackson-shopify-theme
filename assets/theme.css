@@ -452,7 +452,7 @@ h5,
 h6 {
   line-height: 140%;
   letter-spacing: 0.065rem;
-  font-family: 'Ordinary Regular';
+  font-family: var(--ordinary-regular);
   font-size: clamp(0.6944rem, 0.6597rem + 0.1736vw, 0.8681rem);
   font-weight: 500;
 }
@@ -461,7 +461,7 @@ h6 {
 h4 {
   line-height: 140%;
   letter-spacing: 0.125rem;
-  font-family: 'Ordinary Regular';
+  font-family: var(--ordinary-regular);
   font-size: clamp(0.8333rem, 0.7917rem + 0.2083vw, 1.0417rem);
   font-weight: 500;
   -moz-osx-font-smoothing: grayscale;
@@ -471,7 +471,7 @@ h4 {
 .heading--xl,
 h3 {
   line-height: 140%;
-  font-family: 'Ordinary Regular';
+  font-family: var(--ordinary-regular);
   font-size: clamp(1rem, 0.95rem + 0.25vw, 1.25rem);
   font-weight: 500;
 }
