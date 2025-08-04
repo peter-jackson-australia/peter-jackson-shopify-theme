@@ -601,7 +601,7 @@ function updateFreeShippingBar(cartTotal) {
     progress.style.width = "100%";
   } else {
     const remaining = formatMoney(threshold - cartTotal);
-    text.textContent = `${remaining} away from free shipping`;
+    text.textContent = `$${remaining} away from free shipping`;
     progress.style.width = `${(cartTotal / threshold) * 100}%`;
   }
 }
