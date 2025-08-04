@@ -55,7 +55,12 @@
   Created variables for autoplay and interval to make it more clean and readable
 {% endcomment %}
 
-<script src="{{ 'section-announcement-bar.js' | asset_url }}" defer></script>
+<script
+  src="{{ 'section-announcement-bar.js' | asset_url }}"
+  data-autoplay="{{ slider_autoplay }}"
+  data-interval="{{ slider_interval }}"
+  defer
+></script>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
