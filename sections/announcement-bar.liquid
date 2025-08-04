@@ -10,7 +10,6 @@
   Section Liquid Variables:
     Theme editor settings for the entire section saved as semantically named variables ✔
 {% endcomment %}
-{% assign id = section.id %}
 {% assign slider_background_colour = section.settings.background_color %}
 {% assign slider_text_colour = section.settings.text_color %}
 
@@ -45,7 +44,7 @@
 
 <div
   class="announcement-bar splide"
-  id="announcement-bar-{{ id }}"
+  id="announcement-bar"
   style="background: var(--{{ slider_background_colour }}); {% if slider_background_colour == 'white' %} border-bottom: 1px solid var(--neutral-50); {% endif %}"
 >
   <div class="splide__track">
@@ -69,7 +68,7 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const slider = new Splide('#announcement-bar-{{ section.id }}', {
+    const slider = new Splide('#announcement-bar', {
       type: 'loop',
       perPage: 1,
       arrows: false,
