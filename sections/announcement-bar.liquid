@@ -1,7 +1,7 @@
 <style>
-  .announcement-bar-section {
+  {% comment %} .announcement-bar-section {
     width: 100%;
-  }
+  } {% endcomment %}
 
   .announcement-bar {
     background-color: {% if section.settings.background_color != 'transparent' %}var(--{{ section.settings.background_color }}){% else %}transparent{% endif %};
