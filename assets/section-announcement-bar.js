@@ -1,5 +1,6 @@
 const sliderAutoplay = document.currentScript.getAttribute("data-autoplay");
 const sliderInterval = document.currentScript.getAttribute("data-interval");
+
 const slider = new Splide("#announcement-bar", {
   type: "loop",
   perPage: 1,
@@ -9,4 +10,5 @@ const slider = new Splide("#announcement-bar", {
   autoplay: sliderAutoplay,
   interval: sliderInterval,
 });
+
 slider.mount();
