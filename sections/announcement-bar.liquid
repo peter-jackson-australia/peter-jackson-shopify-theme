@@ -1,7 +1,9 @@
 {% comment %}
   Refactoring main concepts:
     Seperation of Concerns (CSS, HTML/Liquid/Schema, JS)
-    Simplicitiy
+    Simplicitiy - Less code
+    Readability - Use variables instead of direct references i.e. id instead of section.id
+    Modularity - Seperated files, pure functions that don't mutate external state
 {% endcomment %}
 
 {% comment %}
@@ -23,7 +25,7 @@
 <style>
   .announcement-bar {
     padding: var(--space-2xs);
-    height: 35px;
+    height: var(--space-s);
   }
 
   .announcement-bar__content-text-container a {
