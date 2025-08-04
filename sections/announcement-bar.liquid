@@ -62,13 +62,13 @@
     <ul class="splide__list">
       {% for announcement_slide in section.blocks %}
         {% assign slide_alignment = announcement_slide.settings.alignment %}
-        {% assign slide_alignment_text = announcement_slide.settings.text %}
+        {% assign slide_text = announcement_slide.settings.text %}
         <li class="splide__slide">
           <div
             class="announcement-bar__content small announcement-bar__content--{{ announcement_slide.settings.alignment | default: 'center' }}"
             style="text-align: {% if slide_alignment == 'left' %} left; {% elsif slide_alignment == 'center' %} center; {% else %} right; {% endif %}"
           >
-            {{ slide_alignment_text }}
+            {{ slide_text }}
           </div>
         </li>
       {% endfor %}
