@@ -34,17 +34,19 @@
       width: 100%;
     } {% endcomment %}
 
-    {% if block.settings.alignment == 'left' %}
+  {% if block.settings.alignment == 'left' %}
     .announcement-bar__content--left {
       text-align: left;
       justify-content: flex-start;
     }
   {% endif %}
 
+  {% if block.settings.alignment == 'center' %}
     .announcement-bar__content--center {
       text-align: center;
       justify-content: center;
     }
+  {% endif %}
 
     .announcement-bar__content--right {
       text-align: right;
