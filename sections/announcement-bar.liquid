@@ -39,10 +39,10 @@
     justify-content: flex-start;
   }
 
-  .announcement-bar__content--center {
+  {% comment %} .announcement-bar__content--center {
     text-align: center;
     justify-content: center;
-  }
+  } {% endcomment %}
 
   .announcement-bar__content--right {
     text-align: right;
@@ -57,7 +57,7 @@
         <li class="splide__slide" {{ block.shopify_attributes }}>
           <div
             class="announcement-bar__content small announcement-bar__content--{{ block.settings.alignment | default: 'center' }}"
-            style="{% if block.settings.alignment == 'left' %}{% endif %}"
+            style="{% if block.settings.alignment == 'left' %} text-align: left; justify-content: flex-start; {% endif %}"
           >
             {{ block.settings.text }}
           </div>
