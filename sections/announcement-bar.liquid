@@ -55,13 +55,7 @@
   Created variables for autoplay and interval to make it more clean and readable
 {% endcomment %}
 
-<script>
-  {
-    {
-      'section-announcement-bar.js' | asset_url;
-    }
-  }
-</script>
+<script src="{{ 'section-announcement-bar.js' | asset_url }}" defer></script>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
