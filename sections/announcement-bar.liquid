@@ -55,6 +55,8 @@
   Created variables for autoplay and interval to make it more clean and readable
 {% endcomment %}
 
+{{ 'section-announcement-bar.js' | asset_url | script_tag }}
+
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const slider = new Splide('#announcement-bar', {
@@ -68,7 +70,7 @@
     });
     slider.mount();
   });
-</script>
+</>
 
 {% comment %}
   Added section tag for semantics
