@@ -1,3 +1,5 @@
+{% assign slider_background_colour = section.settings.background_color %}
+
 <style>
   {% comment %} .announcement-bar-section {
     width: 100%;
@@ -53,7 +55,7 @@
 <div
   class="announcement-bar splide"
   id="announcement-bar-{{ section.id }}"
-  style="background-color: {% if section.settings.background_color != 'transparent' %}var(--{{ section.settings.background_color }}){% else %}transparent{% endif %};"
+  style="background-color: {% if slider_background_colour != 'transparent' %}var(--{{ slider_background_colour }}){% else %}transparent{% endif %};"
 >
   <div class="splide__track">
     <ul class="splide__list">
