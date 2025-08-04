@@ -65,7 +65,7 @@
         {% assign slide_text = announcement_slide.settings.text %}
         <li class="splide__slide">
           <div
-            class="announcement-bar__content small announcement-bar__content--{{ announcement_slide.settings.alignment | default: 'center' }}"
+            class="announcement-bar__content small announcement-bar__content--{{ slide_alignment | default: 'center' }}"
             style="text-align: {% if slide_alignment == 'left' %} left; {% elsif slide_alignment == 'center' %} center; {% else %} right; {% endif %}"
           >
             {{ slide_text }}
