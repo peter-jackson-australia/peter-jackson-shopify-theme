@@ -8,8 +8,10 @@
 {% assign slider_autoplay = section.settings.autoplay %}
 {% assign slider_interval = section.settings.slide_interval | times: 1000 %}
 
+{% comment %} Stylesheet {% endcomment %}
 {{ 'section-announcement-bar.css' | asset_url | stylesheet_tag }}
 
+{% comment %} Stylesheet {% endcomment %}
 <div
   class="announcement-bar splide"
   id="announcement-bar"
