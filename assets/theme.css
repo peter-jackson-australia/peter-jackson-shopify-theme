@@ -896,7 +896,7 @@ a.skip-to-content:focus-visible {
 #label-email_01K0TJKMBA3VDEFYQ0GC07SFN3 {
   line-height: 140% !important;
   letter-spacing: 0.065rem !important;
-  font-family: 'Ordinary Light' !important;
+  font-family: var(--ordinary-light) !important;
   font-size: clamp(0.6944rem, 0.6597rem + 0.1736vw, 0.8681rem) !important;
   font-weight: 300 !important;
   margin-right: auto !important;
