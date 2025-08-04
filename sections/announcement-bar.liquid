@@ -9,7 +9,7 @@
   }
 
   .announcement-bar__content a {
-    color: var(--{{ slider_text_colour }});
+    color: var(--{{slider_text_colour}});
     text-decoration: none;
   }
 
@@ -23,9 +23,7 @@
   class="announcement-bar splide"
   id="announcement-bar-{{ id }}"
   style="
-    background-color: var(--{{ slider_background_colour }});     {% if slider_background_colour == 'white' %}
-      border-bottom: 1px solid var(--neutral-50);
-    {% endif %}
+    background-color: var(--{{ slider_background_colour }}); {% if slider_background_colour == 'white' %} border-bottom: 1px solid var(--neutral-50); {% endif %}
   "
 >
   <div class="splide__track">
