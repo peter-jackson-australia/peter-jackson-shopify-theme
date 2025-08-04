@@ -72,6 +72,10 @@ select {
   font: inherit;
 }
 
+a {
+  color: inherit; 
+}
+
 @view-transition {
   navigation: auto;
 }
