@@ -48,10 +48,12 @@
     }
   {% endif %}
 
+  {% if block.settings.alignment == 'center' %}
     .announcement-bar__content--right {
       text-align: right;
       justify-content: flex-end;
     }
+  {% endif %}
 </style>
 
 <div class="announcement-bar splide" id="announcement-bar-{{ section.id }}">
