@@ -378,7 +378,7 @@ accordion-element > .ploiu-accordion-body {
 accordion-element > .ploiu-accordion-body > .body > p > strong,
 accordion-element > .ploiu-accordion-body > .body > * > li > strong {
   color: var(--neutral-950);
-  font-family: 'Ordinary Regular';
+  font-family: var(--ordinary-regular);
   font-weight: 500;
 }
 
