@@ -50,7 +50,11 @@
   } {% endcomment %}
 </style>
 
-<div class="announcement-bar splide" id="announcement-bar-{{ section.id }}">
+<div
+  class="announcement-bar splide"
+  id="announcement-bar-{{ section.id }}"
+  style="background-color: {% if section.settings.background_color != 'transparent' %}var(--{{ section.settings.background_color }}){% else %}transparent{% endif %};"
+>
   <div class="splide__track">
     <ul class="splide__list">
       {% for block in section.blocks %}
