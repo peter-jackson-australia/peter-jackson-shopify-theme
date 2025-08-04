@@ -39,20 +39,19 @@
       text-align: left;
       justify-content: flex-start;
     }
-  {% endif %}
 
-  {% if settings.alignment == 'center' %}
+  {% else settings.alignment == 'center' %}
     .announcement-bar__content--center {
       text-align: center;
       justify-content: center;
     }
-  {% endif %}
 
-  {% if settings.alignment == 'center' %}
+  {% else settings.alignment == 'center' %}
     .announcement-bar__content--right {
       text-align: right;
       justify-content: flex-end;
     }
+
   {% endif %}
 </style>
 
