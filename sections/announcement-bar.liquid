@@ -62,7 +62,7 @@
         <li class="splide__slide" {{ block.shopify_attributes }}>
           <div
             class="announcement-bar__content small announcement-bar__content--{{ block.settings.alignment | default: 'center' }}"
-            style="text-align: {% if slide_alignment == 'left' %} left; {% endif %} {% if slide_alignment == 'center' %} center; {% endif %} {% if slide_alignment == 'right' %} right; {% endif %}"
+            style="text-align: {% if slide_alignment == 'left' %} left; {% elsif slide_alignment == 'center' %} center; {% else %} right; {% endif %}"
           >
             {{ block.settings.text }}
           </div>
