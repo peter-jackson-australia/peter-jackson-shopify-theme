@@ -5,16 +5,16 @@
 
   .announcement-bar {
     background-color: {% if section.settings.background_color != 'transparent' %}var(--{{ section.settings.background_color }}){% else %}transparent{% endif %};
-    color: var(--{{ section.settings.text_color }});
+    {% comment %} color: var(--{{ section.settings.text_color }}); {% endcomment %}
     padding: var(--space-2xs);
-    width: 100%;
+    {% comment %} width: 100%; {% endcomment %}
     {% if section.settings.background_color == 'white' %}
       border-bottom: 1px solid var(--neutral-50);
     {% endif %}
     height: 35px;
   }
 
-  .announcement-bar__content > a {
+  .announcement-bar__content a {
     color: var(--{{ section.settings.text_color }});
     text-decoration: none;
   }
