@@ -12,6 +12,7 @@
 {% endcomment %}
 {% assign slider_background_colour = section.settings.background_color %}
 {% assign slider_text_colour = section.settings.text_color %}
+{% assign autoplay = section.settings.autoplay %}
 
 {% comment %}
   Stylesheet:
@@ -74,7 +75,7 @@
       arrows: false,
       pagination: false,
       drag: true,
-      autoplay: {{ section.settings.autoplay }},
+      autoplay: {{ autoplay }},
       interval: {{ section.settings.slide_interval | times: 1000 }}
     });
     slider.mount();
