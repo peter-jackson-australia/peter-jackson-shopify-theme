@@ -161,7 +161,7 @@ a {
 .metafield-rich_text_field > p > strong,
 .metafield-rich_text_field > * > li > strong {
   color: var(--neutral-950) !important;
-  font-family: 'Ordinary Regular', sans-serif;
+  font-family: var(--ordinary-regular);
   font-weight: 500;
 }
 
