@@ -1,3 +1,4 @@
+{% assign id = section.id %}
 {% assign slider_background_colour = section.settings.background_color %}
 
 <style>
@@ -54,7 +55,7 @@
 
 <div
   class="announcement-bar splide"
-  id="announcement-bar-{{ section.id }}"
+  id="announcement-bar-{{ id }}"
   style="background-color: var(--{{ slider_background_colour }});"
 >
   <div class="splide__track">
