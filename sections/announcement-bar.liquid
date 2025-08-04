@@ -55,7 +55,13 @@
   Created variables for autoplay and interval to make it more clean and readable
 {% endcomment %}
 
-{{ 'section-announcement-bar.js' | asset_url | script_tag }}
+<script>
+  {
+    {
+      'section-announcement-bar.js' | asset_url;
+    }
+  }
+</script>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
