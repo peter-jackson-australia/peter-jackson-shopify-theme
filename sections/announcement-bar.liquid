@@ -1,59 +1,53 @@
 <style>
-    {% comment %} .announcement-bar-section {
-      width: 100%;
-    } {% endcomment %}
+  {% comment %} .announcement-bar-section {
+    width: 100%;
+  } {% endcomment %}
 
-    .announcement-bar {
-      background-color: {% if section.settings.background_color != 'transparent' %}var(--{{ section.settings.background_color }}){% else %}transparent{% endif %};
-      {% comment %} color: var(--{{ section.settings.text_color }}); {% endcomment %}
-      padding: var(--space-2xs);
-      {% comment %} width: 100%; {% endcomment %}
-      {% if section.settings.background_color == 'white' %}
-        border-bottom: 1px solid var(--neutral-50);
-      {% endif %}
-      height: 35px;
-    }
+  .announcement-bar {
+    background-color: {% if section.settings.background_color != 'transparent' %}var(--{{ section.settings.background_color }}){% else %}transparent{% endif %};
+    {% comment %} color: var(--{{ section.settings.text_color }}); {% endcomment %}
+    padding: var(--space-2xs);
+    {% comment %} width: 100%; {% endcomment %}
+    {% if section.settings.background_color == 'white' %}
+      border-bottom: 1px solid var(--neutral-50);
+    {% endif %}
+    height: 35px;
+  }
 
-    .announcement-bar__content a {
-      {% comment %} color: var(--{{ section.settings.text_color }}); {% endcomment %}
-      text-decoration: none;
-    }
+  .announcement-bar__content a {
+    {% comment %} color: var(--{{ section.settings.text_color }}); {% endcomment %}
+    text-decoration: none;
+  }
 
-    .announcement-bar__content strong {
-      font-family: 'Ordinary Regular', sans-serif;
-      font-weight: 500;
-    }
+  .announcement-bar__content strong {
+    font-family: 'Ordinary Regular', sans-serif;
+    font-weight: 500;
+  }
 
-    {% comment %} .announcement-bar .splide__slide {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    } {% endcomment %}
+  {% comment %} .announcement-bar .splide__slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  } {% endcomment %}
 
-    {% comment %} .announcement-bar__content {
-      width: 100%;
-    } {% endcomment %}
+  {% comment %} .announcement-bar__content {
+    width: 100%;
+  } {% endcomment %}
 
-  {% if settings.alignment == 'left' %}
-    .announcement-bar__content--left {
-      text-align: left;
-      justify-content: flex-start;
-    }
-  {% endif %}
+  .announcement-bar__content--left {
+    text-align: left;
+    justify-content: flex-start;
+  }
 
-  {% if settings.alignment == 'center' %}
-    .announcement-bar__content--center {
-      text-align: center;
-      justify-content: center;
-    }
-  {% endif %}
+  .announcement-bar__content--center {
+    text-align: center;
+    justify-content: center;
+  }
 
-  {% if settings.alignment == 'center' %}
-    .announcement-bar__content--right {
-      text-align: right;
-      justify-content: flex-end;
-    }
-  {% endif %}
+  .announcement-bar__content--right {
+    text-align: right;
+    justify-content: flex-end;
+  }
 </style>
 
 <div class="announcement-bar splide" id="announcement-bar-{{ section.id }}">
@@ -62,7 +56,7 @@
       {% for block in section.blocks %}
         <li class="splide__slide" {{ block.shopify_attributes }}>
           <div class="announcement-bar__content small announcement-bar__content--{{ block.settings.alignment | default: 'center' }}">
-            <p>{{ block.settings.text }}</p>
+            {{ block.settings.text }}
           </div>
         </li>
       {% endfor %}
