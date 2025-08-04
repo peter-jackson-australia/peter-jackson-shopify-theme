@@ -1,5 +1,6 @@
 {% assign id = section.id %}
 {% assign slider_background_colour = section.settings.background_color %}
+{% assign slider_text_colour = section.settings.text_color %}
 
 <style>
   {% comment %} .announcement-bar-section {
@@ -18,7 +19,7 @@
   }
 
   .announcement-bar__content a {
-    color: var(--{{ section.settings.text_color }});
+    color: var(--{{ slider_text_colour }});
     text-decoration: none;
   }
 
