@@ -425,7 +425,7 @@ accordion-fan > accordion-element > .ploiu-accordion-title {
 .small {
   line-height: 140%;
   letter-spacing: 0.065rem;
-  font-family: 'Ordinary Light';
+  font-family: var(--ordinary-light);
   font-size: clamp(0.5787rem, 0.5498rem + 0.1447vw, 0.7234rem);
 }
 
@@ -434,7 +434,7 @@ p,
 li {
   line-height: 140%;
   letter-spacing: 0.065rem;
-  font-family: 'Ordinary Light';
+  font-family: var(--ordinary-light);
   font-size: clamp(0.6944rem, 0.6597rem + 0.1736vw, 0.8681rem);
   font-weight: 300;
 }
