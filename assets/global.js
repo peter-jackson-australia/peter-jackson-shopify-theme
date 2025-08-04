@@ -450,7 +450,7 @@ async function updateCartDrawer() {
             newText.textContent = "Your Order Has Free Shipping!";
           } else {
             const remaining = formatMoney(threshold - cartData.total_price);
-            newText.textContent = `${remaining} Away From Free Shipping`;
+            newText.textContent = `$${remaining} Away From Free Shipping`;
           }
           newProgress.style.width = currentWidth;
         }
@@ -601,7 +601,7 @@ function updateFreeShippingBar(cartTotal) {
     progress.style.width = "100%";
   } else {
     const remaining = formatMoney(threshold - cartTotal);
-    text.textContent = `${remaining} away from free shipping`;
+    text.textContent = `$${remaining} away from free shipping`;
     progress.style.width = `${(cartTotal / threshold) * 100}%`;
   }
 }
