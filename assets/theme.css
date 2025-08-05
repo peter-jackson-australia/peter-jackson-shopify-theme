@@ -566,9 +566,8 @@ input:focus-visible {
 }
 
 .product-card__swatch {
-  width: var(--space-2xs);
-  height: var(--space-2xs);
-  border-radius: 50%;
+  width: var(--space-s);
+  height: var(--space-s);
   border: 1px solid transparent;
 }
 
