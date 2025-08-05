@@ -201,6 +201,7 @@
                       {% endif %}
                     </p>
                   </a>
+
                   {% if product.metafields.custom.product_colour_variants %}
                     {% assign colour_variants = product.metafields.custom.product_colour_variants.value %}
                     {% assign max_display = 3 %}
@@ -211,7 +212,8 @@
                       {% assign current_name = product.metafields.custom.swatch_colour.value.name | strip %}
                       {% assign bg_colour = current_colour | default: 'var(--neutral-200)' %}
 
-                      <span
+                      <a
+                        href="{{ product.url }}"
                         class="product-card__swatch-link"
                         aria-label="View {{ product.title }} variant"
                         style="border: 1px solid var(--neutral-950); padding: 1px;"
@@ -221,7 +223,7 @@
                           style="background-color: {{ bg_colour }};"
                           aria-hidden="true"
                         ></div>
-                      </span>
+                      </a>
 
                       {% for variant in colour_variants limit: max_display %}
                         {% assign variant_colour = variant.metafields.custom.swatch_colour.value.colour | strip %}
@@ -229,7 +231,8 @@
                         {% assign border_colour = variant_colour | default: 'var(--neutral-950)' %}
                         {% assign bg_colour = variant_colour | default: 'var(--neutral-200)' %}
 
-                        <span
+                        <a
+                          href="{{ variant.url }}"
                           class="product-card__swatch-link"
                           aria-label="View {{ variant.title }} variant"
                           style="border: 2px solid {{ border_colour }};"
@@ -239,7 +242,7 @@
                             style="background-color: {{ bg_colour }};"
                             aria-hidden="true"
                           ></div>
-                        </span>
+                        </a>
                       {% endfor %}
 
                       {% if remaining_count > 0 %}
