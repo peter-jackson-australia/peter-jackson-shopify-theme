@@ -892,8 +892,8 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            width: 40px;
-            height: 40px;
+            width: var(--space-s);
+            height: var(--space-s);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -909,8 +909,7 @@
           }
 
           .related-product-slider .splide__arrow:disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
+            display: none;
           }
         </style>
 
