@@ -884,6 +884,34 @@
           .related-product-slider {
             margin-bottom: var(--space-m);
           }
+
+          .related-product-slider .splide__arrow {
+            background: var(--white);
+            border: none;
+            opacity: 1;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+          }
+
+          .related-product-slider .splide__arrow--prev {
+            left: 0;
+          }
+
+          .related-product-slider .splide__arrow--next {
+            right: 0;
+          }
+
+          .related-product-slider .splide__arrow:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+          }
         </style>
 
         <p class="body">Available Colours</p>
@@ -907,6 +935,10 @@
                 </li>
               {% endfor %}
             </ul>
+          </div>
+          <div class="splide__arrows">
+            <button class="splide__arrow splide__arrow--prev">{% render '_icon-arrow-see-less' %}</button>
+            <button class="splide__arrow splide__arrow--next">{% render '_icon-arrow-see-more' %}</button>
           </div>
         </div>
 
