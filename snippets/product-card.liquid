@@ -87,7 +87,7 @@
     {% if product.metafields.custom.product_colour_variants %}
       <div class="product-card__swatches">
         {% assign swatch_count = product.metafields.custom.product_colour_variants.value.count %}
-        {% assign max_display = 4 %}
+        {% assign max_display = 3 %}
         {% assign remaining_count = swatch_count | minus: max_display %}
         <a
           href="{{ product.url }}"
