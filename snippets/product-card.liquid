@@ -96,7 +96,7 @@
         >
           <div
             class="product-card__swatch{% if product.metafields.custom.swatch_colour.value.name == 'White' %} product-card__swatch--white{% endif %}"
-            style="background-color: {% if productColourVariant.metafields.custom.swatch_colour.value.colour != '' %} {{ productColourVariant.metafields.custom.swatch_colour.value.colour }} {% else %} var(--neutral-200) {% endif %};"
+            style="background-color: {% if product.metafields.custom.swatch_colour.value.colour != '' %} {{ product.metafields.custom.swatch_colour.value.colour }} {% else %} var(--neutral-200) {% endif %};"
             aria-hidden="true"
           ></div>
         </a>
