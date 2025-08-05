@@ -885,18 +885,24 @@
             margin-bottom: var(--space-m);
           }
 
-          .related-product-slider .splide__progress__bar {
-            height: 2px;
-            background-color: var(--neutral-100);
-            position: relative;
-            overflow: hidden;
+          .related-product-slider .splide__arrow--next {
+            right: 0;
+            background: none;
+            border: none;
+            opacity: 1;
+            transform: none;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
 
-          .related-product-slider__progress-fill {
-            height: 100%;
-            width: 0%;
-            background-color: var(--neutral-950);
-            transition: width 0.3s ease;
+          .related-product-slider .splide__arrow--next:disabled {
+            opacity: 0;
           }
         </style>
 
@@ -922,10 +928,12 @@
               {% endfor %}
             </ul>
           </div>
-          <div class="splide__progress">
-            <div class="splide__progress__bar">
-              <div class="related-product-slider__progress-fill"></div>
-            </div>
+          <div class="splide__arrows">
+            <button class="splide__arrow splide__arrow--next">
+              <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L6 6L1 11" stroke="#0F0F0F" stroke-linecap="square"/>
+              </svg>
+            </button>
           </div>
         </div>
 
