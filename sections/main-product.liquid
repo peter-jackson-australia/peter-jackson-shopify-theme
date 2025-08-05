@@ -878,39 +878,7 @@
           </button>
         </div>
 
-        {% comment %} Related product slider - to go into a snippet file - available colours {% endcomment %}
-
-        {{ 'snippet-related-product-slider.css' | asset_url | stylesheet_tag }}
-
-        <p class="body related-product-slider__text">Available Colours:</p>
-        <div class="splide related-product-slider" id="related-product-slider">
-          <div class="splide__track">
-            <ul class="splide__list">
-              {% for variant_product in product.metafields.custom.product_colour_variants.value %}
-                <li class="splide__slide">
-                  <a href="{{ variant_product.url }}">
-                    {{
-                      variant_product.featured_image
-                      | image_url: width: 400
-                      | image_tag:
-                        alt: variant_product.featured_image.alt,
-                        loading: 'lazy',
-                        decoding: 'async',
-                        widths: '200, 300, 400, 500, 600',
-                        sizes: '(max-width: 768px) 100vw, 50vw'
-                    }}
-                  </a>
-                </li>
-              {% endfor %}
-            </ul>
-          </div>
-          <div class="splide__arrows">
-            <button class="splide__arrow splide__arrow--prev">{% render '_icon-arrow-see-less' %}</button>
-            <button class="splide__arrow splide__arrow--next">{% render '_icon-arrow-see-more' %}</button>
-          </div>
-        </div>
-
-        <script src="{{ 'snippet-related-product-slider.js' | asset_url }}" defer></script>
+        {% render 'related-product-slider' %}
 
         <form action="{{ routes.cart_add_url }}" method="post" onsubmit="return false;" id="js--variant-form">
           {%- for block in section.blocks -%}
