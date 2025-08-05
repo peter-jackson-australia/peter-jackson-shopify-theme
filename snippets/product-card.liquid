@@ -86,7 +86,7 @@
     {% endunless %}
     {% if product.metafields.custom.product_colour_variants %}
       <div class="product-card__swatches">
-        {% comment %} <p class="small">Colours:</p> {% endcomment %}
+        <p class="small">Colours:</p>
         {% assign swatch_count = product.metafields.custom.product_colour_variants.value.count %}
         {% assign max_display = 4 %}
         {% assign remaining_count = swatch_count | minus: max_display %}
