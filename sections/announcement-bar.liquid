@@ -1,62 +1,31 @@
-<style>
-  .announcement-bar-section {
-    width: 100%;
-  }
+{% comment %}
+  Announcement bar slider that sits at the top of all pages on the site, used for calling out sale and campaigns
+{% endcomment %}
 
-  .announcement-bar {
-    background-color: {% if section.settings.background_color != 'transparent' %}var(--{{ section.settings.background_color }}){% else %}transparent{% endif %};
-    color: var(--{{ section.settings.text_color }});
-    padding: var(--space-2xs);
-    width: 100%;
-    {% if section.settings.background_color == 'white' %}
-      border-bottom: 1px solid var(--neutral-50);
-    {% endif %}
-    height: 35px;
-  }
+{{ 'section-announcement-bar.css' | asset_url | stylesheet_tag }}
 
-  .announcement-bar__content > a {
-    color: var(--{{ section.settings.text_color }});
-    text-decoration: none;
-  }
+{% assign slider_background_colour = section.settings.background_color %}
+{% assign slider_text_colour = section.settings.text_color %}
+{% assign slider_autoplay = section.settings.autoplay %}
+{% assign slider_interval = section.settings.slide_interval | times: 1000 %}
 
-  .announcement-bar__content > strong {
-    font-family: 'Ordinary Regular', sans-serif;
-    font-weight: 500;
-  }
-
-  .announcement-bar .splide__slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .announcement-bar__content {
-    width: 100%;
-  }
-
-  .announcement-bar__content--left {
-    text-align: left;
-    justify-content: flex-start;
-  }
-
-  .announcement-bar__content--center {
-    text-align: center;
-    justify-content: center;
-  }
-
-  .announcement-bar__content--right {
-    text-align: right;
-    justify-content: flex-end;
-  }
-</style>
-
-<div class="announcement-bar splide" id="announcement-bar-{{ section.id }}">
+<div
+  class="announcement-bar splide"
+  id="announcement-bar"
+  style="background: var(--{{ slider_background_colour }}); {% if slider_background_colour == 'white' %} border-bottom: 1px solid var(--neutral-50); {% endif %}"
+>
   <div class="splide__track">
     <ul class="splide__list">
-      {% for block in section.blocks %}
-        <li class="splide__slide" {{ block.shopify_attributes }}>
-          <div class="announcement-bar__content small announcement-bar__content--{{ block.settings.alignment | default: 'center' }}">
-            {{ block.settings.text }}
+      {% for announcement_slide in section.blocks %}
+        {% assign slide_alignment = announcement_slide.settings.alignment %}
+        {% assign slide_text = announcement_slide.settings.text %}
+        <li class="splide__slide">
+          <div
+            style="text-align: {% if slide_alignment == 'left' %} left; {% elsif slide_alignment == 'center' %} center; {% else %} right; {% endif %}"
+          >
+            <div class="announcement-bar__content-text-container small" style="color: var(--{{slider_text_colour}});">
+              {{ slide_text }}
+            </div>
           </div>
         </li>
       {% endfor %}
@@ -64,24 +33,17 @@
   </div>
 </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const slider = new Splide('#announcement-bar-{{ section.id }}', {
-      type: 'loop',
-      perPage: 1,
-      arrows: false,
-      pagination: false,
-      drag: true,
-      autoplay: {{ section.settings.autoplay }},
-      interval: {{ section.settings.slide_interval | times: 1000 }}
-    });
-    slider.mount();
-  });
-</script>
+<script
+  src="{{ 'section-announcement-bar.js' | asset_url }}"
+  data-autoplay="{{ slider_autoplay }}"
+  data-interval="{{ slider_interval }}"
+  defer
+></script>
 
 {% schema %}
 {
   "name": "Announcement Bar",
+  "tag": "section",
   "class": "announcement-bar-section",
   "limit": 1,
   "settings": [
