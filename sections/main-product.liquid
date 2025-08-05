@@ -934,6 +934,17 @@
                 },
               },
             });
+
+            const progressBar = document.querySelector('.related-product-slider .splide__progress__bar');
+
+            slider.on('mounted move', function () {
+              const end = slider.Components.Controller.getEnd() + 1;
+              const rate = Math.min((slider.index + 1) / end, 1);
+              if (progressBar) {
+                progressBar.style.width = String(100 * rate) + '%';
+              }
+            });
+
             slider.mount();
           });
         </script>
