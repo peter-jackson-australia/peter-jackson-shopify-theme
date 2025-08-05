@@ -882,6 +882,7 @@
           {% for variant_product in product.metafields.custom.product_colour_variants.value %}
             {{ variant_product.url }}
             <br>
+            <img src="{{ variant_product.featured_image }}">
             {{ variant_product.featured_image }}
           {% endfor %}
         </div>
