@@ -880,7 +880,7 @@
 
         <div>
           {% for variant_product in product.metafields.custom.product_colour_variants.value %}
-            <a href="{{ routes.root_url }}"> <img src="{{ variant_product.url }}"></a>
+            {{ variant_product.url }}
           {% endfor %}
         </div>
 
