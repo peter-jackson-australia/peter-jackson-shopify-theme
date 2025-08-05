@@ -105,17 +105,6 @@
             ></div>
           </a>
         {% endfor %}
-        <a
-          href="{{ productColourVariant.url }}"
-          class="product-card__swatch-link"
-          aria-label="View {{ productColourVariant.title }} variant"
-        >
-          <div
-            class="product-card__swatch{% if swatch_colour_name == 'White' %} product-card__swatch--white{% endif %}"
-            style="background-image: url('https://cdn.shopify.com/s/files/1/0898/1859/5696/files/swatch-image-test.jpg?v=1754355552');"
-            aria-hidden="true"
-          ></div>
-        </a>
         {% if remaining_count > 0 %}
           <p class="small">+{{ remaining_count }}</p>
         {% endif %}
