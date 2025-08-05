@@ -909,10 +909,6 @@
           .related-product-slider .splide__arrow--next {
             right: var(--space-2xs);
           }
-
-          .related-product-slider .splide__arrow:disabled {
-            opacity: 0;
-          }
         </style>
 
         <p class="body related-product-slider__text">Available Colours:</p>
@@ -963,8 +959,6 @@
             slider.mount();
           });
         </script>
-
-        {% comment %} end Related product slider {% endcomment %}
 
         <form action="{{ routes.cart_add_url }}" method="post" onsubmit="return false;" id="js--variant-form">
           {%- for block in section.blocks -%}
