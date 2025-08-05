@@ -73,17 +73,23 @@
       {% if product.compare_at_price > product.price %}
         <span class="product-card__price--compare">{{ product.compare_at_price | money }}</span>
       {% endif %}
-      {% unless prominent_discount_mobile %}
-        <span class="product-card__discount-code-desktop">
-          {{ product.metafields.custom.discount_bundle_name | metafield_tag }}
-        </span>
-      {% endunless %}
+      {% if product.metafields.custom.discount_bundle_name != blank %}
+        {% unless prominent_discount_mobile %}
+          <span class="product-card__discount-code-desktop">
+            {{ product.metafields.custom.discount_bundle_name | metafield_tag }}
+          </span>
+        {% endunless %}
+      {% endif %}
     </p>
-    {% unless prominent_discount_mobile %}
-      <p class="small product-card__discount-code-mobile">
-        {{ product.metafields.custom.discount_bundle_name | metafield_tag }}
-      </p>
-    {% endunless %}
+
+    {% if product.metafields.custom.discount_bundle_name != blank %}
+      {% unless prominent_discount_mobile %}
+        <p class="small product-card__discount-code-mobile">
+          {{ product.metafields.custom.discount_bundle_name | metafield_tag }}
+        </p>
+      {% endunless %}
+    {% endif %}
+
     {% if product.metafields.custom.product_colour_variants %}
       {% assign colour_variants = product.metafields.custom.product_colour_variants.value %}
       {% assign max_display = 3 %}

@@ -44,6 +44,16 @@
     background-color: var(--neutral-50);
   }
 
+  .product-card__discount-code-desktop {
+    color: var(--neutral-400);
+    margin-left: var(--space-2xs);
+  }
+
+  .product-card__discount-code-mobile {
+    display: none;
+    color: var(--neutral-400);
+  }
+
   .product-card__image {
     display: block;
     width: 100%;
@@ -191,6 +201,12 @@
     }
     .recently-viewed__grid {
       grid-template-columns: repeat(1, 1fr);
+    }
+    .product-card__discount-code-desktop {
+      display: none;
+    }
+    .product-card__discount-code-mobile {
+      display: block;
     }
   }
 </style>
