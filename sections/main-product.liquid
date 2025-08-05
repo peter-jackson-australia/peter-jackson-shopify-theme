@@ -882,7 +882,17 @@
           {% for variant_product in product.metafields.custom.product_colour_variants.value %}
             {{ variant_product.url }}
             <br>
-            <img src="{{ variant_product.featured_image }}">
+            {{
+              variant_product.featured_image
+              | image_url: width: 400
+              | image_tag:
+                alt: variant_product.featured_image.alt,
+                loading: 'lazy',
+                decoding: 'async',
+                class: 'shop-the-look-global__product-image',
+                widths: '200, 300, 400, 500, 600',
+                sizes: '(max-width: 768px) 100vw, 50vw'
+            }}
             {{ variant_product.featured_image }}
           {% endfor %}
         </div>
