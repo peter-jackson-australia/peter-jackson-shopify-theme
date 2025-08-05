@@ -879,6 +879,9 @@
         </div>
 
         {% comment %} Related product slider - to go into a snippet file {% endcomment %}
+
+        <style></style>
+
         <div id="related-product-slider">
           {% for variant_product in product.metafields.custom.product_colour_variants.value %}
             <a href="{{ variant_product.url }}">
@@ -897,6 +900,8 @@
             </a>
           {% endfor %}
         </div>
+
+        <script></script>
         {% comment %} end Related product slider {% endcomment %}
 
         <form action="{{ routes.cart_add_url }}" method="post" onsubmit="return false;" id="js--variant-form">
