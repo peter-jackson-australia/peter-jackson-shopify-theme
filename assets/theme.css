@@ -580,6 +580,9 @@ input:focus-visible {
   input::placeholder {
     font-size: 16px !important;
   }
+  .product-card__swatches {
+    gap: var(--space-2xs);
+  }
 }
 
 /* Header */
