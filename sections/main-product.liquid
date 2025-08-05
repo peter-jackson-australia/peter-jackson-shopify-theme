@@ -884,30 +884,6 @@
           .related-product-slider {
             margin-bottom: var(--space-m);
           }
-
-          .related-product-slider .splide__arrow--prev {
-            display: none;
-          }
-
-          .related-product-slider .splide__arrow--next {
-            background: none;
-            border: none;
-            opacity: 1;
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 24px;
-            height: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-          }
-
-          .related-product-slider .splide__arrow--next:disabled {
-            opacity: 0;
-            pointer-events: none;
-          }
         </style>
 
         <p class="body">Available Colours</p>
@@ -940,7 +916,7 @@
               type: 'slide',
               perPage: 6,
               gap: 'var(--space-2xs)',
-              arrows: false,
+              arrows: true,
               pagination: false,
               drag: true,
               autoplay: false,
@@ -949,19 +925,6 @@
                   perPage: 3,
                 },
               },
-            });
-
-            const progressBar = document.querySelector('.related-product-slider .splide__progress__bar');
-
-            slider.on('mounted move', function () {
-              const end = slider.Components.Controller.getEnd() + 1;
-              const rate = Math.min((slider.index + 1) / end, 1);
-              const progressFill = document.querySelector('.related-product-slider .splide__progress__bar::after');
-              const progressBar = document.querySelector('.related-product-slider .splide__progress__bar');
-
-              if (progressBar) {
-                progressBar.style.setProperty('--progress-width', String(100 * rate) + '%');
-              }
             });
 
             slider.mount();
