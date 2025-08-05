@@ -892,13 +892,9 @@
             overflow: hidden;
           }
 
-          .related-product-slider .splide__progress__bar::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
+          .related-product-slider__progress-fill {
             height: 100%;
-            width: var(--progress-width, 0%);
+            width: 0%;
             background-color: var(--neutral-950);
             transition: width 0.3s ease;
           }
@@ -927,7 +923,9 @@
             </ul>
           </div>
           <div class="splide__progress">
-            <div class="splide__progress__bar"></div>
+            <div class="splide__progress__bar">
+              <div class="related-product-slider__progress-fill"></div>
+            </div>
           </div>
         </div>
 
