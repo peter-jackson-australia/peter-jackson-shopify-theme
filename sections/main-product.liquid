@@ -880,7 +880,7 @@
 
         <div>
           {% for variant_product in product.metafields.custom.product_colour_variants.value %}
-            <a href="{{ variant_product.url }}" style="max-width: 100px;">
+            <a href="{{ variant_product.url }}">
               {{
                 variant_product.featured_image
                 | image_url: width: 400
@@ -888,7 +888,7 @@
                   alt: variant_product.featured_image.alt,
                   loading: 'lazy',
                   decoding: 'async',
-                  class: 'shop-the-look-global__product-image',
+                  class: '',
                   widths: '200, 300, 400, 500, 600',
                   sizes: '(max-width: 768px) 100vw, 50vw'
               }}
