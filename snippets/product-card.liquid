@@ -88,6 +88,7 @@
       <div class="product-card__swatches">
         <p class="small">Colours:</p>
         {% assign swatch_count = product.metafields.custom.product_colour_variants | size %}
+        {{ product.metafields.custom.product_colour_variants }}
         {{ swatch_count }}
         {% for productColourVariant in product.metafields.custom.product_colour_variants.value %}
           {% assign swatch_colour = productColourVariant.metafields.custom.swatch_colour.value.colour | strip %}
