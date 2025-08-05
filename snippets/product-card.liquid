@@ -106,7 +106,17 @@
             ></div>
           </a>
         {% endfor %}
-
+        <a
+          href="{{ productColourVariant.url }}"
+          class="product-card__swatch-link"
+          aria-label="View {{ productColourVariant.title }} variant"
+        >
+          <div
+            class="product-card__swatch{% if swatch_colour_name == 'White' %} product-card__swatch--white{% endif %}"
+            style="background-color: {% if swatch_colour != '' %} {{ swatch_colour }} {% else %} var(--neutral-200) {% endif %};"
+            aria-hidden="true"
+          ></div>
+        </a>
         {% if remaining_count > 0 %}
           <p class="small">+{{ remaining_count }}</p>
         {% endif %}
