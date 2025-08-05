@@ -3,7 +3,6 @@
 {{ 'snippet-related-product-slider.css' | asset_url | stylesheet_tag }}
 
 <p class="body related-product-slider__text">Available Colours:</p>
-
 <div class="splide related-product-slider" id="related-product-slider">
   <div class="splide__track">
     <ul class="splide__list">
@@ -25,7 +24,6 @@
       {% endfor %}
     </ul>
   </div>
-
   <div class="splide__arrows">
     <button class="splide__arrow splide__arrow--prev">{% render '_icon-arrow-see-less' %}</button>
     <button class="splide__arrow splide__arrow--next">{% render '_icon-arrow-see-more' %}</button>
