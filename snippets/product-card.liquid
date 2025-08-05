@@ -87,10 +87,8 @@
     {% if product.metafields.custom.product_colour_variants %}
       <div class="product-card__swatches">
         <p class="small">Colours:</p>
-        {% assign temp_string = product.metafields.custom.product_colour_variants.values %}
-        {% assign temp_string = product.metafields.custom.product_colour_variants.values %}
-        {% assign comma_count = temp_string | split: ',' | size | minus: 1 %}
-        {% assign swatch_count = comma_count | plus: 1 %}
+        {% assign swatch_count = product.metafields.custom.product_colour_variants.values | size %}
+        {{ product.metafields.custom.product_colour_variants }}
         {{ swatch_count }}
         {% for productColourVariant in product.metafields.custom.product_colour_variants.value %}
           {% assign swatch_colour = productColourVariant.metafields.custom.swatch_colour.value.colour | strip %}
