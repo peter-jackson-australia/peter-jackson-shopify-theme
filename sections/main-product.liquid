@@ -902,16 +902,17 @@
         </div>
 
         <script>
-          const slider = new Splide('#related-product-slider', {
-            type: 'loop',
-            perPage: 6,
-            arrows: false,
-            pagination: false,
-            drag: true,
-            autoplay: false,
+          document.addEventListener('DOMContentLoaded', function () {
+            const slider = new Splide('#related-product-slider', {
+              type: 'loop',
+              perPage: 6,
+              arrows: false,
+              pagination: false,
+              drag: true,
+              autoplay: false,
+            });
+            slider.mount();
           });
-
-          slider.mount();
         </script>
         {% comment %} end Related product slider {% endcomment %}
 
