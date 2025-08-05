@@ -882,7 +882,7 @@
           {% for variant_product in product.metafields.custom.product_colour_variants.value %}
             {{ variant_product.url }}
             <br>
-            {{ variant_product | json }}
+            {{ variant_product.featured_image | json }}
           {% endfor %}
         </div>
 
