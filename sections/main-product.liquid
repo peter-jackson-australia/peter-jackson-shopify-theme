@@ -910,26 +910,7 @@
           </div>
         </div>
 
-        <script>
-          document.addEventListener('DOMContentLoaded', function () {
-            const slider = new Splide('#related-product-slider', {
-              type: 'slide',
-              perPage: 6,
-              gap: 'var(--space-2xs)',
-              arrows: true,
-              pagination: false,
-              drag: true,
-              autoplay: false,
-              breakpoints: {
-                768: {
-                  perPage: 3,
-                },
-              },
-            });
-
-            slider.mount();
-          });
-        </script>
+        <script src="{{ 'snippet-related-product-slider.js' | asset_url }}" defer></script>
 
         <form action="{{ routes.cart_add_url }}" method="post" onsubmit="return false;" id="js--variant-form">
           {%- for block in section.blocks -%}
