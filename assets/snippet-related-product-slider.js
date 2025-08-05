@@ -1,4 +1,4 @@
-const slider = new Splide("#related-product-slider", {
+const relatedProductSlider = new Splide("#related-product-slider", {
   type: "slide",
   perPage: 6,
   gap: "var(--space-2xs)",
@@ -13,4 +13,4 @@ const slider = new Splide("#related-product-slider", {
   },
 });
 
-slider.mount();
+relatedProductSlider.mount();
