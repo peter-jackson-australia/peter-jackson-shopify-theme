@@ -26,7 +26,3 @@
 .related-product-slider .splide__arrow--next {
   right: var(--space-2xs);
 }
-
-.related-product-slider .splide__arrow:disabled {
-  opacity: 0;
-}
