@@ -887,11 +887,13 @@
           }
 
           .related-product-slider .splide__arrow {
+            background: var(--white);
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
             width: var(--space-m);
-            height: 100%;
+            height: var(--space-m);
+            border-radius: 50%;
             opacity: 0;
             transition: opacity 0.3s ease;
           }
@@ -901,11 +903,11 @@
           }
 
           .related-product-slider .splide__arrow--prev {
-            left: 0;
+            left: var(--space-2xs);
           }
 
           .related-product-slider .splide__arrow--next {
-            right: 0;
+            right: var(--space-2xs);
           }
 
           .related-product-slider .splide__arrow:disabled {
