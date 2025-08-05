@@ -90,12 +90,12 @@
         {% assign max_display = 4 %}
         {% assign remaining_count = swatch_count | minus: max_display %}
         <a
-          href="{{ productColourVariant.url }}"
+          href="{{ product.url }}"
           class="product-card__swatch-link"
-          aria-label="View {{ productColourVariant.title }} variant"
+          aria-label="View {{ product.title }} variant"
         >
           <div
-            class="product-card__swatch{% if swatch_colour_name == 'White' %} product-card__swatch--white{% endif %}"
+            class="product-card__swatch{% if productColourVariant.metafields.custom.swatch_colour.value.name == 'White' %} product-card__swatch--white{% endif %}"
             style="background-color: {% if swatch_colour != '' %} {{ swatch_colour }} {% else %} var(--neutral-200) {% endif %};"
             aria-hidden="true"
           ></div>
