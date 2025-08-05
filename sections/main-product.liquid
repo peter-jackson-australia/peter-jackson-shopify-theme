@@ -878,26 +878,26 @@
           </button>
         </div>
 
-        {% comment %}
-          <div id="related-product-slider">
-            {% for variant_product in product.metafields.custom.product_colour_variants.value %}
-              <a href="{{ variant_product.url }}">
-                {{
-                  variant_product.featured_image
-                  | image_url: width: 400
-                  | image_tag:
-                    alt: variant_product.featured_image.alt,
-                    loading: 'lazy',
-                    decoding: 'async',
-                    style: 'max-width: 100px;',
-                    class: '',
-                    widths: '200, 300, 400, 500, 600',
-                    sizes: '(max-width: 768px) 100vw, 50vw'
-                }}
-              </a>
-            {% endfor %}
-          </div>
-        {% endcomment %}
+        {% comment %} Related product slider - to go into a snippet file {% endcomment %}
+        <div id="related-product-slider">
+          {% for variant_product in product.metafields.custom.product_colour_variants.value %}
+            <a href="{{ variant_product.url }}">
+              {{
+                variant_product.featured_image
+                | image_url: width: 400
+                | image_tag:
+                  alt: variant_product.featured_image.alt,
+                  loading: 'lazy',
+                  decoding: 'async',
+                  style: 'max-width: 100px;',
+                  class: '',
+                  widths: '200, 300, 400, 500, 600',
+                  sizes: '(max-width: 768px) 100vw, 50vw'
+              }}
+            </a>
+          {% endfor %}
+        </div>
+        {% comment %} end Related product slider {% endcomment %}
 
         <form action="{{ routes.cart_add_url }}" method="post" onsubmit="return false;" id="js--variant-form">
           {%- for block in section.blocks -%}
