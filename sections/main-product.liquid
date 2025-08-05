@@ -880,7 +880,7 @@
 
         <div>
           {% for variant_product in product.metafields.custom.product_colour_variants.value %}
-            <a href="{{ variant_product.url }}">
+            <a href="{{ variant_product.url }}" style="max-width: 100px;">
               {{
                 variant_product.featured_image
                 | image_url: width: 400
