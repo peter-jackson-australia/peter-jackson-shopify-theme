@@ -882,25 +882,6 @@
 
         <style></style>
 
-        <div id="related-product-slider">
-          {% for variant_product in product.metafields.custom.product_colour_variants.value %}
-            <a href="{{ variant_product.url }}">
-              {{
-                variant_product.featured_image
-                | image_url: width: 400
-                | image_tag:
-                  alt: variant_product.featured_image.alt,
-                  loading: 'lazy',
-                  decoding: 'async',
-                  style: 'max-width: 100px;',
-                  class: '',
-                  widths: '200, 300, 400, 500, 600',
-                  sizes: '(max-width: 768px) 100vw, 50vw'
-              }}
-            </a>
-          {% endfor %}
-        </div>
-
         <div
           class="splide"
           id="related-product-slider"
