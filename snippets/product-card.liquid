@@ -87,7 +87,7 @@
     {% if product.metafields.custom.product_colour_variants %}
       <div class="product-card__swatches">
         <p class="small">Colours:</p>
-        {% assign swatch_count = product.metafields.custom.product_colour_variants.values | size %}
+        {% assign swatch_count = product.metafields.custom.product_colour_variants.keys | size %}
         {{ product.metafields.custom.product_colour_variants }}
         {{ swatch_count }}
         {% for productColourVariant in product.metafields.custom.product_colour_variants.value %}
