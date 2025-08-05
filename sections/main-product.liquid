@@ -878,7 +878,9 @@
           </button>
         </div>
 
-        {% render 'related-product-slider' %}
+        {% if product.metafields.custom.product_colour_variants %}
+          {% render 'related-product-slider' %}
+        {% endif %}
 
         <form action="{{ routes.cart_add_url }}" method="post" onsubmit="return false;" id="js--variant-form">
           {%- for block in section.blocks -%}
