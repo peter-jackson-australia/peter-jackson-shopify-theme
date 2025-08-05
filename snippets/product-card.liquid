@@ -93,6 +93,7 @@
           href="{{ product.url }}"
           class="product-card__swatch-link"
           aria-label="View {{ product.title }} variant"
+          style="border: 1px solid var(--neutral-950);"
         >
           <div
             class="product-card__swatch{% if product.metafields.custom.swatch_colour.value.name == 'White' %} product-card__swatch--white{% endif %}"
@@ -107,7 +108,6 @@
             href="{{ productColourVariant.url }}"
             class="product-card__swatch-link"
             aria-label="View {{ productColourVariant.title }} variant"
-            style="border: 1px solid var(--neutral-950);"
           >
             <div
               class="product-card__swatch{% if swatch_colour_name == 'White' %} product-card__swatch--white{% endif %}"
