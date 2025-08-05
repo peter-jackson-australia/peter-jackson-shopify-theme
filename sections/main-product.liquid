@@ -880,6 +880,7 @@
 
         <div>
           {% for variant_product in product.metafields.custom.product_colour_variants.value %}
+            {{ variant_product | json }}
           {% endfor %}
         </div>
 
