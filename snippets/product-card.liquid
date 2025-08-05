@@ -86,6 +86,7 @@
     {% endunless %}
     {% if product.metafields.custom.product_colour_variants %}
       <div class="product-card__swatches">
+        <p>Colours:</p>
         {% for productColourVariant in product.metafields.custom.product_colour_variants.value %}
           {% assign swatch_colour = productColourVariant.metafields.custom.swatch_colour.value.colour | strip %}
           {% assign swatch_colour_name = productColourVariant.metafields.custom.swatch_colour.value.name | strip %}
