@@ -2,10 +2,6 @@
   Collection Products - Fixed Version
 {% endcomment %}
 
-{% comment %} DELETE ME AFTER A/B TEST IS DONE {% endcomment %}
-
-{% comment %} DELETE ME AFTER A/B TEST IS DONE {% endcomment %}
-
 <script src="{{ 'ajaxinate.min.js' | asset_url }}" defer></script>
 
 <style>
@@ -773,14 +769,6 @@
     {% endpaginate %}
   </div>
 </div>
-
-<script>
-  const productImageLink = document.querySelector('product-card__image-link');
-
-  productImageLink.addEventListener('click', (e) => {
-    console.log(e);
-  });
-</script>
 
 {% javascript %}
   window.addEventListener('load', function () {
