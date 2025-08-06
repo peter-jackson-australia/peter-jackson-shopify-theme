@@ -18,7 +18,7 @@
           | image_url: width: product.featured_image.width
           | image_tag:
             class: 'product-card__image product-card__image--first',
-            sizes: '(max-width: 768px) 200px, 720px',
+            sizes: '(max-width: 768px) 400px, 720px',
             loading: 'eager',
             decoding: 'async',
             alt: image_alt,
@@ -35,7 +35,7 @@
               | image_url: width: product.featured_image.width
               | image_tag:
                 class: 'product-card__image product-card__image--second',
-                sizes: '(max-width: 768px) 200px, 720px',
+                sizes: '(max-width: 768px) 400px, 720px',
                 loading: 'lazy',
                 decoding: 'async',
                 alt: product.images[1].alt
