@@ -655,7 +655,7 @@
 
           <div
             id="AjaxinateContainer"
-            class="products-grid animate-container-cards-scroll"
+            class="products-grid animate-container-cards-scroll{% if section.settings.default_mobile_single_column %} products-grid--cols-2{% endif %}"
             :class="
               {
                 'products-grid--cols-2': !expandedGrid,
