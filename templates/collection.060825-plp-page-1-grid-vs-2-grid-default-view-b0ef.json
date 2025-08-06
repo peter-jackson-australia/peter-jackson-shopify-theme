@@ -21,7 +21,8 @@
       "type": "main-collection-products",
       "settings": {
         "limit": 8,
-        "prominent_discount_mobile": false
+        "prominent_discount_mobile": false,
+        "default_mobile_single_column": true
       }
     },
     "related_content_HfzyTd": {
