@@ -507,7 +507,7 @@
   class="section-wrap"
   x-data="
     {
-      expandedGrid: true,
+      expandedGrid: window.innerWidth < 768 && {{ section.settings.default_mobile_single_column }} ? false : true,
       isFilterOpen: false,
       scrollY: 0,
 
@@ -827,6 +827,13 @@
       "id": "prominent_discount_mobile",
       "label": "Show prominent discount codes",
       "info": "Display discount codes as overlay badges on product images",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "default_mobile_single_column",
+      "label": "Default to single column on mobile",
+      "info": "When enabled, products will display in a single column by default on mobile devices",
       "default": false
     }
   ],
