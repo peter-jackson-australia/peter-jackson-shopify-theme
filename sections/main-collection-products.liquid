@@ -4,7 +4,13 @@
 
 {% comment %} DELETE ME AFTER A/B TEST IS DONE {% endcomment %}
 
-<script></script>
+<script>
+  const productImageLink = document.querySelector('product-card__image-link');
+
+  productImageLink.addEventListener('click', (e) => {
+    console.log(e.data.type);
+  });
+</script>
 
 {% comment %} DELETE ME AFTER A/B TEST IS DONE {% endcomment %}
 
