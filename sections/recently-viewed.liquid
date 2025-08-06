@@ -70,12 +70,14 @@
     transition: opacity 0.3s ease;
   }
 
-  .product-card__image-wrapper:hover .product-card__image--first {
-    opacity: 0;
-  }
+  @media (min-width: 1000px) {
+    .product-card__image-wrapper:hover .product-card__image--first {
+      opacity: 0;
+    }
 
-  .product-card__image-wrapper:hover .product-card__image--second {
-    opacity: 1;
+    .product-card__image-wrapper:hover .product-card__image--second {
+      opacity: 1;
+    }
   }
 
   .product-card__content {
