@@ -4,6 +4,7 @@
 
 {{ 'section-block-quote.css' | asset_url | stylesheet_tag }}
 
+{% assign id = section.id %}
 {% assign show_top_border = section.settings.show_top_border %}
 {% assign show_bottom_border = section.settings.show_top_border %}
 {% assign anchor_tag = section.settings.anchor_id %}
@@ -12,7 +13,7 @@
 {% assign background_color = section.settings.background_color %}
 
 <div
-  id="block-quote-{{ section.id }}"
+  id="block-quote-{{ id }}"
   class="block-quote"
   aria-label="Block quote section"
   style="
