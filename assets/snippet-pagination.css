@@ -1,0 +1,29 @@
+.blog-collection__pagination {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-m);
+}
+
+.blog-collection__pagination ul {
+  display: flex;
+  list-style: none;
+  gap: var(--space-xs);
+  align-items: center;
+}
+
+.blog-collection__pagination li {
+  display: flex;
+}
+
+.blog-collection__pagination a,
+.blog-collection__pagination span {
+  padding: var(--space-xs) var(--space-s);
+  color: var(--neutral-600);
+  text-decoration: none;
+}
+
+.blog-collection__pagination a:hover,
+.blog-collection__pagination .current {
+  color: var(--neutral-950);
+  background-color: var(--neutral-50);
+}
