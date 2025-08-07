@@ -42,6 +42,20 @@
     color: var(--neutral-950);
   }
 
+  .contact-form__contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    color: var(--neutral-950);
+  }
+
+  .contact-form__stores {
+    text-decoration: none;
+  }
+
+  .contact-form__phone-number {
+  }
+
   .contact-form__description {
     color: var(--neutral-600);
     white-space: pre-line;
@@ -191,6 +205,25 @@
       {% if section.settings.heading %}
         <h1 class="contact-form__heading heading--3xl">{{ section.settings.heading }}</h1>
       {% endif %}
+
+      <div class="contact-form__contact-info">
+        <a class="contact-form__stores body" href="{{ routes.root_url }}/pages/stores-in-australia">
+          Find A Store <span>{% render '_icon-arrow-submit-dark' %}</span>
+        </a>
+        <a class="contact-form__phone-number body" href="tel:0394156281">(03) 9415 6281</a>
+        <a
+          target="_blank"
+          class="contact-form__head-office-location body"
+          href="https://www.google.com/maps/place/Peter+Jackson+Head+Office/@-37.8069921,144.992147,17z/data=!3m1!4b1!4m6!3m5!1s0x6ad643e38b24c549:0xc1d8f10c68c9c0f6!8m2!3d-37.8069921!4d144.992147!16s%2Fg%2F11xfq0351_?entry=ttu&g_ep=EgoyMDI1MDgwNC4wIKXMDSoASAFQAw%3D%3D"
+          >50-54 Hoddle St, Abbotsford VIC 3067</a
+        >
+        <div class="body">
+          <strong class="body--bold">Follow Us:</strong>
+          <a class="body" href="https://www.facebook.com/peterjacksonmenswear/" target="_blank">Facebook</a>
+          <a class="body" href="https://www.instagram.com/peterjacksonau/" target="_blank">Instagram</a>
+          <a></a>
+        </div>
+      </div>
 
       {% if section.settings.description %}
         <div class="contact-form__description body">{{ section.settings.description }}</div>
