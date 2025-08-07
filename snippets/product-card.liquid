@@ -7,7 +7,8 @@
 {% assign image_aspect_ratio = product.featured_image.aspect_ratio | default: 1 %}
 {% assign image_height = image_width | divided_by: image_aspect_ratio | round %}
 
-{{ image_height }}
+{% for something in something %}
+{% endfor %}
 
 <div class="product-card">
   <a class="product-card__image-link" href="{{ product.url }}">
