@@ -27,9 +27,9 @@
       id="{{ anchor_tag | downcase | replace: ' ', '-' }}-segment"
     {% endif %}
   >
-    <p class="block-quote__text heading--3xl {% if quote_animation != 'none' %}{{ quote_animation }}{% endif %}">
+    <div class="block-quote__text heading--3xl {% if quote_animation != 'none' %}{{ quote_animation }}{% endif %}">
       {{ quote_text }}
-    </p>
+    </div>
   </blockquote>
 </div>
 
