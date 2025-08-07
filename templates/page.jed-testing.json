@@ -1,0 +1,28 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "block_quote_UTJcK8": {
+      "type": "block-quote",
+      "name": "Block Quote",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "quote_text": "Add a memorable quote that represents your brand values or highlights your products.",
+        "quote_animation": "none",
+        "background_color": "neutral-950"
+      }
+    }
+  },
+  "order": [
+    "block_quote_UTJcK8"
+  ]
+}
