@@ -23,11 +23,11 @@
 >
   <blockquote
     class="block-quote__container block-quote--{{ background_color }}"
-    {% if anchor_tag != blank %}
+    {% if anchor_tag %}
       id="{{ anchor_tag | downcase | replace: ' ', '-' }}-segment"
     {% endif %}
   >
-    {% if quote_text != blank %}
+    {% if quote_text %}
       <p class="block-quote__text heading--3xl {% if quote_animation != 'none' %}{{ quote_animation }}{% endif %}">
         {{ quote_text }}
       </p>
