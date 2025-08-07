@@ -47,6 +47,7 @@
     flex-direction: column;
     gap: var(--space-xs);
     color: var(--neutral-950);
+    margin-bottom: var(--space-m);
   }
 
   .contact-form__stores {
@@ -158,7 +159,8 @@
   }
 
   .contact-form__success {
-    color: var(--green-600);
+    margin-top: var(--space-m);
+    color: var(--neutral-950);
   }
 
   .contact-form__error {
@@ -230,16 +232,6 @@
       {% endif %}
 
       {% form 'contact', class: 'contact-form__form' %}
-        {% if form.posted_successfully? %}
-          <div class="contact-form__success body">
-            <strong>Thanks for your enquiry!</strong>
-          </div>
-        {% else %}
-          <div class="contact-form__error body">
-            {{ form.errors | default_errors }}
-          </div>
-        {% endif %}
-
         {%- for block in section.blocks -%}
           {%- case block.type -%}
             {%- when 'text' -%}
@@ -343,6 +335,15 @@
             {{ section.settings.button_label | default: 'Submit' }}
           </button>
         </div>
+        {% if form.posted_successfully? %}
+          <div class="contact-form__success heading--l">
+            <strong>Thanks for your enquiry!</strong>
+          </div>
+        {% else %}
+          <div class="contact-form__error heading--l">
+            {{ form.errors | default_errors }}
+          </div>
+        {% endif %}
       {% endform %}
     </div>
   </div>
