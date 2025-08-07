@@ -15,7 +15,7 @@
       "settings": {
         "heading": "Test Blogs",
         "blog": "the-jackson-journal",
-        "limit": 13,
+        "limit": 4,
         "articles_per_row": 3
       }
     }
