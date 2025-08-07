@@ -1,0 +1,36 @@
+.block-quote {
+  text-align: center;
+}
+
+.block-quote__container {
+  padding: var(--space-3xl);
+}
+
+.block-quote--neutral-950 {
+  background-color: var(--neutral-950);
+  color: var(--white);
+}
+
+.block-quote--green-800 {
+  background-color: var(--green-800);
+  color: var(--white);
+}
+
+.block-quote--white {
+  background-color: var(--white);
+  color: var(--neutral-950);
+}
+
+.block-quote__text {
+  max-width: 40ch;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 768px) {
+  .block-quote__container {
+    padding: var(--space-xl);
+  }
+  .block-quote__text {
+    font-size: clamp(1.2rem, 1.14rem + 0.3vw, 1.5rem) !important;
+  }
+}

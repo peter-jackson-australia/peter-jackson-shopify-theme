@@ -1,69 +1,35 @@
-<style>
-  .block-quote {
-    text-align: center;
-    width: 100%;
-    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
-    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
-  }
+{% comment %}
+  This is a blockquote section, used for a memorable quote that represents your
+  brand values or highlights your products
+{% endcomment %}
 
-  .block-quote__container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: var(--space-3xl);
-  }
+{{ 'section-block-quote.css' | asset_url | stylesheet_tag }}
 
-  .block-quote__text {
-    max-width: 40ch;
-    margin: 0 auto;
-  }
-
-  .block-quote--neutral-950 {
-    background-color: var(--neutral-950);
-    color: var(--white);
-  }
-
-  .block-quote--green-800 {
-    background-color: var(--green-800);
-    color: var(--white);
-  }
-
-  .block-quote--white {
-    background-color: var(--white);
-    color: var(--neutral-950);
-  }
-
-  @media screen and (max-width: 768px) {
-    .block-quote__container {
-      padding: var(--space-xl);
-    }
-    .block-quote__text {
-      font-size: clamp(1.2rem, 1.14rem + 0.3vw, 1.5rem) !important;
-    }
-  }
-</style>
+{% assign show_top_border = section.settings.show_top_border %}
+{% assign show_bottom_border = section.settings.show_top_border %}
+{% assign anchor_tag = section.settings.anchor_id %}
+{% assign quote_text = section.settings.quote_text %}
+{% assign quote_animation = section.settings.quote_animation %}
+{% assign background_color = section.settings.background_color %}
 
 <div
   id="block-quote-{{ section.id }}"
   class="block-quote"
   aria-label="Block quote section"
+  style="
+    {% if show_top_border %} border-top: 1px solid var(--neutral-50); {% endif %}
+    {% if show_bottom_border %} border-bottom: 1px solid var(--neutral-50); {% endif %}
+  "
 >
   <blockquote
-    class="block-quote__container block-quote--{{ section.settings.background_color }}"
-    {% if section.settings.anchor_id != blank %}
-      id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
+    class="block-quote__container block-quote--{{ background_color }}"
+    {% if anchor_tag %}
+      id="{{ anchor_tag | downcase | replace: ' ', '-' }}-segment"
     {% endif %}
   >
-    {% if section.settings.quote_text != blank %}
-      <p class="block-quote__text heading--3xl {% if section.settings.quote_animation != 'none' %}{{ section.settings.quote_animation }}{% endif %}">
-        {{ section.settings.quote_text }}
-      </p>
-    {% else %}
-      <p class="block-quote__text heading--3xl {% if section.settings.quote_animation != 'none' %}{{ section.settings.quote_animation }}{% endif %}">
-        Add a memorable quote that represents your brand values or highlights your products.
-      </p>
-    {% endif -%}
+    <div class="block-quote__text heading--3xl {% if quote_animation != 'none' %}{{ quote_animation }}{% endif %}">
+      {{ quote_text }}
+    </div>
   </blockquote>
 </div>
 

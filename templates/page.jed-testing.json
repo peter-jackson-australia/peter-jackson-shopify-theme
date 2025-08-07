@@ -9,20 +9,18 @@
  */
 {
   "sections": {
-    "block_quote_UTJcK8": {
-      "type": "block-quote",
-      "name": "Block Quote",
+    "blog_collection_RHQ8Ef": {
+      "type": "blog-collection",
+      "name": "Blog Collection",
       "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": false,
-        "quote_text": "Add a memorable quote that represents your brand values or highlights your products.",
-        "quote_animation": "none",
-        "background_color": "neutral-950"
+        "heading": "Test Blogs",
+        "blog": "the-jackson-journal",
+        "limit": 4,
+        "articles_per_row": 3
       }
     }
   },
   "order": [
-    "block_quote_UTJcK8"
+    "blog_collection_RHQ8Ef"
   ]
 }
