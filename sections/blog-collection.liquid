@@ -1,154 +1,34 @@
-<style>
-  .blog-collection {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding-bottom: var(--space-2xl);
-  }
+{{ 'section-blog-collection.css' | asset_url | stylesheet_tag }}
 
-  .blog-collection__heading {
-    text-align: center;
-    padding-top: var(--space-2xl);
-    padding-bottom: var(--space-2xl);
-  }
+{% assign selected_blog = blogs[section.settings.blog] %}
+{% assign blogs_per_page = section.settings.limit %}
+{% assign heading = section.settings.heading %}
 
-  .blog-collection__grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-2xs);
-  }
-
-  .blog-collection__post {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-    overflow: hidden;
-  }
-
-  .blog-collection__post-image {
-    display: block;
-    width: 100%;
-    overflow: hidden;
-    margin-bottom: var(--space-xs);
-  }
-
-  .blog-collection__post-image img {
-    width: 100%;
-    object-fit: cover;
-  }
-
-  .blog-collection__post-content {
-    padding-left: var(--space-m);
-    margin-bottom: var(--space-m);
-  }
-
-  .blog-collection__post-category {
-    color: var(--neutral-600);
-    text-transform: uppercase;
-    margin-bottom: var(--space-s);
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-
-  .blog-collection__post-title {
-    margin-bottom: var(--space-2xs);
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-
-  .blog-collection__post-title a,
-  .blog-collection__post-link-container {
-    color: var(--neutral-950);
-    text-decoration: none;
-  }
-
-  .blog-collection__post-link {
-    display: flex;
-    gap: var(--space-xs);
-  }
-
-  .blog-collection__pagination {
-    display: flex;
-    justify-content: center;
-    padding: var(--space-m);
-  }
-
-  .blog-collection__pagination ul {
-    display: flex;
-    list-style: none;
-    gap: var(--space-xs);
-    align-items: center;
-  }
-
-  .blog-collection__pagination li {
-    display: flex;
-  }
-
-  .blog-collection__pagination a,
-  .blog-collection__pagination span {
-    padding: var(--space-xs) var(--space-s);
-    color: var(--neutral-600);
-    text-decoration: none;
-    border-radius: 0;
-  }
-
-  .blog-collection__pagination a:hover,
-  .blog-collection__pagination .current {
-    color: var(--neutral-950);
-    background-color: var(--neutral-50);
-  }
-
-  @media screen and (max-width: 1440px) {
-    .blog-collection {
-      padding-bottom: var(--space-xl);
-    }
-
-    .blog-collection__grid {
-      grid-template-columns: repeat(3, 1fr);
-      gap: calc(var(--space-xs) + var(--space-xs));
-      column-gap: var(--space-2xs);
-    }
-
-    .blog-collection__post-content {
-      padding-right: var(--space-m);
-    }
-  }
-
-  @media screen and (max-width: 570px) {
-    .blog-collection__heading {
-      padding-top: var(--space-l);
-      padding-bottom: var(--space-l);
-    }
-
-    .blog-collection__grid {
-      grid-template-columns: 1fr;
-      gap: calc(var(--space-xs) + var(--space-xs));
-    }
-  }
-</style>
-
-{%- assign selected_blog = blogs[section.settings.blog] -%}
-
-{% paginate selected_blog.articles by section.settings.limit %}
+{% paginate selected_blog.articles by blogs_per_page %}
   <div class="blog-collection">
-    {% if section.settings.heading != blank %}
-      <h2 class="blog-collection__heading heading--xl">{{ section.settings.heading }}</h2>
+    {% if heading %}
+      <h2 class="blog-collection__heading heading--xl">{{ heading }}</h2>
     {% endif %}
 
     <div class="blog-collection__grid">
       {% for article in selected_blog.articles %}
+        {% assign current_img = article.image %}
+        {% assign current_url = article.url %}
+        {% assign current_title = article.title %}
+        {% assign current_title = article.title %}
+        {% assign current_tags_count = article.tags.size %}
+        {% assign current_tags_first = article.tags.first %}
+
         <article class="blog-collection__post">
-          {% if article.image %}
-            <a href="{{ article.url }}" class="blog-collection__post-image">
+          {% if current_img %}
+            <a href="{{ current_url }}" class="blog-collection__post-image">
               {{
-                article.image
+                current_img
                 | image_url: width: 850
                 | image_tag:
                   loading: 'lazy',
                   decoding: 'async',
-                  alt: article.title,
+                  alt: current_title,
                   widths: '400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2400, 3000',
                   sizes: '(max-width: 400px) 400px, (max-width: 600px) 600px, (max-width: 800px) 800px, (max-width: 1000px) 1000px, (max-width: 1200px) 1200px, (max-width: 1400px) 1400px, (max-width: 1600px) 1600px, (max-width: 1800px) 1800px, (max-width: 2000px) 2000px, (max-width: 2400px) 2400px, 100vw'
               }}
@@ -156,15 +36,15 @@
           {% endif %}
 
           <div class="blog-collection__post-content">
-            {% if article.tags.size > 0 %}
-              <div class="blog-collection__post-category small">{{ article.tags.first }}</div>
+            {% if current_tags_count > 0 %}
+              <div class="blog-collection__post-category small">{{ current_tags_first }}</div>
             {% endif %}
 
             <h3 class="blog-collection__post-title heading--l">
-              <a href="{{ article.url }}">{{ article.title }}</a>
+              <a href="{{ current_url }}">{{ current_title }}</a>
             </h3>
 
-            <a href="{{ article.url }}" class="blog-collection__post-link-container">
+            <a href="{{ current_url }}" class="blog-collection__post-link-container">
               <span class="blog-collection__post-link body"
                 >Read The Article {% render '_icon-arrow-submit-dark' -%}
               </span>
