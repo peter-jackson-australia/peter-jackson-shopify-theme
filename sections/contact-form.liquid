@@ -336,13 +336,11 @@
           </button>
         </div>
         {% if form.posted_successfully? %}
-          <div class="contact-form__success heading--l">
-            <strong>Thanks for your enquiry!</strong>
-          </div>
+          <p class="contact-form__success heading--l">Thanks for your enquiry!</p>
         {% else %}
-          <div class="contact-form__error heading--l">
+          <p class="contact-form__error heading--l">
             {{ form.errors | default_errors }}
-          </div>
+          </p>
         {% endif %}
       {% endform %}
     </div>
