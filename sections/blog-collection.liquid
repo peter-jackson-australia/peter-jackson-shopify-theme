@@ -1,6 +1,6 @@
 {{ 'section-blog-collection.css' | asset_url | stylesheet_tag }}
 
-{%- assign selected_blog = blogs[section.settings.blog] -%}
+{% assign selected_blog = blogs[section.settings.blog] %}
 {% assign blogs_per_page = section.settings.limit %}
 {% assign heading = section.settings.heading %}
 
