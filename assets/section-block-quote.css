@@ -6,11 +6,6 @@
   padding: var(--space-3xl);
 }
 
-.block-quote__text {
-  max-width: 40ch;
-  margin: 0 auto;
-}
-
 .block-quote--neutral-950 {
   background-color: var(--neutral-950);
   color: var(--white);
@@ -24,6 +19,11 @@
 .block-quote--white {
   background-color: var(--white);
   color: var(--neutral-950);
+}
+
+.block-quote__text {
+  max-width: 40ch;
+  margin: 0 auto;
 }
 
 @media screen and (max-width: 768px) {

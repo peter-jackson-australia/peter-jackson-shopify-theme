@@ -27,15 +27,9 @@
       id="{{ anchor_tag | downcase | replace: ' ', '-' }}-segment"
     {% endif %}
   >
-    {% if quote_text %}
-      <p class="block-quote__text heading--3xl {% if quote_animation != 'none' %}{{ quote_animation }}{% endif %}">
-        {{ quote_text }}
-      </p>
-    {% else %}
-      <p class="block-quote__text heading--3xl {% if quote_animation != 'none' %}{{ quote_animation }}{% endif %}">
-        Add a memorable quote that represents your brand values or highlights your products.
-      </p>
-    {% endif -%}
+    <p class="block-quote__text heading--3xl {% if quote_animation != 'none' %}{{ quote_animation }}{% endif %}">
+      {{ quote_text }}
+    </p>
   </blockquote>
 </div>
 
