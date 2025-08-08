@@ -1032,6 +1032,11 @@
               <div class="product-tabs__content" data-content="description">
                 <div class="product-tabs__description rte body">
                   {{ product.description }}
+                  {% if product.metafields.custom.stylist_notes %}
+                    <div>
+                      {{ product.metafields.custom.stylist_notes | metafield_tag }}
+                    </div>
+                  {% endif %}
                   {% if section.settings.show_usps %}
                     <hr
                       class="product-tabs__description-usp-hr"
