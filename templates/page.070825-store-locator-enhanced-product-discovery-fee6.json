@@ -12,10 +12,92 @@
     "store_locator_MeaHa9": {
       "type": "store-locator",
       "name": "Store Locator",
-      "settings": {}
+      "settings": {
+        "heading": "Store Locations"
+      }
+    },
+    "variable_column_content_tertiary_YHVRFY": {
+      "type": "variable-column-content-tertiary",
+      "blocks": {
+        "column_item_cpgqRq": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/HYS_Denim_BW.webp",
+            "image_link": "shopify://collections/mens-suits",
+            "heading": "Suits",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "column_link": "shopify://collections/mens-suits",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_qk43E6": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/HYS_Denim_BW.webp",
+            "image_link": "shopify://collections/sport-jackets",
+            "heading": "Sports Jackets",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "column_link": "shopify://collections/sport-jackets",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_zJnyng": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/HYS_Denim_BW.webp",
+            "image_link": "shopify://collections/business-shirts",
+            "heading": "Business Shirts",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "column_link": "shopify://collections/business-shirts",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_cpgqRq",
+        "column_item_qk43E6",
+        "column_item_zJnyng"
+      ],
+      "name": "Variable Column Content Tertiary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "3",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "Variable Column Content Tertiary",
+        "heading_animation": "none",
+        "text": "Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    },
+    "collection_slider_secondary_XNdMD3": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "New In Now",
+        "heading_animation": "none",
+        "description": "Layer up with premium wool/cashmere blends.",
+        "description_animation": "none",
+        "collection": "new-arrivals",
+        "button_label": "Shop Now",
+        "products_to_show": 12,
+        "animate_products": false
+      }
     }
   },
   "order": [
-    "store_locator_MeaHa9"
+    "store_locator_MeaHa9",
+    "variable_column_content_tertiary_YHVRFY",
+    "collection_slider_secondary_XNdMD3"
   ]
 }
