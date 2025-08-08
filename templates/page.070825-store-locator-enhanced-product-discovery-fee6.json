@@ -28,6 +28,8 @@
             "heading_animation": "none",
             "text": "",
             "text_animation": "none",
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
             "column_link": "shopify://collections/mens-suits",
             "column_link_text": "Shop Now"
           }
@@ -41,6 +43,8 @@
             "heading_animation": "none",
             "text": "",
             "text_animation": "none",
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
             "column_link": "shopify://collections/sport-jackets",
             "column_link_text": "Shop Now"
           }
@@ -54,6 +58,8 @@
             "heading_animation": "none",
             "text": "",
             "text_animation": "none",
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
             "column_link": "shopify://collections/business-shirts",
             "column_link_text": "Shop Now"
           }
