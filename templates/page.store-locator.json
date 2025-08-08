@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "store_locator_MeaHa9": {
       "type": "store-locator",
@@ -39,7 +39,7 @@
           "type": "column_item",
           "settings": {
             "image": "shopify://shop_images/Store_Locator___Business_Shirts.webp",
-            "image_link": "shopify://collections/sport-jackets",
+            "image_link": "shopify://collections/business-shirts",
             "heading": "Business Shirts From $99.95",
             "heading_animation": "none",
             "text": "",
@@ -47,7 +47,7 @@
             "show_gradient_overlay": true,
             "content_horizontal_alignment": "left",
             "content_vertical_alignment": "bottom",
-            "column_link": "shopify://collections/sport-jackets",
+            "column_link": "shopify://collections/business-shirts",
             "column_link_text": "Shop Now"
           }
         },
@@ -55,7 +55,7 @@
           "type": "column_item",
           "settings": {
             "image": "shopify://shop_images/Store_Locator___Sports_Jackets.webp",
-            "image_link": "shopify://collections/business-shirts",
+            "image_link": "shopify://collections/sport-jackets",
             "heading": "Sports Jackets From $299",
             "heading_animation": "none",
             "text": "",
@@ -63,7 +63,7 @@
             "show_gradient_overlay": true,
             "content_horizontal_alignment": "left",
             "content_vertical_alignment": "bottom",
-            "column_link": "shopify://collections/business-shirts",
+            "column_link": "shopify://collections/sport-jackets",
             "column_link_text": "Shop Now"
           }
         }
