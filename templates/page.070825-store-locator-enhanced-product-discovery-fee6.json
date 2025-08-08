@@ -22,9 +22,9 @@
         "column_item_cpgqRq": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/HYS_Denim_BW.webp",
+            "image": "shopify://shop_images/Store_Locator___Suits.webp",
             "image_link": "shopify://collections/mens-suits",
-            "heading": "Suits",
+            "heading": "Suits From $399",
             "heading_animation": "none",
             "text": "",
             "text_animation": "none",
@@ -35,9 +35,9 @@
         "column_item_qk43E6": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/HYS_Denim_BW.webp",
+            "image": "shopify://shop_images/Store_Locator___Business_Shirts.webp",
             "image_link": "shopify://collections/sport-jackets",
-            "heading": "Sports Jackets",
+            "heading": "Business Shirts From $99.95",
             "heading_animation": "none",
             "text": "",
             "text_animation": "none",
@@ -48,9 +48,9 @@
         "column_item_zJnyng": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/HYS_Denim_BW.webp",
+            "image": "shopify://shop_images/Store_Locator___Sports_Jackets.webp",
             "image_link": "shopify://collections/business-shirts",
-            "heading": "Business Shirts",
+            "heading": "Sports Jackets From $299",
             "heading_animation": "none",
             "text": "",
             "text_animation": "none",
@@ -72,9 +72,9 @@
         "column_count": "3",
         "text_alignment": "center",
         "animate_columns": false,
-        "heading": "Variable Column Content Tertiary",
+        "heading": "",
         "heading_animation": "none",
-        "text": "Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.",
+        "text": "",
         "text_animation": "none",
         "button_label": "Learn More",
         "button_link": ""
@@ -86,7 +86,7 @@
       "settings": {
         "heading": "New In Now",
         "heading_animation": "none",
-        "description": "Layer up with premium wool/cashmere blends.",
+        "description": "",
         "description_animation": "none",
         "collection": "new-arrivals",
         "button_label": "Shop Now",
