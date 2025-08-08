@@ -68,9 +68,9 @@
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
-        "show_bottom_border": false,
+        "show_bottom_border": true,
         "column_count": "3",
-        "text_alignment": "left",
+        "text_alignment": "center",
         "animate_columns": false,
         "heading": "Variable Column Content Tertiary",
         "heading_animation": "none",
