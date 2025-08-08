@@ -40,14 +40,52 @@
 
   .variable-column-content-tertiary__column-content {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
     padding: var(--space-m);
     width: 90%;
     box-sizing: border-box;
     z-index: 2;
+  }
+
+  .variable-column-content-tertiary__column-content--h-left {
+    left: 5%;
+    text-align: left;
+  }
+
+  .variable-column-content-tertiary__column-content--h-center {
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+  .variable-column-content-tertiary__column-content--h-right {
+    right: 5%;
+    text-align: right;
+  }
+
+  .variable-column-content-tertiary__column-content--v-top {
+    top: var(--space-m);
+  }
+
+  .variable-column-content-tertiary__column-content--v-center {
+    top: 50%;
+  }
+
+  .variable-column-content-tertiary__column-content--v-bottom {
+    bottom: var(--space-m);
+  }
+
+  .variable-column-content-tertiary__column-content--h-center.variable-column-content-tertiary__column-content--v-center {
+    transform: translate(-50%, -50%);
+  }
+
+  .variable-column-content-tertiary__column-content--h-center.variable-column-content-tertiary__column-content--v-top,
+  .variable-column-content-tertiary__column-content--h-center.variable-column-content-tertiary__column-content--v-bottom {
+    transform: translateX(-50%);
+  }
+
+  .variable-column-content-tertiary__column-content--h-left.variable-column-content-tertiary__column-content--v-center,
+  .variable-column-content-tertiary__column-content--h-right.variable-column-content-tertiary__column-content--v-center {
+    transform: translateY(-50%);
   }
 
   .variable-column-content-tertiary__column-heading {
@@ -177,7 +215,9 @@
                 }}
 
                 {% if block.settings.heading != blank or block.settings.text != blank %}
-                  <div class="variable-column-content-tertiary__column-content">
+                  {% assign h_align = block.settings.content_horizontal_alignment | default: 'center' %}
+                  {% assign v_align = block.settings.content_vertical_alignment | default: 'center' %}
+                  <div class="variable-column-content-tertiary__column-content variable-column-content-tertiary__column-content--h-{{ h_align }} variable-column-content-tertiary__column-content--v-{{ v_align }}">
                     {% if block.settings.heading != blank %}
                       <h3 class="variable-column-content-tertiary__column-heading heading--l {% if block.settings.heading_animation != 'none' %}{{ block.settings.heading_animation }}{% endif %}">
                         {{ block.settings.heading }}
@@ -461,6 +501,48 @@
             }
           ],
           "default": "none"
+        },
+        {
+          "type": "select",
+          "id": "content_horizontal_alignment",
+          "label": "Content Horizontal Alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "center",
+          "info": "Position content horizontally over the image"
+        },
+        {
+          "type": "select",
+          "id": "content_vertical_alignment",
+          "label": "Content Vertical Alignment",
+          "options": [
+            {
+              "value": "top",
+              "label": "Top"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "bottom",
+              "label": "Bottom"
+            }
+          ],
+          "default": "center",
+          "info": "Position content vertically over the image"
         },
         {
           "type": "url",
