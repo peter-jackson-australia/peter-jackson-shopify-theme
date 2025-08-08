@@ -473,6 +473,14 @@
     color: var(--neutral-600);
   }
 
+  .product-tabs__description-stylist-notes-heading {
+    color: var(--neutral-950);
+  }
+
+  .product-tabs__description-stylist-notes-heading + div {
+    margin-top: var(--space-xs);
+  }
+
   .product-tabs__description-usp-hr {
     border: 0;
     border-top: 1px solid var(--neutral-50);
@@ -1034,6 +1042,7 @@
                   {{ product.description }}
                   {% if product.metafields.custom.stylist_notes %}
                     <div>
+                      <strong class="product-tabs__description-stylist-notes-heading body--bold">Stylist Notes</strong>
                       {{ product.metafields.custom.stylist_notes | metafield_tag }}
                     </div>
                   {% endif %}
