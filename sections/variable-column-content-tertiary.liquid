@@ -31,6 +31,19 @@
     position: relative;
   }
 
+  .variable-column-content-tertiary__image-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+    pointer-events: none;
+    display: none;
+  }
+
+  .variable-column-content-tertiary__image-wrapper--gradient::after {
+    display: block;
+  }
+
   .variable-column-content-tertiary__image {
     width: 100%;
     height: 100%;
@@ -46,6 +59,7 @@
     z-index: 2;
   }
 
+  /* Horizontal alignment classes */
   .variable-column-content-tertiary__column-content--h-left {
     left: 5%;
     text-align: left;
@@ -62,6 +76,7 @@
     text-align: right;
   }
 
+  /* Vertical alignment classes */
   .variable-column-content-tertiary__column-content--v-top {
     top: var(--space-m);
   }
@@ -74,6 +89,7 @@
     bottom: var(--space-m);
   }
 
+  /* Combined center transforms */
   .variable-column-content-tertiary__column-content--h-center.variable-column-content-tertiary__column-content--v-center {
     transform: translate(-50%, -50%);
   }
@@ -202,7 +218,7 @@
             {% endif %}
 
             {% if block.settings.image != blank %}
-              <div class="variable-column-content-tertiary__image-wrapper">
+              <div class="variable-column-content-tertiary__image-wrapper{% if block.settings.show_gradient_overlay %} variable-column-content-tertiary__image-wrapper--gradient{% endif %}">
                 {{
                   block.settings.image
                   | image_url: width: 1200
@@ -501,6 +517,13 @@
             }
           ],
           "default": "none"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_gradient_overlay",
+          "label": "Show Gradient Overlay",
+          "default": false,
+          "info": "Adds a dark-to-transparent gradient from bottom to top"
         },
         {
           "type": "select",
