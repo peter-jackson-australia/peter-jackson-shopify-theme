@@ -5,13 +5,11 @@ const cartElements = {
   cartLinks: document.querySelectorAll(".js-cart-icon"),
 };
 
-
 document.addEventListener("DOMContentLoaded", () => {
   initCartFromStorage();
   addCartEventListeners();
 });
 
-// Currently refactoring this
 function initCartFromStorage() {
   const savedCart = localStorage.getItem("cartData");
   if (savedCart) {
@@ -33,6 +31,7 @@ function initCartFromStorage() {
   });
 }
 
+// Currently refactoring this
 function prePopulateCartDrawer(cartData) {
   const cartEmpty = document.querySelector(".cart__empty-state");
   if (!cartEmpty) return;
