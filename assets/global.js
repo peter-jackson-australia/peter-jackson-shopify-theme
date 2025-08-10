@@ -5,38 +5,31 @@ const cartElements = {
   cartLinks: document.querySelectorAll(".js-cart-icon"),
 };
 
+
 document.addEventListener("DOMContentLoaded", () => {
   initCartFromStorage();
   addCartEventListeners();
 });
 
+// Currently refactoring this
 function initCartFromStorage() {
-  const storedCartData = localStorage.getItem("cartData");
-
-  if (storedCartData) {
-    try {
-      const cartData = JSON.parse(storedCartData);
-
-      if (cartData.count > 0) {
-        updateCartIndicators(cartData.count);
-      }
-
-      if (cartData.items && cartData.items.length > 0) {
-        prePopulateCartDrawer(cartData);
-      }
-    } catch (e) {
-      console.error("Error parsing stored cart data:", e);
+  const savedCart = localStorage.getItem("cartData");
+  if (savedCart) {
+    const cart = JSON.parse(savedCart);
+    if (cart.count > 0) {
+      updateCartIndicators(cart.count);
     }
+    // if (cart.items?.length > 0) {
+    //   prePopulateCartDrawer(cart);
+    // }
   }
 
-  fetchCart().then((cart) => {
-    if (cart) {
-      updateCartDrawer().then(() => {
-        if (cart.item_count > 0) {
-          handleSliderIndependently();
-        }
-      });
-    }
+  fetchCart().then((freshCart) => {
+    updateCartDrawer().then(() => {
+      if (freshCart?.item_count > 0) {
+        handleSliderIndependently();
+      }
+    });
   });
 }
 
