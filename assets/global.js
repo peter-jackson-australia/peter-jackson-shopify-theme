@@ -151,20 +151,18 @@ function createAnimatedLoader() {
   return loader;
 }
 
-// Currently refactoring this
+// Refactored
 function showError(container, message, className = "product-error body") {
-  const existingError = container.querySelector(`.${className.split(" ")[0]}`);
-  if (existingError) existingError.remove();
-
-  const errorElement = document.createElement("div");
-  errorElement.className = className;
-  errorElement.textContent = message;
-
-  const target = container.querySelector("#js--addtocart") || container.querySelector(".cart-item__actions");
-  if (target) target.after(errorElement);
-  return errorElement;
+  container.querySelectorAll('[class*="error"]').forEach(el => el.remove());
+  
+  const error = document.createElement("div");
+  error.className = className;
+  error.textContent = message;
+  
+  container.querySelector("#js--addtocart, .cart-item__actions")?.after(error);
 }
 
+// Currently refactoring this
 function createLoadingPlaceholder(element) {
   const originalHTML = element.innerHTML;
   element.innerHTML = "";
