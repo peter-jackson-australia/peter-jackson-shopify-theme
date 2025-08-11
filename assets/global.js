@@ -903,21 +903,23 @@ cartElements.cartLinks.forEach((link) => {
   });
 });
 
-// Refactored
+// Fixing this one
 async function fetchComplementaryProducts(productIds) {
   const cartHandles = new Set(productIds);
   const seenHandles = new Set([...cartHandles]);
-  const recommendations = [];
+  const finalProducts = [];
 
   const fetchRecommendations = async (handle) => {
     try {
       const productRes = await fetch(`/products/${handle}.js`);
       if (!productRes.ok) return [];
-
+      
       const product = await productRes.json();
-      const recsRes = await fetch(`/recommendations/products.json?product_id=${product.id}&limit=10&intent=related`);
+      const recsRes = await fetch(
+        `/recommendations/products.json?product_id=${product.id}&limit=10&intent=related`
+      );
       if (!recsRes.ok) return [];
-
+      
       const data = await recsRes.json();
       return data.products || [];
     } catch {
@@ -925,20 +927,27 @@ async function fetchComplementaryProducts(productIds) {
     }
   };
 
-  const allRecommendations = await Promise.all(productIds.slice(0, 4).map(fetchRecommendations));
+  const allRecommendations = await Promise.all(
+    productIds.slice(0, 4).map(fetchRecommendations)
+  );
 
   for (const products of allRecommendations) {
+    let addedFromThisItem = 0;
+    
     for (const product of products) {
+      if (addedFromThisItem >= 2) break;
+      
       if (!seenHandles.has(product.handle)) {
         seenHandles.add(product.handle);
-        recommendations.push(product);
-        if (recommendations.length >= 8) break;
+        finalProducts.push(product);
+        addedFromThisItem++;
+        
+        if (finalProducts.length >= 8) return finalProducts;
       }
     }
-    if (recommendations.length >= 8) break;
   }
 
-  return recommendations.slice(0, 8);
+  return finalProducts;
 }
 
 // Refactored
@@ -955,7 +964,7 @@ async function updateComplementarySlider() {
   if (!container) return;
 
   const productIds = Array.from(document.querySelectorAll(".cart-item .cart-item__title a"))
-    .map(link => link.href.split("/products/")[1]?.split("?")[0])
+    .map((link) => link.href.split("/products/")[1]?.split("?")[0])
     .filter(Boolean);
 
   if (!productIds.length) {
@@ -965,7 +974,7 @@ async function updateComplementarySlider() {
 
   const loading = container.querySelector(".cart__complementary-products-loading");
   const content = container.querySelector(".cart__complementary-products-content");
-  
+
   container.style.display = "block";
   if (loading) loading.style.display = "block";
   if (content) content.style.display = "none";
@@ -974,45 +983,42 @@ async function updateComplementarySlider() {
   renderComplementarySlider(products);
 }
 
-// Currently refactoring this
-function renderComplementarySlider(products, productIds = null) {
+// Refactored
+function renderComplementarySlider(products) {
   const container = document.querySelector(".cart__complementary-products");
-  const loading = document.querySelector(".cart__complementary-products-loading");
-  const content = document.querySelector(".cart__complementary-products-content");
-  const splideList = document.querySelector(".cart__complementary-products .splide__list");
-
-  if (!container || !loading || !content || !splideList) return;
-
-  if (products.length === 0) {
-    hideComplementaryProducts();
+  if (!container || !products.length) {
+    if (container) container.style.display = "none";
     return;
   }
 
-  if (productIds) {
-  }
+  const loading = container.querySelector(".cart__complementary-products-loading");
+  const content = container.querySelector(".cart__complementary-products-content");
+  const splideList = container.querySelector(".splide__list");
+
+  if (!loading || !content || !splideList) return;
 
   if (window.complementarySlider) {
     window.complementarySlider.destroy();
     window.complementarySlider = null;
   }
 
-  splideList.innerHTML = "";
-  products.forEach((product) => {
-    const slide = document.createElement("li");
-    slide.className = "splide__slide";
-    slide.innerHTML = `
-      <a href="/products/${product.handle}">
-        <div class="cart__complementary-products-image-wrapper">
-          <img src="https:${product.featured_image}&width=300" alt="${
-      product.title
-    }" class="cart__complementary-products-image">
-        </div>
-        <h3 class="body--bold cart__complementary-products-title-product">${product.title}</h3>
-        <p class="small cart__complementary-products-price">$${formatMoney(product.price)}</p>
-      </a>
-    `;
-    splideList.appendChild(slide);
-  });
+  splideList.innerHTML = products
+    .map(
+      (product) => `
+      <li class="splide__slide">
+        <a href="/products/${product.handle}">
+          <div class="cart__complementary-products-image-wrapper">
+            <img src="https:${product.featured_image}&width=300" alt="${
+        product.title
+      }" class="cart__complementary-products-image">
+          </div>
+          <h3 class="body--bold cart__complementary-products-title-product">${product.title}</h3>
+          <p class="small cart__complementary-products-price">$${formatMoney(product.price)}</p>
+        </a>
+      </li>
+    `
+    )
+    .join("");
 
   window.complementarySlider = new Splide(container.querySelector(".cart__complementary-products-slider"), {
     type: "slide",
@@ -1022,11 +1028,9 @@ function renderComplementarySlider(products, productIds = null) {
     pagination: false,
   }).mount();
 
-  const arrows = container.querySelectorAll(".splide__arrow");
-  if (products.length <= 2) {
-    arrows.forEach((arrow) => (arrow.style.display = "none"));
-  } else {
-    arrows.forEach((arrow) => (arrow.style.display = "block"));
+  const arrows = container.querySelector(".splide__arrows");
+  if (arrows) {
+    arrows.style.display = products.length <= 2 ? "none" : "flex";
   }
 
   container.style.display = "block";
