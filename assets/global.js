@@ -144,14 +144,14 @@ function formatMoney(cents, format = "{{amount_with_comma_separator}}") {
   return decimals !== undefined ? formatted + decimal + decimals : formatted;
 }
 
-// Currently refactoring this
+// Refactored
 function createAnimatedLoader() {
   const loader = document.createElement("div");
-  loader.className = "animated-loader";
   loader.innerHTML = `<svg fill=#E7E7E7 style=height:4px;display:block viewBox="0 0 40 4"xmlns=http://www.w3.org/2000/svg><style>.react{animation:moving 1s ease-in-out infinite}@keyframes moving{0%{width:0%}50%{width:100%;transform:translate(0,0)}100%{width:0;right:0;transform:translate(100%,0)}}</style><rect class=react fill=#E7E7E7 height=4 width=40 /></svg>`;
   return loader;
 }
 
+// Currently refactoring this
 function showError(container, message, className = "product-error body") {
   const existingError = container.querySelector(`.${className.split(" ")[0]}`);
   if (existingError) existingError.remove();
