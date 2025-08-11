@@ -419,34 +419,27 @@ function ensureSliderContainerExists() {
   cartForm.insertBefore(container, footer);
 }
 
-// Currently refactoring this
+// Refactored
 function handleSliderIndependently() {
   const cartItems = document.querySelectorAll(".cart-item");
-
-  if (cartItems.length === 0) {
+  
+  if (!cartItems.length) {
     hideComplementaryProducts();
     return;
   }
 
   ensureSliderContainerExists();
 
-  const productIds = [];
-  cartItems.forEach((item) => {
-    const link = item.querySelector(".cart-item__title a");
-    if (link) {
-      const url = link.getAttribute("href");
-      const productHandle = url.split("/products/")[1]?.split("?")[0];
-      if (productHandle) {
-        productIds.push(productHandle);
-      }
-    }
-  });
+  const productIds = Array.from(cartItems)
+    .map(item => item.querySelector(".cart-item__title a")?.href?.split("/products/")[1]?.split("?")[0])
+    .filter(Boolean);
 
-  if (productIds.length > 0) {
+  if (productIds.length) {
     rebuildComplementarySlider(productIds);
   }
 }
 
+// Currently refactoring this
 function updateFreeShippingBar(cartTotal) {
   const shipping = document.querySelector(".cart__shipping");
   const text = document.querySelector(".cart__shipping-text");
