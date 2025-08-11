@@ -903,62 +903,45 @@ cartElements.cartLinks.forEach((link) => {
   });
 });
 
-// Currently refactoring this
+// Refactored
 async function fetchComplementaryProducts(productIds) {
-  const limitedProductIds = productIds.slice(0, 4);
-  const { productIds: cartProductIds, productHandles: cartProductHandles } = await getCartProductIds();
-  const seenProductIds = new Set();
-  const seenProductHandles = new Set();
-  const finalProducts = [];
+  const cartHandles = new Set(productIds);
+  const seenHandles = new Set([...cartHandles]);
+  const recommendations = [];
 
-  const productPromises = limitedProductIds.map(async (productId) => {
+  const fetchRecommendations = async (handle) => {
     try {
-      const productResponse = await fetch(`/products/${productId}.js`);
-      if (!productResponse.ok) return { productId, products: [] };
+      const productRes = await fetch(`/products/${handle}.js`);
+      if (!productRes.ok) return [];
 
-      const productData = await productResponse.json();
-      const actualProductId = productData.id;
+      const product = await productRes.json();
+      const recsRes = await fetch(`/recommendations/products.json?product_id=${product.id}&limit=10&intent=related`);
+      if (!recsRes.ok) return [];
 
-      const response = await fetch(
-        `/recommendations/products.json?product_id=${actualProductId}&limit=10&intent=related`
-      );
-      if (!response.ok) return { productId, products: [] };
-
-      const data = await response.json();
-      const products = data.products || [];
-
-      return { productId, products };
-    } catch (e) {
-      console.error("Error fetching:", e);
-      return { productId, products: [] };
+      const data = await recsRes.json();
+      return data.products || [];
+    } catch {
+      return [];
     }
-  });
+  };
 
-  const allResults = await Promise.all(productPromises);
+  const allRecommendations = await Promise.all(productIds.slice(0, 4).map(fetchRecommendations));
 
-  for (const result of allResults) {
-    if (!result.products || result.products.length === 0) continue;
-
-    let productsAddedForThisItem = 0;
-
-    for (const product of result.products) {
-      if (productsAddedForThisItem >= 2) break;
-
-      if (seenProductIds.has(product.id)) continue;
-      if (seenProductHandles.has(product.handle)) continue;
-
-      if (isProductInCart(product, cartProductIds, cartProductHandles)) continue;
-
-      seenProductIds.add(product.id);
-      seenProductHandles.add(product.handle);
-      finalProducts.push(product);
-      productsAddedForThisItem++;
+  for (const products of allRecommendations) {
+    for (const product of products) {
+      if (!seenHandles.has(product.handle)) {
+        seenHandles.add(product.handle);
+        recommendations.push(product);
+        if (recommendations.length >= 8) break;
+      }
     }
+    if (recommendations.length >= 8) break;
   }
 
-  return finalProducts.slice(0, 8);
+  return recommendations.slice(0, 8);
 }
 
+// Refactored
 function hideComplementaryProducts() {
   const container = document.querySelector(".cart__complementary-products");
   if (container) {
@@ -966,6 +949,7 @@ function hideComplementaryProducts() {
   }
 }
 
+// Currently refactoring this
 async function updateComplementarySlider() {
   const container = document.querySelector(".cart__complementary-products");
   const loading = document.querySelector(".cart__complementary-products-loading");
