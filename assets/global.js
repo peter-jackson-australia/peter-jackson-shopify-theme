@@ -264,17 +264,23 @@ async function rebuildComplementarySlider(productIds) {
       return;
     }
 
-    splideList.innerHTML = products.map(product => `
+    splideList.innerHTML = products
+      .map(
+        (product) => `
       <li class="splide__slide">
         <a href="/products/${product.handle}">
           <div class="cart__complementary-products-image-wrapper">
-            <img src="https:${product.featured_image}&width=300" alt="${product.title}" class="cart__complementary-products-image">
+            <img src="https:${product.featured_image}&width=300" alt="${
+          product.title
+        }" class="cart__complementary-products-image">
           </div>
           <h3 class="body--bold cart__complementary-products-title-product">${product.title}</h3>
           <p class="small cart__complementary-products-price">$${formatMoney(product.price)}</p>
         </a>
       </li>
-    `).join('');
+    `
+      )
+      .join("");
 
     window.complementarySlider = new Splide(container.querySelector(".cart__complementary-products-slider"), {
       type: "slide",
@@ -291,7 +297,6 @@ async function rebuildComplementarySlider(productIds) {
 
     loading.style.display = "none";
     content.style.display = "block";
-
   } catch (e) {
     console.error("Error rebuilding slider:", e);
     container.style.display = "none";
@@ -300,7 +305,7 @@ async function rebuildComplementarySlider(productIds) {
   }
 }
 
-// Currently refactoring this
+// Refactored
 async function updateCartDrawer() {
   try {
     const currentProgress = document.querySelector(".cart__shipping-progress");
@@ -308,33 +313,22 @@ async function updateCartDrawer() {
 
     const [drawerRes, cartData] = await Promise.all([fetch("/?section_id=cart-drawer"), fetchCart()]);
 
-    const text = await drawerRes.text();
     const html = document.createElement("div");
-    html.innerHTML = text;
+    html.innerHTML = await drawerRes.text();
 
-    const images = html.querySelectorAll(".cart-item__image img");
-    await Promise.all(
-      Array.from(images).map((img) => {
-        return new Promise((resolve) => {
-          const preloadImg = new Image();
-          preloadImg.onload = resolve;
-          preloadImg.onerror = resolve;
-          preloadImg.src = img.src;
-        });
-      })
-    );
+    document.querySelectorAll(".cart__shipping--loading").forEach((el) => el.remove());
 
-    const newShippingBar = html.querySelector(".cart__shipping");
-    const existingShippingBar = document.querySelector(".cart__shipping");
-    if (newShippingBar && existingShippingBar) {
+    const newShipping = html.querySelector(".cart__shipping");
+    const oldShipping = document.querySelector(".cart__shipping");
+    if (newShipping && oldShipping) {
       const hasItems = html.querySelector(".cart-item");
       if (hasItems) {
-        newShippingBar.style.display = "block";
-        newShippingBar.style.height = "93px";
+        newShipping.style.display = "block";
+        newShipping.style.height = "93px";
 
         const threshold = 9900;
-        const newText = newShippingBar.querySelector(".cart__shipping-text");
-        const newProgress = newShippingBar.querySelector(".cart__shipping-progress");
+        const newText = newShipping.querySelector(".cart__shipping-text");
+        const newProgress = newShipping.querySelector(".cart__shipping-progress");
 
         if (cartData && newText && newProgress) {
           if (cartData.total_price >= threshold) {
@@ -346,33 +340,27 @@ async function updateCartDrawer() {
           newProgress.style.width = currentWidth;
         }
       }
-
-      const loadingShippingBars = document.querySelectorAll(".cart__shipping--loading");
-      loadingShippingBars.forEach((bar) => bar.remove());
-
-      existingShippingBar.replaceWith(newShippingBar);
+      oldShipping.replaceWith(newShipping);
     }
 
-    const newCartItems = html.querySelector(".cart__items");
-    const existingCartItems = document.querySelector(".cart__items");
-    if (newCartItems && existingCartItems) {
-      existingCartItems.replaceWith(newCartItems);
-    }
+    const replaceIfExists = (selector) => {
+      const newEl = html.querySelector(selector);
+      const oldEl = document.querySelector(selector);
+      if (newEl && oldEl) oldEl.replaceWith(newEl);
+    };
 
-    const newFooter = html.querySelector(".cart__footer");
-    const existingFooter = document.querySelector(".cart__footer");
-    if (newFooter && existingFooter) {
-      existingFooter.replaceWith(newFooter);
-    }
+    replaceIfExists(".cart__items");
+    replaceIfExists(".cart__footer");
 
-    const newEmptyState = html.querySelector(".cart__empty-state");
-    const existingEmptyState = document.querySelector(".cart__empty-state");
-    if (newEmptyState && !existingEmptyState) {
-      const cartForm = document.querySelector(".cart__form");
+    const newEmpty = html.querySelector(".cart__empty-state");
+    const oldEmpty = document.querySelector(".cart__empty-state");
+    const cartForm = document.querySelector(".cart__form");
+
+    if (newEmpty && !oldEmpty && cartForm) {
       cartForm.innerHTML = "";
-      cartForm.appendChild(newEmptyState);
-    } else if (!newEmptyState && existingEmptyState) {
-      existingEmptyState.remove();
+      cartForm.appendChild(newEmpty);
+    } else if (!newEmpty && oldEmpty) {
+      oldEmpty.remove();
     }
 
     addCartEventListeners();
@@ -391,6 +379,7 @@ async function updateCartDrawer() {
   }
 }
 
+// Currently refactoring this
 function ensureSliderContainerExists() {
   if (document.querySelector(".cart__complementary-products")) return;
 
