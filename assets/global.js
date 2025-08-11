@@ -233,8 +233,8 @@ function destroyComplementarySlider() {
   if (container) container.style.display = "none";
 }
 
-// Currently refactoring this
-function rebuildComplementarySlider(productIds) {
+// Refactored
+async function rebuildComplementarySlider(productIds) {
   if (sliderUpdateInProgress) return;
   sliderUpdateInProgress = true;
 
@@ -243,14 +243,10 @@ function rebuildComplementarySlider(productIds) {
   const container = document.querySelector(".cart__complementary-products");
   const loading = document.querySelector(".cart__complementary-products-loading");
   const content = document.querySelector(".cart__complementary-products-content");
+  const splideList = container?.querySelector(".splide__list");
 
-  if (!container || !loading || !content) {
-    sliderUpdateInProgress = false;
-    return;
-  }
-
-  if (productIds.length === 0) {
-    container.style.display = "none";
+  if (!container || !loading || !content || !splideList || productIds.length === 0) {
+    if (container) container.style.display = "none";
     sliderUpdateInProgress = false;
     return;
   }
@@ -259,64 +255,52 @@ function rebuildComplementarySlider(productIds) {
   loading.style.display = "block";
   content.style.display = "none";
 
-  fetchComplementaryProducts(productIds)
-    .then((products) => {
-      if (!sliderUpdateInProgress) return;
+  try {
+    const products = await fetchComplementaryProducts(productIds);
 
-      if (products.length === 0) {
-        container.style.display = "none";
-        sliderUpdateInProgress = false;
-        return;
-      }
-
-      const splideList = container.querySelector(".splide__list");
-      if (splideList) {
-        splideList.innerHTML = "";
-
-        products.forEach((product) => {
-          const slide = document.createElement("li");
-          slide.className = "splide__slide";
-          slide.innerHTML = `
-          <a href="/products/${product.handle}">
-            <div class="cart__complementary-products-image-wrapper">
-              <img src="https:${product.featured_image}&width=300" alt="${
-            product.title
-          }" class="cart__complementary-products-image">
-            </div>
-            <h3 class="body--bold cart__complementary-products-title-product">${product.title}</h3>
-            <p class="small cart__complementary-products-price">$${formatMoney(product.price)}</p>
-          </a>
-        `;
-          splideList.appendChild(slide);
-        });
-
-        window.complementarySlider = new Splide(container.querySelector(".cart__complementary-products-slider"), {
-          type: "slide",
-          perPage: 2,
-          gap: "var(--space-2xs)",
-          arrows: true,
-          pagination: false,
-        }).mount();
-
-        const arrowsContainer = container.querySelector(".splide__arrows");
-        if (products.length <= 2) {
-          arrowsContainer.style.display = "none";
-        } else {
-          arrowsContainer.style.display = "flex";
-        }
-
-        loading.style.display = "none";
-        content.style.display = "block";
-      }
-      sliderUpdateInProgress = false;
-    })
-    .catch((e) => {
-      console.error("Error rebuilding slider:", e);
+    if (!sliderUpdateInProgress || products.length === 0) {
       container.style.display = "none";
       sliderUpdateInProgress = false;
-    });
+      return;
+    }
+
+    splideList.innerHTML = products.map(product => `
+      <li class="splide__slide">
+        <a href="/products/${product.handle}">
+          <div class="cart__complementary-products-image-wrapper">
+            <img src="https:${product.featured_image}&width=300" alt="${product.title}" class="cart__complementary-products-image">
+          </div>
+          <h3 class="body--bold cart__complementary-products-title-product">${product.title}</h3>
+          <p class="small cart__complementary-products-price">$${formatMoney(product.price)}</p>
+        </a>
+      </li>
+    `).join('');
+
+    window.complementarySlider = new Splide(container.querySelector(".cart__complementary-products-slider"), {
+      type: "slide",
+      perPage: 2,
+      gap: "var(--space-2xs)",
+      arrows: true,
+      pagination: false,
+    }).mount();
+
+    const arrowsContainer = container.querySelector(".splide__arrows");
+    if (arrowsContainer) {
+      arrowsContainer.style.display = products.length <= 2 ? "none" : "flex";
+    }
+
+    loading.style.display = "none";
+    content.style.display = "block";
+
+  } catch (e) {
+    console.error("Error rebuilding slider:", e);
+    container.style.display = "none";
+  } finally {
+    sliderUpdateInProgress = false;
+  }
 }
 
+// Currently refactoring this
 async function updateCartDrawer() {
   try {
     const currentProgress = document.querySelector(".cart__shipping-progress");
