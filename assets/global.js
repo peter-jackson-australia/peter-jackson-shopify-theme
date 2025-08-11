@@ -379,7 +379,7 @@ async function updateCartDrawer() {
   }
 }
 
-// Currently refactoring this
+// Refactored
 function ensureSliderContainerExists() {
   if (document.querySelector(".cart__complementary-products")) return;
 
@@ -387,21 +387,11 @@ function ensureSliderContainerExists() {
   const footer = document.querySelector(".cart__footer");
   if (!cartForm || !footer) return;
 
-  const sliderContainer = document.createElement("div");
-  sliderContainer.className = "cart__complementary-products";
-  sliderContainer.style.display = "none";
-  sliderContainer.innerHTML = `
-    <div class="cart__complementary-products-loading">
-      <div class="animated-loader">
-        <svg fill="#E7E7E7" style="height:4px;display:block" viewBox="0 0 40 4" xmlns="http://www.w3.org/2000/svg">
-          <style>
-            .react{animation:moving 1s ease-in-out infinite}
-            @keyframes moving{0%{width:0%}50%{width:100%;transform:translate(0,0)}100%{width:0;right:0;transform:translate(100%,0)}}
-          </style>
-          <rect class="react" fill="#E7E7E7" height="4" width="40" />
-        </svg>
-      </div>
-    </div>
+  const container = document.createElement("div");
+  container.className = "cart__complementary-products";
+  container.style.display = "none";
+  container.innerHTML = `
+    <div class="cart__complementary-products-loading"></div>
     <div class="cart__complementary-products-content" style="display: none;">
       <h3 class="cart__complementary-products-title heading--l">Complement Your Look</h3>
       <div class="cart__complementary-products-slider splide">
@@ -424,9 +414,12 @@ function ensureSliderContainerExists() {
     </div>
   `;
 
-  cartForm.insertBefore(sliderContainer, footer);
+  container.querySelector(".cart__complementary-products-loading").appendChild(createAnimatedLoader());
+
+  cartForm.insertBefore(container, footer);
 }
 
+// Currently refactoring this
 function handleSliderIndependently() {
   const cartItems = document.querySelectorAll(".cart-item");
 
