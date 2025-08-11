@@ -186,10 +186,8 @@ function openCartDrawer() {
 
 // Refactored
 function closeCartDrawer() {
-  window.closeCart?.() || (
-    cartElements.drawer.classList.remove("cart--active"),
-    document.body.classList.remove("cart-open")
-  );
+  window.closeCart?.() ||
+    (cartElements.drawer.classList.remove("cart--active"), document.body.classList.remove("cart-open"));
 }
 
 // Refactored
@@ -201,12 +199,10 @@ function updateCartIndicators(count) {
   localStorage.setItem("cartCount", count.toString());
 }
 
-// Currently refactoring this
+// Refactored
 async function fetchCart() {
   try {
     const res = await fetch("/cart.js");
-    if (!res.ok) throw new Error("Failed to fetch cart");
-
     const cart = await res.json();
 
     localStorage.setItem(
@@ -215,8 +211,6 @@ async function fetchCart() {
         count: cart.item_count,
         items: cart.items,
         total: cart.total_price,
-        timestamp: Date.now(),
-        hasItems: cart.item_count > 0,
       })
     );
 
@@ -230,6 +224,7 @@ async function fetchCart() {
 
 let sliderUpdateInProgress = false;
 
+// Currently refactoring this
 function destroyComplementarySlider() {
   if (window.complementarySlider) {
     window.complementarySlider.destroy();
