@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   addCartEventListeners();
 });
 
+// Refactored
 function initCartFromStorage() {
   const savedCart = localStorage.getItem("cartData");
   if (savedCart) {
@@ -31,100 +32,68 @@ function initCartFromStorage() {
   });
 }
 
-// Currently refactoring this
+// Refactored
 function prePopulateCartDrawer(cartData) {
   const cartEmpty = document.querySelector(".cart__empty-state");
   if (!cartEmpty) return;
+  
+  if (!cartData?.items?.length) return;
 
   cartEmpty.remove();
   const cartForm = document.querySelector(".cart__form");
+  
+  const escapeHtml = (str) => {
+    const div = document.createElement('div');
+    div.textContent = str || '';
+    return div.innerHTML;
+  };
 
-  const shippingBar = document.createElement("div");
-  shippingBar.className = "cart__shipping";
-  shippingBar.style.display = "block";
-  shippingBar.innerHTML = `
-    <p class="cart__shipping-text small"></p>
-    <div class="cart__shipping-bar">
-      <div class="cart__shipping-progress"></div>
+  cartForm.innerHTML = `
+    <div class="cart__shipping" style="display: block;">
+      <p class="cart__shipping-text small"></p>
+      <div class="cart__shipping-bar">
+        <div class="cart__shipping-progress"></div>
+      </div>
     </div>
+    <div class="cart__items"></div>
   `;
-  cartForm.appendChild(shippingBar);
 
-  const itemsContainer = document.createElement("div");
-  itemsContainer.className = "cart__items";
-  cartForm.appendChild(itemsContainer);
-
+  const itemsContainer = cartForm.querySelector('.cart__items');
+  
   cartData.items.forEach((item) => {
     const cartItem = document.createElement("article");
     cartItem.className = "cart-item";
-    cartItem.setAttribute("data-line-item-key", item.key);
-    if (item.variant && item.variant.inventory_quantity !== undefined) {
+    cartItem.setAttribute("data-line-item-key", item.key || '');
+    
+    if (item.variant?.inventory_quantity !== undefined) {
       cartItem.setAttribute("data-inventory-quantity", item.variant.inventory_quantity);
     }
 
-    let variantInfo = "One Size";
-    if (item.variant_title && item.variant_title !== "Default Title") {
-      if (item.options_with_values && Array.isArray(item.options_with_values)) {
-        try {
-          const parts = item.options_with_values.map(
-            (opt) => `${opt.name}: ${(opt.value || "").toString().replace(".0", "")}`
-          );
-          if (parts.length > 0) {
-            variantInfo = parts.join(", ");
-          }
-        } catch (e) {
-          console.error("Error formatting variant info:", e);
-          variantInfo = item.variant_title.replace(".0", "");
-        }
-      } else {
-        variantInfo = item.variant_title.replace(".0", "");
-      }
-    }
+    const variantInfo = (item.variant_title && item.variant_title !== "Default Title")
+      ? item.variant_title.replace(".0", "")
+      : "One Size";
 
     cartItem.innerHTML = `
       <div class="cart-item__image">
-        <img
-          src="${item.image}"
-          alt="${item.title}"
-          width="100"
-          height="auto"
-        >
+        <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.title)}" width="100" height="auto">
       </div>
       <div class="cart-item__content">
         <div class="cart-item__row">
           <div class="cart-item__details">
             <h3 class="cart-item__title body--bold">
-              <a href="${item.url}">${item.product_title || item.title}</a>
+              <a href="${escapeHtml(item.url)}">${escapeHtml(item.product_title || item.title)}</a>
             </h3>
             <div class="cart-item__specifics">
-              <p class="cart-item__variant small">${variantInfo}</p>
+              <p class="cart-item__variant small">${escapeHtml(variantInfo)}</p>
               <div class="cart-item__price">
-                <p class="small">${formatMoney(item.line_price)}</p>
+                <p class="small">${formatMoney(item.line_price || 0)}</p>
               </div>
             </div>
             <div class="cart-item__actions">
               <div class="cart-item__quantity">
-                <button
-                  class="cart-item__quantity-button cart-item__quantity-button--minus body"
-                  type="button"
-                  aria-label="Decrease quantity"
-                >
-                  -
-                </button>
-                <input
-                  type="text"
-                  class="cart-item__quantity-input small"
-                  readonly
-                  value="${item.quantity}"
-                  aria-label="Quantity"
-                >
-                <button
-                  class="cart-item__quantity-button cart-item__quantity-button--plus body"
-                  type="button"
-                  aria-label="Increase quantity"
-                >
-                  +
-                </button>
+                <button class="cart-item__quantity-button cart-item__quantity-button--minus body" type="button" aria-label="Decrease quantity">-</button>
+                <input type="text" class="cart-item__quantity-input small" readonly value="${parseInt(item.quantity) || 1}" aria-label="Quantity">
+                <button class="cart-item__quantity-button cart-item__quantity-button--plus body" type="button" aria-label="Increase quantity">+</button>
               </div>
               <button type="button" class="cart-item__remove small">Remove</button>
             </div>
@@ -136,52 +105,26 @@ function prePopulateCartDrawer(cartData) {
     itemsContainer.appendChild(cartItem);
   });
 
-  const complementaryContainer = document.createElement("div");
-  complementaryContainer.className = "cart__complementary-products";
-  complementaryContainer.style.display = "none";
-  complementaryContainer.innerHTML = `
-    <h3 class="cart__complementary-products-title">Complement Your Look</h3>
-    <div class="cart__complementary-products-slider splide">
-      <div class="splide__arrows">
-        <button class="splide__arrow splide__arrow--prev" type="button">
-          <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M6 1L1 6L6 11" stroke="#0F0F0F" stroke-linecap="square"/>
-          </svg>
-        </button>
-        <button class="splide__arrow splide__arrow--next" type="button">
-          <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 1L6 6L1 11" stroke="#0F0F0F" stroke-linecap="square"/>
-          </svg>
-        </button>
-      </div>
-      <div class="splide__track">
-        <ul class="splide__list">
-        </ul>
-      </div>
-    </div>
-  `;
-  cartForm.appendChild(complementaryContainer);
-
+  ensureSliderContainerExists();
+  
   if (!document.querySelector(".cart__footer")) {
     const footer = document.createElement("footer");
     footer.className = "cart__footer";
     footer.innerHTML = `
       <div class="cart__footer-row">
         <h3 class="cart__footer-label body">Subtotal</h3>
-        <span class="cart__footer-value body--bold">${formatMoney(cartData.total)}</span>
+        <span class="cart__footer-value body--bold">${formatMoney(cartData.total || 0)}</span>
       </div>
       <button type="submit" name="checkout" class="cart__checkout body" style="height: var(--space-xl);">Checkout</button>
     `;
     cartForm.appendChild(footer);
   }
 
-  updateFreeShippingBar(cartData.total);
-
-  setTimeout(() => {
-    updateComplementarySlider();
-  }, 100);
+  updateFreeShippingBar(cartData.total || 0);
+  updateComplementarySlider();
 }
 
+// Currently refactoring this
 function formatMoney(cents) {
   const format = "{{amount_with_comma_separator}}";
   if (typeof cents === "string") {
