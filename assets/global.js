@@ -36,15 +36,15 @@ function initCartFromStorage() {
 function prePopulateCartDrawer(cartData) {
   const cartEmpty = document.querySelector(".cart__empty-state");
   if (!cartEmpty) return;
-  
+
   if (!cartData?.items?.length) return;
 
   cartEmpty.remove();
   const cartForm = document.querySelector(".cart__form");
-  
+
   const escapeHtml = (str) => {
-    const div = document.createElement('div');
-    div.textContent = str || '';
+    const div = document.createElement("div");
+    div.textContent = str || "";
     return div.innerHTML;
   };
 
@@ -58,20 +58,19 @@ function prePopulateCartDrawer(cartData) {
     <div class="cart__items"></div>
   `;
 
-  const itemsContainer = cartForm.querySelector('.cart__items');
-  
+  const itemsContainer = cartForm.querySelector(".cart__items");
+
   cartData.items.forEach((item) => {
     const cartItem = document.createElement("article");
     cartItem.className = "cart-item";
-    cartItem.setAttribute("data-line-item-key", item.key || '');
-    
+    cartItem.setAttribute("data-line-item-key", item.key || "");
+
     if (item.variant?.inventory_quantity !== undefined) {
       cartItem.setAttribute("data-inventory-quantity", item.variant.inventory_quantity);
     }
 
-    const variantInfo = (item.variant_title && item.variant_title !== "Default Title")
-      ? item.variant_title.replace(".0", "")
-      : "One Size";
+    const variantInfo =
+      item.variant_title && item.variant_title !== "Default Title" ? item.variant_title.replace(".0", "") : "One Size";
 
     cartItem.innerHTML = `
       <div class="cart-item__image">
@@ -92,7 +91,9 @@ function prePopulateCartDrawer(cartData) {
             <div class="cart-item__actions">
               <div class="cart-item__quantity">
                 <button class="cart-item__quantity-button cart-item__quantity-button--minus body" type="button" aria-label="Decrease quantity">-</button>
-                <input type="text" class="cart-item__quantity-input small" readonly value="${parseInt(item.quantity) || 1}" aria-label="Quantity">
+                <input type="text" class="cart-item__quantity-input small" readonly value="${
+                  parseInt(item.quantity) || 1
+                }" aria-label="Quantity">
                 <button class="cart-item__quantity-button cart-item__quantity-button--plus body" type="button" aria-label="Increase quantity">+</button>
               </div>
               <button type="button" class="cart-item__remove small">Remove</button>
@@ -106,7 +107,7 @@ function prePopulateCartDrawer(cartData) {
   });
 
   ensureSliderContainerExists();
-  
+
   if (!document.querySelector(".cart__footer")) {
     const footer = document.createElement("footer");
     footer.className = "cart__footer";
@@ -124,38 +125,29 @@ function prePopulateCartDrawer(cartData) {
   updateComplementarySlider();
 }
 
-// Currently refactoring this
-function formatMoney(cents) {
-  const format = "{{amount_with_comma_separator}}";
-  if (typeof cents === "string") {
-    cents = cents.replace(".", "");
-  }
-  const placeholderRegex = /\{\{\s*(\w+)\s*\}\}/;
-  const formatString = (format || "{{amount}}").match(placeholderRegex)[1];
+// Refactored
+function formatMoney(cents, format = "{{amount_with_comma_separator}}") {
+  const amount = typeof cents === "string" ? parseFloat(cents.replace(".", "")) : cents;
+  if (isNaN(amount) || amount == null) return "0.00";
 
-  function formatWithDelimiters(number, precision = 2, thousands = ",", decimal = ".") {
-    if (isNaN(number) || number == null) return 0;
-    number = (number / 100.0).toFixed(precision);
-    const parts = number.split(".");
-    const dollarsAmount = parts[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, `$1${thousands}`);
-    const centsAmount = parts[1] ? decimal + parts[1] : "";
-    return dollarsAmount + centsAmount;
-  }
+  const formatType = format.replace(/[{}{\s}]/g, "");
+  const dollars = (amount / 100).toFixed(formatType === "amount_no_decimals" ? 0 : 2);
 
-  switch (formatString) {
-    case "amount":
-      return formatWithDelimiters(cents, 2);
-    case "amount_with_comma_separator":
-      return formatWithDelimiters(cents, 2, ".", ",");
-    case "amount_no_decimals":
-      return formatWithDelimiters(cents, 0);
-    case "amount_with_space_separator":
-      return formatWithDelimiters(cents, 2, " ", ",");
-    default:
-      return formatWithDelimiters(cents, 2);
-  }
+  const formats = {
+    amount: [",", "."],
+    amount_with_comma_separator: [".", ","],
+    amount_no_decimals: [",", "."],
+    amount_with_space_separator: [" ", ","],
+  };
+
+  const [thousands, decimal] = formats[formatType] || formats["amount"];
+  const [whole, decimals] = dollars.split(".");
+  const formatted = whole.replace(/\B(?=(\d{3})+(?!\d))/g, thousands);
+
+  return decimals !== undefined ? formatted + decimal + decimals : formatted;
 }
 
+// Currently refactoring this
 function createAnimatedLoader() {
   const loader = document.createElement("div");
   loader.className = "animated-loader";
@@ -305,7 +297,9 @@ function rebuildComplementarySlider(productIds) {
           slide.innerHTML = `
           <a href="/products/${product.handle}">
             <div class="cart__complementary-products-image-wrapper">
-              <img src="https:${product.featured_image}&width=300" alt="${product.title}" class="cart__complementary-products-image">
+              <img src="https:${product.featured_image}&width=300" alt="${
+            product.title
+          }" class="cart__complementary-products-image">
             </div>
             <h3 class="body--bold cart__complementary-products-title-product">${product.title}</h3>
             <p class="small cart__complementary-products-price">$${formatMoney(product.price)}</p>
@@ -1304,7 +1298,9 @@ function renderComplementarySlider(products, productIds = null) {
     slide.innerHTML = `
       <a href="/products/${product.handle}">
         <div class="cart__complementary-products-image-wrapper">
-          <img src="https:${product.featured_image}&width=300" alt="${product.title}" class="cart__complementary-products-image">
+          <img src="https:${product.featured_image}&width=300" alt="${
+      product.title
+    }" class="cart__complementary-products-image">
         </div>
         <h3 class="body--bold cart__complementary-products-title-product">${product.title}</h3>
         <p class="small cart__complementary-products-price">$${formatMoney(product.price)}</p>
