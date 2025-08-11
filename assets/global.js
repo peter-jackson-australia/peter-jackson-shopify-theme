@@ -949,44 +949,32 @@ function hideComplementaryProducts() {
   }
 }
 
-// Currently refactoring this
+// Refactored
 async function updateComplementarySlider() {
   const container = document.querySelector(".cart__complementary-products");
-  const loading = document.querySelector(".cart__complementary-products-loading");
-  const content = document.querySelector(".cart__complementary-products-content");
-  const splideList = document.querySelector(".cart__complementary-products .splide__list");
+  if (!container) return;
 
-  if (!container || !loading || !content || !splideList) return;
+  const productIds = Array.from(document.querySelectorAll(".cart-item .cart-item__title a"))
+    .map(link => link.href.split("/products/")[1]?.split("?")[0])
+    .filter(Boolean);
 
-  const cartItems = document.querySelectorAll(".cart-item");
-
-  if (cartItems.length === 0) {
+  if (!productIds.length) {
     hideComplementaryProducts();
     return;
   }
 
-  const productIds = [];
-  cartItems.forEach((item) => {
-    const link = item.querySelector(".cart-item__title a");
-    if (link) {
-      const url = link.getAttribute("href");
-      const productHandle = url.split("/products/")[1]?.split("?")[0];
-      if (productHandle) {
-        productIds.push(productHandle);
-      }
-    }
-  });
-
-  const currentProductIds = JSON.stringify(productIds.sort());
-
+  const loading = container.querySelector(".cart__complementary-products-loading");
+  const content = container.querySelector(".cart__complementary-products-content");
+  
   container.style.display = "block";
-  loading.style.display = "block";
-  content.style.display = "none";
+  if (loading) loading.style.display = "block";
+  if (content) content.style.display = "none";
 
   const products = await fetchComplementaryProducts(productIds);
-  renderComplementarySlider(products, currentProductIds);
+  renderComplementarySlider(products);
 }
 
+// Currently refactoring this
 function renderComplementarySlider(products, productIds = null) {
   const container = document.querySelector(".cart__complementary-products");
   const loading = document.querySelector(".cart__complementary-products-loading");
