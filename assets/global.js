@@ -659,18 +659,19 @@ function addErrorWithTimeout(item, message) {
   setTimeout(() => document.addEventListener("click", removeErrors), 100);
 }
 
-// Currently refactoring this
+// Refactored
 function isGiftCardItem(rootItem) {
   const itemTitle = rootItem.querySelector(".cart-item__title a")?.textContent || "";
   return itemTitle.toLowerCase().includes("gift card");
 }
 
-// Currently refactoring this
+// Refactored
 function isGiftCardProduct() {
   const productTitle = document.querySelector(".product-details__title")?.textContent || "";
   return productTitle.toLowerCase().includes("gift card");
 }
 
+// Currently refactoring this
 async function getCartProductIds() {
   const cartItems = document.querySelectorAll(".cart-item");
   const productIds = new Set();
