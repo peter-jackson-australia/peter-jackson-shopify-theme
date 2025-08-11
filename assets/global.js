@@ -222,25 +222,18 @@ async function fetchCart() {
   }
 }
 
+// Refactored
 let sliderUpdateInProgress = false;
 
-// Currently refactoring this
+// Refactored
 function destroyComplementarySlider() {
-  if (window.complementarySlider) {
-    window.complementarySlider.destroy();
-    window.complementarySlider = null;
-  }
-
+  window.complementarySlider?.destroy();
+  window.complementarySlider = null;
   const container = document.querySelector(".cart__complementary-products");
-  if (container) {
-    container.style.display = "none";
-    const splideList = container.querySelector(".splide__list");
-    if (splideList) {
-      splideList.innerHTML = "";
-    }
-  }
+  if (container) container.style.display = "none";
 }
 
+// Currently refactoring this
 function rebuildComplementarySlider(productIds) {
   if (sliderUpdateInProgress) return;
   sliderUpdateInProgress = true;
