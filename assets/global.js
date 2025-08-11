@@ -184,16 +184,15 @@ function openCartDrawer() {
   document.body.classList.add("cart-open");
 }
 
-// Currently refactoring this
+// Refactored
 function closeCartDrawer() {
-  if (window.closeCart) {
-    window.closeCart();
-  } else {
-    cartElements.drawer.classList.remove("cart--active");
-    document.body.classList.remove("cart-open");
-  }
+  window.closeCart?.() || (
+    cartElements.drawer.classList.remove("cart--active"),
+    document.body.classList.remove("cart-open")
+  );
 }
 
+// Currently refactoring this
 function updateCartIndicators(count) {
   cartElements.indicators.forEach((el) => {
     el.style.visibility = "visible";
