@@ -422,7 +422,7 @@ function ensureSliderContainerExists() {
 // Refactored
 function handleSliderIndependently() {
   const cartItems = document.querySelectorAll(".cart-item");
-  
+
   if (!cartItems.length) {
     hideComplementaryProducts();
     return;
@@ -431,7 +431,7 @@ function handleSliderIndependently() {
   ensureSliderContainerExists();
 
   const productIds = Array.from(cartItems)
-    .map(item => item.querySelector(".cart-item__title a")?.href?.split("/products/")[1]?.split("?")[0])
+    .map((item) => item.querySelector(".cart-item__title a")?.href?.split("/products/")[1]?.split("?")[0])
     .filter(Boolean);
 
   if (productIds.length) {
@@ -439,39 +439,34 @@ function handleSliderIndependently() {
   }
 }
 
-// Currently refactoring this
+// Refactored
 function updateFreeShippingBar(cartTotal) {
   const shipping = document.querySelector(".cart__shipping");
   const text = document.querySelector(".cart__shipping-text");
   const progress = document.querySelector(".cart__shipping-progress");
-
-  if (!shipping) return;
-
-  shipping.classList.remove("cart__shipping--loading");
-
-  const threshold = 9900;
   const hasItems = document.querySelector(".cart-item");
 
-  if (!hasItems) {
-    shipping.style.display = "none";
+  if (!shipping || !hasItems) {
+    if (shipping) shipping.style.display = "none";
     return;
   }
 
-  shipping.style.height = "93px";
-  if (shipping.style.display === "none") {
-    shipping.style.display = "block";
-  }
+  const threshold = 9900;
+  const percentage = Math.min((cartTotal / threshold) * 100, 100);
+  const isFreeShipping = cartTotal >= threshold;
 
-  if (cartTotal >= threshold) {
-    text.textContent = "Your order has free shipping!";
-    progress.style.width = "100%";
-  } else {
-    const remaining = formatMoney(threshold - cartTotal);
-    text.textContent = `$${remaining} away from free shipping`;
-    progress.style.width = `${(cartTotal / threshold) * 100}%`;
-  }
+  shipping.classList.remove("cart__shipping--loading");
+  shipping.style.display = "block";
+  shipping.style.height = "93px";
+
+  text.textContent = isFreeShipping
+    ? "Your order has free shipping!"
+    : `$${formatMoney(threshold - cartTotal)} away from free shipping`;
+
+  progress.style.width = `${percentage}%`;
 }
 
+// Currently refactoring this
 function animateShippingProgress(cartTotal) {
   const progress = document.querySelector(".cart__shipping-progress");
   if (!progress) return;
