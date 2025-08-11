@@ -153,30 +153,30 @@ function createAnimatedLoader() {
 
 // Refactored
 function showError(container, message, className = "product-error body") {
-  container.querySelectorAll('[class*="error"]').forEach(el => el.remove());
-  
+  container.querySelectorAll('[class*="error"]').forEach((el) => el.remove());
+
   const error = document.createElement("div");
   error.className = className;
   error.textContent = message;
-  
+
   container.querySelector("#js--addtocart, .cart-item__actions")?.after(error);
 }
 
-// Currently refactoring this
+// Refactored
 function createLoadingPlaceholder(element) {
-  const originalHTML = element.innerHTML;
-  element.innerHTML = "";
-  element.appendChild(createAnimatedLoader());
-  return originalHTML;
+  const original = element.innerHTML;
+  element.replaceChildren(createAnimatedLoader());
+  return original;
 }
 
+// Refactored
 function applyCartTotalLoaders() {
   document.querySelectorAll(".cart__footer-value").forEach((el) => createLoadingPlaceholder(el));
-
   const checkoutButton = document.querySelector(".cart__checkout");
   if (checkoutButton) checkoutButton.innerHTML = '<span class="loader--spinner"></span>';
 }
 
+// Currently refactoring this
 function openCartDrawer() {
   if (window.openCart) {
     window.openCart();
