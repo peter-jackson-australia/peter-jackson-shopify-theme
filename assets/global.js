@@ -363,17 +363,8 @@ async function updateCartDrawer() {
   }
 }
 
-function ensureSliderContainerExists() {
-  if (document.querySelector(".cart__complementary-products")) return;
-
-  const cartForm = document.querySelector(".cart__form");
-  const footer = document.querySelector(".cart__footer");
-  if (!cartForm || !footer) return;
-
-  const container = document.createElement("div");
-  container.className = "cart__complementary-products";
-  container.style.display = "none";
-  container.innerHTML = `
+function getComplementarySliderHTML() {
+  return `
     <div class="cart__complementary-products-loading"></div>
     <div class="cart__complementary-products-content" style="display: none;">
       <h3 class="cart__complementary-products-title heading--l">Complement Your Look</h3>
@@ -396,6 +387,19 @@ function ensureSliderContainerExists() {
       </div>
     </div>
   `;
+}
+
+function ensureSliderContainerExists() {
+  if (document.querySelector(".cart__complementary-products")) return;
+
+  const cartForm = document.querySelector(".cart__form");
+  const footer = document.querySelector(".cart__footer");
+  if (!cartForm || !footer) return;
+
+  const container = document.createElement("div");
+  container.className = "cart__complementary-products";
+  container.style.display = "none";
+  container.innerHTML = getComplementarySliderHTML();
 
   container.querySelector(".cart__complementary-products-loading").appendChild(createAnimatedLoader());
 
@@ -514,6 +518,7 @@ function setupEmptyCart(emptyState) {
   const cartForm = document.querySelector(".cart__form");
   emptyState.remove();
 
+  const sliderHTML = getComplementarySliderHTML();
   cartForm.innerHTML = `
     <div class="cart__shipping cart__shipping--loading" style="display: block; height: 93px;">
       <p class="cart__shipping-text small">${createAnimatedLoader().outerHTML}</p>
@@ -523,27 +528,7 @@ function setupEmptyCart(emptyState) {
     </div>
     <div class="cart__items"></div>
     <div class="cart__complementary-products" style="display: block;">
-      <div class="cart__complementary-products-loading">${createAnimatedLoader().outerHTML}</div>
-      <div class="cart__complementary-products-content" style="display: none;">
-        <h3 class="cart__complementary-products-title heading--l">Complement Your Look</h3>
-        <div class="cart__complementary-products-slider splide">
-          <div class="splide__arrows">
-            <button class="splide__arrow splide__arrow--prev" type="button">
-              <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M6 1L1 6L6 11" stroke="#0F0F0F" stroke-linecap="square"/>
-              </svg>
-            </button>
-            <button class="splide__arrow splide__arrow--next" type="button">
-              <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 1L6 6L1 11" stroke="#0F0F0F" stroke-linecap="square"/>
-              </svg>
-            </button>
-          </div>
-          <div class="splide__track">
-            <ul class="splide__list"></ul>
-          </div>
-        </div>
-      </div>
+      ${sliderHTML}
     </div>
     <footer class="cart__footer">
       <div class="cart__footer-row">
@@ -555,6 +540,11 @@ function setupEmptyCart(emptyState) {
       </button>
     </footer>
   `;
+
+  const loadingEl = cartForm.querySelector(".cart__complementary-products-loading");
+  if (loadingEl && !loadingEl.firstChild) {
+    loadingEl.appendChild(createAnimatedLoader());
+  }
 }
 
 function updateExistingItem(item) {
@@ -641,231 +631,23 @@ function isGiftCardProduct() {
   return productTitle.toLowerCase().includes("gift card");
 }
 
-async function getCartProductIds() {
-  const productHandles = new Set();
-  const links = document.querySelectorAll(".cart-item .cart-item__title a");
+function checkInventoryLimit(inventory, currentQty, additionalQty) {
+  const limit = inventory === Infinity ? Infinity : Math.max(0, inventory - 5);
+  const total = currentQty + additionalQty;
 
-  const handles = Array.from(links)
-    .map((link) => link.href.split("/products/")[1]?.split("?")[0])
-    .filter(Boolean);
-
-  handles.forEach((handle) => productHandles.add(handle));
-
-  const productIds = new Set(
-    await Promise.all(
-      handles.map(async (handle) => {
-        try {
-          const res = await fetch(`/products/${handle}.js`);
-          return res.ok ? (await res.json()).id : null;
-        } catch {
-          return null;
-        }
-      })
-    ).then((ids) => ids.filter(Boolean))
-  );
-
-  return { productIds, productHandles };
-}
-
-function isProductInCart(product, cartProductIds, cartProductHandles) {
-  if (cartProductIds.has(product.id) || cartProductHandles.has(product.handle)) {
-    return true;
+  if (limit !== Infinity && total > limit) {
+    return {
+      allowed: false,
+      limit: limit,
+      errorMessage:
+        limit === 0
+          ? "Sorry, this item is out of stock."
+          : `Sorry, only ${limit} ${limit === 1 ? "item" : "items"} available.`,
+    };
   }
 
-  const hasVariantInCart = product.variants?.some((variant) => cartProductIds.has(variant.product_id));
-
-  if (hasVariantInCart) return true;
-
-  const handleFromUrl = product.url?.split("/products/")[1]?.split("?")[0];
-  return handleFromUrl && cartProductHandles.has(handleFromUrl);
+  return { allowed: true };
 }
-
-function addCartEventListeners() {
-  const applyItemLoading = (item) => {
-    const actions = item.querySelector(".cart-item__actions");
-    const price = item.querySelector(".cart-item__price");
-
-    if (actions) {
-      actions.innerHTML = `
-        <div class="placeholder-loader">${createAnimatedLoader().outerHTML}</div>
-        <div class="placeholder-remove"></div>
-      `;
-    }
-    if (price) createLoadingPlaceholder(price);
-  };
-
-  const getRemainingProductIds = (excludeKey) => {
-    return Array.from(document.querySelectorAll('.cart-item:not([style*="display: none"])'))
-      .filter((item) => item.getAttribute("data-line-item-key") !== excludeKey)
-      .map((item) => item.querySelector(".cart-item__title a")?.href?.split("/products/")[1]?.split("?")[0])
-      .filter(Boolean);
-  };
-
-  const getInventoryError = (limit) =>
-    limit === 0
-      ? "Sorry, this item is out of stock."
-      : `Sorry, only ${limit} ${limit === 1 ? "item" : "items"} available.`;
-
-  const removeItem = async (item, key) => {
-    const itemCount = document.querySelectorAll(".cart-item").length;
-
-    item.style.display = "none";
-
-    if (itemCount === 1) {
-      const shipping = document.querySelector(".cart__shipping");
-      if (shipping) shipping.style.display = "none";
-    }
-
-    applyCartTotalLoaders();
-    rebuildComplementarySlider(getRemainingProductIds(key));
-
-    try {
-      await fetch("/cart/update.js", {
-        method: "post",
-        headers: { Accept: "application/json", "Content-Type": "application/json" },
-        body: JSON.stringify({ updates: { [key]: 0 } }),
-      });
-      await updateCartDrawer();
-    } catch (e) {
-      console.error("Error removing item:", e);
-      item.style.display = "";
-      if (itemCount === 1) {
-        const shipping = document.querySelector(".cart__shipping");
-        if (shipping) shipping.style.display = "block";
-      }
-      await updateCartDrawer();
-    }
-  };
-
-  document.querySelectorAll(".cart-item__quantity button").forEach((btn) => {
-    btn.addEventListener("click", async () => {
-      const item = btn.closest(".cart-item");
-      const key = item.getAttribute("data-line-item-key");
-      const input = btn.parentElement.querySelector("input");
-      const qty = Number(input.value);
-      const isPlus = btn.classList.contains("cart-item__quantity-button--plus");
-
-      if (isPlus && !isGiftCardItem(item)) {
-        const inv = parseInt(item.getAttribute("data-inventory-quantity") || "Infinity", 10);
-        const limit = inv === Infinity ? Infinity : Math.max(0, inv - 5);
-
-        if (qty >= limit) {
-          applyCartTotalLoaders();
-          applyItemLoading(item);
-
-          await new Promise((r) => setTimeout(r, 800));
-          await updateCartDrawer();
-
-          const updated = document.querySelector(`[data-line-item-key="${key}"]`);
-          if (updated) addErrorWithTimeout(updated, getInventoryError(limit));
-          return;
-        }
-      }
-
-      const newQty = isPlus ? qty + 1 : qty - 1;
-
-      if (newQty === 0) {
-        await removeItem(item, key);
-        return;
-      }
-
-      try {
-        applyCartTotalLoaders();
-        applyItemLoading(item);
-
-        await fetch("/cart/update.js", {
-          method: "post",
-          headers: { Accept: "application/json", "Content-Type": "application/json" },
-          body: JSON.stringify({ updates: { [key]: newQty } }),
-        });
-
-        await updateCartDrawer(true);
-      } catch (e) {
-        console.error("Error updating quantity:", e);
-        await updateCartDrawer();
-
-        const updated = document.querySelector(`[data-line-item-key="${key}"]`);
-        if (updated) addErrorWithTimeout(updated, "Could not update quantity. Please try again.");
-      }
-    });
-  });
-
-  document.querySelectorAll(".cart-item__remove").forEach((btn) => {
-    btn.addEventListener("click", async () => {
-      const item = btn.closest(".cart-item");
-      const key = item.getAttribute("data-line-item-key");
-      await removeItem(item, key);
-    });
-  });
-
-  document.querySelector(".cart__container")?.addEventListener("click", (e) => e.stopPropagation());
-  document.querySelectorAll(".cart__close, .cart").forEach((el) => {
-    el.addEventListener("click", closeCartDrawer);
-  });
-}
-
-function handleAddToCart(form) {
-  return async (e) => {
-    e.preventDefault();
-
-    const addButton = form.querySelector("#js--addtocart");
-    if (!addButton?.enabled === false) return;
-
-    const variantId = form.querySelector("#js--variant-id")?.value || "";
-    const quantity = parseInt(form.querySelector('input[name="quantity"]')?.value || "1", 10);
-    const originalText = addButton.innerHTML;
-
-    addButton.innerHTML = `<span class="loader--spinner"></span>`;
-
-    try {
-      if (!isGiftCardProduct()) {
-        const inventory = parseInt(document.querySelector("#js--variant-inventory-quantity")?.value || "Infinity", 10);
-        const limit = inventory === Infinity ? Infinity : Math.max(0, inventory - 5);
-        const cart = await fetchCart();
-        const existing = cart?.items?.find((item) => item.variant_id.toString() === variantId);
-        const total = (existing?.quantity || 0) + quantity;
-
-        if (limit !== Infinity && total > limit) {
-          addButton.innerHTML = originalText;
-          showError(
-            form,
-            limit === 0
-              ? "Sorry, this item is out of stock."
-              : `Sorry, only ${limit} ${limit === 1 ? "item" : "items"} available.`
-          );
-          return;
-        }
-      }
-
-      openCartDrawer();
-      applyOptimisticUI();
-
-      await fetch("/cart/add.js", {
-        method: "post",
-        body: new FormData(form),
-      });
-
-      await updateCartDrawer();
-      addButton.innerHTML = originalText;
-    } catch (e) {
-      console.error("Error adding to cart:", e);
-      addButton.innerHTML = originalText;
-      showError(form, "Could not add to cart. Please try again.");
-    }
-  };
-}
-
-cartElements.forms.forEach((form) => {
-  form.addEventListener("submit", handleAddToCart(form));
-});
-
-cartElements.cartLinks.forEach((link) => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
-    openCartDrawer();
-    updateCartDrawer();
-  });
-});
 
 async function fetchComplementaryProducts(productIds) {
   const cartHandles = new Set(productIds);
@@ -876,13 +658,11 @@ async function fetchComplementaryProducts(productIds) {
     try {
       const productRes = await fetch(`/products/${handle}.js`);
       if (!productRes.ok) return [];
-      
+
       const product = await productRes.json();
-      const recsRes = await fetch(
-        `/recommendations/products.json?product_id=${product.id}&limit=10&intent=related`
-      );
+      const recsRes = await fetch(`/recommendations/products.json?product_id=${product.id}&limit=10&intent=related`);
       if (!recsRes.ok) return [];
-      
+
       const data = await recsRes.json();
       return data.products || [];
     } catch {
@@ -890,21 +670,19 @@ async function fetchComplementaryProducts(productIds) {
     }
   };
 
-  const allRecommendations = await Promise.all(
-    productIds.slice(0, 4).map(fetchRecommendations)
-  );
+  const allRecommendations = await Promise.all(productIds.slice(0, 4).map(fetchRecommendations));
 
   for (const products of allRecommendations) {
     let addedFromThisItem = 0;
-    
+
     for (const product of products) {
       if (addedFromThisItem >= 2) break;
-      
+
       if (!seenHandles.has(product.handle)) {
         seenHandles.add(product.handle);
         finalProducts.push(product);
         addedFromThisItem++;
-        
+
         if (finalProducts.length >= 8) return finalProducts;
       }
     }
@@ -997,3 +775,181 @@ function renderComplementarySlider(products) {
   loading.style.display = "none";
   content.style.display = "block";
 }
+
+function addCartEventListeners() {
+  const applyItemLoading = (item) => {
+    const actions = item.querySelector(".cart-item__actions");
+    const price = item.querySelector(".cart-item__price");
+
+    if (actions) {
+      actions.innerHTML = `
+        <div class="placeholder-loader">${createAnimatedLoader().outerHTML}</div>
+        <div class="placeholder-remove"></div>
+      `;
+    }
+    if (price) createLoadingPlaceholder(price);
+  };
+
+  const getRemainingProductIds = (excludeKey) => {
+    return Array.from(document.querySelectorAll('.cart-item:not([style*="display: none"])'))
+      .filter((item) => item.getAttribute("data-line-item-key") !== excludeKey)
+      .map((item) => item.querySelector(".cart-item__title a")?.href?.split("/products/")[1]?.split("?")[0])
+      .filter(Boolean);
+  };
+
+  const removeItem = async (item, key) => {
+    const itemCount = document.querySelectorAll(".cart-item").length;
+
+    item.style.display = "none";
+
+    if (itemCount === 1) {
+      const shipping = document.querySelector(".cart__shipping");
+      if (shipping) shipping.style.display = "none";
+    }
+
+    applyCartTotalLoaders();
+    rebuildComplementarySlider(getRemainingProductIds(key));
+
+    try {
+      await fetch("/cart/update.js", {
+        method: "post",
+        headers: { Accept: "application/json", "Content-Type": "application/json" },
+        body: JSON.stringify({ updates: { [key]: 0 } }),
+      });
+      await updateCartDrawer();
+    } catch (e) {
+      console.error("Error removing item:", e);
+      item.style.display = "";
+      if (itemCount === 1) {
+        const shipping = document.querySelector(".cart__shipping");
+        if (shipping) shipping.style.display = "block";
+      }
+      await updateCartDrawer();
+    }
+  };
+
+  document.querySelectorAll(".cart-item__quantity button").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const item = btn.closest(".cart-item");
+      const key = item.getAttribute("data-line-item-key");
+      const input = btn.parentElement.querySelector("input");
+      const qty = Number(input.value);
+      const isPlus = btn.classList.contains("cart-item__quantity-button--plus");
+
+      if (isPlus && !isGiftCardItem(item)) {
+        const inv = parseInt(item.getAttribute("data-inventory-quantity") || "Infinity", 10);
+        const inventoryCheck = checkInventoryLimit(inv, qty, 1);
+
+        if (!inventoryCheck.allowed) {
+          applyCartTotalLoaders();
+          applyItemLoading(item);
+
+          await new Promise((r) => setTimeout(r, 800));
+          await updateCartDrawer();
+
+          const updated = document.querySelector(`[data-line-item-key="${key}"]`);
+          if (updated) addErrorWithTimeout(updated, inventoryCheck.errorMessage);
+          return;
+        }
+      }
+
+      const newQty = isPlus ? qty + 1 : qty - 1;
+
+      if (newQty === 0) {
+        await removeItem(item, key);
+        return;
+      }
+
+      try {
+        applyCartTotalLoaders();
+        applyItemLoading(item);
+
+        await fetch("/cart/update.js", {
+          method: "post",
+          headers: { Accept: "application/json", "Content-Type": "application/json" },
+          body: JSON.stringify({ updates: { [key]: newQty } }),
+        });
+
+        await updateCartDrawer(true);
+      } catch (e) {
+        console.error("Error updating quantity:", e);
+        await updateCartDrawer();
+
+        const updated = document.querySelector(`[data-line-item-key="${key}"]`);
+        if (updated) addErrorWithTimeout(updated, "Could not update quantity. Please try again.");
+      }
+    });
+  });
+
+  document.querySelectorAll(".cart-item__remove").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const item = btn.closest(".cart-item");
+      const key = item.getAttribute("data-line-item-key");
+      await removeItem(item, key);
+    });
+  });
+
+  document.querySelector(".cart__container")?.addEventListener("click", (e) => e.stopPropagation());
+  document.querySelectorAll(".cart__close, .cart").forEach((el) => {
+    el.addEventListener("click", closeCartDrawer);
+  });
+}
+
+function handleAddToCart(form) {
+  return async (e) => {
+    e.preventDefault();
+
+    const addButton = form.querySelector("#js--addtocart");
+    if (!addButton?.enabled === false) return;
+
+    const variantId = form.querySelector("#js--variant-id")?.value || "";
+    const quantity = parseInt(form.querySelector('input[name="quantity"]')?.value || "1", 10);
+    const originalText = addButton.innerHTML;
+
+    addButton.innerHTML = `<span class="loader--spinner"></span>`;
+
+    try {
+      if (!isGiftCardProduct()) {
+        const inventory = parseInt(document.querySelector("#js--variant-inventory-quantity")?.value || "Infinity", 10);
+        const cart = await fetchCart();
+        const existing = cart?.items?.find((item) => item.variant_id.toString() === variantId);
+        const currentQty = existing?.quantity || 0;
+
+        const inventoryCheck = checkInventoryLimit(inventory, currentQty, quantity);
+
+        if (!inventoryCheck.allowed) {
+          addButton.innerHTML = originalText;
+          showError(form, inventoryCheck.errorMessage);
+          return;
+        }
+      }
+
+      openCartDrawer();
+      applyOptimisticUI();
+
+      await fetch("/cart/add.js", {
+        method: "post",
+        body: new FormData(form),
+      });
+
+      await updateCartDrawer();
+      addButton.innerHTML = originalText;
+    } catch (e) {
+      console.error("Error adding to cart:", e);
+      addButton.innerHTML = originalText;
+      showError(form, "Could not add to cart. Please try again.");
+    }
+  };
+}
+
+cartElements.forms.forEach((form) => {
+  form.addEventListener("submit", handleAddToCart(form));
+});
+
+cartElements.cartLinks.forEach((link) => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+    openCartDrawer();
+    updateCartDrawer();
+  });
+});
