@@ -192,7 +192,7 @@ function closeCartDrawer() {
   );
 }
 
-// Currently refactoring this
+// Refactored
 function updateCartIndicators(count) {
   cartElements.indicators.forEach((el) => {
     el.style.visibility = "visible";
@@ -201,6 +201,7 @@ function updateCartIndicators(count) {
   localStorage.setItem("cartCount", count.toString());
 }
 
+// Currently refactoring this
 async function fetchCart() {
   try {
     const res = await fetch("/cart.js");
