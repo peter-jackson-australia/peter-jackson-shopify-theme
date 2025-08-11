@@ -18,9 +18,6 @@ function initCartFromStorage() {
     if (cart.count > 0) {
       updateCartIndicators(cart.count);
     }
-    // if (cart.items?.length > 0) {
-    //   prePopulateCartDrawer(cart);
-    // }
   }
 
   fetchCart().then((freshCart) => {
