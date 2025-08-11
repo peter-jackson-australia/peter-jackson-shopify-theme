@@ -5,6 +5,7 @@ const cartElements = {
   cartLinks: document.querySelectorAll(".js-cart-icon"),
 };
 
+// Potentially remove the event listener here for even more brevity?
 document.addEventListener("DOMContentLoaded", () => {
   initCartFromStorage();
   addCartEventListeners();
@@ -176,16 +177,14 @@ function applyCartTotalLoaders() {
   if (checkoutButton) checkoutButton.innerHTML = '<span class="loader--spinner"></span>';
 }
 
-// Currently refactoring this
+// Refactored
 function openCartDrawer() {
-  if (window.openCart) {
-    window.openCart();
-  } else {
-    cartElements.drawer.classList.add("cart--active");
-    document.body.classList.add("cart-open");
-  }
+  if (window.openCart) return window.openCart();
+  cartElements.drawer.classList.add("cart--active");
+  document.body.classList.add("cart-open");
 }
 
+// Currently refactoring this
 function closeCartDrawer() {
   if (window.closeCart) {
     window.closeCart();
