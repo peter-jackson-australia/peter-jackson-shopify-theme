@@ -466,26 +466,15 @@ function updateFreeShippingBar(cartTotal) {
   progress.style.width = `${percentage}%`;
 }
 
-// Currently refactoring this
+// Refactored
 function animateShippingProgress(cartTotal) {
   const progress = document.querySelector(".cart__shipping-progress");
   if (!progress) return;
-
   const threshold = 9900;
-  const targetPercent = cartTotal >= threshold ? 100 : (cartTotal / threshold) * 100;
-
-  const currentWidth = progress.style.width || "0%";
-  const currentPercent = parseFloat(currentWidth) || 0;
-
-  if (Math.abs(targetPercent - currentPercent) > 1) {
-    progress.offsetWidth;
-
-    progress.style.width = `${targetPercent}%`;
-  } else {
-    progress.style.width = `${targetPercent}%`;
-  }
+  progress.style.width = `${Math.min((cartTotal / threshold) * 100, 100)}%`;
 }
 
+// Currently refactoring this
 function applyOptimisticUI() {
   const productTitle = document.querySelector(".product-details__title")?.textContent || "";
 
