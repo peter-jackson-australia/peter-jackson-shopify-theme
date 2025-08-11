@@ -671,35 +671,34 @@ function isGiftCardProduct() {
   return productTitle.toLowerCase().includes("gift card");
 }
 
-// Currently refactoring this
+// Refactored
 async function getCartProductIds() {
-  const cartItems = document.querySelectorAll(".cart-item");
-  const productIds = new Set();
   const productHandles = new Set();
+  const links = document.querySelectorAll(".cart-item .cart-item__title a");
 
-  for (const item of cartItems) {
-    const link = item.querySelector(".cart-item__title a");
-    if (link) {
-      const url = link.getAttribute("href");
-      const productHandle = url.split("/products/")[1]?.split("?")[0];
-      if (productHandle) {
-        productHandles.add(productHandle);
+  const handles = Array.from(links)
+    .map((link) => link.href.split("/products/")[1]?.split("?")[0])
+    .filter(Boolean);
+
+  handles.forEach((handle) => productHandles.add(handle));
+
+  const productIds = new Set(
+    await Promise.all(
+      handles.map(async (handle) => {
         try {
-          const response = await fetch(`/products/${productHandle}.js`);
-          if (response.ok) {
-            const productData = await response.json();
-            productIds.add(productData.id);
-          }
-        } catch (e) {
-          console.error("Error getting cart product ID:", e);
+          const res = await fetch(`/products/${handle}.js`);
+          return res.ok ? (await res.json()).id : null;
+        } catch {
+          return null;
         }
-      }
-    }
-  }
+      })
+    ).then((ids) => ids.filter(Boolean))
+  );
 
   return { productIds, productHandles };
 }
 
+// Currently refactoring this
 function isProductInCart(product, cartProductIds, cartProductHandles) {
   if (cartProductIds.has(product.id)) return true;
   if (cartProductHandles.has(product.handle)) return true;
