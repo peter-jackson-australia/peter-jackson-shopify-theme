@@ -837,51 +837,38 @@ function addCartEventListeners() {
   });
 }
 
-// Currently refactoring this
+// Refactored
 function handleAddToCart(form) {
   return async (e) => {
     e.preventDefault();
 
-    const variantId = form.querySelector("#js--variant-id")?.value || "";
-    const quantityInput = form.querySelector('input[name="quantity"]');
-    const quantity = quantityInput ? parseInt(quantityInput.value, 10) : 1;
-
     const addButton = form.querySelector("#js--addtocart");
-    if (!addButton || addButton.disabled) return;
+    if (!addButton?.enabled === false) return;
 
+    const variantId = form.querySelector("#js--variant-id")?.value || "";
+    const quantity = parseInt(form.querySelector('input[name="quantity"]')?.value || "1", 10);
     const originalText = addButton.innerHTML;
+
     addButton.innerHTML = `<span class="loader--spinner"></span>`;
 
     try {
-      const inventoryQuantity = parseInt(
-        document.querySelector("#js--variant-inventory-quantity")?.value || "Infinity",
-        10
-      );
-      const adjustedInventoryQuantity = inventoryQuantity === Infinity ? Infinity : Math.max(0, inventoryQuantity - 5);
-      const cart = await fetchCart();
+      if (!isGiftCardProduct()) {
+        const inventory = parseInt(document.querySelector("#js--variant-inventory-quantity")?.value || "Infinity", 10);
+        const limit = inventory === Infinity ? Infinity : Math.max(0, inventory - 5);
+        const cart = await fetchCart();
+        const existing = cart?.items?.find((item) => item.variant_id.toString() === variantId);
+        const total = (existing?.quantity || 0) + quantity;
 
-      let existingItem = null;
-      if (cart && cart.items) {
-        existingItem = cart.items.find((item) => item.variant_id.toString() === variantId);
-      }
-
-      const totalRequestedQuantity = (existingItem ? existingItem.quantity : 0) + quantity;
-
-      if (
-        !isGiftCardProduct() &&
-        adjustedInventoryQuantity !== Infinity &&
-        totalRequestedQuantity > adjustedInventoryQuantity
-      ) {
-        addButton.innerHTML = originalText;
-        showError(
-          form,
-          adjustedInventoryQuantity === 0
-            ? "Sorry, this item is out of stock."
-            : `Sorry, only ${adjustedInventoryQuantity} ${
-                adjustedInventoryQuantity === 1 ? "item" : "items"
-              } available.`
-        );
-        return;
+        if (limit !== Infinity && total > limit) {
+          addButton.innerHTML = originalText;
+          showError(
+            form,
+            limit === 0
+              ? "Sorry, this item is out of stock."
+              : `Sorry, only ${limit} ${limit === 1 ? "item" : "items"} available.`
+          );
+          return;
+        }
       }
 
       openCartDrawer();
@@ -893,22 +880,21 @@ function handleAddToCart(form) {
       });
 
       await updateCartDrawer();
+      addButton.innerHTML = originalText;
     } catch (e) {
       console.error("Error adding to cart:", e);
       addButton.innerHTML = originalText;
       showError(form, "Could not add to cart. Please try again.");
-    } finally {
-      if (addButton.innerHTML !== originalText) {
-        addButton.innerHTML = originalText;
-      }
     }
   };
 }
 
+// Refactored
 cartElements.forms.forEach((form) => {
   form.addEventListener("submit", handleAddToCart(form));
 });
 
+// Refactored
 cartElements.cartLinks.forEach((link) => {
   link.addEventListener("click", (e) => {
     e.preventDefault();
@@ -917,6 +903,7 @@ cartElements.cartLinks.forEach((link) => {
   });
 });
 
+// Currently refactoring this
 async function fetchComplementaryProducts(productIds) {
   const limitedProductIds = productIds.slice(0, 4);
   const { productIds: cartProductIds, productHandles: cartProductHandles } = await getCartProductIds();
