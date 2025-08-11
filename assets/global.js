@@ -474,153 +474,20 @@ function animateShippingProgress(cartTotal) {
   progress.style.width = `${Math.min((cartTotal / threshold) * 100, 100)}%`;
 }
 
-// Currently refactoring this
+// Refactored
 function applyOptimisticUI() {
   const productTitle = document.querySelector(".product-details__title")?.textContent || "";
-
-  let variantSelections = "One Size";
-
-  try {
-    const options = [];
-    document.querySelectorAll(".js--variant-options").forEach((optGroup) => {
-      const legend = optGroup.querySelector("legend");
-      if (!legend) return;
-
-      const optionName = legend.textContent.replace(":", "").trim();
-      const selectedInput = optGroup.querySelector(".js--variant-option:checked");
-      if (!selectedInput) return;
-
-      const label = selectedInput.nextElementSibling;
-      if (!label) return;
-
-      const optionValue = label.textContent.trim();
-      if (optionName && optionValue) {
-        options.push(`${optionName}: ${optionValue}`);
-      }
-    });
-
-    if (options.length > 0) {
-      variantSelections = options.join(", ");
-    }
-  } catch (e) {
-    console.error("Error formatting variant selections:", e);
-    variantSelections =
-      Array.from(document.querySelectorAll(".js--variant-option:checked"))
-        .map((input) => input.nextElementSibling?.textContent?.trim())
-        .filter(Boolean)
-        .join(" / ") || "One Size";
-  }
-
-  let productImage = "";
-
-  const selectors = [
-    ".splide__slide.is-active img",
-    ".splide__slide:first-child img",
-    ".product-gallery img:first-child",
-    ".product-image img",
-    ".splide__slide img",
-  ];
-
-  for (const selector of selectors) {
-    const img = document.querySelector(selector);
-    if (img && img.src) {
-      productImage = img.src;
-      break;
-    }
-  }
-
-  if (!productImage) {
-    const metaImage = document.querySelector('meta[property="og:image"]');
-    if (metaImage) {
-      productImage = metaImage.content;
-    }
-  }
-
   const variantId = document.querySelector("#js--variant-id")?.value || "";
+
+  const variantSelections = getVariantSelections();
+  const productImage = getProductImage();
 
   applyCartTotalLoaders();
   ensureSliderContainerExists();
 
   const isCartEmpty = document.querySelector(".cart__empty-state");
   if (isCartEmpty) {
-    const cartForm = document.querySelector(".cart__form");
-    isCartEmpty.remove();
-
-    const itemsContainer = document.createElement("div");
-    itemsContainer.className = "cart__items";
-    cartForm.prepend(itemsContainer);
-
-    const shippingBar = document.createElement("div");
-    shippingBar.className = "cart__shipping cart__shipping--loading";
-    shippingBar.style.display = "block";
-    shippingBar.style.height = "93px";
-    shippingBar.innerHTML = `
-      <p class="cart__shipping-text small"></p>
-      <div class="cart__shipping-bar">
-        <div class="cart__shipping-progress"></div>
-      </div>
-    `;
-    cartForm.insertBefore(shippingBar, itemsContainer);
-
-    const textLoader = shippingBar.querySelector(".cart__shipping-text");
-    textLoader.appendChild(createAnimatedLoader());
-
-    const complementaryContainer = document.createElement("div");
-    complementaryContainer.className = "cart__complementary-products";
-    complementaryContainer.style.display = "block";
-    complementaryContainer.innerHTML = `
-      <div class="cart__complementary-products-loading">
-        <div class="animated-loader">
-          <svg fill="#E7E7E7" style="height:4px;display:block" viewBox="0 0 40 4" xmlns="http://www.w3.org/2000/svg">
-            <style>
-              .react{animation:moving 1s ease-in-out infinite}
-              @keyframes moving{0%{width:0%}50%{width:100%;transform:translate(0,0)}100%{width:0;right:0;transform:translate(100%,0)}}
-            </style>
-            <rect class="react" fill="#E7E7E7" height="4" width="40" />
-          </svg>
-        </div>
-      </div>
-      <div class="cart__complementary-products-content" style="display: none;">
-        <h3 class="cart__complementary-products-title">Complement Your Look</h3>
-        <div class="cart__complementary-products-slider splide">
-            <div class="splide__arrows">
-              <button class="splide__arrow splide__arrow--prev" type="button">
-                <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M6 1L1 6L6 11" stroke="#0F0F0F" stroke-linecap="square"/>
-                </svg>
-              </button>
-              <button class="splide__arrow splide__arrow--next" type="button">
-                <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 1L6 6L1 11" stroke="#0F0F0F" stroke-linecap="square"/>
-                </svg>
-              </button>
-            </div>
-          <div class="splide__track">
-            <ul class="splide__list"></ul>
-          </div>
-        </div>
-      </div>
-    `;
-    cartForm.appendChild(complementaryContainer);
-
-    if (!document.querySelector(".cart__footer")) {
-      const footer = document.createElement("footer");
-      footer.className = "cart__footer";
-      footer.innerHTML = `
-        <div class="cart__footer-row">
-          <h3 class="cart__footer-label body">Subtotal</h3>
-          <span class="cart__footer-value body--bold"></span>
-        </div>
-        <button type="submit" name="checkout" class="cart__checkout body"></button>
-      `;
-      cartForm.appendChild(footer);
-
-      const newCheckoutButton = footer.querySelector(".cart__checkout");
-      newCheckoutButton.innerHTML = '<span class="loader--spinner"></span>';
-
-      const footerValue = footer.querySelector(".cart__footer-value");
-      footerValue.appendChild(createAnimatedLoader());
-    }
+    setupEmptyCart(isCartEmpty);
   }
 
   const itemsContainer = document.querySelector(".cart__items");
@@ -629,76 +496,153 @@ function applyOptimisticUI() {
   const existingItem = document.querySelector(`.cart-item[data-line-item-key*="${variantId}"]`);
 
   if (existingItem) {
-    const priceElement = existingItem.querySelector(".cart-item__price");
-    if (priceElement) createLoadingPlaceholder(priceElement);
-
-    const actionsEl = existingItem.querySelector(".cart-item__actions");
-    if (actionsEl) {
-      actionsEl.innerHTML = `
-        <div class="placeholder-loader"></div>
-        <div class="placeholder-remove"></div>
-      `;
-      actionsEl.querySelector(".placeholder-loader").appendChild(createAnimatedLoader());
-    }
+    updateExistingItem(existingItem);
   } else {
-    const cartItem = document.createElement("article");
-    cartItem.className = "cart-item";
-    cartItem.setAttribute("data-line-item-key", `temp-${variantId}`);
-
-    cartItem.innerHTML = `
-      <div class="cart-item__image">
-        <img src="${productImage}" alt="${productTitle}" width="100" height="150">
-      </div>
-      <div class="cart-item__content">
-        <div class="cart-item__row">
-          <div class="cart-item__details">
-            <h3 class="cart-item__title body--bold">
-              <a href="${window.location.pathname}">${productTitle}</a>
-            </h3>
-            <div class="cart-item__specifics">
-              <p class="cart-item__variant small">${variantSelections}</p>
-              <div class="cart-item__price">
-                <div class="price-placeholder"></div>
-              </div>
-            </div>
-            <div class="cart-item__actions">
-              <div class="placeholder-loader"></div>
-              <div class="placeholder-remove"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
-
-    cartItem.querySelector(".price-placeholder").appendChild(createAnimatedLoader());
-    cartItem.querySelector(".placeholder-loader").appendChild(createAnimatedLoader());
-
-    itemsContainer.prepend(cartItem);
+    addNewItem(itemsContainer, variantId, productImage, productTitle, variantSelections);
   }
 
-  const cartItems = document.querySelectorAll(".cart-item");
-  const productIds = [];
+  updateSliderWithCurrentProducts();
+}
 
-  cartItems.forEach((item) => {
-    const link = item.querySelector(".cart-item__title a");
-    if (link) {
-      const url = link.getAttribute("href");
-      const productHandle = url.split("/products/")[1]?.split("?")[0];
-      if (productHandle) {
-        productIds.push(productHandle);
+// Refactored
+function getVariantSelections() {
+  const options = [];
+  document.querySelectorAll(".js--variant-options:checked").forEach((input) => {
+    const optGroup = input.closest(".js--variant-options");
+    const legend = optGroup?.querySelector("legend");
+    const label = input.nextElementSibling;
+
+    if (legend && label) {
+      const optionName = legend.textContent.replace(":", "").trim();
+      const optionValue = label.textContent.trim();
+      if (optionName && optionValue) {
+        options.push(`${optionName}: ${optionValue}`);
       }
     }
   });
 
-  setTimeout(() => {
-    if (productIds.length > 0) {
-      rebuildComplementarySlider(productIds);
-    } else {
-      handleSliderIndependently();
-    }
-  }, 100);
+  return options.length > 0 ? options.join(", ") : "One Size";
 }
 
+// Refactored
+function getProductImage() {
+  const img = document.querySelector(
+    ".splide__slide.is-active img, .splide__slide img, .product-gallery img, .product-image img"
+  );
+
+  return img?.src || document.querySelector('meta[property="og:image"]')?.content || "";
+}
+
+// Refactored
+function setupEmptyCart(emptyState) {
+  const cartForm = document.querySelector(".cart__form");
+  emptyState.remove();
+
+  cartForm.innerHTML = `
+    <div class="cart__shipping cart__shipping--loading" style="display: block; height: 93px;">
+      <p class="cart__shipping-text small">${createAnimatedLoader().outerHTML}</p>
+      <div class="cart__shipping-bar">
+        <div class="cart__shipping-progress"></div>
+      </div>
+    </div>
+    <div class="cart__items"></div>
+    <div class="cart__complementary-products" style="display: block;">
+      <div class="cart__complementary-products-loading">${createAnimatedLoader().outerHTML}</div>
+      <div class="cart__complementary-products-content" style="display: none;">
+        <h3 class="cart__complementary-products-title heading--l">Complement Your Look</h3>
+        <div class="cart__complementary-products-slider splide">
+          <div class="splide__arrows">
+            <button class="splide__arrow splide__arrow--prev" type="button">
+              <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 1L1 6L6 11" stroke="#0F0F0F" stroke-linecap="square"/>
+              </svg>
+            </button>
+            <button class="splide__arrow splide__arrow--next" type="button">
+              <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L6 6L1 11" stroke="#0F0F0F" stroke-linecap="square"/>
+              </svg>
+            </button>
+          </div>
+          <div class="splide__track">
+            <ul class="splide__list"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="cart__footer">
+      <div class="cart__footer-row">
+        <h3 class="cart__footer-label body">Subtotal</h3>
+        <span class="cart__footer-value body--bold">${createAnimatedLoader().outerHTML}</span>
+      </div>
+      <button type="submit" name="checkout" class="cart__checkout body">
+        <span class="loader--spinner"></span>
+      </button>
+    </footer>
+  `;
+}
+
+// Refactored
+function updateExistingItem(item) {
+  const priceElement = item.querySelector(".cart-item__price");
+  if (priceElement) createLoadingPlaceholder(priceElement);
+
+  const actionsEl = item.querySelector(".cart-item__actions");
+  if (actionsEl) {
+    actionsEl.innerHTML = `
+      <div class="placeholder-loader">${createAnimatedLoader().outerHTML}</div>
+      <div class="placeholder-remove"></div>
+    `;
+  }
+}
+
+// Refactored
+function addNewItem(container, variantId, image, title, selections) {
+  const cartItem = document.createElement("article");
+  cartItem.className = "cart-item";
+  cartItem.setAttribute("data-line-item-key", `temp-${variantId}`);
+
+  cartItem.innerHTML = `
+    <div class="cart-item__image">
+      <img src="${image}" alt="${title}" width="100" height="150">
+    </div>
+    <div class="cart-item__content">
+      <div class="cart-item__row">
+        <div class="cart-item__details">
+          <h3 class="cart-item__title body--bold">
+            <a href="${window.location.pathname}">${title}</a>
+          </h3>
+          <div class="cart-item__specifics">
+            <p class="cart-item__variant small">${selections}</p>
+            <div class="cart-item__price">
+              <div class="price-placeholder">${createAnimatedLoader().outerHTML}</div>
+            </div>
+          </div>
+          <div class="cart-item__actions">
+            <div class="placeholder-loader">${createAnimatedLoader().outerHTML}</div>
+            <div class="placeholder-remove"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  container.prepend(cartItem);
+}
+
+// Refactored
+function updateSliderWithCurrentProducts() {
+  const productIds = Array.from(document.querySelectorAll(".cart-item .cart-item__title a"))
+    .map((link) => link.href.split("/products/")[1]?.split("?")[0])
+    .filter(Boolean);
+
+  if (productIds.length > 0) {
+    setTimeout(() => rebuildComplementarySlider(productIds), 100);
+  } else {
+    setTimeout(handleSliderIndependently, 100);
+  }
+}
+
+// Currently refactoring this
 function addErrorWithTimeout(item, message) {
   const errorElement = showError(item, message, "cart-item__error small cart-item__error--permanent");
 
