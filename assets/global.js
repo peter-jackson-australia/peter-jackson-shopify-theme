@@ -642,29 +642,30 @@ function updateSliderWithCurrentProducts() {
   }
 }
 
-// Currently refactoring this
+// Refactored
 function addErrorWithTimeout(item, message) {
-  const errorElement = showError(item, message, "cart-item__error small cart-item__error--permanent");
+  const error = document.createElement("div");
+  error.className = "cart-item__error small cart-item__error--permanent";
+  error.textContent = message;
 
-  const clearErrorOnClick = () => {
-    const permanentErrors = document.querySelectorAll(".cart-item__error--permanent");
-    permanentErrors.forEach((error) => {
-      error.classList.add("fade-out");
-      setTimeout(() => error.remove(), 800);
-    });
-    document.removeEventListener("click", clearErrorOnClick);
+  const target = item.querySelector("#js--addtocart, .cart-item__actions");
+  if (target) target.after(error);
+
+  const removeErrors = () => {
+    document.querySelectorAll(".cart-item__error--permanent").forEach((el) => el.remove());
+    document.removeEventListener("click", removeErrors);
   };
 
-  setTimeout(() => {
-    document.addEventListener("click", clearErrorOnClick);
-  }, 100);
+  setTimeout(() => document.addEventListener("click", removeErrors), 100);
 }
 
+// Currently refactoring this
 function isGiftCardItem(rootItem) {
   const itemTitle = rootItem.querySelector(".cart-item__title a")?.textContent || "";
   return itemTitle.toLowerCase().includes("gift card");
 }
 
+// Currently refactoring this
 function isGiftCardProduct() {
   const productTitle = document.querySelector(".product-details__title")?.textContent || "";
   return productTitle.toLowerCase().includes("gift card");
