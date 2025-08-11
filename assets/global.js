@@ -5,13 +5,11 @@ const cartElements = {
   cartLinks: document.querySelectorAll(".js-cart-icon"),
 };
 
-// Potentially remove the event listener here for even more brevity?
 document.addEventListener("DOMContentLoaded", () => {
   initCartFromStorage();
   addCartEventListeners();
 });
 
-// Refactored
 function initCartFromStorage() {
   const savedCart = localStorage.getItem("cartData");
   if (savedCart) {
@@ -30,7 +28,6 @@ function initCartFromStorage() {
   });
 }
 
-// Refactored
 function prePopulateCartDrawer(cartData) {
   const cartEmpty = document.querySelector(".cart__empty-state");
   if (!cartEmpty) return;
@@ -123,7 +120,6 @@ function prePopulateCartDrawer(cartData) {
   updateComplementarySlider();
 }
 
-// Refactored
 function formatMoney(cents, format = "{{amount_with_comma_separator}}") {
   const amount = typeof cents === "string" ? parseFloat(cents.replace(".", "")) : cents;
   if (isNaN(amount) || amount == null) return "0.00";
@@ -145,14 +141,12 @@ function formatMoney(cents, format = "{{amount_with_comma_separator}}") {
   return decimals !== undefined ? formatted + decimal + decimals : formatted;
 }
 
-// Refactored
 function createAnimatedLoader() {
   const loader = document.createElement("div");
   loader.innerHTML = `<svg fill=#E7E7E7 style=height:4px;display:block viewBox="0 0 40 4"xmlns=http://www.w3.org/2000/svg><style>.react{animation:moving 1s ease-in-out infinite}@keyframes moving{0%{width:0%}50%{width:100%;transform:translate(0,0)}100%{width:0;right:0;transform:translate(100%,0)}}</style><rect class=react fill=#E7E7E7 height=4 width=40 /></svg>`;
   return loader;
 }
 
-// Refactored
 function showError(container, message, className = "product-error body") {
   container.querySelectorAll('[class*="error"]').forEach((el) => el.remove());
 
@@ -163,34 +157,29 @@ function showError(container, message, className = "product-error body") {
   container.querySelector("#js--addtocart, .cart-item__actions")?.after(error);
 }
 
-// Refactored
 function createLoadingPlaceholder(element) {
   const original = element.innerHTML;
   element.replaceChildren(createAnimatedLoader());
   return original;
 }
 
-// Refactored
 function applyCartTotalLoaders() {
   document.querySelectorAll(".cart__footer-value").forEach((el) => createLoadingPlaceholder(el));
   const checkoutButton = document.querySelector(".cart__checkout");
   if (checkoutButton) checkoutButton.innerHTML = '<span class="loader--spinner"></span>';
 }
 
-// Refactored
 function openCartDrawer() {
   if (window.openCart) return window.openCart();
   cartElements.drawer.classList.add("cart--active");
   document.body.classList.add("cart-open");
 }
 
-// Refactored
 function closeCartDrawer() {
   window.closeCart?.() ||
     (cartElements.drawer.classList.remove("cart--active"), document.body.classList.remove("cart-open"));
 }
 
-// Refactored
 function updateCartIndicators(count) {
   cartElements.indicators.forEach((el) => {
     el.style.visibility = "visible";
@@ -199,7 +188,6 @@ function updateCartIndicators(count) {
   localStorage.setItem("cartCount", count.toString());
 }
 
-// Refactored
 async function fetchCart() {
   try {
     const res = await fetch("/cart.js");
@@ -222,10 +210,8 @@ async function fetchCart() {
   }
 }
 
-// Refactored
 let sliderUpdateInProgress = false;
 
-// Refactored
 function destroyComplementarySlider() {
   window.complementarySlider?.destroy();
   window.complementarySlider = null;
@@ -233,7 +219,6 @@ function destroyComplementarySlider() {
   if (container) container.style.display = "none";
 }
 
-// Refactored
 async function rebuildComplementarySlider(productIds) {
   if (sliderUpdateInProgress) return;
   sliderUpdateInProgress = true;
@@ -305,7 +290,6 @@ async function rebuildComplementarySlider(productIds) {
   }
 }
 
-// Refactored
 async function updateCartDrawer() {
   try {
     const currentProgress = document.querySelector(".cart__shipping-progress");
@@ -379,7 +363,6 @@ async function updateCartDrawer() {
   }
 }
 
-// Refactored
 function ensureSliderContainerExists() {
   if (document.querySelector(".cart__complementary-products")) return;
 
@@ -419,7 +402,6 @@ function ensureSliderContainerExists() {
   cartForm.insertBefore(container, footer);
 }
 
-// Refactored
 function handleSliderIndependently() {
   const cartItems = document.querySelectorAll(".cart-item");
 
@@ -439,7 +421,6 @@ function handleSliderIndependently() {
   }
 }
 
-// Refactored
 function updateFreeShippingBar(cartTotal) {
   const shipping = document.querySelector(".cart__shipping");
   const text = document.querySelector(".cart__shipping-text");
@@ -466,7 +447,6 @@ function updateFreeShippingBar(cartTotal) {
   progress.style.width = `${percentage}%`;
 }
 
-// Refactored
 function animateShippingProgress(cartTotal) {
   const progress = document.querySelector(".cart__shipping-progress");
   if (!progress) return;
@@ -474,7 +454,6 @@ function animateShippingProgress(cartTotal) {
   progress.style.width = `${Math.min((cartTotal / threshold) * 100, 100)}%`;
 }
 
-// Refactored
 function applyOptimisticUI() {
   const productTitle = document.querySelector(".product-details__title")?.textContent || "";
   const variantId = document.querySelector("#js--variant-id")?.value || "";
@@ -504,7 +483,6 @@ function applyOptimisticUI() {
   updateSliderWithCurrentProducts();
 }
 
-// Refactored
 function getVariantSelections() {
   const options = [];
   document.querySelectorAll(".js--variant-options:checked").forEach((input) => {
@@ -524,7 +502,6 @@ function getVariantSelections() {
   return options.length > 0 ? options.join(", ") : "One Size";
 }
 
-// Refactored
 function getProductImage() {
   const img = document.querySelector(
     ".splide__slide.is-active img, .splide__slide img, .product-gallery img, .product-image img"
@@ -533,7 +510,6 @@ function getProductImage() {
   return img?.src || document.querySelector('meta[property="og:image"]')?.content || "";
 }
 
-// Refactored
 function setupEmptyCart(emptyState) {
   const cartForm = document.querySelector(".cart__form");
   emptyState.remove();
@@ -581,7 +557,6 @@ function setupEmptyCart(emptyState) {
   `;
 }
 
-// Refactored
 function updateExistingItem(item) {
   const priceElement = item.querySelector(".cart-item__price");
   if (priceElement) createLoadingPlaceholder(priceElement);
@@ -595,7 +570,6 @@ function updateExistingItem(item) {
   }
 }
 
-// Refactored
 function addNewItem(container, variantId, image, title, selections) {
   const cartItem = document.createElement("article");
   cartItem.className = "cart-item";
@@ -629,7 +603,6 @@ function addNewItem(container, variantId, image, title, selections) {
   container.prepend(cartItem);
 }
 
-// Refactored
 function updateSliderWithCurrentProducts() {
   const productIds = Array.from(document.querySelectorAll(".cart-item .cart-item__title a"))
     .map((link) => link.href.split("/products/")[1]?.split("?")[0])
@@ -642,7 +615,6 @@ function updateSliderWithCurrentProducts() {
   }
 }
 
-// Refactored
 function addErrorWithTimeout(item, message) {
   const error = document.createElement("div");
   error.className = "cart-item__error small cart-item__error--permanent";
@@ -659,19 +631,16 @@ function addErrorWithTimeout(item, message) {
   setTimeout(() => document.addEventListener("click", removeErrors), 100);
 }
 
-// Refactored
 function isGiftCardItem(rootItem) {
   const itemTitle = rootItem.querySelector(".cart-item__title a")?.textContent || "";
   return itemTitle.toLowerCase().includes("gift card");
 }
 
-// Refactored
 function isGiftCardProduct() {
   const productTitle = document.querySelector(".product-details__title")?.textContent || "";
   return productTitle.toLowerCase().includes("gift card");
 }
 
-// Refactored
 async function getCartProductIds() {
   const productHandles = new Set();
   const links = document.querySelectorAll(".cart-item .cart-item__title a");
@@ -698,7 +667,6 @@ async function getCartProductIds() {
   return { productIds, productHandles };
 }
 
-// Refactored
 function isProductInCart(product, cartProductIds, cartProductHandles) {
   if (cartProductIds.has(product.id) || cartProductHandles.has(product.handle)) {
     return true;
@@ -712,7 +680,6 @@ function isProductInCart(product, cartProductIds, cartProductHandles) {
   return handleFromUrl && cartProductHandles.has(handleFromUrl);
 }
 
-// Refactored
 function addCartEventListeners() {
   const applyItemLoading = (item) => {
     const actions = item.querySelector(".cart-item__actions");
@@ -837,7 +804,6 @@ function addCartEventListeners() {
   });
 }
 
-// Refactored
 function handleAddToCart(form) {
   return async (e) => {
     e.preventDefault();
@@ -889,12 +855,10 @@ function handleAddToCart(form) {
   };
 }
 
-// Refactored
 cartElements.forms.forEach((form) => {
   form.addEventListener("submit", handleAddToCart(form));
 });
 
-// Refactored
 cartElements.cartLinks.forEach((link) => {
   link.addEventListener("click", (e) => {
     e.preventDefault();
@@ -903,7 +867,6 @@ cartElements.cartLinks.forEach((link) => {
   });
 });
 
-// Fixing this one
 async function fetchComplementaryProducts(productIds) {
   const cartHandles = new Set(productIds);
   const seenHandles = new Set([...cartHandles]);
@@ -950,7 +913,6 @@ async function fetchComplementaryProducts(productIds) {
   return finalProducts;
 }
 
-// Refactored
 function hideComplementaryProducts() {
   const container = document.querySelector(".cart__complementary-products");
   if (container) {
@@ -958,7 +920,6 @@ function hideComplementaryProducts() {
   }
 }
 
-// Refactored
 async function updateComplementarySlider() {
   const container = document.querySelector(".cart__complementary-products");
   if (!container) return;
@@ -983,7 +944,6 @@ async function updateComplementarySlider() {
   renderComplementarySlider(products);
 }
 
-// Refactored
 function renderComplementarySlider(products) {
   const container = document.querySelector(".cart__complementary-products");
   if (!container || !products.length) {
