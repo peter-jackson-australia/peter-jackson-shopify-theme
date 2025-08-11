@@ -698,26 +698,21 @@ async function getCartProductIds() {
   return { productIds, productHandles };
 }
 
-// Currently refactoring this
+// Refactored
 function isProductInCart(product, cartProductIds, cartProductHandles) {
-  if (cartProductIds.has(product.id)) return true;
-  if (cartProductHandles.has(product.handle)) return true;
-
-  if (product.variants && Array.isArray(product.variants)) {
-    for (const variant of product.variants) {
-      if (cartProductIds.has(variant.product_id)) return true;
-    }
+  if (cartProductIds.has(product.id) || cartProductHandles.has(product.handle)) {
+    return true;
   }
 
-  const urlParts = (product.url || "").split("/products/");
-  if (urlParts.length > 1) {
-    const handleFromUrl = urlParts[1].split("?")[0];
-    if (handleFromUrl && cartProductHandles.has(handleFromUrl)) return true;
-  }
+  const hasVariantInCart = product.variants?.some((variant) => cartProductIds.has(variant.product_id));
 
-  return false;
+  if (hasVariantInCart) return true;
+
+  const handleFromUrl = product.url?.split("/products/")[1]?.split("?")[0];
+  return handleFromUrl && cartProductHandles.has(handleFromUrl);
 }
 
+// Currently refactoring this
 function addCartEventListeners() {
   document.querySelectorAll(".cart-item__quantity button").forEach((button) => {
     button.addEventListener("click", async () => {
