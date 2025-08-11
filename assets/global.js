@@ -576,7 +576,7 @@ function addNewItem(container, variantId, image, title, selections) {
             <a href="${window.location.pathname}">${title}</a>
           </h3>
           <div class="cart-item__specifics">
-            <p class="cart-item__variant small">${selections}</p>
+            <div class="cart-item__variant small" style="display: flex; align-items: center; height: auto;">${createAnimatedLoader().outerHTML}</div>
             <div class="cart-item__price">
               <div class="price-placeholder">${createAnimatedLoader().outerHTML}</div>
             </div>
