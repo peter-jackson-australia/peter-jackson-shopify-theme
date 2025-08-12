@@ -1,0 +1,55 @@
+{% assign spacer_height = section.settings.spacer_height %}
+
+<div style="background-color: var(--white); height: {{ spacer_height }}"></div>
+
+{% schema %}
+{
+  "name": "Spacer",
+  "settings": [
+    {
+      "type": "select",
+      "id": "spacer_height",
+      "label": "Spacer Height",
+      "options": [
+        {
+          "value": "var(--space-3xs)",
+          "label": "Space 3XS"
+        },
+        {
+          "value": "var(--space-2xs)",
+          "label": "Space 2XS"
+        },
+        {
+          "value": "var(--space-xs)",
+          "label": "Space XS"
+        },
+        {
+          "value": "var(--space-s)",
+          "label": "Space S"
+        },
+        {
+          "value": "var(--space-m)",
+          "label": "Space M"
+        },
+        {
+          "value": "var(--space-l)",
+          "label": "Space L"
+        },
+        {
+          "value": "var(--space-xl)",
+          "label": "Space XL"
+        },
+        {
+          "value": "var(--space-2xl)",
+          "label": "Space 2XL"
+        },
+        {
+          "value": "var(--space-3xl)",
+          "label": "Space 3XL"
+        }
+      ],
+      "default": "var(--space-m)"
+    }
+  ]
+}
+{% endschema %}
