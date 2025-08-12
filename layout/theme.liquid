@@ -21,7 +21,7 @@
     {% endif %}
 
     <link rel="canonical" href="{{ canonical_url }}">
-    {{ 'theme.css' | asset_url | stylesheet_tag: preload: true }}
+    {{ 'global-theme.css' | asset_url | stylesheet_tag: preload: true }}
 
     {% comment %}
       Klaviyo Newsletter Image Preloading
@@ -33,17 +33,17 @@
       <link rel="preload" as="image" href="{{ settings.klaviyo_newsletter_image_2 }}">
     {%- endunless -%}
 
-    <script src="{{ 'theme.js' | asset_url }}" defer></script>
-    <script src="{{ 'alpine.min.js' | asset_url }}" defer></script>
-    <script src="{{ 'predictive-search.js' | asset_url }}" defer></script>
-    <script src="{{ 'splide.min.js' | asset_url }}" defer></script>
-    <script src="{{ 'ploiu-vanilla-js-accordion.min.js' | asset_url }}" defer></script>
-    <script src="{{ 'quicklink.umd.js' | asset_url }}" defer></script>
-    <script src="{{ 'global.js' | asset_url }}" defer></script>
-    <script src="{{ 'split-type.min.js' | asset_url }}" defer></script>
-    <script src="{{ 'gsap.min.js' | asset_url }}" defer></script>
-    <script src="{{ 'scrolltrigger.min.js' | asset_url }}" defer></script>
-    <script src="{{ 'animations.js' | asset_url }}" defer></script>
+    <script src="{{ 'global-theme.js' | asset_url }}" defer></script>
+    <script src="{{ 'lib-alpine.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'global-predictive-search.js' | asset_url }}" defer></script>
+    <script src="{{ 'lib-splide.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'lib-ploiu-vanilla-js-accordion.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'lib-quicklink.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'global-cart.js' | asset_url }}" defer></script>
+    <script src="{{ 'lib-split-type.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'lib-gsap.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'lib-scrolltrigger.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'global-animations.js' | asset_url }}" defer></script>
     {% comment %}
       GTM Head Tag
     {% endcomment %}
