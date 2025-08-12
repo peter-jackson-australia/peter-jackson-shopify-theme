@@ -953,7 +953,7 @@
                     type="submit"
                     id="js--addtocart"
                     class="body"
-                    style="height: var(--space-xl);"
+                    style="height: var(--space-xl); {% if section.settings.round_cta %} border-radius: 200px; {% endif %}"
                   >
                     Add To Cart
                   </button>
@@ -962,7 +962,7 @@
                     type="submit"
                     id="js--addtocart"
                     class="body"
-                    style="height: var(--space-xl);"
+                    style="height: var(--space-xl); {% if section.settings.round_cta %} border-radius: 200px; {% endif %}"
                   >
                     {% if section.settings.show_low_stock_warning
                       and current_variant.available
@@ -980,7 +980,7 @@
                     type="submit"
                     id="js--addtocart"
                     class="body"
-                    style="height: var(--space-xl); display: none;"
+                    style="height: var(--space-xl); display: none; {% if section.settings.round_cta %} border-radius: 200px; {% endif %}"
                   >
                     Add To Cart
                   </button>
@@ -989,7 +989,7 @@
                   type="button"
                   id="js--notify-me"
                   class="body"
-                  style="height: var(--space-xl); width: 100%; background-color: var(--neutral-950); color: var(--white); border: none; padding: var(--space-s) var(--space-m); cursor: pointer; margin-bottom: var(--space-s); {% if current_variant.available and product.gift_card? %}display: none;{% elsif current_variant.available and current_variant.inventory_quantity > 5 %}display: none;{% else %}display: block;{% endif %}"
+                  style="height: var(--space-xl); width: 100%; background-color: var(--neutral-950); color: var(--white); border: none; padding: var(--space-s) var(--space-m); cursor: pointer; margin-bottom: var(--space-s); {% if current_variant.available and product.gift_card? %}display: none;{% elsif current_variant.available and current_variant.inventory_quantity > 5 %}display: none;{% else %}display: block;{% endif %} {% if section.settings.round_cta %} border-radius: 200px; {% endif %}"
                 >
                   Out of Stock - Notify Me
                 </button>
@@ -1637,6 +1637,12 @@
       "type": "checkbox",
       "id": "show_usps",
       "label": "Show USP's",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "round_cta",
+      "label": "Round CTA Button Corners",
       "default": false
     }
   ],
