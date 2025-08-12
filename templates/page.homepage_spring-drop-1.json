@@ -24,8 +24,8 @@
             "heading_animation": "none",
             "description": "Discover our latest collection",
             "description_animation": "none",
-            "button_label_1": "Shop Now",
-            "button_link_1": "",
+            "button_label_1": "Shop Drop #1",
+            "button_link_1": "shopify://collections/new-arrivals",
             "button_label_2": "",
             "button_link_2": "",
             "button_label_3": "",
@@ -33,7 +33,7 @@
             "button_label_4": "",
             "button_link_4": "",
             "horizontal_alignment": "left",
-            "vertical_alignment": "middle"
+            "vertical_alignment": "bottom"
           }
         }
       },
