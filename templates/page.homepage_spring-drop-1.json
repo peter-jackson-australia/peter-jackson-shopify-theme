@@ -46,6 +46,20 @@
         "slide_interval": 5
       }
     },
+    "collection_slider_x3GMYN": {
+      "type": "collection-slider",
+      "name": "Collection Slider",
+      "settings": {
+        "heading": "Best of End of Season Sale",
+        "heading_animation": "none",
+        "description": "Up to 60% Off Select Styles / Final Days",
+        "description_animation": "none",
+        "collection": "sale",
+        "button_label": "Shop Now",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
     "hero_primary_Ri8wik": {
       "type": "hero-primary",
       "name": "Hero Section",
@@ -70,25 +84,11 @@
         "horizontal_alignment": "center",
         "vertical_alignment": "middle"
       }
-    },
-    "collection_slider_x3GMYN": {
-      "type": "collection-slider",
-      "name": "Collection Slider",
-      "settings": {
-        "heading": "Best of End of Season Sale",
-        "heading_animation": "none",
-        "description": "Up to 60% Off Select Styles / Final Days",
-        "description_animation": "none",
-        "collection": "sale",
-        "button_label": "Shop Now",
-        "products_to_show": 10,
-        "animate_products": false
-      }
     }
   },
   "order": [
     "hero_slider_BqbBaU",
-    "hero_primary_Ri8wik",
-    "collection_slider_x3GMYN"
+    "collection_slider_x3GMYN",
+    "hero_primary_Ri8wik"
   ]
 }
