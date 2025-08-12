@@ -12,6 +12,30 @@
     "hero_slider_BqbBaU": {
       "type": "hero-slider",
       "blocks": {
+        "slide_fHpYVA": {
+          "type": "slide",
+          "settings": {
+            "media_type": "image",
+            "desktop_image": "shopify://shop_images/Afterpay_Day_Hero_Desktop.webp",
+            "heading": "Welcome to Our Store",
+            "svg_image": "shopify://shop_images/First_Light_Of_Spring_Home_5ef8c490-b7d1-42fe-8473-cb8f83368cca.svg",
+            "svg_size": "medium",
+            "heading_level": "h1",
+            "heading_animation": "none",
+            "description": "Discover The First Edit Of Our Spring/Summer Collection",
+            "description_animation": "none",
+            "button_label_1": "Shop Drop #1",
+            "button_link_1": "shopify://collections/new-arrivals",
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_label_3": "",
+            "button_link_3": "",
+            "button_label_4": "",
+            "button_link_4": "",
+            "horizontal_alignment": "left",
+            "vertical_alignment": "middle"
+          }
+        },
         "slide_GaUkHW": {
           "type": "slide",
           "settings": {
@@ -38,6 +62,7 @@
         }
       },
       "block_order": [
+        "slide_fHpYVA",
         "slide_GaUkHW"
       ],
       "name": "Hero Slider",
