@@ -70,10 +70,25 @@
         "horizontal_alignment": "center",
         "vertical_alignment": "middle"
       }
+    },
+    "collection_slider_secondary_fh6gpG": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "Best of End Of Season Sale",
+        "heading_animation": "none",
+        "description": "Bestsellers",
+        "description_animation": "none",
+        "collection": "sale",
+        "button_label": "Shop Now",
+        "products_to_show": 10,
+        "animate_products": false
+      }
     }
   },
   "order": [
     "hero_slider_BqbBaU",
-    "hero_primary_Ri8wik"
+    "hero_primary_Ri8wik",
+    "collection_slider_secondary_fh6gpG"
   ]
 }
