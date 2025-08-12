@@ -666,7 +666,7 @@ header {
   transform: translate(0, -4px) rotate(-45deg);
 }
 
-.cart-indicator {
+.cart-count-indicator {
   display: block;
   width: 8px;
   height: 8px;

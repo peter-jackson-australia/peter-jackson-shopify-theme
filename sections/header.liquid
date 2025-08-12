@@ -55,7 +55,7 @@
         style="background: none; border: none; padding: 0; cursor: pointer; text-decoration: none; position: relative;"
       >
         {%- render '_icon-cart', accessible_name: 'Shopping Cart', role: 'img' %}
-        <span class="cart-indicator {% if cart.item_count == 0 %}hide{% endif %}" aria-hidden="true"></span>
+        <span class="cart-count-indicator {% if cart.item_count == 0 %}hide{% endif %}" aria-hidden="true"></span>
       </button>
     </li>
   </ul>

@@ -1,16 +1,18 @@
 // ============================================
 // 1. CONSTANTS & CONFIGURATION
 // ============================================
+
 const cartElements = {
-  indicators: document.querySelectorAll(".cart-indicator"),
-  drawer: document.querySelector(".cart"),
-  forms: document.querySelectorAll('form[action="/cart/add"]'),
-  cartLinks: document.querySelectorAll(".js-cart-icon"),
+  cartCountIndicator: document.querySelectorAll(".cart-count-indicator"),
+  cartDrawer: document.querySelector(".cart"),
+  addToCartForm: document.querySelectorAll('form[action="/cart/add"]'),
+  cartIconButton: document.querySelectorAll(".js-cart-icon"),
 };
 
 // ============================================
 // 2. UTILITY/HELPER FUNCTIONS
 // ============================================
+
 function formatMoney(cents, format = "{{amount_with_comma_separator}}") {
   const amount = typeof cents === "string" ? parseFloat(cents.replace(".", "")) : cents;
   if (isNaN(amount) || amount == null) return "0.00";
@@ -39,28 +41,28 @@ function createAnimatedLoader() {
 }
 
 function createLoadingPlaceholder(element) {
-  const original = element.innerHTML;
+  const elementWithLoadingAnimation = element.innerHTML;
   element.replaceChildren(createAnimatedLoader());
-  return original;
+  return elementWithLoadingAnimation;
 }
 
-function showError(container, message, className = "product-error body") {
+function showError(container, errorMessage, className = "product-error body") {
   container.querySelectorAll('[class*="error"]').forEach((el) => el.remove());
 
   const error = document.createElement("div");
   error.className = className;
-  error.textContent = message;
+  error.textContent = errorMessage;
 
   container.querySelector("#js--addtocart, .cart-item__actions")?.after(error);
 }
 
-function addErrorWithTimeout(item, message) {
+function addErrorWithTimeout(item, errorMessage) {
   const error = document.createElement("div");
   error.className = "cart-item__error small cart-item__error--permanent";
-  error.textContent = message;
+  error.textContent = errorMessage;
 
-  const target = item.querySelector("#js--addtocart, .cart-item__actions");
-  if (target) target.after(error);
+  const addToCartButton = item.querySelector("#js--addtocart, .cart-item__actions");
+  if (addToCartButton) addToCartButton.after(error);
 
   const removeErrors = () => {
     document.querySelectorAll(".cart-item__error--permanent").forEach((el) => el.remove());
@@ -73,6 +75,7 @@ function addErrorWithTimeout(item, message) {
 // ============================================
 // 3. PRODUCT TYPE CHECKS
 // ============================================
+
 function isGiftCardItem(rootItem) {
   const itemTitle = rootItem.querySelector(".cart-item__title a")?.textContent || "";
   return itemTitle.toLowerCase().includes("gift card");
@@ -104,6 +107,7 @@ function checkInventoryLimit(inventory, currentQty, additionalQty) {
 // ============================================
 // 4. CART DATA MANAGEMENT
 // ============================================
+
 async function fetchCart() {
   try {
     const res = await fetch("/cart.js");
@@ -129,19 +133,20 @@ async function fetchCart() {
 // ============================================
 // 5. CART UI UPDATES
 // ============================================
+
 function openCartDrawer() {
   if (window.openCart) return window.openCart();
-  cartElements.drawer.classList.add("cart--active");
+  cartElements.cartDrawer.classList.add("cart--active");
   document.body.classList.add("cart-open");
 }
 
 function closeCartDrawer() {
   window.closeCart?.() ||
-    (cartElements.drawer.classList.remove("cart--active"), document.body.classList.remove("cart-open"));
+    (cartElements.cartDrawer.classList.remove("cart--active"), document.body.classList.remove("cart-open"));
 }
 
 function updateCartIndicators(count) {
-  cartElements.indicators.forEach((el) => {
+  cartElements.cartCountIndicator.forEach((el) => {
     el.style.visibility = "visible";
     el.classList.toggle("hide", count <= 0);
   });
@@ -975,12 +980,12 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Bind form handlers
-cartElements.forms.forEach((form) => {
+cartElements.addToCartForm.forEach((form) => {
   form.addEventListener("submit", handleAddToCart(form));
 });
 
 // Bind cart link handlers
-cartElements.cartLinks.forEach((link) => {
+cartElements.cartIconButton.forEach((link) => {
   link.addEventListener("click", (e) => {
     e.preventDefault();
     openCartDrawer();
