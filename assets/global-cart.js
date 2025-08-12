@@ -421,10 +421,8 @@ function getSelectedVariantOptions() {
 }
 
 function getCurrentProductImage() {
-  const primaryImage = document.querySelector(
-    ".splide__slide.is-active img, .splide__slide img, .product-gallery img, .product-image img"
-  );
-  return primaryImage?.src || document.querySelector('meta[property="og:image"]')?.content || "";
+  const featuredSlide = document.querySelector(`[data-imageid="${default_image}"] img`);
+  if (featuredSlide?.src) return featuredSlide.src;
 }
 
 function initializeEmptyCartStructure(emptyStateElement) {
