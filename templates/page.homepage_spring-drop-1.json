@@ -33,9 +33,46 @@
         "horizontal_alignment": "center",
         "vertical_alignment": "middle"
       }
+    },
+    "hero_slider_BqbBaU": {
+      "type": "hero-slider",
+      "blocks": {
+        "slide_GaUkHW": {
+          "type": "slide",
+          "settings": {
+            "media_type": "image",
+            "desktop_image": "shopify://shop_images/Spring_Drop_1_Hero_Desktop.webp",
+            "heading": "Welcome to Our Store",
+            "svg_size": "medium",
+            "heading_level": "h1",
+            "heading_animation": "none",
+            "description": "Discover our latest collection",
+            "description_animation": "none",
+            "button_label_1": "Shop Now",
+            "button_link_1": "",
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_label_3": "",
+            "button_link_3": "",
+            "button_label_4": "",
+            "button_link_4": "",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "bottom"
+          }
+        }
+      },
+      "block_order": [
+        "slide_GaUkHW"
+      ],
+      "name": "Hero Slider",
+      "settings": {
+        "autoplay": true,
+        "slide_interval": 5
+      }
     }
   },
   "order": [
-    "hero_primary_Ri8wik"
+    "hero_primary_Ri8wik",
+    "hero_slider_BqbBaU"
   ]
 }
