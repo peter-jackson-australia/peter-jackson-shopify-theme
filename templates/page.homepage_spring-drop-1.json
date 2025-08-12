@@ -9,29 +9,6 @@
  */
 {
   "sections": {
-    "editorial_hero_hceC9g": {
-      "type": "editorial-hero",
-      "name": "Hero Editorial",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": false,
-        "leading_text": "",
-        "leading_text_animation": "none",
-        "first_title": "Discover",
-        "first_title_level": "h1",
-        "first_title_animation": "none",
-        "media_type": "image",
-        "animate_media": false,
-        "second_title": "Collection",
-        "second_title_level": "h1",
-        "second_title_animation": "none",
-        "description": "",
-        "description_animation": "none",
-        "cta_text": "Shop Now",
-        "cta_link": ""
-      }
-    },
     "hero_primary_Ri8wik": {
       "type": "hero-primary",
       "name": "Hero Section",
@@ -39,13 +16,13 @@
         "media_type": "video",
         "video": "shopify://files/videos/Transeasonal Refinement Site.mp4",
         "heading": "",
-        "svg_image": "shopify://shop_images/Transeasonal_Refinement_6fe9c1cb-f392-47d1-93ac-906466beaa3f.svg",
+        "svg_image": "shopify://shop_images/Transeasonal_Refinement_v2.svg",
         "svg_size": "medium",
         "heading_level": "h1",
         "heading_animation": "none",
-        "description": "Tailored style for the spring season",
+        "description": "Style For The Shift Into Spring",
         "description_animation": "none",
-        "button_label_1": "Shop Now",
+        "button_label_1": "Shop New Arrivals",
         "button_link_1": "shopify://collections/new-arrivals",
         "button_label_2": "",
         "button_link_2": "",
@@ -59,7 +36,6 @@
     }
   },
   "order": [
-    "editorial_hero_hceC9g",
     "hero_primary_Ri8wik"
   ]
 }
