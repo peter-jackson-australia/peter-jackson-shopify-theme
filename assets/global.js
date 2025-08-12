@@ -1,7 +1,4 @@
-// ============================================
-// 1. CONSTANTS & CONFIGURATION
-// ============================================
-
+// Constants & configuration
 const cartElements = {
   cartCountIndicator: document.querySelectorAll(".cart-count-indicator"),
   cartDrawer: document.querySelector(".cart"),
@@ -9,33 +6,30 @@ const cartElements = {
   cartIconButton: document.querySelectorAll(".js-cart-icon"),
 };
 
-// ============================================
-// 2. UTILITY/HELPER FUNCTIONS
-// ============================================
+const LOADER_HTML = `<svg fill=#E7E7E7 style=height:4px;display:block viewBox="0 0 40 4"xmlns=http://www.w3.org/2000/svg><style>.react{animation:moving 1s ease-in-out infinite}@keyframes moving{0%{width:0%}50%{width:100%;transform:translate(0,0)}100%{width:0;right:0;transform:translate(100%,0)}}</style><rect class=react fill=#E7E7E7 height=4 width=40 /></svg>`;
+const JSON_HEADERS = { Accept: "application/json", "Content-Type": "application/json" };
 
+// Utility/helper functions
 function formatMoney(cents, format = "{{amount_with_comma_separator}}") {
   const amount = typeof cents === "string" ? parseFloat(cents.replace(".", "")) : cents;
   if (isNaN(amount) || amount == null) return "0.00";
 
   const formatType = format.replace(/[{}{\s}]/g, "");
   const dollars = (amount / 100).toFixed(formatType === "amount_no_decimals" ? 0 : 2);
-
   const formats = {
     amount: [",", "."],
     amount_with_comma_separator: [".", ","],
     amount_no_decimals: [",", "."],
   };
-
   const [thousands, decimal] = formats[formatType] || formats["amount"];
   const [whole, decimals] = dollars.split(".");
   const formatted = whole.replace(/\B(?=(\d{3})+(?!\d))/g, thousands);
-
   return decimals !== undefined ? formatted + decimal + decimals : formatted;
 }
 
 function createAnimatedLoader() {
   const loader = document.createElement("div");
-  loader.innerHTML = `<svg fill=#E7E7E7 style=height:4px;display:block viewBox="0 0 40 4"xmlns=http://www.w3.org/2000/svg><style>.react{animation:moving 1s ease-in-out infinite}@keyframes moving{0%{width:0%}50%{width:100%;transform:translate(0,0)}100%{width:0;right:0;transform:translate(100%,0)}}</style><rect class=react fill=#E7E7E7 height=4 width=40 /></svg>`;
+  loader.innerHTML = LOADER_HTML;
   return loader;
 }
 
@@ -47,11 +41,9 @@ function createLoadingPlaceholder(element) {
 
 function showError(container, errorMessage, className = "product-error body") {
   container.querySelectorAll('[class*="error"]').forEach((el) => el.remove());
-
   const error = document.createElement("div");
   error.className = className;
   error.textContent = errorMessage;
-
   container.querySelector("#js--addtocart, .cart-item__actions")?.after(error);
 }
 
@@ -67,14 +59,10 @@ function addErrorWithTimeout(item, errorMessage) {
     document.querySelectorAll(".cart-item__error--permanent").forEach((el) => el.remove());
     document.removeEventListener("click", removeErrors);
   };
-
   setTimeout(() => document.addEventListener("click", removeErrors), 100);
 }
 
-// ============================================
-// 3. PRODUCT TYPE CHECKS
-// ============================================
-
+// Product type checks
 function isGiftCardItem(rootItem) {
   const itemTitle = rootItem.querySelector(".cart-item__title a")?.textContent || "";
   return itemTitle.toLowerCase().includes("gift card");
@@ -89,29 +77,23 @@ function checkInventoryLimit(inventory, currentQty, additionalQty) {
   const limit = inventory === Infinity ? Infinity : Math.max(0, inventory - 5);
   const total = currentQty + additionalQty;
 
-  if (limit !== Infinity && total > limit) {
-    return {
-      allowed: false,
-      limit: limit,
-      errorMessage:
-        limit === 0
-          ? "Sorry, this item is out of stock."
-          : `Sorry, only ${limit} ${limit === 1 ? "item" : "items"} available.`,
-    };
-  }
+  if (limit === Infinity || total <= limit) return { allowed: true };
 
-  return { allowed: true };
+  return {
+    allowed: false,
+    limit: limit,
+    errorMessage:
+      limit === 0
+        ? "Sorry, this item is out of stock."
+        : `Sorry, only ${limit} ${limit === 1 ? "item" : "items"} available.`,
+  };
 }
 
-// ============================================
-// 4. CART DATA MANAGEMENT
-// ============================================
-
+// Cart data management
 async function fetchCart() {
   try {
     const res = await fetch("/cart.js");
     const cart = await res.json();
-
     localStorage.setItem(
       "cartData",
       JSON.stringify({
@@ -120,7 +102,6 @@ async function fetchCart() {
         total: cart.total_price,
       })
     );
-
     updateCartIndicators(cart.item_count);
     return cart;
   } catch (e) {
@@ -129,10 +110,7 @@ async function fetchCart() {
   }
 }
 
-// ============================================
-// 5. CART UI UPDATES
-// ============================================
-
+// Cart UI updates
 function openCartDrawer() {
   if (window.openCart) return window.openCart();
   cartElements.cartDrawer.classList.add("cart--active");
@@ -158,20 +136,11 @@ function applyCartTotalLoaders() {
   if (checkoutButton) checkoutButton.innerHTML = '<span class="loader--spinner"></span>';
 }
 
-function animateShippingProgress(cartTotal) {
-  const progress = document.querySelector(".cart__shipping-progress");
-  if (!progress) return;
-  const threshold = 9900;
-  progress.style.width = `${Math.min((cartTotal / threshold) * 100, 100)}%`;
-}
-
 async function updateCartDrawer() {
   try {
     const currentProgress = document.querySelector(".cart__shipping-progress");
     const currentWidth = currentProgress ? currentProgress.style.width || "0%" : "0%";
-
     const [drawerRes, cartData] = await Promise.all([fetch("/?section_id=cart-drawer"), fetchCart()]);
-
     const html = document.createElement("div");
     html.innerHTML = await drawerRes.text();
 
@@ -184,7 +153,6 @@ async function updateCartDrawer() {
       if (hasItems) {
         newShipping.style.display = "block";
         newShipping.style.height = "93px";
-
         const threshold = 9900;
         const newText = newShipping.querySelector(".cart__shipping-text");
         const newProgress = newShipping.querySelector(".cart__shipping-progress");
@@ -227,7 +195,10 @@ async function updateCartDrawer() {
     const cart = await fetchCart();
     if (cart) {
       setTimeout(() => {
-        animateShippingProgress(cart.total_price);
+        const progress = document.querySelector(".cart__shipping-progress");
+        if (!progress) return;
+        const threshold = 9900;
+        progress.style.width = `${Math.min((cart.total_price / threshold) * 100, 100)}%`;
       }, 100);
     }
 
@@ -238,10 +209,7 @@ async function updateCartDrawer() {
   }
 }
 
-// ============================================
-// 6. COMPLEMENTARY PRODUCTS SLIDER
-// ============================================
-
+// Complementary products slider
 let sliderUpdateInProgress = false;
 
 function getComplementarySliderHTML() {
@@ -281,9 +249,7 @@ function ensureSliderContainerExists() {
   container.className = "cart__complementary-products";
   container.style.display = "none";
   container.innerHTML = getComplementarySliderHTML();
-
   container.querySelector(".cart__complementary-products-loading").appendChild(createAnimatedLoader());
-
   cartForm.insertBefore(container, footer);
 }
 
@@ -296,9 +262,7 @@ function destroyComplementarySlider() {
 
 function hideComplementaryProducts() {
   const container = document.querySelector(".cart__complementary-products");
-  if (container) {
-    container.style.display = "none";
-  }
+  if (container) container.style.display = "none";
 }
 
 async function fetchComplementaryProducts(productIds) {
@@ -310,11 +274,9 @@ async function fetchComplementaryProducts(productIds) {
     try {
       const productRes = await fetch(`/products/${handle}.js`);
       if (!productRes.ok) return [];
-
       const product = await productRes.json();
       const recsRes = await fetch(`/recommendations/products.json?product_id=${product.id}&limit=10&intent=related`);
       if (!recsRes.ok) return [];
-
       const data = await recsRes.json();
       return data.products || [];
     } catch {
@@ -326,20 +288,16 @@ async function fetchComplementaryProducts(productIds) {
 
   for (const products of allRecommendations) {
     let addedFromThisItem = 0;
-
     for (const product of products) {
       if (addedFromThisItem >= 2) break;
-
       if (!seenHandles.has(product.handle)) {
         seenHandles.add(product.handle);
         finalProducts.push(product);
         addedFromThisItem++;
-
         if (finalProducts.length >= 8) return finalProducts;
       }
     }
   }
-
   return finalProducts;
 }
 
@@ -400,9 +358,7 @@ async function rebuildComplementarySlider(productIds) {
     }).mount();
 
     const arrowsContainer = container.querySelector(".splide__arrows");
-    if (arrowsContainer) {
-      arrowsContainer.style.display = products.length <= 2 ? "none" : "flex";
-    }
+    if (arrowsContainer) arrowsContainer.style.display = products.length <= 2 ? "none" : "flex";
 
     loading.style.display = "none";
     content.style.display = "block";
@@ -416,7 +372,6 @@ async function rebuildComplementarySlider(productIds) {
 
 function handleSliderIndependently() {
   const cartItems = document.querySelectorAll(".cart-item");
-
   if (!cartItems.length) {
     hideComplementaryProducts();
     return;
@@ -428,9 +383,7 @@ function handleSliderIndependently() {
     .map((item) => item.querySelector(".cart-item__title a")?.href?.split("/products/")[1]?.split("?")[0])
     .filter(Boolean);
 
-  if (productIds.length) {
-    rebuildComplementarySlider(productIds);
-  }
+  if (productIds.length) rebuildComplementarySlider(productIds);
 }
 
 function updateSliderWithCurrentProducts() {
@@ -445,10 +398,7 @@ function updateSliderWithCurrentProducts() {
   }
 }
 
-// ============================================
-// 7. OPTIMISTIC UI FOR ADD TO CART
-// ============================================
-
+// Optimistic UI for add to cart
 function getVariantSelections() {
   const options = [];
   document.querySelectorAll(".js--variant-options:checked").forEach((input) => {
@@ -459,12 +409,9 @@ function getVariantSelections() {
     if (legend && label) {
       const optionName = legend.textContent.replace(":", "").trim();
       const optionValue = label.textContent.trim();
-      if (optionName && optionValue) {
-        options.push(`${optionName}: ${optionValue}`);
-      }
+      if (optionName && optionValue) options.push(`${optionName}: ${optionValue}`);
     }
   });
-
   return options.length > 0 ? options.join(", ") : "One Size";
 }
 
@@ -472,7 +419,6 @@ function getProductImage() {
   const img = document.querySelector(
     ".splide__slide.is-active img, .splide__slide img, .product-gallery img, .product-image img"
   );
-
   return img?.src || document.querySelector('meta[property="og:image"]')?.content || "";
 }
 
@@ -504,9 +450,7 @@ function setupEmptyCart(emptyState) {
   `;
 
   const loadingEl = cartForm.querySelector(".cart__complementary-products-loading");
-  if (loadingEl && !loadingEl.firstChild) {
-    loadingEl.appendChild(createAnimatedLoader());
-  }
+  if (loadingEl && !loadingEl.firstChild) loadingEl.appendChild(createAnimatedLoader());
 }
 
 function updateExistingItem(item) {
@@ -560,7 +504,6 @@ function addNewItem(container, variantId, image, title, selections) {
 function applyOptimisticUI() {
   const productTitle = document.querySelector(".product-details__title")?.textContent || "";
   const variantId = document.querySelector("#js--variant-id")?.value || "";
-
   const variantSelections = getVariantSelections();
   const productImage = getProductImage();
 
@@ -568,9 +511,7 @@ function applyOptimisticUI() {
   ensureSliderContainerExists();
 
   const isCartEmpty = document.querySelector(".cart__empty-state");
-  if (isCartEmpty) {
-    setupEmptyCart(isCartEmpty);
-  }
+  if (isCartEmpty) setupEmptyCart(isCartEmpty);
 
   const itemsContainer = document.querySelector(".cart__items");
   if (!itemsContainer) return;
@@ -586,10 +527,7 @@ function applyOptimisticUI() {
   updateSliderWithCurrentProducts();
 }
 
-// ============================================
-// 8. EVENT HANDLERS
-// ============================================
-
+// Event handlers
 function handleAddToCart(form) {
   return async (e) => {
     e.preventDefault();
@@ -609,7 +547,6 @@ function handleAddToCart(form) {
         const cart = await fetchCart();
         const existing = cart?.items?.find((item) => item.variant_id.toString() === variantId);
         const currentQty = existing?.quantity || 0;
-
         const inventoryCheck = checkInventoryLimit(inventory, currentQty, quantity);
 
         if (!inventoryCheck.allowed) {
@@ -641,10 +578,11 @@ function addCartEventListeners() {
   const applyItemLoading = (item) => {
     const actions = item.querySelector(".cart-item__actions");
     const price = item.querySelector(".cart-item__price");
+    const loaderHTML = createAnimatedLoader().outerHTML;
 
     if (actions) {
       actions.innerHTML = `
-        <div class="placeholder-loader">${createAnimatedLoader().outerHTML}</div>
+        <div class="placeholder-loader">${loaderHTML}</div>
         <div class="placeholder-remove"></div>
       `;
     }
@@ -660,7 +598,6 @@ function addCartEventListeners() {
 
   const removeItem = async (item, key) => {
     const itemCount = document.querySelectorAll(".cart-item").length;
-
     item.style.display = "none";
 
     if (itemCount === 1) {
@@ -674,7 +611,7 @@ function addCartEventListeners() {
     try {
       await fetch("/cart/update.js", {
         method: "post",
-        headers: { Accept: "application/json", "Content-Type": "application/json" },
+        headers: JSON_HEADERS,
         body: JSON.stringify({ updates: { [key]: 0 } }),
       });
       await updateCartDrawer();
@@ -704,10 +641,8 @@ function addCartEventListeners() {
         if (!inventoryCheck.allowed) {
           applyCartTotalLoaders();
           applyItemLoading(item);
-
           await new Promise((r) => setTimeout(r, 800));
           await updateCartDrawer();
-
           const updated = document.querySelector(`[data-line-item-key="${key}"]`);
           if (updated) addErrorWithTimeout(updated, inventoryCheck.errorMessage);
           return;
@@ -727,7 +662,7 @@ function addCartEventListeners() {
 
         await fetch("/cart/update.js", {
           method: "post",
-          headers: { Accept: "application/json", "Content-Type": "application/json" },
+          headers: JSON_HEADERS,
           body: JSON.stringify({ updates: { [key]: newQty } }),
         });
 
@@ -735,7 +670,6 @@ function addCartEventListeners() {
       } catch (e) {
         console.error("Error updating quantity:", e);
         await updateCartDrawer();
-
         const updated = document.querySelector(`[data-line-item-key="${key}"]`);
         if (updated) addErrorWithTimeout(updated, "Could not update quantity. Please try again.");
       }
@@ -756,42 +690,30 @@ function addCartEventListeners() {
   });
 }
 
-// ============================================
-// 9. INITIALISATION
-// ============================================
-
+// Initialisation
 function initCartFromStorage() {
   const savedCart = localStorage.getItem("cartData");
   if (savedCart) {
     const cart = JSON.parse(savedCart);
-    if (cart.count > 0) {
-      updateCartIndicators(cart.count);
-    }
+    if (cart.count > 0) updateCartIndicators(cart.count);
   }
 
   fetchCart().then((freshCart) => {
     updateCartDrawer().then(() => {
-      if (freshCart?.item_count > 0) {
-        handleSliderIndependently();
-      }
+      if (freshCart?.item_count > 0) handleSliderIndependently();
     });
   });
 }
 
-// ============================================
-// 10. MAIN INITIALISATION & EVENT BINDING
-// ============================================
-
+// Main initialisation & event binding
 document.addEventListener("DOMContentLoaded", () => {
   initCartFromStorage();
   addCartEventListeners();
 
-  // Bind form handlers
   cartElements.addToCartForm.forEach((form) => {
     form.addEventListener("submit", handleAddToCart(form));
   });
 
-  // Bind cart link handlers
   cartElements.cartIconButton.forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
