@@ -265,101 +265,10 @@ async function updateCartDrawer() {
   }
 }
 
-function prePopulateCartDrawer(cartData) {
-  const cartEmpty = document.querySelector(".cart__empty-state");
-  if (!cartEmpty) return;
-
-  if (!cartData?.items?.length) return;
-
-  cartEmpty.remove();
-  const cartForm = document.querySelector(".cart__form");
-
-  const escapeHtml = (str) => {
-    const div = document.createElement("div");
-    div.textContent = str || "";
-    return div.innerHTML;
-  };
-
-  cartForm.innerHTML = `
-    <div class="cart__shipping" style="display: block;">
-      <p class="cart__shipping-text small"></p>
-      <div class="cart__shipping-bar">
-        <div class="cart__shipping-progress"></div>
-      </div>
-    </div>
-    <div class="cart__items"></div>
-  `;
-
-  const itemsContainer = cartForm.querySelector(".cart__items");
-
-  cartData.items.forEach((item) => {
-    const cartItem = document.createElement("article");
-    cartItem.className = "cart-item";
-    cartItem.setAttribute("data-line-item-key", item.key || "");
-
-    if (item.variant?.inventory_quantity !== undefined) {
-      cartItem.setAttribute("data-inventory-quantity", item.variant.inventory_quantity);
-    }
-
-    const variantInfo =
-      item.variant_title && item.variant_title !== "Default Title" ? item.variant_title.replace(".0", "") : "One Size";
-
-    cartItem.innerHTML = `
-      <div class="cart-item__image">
-        <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.title)}" width="100" height="auto">
-      </div>
-      <div class="cart-item__content">
-        <div class="cart-item__row">
-          <div class="cart-item__details">
-            <h3 class="cart-item__title body--bold">
-              <a href="${escapeHtml(item.url)}">${escapeHtml(item.product_title || item.title)}</a>
-            </h3>
-            <div class="cart-item__specifics">
-              <p class="cart-item__variant small">${escapeHtml(variantInfo)}</p>
-              <div class="cart-item__price">
-                <p class="small">${formatMoney(item.line_price || 0)}</p>
-              </div>
-            </div>
-            <div class="cart-item__actions">
-              <div class="cart-item__quantity">
-                <button class="cart-item__quantity-button cart-item__quantity-button--minus body" type="button" aria-label="Decrease quantity">-</button>
-                <input type="text" class="cart-item__quantity-input small" readonly value="${
-                  parseInt(item.quantity) || 1
-                }" aria-label="Quantity">
-                <button class="cart-item__quantity-button cart-item__quantity-button--plus body" type="button" aria-label="Increase quantity">+</button>
-              </div>
-              <button type="button" class="cart-item__remove small">Remove</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
-
-    itemsContainer.appendChild(cartItem);
-  });
-
-  ensureSliderContainerExists();
-
-  if (!document.querySelector(".cart__footer")) {
-    const footer = document.createElement("footer");
-    footer.className = "cart__footer";
-    footer.innerHTML = `
-      <div class="cart__footer-row">
-        <h3 class="cart__footer-label body">Subtotal</h3>
-        <span class="cart__footer-value body--bold">${formatMoney(cartData.total || 0)}</span>
-      </div>
-      <button type="submit" name="checkout" class="cart__checkout body" style="height: var(--space-xl);">Checkout</button>
-    `;
-    cartForm.appendChild(footer);
-  }
-
-  updateFreeShippingBar(cartData.total || 0);
-  updateComplementarySlider();
-}
-
 // ============================================
 // 6. COMPLEMENTARY PRODUCTS SLIDER
 // ============================================
+
 let sliderUpdateInProgress = false;
 
 function getComplementarySliderHTML() {
@@ -551,84 +460,6 @@ function handleSliderIndependently() {
   }
 }
 
-async function updateComplementarySlider() {
-  const container = document.querySelector(".cart__complementary-products");
-  if (!container) return;
-
-  const productIds = Array.from(document.querySelectorAll(".cart-item .cart-item__title a"))
-    .map((link) => link.href.split("/products/")[1]?.split("?")[0])
-    .filter(Boolean);
-
-  if (!productIds.length) {
-    hideComplementaryProducts();
-    return;
-  }
-
-  const loading = container.querySelector(".cart__complementary-products-loading");
-  const content = container.querySelector(".cart__complementary-products-content");
-
-  container.style.display = "block";
-  if (loading) loading.style.display = "block";
-  if (content) content.style.display = "none";
-
-  const products = await fetchComplementaryProducts(productIds);
-  renderComplementarySlider(products);
-}
-
-function renderComplementarySlider(products) {
-  const container = document.querySelector(".cart__complementary-products");
-  if (!container || !products.length) {
-    if (container) container.style.display = "none";
-    return;
-  }
-
-  const loading = container.querySelector(".cart__complementary-products-loading");
-  const content = container.querySelector(".cart__complementary-products-content");
-  const splideList = container.querySelector(".splide__list");
-
-  if (!loading || !content || !splideList) return;
-
-  if (window.complementarySlider) {
-    window.complementarySlider.destroy();
-    window.complementarySlider = null;
-  }
-
-  splideList.innerHTML = products
-    .map(
-      (product) => `
-      <li class="splide__slide">
-        <a href="/products/${product.handle}">
-          <div class="cart__complementary-products-image-wrapper">
-            <img src="https:${product.featured_image}&width=300" alt="${
-        product.title
-      }" class="cart__complementary-products-image">
-          </div>
-          <h3 class="body--bold cart__complementary-products-title-product">${product.title}</h3>
-          <p class="small cart__complementary-products-price">$${formatMoney(product.price)}</p>
-        </a>
-      </li>
-    `
-    )
-    .join("");
-
-  window.complementarySlider = new Splide(container.querySelector(".cart__complementary-products-slider"), {
-    type: "slide",
-    perPage: 2,
-    gap: "var(--space-2xs)",
-    arrows: true,
-    pagination: false,
-  }).mount();
-
-  const arrows = container.querySelector(".splide__arrows");
-  if (arrows) {
-    arrows.style.display = products.length <= 2 ? "none" : "flex";
-  }
-
-  container.style.display = "block";
-  loading.style.display = "none";
-  content.style.display = "block";
-}
-
 function updateSliderWithCurrentProducts() {
   const productIds = Array.from(document.querySelectorAll(".cart-item .cart-item__title a"))
     .map((link) => link.href.split("/products/")[1]?.split("?")[0])
@@ -644,6 +475,7 @@ function updateSliderWithCurrentProducts() {
 // ============================================
 // 7. OPTIMISTIC UI FOR ADD TO CART
 // ============================================
+
 function getVariantSelections() {
   const options = [];
   document.querySelectorAll(".js--variant-options:checked").forEach((input) => {
@@ -784,6 +616,7 @@ function applyOptimisticUI() {
 // ============================================
 // 8. EVENT HANDLERS
 // ============================================
+
 function handleAddToCart(form) {
   return async (e) => {
     e.preventDefault();
@@ -951,8 +784,9 @@ function addCartEventListeners() {
 }
 
 // ============================================
-// 9. INITIALIZATION
+// 9. INITIALISATION
 // ============================================
+
 function initCartFromStorage() {
   const savedCart = localStorage.getItem("cartData");
   if (savedCart) {
@@ -972,8 +806,9 @@ function initCartFromStorage() {
 }
 
 // ============================================
-// 10. MAIN INITIALIZATION & EVENT BINDING
+// 10. MAIN INITIALISATION & EVENT BINDING
 // ============================================
+
 document.addEventListener("DOMContentLoaded", () => {
   initCartFromStorage();
   addCartEventListeners();
