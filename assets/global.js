@@ -24,7 +24,6 @@ function formatMoney(cents, format = "{{amount_with_comma_separator}}") {
     amount: [",", "."],
     amount_with_comma_separator: [".", ","],
     amount_no_decimals: [",", "."],
-    amount_with_space_separator: [" ", ","],
   };
 
   const [thousands, decimal] = formats[formatType] || formats["amount"];
@@ -141,8 +140,8 @@ function openCartDrawer() {
 }
 
 function closeCartDrawer() {
-  window.closeCart?.() ||
-    (cartElements.cartDrawer.classList.remove("cart--active"), document.body.classList.remove("cart-open"));
+  cartElements.cartDrawer.classList.remove("cart--active");
+  document.body.classList.remove("cart-open");
 }
 
 function updateCartIndicators(count) {
@@ -157,32 +156,6 @@ function applyCartTotalLoaders() {
   document.querySelectorAll(".cart__footer-value").forEach((el) => createLoadingPlaceholder(el));
   const checkoutButton = document.querySelector(".cart__checkout");
   if (checkoutButton) checkoutButton.innerHTML = '<span class="loader--spinner"></span>';
-}
-
-function updateFreeShippingBar(cartTotal) {
-  const shipping = document.querySelector(".cart__shipping");
-  const text = document.querySelector(".cart__shipping-text");
-  const progress = document.querySelector(".cart__shipping-progress");
-  const hasItems = document.querySelector(".cart-item");
-
-  if (!shipping || !hasItems) {
-    if (shipping) shipping.style.display = "none";
-    return;
-  }
-
-  const threshold = 9900;
-  const percentage = Math.min((cartTotal / threshold) * 100, 100);
-  const isFreeShipping = cartTotal >= threshold;
-
-  shipping.classList.remove("cart__shipping--loading");
-  shipping.style.display = "block";
-  shipping.style.height = "93px";
-
-  text.textContent = isFreeShipping
-    ? "Your order has free shipping!"
-    : `$${formatMoney(threshold - cartTotal)} away from free shipping`;
-
-  progress.style.width = `${percentage}%`;
 }
 
 function animateShippingProgress(cartTotal) {
@@ -758,7 +731,7 @@ function addCartEventListeners() {
           body: JSON.stringify({ updates: { [key]: newQty } }),
         });
 
-        await updateCartDrawer(true);
+        await updateCartDrawer();
       } catch (e) {
         console.error("Error updating quantity:", e);
         await updateCartDrawer();
@@ -812,18 +785,18 @@ function initCartFromStorage() {
 document.addEventListener("DOMContentLoaded", () => {
   initCartFromStorage();
   addCartEventListeners();
-});
 
-// Bind form handlers
-cartElements.addToCartForm.forEach((form) => {
-  form.addEventListener("submit", handleAddToCart(form));
-});
+  // Bind form handlers
+  cartElements.addToCartForm.forEach((form) => {
+    form.addEventListener("submit", handleAddToCart(form));
+  });
 
-// Bind cart link handlers
-cartElements.cartIconButton.forEach((link) => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
-    openCartDrawer();
-    updateCartDrawer();
+  // Bind cart link handlers
+  cartElements.cartIconButton.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      openCartDrawer();
+      updateCartDrawer();
+    });
   });
 });
