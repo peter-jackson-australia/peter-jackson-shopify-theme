@@ -1,5 +1,5 @@
 {% comment %}
-  AJAX Cart
+  AJAX Cart - Fixed wrapper structure
 {% endcomment %}
 
 <style>
@@ -84,8 +84,14 @@
     display: flex;
     flex-direction: column;
     height: calc(100dvh - var(--space-xl));
-    overflow-y: auto;
+    overflow: hidden;
     position: relative;
+  }
+
+  .cart__content-wrapper {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: calc(128px + var(--space-m));
   }
 
   .cart__items {
@@ -189,7 +195,6 @@
 
   .cart__complementary-products {
     padding: var(--space-m);
-    padding-bottom: calc(128px + var(--space-l));
     border-top: 1px solid var(--neutral-50);
   }
 
@@ -500,7 +505,7 @@
             <a href="{{ routes.collections_url }}/mens-suits" class="cart__new-arrivals body">View Full Collection</a>
           </div>
         {% else %}
-          <div class="custom-scrollbar" style="overflow-y: auto; margin-bottom: var(--space-l);">
+          <div class="cart__content-wrapper custom-scrollbar">
             <div class="cart__items">
               {% for item in cart.items %}
                 <article
