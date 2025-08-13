@@ -60,64 +60,9 @@
         "show_top_border": true,
         "show_bottom_border": true
       }
-    },
-    "link_list_bkptid": {
-      "type": "link-list",
-      "blocks": {
-        "link_UAFrHg": {
-          "type": "link",
-          "settings": {
-            "link_text": "Shop All",
-            "link_url": "/collections/all"
-          }
-        },
-        "link_twPUqm": {
-          "type": "link",
-          "settings": {
-            "link_text": "New Arrivals",
-            "link_url": "/collections/new-arrivals"
-          }
-        },
-        "link_xVtfNH": {
-          "type": "link",
-          "settings": {
-            "link_text": "Link",
-            "link_url": "shopify://collections"
-          }
-        },
-        "link_EXREFH": {
-          "type": "link",
-          "settings": {
-            "link_text": "Best Sellers",
-            "link_url": "/collections/best-sellers"
-          }
-        },
-        "link_Wfayfi": {
-          "type": "link",
-          "settings": {
-            "link_text": "New Link",
-            "link_url": "shopify://products/abstract-sunshine-pocket-square"
-          }
-        }
-      },
-      "block_order": [
-        "link_UAFrHg",
-        "link_twPUqm",
-        "link_xVtfNH",
-        "link_EXREFH",
-        "link_Wfayfi"
-      ],
-      "name": "Link List",
-      "settings": {
-        "heading": "This is a heading",
-        "alignment": "right",
-        "show_top_border": false,
-        "show_bottom_border": false
-      }
     }
   },
   "order": [
-    "collection_slider_header_7Hd3ef",
-    "link_list_bkptid"
+    "collection_slider_header_7Hd3ef"
   ]
 }
