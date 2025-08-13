@@ -197,6 +197,7 @@
         "heading": "Welcome to Our Store",
         "svg_image": "shopify://shop_images/MOD_HP_Heading_a2545755-65f2-4fbe-9d1e-cfd88fdde7ed.svg",
         "svg_size": "medium",
+        "mobile_svg_image": "shopify://shop_images/MOD_HP_Heading_a2545755-65f2-4fbe-9d1e-cfd88fdde7ed.svg",
         "heading_level": "h1",
         "heading_animation": "none",
         "description": "For the ceremony, the celebration, the forever.",
