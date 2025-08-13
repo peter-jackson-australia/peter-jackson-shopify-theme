@@ -34,12 +34,13 @@
             "products_to_show": 10
           }
         },
-        "navigation_item_HL7yYc": {
+        "navigation_item_NFP3hk": {
           "type": "navigation_item",
           "settings": {
-            "nav_label": "Men",
+            "nav_label": "Collection Name",
+            "desktop_image": "shopify://shop_images/Spring_Drop_1_Hero_Desktop.webp",
             "collection": "",
-            "slider_heading": "Men's Collection",
+            "slider_heading": "New In Now",
             "slider_description": "Layer up with premium wool/cashmere blends.",
             "button_label": "Shop Now",
             "products_to_show": 10
@@ -48,7 +49,7 @@
       },
       "block_order": [
         "navigation_item_agJrjJ",
-        "navigation_item_HL7yYc"
+        "navigation_item_NFP3hk"
       ],
       "name": "Collection Slider Header",
       "settings": {
