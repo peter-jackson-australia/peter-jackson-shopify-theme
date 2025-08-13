@@ -40,18 +40,34 @@
         "navigation_item_y7RAUL": {
           "type": "navigation_item",
           "settings": {
-            "nav_label": "Suits",
+            "nav_label": "Garden & Winery",
+            "desktop_image": "shopify://shop_images/peter-jackson-man-wearing-white-suit-with-black-tie-during-wedding-mens-white-suits.webp",
+            "mobile_image": "shopify://shop_images/peter-jackson-man-wearing-white-suit-with-black-tie-during-wedding-mens-white-suits-mobile.webp",
             "collection": "",
-            "slider_heading": "Suits Collection",
-            "slider_description": "Layer up with premium wool/cashmere blends.",
-            "button_label": "Shop Now",
-            "products_to_show": 10
+            "slider_heading": "Garden & Winery",
+            "slider_description": "Lightweight linens, soft tonal hues, and breathable tailoring create the perfect balance of elegance and ease for open-air celebrations.",
+            "button_label": "Explore The Collection",
+            "products_to_show": 12
+          }
+        },
+        "navigation_item_3fPPPx": {
+          "type": "navigation_item",
+          "settings": {
+            "nav_label": "Spring/Summer",
+            "desktop_image": "shopify://shop_images/peter-jackson-man-wearing-suit-during-wedding-mens-suits.webp",
+            "mobile_image": "shopify://shop_images/peter-jackson-man-wearing-suit-during-wedding-mens-suits-mobile.webp",
+            "collection": "",
+            "slider_heading": "Spring/Summer",
+            "slider_description": "Crisp linen light-weight elements, pastel accents, and unstructured silhouettes bring a modern lightness to warm-weather dressing.",
+            "button_label": "Explore The Collection",
+            "products_to_show": 12
           }
         }
       },
       "block_order": [
         "navigation_item_tqbNA4",
-        "navigation_item_y7RAUL"
+        "navigation_item_y7RAUL",
+        "navigation_item_3fPPPx"
       ],
       "name": "Collection Slider Header",
       "settings": {
