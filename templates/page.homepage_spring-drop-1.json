@@ -41,7 +41,7 @@
           "settings": {
             "media_type": "image",
             "desktop_image": "shopify://shop_images/Spring_Drop_1_Hero_Desktop.webp",
-            "heading": "Welcome to Our Store",
+            "heading": "First Light of Spring - Collection Preview",
             "svg_image": "shopify://shop_images/First_Light_Of_Spring_Home_5ef8c490-b7d1-42fe-8473-cb8f83368cca.svg",
             "svg_size": "medium",
             "heading_level": "h1",
@@ -110,6 +110,79 @@
         "vertical_alignment": "middle"
       }
     },
+    "variable_column_content_tertiary_rxHymY": {
+      "type": "variable-column-content-tertiary",
+      "blocks": {
+        "column_item_HPrcxi": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Store_Locator___Suits_5869be7e-bf3d-4d34-9fea-b03368fbdc7c.webp",
+            "image_link": "",
+            "heading": "Merino Wool Suits",
+            "heading_animation": "none",
+            "text": "from $399",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_U7adca": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Store_Locator___Suits_5869be7e-bf3d-4d34-9fea-b03368fbdc7c.webp",
+            "image_link": "",
+            "heading": "Sports Jackets",
+            "heading_animation": "none",
+            "text": "from $299",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_JTGe3a": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Store_Locator___Suits_5869be7e-bf3d-4d34-9fea-b03368fbdc7c.webp",
+            "image_link": "",
+            "heading": "Business Shirts",
+            "heading_animation": "none",
+            "text": "Three for $259",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_HPrcxi",
+        "column_item_U7adca",
+        "column_item_JTGe3a"
+      ],
+      "name": "Variable Column Content Tertiary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "3",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "",
+        "heading_animation": "none",
+        "text": "",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    },
     "hero_primary_BACFYg": {
       "type": "hero-primary",
       "name": "Hero Section",
@@ -140,6 +213,7 @@
     "hero_slider_BqbBaU",
     "collection_slider_x3GMYN",
     "hero_primary_Ri8wik",
+    "variable_column_content_tertiary_rxHymY",
     "hero_primary_BACFYg"
   ]
 }
