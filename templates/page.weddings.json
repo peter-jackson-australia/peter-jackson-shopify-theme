@@ -9,18 +9,6 @@
  */
 {
   "sections": {
-    "full_page_media_fiWDkj": {
-      "type": "full-page-media",
-      "name": "Full Page Media",
-      "settings": {
-        "media_type": "image",
-        "desktop_image": "shopify://shop_images/peter-jackson-man-wearing-suit-during-wedding-mens-suits.webp",
-        "mobile_image": "shopify://shop_images/peter-jackson-man-wearing-suit-during-wedding-mens-suits-mobile.webp",
-        "link": "",
-        "link_text": "Learn more",
-        "alt_text": "Full page media"
-      }
-    },
     "collection_slider_header_wMdfyj": {
       "type": "collection-slider-header",
       "blocks": {
@@ -73,7 +61,7 @@
       "settings": {
         "main_heading": "Moments of Distinction",
         "subtitle": "The Wedding Edit",
-        "show_top_border": false,
+        "show_top_border": true,
         "show_bottom_border": false
       }
     },
@@ -538,7 +526,6 @@
     }
   },
   "order": [
-    "full_page_media_fiWDkj",
     "collection_slider_header_wMdfyj",
     "link_list_CgrPKB",
     "variable_column_content_tertiary_r9bnR6",
