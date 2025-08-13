@@ -273,6 +273,25 @@
         "show_top_border": false,
         "show_bottom_border": false
       }
+    },
+    "image_with_text_kQ4Vat": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "first_image": "shopify://shop_images/peter-jackson-made-to-measure-tailoring-suits-mens-suits-tailoring.webp",
+        "image_link": "",
+        "animate_images": false,
+        "alignment": "right",
+        "heading": "Book An Appointment",
+        "heading_animation": "none",
+        "text": "From the first fitting to the final flourish, our Made to Measure specialists will craft suits that perfectly complement your wedding party. Schedule a private consultation and bring your vision to life.",
+        "text_animation": "none",
+        "button_label": "Book Now",
+        "button_link": "shopify://pages/made-to-measure"
+      }
     }
   },
   "order": [
@@ -280,6 +299,7 @@
     "collection_slider_header_wMdfyj",
     "link_list_CgrPKB",
     "variable_column_content_tertiary_r9bnR6",
-    "link_list_6GFMGG"
+    "link_list_6GFMGG",
+    "image_with_text_kQ4Vat"
   ]
 }
