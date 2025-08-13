@@ -76,10 +76,65 @@
         "show_top_border": false,
         "show_bottom_border": false
       }
+    },
+    "link_list_CgrPKB": {
+      "type": "link-list",
+      "blocks": {
+        "link_q3jjJJ": {
+          "type": "link",
+          "settings": {
+            "link_text": "Classic",
+            "link_url": "shopify://collections/traditional-mens-wedding-suits"
+          }
+        },
+        "link_TGCBfH": {
+          "type": "link",
+          "settings": {
+            "link_text": "Cocktail",
+            "link_url": "shopify://collections/black-tie-wedding-and-attire"
+          }
+        },
+        "link_pMkCjH": {
+          "type": "link",
+          "settings": {
+            "link_text": "Casual",
+            "link_url": "shopify://collections/casual-weddings"
+          }
+        },
+        "link_ycB3aB": {
+          "type": "link",
+          "settings": {
+            "link_text": "Country",
+            "link_url": "shopify://collections/country-weddings"
+          }
+        },
+        "link_XtAPea": {
+          "type": "link",
+          "settings": {
+            "link_text": "Winery",
+            "link_url": "shopify://collections/garden-and-winery-weddings"
+          }
+        }
+      },
+      "block_order": [
+        "link_q3jjJJ",
+        "link_TGCBfH",
+        "link_pMkCjH",
+        "link_ycB3aB",
+        "link_XtAPea"
+      ],
+      "name": "Link List",
+      "settings": {
+        "heading": "Discover The Collections",
+        "alignment": "right",
+        "show_top_border": true,
+        "show_bottom_border": false
+      }
     }
   },
   "order": [
     "full_page_media_fiWDkj",
-    "collection_slider_header_wMdfyj"
+    "collection_slider_header_wMdfyj",
+    "link_list_CgrPKB"
   ]
 }
