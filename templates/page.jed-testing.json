@@ -60,9 +60,30 @@
         "show_top_border": true,
         "show_bottom_border": true
       }
+    },
+    "image_gallery_slider_rAnJJP": {
+      "type": "image-gallery-slider",
+      "blocks": {
+        "slide_THgKhk": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Suits_0fd4aa03-d091-4f1d-8f5d-d56e92dbf810.webp"
+          }
+        }
+      },
+      "block_order": [
+        "slide_THgKhk"
+      ],
+      "name": "Image Gallery Slider",
+      "settings": {
+        "heading": "",
+        "subtitle": "",
+        "alignment": "left"
+      }
     }
   },
   "order": [
-    "collection_slider_header_7Hd3ef"
+    "collection_slider_header_7Hd3ef",
+    "image_gallery_slider_rAnJJP"
   ]
 }
