@@ -92,7 +92,7 @@
       "settings": {
         "heading": "Heading",
         "subtitle": "Secondary Heading",
-        "alignment": "center"
+        "alignment": "left"
       }
     }
   },
