@@ -153,46 +153,49 @@
         "column_item_NqeYRT": {
           "type": "column_item",
           "settings": {
+            "image": "shopify://shop_images/peter-jackson-suits-weddings-wedding-suits-menswear-australia-suits-2.webp",
             "image_link": "",
-            "heading": "Column Heading",
+            "heading": "",
             "heading_animation": "none",
-            "text": "Add a brief description for this column item.",
+            "text": "",
             "text_animation": "none",
             "show_gradient_overlay": false,
             "content_horizontal_alignment": "center",
             "content_vertical_alignment": "center",
             "column_link": "",
-            "column_link_text": "Shop Now"
+            "column_link_text": ""
           }
         },
         "column_item_ebbBRq": {
           "type": "column_item",
           "settings": {
+            "image": "shopify://shop_images/peter-jackson-suits-weddings-wedding-suits-menswear-australia-suits-1.webp",
             "image_link": "",
-            "heading": "Column Heading",
+            "heading": "",
             "heading_animation": "none",
-            "text": "Add a brief description for this column item.",
+            "text": "",
             "text_animation": "none",
             "show_gradient_overlay": false,
             "content_horizontal_alignment": "center",
             "content_vertical_alignment": "center",
             "column_link": "",
-            "column_link_text": "Shop Now"
+            "column_link_text": ""
           }
         },
         "column_item_Cj6wG7": {
           "type": "column_item",
           "settings": {
+            "image": "shopify://shop_images/peter-jackson-suits-weddings-wedding-suits-menswear-australia-suits-3.webp",
             "image_link": "",
-            "heading": "Column Heading",
+            "heading": "",
             "heading_animation": "none",
-            "text": "Add a brief description for this column item.",
+            "text": "",
             "text_animation": "none",
             "show_gradient_overlay": false,
             "content_horizontal_alignment": "center",
             "content_vertical_alignment": "center",
             "column_link": "",
-            "column_link_text": "Shop Now"
+            "column_link_text": ""
           }
         }
       },
