@@ -24,6 +24,17 @@
             "products_to_show": 10
           }
         },
+        "navigation_item_fPeJAJ": {
+          "type": "navigation_item",
+          "settings": {
+            "nav_label": "Collection Name",
+            "collection": "",
+            "slider_heading": "New In Now",
+            "slider_description": "Layer up with premium wool/cashmere blends.",
+            "button_label": "Shop Now",
+            "products_to_show": 10
+          }
+        },
         "navigation_item_iHXxdb": {
           "type": "navigation_item",
           "settings": {
@@ -39,12 +50,15 @@
       },
       "block_order": [
         "navigation_item_L8Cw8C",
+        "navigation_item_fPeJAJ",
         "navigation_item_iHXxdb"
       ],
       "name": "Collection Slider Header",
       "settings": {
         "main_heading": "New Collections",
-        "subtitle": "Seasonal Favorites"
+        "subtitle": "Seasonal Favorites",
+        "show_top_border": true,
+        "show_bottom_border": true
       }
     },
     "link_list_bkptid": {
@@ -96,7 +110,9 @@
       "name": "Link List",
       "settings": {
         "heading": "This is a heading",
-        "alignment": "right"
+        "alignment": "right",
+        "show_top_border": false,
+        "show_bottom_border": false
       }
     }
   },
