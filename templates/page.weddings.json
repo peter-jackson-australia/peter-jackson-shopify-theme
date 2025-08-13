@@ -292,6 +292,56 @@
         "button_label": "Book Now",
         "button_link": "shopify://pages/made-to-measure"
       }
+    },
+    "image_gallery_slider_P7mDJC": {
+      "type": "image-gallery-slider",
+      "blocks": {
+        "slide_4784eM": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-16.webp"
+          }
+        },
+        "slide_9UqMj4": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-5.webp"
+          }
+        },
+        "slide_mgfkWx": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-4.webp"
+          }
+        },
+        "slide_etgmpd": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-17.webp"
+          }
+        },
+        "slide_iCPybA": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-5.webp"
+          }
+        }
+      },
+      "block_order": [
+        "slide_4784eM",
+        "slide_9UqMj4",
+        "slide_mgfkWx",
+        "slide_etgmpd",
+        "slide_iCPybA"
+      ],
+      "name": "Image Gallery Slider",
+      "settings": {
+        "heading": "The Gallery",
+        "subtitle": "Moments We're Proud To Be Part Of",
+        "alignment": "left",
+        "show_top_border": true,
+        "show_bottom_border": false
+      }
     }
   },
   "order": [
@@ -300,6 +350,7 @@
     "link_list_CgrPKB",
     "variable_column_content_tertiary_r9bnR6",
     "link_list_6GFMGG",
-    "image_with_text_kQ4Vat"
+    "image_with_text_kQ4Vat",
+    "image_gallery_slider_P7mDJC"
   ]
 }
