@@ -19,28 +19,26 @@
         "articles_per_row": 3
       }
     },
-    "collection_slider_navigation_miBazC": {
-      "type": "collection-slider-navigation",
+    "collection_slider_header_7Hd3ef": {
+      "type": "collection-slider-header",
       "blocks": {
-        "navigation_item_agJrjJ": {
+        "navigation_item_L8Cw8C": {
           "type": "navigation_item",
           "settings": {
-            "nav_label": "Women",
-            "desktop_image": "shopify://shop_images/Afterpay_Day_Hero_Desktop.webp",
-            "collection": "mens-accessories",
-            "slider_heading": "Women's Collection",
-            "slider_description": "Layer up with premium wool/cashmere blends.fgfgdgf",
+            "nav_label": "New Arrivals",
+            "collection": "",
+            "slider_heading": "New Arrivals",
+            "slider_description": "Layer up with premium wool/cashmere blends.",
             "button_label": "Shop Now",
             "products_to_show": 10
           }
         },
-        "navigation_item_NFP3hk": {
+        "navigation_item_iHXxdb": {
           "type": "navigation_item",
           "settings": {
-            "nav_label": "Collection Name",
-            "desktop_image": "shopify://shop_images/Spring_Drop_1_Hero_Desktop.webp",
-            "collection": "beach-weddings",
-            "slider_heading": "New In Nowdfgfdgfdg",
+            "nav_label": "Suits",
+            "collection": "",
+            "slider_heading": "Suits Collection",
             "slider_description": "Layer up with premium wool/cashmere blends.",
             "button_label": "Shop Now",
             "products_to_show": 10
@@ -48,8 +46,8 @@
         }
       },
       "block_order": [
-        "navigation_item_agJrjJ",
-        "navigation_item_NFP3hk"
+        "navigation_item_L8Cw8C",
+        "navigation_item_iHXxdb"
       ],
       "name": "Collection Slider Header",
       "settings": {
@@ -60,6 +58,6 @@
   },
   "order": [
     "blog_collection_RHQ8Ef",
-    "collection_slider_navigation_miBazC"
+    "collection_slider_header_7Hd3ef"
   ]
 }
