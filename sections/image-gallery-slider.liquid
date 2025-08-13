@@ -1,0 +1,243 @@
+{% comment %}
+  Image Gallery Slider Section
+{% endcomment %}
+
+<style>
+  .image-gallery-slider {
+    padding: var(--space-2xl) 0;
+    overflow: hidden;
+  }
+
+  .image-gallery-slider__header {
+    display: flex;
+    padding: 0 var(--space-m) var(--space-2xl);
+    gap: var(--space-xl);
+  }
+
+  .image-gallery-slider__header--left {
+    justify-content: flex-start;
+  }
+
+  .image-gallery-slider__header--center {
+    justify-content: center;
+  }
+
+  .image-gallery-slider__header--right {
+    justify-content: flex-end;
+  }
+
+  .image-gallery-slider__header-content {
+    display: flex;
+    align-items: center;
+  }
+
+  .image-gallery-slider__title {
+    padding-right: var(--space-m);
+    color: var(--neutral-950);
+    white-space: nowrap;
+  }
+
+  .image-gallery-slider__divider {
+    height: 50px;
+    width: 1px;
+    background-color: var(--neutral-200);
+  }
+
+  .image-gallery-slider__subtitle {
+    padding-left: var(--space-m);
+    color: var(--neutral-950);
+    margin-top: -7px;
+  }
+
+  .image-gallery-slider__slider-wrapper {
+    overflow: visible;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+  }
+
+  .image-gallery-slider__slider {
+    width: 100%;
+    padding: 0 var(--space-m);
+  }
+
+  .image-gallery-slider__slide-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media screen and (max-width: 768px) {
+    .image-gallery-slider__header {
+      padding-bottom: var(--space-xl);
+    }
+
+    .image-gallery-slider__header-content {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-m);
+    }
+
+    .image-gallery-slider__title {
+      padding-right: 0;
+    }
+
+    .image-gallery-slider__divider {
+      display: none;
+    }
+
+    .image-gallery-slider__subtitle {
+      padding-left: 0;
+    }
+
+    .image-gallery-slider {
+      padding: var(--space-xl) 0;
+    }
+  }
+
+  @media screen and (max-width: 470px) {
+    .image-gallery-slider__slider-wrapper {
+      overflow: hidden;
+    }
+  }
+</style>
+
+<div class="image-gallery-slider" id="section-{{ section.id }}">
+  {% if section.settings.heading != blank or section.settings.subtitle != blank %}
+    <div class="image-gallery-slider__header image-gallery-slider__header--{{ section.settings.alignment }}">
+      <div class="image-gallery-slider__header-content">
+        {% if section.settings.heading != blank %}
+          <h2 class="image-gallery-slider__title heading--decorative">
+            {{ section.settings.heading }}
+          </h2>
+        {% endif %}
+
+        {% if section.settings.heading != blank and section.settings.subtitle != blank %}
+          <span class="image-gallery-slider__divider"></span>
+        {% endif %}
+
+        {% if section.settings.subtitle != blank %}
+          <h3 class="image-gallery-slider__subtitle heading--l">
+            {{ section.settings.subtitle }}
+          </h3>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="image-gallery-slider__slider-wrapper">
+    <div class="image-gallery-slider__slider splide">
+      <div class="splide__arrows">
+        <button class="splide__arrow splide__arrow--prev">{% render '_icon-arrow-see-less' %}</button>
+        <button class="splide__arrow splide__arrow--next">{% render '_icon-arrow-see-more' %}</button>
+      </div>
+      <div class="splide__track">
+        <ul class="splide__list">
+          {% for block in section.blocks %}
+            {% if block.settings.image != blank %}
+              <li class="splide__slide">
+                <img
+                  src="{{ block.settings.image | image_url: width: 800 }}"
+                  alt="{{ block.settings.image.alt | escape }}"
+                  loading="lazy"
+                  width="{{ block.settings.image.width }}"
+                  height="{{ block.settings.image.height }}"
+                  class="image-gallery-slider__slide-image"
+                  decoding="async"
+                >
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const slider = document.querySelector('#section-{{ section.id }} .image-gallery-slider__slider');
+
+    if (slider) {
+      new Splide(slider, {
+        perPage: 4.5,
+        type: 'loop',
+        gap: 'var(--space-2xs)',
+        arrows: false,
+        pagination: false,
+        drag: true,
+        snap: true,
+        breakpoints: {
+          470: {
+            perPage: 1,
+          },
+          768: {
+            perPage: 2,
+            arrows: true,
+          },
+        },
+      }).mount();
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Image Gallery Slider",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Content Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Image Slide",
+      "limit": 30,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image Gallery Slider",
+      "category": "Media"
+    }
+  ],
+  "enabled_on": {
+    "templates": ["index", "page", "article", "blog", "product", "collection"]
+  }
+}
+{% endschema %}
