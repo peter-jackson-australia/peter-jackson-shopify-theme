@@ -114,6 +114,13 @@
             "link_text": "Winery",
             "link_url": "shopify://collections/garden-and-winery-weddings"
           }
+        },
+        "link_iFDFxx": {
+          "type": "link",
+          "settings": {
+            "link_text": "Beach",
+            "link_url": "shopify://collections/beach-weddings"
+          }
         }
       },
       "block_order": [
@@ -121,7 +128,8 @@
         "link_TGCBfH",
         "link_pMkCjH",
         "link_ycB3aB",
-        "link_XtAPea"
+        "link_XtAPea",
+        "link_iFDFxx"
       ],
       "name": "Link List",
       "settings": {
