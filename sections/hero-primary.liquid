@@ -164,16 +164,18 @@
     .hero__buttons .button {
       width: 100%;
     }
+  }
 
-    {% if section.settings.mobile_video %}
-      .hero__video--desktop {
+  {% if section.settings.mobile_video %}
+    @media screen and (max-width: 768px) {
+      #hero-primary .hero__video--desktop {
         display: none;
       }
-      .hero__video--mobile {
+      #hero-primary .hero__video--mobile {
         display: block;
       }
-    {% endif %}
-  }
+    }
+  {% endif %}
 </style>
 
 {% if section.settings.desktop_image or section.settings.mobile_image or section.settings.video %}
