@@ -5,6 +5,8 @@
 <style>
   .link-list {
     padding: var(--space-m);
+    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
+    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
   }
 
   .link-list__wrapper {
@@ -27,11 +29,11 @@
   .link-list--align-right .link-list__wrapper {
     flex-direction: row;
     justify-content: flex-start;
+    align-items: center;
   }
 
   .link-list__title {
     flex: 0 0 auto;
-    padding: var(--space-xs) 0;
   }
 
   .link-list__content {
@@ -56,7 +58,6 @@
     flex-wrap: wrap;
     gap: var(--space-m);
     list-style: none;
-    padding: var(--space-s) 0;
   }
 
   .link-list--align-center .link-list__list {
@@ -75,18 +76,18 @@
 
   @media screen and (max-width: 768px) {
     .link-list__wrapper {
-      flex-direction: column;
-      align-items: center;
+      flex-direction: column !important;
+      align-items: center !important;
       text-align: center;
     }
 
     .link-list__content {
-      justify-content: center;
+      justify-content: center !important;
       width: 100%;
     }
 
     .link-list__list {
-      justify-content: center;
+      justify-content: center !important;
     }
   }
 </style>
@@ -149,6 +150,18 @@
         }
       ],
       "default": "center"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_top_border",
+      "label": "Show top border",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bottom_border",
+      "label": "Show bottom border",
+      "default": false
     }
   ],
   "blocks": [
