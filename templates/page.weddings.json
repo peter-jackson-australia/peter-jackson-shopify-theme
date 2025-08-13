@@ -20,9 +20,50 @@
         "link_text": "Learn more",
         "alt_text": "Full page media"
       }
+    },
+    "collection_slider_header_wMdfyj": {
+      "type": "collection-slider-header",
+      "blocks": {
+        "navigation_item_tqbNA4": {
+          "type": "navigation_item",
+          "settings": {
+            "nav_label": "Black-Tie",
+            "desktop_image": "shopify://shop_images/peter-jackson-man-wearing-tuxedo-during-wedding-mens-tuxedos.webp",
+            "mobile_image": "shopify://shop_images/peter-jackson-man-wearing-tuxedo-during-wedding-mens-tuxedos-mobile.webp",
+            "collection": "",
+            "slider_heading": "Black Tie Weddings",
+            "slider_description": "From impeccably tailored dinner jackets in luxurious velvet to classic peak-lapel tuxedos in pure wool, discover evening wear designed for the most distinguished occasions.",
+            "button_label": "Explore The Collection",
+            "products_to_show": 12
+          }
+        },
+        "navigation_item_y7RAUL": {
+          "type": "navigation_item",
+          "settings": {
+            "nav_label": "Suits",
+            "collection": "",
+            "slider_heading": "Suits Collection",
+            "slider_description": "Layer up with premium wool/cashmere blends.",
+            "button_label": "Shop Now",
+            "products_to_show": 10
+          }
+        }
+      },
+      "block_order": [
+        "navigation_item_tqbNA4",
+        "navigation_item_y7RAUL"
+      ],
+      "name": "Collection Slider Header",
+      "settings": {
+        "main_heading": "Moments of Distinction",
+        "subtitle": "The Wedding Edit",
+        "show_top_border": false,
+        "show_bottom_border": false
+      }
     }
   },
   "order": [
-    "full_page_media_fiWDkj"
+    "full_page_media_fiWDkj",
+    "collection_slider_header_wMdfyj"
   ]
 }
