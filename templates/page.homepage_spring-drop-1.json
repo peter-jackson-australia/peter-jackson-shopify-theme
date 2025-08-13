@@ -137,7 +137,7 @@
             "show_gradient_overlay": false,
             "content_horizontal_alignment": "left",
             "content_vertical_alignment": "bottom",
-            "column_link": "",
+            "column_link": "shopify://collections/mens-suits",
             "column_link_text": "Shop Now"
           }
         },
@@ -153,7 +153,7 @@
             "show_gradient_overlay": false,
             "content_horizontal_alignment": "left",
             "content_vertical_alignment": "bottom",
-            "column_link": "",
+            "column_link": "shopify://collections/business-shirts",
             "column_link_text": "Shop Now"
           }
         },
@@ -169,7 +169,7 @@
             "show_gradient_overlay": false,
             "content_horizontal_alignment": "left",
             "content_vertical_alignment": "bottom",
-            "column_link": "",
+            "column_link": "shopify://collections/sport-jackets",
             "column_link_text": "Shop Now"
           }
         }
