@@ -447,6 +447,94 @@
         "show_top_border": true,
         "show_bottom_border": false
       }
+    },
+    "faqs_npVnk4": {
+      "type": "faqs",
+      "blocks": {
+        "heading_BFjjBw": {
+          "type": "heading",
+          "settings": {
+            "heading": "FAQ Category",
+            "anchor_id": ""
+          }
+        },
+        "faq_item_hQxYmr": {
+          "type": "faq_item",
+          "settings": {
+            "question": "FAQ question",
+            "answer": "<p>Answer your customer's question here.</p>"
+          }
+        },
+        "faq_item_k6y3wF": {
+          "type": "faq_item",
+          "settings": {
+            "question": "FAQ question",
+            "answer": "<p>Answer your customer's question here.</p>"
+          }
+        },
+        "faq_item_pYwxMB": {
+          "type": "faq_item",
+          "settings": {
+            "question": "FAQ question",
+            "answer": "<p>Answer your customer's question here.</p>"
+          }
+        },
+        "faq_item_ABiAjH": {
+          "type": "faq_item",
+          "settings": {
+            "question": "FAQ question",
+            "answer": "<p>Answer your customer's question here.</p>"
+          }
+        },
+        "faq_item_YJJMV6": {
+          "type": "faq_item",
+          "settings": {
+            "question": "FAQ question",
+            "answer": "<p>Answer your customer's question here.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_BFjjBw",
+        "faq_item_hQxYmr",
+        "faq_item_k6y3wF",
+        "faq_item_pYwxMB",
+        "faq_item_ABiAjH",
+        "faq_item_YJJMV6"
+      ],
+      "name": "FAQ Section",
+      "settings": {
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "animate_faqs": false
+      }
+    },
+    "blog_hero_8apMnG": {
+      "type": "blog-hero",
+      "name": "Blog Hero",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "show_image_overlay": true,
+        "image_heading": "",
+        "image_heading_animation": "none",
+        "image_description": "",
+        "image_description_animation": "none",
+        "image_link_text": "",
+        "image_link_url": "",
+        "heading": "Moments of Distinction",
+        "heading_animation": "none",
+        "subheading": "Tailored Content: Weddings",
+        "subheading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "cta_link": "shopify://pages/the-jackson-journal",
+        "cta_text": "Explore All Articles",
+        "show_recent_posts": true,
+        "animate_posts": true,
+        "blog": "the-jackson-journal"
+      }
     }
   },
   "order": [
@@ -456,6 +544,8 @@
     "variable_column_content_tertiary_r9bnR6",
     "link_list_6GFMGG",
     "image_with_text_kQ4Vat",
-    "image_gallery_slider_P7mDJC"
+    "image_gallery_slider_P7mDJC",
+    "faqs_npVnk4",
+    "blog_hero_8apMnG"
   ]
 }
