@@ -18,9 +18,47 @@
         "limit": 4,
         "articles_per_row": 3
       }
+    },
+    "collection_slider_navigation_miBazC": {
+      "type": "collection-slider-navigation",
+      "blocks": {
+        "navigation_item_agJrjJ": {
+          "type": "navigation_item",
+          "settings": {
+            "nav_label": "Women",
+            "desktop_image": "shopify://shop_images/Afterpay_Day_Hero_Desktop.webp",
+            "collection": "mens-accessories",
+            "slider_heading": "Women's Collection",
+            "slider_description": "Layer up with premium wool/cashmere blends.",
+            "button_label": "Shop Now",
+            "products_to_show": 10
+          }
+        },
+        "navigation_item_HL7yYc": {
+          "type": "navigation_item",
+          "settings": {
+            "nav_label": "Men",
+            "collection": "",
+            "slider_heading": "Men's Collection",
+            "slider_description": "Layer up with premium wool/cashmere blends.",
+            "button_label": "Shop Now",
+            "products_to_show": 10
+          }
+        }
+      },
+      "block_order": [
+        "navigation_item_agJrjJ",
+        "navigation_item_HL7yYc"
+      ],
+      "name": "Collection Slider Header",
+      "settings": {
+        "main_heading": "New Collections",
+        "subtitle": "Seasonal Favorites"
+      }
     }
   },
   "order": [
-    "blog_collection_RHQ8Ef"
+    "blog_collection_RHQ8Ef",
+    "collection_slider_navigation_miBazC"
   ]
 }
