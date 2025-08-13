@@ -146,11 +146,137 @@
         "show_top_border": true,
         "show_bottom_border": false
       }
+    },
+    "variable_column_content_tertiary_r9bnR6": {
+      "type": "variable-column-content-tertiary",
+      "blocks": {
+        "column_item_NqeYRT": {
+          "type": "column_item",
+          "settings": {
+            "image_link": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "center",
+            "content_vertical_alignment": "center",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_ebbBRq": {
+          "type": "column_item",
+          "settings": {
+            "image_link": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "center",
+            "content_vertical_alignment": "center",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_Cj6wG7": {
+          "type": "column_item",
+          "settings": {
+            "image_link": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "center",
+            "content_vertical_alignment": "center",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_NqeYRT",
+        "column_item_ebbBRq",
+        "column_item_Cj6wG7"
+      ],
+      "name": "Variable Column Content Tertiary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "column_count": "3",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "",
+        "heading_animation": "none",
+        "text": "",
+        "text_animation": "none",
+        "button_label": "",
+        "button_link": ""
+      }
+    },
+    "link_list_6GFMGG": {
+      "type": "link-list",
+      "blocks": {
+        "link_CRWWcw": {
+          "type": "link",
+          "settings": {
+            "link_text": "Wedding & Formal Shirts",
+            "link_url": "shopify://collections/formal-shirts"
+          }
+        },
+        "link_j6GCjm": {
+          "type": "link",
+          "settings": {
+            "link_text": "Ties",
+            "link_url": "shopify://collections/ties"
+          }
+        },
+        "link_DWdkqE": {
+          "type": "link",
+          "settings": {
+            "link_text": "Shoes",
+            "link_url": "shopify://collections/mens-footwear"
+          }
+        },
+        "link_GiXE3i": {
+          "type": "link",
+          "settings": {
+            "link_text": "Tailoring",
+            "link_url": "shopify://pages/made-to-measure"
+          }
+        },
+        "link_pzJUpD": {
+          "type": "link",
+          "settings": {
+            "link_text": "Accessories",
+            "link_url": "shopify://collections/mens-accessories"
+          }
+        }
+      },
+      "block_order": [
+        "link_CRWWcw",
+        "link_j6GCjm",
+        "link_DWdkqE",
+        "link_GiXE3i",
+        "link_pzJUpD"
+      ],
+      "name": "Link List",
+      "settings": {
+        "heading": "",
+        "alignment": "center",
+        "show_top_border": false,
+        "show_bottom_border": false
+      }
     }
   },
   "order": [
     "full_page_media_fiWDkj",
     "collection_slider_header_wMdfyj",
-    "link_list_CgrPKB"
+    "link_list_CgrPKB",
+    "variable_column_content_tertiary_r9bnR6",
+    "link_list_6GFMGG"
   ]
 }
