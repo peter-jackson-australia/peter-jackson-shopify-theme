@@ -61,6 +61,44 @@
         "show_bottom_border": true
       }
     },
+    "link_list_QgpRRC": {
+      "type": "link-list",
+      "blocks": {
+        "link_rzphKk": {
+          "type": "link",
+          "settings": {
+            "link_text": "Shop All",
+            "link_url": "/collections/all"
+          }
+        },
+        "link_CMQMy6": {
+          "type": "link",
+          "settings": {
+            "link_text": "New Arrivals",
+            "link_url": "/collections/new-arrivals"
+          }
+        },
+        "link_W4K4gw": {
+          "type": "link",
+          "settings": {
+            "link_text": "Best Sellers",
+            "link_url": "/collections/best-sellers"
+          }
+        }
+      },
+      "block_order": [
+        "link_rzphKk",
+        "link_CMQMy6",
+        "link_W4K4gw"
+      ],
+      "name": "Link List",
+      "settings": {
+        "heading": "Heading",
+        "alignment": "right",
+        "show_top_border": false,
+        "show_bottom_border": true
+      }
+    },
     "image_gallery_slider_rAnJJP": {
       "type": "image-gallery-slider",
       "blocks": {
@@ -98,6 +136,7 @@
   },
   "order": [
     "collection_slider_header_7Hd3ef",
+    "link_list_QgpRRC",
     "image_gallery_slider_rAnJJP"
   ]
 }
