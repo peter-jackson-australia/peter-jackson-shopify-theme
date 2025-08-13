@@ -9,18 +9,46 @@
  */
 {
   "sections": {
-    "blog_collection_RHQ8Ef": {
-      "type": "blog-collection",
-      "name": "Blog Collection",
+    "collection_slider_header_7Hd3ef": {
+      "type": "collection-slider-header",
+      "blocks": {
+        "navigation_item_L8Cw8C": {
+          "type": "navigation_item",
+          "settings": {
+            "nav_label": "New Arrivals",
+            "desktop_image": "shopify://shop_images/Afterpay_Day_Hero_Desktop.webp",
+            "collection": "new-arrivals",
+            "slider_heading": "New Arrivals",
+            "slider_description": "Layer up with premium wool/cashmere blends.",
+            "button_label": "Shop Now",
+            "products_to_show": 10
+          }
+        },
+        "navigation_item_iHXxdb": {
+          "type": "navigation_item",
+          "settings": {
+            "nav_label": "Suits",
+            "desktop_image": "shopify://shop_images/Spring_Drop_1_Hero_Desktop.webp",
+            "collection": "mens-suits",
+            "slider_heading": "Suits Collection",
+            "slider_description": "Layer up with premium wool/cashmere blends.",
+            "button_label": "Shop Now",
+            "products_to_show": 10
+          }
+        }
+      },
+      "block_order": [
+        "navigation_item_L8Cw8C",
+        "navigation_item_iHXxdb"
+      ],
+      "name": "Collection Slider Header",
       "settings": {
-        "heading": "Test Blogs",
-        "blog": "the-jackson-journal",
-        "limit": 4,
-        "articles_per_row": 3
+        "main_heading": "New Collections",
+        "subtitle": "Seasonal Favorites"
       }
     }
   },
   "order": [
-    "blog_collection_RHQ8Ef"
+    "collection_slider_header_7Hd3ef"
   ]
 }
