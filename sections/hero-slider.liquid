@@ -220,19 +220,20 @@
     .hero-slider__buttons .button {
       width: 100%;
     }
+  }
 
-    {% for block in section.blocks %}
-      {% if block.settings.mobile_video %}
+  {% for block in section.blocks %}
+    {% if block.settings.mobile_video %}
+      @media screen and (max-width: 768px) {
         #hero-slider-{{ section.id }} .splide__slide[data-block-id="{{ block.id }}"] .hero-slider__video--desktop {
           display: none;
         }
-
         #hero-slider-{{ section.id }} .splide__slide[data-block-id="{{ block.id }}"] .hero-slider__video--mobile {
           display: block;
         }
-      {% endif %}
-    {% endfor %}
-  }
+      }
+    {% endif %}
+  {% endfor %}
 </style>
 
 <div class="hero-slider splide" id="hero-slider-{{ section.id }}">
