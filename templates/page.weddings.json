@@ -325,6 +325,96 @@
           "settings": {
             "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-5.webp"
           }
+        },
+        "slide_MeWbkK": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-19.webp"
+          }
+        },
+        "slide_nC3cNx": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-10.webp"
+          }
+        },
+        "slide_3CQDQA": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-2.webp"
+          }
+        },
+        "slide_RiWwjQ": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-12.webp"
+          }
+        },
+        "slide_UGeVYL": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-13.webp"
+          }
+        },
+        "slide_fFqd6P": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-15.webp"
+          }
+        },
+        "slide_yWJ47K": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-11.webp"
+          }
+        },
+        "slide_q4689y": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-14.webp"
+          }
+        },
+        "slide_gwnicM": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-8.webp"
+          }
+        },
+        "slide_C4eDUP": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-18.webp"
+          }
+        },
+        "slide_VewNBJ": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-6.webp"
+          }
+        },
+        "slide_TkeQmF": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-7.webp"
+          }
+        },
+        "slide_Kmph9h": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-1.webp"
+          }
+        },
+        "slide_Ym6xye": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-1.webp"
+          }
+        },
+        "slide_6tU8Xm": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-3.webp"
+          }
         }
       },
       "block_order": [
@@ -332,7 +422,22 @@
         "slide_9UqMj4",
         "slide_mgfkWx",
         "slide_etgmpd",
-        "slide_iCPybA"
+        "slide_iCPybA",
+        "slide_MeWbkK",
+        "slide_nC3cNx",
+        "slide_3CQDQA",
+        "slide_RiWwjQ",
+        "slide_UGeVYL",
+        "slide_fFqd6P",
+        "slide_yWJ47K",
+        "slide_q4689y",
+        "slide_gwnicM",
+        "slide_C4eDUP",
+        "slide_VewNBJ",
+        "slide_TkeQmF",
+        "slide_Kmph9h",
+        "slide_Ym6xye",
+        "slide_6tU8Xm"
       ],
       "name": "Image Gallery Slider",
       "settings": {
