@@ -17,6 +17,7 @@
           "settings": {
             "media_type": "image",
             "desktop_image": "shopify://shop_images/Afterpay_Day_Hero_Desktop.webp",
+            "mobile_image": "shopify://shop_images/Afterpay_Hero_Mobile.webp",
             "heading": "Afterpay Day Sale",
             "svg_image": "shopify://shop_images/AfterPay_Hero.svg",
             "svg_size": "medium",
@@ -41,6 +42,7 @@
           "settings": {
             "media_type": "image",
             "desktop_image": "shopify://shop_images/Spring_Drop_1_Hero_Desktop.webp",
+            "mobile_image": "shopify://shop_images/Spring_Drop_1_Hero_Mobile.webp",
             "heading": "First Light of Spring - Collection Preview",
             "svg_image": "shopify://shop_images/First_Light_Of_Spring_Home_5ef8c490-b7d1-42fe-8473-cb8f83368cca.svg",
             "svg_size": "medium",
