@@ -64,7 +64,7 @@
             "button_link_4": "",
             "horizontal_alignment": "left",
             "vertical_alignment": "middle",
-            "mobile_horizontal_alignment": "center",
+            "mobile_horizontal_alignment": "left",
             "mobile_vertical_alignment": "bottom"
           }
         }
