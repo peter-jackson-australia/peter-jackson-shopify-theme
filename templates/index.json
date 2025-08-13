@@ -9,64 +9,69 @@
  */
 {
   "sections": {
-    "hero_slider_KzJH89": {
+    "hero_slider_BqbBaU": {
       "type": "hero-slider",
       "blocks": {
-        "slide_LYzTaq": {
+        "slide_fHpYVA": {
           "type": "slide",
           "settings": {
             "media_type": "image",
-            "desktop_image": "shopify://shop_images/EOS_Hero_4f74f38d-f6c7-4d6d-be92-ab06f2df9e20.webp",
-            "heading": "",
-            "svg_image": "shopify://shop_images/EOS_HP_080d9f6e-15c2-453b-8e4b-e2502e94277b.svg",
+            "desktop_image": "shopify://shop_images/Afterpay_Day_Hero_Desktop.webp",
+            "mobile_image": "shopify://shop_images/Afterpay_Hero_Mobile.webp",
+            "heading": "Afterpay Day Sale",
+            "svg_image": "shopify://shop_images/AfterPay_Hero.svg",
             "svg_size": "medium",
-            "mobile_svg_image": "shopify://shop_images/EOS_HP_080d9f6e-15c2-453b-8e4b-e2502e94277b.svg",
+            "mobile_svg_image": "shopify://shop_images/AfterPay_Hero.svg",
             "heading_level": "h1",
             "heading_animation": "none",
-            "description": "Premium Merino Wool Suits from $399",
+            "description": "Up to 40% Off + Additional 10% Off with code AFTER10",
             "description_animation": "none",
-            "button_label_1": "Shop All Sale",
+            "button_label_1": "Shop Sale",
             "button_link_1": "shopify://collections/sale",
-            "button_label_2": "Shop Suits",
-            "button_link_2": "shopify://collections/mens-suits",
-            "button_label_3": "Knitwear / Two for $200",
-            "button_link_3": "shopify://collections/knitwear",
-            "button_label_4": "Sports Jackets from $299",
-            "button_link_4": "shopify://collections/sport-jackets",
-            "horizontal_alignment": "center",
-            "vertical_alignment": "middle"
-          }
-        },
-        "slide_cnf4Hg": {
-          "type": "slide",
-          "settings": {
-            "media_type": "image",
-            "desktop_image": "shopify://shop_images/EOS_Jacket_Hero.webp",
-            "mobile_image": "shopify://shop_images/Jackets_Portrait.webp",
-            "heading": "",
-            "svg_image": "shopify://shop_images/EOS_HP_080d9f6e-15c2-453b-8e4b-e2502e94277b.svg",
-            "svg_size": "medium",
-            "mobile_svg_image": "shopify://shop_images/EOS_HP_080d9f6e-15c2-453b-8e4b-e2502e94277b.svg",
-            "heading_level": "h1",
-            "heading_animation": "none",
-            "description": "$200 Off Select Jackets & Coats",
-            "description_animation": "none",
-            "button_label_1": "Shop Outerwear",
-            "button_link_1": "shopify://collections/outerwear",
             "button_label_2": "",
             "button_link_2": "",
             "button_label_3": "",
             "button_link_3": "",
             "button_label_4": "",
             "button_link_4": "",
-            "horizontal_alignment": "center",
-            "vertical_alignment": "middle"
+            "horizontal_alignment": "left",
+            "vertical_alignment": "middle",
+            "mobile_horizontal_alignment": "left",
+            "mobile_vertical_alignment": "bottom"
+          }
+        },
+        "slide_GaUkHW": {
+          "type": "slide",
+          "settings": {
+            "media_type": "image",
+            "desktop_image": "shopify://shop_images/Spring_Drop_1_Hero_Desktop.webp",
+            "mobile_image": "shopify://shop_images/Spring_Drop_1_Hero_Mobile.webp",
+            "heading": "First Light of Spring - Collection Preview",
+            "svg_image": "shopify://shop_images/First_Light_Of_Spring_Home_5ef8c490-b7d1-42fe-8473-cb8f83368cca.svg",
+            "svg_size": "medium",
+            "mobile_svg_image": "shopify://shop_images/First_Light_Of_Spring_Home_5ef8c490-b7d1-42fe-8473-cb8f83368cca.svg",
+            "heading_level": "h1",
+            "heading_animation": "none",
+            "description": "Discover The First Edit Of Our Spring/Summer Collection",
+            "description_animation": "none",
+            "button_label_1": "Shop Drop #1",
+            "button_link_1": "shopify://collections/spring-25",
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_label_3": "",
+            "button_link_3": "",
+            "button_label_4": "",
+            "button_link_4": "",
+            "horizontal_alignment": "left",
+            "vertical_alignment": "middle",
+            "mobile_horizontal_alignment": "left",
+            "mobile_vertical_alignment": "bottom"
           }
         }
       },
       "block_order": [
-        "slide_LYzTaq",
-        "slide_cnf4Hg"
+        "slide_fHpYVA",
+        "slide_GaUkHW"
       ],
       "name": "Hero Slider",
       "settings": {
@@ -74,110 +79,112 @@
         "slide_interval": 5
       }
     },
-    "collection_slider_HA3Jen": {
+    "collection_slider_x3GMYN": {
       "type": "collection-slider",
       "name": "Collection Slider",
       "settings": {
-        "heading": "End Of Season Bestsellers",
+        "heading": "Best of End of Season Sale",
         "heading_animation": "none",
-        "description": "The most popular items of the season - from Merino wool suits to jackets, coats, cashmere blend knits and more",
+        "description": "Curated by our team of style experts",
         "description_animation": "none",
         "collection": "sale",
-        "button_label": "Shop Sale",
+        "button_label": "Shop Now",
         "products_to_show": 10,
         "animate_products": false
       }
     },
-    "variable_column_content_tertiary_H3qPja": {
-      "type": "variable-column-content-tertiary",
-      "blocks": {
-        "column_item_LAzrb9": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/peter-jackson-man-wearing-black-knitwear.webp",
-            "image_link": "shopify://collections/knitwear",
-            "heading": "LUXE LAYERS",
-            "heading_animation": "none",
-            "text": "Premium wool & cashmere blend knitwear",
-            "text_animation": "none",
-            "column_link": "shopify://collections/knitwear",
-            "column_link_text": "Two for $200"
-          }
-        },
-        "column_item_BpgmEz": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/peter-jackson-man-wearing-casual-jacket_90cbb832-a03c-4fc9-b0b1-ae1f3aa2a8f1_copy.webp",
-            "image_link": "shopify://collections/outerwear",
-            "heading": "CASUAL JACKETS, OFF DUTY",
-            "heading_animation": "none",
-            "text": "Relaxed structure. Winter Ready",
-            "text_animation": "none",
-            "column_link": "shopify://collections/outerwear",
-            "column_link_text": "$200 Off Select Styles"
-          }
-        }
-      },
-      "block_order": [
-        "column_item_LAzrb9",
-        "column_item_BpgmEz"
-      ],
-      "name": "Variable Column Content Tertiary",
+    "hero_primary_Ri8wik": {
+      "type": "hero-primary",
+      "name": "Hero Section",
       "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": true,
-        "column_count": "2",
-        "text_alignment": "left",
-        "animate_columns": false,
-        "heading": "",
+        "media_type": "video",
+        "video": "shopify://files/videos/Transeasonal Refinement (HP Final).mp4",
+        "mobile_video": "shopify://files/videos/Transeasonal Refinement 916 mob.mp4",
+        "heading": "Transeasonal Refinement",
+        "svg_image": "shopify://shop_images/Transeasonal_Refinement_v3_2ad8a9f1-dfbf-45c7-adb7-06efb6724b91.svg",
+        "svg_size": "medium",
+        "mobile_svg_image": "shopify://shop_images/Transeasonal_Refinement_v3_2ad8a9f1-dfbf-45c7-adb7-06efb6724b91.svg",
+        "heading_level": "h1",
         "heading_animation": "none",
-        "text": "",
-        "text_animation": "none",
-        "button_label": "Learn More",
-        "button_link": ""
+        "description": "New Season Style For The Shift Into Spring",
+        "description_animation": "none",
+        "button_label_1": "Shop New Arrivals",
+        "button_link_1": "shopify://collections/new-arrivals",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "middle",
+        "mobile_horizontal_alignment": "left",
+        "mobile_vertical_alignment": "bottom"
       }
     },
-    "variable_column_content_tertiary_WYRPR7": {
+    "variable_column_content_tertiary_rxHymY": {
       "type": "variable-column-content-tertiary",
       "blocks": {
-        "column_item_dUUAMm": {
+        "column_item_HPrcxi": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/HYS_Sports_Jackets_BW_4635679b-1f7b-45a9-878c-7f92b4109851.webp",
-            "image_link": "shopify://collections/sport-jackets",
-            "heading": "SPORTS JACKETS",
+            "image": "shopify://shop_images/Suits_2.webp",
+            "image_link": "shopify://collections/mens-suits",
+            "heading": "Merino Wool Suits",
             "heading_animation": "none",
-            "text": "",
+            "text": "from $399",
             "text_animation": "none",
-            "column_link": "shopify://collections/sport-jackets",
-            "column_link_text": "from $299"
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "shopify://collections/mens-suits",
+            "column_link_text": "Shop Now"
           }
         },
-        "column_item_ED9DrG": {
+        "column_item_JTGe3a": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/HYS_Denim_BW_d25023ac-a384-4961-9bba-ca2d1bc84ecf.webp",
-            "image_link": "shopify://collections/bottoms",
-            "heading": "CHINOS, TROUSERS & JEANS",
+            "image": "shopify://shop_images/Business_Shirts_0be11511-3bf3-4d65-8158-f91b6f067487.webp",
+            "image_link": "",
+            "heading": "Business Shirts",
             "heading_animation": "none",
-            "text": "",
+            "text": "Three for $259",
             "text_animation": "none",
-            "column_link": "shopify://collections/bottoms",
-            "column_link_text": "from $89.95"
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "shopify://collections/business-shirts",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_U7adca": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Sports_Jackets_9191253d-fd1f-49f7-bd0d-5b1391dc8624.webp",
+            "image_link": "",
+            "heading": "Sports Jackets",
+            "heading_animation": "none",
+            "text": "from $299",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "shopify://collections/sport-jackets",
+            "column_link_text": "Shop Now"
           }
         }
       },
       "block_order": [
-        "column_item_dUUAMm",
-        "column_item_ED9DrG"
+        "column_item_HPrcxi",
+        "column_item_JTGe3a",
+        "column_item_U7adca"
       ],
       "name": "Variable Column Content Tertiary",
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
-        "column_count": "2",
+        "column_count": "3",
         "text_alignment": "left",
         "animate_columns": false,
         "heading": "",
@@ -188,29 +195,56 @@
         "button_link": ""
       }
     },
-    "blog_hero_hkqRmp": {
+    "hero_primary_BACFYg": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/SS25_Wedding_1.webp",
+        "mobile_image": "shopify://shop_images/SS25_Wedding_Mob_1f384524-980f-41c2-9a21-ebd4ab371213.webp",
+        "heading": "Welcome to Our Store",
+        "svg_image": "shopify://shop_images/MOD_HP_Heading_a2545755-65f2-4fbe-9d1e-cfd88fdde7ed.svg",
+        "svg_size": "medium",
+        "mobile_svg_image": "shopify://shop_images/MOD_HP_Heading_a2545755-65f2-4fbe-9d1e-cfd88fdde7ed.svg",
+        "heading_level": "h1",
+        "heading_animation": "none",
+        "description": "For the ceremony, the celebration, the forever.",
+        "description_animation": "none",
+        "button_label_1": "Shop Weddings",
+        "button_link_1": "shopify://collections/weddings",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "middle",
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "bottom"
+      }
+    },
+    "blog_hero_qajTUJ": {
       "type": "blog-hero",
       "name": "Blog Hero",
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
-        "hero_image": "shopify://shop_images/Peter-Jackson-Two_Men_Wearing_Suits.webp",
-        "hero_image_mobile": "shopify://shop_images/Peter-Jackson-Man-Suit.webp",
         "show_image_overlay": true,
-        "image_heading": "The New Renaissance",
+        "image_heading": "Featured Article Title",
         "image_heading_animation": "none",
-        "image_description": "Classic Neapolitan style reimagined for today",
+        "image_description": "Description text for the featured article.",
         "image_description_animation": "none",
         "image_link_text": "Read More",
-        "image_link_url": "shopify://blogs/the-jackson-journal/the-corduroy-comeback",
+        "image_link_url": "",
         "heading": "The Jackson Journal",
         "heading_animation": "none",
         "subheading": "The Stories Behind The Threads",
         "subheading_animation": "none",
         "description": "Discover our world through campaigns, interviews, and features designed to inform your style and inspire a life well lived.",
         "description_animation": "none",
-        "cta_link": "shopify://pages/the-jackson-journal",
+        "cta_link": "shopify://blogs/the-jackson-journal",
         "cta_text": "Read Now",
         "show_recent_posts": true,
         "animate_posts": true,
@@ -219,10 +253,11 @@
     }
   },
   "order": [
-    "hero_slider_KzJH89",
-    "collection_slider_HA3Jen",
-    "variable_column_content_tertiary_H3qPja",
-    "variable_column_content_tertiary_WYRPR7",
-    "blog_hero_hkqRmp"
+    "hero_slider_BqbBaU",
+    "collection_slider_x3GMYN",
+    "hero_primary_Ri8wik",
+    "variable_column_content_tertiary_rxHymY",
+    "hero_primary_BACFYg",
+    "blog_hero_qajTUJ"
   ]
 }
