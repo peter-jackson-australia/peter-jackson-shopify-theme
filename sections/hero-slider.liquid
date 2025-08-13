@@ -162,22 +162,22 @@
   }
 
   @media screen and (max-width: 768px) {
-    .hero-slider__content--mobile-h-left {
+    .hero-slider__content--mobile-left {
       text-align: left;
       justify-items: start;
     }
 
-    .hero-slider__content--mobile-h-center {
+    .hero-slider__content--mobile-center {
       text-align: center;
       justify-items: center;
     }
 
-    .hero-slider__content--mobile-h-right {
+    .hero-slider__content--mobile-right {
       text-align: right;
       justify-items: end;
     }
 
-    .hero-slider__content--mobile-v-top {
+    .hero-slider__content--mobile-top {
       top: 0;
       bottom: auto;
       padding-top: var(--space-xl);
@@ -185,7 +185,7 @@
       transform: none;
     }
 
-    .hero-slider__content--mobile-v-middle {
+    .hero-slider__content--mobile-middle {
       top: 50%;
       bottom: auto;
       transform: translateY(-50%);
@@ -193,7 +193,7 @@
       padding-bottom: 0;
     }
 
-    .hero-slider__content--mobile-v-bottom {
+    .hero-slider__content--mobile-bottom {
       top: auto;
       bottom: 0;
       padding-top: 0;
@@ -308,13 +308,7 @@
             {% endif %}
           {% endif %}
 
-          {% assign mobile_h_align = block.settings.mobile_horizontal_alignment | default: 'center' %}
-          {% assign mobile_v_align = block.settings.mobile_vertical_alignment | default: 'inherit' %}
-          {% if mobile_v_align == 'inherit' %}
-            {% assign mobile_v_align = block.settings.vertical_alignment | default: 'bottom' %}
-          {% endif %}
-
-          <div class="hero-slider__content hero-slider__content--{{ block.settings.horizontal_alignment | default: 'center' }} hero-slider__content--{{ block.settings.vertical_alignment | default: 'bottom' }} hero-slider__content--mobile-h-{{ mobile_h_align }} hero-slider__content--mobile-v-{{ mobile_v_align }}">
+          <div class="hero-slider__content hero-slider__content--{{ block.settings.horizontal_alignment | default: 'center' }} hero-slider__content--{{ block.settings.vertical_alignment | default: 'bottom' }} hero-slider__content--mobile-{{ block.settings.mobile_horizontal_alignment | default: 'center' }} hero-slider__content--mobile-{{ block.settings.mobile_vertical_alignment | default: block.settings.vertical_alignment | default: 'bottom' }}">
             {% if block.settings.svg_image %}
               <img
                 src="{{ block.settings.svg_image | image_url }}"
@@ -738,12 +732,8 @@
           "type": "select",
           "id": "mobile_vertical_alignment",
           "label": "Mobile Vertical Alignment",
-          "default": "inherit",
+          "default": "bottom",
           "options": [
-            {
-              "value": "inherit",
-              "label": "Same as Desktop"
-            },
             {
               "value": "top",
               "label": "Top"
