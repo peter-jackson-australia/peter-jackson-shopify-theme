@@ -21,6 +21,7 @@
             "heading": "Afterpay Day Sale",
             "svg_image": "shopify://shop_images/AfterPay_Hero.svg",
             "svg_size": "medium",
+            "mobile_svg_image": "shopify://shop_images/AfterPay_Hero.svg",
             "heading_level": "h1",
             "heading_animation": "none",
             "description": "Up to 40% Off + Additional 10% Off with code AFTER10",
