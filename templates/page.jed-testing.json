@@ -24,6 +24,17 @@
             "products_to_show": 10
           }
         },
+        "navigation_item_fPeJAJ": {
+          "type": "navigation_item",
+          "settings": {
+            "nav_label": "Collection Name",
+            "collection": "",
+            "slider_heading": "New In Now",
+            "slider_description": "Layer up with premium wool/cashmere blends.",
+            "button_label": "Shop Now",
+            "products_to_show": 10
+          }
+        },
         "navigation_item_iHXxdb": {
           "type": "navigation_item",
           "settings": {
@@ -39,16 +50,93 @@
       },
       "block_order": [
         "navigation_item_L8Cw8C",
+        "navigation_item_fPeJAJ",
         "navigation_item_iHXxdb"
       ],
       "name": "Collection Slider Header",
       "settings": {
         "main_heading": "New Collections",
-        "subtitle": "Seasonal Favorites"
+        "subtitle": "Seasonal Favorites",
+        "show_top_border": true,
+        "show_bottom_border": true
+      }
+    },
+    "link_list_QgpRRC": {
+      "type": "link-list",
+      "blocks": {
+        "link_rzphKk": {
+          "type": "link",
+          "settings": {
+            "link_text": "Shop All",
+            "link_url": "/collections/all"
+          }
+        },
+        "link_CMQMy6": {
+          "type": "link",
+          "settings": {
+            "link_text": "New Arrivals",
+            "link_url": "/collections/new-arrivals"
+          }
+        },
+        "link_W4K4gw": {
+          "type": "link",
+          "settings": {
+            "link_text": "Best Sellers",
+            "link_url": "/collections/best-sellers"
+          }
+        }
+      },
+      "block_order": [
+        "link_rzphKk",
+        "link_CMQMy6",
+        "link_W4K4gw"
+      ],
+      "name": "Link List",
+      "settings": {
+        "heading": "Heading",
+        "alignment": "right",
+        "show_top_border": false,
+        "show_bottom_border": true
+      }
+    },
+    "image_gallery_slider_rAnJJP": {
+      "type": "image-gallery-slider",
+      "blocks": {
+        "slide_THgKhk": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Suits_0fd4aa03-d091-4f1d-8f5d-d56e92dbf810.webp"
+          }
+        },
+        "slide_wUrrgL": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Business_Shirts_0be11511-3bf3-4d65-8158-f91b6f067487.webp"
+          }
+        },
+        "slide_zcbrGe": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Sports_Jackets_9191253d-fd1f-49f7-bd0d-5b1391dc8624.webp"
+          }
+        }
+      },
+      "block_order": [
+        "slide_THgKhk",
+        "slide_wUrrgL",
+        "slide_zcbrGe"
+      ],
+      "name": "Image Gallery Slider",
+      "settings": {
+        "heading": "Heading",
+        "subtitle": "Secondary Heading",
+        "alignment": "left"
       }
     }
   },
   "order": [
-    "collection_slider_header_7Hd3ef"
+    "collection_slider_header_7Hd3ef",
+    "link_list_QgpRRC",
+    "image_gallery_slider_rAnJJP"
   ]
 }
