@@ -141,8 +141,9 @@
         "slide_8Xcqpe": {
           "type": "slide",
           "settings": {
-            "media_type": "image",
+            "media_type": "video",
             "video": "shopify://files/videos/Transeasonal Refinement Site.mp4",
+            "mobile_video": "shopify://files/videos/HYS_Red Video Banner.mp4",
             "heading": "Welcome to Our Store",
             "svg_size": "medium",
             "heading_level": "h1",
