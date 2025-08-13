@@ -269,6 +269,7 @@
         "anchor_id": "",
         "show_top_border": true,
         "show_bottom_border": false,
+        "full_width": true,
         "first_image": "shopify://shop_images/peter-jackson-made-to-measure-tailoring-suits-mens-suits-tailoring.webp",
         "image_link": "",
         "animate_images": false,
