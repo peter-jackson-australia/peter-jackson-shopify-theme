@@ -9,29 +9,20 @@
  */
 {
   "sections": {
-    "editorial_hero_hceC9g": {
-      "type": "editorial-hero",
-      "name": "Hero Editorial",
+    "full_page_media_fiWDkj": {
+      "type": "full-page-media",
+      "name": "Full Page Media",
       "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": false,
-        "leading_text": "",
-        "leading_text_animation": "none",
-        "first_title": "Discover",
-        "first_title_animation": "none",
         "media_type": "image",
-        "animate_media": false,
-        "second_title": "Collection",
-        "second_title_animation": "none",
-        "description": "",
-        "description_animation": "none",
-        "cta_text": "Shop Now",
-        "cta_link": ""
+        "desktop_image": "shopify://shop_images/peter-jackson-man-wearing-suit-during-wedding-mens-suits.webp",
+        "mobile_image": "shopify://shop_images/peter-jackson-man-wearing-suit-during-wedding-mens-suits-mobile.webp",
+        "link": "",
+        "link_text": "Learn more",
+        "alt_text": "Full page media"
       }
     }
   },
   "order": [
-    "editorial_hero_hceC9g"
+    "full_page_media_fiWDkj"
   ]
 }
