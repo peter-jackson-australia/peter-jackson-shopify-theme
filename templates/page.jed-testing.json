@@ -9,16 +9,6 @@
  */
 {
   "sections": {
-    "blog_collection_RHQ8Ef": {
-      "type": "blog-collection",
-      "name": "Blog Collection",
-      "settings": {
-        "heading": "Test Blogs",
-        "blog": "the-jackson-journal",
-        "limit": 4,
-        "articles_per_row": 3
-      }
-    },
     "collection_slider_header_7Hd3ef": {
       "type": "collection-slider-header",
       "blocks": {
@@ -57,7 +47,6 @@
     }
   },
   "order": [
-    "blog_collection_RHQ8Ef",
     "collection_slider_header_7Hd3ef"
   ]
 }
