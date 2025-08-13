@@ -121,6 +121,13 @@
             "link_text": "Beach",
             "link_url": "shopify://collections/beach-weddings"
           }
+        },
+        "link_qeGzRk": {
+          "type": "link",
+          "settings": {
+            "link_text": "Groomsmen & Guests",
+            "link_url": "shopify://collections/groomsmen-and-wedding-guests"
+          }
         }
       },
       "block_order": [
@@ -129,7 +136,8 @@
         "link_pMkCjH",
         "link_ycB3aB",
         "link_XtAPea",
-        "link_iFDFxx"
+        "link_iFDFxx",
+        "link_qeGzRk"
       ],
       "name": "Link List",
       "settings": {
