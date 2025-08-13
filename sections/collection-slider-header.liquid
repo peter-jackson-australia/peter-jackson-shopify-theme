@@ -5,6 +5,8 @@
 <style>
   .collection-slider-header {
     width: 100%;
+    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
+    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
   }
 
   .collection-slider-header__header {
@@ -574,6 +576,18 @@
       "id": "subtitle",
       "label": "Subtitle",
       "default": "Seasonal Favorites"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_top_border",
+      "label": "Show top border",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bottom_border",
+      "label": "Show bottom border",
+      "default": false
     }
   ],
   "blocks": [
