@@ -207,6 +207,33 @@
         "horizontal_alignment": "center",
         "vertical_alignment": "middle"
       }
+    },
+    "blog_hero_qajTUJ": {
+      "type": "blog-hero",
+      "name": "Blog Hero",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "show_image_overlay": true,
+        "image_heading": "Featured Article Title",
+        "image_heading_animation": "none",
+        "image_description": "Description text for the featured article.",
+        "image_description_animation": "none",
+        "image_link_text": "Read More",
+        "image_link_url": "",
+        "heading": "The Jackson Journal",
+        "heading_animation": "none",
+        "subheading": "The Stories Behind The Threads",
+        "subheading_animation": "none",
+        "description": "Discover our world through campaigns, interviews, and features designed to inform your style and inspire a life well lived.",
+        "description_animation": "none",
+        "cta_link": "shopify://blogs/the-jackson-journal",
+        "cta_text": "Read Now",
+        "show_recent_posts": true,
+        "animate_posts": true,
+        "blog": "the-jackson-journal"
+      }
     }
   },
   "order": [
@@ -214,6 +241,7 @@
     "collection_slider_x3GMYN",
     "hero_primary_Ri8wik",
     "variable_column_content_tertiary_rxHymY",
-    "hero_primary_BACFYg"
+    "hero_primary_BACFYg",
+    "blog_hero_qajTUJ"
   ]
 }
