@@ -35,7 +35,9 @@
             "button_label_4": "",
             "button_link_4": "",
             "horizontal_alignment": "left",
-            "vertical_alignment": "middle"
+            "vertical_alignment": "middle",
+            "mobile_horizontal_alignment": "left",
+            "mobile_vertical_alignment": "bottom"
           }
         },
         "slide_GaUkHW": {
@@ -61,7 +63,9 @@
             "button_label_4": "",
             "button_link_4": "",
             "horizontal_alignment": "left",
-            "vertical_alignment": "middle"
+            "vertical_alignment": "middle",
+            "mobile_horizontal_alignment": "center",
+            "mobile_vertical_alignment": "bottom"
           }
         }
       },
