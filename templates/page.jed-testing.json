@@ -130,13 +130,54 @@
       "settings": {
         "heading": "Heading",
         "subtitle": "Secondary Heading",
-        "alignment": "left"
+        "alignment": "left",
+        "show_top_border": false,
+        "show_bottom_border": false
+      }
+    },
+    "hero_slider_HNGf8n": {
+      "type": "hero-slider",
+      "blocks": {
+        "slide_8Xcqpe": {
+          "type": "slide",
+          "settings": {
+            "media_type": "image",
+            "video": "shopify://files/videos/Transeasonal Refinement Site.mp4",
+            "heading": "Welcome to Our Store",
+            "svg_size": "medium",
+            "heading_level": "h1",
+            "heading_animation": "none",
+            "description": "Discover our latest collection",
+            "description_animation": "none",
+            "button_label_1": "Shop Now",
+            "button_link_1": "",
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_label_3": "",
+            "button_link_3": "",
+            "button_label_4": "",
+            "button_link_4": "",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "bottom",
+            "mobile_horizontal_alignment": "center",
+            "mobile_vertical_alignment": "bottom"
+          }
+        }
+      },
+      "block_order": [
+        "slide_8Xcqpe"
+      ],
+      "name": "Hero Slider",
+      "settings": {
+        "autoplay": true,
+        "slide_interval": 5
       }
     }
   },
   "order": [
     "collection_slider_header_7Hd3ef",
     "link_list_QgpRRC",
-    "image_gallery_slider_rAnJJP"
+    "image_gallery_slider_rAnJJP",
+    "hero_slider_HNGf8n"
   ]
 }
