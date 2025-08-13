@@ -90,9 +90,9 @@
       ],
       "name": "Image Gallery Slider",
       "settings": {
-        "heading": "",
-        "subtitle": "",
-        "alignment": "left"
+        "heading": "Heading",
+        "subtitle": "Secondary Heading",
+        "alignment": "center"
       }
     }
   },
