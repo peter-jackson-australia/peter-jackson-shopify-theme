@@ -116,7 +116,9 @@
         "button_label_4": "",
         "button_link_4": "",
         "horizontal_alignment": "center",
-        "vertical_alignment": "middle"
+        "vertical_alignment": "middle",
+        "mobile_horizontal_alignment": "left",
+        "mobile_vertical_alignment": "bottom"
       }
     },
     "variable_column_content_tertiary_rxHymY": {
@@ -216,7 +218,9 @@
         "button_label_4": "",
         "button_link_4": "",
         "horizontal_alignment": "center",
-        "vertical_alignment": "middle"
+        "vertical_alignment": "middle",
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "bottom"
       }
     },
     "blog_hero_qajTUJ": {
