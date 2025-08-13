@@ -129,22 +129,6 @@
             "column_link_text": "Shop Now"
           }
         },
-        "column_item_U7adca": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/Store_Locator___Suits_5869be7e-bf3d-4d34-9fea-b03368fbdc7c.webp",
-            "image_link": "",
-            "heading": "Sports Jackets",
-            "heading_animation": "none",
-            "text": "from $299",
-            "text_animation": "none",
-            "show_gradient_overlay": false,
-            "content_horizontal_alignment": "left",
-            "content_vertical_alignment": "bottom",
-            "column_link": "",
-            "column_link_text": "Shop Now"
-          }
-        },
         "column_item_JTGe3a": {
           "type": "column_item",
           "settings": {
@@ -160,12 +144,28 @@
             "column_link": "",
             "column_link_text": "Shop Now"
           }
+        },
+        "column_item_U7adca": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Sports_Jackets_f9e9b35f-8fff-409f-ae66-2ed7229008fa.webp",
+            "image_link": "",
+            "heading": "Sports Jackets",
+            "heading_animation": "none",
+            "text": "from $299",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
         }
       },
       "block_order": [
         "column_item_HPrcxi",
-        "column_item_U7adca",
-        "column_item_JTGe3a"
+        "column_item_JTGe3a",
+        "column_item_U7adca"
       ],
       "name": "Variable Column Content Tertiary",
       "settings": {
