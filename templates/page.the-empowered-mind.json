@@ -30,7 +30,9 @@
         "button_label_4": "",
         "button_link_4": "",
         "horizontal_alignment": "center",
-        "vertical_alignment": "bottom"
+        "vertical_alignment": "bottom",
+        "mobile_horizontal_alignment": "left",
+        "mobile_vertical_alignment": "bottom"
       }
     },
     "blog_collection_jbntXY": {
