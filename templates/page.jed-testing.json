@@ -75,11 +75,18 @@
           "settings": {
             "image": "shopify://shop_images/Business_Shirts_0be11511-3bf3-4d65-8158-f91b6f067487.webp"
           }
+        },
+        "slide_zcbrGe": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Sports_Jackets_9191253d-fd1f-49f7-bd0d-5b1391dc8624.webp"
+          }
         }
       },
       "block_order": [
         "slide_THgKhk",
-        "slide_wUrrgL"
+        "slide_wUrrgL",
+        "slide_zcbrGe"
       ],
       "name": "Image Gallery Slider",
       "settings": {
