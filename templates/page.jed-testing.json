@@ -16,7 +16,8 @@
           "type": "navigation_item",
           "settings": {
             "nav_label": "New Arrivals",
-            "collection": "",
+            "desktop_image": "shopify://shop_images/Afterpay_Day_Hero_Desktop.webp",
+            "collection": "new-arrivals",
             "slider_heading": "New Arrivals",
             "slider_description": "Layer up with premium wool/cashmere blends.",
             "button_label": "Shop Now",
@@ -27,7 +28,8 @@
           "type": "navigation_item",
           "settings": {
             "nav_label": "Suits",
-            "collection": "",
+            "desktop_image": "shopify://shop_images/Spring_Drop_1_Hero_Desktop.webp",
+            "collection": "mens-suits",
             "slider_heading": "Suits Collection",
             "slider_description": "Layer up with premium wool/cashmere blends.",
             "button_label": "Shop Now",
