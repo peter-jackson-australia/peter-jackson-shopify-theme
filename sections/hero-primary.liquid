@@ -31,6 +31,10 @@
     object-position: top;
   }
 
+  .hero__video--mobile {
+    display: none;
+  }
+
   .hero__content {
     position: absolute;
     width: 100%;
@@ -160,6 +164,15 @@
     .hero__buttons .button {
       width: 100%;
     }
+
+    {% if section.settings.mobile_video %}
+      .hero__video--desktop {
+        display: none;
+      }
+      .hero__video--mobile {
+        display: block;
+      }
+    {% endif %}
   }
 </style>
 
@@ -201,7 +214,7 @@
       </picture>
     {% elsif section.settings.media_type == 'video' %}
       {% if section.settings.video %}
-        <div class="hero__video">
+        <div class="hero__video hero__video--desktop">
           {% assign poster_url = section.settings.video_placeholder | image_url %}
           {{
             section.settings.video
@@ -212,6 +225,26 @@
               controls: false,
               playsinline: true,
               poster: poster_url,
+              class: 'hero__video-element'
+          }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.mobile_video %}
+        <div class="hero__video hero__video--mobile">
+          {% assign poster_url_mobile = section.settings.mobile_video_placeholder
+            | default: section.settings.video_placeholder
+            | image_url
+          %}
+          {{
+            section.settings.mobile_video
+            | video_tag:
+              autoplay: true,
+              loop: true,
+              muted: true,
+              controls: false,
+              playsinline: true,
+              poster: poster_url_mobile,
               class: 'hero__video-element'
           }}
         </div>
@@ -321,10 +354,22 @@
       "info": "Used when Media Type is set to Video"
     },
     {
+      "type": "video",
+      "id": "mobile_video",
+      "label": "Mobile Background Video",
+      "info": "Optional mobile-specific video"
+    },
+    {
       "type": "image_picker",
       "id": "video_placeholder",
       "label": "Video Placeholder Image",
       "info": "Shown while video loads or if video fails to load"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_video_placeholder",
+      "label": "Mobile Video Placeholder Image",
+      "info": "Shown while mobile video loads"
     },
     {
       "type": "text",
