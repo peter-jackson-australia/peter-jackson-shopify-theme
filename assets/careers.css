@@ -36,6 +36,16 @@
     margin-top: var(--space-xl);
 }
 
+.form-row {
+    display: grid;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-m);
+}
+
+.form-row.form-row--3-column {
+    grid-template-columns: repeat(3, 1fr);
+}
+
 #contact-form input[type='text'],
 #contact-form input[type='email'],
 #contact-form select,
@@ -47,20 +57,13 @@
     width: 100%;
 }
 
-.form-row {
-    display: grid;
-    gap: var(--space-xs);
-    margin-bottom: var(--space-m);
-}
-
-.form-row.form-row--3-column {
-    grid-template-columns: repeat(3, 1fr);
-}
-
-.radio-group {
-    align-items: center;
-    display: flex;
-    gap: var(--space-xs);
+#contact-form select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-position: right var(--space-xs) center;
+    background-repeat: no-repeat;
+    background-size: 1em;
+    padding-right: var(--space-xl);
 }
 
 #contact-form input[type='checkbox'] {
@@ -96,6 +99,12 @@
     width: 4px;
 }
 
+.radio-group {
+    align-items: center;
+    display: flex;
+    gap: var(--space-xs);
+}
+
 .radio-group label {
     align-items: center;
     cursor: pointer;
@@ -120,7 +129,7 @@
     justify-content: flex-end;
 }
 
-.button-uploadcv {
+.button__uploadcv {
     background: none;
     border: none;
     border-bottom: 2px solid var(--neutral-950);
@@ -141,15 +150,6 @@
     width: 100%;
 }
 
-#contact-form select {
-    appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-    background-position: right var(--space-xs) center;
-    background-repeat: no-repeat;
-    background-size: 1em;
-    padding-right: var(--space-xl);
-}
-
 #success-modal {
     background-color: rgba(0, 0, 0, 0.5);
     display: none;
@@ -161,7 +161,7 @@
     z-index: 1000;
 }
 
-#success-modal.show {
+#success-modal.success-modal--show {
     display: block;
 }
 

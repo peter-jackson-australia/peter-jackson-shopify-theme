@@ -121,7 +121,7 @@
 
       <section class="submit-form">
         <input type="file" name="upload">
-        <button class="button-uploadcv small" type="button">UPLOAD CV</button>
+        <button class="button__uploadcv small" type="button">UPLOAD CV</button>
         <button class="body" id="career-submit-button" type="submit">Send</button>
       </section>
     </form>
@@ -130,7 +130,7 @@
       <section id="success-modal-content">
         <button
           id="close-modal"
-          class="modal-close"
+          class="button__modal-close"
         >
           &times;
         </button>
@@ -147,7 +147,7 @@
 
 <script>
   function initCareersForm() {
-    const uploadCV = document.querySelector('#contact-form .button-uploadcv');
+    const uploadCV = document.querySelector('#contact-form .button__uploadcv');
     const fileInput = document.querySelector('#contact-form input[type="file"]');
 
     if (uploadCV && fileInput) {
@@ -170,14 +170,14 @@
     f (status === 'success') {
       const modal = document.querySelector('#success-modal');
       if (modal) {
-        modal.classList.add('show');
+        modal.classList.add('success-modal--show');
       }
     }
 
     function hideModal() {
       const modal = document.querySelector('#success-modal');
       if (modal) {
-        modal.classList.remove('show');
+        modal.classList.remove('success-modal--show');
         window.history.replaceState({}, document.title, window.location.pathname);
       }
     }
