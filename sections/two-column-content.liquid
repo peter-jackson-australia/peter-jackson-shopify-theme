@@ -155,18 +155,31 @@
   }
 </style>
 
+{% assign anchor_id = section.settings.anchor_id %}
+{% assign blocks = section.blocks %}
+{% assign animate_columns = section.settings.animate_columns %}
+{% assign heading = section.settings.heading %}
+{% assign heading_animation = section.settings.heading_animation %}
+{% assign description = section.settings.description %}
+{% assign description_animation = section.settings.description_animation %}
+{% assign button_link = section.settings.button_link %}
+{% assign button_label = section.settings.button_label %}
+
 <div
   class="two-column-content"
-  {% if section.settings.anchor_id != blank %}
-    id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
+  {% if anchor_id %}
+    id="{{ anchor_id | downcase | replace: ' ', '-' }}-segment"
   {% endif %}
 >
   <div class="two-column-content__grid">
-    {% for block in section.blocks %}
+    {% for block in blocks %}
       {% assign has_product = false %}
       {% assign product_data = null %}
+      {% assign shopify_attrs = block.shopify_attributes %}
+      {% assign block_img = block.image %}
+      {% assign block_mobile_img = block.image_mobile %}
 
-      {% if block.settings.product != blank %}
+      {% if block.settings.product %}
         {% assign product_handle = block.settings.product %}
         {% assign product_data = all_products[product_handle] %}
         {% if product_data.id != blank %}
@@ -175,18 +188,18 @@
       {% endif %}
 
       <article
-        class="two-column-content__item {% if section.settings.animate_columns %}animate-container-cards-scroll{% endif %}"
-        {{ block.shopify_attributes }}
+        class="two-column-content__item {% if animate_columns %}animate-container-cards-scroll{% endif %}"
+        {{ shopify_attrs }}
       >
         <div class="two-column-content__image-container">
-          {% if block.settings.image != blank %}
+          {% if block_img %}
             <picture>
-              {% if block.settings.image_mobile != blank %}
+              {% if block_mobile_img %}
                 <source
                   media="(max-width: 767px)"
                   srcset="
-                    {{ block.settings.image_mobile | image_url: width: 400 }} 1x,
-                    {{ block.settings.image_mobile | image_url: width: 800 }} 2x
+                    {{ block_mobile_img | image_url: width: 400 }} 1x,
+                    {{ block_mobile_img | image_url: width: 800 }} 2x
                   "
                 >
               {% endif %}
@@ -198,19 +211,19 @@
                     class: 'two-column-content__image has-product',
                     loading: 'lazy',
                     decoding: 'async',
-                    alt: block.settings.image.alt,
+                    alt: block_img.alt,
                     widths: '400, 500, 600, 700, 800, 1000, 1200',
                     sizes: '(max-width: 768px) 100vw, (max-width: 1040px) 100vw, 50vw'
                 }}
               {% else %}
                 {{
-                  block.settings.image
+                  block_img
                   | image_url: width: 720
                   | image_tag:
                     class: 'two-column-content__image',
                     loading: 'lazy',
                     decoding: 'async',
-                    alt: block.settings.image.alt,
+                    alt: block_img.alt,
                     widths: '400, 500, 600, 700, 800, 1000, 1200',
                     sizes: '(max-width: 768px) 100vw, (max-width: 1040px) 100vw, 50vw'
                 }}
@@ -239,21 +252,21 @@
 
         <div class="two-column-content__content">
           <div class="two-column-content__heading-container">
-            {% if block.settings.heading != blank %}
-              <h2 class="two-column-content__heading heading--l {% if block.settings.heading_animation != 'none' %}{{ block.settings.heading_animation }}{% endif %}">
-                {{ block.settings.heading }}
+            {% if heading != blank %}
+              <h2 class="two-column-content__heading heading--l {% if heading_animation != 'none' %}{{ heading_animation }}{% endif %}">
+                {{ heading }}
               </h2>
             {% endif %}
 
-            {% if block.settings.description != blank %}
-              <p class="two-column-content__description body {% if block.settings.description_animation != 'none' %}{{ block.settings.description_animation }}{% endif %}">
-                {{ block.settings.description }}
+            {% if description != blank %}
+              <p class="two-column-content__description body {% if description_animation != 'none' %}{{ description_animation }}{% endif %}">
+                {{ description }}
               </p>
             {% endif %}
           </div>
-          {% if block.settings.button_label != blank and block.settings.button_link != blank %}
-            <a href="{{ block.settings.button_link }}" class="two-column-content__link body">
-              {{ block.settings.button_label }}
+          {% if button_label != blank and button_link != blank %}
+            <a href="{{ button_link }}" class="two-column-content__link body">
+              {{ button_label }}
               {% render '_icon-arrow-submit-dark' %}
             </a>
           {% endif %}
