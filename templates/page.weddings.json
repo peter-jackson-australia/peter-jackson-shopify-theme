@@ -484,6 +484,7 @@
         "faq_item_ABiAjH",
         "faq_item_YJJMV6"
       ],
+      "disabled": true,
       "name": "FAQ Section",
       "settings": {
         "show_top_border": true,
@@ -493,6 +494,7 @@
     },
     "blog_hero_8apMnG": {
       "type": "blog-hero",
+      "disabled": true,
       "name": "Blog Hero",
       "settings": {
         "anchor_id": "",
