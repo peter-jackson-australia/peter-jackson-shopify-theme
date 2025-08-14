@@ -16,16 +16,16 @@
 
   <section id="careers-page">
     <h1 class="heading--2xl" style="margin-bottom: var(--space-s)">Careers</h1>
-    <p class="body career-content">
+    <p class="body careers-page__content">
       Join the Peter Jackson team and become part of a storied legacy in men's fashion, where quality, style, and
       exceptional service have been our hallmarks since 1948.
     </p>
 
     <hr>
 
-    <h5 class="body--bold career-content">Join the team</h5>
+    <h5 class="body--bold careers-page__content">Join the team</h5>
 
-    <p class="body career-content">
+    <p class="body careers-page__content">
       Peter Jackson, a name synonymous with quality tailoring since 1948, continues to expand nationally while
       maintaining a strong commitment to top-notch customer service and apparel.<br>
       <br>
@@ -41,7 +41,7 @@
       method="POST"
       enctype="multipart/form-data"
     >
-      <section class="form-row form-row--3-column">
+      <section class="careers-form__form-row careers-form__form-row--3-column">
         <input
           class="small"
           placeholder="Full Name"
@@ -65,7 +65,7 @@
         >
       </section>
 
-      <section class="form-row form-row--3-column">
+      <section class="careers-form__form-row careers-form__form-row--3-column">
         <select class="small" required name="role">
           <option value="">Role</option>
           <option value="Sales">Sales</option>
@@ -84,7 +84,7 @@
           <option value="ACT">ACT</option>
         </select>
 
-        <div class="radio-group">
+        <div class="careers-form__radio-group">
           <input
             id="availability-full"
             type="checkbox"
@@ -111,7 +111,7 @@
         </div>
       </section>
 
-      <section class="form-row">
+      <section class="careers-form__form-row">
         <textarea
           class="small"
           name="message"
@@ -119,9 +119,9 @@
         ></textarea>
       </section>
 
-      <section class="submit-form">
+      <section class="careers-submit-section">
         <input type="file" name="upload">
-        <button class="button__uploadcv small" type="button">UPLOAD CV</button>
+        <button class="careers-submit-section__uploadcv-button small" type="button">UPLOAD CV</button>
         <button class="body" id="career-submit-button" type="submit">Send</button>
       </section>
     </form>
@@ -130,7 +130,7 @@
       <section id="success-modal-content">
         <button
           id="close-modal"
-          class="button__modal-close"
+          class="success-modal__modal-close-btn"
         >
           &times;
         </button>

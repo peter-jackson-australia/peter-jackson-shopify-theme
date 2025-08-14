@@ -27,7 +27,7 @@
     margin: var(--space-xl) 0;
 }
 
-.career-content {
+.careers-page__content {
     margin-bottom: var(--space-m);
 }
 
@@ -36,13 +36,13 @@
     margin-top: var(--space-xl);
 }
 
-.form-row {
+.careers-form__form-row {
     display: grid;
     gap: var(--space-xs);
     margin-bottom: var(--space-m);
 }
 
-.form-row.form-row--3-column {
+.careers-form__form-row.careers-form__form-row--3-column {
     grid-template-columns: repeat(3, 1fr);
 }
 
@@ -99,13 +99,13 @@
     width: 4px;
 }
 
-.radio-group {
+.careers-form__radio-group {
     align-items: center;
     display: flex;
     gap: var(--space-xs);
 }
 
-.radio-group label {
+.careers-form__radio-group label {
     align-items: center;
     cursor: pointer;
     display: flex;
@@ -123,13 +123,13 @@
     display: none;
 }
 
-.submit-form {
+.careers-submit-section {
     display: flex;
     gap: var(--space-s);
     justify-content: flex-end;
 }
 
-.button__uploadcv {
+.careers-submit-section__uploadcv-button {
     background: none;
     border: none;
     border-bottom: 2px solid var(--neutral-950);
@@ -158,7 +158,7 @@
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1000;
+    z-index: 9996;
 }
 
 #success-modal.success-modal--show {
@@ -184,7 +184,7 @@
     color: white;
 }
 
-.button__modal-close {
+.success-modal__modal-close-btn {
     background: none;
     border: none;
     color: var(--white);
@@ -205,22 +205,22 @@
         grid-template-columns: 1fr;
     }
 
-    .form-row:first-of-type,
-    .form-row:nth-of-type(2) {
+    .careers-form__form-row:first-of-type,
+    .careers-form__form-row:nth-of-type(2) {
         grid-template-columns: 1fr;
     }
 
-    .radio-group {
+    .careers-form__radio-group {
         flex-wrap: wrap;
         justify-content: center;
         margin-top: var(--space-xs);
     }
 
-    .submit-form {
+    .careers-submit-section {
         flex-direction: column;
     }
 
-    .button__uploadcv {
+    .careers-submit-section__uploadcv-button {
         max-width: 128px;
         padding-bottom: var(--space-2xs);
     }

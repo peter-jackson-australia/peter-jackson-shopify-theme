@@ -1,4 +1,4 @@
-const uploadCVButton = document.querySelector('#contact-form .button__uploadcv');
+const uploadCVButton = document.querySelector('#contact-form .careers-submit-section__uploadcv-button');
 const cvFileInput = document.querySelector('#contact-form input[type="file"]');
 const successModal = document.querySelector('#success-modal');
 const closeModalButton = document.querySelector('#close-modal');
