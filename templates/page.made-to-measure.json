@@ -72,7 +72,7 @@
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
-        "show_bottom_border": false,
+        "show_bottom_border": true,
         "heading": "The Process",
         "heading_style": "decorative",
         "heading_animation": "none",
@@ -81,18 +81,19 @@
         "alignment": "left"
       }
     },
+    "schedule_your_appointment_AtFrGy": {
+      "type": "schedule-your-appointment",
+      "custom_css": [],
+      "name": "Schedule Your Appointment",
+      "settings": {
+        "heading": ""
+      }
+    },
     "store_locator_nk6JAx": {
       "type": "store-locator",
       "name": "Store Locator",
       "settings": {
         "heading": "Store Locations"
-      }
-    },
-    "schedule_your_appointment_AtFrGy": {
-      "type": "schedule-your-appointment",
-      "name": "Schedule Your Appointment",
-      "settings": {
-        "heading": ""
       }
     }
   },
@@ -101,7 +102,7 @@
     "image_with_text_hfrXHR",
     "block_quote_faiPkK",
     "two_column_heading_text_B9U4pw",
-    "store_locator_nk6JAx",
-    "schedule_your_appointment_AtFrGy"
+    "schedule_your_appointment_AtFrGy",
+    "store_locator_nk6JAx"
   ]
 }
