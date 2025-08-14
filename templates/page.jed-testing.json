@@ -17,7 +17,7 @@
         "show_top_border": false,
         "show_bottom_border": false,
         "leading_text": "Introduction",
-        "leading_text_animation": "none",
+        "leading_text_animation": "animate-word-rotate-scroll",
         "heading": "Section Heading",
         "heading_style": "normal",
         "heading_animation": "none",
