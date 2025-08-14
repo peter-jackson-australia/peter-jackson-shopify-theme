@@ -212,7 +212,6 @@
 
     .careers-form__radio-group {
         flex-wrap: wrap;
-        justify-content: center;
         margin-top: var(--space-xs);
     }
 
