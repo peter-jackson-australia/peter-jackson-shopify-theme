@@ -2,168 +2,11 @@
   Two Column Content Section
 {% endcomment %}
 
-<style>
-  .two-column-content__grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    width: 100%;
-    padding-top: var(--space-2xl);
-    padding-bottom: calc(var(--space-2xl) - var(--space-m));
-    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
-    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
-  }
-
-  .two-column-content__item {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .two-column-content__image-container {
-    width: 100%;
-    height: 0;
-    padding-bottom: 130%;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .two-column-content__image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: filter 0.3s ease;
-  }
-
-  .two-column-content__product-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: var(--white);
-    padding: var(--space-m);
-    transform: translateY(100%);
-    transition: transform 0.3s ease;
-  }
-
-  .two-column-content__image-container:hover .two-column-content__image.has-product {
-    filter: grayscale(100%);
-  }
-
-  .two-column-content__image-container:hover .two-column-content__product-overlay {
-    transform: translateY(0);
-  }
-
-  .two-column-content__product-info {
-    display: flex;
-    align-items: end;
-    gap: var(--space-xs);
-  }
-
-  .two-column-content__product-details {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2xs);
-  }
-
-  .two-column-content__model-wearing {
-    color: var(--neutral-950);
-  }
-
-  .two-column-content__product-name {
-    color: var(--neutral-600);
-  }
-
-  .two-column-content__product-price {
-    color: var(--neutral-600);
-  }
-
-  .two-column-content__product-link {
-    display: inline-flex;
-    align-items: center;
-    margin-left: auto;
-    text-decoration: none;
-    color: var(--neutral-950);
-    gap: var(--space-xs);
-  }
-
-  .two-column-content__content {
-    padding: var(--space-m);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-  }
-
-  .two-column-content__heading-container {
-    display: flex;
-    gap: var(--space-m);
-  }
-
-  .two-column-content__description {
-    margin-bottom: var(--space-s);
-    color: var(--neutral-600);
-    max-width: 80ch;
-    margin-left: auto;
-    text-align: right;
-  }
-
-  .two-column-content__link {
-    display: inline-flex;
-    align-items: center;
-    text-decoration: none;
-    color: var(--neutral-950);
-    margin-top: var(--space-xs);
-    gap: var(--space-xs);
-  }
-
-  @media (min-width: 1040px) {
-    .two-column-content__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (max-width: 1040px) {
-    .two-column-content__grid {
-      padding-top: var(--space-xl);
-      padding-bottom: calc(var(--space-xl) - var(--space-m));
-    }
-    .two-column-content__heading-container {
-      flex-direction: column;
-      gap: var(--space-s);
-    }
-    .two-column-content__description {
-      text-align: left;
-      margin-left: 0px;
-    }
-    .two-column-content__product-link {
-      margin-top: var(--space-s);
-    }
-  }
-
-  @media (max-width: 768px) {
-    .two-column-content__product-info {
-      align-items: start;
-      flex-direction: column;
-    }
-    .two-column-content__product-link {
-      margin-right: auto;
-      margin-left: 0px;
-    }
-  }
-</style>
+{{ 'section-two-column-content.css' | asset_url | stylesheet_tag }}
 
 {% assign anchor_id = section.settings.anchor_id %}
 {% assign blocks = section.blocks %}
 {% assign animate_columns = section.settings.animate_columns %}
-{% assign heading = section.settings.heading %}
-{% assign heading_animation = section.settings.heading_animation %}
-{% assign description = section.settings.description %}
-{% assign description_animation = section.settings.description_animation %}
-{% assign button_link = section.settings.button_link %}
-{% assign button_label = section.settings.button_label %}
 
 <div
   class="two-column-content"
@@ -171,35 +14,49 @@
     id="{{ anchor_id | downcase | replace: ' ', '-' }}-segment"
   {% endif %}
 >
-  <div class="two-column-content__grid">
+  <div
+    class="two-column-content__grid"
+    style="
+      {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
+      {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
+    "
+  >
     {% for block in blocks %}
       {% assign has_product = false %}
       {% assign product_data = null %}
-      {% assign shopify_attrs = block.shopify_attributes %}
-      {% assign block_img = block.image %}
-      {% assign block_mobile_img = block.image_mobile %}
+      {% assign current_shopify_attrs = block.settings.shopify_attributes %}
+      {% assign current_block_img = block.settings.image %}
+      {% assign current_block_mobile_img = block.settings.image_mobile %}
+      {% assign current_heading = block.settings.heading %}
+      {% assign current_heading_animation = block.settings.heading_animation %}
+      {% assign current_description = block.settings.description %}
+      {% assign current_description_animation = block.settings.description_animation %}
+      {% assign current_button_link = section.settings.button_link %}
+      {% assign current_button_label = section.settings.button_label %}
+      {% assign current_button_link = section.settings.button_link %}
+      {% assign current_button_label = section.settings.button_label %}
 
       {% if block.settings.product %}
-        {% assign product_handle = block.settings.product %}
-        {% assign product_data = all_products[product_handle] %}
-        {% if product_data.id != blank %}
+        {% assign current_product_handle = block.settings.product %}
+        {% assign current_product_data = all_products[current_product_handle] %}
+        {% if current_product_data.id != blank %}
           {% assign has_product = true %}
         {% endif %}
       {% endif %}
 
       <article
         class="two-column-content__item {% if animate_columns %}animate-container-cards-scroll{% endif %}"
-        {{ shopify_attrs }}
+        {{ current_shopify_attrs }}
       >
         <div class="two-column-content__image-container">
-          {% if block_img %}
+          {% if current_block_img %}
             <picture>
-              {% if block_mobile_img %}
+              {% if current_block_mobile_img %}
                 <source
                   media="(max-width: 767px)"
                   srcset="
-                    {{ block_mobile_img | image_url: width: 400 }} 1x,
-                    {{ block_mobile_img | image_url: width: 800 }} 2x
+                    {{ current_block_mobile_img | image_url: width: 400 }} 1x,
+                    {{ current_block_mobile_img | image_url: width: 800 }} 2x
                   "
                 >
               {% endif %}
@@ -211,19 +68,19 @@
                     class: 'two-column-content__image has-product',
                     loading: 'lazy',
                     decoding: 'async',
-                    alt: block_img.alt,
+                    alt: current_block_img.alt,
                     widths: '400, 500, 600, 700, 800, 1000, 1200',
                     sizes: '(max-width: 768px) 100vw, (max-width: 1040px) 100vw, 50vw'
                 }}
               {% else %}
                 {{
-                  block_img
+                  current_block_img
                   | image_url: width: 720
                   | image_tag:
                     class: 'two-column-content__image',
                     loading: 'lazy',
                     decoding: 'async',
-                    alt: block_img.alt,
+                    alt: current_block_img.alt,
                     widths: '400, 500, 600, 700, 800, 1000, 1200',
                     sizes: '(max-width: 768px) 100vw, (max-width: 1040px) 100vw, 50vw'
                 }}
@@ -252,21 +109,21 @@
 
         <div class="two-column-content__content">
           <div class="two-column-content__heading-container">
-            {% if heading != blank %}
-              <h2 class="two-column-content__heading heading--l {% if heading_animation != 'none' %}{{ heading_animation }}{% endif %}">
-                {{ heading }}
+            {% if current_heading != blank %}
+              <h2 class="two-column-content__heading heading--l {% if current_heading_animation != 'none' %}{{ current_heading_animation }}{% endif %}">
+                {{ current_heading }}
               </h2>
             {% endif %}
 
-            {% if description != blank %}
-              <p class="two-column-content__description body {% if description_animation != 'none' %}{{ description_animation }}{% endif %}">
-                {{ description }}
+            {% if current_description != blank %}
+              <p class="two-column-content__description body {% if current_description_animation != 'none' %}{{ current_description_animation }}{% endif %}">
+                {{ current_description }}
               </p>
             {% endif %}
           </div>
-          {% if button_label != blank and button_link != blank %}
-            <a href="{{ button_link }}" class="two-column-content__link body">
-              {{ button_label }}
+          {% if current_button_label != blank and current_button_link != blank %}
+            <a href="{{ current_button_link }}" class="two-column-content__link body">
+              {{ current_button_label }}
               {% render '_icon-arrow-submit-dark' %}
             </a>
           {% endif %}
