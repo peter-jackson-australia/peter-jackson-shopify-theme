@@ -29,20 +29,79 @@
         "second_title_animation": "none",
         "description": "Elevate your workwear or create a unique look with our made-to-measure experience, a blend of artisanal craftsmanship and creative freedom. Our passion for fine tailoring ensures every man gets the best.",
         "description_animation": "none",
-        "cta_text": "Book An Appointment",
+        "cta_text": "",
         "cta_link": "/#secondo-container"
+      }
+    },
+    "image_with_text_hfrXHR": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": true,
+        "full_width": false,
+        "first_image": "shopify://shop_images/Suits_2.webp",
+        "image_link": "",
+        "second_image": "shopify://shop_images/Suits_3.webp",
+        "animate_images": false,
+        "alignment": "left",
+        "heading": "How It Works",
+        "heading_animation": "none",
+        "text": "Choose from 70+ Marzotto fabrics and 30 styles for a unique, made-to-measure suit that embodies your style. Customise every aspect, from fabric to buttons, with a 6-8 week turnaround.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    },
+    "block_quote_faiPkK": {
+      "type": "block-quote",
+      "name": "Block Quote",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "quote_text": "40 Styles to choose from. 70+ Fabrics by Marzotto. Choose your lapels. 6-8 Weeks delivery. Custom stitching and lining. Single or double breast starting from $799.",
+        "quote_animation": "none",
+        "background_color": "neutral-950"
+      }
+    },
+    "two_column_heading_text_B9U4pw": {
+      "type": "two-column-heading-text",
+      "name": "Two Column Heading Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "heading": "The Process",
+        "heading_style": "decorative",
+        "heading_animation": "none",
+        "content": "<p><strong>Meeting of the minds: </strong>Your made-to-measure experience first starts with a meeting. It is here that one of our specialists will help guide you through our program, customising and creating a design blueprint unique to you</p><p><strong>Choose your style: </strong>Feeling comfortable in the style of your suit is just as important as the size and fit. Selecting from our style guide, you’ll be able to completely customise your suit, building up from several core looks.</p><p><strong>Select the fabric: </strong>Selecting your fabric is an integral of creating an individualised garment, which is why we offer a diverse selection of patterns and colours, all sourced from the prestigious Marzotto mill in Italy.</p><p><strong>Personalisation: </strong>Feeling comfortable in the style of your suit is just as important as the size and fit. Selecting from our style guide, you’ll be able to completely customise your suit, building up from several core looks.</p><p><strong>Final fitting: </strong>Made to measure is about getting the perfect fit for you. After your garment is constructed and return to our store, you will be called in for a final fitting to ensure complete sartorial satisfaction.</p><p><strong>Schedule an appointment: </strong>Our Made to Measure experience is tailored around you, from the choice of fabric and fit to the where and when of your first appointment. Book now to secure your spot with one of our Made to measure specialists and begin your Made to Measure experience.</p>",
+        "content_animation": "none",
+        "alignment": "left"
+      }
+    },
+    "store_locator_nk6JAx": {
+      "type": "store-locator",
+      "name": "Store Locator",
+      "settings": {
+        "heading": "Store Locations"
       }
     },
     "schedule_your_appointment_AtFrGy": {
       "type": "schedule-your-appointment",
       "name": "Schedule Your Appointment",
       "settings": {
-        "heading": "Schedule Your Appointment"
+        "heading": ""
       }
     }
   },
   "order": [
     "editorial_hero_U8rrRz",
+    "image_with_text_hfrXHR",
+    "block_quote_faiPkK",
+    "two_column_heading_text_B9U4pw",
+    "store_locator_nk6JAx",
     "schedule_your_appointment_AtFrGy"
   ]
 }
