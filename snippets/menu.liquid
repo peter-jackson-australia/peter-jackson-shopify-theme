@@ -419,20 +419,25 @@
             {% endfor %}
           </ul>
           <div class="menu-drawer__video-container">
-            <video
-              class="menu-drawer__video"
-              :class="{'menu-drawer__media--inactive': currentLevel >= 2}"
-              x-ref="menuVideo"
-              x-init="$watch('isOpen', value => {if (value && $refs.menuVideo) {$refs.menuVideo.play().catch(e => console.log('Autoplay prevented:', e));} else if ($refs.menuVideo) {$refs.menuVideo.pause();}})"
-              muted
-              loop
-              playsinline
-              preload="metadata"
-              aria-hidden="true"
-            >
-              <source src="https://cdn.shopify.com/videos/c/o/v/ccff09333a4c451588e9b1a091de9d04.mp4" type="video/mp4">
-            </video>
-            <p class="body" :class="{'menu-drawer__media--inactive': currentLevel >= 2}">Winter 25 Collection</p>
+            <a href="{{ routes.collections_url }}new-arrivals" style="text-decoration: none;">
+              <video
+                class="menu-drawer__video"
+                :class="{'menu-drawer__media--inactive': currentLevel >= 2}"
+                x-ref="menuVideo"
+                x-init="$watch('isOpen', value => {if (value && $refs.menuVideo) {$refs.menuVideo.play().catch(e => console.log('Autoplay prevented:', e));} else if ($refs.menuVideo) {$refs.menuVideo.pause();}})"
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                aria-hidden="true"
+              >
+                <source
+                  src="https://cdn.shopify.com/videos/c/o/v/e6df503997df432b9978709fbb1c25b5.mp4"
+                  type="video/mp4"
+                >
+              </video>
+              <p class="body" :class="{'menu-drawer__media--inactive': currentLevel >= 2}">Transeasonal Refinement</p>
+            </a>
           </div>
           <ul class="menu-drawer__menu" id="menu-drawer__menu-1-secondary" role="menu">
             {% for link in linklists['secondary-main-menu'].links %}
