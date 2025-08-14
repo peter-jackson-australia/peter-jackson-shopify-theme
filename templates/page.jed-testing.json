@@ -32,11 +32,11 @@
             "image": "shopify://shop_images/Accessories_Mega.webp",
             "image_mobile": "shopify://shop_images/Shoe_Mega_copy.webp",
             "product": "",
-            "heading": "Column Heading",
+            "heading": "",
             "heading_animation": "none",
-            "description": "More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing. More testing.",
+            "description": "",
             "description_animation": "animate-paragraph-slide-up-scroll",
-            "button_label": "More Learn",
+            "button_label": "",
             "button_link": "shopify://collections"
           }
         }
