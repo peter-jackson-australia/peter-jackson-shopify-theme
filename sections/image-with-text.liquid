@@ -135,10 +135,13 @@
     >
       <div
         class="image-with-text__images-wrapper"
-        style="{% if section.settings.full_width %} max-height: 500px; {% endif %}"
+        style="{% if section.settings.full_width %} aspect-ratio: auto; padding-bottom: 0px; {% endif %}"
       >
         {% if section.settings.first_image != blank %}
-          <div class="image-with-text__image-container {% if section.settings.second_image != blank %}image-with-text__image-container--first{% endif %}">
+          <div
+            class="image-with-text__image-container {% if section.settings.second_image != blank %}image-with-text__image-container--first{% endif %}"
+            style="{% if section.settings.full_width %} position: static; {% endif %}"
+          >
             {% if section.settings.image_link != blank %}
               <a href="{{ section.settings.image_link }}">
             {% endif %}
