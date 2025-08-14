@@ -429,43 +429,57 @@
         "heading_BFjjBw": {
           "type": "heading",
           "settings": {
-            "heading": "FAQ Category",
+            "heading": "Frequently Asked Questions",
             "anchor_id": ""
           }
         },
         "faq_item_hQxYmr": {
           "type": "faq_item",
           "settings": {
-            "question": "FAQ question",
-            "answer": "<p>Answer your customer's question here.</p>"
+            "question": "Do you offer a discount for wedding parties?",
+            "answer": "<p>Absolutely! Bridal parties present a fantastic opportunity for you take advantage of your generous multi-buy offers. These tend to run across suits, shirts, and oftentimes the accessories you'll need to complete your outfit. You'll enjoy a healthy discount as you're buying in bulk, which makes budgeting for your big day considerably easier.</p>"
           }
         },
         "faq_item_k6y3wF": {
           "type": "faq_item",
           "settings": {
-            "question": "FAQ question",
-            "answer": "<p>Answer your customer's question here.</p>"
+            "question": "Can I book a wedding party consultation or fitting in advance?",
+            "answer": "<p>Any of our stores should be able to accommodate you on short notice if you're unable to organise a booking. That being said, it's always best to plan ahead, and you can do so through our website [include link to website booking or remove if unavailable] or by giving your local store a call to discuss a time that works best.</p>"
           }
         },
         "faq_item_pYwxMB": {
           "type": "faq_item",
           "settings": {
-            "question": "FAQ question",
-            "answer": "<p>Answer your customer's question here.</p>"
+            "question": "How far in advance should I order my wedding suits?",
+            "answer": "<p>To avoid any unwanted stress and hiccups, we recommend you give yourself at least two months if opting for ready-to-wear, or three to four months if you'd rather have something made-to-measure. That being said, it's never too early to pick the perfect look for your special day.</p><p>Alternatively, if you find yourself lacking time, we're always happy to help you out of a tough spot and can have things organised quicker if necessary.</p>"
           }
         },
         "faq_item_ABiAjH": {
           "type": "faq_item",
           "settings": {
-            "question": "FAQ question",
-            "answer": "<p>Answer your customer's question here.</p>"
+            "question": "Do you offer ready-to-wear and made-to-measure options for weddings?",
+            "answer": "<p>At Peter Jackson, we have a vast collection of ready to wear garments on offer at any given time. From linen suits for those laid back beach weddings, all the way through to classic dinner suits for something a little more 'black tie', we cater for virtually any setting and formality.</p><p>For those wanting a more personalised experience, we have an extensive and ever evolving made-to-measure program that allows us to make the suit of your dreams a reality. If you want greater control over the finer details and to invest in a garment tailored exclusively for you and your groomsmen on your wedding day, our made-to-measure suits are the perfect choice.</p>"
           }
         },
         "faq_item_YJJMV6": {
           "type": "faq_item",
           "settings": {
-            "question": "FAQ question",
-            "answer": "<p>Answer your customer's question here.</p>"
+            "question": "Can I bring in my own design or inspiration for a made-to-measure suit?",
+            "answer": "<p>Of course! If you've found a specific look that has inspired you, we're more than happy to build your outfit around any images you bring through to us. Alternatively, our experienced stylists relish in the opportunity to help you flesh out any ideas you might have.</p>"
+          }
+        },
+        "faq_item_k3L9Qg": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you offer suit alterations if I purchase ready-to-wear suits?",
+            "answer": "<p>Certainly. It's our top priority to have you looking sharp, and we work with teams of talented tailors to accomplish that. From minor adjustments to more intensive work, we can do it all.</p><p>Typically, there's a lead time of about one week for adjustments, and so we generally recommend you do your tailoring fitting three or four weeks prior to the wedding date.</p>"
+          }
+        },
+        "faq_item_wnfNJc": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can you help coordinate suits for the family of the bride and groom?",
+            "answer": "<p>Our help doesn't stop at the groom and groomsmen! If you've got any family in need of some wedding attire, we've also got them covered. Our in-store teams are on hand to not only get you and the boys looking their best, but can also provide assistance in building outfits for your family members that are cohesive with your overall vision.</p>"
           }
         }
       },
@@ -475,9 +489,10 @@
         "faq_item_k6y3wF",
         "faq_item_pYwxMB",
         "faq_item_ABiAjH",
-        "faq_item_YJJMV6"
+        "faq_item_YJJMV6",
+        "faq_item_k3L9Qg",
+        "faq_item_wnfNJc"
       ],
-      "disabled": true,
       "name": "FAQ Section",
       "settings": {
         "show_top_border": true,
