@@ -59,7 +59,6 @@
     grid-template-columns: repeat(3, 1fr);
   }
 
-  {% comment %} Make this centred on mobile views {% endcomment %}
   .radio-group {
     display: flex;
     gap: var(--space-xs);
@@ -123,7 +122,7 @@
     gap: var(--space-s);
   }
 
-  .upload-cv {
+  .button__uploadcv {
     border: none;
     background: none;
     border-bottom: 2px solid var(--neutral-950);
@@ -187,7 +186,7 @@
     color: white;
   }
 
-  .modal-close {
+  .button__modal-close {
     position: absolute;
     top: var(--space-xs);
     right: var(--space-xs);
@@ -228,7 +227,7 @@
       margin-right: auto;
     }
 
-    .upload-cv {
+    .button__uploadcv {
         max-width: 128px;
         padding-bottom: var(--space-2xs);
     }
@@ -361,7 +360,7 @@
 
       <section class="submit-form">
         <input type="file" name="upload">
-        <button class="upload-cv small" type="button">UPLOAD CV</button>
+        <button class="button__uploadcv small" type="button">UPLOAD CV</button>
         <button class="body" id="career-submit-button" type="submit">Send</button>
       </section>
     </form>
@@ -370,7 +369,7 @@
       <section id="success-modal-content">
         <button
           id="close-modal"
-          class="modal-close"
+          class="button__modal-close"
         >
           &times;
         </button>
@@ -387,7 +386,7 @@
 
 <script>
   function initCareersForm() {
-    const uploadCV = document.querySelector('#contact-form .upload-cv');
+    const uploadCV = document.querySelector('#contact-form .button__uploadcv');
     const fileInput = document.querySelector('#contact-form input[type="file"]');
 
     if (uploadCV && fileInput) {
@@ -407,7 +406,7 @@
     const urlParams = new URLSearchParams(window.location.search);
     const status = urlParams.get('status');
 
-    if (status === 'success') {
+    f (status === 'success') {
       const modal = document.querySelector('#success-modal');
       if (modal) {
         modal.classList.add('show');
