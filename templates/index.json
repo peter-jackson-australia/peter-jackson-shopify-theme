@@ -244,7 +244,7 @@
         "subheading_animation": "none",
         "description": "Discover our world through campaigns, interviews, and features designed to inform your style and inspire a life well lived.",
         "description_animation": "none",
-        "cta_link": "shopify://blogs/the-jackson-journal",
+        "cta_link": "shopify://pages/the-jackson-journal",
         "cta_text": "Read Now",
         "show_recent_posts": true,
         "animate_posts": true,
