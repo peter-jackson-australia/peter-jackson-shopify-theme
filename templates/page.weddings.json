@@ -393,12 +393,6 @@
             "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-1.webp"
           }
         },
-        "slide_Ym6xye": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-1.webp"
-          }
-        },
         "slide_6tU8Xm": {
           "type": "slide",
           "settings": {
@@ -425,7 +419,6 @@
         "slide_VewNBJ",
         "slide_TkeQmF",
         "slide_Kmph9h",
-        "slide_Ym6xye",
         "slide_6tU8Xm"
       ],
       "name": "Image Gallery Slider",
