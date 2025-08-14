@@ -53,16 +53,6 @@
     margin-bottom: var(--space-m);
 }
 
-    {
-
-    % comment %
-}
-
-TODO - Is this a good name {
-
-    % endcomment %
-}
-
 .form-row.form-row--3-column {
     grid-template-columns: repeat(3, 1fr);
 }
