@@ -220,12 +220,7 @@
         flex-direction: column;
     }
 
-    .submit-form>* {
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .button-uploadcv {
+    .button__uploadcv {
         max-width: 128px;
         padding-bottom: var(--space-2xs);
     }
