@@ -2,38 +2,7 @@
   Heading with Text
 {% endcomment %}
 
-<style>
-  .heading-with-text {
-    padding: var(--space-xl) var(--space-m);
-    padding-bottom: calc(var(--space-xl) - var(--space-m));
-  }
-
-  .heading-with-text__container {
-    max-width: 700px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-m);
-  }
-
-  .heading-with-text--left {
-    text-align: left;
-  }
-
-  .heading-with-text--center {
-    text-align: center;
-  }
-
-  .heading-with-text--right {
-    text-align: right;
-  }
-
-  .heading-with-text__heading-group {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-  }
-</style>
+{{ 'section-heading-with-text.css' | asset_url | stylesheet_tag }}
 
 {% assign alignment = section.settings.alignment %}
 {% assign anchor_id = section.settings.anchor_id %}
@@ -44,6 +13,8 @@
 {% assign heading_animation = section.settings.heading_animation %}
 {% assign content = section.settings.content %}
 {% assign content_animation = section.settings.content_animation %}
+{% assign show_top_border = section.settings.show_top_border %}
+{% assign show_bottom_border = section.settings.show_bottom_border %}
 
 <div
   class="heading-with-text heading-with-text--{{ alignment }}"
@@ -51,22 +22,14 @@
     id="{{ anchor_id | downcase | replace: ' ', '-' }}-segment"
   {% endif %}
   style="
-    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
-    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
+    {% if show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
+    {% if show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
   "
 >
   <div class="heading-with-text__container">
     <div class="heading-with-text__heading-group">
       {% if leading_text %}
-        <p
-          class="
-            heading-with-text__leading
-            body--uppercase
-            {% if leading_text_animation != 'none' %}
-              {{ leading_text_animation }}
-            {% endif %}
-          "
-        >
+        <p class="heading-with-text__leading body--uppercase {% if leading_text_animation != 'none' %}{{ leading_text_animation }}{% endif %}">
           {{ leading_text }}
         </p>
       {% endif %}
