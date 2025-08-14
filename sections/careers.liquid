@@ -1,270 +1,13 @@
-<style>
-  .menu-drawer {
-    border-top: none;
-  }
+{{ 'section-careers.css' | asset_url | stylesheet_tag }}
 
-  #site-header {
-    border-bottom: 1px solid var(--neutral-50);
-  }
-
-  #careers-container {
-    max-width: 1400px;
-    margin: auto;
-    display: grid;
-    align-items: center;
-    gap: var(--space-2xl);
-    grid-template-columns: 1fr 1fr;
-    padding: var(--space-2xl) var(--space-m);
-  }
-
-  #careers-container #visual {
-    width: 100%;
-  }
-
-  #careers-page {
-    max-width: 670px;
-    margin: auto;
-    padding: 0 var(--space-xs);
-    position: relative;
-  }
-
-  #careers-page p {
-    color: var(--neutral-600);
-  }
-
-  #careers-page hr {
-    margin: var(--space-xl) 0;
-    border: none;
-    border-bottom: 2px solid var(--neutral-50);
-  }
-
-  #careers-page .excerpt {
-    margin-bottom: var(--space-m);
-  }
-
-  .career-content {
-    margin-bottom: var(--space-m);
-  }
-
-  #contact-form {
-    margin: 0 auto;
-    margin-top: var(--space-xl);
-  }
-
-  #contact-form input[type='text'],
-  #contact-form input[type='email'],
-  #contact-form select,
-  #contact-form textarea {
-    width: 100%;
-    padding: var(--space-s);
-    border: 1px solid var(--neutral-50);
-    border-radius: 4px;
-    background-color: var(--white);
-    color: var(--neutral-950);
-  }
-
-  #contact-form ::placeholder {
-    color: var(--neutral-400);
-  }
-
-  .form-row {
-    display: grid;
-    gap: var(--space-xs);
-    margin-bottom: var(--space-m);
-  }
-
-  .form-row:first-of-type {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .form-row:nth-of-type(2) {
-    grid-template-columns: repeat(3, 1fr);
-    align-items: center;
-  }
-
-  .radio-group {
-    display: flex;
-    gap: var(--space-xs);
-    align-items: center;
-  }
-
-  #contact-form input[type='checkbox'] {
-    appearance: none;
-    -webkit-appearance: none;
-    width: 16px;
-    height: 16px;
-    border: 1px solid var(--neutral-50);
-    border-radius: 2px;
-    outline: none;
-    margin: 0;
-    margin-right: var(--space-3xs);
-    position: relative;
-    cursor: pointer;
-    vertical-align: middle;
-    flex-shrink: 0;
-  }
-
-  #contact-form input[type='checkbox']:checked {
-    background-color: var(--neutral-950);
-    border-color: var(--neutral-950);
-  }
-
-  #contact-form input[type='checkbox']:checked::before {
-    content: '';
-    position: absolute;
-    top: 2px;
-    left: 5px;
-    width: 4px;
-    height: 8px;
-    border: solid var(--white);
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
-  }
-
-  .radio-group label {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: var(--space-3xs);
-    white-space: nowrap;
-  }
-
-  #contact-form textarea {
-    width: 100%;
-    height: 120px;
-    resize: vertical;
-  }
-
-  #contact-form input[type='file'] {
-    display: none;
-  }
-
-  .submit-form {
-    display: flex;
-    justify-content: flex-end;
-    gap: var(--space-s);
-  }
-
-  .upload-cv {
-    border: none;
-    background: none;
-    border-bottom: 2px solid var(--neutral-950);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-weight: 600;
-    cursor: pointer;
-  }
-
-  #career-submit-button {
-    padding: var(--space-s) var(--space-xl);
-    background-color: var(--neutral-950);
-    color: var(--white);
-    border: none;
-    max-width: 244px;
-    border-radius: 999px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    width: 100%;
-  }
-
-  #contact-form select {
-    appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-position: right var(--space-xs) center;
-    background-size: 1em;
-    padding-right: var(--space-xl);
-  }
-
-  #success-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-  }
-
-  #success-modal.show {
-    display: block;
-  }
-
-  #success-modal-content {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 30%;
-    background-color: var(--neutral-950);
-    color: var(--white);
-    text-align: center;
-    text-wrap: balance;
-    max-width: 500px;
-    margin: 0 auto;
-    padding: var(--space-2xl);
-  }
-
-  #success-modal-content h3,
-  #success-modal-content p {
-    color: white;
-  }
-
-  .modal-close {
-    position: absolute;
-    top: var(--space-xs);
-    right: var(--space-xs);
-    background: none;
-    border: none;
-    color: var(--white);
-    font-size: 24px;
-    cursor: pointer;
-  }
-
-  #success-modal h3 {
-    margin-bottom: var(--space-m);
-  }
-
-  @media (max-width: 768px) {
-    #careers-container {
-      grid-template-columns: 1fr;
-      gap: var(--space-xl);
-    }
-
-    .form-row:first-of-type,
-    .form-row:nth-of-type(2) {
-      grid-template-columns: 1fr;
-    }
-
-    .radio-group {
-      justify-content: flex-start;
-      flex-wrap: wrap;
-      margin-top: var(--space-xs);
-    }
-
-    .submit-form {
-      flex-direction: column;
-      gap: var(--space-s);
-    }
-
-    .upload-cv {
-        max-width: 128px;
-        padding-bottom; var(--space-2xs);
-    }
-
-    #success-modal-content {
-      padding: var(--space-xl);
-      margin: var(--space-m);
-    }
-  }
-</style>
+{% assign career_image = section.settings.career_image %}
 
 <div id="careers-container">
-  {% if section.settings.career_image %}
+  {% if career_image %}
     <img
       id="visual"
-      alt="Peter Jackson Career Visual"
-      src="{{ section.settings.career_image | image_url: width: '2000' }}"
+      alt="Peter Jackson Careers"
+      src="{{ career_image | image_url: width: '2000' }}"
       loading="lazy"
       height="100"
       width="100"
@@ -273,16 +16,16 @@
 
   <section id="careers-page">
     <h1 class="heading--2xl" style="margin-bottom: var(--space-s)">Careers</h1>
-    <p class="body excerpt">
+    <p class="body careers-page__content">
       Join the Peter Jackson team and become part of a storied legacy in men's fashion, where quality, style, and
       exceptional service have been our hallmarks since 1948.
     </p>
 
     <hr>
 
-    <h5 class="body--bold career-content">Join the team</h5>
+    <h5 class="body--bold careers-page__content">Join the team</h5>
 
-    <p class="body career-content">
+    <p class="body careers-page__content">
       Peter Jackson, a name synonymous with quality tailoring since 1948, continues to expand nationally while
       maintaining a strong commitment to top-notch customer service and apparel.<br>
       <br>
@@ -298,7 +41,7 @@
       method="POST"
       enctype="multipart/form-data"
     >
-      <section class="form-row">
+      <section class="careers-form__form-row careers-form__form-row--3-column">
         <input
           class="small"
           placeholder="Full Name"
@@ -322,7 +65,7 @@
         >
       </section>
 
-      <section class="form-row">
+      <section class="careers-form__form-row careers-form__form-row--3-column">
         <select class="small" required name="role">
           <option value="">Role</option>
           <option value="Sales">Sales</option>
@@ -341,7 +84,7 @@
           <option value="ACT">ACT</option>
         </select>
 
-        <div class="radio-group">
+        <div class="careers-form__radio-group">
           <input
             id="availability-full"
             type="checkbox"
@@ -368,7 +111,7 @@
         </div>
       </section>
 
-      <section class="form-row">
+      <section class="careers-form__form-row">
         <textarea
           class="small"
           name="message"
@@ -376,9 +119,9 @@
         ></textarea>
       </section>
 
-      <section class="submit-form">
+      <section class="careers-submit-section">
         <input type="file" name="upload">
-        <button class="upload-cv small" type="button">UPLOAD CV</button>
+        <button class="careers-submit-section__uploadcv-button small" type="button">UPLOAD CV</button>
         <button class="body" id="career-submit-button" type="submit">Send</button>
       </section>
     </form>
@@ -387,7 +130,7 @@
       <section id="success-modal-content">
         <button
           id="close-modal"
-          class="modal-close"
+          class="success-modal__modal-close-btn"
         >
           &times;
         </button>
@@ -402,62 +145,10 @@
   </section>
 </div>
 
-<script>
-  function initCareersForm() {
-    const uploadCV = document.querySelector('#contact-form .upload-cv');
-    const fileInput = document.querySelector('#contact-form input[type="file"]');
-
-    if (uploadCV && fileInput) {
-      uploadCV.addEventListener('click', () => {
-        fileInput.click();
-      });
-
-      fileInput.addEventListener('change', () => {
-        const fileName = fileInput.files[0]?.name;
-        if (fileName) {
-          uploadCV.textContent = fileName;
-        }
-      });
-    }
-
-    // Handle success modal
-    const urlParams = new URLSearchParams(window.location.search);
-    const status = urlParams.get('status');
-
-    if (status === 'success') {
-      const modal = document.querySelector('#success-modal');
-      if (modal) {
-        modal.classList.add('show');
-      }
-    }
-
-    function hideModal() {
-      const modal = document.querySelector('#success-modal');
-      if (modal) {
-        modal.classList.remove('show');
-        window.history.replaceState({}, document.title, window.location.pathname);
-      }
-    }
-
-    // Close modal handlers
-    const closeButton = document.querySelector('#close-modal');
-    const modal = document.querySelector('#success-modal');
-
-    if (closeButton) {
-      closeButton.addEventListener('click', hideModal);
-    }
-
-    if (modal) {
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-          hideModal();
-        }
-      });
-    }
-  }
-
-  document.addEventListener('DOMContentLoaded', initCareersForm);
-</script>
+<script
+  src="{{ 'section-careers.js' | asset_url }}"
+  defer
+></script>
 
 {% schema %}
 {
