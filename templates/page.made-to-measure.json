@@ -9,6 +9,30 @@
  */
 {
   "sections": {
+    "editorial_hero_U8rrRz": {
+      "type": "editorial-hero",
+      "name": "Hero Editorial",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "leading_text": "",
+        "leading_text_animation": "none",
+        "first_title": "Made To Measure",
+        "first_title_level": "h1",
+        "first_title_animation": "none",
+        "media_type": "image",
+        "image": "shopify://shop_images/peter-jackson-made-to-measure-tailoring-suits-mens-suits-tailoring.webp",
+        "animate_media": false,
+        "second_title": "",
+        "second_title_level": "h1",
+        "second_title_animation": "none",
+        "description": "Elevate your workwear or create a unique look with our made-to-measure experience, a blend of artisanal craftsmanship and creative freedom. Our passion for fine tailoring ensures every man gets the best.",
+        "description_animation": "none",
+        "cta_text": "Book An Appointment",
+        "cta_link": "/#secondo-container"
+      }
+    },
     "schedule_your_appointment_AtFrGy": {
       "type": "schedule-your-appointment",
       "name": "Schedule Your Appointment",
@@ -18,6 +42,7 @@
     }
   },
   "order": [
+    "editorial_hero_U8rrRz",
     "schedule_your_appointment_AtFrGy"
   ]
 }
