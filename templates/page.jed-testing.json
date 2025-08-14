@@ -9,176 +9,25 @@
  */
 {
   "sections": {
-    "collection_slider_header_7Hd3ef": {
-      "type": "collection-slider-header",
-      "blocks": {
-        "navigation_item_L8Cw8C": {
-          "type": "navigation_item",
-          "settings": {
-            "nav_label": "New Arrivals",
-            "desktop_image": "shopify://shop_images/Afterpay_Day_Hero_Desktop.webp",
-            "collection": "new-arrivals",
-            "slider_heading": "New Arrivals",
-            "slider_description": "Layer up with premium wool/cashmere blends.",
-            "button_label": "Shop Now",
-            "products_to_show": 10
-          }
-        },
-        "navigation_item_fPeJAJ": {
-          "type": "navigation_item",
-          "settings": {
-            "nav_label": "Collection Name",
-            "collection": "",
-            "slider_heading": "New In Now",
-            "slider_description": "Layer up with premium wool/cashmere blends.",
-            "button_label": "Shop Now",
-            "products_to_show": 10
-          }
-        },
-        "navigation_item_iHXxdb": {
-          "type": "navigation_item",
-          "settings": {
-            "nav_label": "Suits",
-            "desktop_image": "shopify://shop_images/Spring_Drop_1_Hero_Desktop.webp",
-            "collection": "mens-suits",
-            "slider_heading": "Suits Collection",
-            "slider_description": "Layer up with premium wool/cashmere blends.",
-            "button_label": "Shop Now",
-            "products_to_show": 10
-          }
-        }
-      },
-      "block_order": [
-        "navigation_item_L8Cw8C",
-        "navigation_item_fPeJAJ",
-        "navigation_item_iHXxdb"
-      ],
-      "name": "Collection Slider Header",
+    "heading_with_text_AfaaFN": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
       "settings": {
-        "main_heading": "New Collections",
-        "subtitle": "Seasonal Favorites",
-        "show_top_border": true,
-        "show_bottom_border": true
-      }
-    },
-    "link_list_QgpRRC": {
-      "type": "link-list",
-      "blocks": {
-        "link_rzphKk": {
-          "type": "link",
-          "settings": {
-            "link_text": "Shop All",
-            "link_url": "/collections/all"
-          }
-        },
-        "link_CMQMy6": {
-          "type": "link",
-          "settings": {
-            "link_text": "New Arrivals",
-            "link_url": "/collections/new-arrivals"
-          }
-        },
-        "link_W4K4gw": {
-          "type": "link",
-          "settings": {
-            "link_text": "Best Sellers",
-            "link_url": "/collections/best-sellers"
-          }
-        }
-      },
-      "block_order": [
-        "link_rzphKk",
-        "link_CMQMy6",
-        "link_W4K4gw"
-      ],
-      "name": "Link List",
-      "settings": {
-        "heading": "Heading",
-        "alignment": "right",
+        "anchor_id": "",
         "show_top_border": false,
-        "show_bottom_border": true
-      }
-    },
-    "image_gallery_slider_rAnJJP": {
-      "type": "image-gallery-slider",
-      "blocks": {
-        "slide_THgKhk": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/Suits_0fd4aa03-d091-4f1d-8f5d-d56e92dbf810.webp"
-          }
-        },
-        "slide_wUrrgL": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/Business_Shirts_0be11511-3bf3-4d65-8158-f91b6f067487.webp"
-          }
-        },
-        "slide_zcbrGe": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/Sports_Jackets_9191253d-fd1f-49f7-bd0d-5b1391dc8624.webp"
-          }
-        }
-      },
-      "block_order": [
-        "slide_THgKhk",
-        "slide_wUrrgL",
-        "slide_zcbrGe"
-      ],
-      "name": "Image Gallery Slider",
-      "settings": {
-        "heading": "Heading",
-        "subtitle": "Secondary Heading",
-        "alignment": "left",
-        "show_top_border": false,
-        "show_bottom_border": false
-      }
-    },
-    "hero_slider_HNGf8n": {
-      "type": "hero-slider",
-      "blocks": {
-        "slide_8Xcqpe": {
-          "type": "slide",
-          "settings": {
-            "media_type": "video",
-            "video": "shopify://files/videos/Transeasonal Refinement Site.mp4",
-            "mobile_video": "shopify://files/videos/HYS_Red Video Banner.mp4",
-            "heading": "Welcome to Our Store",
-            "svg_size": "medium",
-            "heading_level": "h1",
-            "heading_animation": "none",
-            "description": "Discover our latest collection",
-            "description_animation": "none",
-            "button_label_1": "Shop Now",
-            "button_link_1": "",
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_label_3": "",
-            "button_link_3": "",
-            "button_label_4": "",
-            "button_link_4": "",
-            "horizontal_alignment": "center",
-            "vertical_alignment": "bottom",
-            "mobile_horizontal_alignment": "center",
-            "mobile_vertical_alignment": "bottom"
-          }
-        }
-      },
-      "block_order": [
-        "slide_8Xcqpe"
-      ],
-      "name": "Hero Slider",
-      "settings": {
-        "autoplay": true,
-        "slide_interval": 5
+        "show_bottom_border": false,
+        "leading_text": "Introduction",
+        "leading_text_animation": "none",
+        "heading": "Section Heading",
+        "heading_style": "normal",
+        "heading_animation": "none",
+        "content": "<p>Add your content here. This area uses the rich text editor so you can format text, add links, and more.</p>",
+        "content_animation": "animate-word-slide-up-scroll",
+        "alignment": "center"
       }
     }
   },
   "order": [
-    "collection_slider_header_7Hd3ef",
-    "link_list_QgpRRC",
-    "image_gallery_slider_rAnJJP",
-    "hero_slider_HNGf8n"
+    "heading_with_text_AfaaFN"
   ]
 }
