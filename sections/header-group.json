@@ -17,7 +17,7 @@
         "announcement_mQFJhL": {
           "type": "announcement",
           "settings": {
-            "text": "Afterpay Day Sale | Use code <strong>AFTER10</strong> for additional 10% Off Sale",
+            "text": "<a href=\"/collections/sale\" title=\"Sale\">Afterpay Day Sale | Use code <strong>AFTER10</strong> for additional 10% Off Sale</a>",
             "alignment": "center"
           }
         },
