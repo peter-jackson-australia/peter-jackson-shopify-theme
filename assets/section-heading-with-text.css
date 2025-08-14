@@ -3,14 +3,6 @@
   padding-bottom: calc(var(--space-xl) - var(--space-m));
 }
 
-.heading-with-text__container {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-m);
-  margin: 0 auto;
-  max-width: 700px;
-}
-
 .heading-with-text--left {
   text-align: left;
 }
@@ -21,6 +13,14 @@
 
 .heading-with-text--right {
   text-align: right;
+}
+
+.heading-with-text__container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-m);
+  margin: 0 auto;
+  max-width: 700px;
 }
 
 .heading-with-text__heading-group {
