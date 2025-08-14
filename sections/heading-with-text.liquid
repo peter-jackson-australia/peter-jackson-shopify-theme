@@ -6,8 +6,6 @@
   .heading-with-text {
     padding: var(--space-xl) var(--space-m);
     padding-bottom: calc(var(--space-xl) - var(--space-m));
-    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
-    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
   }
 
   .heading-with-text__container {
@@ -37,30 +35,52 @@
   }
 </style>
 
+{% assign alignment = section.settings.alignment %}
+{% assign anchor_id = section.settings.anchor_id %}
+{% assign leading_text = section.settings.leading_text %}
+{% assign heading = section.settings.heading %}
+{% assign leading_text_animation = section.settings.leading_text_animation %}
+{% assign heading_style = section.settings.heading_style %}
+{% assign heading_animation = section.settings.heading_animation %}
+{% assign content = section.settings.content %}
+{% assign content_animation = section.settings.content_animation %}
+
 <div
-  class="heading-with-text heading-with-text--{{ section.settings.alignment }}"
-  {% if section.settings.anchor_id != blank %}
-    id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
+  class="heading-with-text heading-with-text--{{ alignment }}"
+  {% if anchor_id %}
+    id="{{ anchor_id | downcase | replace: ' ', '-' }}-segment"
   {% endif %}
+  style="
+    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
+    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
+  "
 >
   <div class="heading-with-text__container">
     <div class="heading-with-text__heading-group">
-      {% if section.settings.leading_text != blank %}
-        <p class="heading-with-text__leading body--uppercase {% if section.settings.leading_text_animation != 'none' %}{{ section.settings.leading_text_animation }}{% endif %}">
-          {{ section.settings.leading_text }}
+      {% if leading_text %}
+        <p
+          class="
+            heading-with-text__leading
+            body--uppercase
+            {% if leading_text_animation != 'none' %}
+              {{ leading_text_animation }}
+            {% endif %}
+          "
+        >
+          {{ leading_text }}
         </p>
       {% endif %}
 
-      {% if section.settings.heading != blank %}
-        <h2 class="heading-with-text__heading {% if section.settings.heading_style == 'decorative' %}heading--decorative{% else %}heading--2xl{% endif %} {% if section.settings.heading_animation != 'none' %}{{ section.settings.heading_animation }}{% endif %}">
-          {{ section.settings.heading }}
+      {% if heading %}
+        <h2 class="heading-with-text__heading {% if heading_style == 'decorative' %}heading--decorative{% else %}heading--2xl{% endif %} {% if heading_animation != 'none' %} {{ heading_animation }}{% endif %}">
+          {{ heading }}
         </h2>
       {% endif %}
     </div>
 
-    {% if section.settings.content != blank %}
-      <div class="heading-with-text__content body metafield-rich_text_field {% if section.settings.content_animation != 'none' %}{{ section.settings.content_animation }}{% endif %}">
-        {{ section.settings.content }}
+    {% if content != blank %}
+      <div class="heading-with-text__content body metafield-rich_text_field {% if content_animation != 'none' %}{{ content_animation }}{% endif %}">
+        {{ content }}
       </div>
     {% endif %}
   </div>
