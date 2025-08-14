@@ -1,10 +1,10 @@
 #careers-container {
-    max-width: 1400px;
-    margin: auto;
-    display: grid;
     align-items: center;
+    display: grid;
     gap: var(--space-2xl);
     grid-template-columns: 1fr 1fr;
+    margin: auto;
+    max-width: 1400px;
     padding: var(--space-2xl) var(--space-m);
 }
 
@@ -22,9 +22,9 @@
 }
 
 #careers-page hr {
-    margin: var(--space-xl) 0;
     border: none;
     border-bottom: 2px solid var(--neutral-50);
+    margin: var(--space-xl) 0;
 }
 
 .career-content {
@@ -40,11 +40,11 @@
 #contact-form input[type='email'],
 #contact-form select,
 #contact-form textarea {
-    width: 100%;
-    padding: var(--space-s);
+    background-color: var(--white);
     border: 1px solid var(--neutral-50);
     border-radius: 4px;
-    background-color: var(--white);
+    padding: var(--space-s);
+    width: 100%;
 }
 
 .form-row {
@@ -54,10 +54,12 @@
 }
 
     {
+
     % comment %
 }
 
 TODO - Is this a good name {
+
     % endcomment %
 }
 
@@ -66,25 +68,25 @@ TODO - Is this a good name {
 }
 
 .radio-group {
+    align-items: center;
     display: flex;
     gap: var(--space-xs);
-    align-items: center;
 }
 
 #contact-form input[type='checkbox'] {
-    appearance: none;
     -webkit-appearance: none;
-    width: 16px;
-    height: 16px;
+    appearance: none;
     border: 1px solid var(--neutral-50);
     border-radius: 2px;
-    outline: none;
+    cursor: pointer;
+    flex-shrink: 0;
+    height: 16px;
     margin: 0;
     margin-right: var(--space-3xs);
+    outline: none;
     position: relative;
-    cursor: pointer;
     vertical-align: middle;
-    flex-shrink: 0;
+    width: 16px;
 }
 
 #contact-form input[type='checkbox']:checked {
@@ -93,29 +95,29 @@ TODO - Is this a good name {
 }
 
 #contact-form input[type='checkbox']:checked::before {
-    content: '';
-    position: absolute;
-    top: 2px;
-    left: 5px;
-    width: 4px;
-    height: 8px;
     border: solid var(--white);
     border-width: 0 2px 2px 0;
+    content: '';
+    height: 8px;
+    left: 5px;
+    position: absolute;
+    top: 2px;
     transform: rotate(45deg);
+    width: 4px;
 }
 
 .radio-group label {
+    align-items: center;
     cursor: pointer;
     display: flex;
-    align-items: center;
     gap: var(--space-3xs);
     white-space: nowrap;
 }
 
 #contact-form textarea {
-    width: 100%;
     height: 120px;
     resize: vertical;
+    width: 100%;
 }
 
 #contact-form input[type='file'] {
@@ -124,48 +126,48 @@ TODO - Is this a good name {
 
 .submit-form {
     display: flex;
-    justify-content: flex-end;
     gap: var(--space-s);
+    justify-content: flex-end;
 }
 
 .button-uploadcv {
-    border: none;
     background: none;
+    border: none;
     border-bottom: 2px solid var(--neutral-950);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-weight: 600;
     cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 
 #career-submit-button {
-    padding: var(--space-s) var(--space-xl);
     background-color: var(--neutral-950);
-    color: var(--white);
     border: none;
-    max-width: 244px;
     border-radius: 999px;
+    color: var(--white);
     cursor: pointer;
+    max-width: 244px;
+    padding: var(--space-s) var(--space-xl);
     width: 100%;
 }
 
 #contact-form select {
     appearance: none;
     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-    background-repeat: no-repeat;
     background-position: right var(--space-xs) center;
+    background-repeat: no-repeat;
     background-size: 1em;
     padding-right: var(--space-xl);
 }
 
 #success-modal {
+    background-color: rgba(0, 0, 0, 0.5);
     display: none;
+    height: 100%;
+    left: 0;
     position: fixed;
     top: 0;
-    left: 0;
     width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
     z-index: 1000;
 }
 
@@ -174,17 +176,17 @@ TODO - Is this a good name {
 }
 
 #success-modal-content {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 30%;
     background-color: var(--neutral-950);
     color: var(--white);
+    left: 0;
+    margin: 0 auto;
+    max-width: 500px;
+    padding: var(--space-2xl);
+    position: absolute;
+    right: 0;
     text-align: center;
     text-wrap: balance;
-    max-width: 500px;
-    margin: 0 auto;
-    padding: var(--space-2xl);
+    top: 30%;
 }
 
 #success-modal-content h3,
@@ -193,14 +195,14 @@ TODO - Is this a good name {
 }
 
 .button__modal-close {
-    position: absolute;
-    top: var(--space-xs);
-    right: var(--space-xs);
     background: none;
     border: none;
     color: var(--white);
-    font-size: 24px;
     cursor: pointer;
+    font-size: 24px;
+    position: absolute;
+    right: var(--space-xs);
+    top: var(--space-xs);
 }
 
 #success-modal h3 {
@@ -209,8 +211,8 @@ TODO - Is this a good name {
 
 @media (max-width: 768px) {
     #careers-container {
-        grid-template-columns: 1fr;
         gap: var(--space-xl);
+        grid-template-columns: 1fr;
     }
 
     .form-row:first-of-type,
@@ -219,8 +221,8 @@ TODO - Is this a good name {
     }
 
     .radio-group {
-        justify-content: center;
         flex-wrap: wrap;
+        justify-content: center;
         margin-top: var(--space-xs);
     }
 
@@ -239,7 +241,7 @@ TODO - Is this a good name {
     }
 
     #success-modal-content {
-        padding: var(--space-xl);
         margin: var(--space-m);
+        padding: var(--space-xl);
     }
 }
