@@ -14,14 +14,14 @@
       "name": "Heading with Text",
       "settings": {
         "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": false,
+        "show_top_border": true,
+        "show_bottom_border": true,
         "leading_text": "Introduction",
         "leading_text_animation": "animate-word-rotate-scroll",
         "heading": "Section Heading",
         "heading_style": "normal",
-        "heading_animation": "none",
-        "content": "<p>Add your content here. This area uses the rich text editor so you can format text, add links, and more.</p>",
+        "heading_animation": "animate-paragraph-slide-up-scroll",
+        "content": "<p>Add your content here. This area uses the rich text editor so you can format text, add links, and more.Add your content here. This area uses the rich text editor so you can format text, add links, and more.Add your content here. This area uses the rich text editor so you can format text, add links, and more.Add your content here. This area uses the rich text editor so you can format text, add links, and more.Add your content here. This area uses the rich text editor so you can format text, add links, and more.Add your content here. This area uses the rich text editor so you can format text, add links, and more.Add your content here. This area uses the rich text editor so you can format text, add links, and more.</p>",
         "content_animation": "animate-word-slide-up-scroll",
         "alignment": "center"
       }
