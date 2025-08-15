@@ -19,7 +19,7 @@
         <ul class="collection-header__list">
           {% for collection_ref in related_collections.value %}
             {% assign related_collection = collection_ref %}
-            <li class="collection-header__item">
+            <li>
               <a href="{{ related_collection.url }}" class="collection-header__link body--uppercase">
                 {{ related_collection.title }}
               </a>
