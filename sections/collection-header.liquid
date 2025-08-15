@@ -1,108 +1,23 @@
 {% comment %}
   Collection Header
+  Refactored by Jed 15th August 2025
 {% endcomment %}
 
-<style>
-  .collection-header {
-    border-top: 1px solid var(--neutral-50);
-    border-bottom: 1px solid var(--neutral-50);
-    padding: 0 var(--space-m);
-    padding-right: 0px;
-    height: 57px;
-    overflow-y: hidden;
-  }
+{{ 'section-collection-header.css' | asset_url | stylesheet_tag }}
 
-  .collection-header__wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch;
-    max-height: calc(100% + 2px);
-    height: calc(100% + 2px);
-  }
-
-  .collection-header > .collection-header__wrapper > .custom-scrollbar::-webkit-scrollbar-track {
-    border-top: 1px solid var(--neutral-50) !important;
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
-  }
-
-  .collection-header > .collection-header__wrapper > .custom-scrollbar::-webkit-scrollbar-thumb {
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
-    border-top: 1px solid var(--neutral-50);
-  }
-
-  .collection-header__title {
-    flex: 0 0 auto;
-    padding: var(--space-xs) 0;
-    padding-right: var(--space-m);
-    border-right: 1px solid var(--neutral-50);
-  }
-
-  .collection-header__related {
-    flex: 1 1 auto;
-    display: flex;
-    align-items: center;
-    overflow: auto;
-  }
-
-  .collection-header__list {
-    display: flex;
-    justify-content: end;
-    gap: var(--space-m);
-    list-style: none;
-    padding: var(--space-s) var(--space-m);
-    margin-left: auto;
-    max-height: 100%;
-  }
-
-  .collection-header__link {
-    white-space: nowrap;
-    text-decoration: none;
-    color: var(--neutral-950);
-  }
-
-  @media screen and (max-width: 768px) {
-    .collection-header {
-      padding: 0px;
-      height: auto;
-    }
-
-    .collection-header__wrapper {
-      flex-direction: column;
-    }
-
-    .collection-header__title {
-      padding-left: var(--space-m);
-      border-right: none !important;
-      border-bottom: 1px solid var(--neutral-50);
-      height: 49px;
-    }
-
-    .collection-header__related {
-      overflow-x: auto;
-    }
-
-    .collection-header__list {
-      flex-wrap: nowrap;
-      padding-bottom: var(--space-s);
-      margin-left: 0px;
-    }
-  }
-</style>
+{% assign title = collection.title %}
+{% assign related_collections = collection.metafields.custom.related_collections %}
 
 <div class="collection-header">
   <div class="collection-header__wrapper">
     <div class="collection-header__title">
-      <h1 class="heading--xl">{{ collection.title }}</h1>
+      <h1 class="heading--xl">{{ title }}</h1>
     </div>
 
     <div class="collection-header__related custom-scrollbar">
-      {% if collection.metafields.custom.related_collections %}
+      {% if related_collections %}
         <ul class="collection-header__list">
-          {% for collection_ref in collection.metafields.custom.related_collections.value %}
+          {% for collection_ref in related_collections.value %}
             {% assign related_collection = collection_ref %}
             <li class="collection-header__item">
               <a href="{{ related_collection.url }}" class="collection-header__link body--uppercase">
