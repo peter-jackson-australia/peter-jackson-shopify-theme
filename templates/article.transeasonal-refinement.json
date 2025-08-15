@@ -26,21 +26,39 @@
         "first_title": "TRANSEASONAL",
         "first_title_level": "h1",
         "first_title_animation": "none",
-        "media_type": "image",
-        "video": "shopify://files/videos/Transeasonal Refinement Site.mp4",
+        "media_type": "video",
+        "video": "shopify://files/videos/Transeasonal Refinement (HP Final).mp4",
         "animate_media": false,
         "second_title": "REFINEMENT",
         "second_title_level": "h1",
         "second_title_animation": "none",
-        "description": "",
+        "description": "<b>WRITTEN BY IN-HOUSE STYLE EXPERT, TAYLOR WILSON</b><br><br>\n\nTraversing the Australian climate as the seasons change is tough; not just on the weatherman, but on all of us. One day, you're struggling to leave the bed, and the next, you're dreaming of the beach and a six-pack of your favourite beer. How are you supposed to dress for this kind of weather? Thankfully, it doesn't have to be complicated. All you need are a few key layer-friendly pieces that bridge the gap between winter warmth and spring breeziness.",
         "description_animation": "none",
         "cta_text": "Shop Now",
         "cta_link": ""
+      }
+    },
+    "heading_with_text_Bd9TWY": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "leading_text": "",
+        "leading_text_animation": "none",
+        "heading": "",
+        "heading_style": "normal",
+        "heading_animation": "none",
+        "content": "<p>Add your content here. This area uses the rich text editor so you can format text, add links, and more.</p>",
+        "content_animation": "none",
+        "alignment": "center"
       }
     }
   },
   "order": [
     "article",
-    "editorial_hero_dTVGEg"
+    "editorial_hero_dTVGEg",
+    "heading_with_text_Bd9TWY"
   ]
 }
