@@ -221,20 +221,6 @@
         "button_link": ""
       }
     },
-    "collection_slider_secondary_CxbkAQ": {
-      "type": "collection-slider-secondary",
-      "name": "Collection Slider Secondary",
-      "settings": {
-        "heading": "New In Now",
-        "heading_animation": "none",
-        "description": "Layer up with premium wool/cashmere blends.",
-        "description_animation": "none",
-        "collection": "new-arrivals",
-        "button_label": "Shop Now",
-        "products_to_show": 10,
-        "animate_products": false
-      }
-    },
     "image_with_text_4FciAz": {
       "type": "image-with-text",
       "name": "Image With Text",
@@ -254,6 +240,20 @@
         "button_label": "Learn More",
         "button_link": ""
       }
+    },
+    "collection_slider_CEcm4Y": {
+      "type": "collection-slider",
+      "name": "Collection Slider",
+      "settings": {
+        "heading": "New In Now",
+        "heading_animation": "none",
+        "description": "Layer up with premium wool/cashmere blends.",
+        "description_animation": "none",
+        "collection": "new-arrivals",
+        "button_label": "Shop Now",
+        "products_to_show": 10,
+        "animate_products": false
+      }
     }
   },
   "order": [
@@ -263,7 +263,7 @@
     "hero_primary_feCpm7",
     "image_with_text_RRTVz8",
     "variable_column_content_secondary_Wfmfxi",
-    "collection_slider_secondary_CxbkAQ",
+    "collection_slider_CEcm4Y",
     "image_with_text_4FciAz"
   ]
 }
