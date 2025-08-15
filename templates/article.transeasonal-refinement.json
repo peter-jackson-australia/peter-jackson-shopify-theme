@@ -144,8 +144,8 @@
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
-        "show_bottom_border": false,
-        "full_width": true,
+        "show_bottom_border": true,
+        "full_width": false,
         "first_image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34557_copy_2.webp",
         "image_link": "",
         "animate_images": false,
