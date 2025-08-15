@@ -5,7 +5,7 @@
 
 {{ 'section-video.css' | asset_url | stylesheet_tag }}
 
-{% assign width = section.settings.width %}
+{% assign video_width = section.settings.width %}
 {% assign id = section.id %}
 {% assign title = section.settings.title %}
 {% assign show_title = section.settings.show_title %}
@@ -15,7 +15,7 @@
 
 {% assign poster_url = section.settings.poster_image | image_url: width: 2000 %}
 
-{% assign vid = section.settings.video %}
+{% assign video_file = section.settings.video %}
 {% assign aspect_ratio = section.settings.aspect_ratio %}
 {% assign anchor_id = section.settings.anchor_id %}
 {% assign autoplay = section.settings.autoplay %}
@@ -24,14 +24,14 @@
 
 <div
   id="video-section-{{ id }}"
-  class="video-container--{{ width }}"
+  class="video-container--{{ video_width }}"
   aria-label="{{ title | escape }}"
   style="
     {% if show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
     {% if show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
   "
 >
-  {% if vid %}
+  {% if video_file %}
     <div
       class="video-container__video"
       style="aspect-ratio: {% if aspect_ratio == '16-9' %}16/9{% elsif aspect_ratio == '4-3' %}4/3{% elsif aspect_ratio == '1-1' %}1/1{% else %}16/9{% endif %};"
@@ -40,7 +40,7 @@
       {% endif %}
     >
       {{
-        vid
+        video_file
         | video_tag:
           controls: true,
           autoplay: autoplay,
