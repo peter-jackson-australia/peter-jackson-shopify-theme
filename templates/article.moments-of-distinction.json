@@ -1,0 +1,477 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+ {
+  "sections": {
+    "collection_slider_header_wMdfyj": {
+      "type": "collection-slider-header",
+      "blocks": {
+        "navigation_item_tqbNA4": {
+          "type": "navigation_item",
+          "settings": {
+            "nav_label": "Black-Tie",
+            "desktop_image": "shopify://shop_images/peter-jackson-man-wearing-tuxedo-during-wedding-mens-tuxedos.webp",
+            "mobile_image": "shopify://shop_images/peter-jackson-man-wearing-tuxedo-during-wedding-mens-tuxedos-mobile.webp",
+            "collection": "black-tie-wedding-and-attire",
+            "slider_heading": "Black Tie Weddings",
+            "slider_description": "From impeccably tailored dinner jackets in luxurious velvet to classic peak-lapel tuxedos in pure wool, discover evening wear designed for the most distinguished occasions.",
+            "button_label": "Explore The Collection",
+            "products_to_show": 12
+          }
+        },
+        "navigation_item_y7RAUL": {
+          "type": "navigation_item",
+          "settings": {
+            "nav_label": "Garden & Winery",
+            "desktop_image": "shopify://shop_images/peter-jackson-man-wearing-white-suit-with-black-tie-during-wedding-mens-white-suits.webp",
+            "mobile_image": "shopify://shop_images/peter-jackson-man-wearing-white-suit-with-black-tie-during-wedding-mens-white-suits-mobile.webp",
+            "collection": "garden-and-winery-weddings",
+            "slider_heading": "Garden & Winery",
+            "slider_description": "Lightweight linens, soft tonal hues, and breathable tailoring create the perfect balance of elegance and ease for open-air celebrations.",
+            "button_label": "Explore The Collection",
+            "products_to_show": 12
+          }
+        },
+        "navigation_item_3fPPPx": {
+          "type": "navigation_item",
+          "settings": {
+            "nav_label": "Spring/Summer",
+            "desktop_image": "shopify://shop_images/peter-jackson-man-wearing-suit-during-wedding-mens-suits.webp",
+            "mobile_image": "shopify://shop_images/peter-jackson-man-wearing-suit-during-wedding-mens-suits-mobile.webp",
+            "collection": "beach-weddings",
+            "slider_heading": "Spring/Summer",
+            "slider_description": "Crisp linen light-weight elements, pastel accents, and unstructured silhouettes bring a modern lightness to warm-weather dressing.",
+            "button_label": "Explore The Collection",
+            "products_to_show": 12
+          }
+        }
+      },
+      "block_order": [
+        "navigation_item_tqbNA4",
+        "navigation_item_y7RAUL",
+        "navigation_item_3fPPPx"
+      ],
+      "name": "Collection Slider Header",
+      "settings": {
+        "main_heading": "Moments of Distinction",
+        "subtitle": "The Wedding Edit",
+        "show_top_border": true,
+        "show_bottom_border": false
+      }
+    },
+    "link_list_6GFMGG": {
+      "type": "link-list",
+      "blocks": {
+        "link_CRWWcw": {
+          "type": "link",
+          "settings": {
+            "link_text": "Wedding & Formal Shirts",
+            "link_url": "shopify://collections/formal-shirts"
+          }
+        },
+        "link_j6GCjm": {
+          "type": "link",
+          "settings": {
+            "link_text": "Ties",
+            "link_url": "shopify://collections/ties"
+          }
+        },
+        "link_DWdkqE": {
+          "type": "link",
+          "settings": {
+            "link_text": "Shoes",
+            "link_url": "shopify://collections/mens-footwear"
+          }
+        },
+        "link_pzJUpD": {
+          "type": "link",
+          "settings": {
+            "link_text": "Accessories",
+            "link_url": "shopify://collections/mens-accessories"
+          }
+        }
+      },
+      "block_order": [
+        "link_CRWWcw",
+        "link_j6GCjm",
+        "link_DWdkqE",
+        "link_pzJUpD"
+      ],
+      "name": "Link List",
+      "settings": {
+        "heading": "Discover The Collections",
+        "alignment": "right",
+        "show_top_border": true,
+        "show_bottom_border": false
+      }
+    },
+    "variable_column_content_tertiary_r9bnR6": {
+      "type": "variable-column-content-tertiary",
+      "blocks": {
+        "column_item_NqeYRT": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-suits-weddings-wedding-suits-menswear-australia-suits-2.webp",
+            "image_link": "",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "center",
+            "content_vertical_alignment": "center",
+            "column_link": "shopify://collections/black-tie-wedding-and-attire",
+            "column_link_text": ""
+          }
+        },
+        "column_item_ebbBRq": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-suits-weddings-wedding-suits-menswear-australia-suits-1.webp",
+            "image_link": "",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "center",
+            "content_vertical_alignment": "center",
+            "column_link": "shopify://collections/garden-and-winery-weddings",
+            "column_link_text": ""
+          }
+        },
+        "column_item_Cj6wG7": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-suits-weddings-wedding-suits-menswear-australia-suits-3.webp",
+            "image_link": "",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "center",
+            "content_vertical_alignment": "center",
+            "column_link": "shopify://collections/beach-weddings",
+            "column_link_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_item_NqeYRT",
+        "column_item_ebbBRq",
+        "column_item_Cj6wG7"
+      ],
+      "name": "Variable Column Content Tertiary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "column_count": "3",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "",
+        "heading_animation": "none",
+        "text": "",
+        "text_animation": "none",
+        "button_label": "",
+        "button_link": ""
+      }
+    },
+    "image_with_text_kQ4Vat": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "full_width": true,
+        "first_image": "shopify://shop_images/peter-jackson-made-to-measure-tailoring-suits-mens-suits-tailoring.webp",
+        "image_link": "",
+        "animate_images": false,
+        "alignment": "right",
+        "heading": "Book An Appointment",
+        "heading_animation": "none",
+        "text": "From the first fitting to the final flourish, our Made to Measure specialists will craft suits that perfectly complement your wedding party. Schedule a private consultation and bring your vision to life.",
+        "text_animation": "none",
+        "button_label": "Book Now",
+        "button_link": "shopify://pages/made-to-measure"
+      }
+    },
+    "image_gallery_slider_P7mDJC": {
+      "type": "image-gallery-slider",
+      "blocks": {
+        "slide_4784eM": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-16.webp"
+          }
+        },
+        "slide_cK8P9w": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-31.webp"
+          }
+        },
+        "slide_4QKYXA": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-28.webp"
+          }
+        },
+        "slide_L96BPD": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-27.webp"
+          }
+        },
+        "slide_EaTYpt": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-24.webp"
+          }
+        },
+        "slide_N7Pzwa": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-29.webp"
+          }
+        },
+        "slide_LMhdJc": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-26.webp"
+          }
+        },
+        "slide_rTRdGY": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-23.webp"
+          }
+        },
+        "slide_8HtLN8": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-22.webp"
+          }
+        },
+        "slide_Rk6zKg": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-20.webp"
+          }
+        },
+        "slide_3qfHYD": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-21.webp"
+          }
+        },
+        "slide_jbb78d": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-25.webp"
+          }
+        },
+        "slide_HG6PC8": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-30.webp"
+          }
+        },
+        "slide_3CQDQA": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-2.webp"
+          }
+        },
+        "slide_RiWwjQ": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-12.webp"
+          }
+        },
+        "slide_fFqd6P": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-15.webp"
+          }
+        },
+        "slide_q4689y": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-14.webp"
+          }
+        },
+        "slide_gwnicM": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-8.webp"
+          }
+        },
+        "slide_VewNBJ": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-6.webp"
+          }
+        },
+        "slide_TkeQmF": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-menswear-wedding-suits-suits-for-weddings-mens-suits-7.webp"
+          }
+        }
+      },
+      "block_order": [
+        "slide_4784eM",
+        "slide_cK8P9w",
+        "slide_4QKYXA",
+        "slide_L96BPD",
+        "slide_EaTYpt",
+        "slide_N7Pzwa",
+        "slide_LMhdJc",
+        "slide_rTRdGY",
+        "slide_8HtLN8",
+        "slide_Rk6zKg",
+        "slide_3qfHYD",
+        "slide_jbb78d",
+        "slide_HG6PC8",
+        "slide_3CQDQA",
+        "slide_RiWwjQ",
+        "slide_fFqd6P",
+        "slide_q4689y",
+        "slide_gwnicM",
+        "slide_VewNBJ",
+        "slide_TkeQmF"
+      ],
+      "name": "Image Gallery Slider",
+      "settings": {
+        "heading": "The Gallery",
+        "subtitle": "Moments We're Proud To Be Part Of",
+        "alignment": "left",
+        "show_top_border": true,
+        "show_bottom_border": false
+      }
+    },
+    "faqs_npVnk4": {
+      "type": "faqs",
+      "blocks": {
+        "heading_BFjjBw": {
+          "type": "heading",
+          "settings": {
+            "heading": "Frequently Asked Questions",
+            "anchor_id": ""
+          }
+        },
+        "faq_item_hQxYmr": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you offer a discount for wedding parties?",
+            "answer": "<p>Absolutely! Bridal parties present a fantastic opportunity for you take advantage of your generous multi-buy offers. These tend to run across suits, shirts, and oftentimes the accessories you'll need to complete your outfit. You'll enjoy a healthy discount as you're buying in bulk, which makes budgeting for your big day considerably easier.</p>"
+          }
+        },
+        "faq_item_k6y3wF": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I book a wedding party consultation or fitting in advance?",
+            "answer": "<p>Any of our stores should be able to accommodate you on short notice if you're unable to organise a booking. That being said, it's always best to plan ahead, and you can do so through our website [include link to website booking or remove if unavailable] or by giving your local store a call to discuss a time that works best.</p>"
+          }
+        },
+        "faq_item_pYwxMB": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How far in advance should I order my wedding suits?",
+            "answer": "<p>To avoid any unwanted stress and hiccups, we recommend you give yourself at least two months if opting for ready-to-wear, or three to four months if you'd rather have something made-to-measure. That being said, it's never too early to pick the perfect look for your special day.</p><p>Alternatively, if you find yourself lacking time, we're always happy to help you out of a tough spot and can have things organised quicker if necessary.</p>"
+          }
+        },
+        "faq_item_ABiAjH": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you offer ready-to-wear and made-to-measure options for weddings?",
+            "answer": "<p>At Peter Jackson, we have a vast collection of ready to wear garments on offer at any given time. From linen suits for those laid back beach weddings, all the way through to classic dinner suits for something a little more 'black tie', we cater for virtually any setting and formality.</p><p>For those wanting a more personalised experience, we have an extensive and ever evolving made-to-measure program that allows us to make the suit of your dreams a reality. If you want greater control over the finer details and to invest in a garment tailored exclusively for you and your groomsmen on your wedding day, our made-to-measure suits are the perfect choice.</p>"
+          }
+        },
+        "faq_item_YJJMV6": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I bring in my own design or inspiration for a made-to-measure suit?",
+            "answer": "<p>Of course! If you've found a specific look that has inspired you, we're more than happy to build your outfit around any images you bring through to us. Alternatively, our experienced stylists relish in the opportunity to help you flesh out any ideas you might have.</p>"
+          }
+        },
+        "faq_item_k3L9Qg": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you offer suit alterations if I purchase ready-to-wear suits?",
+            "answer": "<p>Certainly. It's our top priority to have you looking sharp, and we work with teams of talented tailors to accomplish that. From minor adjustments to more intensive work, we can do it all.</p><p>Typically, there's a lead time of about one week for adjustments, and so we generally recommend you do your tailoring fitting three or four weeks prior to the wedding date.</p>"
+          }
+        },
+        "faq_item_wnfNJc": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can you help coordinate suits for the family of the bride and groom?",
+            "answer": "<p>Our help doesn't stop at the groom and groomsmen! If you've got any family in need of some wedding attire, we've also got them covered. Our in-store teams are on hand to not only get you and the boys looking their best, but can also provide assistance in building outfits for your family members that are cohesive with your overall vision.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_BFjjBw",
+        "faq_item_hQxYmr",
+        "faq_item_k6y3wF",
+        "faq_item_pYwxMB",
+        "faq_item_ABiAjH",
+        "faq_item_YJJMV6",
+        "faq_item_k3L9Qg",
+        "faq_item_wnfNJc"
+      ],
+      "name": "FAQ Section",
+      "settings": {
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "animate_faqs": false
+      }
+    },
+    "blog_hero_8apMnG": {
+      "type": "blog-hero",
+      "disabled": true,
+      "name": "Blog Hero",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "show_image_overlay": true,
+        "image_heading": "",
+        "image_heading_animation": "none",
+        "image_description": "",
+        "image_description_animation": "none",
+        "image_link_text": "",
+        "image_link_url": "",
+        "heading": "Moments of Distinction",
+        "heading_animation": "none",
+        "subheading": "Tailored Content: Weddings",
+        "subheading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "cta_link": "shopify://pages/the-jackson-journal",
+        "cta_text": "Explore All Articles",
+        "show_recent_posts": true,
+        "animate_posts": true,
+        "blog": "the-jackson-journal"
+      }
+    }
+  },
+  "order": [
+    "collection_slider_header_wMdfyj",
+    "link_list_6GFMGG",
+    "variable_column_content_tertiary_r9bnR6",
+    "image_with_text_kQ4Vat",
+    "image_gallery_slider_P7mDJC",
+    "faqs_npVnk4",
+    "blog_hero_8apMnG"
+  ]
+}

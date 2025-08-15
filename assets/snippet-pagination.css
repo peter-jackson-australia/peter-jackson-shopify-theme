@@ -5,10 +5,10 @@
 }
 
 .blog-collection__pagination ul {
-  display: flex;
-  list-style: none;
-  gap: var(--space-xs);
   align-items: center;
+  display: flex;
+  gap: var(--space-xs);
+  list-style: none;
 }
 
 .blog-collection__pagination li {
@@ -17,13 +17,13 @@
 
 .blog-collection__pagination a,
 .blog-collection__pagination span {
-  padding: var(--space-xs) var(--space-s);
   color: var(--neutral-600);
+  padding: var(--space-xs) var(--space-s);
   text-decoration: none;
 }
 
 .blog-collection__pagination a:hover,
 .blog-collection__pagination .current {
-  color: var(--neutral-950);
   background-color: var(--neutral-50);
+  color: var(--neutral-950);
 }

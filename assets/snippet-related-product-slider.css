@@ -5,14 +5,14 @@
 
 .related-product-slider .splide__arrow {
   background: var(--white);
+  border-radius: 50%;
+  height: var(--space-m);
+  opacity: 0;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: var(--space-m);
-  height: var(--space-m);
-  border-radius: 50%;
-  opacity: 0;
   transition: opacity 0.3s ease;
+  width: var(--space-m);
 }
 
 .related-product-slider.splide.is-initialized .splide__arrow:not(:disabled) {

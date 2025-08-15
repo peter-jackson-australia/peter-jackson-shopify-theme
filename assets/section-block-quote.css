@@ -22,8 +22,8 @@
 }
 
 .block-quote__text {
-  max-width: 40ch;
   margin: 0 auto;
+  max-width: 40ch;
 }
 
 @media screen and (max-width: 768px) {
