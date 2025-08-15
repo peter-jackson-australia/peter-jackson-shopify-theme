@@ -38,6 +38,79 @@
         "cta_link": ""
       }
     },
+    "variable_column_content_tertiary_LT7464": {
+      "type": "variable-column-content-tertiary",
+      "blocks": {
+        "column_item_34GMTd": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34374_copy_2.webp",
+            "image_link": "shopify://products/genoa-taupe-technical-twill-field-jacket",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "center",
+            "content_vertical_alignment": "center",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_wV9m9x": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34341_copy_2.webp",
+            "image_link": "shopify://products/genoa-taupe-technical-twill-field-jacket",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "center",
+            "content_vertical_alignment": "center",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_twi3Jn": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34383_copy_2.webp",
+            "image_link": "shopify://products/genoa-taupe-technical-twill-field-jacket",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "center",
+            "content_vertical_alignment": "center",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_34GMTd",
+        "column_item_wV9m9x",
+        "column_item_twi3Jn"
+      ],
+      "name": "Variable Column Content Tertiary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "3",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "Variable Column Content Tertiary",
+        "heading_animation": "none",
+        "text": "Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    },
     "heading_with_text_Bd9TWY": {
       "type": "heading-with-text",
       "name": "Heading with Text",
@@ -59,6 +132,7 @@
   "order": [
     "article",
     "editorial_hero_dTVGEg",
+    "variable_column_content_tertiary_LT7464",
     "heading_with_text_Bd9TWY"
   ]
 }
