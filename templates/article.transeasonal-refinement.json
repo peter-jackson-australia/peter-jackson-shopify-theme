@@ -20,7 +20,7 @@
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
-        "show_bottom_border": false,
+        "show_bottom_border": true,
         "leading_text": "",
         "leading_text_animation": "none",
         "first_title": "TRANSEASONAL",
@@ -32,33 +32,202 @@
         "second_title": "REFINEMENT",
         "second_title_level": "h1",
         "second_title_animation": "none",
-        "description": "<b>WRITTEN BY IN-HOUSE STYLE EXPERT, TAYLOR WILSON</b><br><br>\n\nTraversing the Australian climate as the seasons change is tough; not just on the weatherman, but on all of us. One day, you're struggling to leave the bed, and the next, you're dreaming of the beach and a six-pack of your favourite beer. How are you supposed to dress for this kind of weather? Thankfully, it doesn't have to be complicated. All you need are a few key layer-friendly pieces that bridge the gap between winter warmth and spring breeziness.",
+        "description": "Traversing the Australian climate as the seasons change is tough; not just on the weatherman, but on all of us. One day, you're struggling to leave the bed, and the next, you're dreaming of the beach and a six-pack of your favourite beer. How are you supposed to dress for this kind of weather? Thankfully, it doesn't have to be complicated. All you need are a few key layer-friendly pieces that bridge the gap between winter warmth and spring breeziness.",
         "description_animation": "none",
         "cta_text": "Shop Now",
         "cta_link": ""
       }
     },
-    "heading_with_text_Bd9TWY": {
-      "type": "heading-with-text",
-      "name": "Heading with Text",
+    "variable_column_content_tertiary_LT7464": {
+      "type": "variable-column-content-tertiary",
+      "blocks": {
+        "column_item_34GMTd": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34374_copy_2.webp",
+            "image_link": "shopify://products/genoa-taupe-technical-twill-field-jacket",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "center",
+            "content_vertical_alignment": "center",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_twi3Jn": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34383_copy_2.webp",
+            "image_link": "shopify://products/genoa-taupe-technical-twill-field-jacket",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "center",
+            "content_vertical_alignment": "center",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_wV9m9x": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34341_copy_2.webp",
+            "image_link": "shopify://products/genoa-taupe-technical-twill-field-jacket",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "center",
+            "content_vertical_alignment": "center",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_34GMTd",
+        "column_item_twi3Jn",
+        "column_item_wV9m9x"
+      ],
+      "name": "Variable Column Content Tertiary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "column_count": "3",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "Layered Intent",
+        "heading_animation": "none",
+        "text": "The most effective way to prepare for the shifting weather is to layer with intention. You want each item to stand alone, but also pair easily with the other clothes you own. Things like polos, overshirts, and field jackets work perfectly to get you through the brisk mornings as well as the warm afternoons. As the temperature fluctuates, so does your outfit, with layers being easy to remove (or re-add) as needed.<br><br>Start with lighter base layers and build outward from there, with a slightly heavier layer for warmth covered by a larger outer layer to protect you from the elements as required. Limiting yourself to three items will keep you from feeling weighed down and looking convoluted.<br><br>On days that you're headed into the office, a crisp white dress shirt pairs perfectly with a dark, earth tone tie and our lightweight field jacket for a professional yet relaxed look.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    },
+    "hero_primary_feCpm7": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34422_copy_2.webp",
+        "mobile_image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34422_copy_2.webp",
+        "heading": "",
+        "svg_size": "medium",
+        "heading_level": "h1",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "button_label_1": "Shop Now",
+        "button_link_1": "",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "bottom",
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "bottom"
+      }
+    },
+    "image_with_text_RRTVz8": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "full_width": false,
+        "first_image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34557_copy_2.webp",
+        "image_link": "",
+        "animate_images": false,
+        "alignment": "right",
+        "heading": "Polo Perfection",
+        "heading_animation": "none",
+        "text": "A tailored polo dressed up with an unstructured burgundy sports coat over some white jeans will have you dressed appropriately for a cocktail party or a weekend dinner with friends.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    },
+    "variable_column_content_secondary_Wfmfxi": {
+      "type": "variable-column-content-secondary",
+      "blocks": {
+        "column_item_U9xHRY": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34725_copy_2.webp",
+            "image_link": "",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_4eRYBQ": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34789_copy_2.webp",
+            "image_link": "",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_AUWqE8": {
+          "type": "column_item",
+          "settings": {
+            "image_link": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_U9xHRY",
+        "column_item_4eRYBQ",
+        "column_item_AUWqE8"
+      ],
+      "name": "Variable Column Content Secondary",
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
-        "leading_text": "",
-        "leading_text_animation": "none",
-        "heading": "",
-        "heading_style": "normal",
+        "column_count": "2",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "Off-Duty Overshirts",
         "heading_animation": "none",
-        "content": "<p>Add your content here. This area uses the rich text editor so you can format text, add links, and more.</p>",
-        "content_animation": "none",
-        "alignment": "center"
+        "text": "And for those days off when you just need to run some errands? Wearing a fitted t-shirt with a more structured overshirt creates a laid back look that you can be proud to leave the house in.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
       }
     }
   },
   "order": [
     "article",
     "editorial_hero_dTVGEg",
-    "heading_with_text_Bd9TWY"
+    "variable_column_content_tertiary_LT7464",
+    "hero_primary_feCpm7",
+    "image_with_text_RRTVz8",
+    "variable_column_content_secondary_Wfmfxi"
   ]
 }
