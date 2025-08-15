@@ -9,50 +9,26 @@
  */
 {
   "sections": {
-    "two_column_content_NtH84c": {
-      "type": "two-column-content",
-      "blocks": {
-        "column_dzCrD4": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/Layered_Logic_Hero_4.webp",
-            "product": "",
-            "heading": "",
-            "heading_animation": "animate-word-slide-up-scroll",
-            "description": "",
-            "description_animation": "animate-word-rotate-scroll",
-            "button_label": "",
-            "button_link": "shopify://collections/all"
-          }
-        },
-        "column_cxwLWN": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/Layered_Logic_Hero_5.webp",
-            "product": "",
-            "heading": "",
-            "heading_animation": "none",
-            "description": "",
-            "description_animation": "animate-paragraph-slide-up-scroll",
-            "button_label": "",
-            "button_link": "shopify://collections"
-          }
-        }
-      },
-      "block_order": [
-        "column_dzCrD4",
-        "column_cxwLWN"
-      ],
-      "name": "Two Column Content",
+    "video_eLAhjA": {
+      "type": "video",
+      "name": "Video",
       "settings": {
         "anchor_id": "",
-        "show_top_border": true,
-        "show_bottom_border": true,
-        "animate_columns": true
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "video": "shopify://files/videos/afterpay-sale-mega-menu-video-compressed-peter-jackson-menswear.mp4",
+        "poster_image": "shopify://shop_images/PJ_Transeasonal_Russell.webp",
+        "title": "Test A (contained)",
+        "show_title": true,
+        "width": "contained",
+        "aspect_ratio": "16-9",
+        "autoplay": false,
+        "loop": false,
+        "muted": false
       }
     }
   },
   "order": [
-    "two_column_content_NtH84c"
+    "video_eLAhjA"
   ]
 }
