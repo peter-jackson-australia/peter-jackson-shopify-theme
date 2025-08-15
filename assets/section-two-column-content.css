@@ -19,11 +19,11 @@
   height: 100%;
   left: 0;
   object-fit: cover;
+  object-position: top;
   position: absolute;
   top: 0;
   transition: filter 0.3s ease;
   width: 100%;
-  object-position: top;
 }
 
 .two-column-content__product-overlay {
