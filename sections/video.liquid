@@ -7,7 +7,7 @@
 
 {% assign width = section.settings.width %}
 {% assign id = section.id %}
-{% assign title = section.title %}
+{% assign title = section.settings.title %}
 {% assign show_title = section.settings.show_title %}
 
 {% assign show_top_border = section.settings.show_top_border %}
@@ -62,7 +62,7 @@
     </div>
   {% endif %}
 
-  {% if title != blank and show_title %}
+  {% if show_title and title != blank %}
     <div class="video-container__title" style="margin-top: var(--space-s);">
       <p class="heading--xl">{{ title }}</p>
     </div>
