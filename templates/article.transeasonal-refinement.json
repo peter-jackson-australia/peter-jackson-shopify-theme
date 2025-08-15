@@ -53,8 +53,8 @@
             "show_gradient_overlay": false,
             "content_horizontal_alignment": "center",
             "content_vertical_alignment": "center",
-            "column_link": "",
-            "column_link_text": "Shop Now"
+            "column_link": "shopify://products/genoa-taupe-technical-twill-field-jacket",
+            "column_link_text": ""
           }
         },
         "column_item_twi3Jn": {
@@ -105,7 +105,7 @@
         "animate_columns": false,
         "heading": "Layered Intent",
         "heading_animation": "none",
-        "text": "The most effective way to prepare for the shifting weather is to layer with intention. You want each item to stand alone, but also pair easily with the other clothes you own. Things like polos, overshirts, and field jackets work perfectly to get you through the brisk mornings as well as the warm afternoons. As the temperature fluctuates, so does your outfit, with layers being easy to remove (or re-add) as needed.<br><br>Start with lighter base layers and build outward from there, with a slightly heavier layer for warmth covered by a larger outer layer to protect you from the elements as required. Limiting yourself to three items will keep you from feeling weighed down and looking convoluted.<br><br>On days that you're headed into the office, a crisp white dress shirt pairs perfectly with a dark, earth tone tie and our lightweight field jacket for a professional yet relaxed look.",
+        "text": "The most effective way to prepare for the shifting weather is to layer with intention. You want each item to stand alone, but also pair easily with the other clothes you own. Things like polos, overshirts, and field jackets work perfectly to get you through the brisk mornings as well as the warm afternoons. As the temperature fluctuates, so does your outfit, with layers being easy to remove (or re-add) as needed.Start with lighter base layers and build outward from there, with a slightly heavier layer for warmth covered by a larger outer layer to protect you from the elements as required. Limiting yourself to three items will keep you from feeling weighed down and looking convoluted.On days that you're headed into the office, a crisp white dress shirt pairs perfectly with a dark, earth tone tie and our lightweight field jacket for a professional yet relaxed look.",
         "text_animation": "none",
         "button_label": "Learn More",
         "button_link": ""
