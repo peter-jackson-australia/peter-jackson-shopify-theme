@@ -13,12 +13,7 @@
 {% assign show_top_border = section.settings.show_top_border %}
 {% assign show_bottom_border = section.settings.show_bottom_border %}
 
-{% assign poster_image = section.settings.poster_image %}
-{% if poster_image %}
-  {% assign poster_url = poster_image | image_url: width: 2000 %}
-{% else %}
-  {% assign poster_url = section.settings.poster_url %}
-{% endif %}
+{% assign poster_url = section.settings.poster_image | image_url: width: 2000 %}
 
 {% assign vid = section.settings.video %}
 {% assign aspect_ratio = section.settings.aspect_ratio %}
