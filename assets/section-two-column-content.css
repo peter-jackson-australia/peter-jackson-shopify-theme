@@ -13,6 +13,7 @@
 
 .two-column-content__image-container {
   padding-bottom: 130%;
+  position: relative;
   overflow: hidden;
 }
 
