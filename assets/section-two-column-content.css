@@ -1,8 +1,7 @@
 .two-column-content__grid {
   display: grid;
   grid-template-columns: 1fr;
-  padding-bottom: calc(var(--space-2xl) - var(--space-m));
-  padding-top: var(--space-2xl);
+  padding: var(--space-2xl) 0 calc(var(--space-2xl) - var(--space-m));
 }
 
 .two-column-content__item {
@@ -116,8 +115,7 @@
 
 @media (max-width: 1040px) {
   .two-column-content__grid {
-    padding-bottom: calc(var(--space-xl) - var(--space-m));
-    padding-top: var(--space-xl);
+    padding: var(--space-xl) 0 calc(var(--space-xl) - var(--space-m));
   }
   .two-column-content__heading-container {
     flex-direction: column;
