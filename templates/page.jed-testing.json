@@ -18,8 +18,61 @@
         "show_bottom_border": false,
         "video": "shopify://files/videos/afterpay-sale-mega-menu-video-compressed-peter-jackson-menswear.mp4",
         "poster_image": "shopify://shop_images/PJ_Transeasonal_Russell.webp",
-        "title": "Test A (contained)",
+        "title": "Test A (poster img + contained)",
         "show_title": true,
+        "width": "contained",
+        "aspect_ratio": "16-9",
+        "autoplay": false,
+        "loop": false,
+        "muted": false
+      }
+    },
+    "video_rABYJi": {
+      "type": "video",
+      "name": "Video",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "video": "shopify://files/videos/Outerwear Loop HP (Comp).mp4",
+        "poster_image": "shopify://shop_images/Wedding_Blog_Featured.webp",
+        "title": "Test B (full width + poster img)",
+        "show_title": true,
+        "width": "contained",
+        "aspect_ratio": "16-9",
+        "autoplay": false,
+        "loop": false,
+        "muted": false
+      }
+    },
+    "video_3cGhqF": {
+      "type": "video",
+      "name": "Video",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "video": "shopify://files/videos/Homepage Site Launch.mp4",
+        "title": "Test C (Autolooping without poster)",
+        "show_title": true,
+        "width": "contained",
+        "aspect_ratio": "16-9",
+        "autoplay": false,
+        "loop": false,
+        "muted": false
+      }
+    },
+    "video_7P7wFC": {
+      "type": "video",
+      "name": "Video",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "video": "shopify://files/videos/Homepage Site Launch.mp4",
+        "poster_image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34374_copy_2.webp",
+        "title": "Test D (autolooping with poster)",
+        "show_title": false,
         "width": "contained",
         "aspect_ratio": "16-9",
         "autoplay": false,
@@ -29,6 +82,9 @@
     }
   },
   "order": [
-    "video_eLAhjA"
+    "video_eLAhjA",
+    "video_rABYJi",
+    "video_3cGhqF",
+    "video_7P7wFC"
   ]
 }
