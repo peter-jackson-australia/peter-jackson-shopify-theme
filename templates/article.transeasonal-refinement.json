@@ -11,10 +11,36 @@
   "sections": {
     "article": {
       "type": "main-article",
+      "disabled": true,
       "settings": {}
+    },
+    "editorial_hero_dTVGEg": {
+      "type": "editorial-hero",
+      "name": "Hero Editorial",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "leading_text": "",
+        "leading_text_animation": "none",
+        "first_title": "TRANSEASONAL",
+        "first_title_level": "h1",
+        "first_title_animation": "none",
+        "media_type": "image",
+        "video": "shopify://files/videos/Transeasonal Refinement Site.mp4",
+        "animate_media": false,
+        "second_title": "REFINEMENT",
+        "second_title_level": "h1",
+        "second_title_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "cta_text": "Shop Now",
+        "cta_link": ""
+      }
     }
   },
   "order": [
-    "article"
+    "article",
+    "editorial_hero_dTVGEg"
   ]
 }
