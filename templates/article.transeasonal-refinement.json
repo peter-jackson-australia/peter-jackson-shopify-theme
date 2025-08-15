@@ -209,13 +209,47 @@
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
-        "show_bottom_border": false,
+        "show_bottom_border": true,
         "column_count": "2",
         "text_alignment": "left",
         "animate_columns": false,
         "heading": "Off-Duty Overshirts",
         "heading_animation": "none",
         "text": "And for those days off when you just need to run some errands? Wearing a fitted t-shirt with a more structured overshirt creates a laid back look that you can be proud to leave the house in.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    },
+    "collection_slider_secondary_CxbkAQ": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "New In Now",
+        "heading_animation": "none",
+        "description": "Layer up with premium wool/cashmere blends.",
+        "description_animation": "none",
+        "collection": "new-arrivals",
+        "button_label": "Shop Now",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
+    "image_with_text_4FciAz": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": true,
+        "full_width": false,
+        "first_image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34557_copy_2.webp",
+        "image_link": "",
+        "animate_images": false,
+        "alignment": "right",
+        "heading": "Polo Perfection",
+        "heading_animation": "none",
+        "text": "A tailored polo dressed up with an unstructured burgundy sports coat over some white jeans will have you dressed appropriately for a cocktail party or a weekend dinner with friends.",
         "text_animation": "none",
         "button_label": "Learn More",
         "button_link": ""
@@ -228,6 +262,8 @@
     "variable_column_content_tertiary_LT7464",
     "hero_primary_feCpm7",
     "image_with_text_RRTVz8",
-    "variable_column_content_secondary_Wfmfxi"
+    "variable_column_content_secondary_Wfmfxi",
+    "collection_slider_secondary_CxbkAQ",
+    "image_with_text_4FciAz"
   ]
 }
