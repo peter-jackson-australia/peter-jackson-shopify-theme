@@ -21,7 +21,7 @@
             "heading_animation": "animate-word-slide-up-scroll",
             "description": "",
             "description_animation": "animate-word-rotate-scroll",
-            "button_label": "Test",
+            "button_label": "",
             "button_link": "shopify://collections/all"
           }
         },
