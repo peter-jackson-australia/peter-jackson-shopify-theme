@@ -111,6 +111,33 @@
         "button_link": ""
       }
     },
+    "hero_primary_feCpm7": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34422_copy_2.webp",
+        "mobile_image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34422_copy_2.webp",
+        "heading": "",
+        "svg_size": "medium",
+        "heading_level": "h1",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "button_label_1": "Shop Now",
+        "button_link_1": "",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "bottom",
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "bottom"
+      }
+    },
     "image_with_text_RRTVz8": {
       "type": "image-with-text",
       "name": "Image With Text",
@@ -118,7 +145,7 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
-        "full_width": false,
+        "full_width": true,
         "first_image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34557_copy_2.webp",
         "image_link": "",
         "animate_images": false,
@@ -130,12 +157,38 @@
         "button_label": "Learn More",
         "button_link": ""
       }
+    },
+    "variable_column_content_Dw4r8Q": {
+      "type": "variable-column-content",
+      "name": "Variable Column Content",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "3",
+        "text_alignment": "left",
+        "animate_images": false,
+        "image_1_link": "",
+        "image_2_link": "",
+        "image_3_link": "",
+        "image_4_link": "",
+        "image_5_link": "",
+        "image_6_link": "",
+        "heading": "Variable Column Content",
+        "heading_animation": "none",
+        "text": "Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
     }
   },
   "order": [
     "article",
     "editorial_hero_dTVGEg",
     "variable_column_content_tertiary_LT7464",
-    "image_with_text_RRTVz8"
+    "hero_primary_feCpm7",
+    "image_with_text_RRTVz8",
+    "variable_column_content_Dw4r8Q"
   ]
 }
