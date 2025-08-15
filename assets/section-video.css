@@ -22,3 +22,7 @@
   object-fit: cover;
   width: 100%;
 }
+
+.video-container__title {
+  margin: var(--space-s) 0;
+}
