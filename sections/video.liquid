@@ -1,78 +1,55 @@
-<style>
-  .video-container {
-    position: relative;
-    width: 100%;
-    padding: var(--space-2xl) var(--space-m);
-    overflow: hidden;
-    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
-    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
-  }
+{% comment %}
+  Displays a video on the screen used either as a video player or for background playback
+  Refactored by Jed 15th August 2025
+{% endcomment %}
 
-  .video-container__video {
-    width: 100%;
-    display: block;
-    position: relative;
-  }
+{{ 'section-video.css' | asset_url | stylesheet_tag }}
 
-  .video-container__video > video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
+{% assign width = section.settings.width %}
+{% assign id = section.id %}
+{% assign title = section.settings.title %}
+{% assign show_title = section.settings.show_title %}
 
-  .video-container--full-width {
-    width: 100%;
-    max-width: 100%;
-  }
+{% assign show_top_border = section.settings.show_top_border %}
+{% assign show_bottom_border = section.settings.show_bottom_border %}
 
-  .video-container--contained {
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0 var(--space-m);
-  }
-</style>
+{% assign poster_url = section.settings.poster_image | image_url: width: 2000 %}
+
+{% assign vid = section.settings.video %}
+{% assign aspect_ratio = section.settings.aspect_ratio %}
+{% assign anchor_id = section.settings.anchor_id %}
+{% assign autoplay = section.settings.autoplay %}
+{% assign loop = section.settings.loop %}
+{% assign muted = section.settings.muted %}
 
 <div
-  id="video-section-{{ section.id }}"
-  class="video-container video-container--{{ section.settings.width }}"
-  aria-label="{{ section.settings.title | escape }}"
+  id="video-section-{{ id }}"
+  class="video-container--{{ width }}"
+  aria-label="{{ title | escape }}"
+  style="
+    {% if show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
+    {% if show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
+  "
 >
-  {% if section.settings.video %}
+  {% if vid %}
     <div
       class="video-container__video"
-      style="aspect-ratio: {% if section.settings.aspect_ratio == '16-9' %}16/9{% elsif section.settings.aspect_ratio == '4-3' %}4/3{% elsif section.settings.aspect_ratio == '1-1' %}1/1{% else %}16/9{% endif %};"
-      {% if section.settings.anchor_id != blank %}
-        id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
+      style="aspect-ratio: {% if aspect_ratio == '16-9' %}16/9{% elsif aspect_ratio == '4-3' %}4/3{% elsif aspect_ratio == '1-1' %}1/1{% else %}16/9{% endif %};"
+      {% if anchor_id != blank %}
+        id="{{ anchor_id | downcase | replace: ' ', '-' }}-segment"
       {% endif %}
     >
-      {% if section.settings.poster_image %}
-        {% assign poster_url = section.settings.poster_image | image_url: width: 2000 %}
-        {{
-          section.settings.video
-          | video_tag:
-            controls: true,
-            autoplay: section.settings.autoplay,
-            loop: section.settings.loop,
-            muted: section.settings.muted,
-            playsinline: true,
-            class: 'video-container__video-element',
-            poster: poster_url
-        }}
-      {% else %}
-        {{
-          section.settings.video
-          | video_tag:
-            controls: true,
-            autoplay: section.settings.autoplay,
-            loop: section.settings.loop,
-            muted: section.settings.muted,
-            playsinline: true,
-            class: 'video-container__video-element',
-            poster: poster_url
-        }}
-      {% endif %}
+      {{
+        vid
+        | video_tag:
+          controls: true,
+          autoplay: autoplay,
+          loop: loop,
+          muted: muted,
+          playsinline: true,
+          class: 'video-container__video-element',
+          poster: poster_url
+      }}
     </div>
   {% else %}
     <div class="video-container__placeholder body">
@@ -80,9 +57,9 @@
     </div>
   {% endif %}
 
-  {% if section.settings.title != blank and section.settings.show_title %}
-    <div class="video-container__title" style="margin-top: var(--space-s);">
-      <p class="heading--xl">{{ section.settings.title }}</p>
+  {% if show_title and title != blank %}
+    <div class="video-container__title">
+      <p class="heading--xl">{{ title }}</p>
     </div>
   {% endif %}
 </div>
