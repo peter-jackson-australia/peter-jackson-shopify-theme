@@ -1,36 +1,4 @@
-<style>
-  .video-container {
-    position: relative;
-    width: 100%;
-    padding: var(--space-2xl) var(--space-m);
-    overflow: hidden;
-  }
-
-  .video-container__video {
-    width: 100%;
-    display: block;
-    position: relative;
-  }
-
-  .video-container__video > video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  .video-container--full-width {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .video-container--contained {
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0 var(--space-m);
-  }
-</style>
+{{ 'section-video.css' | asset_url | stylesheet_tag }}
 
 {% assign width = section.settings.width %}
 {% assign id = section.id %}
