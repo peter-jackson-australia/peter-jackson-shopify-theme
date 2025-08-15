@@ -93,16 +93,19 @@
   }
 </style>
 
+{% assign title = collection.title %}
+{% assign related_collections = collection.metafields.custom.related_collections %}
+
 <div class="collection-header">
   <div class="collection-header__wrapper">
     <div class="collection-header__title">
-      <h1 class="heading--xl">{{ collection.title }}</h1>
+      <h1 class="heading--xl">{{ title }}</h1>
     </div>
 
     <div class="collection-header__related custom-scrollbar">
-      {% if collection.metafields.custom.related_collections %}
+      {% if related_collections %}
         <ul class="collection-header__list">
-          {% for collection_ref in collection.metafields.custom.related_collections.value %}
+          {% for collection_ref in related_collections.value %}
             {% assign related_collection = collection_ref %}
             <li class="collection-header__item">
               <a href="{{ related_collection.url }}" class="collection-header__link body--uppercase">
