@@ -57,22 +57,6 @@
             "column_link_text": "Shop Now"
           }
         },
-        "column_item_wV9m9x": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34341_copy_2.webp",
-            "image_link": "shopify://products/genoa-taupe-technical-twill-field-jacket",
-            "heading": "",
-            "heading_animation": "none",
-            "text": "",
-            "text_animation": "none",
-            "show_gradient_overlay": false,
-            "content_horizontal_alignment": "center",
-            "content_vertical_alignment": "center",
-            "column_link": "",
-            "column_link_text": "Shop Now"
-          }
-        },
         "column_item_twi3Jn": {
           "type": "column_item",
           "settings": {
@@ -88,12 +72,28 @@
             "column_link": "",
             "column_link_text": "Shop Now"
           }
+        },
+        "column_item_wV9m9x": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34341_copy_2.webp",
+            "image_link": "shopify://products/genoa-taupe-technical-twill-field-jacket",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "center",
+            "content_vertical_alignment": "center",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
         }
       },
       "block_order": [
         "column_item_34GMTd",
-        "column_item_wV9m9x",
-        "column_item_twi3Jn"
+        "column_item_twi3Jn",
+        "column_item_wV9m9x"
       ],
       "name": "Variable Column Content Tertiary",
       "settings": {
