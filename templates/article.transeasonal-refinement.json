@@ -158,25 +158,64 @@
         "button_link": ""
       }
     },
-    "variable_column_content_Dw4r8Q": {
-      "type": "variable-column-content",
-      "name": "Variable Column Content",
+    "variable_column_content_secondary_Wfmfxi": {
+      "type": "variable-column-content-secondary",
+      "blocks": {
+        "column_item_U9xHRY": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34725_copy_2.webp",
+            "image_link": "",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_4eRYBQ": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34789_copy_2.webp",
+            "image_link": "",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_AUWqE8": {
+          "type": "column_item",
+          "settings": {
+            "image_link": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_U9xHRY",
+        "column_item_4eRYBQ",
+        "column_item_AUWqE8"
+      ],
+      "name": "Variable Column Content Secondary",
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
-        "column_count": "3",
+        "column_count": "2",
         "text_alignment": "left",
-        "animate_images": false,
-        "image_1_link": "",
-        "image_2_link": "",
-        "image_3_link": "",
-        "image_4_link": "",
-        "image_5_link": "",
-        "image_6_link": "",
-        "heading": "Variable Column Content",
+        "animate_columns": false,
+        "heading": "Off-Duty Overshirts",
         "heading_animation": "none",
-        "text": "Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.",
+        "text": "And for those days off when you just need to run some errands? Wearing a fitted t-shirt with a more structured overshirt creates a laid back look that you can be proud to leave the house in.",
         "text_animation": "none",
         "button_label": "Learn More",
         "button_link": ""
@@ -189,6 +228,6 @@
     "variable_column_content_tertiary_LT7464",
     "hero_primary_feCpm7",
     "image_with_text_RRTVz8",
-    "variable_column_content_Dw4r8Q"
+    "variable_column_content_secondary_Wfmfxi"
   ]
 }
