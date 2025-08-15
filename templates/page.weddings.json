@@ -65,149 +65,6 @@
         "show_bottom_border": false
       }
     },
-    "link_list_CgrPKB": {
-      "type": "link-list",
-      "blocks": {
-        "link_q3jjJJ": {
-          "type": "link",
-          "settings": {
-            "link_text": "Classic",
-            "link_url": "shopify://collections/traditional-mens-wedding-suits"
-          }
-        },
-        "link_TGCBfH": {
-          "type": "link",
-          "settings": {
-            "link_text": "Cocktail",
-            "link_url": "shopify://collections/black-tie-wedding-and-attire"
-          }
-        },
-        "link_pMkCjH": {
-          "type": "link",
-          "settings": {
-            "link_text": "Casual",
-            "link_url": "shopify://collections/casual-weddings"
-          }
-        },
-        "link_ycB3aB": {
-          "type": "link",
-          "settings": {
-            "link_text": "Country",
-            "link_url": "shopify://collections/country-weddings"
-          }
-        },
-        "link_XtAPea": {
-          "type": "link",
-          "settings": {
-            "link_text": "Winery",
-            "link_url": "shopify://collections/garden-and-winery-weddings"
-          }
-        },
-        "link_iFDFxx": {
-          "type": "link",
-          "settings": {
-            "link_text": "Beach",
-            "link_url": "shopify://collections/beach-weddings"
-          }
-        },
-        "link_qeGzRk": {
-          "type": "link",
-          "settings": {
-            "link_text": "Groomsmen & Guests",
-            "link_url": "shopify://collections/groomsmen-and-wedding-guests"
-          }
-        }
-      },
-      "block_order": [
-        "link_q3jjJJ",
-        "link_TGCBfH",
-        "link_pMkCjH",
-        "link_ycB3aB",
-        "link_XtAPea",
-        "link_iFDFxx",
-        "link_qeGzRk"
-      ],
-      "name": "Link List",
-      "settings": {
-        "heading": "Discover The Collections",
-        "alignment": "right",
-        "show_top_border": true,
-        "show_bottom_border": false
-      }
-    },
-    "variable_column_content_tertiary_r9bnR6": {
-      "type": "variable-column-content-tertiary",
-      "blocks": {
-        "column_item_NqeYRT": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/peter-jackson-suits-weddings-wedding-suits-menswear-australia-suits-2.webp",
-            "image_link": "",
-            "heading": "",
-            "heading_animation": "none",
-            "text": "",
-            "text_animation": "none",
-            "show_gradient_overlay": false,
-            "content_horizontal_alignment": "center",
-            "content_vertical_alignment": "center",
-            "column_link": "",
-            "column_link_text": ""
-          }
-        },
-        "column_item_ebbBRq": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/peter-jackson-suits-weddings-wedding-suits-menswear-australia-suits-1.webp",
-            "image_link": "",
-            "heading": "",
-            "heading_animation": "none",
-            "text": "",
-            "text_animation": "none",
-            "show_gradient_overlay": false,
-            "content_horizontal_alignment": "center",
-            "content_vertical_alignment": "center",
-            "column_link": "",
-            "column_link_text": ""
-          }
-        },
-        "column_item_Cj6wG7": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/peter-jackson-suits-weddings-wedding-suits-menswear-australia-suits-3.webp",
-            "image_link": "",
-            "heading": "",
-            "heading_animation": "none",
-            "text": "",
-            "text_animation": "none",
-            "show_gradient_overlay": false,
-            "content_horizontal_alignment": "center",
-            "content_vertical_alignment": "center",
-            "column_link": "",
-            "column_link_text": ""
-          }
-        }
-      },
-      "block_order": [
-        "column_item_NqeYRT",
-        "column_item_ebbBRq",
-        "column_item_Cj6wG7"
-      ],
-      "name": "Variable Column Content Tertiary",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": true,
-        "show_bottom_border": false,
-        "column_count": "3",
-        "text_alignment": "left",
-        "animate_columns": false,
-        "heading": "",
-        "heading_animation": "none",
-        "text": "",
-        "text_animation": "none",
-        "button_label": "",
-        "button_link": ""
-      }
-    },
     "link_list_6GFMGG": {
       "type": "link-list",
       "blocks": {
@@ -232,13 +89,6 @@
             "link_url": "shopify://collections/mens-footwear"
           }
         },
-        "link_GiXE3i": {
-          "type": "link",
-          "settings": {
-            "link_text": "Tailoring",
-            "link_url": "shopify://pages/made-to-measure"
-          }
-        },
         "link_pzJUpD": {
           "type": "link",
           "settings": {
@@ -251,15 +101,87 @@
         "link_CRWWcw",
         "link_j6GCjm",
         "link_DWdkqE",
-        "link_GiXE3i",
         "link_pzJUpD"
       ],
       "name": "Link List",
       "settings": {
-        "heading": "",
-        "alignment": "center",
-        "show_top_border": false,
+        "heading": "Discover The Collections",
+        "alignment": "right",
+        "show_top_border": true,
         "show_bottom_border": false
+      }
+    },
+    "variable_column_content_tertiary_r9bnR6": {
+      "type": "variable-column-content-tertiary",
+      "blocks": {
+        "column_item_NqeYRT": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-suits-weddings-wedding-suits-menswear-australia-suits-2.webp",
+            "image_link": "",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "center",
+            "content_vertical_alignment": "center",
+            "column_link": "shopify://collections/black-tie-wedding-and-attire",
+            "column_link_text": ""
+          }
+        },
+        "column_item_ebbBRq": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-suits-weddings-wedding-suits-menswear-australia-suits-1.webp",
+            "image_link": "",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "center",
+            "content_vertical_alignment": "center",
+            "column_link": "shopify://collections/garden-and-winery-weddings",
+            "column_link_text": ""
+          }
+        },
+        "column_item_Cj6wG7": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/peter-jackson-suits-weddings-wedding-suits-menswear-australia-suits-3.webp",
+            "image_link": "",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "center",
+            "content_vertical_alignment": "center",
+            "column_link": "shopify://collections/beach-weddings",
+            "column_link_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_item_NqeYRT",
+        "column_item_ebbBRq",
+        "column_item_Cj6wG7"
+      ],
+      "name": "Variable Column Content Tertiary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "column_count": "3",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "",
+        "heading_animation": "none",
+        "text": "",
+        "text_animation": "none",
+        "button_label": "",
+        "button_link": ""
       }
     },
     "image_with_text_kQ4Vat": {
@@ -531,9 +453,8 @@
   },
   "order": [
     "collection_slider_header_wMdfyj",
-    "link_list_CgrPKB",
-    "variable_column_content_tertiary_r9bnR6",
     "link_list_6GFMGG",
+    "variable_column_content_tertiary_r9bnR6",
     "image_with_text_kQ4Vat",
     "image_gallery_slider_P7mDJC",
     "faqs_npVnk4",
