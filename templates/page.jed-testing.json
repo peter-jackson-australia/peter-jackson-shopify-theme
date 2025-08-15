@@ -57,9 +57,9 @@
         "show_title": true,
         "width": "contained",
         "aspect_ratio": "16-9",
-        "autoplay": false,
-        "loop": false,
-        "muted": false
+        "autoplay": true,
+        "loop": true,
+        "muted": true
       }
     },
     "video_7P7wFC": {
@@ -75,9 +75,9 @@
         "show_title": false,
         "width": "contained",
         "aspect_ratio": "16-9",
-        "autoplay": false,
-        "loop": false,
-        "muted": false
+        "autoplay": true,
+        "loop": true,
+        "muted": true
       }
     }
   },
