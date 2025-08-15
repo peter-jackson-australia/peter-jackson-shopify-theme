@@ -71,37 +71,29 @@
         "link_CRWWcw": {
           "type": "link",
           "settings": {
-            "link_text": "Wedding & Formal Shirts",
-            "link_url": "shopify://collections/formal-shirts"
+            "link_text": "Wedding Ties, Bowties & Pocket Squares",
+            "link_url": "shopify://collections/wedding-ties-bowties"
           }
         },
         "link_j6GCjm": {
           "type": "link",
           "settings": {
-            "link_text": "Ties",
-            "link_url": "shopify://collections/ties"
+            "link_text": "Wedding Shoes & Belts",
+            "link_url": "shopify://collections/wedding-shoes-belts"
           }
         },
         "link_DWdkqE": {
           "type": "link",
           "settings": {
-            "link_text": "Shoes",
-            "link_url": "shopify://collections/mens-footwear"
-          }
-        },
-        "link_pzJUpD": {
-          "type": "link",
-          "settings": {
-            "link_text": "Accessories",
-            "link_url": "shopify://collections/mens-accessories"
+            "link_text": "Wedding Cufflinks & Tie Bars",
+            "link_url": "shopify://collections/wedding-cufflinks-tie-bars"
           }
         }
       },
       "block_order": [
         "link_CRWWcw",
         "link_j6GCjm",
-        "link_DWdkqE",
-        "link_pzJUpD"
+        "link_DWdkqE"
       ],
       "name": "Link List",
       "settings": {
