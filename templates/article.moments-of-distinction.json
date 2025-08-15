@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "collection_slider_header_wMdfyj": {
       "type": "collection-slider-header",
@@ -121,12 +121,12 @@
             "image_link": "",
             "heading": "",
             "heading_animation": "none",
-            "text": "",
+            "text": "Garden & Winery Weddings",
             "text_animation": "none",
             "show_gradient_overlay": false,
-            "content_horizontal_alignment": "center",
-            "content_vertical_alignment": "center",
-            "column_link": "shopify://collections/black-tie-wedding-and-attire",
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "shopify://collections/garden-and-winery-weddings",
             "column_link_text": ""
           }
         },
@@ -137,12 +137,12 @@
             "image_link": "",
             "heading": "",
             "heading_animation": "none",
-            "text": "",
+            "text": "Black-Tie Wedding Suits and Attire",
             "text_animation": "none",
             "show_gradient_overlay": false,
-            "content_horizontal_alignment": "center",
-            "content_vertical_alignment": "center",
-            "column_link": "shopify://collections/garden-and-winery-weddings",
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "shopify://collections/black-tie-wedding-and-attire",
             "column_link_text": ""
           }
         },
@@ -153,11 +153,11 @@
             "image_link": "",
             "heading": "",
             "heading_animation": "none",
-            "text": "",
+            "text": "Beach & Summer Weddings",
             "text_animation": "none",
             "show_gradient_overlay": false,
-            "content_horizontal_alignment": "center",
-            "content_vertical_alignment": "center",
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
             "column_link": "shopify://collections/beach-weddings",
             "column_link_text": ""
           }
