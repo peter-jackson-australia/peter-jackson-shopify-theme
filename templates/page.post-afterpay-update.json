@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "hero_slider_BqbBaU": {
       "type": "hero-slider",
@@ -19,9 +19,9 @@
             "desktop_image": "shopify://shop_images/Afterpay_Day_Hero_Desktop.webp",
             "mobile_image": "shopify://shop_images/Afterpay_Hero_Mobile.webp",
             "heading": "Afterpay Day Sale",
-            "svg_image": "shopify://shop_images/AfterPay_Hero.svg",
+            "svg_image": "shopify://shop_images/Best_Of_Sale.svg",
             "svg_size": "medium",
-            "mobile_svg_image": "shopify://shop_images/AfterPay_Hero.svg",
+            "mobile_svg_image": "shopify://shop_images/Best_Of_Sale.svg",
             "heading_level": "h1",
             "heading_animation": "none",
             "description": "Up to 40% Off + Additional 10% Off with code AFTER10",
