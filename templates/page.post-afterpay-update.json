@@ -12,6 +12,34 @@
     "hero_slider_BqbBaU": {
       "type": "hero-slider",
       "blocks": {
+        "slide_t97XYU": {
+          "type": "slide",
+          "settings": {
+            "media_type": "video",
+            "video": "shopify://files/videos/Transeasonal Refinement (HP Final).mp4",
+            "mobile_video": "shopify://files/videos/Transeasonal Refinement 916 mob.mp4",
+            "heading": "The Best of Sale",
+            "svg_image": "shopify://shop_images/Best_Of_Sale.svg",
+            "svg_size": "medium",
+            "mobile_svg_image": "shopify://shop_images/Best_Of_Sale.svg",
+            "heading_level": "h1",
+            "heading_animation": "none",
+            "description": "Up to 40% Off Select Styles",
+            "description_animation": "none",
+            "button_label_1": "Shop Sale",
+            "button_link_1": "shopify://collections/sale",
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_label_3": "",
+            "button_link_3": "",
+            "button_label_4": "",
+            "button_link_4": "",
+            "horizontal_alignment": "left",
+            "vertical_alignment": "middle",
+            "mobile_horizontal_alignment": "left",
+            "mobile_vertical_alignment": "bottom"
+          }
+        },
         "slide_GaUkHW": {
           "type": "slide",
           "settings": {
@@ -70,6 +98,7 @@
         }
       },
       "block_order": [
+        "slide_t97XYU",
         "slide_GaUkHW",
         "slide_fHpYVA"
       ],
