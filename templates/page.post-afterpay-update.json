@@ -9,6 +9,35 @@
  */
 {
   "sections": {
+    "hero_primary_Ri8wik": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "media_type": "video",
+        "video": "shopify://files/videos/Transeasonal Refinement (HP Final).mp4",
+        "mobile_video": "shopify://files/videos/Transeasonal Refinement 916 mob.mp4",
+        "heading": "Transeasonal Refinement",
+        "svg_image": "shopify://shop_images/Transeasonal_Refinement_v4.svg",
+        "svg_size": "medium",
+        "mobile_svg_image": "shopify://shop_images/Transeasonal_Refinement_v4.svg",
+        "heading_level": "h1",
+        "heading_animation": "none",
+        "description": "New Season Style For The Shift Into Spring",
+        "description_animation": "none",
+        "button_label_1": "Shop New Arrivals",
+        "button_link_1": "shopify://collections/new-arrivals",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
+        "horizontal_alignment": "left",
+        "vertical_alignment": "middle",
+        "mobile_horizontal_alignment": "left",
+        "mobile_vertical_alignment": "bottom"
+      }
+    },
     "hero_slider_BqbBaU": {
       "type": "hero-slider",
       "blocks": {
@@ -104,6 +133,7 @@
         "slide_GaUkHW",
         "slide_fHpYVA"
       ],
+      "disabled": true,
       "name": "Hero Slider",
       "settings": {
         "autoplay": true,
@@ -223,35 +253,6 @@
         "button_label": "Shop Now",
         "products_to_show": 10,
         "animate_products": false
-      }
-    },
-    "hero_primary_Ri8wik": {
-      "type": "hero-primary",
-      "name": "Hero Section",
-      "settings": {
-        "media_type": "video",
-        "video": "shopify://files/videos/Transeasonal Refinement (HP Final).mp4",
-        "mobile_video": "shopify://files/videos/Transeasonal Refinement 916 mob.mp4",
-        "heading": "Transeasonal Refinement",
-        "svg_image": "shopify://shop_images/Transeasonal_Refinement_v3_2ad8a9f1-dfbf-45c7-adb7-06efb6724b91.svg",
-        "svg_size": "medium",
-        "mobile_svg_image": "shopify://shop_images/Transeasonal_Refinement_v3_2ad8a9f1-dfbf-45c7-adb7-06efb6724b91.svg",
-        "heading_level": "h1",
-        "heading_animation": "none",
-        "description": "New Season Style For The Shift Into Spring",
-        "description_animation": "none",
-        "button_label_1": "Shop New Arrivals",
-        "button_link_1": "shopify://collections/new-arrivals",
-        "button_label_2": "",
-        "button_link_2": "",
-        "button_label_3": "",
-        "button_link_3": "",
-        "button_label_4": "",
-        "button_link_4": "",
-        "horizontal_alignment": "center",
-        "vertical_alignment": "middle",
-        "mobile_horizontal_alignment": "left",
-        "mobile_vertical_alignment": "bottom"
       }
     },
     "variable_column_content_tertiary_rxHymY": {
@@ -385,10 +386,10 @@
     }
   },
   "order": [
+    "hero_primary_Ri8wik",
     "hero_slider_BqbBaU",
     "hero_slider_74CCVc",
     "collection_slider_x3GMYN",
-    "hero_primary_Ri8wik",
     "variable_column_content_tertiary_rxHymY",
     "hero_primary_BACFYg",
     "blog_hero_qajTUJ"
