@@ -10,8 +10,8 @@
 {
   "current": {
     "favicon": "shopify://shop_images/favicon-peter-jackson-menswear-australia-new.png",
-    "klaviyo_newsletter_image_1": "https://d3k81ch9hvuctc.cloudfront.net/company/VLyhSf/images/c1ff582a-77ca-4662-8c15-6fccc62f6494.jpeg",
-    "klaviyo_newsletter_image_2": "https://d3k81ch9hvuctc.cloudfront.net/company/VLyhSf/images/3b781f1d-b00d-48f3-bf59-7ac5ddd0318f.jpeg",
+    "klaviyo_newsletter_image_1": "https://d3k81ch9hvuctc.cloudfront.net/company/VLyhSf/images/fc65f7b2-4f71-4144-a5f3-d251947217a2.jpeg",
+    "klaviyo_newsletter_image_2": "https://d3k81ch9hvuctc.cloudfront.net/company/VLyhSf/images/fc65f7b2-4f71-4144-a5f3-d251947217a2.jpeg",
     "newsletter_popup": false,
     "newsletter_heading": "Newsletter Sign-up",
     "newsletter_text": "This is the built-in newsletter signup pop-up form, which you can customise as required.",
@@ -29,11 +29,6 @@
     "blocks": {
       "855628211100114053": {
         "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
-        "disabled": false,
-        "settings": {}
-      },
-      "2567389343055140935": {
-        "type": "shopify://apps/microsoft-clarity/blocks/clarity_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
         "disabled": false,
         "settings": {}
       }
