@@ -12,5 +12,14 @@
   "context": {
     "market": "au"
   },
-  "sections": {}
+  "sections": {
+    "hero_primary_BziPcX": {
+      "settings": {
+        "svg_image": "shopify://shop_images/Best_Of_Sale_V4.svg",
+        "mobile_svg_image": null,
+        "heading": "THE BEST OF SALE"
+      },
+      "blocks": {}
+    }
+  }
 }
