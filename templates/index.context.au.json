@@ -12,5 +12,21 @@
   "context": {
     "market": "au"
   },
-  "sections": {}
+  "sections": {
+    "hero_primary_g4DAQ6": {
+      "settings": {
+        "svg_image": "shopify://shop_images/Light_Of_Spring_v3.svg",
+        "svg_size": "small",
+        "mobile_svg_image": "shopify://shop_images/Light_Of_Spring_V2.svg",
+        "description": "Explore Our Spring Collection"
+      },
+      "blocks": {}
+    },
+    "hero_primary_BziPcX": {
+      "settings": {
+        "svg_image": "shopify://shop_images/Best_Of_Sale_V7.svg"
+      },
+      "blocks": {}
+    }
+  }
 }
