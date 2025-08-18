@@ -15,9 +15,17 @@
   "sections": {
     "hero_primary_BziPcX": {
       "settings": {
-        "svg_image": "shopify://shop_images/Best_Of_Sale_V4.svg",
-        "mobile_svg_image": null,
-        "heading": "THE BEST OF SALE"
+        "heading": "THE BEST OF SALE",
+        "svg_image": "shopify://shop_images/Best_Of_Sale_V6.svg"
+      },
+      "blocks": {}
+    },
+    "hero_primary_g4DAQ6": {
+      "settings": {
+        "svg_image": "shopify://shop_images/Light_Of_Spring.svg",
+        "mobile_svg_image": "shopify://shop_images/Light_Of_Spring.svg",
+        "heading": "THE FIRST LIGHT OF SPRING",
+        "description": "Explore An Edit Of Our Spring Collection"
       },
       "blocks": {}
     }
