@@ -24,7 +24,8 @@
     },
     "hero_primary_BziPcX": {
       "settings": {
-        "svg_image": "shopify://shop_images/Best_Of_Sale_V7.svg"
+        "svg_image": "shopify://shop_images/Best_Of_Sale_V7.svg",
+        "mobile_svg_image": "shopify://shop_images/Best_Of_Sale_V7.svg"
       },
       "blocks": {}
     }
