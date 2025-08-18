@@ -188,11 +188,11 @@
   }
 
   @media (min-width: 1000px) {
-    .product-card__image-wrapper:hover .product-card__image--first {
+    .product-card__image-wrapper:has(.product-card__image--second):hover .product-card__image--first {
       opacity: 0;
     }
 
-    .product-card__image-wrapper:hover .product-card__image--second {
+    .product-card__image-wrapper:has(.product-card__image--second):hover .product-card__image--second {
       opacity: 1;
     }
   }
