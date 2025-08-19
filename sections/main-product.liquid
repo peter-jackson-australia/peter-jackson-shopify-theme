@@ -1373,16 +1373,16 @@
     function updateStickyProductInfo() {
       const stickyInfo = document.querySelector('.js--sticky-product-info');
       if (!stickyInfo) return;
-
+    
       const selectedOptions = getSelectedVariantOptions();
-      const currentVar = getCurrentVariant();
+      const mainPrice = document.querySelector('.js--variant-price');
       
       let variantString = '';
       if (selectedOptions.length > 0) {
         variantString = ' ' + selectedOptions.join(' / ');
       }
       
-      const priceString = ' - ' + formatPrice(currentVar.price);
+      const priceString = mainPrice ? ' - ' + mainPrice.textContent.trim() : '';
       
       stickyInfo.innerHTML = '<span class="heading--l">' + product_title + ':</span>' + variantString + priceString;
     }
