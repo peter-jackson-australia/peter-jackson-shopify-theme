@@ -1363,13 +1363,6 @@
       }) || current_variant;
     }
 
-    function formatPrice(price) {
-      return (price / 100).toLocaleString('en-US', {
-        style: 'currency',
-        currency: 'USD'
-      });
-    }
-
     function updateStickyProductInfo() {
       const stickyInfo = document.querySelector('.js--sticky-product-info');
       if (!stickyInfo) return;
