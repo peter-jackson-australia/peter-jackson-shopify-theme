@@ -372,7 +372,7 @@
           "type": "faq_item",
           "settings": {
             "question": "Can I book a wedding party consultation or fitting in advance?",
-            "answer": "<p>Any of our stores should be able to accommodate you on short notice if you're unable to organise a booking. That being said, it's always best to plan ahead, and you can do so through our website [include link to website booking or remove if unavailable] or by giving your local store a call to discuss a time that works best.</p>"
+            "answer": "<p>Any of our stores should be able to accommodate you on short notice if you're unable to organise a booking. That being said, it's always best to plan ahead, and you can do so through our website by <a href=\"https://peterjacksons.com/pages/made-to-measure\" title=\"https://peterjacksons.com/pages/made-to-measure\">clicking here</a> or by giving your local store a call to discuss a time that works best.</p>"
           }
         },
         "faq_item_pYwxMB": {
