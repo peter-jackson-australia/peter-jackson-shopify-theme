@@ -361,12 +361,14 @@
         </div>
       </header>
 
-      <div class="cart__shipping" style="display: none;">
-        <p class="cart__shipping-text small"></p>
-        <div class="cart__shipping-bar">
-          <div class="cart__shipping-progress"></div>
+      {% if localization.market.handle == 'au' %}
+        <div class="cart__shipping" style="display: none;">
+          <p class="cart__shipping-text small"></p>
+          <div class="cart__shipping-bar">
+            <div class="cart__shipping-progress"></div>
+          </div>
         </div>
-      </div>
+      {% endif %}
 
       {% form 'cart', cart, class: 'cart__form' %}
         {% if cart.item_count == 0 %}

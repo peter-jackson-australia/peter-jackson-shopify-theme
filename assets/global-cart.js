@@ -430,13 +430,17 @@ function initializeEmptyCartStructure(emptyStateElement) {
   emptyStateElement.remove();
 
   const sliderHTMLContent = generateComplementarySliderHTML();
-  cartFormElement.innerHTML = `
+  const shippingHTML = document.querySelector(".cart__shipping") ? `
     <div class="cart__shipping cart__shipping--loading" style="display: block; height: 93px;">
       <p class="cart__shipping-text small">${createLoadingBarElement().outerHTML}</p>
       <div class="cart__shipping-bar">
         <div class="cart__shipping-progress"></div>
       </div>
     </div>
+  ` : '';
+
+  cartFormElement.innerHTML = `
+    ${shippingHTML}
     <div class="cart__items"></div>
     <div class="cart__complementary-products" style="display: block;">
       ${sliderHTMLContent}
@@ -609,15 +613,15 @@ function attachCartInteractionListeners() {
   const deleteCartItem = async (itemElement, itemKey) => {
     const totalItemCount = document.querySelectorAll(".cart-item").length;
     itemElement.style.display = "none";
-
+  
     if (totalItemCount === 1) {
       const shippingBar = document.querySelector(".cart__shipping");
       if (shippingBar) shippingBar.style.display = "none";
     }
-
+  
     showCartTotalsLoading();
     recreateComplementarySlider(getOtherProductHandles(itemKey));
-
+  
     try {
       await fetch("/cart/update.js", {
         method: "post",
