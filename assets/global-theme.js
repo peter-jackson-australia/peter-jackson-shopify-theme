@@ -26,7 +26,7 @@ function getParam(name) {
 }
 
 var Shopify = Shopify || {};
-Shopify.money_format = "${{amount}}";
+Shopify.money_format = Shopify.money_format || "${{amount}}";
 Shopify.formatMoney = function (cents, format) {
   if (typeof cents == "string") {
     cents = cents.replace(".", "");

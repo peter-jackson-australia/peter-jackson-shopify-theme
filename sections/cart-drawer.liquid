@@ -130,6 +130,10 @@
     text-overflow: ellipsis;
   }
 
+  .cart-item__price {
+    white-space: nowrap;
+  }
+
   .cart-item__quantity {
     display: flex;
     align-items: center;
@@ -279,6 +283,9 @@
 
   .cart__new-arrivals-price {
     color: var(--neutral-950);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 
   .cart__new-arrivals-price--compare {
@@ -394,10 +401,10 @@
                       </div>
                       <h3 class="body--bold cart__new-arrivals-title">{{ product.title }}</h3>
                       <p class="small cart__new-arrivals-price">
-                        <span class="cart__new-arrivals-price--current">{{ product.price | money }}</span>
+                        <span class="cart__new-arrivals-price--current">{{ product.price | money_with_currency }}</span>
                         {% if product.compare_at_price > product.price %}
                           <span class="cart__new-arrivals-price--compare">
-                            {{- product.compare_at_price | money -}}
+                            {{- product.compare_at_price | money_with_currency -}}
                           </span>
                         {% endif %}
                       </p>
@@ -453,7 +460,7 @@
                             <p class="cart-item__variant small">One Size</p>
                           {% endif %}
                           <div class="cart-item__price">
-                            <p class="small">{{ item.final_line_price | money }}</p>
+                            <p class="small">{{ item.final_line_price | money_with_currency }}</p>
                           </div>
                         </div>
                         <div class="cart-item__actions">
@@ -529,12 +536,12 @@
             {% if cart.total_discounts > 0 %}
               <div class="cart__footer-row">
                 <h3 class="cart__footer-label body">Discounts</h3>
-                <span class="cart__footer-value body--bold">{{ cart.total_discounts | money }}</span>
+                <span class="cart__footer-value body--bold">{{ cart.total_discounts | money_with_currency }}</span>
               </div>
             {% endif %}
             <div class="cart__footer-row">
               <h3 class="cart__footer-label body">Subtotal</h3>
-              <span class="cart__footer-value body--bold">{{ cart.total_price | money }}</span>
+              <span class="cart__footer-value body--bold">{{ cart.total_price | money_with_currency }}</span>
             </div>
             <button type="submit" name="checkout" class="cart__checkout body">Checkout</button>
           </footer>

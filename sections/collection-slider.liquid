@@ -192,12 +192,14 @@
 
                     <p class="small collection-slider__product-price">
                       {% if product.compare_at_price > product.price %}
-                        <span class="collection-slider__product-price--sale">{{ product.price | money }}</span>
+                        <span class="collection-slider__product-price--sale">
+                          {{- product.price | money_with_currency -}}
+                        </span>
                         <span class="collection-slider__product-price--compare">
-                          {{- product.compare_at_price | money -}}
+                          {{- product.compare_at_price | money_with_currency -}}
                         </span>
                       {% else %}
-                        {{ product.price | money }}
+                        {{ product.price | money_with_currency }}
                       {% endif %}
                     </p>
                   </a>

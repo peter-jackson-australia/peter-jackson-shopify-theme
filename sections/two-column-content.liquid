@@ -96,7 +96,9 @@
                   <p class="two-column-content__model-wearing heading--l">Model Is Wearing:</p>
                   <p class="two-column-content__product-name body">
                     {{ product_data.title }}:
-                    <span class="two-column-content__product-price body">{{ product_data.price | money }}</span>
+                    <span class="two-column-content__product-price body">
+                      {{- product_data.price | money_with_currency -}}
+                    </span>
                   </p>
                 </div>
                 <a href="{{ product_data.url }}" class="two-column-content__product-link body">

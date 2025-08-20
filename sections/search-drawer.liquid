@@ -341,6 +341,9 @@
 
   .search-drawer__product-price {
     color: var(--neutral-950);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 
   .search-drawer__product-price--compare {
@@ -601,10 +604,10 @@
                 <h3 class="body--bold search-drawer__product-title">{{ product.title }}</h3>
 
                 <p class="small search-drawer__product-price">
-                  <span class="search-drawer__product-price--current">{{ product.price | money }}</span>
+                  <span class="search-drawer__product-price--current">{{ product.price | money_with_currency }}</span>
                   {% if product.compare_at_price > product.price %}
                     <span class="search-drawer__product-price--compare">
-                      {{- product.compare_at_price | money -}}
+                      {{- product.compare_at_price | money_with_currency -}}
                     </span>
                   {% endif %}
                 </p>

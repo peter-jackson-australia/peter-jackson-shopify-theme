@@ -202,6 +202,7 @@
   .product-details__price {
     display: flex;
     gap: var(--space-xs);
+    white-space: nowrap;
   }
 
   .product-details__compare-price {
@@ -864,11 +865,11 @@
           <div class="product-details__price">
             {% if current_variant.compare_at_price > current_variant.price %}
               <span class="product-details__compare-price body js--variant-compareatprice">
-                {{ current_variant.compare_at_price | money }}
+                {{ current_variant.compare_at_price | money_with_currency }}
               </span>
             {% endif %}
             <span class="product-details__price-actual body js--variant-price">
-              {{ current_variant.price | money }}
+              {{ current_variant.price | money_with_currency }}
             </span>
           </div>
         </div>
@@ -1134,11 +1135,11 @@
     <div class="sticky-cart-bar__price-container">
       {% if current_variant.compare_at_price > current_variant.price %}
         <span class="sticky-cart-bar__compare-price body js--sticky-compare-price">
-          {{ current_variant.compare_at_price | money }}
+          {{ current_variant.compare_at_price | money_with_currency }}
         </span>
       {% endif %}
       <span class="sticky-cart-bar__price body js--sticky-price">
-        {{ current_variant.price | money }}
+        {{ current_variant.price | money_with_currency }}
       </span>
     </div>
 
@@ -1149,11 +1150,11 @@
       <div class="sticky-cart-bar__mobile-price-container">
         {% if current_variant.compare_at_price > current_variant.price %}
           <span class="sticky-cart-bar__mobile-compare-price body js--sticky-mobile-compare-price">
-            {{ current_variant.compare_at_price | money }}
+            {{ current_variant.compare_at_price | money_with_currency }}
           </span>
         {% endif %}
         <span class="sticky-cart-bar__mobile-price body js--sticky-mobile-price">
-          {{ current_variant.price | money }}
+          {{ current_variant.price | money_with_currency }}
         </span>
       </div>
     </div>
@@ -1171,6 +1172,8 @@
 </div>
 
 <script>
+  window.Shopify = window.Shopify || {};
+  Shopify.money_format = {{ shop.money_with_currency_format | json }};
   document.addEventListener('DOMContentLoaded', function () {
     
     if (typeof Alpine === 'undefined') {

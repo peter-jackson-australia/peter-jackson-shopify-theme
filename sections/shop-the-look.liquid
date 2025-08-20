@@ -210,12 +210,12 @@
 
                       <p class="small shop-the-look__product-price">
                         {% if item.compare_at_price > item.price %}
-                          <span class="shop-the-look__product-price--sale">{{ item.price | money }}</span>
+                          <span class="shop-the-look__product-price--sale">{{ item.price | money_with_currency }}</span>
                           <span class="shop-the-look__product-price--compare">
-                            {{- item.compare_at_price | money -}}
+                            {{- item.compare_at_price | money_with_currency -}}
                           </span>
                         {% else %}
-                          {{ item.price | money }}
+                          {{ item.price | money_with_currency }}
                         {% endif %}
                       </p>
                     </a>
@@ -253,12 +253,14 @@
 
               <p class="small shop-the-look__product-price">
                 {% if single_product.compare_at_price > single_product.price %}
-                  <span class="shop-the-look__product-price--sale">{{ single_product.price | money }}</span>
+                  <span class="shop-the-look__product-price--sale">
+                    {{- single_product.price | money_with_currency -}}
+                  </span>
                   <span class="shop-the-look__product-price--compare">
-                    {{- single_product.compare_at_price | money -}}
+                    {{- single_product.compare_at_price | money_with_currency -}}
                   </span>
                 {% else %}
-                  {{ single_product.price | money }}
+                  {{ single_product.price | money_with_currency }}
                 {% endif %}
               </p>
             </a>

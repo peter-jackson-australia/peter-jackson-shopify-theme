@@ -458,12 +458,12 @@
                       id="Filter-{{ filter.min_value.param_name }}"
                       class="filter__price-input"
                       {% if filter.min_value.value -%}
-                        value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
+                        value="{{ filter.min_value.value | money | replace: ',', '' }}"
                       {%- endif %}
                       type="number"
                       placeholder="0"
                       min="0"
-                      max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                      max="{{ filter.range_max | money | replace: ',', '' }}"
                     >
                   </div>
                 </div>

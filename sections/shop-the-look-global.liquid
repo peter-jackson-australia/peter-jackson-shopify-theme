@@ -225,12 +225,14 @@
 
                         <p class="small shop-the-look-global__product-price">
                           {% if product.compare_at_price_max > product.price %}
-                            <span class="shop-the-look-global__product-price--sale">{{ product.price | money }}</span>
+                            <span class="shop-the-look-global__product-price--sale">
+                              {{- product.price | money_with_currency -}}
+                            </span>
                             <span class="shop-the-look-global__product-price--compare">
-                              {{- product.compare_at_price_max | money -}}
+                              {{- product.compare_at_price_max | money_with_currency -}}
                             </span>
                           {% else %}
-                            {{ product.price | money }}
+                            {{ product.price | money_with_currency }}
                           {% endif %}
                         </p>
                       </a>
@@ -261,12 +263,14 @@
 
                         <p class="small shop-the-look-global__product-price">
                           {% if product.compare_at_price_max > product.price %}
-                            <span class="shop-the-look-global__product-price--sale">{{ product.price | money }}</span>
+                            <span class="shop-the-look-global__product-price--sale">
+                              {{- product.price | money_with_currency -}}
+                            </span>
                             <span class="shop-the-look-global__product-price--compare">
-                              {{- product.compare_at_price_max | money -}}
+                              {{- product.compare_at_price_max | money_with_currency -}}
                             </span>
                           {% else %}
-                            {{ product.price | money }}
+                            {{ product.price | money_with_currency }}
                           {% endif %}
                         </p>
                       </a>
@@ -297,12 +301,14 @@
 
                         <p class="small shop-the-look-global__product-price">
                           {% if product.compare_at_price_max > product.price %}
-                            <span class="shop-the-look-global__product-price--sale">{{ product.price | money }}</span>
+                            <span class="shop-the-look-global__product-price--sale">
+                              {{- product.price | money_with_currency -}}
+                            </span>
                             <span class="shop-the-look-global__product-price--compare">
-                              {{- product.compare_at_price_max | money -}}
+                              {{- product.compare_at_price_max | money_with_currency -}}
                             </span>
                           {% else %}
-                            {{ product.price | money }}
+                            {{ product.price | money_with_currency }}
                           {% endif %}
                         </p>
                       </a>
@@ -347,12 +353,14 @@
 
               <p class="small shop-the-look-global__product-price">
                 {% if product.compare_at_price_max > product.price %}
-                  <span class="shop-the-look-global__product-price--sale">{{ product.price | money }}</span>
+                  <span class="shop-the-look-global__product-price--sale">
+                    {{- product.price | money_with_currency -}}
+                  </span>
                   <span class="shop-the-look-global__product-price--compare">
-                    {{- product.compare_at_price_max | money -}}
+                    {{- product.compare_at_price_max | money_with_currency -}}
                   </span>
                 {% else %}
-                  {{ product.price | money }}
+                  {{ product.price | money_with_currency }}
                 {% endif %}
               </p>
             </a>
