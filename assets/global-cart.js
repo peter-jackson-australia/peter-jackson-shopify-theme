@@ -164,8 +164,8 @@ async function refreshCartDrawerContent() {
           if (latestCartData.total_price >= freeShippingThreshold) {
             shippingTextElement.textContent = "Your Order Has Free Shipping!";
           } else {
-            const amountRemaining = formatCentsAsDollars(freeShippingThreshold - latestCartData.total_price);
-            shippingTextElement.textContent = `$${amountRemaining} Away From Free Shipping`;
+            const amountRemaining = Shopify.formatMoney(freeShippingThreshold - latestCartData.total_price);
+            shippingTextElement.textContent = `${amountRemaining} Away From Free Shipping`;
           }
           progressBarElement.style.width = currentProgressWidth;
         }
@@ -347,7 +347,7 @@ async function recreateComplementarySlider(productHandles) {
         }" class="cart__complementary-products-image">
           </div>
           <h3 class="body--bold cart__complementary-products-title-product">${product.title}</h3>
-          <p class="small cart__complementary-products-price">$${formatCentsAsDollars(product.price)}</p>
+          <p class="small cart__complementary-products-price">${Shopify.formatMoney(product.price)}</p>
         </a>
       </li>
     `
