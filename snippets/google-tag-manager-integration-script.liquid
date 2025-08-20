@@ -1,0 +1,34 @@
+<!-- Google Tag Manager integration script from Consentmo GDPR Compliance App -->
+<script id="consentmo-gtm-integration">
+  let isGTMExecuted = false;
+  function executeGTM() {
+    if (!isGTMExecuted) {
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-5Q4CBSD');
+      isGTMExecuted = true;
+    }
+  }
+
+  document.addEventListener('consentmoSignal_onLoad', function (eventData) {
+    const csmLoadSignal = eventData.detail || { isActive: false };
+    if (!csmLoadSignal.isActive) {
+      executeGTM();
+    } else {
+      document.addEventListener('consentmoSignal', function (event) {
+        const csmSignal = event.detail;
+        const csmPreferences = csmSignal.preferences;
+        if (csmPreferences.analytics && csmPreferences.marketing && csmPreferences.functionality) {
+          executeGTM();
+        }
+      });
+    }
+  });
+</script>
