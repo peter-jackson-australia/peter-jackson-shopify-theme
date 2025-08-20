@@ -934,7 +934,7 @@ a.skip-to-content:focus-visible {
 
 @media screen and (max-width: 768px) {
   .cc-message {
-    max-width: 100%; 
+    max-width: 100% !important; 
   }
 }
 
