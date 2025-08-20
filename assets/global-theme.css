@@ -925,3 +925,9 @@ a.skip-to-content:focus-visible {
   justify-content: center;
   align-items: center;
 }
+
+/* Cookie Banner */
+
+.cc-message {
+  max-width: 80%; 
+}
