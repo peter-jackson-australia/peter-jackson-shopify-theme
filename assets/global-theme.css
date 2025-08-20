@@ -936,7 +936,7 @@ a.skip-to-content:focus-visible {
   .cc-message {
     max-width: 100% !important; 
   }
-  .cc-banner {
+  #csm-wrapper > .cc-banner {
     width: calc(100% - var(--space-m) - var(--space-m)) !important;
     border-radius: 0px !important; 
   }
