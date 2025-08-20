@@ -12,5 +12,24 @@
   "context": {
     "market": "au"
   },
-  "sections": {}
+  "sections": {
+    "announcement": {
+      "settings": {},
+      "blocks": {
+        "announcement_ny4ip": {
+          "type": "announcement",
+          "disabled": false,
+          "settings": {
+            "text": "<a href=\"/collections/mens-suits\" title=\"Suits\">Merino Wool Suits starting from $399</a>",
+            "alignment": "center"
+          }
+        }
+      },
+      "block_order": [
+        "announcement_mQFJhL",
+        "announcement_tnUYFL",
+        "announcement_ny4ip"
+      ]
+    }
+  }
 }
