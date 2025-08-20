@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{
+ {
   "sections": {
     "hero_primary_Ri8wik": {
       "type": "hero-primary",
@@ -51,7 +51,7 @@
         "mobile_svg_image": "shopify://shop_images/Light_Of_Spring_V2.svg",
         "heading_level": "h1",
         "heading_animation": "none",
-        "description": "Explore Our Spring Collection",
+        "description": "Explore Our Spring Collection", 
         "description_animation": "none",
         "button_label_1": "Shop Drop #1",
         "button_link_1": "shopify://collections/spring-25",
@@ -77,7 +77,7 @@
         "heading": "The Best Of Sale",
         "svg_image": "shopify://shop_images/Best_Of_Sale_V7.svg",
         "svg_size": "medium",
-        "mobile_svg_image": "shopify://shop_images/Best_Of_Sale_V7.svg",
+       "mobile_svg_image": "shopify://shop_images/Best_Of_Sale_V7.svg", 
         "heading_level": "h1",
         "heading_animation": "none",
         "description": "Up to 40% Off Select Styles",
@@ -241,6 +241,79 @@
         "mobile_vertical_alignment": "bottom"
       }
     },
+    "variable_column_content_tertiary_rxHymY": {
+      "type": "variable-column-content-tertiary",
+      "blocks": {
+        "column_item_HPrcxi": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Suits_2.webp",
+            "image_link": "shopify://collections/mens-suits",
+            "heading": "Merino Wool Suits",
+            "heading_animation": "none",
+            "text": "from $399",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "shopify://collections/mens-suits",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_JTGe3a": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Business_Shirts_0be11511-3bf3-4d65-8158-f91b6f067487.webp",
+            "image_link": "",
+            "heading": "Business Shirts",
+            "heading_animation": "none",
+            "text": "Three for $259",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "shopify://collections/business-shirts",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_U7adca": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Sports_Jackets_9191253d-fd1f-49f7-bd0d-5b1391dc8624.webp",
+            "image_link": "",
+            "heading": "Sports Jackets",
+            "heading_animation": "none",
+            "text": "from $299",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "shopify://collections/sport-jackets",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_HPrcxi",
+        "column_item_JTGe3a",
+        "column_item_U7adca"
+      ],
+      "name": "Variable Column Content Tertiary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "column_count": "3",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "",
+        "heading_animation": "none",
+        "text": "",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    },
     "blog_hero_qajTUJ": {
       "type": "blog-hero",
       "name": "Blog Hero",
@@ -276,6 +349,7 @@
     "hero_slider_74CCVc",
     "collection_slider_x3GMYN",
     "hero_primary_BACFYg",
+    "variable_column_content_tertiary_rxHymY",
     "blog_hero_qajTUJ"
   ]
 }
