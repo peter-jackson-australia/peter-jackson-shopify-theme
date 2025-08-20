@@ -386,36 +386,41 @@
         <div class="menu-drawer__scrollable-content custom-scrollbar">
           <ul class="menu-drawer__menu" role="menu" id="menu-drawer__menu-1">
             {% for link in linklists['main-menu'].links %}
-              <li
-                role="none"
-                :class="{ 'menu-drawer__item--active': currentLevel >= 2 && {{ forloop.index0 }} === activeLevel1Index }"
-              >
-                {% if link.links.size > 0 %}
-                  <button
-                    @click="openLevel(2, '{{ link.title }}', {{ forloop.index0 }}, '{{ link.object.featured_image | image_url: width: 2000 }}', '{{ link.object.featured_image.alt }}')"
-                    class="menu-drawer__button menu-drawer__button--has-submenu body--uppercase"
-                    role="menuitem"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    <span :class="{ 'menu-drawer__item--inactive': currentLevel >= 2 && {{ forloop.index0 }} !== activeLevel1Index }">
-                      {{- link.title -}}
-                    </span>
-                    <span :class="{ 'menu-drawer__item--inactive': currentLevel >= 2 && {{ forloop.index0 }} !== activeLevel1Index }">
-                      {% render '_icon-arrow-see-more' %}
-                    </span>
-                  </button>
-                {% else %}
-                  <a
-                    href="{{ link.url }}"
-                    class="menu-drawer__link body--uppercase"
-                    :class="{ 'menu-drawer__item--inactive': currentLevel >= 2 }"
-                    role="menuitem"
-                  >
-                    {{ link.title }}
-                  </a>
-                {% endif %}
-              </li>
+              {% unless localization.market.handle != 'au' and link.title == 'Gift Cards' %}
+                <li
+                  role="none"
+                  :class="{ 'menu-drawer__item--active': currentLevel >= 2 && {{ forloop.index0 }} === activeLevel1Index }"
+                >
+                  {% if link.links.size > 0 %}
+                    <button
+                      @click="openLevel(2, '{{ link.title }}', {{ forloop.index0 }}, '{{ link.object.featured_image | image_url: width: 2000 }}', '{{ link.object.featured_image.alt }}')"
+                      class="menu-drawer__button menu-drawer__button--has-submenu body--uppercase"
+                      role="menuitem"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      <span :class="{ 'menu-drawer__item--inactive': currentLevel >= 2 && {{ forloop.index0 }} !== activeLevel1Index }">
+                        {{- link.title -}}
+                      </span>
+                      <span :class="{ 'menu-drawer__item--inactive': currentLevel >= 2 && {{ forloop.index0 }} !== activeLevel1Index }">
+                        {% render '_icon-arrow-see-more' %}
+                      </span>
+                    </button>
+                  {% else %}
+                    <a
+                      href="{{ link.url }}"
+                      class="menu-drawer__link body--uppercase"
+                      :class="
+                        {
+                        'menu-drawer__item--inactive': currentLevel >= 2 }
+                      "
+                      role="menuitem"
+                    >
+                      {{ link.title }}
+                    </a>
+                  {% endif %}
+                </li>
+              {% endunless %}
             {% endfor %}
           </ul>
           <div class="menu-drawer__video-container">
@@ -632,6 +637,7 @@
 
         this.menuData = [
           {% for link in linklists['main-menu'].links %}
+            {% unless localization.market.handle != 'au' and link.title == 'Gift Cards' %}
             {
               title: "{{ link.title | strip_html | replace: '"', '\"' | replace: "'", "\\'" }}",
               url: "{{ link.url }}",
@@ -655,6 +661,7 @@
                 {% endfor %}
               ]
             }{% unless forloop.last %},{% endunless %}
+            {% endunless %}
           {% endfor %}
         ];
   

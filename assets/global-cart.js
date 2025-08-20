@@ -10,23 +10,6 @@ const animatedLoadingBarSVG = `<svg fill=#E7E7E7 style=height:4px;display:block 
 const jsonRequestHeaders = { Accept: "application/json", "Content-Type": "application/json" };
 
 // Utility/helper functions
-function formatCentsAsDollars(centsAmount, displayFormat = "{{amount_with_comma_separator}}") {
-  const amountInCents = typeof centsAmount === "string" ? parseFloat(centsAmount.replace(".", "")) : centsAmount;
-  if (isNaN(amountInCents) || amountInCents == null) return "0.00";
-
-  const formatStyleName = displayFormat.replace(/[{}{\s}]/g, "");
-  const dollarAmount = (amountInCents / 100).toFixed(formatStyleName === "amount_no_decimals" ? 0 : 2);
-  const separatorFormats = {
-    amount: [",", "."],
-    amount_with_comma_separator: [".", ","],
-    amount_no_decimals: [",", "."],
-  };
-  const [thousandsSeparator, decimalSeparator] = separatorFormats[formatStyleName] || separatorFormats["amount"];
-  const [wholeDollars, decimalCents] = dollarAmount.split(".");
-  const formattedWhole = wholeDollars.replace(/\B(?=(\d{3})+(?!\d))/g, thousandsSeparator);
-  return decimalCents !== undefined ? formattedWhole + decimalSeparator + decimalCents : formattedWhole;
-}
-
 function createLoadingBarElement() {
   const loadingBarContainer = document.createElement("div");
   loadingBarContainer.innerHTML = animatedLoadingBarSVG;
