@@ -49,9 +49,11 @@
         {% endif %}
 
         {% if prominent_discount_mobile and product.metafields.custom.discount_bundle_name != blank %}
-          <p class="small product-card__discount-code-prominent">
-            {{ product.metafields.custom.discount_bundle_name | metafield_tag }}
-          </p>
+          {% if localization.market.handle == 'au' %}
+            <p class="small product-card__discount-code-prominent">
+              {{ product.metafields.custom.discount_bundle_name | metafield_tag }}
+            </p>
+          {% endif %}
         {% endif %}
       </div>
     </div>
@@ -75,18 +77,22 @@
       {% endif %}
       {% if product.metafields.custom.discount_bundle_name != blank %}
         {% unless prominent_discount_mobile %}
-          <span class="product-card__discount-code-desktop">
-            {{ product.metafields.custom.discount_bundle_name | metafield_tag }}
-          </span>
+          {% if localization.market.handle == 'au' %}
+            <span class="product-card__discount-code-desktop">
+              {{ product.metafields.custom.discount_bundle_name | metafield_tag }}
+            </span>
+          {% endif %}
         {% endunless %}
       {% endif %}
     </p>
 
     {% if product.metafields.custom.discount_bundle_name != blank %}
       {% unless prominent_discount_mobile %}
-        <p class="small product-card__discount-code-mobile">
-          {{ product.metafields.custom.discount_bundle_name | metafield_tag }}
-        </p>
+        {% if localization.market.handle == 'au' %}
+          <p class="small product-card__discount-code-mobile">
+            {{ product.metafields.custom.discount_bundle_name | metafield_tag }}
+          </p>
+        {% endif %}
       {% endunless %}
     {% endif %}
 

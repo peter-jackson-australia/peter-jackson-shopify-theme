@@ -875,9 +875,11 @@
         </div>
 
         <div class="product-details__info-container">
-          <p class="small" style="color: var(--neutral-600);">
-            {{ product.metafields.custom.discount_bundle_name | metafield_tag }}
-          </p>
+          {% if localization.market.handle == 'au' %}
+            <p class="small" style="color: var(--neutral-600);">
+              {{ product.metafields.custom.discount_bundle_name | metafield_tag }}
+            </p>
+          {% endif %}
           <button
             type="button"
             class="size-guide-button small"
