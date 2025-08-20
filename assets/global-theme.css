@@ -932,6 +932,12 @@ a.skip-to-content:focus-visible {
   max-width: 80%; 
 }
 
+@media screen and (max-width: 768px) {
+  .cc-message {
+    max-width: 100%; 
+  }
+}
+
 .cc-compliance > button {
   border-radius: 0px; 
   border: 1px solid var(--neutral-950) !important; 
