@@ -1,0 +1,35 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "parent": "header-group.json",
+  "context": {
+    "market": "au"
+  },
+  "sections": {
+    "announcement": {
+      "settings": {},
+      "blocks": {
+        "announcement_ny4ip": {
+          "type": "announcement",
+          "disabled": false,
+          "settings": {
+            "text": "<a href=\"/collections/mens-suits\" title=\"Suits\">Merino Wool Suits starting from $399</a>",
+            "alignment": "center"
+          }
+        }
+      },
+      "block_order": [
+        "announcement_mQFJhL",
+        "announcement_tnUYFL",
+        "announcement_ny4ip"
+      ]
+    }
+  }
+}

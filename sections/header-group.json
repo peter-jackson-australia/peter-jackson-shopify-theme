@@ -27,19 +27,11 @@
             "text": "<a href=\"/collections/spring-25\" title=\"Spring 25\">Spring Collection Preview | Drop #1 Online Now</a>",
             "alignment": "center"
           }
-        },
-        "announcement_iJMTjg": {
-          "type": "announcement",
-          "settings": {
-            "text": "<a href=\"/collections/mens-suits\" title=\"Suits\">Merino Wool Suits starting from $399</a>",
-            "alignment": "center"
-          }
         }
       },
       "block_order": [
         "announcement_mQFJhL",
-        "announcement_tnUYFL",
-        "announcement_iJMTjg"
+        "announcement_tnUYFL"
       ],
       "settings": {
         "autoplay": true,
