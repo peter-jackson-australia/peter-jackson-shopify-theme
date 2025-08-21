@@ -293,11 +293,11 @@
 {% assign section_id = section.id %}
 {% assign anchor_id = section.settings.anchor_id %}
 {% assign heading = section.settings.heading %}
-{% assign heading_anim = section.settings.heading_animation %}
+{% assign heading_animation = section.settings.heading_animation %}
 {% assign subheading = section.settings.subheading %}
-{% assign subheading_anim = section.settings.subheading_animation %}
+{% assign subheading_animation = section.settings.subheading_animation %}
 {% assign description = section.settings.description %}
-{% assign description_anim = section.settings.description_animation %}
+{% assign description_animation = section.settings.description_animation %}
 {% assign cta_link = section.settings.cta_link %}
 {% assign cta_text = section.settings.cta_text %}
 
@@ -306,7 +306,7 @@
 {% assign image_heading = section.settings.image_heading %}
 {% assign image_heading_animation = section.settings.image_heading_animation %}
 {% assign image_description = section.settings.image_description %}
-{% assign image_description_anim = section.settings.image_description_anim %}
+{% assign image_description_animation = section.settings.image_description_anim %}
 {% assign image_link_url = section.settings.image_link_url %}
 {% assign image_link_text = section.settings.image_link_text %}
 
@@ -328,7 +328,7 @@
   <div class="blog-hero__content">
     <div class="blog-hero__content-header">
       {% if heading != blank %}
-        <h1 class="blog-hero__content-title heading--decorative {% if heading_anim != 'none' %}{{ heading_anim }}{% endif %}">
+        <h1 class="blog-hero__content-title heading--decorative {% if heading_animation != 'none' %}{{ heading_animation }}{% endif %}">
           {{ heading }}
         </h1>
       {% endif %}
@@ -336,7 +336,7 @@
       <span class="blog-hero__content-divider"></span>
 
       {% if subheading != blank %}
-        <h2 class="blog-hero__content-subtitle heading--l {% if subheading_anim != 'none' %}{{ subheading_anim }}{% endif %}">
+        <h2 class="blog-hero__content-subtitle heading--l {% if subheading_animation != 'none' %}{{ subheading_animation }}{% endif %}">
           {{ subheading }}
         </h2>
       {% endif %}
@@ -344,7 +344,7 @@
 
     <div class="blog-hero__content-description">
       {% if description != blank %}
-        <div class="blog-hero__content-text body {% if description_anim != 'none' %}{{ description_anim }}{% endif %}">
+        <div class="blog-hero__content-text body {% if description_animation != 'none' %}{{ description_animation }}{% endif %}">
           {{ description }}
         </div>
       {% endif %}
@@ -396,7 +396,7 @@
 
           <div class="blog-hero__image-description-container">
             {% if image_description != blank %}
-              <div class="blog-hero__image-description body {% if image_description_anim != 'none' %}{{ image_description_anim }}{% endif %}">
+              <div class="blog-hero__image-description body {% if image_description_animation != 'none' %}{{ image_description_animation }}{% endif %}">
                 {{ image_description }}
               </div>
             {% endif %}
