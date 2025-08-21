@@ -6,14 +6,67 @@
   .blog-hero {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    padding-bottom: var(--space-2xl);
+    {% comment %} width: 100%; {% endcomment %}
+    {% comment %} padding-bottom: var(--space-2xl); {% endcomment %}
+  }
+
+  .blog-hero__content {
+    display: flex;
+    padding: var(--space-2xl) var(--space-m);
+    gap: var(--space-xl);
+    justify-content: space-between;
+  }
+
+  .blog-hero__content-header {
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .blog-hero__content-title {
+    padding-right: var(--space-m);
+    color: var(--neutral-950);
+    white-space: nowrap;
+  }
+
+  .blog-hero__content-divider {
+    height: 50px;
+    width: 1px;
+    background-color: var(--neutral-200);
+  }
+
+  .blog-hero__content-subtitle {
+    padding-left: var(--space-m);
+    color: var(--neutral-950);
+    margin-top: -7px;
+  }
+
+  .blog-hero__content-description {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: var(--space-m);
+  }
+
+  .blog-hero__content-text {
+    color: var(--neutral-600);
+    max-width: 80ch;
+    text-align: right;
+  }
+
+  .blog-hero__content-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    color: var(--neutral-950);
+    text-decoration: none;
   }
 
   .blog-hero__image {
-    width: 100%;
+    {% comment %} width: 100%; {% endcomment %}
     position: relative;
-    overflow: hidden;
+    {% comment %} overflow: hidden; {% endcomment %}
     margin-bottom: var(--space-2xs);
   }
 
@@ -48,10 +101,6 @@
     gap: var(--space-xs);
   }
 
-  .blog-hero__image-title {
-    color: var(--white);
-  }
-
   .blog-hero__image-description {
     color: var(--white);
     max-width: 100%;
@@ -67,58 +116,6 @@
     margin-left: auto;
   }
 
-  .blog-hero__content {
-    display: flex;
-    padding: var(--space-2xl) var(--space-m);
-    gap: var(--space-xl);
-  }
-
-  .blog-hero__header {
-    display: flex;
-    align-items: center;
-    flex: 1;
-  }
-
-  .blog-hero__title {
-    padding-right: var(--space-m);
-    color: var(--neutral-950);
-    white-space: nowrap;
-  }
-
-  .blog-hero__divider {
-    height: 50px;
-    width: 1px;
-    background-color: var(--neutral-200);
-  }
-
-  .blog-hero__subtitle {
-    padding-left: var(--space-m);
-    color: var(--neutral-950);
-    margin-top: -7px;
-  }
-
-  .blog-hero__description {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: end;
-    gap: var(--space-m);
-  }
-
-  .blog-hero__text {
-    color: var(--neutral-600);
-    max-width: 80ch;
-    text-align: right;
-  }
-
-  .blog-hero__link {
-    display: flex;
-    align-items: center;
-    gap: var(--space-xs);
-    color: var(--neutral-950);
-    text-decoration: none;
-  }
-
   .blog-hero__posts {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -132,14 +129,14 @@
     overflow: hidden;
   }
 
-  .blog-hero__post-image {
-    display: block;
+  .blog-hero__post-image-link {
+    {% comment %} display: block;
     width: 100%;
-    overflow: hidden;
+    overflow: hidden; {% endcomment %}
     margin-bottom: var(--space-xs);
   }
 
-  .blog-hero__post-image img {
+  .blog-hero__post-image {
     width: 100%;
     object-fit: cover;
   }
@@ -164,7 +161,11 @@
     text-overflow: ellipsis;
   }
 
-  .blog-hero__post-title a,
+  .blog-hero__post-title a {
+    color: var(--neutral-950);
+    text-decoration: none;
+  }
+
   .blog-hero__post-link-container {
     color: var(--neutral-950);
     text-decoration: none;
@@ -182,6 +183,39 @@
   @media screen and (max-width: 1440px) {
     .blog-hero {
       padding-bottom: var(--space-xl);
+    }
+
+    .blog-hero__content {
+      padding-top: var(--space-xl);
+      padding-bottom: var(--space-xl);
+      flex-direction: column;
+      gap: var(--space-m);
+    }
+
+    .blog-hero__content-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-m);
+    }
+
+    .blog-hero__content-title {
+      padding-right: 0;
+    }
+
+    .blog-hero__content-subtitle {
+      padding-left: 0px;
+    }
+
+    .blog-hero__content-divider {
+      display: none;
+    }
+
+    .blog-hero__content-description {
+      align-items: start;
+    }
+
+    .blog-hero__content-text {
+      text-align: left;
     }
 
     .blog-hero__image-content {
@@ -209,43 +243,9 @@
       margin-left: 0px;
     }
 
-    .blog-hero__content {
-      padding-top: var(--space-xl);
-      padding-bottom: var(--space-xl);
-      flex-direction: column;
-      gap: var(--space-m);
-    }
-
-    .blog-hero__header {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: var(--space-m);
-    }
-
-    .blog-hero__description {
-      align-items: start;
-    }
-
-    .blog-hero__text {
-      text-align: left;
-    }
-
-    .blog-hero__title {
-      padding-right: 0;
-    }
-
-    .blog-hero__divider {
-      display: none;
-    }
-
-    .blog-hero__subtitle {
-      padding-left: 0px;
-    }
-
     .blog-hero__posts {
       grid-template-columns: repeat(3, 1fr);
-      gap: calc(var(--space-xs) + var(--space-xs));
-      column-gap: var(--space-2xs);
+      gap: calc(var(--space-xs) + var(--space-xs)) var(--space-2xs);
     }
 
     .blog-hero__post-content {
@@ -288,7 +288,7 @@
     }
 
     .blog-hero__image-content {
-      padding: var(--space-l) var(--space-m);
+      padding-bottom: var(--space-l);
     }
   }
 </style>
@@ -332,31 +332,31 @@
   {% endif %}
 >
   <div class="blog-hero__content">
-    <div class="blog-hero__header">
+    <div class="blog-hero__content-header">
       {% if heading != blank %}
-        <h1 class="blog-hero__title heading--decorative {% if heading_anim != 'none' %}{{ heading_anim }}{% endif %}">
+        <h1 class="blog-hero__content-title heading--decorative {% if heading_anim != 'none' %}{{ heading_anim }}{% endif %}">
           {{ heading }}
         </h1>
       {% endif %}
 
-      <span class="blog-hero__divider"></span>
+      <span class="blog-hero__content-divider"></span>
 
       {% if subheading != blank %}
-        <h2 class="blog-hero__subtitle heading--l {% if subheading_anim != 'none' %}{{ subheading_anim }}{% endif %}">
+        <h2 class="blog-hero__content-subtitle heading--l {% if subheading_anim != 'none' %}{{ subheading_anim }}{% endif %}">
           {{ subheading }}
         </h2>
       {% endif %}
     </div>
 
-    <div class="blog-hero__description">
+    <div class="blog-hero__content-description">
       {% if description != blank %}
-        <div class="blog-hero__text body {% if description_anim != 'none' %}{{ description_anim }}{% endif %}">
+        <div class="blog-hero__content-text body {% if description_anim != 'none' %}{{ description_anim }}{% endif %}">
           {{ description }}
         </div>
       {% endif %}
 
       {% if cta_link != blank and cta_text != blank %}
-        <a href="{{ cta_link }}" class="blog-hero__link body">
+        <a href="{{ cta_link }}" class="blog-hero__content-link body">
           {{ cta_text }}
           {% render '_icon-arrow-submit-dark' %}
         </a>
@@ -383,7 +383,7 @@
           | image_tag:
             loading: 'lazy',
             decoding: 'async',
-            alt: section.settings.heading,
+            alt: heading,
             class: 'blog-hero__image-img',
             widths: '400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2400, 3000',
             sizes: '(max-width: 400px) 400px, (max-width: 600px) 600px, (max-width: 800px) 800px, (max-width: 1000px) 1000px, (max-width: 1200px) 1200px, (max-width: 1400px) 1400px, (max-width: 1600px) 1600px, (max-width: 1800px) 1800px, (max-width: 2000px) 2000px, (max-width: 2400px) 2400px, 100vw'
@@ -394,7 +394,7 @@
         <div class="blog-hero__image-content">
           <div class="blog-hero__image-header">
             {% if image_heading != blank %}
-              <h2 class="blog-hero__image-title heading--l {% if image_heading_animation != 'none' %}{{ image_heading_animation }}{% endif %}">
+              <h2 class="heading--l {% if image_heading_animation != 'none' %}{{ image_heading_animation }}{% endif %}">
                 {{ image_heading }}
               </h2>
             {% endif %}
@@ -420,85 +420,84 @@
   {% endif %}
 
   {% if show_recent_posts %}
-    <div class="blog-hero__recent">
-      <div class="blog-hero__posts {% if animate_posts %}animate-container-cards-scroll{% endif %}">
-        {%- assign blog = blogs[section.settings.blog] -%}
-        {% for article in blog.articles limit: 6 %}
-          <article class="blog-hero__post">
-            {% if article.image %}
-              <a href="{{ article.url }}" class="blog-hero__post-image">
-                {{
-                  article.image
-                  | image_url: width: 850
-                  | image_tag:
-                    loading: 'lazy',
-                    decoding: 'async',
-                    alt: article.title,
-                    widths: '400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2400, 3000',
-                    sizes: '(max-width: 400px) 400px, (max-width: 600px) 600px, (max-width: 800px) 800px, (max-width: 1000px) 1000px, (max-width: 1200px) 1200px, (max-width: 1400px) 1400px, (max-width: 1600px) 1600px, (max-width: 1800px) 1800px, (max-width: 2000px) 2000px, (max-width: 2400px) 2400px, 100vw'
-                }}
-              </a>
+    <div class="blog-hero__posts {% if animate_posts %}animate-container-cards-scroll{% endif %}">
+      {%- assign blog = blogs[section.settings.blog] -%}
+      {% for article in blog.articles limit: 6 %}
+        <article class="blog-hero__post">
+          {% if article.image %}
+            <a href="{{ article.url }}" class="blog-hero__post-image-link">
+              {{
+                article.image
+                | image_url: width: 850
+                | image_tag:
+                  loading: 'lazy',
+                  decoding: 'async',
+                  alt: article.title,
+                  widths: '400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2400, 3000',
+                  sizes: '(max-width: 400px) 400px, (max-width: 600px) 600px, (max-width: 800px) 800px, (max-width: 1000px) 1000px, (max-width: 1200px) 1200px, (max-width: 1400px) 1400px, (max-width: 1600px) 1600px, (max-width: 1800px) 1800px, (max-width: 2000px) 2000px, (max-width: 2400px) 2400px, 100vw',
+                  class: 'blog-hero__post-image'
+              }}
+            </a>
+          {% endif %}
+
+          <div class="blog-hero__post-content">
+            {% if article.tags.size > 0 %}
+              <div class="blog-hero__post-category small">{{ article.tags.first }}</div>
             {% endif %}
 
-            <div class="blog-hero__post-content">
-              {% if article.tags.size > 0 %}
-                <div class="blog-hero__post-category small">{{ article.tags.first }}</div>
-              {% endif %}
+            <h3 class="blog-hero__post-title heading--l">
+              <a href="{{ article.url }}">{{ article.title }}</a>
+            </h3>
 
-              <h3 class="blog-hero__post-title heading--l">
-                <a href="{{ article.url }}">{{ article.title }}</a>
-              </h3>
-
-              <a href="{{ article.url }}" class="blog-hero__post-link-container">
-                <span class="blog-hero__post-link body">Read Article {% render '_icon-arrow-submit-dark' %}</span>
-              </a>
-            </div>
-          </article>
-        {% endfor %}
-      </div>
-
-      <div class="blog-hero__slider-wrapper">
-        <div class="blog-hero__slider splide">
-          <div class="splide__arrows">
-            <button class="splide__arrow splide__arrow--prev">{% render '_icon-arrow-see-less' %}</button>
-            <button class="splide__arrow splide__arrow--next">{% render '_icon-arrow-see-more' %}</button>
+            <a href="{{ article.url }}" class="blog-hero__post-link-container">
+              <span class="blog-hero__post-link body">Read Article {% render '_icon-arrow-submit-dark' %}</span>
+            </a>
           </div>
-          <div class="splide__track">
-            <ul class="splide__list">
-              {%- assign blog = blogs[section.settings.blog] -%}
-              {% for article in blog.articles limit: 6 %}
-                <li class="splide__slide">
-                  <article class="blog-hero__post">
-                    {% if article.image %}
-                      <a href="{{ article.url }}" class="blog-hero__post-image">
-                        {{
-                          article.image
-                          | image_url: width: 600
-                          | image_tag: loading: 'lazy', decoding: 'async', alt: article.title
-                        }}
-                      </a>
+        </article>
+      {% endfor %}
+    </div>
+
+    <div class="blog-hero__slider-wrapper">
+      <div class="blog-hero__slider splide">
+        <div class="splide__arrows">
+          <button class="splide__arrow splide__arrow--prev">{% render '_icon-arrow-see-less' %}</button>
+          <button class="splide__arrow splide__arrow--next">{% render '_icon-arrow-see-more' %}</button>
+        </div>
+        <div class="splide__track">
+          <ul class="splide__list">
+            {%- assign blog = blogs[section.settings.blog] -%}
+            {% for article in blog.articles limit: 6 %}
+              <li class="splide__slide">
+                <article class="blog-hero__post">
+                  {% if article.image %}
+                    <a href="{{ article.url }}" class="blog-hero__post-image">
+                      {{
+                        article.image
+                        | image_url: width: 600
+                        | image_tag: loading: 'lazy', decoding: 'async', alt: article.title
+                      }}
+                    </a>
+                  {% endif %}
+
+                  <div class="blog-hero__post-content">
+                    {% if article.tags.size > 0 %}
+                      <div class="blog-hero__post-category small">{{ article.tags.first }}</div>
                     {% endif %}
 
-                    <div class="blog-hero__post-content">
-                      {% if article.tags.size > 0 %}
-                        <div class="blog-hero__post-category small">{{ article.tags.first }}</div>
-                      {% endif %}
+                    <h3 class="blog-hero__post-title heading--l">
+                      <a href="{{ article.url }}">{{ article.title }}</a>
+                    </h3>
 
-                      <h3 class="blog-hero__post-title heading--l">
-                        <a href="{{ article.url }}">{{ article.title }}</a>
-                      </h3>
-
-                      <a href="{{ article.url }}" class="blog-hero__post-link-container">
-                        <span class="blog-hero__post-link body"
-                          >Read Article {% render '_icon-arrow-submit-dark' -%}
-                        </span>
-                      </a>
-                    </div>
-                  </article>
-                </li>
-              {% endfor %}
-            </ul>
-          </div>
+                    <a href="{{ article.url }}" class="blog-hero__post-link-container">
+                      <span class="blog-hero__post-link body"
+                        >Read Article {% render '_icon-arrow-submit-dark' -%}
+                      </span>
+                    </a>
+                  </div>
+                </article>
+              </li>
+            {% endfor %}
+          </ul>
         </div>
       </div>
     </div>
