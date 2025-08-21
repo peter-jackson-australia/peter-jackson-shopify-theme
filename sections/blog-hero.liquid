@@ -467,11 +467,15 @@
               <li class="splide__slide">
                 <article class="blog-hero__post">
                   {% if article.image %}
-                    <a href="{{ article.url }}" class="blog-hero__post-image">
+                    <a href="{{ article.url }}" class="blog-hero__post-image-link">
                       {{
                         article.image
                         | image_url: width: 600
-                        | image_tag: loading: 'lazy', decoding: 'async', alt: article.title
+                        | image_tag:
+                          loading: 'lazy',
+                          decoding: 'async',
+                          alt: article.title,
+                          class: 'blog-hero__post-image'
                       }}
                     </a>
                   {% endif %}
