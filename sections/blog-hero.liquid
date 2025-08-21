@@ -6,16 +6,64 @@
   .blog-hero {
     display: flex;
     flex-direction: column;
-    width: 100%;
     padding-bottom: var(--space-2xl);
-    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
-    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
+  }
+
+  .blog-hero__content {
+    display: flex;
+    padding: var(--space-2xl) var(--space-m);
+    gap: var(--space-xl);
+    justify-content: space-between;
+  }
+
+  .blog-hero__content-header {
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .blog-hero__content-title {
+    padding-right: var(--space-m);
+    color: var(--neutral-950);
+    white-space: nowrap;
+  }
+
+  .blog-hero__content-divider {
+    height: 50px;
+    width: 1px;
+    background-color: var(--neutral-200);
+  }
+
+  .blog-hero__content-subtitle {
+    padding-left: var(--space-m);
+    color: var(--neutral-950);
+    margin-top: -7px;
+  }
+
+  .blog-hero__content-description {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: var(--space-m);
+  }
+
+  .blog-hero__content-text {
+    color: var(--neutral-600);
+    max-width: 80ch;
+    text-align: right;
+  }
+
+  .blog-hero__content-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    color: var(--neutral-950);
+    text-decoration: none;
   }
 
   .blog-hero__image {
-    width: 100%;
     position: relative;
-    overflow: hidden;
     margin-bottom: var(--space-2xs);
   }
 
@@ -50,10 +98,6 @@
     gap: var(--space-xs);
   }
 
-  .blog-hero__image-title {
-    color: var(--white);
-  }
-
   .blog-hero__image-description {
     color: var(--white);
     max-width: 100%;
@@ -69,58 +113,6 @@
     margin-left: auto;
   }
 
-  .blog-hero__content {
-    display: flex;
-    padding: var(--space-2xl) var(--space-m);
-    gap: var(--space-xl);
-  }
-
-  .blog-hero__header {
-    display: flex;
-    align-items: center;
-    flex: 1;
-  }
-
-  .blog-hero__title {
-    padding-right: var(--space-m);
-    color: var(--neutral-950);
-    white-space: nowrap;
-  }
-
-  .blog-hero__divider {
-    height: 50px;
-    width: 1px;
-    background-color: var(--neutral-200);
-  }
-
-  .blog-hero__subtitle {
-    padding-left: var(--space-m);
-    color: var(--neutral-950);
-    margin-top: -7px;
-  }
-
-  .blog-hero__description {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: end;
-    gap: var(--space-m);
-  }
-
-  .blog-hero__text {
-    color: var(--neutral-600);
-    max-width: 80ch;
-    text-align: right;
-  }
-
-  .blog-hero__link {
-    display: flex;
-    align-items: center;
-    gap: var(--space-xs);
-    color: var(--neutral-950);
-    text-decoration: none;
-  }
-
   .blog-hero__posts {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -134,14 +126,11 @@
     overflow: hidden;
   }
 
-  .blog-hero__post-image {
-    display: block;
-    width: 100%;
-    overflow: hidden;
+  .blog-hero__post-image-link {
     margin-bottom: var(--space-xs);
   }
 
-  .blog-hero__post-image img {
+  .blog-hero__post-image {
     width: 100%;
     object-fit: cover;
   }
@@ -166,7 +155,11 @@
     text-overflow: ellipsis;
   }
 
-  .blog-hero__post-title a,
+  .blog-hero__post-title a {
+    color: var(--neutral-950);
+    text-decoration: none;
+  }
+
   .blog-hero__post-link-container {
     color: var(--neutral-950);
     text-decoration: none;
@@ -186,6 +179,38 @@
       padding-bottom: var(--space-xl);
     }
 
+    .blog-hero__content {
+      padding-top: var(--space-xl);
+      padding-bottom: var(--space-xl);
+      flex-direction: column;
+      gap: var(--space-m);
+    }
+
+    .blog-hero__content-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-m);
+    }
+
+    .blog-hero__content-title {
+      padding-right: 0;
+    }
+
+    .blog-hero__content-subtitle {
+      padding-left: 0px;
+    }
+
+    .blog-hero__content-divider {
+      display: none;
+    }
+
+    .blog-hero__content-description {
+      align-items: start;
+    }
+
+    .blog-hero__content-text {
+      text-align: left;
+    }
 
     .blog-hero__image-content {
       flex-direction: column;
@@ -212,43 +237,9 @@
       margin-left: 0px;
     }
 
-    .blog-hero__content {
-      padding-top: var(--space-xl);
-      padding-bottom: var(--space-xl);
-      flex-direction: column;
-      gap: var(--space-m);
-    }
-
-    .blog-hero__header {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: var(--space-m);
-    }
-
-    .blog-hero__description {
-      align-items: start;
-    }
-
-    .blog-hero__text {
-      text-align: left;
-    }
-
-    .blog-hero__title {
-      padding-right: 0;
-    }
-
-    .blog-hero__divider {
-      display: none;
-    }
-
-    .blog-hero__subtitle {
-      padding-left: 0px;
-    }
-
     .blog-hero__posts {
       grid-template-columns: repeat(3, 1fr);
-      gap: calc(var(--space-xs) + var(--space-xs));
-      column-gap: var(--space-2xs);
+      gap: calc(var(--space-xs) + var(--space-xs)) var(--space-2xs);
     }
 
     .blog-hero__post-content {
@@ -259,6 +250,10 @@
   @media screen and (max-width: 768px) {
     .blog-hero__posts {
       display: none;
+    }
+
+    .blog-hero__image {
+      order: -1;
     }
 
     .blog-hero__slider-wrapper {
@@ -286,65 +281,95 @@
   @media screen and (max-width: 570px) {
     .blog-hero__image {
       height: 60vh;
-      order: -1;
       margin-top: var(--space-xl);
     }
 
     .blog-hero__image-content {
-      padding: var(--space-l) var(--space-m);
+      padding-bottom: var(--space-l);
     }
   }
 </style>
 
+{% assign show_top_border = section.settings.show_top_border %}
+{% assign show_bottom_border = section.settings.show_bottom_border %}
+
+{% assign section_id = section.id %}
+{% assign anchor_id = section.settings.anchor_id %}
+{% assign heading = section.settings.heading %}
+{% assign heading_animation = section.settings.heading_animation %}
+{% assign subheading = section.settings.subheading %}
+{% assign subheading_animation = section.settings.subheading_animation %}
+{% assign description = section.settings.description %}
+{% assign description_animation = section.settings.description_animation %}
+{% assign cta_link = section.settings.cta_link %}
+{% assign cta_text = section.settings.cta_text %}
+
+{% assign hero_image = section.settings.hero_image %}
+{% assign hero_image_mobile = section.settings.hero_image_mobile %}
+{% assign image_heading = section.settings.image_heading %}
+{% assign image_heading_animation = section.settings.image_heading_animation %}
+{% assign image_description = section.settings.image_description %}
+{% assign image_description_animation = section.settings.image_description_anim %}
+{% assign image_link_url = section.settings.image_link_url %}
+{% assign image_link_text = section.settings.image_link_text %}
+
+{% assign show_recent_posts = section.settings.show_recent_posts %}
+{% assign animate_posts = section.settings.animate_posts %}
+{% assign show_image_overlay = section.settings.show_image_overlay %}
+
 <div
   class="blog-hero"
-  id="section-{{ section.id }}"
-  {% if section.settings.anchor_id != blank %}
-    id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
+  style="
+    {% if show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
+    {% if show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
+  "
+  id="section-{{ section_id }}"
+  {% if anchor_id != blank %}
+    id="{{ anchor_id | downcase | replace: ' ', '-' }}-segment"
   {% endif %}
 >
   <div class="blog-hero__content">
-    <div class="blog-hero__header">
-      {% if section.settings.heading != blank %}
-        <h1 class="blog-hero__title heading--decorative {% if section.settings.heading_animation != 'none' %}{{ section.settings.heading_animation }}{% endif %}">
-          {{ section.settings.heading }}
+    <div class="blog-hero__content-header">
+      {% if heading != blank %}
+        <h1 class="blog-hero__content-title heading--decorative {% if heading_animation != 'none' %}{{ heading_animation }}{% endif %}">
+          {{ heading }}
         </h1>
       {% endif %}
 
-      <span class="blog-hero__divider"></span>
+      <span class="blog-hero__content-divider"></span>
 
-      {% if section.settings.subheading != blank %}
-        <h2 class="blog-hero__subtitle heading--l {% if section.settings.subheading_animation != 'none' %}{{ section.settings.subheading_animation }}{% endif %}">
-          {{ section.settings.subheading }}
+      {% if subheading != blank %}
+        <h2 class="blog-hero__content-subtitle heading--l {% if subheading_animation != 'none' %}{{ subheading_animation }}{% endif %}">
+          {{ subheading }}
         </h2>
       {% endif %}
     </div>
 
-    <div class="blog-hero__description">
-      {% if section.settings.description != blank %}
-        <div class="blog-hero__text body {% if section.settings.description_animation != 'none' %}{{ section.settings.description_animation }}{% endif %}">
-          {{ section.settings.description }}
+    <div class="blog-hero__content-description">
+      {% if description != blank %}
+        <div class="blog-hero__content-text body {% if description_animation != 'none' %}{{ description_animation }}{% endif %}">
+          {{ description }}
         </div>
       {% endif %}
 
-      {% if section.settings.cta_link != blank and section.settings.cta_text != blank %}
-        <a href="{{ section.settings.cta_link }}" class="blog-hero__link body">
-          {{ section.settings.cta_text }}
+      {% if cta_link != blank and cta_text != blank %}
+        <a href="{{ cta_link }}" class="blog-hero__content-link body">
+          {{ cta_text }}
           {% render '_icon-arrow-submit-dark' %}
         </a>
       {% endif %}
     </div>
   </div>
 
-  {% if section.settings.hero_image != blank %}
+  {% if hero_image != blank %}
     <div class="blog-hero__image">
       <picture>
-        {% if section.settings.hero_image_mobile != blank %}
+        {% if hero_image_mobile != blank %}
           <source
             media="(max-width: 767px)"
             srcset="
-              {{ section.settings.hero_image_mobile | image_url: width: 400 }} 1x,
-              {{ section.settings.hero_image_mobile | image_url: width: 800 }} 2x
+              {{ hero_image_mobile | image_url: width: 400 }} 1x,
+              {{ hero_image_mobile | image_url: width: 800 }} 2x
             "
           >
         {% endif %}
@@ -355,33 +380,33 @@
           | image_tag:
             loading: 'lazy',
             decoding: 'async',
-            alt: section.settings.heading,
+            alt: heading,
             class: 'blog-hero__image-img',
             widths: '400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2400, 3000',
             sizes: '(max-width: 400px) 400px, (max-width: 600px) 600px, (max-width: 800px) 800px, (max-width: 1000px) 1000px, (max-width: 1200px) 1200px, (max-width: 1400px) 1400px, (max-width: 1600px) 1600px, (max-width: 1800px) 1800px, (max-width: 2000px) 2000px, (max-width: 2400px) 2400px, 100vw'
         }}
       </picture>
 
-      {% if section.settings.show_image_overlay %}
+      {% if show_image_overlay %}
         <div class="blog-hero__image-content">
           <div class="blog-hero__image-header">
-            {% if section.settings.image_heading != blank %}
-              <h2 class="blog-hero__image-title heading--l {% if section.settings.image_heading_animation != 'none' %}{{ section.settings.image_heading_animation }}{% endif %}">
-                {{ section.settings.image_heading }}
+            {% if image_heading != blank %}
+              <h2 class="heading--l {% if image_heading_animation != 'none' %}{{ image_heading_animation }}{% endif %}">
+                {{ image_heading }}
               </h2>
             {% endif %}
           </div>
 
           <div class="blog-hero__image-description-container">
-            {% if section.settings.image_description != blank %}
-              <div class="blog-hero__image-description body {% if section.settings.image_description_animation != 'none' %}{{ section.settings.image_description_animation }}{% endif %}">
-                {{ section.settings.image_description }}
+            {% if image_description != blank %}
+              <div class="blog-hero__image-description body {% if image_description_animation != 'none' %}{{ image_description_animation }}{% endif %}">
+                {{ image_description }}
               </div>
             {% endif %}
 
-            {% if section.settings.image_link_url != blank and section.settings.image_link_text != blank %}
-              <a href="{{ section.settings.image_link_url }}" class="blog-hero__image-link body">
-                {{ section.settings.image_link_text }}
+            {% if image_link_url != blank and image_link_text != blank %}
+              <a href="{{ image_link_url }}" class="blog-hero__image-link body">
+                {{ image_link_text }}
                 {% render '_icon-arrow-submit-white' %}
               </a>
             {% endif %}
@@ -391,86 +416,89 @@
     </div>
   {% endif %}
 
-  {% if section.settings.show_recent_posts %}
-    <div class="blog-hero__recent">
-      <div class="blog-hero__posts {% if section.settings.animate_posts %}animate-container-cards-scroll{% endif %}">
-        {%- assign blog = blogs[section.settings.blog] -%}
-        {% for article in blog.articles limit: 6 %}
-          <article class="blog-hero__post">
-            {% if article.image %}
-              <a href="{{ article.url }}" class="blog-hero__post-image">
-                {{
-                  article.image
-                  | image_url: width: 850
-                  | image_tag:
-                    loading: 'lazy',
-                    decoding: 'async',
-                    alt: article.title,
-                    widths: '400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2400, 3000',
-                    sizes: '(max-width: 400px) 400px, (max-width: 600px) 600px, (max-width: 800px) 800px, (max-width: 1000px) 1000px, (max-width: 1200px) 1200px, (max-width: 1400px) 1400px, (max-width: 1600px) 1600px, (max-width: 1800px) 1800px, (max-width: 2000px) 2000px, (max-width: 2400px) 2400px, 100vw'
-                }}
-              </a>
+  {% if show_recent_posts %}
+    <div class="blog-hero__posts {% if animate_posts %}animate-container-cards-scroll{% endif %}">
+      {%- assign blog = blogs[section.settings.blog] -%}
+      {% for article in blog.articles limit: 6 %}
+        <article class="blog-hero__post">
+          {% if article.image %}
+            <a href="{{ article.url }}" class="blog-hero__post-image-link">
+              {{
+                article.image
+                | image_url: width: 850
+                | image_tag:
+                  loading: 'lazy',
+                  decoding: 'async',
+                  alt: article.title,
+                  widths: '400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2400, 3000',
+                  sizes: '(max-width: 400px) 400px, (max-width: 600px) 600px, (max-width: 800px) 800px, (max-width: 1000px) 1000px, (max-width: 1200px) 1200px, (max-width: 1400px) 1400px, (max-width: 1600px) 1600px, (max-width: 1800px) 1800px, (max-width: 2000px) 2000px, (max-width: 2400px) 2400px, 100vw',
+                  class: 'blog-hero__post-image'
+              }}
+            </a>
+          {% endif %}
+
+          <div class="blog-hero__post-content">
+            {% if article.tags.size > 0 %}
+              <div class="blog-hero__post-category small">{{ article.tags.first }}</div>
             {% endif %}
 
-            <div class="blog-hero__post-content">
-              {% if article.tags.size > 0 %}
-                <div class="blog-hero__post-category small">{{ article.tags.first }}</div>
-              {% endif %}
+            <h3 class="blog-hero__post-title heading--l">
+              <a href="{{ article.url }}">{{ article.title }}</a>
+            </h3>
 
-              <h3 class="blog-hero__post-title heading--l">
-                <a href="{{ article.url }}">{{ article.title }}</a>
-              </h3>
-
-              <a href="{{ article.url }}" class="blog-hero__post-link-container">
-                <span class="blog-hero__post-link body">Read Article {% render '_icon-arrow-submit-dark' %}</span>
-              </a>
-            </div>
-          </article>
-        {% endfor %}
-      </div>
-
-      <div class="blog-hero__slider-wrapper">
-        <div class="blog-hero__slider splide">
-          <div class="splide__arrows">
-            <button class="splide__arrow splide__arrow--prev">{% render '_icon-arrow-see-less' %}</button>
-            <button class="splide__arrow splide__arrow--next">{% render '_icon-arrow-see-more' %}</button>
+            <a href="{{ article.url }}" class="blog-hero__post-link-container">
+              <span class="blog-hero__post-link body">Read Article {% render '_icon-arrow-submit-dark' %}</span>
+            </a>
           </div>
-          <div class="splide__track">
-            <ul class="splide__list">
-              {%- assign blog = blogs[section.settings.blog] -%}
-              {% for article in blog.articles limit: 6 %}
-                <li class="splide__slide">
-                  <article class="blog-hero__post">
-                    {% if article.image %}
-                      <a href="{{ article.url }}" class="blog-hero__post-image">
-                        {{
-                          article.image
-                          | image_url: width: 600
-                          | image_tag: loading: 'lazy', decoding: 'async', alt: article.title
-                        }}
-                      </a>
+        </article>
+      {% endfor %}
+    </div>
+
+    <div class="blog-hero__slider-wrapper">
+      <div class="blog-hero__slider splide">
+        <div class="splide__arrows">
+          <button class="splide__arrow splide__arrow--prev">{% render '_icon-arrow-see-less' %}</button>
+          <button class="splide__arrow splide__arrow--next">{% render '_icon-arrow-see-more' %}</button>
+        </div>
+        <div class="splide__track">
+          <ul class="splide__list">
+            {%- assign blog = blogs[section.settings.blog] -%}
+            {% for article in blog.articles limit: 6 %}
+              <li class="splide__slide">
+                <article class="blog-hero__post">
+                  {% if article.image %}
+                    <a href="{{ article.url }}" class="blog-hero__post-image-link">
+                      {{
+                        article.image
+                        | image_url: width: 600
+                        | image_tag:
+                          loading: 'lazy',
+                          decoding: 'async',
+                          alt: article.title,
+                          class: 'blog-hero__post-image'
+                      }}
+                    </a>
+                  {% endif %}
+
+                  <div class="blog-hero__post-content">
+                    {% if article.tags.size > 0 %}
+                      <div class="blog-hero__post-category small">{{ article.tags.first }}</div>
                     {% endif %}
 
-                    <div class="blog-hero__post-content">
-                      {% if article.tags.size > 0 %}
-                        <div class="blog-hero__post-category small">{{ article.tags.first }}</div>
-                      {% endif %}
+                    <h3 class="blog-hero__post-title heading--l">
+                      <a href="{{ article.url }}">{{ article.title }}</a>
+                    </h3>
 
-                      <h3 class="blog-hero__post-title heading--l">
-                        <a href="{{ article.url }}">{{ article.title }}</a>
-                      </h3>
-
-                      <a href="{{ article.url }}" class="blog-hero__post-link-container">
-                        <span class="blog-hero__post-link body"
-                          >Read Article {% render '_icon-arrow-submit-dark' -%}
-                        </span>
-                      </a>
-                    </div>
-                  </article>
-                </li>
-              {% endfor %}
-            </ul>
-          </div>
+                    <a href="{{ article.url }}" class="blog-hero__post-link-container">
+                      <span class="blog-hero__post-link body"
+                        >Read Article {% render '_icon-arrow-submit-dark' -%}
+                      </span>
+                    </a>
+                  </div>
+                </article>
+              </li>
+            {% endfor %}
+          </ul>
         </div>
       </div>
     </div>
