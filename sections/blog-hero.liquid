@@ -8,8 +8,6 @@
     flex-direction: column;
     width: 100%;
     padding-bottom: var(--space-2xl);
-    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
-    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
   }
 
   .blog-hero__image {
@@ -186,7 +184,6 @@
       padding-bottom: var(--space-xl);
     }
 
-
     .blog-hero__image-content {
       flex-direction: column;
       justify-content: end;
@@ -296,6 +293,9 @@
   }
 </style>
 
+{% assign show_top_border = section.settings.show_top_border %}
+{% assign show_bottom_border = section.settings.show_bottom_border %}
+
 {% assign section_id = section.id %}
 {% assign anchor_id = section.settings.anchor_id %}
 {% assign heading = section.settings.heading %}
@@ -318,9 +318,14 @@
 
 {% assign show_recent_posts = section.settings.show_recent_posts %}
 {% assign animate_posts = section.settings.animate_posts %}
+{% assign show_image_overlay = section.settings.show_image_overlay %}
 
 <div
   class="blog-hero"
+  style="
+    {% if show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
+    {% if show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
+  "
   id="section-{{ section_id }}"
   {% if anchor_id != blank %}
     id="{{ anchor_id | downcase | replace: ' ', '-' }}-segment"
@@ -385,7 +390,7 @@
         }}
       </picture>
 
-      {% if section.settings.show_image_overlay %}
+      {% if show_image_overlay %}
         <div class="blog-hero__image-content">
           <div class="blog-hero__image-header">
             {% if image_heading != blank %}
