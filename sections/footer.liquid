@@ -8,46 +8,6 @@
     color: var(--white);
   }
 
-  .footer__features {
-    border-bottom: 1px solid var(--neutral-600);
-    margin-bottom: var(--space-2xl);
-  }
-
-  .footer__features-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
-
-  .footer__feature {
-    padding: var(--space-2xl) var(--space-m);
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    text-align: left;
-    border-right: 1px solid var(--neutral-600);
-  }
-
-  .footer__feature:last-child {
-    border-right: none;
-  }
-
-  .footer__feature-icon {
-    margin-bottom: var(--space-s);
-  }
-
-  .footer__feature-title {
-    margin-bottom: var(--space-xs);
-  }
-
-  .footer__feature-description {
-    margin-bottom: var(--space-s);
-  }
-
-  .footer__feature-link {
-    color: var(--white);
-    text-decoration: none;
-  }
-
   .footer__main {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -64,6 +24,7 @@
     gap: var(--space-xl);
     border-bottom: 1px solid var(--neutral-600);
     padding-bottom: var(--space-2xl);
+    padding-top: var(--space-2xl);
   }
 
   .footer__store-locator {
@@ -187,29 +148,6 @@
   }
 
   @media (max-width: 1024px) {
-    .footer__features {
-      padding-bottom: 0px;
-    }
-
-    .footer__features-grid {
-      grid-template-columns: 1fr !important;
-    }
-
-    .footer__feature {
-      border-right: none;
-      border-bottom: 1px solid var(--neutral-600);
-      padding: var(--space-l) var(--space-m);
-      align-items: start;
-    }
-
-    .footer__feature-description {
-      text-align: left;
-    }
-
-    .footer__feature:last-child {
-      border-bottom: none;
-    }
-
     .footer__main {
       grid-template-columns: 1fr !important;
       gap: 0px;
@@ -244,62 +182,6 @@
 </style>
 
 <footer class="footer">
-  <div class="footer__features">
-    <div class="footer__features-grid">
-      <div class="footer__feature">
-        <div class="footer__feature-icon">
-          {% render '_icon-shipping' %}
-        </div>
-        <h3 class="footer__feature-title heading--s">{{ section.settings.feature_1_title }}</h3>
-        <p class="footer__feature-description body">{{ section.settings.feature_1_description }}</p>
-        {% if section.settings.feature_1_link != blank and section.settings.feature_1_link_text != blank %}
-          <a href="{{ section.settings.feature_1_link }}" class="footer__feature-link body">
-            {{- section.settings.feature_1_link_text -}}
-          </a>
-        {% endif %}
-      </div>
-
-      <div class="footer__feature">
-        <div class="footer__feature-icon">
-          {% render '_icon-returns' %}
-        </div>
-        <h3 class="footer__feature-title heading--s">{{ section.settings.feature_2_title }}</h3>
-        <p class="footer__feature-description body">{{ section.settings.feature_2_description }}</p>
-        {% if section.settings.feature_2_link != blank and section.settings.feature_2_link_text != blank %}
-          <a href="{{ section.settings.feature_2_link }}" class="footer__feature-link body">
-            {{- section.settings.feature_2_link_text -}}
-          </a>
-        {% endif %}
-      </div>
-
-      <div class="footer__feature">
-        <div class="footer__feature-icon">
-          {% render '_icon-made-to-measure' %}
-        </div>
-        <h3 class="footer__feature-title heading--s">{{ section.settings.feature_3_title }}</h3>
-        <p class="footer__feature-description body">{{ section.settings.feature_3_description }}</p>
-        {% if section.settings.feature_3_link != blank and section.settings.feature_3_link_text != blank %}
-          <a href="{{ section.settings.feature_3_link }}" class="footer__feature-link body">
-            {{- section.settings.feature_3_link_text -}}
-          </a>
-        {% endif %}
-      </div>
-
-      <div class="footer__feature">
-        <div class="footer__feature-icon">
-          {% render '_icon-click-and-collect' %}
-        </div>
-        <h3 class="footer__feature-title heading--s">{{ section.settings.feature_4_title }}</h3>
-        <p class="footer__feature-description body">{{ section.settings.feature_4_description }}</p>
-        {% if section.settings.feature_4_link != blank and section.settings.feature_4_link_text != blank %}
-          <a href="{{ section.settings.feature_4_link }}" class="footer__feature-link body">
-            {{- section.settings.feature_4_link_text -}}
-          </a>
-        {% endif %}
-      </div>
-    </div>
-  </div>
-
   <div class="footer__section footer__intro">
     <div class="footer__intro-content">
       <h2 class="footer__heading footer__heading--intro heading--xl">{{ section.settings.intro_heading }}</h2>
