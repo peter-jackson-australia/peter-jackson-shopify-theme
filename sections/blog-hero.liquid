@@ -1,5 +1,6 @@
 {% comment %}
   Blog Hero Section
+  Refactored By Jed 22 August 2025
 {% endcomment %}
 
 {{ 'section-blog-hero.css' | asset_url | stylesheet_tag }}
@@ -216,27 +217,14 @@
         </div>
       </div>
     </div>
-
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        const splideElement = document.querySelector('#section-{{ section.id }} .blog-hero__slider');
-
-        if (splideElement && window.innerWidth <= 768) {
-          new Splide(splideElement, {
-            perPage: 1,
-            type: 'loop',
-            gap: 'var(--space-2xs)',
-            arrows: true,
-            pagination: false,
-            drag: true,
-            snap: true,
-            autoWidth: false,
-          }).mount();
-        }
-      });
-    </script>
   {% endif %}
 </div>
+
+<script
+  src="{{ 'section-blog-hero.js' | asset_url }}"
+  data-section-id="{{ section_id }}"
+  defer
+></script>
 
 {% schema %}
 {
