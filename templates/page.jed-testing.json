@@ -9,37 +9,16 @@
  */
 {
   "sections": {
-    "blog_hero_QUGEtr": {
-      "type": "blog-hero",
-      "name": "Blog Hero",
+    "counter_6KWiHc": {
+      "type": "counter",
+      "name": "Counter",
       "settings": {
-        "anchor_id": "testing-testing",
-        "show_top_border": true,
-        "show_bottom_border": true,
-        "hero_image": "shopify://shop_images/mens-blazer-brown-wool-WT25-SP07-41.webp",
-        "hero_image_mobile": "shopify://shop_images/mens-blazer-orange-wool-WT25-SP04-56.webp",
-        "show_image_overlay": true,
-        "image_heading": "Featured Article Title",
-        "image_heading_animation": "animate-word-slide-up-scroll",
-        "image_description": "Description text for the featured article.",
-        "image_description_animation": "animate-word-rotate-scroll",
-        "image_link_text": "Read More",
-        "image_link_url": "shopify://collections/bags",
-        "heading": "The Jackson Journal",
-        "heading_animation": "animate-paragraph-slide-up-scroll",
-        "subheading": "Heritage Meets Heritage",
-        "subheading_animation": "animate-word-slide-up-scroll",
-        "description": "Some general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collectionSome general information about the blog collection",
-        "description_animation": "animate-word-rotate-scroll",
-        "cta_link": "shopify://blogs/the-jackson-journal",
-        "cta_text": "Read Now",
-        "show_recent_posts": true,
-        "animate_posts": true,
-        "blog": "the-jackson-journal"
+        "heading": "",
+        "subheading": ""
       }
     }
   },
   "order": [
-    "blog_hero_QUGEtr"
+    "counter_6KWiHc"
   ]
 }
