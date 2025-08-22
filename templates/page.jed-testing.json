@@ -9,53 +9,16 @@
  */
 {
   "sections": {
-    "contact_form_at9WtY": {
-      "type": "contact-form",
-      "blocks": {
-        "text_eh3Qbd": {
-          "type": "text",
-          "settings": {
-            "title": "Name",
-            "name": "name",
-            "maxlength": 128,
-            "required": true,
-            "placeholder": ""
-          }
-        },
-        "email_cjCAYg": {
-          "type": "email",
-          "settings": {
-            "title": "Email",
-            "maxlength": 128,
-            "placeholder": "e.g. steve@example.com"
-          }
-        },
-        "textarea_6thbmC": {
-          "type": "textarea",
-          "settings": {
-            "title": "Message",
-            "name": "body",
-            "maxlength": 500,
-            "rows": 5,
-            "required": true,
-            "placeholder": ""
-          }
-        }
-      },
-      "block_order": [
-        "text_eh3Qbd",
-        "email_cjCAYg",
-        "textarea_6thbmC"
-      ],
-      "name": "Contact Form",
+    "counter_nyaW9m": {
+      "type": "counter",
+      "name": "Counter",
       "settings": {
-        "heading": "Get in Touch",
-        "description": "We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
-        "button_label": "Submit"
+        "heading": "Some text here",
+        "subheading": "More text here"
       }
     }
   },
   "order": [
-    "contact_form_at9WtY"
+    "counter_nyaW9m"
   ]
 }
