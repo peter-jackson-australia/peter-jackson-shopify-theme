@@ -9,36 +9,53 @@
  */
 {
   "sections": {
-    "counter_6KWiHc": {
-      "type": "counter",
+    "contact_form_at9WtY": {
+      "type": "contact-form",
       "blocks": {
-        "counter_9nj3mP": {
-          "type": "counter",
+        "text_eh3Qbd": {
+          "type": "text",
           "settings": {
-            "counter_description": "",
-            "value": 100
+            "title": "Name",
+            "name": "name",
+            "maxlength": 128,
+            "required": true,
+            "placeholder": ""
           }
         },
-        "counter_6VMCHK": {
-          "type": "counter",
+        "email_cjCAYg": {
+          "type": "email",
           "settings": {
-            "counter_description": "",
-            "value": 100
+            "title": "Email",
+            "maxlength": 128,
+            "placeholder": "e.g. steve@example.com"
+          }
+        },
+        "textarea_6thbmC": {
+          "type": "textarea",
+          "settings": {
+            "title": "Message",
+            "name": "body",
+            "maxlength": 500,
+            "rows": 5,
+            "required": true,
+            "placeholder": ""
           }
         }
       },
       "block_order": [
-        "counter_9nj3mP",
-        "counter_6VMCHK"
+        "text_eh3Qbd",
+        "email_cjCAYg",
+        "textarea_6thbmC"
       ],
-      "name": "Counter",
+      "name": "Contact Form",
       "settings": {
-        "heading": "",
-        "subheading": ""
+        "heading": "Get in Touch",
+        "description": "We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
+        "button_label": "Submit"
       }
     }
   },
   "order": [
-    "counter_6KWiHc"
+    "contact_form_at9WtY"
   ]
 }
