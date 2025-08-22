@@ -11,6 +11,34 @@
   "sections": {
     "counter_6KWiHc": {
       "type": "counter",
+      "blocks": {
+        "counter_3xGgUG": {
+          "type": "counter",
+          "settings": {
+            "counter_description": "",
+            "value": 100
+          }
+        },
+        "counter_BaRqzT": {
+          "type": "counter",
+          "settings": {
+            "counter_description": "",
+            "value": 100
+          }
+        },
+        "counter_9k9jpC": {
+          "type": "counter",
+          "settings": {
+            "counter_description": "",
+            "value": 100
+          }
+        }
+      },
+      "block_order": [
+        "counter_3xGgUG",
+        "counter_BaRqzT",
+        "counter_9k9jpC"
+      ],
       "name": "Counter",
       "settings": {
         "heading": "",
