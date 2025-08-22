@@ -1,0 +1,52 @@
+{% assign heading = section.settings.heading %}
+{% assign subheading = section.settings.subheading %}
+
+<h1>{{ heading }}</h1>
+<p>{{ subheading }}</p>
+
+{% for counter in section.blocks %}
+  <h1>{{ counter.settings.counter_description }}</h1>
+  <p>Value: {{ counter.settings.value }}</p>
+{% endfor %}
+
+{% schema %}
+{
+  "name": "Counter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "counter",
+      "name": "Counter",
+      "settings": [
+        {
+          "id": "counter_description",
+          "label": "Counter Description",
+          "type": "text"
+        },
+        {
+          "id": "value",
+          "label": "Value",
+          "type": "number",
+          "default": 100
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Counter"
+    }
+  ]
+}
+{% endschema %}
