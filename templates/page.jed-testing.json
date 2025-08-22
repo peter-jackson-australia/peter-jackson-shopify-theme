@@ -11,10 +11,30 @@
   "sections": {
     "counter_nyaW9m": {
       "type": "counter",
+      "blocks": {
+        "counter_iDPBgd": {
+          "type": "counter",
+          "settings": {
+            "counter_description": "",
+            "value": 0
+          }
+        },
+        "counter_KUkV63": {
+          "type": "counter",
+          "settings": {
+            "counter_description": "",
+            "value": 0
+          }
+        }
+      },
+      "block_order": [
+        "counter_iDPBgd",
+        "counter_KUkV63"
+      ],
       "name": "Counter",
       "settings": {
-        "heading": "Some text here",
-        "subheading": "More text here"
+        "heading": "",
+        "subheading": ""
       }
     }
   },
