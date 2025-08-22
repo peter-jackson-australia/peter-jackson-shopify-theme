@@ -1,19 +1,51 @@
-{% assign heading = section.settings.heading %}
-{% assign subheading = section.settings.subheading %}
+{% comment %}
+  {% assign heading = section.settings.heading %}
+  {% assign subheading = section.settings.subheading %}
+{% endcomment %}
+
+{% assign heading = 'Main Heading' %}
+{% assign subheading = 'This is a subheading with more text' %}
 
 <div>
-  <p>Testing: {{ section.settings }}</p>
-  <h1>{{ heading }}</h1>
+  {% if heading != blank %}
+    <h1>{{ heading }}</h1>
+  {% endif %}
 
   {% if subheading != blank %}
     <p>{{ subheading }}</p>
   {% endif %}
 
   {% for counter in section.blocks %}
-    <h1>{{ counter.settings.counter_description }}</h1>
-    <p>Value: {{ counter.settings.value }}</p>
+    {% comment %}
+      {% assign counter_description = counter.settings.counter_description %}
+      {% assign counter_value = counter.settings.counter_value %}
+      {% assign counter_time_seconds = counter.settings.counter_time_seconds %}
+    {% endcomment %}
+
+    <div class="counter__container">
+      <h1>{{ counter_description }}</h1>
+      <p
+        class="counter__container-value"
+        data-from="0"
+        data-to="100"
+        data-animate-seconds="3"
+      ></p>
+      {% comment %}
+        <p
+          class="counter__container-value"
+          data-from="0"
+          data-to="{{ counter_value }}"
+          data-animate-seconds="{{ counter_time_seconds }}"
+        ></p>
+      {% endcomment %}
+    </div>
   {% endfor %}
 </div>
+
+<script
+  src="{{ "section-counter.js" | asset_url }}"
+  defer
+></script>
 
 {% schema %}
 {
@@ -41,7 +73,13 @@
           "id": "counter_description",
           "label": "Counter Description",
           "type": "text",
-          "default": "description"
+          "default": "This counter goes from 0 to 100"
+        },
+        {
+          "id": "counter_time_seconds",
+          "label": "Counter Time (Seconds)",
+          "type": "number",
+          "default": 5
         },
         {
           "id": "value",
