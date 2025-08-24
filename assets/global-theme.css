@@ -946,3 +946,8 @@ a.skip-to-content:focus-visible {
   border-radius: 0px; 
   border: 1px solid var(--neutral-950) !important; 
 }
+
+.cc-compliance > button {
+  border-radius: 0px; 
+  border: 1px solid var(--neutral-950) !important; 
+}
