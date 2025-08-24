@@ -9,27 +9,27 @@
  */
 {
   "sections": {
-    "counter_6KWiHc": {
+    "counter_nyaW9m": {
       "type": "counter",
       "blocks": {
-        "counter_9nj3mP": {
+        "counter_iDPBgd": {
           "type": "counter",
           "settings": {
             "counter_description": "",
-            "value": 100
+            "value": 0
           }
         },
-        "counter_6VMCHK": {
+        "counter_KUkV63": {
           "type": "counter",
           "settings": {
             "counter_description": "",
-            "value": 100
+            "value": 0
           }
         }
       },
       "block_order": [
-        "counter_9nj3mP",
-        "counter_6VMCHK"
+        "counter_iDPBgd",
+        "counter_KUkV63"
       ],
       "name": "Counter",
       "settings": {
@@ -39,6 +39,6 @@
     }
   },
   "order": [
-    "counter_6KWiHc"
+    "counter_nyaW9m"
   ]
 }
