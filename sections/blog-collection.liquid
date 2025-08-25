@@ -119,6 +119,10 @@
         articlesList.appendChild(clone);
       }
     });
+
+    if (window.triggerCardLoadAnimation) {
+      window.triggerCardLoadAnimation('#article-list');
+    }
   };
 
   const buildPagination = () => {
