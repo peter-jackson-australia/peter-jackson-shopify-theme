@@ -96,8 +96,7 @@
 
   .blog-collection__grid {
     column-gap: var(--space-2xs);
-    gap: calc(var(--space-xs) + var(--space-xs));
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .blog-collection__post-content {
@@ -112,7 +111,6 @@
   }
 
   .blog-collection__grid {
-    gap: calc(var(--space-xs) + var(--space-xs));
     grid-template-columns: 1fr;
   }
 }
