@@ -19,19 +19,138 @@
         "leading_text": "",
         "leading_text_animation": "none",
         "first_title": "Discover",
+        "first_title_level": "h1",
         "first_title_animation": "none",
         "media_type": "image",
         "animate_media": false,
         "second_title": "Collection",
+        "second_title_level": "h1",
         "second_title_animation": "none",
         "description": "",
         "description_animation": "none",
         "cta_text": "Shop Now",
         "cta_link": ""
       }
+    },
+    "hero_slider_9yWdBN": {
+      "type": "hero-slider",
+      "blocks": {
+        "slide_YfxK6J": {
+          "type": "slide",
+          "settings": {
+            "media_type": "image",
+            "heading": "Welcome to Our Store",
+            "svg_size": "medium",
+            "heading_level": "h1",
+            "heading_animation": "none",
+            "description": "Discover our latest collection",
+            "description_animation": "none",
+            "button_label_1": "Shop Now",
+            "button_link_1": "",
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_label_3": "",
+            "button_link_3": "",
+            "button_label_4": "",
+            "button_link_4": "",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "bottom",
+            "mobile_horizontal_alignment": "center",
+            "mobile_vertical_alignment": "bottom"
+          }
+        }
+      },
+      "block_order": [
+        "slide_YfxK6J"
+      ],
+      "name": "Hero Slider",
+      "settings": {
+        "autoplay": true,
+        "slide_interval": 5
+      }
+    },
+    "variable_column_content_secondary_HfRUbR": {
+      "type": "variable-column-content-secondary",
+      "blocks": {
+        "column_item_8RdUJw": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Business_Shirt_Tie.jpg",
+            "image_link": "",
+            "heading": "Business Shirt & Tie",
+            "heading_animation": "none",
+            "text": "$120",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_GfdCJ9": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Chino_Polo.jpg",
+            "image_link": "",
+            "heading": "Polo & Chinos",
+            "heading_animation": "none",
+            "text": "$150",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_h9waXK": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Three_Casual_Shirts.jpg",
+            "image_link": "",
+            "heading": "Three Casual Shirts",
+            "heading_animation": "none",
+            "text": "$159",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_nQ3ifN": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Footwear_Belt.jpg",
+            "image_link": "",
+            "heading": "Footwear & Belt",
+            "heading_animation": "none",
+            "text": "$120",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_8RdUJw",
+        "column_item_GfdCJ9",
+        "column_item_h9waXK",
+        "column_item_nQ3ifN"
+      ],
+      "name": "Variable Column Content Secondary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "4",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "",
+        "heading_animation": "none",
+        "text": "",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
     }
   },
   "order": [
-    "editorial_hero_hceC9g"
+    "editorial_hero_hceC9g",
+    "hero_slider_9yWdBN",
+    "variable_column_content_secondary_HfRUbR"
   ]
 }
