@@ -1,93 +1,178 @@
+{% comment %}
+  Blog collection section
+  Refactored by Jed 7th August 2025
+{% endcomment %}
+
+{{ 'section-blog-collection.css' | asset_url | stylesheet_tag }}
+
 {% assign selected_blog = blogs[section.settings.blog] %}
-{% assign blogs_per_page = 8 %}
+{% assign heading = section.settings.heading %}
 
-<h3>Filter: <span id="current-filter">none</span></h3>
-<h3>Page: <span id="current-page">1</span></h3>
+{% assign is_empowered_mind = false %}
+{% if request.path contains '/pages/the-empowered-mind' %}
+  {% assign is_empowered_mind = true %}
+{% endif %}
 
-<ul id="article-list">
-  {% for article in selected_blog.articles limit: 999 %}
-    <li data-tags="{{ article.tags | join: ',' }}" style="display:none;">
-      {{ article.title }} - Tags: {{ article.tags | join: ', ' }}
-    </li>
-  {% endfor %}
-</ul>
+<div class="blog-collection" data-is-empowered="{{ is_empowered_mind }}">
+  {% if heading %}
+    <h2 class="blog-collection__heading heading--xl">{{ heading }}</h2>
+  {% endif %}
 
-<div id="pagination"></div>
+  <div class="blog-collection__grid animate-container-cards-scroll" id="article-list">
+    <div class="blog-collection__loading">Loading articles...</div>
+  </div>
+
+  <div class="blog-collection__pagination" id="pagination"></div>
+</div>
+
+<script type="application/json" id="articles-metadata">
+  [
+    {% for article in selected_blog.articles limit: 100 %}
+      {
+        "id": {{ article.id | json }},
+        "tags": {{ article.tags | json }}
+      }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+</script>
+
+{% for article in selected_blog.articles limit: 100 %}
+  <template data-article-id="{{ article.id }}">
+    <article class="blog-collection__post">
+      {% if article.image %}
+        <a href="{{ article.url }}" class="blog-collection__post-image">
+          {{
+            article.image
+            | image_url: width: 850
+            | image_tag:
+              loading: 'lazy',
+              decoding: 'async',
+              alt: article.title,
+              widths: '400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2400, 3000',
+              sizes: '(max-width: 400px) 400px, (max-width: 600px) 600px, (max-width: 800px) 800px, (max-width: 1000px) 1000px, (max-width: 1200px) 1200px, (max-width: 1400px) 1400px, (max-width: 1600px) 1600px, (max-width: 1800px) 1800px, (max-width: 2000px) 2000px, (max-width: 2400px) 2400px, 100vw'
+          }}
+        </a>
+      {% endif %}
+
+      <div class="blog-collection__post-content">
+        {% if article.tags.size > 0 %}
+          <div class="blog-collection__post-category small">{{ article.tags.first }}</div>
+        {% endif %}
+
+        <h3 class="blog-collection__post-title heading--l">
+          <a href="{{ article.url }}">{{ article.title }}</a>
+        </h3>
+
+        <a href="{{ article.url }}" class="blog-collection__post-link-container">
+          <span class="blog-collection__post-link body">Read The Article {% render '_icon-arrow-submit-dark' -%}</span>
+        </a>
+      </div>
+    </article>
+  </template>
+{% endfor %}
 
 <script>
-  var urlParams = new URLSearchParams(window.location.search);
-  var tagFilter = urlParams.get('tag');
-  var currentPage = parseInt(urlParams.get('page')) || 1;
-  var articlesPerPage = 8;
+  const urlParams = new URLSearchParams(window.location.search);
+  const tagFilter = urlParams.get('tag');
+  let currentPage = parseInt(urlParams.get('page')) || 1;
 
-  document.getElementById('current-filter').textContent = tagFilter || 'none';
-  document.getElementById('current-page').textContent = currentPage;
+  const container = document.querySelector('.blog-collection');
+  const isEmpoweredMind = container.dataset.isEmpowered === 'true';
+  const articlesPerPage = 8;
 
-  var allArticles = document.querySelectorAll('#article-list li');
-  var filteredArticles = [];
+  const articlesMetadata = JSON.parse(document.getElementById('articles-metadata').textContent);
 
-  allArticles.forEach(function (article) {
-    if (!tagFilter) {
-      filteredArticles.push(article);
-    } else {
-      var tags = article
-        .getAttribute('data-tags')
-        .split(',')
-        .map(function (t) {
-          return t.trim();
-        });
-      if (tags.includes(tagFilter)) {
-        filteredArticles.push(article);
-      }
-    }
-  });
-
-  var totalArticles = filteredArticles.length;
-  var totalPages = Math.ceil(totalArticles / articlesPerPage);
-  var startIndex = (currentPage - 1) * articlesPerPage;
-  var endIndex = startIndex + articlesPerPage;
-
-  filteredArticles.forEach(function (article, index) {
-    if (index >= startIndex && index < endIndex) {
-      article.style.display = 'list-item';
-    }
-  });
-
-  var paginationHtml = '';
-  var baseUrl = window.location.pathname;
-
-  if (totalPages > 1) {
-    if (currentPage > 1) {
-      var prevUrl = baseUrl + '?page=' + (currentPage - 1);
-      if (tagFilter) prevUrl += '&tag=' + encodeURIComponent(tagFilter);
-      paginationHtml += '<a href="' + prevUrl + '">← Previous</a> ';
-    }
-
-    for (var i = 1; i <= totalPages; i++) {
-      if (i === currentPage) {
-        paginationHtml += '<span style="font-weight:bold;">' + i + '</span> ';
+  const filteredArticleIds = articlesMetadata
+    .filter((article) => {
+      if (isEmpoweredMind) {
+        if (!article.tags.includes('Lifestyle')) return false;
+        if (tagFilter && !article.tags.includes(tagFilter)) return false;
+        return true;
       } else {
-        var pageUrl = baseUrl + '?page=' + i;
-        if (tagFilter) pageUrl += '&tag=' + encodeURIComponent(tagFilter);
-        paginationHtml += '<a href="' + pageUrl + '">' + i + '</a> ';
+        if (tagFilter && !article.tags.includes(tagFilter)) return false;
+        return true;
+      }
+    })
+    .map((article) => article.id);
+
+  const totalArticles = filteredArticleIds.length;
+  const totalPages = Math.ceil(totalArticles / articlesPerPage);
+
+  const loadArticlesForPage = (page) => {
+    const start = (page - 1) * articlesPerPage;
+    const end = start + articlesPerPage;
+    const articleIdsToLoad = filteredArticleIds.slice(start, end);
+
+    const articlesList = document.getElementById('article-list');
+
+    if (articleIdsToLoad.length === 0) {
+      articlesList.innerHTML = '<div class="blog-collection__empty"><h3>No Articles Found</h3></div>';
+      return;
+    }
+
+    articlesList.innerHTML = '';
+
+    articleIdsToLoad.forEach((articleId) => {
+      const template = document.querySelector(`template[data-article-id="${articleId}"]`);
+      if (template) {
+        const clone = template.content.cloneNode(true);
+        articlesList.appendChild(clone);
+      }
+    });
+  };
+
+  const buildPagination = () => {
+    const paginationEl = document.getElementById('pagination');
+
+    if (totalPages <= 1 || totalArticles === 0) {
+      paginationEl.innerHTML = '';
+      return;
+    }
+
+    let html = '';
+
+    if (currentPage > 1) {
+      html += `<a href="#" class="blog-collection__pagination-link blog-collection__pagination-link--prev" data-page="${
+        currentPage - 1
+      }">← Previous</a>`;
+    }
+
+    for (let i = 1; i <= totalPages; i++) {
+      if (i === currentPage) {
+        html += `<span class="blog-collection__pagination-current">${i}</span>`;
+      } else {
+        html += `<a href="#" class="blog-collection__pagination-link" data-page="${i}">${i}</a>`;
       }
     }
 
     if (currentPage < totalPages) {
-      var nextUrl = baseUrl + '?page=' + (currentPage + 1);
-      if (tagFilter) nextUrl += '&tag=' + encodeURIComponent(tagFilter);
-      paginationHtml += '<a href="' + nextUrl + '">Next →</a>';
+      html += `<a href="#" class="blog-collection__pagination-link blog-collection__pagination-link--next" data-page="${
+        currentPage + 1
+      }">Next →</a>`;
     }
 
-    paginationHtml +=
-      '<br><br>Showing articles ' + (startIndex + 1) + '-' + Math.min(endIndex, totalArticles) + ' of ' + totalArticles;
-  } else if (totalArticles === 0) {
-    paginationHtml = '<p>No articles found</p>';
-  } else {
-    paginationHtml = '<p>Showing all ' + totalArticles + ' articles (Total: ' + totalArticles + ')</p>';
-  }
+    paginationEl.innerHTML = html;
+  };
 
-  document.getElementById('pagination').innerHTML = paginationHtml;
+  loadArticlesForPage(currentPage);
+  buildPagination();
+
+  document.getElementById('pagination').addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') {
+      e.preventDefault();
+      const newPage = parseInt(e.target.dataset.page);
+
+      const newUrl =
+        window.location.pathname + '?page=' + newPage + (tagFilter ? '&tag=' + encodeURIComponent(tagFilter) : '');
+      history.pushState(null, '', newUrl);
+
+      currentPage = newPage;
+      loadArticlesForPage(currentPage);
+      buildPagination();
+
+      document.querySelector('.blog-collection').scrollIntoView({ behavior: 'smooth' });
+    }
+  });
 </script>
 
 {% schema %}
@@ -111,26 +196,6 @@
       "id": "blog",
       "label": "Blog",
       "info": "Select which blog to display articles from"
-    },
-    {
-      "type": "range",
-      "id": "limit",
-      "label": "Limit",
-      "info": "Limit the number of articles displayed per page.",
-      "min": 4,
-      "max": 50,
-      "step": 1,
-      "default": 8
-    },
-    {
-      "type": "range",
-      "id": "articles_per_row",
-      "label": "Articles Per Row",
-      "info": "Number of articles per row.",
-      "min": 1,
-      "max": 4,
-      "step": 1,
-      "default": 3
     }
   ],
   "presets": [
