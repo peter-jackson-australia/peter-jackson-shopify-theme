@@ -119,7 +119,7 @@
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
-        "show_bottom_border": false,
+        "show_bottom_border": true,
         "column_count": "4",
         "text_alignment": "left",
         "animate_columns": false,
