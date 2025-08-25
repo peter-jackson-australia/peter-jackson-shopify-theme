@@ -9,8 +9,16 @@
  */
 {
   "sections": {
+    "blog_header_N4peAb": {
+      "type": "blog-header",
+      "name": "Blog Header",
+      "settings": {
+        "journal_type": "jackson"
+      }
+    },
     "blog_hero_ipkUaE": {
       "type": "blog-hero",
+      "disabled": true,
       "name": "Blog Hero",
       "settings": {
         "anchor_id": "",
@@ -45,13 +53,6 @@
         "blog": "the-jackson-journal",
         "limit": 12,
         "articles_per_row": 4
-      }
-    },
-    "blog_header_N4peAb": {
-      "type": "blog-header",
-      "name": "Blog Header",
-      "settings": {
-        "journal_type": "jackson"
       }
     }
   },
