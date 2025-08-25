@@ -37,31 +37,6 @@
         "blog": "the-jackson-journal"
       }
     },
-    "hero_primary_hgB9fC": {
-      "type": "hero-primary",
-      "disabled": true,
-      "name": "Hero Section",
-      "settings": {
-        "media_type": "image",
-        "desktop_image": "shopify://shop_images/two-men-one-suit.webp",
-        "heading": "Higher Ground / Winter 25",
-        "svg_size": "medium",
-        "heading_level": "h1",
-        "heading_animation": "none",
-        "description": "Explore Our Winter 25 Campaign. Captured in Lake Como, Italy",
-        "description_animation": "none",
-        "button_label_1": "Shop Now",
-        "button_link_1": "",
-        "button_label_2": "",
-        "button_link_2": "",
-        "button_label_3": "",
-        "button_link_3": "",
-        "button_label_4": "",
-        "button_link_4": "",
-        "horizontal_alignment": "center",
-        "vertical_alignment": "bottom"
-      }
-    },
     "blog_collection_X9RrdY": {
       "type": "blog-collection",
       "name": "Blog Collection",
@@ -71,11 +46,18 @@
         "limit": 12,
         "articles_per_row": 4
       }
+    },
+    "blog_header_N4peAb": {
+      "type": "blog-header",
+      "name": "Blog Header",
+      "settings": {
+        "journal_type": "jackson"
+      }
     }
   },
   "order": [
+    "blog_header_N4peAb",
     "blog_hero_ipkUaE",
-    "hero_primary_hgB9fC",
     "blog_collection_X9RrdY"
   ]
 }
