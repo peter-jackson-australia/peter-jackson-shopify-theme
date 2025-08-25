@@ -9,30 +9,11 @@
  */
 {
   "sections": {
-    "hero_primary_tzK3wz": {
-      "type": "hero-primary",
-      "name": "Hero Section",
+    "blog_header_QbaidT": {
+      "type": "blog-header",
+      "name": "Blog Header",
       "settings": {
-        "media_type": "image",
-        "desktop_image": "shopify://shop_images/peter-jackson-menswear-green-jacket-white-turtleneck.webp",
-        "heading": "Wellbeing For The Modern Man",
-        "svg_size": "medium",
-        "heading_level": "h1",
-        "heading_animation": "none",
-        "description": "",
-        "description_animation": "none",
-        "button_label_1": "Shop Now",
-        "button_link_1": "",
-        "button_label_2": "",
-        "button_link_2": "",
-        "button_label_3": "",
-        "button_link_3": "",
-        "button_label_4": "",
-        "button_link_4": "",
-        "horizontal_alignment": "center",
-        "vertical_alignment": "bottom",
-        "mobile_horizontal_alignment": "left",
-        "mobile_vertical_alignment": "bottom"
+        "journal_type": "empowered"
       }
     },
     "blog_collection_jbntXY": {
@@ -47,7 +28,7 @@
     }
   },
   "order": [
-    "hero_primary_tzK3wz",
+    "blog_header_QbaidT",
     "blog_collection_jbntXY"
   ]
 }
