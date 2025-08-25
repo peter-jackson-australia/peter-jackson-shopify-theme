@@ -268,7 +268,8 @@
           class="hero__svg hero__svg--{{ section.settings.svg_size | default: 'medium' }} hero__svg--desktop"
           width="{{ section.settings.svg_image.width }}"
           height="{{ section.settings.svg_image.height }}"
-          loading="lazy"
+          loading="eager"
+          fetchpriority="high"
         >
         {% if section.settings.mobile_svg_image %}
           <img
@@ -277,7 +278,8 @@
             class="hero__svg hero__svg--{{ section.settings.svg_size | default: 'medium' }} hero__svg--mobile"
             width="{{ section.settings.mobile_svg_image.width }}"
             height="{{ section.settings.mobile_svg_image.height }}"
-            loading="lazy"
+            loading="eager"
+            fetchpriority="high"
           >
         {% endif %}
       {% elsif section.settings.heading %}
