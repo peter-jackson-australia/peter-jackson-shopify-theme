@@ -9,64 +9,31 @@
  */
 {
   "sections": {
-    "editorial_hero_hceC9g": {
-      "type": "editorial-hero",
-      "name": "Hero Editorial",
+    "hero_primary_8YRMPG": {
+      "type": "hero-primary",
+      "name": "Hero Section",
       "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": false,
-        "leading_text": "",
-        "leading_text_animation": "none",
-        "first_title": "Discover",
-        "first_title_level": "h1",
-        "first_title_animation": "none",
         "media_type": "image",
-        "animate_media": false,
-        "second_title": "Collection",
-        "second_title_level": "h1",
-        "second_title_animation": "none",
-        "description": "",
+        "desktop_image": "shopify://shop_images/Father_s_Day_Hero.webp",
+        "heading": "",
+        "svg_image": "shopify://shop_images/FD_SVG.svg",
+        "svg_size": "small",
+        "heading_level": "h1",
+        "heading_animation": "none",
+        "description": "Our guide for the ultimate gifts",
         "description_animation": "none",
-        "cta_text": "Shop Now",
-        "cta_link": ""
-      }
-    },
-    "hero_slider_9yWdBN": {
-      "type": "hero-slider",
-      "blocks": {
-        "slide_YfxK6J": {
-          "type": "slide",
-          "settings": {
-            "media_type": "image",
-            "heading": "Welcome to Our Store",
-            "svg_size": "medium",
-            "heading_level": "h1",
-            "heading_animation": "none",
-            "description": "Discover our latest collection",
-            "description_animation": "none",
-            "button_label_1": "Shop Now",
-            "button_link_1": "",
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_label_3": "",
-            "button_link_3": "",
-            "button_label_4": "",
-            "button_link_4": "",
-            "horizontal_alignment": "center",
-            "vertical_alignment": "bottom",
-            "mobile_horizontal_alignment": "center",
-            "mobile_vertical_alignment": "bottom"
-          }
-        }
-      },
-      "block_order": [
-        "slide_YfxK6J"
-      ],
-      "name": "Hero Slider",
-      "settings": {
-        "autoplay": true,
-        "slide_interval": 5
+        "button_label_1": "Shop Now",
+        "button_link_1": "shopify://collections/new-arrivals",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
+        "horizontal_alignment": "left",
+        "vertical_alignment": "middle",
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "bottom"
       }
     },
     "variable_column_content_secondary_HfRUbR": {
@@ -149,8 +116,7 @@
     }
   },
   "order": [
-    "editorial_hero_hceC9g",
-    "hero_slider_9yWdBN",
+    "hero_primary_8YRMPG",
     "variable_column_content_secondary_HfRUbR"
   ]
 }
