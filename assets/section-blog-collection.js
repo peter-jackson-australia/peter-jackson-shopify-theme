@@ -24,7 +24,7 @@ const renderArticles = (pageNum) => {
   const articlesContainer = document.getElementById("article-list");
 
   if (!pageArticleIds.length) {
-    articlesContainer.innerHTML = '<div class="blog-collection__empty"><h3>No Articles Found</h3></div>';
+    articlesContainer.innerHTML = '<div class="blog-collection__empty"><h3>Sorry, Unfortunately No Articles Were Found For This Topic.</h3></div>';
     return;
   }
 
