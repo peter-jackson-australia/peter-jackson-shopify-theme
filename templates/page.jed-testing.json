@@ -9,53 +9,18 @@
  */
 {
   "sections": {
-    "contact_form_7pDkph": {
-      "type": "contact-form",
-      "blocks": {
-        "text_f4EHCG": {
-          "type": "text",
-          "settings": {
-            "title": "Name",
-            "name": "name",
-            "maxlength": 128,
-            "required": true,
-            "placeholder": ""
-          }
-        },
-        "email_E38kXY": {
-          "type": "email",
-          "settings": {
-            "title": "Email",
-            "maxlength": 128,
-            "placeholder": "e.g. steve@example.com"
-          }
-        },
-        "textarea_jVpPCh": {
-          "type": "textarea",
-          "settings": {
-            "title": "Message",
-            "name": "body",
-            "maxlength": 500,
-            "rows": 5,
-            "required": true,
-            "placeholder": ""
-          }
-        }
-      },
-      "block_order": [
-        "text_f4EHCG",
-        "email_E38kXY",
-        "textarea_jVpPCh"
-      ],
-      "name": "Contact Form",
+    "blog_collection_JQ3NfX": {
+      "type": "blog-collection",
+      "name": "Blog Collection",
       "settings": {
-        "heading": "Get in Touch",
-        "description": "We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
-        "button_label": "Submit"
+        "heading": "",
+        "blog": "the-jackson-journal",
+        "limit": 8,
+        "articles_per_row": 3
       }
     }
   },
   "order": [
-    "contact_form_7pDkph"
+    "blog_collection_JQ3NfX"
   ]
 }
