@@ -131,9 +131,9 @@
         "button_link": ""
       }
     },
-    "collection_slider_aHzYQX": {
-      "type": "collection-slider",
-      "name": "Collection Slider",
+    "collection_slider_secondary_eTKRA4": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
       "settings": {
         "heading": "New In Now",
         "heading_animation": "none",
@@ -150,6 +150,6 @@
     "hero_primary_8YRMPG",
     "heading_with_text_GUWGWz",
     "variable_column_content_secondary_HfRUbR",
-    "collection_slider_aHzYQX"
+    "collection_slider_secondary_eTKRA4"
   ]
 }
