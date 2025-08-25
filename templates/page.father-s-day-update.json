@@ -14,7 +14,7 @@
       "name": "Hero Section",
       "settings": {
         "media_type": "image",
-        "desktop_image": "shopify://shop_images/Father_s_Day_Hero.webp",
+        "desktop_image": "shopify://shop_images/FD_Hero.webp",
         "heading": "",
         "svg_image": "shopify://shop_images/FD_SVG.svg",
         "svg_size": "small",
@@ -34,6 +34,23 @@
         "vertical_alignment": "middle",
         "mobile_horizontal_alignment": "center",
         "mobile_vertical_alignment": "bottom"
+      }
+    },
+    "heading_with_text_GUWGWz": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "leading_text": "FATHER'S DAY",
+        "leading_text_animation": "none",
+        "heading": "The Perfect Gift Sets for Him",
+        "heading_style": "normal",
+        "heading_animation": "none",
+        "content": "<p>Curated essentials to make his day unforgettable</p>",
+        "content_animation": "none",
+        "alignment": "center"
       }
     },
     "variable_column_content_secondary_HfRUbR": {
@@ -102,7 +119,7 @@
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
-        "show_bottom_border": false,
+        "show_bottom_border": true,
         "column_count": "4",
         "text_alignment": "left",
         "animate_columns": false,
@@ -117,6 +134,7 @@
   },
   "order": [
     "hero_primary_8YRMPG",
+    "heading_with_text_GUWGWz",
     "variable_column_content_secondary_HfRUbR"
   ]
 }
