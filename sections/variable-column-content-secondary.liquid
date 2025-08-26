@@ -146,10 +146,6 @@
       {%- for block in section.blocks limit: column_count -%}
         {% if block.type == 'column_item' %}
           <div class="variable-column-content-secondary__column" {{ block.shopify_attributes }}>
-            {% if block.settings.column_link != blank %}
-              <a href="{{ block.settings.column_link }}" class="variable-column-content-secondary__column-link">
-            {% endif %}
-
             {% if block.settings.image != blank %}
               <div class="variable-column-content-secondary__image-wrapper">
                 {% if block.settings.image_link != blank %}
@@ -186,16 +182,12 @@
                 {% endif %}
 
                 {% if block.settings.column_link != blank and block.settings.column_link_text != blank %}
-                  <div class="variable-column-content-secondary__column-cta body">
+                  <a href="{{ block.settings.column_link }}" class="variable-column-content-secondary__column-cta body">
                     {{ block.settings.column_link_text }}
                     {% render '_icon-arrow-submit-dark' %}
-                  </div>
+                  </a>
                 {% endif %}
               </div>
-            {% endif %}
-
-            {% if block.settings.column_link != blank %}
-              </a>
             {% endif %}
           </div>
         {% endif %}

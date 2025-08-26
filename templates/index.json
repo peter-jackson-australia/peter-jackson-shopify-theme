@@ -120,12 +120,12 @@
           "type": "column_item",
           "settings": {
             "image": "shopify://shop_images/Business_Shirt_Tie_69b66085-0911-4c6c-8df1-9408f705e9a0.jpg",
-            "image_link": "shopify://collections/gifts-for-men",
+            "image_link": "shopify://collections/fathers-day-business-shirt-tie-gift-set",
             "heading": "Business Shirt & Tie",
             "heading_animation": "none",
-            "text": "$129",
+            "text": "$150",
             "text_animation": "none",
-            "column_link": "shopify://collections/gifts-for-men",
+            "column_link": "shopify://collections/fathers-day-business-shirt-tie-gift-set",
             "column_link_text": "Shop Now"
           }
         },
@@ -133,12 +133,12 @@
           "type": "column_item",
           "settings": {
             "image": "shopify://shop_images/Chino_Polo.jpg",
-            "image_link": "shopify://collections/gifts-for-men",
+            "image_link": "shopify://collections/fathers-day-polo-chinos-gift-set",
             "heading": "Polo & Chino",
             "heading_animation": "none",
             "text": "$129",
             "text_animation": "none",
-            "column_link": "shopify://collections/gifts-for-men",
+            "column_link": "shopify://collections/fathers-day-polo-chinos-gift-set",
             "column_link_text": "Shop Now"
           }
         },
@@ -146,12 +146,12 @@
           "type": "column_item",
           "settings": {
             "image": "shopify://shop_images/Three_Casual_Shirts.jpg",
-            "image_link": "shopify://collections/gifts-for-men",
+            "image_link": "shopify://collections/fathers-day-three-casual-shirts-gift-set",
             "heading": "Three Casual Shirts",
             "heading_animation": "none",
             "text": "$189",
             "text_animation": "none",
-            "column_link": "shopify://collections/gifts-for-men",
+            "column_link": "shopify://collections/fathers-day-three-casual-shirts-gift-set",
             "column_link_text": "Shop Now"
           }
         },
@@ -159,12 +159,12 @@
           "type": "column_item",
           "settings": {
             "image": "shopify://shop_images/Footwear_Belt.jpg",
-            "image_link": "shopify://collections/gifts-for-men",
+            "image_link": "shopify://collections/fathers-day-footwear-belt-gift-set",
             "heading": "Footwear & Belt",
             "heading_animation": "none",
             "text": "$189",
             "text_animation": "none",
-            "column_link": "shopify://collections/gifts-for-men",
+            "column_link": "shopify://collections/fathers-day-footwear-belt-gift-set",
             "column_link_text": "Shop Now"
           }
         }
