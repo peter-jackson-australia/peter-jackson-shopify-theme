@@ -133,7 +133,7 @@
           "type": "column_item",
           "settings": {
             "image": "shopify://shop_images/Chino_Polo.jpg",
-            "image_link": "shopify://collections/gifts-for-men",
+            "image_link": "shopify://collections/fathers-day-polo-chinos-gift-set",
             "heading": "Polo & Chino",
             "heading_animation": "none",
             "text": "$129",
@@ -146,7 +146,7 @@
           "type": "column_item",
           "settings": {
             "image": "shopify://shop_images/Three_Casual_Shirts.jpg",
-            "image_link": "shopify://collections/gifts-for-men",
+            "image_link": "shopify://collections/fathers-day-three-casual-shirts-gift-set",
             "heading": "Three Casual Shirts",
             "heading_animation": "none",
             "text": "$189",
