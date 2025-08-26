@@ -21,6 +21,13 @@
             "alignment": "center"
           }
         },
+        "announcement_ymDiAG": {
+          "type": "announcement",
+          "settings": {
+            "text": "Free Shipping & Duties Paid On All International Orders",
+            "alignment": "center"
+          }
+        },
         "announcement_tnUYFL": {
           "type": "announcement",
           "settings": {
@@ -31,6 +38,7 @@
       },
       "block_order": [
         "announcement_mQFJhL",
+        "announcement_ymDiAG",
         "announcement_tnUYFL"
       ],
       "settings": {
