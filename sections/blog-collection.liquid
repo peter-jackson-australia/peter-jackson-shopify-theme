@@ -52,7 +52,13 @@
 
       <div class="blog-collection__post-content">
         {% if article.tags.size > 0 %}
-          <div class="blog-collection__post-category small">{{ article.tags.first }}</div>
+          <div class="blog-collection__post-category small">
+            {%- if is_lifestyle_page and article.tags.size > 1 -%}
+              {{ article.tags[1] }}
+            {%- else -%}
+              {{ article.tags.first }}
+            {%- endif -%}
+          </div>
         {% endif %}
 
         <h3 class="blog-collection__post-title heading--l">
