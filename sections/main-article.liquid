@@ -464,8 +464,8 @@
 
       <div class="article-related__posts">
         {% assign displayed_count = 0 %}
-        {% for related_article in blogs['the-jackson-journal'].articles limit: 8 %}
-          {% if related_article.id != article.id and displayed_count < 4 %}
+        {% for related_article in blogs['the-jackson-journal'].articles limit: 12 %}
+          {% if related_article.id != article.id and displayed_count < 6 %}
             <article class="article-related__post">
               {% if related_article.image %}
                 <a href="{{ related_article.url }}" class="article-related__post-image">
