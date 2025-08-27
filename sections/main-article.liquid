@@ -14,11 +14,7 @@
   }
 
   .article-header__tags {
-    display: flex;
     margin: 0 auto;
-    gap: var(--space-2xs);
-    justify-content: center;
-    flex-wrap: wrap;
     color: var(--neutral-600);
   }
 
@@ -424,23 +420,26 @@
       {% if article.tags.size > 0 %}
         <div class="article-header__tags">
           <p class="small">
-            {% for tag in article.tags %}
-              {% liquid
-                assign blog_sub_collection = article.metafields.custom.blog_sub_collection
-                if blog_sub_collection == 'The Empowered Mind'
-                  assign page_url = '/pages/the-empowered-mind'
-                else
-                  assign page_url = '/pages/the-jackson-journal'
-                endif
-              %}
-              <a
-                href="{{ page_url }}?tag={{ tag | url_encode }}#blog-collection"
-                class="article-header__tag body--uppercase"
-              >
-                {{- tag -}}
-              </a>
-              {%- unless forloop.last %}/{% endunless %}
-            {% endfor %}
+            {% liquid
+              if article.tags.size > 1
+                assign display_tag = article.tags[1]
+              else
+                assign display_tag = article.tags[0]
+              endif
+
+              assign blog_sub_collection = article.metafields.custom.blog_sub_collection
+              if blog_sub_collection == 'The Empowered Mind'
+                assign page_url = '/pages/the-empowered-mind'
+              else
+                assign page_url = '/pages/the-jackson-journal'
+              endif
+            %}
+            <a
+              href="{{ page_url }}?tag={{ display_tag | url_encode }}#blog-collection"
+              class="article-header__tag body--uppercase"
+            >
+              {{- display_tag -}}
+            </a>
           </p>
         </div>
       {% endif %}
