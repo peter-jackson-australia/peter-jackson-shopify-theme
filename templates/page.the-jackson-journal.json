@@ -50,15 +50,22 @@
       "name": "Blog Collection",
       "settings": {
         "heading": "DISCOVER MORE",
-        "blog": "the-jackson-journal",
-        "limit": 12,
-        "articles_per_row": 4
+        "blog": "the-jackson-journal"
+      }
+    },
+    "featured_article_6zir3n": {
+      "type": "featured-article",
+      "name": "Featured Articles",
+      "settings": {
+        "heading": "Featured Articles",
+        "heading_alignment": "left"
       }
     }
   },
   "order": [
     "blog_header_N4peAb",
     "blog_hero_ipkUaE",
+    "featured_article_6zir3n",
     "blog_collection_X9RrdY"
   ]
 }
