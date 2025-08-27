@@ -46,7 +46,7 @@
       "type": "blog-collection",
       "name": "Blog Collection",
       "settings": {
-        "heading": "Discover More",
+        "heading": "Latest Articles",
         "blog": "the-jackson-journal"
       }
     }
