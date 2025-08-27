@@ -66,12 +66,30 @@
         "heading": "Latest Articles",
         "blog": "the-jackson-journal"
       }
+    },
+    "icon_callout_C9qcKY": {
+      "type": "icon-callout",
+      "name": "Icon Callout",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "icon": "shopify://shop_images/speech-bubble.svg",
+        "heading": "Beyond Blue 24/7 Support Service - Call 1300 224 636",
+        "heading_animation": "none",
+        "text": "If you or someone you know is going through a hard time, the Beyond Blue Support Service is free and available 24/7.",
+        "text_animation": "none",
+        "button_label": "",
+        "button_link": "",
+        "background_color": "green-800"
+      }
     }
   },
   "order": [
     "blog_header_QbaidT",
     "hero_primary_xE4HX6",
     "icon_callout_tGPg9G",
-    "blog_collection_jbntXY"
+    "blog_collection_jbntXY",
+    "icon_callout_C9qcKY"
   ]
 }
