@@ -1,12 +1,13 @@
 <style>
   .featured-article {
-    padding: var(--space-2xl) var(--space-m);
+    padding: var(--space-2xl) 0;
     overflow: hidden;
     border-bottom: 1px solid var(--neutral-50);
   }
 
   .featured-article__heading {
     margin-bottom: var(--space-l);
+    padding: 0 var(--space-m);
     color: var(--neutral-950);
   }
 
@@ -24,7 +25,13 @@
 
   .featured-article__slider-wrapper {
     overflow: visible;
-    width: 100%;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+  }
+
+  .featured-article__slide .featured-article__title,
+  .featured-article__slide .featured-article__read-more {
+    padding-left: var(--space-m);
   }
 
   .featured-article__slider {
@@ -41,7 +48,6 @@
     margin-bottom: var(--space-xs);
     overflow: hidden;
     background-color: var(--neutral-50);
-    aspect-ratio: 16 / 9;
   }
 
   .featured-article__image {
@@ -52,18 +58,21 @@
 
   .featured-article__title {
     margin: var(--space-xs) 0 var(--space-2xs);
+    padding-left: var(--space-m);
     color: var(--neutral-950);
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .featured-article__read-more {
     display: inline-flex;
     align-items: center;
     gap: var(--space-3xs);
+    padding-left: var(--space-m);
     color: var(--neutral-950);
   }
 
@@ -73,7 +82,16 @@
 
   @media screen and (max-width: 768px) {
     .featured-article {
-      padding: var(--space-xl) var(--space-m);
+      padding: var(--space-xl) 0;
+    }
+
+    .featured-article__slider {
+      padding: 0 var(--space-m);
+    }
+
+    .featured-article__title,
+    .featured-article__read-more {
+      padding-left: 0px !important;
     }
 
     .splide__arrows {
@@ -92,7 +110,7 @@
 
 <div class="featured-article" id="section-{{ section.id }}">
   {% if section.settings.heading != blank %}
-    <h2 class="heading--2xl featured-article__heading featured-article__heading--{{ section.settings.heading_alignment }}">
+    <h2 class="heading--xl featured-article__heading featured-article__heading--{{ section.settings.heading_alignment }}">
       {{ section.settings.heading }}
     </h2>
   {% endif %}
@@ -122,7 +140,7 @@
                       >
                     </div>
                   {% endif %}
-                  <h3 class="body--bold featured-article__title">{{ article.title }}</h3>
+                  <h3 class="heading--l featured-article__title">{{ article.title }}</h3>
                   <span class="body featured-article__read-more">
                     Read More
                     {% render '_icon-arrow-submit-dark' %}
