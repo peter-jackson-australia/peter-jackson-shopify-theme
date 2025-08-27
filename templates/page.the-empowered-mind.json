@@ -16,19 +16,44 @@
         "journal_type": "empowered"
       }
     },
+    "hero_primary_xE4HX6": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/Peter-Jackson-Man-Wearing-Green-Corduroy-Suit.jpg",
+        "heading": "The Empowered Mind",
+        "svg_size": "medium",
+        "heading_level": "h1",
+        "heading_animation": "none",
+        "description": "Wellbeing For The Modern Man",
+        "description_animation": "none",
+        "button_label_1": "Shop Now",
+        "button_link_1": "",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "bottom",
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "bottom"
+      }
+    },
     "blog_collection_jbntXY": {
       "type": "blog-collection",
       "name": "Blog Collection",
       "settings": {
-        "heading": "Featured Articles",
-        "blog": "the-jackson-journal",
-        "limit": 12,
-        "articles_per_row": 4
+        "heading": "Discover More",
+        "blog": "the-jackson-journal"
       }
     }
   },
   "order": [
     "blog_header_QbaidT",
+    "hero_primary_xE4HX6",
     "blog_collection_jbntXY"
   ]
 }
