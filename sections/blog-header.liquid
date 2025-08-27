@@ -86,6 +86,15 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
+    const currentUrl = window.location.href;
+    const links = document.querySelectorAll('.blog-header__link');
+
+    links.forEach((link) => {
+      if (currentUrl.includes(link.getAttribute('href'))) {
+        link.style.borderBottom = '1px solid var(--neutral-950)';
+      }
+    });
+
     if (window.innerWidth < 1000) return;
 
     const header = document.querySelector('#site-header');
