@@ -9,6 +9,13 @@
  */
 {
   "sections": {
+    "blog_header_TeHXdE": {
+      "type": "blog-header",
+      "name": "Blog Header",
+      "settings": {
+        "journal_type": "empowered"
+      }
+    },
     "article": {
       "type": "main-article",
       "settings": {}
@@ -32,6 +39,7 @@
     }
   },
   "order": [
+    "blog_header_TeHXdE",
     "article",
     "icon_callout_JYNMkN"
   ]
