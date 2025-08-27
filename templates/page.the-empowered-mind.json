@@ -42,6 +42,23 @@
         "mobile_vertical_alignment": "bottom"
       }
     },
+    "icon_callout_tGPg9G": {
+      "type": "icon-callout",
+      "name": "Icon Callout",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "icon": "shopify://shop_images/beyond-blue-footer-logo.svg",
+        "heading": "Beyond Blue",
+        "heading_animation": "none",
+        "text": "Our partnership with Beyond Blue is a key pillar of this initiative. Together, we’re working to break the stigma around men’s mental health by raising funds for their 24/7 Support Service and providing resources that empower men to seek help, start conversations, and take charge of their well-being.",
+        "text_animation": "none",
+        "button_label": "",
+        "button_link": "",
+        "background_color": "neutral-950"
+      }
+    },
     "blog_collection_jbntXY": {
       "type": "blog-collection",
       "name": "Blog Collection",
@@ -54,6 +71,7 @@
   "order": [
     "blog_header_QbaidT",
     "hero_primary_xE4HX6",
+    "icon_callout_tGPg9G",
     "blog_collection_jbntXY"
   ]
 }
