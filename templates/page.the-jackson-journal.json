@@ -16,41 +16,31 @@
         "journal_type": "jackson"
       }
     },
-    "blog_hero_ipkUaE": {
-      "type": "blog-hero",
-      "disabled": true,
-      "name": "Blog Hero",
+    "hero_primary_JaHAVL": {
+      "type": "hero-primary",
+      "name": "Hero Section",
       "settings": {
-        "anchor_id": "",
-        "show_top_border": true,
-        "show_bottom_border": true,
-        "hero_image": "shopify://shop_images/Peter-Jackson-Man-Wearing-Green-Corduroy-Suit_HD_9a061f7b-da2f-403f-b920-db49fb573421.webp",
-        "show_image_overlay": true,
-        "image_heading": "THE CORDUROY COMEBACK",
-        "image_heading_animation": "none",
-        "image_description": "Vintage utility meets contemporary style. From suits to jackets and casual shirts, this classic textile is back with a vengeance.",
-        "image_description_animation": "none",
-        "image_link_text": "Read Article",
-        "image_link_url": "shopify://blogs/the-jackson-journal/the-corduroy-comeback",
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/Suits_Content.webp",
+        "mobile_image": "shopify://shop_images/Outerwear._Megawebp.webp",
         "heading": "The Jackson Journal",
+        "svg_size": "medium",
+        "heading_level": "h1",
         "heading_animation": "none",
-        "subheading": "The Stories Behind The Threads",
-        "subheading_animation": "none",
-        "description": "Discover our world through campaigns, interviews, and features designed to inform your style and inspire a life well lived.",
+        "description": "The Stories Behind The Threads",
         "description_animation": "none",
-        "cta_link": "",
-        "cta_text": "Read Now",
-        "show_recent_posts": true,
-        "animate_posts": true,
-        "blog": "the-jackson-journal"
-      }
-    },
-    "blog_collection_X9RrdY": {
-      "type": "blog-collection",
-      "name": "Blog Collection",
-      "settings": {
-        "heading": "DISCOVER MORE",
-        "blog": "the-jackson-journal"
+        "button_label_1": "",
+        "button_link_1": "",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "middle",
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "bottom"
       }
     },
     "featured_article_6zir3n": {
@@ -60,11 +50,19 @@
         "heading": "Featured Articles",
         "heading_alignment": "left"
       }
+    },
+    "blog_collection_X9RrdY": {
+      "type": "blog-collection",
+      "name": "Blog Collection",
+      "settings": {
+        "heading": "DISCOVER MORE",
+        "blog": "the-jackson-journal"
+      }
     }
   },
   "order": [
     "blog_header_N4peAb",
-    "blog_hero_ipkUaE",
+    "hero_primary_JaHAVL",
     "featured_article_6zir3n",
     "blog_collection_X9RrdY"
   ]
