@@ -425,8 +425,16 @@
         <div class="article-header__tags">
           <p class="small">
             {% for tag in article.tags %}
+              {% liquid
+                assign blog_sub_collection = article.metafields.custom.blog_sub_collection
+                if blog_sub_collection == 'The Empowered Mind'
+                  assign page_url = '/pages/the-empowered-mind'
+                else
+                  assign page_url = '/pages/the-jackson-journal'
+                endif
+              %}
               <a
-                href="{{ blog.url }}?tag={{ tag | url_encode }}#blog-collection"
+                href="{{ page_url }}?tag={{ tag | url_encode }}#blog-collection"
                 class="article-header__tag body--uppercase"
               >
                 {{- tag -}}
