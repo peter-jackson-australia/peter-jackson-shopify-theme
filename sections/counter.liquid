@@ -27,10 +27,12 @@
 
     <div class="counter__container">
       <h1>{{ counter_description }}</h1>
+      <p>{{ counter_final_value | round: 2 }}</p>
       <p style="display: flex; flex-direction:">
         {% if counter_prefix != blank %}
           <span class="counter__container-aside-text">{{ counter_prefix }}</span>
         {% endif %}
+
         <span
           class="counter__container-value"
           id="counter-{{ section_id }}-{{ forloop.index }}"

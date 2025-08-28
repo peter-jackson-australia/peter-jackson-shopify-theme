@@ -8,9 +8,9 @@ for (let i = 0; i < counters.length; i++) {
   const finalValue = parseFloat(counter.dataset.final)
   const duration = parseFloat(counter.dataset.duration)
 
-  const finalValueDecimal = decimalFromNumber(finalValue)
+  const decimalLength = decimalStrFromNumber(finalValue).length
+  console.log(finalValue, decimalStrFromNumber(finalValue), decimalLength)
 
-  // Make the counter apply the decimal points
   counter.textContent = finalValue.toFixed(0)
   gsap.from(`#${counter.id}`, {
     textContent: initialValue,
@@ -18,27 +18,21 @@ for (let i = 0; i < counters.length; i++) {
     ease: Power1.power1out,
     snap: { textContent: 1 },
     stagger: {
-      each: 1,
+      each: 0,
+      start: 'start',
       onUpdate: function () {
         const target = this.targets()[0]
         const num = parseFloat(target.textContent).toFixed(0);
 
         let innerHTML = num.toString()
-        if (finalValueDecimal) innerHTML += `.${finalValueDecimal}`
-        target.innerHTML = innerHTML
+        if (decimalLength) innerHTML += `.${decimalLength}`
+        target.textContent = innerHTML
       },
     }
   })
 }
 
-/**
- * @param {number} num 
- * @returns {string}
- */
-function decimalFromNumber(num) {
+function decimalStrFromNumber(num) {
   const fraction = num.toString().split('.')
-  if (fraction.length == 0) {
-    return undefined
-  }
-  return fraction[1];
+  fraction.length >= 2 ? fraction[1] : undefined
 }
