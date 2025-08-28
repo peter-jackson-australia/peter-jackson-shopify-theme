@@ -12,55 +12,19 @@
     "counter_ix7CxW": {
       "type": "counter",
       "blocks": {
-        "counter_Dyx4LC": {
-          "type": "counter",
-          "settings": {
-            "counter_description": "This counter goes from 0 to 100",
-            "counter_duration": 5,
-            "counter_text_prefix": "Up to",
-            "counter_text_suffix": "% Something",
-            "counter_initial_value": 85,
-            "counter_final_value": 100
-          }
-        },
-        "counter_gNkTKp": {
-          "type": "counter",
-          "settings": {
-            "counter_description": "Normal Number (324-5432)",
-            "counter_duration": 1,
-            "counter_text_prefix": "Up to",
-            "counter_text_suffix": "% Something",
-            "counter_initial_value": 324,
-            "counter_final_value": 5432
-          }
-        },
-        "counter_FGkxRb": {
-          "type": "counter",
-          "settings": {
-            "counter_description": "Normal number",
-            "counter_duration": 2,
-            "counter_text_prefix": "Prefix",
-            "counter_text_suffix": "Numbers",
-            "counter_initial_value": 80,
-            "counter_final_value": 100
-          }
-        },
         "counter_bCUTkb": {
           "type": "counter",
           "settings": {
-            "counter_description": "Negative Numbers",
-            "counter_duration": 1,
-            "counter_text_prefix": "Somewhere Between",
-            "counter_text_suffix": "Numbers",
-            "counter_initial_value": -152,
-            "counter_final_value": 234
+            "counter_description": "",
+            "counter_duration": 2,
+            "counter_text_prefix": "",
+            "counter_text_suffix": "",
+            "counter_initial_value": 65,
+            "counter_final_value": 80
           }
         }
       },
       "block_order": [
-        "counter_Dyx4LC",
-        "counter_gNkTKp",
-        "counter_FGkxRb",
         "counter_bCUTkb"
       ],
       "name": "Counter",
