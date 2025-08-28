@@ -5,8 +5,9 @@
 
 {% assign heading = 'Main Heading' %}
 {% assign subheading = 'This is a subheading with more text' %}
+{% assign section_id = section.id %}
 
-<div>
+<div id="counter-{{ section_id }}">
   {% if heading != blank %}
     <h1>{{ heading }}</h1>
   {% endif %}
@@ -16,35 +17,31 @@
   {% endif %}
 
   {% for counter in section.blocks %}
-    {% comment %}
-      {% assign counter_description = counter.settings.counter_description %}
-      {% assign counter_value = counter.settings.counter_value %}
-      {% assign counter_time_seconds = counter.settings.counter_time_seconds %}
-    {% endcomment %}
+    {% assign counter_description = counter.settings.counter_description %}
+    {% assign counter_value = counter.settings.value %}
+    {% assign counter_duration = counter.settings.counter_duration %}
+    {% assign counter_decimal_points = counter.settings.counter_decimal_points %}
 
     <div class="counter__container">
       <h1>{{ counter_description }}</h1>
       <p
         class="counter__container-value"
-        data-from="0"
-        data-to="100"
-        data-animate-seconds="2"
-        data-decimal-places="3"
-      ></p>
-      {% comment %}
-        <p
-          class="counter__container-value"
-          data-from="0"
-          data-to="{{ counter_value }}"
-          data-animate-seconds="{{ counter_time_seconds }}"
-        ></p>
-      {% endcomment %}
+        id="counter-{{ section_id }}-{{ forloop.index }}"
+        data-to="{{ counter_value }}"
+        data-from="{{ 50 }}"
+        data-duration="{{ counter_duration }}"
+        data-decimal-points="{{ counter_decimal_points }}"
+      >
+        500
+      </p>
     </div>
   {% endfor %}
+  <p>test</p>
 </div>
 
 <script
   src="{{ "section-counter.js" | asset_url }}"
+  data-section-id="{{ section_id }}"
   defer
 ></script>
 
@@ -77,10 +74,16 @@
           "default": "This counter goes from 0 to 100"
         },
         {
-          "id": "counter_time_seconds",
-          "label": "Counter Time (Seconds)",
+          "id": "counter_duration",
+          "label": "Counter Duration (Seconds)",
           "type": "number",
           "default": 5
+        },
+        {
+          "id": "counter_decimal_points",
+          "label": "Counter Decimal Points",
+          "type": "number",
+          "default": 2
         },
         {
           "id": "value",

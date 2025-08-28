@@ -1,74 +1,46 @@
-const counters = document.querySelectorAll('.counter__container-value');
+const sectionId = document.currentScript.dataset.sectionId
+const counters = document.querySelectorAll(`#counter-${sectionId} .counter__container-value`)
+
 for (let i = 0; i < counters.length; i++) {
-  const c = counters[i]
+  const counter = counters[i]
 
-  const fromStr = c.dataset.from
-  const toStr = c.dataset.to
-  const from = parseInt(fromStr)
-  const fromDecimal = getDecimalNumber(fromStr)
-  const to = parseInt(toStr)
-  const toDecimal = getDecimalNumber(toStr)
+  const to = parseFloat(counter.dataset.to)
+  const from = parseFloat(counter.dataset.from)
+  const duration = parseFloat(counter.dataset.duration)
 
-  let decimalPlaces
-  if (c.dataset.decimalPlaces) {
-    decimalPlaces = parseInt(c.dataset.decimalPlaces)
-  } else {
-    decimalPlaces = 1
-  }
+  console.log(`counter ${i}: `, to, from, duration)
 
-  const animateSeconds = parseFloat(c.dataset.animateSeconds)
-  createCounter(c, from, to, animateSeconds)
-  if (decimalPlaces > 1) {
-    const decimal = document.createElement("span")
-    decimal.textContent = "."
-    c.appendChild(decimal)
-    createCounter(c, fromDecimal, toDecimal, animateSeconds)
-  }
+  const toDecimal = decimalFromNumber(to)
+
+  // Make the counter apply the decimal points
+  counter.textContent = to.toFixed(0)
+  gsap.from(`#${counter.id}`, {
+    textContent: from,
+    duration: duration,
+    ease: Power1.power1out,
+    snap: { textContent: 1 },
+    stagger: {
+      each: 1,
+      onUpdate: function () {
+        const target = this.targets()[0]
+        const num = parseFloat(target.textContent).toFixed(0);
+
+        const innerHTML = num.toString()
+        if (toDecimal) innerHTML += `.${decimal}`
+        target.innerHTML = innerHTML
+      },
+    }
+  })
 }
 
 /**
- * @param {Element} container 
- * @param {number} from 
- * @param {number} to 
- * @param {number} animateSeconds 
+ * @param {number} num 
+ * @returns {string}
  */
-function createCounter(container, from, to, animateSeconds) {
-  const totalIncrements = to - from
-  const timeoutSeconds = animateSeconds / totalIncrements
-
-  const counterElement = document.createElement("span")
-  counterElement.textContent = from.toFixed(0)
-  container.appendChild(counterElement)
-
-  animateCounter(counterElement, to, timeoutSeconds)
-}
-
-/**
- * @param {String} numberStr 
- * @returns {Number}
- */
-function getDecimalNumber(numberStr) {
-  const decimalSplit = numberStr.split('.')
-  if (decimalSplit.length > 1) {
-    return parseFloat(decimalSplit[1])
-  } else {
-    return 0
+function decimalFromNumber(num) {
+  const fraction = num.toString().split('.')
+  if (fraction.length == 0) {
+    return undefined
   }
-}
-
-/**
- * @param {Element} elem 
- * @param {number} final 
- * @param {number} timeoutSeconds 
- * @param {number} decimalPlaces
- */
-function animateCounter(elem, final, timeoutSeconds) {
-  const currentNumber = parseFloat(elem.textContent)
-
-  if (currentNumber < final) {
-    elem.textContent = currentNumber + 1
-    setTimeout(() => animateCounter(elem, final, timeoutSeconds), timeoutSeconds * 1000)
-  } else {
-    elem.textContent = String(final)
-  }
+  return fraction[1];
 }
