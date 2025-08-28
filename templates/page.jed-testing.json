@@ -15,22 +15,34 @@
         "counter_gNkTKp": {
           "type": "counter",
           "settings": {
-            "counter_description": "description",
-            "value": 100
+            "counter_description": "Normal Number (324-5432)",
+            "counter_duration": 1,
+            "counter_text_prefix": "Up to",
+            "counter_text_suffix": "% Something",
+            "counter_initial_value": 324,
+            "counter_final_value": 5432
           }
         },
         "counter_FGkxRb": {
           "type": "counter",
           "settings": {
-            "counter_description": "description",
-            "value": 100
+            "counter_description": "Decimal Places",
+            "counter_duration": 1,
+            "counter_text_prefix": "Prefix",
+            "counter_text_suffix": "Numbers",
+            "counter_initial_value": 85,
+            "counter_final_value": 100
           }
         },
         "counter_bCUTkb": {
           "type": "counter",
           "settings": {
-            "counter_description": "description",
-            "value": 100
+            "counter_description": "Negative Numbers",
+            "counter_duration": 5,
+            "counter_text_prefix": "Somewhere Between",
+            "counter_text_suffix": "Numbers",
+            "counter_initial_value": -152,
+            "counter_final_value": 234
           }
         }
       },
