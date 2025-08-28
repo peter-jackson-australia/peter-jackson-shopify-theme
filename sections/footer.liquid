@@ -8,11 +8,6 @@
     color: var(--white);
   }
 
-  .footer__main {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-
   .footer__section {
     padding: 0 var(--space-m);
     margin-bottom: var(--space-2xl);
@@ -25,6 +20,18 @@
     border-bottom: 1px solid var(--neutral-600);
     padding-bottom: var(--space-2xl);
     padding-top: var(--space-2xl);
+  }
+
+  .footer__brand {
+    margin-bottom: var(--space-s);
+  }
+
+  .footer__brand > img {
+    width: calc(var(--space-3xl) + var(--space-3xl));
+  }
+
+  .footer__description {
+    max-width: 80ch;
   }
 
   .footer__store-locator {
@@ -73,16 +80,13 @@
     margin-top: var(--space-s);
   }
 
-  .footer__brand {
-    margin-bottom: var(--space-s);
+  .footer__main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
   }
 
-  .footer__brand > img {
-    width: calc(var(--space-3xl) + var(--space-3xl));
-  }
-
-  .footer__description {
-    max-width: 80ch;
+  .footer__heading--menu {
+    margin-bottom: var(--space-2xs);
   }
 
   .footer__list {
@@ -112,13 +116,8 @@
     margin-bottom: 0px;
   }
 
-  .footer__heading--menu {
-    margin-bottom: var(--space-2xs);
-  }
-
   .footer__logo-box {
     width: var(--space-3xl);
-    overflow: hidden;
   }
 
   .footer__logo-box > img {
@@ -188,13 +187,39 @@
   }
 </style>
 
+{% assign footer_logo = section.settings.footer_logo %}
+{% assign intro_text = section.settings.intro_text %}
+{% assign store_locator_heading = section.settings.store_locator_heading %}
+{% assign store_locator_placeholder = section.settings.store_locator_placeholder %}
+{% assign store_locator_description = section.settings.store_locator_description %}
+{% assign menu_heading = section.settings.menu_heading %}
+{% assign footer_menu = section.settings.footer_menu %}
+{% assign support_heading = section.settings.support_heading %}
+{% assign footer_support_menu = section.settings.footer_support_menu %}
+{% assign show_partnerships = section.settings.show_partnerships %}
+{% assign partnerships_image = section.settings.partnerships_image %}
+{% assign partnerships_heading = section.settings.partnerships_heading %}
+{% assign partnerships_text = section.settings.partnerships_text %}
+{% assign partnerships_link = section.settings.partnerships_link %}
+{% assign partnerships_link_text = section.settings.partnerships_link_text %}
+{% assign social_icon_1 = section.settings.social_icon_1 %}
+{% assign social_link_1 = section.settings.social_link_1 %}
+{% assign social_icon_2 = section.settings.social_icon_2 %}
+{% assign social_link_2 = section.settings.social_link_2 %}
+{% assign social_icon_3 = section.settings.social_icon_3 %}
+{% assign social_link_3 = section.settings.social_link_3 %}
+{% assign terms_link = section.settings.terms_link %}
+{% assign terms_text = section.settings.terms_text %}
+{% assign privacy_link = section.settings.privacy_link %}
+{% assign privacy_text = section.settings.privacy_text %}
+
 <footer class="footer">
   <div class="footer__section footer__intro">
     <div class="footer__intro-content">
       <div class="footer__brand">
-        {% if section.settings.footer_logo != blank %}
+        {% if footer_logo != blank %}
           {{
-            section.settings.footer_logo
+            footer_logo
             | image_url: width: 140
             | image_tag: loading: 'lazy', alt: shop.name, class: 'footer__brand-logo'
           }}
@@ -211,26 +236,26 @@
           </svg>
         {% endif %}
       </div>
-      <p class="footer__description footer__description--intro body">{{ section.settings.intro_text }}</p>
+      <p class="footer__description footer__description--intro body">{{ intro_text }}</p>
     </div>
 
     <div class="footer__store-locator">
       <h2 class="footer__heading footer__heading--store-locator heading--l">
-        {{ section.settings.store_locator_heading }}
+        {{ store_locator_heading }}
       </h2>
       <form class="footer__search-form" action="/pages/stores-in-australia" method="get">
         <input
           type="text"
           name="search"
           class="footer__search-input"
-          placeholder="{{ section.settings.store_locator_placeholder }}"
+          placeholder="{{ store_locator_placeholder }}"
         >
         <button type="submit" class="footer__search-button" aria-label="Search Peter Jackson Stores">
           {% render '_icon-arrow-submit-white' %}
         </button>
       </form>
       <p class="footer__description footer__description--store-locator body">
-        {{ section.settings.store_locator_description }}
+        {{ store_locator_description }}
       </p>
     </div>
   </div>
@@ -238,9 +263,9 @@
   <div class="footer__main">
     <div style="display: flex;">
       <div class="footer__section footer__section--menu">
-        <h2 class="footer__heading footer__heading--menu heading--l">{{ section.settings.menu_heading }}</h2>
+        <h2 class="footer__heading footer__heading--menu heading--l">{{ menu_heading }}</h2>
         <ul class="footer__list footer__list--menu">
-          {% for link in linklists[section.settings.footer_menu].links %}
+          {% for link in linklists[footer_menu].links %}
             <li class="footer__list-item footer__list-item--menu">
               <a href="{{ link.url }}" class="footer__link footer__link--menu body">{{ link.title }}</a>
             </li>
@@ -250,10 +275,10 @@
 
       <div class="footer__section footer__section--support">
         <h2 class="footer__heading footer__heading--menu footer__heading--support heading--l">
-          {{ section.settings.support_heading }}
+          {{ support_heading }}
         </h2>
         <ul class="footer__list footer__list--support">
-          {% for link in linklists[section.settings.footer_support_menu].links %}
+          {% for link in linklists[footer_support_menu].links %}
             <li class="footer__list-item footer__list-item--support">
               <a href="{{ link.url }}" class="footer__link footer__link--support body">{{ link.title }}</a>
             </li>
@@ -263,14 +288,14 @@
     </div>
 
     <div class="footer__section footer__section--partnerships">
-      {% if section.settings.show_partnerships %}
+      {% if show_partnerships %}
         <div class="footer__partnerships">
-          {% if section.settings.partnerships_image != blank %}
+          {% if partnerships_image != blank %}
             <div class="footer__logo-box footer__logo-box--partnerships">
               {{
-                section.settings.partnerships_image
+                partnerships_image
                 | image_url: width: 50
-                | image_tag: loading: 'lazy', alt: section.settings.partnerships_heading, class: 'footer__logo-img'
+                | image_tag: loading: 'lazy', alt: partnerships_heading, class: 'footer__logo-img'
               }}
             </div>
           {% else %}
@@ -278,14 +303,14 @@
           {% endif %}
           <div class="footer__info footer__info--partnerships">
             <h2 class="footer__heading footer__heading--partnerships heading--l">
-              {{ section.settings.partnerships_heading }}
+              {{ partnerships_heading }}
             </h2>
             <p class="footer__description footer__description--partnerships body">
-              {{ section.settings.partnerships_text }}
+              {{ partnerships_text }}
             </p>
-            {% if section.settings.partnerships_link != blank and section.settings.partnerships_link_text != blank %}
-              <a href="{{ section.settings.partnerships_link }}" class="footer__link footer__link--partnerships body">
-                {{- section.settings.partnerships_link_text }}
+            {% if partnerships_link != blank and partnerships_link_text != blank %}
+              <a href="{{ partnerships_link }}" class="footer__link footer__link--partnerships body">
+                {{- partnerships_link_text }}
                 <span class="footer__link-arrow" aria-hidden="true">→</span></a
               >
             {% endif %}
@@ -297,28 +322,28 @@
 
   <div class="footer__bottom">
     <div class="footer__social">
-      {% if section.settings.social_icon_1 != blank and section.settings.social_link_1 != blank %}
-        <a href="{{ section.settings.social_link_1 }}" target="_blank">
+      {% if social_icon_1 != blank and social_link_1 != blank %}
+        <a href="{{ social_link_1 }}" target="_blank">
           {{
-            section.settings.social_icon_1
+            social_icon_1
             | image_url: width: 34
             | image_tag: class: 'footer__social-icon', loading: 'lazy', decoding: 'async'
           }}
         </a>
       {% endif %}
-      {% if section.settings.social_icon_2 != blank and section.settings.social_link_2 != blank %}
-        <a href="{{ section.settings.social_link_2 }}" target="_blank">
+      {% if social_icon_2 != blank and social_link_2 != blank %}
+        <a href="{{ social_link_2 }}" target="_blank">
           {{
-            section.settings.social_icon_2
+            social_icon_2
             | image_url: width: 34
             | image_tag: class: 'footer__social-icon', loading: 'lazy', decoding: 'async'
           }}
         </a>
       {% endif %}
-      {% if section.settings.social_icon_3 != blank and section.settings.social_link_3 != blank %}
-        <a href="{{ section.settings.social_link_3 }}" target="_blank">
+      {% if social_icon_3 != blank and social_link_3 != blank %}
+        <a href="{{ social_link_3 }}" target="_blank">
           {{
-            section.settings.social_icon_3
+            social_icon_3
             | image_url: width: 34
             | image_tag: class: 'footer__social-icon', loading: 'lazy', decoding: 'async'
           }}
@@ -327,14 +352,14 @@
     </div>
 
     <div class="footer__terms">
-      {% if section.settings.terms_link != blank %}
-        <a href="{{ section.settings.terms_link }}" class="footer__link footer__link--terms body">
-          {{- section.settings.terms_text -}}
+      {% if terms_link != blank %}
+        <a href="{{ terms_link }}" class="footer__link footer__link--terms body">
+          {{- terms_text -}}
         </a>
       {% endif %}
-      {% if section.settings.privacy_link != blank %}
-        <a href="{{ section.settings.privacy_link }}" class="footer__link footer__link--privacy body">
-          {{- section.settings.privacy_text -}}
+      {% if privacy_link != blank %}
+        <a href="{{ privacy_link }}" class="footer__link footer__link--privacy body">
+          {{- privacy_text -}}
         </a>
       {% endif %}
     </div>
@@ -353,12 +378,6 @@
     {
       "type": "header",
       "content": "Intro Section"
-    },
-    {
-      "type": "text",
-      "id": "intro_heading",
-      "label": "Heading",
-      "default": "Peter Jackson"
     },
     {
       "type": "textarea",
