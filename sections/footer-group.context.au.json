@@ -8,19 +8,9 @@
  * ------------------------------------------------------------
  */
 {
-  "sections": {
-    "blog_collection_JQ3NfX": {
-      "type": "blog-collection",
-      "name": "Blog Collection",
-      "settings": {
-        "heading": "",
-        "blog": "the-jackson-journal",
-        "limit": 8,
-        "articles_per_row": 3
-      }
-    }
+  "parent": "footer-group.json",
+  "context": {
+    "market": "au"
   },
-  "order": [
-    "blog_collection_JQ3NfX"
-  ]
+  "sections": {}
 }

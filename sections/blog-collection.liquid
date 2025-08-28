@@ -6,66 +6,74 @@
 {{ 'section-blog-collection.css' | asset_url | stylesheet_tag }}
 
 {% assign selected_blog = blogs[section.settings.blog] %}
-{% assign blogs_per_page = section.settings.limit %}
 {% assign heading = section.settings.heading %}
 
-{% paginate selected_blog.articles by blogs_per_page %}
-  <div class="blog-collection">
-    {% if heading %}
-      <h2 class="blog-collection__heading heading--xl">{{ heading }}</h2>
-    {% endif %}
+{% assign is_lifestyle_page = false %}
+{% if request.path contains '/pages/the-empowered-mind' %}
+  {% assign is_lifestyle_page = true %}
+{% endif %}
 
-    <div class="blog-collection__grid">
-      {% for article in selected_blog.articles %}
-        {% assign current_img = article.image %}
-        {% assign current_url = article.url %}
-        {% assign current_title = article.title %}
-        {% assign current_title = article.title %}
-        {% assign current_tags_count = article.tags.size %}
-        {% assign current_tags_first = article.tags.first %}
+<div id="blog-collection" class="blog-collection" data-lifestyle-filter="{{ is_lifestyle_page }}">
+  {% if heading %}
+    <h2 class="blog-collection__heading heading--xl">{{ heading }}</h2>
+  {% endif %}
 
-        <article class="blog-collection__post">
-          {% if current_img %}
-            <a href="{{ current_url }}" class="blog-collection__post-image">
-              {{
-                current_img
-                | image_url: width: 850
-                | image_tag:
-                  loading: 'lazy',
-                  decoding: 'async',
-                  alt: current_title,
-                  widths: '400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2400, 3000',
-                  sizes: '(max-width: 400px) 400px, (max-width: 600px) 600px, (max-width: 800px) 800px, (max-width: 1000px) 1000px, (max-width: 1200px) 1200px, (max-width: 1400px) 1400px, (max-width: 1600px) 1600px, (max-width: 1800px) 1800px, (max-width: 2000px) 2000px, (max-width: 2400px) 2400px, 100vw'
-              }}
-            </a>
-          {% endif %}
+  <div class="blog-collection__grid animate-container-cards-scroll" id="article-list"></div>
+  <div class="blog-collection__pagination" id="pagination"></div>
+</div>
 
-          <div class="blog-collection__post-content">
-            {% if current_tags_count > 0 %}
-              <div class="blog-collection__post-category small">{{ current_tags_first }}</div>
-            {% endif %}
+<script type="application/json" id="articles-data">
+  [
+    {% for article in selected_blog.articles limit: 100 %}
+      {
+        "id": {{ article.id | json }},
+        "tags": {{ article.tags | json }}
+      }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+</script>
 
-            <h3 class="blog-collection__post-title heading--l">
-              <a href="{{ current_url }}">{{ current_title }}</a>
-            </h3>
+{% for article in selected_blog.articles limit: 100 %}
+  <template data-article="{{ article.id }}">
+    <article class="blog-collection__post">
+      {% if article.image %}
+        <a href="{{ article.url }}" class="blog-collection__post-image">
+          {{
+            article.image
+            | image_url: width: 850
+            | image_tag:
+              loading: 'lazy',
+              alt: article.title,
+              widths: '400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2400, 3000',
+              sizes: '(max-width: 400px) 400px, (max-width: 600px) 600px, (max-width: 800px) 800px, (max-width: 1000px) 1000px, (max-width: 1200px) 1200px, (max-width: 1400px) 1400px, (max-width: 1600px) 1600px, (max-width: 1800px) 1800px, (max-width: 2000px) 2000px, (max-width: 2400px) 2400px, 100vw'
+          }}
+        </a>
+      {% endif %}
 
-            <a href="{{ current_url }}" class="blog-collection__post-link-container">
-              <span class="blog-collection__post-link body"
-                >Read The Article {% render '_icon-arrow-submit-dark' -%}
-              </span>
-            </a>
+      <div class="blog-collection__post-content">
+        {% if article.tags.size > 0 %}
+          <div class="blog-collection__post-category small">
+            {%- if is_lifestyle_page and article.tags.size > 1 -%}
+              {{ article.tags[1] }}
+            {%- else -%}
+              {{ article.tags.first }}
+            {%- endif -%}
           </div>
-        </article>
-      {% endfor %}
-    </div>
+        {% endif %}
 
-    {% if paginate.pages > 1 %}
-      <div class="blog-collection__pagination">
-        {% render 'pagination', paginate: paginate %}
+        <h3 class="blog-collection__post-title">
+          <a class="heading--l" href="{{ article.url }}">{{ article.title }}</a>
+        </h3>
+
+        <a href="{{ article.url }}" class="blog-collection__post-link-container">
+          <span class="blog-collection__post-link body">Read The Article {% render '_icon-arrow-submit-dark' -%}</span>
+        </a>
       </div>
-    {% endif %}
-  </div>
-{% endpaginate %}
+    </article>
+  </template>
+{% endfor %}
+
+<script src="{{ 'section-blog-collection.js' | asset_url }}" defer></script>
 
 {% schema %}
 {
@@ -88,26 +96,6 @@
       "id": "blog",
       "label": "Blog",
       "info": "Select which blog to display articles from"
-    },
-    {
-      "type": "range",
-      "id": "limit",
-      "label": "Limit",
-      "info": "Limit the number of articles displayed per page.",
-      "min": 4,
-      "max": 50,
-      "step": 1,
-      "default": 8
-    },
-    {
-      "type": "range",
-      "id": "articles_per_row",
-      "label": "Articles Per Row",
-      "info": "Number of articles per row.",
-      "min": 1,
-      "max": 4,
-      "step": 1,
-      "default": 3
     }
   ],
   "presets": [

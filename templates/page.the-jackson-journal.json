@@ -9,48 +9,27 @@
  */
 {
   "sections": {
-    "blog_hero_ipkUaE": {
-      "type": "blog-hero",
-      "name": "Blog Hero",
+    "blog_header_N4peAb": {
+      "type": "blog-header",
+      "name": "Blog Header",
       "settings": {
-        "anchor_id": "",
-        "show_top_border": true,
-        "show_bottom_border": true,
-        "hero_image": "shopify://shop_images/Peter-Jackson-Man-Wearing-Green-Corduroy-Suit_HD_9a061f7b-da2f-403f-b920-db49fb573421.webp",
-        "show_image_overlay": true,
-        "image_heading": "THE CORDUROY COMEBACK",
-        "image_heading_animation": "none",
-        "image_description": "Vintage utility meets contemporary style. From suits to jackets and casual shirts, this classic textile is back with a vengeance.",
-        "image_description_animation": "none",
-        "image_link_text": "Read Article",
-        "image_link_url": "shopify://blogs/the-jackson-journal/the-corduroy-comeback",
-        "heading": "The Jackson Journal",
-        "heading_animation": "none",
-        "subheading": "The Stories Behind The Threads",
-        "subheading_animation": "none",
-        "description": "Discover our world through campaigns, interviews, and features designed to inform your style and inspire a life well lived.",
-        "description_animation": "none",
-        "cta_link": "",
-        "cta_text": "Read Now",
-        "show_recent_posts": true,
-        "animate_posts": true,
-        "blog": "the-jackson-journal"
+        "journal_type": "jackson"
       }
     },
-    "hero_primary_hgB9fC": {
+    "hero_primary_JaHAVL": {
       "type": "hero-primary",
-      "disabled": true,
       "name": "Hero Section",
       "settings": {
         "media_type": "image",
-        "desktop_image": "shopify://shop_images/two-men-one-suit.webp",
-        "heading": "Higher Ground / Winter 25",
+        "desktop_image": "shopify://shop_images/Suits_Content.webp",
+        "mobile_image": "shopify://shop_images/Outerwear._Megawebp.webp",
+        "heading": "The Jackson Journal",
         "svg_size": "medium",
         "heading_level": "h1",
         "heading_animation": "none",
-        "description": "Explore Our Winter 25 Campaign. Captured in Lake Como, Italy",
+        "description": "The Stories Behind The Threads",
         "description_animation": "none",
-        "button_label_1": "Shop Now",
+        "button_label_1": "",
         "button_link_1": "",
         "button_label_2": "",
         "button_link_2": "",
@@ -59,23 +38,32 @@
         "button_label_4": "",
         "button_link_4": "",
         "horizontal_alignment": "center",
-        "vertical_alignment": "bottom"
+        "vertical_alignment": "middle",
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "bottom"
+      }
+    },
+    "featured_article_6zir3n": {
+      "type": "featured-article",
+      "name": "Featured Articles",
+      "settings": {
+        "heading": "Featured Articles",
+        "heading_alignment": "left"
       }
     },
     "blog_collection_X9RrdY": {
       "type": "blog-collection",
       "name": "Blog Collection",
       "settings": {
-        "heading": "DISCOVER MORE",
-        "blog": "the-jackson-journal",
-        "limit": 12,
-        "articles_per_row": 4
+        "heading": "Latest Articles",
+        "blog": "the-jackson-journal"
       }
     }
   },
   "order": [
-    "blog_hero_ipkUaE",
-    "hero_primary_hgB9fC",
+    "blog_header_N4peAb",
+    "hero_primary_JaHAVL",
+    "featured_article_6zir3n",
     "blog_collection_X9RrdY"
   ]
 }

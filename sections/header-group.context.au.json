@@ -23,9 +23,18 @@
             "text": "<a href=\"/collections/mens-suits\" title=\"Suits\">Merino Wool Suits starting from $399</a>",
             "alignment": "center"
           }
+        },
+        "announcement_BHe4C": {
+          "type": "announcement",
+          "disabled": false,
+          "settings": {
+            "text": "<a href=\"/collections/gifts-for-men\" title=\"Gifts for Men\">The Gift of Style / Shop The Father's Day Edit</a>",
+            "alignment": "center"
+          }
         }
       },
       "block_order": [
+        "announcement_BHe4C",
         "announcement_mQFJhL",
         "announcement_tnUYFL",
         "announcement_ny4ip"

@@ -1,8 +1,4 @@
 <style>
-  #site-header {
-    border-bottom: 1px solid var(--neutral-50);
-  }
-
   .menu-drawer {
     border-top: none;
   }
@@ -17,24 +13,16 @@
     gap: var(--space-m);
   }
 
-  .article-header__collection {
-    color: var(--neutral-950);
-  }
-
   .article-header__tags {
-    display: flex;
     margin: 0 auto;
-    gap: var(--space-2xs);
-    justify-content: center;
-    flex-wrap: wrap;
     color: var(--neutral-600);
   }
 
   .article-header__tag {
     color: var(--neutral-600);
+    text-decoration: none;
   }
 
-  .article-header__divider,
   .article-content hr {
     border: 0;
     height: 1px;
@@ -412,37 +400,11 @@
 {% liquid
   assign image_width = 800
   assign image_height = image_width | divided_by: article.image.aspect_ratio | ceil
-  assign blog_sub_collection = article.metafields.custom.blog_sub_collection
 %}
 
 <section id="{{ section.id }}" class="section-wrap">
   <article class="section">
     <header class="article-header">
-      <div class="article-header__collection">
-        <h2 class="heading--decorative">
-          {% if blog_sub_collection != blank %}
-            {{ blog_sub_collection }}
-          {% else %}
-            The Jackson Journal
-          {% endif %}
-        </h2>
-      </div>
-
-      {% if article.tags.size > 0 %}
-        <div class="article-header__tags">
-          <p class="small">
-            {% for tag in article.tags %}
-              <p class="article-header__tag body--uppercase">
-                {{- tag -}}
-              </p>
-              {%- unless forloop.last %}/{% endunless %}
-            {% endfor %}
-          </p>
-        </div>
-      {% endif %}
-
-      <hr class="article-header__divider">
-
       <h1 class="article-header__title heading--2xl">{{ article.title }}</h1>
 
       {% if article.excerpt != blank %}
@@ -454,6 +416,26 @@
       <div class="article-header__meta">
         <p class="small">{{ article.published_at | date: '%b %d, %Y' }}</p>
       </div>
+
+      {% if article.tags.size > 0 %}
+        <div class="article-header__tags">
+          <p class="small">
+            {% liquid
+              if article.tags.size > 1
+                assign display_tag = article.tags[1]
+              else
+                assign display_tag = article.tags[0]
+              endif
+            %}
+            <a
+              href="/pages/the-empowered-mind?tag={{ display_tag | url_encode }}#blog-collection"
+              class="article-header__tag body--uppercase"
+            >
+              {{- display_tag -}}
+            </a>
+          </p>
+        </div>
+      {% endif %}
 
       {% liquid
         assign hero_image = article.metafields.custom.blog_landscape_hero_image
@@ -482,8 +464,8 @@
 
       <div class="article-related__posts">
         {% assign displayed_count = 0 %}
-        {% for related_article in blogs['the-jackson-journal'].articles limit: 8 %}
-          {% if related_article.id != article.id and displayed_count < 4 %}
+        {% for related_article in blogs['the-jackson-journal'].articles limit: 12 %}
+          {% if related_article.id != article.id and displayed_count < 6 %}
             <article class="article-related__post">
               {% if related_article.image %}
                 <a href="{{ related_article.url }}" class="article-related__post-image">

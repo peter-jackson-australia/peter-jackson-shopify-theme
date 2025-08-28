@@ -9,17 +9,24 @@
  */
 {
   "sections": {
-    "hero_primary_tzK3wz": {
+    "blog_header_QbaidT": {
+      "type": "blog-header",
+      "name": "Blog Header",
+      "settings": {
+        "journal_type": "empowered"
+      }
+    },
+    "hero_primary_xE4HX6": {
       "type": "hero-primary",
       "name": "Hero Section",
       "settings": {
         "media_type": "image",
-        "desktop_image": "shopify://shop_images/peter-jackson-menswear-green-jacket-white-turtleneck.webp",
-        "heading": "Wellbeing For The Modern Man",
+        "desktop_image": "shopify://shop_images/Peter-Jackson-Man-Wearing-Green-Corduroy-Suit.jpg",
+        "heading": "The Empowered Mind",
         "svg_size": "medium",
         "heading_level": "h1",
         "heading_animation": "none",
-        "description": "",
+        "description": "Wellbeing For The Modern Man",
         "description_animation": "none",
         "button_label_1": "Shop Now",
         "button_link_1": "",
@@ -31,23 +38,58 @@
         "button_link_4": "",
         "horizontal_alignment": "center",
         "vertical_alignment": "bottom",
-        "mobile_horizontal_alignment": "left",
+        "mobile_horizontal_alignment": "center",
         "mobile_vertical_alignment": "bottom"
+      }
+    },
+    "icon_callout_tGPg9G": {
+      "type": "icon-callout",
+      "name": "Icon Callout",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "icon": "shopify://shop_images/beyond-blue-footer-logo.svg",
+        "heading": "Beyond Blue",
+        "heading_animation": "none",
+        "text": "Our partnership with Beyond Blue is a key pillar of this initiative. Together, we’re working to break the stigma around men’s mental health by raising funds for their 24/7 Support Service and providing resources that empower men to seek help, start conversations, and take charge of their well-being.",
+        "text_animation": "none",
+        "button_label": "",
+        "button_link": "",
+        "background_color": "neutral-950"
       }
     },
     "blog_collection_jbntXY": {
       "type": "blog-collection",
       "name": "Blog Collection",
       "settings": {
-        "heading": "Featured Articles",
-        "blog": "the-jackson-journal",
-        "limit": 12,
-        "articles_per_row": 4
+        "heading": "Latest Articles",
+        "blog": "the-jackson-journal"
+      }
+    },
+    "icon_callout_C9qcKY": {
+      "type": "icon-callout",
+      "name": "Icon Callout",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "icon": "shopify://shop_images/speech-bubble.svg",
+        "heading": "Beyond Blue 24/7 Support Service - Call 1300 224 636",
+        "heading_animation": "none",
+        "text": "If you or someone you know is going through a hard time, the Beyond Blue Support Service is free and available 24/7.",
+        "text_animation": "none",
+        "button_label": "",
+        "button_link": "",
+        "background_color": "green-800"
       }
     }
   },
   "order": [
-    "hero_primary_tzK3wz",
-    "blog_collection_jbntXY"
+    "blog_header_QbaidT",
+    "hero_primary_xE4HX6",
+    "icon_callout_tGPg9G",
+    "blog_collection_jbntXY",
+    "icon_callout_C9qcKY"
   ]
 }

@@ -72,18 +72,18 @@
       "name": "Hero Section",
       "settings": {
         "media_type": "image",
-        "desktop_image": "shopify://shop_images/Afterpay_Day_Hero_Desktop.webp",
-        "mobile_image": "shopify://shop_images/Afterpay_Hero_Mobile.webp",
-        "heading": "The Best Of Sale",
-        "svg_image": "shopify://shop_images/Best_Of_Sale_V7.svg",
-        "svg_size": "medium",
-        "mobile_svg_image": "shopify://shop_images/Best_Of_Sale_V7.svg",
+        "desktop_image": "shopify://shop_images/FD_Hero.webp",
+        "mobile_image": "shopify://shop_images/Fathers_Day_Mobile.webp",
+        "heading": "Father's Day Gifting Guide",
+        "svg_image": "shopify://shop_images/FD_SVG_Hero_1.svg",
+        "svg_size": "small",
+        "mobile_svg_image": "shopify://shop_images/FD_SVG_Hero_1.svg",
         "heading_level": "h1",
         "heading_animation": "none",
-        "description": "Up to 40% Off Select Styles",
+        "description": "Our guide for the ultimate gifts.",
         "description_animation": "none",
-        "button_label_1": "Shop Sale",
-        "button_link_1": "shopify://collections/sale",
+        "button_label_1": "Shop Now",
+        "button_link_1": "shopify://collections/gifts-for-men",
         "button_label_2": "",
         "button_link_2": "",
         "button_label_3": "",
@@ -96,15 +96,110 @@
         "mobile_vertical_alignment": "bottom"
       }
     },
-    "collection_slider_x3GMYN": {
+    "heading_with_text_wrzmbi": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "leading_text": "Father's Day",
+        "leading_text_animation": "none",
+        "heading": "The Perfect Gift Sets",
+        "heading_style": "normal",
+        "heading_animation": "none",
+        "content": "<p>Curated essentials to make his day unforgettable.<br/>Place your order by September 1st for on-time delivery.</p>",
+        "content_animation": "none",
+        "alignment": "center"
+      }
+    },
+    "variable_column_content_secondary_cQXzxY": {
+      "type": "variable-column-content-secondary",
+      "blocks": {
+        "column_item_YEfUJa": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Business_Shirt_Tie_69b66085-0911-4c6c-8df1-9408f705e9a0.jpg",
+            "image_link": "shopify://collections/fathers-day-business-shirt-tie-gift-set",
+            "heading": "Business Shirt & Tie",
+            "heading_animation": "none",
+            "text": "$150",
+            "text_animation": "none",
+            "column_link": "shopify://collections/fathers-day-business-shirt-tie-gift-set",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_qQJiGW": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Chino_Polo.jpg",
+            "image_link": "shopify://collections/fathers-day-polo-chinos-gift-set",
+            "heading": "Polo & Chino",
+            "heading_animation": "none",
+            "text": "$129",
+            "text_animation": "none",
+            "column_link": "shopify://collections/fathers-day-polo-chinos-gift-set",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_LVwgGG": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Three_Casual_Shirts.jpg",
+            "image_link": "shopify://collections/fathers-day-three-casual-shirts-gift-set",
+            "heading": "Three Casual Shirts",
+            "heading_animation": "none",
+            "text": "$189",
+            "text_animation": "none",
+            "column_link": "shopify://collections/fathers-day-three-casual-shirts-gift-set",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_6r3KGi": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Footwear_Belt.jpg",
+            "image_link": "shopify://collections/fathers-day-footwear-belt-gift-set",
+            "heading": "Footwear & Belt",
+            "heading_animation": "none",
+            "text": "$189",
+            "text_animation": "none",
+            "column_link": "shopify://collections/fathers-day-footwear-belt-gift-set",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_YEfUJa",
+        "column_item_qQJiGW",
+        "column_item_LVwgGG",
+        "column_item_6r3KGi"
+      ],
+      "name": "Variable Column Content Secondary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "4",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "",
+        "heading_animation": "none",
+        "text": "",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    },
+    "collection_slider_A6WEKA": {
       "type": "collection-slider",
       "name": "Collection Slider",
       "settings": {
-        "heading": "The Sale Edit",
+        "heading": "The Father's Day Edit",
         "heading_animation": "none",
-        "description": "Curated by our team of style experts",
+        "description": "Distinctive pieces chosen just for him",
         "description_animation": "none",
-        "collection": "sale",
+        "collection": "gifts-for-men",
         "button_label": "Shop Now",
         "products_to_show": 10,
         "animate_products": false
@@ -171,7 +266,9 @@
     "hero_primary_Ri8wik",
     "hero_primary_g4DAQ6",
     "hero_primary_BziPcX",
-    "collection_slider_x3GMYN",
+    "heading_with_text_wrzmbi",
+    "variable_column_content_secondary_cQXzxY",
+    "collection_slider_A6WEKA",
     "hero_primary_BACFYg",
     "blog_hero_qajTUJ"
   ]
