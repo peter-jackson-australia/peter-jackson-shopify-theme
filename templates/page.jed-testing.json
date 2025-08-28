@@ -38,7 +38,7 @@
           "type": "counter",
           "settings": {
             "counter_description": "Negative Numbers",
-            "counter_duration": 5,
+            "counter_duration": 1,
             "counter_text_prefix": "Somewhere Between",
             "counter_text_suffix": "Numbers",
             "counter_initial_value": -152,
