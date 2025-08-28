@@ -30,8 +30,8 @@
             "counter_duration": 1,
             "counter_text_prefix": "Prefix",
             "counter_text_suffix": "Numbers",
-            "counter_initial_value": 85,
-            "counter_final_value": 100.5
+            "counter_initial_value": 850000000,
+            "counter_final_value": 585885858585
           }
         },
         "counter_bCUTkb": {
