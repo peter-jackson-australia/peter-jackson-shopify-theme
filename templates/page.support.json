@@ -100,7 +100,7 @@
           "type": "faq_item",
           "settings": {
             "question": "Shipping Methods",
-            "answer": "<p>Standard Shipping - Australia Post Network.</p><p>Free Standard shipping on all orders over $99 within Australia.</p><ul><li>Melbourne Metro – expect delivery 1-3 Business Days from Dispatch.</li><li>All other capital cities – delivery is between 3-5 Business Days from Dispatch.</li><li>Regional Australia – allow a little longer, 5-7 Business Days from Dispatch.</li></ul><p>Express shipping - $15 within Australia.</p><ul><li>Metropolitan Cities (Australia) - Guaranteed 1-2 Business Days from Dispatch.</li><li>Regional Australia – 3-4 Business Days from Dispatch.</li></ul>"
+            "answer": "<p><strong>All orders take on average 1-3 business days to process </strong><em><strong>before</strong></em><strong> shipping</strong></p><p>Standard Domestic Shipping - $10 (Free on orders over $99)</p><ul><li>Melbourne Metro: 1-3 business days</li><li>Other capitals: 3-5 business days</li><li>Regional: 5-7 business days</li></ul><p>Express Shipping - $15</p><ul><li>Major cities: 1-2 business days (guaranteed)</li><li>Regional: 3-4 business days</li></ul><p>Tracking is provided for Australian orders only.</p>"
           }
         },
         "faq_item_RrCcaF": {
