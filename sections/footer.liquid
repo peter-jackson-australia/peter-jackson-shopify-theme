@@ -73,9 +73,12 @@
     margin-top: var(--space-s);
   }
 
-  .footer__heading {
-    text-transform: uppercase;
+  .footer__brand {
     margin-bottom: var(--space-s);
+  }
+
+  .footer__brand > img {
+    width: calc(var(--space-3xl) + var(--space-3xl));
   }
 
   .footer__description {
@@ -107,6 +110,10 @@
 
   .footer__heading--partnerships {
     margin-bottom: 0px;
+  }
+
+  .footer__heading--menu {
+    margin-bottom: var(--space-2xs);
   }
 
   .footer__logo-box {
@@ -184,7 +191,26 @@
 <footer class="footer">
   <div class="footer__section footer__intro">
     <div class="footer__intro-content">
-      <h2 class="footer__heading footer__heading--intro heading--xl">{{ section.settings.intro_heading }}</h2>
+      <div class="footer__brand">
+        {% if section.settings.footer_logo != blank %}
+          {{
+            section.settings.footer_logo
+            | image_url: width: 140
+            | image_tag: loading: 'lazy', alt: shop.name, class: 'footer__brand-logo'
+          }}
+        {% else %}
+          <svg
+            class="footer__brand-placeholder"
+            width="140"
+            height="30"
+            viewBox="0 0 140 30"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect width="140" height="30" fill="#777"/>
+          </svg>
+        {% endif %}
+      </div>
       <p class="footer__description footer__description--intro body">{{ section.settings.intro_text }}</p>
     </div>
 
@@ -210,26 +236,30 @@
   </div>
 
   <div class="footer__main">
-    <div class="footer__section footer__section--menu">
-      <h2 class="footer__heading footer__heading--menu heading--l">{{ section.settings.menu_heading }}</h2>
-      <ul class="footer__list footer__list--menu">
-        {% for link in linklists[section.settings.footer_menu].links %}
-          <li class="footer__list-item footer__list-item--menu">
-            <a href="{{ link.url }}" class="footer__link footer__link--menu body">{{ link.title }}</a>
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
+    <div style="display: flex;">
+      <div class="footer__section footer__section--menu">
+        <h2 class="footer__heading footer__heading--menu heading--l">{{ section.settings.menu_heading }}</h2>
+        <ul class="footer__list footer__list--menu">
+          {% for link in linklists[section.settings.footer_menu].links %}
+            <li class="footer__list-item footer__list-item--menu">
+              <a href="{{ link.url }}" class="footer__link footer__link--menu body">{{ link.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
 
-    <div class="footer__section footer__section--support">
-      <h2 class="footer__heading footer__heading--support heading--l">{{ section.settings.support_heading }}</h2>
-      <ul class="footer__list footer__list--support">
-        {% for link in linklists[section.settings.footer_support_menu].links %}
-          <li class="footer__list-item footer__list-item--support">
-            <a href="{{ link.url }}" class="footer__link footer__link--support body">{{ link.title }}</a>
-          </li>
-        {% endfor %}
-      </ul>
+      <div class="footer__section footer__section--support">
+        <h2 class="footer__heading footer__heading--menu footer__heading--support heading--l">
+          {{ section.settings.support_heading }}
+        </h2>
+        <ul class="footer__list footer__list--support">
+          {% for link in linklists[section.settings.footer_support_menu].links %}
+            <li class="footer__list-item footer__list-item--support">
+              <a href="{{ link.url }}" class="footer__link footer__link--support body">{{ link.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
     </div>
 
     <div class="footer__section footer__section--partnerships">
@@ -266,27 +296,6 @@
   </div>
 
   <div class="footer__bottom">
-    <div class="footer__brand">
-      {% if section.settings.footer_logo != blank %}
-        {{
-          section.settings.footer_logo
-          | image_url: width: 140
-          | image_tag: loading: 'lazy', alt: shop.name, class: 'footer__brand-logo'
-        }}
-      {% else %}
-        <svg
-          class="footer__brand-placeholder"
-          width="140"
-          height="30"
-          viewBox="0 0 140 30"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <rect width="140" height="30" fill="#777"/>
-        </svg>
-      {% endif %}
-    </div>
-
     <div class="footer__social">
       {% if section.settings.social_icon_1 != blank and section.settings.social_link_1 != blank %}
         <a href="{{ section.settings.social_link_1 }}" target="_blank">
