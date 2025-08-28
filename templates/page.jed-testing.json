@@ -14,13 +14,48 @@
       "name": "Blog Collection",
       "settings": {
         "heading": "",
-        "blog": "the-jackson-journal",
-        "limit": 8,
-        "articles_per_row": 3
+        "blog": "the-jackson-journal"
+      }
+    },
+    "counter_ix7CxW": {
+      "type": "counter",
+      "blocks": {
+        "counter_gNkTKp": {
+          "type": "counter",
+          "settings": {
+            "counter_description": "description",
+            "value": 100
+          }
+        },
+        "counter_FGkxRb": {
+          "type": "counter",
+          "settings": {
+            "counter_description": "description",
+            "value": 100
+          }
+        },
+        "counter_bCUTkb": {
+          "type": "counter",
+          "settings": {
+            "counter_description": "description",
+            "value": 100
+          }
+        }
+      },
+      "block_order": [
+        "counter_gNkTKp",
+        "counter_FGkxRb",
+        "counter_bCUTkb"
+      ],
+      "name": "Counter",
+      "settings": {
+        "heading": "testing",
+        "subheading": "testing"
       }
     }
   },
   "order": [
-    "blog_collection_JQ3NfX"
+    "blog_collection_JQ3NfX",
+    "counter_ix7CxW"
   ]
 }
