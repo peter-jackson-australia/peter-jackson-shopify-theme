@@ -9,14 +9,6 @@
  */
 {
   "sections": {
-    "blog_collection_JQ3NfX": {
-      "type": "blog-collection",
-      "name": "Blog Collection",
-      "settings": {
-        "heading": "",
-        "blog": "the-jackson-journal"
-      }
-    },
     "counter_ix7CxW": {
       "type": "counter",
       "blocks": {
@@ -55,7 +47,6 @@
     }
   },
   "order": [
-    "blog_collection_JQ3NfX",
     "counter_ix7CxW"
   ]
 }
