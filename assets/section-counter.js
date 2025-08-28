@@ -4,18 +4,16 @@ const counters = document.querySelectorAll(`#counter-${sectionId} .counter__cont
 for (let i = 0; i < counters.length; i++) {
   const counter = counters[i]
 
-  const to = parseFloat(counter.dataset.to)
-  const from = parseFloat(counter.dataset.from)
+  const initialValue = parseFloat(counter.dataset.initial)
+  const finalValue = parseFloat(counter.dataset.final)
   const duration = parseFloat(counter.dataset.duration)
 
-  console.log(`counter ${i}: `, to, from, duration)
-
-  const toDecimal = decimalFromNumber(to)
+  const finalValueDecimal = decimalFromNumber(finalValue)
 
   // Make the counter apply the decimal points
-  counter.textContent = to.toFixed(0)
+  counter.textContent = finalValue.toFixed(0)
   gsap.from(`#${counter.id}`, {
-    textContent: from,
+    textContent: initialValue,
     duration: duration,
     ease: Power1.power1out,
     snap: { textContent: 1 },
@@ -25,8 +23,8 @@ for (let i = 0; i < counters.length; i++) {
         const target = this.targets()[0]
         const num = parseFloat(target.textContent).toFixed(0);
 
-        const innerHTML = num.toString()
-        if (toDecimal) innerHTML += `.${decimal}`
+        let innerHTML = num.toString()
+        if (finalValueDecimal) innerHTML += `.${finalValueDecimal}`
         target.innerHTML = innerHTML
       },
     }

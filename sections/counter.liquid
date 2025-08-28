@@ -1,8 +1,3 @@
-{% comment %}
-  {% assign heading = section.settings.heading %}
-  {% assign subheading = section.settings.subheading %}
-{% endcomment %}
-
 {% assign heading = 'Main Heading' %}
 {% assign subheading = 'This is a subheading with more text' %}
 {% assign section_id = section.id %}
@@ -18,21 +13,28 @@
 
   {% for counter in section.blocks %}
     {% assign counter_description = counter.settings.counter_description %}
-    {% assign counter_value = counter.settings.value %}
     {% assign counter_duration = counter.settings.counter_duration %}
-    {% assign counter_decimal_points = counter.settings.counter_decimal_points %}
+    {% assign counter_initial_value = counter.settings.counter_initial_value %}
+    {% assign counter_final_value = counter.settings.counter_final_value %}
+    {% assign counter_prefix = counter.settings.counter_prefix %}
+    {% assign counter_suffix = counter.settings.counter_suffix %}
 
     <div class="counter__container">
       <h1>{{ counter_description }}</h1>
-      <p
-        class="counter__container-value"
-        id="counter-{{ section_id }}-{{ forloop.index }}"
-        data-to="{{ counter_value }}"
-        data-from="{{ 50 }}"
-        data-duration="{{ counter_duration }}"
-        data-decimal-points="{{ counter_decimal_points }}"
-      >
-        500
+      <p>
+        {% if counter_prefix != blank %}
+          <span>{{ counter_prefix }}</span>
+        {% endif %}
+        <span
+          class="counter__container-value"
+          id="counter-{{ section_id }}-{{ forloop.index }}"
+          data-initial="{{ counter_initial_value }}"
+          data-final="{{ counter_final_value }}"
+          data-duration="{{ counter_duration }}"
+        ></span>
+        {% if counter_suffix != blank %}
+          <span>{{ counter_suffix }}</span>
+        {% endif %}
       </p>
     </div>
   {% endfor %}
@@ -80,14 +82,26 @@
           "default": 5
         },
         {
-          "id": "counter_decimal_points",
-          "label": "Counter Decimal Points",
-          "type": "number",
-          "default": 2
+          "id": "counter_text_prefix",
+          "label": "Counter Text Prefix",
+          "type": "text",
+          "default": "Up to "
         },
         {
-          "id": "value",
-          "label": "Value",
+          "id": "counter_text_suffix",
+          "label": "Counter Text Suffix",
+          "type": "text",
+          "default": "% Something"
+        },
+        {
+          "id": "counter_initial_value",
+          "label": "Initial Number",
+          "type": "number",
+          "default": 85
+        },
+        {
+          "id": "counter_final_value",
+          "label": "Counter Start Number",
           "type": "number",
           "default": 100
         }
