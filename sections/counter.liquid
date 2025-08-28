@@ -1,19 +1,56 @@
-{% assign heading = section.settings.heading %}
-{% assign subheading = section.settings.subheading %}
+<style>
+  .counter__container-aside-text {
+    white-space: break-spaces;
+  }
+</style>
 
-<div>
-  <p>Testing: {{ section.settings }}</p>
-  <h1>{{ heading }}</h1>
+{% assign heading = 'Main Heading' %}
+{% assign subheading = 'This is a subheading with more text' %}
+{% assign section_id = section.id %}
+
+<div id="counter-{{ section_id }}">
+  {% if heading != blank %}
+    <h1>{{ heading }}</h1>
+  {% endif %}
 
   {% if subheading != blank %}
     <p>{{ subheading }}</p>
   {% endif %}
 
   {% for counter in section.blocks %}
-    <h1>{{ counter.settings.counter_description }}</h1>
-    <p>Value: {{ counter.settings.value }}</p>
+    {% assign counter_description = counter.settings.counter_description %}
+    {% assign counter_duration = counter.settings.counter_duration %}
+    {% assign counter_initial_value = counter.settings.counter_initial_value %}
+    {% assign counter_final_value = counter.settings.counter_final_value %}
+    {% assign counter_prefix = counter.settings.counter_prefix %}
+    {% assign counter_suffix = counter.settings.counter_suffix %}
+
+    <div class="counter__container">
+      <h1>{{ counter_description }}</h1>
+      <p style="display: flex; flex-direction:">
+        {% if counter_prefix != blank %}
+          <span class="counter__container-aside-text">{{ counter_prefix }}</span>
+        {% endif %}
+        <span
+          class="counter__container-value"
+          id="counter-{{ section_id }}-{{ forloop.index }}"
+          data-initial="{{ counter_initial_value }}"
+          data-final="{{ counter_final_value }}"
+          data-duration="{{ counter_duration }}"
+        ></span>
+        {% if counter_suffix != blank %}
+          <span>{{ counter_suffix }}</span>
+        {% endif %}
+      </p>
+    </div>
   {% endfor %}
 </div>
+
+<script
+  src="{{ "section-counter.js" | asset_url }}"
+  data-section-id="{{ section_id }}"
+  defer
+></script>
 
 {% schema %}
 {
@@ -41,11 +78,35 @@
           "id": "counter_description",
           "label": "Counter Description",
           "type": "text",
-          "default": "description"
+          "default": "This counter goes from 0 to 100"
         },
         {
-          "id": "value",
-          "label": "Value",
+          "id": "counter_duration",
+          "label": "Counter Duration (Seconds)",
+          "type": "number",
+          "default": 5
+        },
+        {
+          "id": "counter_text_prefix",
+          "label": "Counter Text Prefix",
+          "type": "text",
+          "default": "Up to "
+        },
+        {
+          "id": "counter_text_suffix",
+          "label": "Counter Text Suffix",
+          "type": "text",
+          "default": "% Something"
+        },
+        {
+          "id": "counter_initial_value",
+          "label": "Initial Number",
+          "type": "number",
+          "default": 85
+        },
+        {
+          "id": "counter_final_value",
+          "label": "Counter Start Number",
           "type": "number",
           "default": 100
         }
