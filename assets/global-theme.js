@@ -1,5 +1,8 @@
 window.addEventListener("load", () => {
-  quicklink.listen();
+  if (window.location.hostname === 'peterjacksons.com' || window.location.hostname === 'www.peterjacksons.com') {
+    console.log("Quicklink loaded"); 
+    quicklink.listen();
+  }
 });
 
 var ready = (callback) => {
