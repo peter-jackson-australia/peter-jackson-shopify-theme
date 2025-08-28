@@ -31,7 +31,7 @@
             "counter_text_prefix": "Prefix",
             "counter_text_suffix": "Numbers",
             "counter_initial_value": 85,
-            "counter_final_value": 100
+            "counter_final_value": 100.5
           }
         },
         "counter_bCUTkb": {
