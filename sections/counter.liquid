@@ -1,3 +1,9 @@
+<style>
+  .counter__container-aside-text {
+    white-space: break-spaces;
+  }
+</style>
+
 {% assign heading = 'Main Heading' %}
 {% assign subheading = 'This is a subheading with more text' %}
 {% assign section_id = section.id %}
@@ -21,9 +27,9 @@
 
     <div class="counter__container">
       <h1>{{ counter_description }}</h1>
-      <p>
+      <p style="display: flex; flex-direction:">
         {% if counter_prefix != blank %}
-          <span>{{ counter_prefix }}</span>
+          <span class="counter__container-aside-text">{{ counter_prefix }}</span>
         {% endif %}
         <span
           class="counter__container-value"
@@ -38,7 +44,6 @@
       </p>
     </div>
   {% endfor %}
-  <p>test</p>
 </div>
 
 <script
