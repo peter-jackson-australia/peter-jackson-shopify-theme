@@ -177,6 +177,23 @@
         "background_color": "neutral-950"
       }
     },
+    "heading_with_text_zdyBUY": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "leading_text": "Made-To-Measure",
+        "leading_text_animation": "none",
+        "heading": "Book Your Appointment",
+        "heading_style": "normal",
+        "heading_animation": "none",
+        "content": "<p>Your Made-to-Measure experience is tailored around you—from the first conversation to final fitting. <strong>Book now </strong>to secure time with a specialist and start your MTM journey.</p>",
+        "content_animation": "none",
+        "alignment": "center"
+      }
+    },
     "schedule_your_appointment_AtFrGy": {
       "type": "schedule-your-appointment",
       "custom_css": [],
@@ -199,6 +216,7 @@
     "variable_column_content_tertiary_4MfYDe",
     "image_with_text_hVciFe",
     "block_quote_qA4Gcd",
+    "heading_with_text_zdyBUY",
     "schedule_your_appointment_AtFrGy",
     "store_locator_nk6JAx"
   ]
