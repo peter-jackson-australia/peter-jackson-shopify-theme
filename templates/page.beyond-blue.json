@@ -65,11 +65,24 @@
         "button_label": "Visit Beyond Blue For More Information",
         "button_link": "https://www.beyondblue.org.au/"
       }
+    },
+    "block_quote_Kx6A6p": {
+      "type": "block-quote",
+      "name": "Block Quote",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "quote_text": "\"I always thought asking for help was a weakness. But when I finally called Beyond Blue’s support line, it changed my life. That conversation gave me the hope I needed to start rebuilding myself.\" <br><br>- Peter Jackson Team Member",
+        "quote_animation": "animate-word-slide-up-scroll",
+        "background_color": "neutral-950"
+      }
     }
   },
   "order": [
     "icon_callout_gqbHGg",
     "image_with_text_MbFKE3",
-    "image_with_text_L6Enzy"
+    "image_with_text_L6Enzy",
+    "block_quote_Kx6A6p"
   ]
 }
