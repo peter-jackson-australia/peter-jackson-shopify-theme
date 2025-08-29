@@ -18,9 +18,10 @@
         "heading": "Beyond Blue",
         "svg_image": "shopify://shop_images/beyond-blue-footer-logo.svg",
         "svg_size": "large",
+        "mobile_svg_image": "shopify://shop_images/beyond-blue-footer-logo.svg",
         "heading_level": "h1",
         "heading_animation": "none",
-        "description": "Breaking the Stigma Around Men’s Mental Health. <br><br>For 75 years, our brand has been more than a menswear label—we've been a companion in men's lives, crafting confidence and style. Today, we deepen that commitment with a partnership with Beyond Blue aimed at supporting men's mental health and dismantling the stigma that surrounds it. At the heart of this initiative is our mission to help men lead happier, healthier, and more fulfilling lives—not just through what they wear, but by supporting their mental health and emotional well-being.",
+        "description": "Breaking the Stigma Around Men’s Mental Health. For 75 years, our brand has been more than a menswear label—we've been a companion in men's lives, crafting confidence and style. Today, we deepen that commitment with a partnership with Beyond Blue aimed at supporting men's mental health and dismantling the stigma that surrounds it. At the heart of this initiative is our mission to help men lead happier, healthier, and more fulfilling lives—not just through what they wear, but by supporting their mental health and emotional well-being.",
         "description_animation": "none",
         "button_label_1": "Shop Now",
         "button_link_1": "",
@@ -32,8 +33,8 @@
         "button_link_4": "",
         "horizontal_alignment": "left",
         "vertical_alignment": "bottom",
-        "mobile_horizontal_alignment": "center",
-        "mobile_vertical_alignment": "middle"
+        "mobile_horizontal_alignment": "left",
+        "mobile_vertical_alignment": "bottom"
       }
     },
     "image_with_text_MbFKE3": {
