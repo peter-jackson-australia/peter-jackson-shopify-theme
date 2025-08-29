@@ -20,7 +20,7 @@
         "svg_size": "large",
         "heading_level": "h1",
         "heading_animation": "none",
-        "description": "<h1>Breaking the Stigma Around Men’s Mental Health.</h1><br><br><span>For 75 years, our brand has been more than a menswear label—we've been a companion in men's lives, crafting confidence and style. Today, we deepen that commitment with a partnership with Beyond Blue aimed at supporting men's mental health and dismantling the stigma that surrounds it. At the heart of this initiative is our mission to help men lead happier, healthier, and more fulfilling lives—not just through what they wear, but by supporting their mental health and emotional well-being.</span>",
+        "description": "Breaking the Stigma Around Men’s Mental Health. <br><br>For 75 years, our brand has been more than a menswear label—we've been a companion in men's lives, crafting confidence and style. Today, we deepen that commitment with a partnership with Beyond Blue aimed at supporting men's mental health and dismantling the stigma that surrounds it. At the heart of this initiative is our mission to help men lead happier, healthier, and more fulfilling lives—not just through what they wear, but by supporting their mental health and emotional well-being.",
         "description_animation": "none",
         "button_label_1": "Shop Now",
         "button_link_1": "",
@@ -50,7 +50,7 @@
         "alignment": "left",
         "heading": "The Blue Shirt Initiative",
         "heading_animation": "none",
-        "text": "Mental health is a cornerstone of a fulfilling life, yet many men face challenges in silence. Societal expectations often pressure men to appear strong and unshaken, leading to the suppression of feelings like stress, anxiety, or depression. This stigma can prevent men from seeking help when they need it most. Through the Blue Shirt Initiative, we contribute $10 from the sale of every blue shirt to Beyond Blue’s 24/7 Support Service. This vital resource offers free, confidential support to individuals facing life's challenges, providing immediate assistance whenever it's needed.This initiative is about more than shirts; it's about sparking conversations, showing solidarity, and proving that no man has to face his challenges alone.",
+        "text": "Mental health is a cornerstone of a fulfilling life, yet many men face challenges in silence. Societal expectations often pressure men to appear strong and unshaken, leading to the suppression of feelings like stress, anxiety, or depression. <br><br>This stigma can prevent men from seeking help when they need it most. Through the Blue Shirt Initiative, we contribute $10 from the sale of every blue shirt to Beyond Blue’s 24/7 Support Service. This vital resource offers free, confidential support to individuals facing life's challenges, providing immediate assistance whenever it's needed. <br><br>This initiative is about more than shirts; it's about sparking conversations, showing solidarity, and proving that no man has to face his challenges alone.",
         "text_animation": "none",
         "button_label": "Shop The Blue Shirt",
         "button_link": "shopify://products/milan-sky-twill-shirt"
@@ -70,7 +70,7 @@
         "alignment": "right",
         "heading": "Recognising Symptoms of Mental Health Issues in Men",
         "heading_animation": "none",
-        "text": "$10 from the purchase of each blue shirt goes directly to the Beyond Blue support service. Understanding the signs of mental health challenges is crucial for early intervention.  Common symptoms in men may include: Physical Symptoms: Constant tiredness, headaches, muscle pains, stomach issues, sleep problems, and significant weight changes. Emotional Symptoms: Feelings of failure, worthlessness, or hopelessness, irritability, anger, and mood swings. Behavioural Changes: Withdrawing from friends and family, loss of interest in activities once enjoyed, increased use of alcohol or drugs, and neglecting responsibilities. Recognising these signs is the first step toward seeking help and fostering a supportive environment.",
+        "text": "$10 from the purchase of each blue shirt goes directly to the Beyond Blue support service. <br><br>Understanding the signs of mental health challenges is crucial for early intervention. <br><br> Common symptoms in men may include:  <br><br>Physical Symptoms: Constant tiredness, headaches, muscle pains, stomach issues, sleep problems, and significant weight changes. <br><br> Emotional Symptoms: Feelings of failure, worthlessness, or hopelessness, irritability, anger, and mood swings. <br><br>Behavioural Changes: Withdrawing from friends and family, loss of interest in activities once enjoyed, increased use of alcohol or drugs, and neglecting responsibilities. <br><br> Recognising these signs is the first step toward seeking help and fostering a supportive environment.",
         "text_animation": "none",
         "button_label": "Visit Beyond Blue For More Information",
         "button_link": "https://www.beyondblue.org.au/"
@@ -119,7 +119,7 @@
         "alignment": "left",
         "heading": "75 Years of Supporting Men",
         "heading_animation": "none",
-        "text": "For three-quarters of a century, we’ve spoken directly to men through our garments, helping them navigate their lives with confidence and ease. This initiative reflects ongoing promise: to be more than a menswear brand. This is our chance to give back to the community that has supported us for decades, tackling a cause that touches so many. Every dollar raised represents a meaningful step toward breaking mental health barriers and providing essential support to those in need.",
+        "text": "For three-quarters of a century, we’ve spoken directly to men through our garments, helping them navigate their lives with confidence and ease. This initiative reflects ongoing promise: to be more than a menswear brand. <br><br>This is our chance to give back to the community that has supported us for decades, tackling a cause that touches so many. Every dollar raised represents a meaningful step toward breaking mental health barriers and providing essential support to those in need.",
         "text_animation": "none",
         "button_label": "",
         "button_link": "https://www.beyondblue.org.au/"
