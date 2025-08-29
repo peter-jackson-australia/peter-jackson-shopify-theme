@@ -289,7 +289,9 @@
       {% endif %}
 
       <div class="heading--l {% if section.settings.description_animation != 'none' %}{{ section.settings.description_animation }}{% endif %}">
-        {{ section.settings.description }}
+        <p class="hero__description">
+          {{ section.settings.description }}
+        </p>
       </div>
 
       <div class="hero__buttons">
