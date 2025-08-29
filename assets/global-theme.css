@@ -1,21 +1,21 @@
 @font-face {
-  font-family: 'Ordinary Regular';
-  src: url('https://cdn.shopify.com/s/files/1/0898/1859/5696/files/ordinary-display-regular.woff2?v=1742796201')
-    format('woff2');
+  font-family: "Ordinary Regular";
+  src: url("https://cdn.shopify.com/s/files/1/0898/1859/5696/files/ordinary-display-regular.woff2?v=1742796201")
+    format("woff2");
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Ordinary Light';
-  src: url('https://cdn.shopify.com/s/files/1/0898/1859/5696/files/ordinary-display-light.woff2?v=1742796170')
-    format('woff2');
+  font-family: "Ordinary Light";
+  src: url("https://cdn.shopify.com/s/files/1/0898/1859/5696/files/ordinary-display-light.woff2?v=1742796170")
+    format("woff2");
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'The Wedding Signature';
-  src: url('https://cdn.shopify.com/s/files/1/0898/1859/5696/files/the-wedding-signature-regular.woff2?v=1743742147')
-    format('woff2');
+  font-family: "The Wedding Signature";
+  src: url("https://cdn.shopify.com/s/files/1/0898/1859/5696/files/the-wedding-signature-regular.woff2?v=1743742147")
+    format("woff2");
   font-display: swap;
 }
 
@@ -27,7 +27,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Ordinary Light', sans-serif;
+  font-family: "Ordinary Light", sans-serif;
 }
 
 html:focus-within,
@@ -41,8 +41,8 @@ html {
   overflow-y: scroll;
 }
 
-ul[role='list'],
-ol[role='list'] {
+ul[role="list"],
+ol[role="list"] {
   list-style: none;
 }
 
@@ -74,7 +74,7 @@ select {
 }
 
 a {
-  color: inherit; 
+  color: inherit;
 }
 
 @view-transition {
@@ -135,10 +135,9 @@ a {
   --neutral-900: #191919;
   --neutral-950: #0f0f0f;
 
-    /* Typography */
-  --ordinary-regular: 'Ordinary Regular', sans-serif;
-  --ordinary-light: 'Ordinary Light', sans-serif; 
-
+  /* Typography */
+  --ordinary-regular: "Ordinary Regular", sans-serif;
+  --ordinary-light: "Ordinary Light", sans-serif;
 }
 
 /* Global Styles */
@@ -351,7 +350,7 @@ accordion-element > .ploiu-accordion-title {
 }
 
 accordion-element > .ploiu-accordion-title::after {
-  content: '';
+  content: "";
   position: absolute;
   right: var(--space-m);
   top: 50%;
@@ -488,7 +487,7 @@ h2 {
 }
 
 .heading--decorative {
-  font-family: 'The Wedding Signature';
+  font-family: "The Wedding Signature";
   line-height: 100%;
   font-size: clamp(2.4883rem, 2.3639rem + 0.6221vw, 3.1104rem);
   font-weight: 500;
@@ -559,10 +558,15 @@ input:focus-visible {
   display: flex;
   align-items: center;
   gap: var(--space-3xs);
-  padding-top: var(--space-3xs); 
+  padding-top: var(--space-3xs);
 }
 
 .product-card__swatch-link {
+  display: block;
+  width: 20px;
+  height: 20px;
+  box-shadow: none;
+  outline: none;
   text-decoration: none;
 }
 
@@ -593,8 +597,8 @@ header {
 }
 
 #site-header {
-  width: 100%; 
-  z-index: 9996; 
+  width: 100%;
+  z-index: 9996;
 }
 
 #header-spacer {
@@ -604,7 +608,7 @@ header {
 #site-header.header-fixed {
   position: fixed;
   top: 0;
-  border-bottom: 1px solid var(--neutral-50); 
+  border-bottom: 1px solid var(--neutral-50);
 }
 
 #site-header.header-fixed.is-visible {
@@ -697,7 +701,7 @@ header {
   .header__search-desktop {
     display: block;
     margin-top: 3px;
-  } 
+  }
   .header__search-mobile {
     display: none !important;
   }
@@ -746,7 +750,7 @@ footer ul {
   -webkit-tap-highlight-color: transparent;
 }
 
-input[type='search'] {
+input[type="search"] {
   -webkit-appearance: none;
   appearance: none;
 }
@@ -896,7 +900,7 @@ a.skip-to-content:focus-visible {
 }
 
 #rich-text-01JQ7PY3EM88BD6RSMQFFCS2QW > * > *,
-#rich-text-01JQ7PY3EVQV63T4NT5GGT9J67 > * > *, 
+#rich-text-01JQ7PY3EVQV63T4NT5GGT9J67 > * > *,
 #label-email_01K0TJKMBA3VDEFYQ0GC07SFN3 {
   line-height: 140% !important;
   letter-spacing: 0.065rem !important;
@@ -929,25 +933,25 @@ a.skip-to-content:focus-visible {
 /* Cookie Banner */
 
 .cc-message {
-  max-width: 80%; 
+  max-width: 80%;
 }
 
 @media screen and (max-width: 768px) {
   .cc-message {
-    max-width: 100% !important; 
+    max-width: 100% !important;
   }
   #csm-wrapper > .cc-banner {
     width: calc(100% - var(--space-m) - var(--space-m)) !important;
-    border-radius: 0px !important; 
+    border-radius: 0px !important;
   }
 }
 
 .cc-compliance > button {
-  border-radius: 0px; 
-  border: 1px solid var(--neutral-950) !important; 
+  border-radius: 0px;
+  border: 1px solid var(--neutral-950) !important;
 }
 
 .cc-compliance > button {
-  border-radius: 0px; 
-  border: 1px solid var(--neutral-950) !important; 
+  border-radius: 0px;
+  border: 1px solid var(--neutral-950) !important;
 }

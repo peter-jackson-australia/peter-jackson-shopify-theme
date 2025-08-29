@@ -58,6 +58,20 @@
     margin-top: var(--space-2xs);
   }
 
+  .product-card__swatches {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+  }
+
+  .product-card__swatch-link {
+    display: block;
+    width: 20px;
+    height: 20px;
+    box-shadow: none;
+    outline: none;
+  }
+
   .collection-slider-secondary__product-link {
     display: block;
     text-decoration: none;
@@ -225,39 +239,36 @@
 
                     <div class="product-card__swatches">
                       {% assign current_colour = product.metafields.custom.swatch_colour.value.colour | strip %}
-                      {% assign current_name = product.metafields.custom.swatch_colour.value.name | strip %}
                       {% assign bg_colour = current_colour | default: 'var(--neutral-200)' %}
+
+                      {% assign border_style = '1px solid var(--neutral-950)' %}
 
                       <a
                         href="{{ product.url }}"
                         class="product-card__swatch-link"
                         aria-label="View {{ product.title }} variant"
-                        style="border: 1px solid var(--neutral-950); padding: 1px;"
+                        style="border: {{ border_style }}; background-color: {{ bg_colour }}; padding: 2px; background-clip: content-box;"
                       >
-                        <div
-                          class="product-card__swatch{% if current_name == 'White' %} product-card__swatch--white{% endif %}"
-                          style="background-color: {{ bg_colour }};"
-                          aria-hidden="true"
-                        ></div>
                       </a>
 
                       {% for variant in colour_variants limit: max_display %}
                         {% assign variant_colour = variant.metafields.custom.swatch_colour.value.colour | strip %}
                         {% assign variant_name = variant.metafields.custom.swatch_colour.value.name | strip %}
-                        {% assign border_colour = variant_colour | default: 'var(--neutral-950)' %}
                         {% assign bg_colour = variant_colour | default: 'var(--neutral-200)' %}
+
+                        {% if variant_name == 'White' %}
+                          {% assign border_style = '2px solid var(--neutral-200)' %}
+                        {% else %}
+                          {% assign border_colour = variant_colour | default: 'var(--neutral-950)' %}
+                          {% assign border_style = '2px solid ' | append: border_colour %}
+                        {% endif %}
 
                         <a
                           href="{{ variant.url }}"
                           class="product-card__swatch-link"
                           aria-label="View {{ variant.title }} variant"
-                          style="border: 2px solid {{ border_colour }};"
+                          style="border: {{ border_style }}; background-color: {{ bg_colour }};"
                         >
-                          <div
-                            class="product-card__swatch{% if variant_name == 'White' %} product-card__swatch--white{% endif %}"
-                            style="background-color: {{ bg_colour }};"
-                            aria-hidden="true"
-                          ></div>
                         </a>
                       {% endfor %}
 
