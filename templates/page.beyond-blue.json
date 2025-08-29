@@ -84,7 +84,7 @@
       "name": "Hero Section",
       "settings": {
         "media_type": "image",
-        "desktop_image": "shopify://shop_images/Suits_Content_26cba959-28f7-425b-b9d9-840f9affd5d4.webp",
+        "desktop_image": "shopify://shop_images/blue-shirt-initiative-hero-image.webp",
         "heading": "Who is Beyond Blue?",
         "svg_size": "medium",
         "heading_level": "h1",
@@ -99,10 +99,10 @@
         "button_link_3": "",
         "button_label_4": "",
         "button_link_4": "",
-        "horizontal_alignment": "left",
-        "vertical_alignment": "bottom",
-        "mobile_horizontal_alignment": "left",
-        "mobile_vertical_alignment": "bottom"
+        "horizontal_alignment": "center",
+        "vertical_alignment": "middle",
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "middle"
       }
     },
     "image_with_text_w66BtE": {
@@ -113,13 +113,13 @@
         "show_top_border": false,
         "show_bottom_border": true,
         "full_width": false,
-        "first_image": "shopify://shop_images/the-blue-shirt-Initiative-harry-garside.webp",
+        "first_image": "shopify://shop_images/pexels-tima-miroshnichenko-5992476.webp",
         "image_link": "",
         "animate_images": false,
         "alignment": "left",
         "heading": "75 Years of Supporting Men",
         "heading_animation": "none",
-        "text": "For three-quarters of a century, we’ve spoken directly to men through our garments, helping them navigate their lives with confidence and ease. This initiative reflects ongoing promise: to be more than a menswear brand.<br><br>This is our chance to give back to the community that has supported us for decades, tackling a cause that touches so many. Every dollar raised represents a meaningful step toward breaking mental health barriers and providing essential support to those in need.",
+        "text": "For three-quarters of a century, we’ve spoken directly to men through our garments, helping them navigate their lives with confidence and ease. This initiative reflects ongoing promise: to be more than a menswear brand.This is our chance to give back to the community that has supported us for decades, tackling a cause that touches so many. Every dollar raised represents a meaningful step toward breaking mental health barriers and providing essential support to those in need.",
         "text_animation": "none",
         "button_label": "",
         "button_link": "https://www.beyondblue.org.au/"
