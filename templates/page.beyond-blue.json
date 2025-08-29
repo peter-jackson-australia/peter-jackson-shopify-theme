@@ -60,7 +60,7 @@
         "alignment": "right",
         "heading": "Recognising Symptoms of Mental Health Issues in Men",
         "heading_animation": "none",
-        "text": "$10 from the purchase of each blue shirt goes directly to the Beyond Blue support service. <br><br> Understanding the signs of mental health challenges is crucial for early intervention. Common symptoms in men may include:<br><br> Physical Symptoms: Constant tiredness, headaches, muscle pains, stomach issues, sleep problems, and significant weight changes.<br><br> Emotional Symptoms: Feelings of failure, worthlessness, or hopelessness, irritability, anger, and mood swings.<br><br> Behavioural Changes: Withdrawing from friends and family, loss of interest in activities once enjoyed, increased use of alcohol or drugs, and neglecting responsibilities.<br><br> Recognising these signs is the first step toward seeking help and fostering a supportive environment.",
+        "text": "$10 from the purchase of each blue shirt goes directly to the Beyond Blue support service.  Understanding the signs of mental health challenges is crucial for early intervention. Common symptoms in men may include: Physical Symptoms: Constant tiredness, headaches, muscle pains, stomach issues, sleep problems, and significant weight changes. Emotional Symptoms: Feelings of failure, worthlessness, or hopelessness, irritability, anger, and mood swings. Behavioural Changes: Withdrawing from friends and family, loss of interest in activities once enjoyed, increased use of alcohol or drugs, and neglecting responsibilities. Recognising these signs is the first step toward seeking help and fostering a supportive environment.",
         "text_animation": "none",
         "button_label": "Visit Beyond Blue For More Information",
         "button_link": "https://www.beyondblue.org.au/"
@@ -74,7 +74,86 @@
         "show_top_border": false,
         "show_bottom_border": false,
         "quote_text": "\"I always thought asking for help was a weakness. But when I finally called Beyond Blue’s support line, it changed my life. That conversation gave me the hope I needed to start rebuilding myself.\" <br><br>- Peter Jackson Team Member",
-        "quote_animation": "animate-word-slide-up-scroll",
+        "quote_animation": "none",
+        "background_color": "neutral-950"
+      }
+    },
+    "hero_primary_WUmXBG": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/Suits_Content_26cba959-28f7-425b-b9d9-840f9affd5d4.webp",
+        "heading": "Who is Beyond Blue?",
+        "svg_size": "medium",
+        "heading_level": "h1",
+        "heading_animation": "none",
+        "description": "Beyond Blue is one of Australia's leading mental health organisations, providing support, education, and advocacy to break down barriers around mental health. Their 24/7 Support Service is a lifeline for countless individuals, offering immediate help when it’s needed most.Their mission is clear: to empower Australians to prioritize their mental health and seek support without shame or hesitation. With up to 300,000 contacts annually, Beyond Blue is not just an organisation—they are a movement for hope, connection, and resilience.",
+        "description_animation": "none",
+        "button_label_1": "Shop Now",
+        "button_link_1": "",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
+        "horizontal_alignment": "left",
+        "vertical_alignment": "bottom",
+        "mobile_horizontal_alignment": "left",
+        "mobile_vertical_alignment": "bottom"
+      }
+    },
+    "image_with_text_w66BtE": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "full_width": false,
+        "first_image": "shopify://shop_images/the-blue-shirt-Initiative-harry-garside.webp",
+        "image_link": "",
+        "animate_images": false,
+        "alignment": "left",
+        "heading": "75 Years of Supporting Men",
+        "heading_animation": "none",
+        "text": "For three-quarters of a century, we’ve spoken directly to men through our garments, helping them navigate their lives with confidence and ease. This initiative reflects ongoing promise: to be more than a menswear brand.This is our chance to give back to the community that has supported us for decades, tackling a cause that touches so many. Every dollar raised represents a meaningful step toward breaking mental health barriers and providing essential support to those in need.",
+        "text_animation": "none",
+        "button_label": "",
+        "button_link": "https://www.beyondblue.org.au/"
+      }
+    },
+    "two_column_heading_text_qiFF8q": {
+      "type": "two-column-heading-text",
+      "name": "Two Column Heading Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "icon": "shopify://shop_images/Beyond-Blue-White-Large_d8a3d3d2-405b-4705-aedc-35bce48b5afe.svg",
+        "heading": "Peter Jackson",
+        "heading_style": "decorative",
+        "heading_animation": "none",
+        "content": "<p><strong>How can you help?</strong></p><p>When you purchase a blue shirt from our collection, you’re doing more than stepping up your style game—you’re directly supporting men who need it most. But your involvement doesn’t have to stop there:<br/><br/><strong>Spread the Word:</strong> Share the initiative on social media or tell your friends.</p><p><strong>Start a Conversation:</strong> Ask your friends and family how they’re really feeling.</p><p><strong>Donate Directly:</strong> Support Beyond Blue with a direct donation to their programs.</p><p>Together, we can redefine what it means to be strong, resilient, and truly well-tailored, inside and out.</p>",
+        "content_animation": "none",
+        "alignment": "left"
+      }
+    },
+    "icon_callout_8mCURq": {
+      "type": "icon-callout",
+      "name": "Icon Callout",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "icon": "shopify://shop_images/speech-bubble.svg",
+        "heading": "If you're going through a hard time right now, the Beyond Blue Support Service is free and available 24/7.",
+        "heading_animation": "none",
+        "text": "Call 1300 224 636 or visit beyondblue.org.au<br><br>Learn the importance of mental health and how to manage anxiety & depression.",
+        "text_animation": "none",
+        "button_label": "Find Out More",
+        "button_link": "https://www.beyondblue.org.au/mental-health",
         "background_color": "neutral-950"
       }
     }
@@ -83,6 +162,10 @@
     "icon_callout_gqbHGg",
     "image_with_text_MbFKE3",
     "image_with_text_L6Enzy",
-    "block_quote_Kx6A6p"
+    "block_quote_Kx6A6p",
+    "hero_primary_WUmXBG",
+    "image_with_text_w66BtE",
+    "two_column_heading_text_qiFF8q",
+    "icon_callout_8mCURq"
   ]
 }
