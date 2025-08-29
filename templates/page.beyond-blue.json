@@ -146,7 +146,7 @@
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
-        "show_bottom_border": false,
+        "show_bottom_border": true,
         "icon": "shopify://shop_images/speech-bubble.svg",
         "heading": "If you're going through a hard time right now, the Beyond Blue Support Service is free and available 24/7.",
         "heading_animation": "none",
@@ -154,7 +154,7 @@
         "text_animation": "none",
         "button_label": "Find Out More",
         "button_link": "https://www.beyondblue.org.au/mental-health",
-        "background_color": "green-800"
+        "background_color": "neutral-950"
       }
     }
   },
