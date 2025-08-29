@@ -81,7 +81,8 @@
   display: flex;
   grid-column: 1 / -1; 
   justify-content: center;
-  padding: var(--space-xl) 0;
+  text-align: center;
+  padding: var(--space-xl) var(--space-m);
 }
 
 .blog-collection__loading {
