@@ -46,24 +46,102 @@
         "second_image": "shopify://shop_images/Suits_3.webp",
         "animate_images": false,
         "alignment": "left",
-        "heading": "How It Works",
+        "heading": "What We Make:",
         "heading_animation": "none",
-        "text": "Choose from 70+ Marzotto fabrics and 30 styles for a unique, made-to-measure suit that embodies your style. Customise every aspect, from fabric to buttons, with a 6-8 week turnaround.",
+        "text": "Beyond suits and sports coats, our MTM program covers a broad, beautiful range of options: <br><br>Separate trousers – perfect for rounding out wedding parties and smart separates.<br><br>Vests / Waistcoats – ideal finishing piece for wedding parties and three-piece looks.<br><br>Shirts – a smart solution for longer-limbed customers and precise collar/cuff specs.<br><br>MTM chinos & chino shorts – tailored casual pieces with dress-level polish.<br><br>Overcoats – built to your proportions for layering and movement.<br><br>Tailcoats – formalwear for weddings and classical musicians.<br><br>Women’s tailored garments – precision fit across suiting, separates, and coats.",
         "text_animation": "none",
         "button_label": "Learn More",
         "button_link": ""
       }
     },
-    "block_quote_faiPkK": {
-      "type": "block-quote",
-      "name": "Block Quote",
+    "variable_column_content_tertiary_4MfYDe": {
+      "type": "variable-column-content-tertiary",
+      "blocks": {
+        "column_item_qqdAr3": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/close-up-of-fabric-for-suit.png",
+            "image_link": "",
+            "heading": "Filarte Sartoriale",
+            "heading_animation": "none",
+            "text": "Contemporary suiting cloths with a clean hand, modern textures, and excellent value.",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "",
+            "column_link_text": ""
+          }
+        },
+        "column_item_TPDitt": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/close-up-of-fabric-material-for-a-suit.png",
+            "image_link": "",
+            "heading": "StyleBiella",
+            "heading_animation": "none",
+            "text": "Refined Italian fabrics with elegant drape and versatile seasonal weights.",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_MEXg9d": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/close-up-of-some-dark-grey-suit-material.png",
+            "image_link": "",
+            "heading": "Reda",
+            "heading_animation": "none",
+            "text": "Renowned Italian wool specialists known for rich colour, clarity, and a smooth finish.",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_TmbPKN": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/close-up-of-fabric-for-a-suit.png",
+            "image_link": "",
+            "heading": "Vitale Barberis Canonico",
+            "heading_animation": "none",
+            "text": "Iconic Italian mill offering timeless twills, airy tropicals, and classic flannels.",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_qqdAr3",
+        "column_item_TPDitt",
+        "column_item_MEXg9d",
+        "column_item_TmbPKN"
+      ],
+      "name": "Variable Column Content Tertiary",
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
-        "quote_text": "40 Styles To Choose From. 70+ Fabrics By Marzotto. Choose Your Lapels. 6-8 Weeks Delivery. Custom Stitching & Lining. Single Or Double Breast Starting From $799.",
-        "quote_animation": "animate-word-slide-up-scroll",
-        "background_color": "neutral-950"
+        "column_count": "4",
+        "text_alignment": "center",
+        "animate_columns": false,
+        "heading": "Our Fabric Partners",
+        "heading_animation": "none",
+        "text": "Filarte Sartoriale | StyleBiella | Reda | Vitale Barberis Canonico",
+        "text_animation": "none",
+        "button_label": "",
+        "button_link": ""
       }
     },
     "image_with_text_hVciFe": {
@@ -81,10 +159,22 @@
         "alignment": "right",
         "heading": "The Process",
         "heading_animation": "none",
-        "text": "1) Meeting of the minds: Your made-to-measure experience first starts with a meeting. It is here that one of our specialists will help guide you through our program, customising and creating a design blueprint unique to you. <br><br>2) Choose your style: Feeling comfortable in the style of your suit is just as important as the size and fit. Selecting from our style guide, you’ll be able to completely customise your suit, building up from several core looks.<br><br>3) Select the fabric: Selecting your fabric is an integral of creating an individualised garment, which is why we offer a diverse selection of patterns and colours, all sourced from the prestigious Marzotto mill in Italy.<br><br>4) Personalisation: Feeling comfortable in the style of your suit is just as important as the size and fit. Selecting from our style guide, you’ll be able to completely customise your suit, building up from several core looks.<br><br>5) Final fitting: Made to measure is about getting the perfect fit for you. After your garment is constructed and return to our store, you will be called in for a final fitting to ensure complete sartorial satisfaction.<br><br>6) Schedule an appointment: Our Made to Measure experience is tailored around you, from the choice of fabric and fit to the where and when of your first appointment. Book now to secure your spot with one of our Made to measure specialists and begin your Made to Measure experience.",
+        "text": "1) Consultation & measurement: Meet with our specialist to discuss your occasion, style goals, and fit preferences. We take comprehensive measurements and note posture and balance for accuracy.<br><br> 2) Choose your style: Select from 40 core styles (single- or double-breasted, notch or peak lapels, one- to three-piece options, formalwear silhouettes and more) as the foundation for your design.<br><br>3) Select the fabric: Explore 200+ fabrics from Filarte Sartoriale, StyleBiella, Reda, and VBC - ranging from lightweight tropics to textured basketweaves and refined flannels.<br><br>4) Personalise the details: Lapel width, button stance, lining, pick-stitching, pockets, pleats, cuffs, monogramming -dial in the details that speak to you.<br><br> 5) Make & lead time: Your garment is cut and constructed to your specifications. Standard delivery is 6–8 weeks.<br><br> 6) Final fitting & handover: Try on your finished piece in-store. We check the fine points and make any finishing tweaks so your garment feels perfect from day one.",
         "text_animation": "none",
         "button_label": "Learn More",
         "button_link": ""
+      }
+    },
+    "block_quote_qA4Gcd": {
+      "type": "block-quote",
+      "name": "Block Quote",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "quote_text": "40 styles to start from. 200+ fabrics (Filarte Sartoriale, StyleBiella, Reda, VBC) Custom stitching & linings. Single or double-breasted. Delivery: 6–8 weeks. Suits from $899",
+        "quote_animation": "none",
+        "background_color": "neutral-950"
       }
     },
     "schedule_your_appointment_AtFrGy": {
@@ -106,8 +196,9 @@
   "order": [
     "editorial_hero_U8rrRz",
     "image_with_text_hfrXHR",
-    "block_quote_faiPkK",
+    "variable_column_content_tertiary_4MfYDe",
     "image_with_text_hVciFe",
+    "block_quote_qA4Gcd",
     "schedule_your_appointment_AtFrGy",
     "store_locator_nk6JAx"
   ]
