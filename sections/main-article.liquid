@@ -459,13 +459,17 @@
     </div>
     <div class="article-related">
       <div class="article-related__header">
-        <h2 class="article-related__title heading--2xl">Newest Articles</h2>
+        <h2 class="article-related__title heading--2xl">More From The Empowered Mind</h2>
       </div>
 
       <div class="article-related__posts">
         {% assign displayed_count = 0 %}
-        {% for related_article in blogs['the-jackson-journal'].articles limit: 12 %}
-          {% if related_article.id != article.id and displayed_count < 6 %}
+        {% for related_article in blogs['the-jackson-journal'].articles limit: 100 %}
+          {% if displayed_count >= 6 %}
+            {% break %}
+          {% endif %}
+
+          {% if related_article.tags.first == 'Lifestyle' and related_article.id != article.id %}
             <article class="article-related__post">
               {% if related_article.image %}
                 <a href="{{ related_article.url }}" class="article-related__post-image">
