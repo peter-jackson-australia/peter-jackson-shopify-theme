@@ -9,35 +9,46 @@
  */
 {
   "sections": {
-    "hero_primary_3fGfTm": {
-      "type": "hero-primary",
-      "name": "Hero Section",
+    "icon_callout_gqbHGg": {
+      "type": "icon-callout",
+      "name": "Icon Callout",
       "settings": {
-        "media_type": "image",
-        "desktop_image": "shopify://shop_images/two-men-wearing-suits-by-lake-como.webp",
-        "heading": "",
-        "svg_size": "large",
-        "mobile_svg_image": "shopify://shop_images/beyond-blue-footer-logo.svg",
-        "heading_level": "h1",
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "icon": "shopify://shop_images/beyond-blue-footer-logo.svg",
+        "heading": "Breaking the Stigma Around Men’s Mental Health",
         "heading_animation": "none",
-        "description": "Beyond Blue",
-        "description_animation": "none",
-        "button_label_1": "Shop Now",
-        "button_link_1": "",
-        "button_label_2": "",
-        "button_link_2": "",
-        "button_label_3": "",
-        "button_link_3": "",
-        "button_label_4": "",
-        "button_link_4": "",
-        "horizontal_alignment": "center",
-        "vertical_alignment": "bottom",
-        "mobile_horizontal_alignment": "center",
-        "mobile_vertical_alignment": "bottom"
+        "text": "For 75 years, our brand has been more than a menswear label—we've been a companion in men's lives, crafting confidence and style. Today, we deepen that commitment with a partnership with Beyond Blue aimed at supporting men's mental health and dismantling the stigma that surrounds it. <br><br>At the heart of this initiative is our mission to help men lead happier, healthier, and more fulfilling lives—not just through what they wear, but by supporting their mental health and emotional well-being.",
+        "text_animation": "none",
+        "button_label": "",
+        "button_link": "",
+        "background_color": "neutral-950"
+      }
+    },
+    "image_with_text_MbFKE3": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "full_width": false,
+        "first_image": "shopify://shop_images/the-blue-shirt-Initiative-harry-garside.webp",
+        "image_link": "",
+        "animate_images": false,
+        "alignment": "left",
+        "heading": "The Blue Shirt Initiative",
+        "heading_animation": "none",
+        "text": "Mental health is a cornerstone of a fulfilling life, yet many men face challenges in silence. Societal expectations often pressure men to appear strong and unshaken, leading to the suppression of feelings like stress, anxiety, or depression. This stigma can prevent men from seeking help when they need it most. <br><br>Through the Blue Shirt Initiative, we contribute $10 from the sale of every blue shirt to Beyond Blue’s 24/7 Support Service. This vital resource offers free, confidential support to individuals facing life's challenges, providing immediate assistance whenever it's needed.<br><br>This initiative is about more than shirts; it's about sparking conversations, showing solidarity, and proving that no man has to face his challenges alone.",
+        "text_animation": "none",
+        "button_label": "Shop The Blue Shirt",
+        "button_link": "shopify://collections/mens-shirts"
       }
     }
   },
   "order": [
-    "hero_primary_3fGfTm"
+    "icon_callout_gqbHGg",
+    "image_with_text_MbFKE3"
   ]
 }
