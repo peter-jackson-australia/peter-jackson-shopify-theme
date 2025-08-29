@@ -14,7 +14,6 @@
     "footer": {
       "type": "footer",
       "settings": {
-        "intro_heading": "Peter Jackson",
         "intro_text": "Tailored For A Life Well Lived",
         "store_locator_heading": "Store Locator",
         "store_locator_placeholder": "Search by name, address or state",
@@ -27,7 +26,7 @@
         "partnerships_image": "shopify://shop_images/beyond-blue-footer-logo.svg",
         "partnerships_heading": "THE BLUE SHIRT INITIATIVE",
         "partnerships_text": "$10 of every blue shirt sold goes directly to Beyond Blue's Support Service.",
-        "partnerships_link": "",
+        "partnerships_link": "shopify://pages/beyond-blue",
         "partnerships_link_text": "Learn More",
         "footer_logo": "shopify://shop_images/peter-jackson-white-logo.svg",
         "terms_link": "/pages/support/#terms-and-conditions-segment",
