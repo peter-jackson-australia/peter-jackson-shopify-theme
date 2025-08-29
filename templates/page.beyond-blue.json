@@ -45,10 +45,31 @@
         "button_label": "Shop The Blue Shirt",
         "button_link": "shopify://collections/mens-shirts"
       }
+    },
+    "image_with_text_L6Enzy": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "full_width": false,
+        "first_image": "shopify://shop_images/the-blue-shirt-Initiative-harry-garside.webp",
+        "image_link": "",
+        "animate_images": false,
+        "alignment": "right",
+        "heading": "Recognising Symptoms of Mental Health Issues in Men",
+        "heading_animation": "none",
+        "text": "$10 from the purchase of each blue shirt goes directly to the Beyond Blue support service. <br><br> Understanding the signs of mental health challenges is crucial for early intervention. Common symptoms in men may include:<br><br> Physical Symptoms: Constant tiredness, headaches, muscle pains, stomach issues, sleep problems, and significant weight changes.<br><br> Emotional Symptoms: Feelings of failure, worthlessness, or hopelessness, irritability, anger, and mood swings.<br><br> Behavioural Changes: Withdrawing from friends and family, loss of interest in activities once enjoyed, increased use of alcohol or drugs, and neglecting responsibilities.<br><br> Recognising these signs is the first step toward seeking help and fostering a supportive environment.",
+        "text_animation": "none",
+        "button_label": "Visit Beyond Blue For More Information",
+        "button_link": "https://www.beyondblue.org.au/"
+      }
     }
   },
   "order": [
     "icon_callout_gqbHGg",
-    "image_with_text_MbFKE3"
+    "image_with_text_MbFKE3",
+    "image_with_text_L6Enzy"
   ]
 }
