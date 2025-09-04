@@ -8,8 +8,9 @@ for (let i = 0; i < counters.length; i++) {
   const finalValue = parseFloat(counter.dataset.final)
   const duration = parseFloat(counter.dataset.duration)
 
-  const decimalLength = decimalStrFromNumber(finalValue).length
-  console.log(finalValue, decimalStrFromNumber(finalValue), decimalLength)
+  const decimalValue = decimalStrFromNumber(finalValue)
+  
+  const decimalLength = decimalValue ? decimalValue.length : 1;
 
   counter.textContent = finalValue.toFixed(0)
   gsap.from(`#${counter.id}`, {
