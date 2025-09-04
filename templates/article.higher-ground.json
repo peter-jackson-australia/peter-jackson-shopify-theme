@@ -9,23 +9,6 @@
  */
 {
   "sections": {
-    "heading_with_text_X6PKEr": {
-      "type": "heading-with-text",
-      "name": "Heading with Text",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": true,
-        "leading_text": "",
-        "leading_text_animation": "none",
-        "heading": "The Jackson Journal",
-        "heading_style": "decorative",
-        "heading_animation": "none",
-        "content": "<p>CAMPAIGN</p>",
-        "content_animation": "none",
-        "alignment": "center"
-      }
-    },
     "article": {
       "type": "main-article",
       "disabled": true,
@@ -116,6 +99,7 @@
         "media_type": "image",
         "desktop_image": "shopify://shop_images/Wt25-Launch-Hero_2000x_463f760b-fb8a-497b-8b90-b7a1c37ff402.webp",
         "heading": "Next-Level Outerwear",
+        "svg_size": "medium",
         "heading_level": "h1",
         "heading_animation": "none",
         "description": "A refined essential for the season. Our wool coats balance structure with ease in a versatile car coat length.",
@@ -129,7 +113,9 @@
         "button_label_4": "",
         "button_link_4": "",
         "horizontal_alignment": "center",
-        "vertical_alignment": "bottom"
+        "vertical_alignment": "bottom",
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "bottom"
       }
     },
     "collection_slider_secondary_GjGnVj": {
@@ -153,6 +139,7 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
+        "full_width": false,
         "first_image": "shopify://shop_images/Higher-Ground-5_900x_b9c7f089-0715-4a89-9497-717235b82c9e.webp",
         "image_link": "",
         "animate_images": false,
@@ -172,6 +159,7 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
+        "full_width": false,
         "first_image": "shopify://shop_images/Higher-Ground-6_900x_e0484f2a-0263-454c-ab59-aff2b7c7618d.webp",
         "image_link": "",
         "animate_images": false,
@@ -194,14 +182,23 @@
             "desktop_image": "shopify://shop_images/Higher-Ground-11_2000x_c79ae7f6-21a2-456c-9040-60b8f3877894.webp",
             "mobile_image": "shopify://shop_images/Higher-Ground-12_1512x_d69a6e14-699c-48e7-8c5b-b28738aacdc0.webp",
             "heading": "A Modern Statement",
+            "svg_size": "medium",
             "heading_level": "h1",
             "heading_animation": "animate-paragraph-slide-up-scroll",
             "description": "Corduroy returns with new intent — softer, lighter, and sharper in cut. Once rooted in utility, it’s now a textural statement in modern tailoring, bringing relaxed structure and refined ease to everyday dressing.",
             "description_animation": "animate-paragraph-slide-up-scroll",
-            "button_label": "Shop Now",
-            "button_link": "",
+            "button_label_1": "Shop Now",
+            "button_link_1": "",
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_label_3": "",
+            "button_link_3": "",
+            "button_label_4": "",
+            "button_link_4": "",
             "horizontal_alignment": "center",
-            "vertical_alignment": "middle"
+            "vertical_alignment": "middle",
+            "mobile_horizontal_alignment": "center",
+            "mobile_vertical_alignment": "bottom"
           }
         },
         "slide_zKAYnh": {
@@ -211,14 +208,23 @@
             "desktop_image": "shopify://shop_images/Higher-Ground-10_2000x_a3504dc2-72d2-4cce-ba83-2df0da46af22.webp",
             "mobile_image": "shopify://shop_images/Higher-Ground-14_1512x_654bf664-3a7c-4975-a17a-f43347a99f4a.webp",
             "heading": "The Power Suit Returns",
+            "svg_size": "medium",
             "heading_level": "h1",
             "heading_animation": "animate-paragraph-slide-up-scroll",
             "description": "The bold return of the banker stripe channels classic power with sharper lines and softer structure. In contrast, tonal dressing takes a quieter approach — all depth, no noise. Different executions, same energy: confidence, refined.",
             "description_animation": "animate-paragraph-slide-up-scroll",
-            "button_label": "Shop Now",
-            "button_link": "",
+            "button_label_1": "Shop Now",
+            "button_link_1": "",
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_label_3": "",
+            "button_link_3": "",
+            "button_label_4": "",
+            "button_link_4": "",
             "horizontal_alignment": "center",
-            "vertical_alignment": "middle"
+            "vertical_alignment": "middle",
+            "mobile_horizontal_alignment": "center",
+            "mobile_vertical_alignment": "bottom"
           }
         }
       },
@@ -315,11 +321,18 @@
         "products_to_show": 10,
         "animate_products": false
       }
+    },
+    "blog_header_z96LBn": {
+      "type": "blog-header",
+      "name": "Blog Header",
+      "settings": {
+        "journal_type": "jackson"
+      }
     }
   },
   "order": [
-    "heading_with_text_X6PKEr",
     "article",
+    "blog_header_z96LBn",
     "editorial_hero_Q8bdNh",
     "full_page_media_DQrgiW",
     "two_column_content_JQLcTq",
