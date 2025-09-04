@@ -136,6 +136,7 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": true,
+        "full_width": false,
         "first_image": "shopify://shop_images/Corduroy_Shirt_5.webp",
         "image_link": "",
         "animate_images": false,
@@ -169,6 +170,7 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": true,
+        "full_width": false,
         "first_image": "shopify://shop_images/Corduroy_Suit_5.webp",
         "image_link": "",
         "animate_images": false,
@@ -212,10 +214,18 @@
         "content_animation": "none",
         "alignment": "left"
       }
+    },
+    "blog_header_qwWC4P": {
+      "type": "blog-header",
+      "name": "Blog Header",
+      "settings": {
+        "journal_type": "jackson"
+      }
     }
   },
   "order": [
     "article",
+    "blog_header_qwWC4P",
     "editorial_hero_CPzXit",
     "full_page_media_DQrgiW",
     "heading_with_text_NFCiF4",
