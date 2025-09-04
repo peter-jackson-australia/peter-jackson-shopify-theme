@@ -24,11 +24,13 @@
         "leading_text": "",
         "leading_text_animation": "none",
         "first_title": "Winter Style",
+        "first_title_level": "h1",
         "first_title_animation": "none",
         "media_type": "image",
         "image": "shopify://shop_images/Blog_WMH_1_copy.webp",
         "animate_media": false,
         "second_title": "Playbook",
+        "second_title_level": "h1",
         "second_title_animation": "none",
         "description": "A COMPREHENSIVE GUIDE TO THE DEFINING PIECES THAT COMPLETE YOUR WINTER WARDROBE\n<br><br>\nAs the temperature dips and the layering begins, winter style starts to matter more. You want warmth without the bulk, function without forgetting polish. Whether it's the 9AM meeting or Saturday plans that run long, we've put together a winter essentials guide that works hard behind the scenes—so you don’t have to think twice about what to wear.",
         "description_animation": "none",
@@ -43,6 +45,7 @@
         "anchor_id": "",
         "show_top_border": true,
         "show_bottom_border": false,
+        "full_width": false,
         "first_image": "shopify://shop_images/Winter-Playbook-2_1080x_3c3fc94b-dadd-4ff8-87af-29cf42eeabe2.webp",
         "image_link": "shopify://collections/knitwear",
         "animate_images": false,
@@ -76,6 +79,7 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
+        "full_width": false,
         "first_image": "shopify://shop_images/Winter-Playbook-3_1080x_9c3e8dc1-a4b9-4ef4-9af5-d96b8685610d.webp",
         "image_link": "shopify://collections/bags",
         "animate_images": false,
@@ -109,6 +113,7 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
+        "full_width": false,
         "first_image": "shopify://shop_images/Winter-Playbook-4_1080x_bc7c4769-5bc2-40a6-ad5b-a20244e0a1c6.webp",
         "image_link": "shopify://collections/beanies",
         "animate_images": false,
@@ -142,6 +147,7 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": true,
+        "full_width": false,
         "first_image": "shopify://shop_images/Winter-Playbook-5_1080x_976212a2-2d52-4a26-95ab-72834c0c03b7.webp",
         "image_link": "shopify://collections/mens-footwear",
         "animate_images": false,
@@ -175,6 +181,7 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
+        "full_width": false,
         "first_image": "shopify://shop_images/Winter-Playbook-6_1080x_722a2e07-4c43-44cb-aba0-baed13be1105.webp",
         "image_link": "shopify://collections/ties",
         "animate_images": false,
@@ -208,6 +215,7 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": true,
+        "full_width": false,
         "first_image": "shopify://shop_images/Winter-Playbook-7_1080x_66c9e00f-eae6-4c5c-b4bb-0d8d33aaf08d.webp",
         "image_link": "shopify://collections/mens-leather-belts",
         "animate_images": false,
@@ -241,6 +249,7 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
+        "full_width": false,
         "first_image": "shopify://shop_images/Winter-Playbook-8_1080x_3080c100-451c-4b3b-b0a1-27c0dccca287.webp",
         "image_link": "shopify://collections/scarves",
         "animate_images": false,
@@ -266,10 +275,18 @@
         "products_to_show": 10,
         "animate_products": false
       }
+    },
+    "blog_header_eEmbfj": {
+      "type": "blog-header",
+      "name": "Blog Header",
+      "settings": {
+        "journal_type": "jackson"
+      }
     }
   },
   "order": [
     "article",
+    "blog_header_eEmbfj",
     "editorial_hero_CPzXit",
     "image_with_text_KWmAa3",
     "collection_slider_secondary_yGfCVj",
