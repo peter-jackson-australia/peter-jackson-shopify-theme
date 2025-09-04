@@ -308,10 +308,18 @@
         "content_animation": "none",
         "alignment": "left"
       }
+    },
+    "blog_header_aBjQNU": {
+      "type": "blog-header",
+      "name": "Blog Header",
+      "settings": {
+        "journal_type": "jackson"
+      }
     }
   },
   "order": [
     "article",
+    "blog_header_aBjQNU",
     "editorial_hero_dTVGEg",
     "variable_column_content_tertiary_LT7464",
     "hero_primary_feCpm7",
