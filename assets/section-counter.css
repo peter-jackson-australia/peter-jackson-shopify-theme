@@ -1,5 +1,5 @@
 .counter__header {
-  margin: var(--space-s) auto;
+  margin: var(--space-2xl) auto;
   max-width: fit-content;
   text-align: center;
 }
