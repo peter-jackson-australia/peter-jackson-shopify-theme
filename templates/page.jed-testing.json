@@ -16,7 +16,7 @@
           "type": "counter",
           "settings": {
             "counter_description": "Seven out of nine people who die by suicide every day in Australia are men",
-            "counter_duration": 5,
+            "counter_duration": 2,
             "counter_text_prefix": "",
             "counter_text_suffix": "/9",
             "counter_initial_value": 0,
@@ -27,7 +27,7 @@
           "type": "counter",
           "settings": {
             "counter_description": "Of Australian men will experience anxiety or depression at some stage in their lives",
-            "counter_duration": 5,
+            "counter_duration": 2,
             "counter_text_prefix": "",
             "counter_text_suffix": "%",
             "counter_initial_value": 33,
@@ -38,7 +38,7 @@
           "type": "counter",
           "settings": {
             "counter_description": "Of men admit to delaying seeing their GP for help when they needed it",
-            "counter_duration": 1,
+            "counter_duration": 2,
             "counter_text_prefix": "",
             "counter_text_suffix": "%",
             "counter_initial_value": 16,
