@@ -13,10 +13,6 @@
   border-top: solid 1px var(--neutral-600);
 }
 
-.countervalue__aside-text{
-  white-space: break-spaces;
-}
-
 .counter__counters {
   border-right: solid var(--neutral-600);
   display: flex;
@@ -24,6 +20,10 @@
   gap: var(--space-s);
   margin: var(--space-xl) 0;
   padding: 0 var(--space-xl);
+}
+
+.countervalue__aside-text{
+  white-space: break-spaces;
 }
 
 .counter__counters:last-child {
