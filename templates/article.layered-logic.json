@@ -254,6 +254,7 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
+        "full_width": false,
         "first_image": "shopify://shop_images/Layered_Logic_Hero_6_74bd209e-10e6-47b2-9d21-7da542a0bdbf.webp",
         "image_link": "",
         "animate_images": false,
@@ -279,10 +280,18 @@
         "products_to_show": 10,
         "animate_products": false
       }
+    },
+    "blog_header_8jtQTq": {
+      "type": "blog-header",
+      "name": "Blog Header",
+      "settings": {
+        "journal_type": "jackson"
+      }
     }
   },
   "order": [
     "article",
+    "blog_header_8jtQTq",
     "editorial_hero_CPzXit",
     "full_page_media_DQrgiW",
     "heading_with_text_NFCiF4",
