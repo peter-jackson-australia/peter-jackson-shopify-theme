@@ -24,11 +24,13 @@
         "leading_text": "ORIGINS OF EXCELLENCE",
         "leading_text_animation": "none",
         "first_title": "THE UNMATCHED ELEGANCE",
+        "first_title_level": "h1",
         "first_title_animation": "none",
         "media_type": "image",
         "image": "shopify://shop_images/Wool_Article_Header_2.webp",
         "animate_media": false,
         "second_title": "OF AUSTRALIAN MERINO WOOL",
+        "second_title_level": "h1",
         "second_title_animation": "none",
         "description": "Australian Merino wool represents more than just a fabric; it embodies a heritage rooted in the fertile landscale of Australia. Originating from the finest Merino sheep, renowned for their ultra-soft and delicate wool, this material is the product of a dedicated breeding and farming processes. The temperate climate and fertile terrain of Australia provide the ideal environment, ensuring a sustainable and ecologically responsible approach to wool production.",
         "description_animation": "none",
@@ -43,6 +45,7 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
+        "full_width": false,
         "first_image": "shopify://shop_images/Wool_Hero_Article_44f64951-5498-4cc2-b595-cc986815ce16.webp",
         "image_link": "",
         "animate_images": false,
@@ -62,6 +65,7 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": true,
+        "full_width": false,
         "first_image": "shopify://shop_images/Wool_Hero_Article_2.webp",
         "image_link": "",
         "animate_images": false,
@@ -87,10 +91,18 @@
         "products_to_show": 10,
         "animate_products": false
       }
+    },
+    "blog_header_pJLhqf": {
+      "type": "blog-header",
+      "name": "Blog Header",
+      "settings": {
+        "journal_type": "jackson"
+      }
     }
   },
   "order": [
     "article",
+    "blog_header_pJLhqf",
     "editorial_hero_z9geH7",
     "image_with_text_KWmAa3",
     "image_with_text_8ePUyF",
