@@ -4,7 +4,6 @@
   const counters = document.querySelectorAll(
     `#counter-${sectionId} .countervalue__main-value`,
   );
-  console.log(counters);
 
   for (let i = 0; i < counters.length; i++) {
     const counter = counters[i];

@@ -1,4 +1,4 @@
-{{ 'section-counter.css' | asset_url | stylesheet_tag }}
+{{ "section-counter.css" | asset_url | stylesheet_tag }}
 
 {% assign heading = section.settings.heading %}
 {% assign subheading = section.settings.subheading %}
@@ -99,7 +99,7 @@
         },
         {
           "type": "paragraph",
-          "content": "This is used to add text before the counter's value. For example, if you wanted 'Up To 20% Off', this value would be 'Up To '."
+          "content": "This is used to add text before the counter's value. For example, if you wanted '*20', this value would be '*'"
         },
         {
           "id": "counter_text_suffix",
@@ -108,7 +108,7 @@
         },
         {
           "type": "paragraph",
-          "content": "This is used to add text before the counter's value. For example, if you wanted 'Up To 20% Off', this value would be '% Off"
+          "content": "This is used to add text before the counter's value. For example, if you wanted '7/9', this value would be '/9"
         },
         {
           "id": "counter_initial_value",

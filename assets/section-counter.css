@@ -17,9 +17,6 @@
   white-space: break-spaces;
 }
 
-.countervalue {
-}
-
 .counter__counters {
   border-right: solid var(--neutral-600);
   display: flex;
