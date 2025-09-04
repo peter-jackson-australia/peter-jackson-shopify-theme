@@ -3,13 +3,13 @@
 {% assign heading = section.settings.heading %}
 {% assign subheading = section.settings.subheading %}
 {% assign section_id = section.id %}
-{% assign show_top_border = section.settings.showTopBorder %}
-{% assign show_bottom_border = section.settings.showBottomBorder %}
+{% assign show_top_border = section.settings.show_top_border %}
+{% assign show_bottom_border = section.settings.show_bottom_border %}
 {% assign section_block_size = section.blocks | size %}
 
 <div
   id="counter-{{ section_id }}"
-  style="{% if show_top_border %}border-top: solid 1px var(--neutral-600);{% endif %}{% if show_bottom_border %} border-bottom: solid 1px var(--neutral-600);{% endif %}"
+  style="{% if show_top_border %}border-top: solid 1px var(--neutral-50);{% endif %}{% if show_bottom_border %} border-bottom: solid 1px var(--neutral-600);{% endif %}"
 >
   <div class="counter__header">
     {% if heading != blank %}
@@ -80,6 +80,18 @@
       "id": "subheading",
       "label": "Subheading",
       "default": "More text here"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_top_border",
+      "label": "Show top border",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bottom_border",
+      "label": "Show bottom border",
+      "default": false
     }
   ],
   "max_blocks": 3,
@@ -137,18 +149,6 @@
         {
           "type": "paragraph",
           "content": "This is used to add text before the counter's value. For example, if you wanted '7/9', this value would be '/9"
-        },
-        {
-          "type": "checkbox",
-          "id": "show_top_border",
-          "label": "Show top border",
-          "default": false
-        },
-        {
-          "type": "checkbox",
-          "id": "show_bottom_border",
-          "label": "Show bottom border",
-          "default": false
         }
       ]
     }
