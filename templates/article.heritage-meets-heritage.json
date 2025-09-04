@@ -126,6 +126,7 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
+        "full_width": false,
         "first_image": "shopify://shop_images/vbc-5_900x_698ec877-f6c8-496c-9cff-7c3a34c8b13e.webp",
         "image_link": "",
         "animate_images": false,
@@ -145,6 +146,7 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
+        "full_width": false,
         "first_image": "shopify://shop_images/vbc-5_900x_698ec877-f6c8-496c-9cff-7c3a34c8b13e.webp",
         "image_link": "",
         "animate_images": false,
@@ -236,10 +238,18 @@
         "products_to_show": 10,
         "animate_products": true
       }
+    },
+    "blog_header_thYUJ9": {
+      "type": "blog-header",
+      "name": "Blog Header",
+      "settings": {
+        "journal_type": "jackson"
+      }
     }
   },
   "order": [
     "article",
+    "blog_header_thYUJ9",
     "heading_with_text_cPBtiF",
     "video_7hxHce",
     "heading_with_text_DqfHti",
