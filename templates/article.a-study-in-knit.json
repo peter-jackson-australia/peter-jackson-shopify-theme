@@ -14,6 +14,13 @@
       "disabled": true,
       "settings": {}
     },
+    "blog_header_UM6RHU": {
+      "type": "blog-header",
+      "name": "Blog Header",
+      "settings": {
+        "journal_type": "jackson"
+      }
+    },
     "editorial_hero_CPzXit": {
       "type": "editorial-hero",
       "name": "Hero Editorial",
@@ -126,7 +133,7 @@
       "name": "Heading with Text",
       "settings": {
         "anchor_id": "",
-        "show_top_border": true,
+        "show_top_border": false,
         "show_bottom_border": false,
         "leading_text": "",
         "leading_text_animation": "none",
@@ -200,13 +207,6 @@
         "button_label": "Shop Now",
         "products_to_show": 10,
         "animate_products": false
-      }
-    },
-    "blog_header_UM6RHU": {
-      "type": "blog-header",
-      "name": "Blog Header",
-      "settings": {
-        "journal_type": "jackson"
       }
     }
   },
