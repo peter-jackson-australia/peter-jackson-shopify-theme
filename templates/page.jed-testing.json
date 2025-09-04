@@ -17,8 +17,8 @@
           "settings": {
             "counter_description": "Seven out of nine people who die by suicide every day in Australia are men",
             "counter_duration": 5,
-            "counter_text_prefix": "",
-            "counter_text_suffix": "",
+            "counter_text_prefix": "p",
+            "counter_text_suffix": "s",
             "counter_initial_value": 0,
             "counter_final_value": 9
           }
@@ -28,8 +28,8 @@
           "settings": {
             "counter_description": "This counter goes from 0 to 100",
             "counter_duration": 5,
-            "counter_text_prefix": "Up to",
-            "counter_text_suffix": "% Something",
+            "counter_text_prefix": "p",
+            "counter_text_suffix": "s",
             "counter_initial_value": 75.2,
             "counter_final_value": 18.6
           }
@@ -37,12 +37,12 @@
         "counter_bCUTkb": {
           "type": "counter",
           "settings": {
-            "counter_description": "",
-            "counter_duration": 2,
-            "counter_text_prefix": "",
-            "counter_text_suffix": "",
-            "counter_initial_value": 50.5,
-            "counter_final_value": 23.4
+            "counter_description": "testing",
+            "counter_duration": 1,
+            "counter_text_prefix": "p",
+            "counter_text_suffix": "%",
+            "counter_initial_value": 0,
+            "counter_final_value": 200
           }
         }
       },
@@ -53,12 +53,74 @@
       ],
       "name": "Counter",
       "settings": {
-        "heading": "testing",
-        "subheading": "testing"
+        "heading": "3 Counters",
+        "subheading": "Testing"
+      }
+    },
+    "counter_7wyEdD": {
+      "type": "counter",
+      "blocks": {
+        "counter_qXxBWM": {
+          "type": "counter",
+          "settings": {
+            "counter_description": "This counter goes from 0 to 100",
+            "counter_duration": 5,
+            "counter_text_prefix": "Up to",
+            "counter_text_suffix": "% Something",
+            "counter_initial_value": 85,
+            "counter_final_value": 100
+          }
+        },
+        "counter_be6QEA": {
+          "type": "counter",
+          "settings": {
+            "counter_description": "This counter goes from 0 to 100",
+            "counter_duration": 5,
+            "counter_text_prefix": "Up to",
+            "counter_text_suffix": "% Something",
+            "counter_initial_value": 85,
+            "counter_final_value": 100
+          }
+        }
+      },
+      "block_order": [
+        "counter_qXxBWM",
+        "counter_be6QEA"
+      ],
+      "name": "Counter",
+      "settings": {
+        "heading": "Only 2 Conuters",
+        "subheading": "Only 2 of them!"
+      }
+    },
+    "counter_qj4Vdt": {
+      "type": "counter",
+      "blocks": {
+        "counter_mtxpDM": {
+          "type": "counter",
+          "settings": {
+            "counter_description": "The Last Counter",
+            "counter_duration": 5,
+            "counter_text_prefix": "Up to",
+            "counter_text_suffix": "% Something",
+            "counter_initial_value": 85,
+            "counter_final_value": 100
+          }
+        }
+      },
+      "block_order": [
+        "counter_mtxpDM"
+      ],
+      "name": "Counter",
+      "settings": {
+        "heading": "Some text here",
+        "subheading": "More text here"
       }
     }
   },
   "order": [
-    "counter_ix7CxW"
+    "counter_ix7CxW",
+    "counter_7wyEdD",
+    "counter_qj4Vdt"
   ]
 }
