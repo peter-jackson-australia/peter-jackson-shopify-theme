@@ -6,12 +6,13 @@
 {% assign section_block_size = section.blocks | size %}
 
 <div id="counter-{{ section_id }}">
+
   <div class="counter__header">
     {% if heading != blank %}
       <h3 class="heading--decorative">{{ heading }}</h3>
     {% endif %}
     {% if subheading != blank %}
-      <p>{{ subheading }}</p>
+      <p class="counter__header-subheading">{{ subheading }}</p>
     {% endif %}
   </div>
 
@@ -45,6 +46,7 @@
       </div>
     {% endfor %}
   </div>
+
 </div>
 
 <script
