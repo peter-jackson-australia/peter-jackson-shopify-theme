@@ -22,7 +22,7 @@
 }
 
 .counter__counters {
-  border-right: solid var(--neutral-600);
+  border-right: 1px solid var(--neutral-600);
   display: flex;
   flex-direction: column;
   gap: var(--space-s);
