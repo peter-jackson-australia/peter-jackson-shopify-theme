@@ -45,7 +45,7 @@ This file can be re-written at any time.
     }
 
     const urlParams = new URLSearchParams(window.location.search);
-    const optimizationDisabled = urlParams.get('shg') === "false";
+    const optimizationDisabled = urlParams.get('shg') === "false" || window.location.hostname.includes('shopifypreview');
 
     if (optimizationDisabled) {
       console.debug("Optimization is disabled, skipping optimizer initialization");
