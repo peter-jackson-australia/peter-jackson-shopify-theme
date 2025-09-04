@@ -3,9 +3,14 @@
 {% assign heading = section.settings.heading %}
 {% assign subheading = section.settings.subheading %}
 {% assign section_id = section.id %}
+{% assign show_top_border = section.settings.showTopBorder %}
+{% assign show_bottom_border = section.settings.showBottomBorder %}
 {% assign section_block_size = section.blocks | size %}
 
-<div id="counter-{{ section_id }}">
+<div
+  id="counter-{{ section_id }}"
+  style="{% if show_top_border %}border-top: solid 1px var(--neutral-600);{% endif %}{% if show_bottom_border %} border-bottom: solid 1px var(--neutral-600);{% endif %}"
+>
   <div class="counter__header">
     {% if heading != blank %}
       <h3 class="heading--decorative">{{ heading }}</h3>
@@ -91,7 +96,7 @@
         },
         {
           "id": "counter_duration",
-          "label": "Counter Duration (Seconds)",
+          "label": "Counter Animation Duration (Seconds)",
           "type": "number",
           "default": 5
         },
@@ -105,17 +110,8 @@
           "content": "This is used to add text before the counter's value. For example, if you wanted '*20', this value would be '*'"
         },
         {
-          "id": "counter_text_suffix",
-          "label": "Text After Counter Value",
-          "type": "text"
-        },
-        {
-          "type": "paragraph",
-          "content": "This is used to add text before the counter's value. For example, if you wanted '7/9', this value would be '/9"
-        },
-        {
           "id": "counter_initial_value",
-          "label": "Initial Number",
+          "label": "Counter Start Number",
           "type": "number",
           "default": 0
         },
@@ -125,13 +121,34 @@
         },
         {
           "id": "counter_final_value",
-          "label": "Final Number",
+          "label": "Counter Final Number",
           "type": "number",
           "default": 100
         },
         {
           "type": "paragraph",
           "content": "This is where the counter will finish"
+        },
+        {
+          "id": "counter_text_suffix",
+          "label": "Text After Counter Value",
+          "type": "text"
+        },
+        {
+          "type": "paragraph",
+          "content": "This is used to add text before the counter's value. For example, if you wanted '7/9', this value would be '/9"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_top_border",
+          "label": "Show top border",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "show_bottom_border",
+          "label": "Show bottom border",
+          "default": false
         }
       ]
     }

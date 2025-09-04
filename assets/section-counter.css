@@ -1,11 +1,11 @@
 .counter__header {
-  margin: var(--space-2xl) auto;
-  max-width: fit-content;
-  text-align: center;
   display: flex;
   flex-direction: column;
   gap: var(--space-s);
-  padding: var(--space-s);
+  margin: auto;
+  max-width: fit-content;
+  padding: var(--space-2xl);
+  text-align: center;
 }
 
 .counter__header-subheading {
@@ -14,8 +14,6 @@
 
 .counter__container {
   background-color: var(--neutral-950);
-  border-bottom: solid 1px var(--neutral-600);
-  border-top: solid 1px var(--neutral-600);
   color: var(--white);
   display: grid;
   text-align: center;
@@ -25,6 +23,8 @@
   border-right: 1px solid var(--neutral-600);
   display: flex;
   flex-direction: column;
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
   gap: var(--space-s);
   justify-content: space-between;
   margin: var(--space-xl) 0;
