@@ -89,12 +89,62 @@
         "background_color": "neutral-950"
       }
     },
+    "counter_dRKyqa": {
+      "type": "counter",
+      "blocks": {
+        "counter_zeb43U": {
+          "type": "counter",
+          "settings": {
+            "counter_description": "Seven out of nine people who die by suicide every day in Australia are men",
+            "counter_duration": 1,
+            "counter_text_prefix": "",
+            "counter_initial_value": 0,
+            "counter_final_value": 7,
+            "counter_text_suffix": "/9"
+          }
+        },
+        "counter_JMVAaj": {
+          "type": "counter",
+          "settings": {
+            "counter_description": "43% of Australian men will experience anxiety or depression at some stage in their lives",
+            "counter_duration": 1,
+            "counter_text_prefix": "",
+            "counter_initial_value": 33,
+            "counter_final_value": 43,
+            "counter_text_suffix": "%"
+          }
+        },
+        "counter_6P8BfW": {
+          "type": "counter",
+          "settings": {
+            "counter_description": "26% of men admit to delaying seeing their GP for help when they needed it",
+            "counter_duration": 1,
+            "counter_text_prefix": "",
+            "counter_initial_value": 16,
+            "counter_final_value": 26,
+            "counter_text_suffix": "%"
+          }
+        }
+      },
+      "block_order": [
+        "counter_zeb43U",
+        "counter_JMVAaj",
+        "counter_6P8BfW"
+      ],
+      "name": "Counter",
+      "settings": {
+        "heading": "Understanding The Challenge",
+        "subheading": "These figures on suicide rates, prevalence of mental health conditions and reluctance to seek help highlight the urgent need for initiatives that encourage men to seek support and openly discuss their mental health.",
+        "show_top_border": false,
+        "show_bottom_border": true
+      }
+    },
     "icon_callout_gqbHGg": {
       "type": "icon-callout",
       "name": "Icon Callout",
       "settings": {
         "anchor_id": "",
-        "show_top_border": true,
+        "show_top_border": false,
         "show_bottom_border": false,
         "icon": "shopify://shop_images/beyond-blue-footer-logo.svg",
         "heading": "Who is Beyond Blue?",
@@ -165,6 +215,7 @@
     "image_with_text_MbFKE3",
     "image_with_text_L6Enzy",
     "block_quote_Kx6A6p",
+    "counter_dRKyqa",
     "icon_callout_gqbHGg",
     "image_with_text_w66BtE",
     "two_column_heading_text_qiFF8q",
