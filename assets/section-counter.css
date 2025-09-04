@@ -1,4 +1,4 @@
-.counter-container__header {
+.counter__header {
   margin: var(--space-s) auto;
   max-width: fit-content;
   text-align: center;
