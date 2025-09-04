@@ -34,18 +34,14 @@
 
       <div class="counter__counters">
         <p class="heading--l">{{ counter_description }}</p>
-        <p class="countervalue heading--3xl" style="">
-
-          <span
-            class="countervalue__main-value"
+        <p class="countervalue__main-value heading--3xl"
             id="counter-{{ section_id }}-value-{{ forloop.index }}"
             data-prefix="{{ counter_prefix }}"
             data-suffix="{{ counter_suffix }}"
             data-initial="{{ counter_initial_value }}"
             data-final="{{ counter_final_value }}"
             data-duration="{{ counter_duration }}"
-            >{{ counter_initial_value }}</span>
-        </p>
+            >{{ counter_initial_value }}</p>
       </div>
     {% endfor %}
   </div>
