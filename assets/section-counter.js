@@ -1,6 +1,9 @@
-{ // In custom scope to avoid conflicting local variables
+{
+  // In custom scope to avoid conflicting local variables
   const sectionId = document.currentScript.dataset.sectionId;
-  const counters = document.querySelectorAll(`#counter-${sectionId} .counter__counters-value`);
+  const counters = document.querySelectorAll(
+    `#counter-${sectionId} .countervalue__main-value`,
+  );
   console.log(counters);
 
   for (let i = 0; i < counters.length; i++) {
@@ -9,6 +12,9 @@
     const initialValue = parseFloat(counter.dataset.initial);
     const finalValue = parseFloat(counter.dataset.final);
     const duration = parseFloat(counter.dataset.duration);
+
+    const prefix = counter.dataset.prefix ?? "";
+    const suffix = counter.dataset.suffix ?? "";
 
     const finalDecimalValue = decimalStrFromNumber(finalValue);
     const finalDecimalLength = finalDecimalValue ? finalDecimalValue.length : 0;
@@ -26,8 +32,9 @@
           const target = this.targets()[0];
           const num = parseFloat(target.textContent).toFixed(0);
 
-          let innerHTML = num.toString();
+          let innerHTML = prefix + num.toString();
           if (finalDecimalLength) innerHTML += `.${finalDecimalLength}`;
+          innerHTML += suffix;
           target.textContent = innerHTML;
         },
       },

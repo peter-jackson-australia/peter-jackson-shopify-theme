@@ -13,8 +13,11 @@
   border-top: solid 1px var(--neutral-600);
 }
 
-.counter__container-aside-text {
+.countervalue__aside-text{
   white-space: break-spaces;
+}
+
+.countervalue {
 }
 
 .counter__counters {
