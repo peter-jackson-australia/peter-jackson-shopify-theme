@@ -24,10 +24,12 @@
         "leading_text": "",
         "leading_text_animation": "none",
         "first_title": "",
+        "first_title_level": "h1",
         "first_title_animation": "none",
         "media_type": "image",
         "animate_media": false,
         "second_title": "On The Right Foot",
+        "second_title_level": "h1",
         "second_title_animation": "none",
         "description": "YOUR GUIDE TO THE ULTIMATE YEAR-ROUND FOOTWEAR COLLECTION\n<br><br>\nIt's time to reassess your shoe collection and ensure you have the footwear essentials for every season. From effortless Chelsea boots to timeless Derbys and contemporary loafers, we're here to assist you in building a well-rounded collection to put your best foot forward for every occasion.",
         "description_animation": "none",
@@ -42,6 +44,7 @@
         "anchor_id": "",
         "show_top_border": true,
         "show_bottom_border": false,
+        "full_width": false,
         "first_image": "shopify://shop_images/Derby-Boot_1080x_e7b44cbc-72db-4233-9a90-e0bc7b67a857.webp",
         "image_link": "shopify://collections/mens-footwear",
         "animate_images": false,
@@ -61,6 +64,7 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
+        "full_width": false,
         "first_image": "shopify://shop_images/Monk-Strap_1080x_a113430f-8223-4f42-bd94-53beeac6c53f.webp",
         "image_link": "shopify://collections/mens-footwear",
         "animate_images": false,
@@ -80,6 +84,7 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
+        "full_width": false,
         "first_image": "shopify://shop_images/Desert-Boots_1080x_a70629f2-f0cf-4811-8f1d-343097ae41fe.webp",
         "image_link": "shopify://collections/mens-footwear",
         "animate_images": false,
@@ -99,6 +104,7 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": true,
+        "full_width": false,
         "first_image": "shopify://shop_images/Penny-Loafer_1080x_c48cbf2b-a117-4b34-8037-bd1ba1dd978c.webp",
         "image_link": "shopify://collections/mens-footwear",
         "animate_images": false,
@@ -118,6 +124,7 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
+        "full_width": false,
         "first_image": "shopify://shop_images/Derby_1080x_3ec2b4a8-c8fd-488a-85b7-784c9cf455fd.webp",
         "image_link": "shopify://collections/mens-footwear",
         "animate_images": false,
@@ -137,6 +144,7 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": true,
+        "full_width": false,
         "first_image": "shopify://shop_images/Chelsea-Boot_1080x_38292826-1058-4520-b687-7777c53dd544.webp",
         "image_link": "shopify://collections/mens-footwear",
         "animate_images": false,
@@ -156,6 +164,7 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
+        "full_width": false,
         "first_image": "shopify://shop_images/Sneaker_1080x_fd3107ae-c54d-4a16-b6b4-b26e71270754.webp",
         "image_link": "shopify://collections/mens-footwear",
         "animate_images": false,
@@ -181,10 +190,18 @@
         "products_to_show": 10,
         "animate_products": false
       }
+    },
+    "blog_header_PwgYxe": {
+      "type": "blog-header",
+      "name": "Blog Header",
+      "settings": {
+        "journal_type": "jackson"
+      }
     }
   },
   "order": [
     "article",
+    "blog_header_PwgYxe",
     "editorial_hero_CPzXit",
     "image_with_text_KWmAa3",
     "image_with_text_HEWLMw",
