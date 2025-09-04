@@ -26,23 +26,23 @@
         "counter_NaerAm": {
           "type": "counter",
           "settings": {
-            "counter_description": "This counter goes from 0 to 100",
+            "counter_description": "Of Australian men will experience anxiety or depression at some stage in their lives",
             "counter_duration": 5,
-            "counter_text_prefix": "p",
-            "counter_text_suffix": "s",
-            "counter_initial_value": 75.2,
-            "counter_final_value": 18.6
+            "counter_text_prefix": "",
+            "counter_text_suffix": "%",
+            "counter_initial_value": 33,
+            "counter_final_value": 43
           }
         },
         "counter_bCUTkb": {
           "type": "counter",
           "settings": {
-            "counter_description": "testing",
+            "counter_description": "Of men admit to delaying seeing their GP for help when they needed it",
             "counter_duration": 1,
-            "counter_text_prefix": "p",
+            "counter_text_prefix": "",
             "counter_text_suffix": "%",
-            "counter_initial_value": 0,
-            "counter_final_value": 200
+            "counter_initial_value": 16,
+            "counter_final_value": 26
           }
         }
       },
