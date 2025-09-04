@@ -15,12 +15,12 @@
         "counter_GLTHNc": {
           "type": "counter",
           "settings": {
-            "counter_description": "This counter goes from 0 to 100",
+            "counter_description": "seven out of nine people who die by suicide every day in Australia are men",
             "counter_duration": 5,
             "counter_text_prefix": "Up to",
-            "counter_text_suffix": "% Something",
-            "counter_initial_value": 65,
-            "counter_final_value": 75.6
+            "counter_text_suffix": "/",
+            "counter_initial_value": 7,
+            "counter_final_value": 9
           }
         },
         "counter_NaerAm": {
