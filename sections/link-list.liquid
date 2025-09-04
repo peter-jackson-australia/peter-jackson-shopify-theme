@@ -2,97 +2,15 @@
   Link List Section
 {% endcomment %}
 
-<style>
-  .link-list {
-    padding: var(--space-m);
+{{ 'section-link-list.css' | asset_url | stylesheet_tag }}
+
+<div
+  class="link-list link-list--align-{{ section.settings.alignment }}"
+  style="
     {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
     {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
-  }
-
-  .link-list__wrapper {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--space-m);
-  }
-
-  .link-list--align-left .link-list__wrapper {
-    flex-direction: row-reverse;
-    justify-content: flex-end;
-  }
-
-  .link-list--align-center .link-list__wrapper {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .link-list--align-right .link-list__wrapper {
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-  }
-
-  .link-list__title {
-    flex: 0 0 auto;
-  }
-
-  .link-list__content {
-    flex: 1 1 auto;
-    display: flex;
-  }
-
-  .link-list--align-left .link-list__content {
-    justify-content: flex-start;
-  }
-
-  .link-list--align-center .link-list__content {
-    justify-content: center;
-  }
-
-  .link-list--align-right .link-list__content {
-    justify-content: flex-end;
-  }
-
-  .link-list__list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-m);
-    list-style: none;
-  }
-
-  .link-list--align-center .link-list__list {
-    justify-content: center;
-  }
-
-  .link-list--align-right .link-list__list {
-    justify-content: flex-end;
-  }
-
-  .link-list__link {
-    white-space: nowrap;
-    text-decoration: none;
-    color: var(--neutral-950);
-  }
-
-  @media screen and (max-width: 768px) {
-    .link-list__wrapper {
-      flex-direction: column !important;
-      align-items: center !important;
-      text-align: center;
-    }
-
-    .link-list__content {
-      justify-content: center !important;
-      width: 100%;
-    }
-
-    .link-list__list {
-      justify-content: center !important;
-    }
-  }
-</style>
-
-<div class="link-list link-list--align-{{ section.settings.alignment }}">
+  "
+>
   <div class="link-list__wrapper">
     {% if section.settings.heading != blank %}
       <div class="link-list__title">
@@ -106,7 +24,7 @@
           {% case block.type %}
             {% when 'link' %}
               {% if block.settings.link_text != blank and block.settings.link_url != blank %}
-                <li class="link-list__item">
+                <li>
                   <a href="{{ block.settings.link_url }}" class="link-list__link body--uppercase">
                     {{ block.settings.link_text }}
                   </a>

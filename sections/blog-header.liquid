@@ -1,46 +1,8 @@
-<style>
-  .blog-header {
-    text-align: center;
-    padding: var(--space-2xs) var(--space-m);
-    border-top: 1px solid var(--neutral-50);
-    border-bottom: 1px solid var(--neutral-50);
-    display: flex;
-    justify-content: space-between;
-  }
+{% comment %}
+  Blog Header - Sticky header navigation used on blog collection pages and some blog posts.
+{% endcomment %}
 
-  .blog-header__title {
-    line-height: 150%;
-    color: var(--neutral-950);
-  }
-
-  .blog-header__nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: var(--space-m);
-    flex-wrap: wrap;
-  }
-
-  .blog-header__link {
-    text-decoration: none;
-    color: var(--neutral-600);
-    text-transform: uppercase;
-    transition: color 0.3s ease;
-  }
-
-  .blog-header__link:hover {
-    color: var(--neutral-950);
-  }
-
-  @media (max-width: 1000px) {
-    .blog-header__nav {
-      gap: var(--space-s);
-    }
-    .blog-header {
-      display: block;
-    }
-  }
-</style>
+{{ 'section-blog-header.css' | asset_url | stylesheet_tag }}
 
 {% assign journal_type = section.settings.journal_type %}
 

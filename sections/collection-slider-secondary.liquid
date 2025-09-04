@@ -2,159 +2,7 @@
   Collection Slider Secondary Section
 {% endcomment %}
 
-<style>
-  .collection-slider-secondary {
-    padding: var(--space-2xl) 0;
-    overflow: hidden;
-    border-bottom: 1px solid var(--neutral-50);
-  }
-
-  .collection-slider-secondary__container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    overflow: visible;
-  }
-
-  .collection-slider-secondary__content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 var(--space-m);
-    margin-bottom: var(--space-xl);
-  }
-
-  .collection-slider-secondary__heading {
-    margin-bottom: var(--space-2xs);
-    color: var(--neutral-950);
-  }
-
-  .collection-slider-secondary__description {
-    max-width: 80ch;
-    margin-bottom: var(--space-l);
-    color: var(--neutral-600);
-  }
-
-  .collection-slider-secondary__link {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-xs);
-    text-decoration: none;
-    color: var(--neutral-950);
-  }
-
-  .collection-slider-secondary__slider-wrapper {
-    overflow: visible;
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-  }
-
-  .collection-slider-secondary__slider {
-    width: 100%;
-  }
-
-  .collection-slider-secondary__slide .product-card__swatches {
-    margin-left: var(--space-m);
-    margin-top: var(--space-2xs);
-  }
-
-  .product-card__swatches {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2xs);
-  }
-
-  .product-card__swatch-link {
-    display: block;
-    width: 20px;
-    height: 20px;
-    box-shadow: none;
-    outline: none;
-  }
-
-  .collection-slider-secondary__product-link {
-    display: block;
-    text-decoration: none;
-    color: var(--neutral-950);
-  }
-
-  .collection-slider-secondary__product-image-wrapper {
-    margin-bottom: var(--space-xs);
-    overflow: hidden;
-    background-color: var(--neutral-50);
-  }
-
-  .collection-slider-secondary__product-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .collection-slider-secondary__product-title {
-    margin: var(--space-xs) 0 var(--space-2xs);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: var(--neutral-950);
-    padding-left: var(--space-m);
-  }
-
-  .collection-slider-secondary__product-material {
-    margin-bottom: var(--space-2xs);
-    color: var(--neutral-600);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    padding-left: var(--space-m);
-  }
-
-  .collection-slider-secondary__product-price {
-    padding-left: var(--space-m);
-  }
-
-  .collection-slider-secondary__product-price--compare {
-    text-decoration: line-through;
-    color: var(--neutral-600);
-    margin-left: var(--space-2xs);
-  }
-
-  @media screen and (max-width: 768px) {
-    .collection-slider-secondary__slider {
-      padding: 0px var(--space-m);
-    }
-
-    .collection-slider-secondary__product-price {
-      padding-left: 0px;
-    }
-
-    .collection-slider-secondary__product-title {
-      padding-left: 0px;
-    }
-
-    .collection-slider-secondary__product-material {
-      padding-left: 0px;
-    }
-
-    .collection-slider-secondary {
-      padding-top: var(--space-xl);
-      padding-bottom: var(--space-xl);
-    }
-
-    .collection-slider-secondary__content {
-      margin-bottom: var(--space-xl);
-    }
-
-    .collection-slider-secondary__product-title {
-      width: calc(100% - var(--space-m));
-    }
-  }
-
-  @media screen and (max-width: 470px) {
-    .collection-slider-secondary__slider-wrapper {
-      overflow: hidden;
-    }
-  }
-</style>
+{{ 'section-collection-slider-secondary.css' | asset_url | stylesheet_tag }}
 
 <div class="collection-slider-secondary" id="section-{{ section.id }}">
   <div class="collection-slider-secondary__container">
@@ -203,11 +51,6 @@
                           class="collection-slider-secondary__product-image"
                           decoding="async"
                         >
-                      {% else %}
-                        {{
-                          'product-1'
-                          | placeholder_svg_tag: 'collection-slider-secondary__product-image placeholder'
-                        }}
                       {% endif %}
                     </div>
 
@@ -221,7 +64,7 @@
 
                     <p class="small collection-slider-secondary__product-price">
                       {% if product.compare_at_price > product.price %}
-                        <span class="collection-slider-secondary__product-price--sale">
+                        <span>
                           {{- product.price | money_with_currency -}}
                         </span>
                         <span class="collection-slider-secondary__product-price--compare">

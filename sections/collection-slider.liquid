@@ -1,145 +1,4 @@
-<style>
-  .collection-slider {
-    padding: var(--space-2xl) var(--space-m);
-    overflow: hidden;
-    border-bottom: 1px solid var(--neutral-50);
-  }
-
-  .collection-slider__container {
-    display: flex;
-    gap: var(--space-l);
-    width: 100%;
-    overflow: visible;
-  }
-
-  .collection-slider__content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex: 1;
-    min-width: 30vw;
-  }
-
-  .collection-slider__heading {
-    margin-bottom: var(--space-2xs);
-    color: var(--neutral-950);
-  }
-
-  .collection-slider__description {
-    max-width: 80ch;
-    margin-bottom: var(--space-l);
-    color: var(--neutral-600);
-  }
-
-  .collection-slider__link {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-xs);
-    text-decoration: none;
-    color: var(--neutral-950);
-  }
-
-  .collection-slider__slider-wrapper {
-    overflow: visible;
-    width: 100%;
-    flex: 2;
-  }
-
-  .collection-slider__slider {
-    width: calc(100% + var(--space-m));
-    margin-right: 0;
-  }
-
-  .collection-slider__product-link {
-    display: block;
-    text-decoration: none;
-    color: var(--neutral-950);
-  }
-
-  .collection-slider__product-image-wrapper {
-    margin-bottom: var(--space-xs);
-    overflow: hidden;
-    background-color: var(--neutral-50);
-  }
-
-  .collection-slider__product-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .collection-slider__product-title {
-    margin: var(--space-xs) 0 var(--space-2xs);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: var(--neutral-950);
-  }
-
-  .collection-slider__product-material {
-    margin-bottom: var(--space-2xs);
-    color: var(--neutral-600);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .collection-slider__product-price {
-    margin-bottom: var(--space-2xs);
-  }
-
-  .collection-slider__product-price--compare {
-    text-decoration: line-through;
-    color: var(--neutral-600);
-    margin-left: var(--space-2xs);
-  }
-
-  .product-card__swatches {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2xs);
-    margin-top: var(--space-xs);
-  }
-
-  .product-card__swatch-link {
-    display: block;
-    width: 20px;
-    height: 20px;
-    box-shadow: none;
-    outline: none;
-  }
-
-  @media screen and (max-width: 768px) {
-    .collection-slider {
-      padding-top: var(--space-xl);
-      padding-bottom: var(--space-xl);
-    }
-
-    .collection-slider__container {
-      flex-direction: column;
-      width: 100%;
-      gap: 0px;
-    }
-
-    .collection-slider__content {
-      margin-bottom: var(--space-xl);
-    }
-
-    .collection-slider__product-title {
-      width: calc(100% - var(--space-m));
-    }
-
-    .collection-slider__slider {
-      width: calc(100% + var(--space-l));
-    }
-  }
-
-  @media screen and (max-width: 470px) {
-    .collection-slider__slider-wrapper {
-      overflow: hidden;
-    }
-  }
-</style>
+{{ 'section-collection-slider.css' | asset_url | stylesheet_tag }}
 
 <div class="collection-slider" id="section-{{ section.id }}">
   <div class="collection-slider__container">
@@ -188,8 +47,6 @@
                           class="collection-slider__product-image"
                           decoding="async"
                         >
-                      {% else %}
-                        {{ 'product-1' | placeholder_svg_tag: 'collection-slider__product-image placeholder' }}
                       {% endif %}
                     </div>
 
@@ -203,7 +60,7 @@
 
                     <p class="small collection-slider__product-price">
                       {% if product.compare_at_price > product.price %}
-                        <span class="collection-slider__product-price--sale">
+                        <span>
                           {{- product.price | money_with_currency -}}
                         </span>
                         <span class="collection-slider__product-price--compare">

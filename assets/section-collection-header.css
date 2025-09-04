@@ -23,7 +23,7 @@
 .collection-header__title {
   border-right: 1px solid var(--neutral-50);
   padding: var(--space-xs) var(--space-m) var(--space-xs) 0;
-  white-space: nowrap; 
+  white-space: nowrap;
 }
 
 .collection-header__related {

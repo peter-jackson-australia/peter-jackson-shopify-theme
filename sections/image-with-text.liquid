@@ -1,128 +1,13 @@
-<style>
-  .image-with-text {
-    padding: var(--space-2xl) var(--space-m);
-    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
-    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
-  }
-
-  .image-with-text__container {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .image-with-text__container--right {
-    flex-direction: row-reverse;
-  }
-
-  .image-with-text__media-container {
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .image-with-text__images-wrapper {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 3/4;
-    padding-right: var(--space-m);
-    padding-bottom: var(--space-m);
-  }
-
-  .image-with-text__image-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-  }
-
-  .image-with-text__image-container:only-child {
-    width: 100%;
-    height: 100%;
-  }
-
-  .image-with-text__image-container--first,
-  .image-with-text__image-container--second {
-    width: calc(100% - var(--space-m));
-    height: calc(100% - var(--space-m));
-  }
-
-  .image-with-text__image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center center;
-    display: block;
-  }
-
-  .image-with-text__image-container--first {
-    z-index: 2;
-  }
-
-  .image-with-text__image-container--second {
-    z-index: 1;
-    transform: translate(var(--space-m), var(--space-m));
-  }
-
-  .image-with-text__image-container--second .image-with-text__image {
-    filter: grayscale(100%);
-  }
-
-  .image-with-text__content {
-    width: 50%;
-    padding: 0 var(--space-l);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-m);
-  }
-
-  .image-with-text__title {
-    color: var(--neutral-950);
-  }
-
-  .image-with-text__text {
-    color: var(--neutral-600);
-    max-width: 70ch;
-  }
-
-  .image-with-text__button {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-xs);
-    background-color: var(--white);
-    color: var(--neutral-950);
-    text-decoration: none;
-  }
-
-  @media screen and (max-width: 768px) {
-    .image-with-text__container {
-      flex-direction: column;
-      gap: var(--space-l);
-    }
-
-    .image-with-text__container--right {
-      flex-direction: column;
-    }
-
-    .image-with-text__media-container,
-    .image-with-text__content {
-      width: 100%;
-      padding: 0;
-    }
-
-    .image-with-text {
-      padding: var(--space-l) var(--space-m);
-    }
-  }
-</style>
+{{ 'section-image-with-text.css' | asset_url | stylesheet_tag }}
 
 <div
   id="image-with-text-{{ section.id }}"
   class="image-with-text"
   aria-label="Image with text section"
+  style="
+    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
+    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
+  "
 >
   <div
     class="image-with-text__container {% if section.settings.alignment == 'right' %}image-with-text__container--right{% endif %}"

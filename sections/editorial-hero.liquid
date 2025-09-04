@@ -1,85 +1,17 @@
-<style>
-  .editorial-hero {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: var(--space-2xl) var(--space-m);
-    width: 100%;
-    gap: var(--space-m);
-    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
-    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
-  }
+{% comment %}
+  Editorial Hero Section
+{% endcomment %}
 
-  .editorial-hero__title-container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-  }
-
-  .editorial-hero__first-title,
-  .editorial-hero__second-title {
-    text-transform: uppercase;
-  }
-
-  .editorial-hero__media-container {
-    width: 100%;
-    max-width: 700px;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-  }
-
-  .editorial-hero__image {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  .editorial-hero__video-wrapper {
-    width: 100%;
-    position: relative;
-  }
-
-  .editorial-hero__video {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  .editorial-hero__description {
-    max-width: 80ch;
-    color: var(--neutral-600);
-  }
-
-  .editorial-hero__cta {
-    display: inline-block;
-    background-color: var(--white);
-    color: var(--neutral-950);
-    border: 1px solid var(--neutral-50);
-    cursor: pointer;
-    text-decoration: none;
-  }
-
-  @media screen and (max-width: 768px) {
-    .editorial-hero {
-      padding: var(--space-xl) var(--space-m);
-    }
-
-    .editorial-hero__first-title,
-    .editorial-hero__second-title {
-      font-size: clamp(1.2rem, 1.14rem + 0.3vw, 1.5rem);
-    }
-
-  }
-</style>
+{{ 'section-editorial-hero.css' | asset_url | stylesheet_tag }}
 
 <div
   id="editorial-hero-{{ section.id }}"
   class="editorial-hero"
   aria-label="Editorial hero section"
+  style="
+    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
+    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
+  "
 >
   {% if section.settings.leading_text != blank %}
     <div class="editorial-hero__leading-text body--uppercase {% if section.settings.leading_text_animation != 'none' %}{{ section.settings.leading_text_animation }}{% endif %}">
@@ -88,7 +20,6 @@
   {% endif %}
 
   <div
-    class="editorial-hero__title-container"
     {% if section.settings.anchor_id != blank %}
       id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
     {% endif %}
@@ -106,7 +37,7 @@
         {{
           section.settings.image
           | image_url: width: 700
-          | image_tag: class: 'editorial-hero__image', alt: section.settings.image.alt
+          | image_tag: alt: section.settings.image.alt
           | default: section.settings.first_title,
             loading: 'eager',
             decoding: 'async',
@@ -115,13 +46,12 @@
         }}
       {% endif %}
     {% elsif section.settings.media_type == 'video' and section.settings.video != blank %}
-      <div class="editorial-hero__video-wrapper">
+      <div>
         {% assign poster_url = section.settings.video_poster | image_url %}
         {{
           section.settings.video
           | video_tag:
             alt: section.settings.image.alt,
-            class: 'editorial-hero__video',
             autoplay: true,
             loop: true,
             muted: true,
@@ -133,7 +63,7 @@
     {% endif %}
   </div>
 
-  <div class="editorial-hero__title-container">
+  <div>
     {% if section.settings.second_title != blank %}
       <{{ section.settings.second_title_level | default: 'h1' }} class="editorial-hero__second-title heading--4xl {% if section.settings.second_title_animation != 'none' %}{{ section.settings.second_title_animation }}{% endif %}">
         {{ section.settings.second_title }}
@@ -148,7 +78,7 @@
   {% endif %}
 
   {% if section.settings.cta_text != blank and section.settings.cta_link != blank %}
-    <div class="editorial-hero__cta-container body">
+    <div class="body">
       <a href="{{ section.settings.cta_link }}" class="editorial-hero__cta button body">
         {{ section.settings.cta_text }}
       </a>

@@ -79,10 +79,10 @@
 .blog-collection__empty {
   align-items: center;
   display: flex;
-  grid-column: 1 / -1; 
+  grid-column: 1 / -1;
   justify-content: center;
-  text-align: center;
   padding: var(--space-xl) var(--space-m);
+  text-align: center;
 }
 
 .blog-collection__loading {

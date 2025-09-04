@@ -2,34 +2,15 @@
   FAQ Section
 {% endcomment %}
 
-<style>
-  .faq-section {
-    padding: var(--space-2xl) var(--space-m);
+{{ 'section-faqs.css' | asset_url | stylesheet_tag }}
+
+<div
+  class="faq-section"
+  style="
     {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
     {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
-  }
-
-  .faq-section__container {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .faq-items__item > .ploiu-accordion-body > .body > p,
-  .faq-items__item > .ploiu-accordion-body > .body > ul,
-  .faq-items__item > .ploiu-accordion-body > .body > ol {
-    margin-bottom: var(--space-m);
-  }
-
-  .faq-section__heading:first-of-type {
-    margin-top: 0px;
-  }
-
-  .faq-section__heading {
-    margin-top: var(--space-m);
-  }
-</style>
-
-<div class="faq-section">
+  "
+>
   <div class="faq-section__container">
     <div class="faq-items {% if section.settings.animate_faqs %}animate-container-cards-scroll{% endif %}">
       {% for block in section.blocks %}

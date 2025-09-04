@@ -1,61 +1,4 @@
-<style>
-  .page-404 {
-    background-color: var(--white);
-    padding: var(--space-3xl) var(--space-m);
-    text-align: center;
-    border-top: 1px solid var(--neutral-50);
-  }
-
-  .page-404__container {
-    max-width: 600px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-l);
-  }
-
-  .page-404__decorative-heading {
-    color: var(--neutral-950);
-    margin-bottom: var(--space-xs);
-  }
-
-  .page-404__main-heading {
-    color: var(--neutral-950);
-    margin-bottom: var(--space-m);
-  }
-
-  .page-404__content {
-    color: var(--neutral-600);
-    margin-bottom: var(--space-xl);
-    max-width: 400px;
-  }
-
-  .page-404__content p {
-    color: var(--neutral-600);
-  }
-
-  .page-404__button {
-    background-color: var(--neutral-950);
-    color: var(--white);
-    border: none;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.3s ease;
-  }
-
-  @media screen and (max-width: 768px) {
-    .page-404 {
-      padding: var(--space-2xl) var(--space-m);
-    }
-
-    .page-404__container {
-      gap: var(--space-m);
-    }
-  }
-</style>
+{{ 'section-main-404.css' | asset_url | stylesheet_tag }}
 
 <section class="page-404 section-wrap">
   <div class="page-404__container">
@@ -65,7 +8,7 @@
       <p class="body">Sorry the page you are looking for could not be found. It may have been moved or deleted.</p>
     </div>
     <p>
-      <a href="/collections/new-arrivals" class="page-404__button button">View Our New Arrivals</a>
+      <a href="{{ routes.collections_url }}/new-arrivals" class="page-404__button button">View Our New Arrivals</a>
     </p>
   </div>
 </section>

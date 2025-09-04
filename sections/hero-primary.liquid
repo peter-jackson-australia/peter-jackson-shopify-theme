@@ -1,179 +1,7 @@
-<style>
-  .hero {
-    position: relative;
-    height: calc(100dvh - var(--space-xl) - var(--space-l));
-    overflow: hidden;
-  }
+{{ 'section-hero-primary.css' | asset_url | stylesheet_tag }}
 
-  .hero__background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
-    z-index: 1;
-  }
-
-  .hero__video {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-  }
-
-  .hero__video video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
-  }
-
-  .hero__video--mobile {
-    display: none;
-  }
-
-  .hero__content {
-    position: absolute;
-    width: 100%;
-    z-index: 3;
-    padding: 0 var(--space-m);
-    display: grid;
-    gap: var(--space-m);
-    color: var(--white);
-  }
-
-  .hero__content--left {
-    text-align: left;
-    justify-items: start;
-  }
-
-  .hero__content--center {
-    text-align: center;
-    justify-items: center;
-  }
-
-  .hero__content--right {
-    text-align: right;
-    justify-items: end;
-  }
-
-  .hero__content--top {
-    top: 0;
-    padding-top: var(--space-2xl);
-  }
-
-  .hero__content--middle {
-    top: 50%;
-    transform: translateY(-50%);
-    padding-top: 0;
-    padding-bottom: 0;
-  }
-
-  .hero__content--bottom {
-    bottom: 0;
-    padding-bottom: var(--space-2xl);
-  }
-
-  .hero__description {
-    max-width: 80ch;
-  }
-
-  .hero__svg {
-    max-width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  .hero__svg--small {
-    max-width: min(320px, 90vw);
-  }
-
-  .hero__svg--medium {
-    max-width: min(650px, 90vw);
-  }
-
-  .hero__svg--large {
-    max-width: min(900px, 90vw);
-  }
-
-  .hero__svg--mobile {
-    display: none;
-  }
-
-  .hero__buttons {
-    display: flex;
-    gap: var(--space-s);
-    flex-wrap: wrap;
-  }
-
-  @media screen and (max-width: 768px) {
-    .hero__content--mobile-left {
-      text-align: left;
-      justify-items: start;
-    }
-
-    .hero__content--mobile-center {
-      text-align: center;
-      justify-items: center;
-    }
-
-    .hero__content--mobile-right {
-      text-align: right;
-      justify-items: end;
-    }
-
-    .hero__content--mobile-top {
-      top: 0;
-      bottom: auto;
-      padding-top: var(--space-xl);
-      padding-bottom: 0;
-      transform: none;
-    }
-
-    .hero__content--mobile-middle {
-      top: 50%;
-      bottom: auto;
-      transform: translateY(-50%);
-      padding-top: 0;
-      padding-bottom: 0;
-    }
-
-    .hero__content--mobile-bottom {
-      top: auto;
-      bottom: 0;
-      padding-top: 0;
-      padding-bottom: var(--space-xl);
-      transform: none;
-    }
-
-    .hero__svg--desktop {
-      display: none;
-    }
-
-    .hero__svg--mobile {
-      display: block;
-    }
-
-    .hero__buttons {
-      flex-direction: column;
-    }
-
-    .hero__buttons .button {
-      width: 100%;
-    }
-
-    .hero__svg--small,
-    .hero__svg--medium,
-    .hero__svg--large {
-      max-width: 100%;
-    }
-
-  }
-
-  {% if section.settings.mobile_video %}
+{% if section.settings.mobile_video %}
+  <style>
     @media screen and (max-width: 768px) {
       #hero-primary .hero__video--desktop {
         display: none;
@@ -182,8 +10,8 @@
         display: block;
       }
     }
-  {% endif %}
-</style>
+  </style>
+{% endif %}
 
 {% if section.settings.desktop_image or section.settings.mobile_image or section.settings.video %}
   <div id="hero-primary" class="hero" aria-label="{{ section.settings.heading | escape }}">
@@ -311,20 +139,6 @@
       </div>
     </div>
   </div>
-
-  {% if section.settings.media_type == 'video' %}
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        const hero = document.getElementById('hero-primary');
-        const videos = hero.querySelectorAll('.hero__video-element');
-
-        videos.forEach(function (video) {
-          video.muted = true;
-          video.playsInline = true;
-        });
-      });
-    </script>
-  {% endif %}
 {% endif %}
 
 {% schema %}

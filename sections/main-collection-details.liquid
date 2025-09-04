@@ -2,82 +2,7 @@
   Collection Description
 {% endcomment %}
 
-<style>
-  .collection-description__container {
-    padding: var(--space-m);
-    padding-bottom: 0px;
-  }
-
-  .collection-description__text,
-  .collection-description__text > p > a {
-    max-width: 80ch;
-    color: var(--neutral-600) !important;
-  }
-
-  .collection-description__text > p {
-    margin-bottom: var(--space-m);
-  }
-
-  .collection-description__text > p:last-child {
-    margin-bottom: 0;
-  }
-
-  .collection-description__text > p > strong {
-    color: var(--neutral-950) !important;
-    font-family: 'Ordinary Regular';
-  }
-
-  .collection-hero {
-    position: relative;
-    height: calc(100dvh - var(--space-xl) - 57px - 57px - 35px);
-    overflow: hidden;
-    margin-bottom: var(--space-m);
-  }
-
-  .collection-hero__background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1;
-  }
-  .collection-hero__content {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    z-index: 3;
-    padding: var(--space-m);
-    padding-bottom: var(--space-xl);
-    display: grid;
-    gap: var(--space-s);
-    color: var(--white);
-    text-align: left;
-    justify-items: start;
-  }
-
-  .collection-hero__description {
-    max-width: 80ch;
-  }
-
-  .collection-hero__description,
-  .collection-hero__description p,
-  .collection-hero__description a {
-    color: var(--white) !important;
-  }
-
-  .collection-hero__description p strong {
-    color: var(--white) !important;
-  }
-
-  @media screen and (max-width: 768px) {
-    .collection-hero__content {
-      padding-bottom: var(--space-xl);
-    }
-  }
-</style>
+{{ 'section-main-collection-details.css' | asset_url | stylesheet_tag }}
 
 {% assign hero_enabled = collection.metafields.custom.enable_collection_hero | default: false %}
 {% assign hero_image = collection.metafields.custom.collection_hero_image %}
@@ -108,16 +33,16 @@
       {% endif %}
 
       {% if collection.description != blank %}
-        <div class="rte collection-hero__description heading--l">
+        <div class="collection-hero__description heading--l">
           {{ collection.description }}
         </div>
       {% endif %}
     </div>
   </section>
 {% else %}
-  <div class="section-wrap collection-description__container">
-    <div class="section">
-      <div class="rte collection-description__text body">
+  <div class="collection-description__container">
+    <div>
+      <div class="collection-description__text body">
         {{ collection.description }}
       </div>
     </div>

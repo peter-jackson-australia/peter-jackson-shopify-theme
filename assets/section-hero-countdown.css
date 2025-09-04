@@ -1,0 +1,127 @@
+.countdown-timer {
+  color: var(--white);
+  height: calc(100dvh - var(--space-xl) - var(--space-l));
+  overflow: hidden;
+  position: relative;
+}
+
+.countdown-timer__background {
+  height: 100%;
+  left: 0;
+  object-fit: cover;
+  object-position: top;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.countdown-timer__container {
+  display: grid;
+  gap: var(--space-s);
+  padding: 0 var(--space-m);
+  position: absolute;
+  width: 100%;
+  z-index: 3;
+}
+
+.countdown-timer__container--left {
+  justify-items: start;
+  text-align: left;
+}
+
+.countdown-timer__container--center {
+  justify-items: center;
+  text-align: center;
+}
+
+.countdown-timer__container--right {
+  justify-items: end;
+  text-align: right;
+}
+
+.countdown-timer__container--top {
+  padding-top: var(--space-2xl);
+  top: 0;
+}
+
+.countdown-timer__container--middle {
+  padding-bottom: 0;
+  padding-top: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.countdown-timer__container--bottom {
+  bottom: 0;
+  padding-bottom: var(--space-2xl);
+}
+
+.countdown-timer__blocks {
+  display: flex;
+  gap: var(--space-m);
+}
+
+.countdown-timer__container--center .countdown-timer__blocks {
+  justify-content: center;
+}
+
+.countdown-timer__container--right .countdown-timer__blocks {
+  justify-content: flex-end;
+}
+
+.countdown-timer__block {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  min-width: 80px;
+}
+
+.countdown-timer__value {
+  background-color: transparent;
+  border: 1px solid var(--white);
+  color: var(--white);
+  display: inline-block;
+  margin-bottom: var(--space-xs);
+  padding: var(--space-s);
+  text-align: center;
+  width: 100%;
+}
+
+.countdown-timer__label {
+  color: var(--white);
+}
+
+.countdown-timer__button-container {
+  margin-top: var(--space-m);
+}
+
+.countdown-timer__final-message,
+.countdown-timer__complete-message {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .countdown-timer__container {
+    justify-items: center;
+    padding-bottom: var(--space-xl);
+    text-align: center;
+  }
+
+  .countdown-timer__container--top {
+    padding-top: var(--space-xl);
+  }
+
+  .countdown-timer__blocks {
+    gap: var(--space-s);
+    justify-content: flex-start;
+  }
+
+  .countdown-timer__block {
+    min-width: 60px;
+  }
+
+  .countdown-timer__button-container {
+    margin-top: var(--space-s);
+  }
+}

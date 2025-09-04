@@ -1,0 +1,31 @@
+.full-page-media {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.full-page-media__image {
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+
+.full-page-media__video {
+  position: absolute;
+  z-index: 1;
+}
+
+.full-page-media video {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.full-page-media__link {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+}

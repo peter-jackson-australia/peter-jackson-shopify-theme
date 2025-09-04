@@ -1,0 +1,116 @@
+.image-with-text {
+  padding: var(--space-2xl) var(--space-m);
+}
+
+.image-with-text__container {
+  align-items: center;
+  display: flex;
+  margin: 0 auto;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.image-with-text__container--right {
+  flex-direction: row-reverse;
+}
+
+.image-with-text__media-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 50%;
+}
+
+.image-with-text__images-wrapper {
+  aspect-ratio: 3/4;
+  padding-bottom: var(--space-m);
+  padding-right: var(--space-m);
+  position: relative;
+  width: 100%;
+}
+
+.image-with-text__image-container {
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+}
+
+.image-with-text__image-container:only-child {
+  height: 100%;
+  width: 100%;
+}
+
+.image-with-text__image-container--first,
+.image-with-text__image-container--second {
+  height: calc(100% - var(--space-m));
+  width: calc(100% - var(--space-m));
+}
+
+.image-with-text__image {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  width: 100%;
+}
+
+.image-with-text__image-container--first {
+  z-index: 2;
+}
+
+.image-with-text__image-container--second {
+  transform: translate(var(--space-m), var(--space-m));
+  z-index: 1;
+}
+
+.image-with-text__image-container--second .image-with-text__image {
+  filter: grayscale(100%);
+}
+
+.image-with-text__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-m);
+  padding: 0 var(--space-l);
+  width: 50%;
+}
+
+.image-with-text__title {
+  color: var(--neutral-950);
+}
+
+.image-with-text__text {
+  color: var(--neutral-600);
+  max-width: 70ch;
+}
+
+.image-with-text__button {
+  align-items: center;
+  background-color: var(--white);
+  color: var(--neutral-950);
+  display: inline-flex;
+  gap: var(--space-xs);
+  text-decoration: none;
+}
+
+@media screen and (max-width: 768px) {
+  .image-with-text__container {
+    flex-direction: column;
+    gap: var(--space-l);
+  }
+
+  .image-with-text__container--right {
+    flex-direction: column;
+  }
+
+  .image-with-text__media-container,
+  .image-with-text__content {
+    padding: 0;
+    width: 100%;
+  }
+
+  .image-with-text {
+    padding: var(--space-l) var(--space-m);
+  }
+}

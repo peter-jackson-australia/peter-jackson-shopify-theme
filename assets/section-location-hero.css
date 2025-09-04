@@ -1,0 +1,122 @@
+.location-hero {
+  align-items: stretch;
+  border-top: 1px solid var(--neutral-50);
+  display: flex;
+}
+
+.location-hero__image {
+  flex: 1;
+  max-width: 50%;
+}
+
+.location-hero__image img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.location-hero__content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 50%;
+  padding: var(--space-3xl);
+}
+
+.location-hero__header {
+  align-items: center;
+  display: flex;
+  gap: var(--space-2xs);
+  margin-bottom: var(--space-s);
+}
+
+.location-hero__status-dot {
+  background-color: var(--green-400);
+  border-radius: 50%;
+  flex-shrink: 0;
+  height: 8px;
+  width: 8px;
+}
+
+.location-hero__status-dot--closed {
+  background-color: #ff0000;
+}
+
+.location-hero__title {
+  margin: 0;
+}
+
+.location-hero__address {
+  margin-bottom: var(--space-xs);
+}
+
+.location-hero__address a {
+  color: var(--neutral-950);
+}
+
+.location-hero__phone {
+  margin-bottom: var(--space-s);
+}
+
+.location-hero__phone a {
+  color: var(--neutral-950);
+}
+
+.location-hero__email {
+  margin-bottom: var(--space-s);
+}
+
+.location-hero__email a {
+  color: var(--neutral-950);
+}
+
+.location-hero__hours {
+  margin-bottom: var(--space-s);
+}
+
+.location-hero__hours-title {
+  margin-bottom: var(--space-3xs);
+}
+
+.location-hero__hours-display {
+  margin: 0;
+  white-space: pre-line;
+}
+
+.location-hero__description {
+  margin-bottom: var(--space-s);
+}
+
+.location-hero__button {
+  align-items: center;
+  background-color: var(--neutral-950);
+  border: none;
+  color: var(--white);
+  cursor: pointer;
+  display: flex;
+  height: var(--space-xl);
+  justify-content: center;
+  margin-top: var(--space-s);
+  padding: var(--space-xs) var(--space-s);
+  text-decoration: none;
+  width: 100%;
+}
+
+@media screen and (max-width: 1000px) {
+  .location-hero {
+    flex-direction: column;
+    gap: var(--space-m);
+    padding: var(--space-m);
+  }
+
+  .location-hero__image {
+    display: none;
+  }
+
+  .location-hero__content {
+    max-width: 100%;
+    padding: var(--space-xl) 0px;
+    width: 100%;
+  }
+}

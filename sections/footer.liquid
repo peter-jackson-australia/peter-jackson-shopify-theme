@@ -1,191 +1,4 @@
-{% comment %}
-  Footer Section
-{% endcomment %}
-
-<style>
-  .footer {
-    background-color: var(--neutral-950);
-    color: var(--white);
-  }
-
-  .footer__section {
-    padding: 0 var(--space-m);
-    margin-bottom: var(--space-2xl);
-  }
-
-  .footer__intro {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-xl);
-    border-bottom: 1px solid var(--neutral-600);
-    padding-bottom: var(--space-2xl);
-    padding-top: var(--space-2xl);
-  }
-
-  .footer__brand {
-    margin-bottom: var(--space-s);
-  }
-
-  .footer__brand > img {
-    width: calc(var(--space-3xl) + var(--space-3xl));
-  }
-
-  .footer__description {
-    max-width: 80ch;
-  }
-
-  .footer__store-locator {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .footer__search-form {
-    position: relative;
-    display: flex;
-    align-items: center;
-  }
-
-  .footer__search-input {
-    width: 100%;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid var(--neutral-600);
-    color: var(--white);
-    padding: var(--space-s) var(--space-l) var(--space-s) 0;
-  }
-
-  .footer__search-input::placeholder {
-    color: var(--neutral-600);
-  }
-
-  .footer__search-input:focus {
-    outline: none;
-  }
-
-  .footer__search-button {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: var(--space-2xs);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .footer__description--store-locator {
-    margin-top: var(--space-s);
-  }
-
-  .footer__main {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .footer__heading--menu {
-    margin-bottom: var(--space-2xs);
-  }
-
-  .footer__list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-    list-style: none;
-  }
-
-  .footer__link {
-    color: var(--white);
-    text-decoration: none;
-  }
-
-  .footer__link:hover {
-    text-decoration: underline;
-  }
-
-  .footer__partnerships {
-    display: flex;
-    align-items: center;
-    gap: var(--space-m);
-    margin-bottom: var(--space-l);
-  }
-
-  .footer__heading--partnerships {
-    margin-bottom: 0px;
-  }
-
-  .footer__logo-box {
-    width: var(--space-3xl);
-  }
-
-  .footer__logo-box > img {
-    width: 100%;
-  }
-
-  .footer__info {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-  }
-
-  .footer__bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: var(--space-m);
-    border-top: 1px solid var(--neutral-600);
-  }
-
-  .footer__social {
-    display: flex;
-    gap: var(--space-s);
-  }
-
-  .footer__social-icon {
-    max-width: 17px;
-  }
-
-  .footer__terms {
-    display: flex;
-    gap: var(--space-l);
-  }
-
-  @media (max-width: 1024px) {
-    .footer__main {
-      grid-template-columns: 1fr !important;
-      gap: 0px;
-    }
-
-    .footer__section {
-      margin-bottom: var(--space-2xl);
-    }
-
-    .footer__intro {
-      grid-template-columns: 1fr;
-      gap: var(--space-l);
-      padding-bottom: var(--space-2xl);
-    }
-
-    .footer__partnerships {
-      flex-direction: column;
-      align-items: flex-start;
-      margin-bottom: 0px !important;
-    }
-
-    .footer__bottom {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: var(--space-s);
-    }
-
-    .footer__terms {
-      gap: var(--space-xs);
-    }
-  }
-</style>
+{{ 'section-footer.css' | asset_url | stylesheet_tag }}
 
 {% assign footer_logo = section.settings.footer_logo %}
 {% assign intro_text = section.settings.intro_text %}
@@ -215,17 +28,12 @@
 
 <footer class="footer">
   <div class="footer__section footer__intro">
-    <div class="footer__intro-content">
+    <div>
       <div class="footer__brand">
         {% if footer_logo != blank %}
-          {{
-            footer_logo
-            | image_url: width: 140
-            | image_tag: loading: 'lazy', alt: shop.name, class: 'footer__brand-logo'
-          }}
+          {{ footer_logo | image_url: width: 140 | image_tag: loading: 'lazy', alt: shop.name }}
         {% else %}
           <svg
-            class="footer__brand-placeholder"
             width="140"
             height="30"
             viewBox="0 0 140 30"
@@ -236,11 +44,11 @@
           </svg>
         {% endif %}
       </div>
-      <p class="footer__description footer__description--intro body">{{ intro_text }}</p>
+      <p class="footer__description body">{{ intro_text }}</p>
     </div>
 
     <div class="footer__store-locator">
-      <h2 class="footer__heading footer__heading--store-locator heading--l">
+      <h2 class="footer__heading heading--l">
         {{ store_locator_heading }}
       </h2>
       <form class="footer__search-form" action="/pages/stores-in-australia" method="get">
@@ -262,56 +70,52 @@
 
   <div class="footer__main">
     <div style="display: flex;">
-      <div class="footer__section footer__section--menu">
+      <div class="footer__section">
         <h2 class="footer__heading footer__heading--menu heading--l">{{ menu_heading }}</h2>
-        <ul class="footer__list footer__list--menu">
+        <ul class="footer__list">
           {% for link in linklists[footer_menu].links %}
-            <li class="footer__list-item footer__list-item--menu">
-              <a href="{{ link.url }}" class="footer__link footer__link--menu body">{{ link.title }}</a>
+            <li>
+              <a href="{{ link.url }}" class="footer__link body">{{ link.title }}</a>
             </li>
           {% endfor %}
         </ul>
       </div>
 
-      <div class="footer__section footer__section--support">
-        <h2 class="footer__heading footer__heading--menu footer__heading--support heading--l">
+      <div class="footer__section">
+        <h2 class="footer__heading footer__heading--menu heading--l">
           {{ support_heading }}
         </h2>
-        <ul class="footer__list footer__list--support">
+        <ul class="footer__list">
           {% for link in linklists[footer_support_menu].links %}
-            <li class="footer__list-item footer__list-item--support">
-              <a href="{{ link.url }}" class="footer__link footer__link--support body">{{ link.title }}</a>
+            <li>
+              <a href="{{ link.url }}" class="footer__link body">{{ link.title }}</a>
             </li>
           {% endfor %}
         </ul>
       </div>
     </div>
 
-    <div class="footer__section footer__section--partnerships">
+    <div class="footer__section">
       {% if show_partnerships %}
         <div class="footer__partnerships">
           {% if partnerships_image != blank %}
-            <div class="footer__logo-box footer__logo-box--partnerships">
-              {{
-                partnerships_image
-                | image_url: width: 50
-                | image_tag: loading: 'lazy', alt: partnerships_heading, class: 'footer__logo-img'
-              }}
+            <div class="footer__logo-box">
+              {{ partnerships_image | image_url: width: 50 | image_tag: loading: 'lazy', alt: partnerships_heading }}
             </div>
           {% else %}
-            <div class="footer__logo-box footer__logo-box--partnerships"></div>
+            <div class="footer__logo-box"></div>
           {% endif %}
-          <div class="footer__info footer__info--partnerships">
+          <div class="footer__info">
             <h2 class="footer__heading footer__heading--partnerships heading--l">
               {{ partnerships_heading }}
             </h2>
-            <p class="footer__description footer__description--partnerships body">
+            <p class="footer__description body">
               {{ partnerships_text }}
             </p>
             {% if partnerships_link != blank and partnerships_link_text != blank %}
-              <a href="{{ partnerships_link }}" class="footer__link footer__link--partnerships body">
+              <a href="{{ partnerships_link }}" class="footer__link body">
                 {{- partnerships_link_text }}
-                <span class="footer__link-arrow" aria-hidden="true">→</span></a
+                <span aria-hidden="true">→</span></a
               >
             {% endif %}
           </div>
@@ -353,12 +157,12 @@
 
     <div class="footer__terms">
       {% if terms_link != blank %}
-        <a href="{{ terms_link }}" class="footer__link footer__link--terms body">
+        <a href="{{ terms_link }}" class="footer__link body">
           {{- terms_text -}}
         </a>
       {% endif %}
       {% if privacy_link != blank %}
-        <a href="{{ privacy_link }}" class="footer__link footer__link--privacy body">
+        <a href="{{ privacy_link }}" class="footer__link body">
           {{- privacy_text -}}
         </a>
       {% endif %}
