@@ -10,7 +10,7 @@
       <h3 class="heading--decorative">{{ heading }}</h3>
     {% endif %}
     {% if subheading != blank %}
-      <p class="counter--container__header-subheading">{{ subheading }}</p>
+      <p>{{ subheading }}</p>
     {% endif %}
   </div>
 
@@ -31,7 +31,6 @@
           {% endif %}
 
           <span
-            class="counter__container-value"
             id="counter-{{ section_id }}-{{ forloop.index }}"
             data-initial="{{ counter_initial_value }}"
             data-final="{{ counter_final_value }}"
