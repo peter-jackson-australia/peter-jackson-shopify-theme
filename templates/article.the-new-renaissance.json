@@ -70,6 +70,7 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
+        "full_width": false,
         "first_image": "shopify://shop_images/Renaissance_2.webp",
         "image_link": "shopify://collections/business-shirts",
         "animate_images": false,
@@ -103,6 +104,7 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": true,
+        "full_width": false,
         "first_image": "shopify://shop_images/Renaissance_3.webp",
         "image_link": "",
         "animate_images": false,
@@ -259,10 +261,18 @@
         "button_label": "",
         "button_link": "shopify://collections/mens-accessories"
       }
+    },
+    "blog_header_aY7xby": {
+      "type": "blog-header",
+      "name": "Blog Header",
+      "settings": {
+        "journal_type": "jackson"
+      }
     }
   },
   "order": [
     "article",
+    "blog_header_aY7xby",
     "editorial_hero_CPzXit",
     "full_page_media_DQrgiW",
     "collection_slider_FhJrMG",
