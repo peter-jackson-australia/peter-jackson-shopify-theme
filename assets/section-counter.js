@@ -1,11 +1,10 @@
 const sectionId = document.currentScript.dataset.sectionId
-const counters = document.querySelectorAll(`#counter-${sectionId} .counter__container-value`)
+const counters = document.querySelectorAll(`#counter-${sectionId} .counter__counters-value`)
 
 for (let i = 0; i < counters.length; i++) {
   const counter = counters[i]
 
   const initialValue = parseFloat(counter.dataset.initial)
-  const finalValue = parseFloat(counter.dataset.final)
   const duration = parseFloat(counter.dataset.duration)
 
   const finalDecimalValue = decimalStrFromNumber(finalValue)
