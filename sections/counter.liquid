@@ -1,8 +1,9 @@
 {{ "section-counter.css" | asset_url | stylesheet_tag }}
 
-{% assign heading = 'Main Heading' %}
-{% assign subheading = 'This is a subheading with more text' %}
+{% assign heading = section.settings.heading %}
+{% assign subheading = section.settings.subheading %}
 {% assign section_id = section.id %}
+{% assign section_block_size = section.blocks | size %}
 
 <div id="counter-{{ section_id }}">
   <div class="counter__header">
@@ -14,14 +15,22 @@
     {% endif %}
   </div>
 
-  <div class="counter__container">
+  <div class="counter__container" style="{% case section_block_size %}
+      {% when 1 %}
+        grid-template-columns: 1fr;
+      {% when 2 %}
+        grid-template-columns: repeat(2, 1fr);
+      {% else %}
+        grid-template-columns: repeat(3, 1fr);
+      {% endcase %}
+  ">
     {% for counter in section.blocks %}
       {% assign counter_description = counter.settings.counter_description %}
       {% assign counter_duration = counter.settings.counter_duration %}
       {% assign counter_initial_value = counter.settings.counter_initial_value %}
       {% assign counter_final_value = counter.settings.counter_final_value %}
-      {% assign counter_prefix = counter.settings.counter_prefix %}
-      {% assign counter_suffix = counter.settings.counter_suffix %}
+      {% assign counter_prefix = counter.settings.counter_text_prefix %}
+      {% assign counter_suffix = counter.settings.counter_text_suffix %}
 
       <div class="counter__counters">
         <p class="heading--l">{{ counter_description }}</p>
@@ -32,10 +41,11 @@
 
           <span
             class="counter__counters-value"
+            id="counter-{{ section_id }}-value-{{ forloop.index }}"
             data-initial="{{ counter_initial_value }}"
             data-final="{{ counter_final_value }}"
             data-duration="{{ counter_duration }}"
-          ></span>
+            >{{ counter_initial_value }}</span>
           {% if counter_suffix != blank %}
             <span class="counter__container-value">{{ counter_suffix }}</span>
           {% endif %}
@@ -90,7 +100,6 @@
           "id": "counter_text_prefix",
           "label": "Text Before Counter Value",
           "type": "text",
-          "default": ""
         },
         {
           "type": "paragraph",
@@ -100,7 +109,6 @@
           "id": "counter_text_suffix",
           "label": "Text After Counter Value",
           "type": "text",
-          "default": ""
         },
         {
           "type": "paragraph",
@@ -110,14 +118,22 @@
           "id": "counter_initial_value",
           "label": "Initial Number",
           "type": "number",
-          "default": 85
+          "default": 0
+        },
+        {
+          "type": "paragraph",
+          "content": "The initial number is where the counter starts at. If this value is left blank, it will be 10% of the final number"
         },
         {
           "id": "counter_final_value",
           "label": "Final Number",
           "type": "number",
           "default": 100
-        }
+        },
+        {
+          "type": "paragraph",
+          "content": "This is where the counter will finish"
+        },
       ]
     }
   ],
