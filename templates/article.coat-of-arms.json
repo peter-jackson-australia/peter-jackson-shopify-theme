@@ -24,10 +24,12 @@
         "leading_text": "",
         "leading_text_animation": "none",
         "first_title": "",
+        "first_title_level": "h1",
         "first_title_animation": "none",
         "media_type": "image",
         "animate_media": false,
         "second_title": "Coat of arms",
+        "second_title_level": "h1",
         "second_title_animation": "none",
         "description": "WINTER OVERCOATS<br><br>\nArmour yourself with confidence and distinction in our luxe overcoats—your defense against the season’s chill. Crafted from premium textiles, each piece exemplifies timeless style, achieving an artful balance between the classic and the contemporary.",
         "description_animation": "none",
@@ -112,6 +114,7 @@
         "anchor_id": "",
         "show_top_border": true,
         "show_bottom_border": true,
+        "full_width": false,
         "first_image": "shopify://shop_images/JJ_Coat_of_Arms.webp",
         "image_link": "",
         "animate_images": false,
@@ -178,10 +181,18 @@
         "products_to_show": 10,
         "animate_products": false
       }
+    },
+    "blog_header_bfCNw8": {
+      "type": "blog-header",
+      "name": "Blog Header",
+      "settings": {
+        "journal_type": "jackson"
+      }
     }
   },
   "order": [
     "article",
+    "blog_header_bfCNw8",
     "editorial_hero_CPzXit",
     "full_page_media_DQrgiW",
     "heading_with_text_NFCiF4",
