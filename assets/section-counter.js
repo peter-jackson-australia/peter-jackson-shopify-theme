@@ -37,6 +37,10 @@
           target.textContent = innerHTML;
         },
       },
+      scrollTrigger: {
+        trigger: counter,
+        start: "top bottom-=100"
+      }
     });
   }
 
