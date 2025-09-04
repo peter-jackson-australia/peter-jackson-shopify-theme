@@ -23,6 +23,8 @@
   border-right: 1px solid var(--neutral-600);
   display: flex;
   flex-direction: column;
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
   gap: var(--space-s);
   justify-content: space-between;
   margin: var(--space-xl) 0;
