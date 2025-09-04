@@ -132,6 +132,7 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": true,
+        "full_width": false,
         "first_image": "shopify://shop_images/VBC_3.webp",
         "image_link": "",
         "animate_images": false,
@@ -151,6 +152,7 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": true,
+        "full_width": false,
         "first_image": "shopify://shop_images/VBC_4.webp",
         "image_link": "",
         "animate_images": false,
@@ -240,10 +242,18 @@
         "products_to_show": 4,
         "animate_products": false
       }
+    },
+    "blog_header_UambUW": {
+      "type": "blog-header",
+      "name": "Blog Header",
+      "settings": {
+        "journal_type": "jackson"
+      }
     }
   },
   "order": [
     "article",
+    "blog_header_UambUW",
     "editorial_hero_CPzXit",
     "full_page_media_DQrgiW",
     "block_quote_ka8G49",
