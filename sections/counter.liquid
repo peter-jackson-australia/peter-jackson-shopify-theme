@@ -1,51 +1,48 @@
-<style>
-  .counter__container-aside-text {
-    white-space: break-spaces;
-  }
-</style>
+{{ "section-counter.css" | asset_url | stylesheet_tag }}
 
 {% assign heading = 'Main Heading' %}
 {% assign subheading = 'This is a subheading with more text' %}
 {% assign section_id = section.id %}
 
 <div id="counter-{{ section_id }}">
-  {% if heading != blank %}
-    <h1>{{ heading }}</h1>
-  {% endif %}
+  <div class="counter__header">
+    {% if heading != blank %}
+      <h3 class="heading--decorative">{{ heading }}</h3>
+    {% endif %}
+    {% if subheading != blank %}
+      <p>{{ subheading }}</p>
+    {% endif %}
+  </div>
 
-  {% if subheading != blank %}
-    <p>{{ subheading }}</p>
-  {% endif %}
+  <div class="counter__container">
+    {% for counter in section.blocks %}
+      {% assign counter_description = counter.settings.counter_description %}
+      {% assign counter_duration = counter.settings.counter_duration %}
+      {% assign counter_initial_value = counter.settings.counter_initial_value %}
+      {% assign counter_final_value = counter.settings.counter_final_value %}
+      {% assign counter_prefix = counter.settings.counter_prefix %}
+      {% assign counter_suffix = counter.settings.counter_suffix %}
 
-  {% for counter in section.blocks %}
-    {% assign counter_description = counter.settings.counter_description %}
-    {% assign counter_duration = counter.settings.counter_duration %}
-    {% assign counter_initial_value = counter.settings.counter_initial_value %}
-    {% assign counter_final_value = counter.settings.counter_final_value %}
-    {% assign counter_prefix = counter.settings.counter_prefix %}
-    {% assign counter_suffix = counter.settings.counter_suffix %}
+      <div class="counter__counters">
+        <p class="heading--l">{{ counter_description }}</p>
+        <p class="heading--3xl" style="">
+          {% if counter_prefix != blank %}
+            <span class="counter__container-aside-text">{{ counter_prefix }}</span>
+          {% endif %}
 
-    <div class="counter__container">
-      <h1>{{ counter_description }}</h1>
-      <p>{{ counter_final_value | round: 2 }}</p>
-      <p style="display: flex; flex-direction:">
-        {% if counter_prefix != blank %}
-          <span class="counter__container-aside-text">{{ counter_prefix }}</span>
-        {% endif %}
-
-        <span
-          class="counter__container-value"
-          id="counter-{{ section_id }}-{{ forloop.index }}"
-          data-initial="{{ counter_initial_value }}"
-          data-final="{{ counter_final_value }}"
-          data-duration="{{ counter_duration }}"
-        ></span>
-        {% if counter_suffix != blank %}
-          <span>{{ counter_suffix }}</span>
-        {% endif %}
-      </p>
-    </div>
-  {% endfor %}
+          <span
+            id="counter-{{ section_id }}-{{ forloop.index }}"
+            data-initial="{{ counter_initial_value }}"
+            data-final="{{ counter_final_value }}"
+            data-duration="{{ counter_duration }}"
+          ></span>
+          {% if counter_suffix != blank %}
+            <span class="counter__container-value">{{ counter_suffix }}</span>
+          {% endif %}
+        </p>
+      </div>
+    {% endfor %}
+  </div>
 </div>
 
 <script
@@ -71,6 +68,7 @@
       "default": "More text here"
     }
   ],
+  "max_blocks": 3,
   "blocks": [
     {
       "type": "counter",

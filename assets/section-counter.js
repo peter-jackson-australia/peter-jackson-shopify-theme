@@ -8,8 +8,8 @@ for (let i = 0; i < counters.length; i++) {
   const finalValue = parseFloat(counter.dataset.final)
   const duration = parseFloat(counter.dataset.duration)
 
-  const decimalLength = decimalStrFromNumber(finalValue).length
-  console.log(finalValue, decimalStrFromNumber(finalValue), decimalLength)
+  const finalDecimalValue = decimalStrFromNumber(finalValue)
+  const finalDecimalLength = finalDecimalValue ? finalDecimalValue.length : 1;
 
   counter.textContent = finalValue.toFixed(0)
   gsap.from(`#${counter.id}`, {
@@ -25,7 +25,7 @@ for (let i = 0; i < counters.length; i++) {
         const num = parseFloat(target.textContent).toFixed(0);
 
         let innerHTML = num.toString()
-        if (decimalLength) innerHTML += `.${decimalLength}`
+        if (finalDecimalLength) innerHTML += `.${finalDecimalLength}`
         target.textContent = innerHTML
       },
     }
