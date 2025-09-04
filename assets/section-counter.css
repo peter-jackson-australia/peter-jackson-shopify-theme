@@ -6,11 +6,11 @@
 
 .counter__container {
   background-color: var(--neutral-950);
+  border-bottom: solid 1px var(--neutral-600);
+  border-top: solid 1px var(--neutral-600);
   color: var(--white);
   display: grid;
   text-align: center;
-  border-bottom: solid 1px var(--neutral-600);
-  border-top: solid 1px var(--neutral-600);
 }
 
 .counter__counters {
@@ -18,11 +18,12 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-s);
+  justify-content: space-between;
   margin: var(--space-xl) 0;
   padding: 0 var(--space-xl);
 }
 
-.countervalue__aside-text{
+.countervalue__aside-text {
   white-space: break-spaces;
 }
 
