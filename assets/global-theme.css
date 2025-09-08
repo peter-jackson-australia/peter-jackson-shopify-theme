@@ -773,29 +773,6 @@ input[type="search"] {
   position: relative;
 }
 
-#predictive-search-results {
-  position: absolute;
-  z-index: 10;
-  top: 0.5rem;
-  left: 0;
-  right: 0;
-}
-
-#predictive-search-results ul {
-  display: block;
-}
-
-#predictive-search-results ul li {
-  display: block;
-  text-align: left;
-}
-
-#predictive-search-results li a {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
 @media (min-width: 769px) {
   .search-drawer__content .predictive-search__input {
     padding: var(--space-s) 0px;
