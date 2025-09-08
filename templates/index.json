@@ -71,13 +71,13 @@
       "type": "collection-slider",
       "name": "Collection Slider",
       "settings": {
-        "heading": "The Father's Day Edit",
+        "heading": "New Arrivals",
         "heading_animation": "none",
-        "description": "Distinctive pieces chosen just for him",
+        "description": "Discover the latest arrivals across tailoring, shirting, footwear, and more.",
         "description_animation": "none",
-        "collection": "gifts-for-men",
+        "collection": "new-arrivals",
         "button_label": "Shop Now",
-        "products_to_show": 10,
+        "products_to_show": 12,
         "animate_products": false
       }
     },
