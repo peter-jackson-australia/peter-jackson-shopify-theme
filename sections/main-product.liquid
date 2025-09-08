@@ -4,6 +4,14 @@
 
 {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
 
+<style>
+  @media screen and (min-width: 1100x) {
+    .product-details__container {
+      max-height: calc({{product.images[0].height}} * 50vw / {{product.images[0].width}});
+    }
+  }
+</style>
+
 {% assign current_variant = null %}
 
 {% for variant in product.variants %}
