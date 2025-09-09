@@ -37,7 +37,8 @@
         "social_link_1": "https://www.facebook.com/peterjacksonmenswear/",
         "social_icon_2": "shopify://shop_images/icon-instagram.svg",
         "social_link_2": "https://www.instagram.com/peterjacksonau/?hl=en",
-        "social_link_3": ""
+        "social_icon_3": "shopify://shop_images/icon-linkedin.svg",
+        "social_link_3": "https://au.linkedin.com/company/peter-jackson-australia"
       }
     }
   },
