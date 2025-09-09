@@ -2,7 +2,7 @@ window.addEventListener("load", () => {
   if (window.location.hostname === 'peterjacksons.com' || window.location.hostname === 'www.peterjacksons.com') {
     quicklink.listen({
       ignores: [
-        /^https?:\/\/account\.peterjacksons\.com/,
+        /https:\/\/account\.peterjacksons\.com/,
       ],
     });
   } 
