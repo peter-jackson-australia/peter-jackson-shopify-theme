@@ -29,8 +29,8 @@
           "type": "navigation_item",
           "settings": {
             "nav_label": "Garden & Winery",
-            "desktop_image": "shopify://shop_images/peter-jackson-man-wearing-white-suit-with-black-tie-during-wedding-mens-white-suits.webp",
-            "mobile_image": "shopify://shop_images/peter-jackson-man-wearing-white-suit-with-black-tie-during-wedding-mens-white-suits-mobile.webp",
+            "desktop_image": "shopify://shop_images/peter-jackson-man-wearing-suit-during-wedding-mens-suits.webp",
+            "mobile_image": "shopify://shop_images/peter-jackson-man-wearing-suit-during-wedding-mens-suits-mobile.webp",
             "collection": "garden-and-winery-weddings",
             "slider_heading": "Garden & Winery",
             "slider_description": "Lightweight linens, soft tonal hues, and breathable tailoring create the perfect balance of elegance and ease for open-air celebrations.",
@@ -42,8 +42,8 @@
           "type": "navigation_item",
           "settings": {
             "nav_label": "Spring/Summer",
-            "desktop_image": "shopify://shop_images/peter-jackson-man-wearing-suit-during-wedding-mens-suits.webp",
-            "mobile_image": "shopify://shop_images/peter-jackson-man-wearing-suit-during-wedding-mens-suits-mobile.webp",
+            "desktop_image": "shopify://shop_images/peter-jackson-man-wearing-white-suit-with-black-tie-during-wedding-mens-white-suits.webp",
+            "mobile_image": "shopify://shop_images/peter-jackson-man-wearing-white-suit-with-black-tie-during-wedding-mens-white-suits-mobile.webp",
             "collection": "beach-weddings",
             "slider_heading": "Spring/Summer",
             "slider_description": "Crisp linen light-weight elements, pastel accents, and unstructured silhouettes bring a modern lightness to warm-weather dressing.",
