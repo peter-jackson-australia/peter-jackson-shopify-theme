@@ -1,11 +1,9 @@
 window.addEventListener("load", () => {
-  if (window.location.hostname === 'peterjacksons.com' || window.location.hostname === 'www.peterjacksons.com') {
+  if (window.location.hostname === "peterjacksons.com" || window.location.hostname === "www.peterjacksons.com") {
     quicklink.listen({
-      ignores: [
-        /https:\/\/account\.peterjacksons\.com/,
-      ],
+      origins: ["account.peterjacksons.com"],
     });
-  } 
+  }
 });
 
 var ready = (callback) => {
@@ -147,7 +145,8 @@ ready(function () {
           var notifyMeButton = document.querySelector("#js--notify-me");
           var klaviyoForm = document.querySelector(".klaviyo-form-WMidEs");
 
-          var isUnavailable = v.available === false || (inventoryQuantity <= 5 && !v.name.includes("Digital Gift Card"));
+          var isUnavailable =
+            v.available === false || (inventoryQuantity <= 5 && !v.name.includes("Digital Gift Card"));
 
           if (isUnavailable) {
             if (addToCartButton) {
@@ -197,7 +196,7 @@ ready(function () {
   var klaviyoForm = document.querySelector(".klaviyo-form-WMidEs");
 
   if (notifyMeButton && klaviyoForm) {
-    notifyMeButton.addEventListener("click", function() {
+    notifyMeButton.addEventListener("click", function () {
       if (klaviyoForm.style.display === "none" || klaviyoForm.style.display === "") {
         klaviyoForm.style.display = "block";
         notifyMeButton.style.display = "none";
@@ -255,13 +254,13 @@ function checkVariants() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  const header = document.querySelector('#site-header');
-  const spacer = document.querySelector('#header-spacer');
-  const collectionControls = document.querySelector('.collection-controls');
-  const searchControls = document.querySelector('.search-controls');
-  const controls = collectionControls || searchControls; 
-  const productsGrid = document.querySelector('.products-grid');
+document.addEventListener("DOMContentLoaded", function () {
+  const header = document.querySelector("#site-header");
+  const spacer = document.querySelector("#header-spacer");
+  const collectionControls = document.querySelector(".collection-controls");
+  const searchControls = document.querySelector(".search-controls");
+  const controls = collectionControls || searchControls;
+  const productsGrid = document.querySelector(".products-grid");
   const headerOffsetTop = header.offsetTop;
   let isFixed = false;
   let isControlsFixed = false;
@@ -271,58 +270,60 @@ document.addEventListener('DOMContentLoaded', function() {
 
   if (controls && productsGrid) {
     productsGridOffsetTop = productsGrid.offsetTop;
-    controlsSpacer = document.createElement('div');
-    controlsSpacer.id = 'controls-spacer';
-    controlsSpacer.className = 'hide';
-    controlsSpacer.style.height = controls.offsetHeight + 'px';
+    controlsSpacer = document.createElement("div");
+    controlsSpacer.id = "controls-spacer";
+    controlsSpacer.className = "hide";
+    controlsSpacer.style.height = controls.offsetHeight + "px";
     controls.parentNode.insertBefore(controlsSpacer, controls.nextSibling);
   }
 
   function checkScroll() {
-    if (document.body.classList.contains('menu-open') || 
-    document.body.classList.contains('cart-open') || 
-    document.body.classList.contains('search-open') || 
-    document.body.classList.contains('filter-open') ||
-    document.body.classList.contains('search-filter-open')) {
+    if (
+      document.body.classList.contains("menu-open") ||
+      document.body.classList.contains("cart-open") ||
+      document.body.classList.contains("search-open") ||
+      document.body.classList.contains("filter-open") ||
+      document.body.classList.contains("search-filter-open")
+    ) {
       ticking = false;
       return;
     }
 
     const scrollY = window.scrollY;
-    
+
     if (scrollY >= headerOffsetTop && !isFixed) {
       isFixed = true;
-      header.classList.add('header-fixed');
-      spacer.classList.remove('hide');
+      header.classList.add("header-fixed");
+      spacer.classList.remove("hide");
     } else if (scrollY < headerOffsetTop && isFixed) {
       isFixed = false;
-      header.classList.remove('header-fixed');
-      spacer.classList.add('hide');
+      header.classList.remove("header-fixed");
+      spacer.classList.add("hide");
     }
 
     if (controls && controlsSpacer && productsGrid) {
       const headerHeight = header.offsetHeight;
       const triggerPoint = productsGridOffsetTop - headerHeight;
-      
+
       if (scrollY >= triggerPoint && !isControlsFixed) {
         isControlsFixed = true;
-        controls.classList.add('controls-fixed');
-        controlsSpacer.classList.remove('hide');
+        controls.classList.add("controls-fixed");
+        controlsSpacer.classList.remove("hide");
       } else if (scrollY < triggerPoint && isControlsFixed) {
         isControlsFixed = false;
-        controls.classList.remove('controls-fixed');
-        controlsSpacer.classList.add('hide');
-        controls.classList.add('sliding-up');
+        controls.classList.remove("controls-fixed");
+        controlsSpacer.classList.add("hide");
+        controls.classList.add("sliding-up");
         setTimeout(() => {
-          controls.classList.remove('sliding-up');
+          controls.classList.remove("sliding-up");
         }, 300);
       }
     }
-    
+
     ticking = false;
   }
 
-  window.addEventListener('scroll', function() {
+  window.addEventListener("scroll", function () {
     if (!ticking) {
       requestAnimationFrame(checkScroll);
       ticking = true;
