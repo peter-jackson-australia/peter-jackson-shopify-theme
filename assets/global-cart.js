@@ -105,6 +105,35 @@ function hideCartDrawer() {
   document.body.classList.remove("cart-open");
 }
 
+// Product Secondary Sidebar Drawer
+const showProductDrawer = async (productHandle) => {
+  const productDrawer = document.querySelector('.product-drawer');
+  const productData = document.querySelector('.product-drawer__data');
+  
+  if (!productDrawer || !productData) return;
+  
+  productData.textContent = 'Loading...';
+  productDrawer.style.display = 'block';
+  
+  try {
+    const response = await fetch(`/products/${productHandle}.js`);
+    const product = await response.json();
+    
+    console.log('Product Object:', product);
+    productData.textContent = 'Product data logged to console (open DevTools)';
+      
+  } catch (error) {
+    productData.textContent = 'Error loading product data: ' + error.message;
+  }
+};
+
+const hideProductDrawer = () => {
+  const productDrawer = document.querySelector('.product-drawer');
+  if (productDrawer) {
+    productDrawer.style.display = 'none';
+  }
+};
+
 function updateCartCountBadges(itemCount) {
   cartDOMElements.cartCountBadges.forEach((badge) => {
     badge.style.visibility = "visible";
@@ -572,6 +601,22 @@ function createAddToCartHandler(formElement) {
 }
 
 function attachCartInteractionListeners() {
+  // Add product drawer listeners FIRST
+  document.querySelectorAll('.cart-item__title-button').forEach(button => {
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
+      const productHandle = button.getAttribute('data-product-handle');
+      if (productHandle) {
+        showProductDrawer(productHandle);
+      }
+    });
+  });
+
+  const closeBtn = document.querySelector('.product-drawer__close');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', hideProductDrawer);
+  }
+
   const showItemLoadingState = (cartItemElement) => {
     const actionsSection = cartItemElement.querySelector(".cart-item__actions");
     const priceSection = cartItemElement.querySelector(".cart-item__price");
