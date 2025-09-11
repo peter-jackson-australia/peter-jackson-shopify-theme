@@ -342,21 +342,3 @@
 .cart-item__error {
   color: #ff0000;
 }
-
-.cart-item__title-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  text-align: left;
-  width: 100%;
-}
-
-.product-drawer {
-  background: white;
-  height: 100vh;
-  position: fixed;
-  right: 400px;
-  top: 0;
-  width: 400px;
-  z-index: 100001;
-}

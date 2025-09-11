@@ -93,13 +93,7 @@
                     <div class="cart-item__row">
                       <div class="cart-item__details">
                         <h3 class="cart-item__title body--bold">
-                          <button
-                            type="button"
-                            class="cart-item__title-button"
-                            data-product-handle="{{ item.product.handle }}"
-                          >
-                            {{ item.product.title }}
-                          </button>
+                          <a href="{{ item.url }}">{{ item.product.title }}</a>
                         </h3>
                         <div class="cart-item__specifics">
                           {% if item.variant.title != 'Default Title' %}
@@ -211,10 +205,6 @@
         {% endif %}
       {% endform %}
     </div>
-  </aside>
-  <aside class="product-drawer" style="display: none;">
-    <button class="product-drawer__close" type="button">×</button>
-    <p class="product-drawer__data"></p>
   </aside>
 </div>
 
