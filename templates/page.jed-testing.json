@@ -9,53 +9,37 @@
  */
 {
   "sections": {
-    "contact_form_9xzyn7": {
-      "type": "contact-form",
+    "image_gallery_slider_CX8EbA": {
+      "type": "image-gallery-slider",
       "blocks": {
-        "text_d4CzFW": {
-          "type": "text",
+        "slide_gdztmT": {
+          "type": "slide",
           "settings": {
-            "title": "Name",
-            "name": "name",
-            "maxlength": 128,
-            "required": true,
-            "placeholder": ""
+            "image": "shopify://shop_images/mens-pants-khaki-SSTC02.webp"
           }
         },
-        "email_fYQnLd": {
-          "type": "email",
+        "slide_xayjMj": {
+          "type": "slide",
           "settings": {
-            "title": "Email",
-            "maxlength": 128,
-            "placeholder": "e.g. steve@example.com"
-          }
-        },
-        "textarea_mAPatm": {
-          "type": "textarea",
-          "settings": {
-            "title": "Message",
-            "name": "body",
-            "maxlength": 500,
-            "rows": 5,
-            "required": true,
-            "placeholder": ""
+            "image": "shopify://shop_images/mens-pants-khaki-SSTC02-4.webp"
           }
         }
       },
       "block_order": [
-        "text_d4CzFW",
-        "email_fYQnLd",
-        "textarea_mAPatm"
+        "slide_gdztmT",
+        "slide_xayjMj"
       ],
-      "name": "Contact Form",
+      "name": "Image Gallery Slider",
       "settings": {
-        "heading": "Get in Touch",
-        "description": "We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
-        "button_label": "Submit"
+        "heading": "Testing",
+        "subtitle": "Subtitle",
+        "alignment": "left",
+        "show_top_border": false,
+        "show_bottom_border": false
       }
     }
   },
   "order": [
-    "contact_form_9xzyn7"
+    "image_gallery_slider_CX8EbA"
   ]
 }
