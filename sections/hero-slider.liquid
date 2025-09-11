@@ -141,66 +141,13 @@
   <div class="splide__pagination"></div>
 </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const slider = new Splide('#hero-slider-{{ section.id }}', {
-      type: 'slide',
-      perPage: 1,
-      arrows: false,
-      pagination: true,
-      drag: true,
-      autoplay: {{ section.settings.autoplay }},
-      interval: {{ section.settings.slide_interval | times: 1000 }}
-    });
-
-    const isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1 &&
-                   navigator.userAgent && !navigator.userAgent.match('CriOS');
-
-    if (isSafari) {
-      slider.on('mounted', function() {
-        const sliderElement = document.getElementById('hero-slider-{{ section.id }}');
-        const contentsInHero = sliderElement.querySelectorAll('.hero-slider__content');
-
-        contentsInHero.forEach(el => {
-          const originalTransform = window.getComputedStyle(el).transform;
-          if (originalTransform && originalTransform !== 'none') {
-            el.style.transform = originalTransform + ' translateZ(0)';
-          } else {
-            el.style.transform = 'translateZ(0)';
-          }
-        });
-      });
-
-      slider.on('move', function() {
-        const currentSlideNum = slider.index;
-        requestAnimationFrame(function() {
-          const currentSlide = slider.Components.Elements.slides[currentSlideNum];
-          const content = currentSlide.querySelector('.hero-slider__content');
-
-          if (content) {
-            content.style.willChange = 'transform';
-          }
-
-          setTimeout(function() {
-            if (content) content.style.willChange = 'auto';
-          }, 500);
-        });
-      });
-    }
-
-    slider.on('mounted', function() {
-      const heroSlider = document.getElementById('hero-slider-{{ section.id }}');
-      const videos = heroSlider.querySelectorAll('.hero-slider__video-element');
-
-      videos.forEach(function(video) {
-        video.muted = true;
-        video.playsInline = true;
-      });
-    });
-
-    slider.mount();
-  });
-</script>
+<script
+  src="{{ "section-hero-slider.js" | asset_url }}"
+  data-section-id="{{ section.id }}"
+  data-autoplay="{{ section.settings.autoplay }}"
+  data-slide-interval="{{ section.settings.slide_interval | times: 1000 }}"
+  defer
+></script>
 
 {% schema %}
 {
