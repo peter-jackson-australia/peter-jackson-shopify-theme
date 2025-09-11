@@ -1,4 +1,4 @@
-(function () {
+(() => {
   const sectionId = document.currentScript.getAttribute("data-section-id");
 
   if (window.innerWidth < 1000) return;

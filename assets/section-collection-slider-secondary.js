@@ -1,5 +1,5 @@
-(function () {
-  const sectionId = document.currentScript.getAttribute("section-id")
+(() => {
+  const sectionId = document.currentScript.getAttribute("data-section-id")
   const splideElement = document.querySelector(`#section-${sectionId} .collection-slider-secondary__slider`);
 
   if (splideElement) {

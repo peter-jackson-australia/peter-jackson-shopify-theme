@@ -1,4 +1,4 @@
-(function () {
+(() => {
   const currentUrl = window.location.href;
   const links = document.querySelectorAll('.blog-header__link');
 
