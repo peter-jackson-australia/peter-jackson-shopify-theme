@@ -9,53 +9,34 @@
  */
 {
   "sections": {
-    "contact_form_9xzyn7": {
-      "type": "contact-form",
-      "blocks": {
-        "text_d4CzFW": {
-          "type": "text",
-          "settings": {
-            "title": "Name",
-            "name": "name",
-            "maxlength": 128,
-            "required": true,
-            "placeholder": ""
-          }
-        },
-        "email_fYQnLd": {
-          "type": "email",
-          "settings": {
-            "title": "Email",
-            "maxlength": 128,
-            "placeholder": "e.g. steve@example.com"
-          }
-        },
-        "textarea_mAPatm": {
-          "type": "textarea",
-          "settings": {
-            "title": "Message",
-            "name": "body",
-            "maxlength": 500,
-            "rows": 5,
-            "required": true,
-            "placeholder": ""
-          }
-        }
-      },
-      "block_order": [
-        "text_d4CzFW",
-        "email_fYQnLd",
-        "textarea_mAPatm"
-      ],
-      "name": "Contact Form",
+    "hero_countdown_timer_f3JmPR": {
+      "type": "hero-countdown-timer",
+      "name": "Hero Countdown Timer",
       "settings": {
-        "heading": "Get in Touch",
-        "description": "We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
-        "button_label": "Submit"
+        "background_image": "shopify://shop_images/men-jacket-black-velvet-SU25-SP04_2899.webp",
+        "heading": "Limited Time Offer",
+        "heading_animation": "none",
+        "subheading": "Do not miss out on this special offer!",
+        "subheading_animation": "none",
+        "target_date": "2025-01-31T23:59:59",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "bottom",
+        "animate_timer_blocks": false,
+        "days_label": "Days",
+        "hours_label": "Hours",
+        "minutes_label": "Minutes",
+        "seconds_label": "Seconds",
+        "final_hours_threshold": 3,
+        "final_message": "Final hours! Do not miss out!",
+        "final_message_animation": "none",
+        "complete_message": "The countdown has ended!",
+        "complete_message_animation": "none",
+        "button_label": "",
+        "button_link": ""
       }
     }
   },
   "order": [
-    "contact_form_9xzyn7"
+    "hero_countdown_timer_f3JmPR"
   ]
 }
