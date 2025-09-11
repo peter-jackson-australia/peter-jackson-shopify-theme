@@ -9,37 +9,53 @@
  */
 {
   "sections": {
-    "collection_slider_secondary_kBQQKR": {
-      "type": "collection-slider-secondary",
-      "name": "Collection Slider Secondary",
+    "contact_form_9xzyn7": {
+      "type": "contact-form",
+      "blocks": {
+        "text_d4CzFW": {
+          "type": "text",
+          "settings": {
+            "title": "Name",
+            "name": "name",
+            "maxlength": 128,
+            "required": true,
+            "placeholder": ""
+          }
+        },
+        "email_fYQnLd": {
+          "type": "email",
+          "settings": {
+            "title": "Email",
+            "maxlength": 128,
+            "placeholder": "e.g. steve@example.com"
+          }
+        },
+        "textarea_mAPatm": {
+          "type": "textarea",
+          "settings": {
+            "title": "Message",
+            "name": "body",
+            "maxlength": 500,
+            "rows": 5,
+            "required": true,
+            "placeholder": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_d4CzFW",
+        "email_fYQnLd",
+        "textarea_mAPatm"
+      ],
+      "name": "Contact Form",
       "settings": {
-        "heading": "New In Now",
-        "heading_animation": "none",
-        "description": "Layer up with premium wool/cashmere blends.",
-        "description_animation": "none",
-        "collection": "",
-        "button_label": "Shop Now",
-        "products_to_show": 10,
-        "animate_products": false
-      }
-    },
-    "collection_slider_secondary_LY64Cg": {
-      "type": "collection-slider-secondary",
-      "name": "Collection Slider Secondary",
-      "settings": {
-        "heading": "New In Now",
-        "heading_animation": "none",
-        "description": "Layer up with premium wool/cashmere blends.",
-        "description_animation": "none",
-        "collection": "",
-        "button_label": "Shop Now",
-        "products_to_show": 10,
-        "animate_products": false
+        "heading": "Get in Touch",
+        "description": "We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
+        "button_label": "Submit"
       }
     }
   },
   "order": [
-    "collection_slider_secondary_kBQQKR",
-    "collection_slider_secondary_LY64Cg"
+    "contact_form_9xzyn7"
   ]
 }
