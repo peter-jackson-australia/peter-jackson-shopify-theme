@@ -158,12 +158,10 @@
   </div>
 </div>
 
-<script>
-  document.querySelector('.contact-form__form').addEventListener('submit', function (e) {
-    const button = document.querySelector('.contact-form__button');
-    button.innerHTML = `<span class="loader--spinner"></span>`;
-  });
-</script>
+<script
+  src="{{ "section-contact-form.js" | asset_url }}"
+  defer
+></script>
 
 {% schema %}
 {
