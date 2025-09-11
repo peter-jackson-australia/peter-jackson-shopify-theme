@@ -25,15 +25,32 @@
   {% assign current_variant = product.selected_or_first_available_variant %}
 {% endif %}
 
-<script>
-  var current_variant = {{ current_variant | json }};
-  var variants = {{ product.variants | json }};
-  var default_image = {{ product.featured_image.id | default: 'null' }};
-  var product_type = {{ product.type | json }};
-  var variant_inventory_quantities = [{% for variant in product.variants %}{{ variant.inventory_quantity }}{% unless forloop.last %},{% endunless %}{% endfor %}];
-  var product_title = {{ product.title | json }};
-  var product_options = {{ product.options | json }};
-  var show_low_stock_warning = {{ section.settings.show_low_stock_warning | json }};
+<script
+  data-current-variant="{{ current_variant | json | escape }}"
+  data-variants="{{ product.variants | json | escape }}"
+  data-default-image="{{ product.featured_image.id | default: 'null' | escape }}"
+  data-product-type="{{  product.type | json | escape }}"
+  data-variant-inventory-quantities="[{% for variant in product.variants %}{{ variant.inventory_quantity | escape }}{% unless forloop.last %},{% endunless %}{% endfor %}]"
+  data-product-title="{{ product.title | json | escape }}"
+  data-product-options="{{ product.options | json | escape }}"
+  data-show-low-stock-warning="{{ section.settings.show_low_stock_warning | json | escape }}"
+>
+  const getAttributeJSON = (attributeName) => {
+    const attribute = document.currentScript.getAttribute(attributeName);
+    return JSON.parse(attribute);
+  };
+
+  const current_variant = getAttributeJSON('data-current-variant');
+  const variants = getAttributeJSON('data-variants');
+  const product_type = getAttributeJSON('data-product-type');
+  const variant_inventory_quantities = getAttributeJSON('data-variant-inventory-quantities');
+  const product_title = getAttributeJSON('data-product-title');
+  const product_options = getAttributeJSON('data-product-options');
+  const show_low_stock_warning = getAttributeJSON('data-show-low-stock-warning');
+  const default_image = document.currentScript.getAttribute('data-default-image');
+  if (default_image === 'null') {
+    default_image = null;
+  }
 </script>
 
 <div>
