@@ -9,58 +9,37 @@
  */
 {
   "sections": {
-    "counter_ix7CxW": {
-      "type": "counter",
-      "blocks": {
-        "counter_GLTHNc": {
-          "type": "counter",
-          "settings": {
-            "counter_description": "Seven out of nine people who die by suicide every day in Australia are men",
-            "counter_duration": 1,
-            "counter_text_prefix": "",
-            "counter_initial_value": 0,
-            "counter_final_value": 7,
-            "counter_text_suffix": "/9"
-          }
-        },
-        "counter_NaerAm": {
-          "type": "counter",
-          "settings": {
-            "counter_description": "Of Australian men will experience anxiety or depression at some stage in their lives",
-            "counter_duration": 1,
-            "counter_text_prefix": "",
-            "counter_initial_value": 33,
-            "counter_final_value": 43,
-            "counter_text_suffix": "%"
-          }
-        },
-        "counter_bCUTkb": {
-          "type": "counter",
-          "settings": {
-            "counter_description": "Of men admit to delaying seeing their GP for help when they needed it",
-            "counter_duration": 1,
-            "counter_text_prefix": "",
-            "counter_initial_value": 16,
-            "counter_final_value": 26,
-            "counter_text_suffix": "%"
-          }
-        }
-      },
-      "block_order": [
-        "counter_GLTHNc",
-        "counter_NaerAm",
-        "counter_bCUTkb"
-      ],
-      "name": "Counter",
+    "collection_slider_secondary_kBQQKR": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
       "settings": {
-        "heading": "Understanding The Challenge",
-        "subheading": "These figures on suicide rates, prevalence of mental health conditions and reluctance to seek help highlight the urgent need for initiatives that encourage men to seek support and openly discuss their mental health.",
-        "show_top_border": true,
-        "show_bottom_border": true
+        "heading": "New In Now",
+        "heading_animation": "none",
+        "description": "Layer up with premium wool/cashmere blends.",
+        "description_animation": "none",
+        "collection": "",
+        "button_label": "Shop Now",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
+    "collection_slider_secondary_LY64Cg": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "New In Now",
+        "heading_animation": "none",
+        "description": "Layer up with premium wool/cashmere blends.",
+        "description_animation": "none",
+        "collection": "",
+        "button_label": "Shop Now",
+        "products_to_show": 10,
+        "animate_products": false
       }
     }
   },
   "order": [
-    "counter_ix7CxW"
+    "collection_slider_secondary_kBQQKR",
+    "collection_slider_secondary_LY64Cg"
   ]
 }
