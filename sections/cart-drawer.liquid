@@ -52,8 +52,6 @@
                             | escape
                             | default: product.title, width: 300, height: image_height
                           }}
-                        {% else %}
-                          {{ 'product-1' | placeholder_svg_tag: 'cart__new-arrivals-image placeholder' }}
                         {% endif %}
                       </div>
                       <h3 class="body--bold cart__new-arrivals-title">{{ product.title }}</h3>
@@ -154,22 +152,7 @@
             </div>
 
             <div class="cart__complementary-products" style="display: none;">
-              <div class="cart__complementary-products-loading">
-                <div class="animated-loader">
-                  <svg
-                    fill="#E7E7E7"
-                    style="height:4px;display:block"
-                    viewBox="0 0 40 4"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <style>
-                      .react{animation:moving 1s ease-in-out infinite}
-                      @keyframes moving{0%{width:0%}50%{width:100%;transform:translate(0,0)}100%{width:0;right:0;transform:translate(100%,0)}}
-                    </style>
-                    <rect class="react" fill="#E7E7E7" height="4" width="40" />
-                  </svg>
-                </div>
-              </div>
+              <div class="cart__complementary-products-loading"></div>
               <div class="cart__complementary-products-content" style="display: none;">
                 <h3 class="cart__complementary-products-title heading--l">Complement Your Look</h3>
                 <div class="cart__complementary-products-slider splide">

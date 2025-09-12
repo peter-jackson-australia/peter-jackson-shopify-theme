@@ -229,7 +229,7 @@ const refreshCartDrawerContent = async () => {
 let isSliderUpdateInProgress = false;
 
 const generateComplementarySliderHTML = () => `
-    <div class="cart__complementary-products-loading"></div>
+    <div class="cart__complementary-products-loading">${animatedLoadingBarSVG}</div>
     <div class="cart__complementary-products-content" style="display: none;">
       <h3 class="cart__complementary-products-title heading--l">Complement Your Look</h3>
       <div class="cart__complementary-products-slider splide">
@@ -337,6 +337,7 @@ const recreateComplementarySlider = async (productHandles) => {
   sliderContainer.style.display = "block";
   loadingElement.style.display = "block";
   contentElement.style.display = "none";
+  if (!loadingElement.innerHTML.trim()) loadingElement.innerHTML = animatedLoadingBarSVG;
 
   try {
     const recommendedProducts = await loadRecommendedProducts(productHandles);
