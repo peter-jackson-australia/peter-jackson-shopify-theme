@@ -21,7 +21,7 @@
             "svg_size": "medium",
             "heading_level": "h1",
             "heading_animation": "none",
-            "description": "The season of renewal is here.<br>Explore our Spring collection of tailoring and elevated everyday essentials.",
+            "description": "The season of renewal is here.Explore our Spring collection of tailoring and elevated everyday essentials.",
             "description_animation": "none",
             "button_label_1": "Shop New",
             "button_link_1": "shopify://collections/new-arrivals",
@@ -74,6 +74,23 @@
         "slide_interval": 5
       }
     },
+    "heading_with_text_zDqYQf": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "leading_text": "SINCE 1948",
+        "leading_text_animation": "none",
+        "heading": "TAILORED FOR A LIFE WELL LIVED",
+        "heading_style": "normal",
+        "heading_animation": "none",
+        "content": "",
+        "content_animation": "none",
+        "alignment": "center"
+      }
+    },
     "variable_column_content_secondary_X9KJtx": {
       "type": "variable-column-content-secondary",
       "blocks": {
@@ -121,6 +138,7 @@
         "column_item_tJc4WM",
         "column_item_TGjtNg"
       ],
+      "disabled": true,
       "name": "Variable Column Content Secondary",
       "settings": {
         "anchor_id": "",
@@ -136,10 +154,84 @@
         "button_label": "Learn More",
         "button_link": ""
       }
+    },
+    "variable_column_content_tertiary_XwmChF": {
+      "type": "variable-column-content-tertiary",
+      "blocks": {
+        "column_item_zER8gb": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Spring_Suit_Hero_Desktop_copy.webp",
+            "image_link": "",
+            "heading": "SPRING TAILORING",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "center",
+            "content_vertical_alignment": "center",
+            "column_link": "shopify://collections/mens-suits",
+            "column_link_text": "Shop $200 Off Suits"
+          }
+        },
+        "column_item_EdH7tR": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Spring_Casual_Hero_Desktop_copy.webp",
+            "image_link": "",
+            "heading": "CASUAL SHIRTS",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "center",
+            "content_vertical_alignment": "center",
+            "column_link": "shopify://collections/casual-shirts",
+            "column_link_text": "Shop from $69.95"
+          }
+        },
+        "column_item_TdMYVf": {
+          "type": "column_item",
+          "settings": {
+            "image_link": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "center",
+            "content_vertical_alignment": "center",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_zER8gb",
+        "column_item_EdH7tR",
+        "column_item_TdMYVf"
+      ],
+      "name": "Variable Column Content Tertiary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "3",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "Variable Column Content Tertiary",
+        "heading_animation": "none",
+        "text": "Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
     }
   },
   "order": [
     "hero_slider_ULyNnz",
-    "variable_column_content_secondary_X9KJtx"
+    "heading_with_text_zDqYQf",
+    "variable_column_content_secondary_X9KJtx",
+    "variable_column_content_tertiary_XwmChF"
   ]
 }
