@@ -193,16 +193,17 @@
         "column_item_TdMYVf": {
           "type": "column_item",
           "settings": {
+            "image": "shopify://shop_images/Spring_POLO_Hero_Desktop_copy_2.webp",
             "image_link": "",
-            "heading": "Column Heading",
+            "heading": "POLO SHIRTS",
             "heading_animation": "none",
-            "text": "Add a brief description for this column item.",
+            "text": "",
             "text_animation": "none",
             "show_gradient_overlay": false,
             "content_horizontal_alignment": "center",
             "content_vertical_alignment": "center",
-            "column_link": "",
-            "column_link_text": "Shop Now"
+            "column_link": "shopify://collections/long-sleeves-and-polos",
+            "column_link_text": "Shop from $79.95"
           }
         }
       },
