@@ -4,7 +4,7 @@
 
 {{ 'section-cart-drawer.css' | asset_url | stylesheet_tag }}
 
-<div x-data="cartDrawer" x-init="init()">
+<div class="cart-drawer-wrapper">
   <aside class="cart" role="dialog" aria-labelledby="cart-title">
     <div class="cart__container">
       <header class="cart__header">
@@ -207,70 +207,6 @@
     </div>
   </aside>
 </div>
-
-<script>
-  document.addEventListener('alpine:init', () => {
-    Alpine.data('cartDrawer', () => ({
-      isOpen: false,
-      scrollY: 0,
-
-      init() {
-        this.$nextTick(() => {
-          window.openCart = () => this.openCart();
-          window.closeCart = () => this.closeCart();
-
-          const closeBtn = document.querySelector('.cart__close');
-          if (closeBtn) {
-            closeBtn.addEventListener('click', () => this.closeCart());
-          }
-
-          const cart = document.querySelector('.cart');
-          if (cart) {
-            cart.addEventListener('click', (e) => {
-              if (e.target === cart) this.closeCart();
-            });
-          }
-        });
-      },
-
-      openCart() {
-        if (document.body.style.position !== 'fixed') {
-          this.scrollY = window.scrollY;
-          document.body.style.position = 'fixed';
-          document.body.style.top = `-${this.scrollY}px`;
-          document.body.style.width = '100%';
-        }
-
-        this.isOpen = true;
-        document.body.classList.add('cart-open');
-        document.querySelector('.cart').classList.add('cart--active');
-
-        if (window.closeMenu) {
-          window.closeMenu(true);
-        }
-      },
-
-      closeCart() {
-        if (!this.isOpen) return;
-
-        this.isOpen = false;
-        document.body.classList.remove('cart-open');
-        document.querySelector('.cart').classList.remove('cart--active');
-
-        const scrollY = Math.abs(parseInt(document.body.style.top || '0'));
-
-        document.documentElement.style.scrollBehavior = 'auto';
-
-        document.body.style.position = '';
-        document.body.style.top = '';
-        document.body.style.width = '';
-        window.scrollTo(0, scrollY);
-
-        document.documentElement.style.scrollBehavior = '';
-      },
-    }));
-  });
-</script>
 
 {% schema %}
 {

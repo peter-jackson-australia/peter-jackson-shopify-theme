@@ -9,28 +9,33 @@ const cartDOMElements = {
 const animatedLoadingBarSVG = `<svg fill=#E7E7E7 style=height:4px;display:block viewBox="0 0 40 4"xmlns=http://www.w3.org/2000/svg><style>.react{animation:moving 1s ease-in-out infinite}@keyframes moving{0%{width:0%}50%{width:100%;transform:translate(0,0)}100%{width:0;right:0;transform:translate(100%,0)}}</style><rect class=react fill=#E7E7E7 height=4 width=40 /></svg>`;
 const jsonRequestHeaders = { Accept: "application/json", "Content-Type": "application/json" };
 
+const cartState = {
+  isOpen: false,
+  scrollY: 0,
+};
+
 // Utility/helper functions
-function createLoadingBarElement() {
+const createLoadingBarElement = () => {
   const loadingBarContainer = document.createElement("div");
   loadingBarContainer.innerHTML = animatedLoadingBarSVG;
   return loadingBarContainer;
-}
+};
 
-function replaceContentWithLoader(targetElement) {
+const replaceContentWithLoader = (targetElement) => {
   const originalContent = targetElement.innerHTML;
   targetElement.replaceChildren(createLoadingBarElement());
   return originalContent;
-}
+};
 
-function displayErrorMessage(containerElement, errorText, cssClassName = "product-error body") {
+const displayErrorMessage = (containerElement, errorText, cssClassName = "product-error body") => {
   containerElement.querySelectorAll('[class*="error"]').forEach((errorElement) => errorElement.remove());
   const errorElement = document.createElement("div");
   errorElement.className = cssClassName;
   errorElement.textContent = errorText;
   containerElement.querySelector("#js--addtocart, .cart-item__actions")?.after(errorElement);
-}
+};
 
-function displayTemporaryError(itemElement, errorText) {
+const displayTemporaryError = (itemElement, errorText) => {
   const errorElement = document.createElement("div");
   errorElement.className = "cart-item__error small cart-item__error--permanent";
   errorElement.textContent = errorText;
@@ -43,20 +48,20 @@ function displayTemporaryError(itemElement, errorText) {
     document.removeEventListener("click", removeAllErrors);
   };
   setTimeout(() => document.addEventListener("click", removeAllErrors), 100);
-}
+};
 
 // Product type checks
-function isGiftCardCartItem(cartItemElement) {
+const isGiftCardCartItem = (cartItemElement) => {
   const productTitle = cartItemElement.querySelector(".cart-item__title a")?.textContent || "";
   return productTitle.toLowerCase().includes("gift card");
-}
+};
 
-function isCurrentProductGiftCard() {
+const isCurrentProductGiftCard = () => {
   const pageProductTitle = document.querySelector(".product-details__title")?.textContent || "";
   return pageProductTitle.toLowerCase().includes("gift card");
-}
+};
 
-function validateInventoryAvailability(maxInventory, currentQuantity, requestedQuantity) {
+const validateInventoryAvailability = (maxInventory, currentQuantity, requestedQuantity) => {
   const availableLimit = maxInventory === Infinity ? Infinity : Math.max(0, maxInventory - 5);
   const totalRequested = currentQuantity + requestedQuantity;
 
@@ -70,10 +75,10 @@ function validateInventoryAvailability(maxInventory, currentQuantity, requestedQ
         ? "Sorry, this item is out of stock."
         : `Sorry, only ${availableLimit} ${availableLimit === 1 ? "item" : "items"} available.`,
   };
-}
+};
 
 // Cart data management
-async function fetchCurrentCartData() {
+const fetchCurrentCartData = async () => {
   try {
     const response = await fetch("/cart.js");
     const cartData = await response.json();
@@ -91,35 +96,60 @@ async function fetchCurrentCartData() {
     console.error("Error fetching cart:", error);
     return null;
   }
-}
+};
 
 // Cart UI updates
-function showCartDrawer() {
-  if (window.openCart) return window.openCart();
-  cartDOMElements.cartDrawerElement.classList.add("cart--active");
+const showCartDrawer = () => {
+  if (document.body.style.position !== "fixed") {
+    cartState.scrollY = window.scrollY;
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${cartState.scrollY}px`;
+    document.body.style.width = "100%";
+  }
+
+  cartState.isOpen = true;
   document.body.classList.add("cart-open");
-}
+  cartDOMElements.cartDrawerElement.classList.add("cart--active");
 
-function hideCartDrawer() {
-  cartDOMElements.cartDrawerElement.classList.remove("cart--active");
+  if (window.closeMenu) {
+    window.closeMenu(true);
+  }
+};
+
+const hideCartDrawer = () => {
+  if (!cartState.isOpen) return;
+
+  cartState.isOpen = false;
   document.body.classList.remove("cart-open");
-}
+  cartDOMElements.cartDrawerElement.classList.remove("cart--active");
 
-function updateCartCountBadges(itemCount) {
+  const scrollY = Math.abs(parseInt(document.body.style.top || "0"));
+
+  document.documentElement.style.scrollBehavior = "auto";
+
+  document.body.style.position = "";
+  document.body.style.top = "";
+  document.body.style.width = "";
+  window.scrollTo(0, scrollY);
+
+  document.documentElement.style.scrollBehavior = "";
+};
+
+const updateCartCountBadges = (itemCount) => {
   cartDOMElements.cartCountBadges.forEach((badge) => {
     badge.style.visibility = "visible";
     badge.classList.toggle("hide", itemCount <= 0);
   });
   localStorage.setItem("cartCount", itemCount.toString());
-}
+};
 
-function showCartTotalsLoading() {
+const showCartTotalsLoading = () => {
   document.querySelectorAll(".cart__footer-value").forEach((valueElement) => replaceContentWithLoader(valueElement));
   const checkoutBtn = document.querySelector(".cart__checkout");
   if (checkoutBtn) checkoutBtn.innerHTML = '<span class="loader--spinner"></span>';
-}
+};
 
-async function refreshCartDrawerContent() {
+const refreshCartDrawerContent = async () => {
   try {
     const currentProgressBar = document.querySelector(".cart__shipping-progress");
     const currentProgressWidth = currentProgressBar ? currentProgressBar.style.width || "0%" : "0%";
@@ -193,13 +223,12 @@ async function refreshCartDrawerContent() {
     console.error("Error updating cart drawer:", error);
     return false;
   }
-}
+};
 
 // Complementary products slider
 let isSliderUpdateInProgress = false;
 
-function generateComplementarySliderHTML() {
-  return `
+const generateComplementarySliderHTML = () => `
     <div class="cart__complementary-products-loading"></div>
     <div class="cart__complementary-products-content" style="display: none;">
       <h3 class="cart__complementary-products-title heading--l">Complement Your Look</h3>
@@ -222,9 +251,8 @@ function generateComplementarySliderHTML() {
       </div>
     </div>
   `;
-}
 
-function createSliderContainerIfMissing() {
+const createSliderContainerIfMissing = () => {
   if (document.querySelector(".cart__complementary-products")) return;
 
   const cartFormElement = document.querySelector(".cart__form");
@@ -237,21 +265,21 @@ function createSliderContainerIfMissing() {
   sliderContainer.innerHTML = generateComplementarySliderHTML();
   sliderContainer.querySelector(".cart__complementary-products-loading").appendChild(createLoadingBarElement());
   cartFormElement.insertBefore(sliderContainer, footerElement);
-}
+};
 
-function removeComplementarySlider() {
+const removeComplementarySlider = () => {
   window.complementarySlider?.destroy();
   window.complementarySlider = null;
   const sliderContainer = document.querySelector(".cart__complementary-products");
   if (sliderContainer) sliderContainer.style.display = "none";
-}
+};
 
-function hideComplementarySection() {
+const hideComplementarySection = () => {
   const sliderContainer = document.querySelector(".cart__complementary-products");
   if (sliderContainer) sliderContainer.style.display = "none";
-}
+};
 
-async function loadRecommendedProducts(productHandles) {
+const loadRecommendedProducts = async (productHandles) => {
   const cartProductHandles = new Set(productHandles);
   const processedHandles = new Set([...cartProductHandles]);
   const recommendedProducts = [];
@@ -287,9 +315,9 @@ async function loadRecommendedProducts(productHandles) {
     }
   }
   return recommendedProducts;
-}
+};
 
-async function recreateComplementarySlider(productHandles) {
+const recreateComplementarySlider = async (productHandles) => {
   if (isSliderUpdateInProgress) return;
   isSliderUpdateInProgress = true;
 
@@ -356,9 +384,9 @@ async function recreateComplementarySlider(productHandles) {
   } finally {
     isSliderUpdateInProgress = false;
   }
-}
+};
 
-function initializeSliderBasedOnCart() {
+const initializeSliderBasedOnCart = () => {
   const allCartItems = document.querySelectorAll(".cart-item");
   if (!allCartItems.length) {
     hideComplementarySection();
@@ -372,9 +400,9 @@ function initializeSliderBasedOnCart() {
     .filter(Boolean);
 
   if (productHandles.length) recreateComplementarySlider(productHandles);
-}
+};
 
-function refreshSliderWithCartProducts() {
+const refreshSliderWithCartProducts = () => {
   const currentProductHandles = Array.from(document.querySelectorAll(".cart-item .cart-item__title a"))
     .map((link) => link.href.split("/products/")[1]?.split("?")[0])
     .filter(Boolean);
@@ -384,10 +412,10 @@ function refreshSliderWithCartProducts() {
   } else {
     setTimeout(initializeSliderBasedOnCart, 100);
   }
-}
+};
 
 // Optimistic UI for add to cart
-function getSelectedVariantOptions() {
+const getSelectedVariantOptions = () => {
   const selectedOptions = [];
   document.querySelectorAll(".js--variant-options:checked").forEach((checkedInput) => {
     const optionGroup = checkedInput.closest(".js--variant-options");
@@ -401,26 +429,28 @@ function getSelectedVariantOptions() {
     }
   });
   return selectedOptions.length > 0 ? selectedOptions.join(", ") : "One Size";
-}
+};
 
-function getCurrentProductImage() {
+const getCurrentProductImage = () => {
   const featuredSlide = document.querySelector(`[data-imageid="${default_image}"] img`);
   if (featuredSlide?.src) return featuredSlide.src;
-}
+};
 
-function initializeEmptyCartStructure(emptyStateElement) {
+const initializeEmptyCartStructure = (emptyStateElement) => {
   const cartFormElement = document.querySelector(".cart__form");
   emptyStateElement.remove();
 
   const sliderHTMLContent = generateComplementarySliderHTML();
-  const shippingHTML = document.querySelector(".cart__shipping") ? `
+  const shippingHTML = document.querySelector(".cart__shipping")
+    ? `
     <div class="cart__shipping cart__shipping--loading" style="display: block; height: 93px;">
       <p class="cart__shipping-text small">${createLoadingBarElement().outerHTML}</p>
       <div class="cart__shipping-bar">
         <div class="cart__shipping-progress"></div>
       </div>
     </div>
-  ` : '';
+  `
+    : "";
 
   cartFormElement.innerHTML = `
     ${shippingHTML}
@@ -441,9 +471,9 @@ function initializeEmptyCartStructure(emptyStateElement) {
 
   const loadingContainer = cartFormElement.querySelector(".cart__complementary-products-loading");
   if (loadingContainer && !loadingContainer.firstChild) loadingContainer.appendChild(createLoadingBarElement());
-}
+};
 
-function showExistingItemLoading(cartItemElement) {
+const showExistingItemLoading = (cartItemElement) => {
   const priceContainer = cartItemElement.querySelector(".cart-item__price");
   if (priceContainer) replaceContentWithLoader(priceContainer);
 
@@ -454,9 +484,9 @@ function showExistingItemLoading(cartItemElement) {
       <div class="placeholder-remove"></div>
     `;
   }
-}
+};
 
-function insertNewCartItem(itemsContainer, variantId, imageUrl, productName, variantOptions) {
+const insertNewCartItem = (itemsContainer, variantId, imageUrl, productName, variantOptions) => {
   const newCartItem = document.createElement("article");
   newCartItem.className = "cart-item";
   newCartItem.setAttribute("data-line-item-key", `temp-${variantId}`);
@@ -489,9 +519,9 @@ function insertNewCartItem(itemsContainer, variantId, imageUrl, productName, var
   `;
 
   itemsContainer.prepend(newCartItem);
-}
+};
 
-function showOptimisticCartUpdate() {
+const showOptimisticCartUpdate = () => {
   const currentProductName = document.querySelector(".product-details__title")?.textContent || "";
   const selectedVariantId = document.querySelector("#js--variant-id")?.value || "";
   const selectedOptions = getSelectedVariantOptions();
@@ -515,10 +545,10 @@ function showOptimisticCartUpdate() {
   }
 
   refreshSliderWithCartProducts();
-}
+};
 
 // Event handlers
-function createAddToCartHandler(formElement) {
+const createAddToCartHandler = (formElement) => {
   return async (submitEvent) => {
     submitEvent.preventDefault();
 
@@ -569,9 +599,9 @@ function createAddToCartHandler(formElement) {
       displayErrorMessage(formElement, "Could not add to cart. Please try again.");
     }
   };
-}
+};
 
-function attachCartInteractionListeners() {
+const attachCartInteractionListeners = () => {
   const showItemLoadingState = (cartItemElement) => {
     const actionsSection = cartItemElement.querySelector(".cart-item__actions");
     const priceSection = cartItemElement.querySelector(".cart-item__price");
@@ -596,15 +626,15 @@ function attachCartInteractionListeners() {
   const deleteCartItem = async (itemElement, itemKey) => {
     const totalItemCount = document.querySelectorAll(".cart-item").length;
     itemElement.style.display = "none";
-  
+
     if (totalItemCount === 1) {
       const shippingBar = document.querySelector(".cart__shipping");
       if (shippingBar) shippingBar.style.display = "none";
     }
-  
+
     showCartTotalsLoading();
     recreateComplementarySlider(getOtherProductHandles(itemKey));
-  
+
     try {
       await fetch("/cart/update.js", {
         method: "post",
@@ -682,13 +712,22 @@ function attachCartInteractionListeners() {
   });
 
   document.querySelector(".cart__container")?.addEventListener("click", (clickEvent) => clickEvent.stopPropagation());
-  document.querySelectorAll(".cart__close, .cart").forEach((closeElement) => {
-    closeElement.addEventListener("click", hideCartDrawer);
-  });
-}
+
+  const closeButton = document.querySelector(".cart__close");
+  if (closeButton) {
+    closeButton.addEventListener("click", hideCartDrawer);
+  }
+
+  const cartElement = document.querySelector(".cart");
+  if (cartElement) {
+    cartElement.addEventListener("click", (clickEvent) => {
+      if (clickEvent.target === cartElement) hideCartDrawer();
+    });
+  }
+};
 
 // Initialisation
-function loadCartFromLocalStorage() {
+const loadCartFromLocalStorage = () => {
   const storedCartData = localStorage.getItem("cartData");
   if (storedCartData) {
     const parsedCartData = JSON.parse(storedCartData);
@@ -700,7 +739,10 @@ function loadCartFromLocalStorage() {
       if (latestCart?.item_count > 0) initializeSliderBasedOnCart();
     });
   });
-}
+};
+
+window.openCart = showCartDrawer;
+window.closeCart = hideCartDrawer;
 
 // Main initialisation & event binding
 document.addEventListener("DOMContentLoaded", () => {
