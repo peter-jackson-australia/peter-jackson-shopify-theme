@@ -192,7 +192,22 @@ const refreshCartDrawerContent = async () => {
       if (newElement && existingElement) existingElement.replaceWith(newElement);
     };
 
+    const optimisticImages = new Map();
+    document.querySelectorAll(".cart-item--optimistic").forEach(item => {
+      const key = item.getAttribute("data-line-item-key");  
+      const img = item.querySelector(".cart-item__image img");
+      if (img) optimisticImages.set(key, img.cloneNode(true));
+    });
+
     replaceElementIfExists(".cart__items");
+
+    optimisticImages.forEach((img, tempKey) => {
+      const variantId = tempKey.replace("temp-", "");
+      const newItem = document.querySelector(`[data-line-item-key*="${variantId}"]`);
+      const newImg = newItem?.querySelector(".cart-item__image img");
+      if (newImg) newImg.replaceWith(img);
+    });
+
     replaceElementIfExists(".cart__footer");
 
     const newEmptyStateElement = tempContainer.querySelector(".cart__empty-state");
@@ -432,9 +447,15 @@ const getSelectedVariantOptions = () => {
   return selectedOptions.length > 0 ? selectedOptions.join(", ") : "One Size";
 };
 
-const getCurrentProductImage = () => {
+const getCurrentProductImageElement = () => {
   const featuredSlide = document.querySelector(`[data-imageid="${default_image}"] img`);
-  if (featuredSlide?.src) return featuredSlide.src;
+  if (featuredSlide) {
+    const clonedImg = featuredSlide.cloneNode(true);
+    clonedImg.width = 100;
+    clonedImg.height = 150;
+    return clonedImg;
+  }
+  return null;
 };
 
 const initializeEmptyCartStructure = (emptyStateElement) => {
@@ -487,15 +508,19 @@ const showExistingItemLoading = (cartItemElement) => {
   }
 };
 
-const insertNewCartItem = (itemsContainer, variantId, imageUrl, productName, variantOptions) => {
+const insertNewCartItem = (itemsContainer, variantId, productImageElement, productName, variantOptions) => {
   const newCartItem = document.createElement("article");
   newCartItem.className = "cart-item";
   newCartItem.setAttribute("data-line-item-key", `temp-${variantId}`);
+  newCartItem.classList.add("cart-item--optimistic");
+
+  const imageContainer = document.createElement("div");
+  imageContainer.className = "cart-item__image";
+  if (productImageElement) {
+    imageContainer.appendChild(productImageElement);
+  }
 
   newCartItem.innerHTML = `
-    <div class="cart-item__image">
-      <img src="${imageUrl}" alt="${productName}" width="100" height="150">
-    </div>
     <div class="cart-item__content">
       <div class="cart-item__row">
         <div class="cart-item__details">
@@ -519,6 +544,7 @@ const insertNewCartItem = (itemsContainer, variantId, imageUrl, productName, var
     </div>
   `;
 
+  newCartItem.insertBefore(imageContainer, newCartItem.firstChild);
   itemsContainer.prepend(newCartItem);
 };
 
@@ -526,7 +552,7 @@ const showOptimisticCartUpdate = () => {
   const currentProductName = document.querySelector(".product-details__title")?.textContent || "";
   const selectedVariantId = document.querySelector("#js--variant-id")?.value || "";
   const selectedOptions = getSelectedVariantOptions();
-  const productImageUrl = getCurrentProductImage();
+  const productImageElement = getCurrentProductImageElement();
 
   showCartTotalsLoading();
   createSliderContainerIfMissing();
@@ -542,7 +568,7 @@ const showOptimisticCartUpdate = () => {
   if (existingVariantItem) {
     showExistingItemLoading(existingVariantItem);
   } else {
-    insertNewCartItem(cartItemsContainer, selectedVariantId, productImageUrl, currentProductName, selectedOptions);
+    insertNewCartItem(cartItemsContainer, selectedVariantId, productImageElement, currentProductName, selectedOptions);
   }
 
   refreshSliderWithCartProducts();
