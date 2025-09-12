@@ -1,4 +1,4 @@
-() => {
+(() => {
   const sectionId = document.currentScript.getAttribute("data-section-id");
   const autoplay = document.currentScript.getAttribute("data-autoplay");
   const interval = document.currentScript.getAttribute("data-slide-interval");
@@ -64,4 +64,4 @@
   });
 
   slider.mount();
-};
+})();
