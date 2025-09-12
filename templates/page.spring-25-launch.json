@@ -241,12 +241,27 @@
         "button_label": "Shop New Arrivals",
         "button_link": "shopify://collections/new-arrivals"
       }
+    },
+    "collection_slider_secondary_HJgmQF": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "New In Now",
+        "heading_animation": "none",
+        "description": "Layer up with premium wool/cashmere blends.",
+        "description_animation": "none",
+        "collection": "new-arrivals",
+        "button_label": "Shop Now",
+        "products_to_show": 10,
+        "animate_products": false
+      }
     }
   },
   "order": [
     "hero_slider_ULyNnz",
     "heading_with_text_zDqYQf",
     "variable_column_content_secondary_X9KJtx",
-    "variable_column_content_tertiary_XwmChF"
+    "variable_column_content_tertiary_XwmChF",
+    "collection_slider_secondary_HJgmQF"
   ]
 }
