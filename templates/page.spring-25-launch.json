@@ -84,7 +84,7 @@
             "image_link": "",
             "heading": "Spring Tailoring",
             "heading_animation": "none",
-            "text": "Fresh colours in lightweight premium textiles",
+            "text": "Fresh hues meet airy premium textiles, tailored in soft Neapolitan shapes designed for ease",
             "text_animation": "none",
             "column_link": "shopify://collections/mens-suits",
             "column_link_text": "Shop Suits"
@@ -93,10 +93,11 @@
         "column_item_tJc4WM": {
           "type": "column_item",
           "settings": {
+            "image": "shopify://shop_images/Spring_Casual_Hero_Desktop_copy.webp",
             "image_link": "",
-            "heading": "Column Heading",
+            "heading": "Casual Shirts",
             "heading_animation": "none",
-            "text": "Add a brief description for this column item.",
+            "text": "Denim, linen and fine cotton shirts lead the spring style refresh",
             "text_animation": "none",
             "column_link": "",
             "column_link_text": "Shop Now"
@@ -128,9 +129,9 @@
         "column_count": "3",
         "text_alignment": "left",
         "animate_columns": false,
-        "heading": "Variable Column Content Secondary",
+        "heading": "",
         "heading_animation": "none",
-        "text": "Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.",
+        "text": "",
         "text_animation": "none",
         "button_label": "Learn More",
         "button_link": ""
