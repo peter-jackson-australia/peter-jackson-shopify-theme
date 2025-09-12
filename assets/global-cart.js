@@ -685,6 +685,14 @@ function attachCartInteractionListeners() {
   document.querySelectorAll(".cart__close, .cart").forEach((closeElement) => {
     closeElement.addEventListener("click", hideCartDrawer);
   });
+
+  document.querySelectorAll(".cart-item__title a").forEach((titleLink) => {
+    titleLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      const cartDrawer = Alpine.$data(document.querySelector('[x-data="cartDrawer"]'));
+      cartDrawer.toggleSecondary();
+    });
+  });
 }
 
 // Initialisation
