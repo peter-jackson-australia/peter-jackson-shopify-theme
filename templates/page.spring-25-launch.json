@@ -73,9 +73,72 @@
         "autoplay": true,
         "slide_interval": 5
       }
+    },
+    "variable_column_content_secondary_X9KJtx": {
+      "type": "variable-column-content-secondary",
+      "blocks": {
+        "column_item_MXYNUN": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Spring_Suit_Hero_Desktop_copy.webp",
+            "image_link": "",
+            "heading": "Spring Tailoring",
+            "heading_animation": "none",
+            "text": "Fresh colours in lightweight premium textiles",
+            "text_animation": "none",
+            "column_link": "shopify://collections/mens-suits",
+            "column_link_text": "Shop Suits"
+          }
+        },
+        "column_item_tJc4WM": {
+          "type": "column_item",
+          "settings": {
+            "image_link": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_TGjtNg": {
+          "type": "column_item",
+          "settings": {
+            "image_link": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_MXYNUN",
+        "column_item_tJc4WM",
+        "column_item_TGjtNg"
+      ],
+      "name": "Variable Column Content Secondary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "3",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "Variable Column Content Secondary",
+        "heading_animation": "none",
+        "text": "Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
     }
   },
   "order": [
-    "hero_slider_ULyNnz"
+    "hero_slider_ULyNnz",
+    "variable_column_content_secondary_X9KJtx"
   ]
 }
