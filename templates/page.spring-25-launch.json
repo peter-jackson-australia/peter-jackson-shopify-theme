@@ -36,10 +36,37 @@
             "mobile_horizontal_alignment": "center",
             "mobile_vertical_alignment": "bottom"
           }
+        },
+        "slide_P9nnNj": {
+          "type": "slide",
+          "settings": {
+            "media_type": "image",
+            "desktop_image": "shopify://shop_images/Spring_Sports_Hero_Desktop_copy.webp",
+            "heading": "",
+            "svg_image": "shopify://shop_images/S25_Homepage_Hero_Desktop_941795f4-735a-4ebc-8c6a-c33a68263f78.svg",
+            "svg_size": "medium",
+            "heading_level": "h1",
+            "heading_animation": "none",
+            "description": "This season’s sports jackets are renewed and mark the moment to reset your wardrobe.",
+            "description_animation": "none",
+            "button_label_1": "Shop Sports Jackets",
+            "button_link_1": "shopify://collections/new-arrivals",
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_label_3": "",
+            "button_link_3": "",
+            "button_label_4": "",
+            "button_link_4": "",
+            "horizontal_alignment": "right",
+            "vertical_alignment": "middle",
+            "mobile_horizontal_alignment": "center",
+            "mobile_vertical_alignment": "bottom"
+          }
         }
       },
       "block_order": [
-        "slide_JGebxX"
+        "slide_JGebxX",
+        "slide_P9nnNj"
       ],
       "name": "Hero Slider",
       "settings": {
