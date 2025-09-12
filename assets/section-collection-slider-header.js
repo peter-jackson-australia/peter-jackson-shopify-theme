@@ -56,6 +56,10 @@
       spacer.style.display = "none";
     }
   });
+})();
+
+(() => {
+  const sectionId = document.currentScript.getAttribute("data-section-id");
 
   document
     .querySelectorAll(
