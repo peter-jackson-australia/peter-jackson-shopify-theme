@@ -255,6 +255,32 @@
         "products_to_show": 10,
         "animate_products": false
       }
+    },
+    "hero_primary_zeaCqL": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/Spring_Drop_1_Hero_Desktop_copy.webp",
+        "heading": "",
+        "svg_size": "medium",
+        "heading_level": "h1",
+        "heading_animation": "none",
+        "description": "THE FORMAL & EVENTWEAR EDIT",
+        "description_animation": "none",
+        "button_label_1": "Shop Now",
+        "button_link_1": "shopify://collections/tuxedos-and-formal-jackets",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "bottom",
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "bottom"
+      }
     }
   },
   "order": [
@@ -262,6 +288,7 @@
     "heading_with_text_zDqYQf",
     "variable_column_content_secondary_X9KJtx",
     "variable_column_content_tertiary_XwmChF",
-    "collection_slider_3p3hD9"
+    "collection_slider_3p3hD9",
+    "hero_primary_zeaCqL"
   ]
 }
