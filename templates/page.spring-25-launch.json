@@ -9,29 +9,6 @@
  */
 {
   "sections": {
-    "editorial_hero_hceC9g": {
-      "type": "editorial-hero",
-      "name": "Hero Editorial",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": false,
-        "leading_text": "",
-        "leading_text_animation": "none",
-        "first_title": "Discover",
-        "first_title_level": "h1",
-        "first_title_animation": "none",
-        "media_type": "image",
-        "animate_media": false,
-        "second_title": "Collection",
-        "second_title_level": "h1",
-        "second_title_animation": "none",
-        "description": "",
-        "description_animation": "none",
-        "cta_text": "Shop Now",
-        "cta_link": ""
-      }
-    },
     "hero_slider_ULyNnz": {
       "type": "hero-slider",
       "blocks": {
@@ -72,7 +49,6 @@
     }
   },
   "order": [
-    "editorial_hero_hceC9g",
     "hero_slider_ULyNnz"
   ]
 }
