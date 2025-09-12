@@ -2,9 +2,9 @@
   Collection Expandable Content Section
 {% endcomment %}
 
-<div class="collection-expandable-content">
-  {% assign collection_expandable_content = collection.metafields.custom.collection_expandable_content.value %}
+{% assign collection_expandable_content = collection.metafields.custom.collection_expandable_content.value %}
 
+<div class="collection-expandable-content">
   {% if collection_expandable_content %}
     {% for content_entry in collection_expandable_content %}
       {% assign associated_collection = content_entry.associated_collection.value %}
