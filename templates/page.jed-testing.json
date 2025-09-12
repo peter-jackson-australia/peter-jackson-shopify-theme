@@ -9,37 +9,33 @@
  */
 {
   "sections": {
-    "image_gallery_slider_CX8EbA": {
-      "type": "image-gallery-slider",
-      "blocks": {
-        "slide_gdztmT": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/mens-pants-khaki-SSTC02.webp"
-          }
-        },
-        "slide_xayjMj": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/mens-pants-khaki-SSTC02-4.webp"
-          }
-        }
-      },
-      "block_order": [
-        "slide_gdztmT",
-        "slide_xayjMj"
-      ],
-      "name": "Image Gallery Slider",
+    "hero_countdown_timer_fjRArk": {
+      "type": "hero-countdown-timer",
+      "name": "Hero Countdown Timer",
       "settings": {
-        "heading": "Testing",
-        "subtitle": "Subtitle",
-        "alignment": "left",
-        "show_top_border": false,
-        "show_bottom_border": false
+        "heading": "Limited Time Offer",
+        "heading_animation": "none",
+        "subheading": "Do not miss out on this special offer!",
+        "subheading_animation": "none",
+        "target_date": "2025-12-31T23:59:59",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "bottom",
+        "animate_timer_blocks": false,
+        "days_label": "Days",
+        "hours_label": "Hours",
+        "minutes_label": "Minutes",
+        "seconds_label": "Seconds",
+        "final_hours_threshold": 3,
+        "final_message": "Final hours! Do not miss out!",
+        "final_message_animation": "none",
+        "complete_message": "The countdown has ended!",
+        "complete_message_animation": "none",
+        "button_label": "",
+        "button_link": ""
       }
     }
   },
   "order": [
-    "image_gallery_slider_CX8EbA"
+    "hero_countdown_timer_fjRArk"
   ]
 }
