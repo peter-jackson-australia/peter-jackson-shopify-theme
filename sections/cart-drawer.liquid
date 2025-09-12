@@ -5,7 +5,6 @@
 {{ 'section-cart-drawer.css' | asset_url | stylesheet_tag }}
 
 <div x-data="cartDrawer" x-init="init()">
-  <div class="cart-overlay"></div>
   <aside class="cart" role="dialog" aria-labelledby="cart-title">
     <div class="cart__container">
       <header class="cart__header">
@@ -207,11 +206,6 @@
       {% endform %}
     </div>
   </aside>
-  <aside class="cart-secondary" role="dialog">
-    <div class="cart-secondary__container">
-      <h3>Product Details</h3>
-    </div>
-  </aside>
 </div>
 
 <script>
@@ -219,7 +213,6 @@
     Alpine.data('cartDrawer', () => ({
       isOpen: false,
       scrollY: 0,
-      secondaryOpen: false,
 
       init() {
         this.$nextTick(() => {
@@ -251,7 +244,6 @@
         this.isOpen = true;
         document.body.classList.add('cart-open');
         document.querySelector('.cart').classList.add('cart--active');
-        document.querySelector('.cart-overlay').classList.add('cart--active');
 
         if (window.closeMenu) {
           window.closeMenu(true);
@@ -264,7 +256,6 @@
         this.isOpen = false;
         document.body.classList.remove('cart-open');
         document.querySelector('.cart').classList.remove('cart--active');
-        document.querySelector('.cart-overlay').classList.remove('cart--active');
 
         const scrollY = Math.abs(parseInt(document.body.style.top || '0'));
 
@@ -276,14 +267,6 @@
         window.scrollTo(0, scrollY);
 
         document.documentElement.style.scrollBehavior = '';
-
-        this.secondaryOpen = false;
-        document.querySelector('.cart-secondary').classList.remove('cart-secondary--active');
-      },
-
-      toggleSecondary() {
-        this.secondaryOpen = !this.secondaryOpen;
-        document.querySelector('.cart-secondary').classList.toggle('cart-secondary--active');
       },
     }));
   });
