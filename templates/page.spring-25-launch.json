@@ -242,11 +242,11 @@
         "button_link": "shopify://collections/new-arrivals"
       }
     },
-    "collection_slider_secondary_HJgmQF": {
-      "type": "collection-slider-secondary",
-      "name": "Collection Slider Secondary",
+    "collection_slider_3p3hD9": {
+      "type": "collection-slider",
+      "name": "Collection Slider",
       "settings": {
-        "heading": "New In Now",
+        "heading": "Spring Style Refresh",
         "heading_animation": "none",
         "description": "Layer up with premium wool/cashmere blends.",
         "description_animation": "none",
@@ -262,6 +262,6 @@
     "heading_with_text_zDqYQf",
     "variable_column_content_secondary_X9KJtx",
     "variable_column_content_tertiary_XwmChF",
-    "collection_slider_secondary_HJgmQF"
+    "collection_slider_3p3hD9"
   ]
 }
