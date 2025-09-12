@@ -76,6 +76,7 @@
     },
     "heading_with_text_zDqYQf": {
       "type": "heading-with-text",
+      "disabled": true,
       "name": "Heading with Text",
       "settings": {
         "anchor_id": "",
@@ -131,12 +132,25 @@
             "column_link": "",
             "column_link_text": "Shop Now"
           }
+        },
+        "column_item_DXeb3W": {
+          "type": "column_item",
+          "settings": {
+            "image_link": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
         }
       },
       "block_order": [
         "column_item_MXYNUN",
         "column_item_tJc4WM",
-        "column_item_TGjtNg"
+        "column_item_TGjtNg",
+        "column_item_DXeb3W"
       ],
       "disabled": true,
       "name": "Variable Column Content Secondary",
@@ -220,12 +234,12 @@
         "column_count": "3",
         "text_alignment": "left",
         "animate_columns": false,
-        "heading": "Variable Column Content Tertiary",
+        "heading": "Spring Style Refresh",
         "heading_animation": "none",
-        "text": "Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.",
+        "text": "The new season brings a reset in style. Linen, cotton and lightweight wools shape suits, jackets, shirts and denim designed for ease, refinement and versatility through the season’s social calendar.",
         "text_animation": "none",
-        "button_label": "Learn More",
-        "button_link": ""
+        "button_label": "Shop New Arrivals",
+        "button_link": "shopify://collections/new-arrivals"
       }
     }
   },
