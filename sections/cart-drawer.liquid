@@ -1,198 +1,179 @@
-{% comment %}
-  AJAX Cart Sidebar Drawer
-{% endcomment %}
-
+{% comment %} AJAX Cart Sidebar Drawer {% endcomment %}
 {{ 'section-cart-drawer.css' | asset_url | stylesheet_tag }}
 
-<div class="cart-drawer-wrapper">
-  <aside class="cart" role="dialog" aria-labelledby="cart-title">
-    <div class="cart__container">
-      <header class="cart__header">
-        <h2 id="cart-title" class="cart__title heading--xl">Cart</h2>
-        <div class="cart__controls">
-          <button class="cart__close" type="button" aria-label="Close cart">
-            {% render '_icon-close' %}
-          </button>
-        </div>
-      </header>
+<aside class="cart" role="dialog" aria-labelledby="cart-title">
+  <div class="cart__container">
+    <header class="cart__header">
+      <h2 id="cart-title" class="cart__title heading--xl">Cart</h2>
+      <button class="cart__close" type="button" aria-label="Close cart">
+        {% render '_icon-close' %}
+      </button>
+    </header>
 
-      {% if localization.market.handle == 'au' %}
-        <div class="cart__shipping" style="display: none;">
-          <p class="cart__shipping-text small"></p>
-          <div class="cart__shipping-bar">
-            <div class="cart__shipping-progress"></div>
-          </div>
+    {% if localization.market.handle == 'au' %}
+      <div class="cart__shipping" style="display: none;">
+        <p class="cart__shipping-text small"></p>
+        <div class="cart__shipping-bar">
+          <div class="cart__shipping-progress"></div>
         </div>
-      {% endif %}
+      </div>
+    {% endif %}
 
-      {% form 'cart', cart, class: 'cart__form' %}
-        {% if cart.item_count == 0 %}
-          <div class="cart__empty-state custom-scrollbar">
-            <p class="cart__empty heading--l">Your Cart Is Empty</p>
-            {% assign new_arrivals = collections['mens-suits'] %}
-            {% if new_arrivals and new_arrivals.products.size > 0 %}
-              <div class="cart__new-arrivals-section">
-                <h3 class="cart__new-arrivals-section-title body">Shop Premium Merino Wool Suits from $399</h3>
-                <div class="cart__new-arrivals-grid">
-                  {% for product in new_arrivals.products limit: 4 %}
-                    <a href="{{ product.url }}" class="cart__new-arrivals-card">
-                      <div class="cart__new-arrivals-image-wrapper">
-                        {% if product.featured_image != blank %}
-                          {% assign image_aspect_ratio = product.featured_image.aspect_ratio | default: 1 %}
-                          {% assign image_height = 300 | divided_by: image_aspect_ratio | round %}
-                          {{
-                            product.featured_image
-                            | image_url: width: product.featured_image.width
-                            | image_tag:
-                              class: 'cart__new-arrivals-image',
-                              sizes: '(max-width: 768px) 150px, 300px',
-                              loading: 'lazy',
-                              decoding: 'async',
-                              alt: product.featured_image.alt
-                            | escape
-                            | default: product.title, width: 300, height: image_height
-                          }}
-                        {% endif %}
-                      </div>
-                      <h3 class="body--bold cart__new-arrivals-title">{{ product.title }}</h3>
-                      <p class="small cart__new-arrivals-price">
-                        <span class="cart__new-arrivals-price--current">{{ product.price | money_with_currency }}</span>
-                        {% if product.compare_at_price > product.price %}
-                          <span class="cart__new-arrivals-price--compare">
-                            {{- product.compare_at_price | money_with_currency -}}
-                          </span>
-                        {% endif %}
-                      </p>
-                    </a>
-                  {% endfor %}
-                </div>
-              </div>
-            {% endif %}
-            <a href="{{ routes.collections_url }}/mens-suits" class="cart__new-arrivals body">View Full Collection</a>
-          </div>
-        {% else %}
-          <div class="cart__content-wrapper custom-scrollbar">
-            <div class="cart__items">
-              {% for item in cart.items %}
-                <article
-                  class="cart-item"
-                  data-line-item-key="{{ item.key }}"
-                  data-inventory-quantity="{{ item.variant.inventory_quantity }}"
-                >
-                  <div class="cart-item__image">
-                    <img
-                      src="{{ item.image | image_url: width: '200x' }}"
-                      alt="{{ item.title }}"
-                      width="100"
-                      height="auto"
-                    >
-                  </div>
-                  <div class="cart-item__content">
-                    <div class="cart-item__row">
-                      <div class="cart-item__details">
-                        <h3 class="cart-item__title body--bold">
-                          <a href="{{ item.url }}">{{ item.product.title }}</a>
-                        </h3>
-                        <div class="cart-item__specifics">
-                          {% if item.variant.title != 'Default Title' %}
-                            <p class="cart-item__variant small">
-                              {% assign variant_parts = item.variant.title | split: ' / ' %}
-                              {% for option in item.product.options %}
-                                {% if forloop.index <= variant_parts.size %}
-                                  {% assign option_index = forloop.index | minus: 1 %}
-                                  {% assign option_value = variant_parts[option_index] %}
-                                  {{ option }}:
-                                  {% if option contains 'Size' and option_value contains '.0' -%}
-                                    {{- option_value | remove: '.0' -}}
-                                  {%- else -%}
-                                    {{- option_value -}}
-                                  {%- endif -%}
-                                  {%- unless forloop.last %}, {% endunless %}
-                                {% endif %}
-                              {% endfor %}
-                            </p>
-                          {% else %}
-                            <p class="cart-item__variant small">One Size</p>
-                          {% endif %}
-                          <div class="cart-item__price">
-                            <p class="small">{{ item.final_line_price | money_with_currency }}</p>
-                          </div>
-                        </div>
-                        <div class="cart-item__actions">
-                          <div class="cart-item__quantity">
-                            <button
-                              class="cart-item__quantity-button cart-item__quantity-button--minus body"
-                              type="button"
-                              aria-label="Decrease quantity"
-                            >
-                              -
-                            </button>
-                            <input
-                              type="text"
-                              class="cart-item__quantity-input small"
-                              readonly
-                              value="{{ item.quantity }}"
-                              aria-label="Quantity"
-                            >
-                            <button
-                              class="cart-item__quantity-button cart-item__quantity-button--plus body"
-                              type="button"
-                              aria-label="Increase quantity"
-                            >
-                              +
-                            </button>
-                          </div>
-                          <button type="button" class="cart-item__remove small">Remove</button>
-                        </div>
-                      </div>
+    {% form 'cart', cart, class: 'cart__form' %}
+      {% if cart.item_count == 0 %}
+        <div class="cart__empty-state custom-scrollbar">
+          <p class="cart__empty heading--l">Your Cart Is Empty</p>
+          {% assign new_arrivals = collections['mens-suits'] %}
+          {% if new_arrivals.products.size > 0 %}
+            <h3 class="cart__new-arrivals-section-title body">Shop Premium Merino Wool Suits from $399</h3>
+            <div class="cart__new-arrivals-grid">
+              {% for product in new_arrivals.products limit: 4 %}
+                <a href="{{ product.url }}" class="cart__new-arrivals-card">
+                  {% if product.featured_image %}
+                    <div class="cart__new-arrivals-image-wrapper">
+                      {{
+                        product.featured_image
+                        | image_url: width: 300
+                        | image_tag:
+                          class: 'cart__new-arrivals-image',
+                          sizes: '(max-width: 768px) 150px, 300px',
+                          loading: 'lazy',
+                          alt: product.featured_image.alt
+                      }}
                     </div>
-                  </div>
-                </article>
+                  {% endif %}
+                  <h3 class="body--bold cart__new-arrivals-title">{{ product.title }}</h3>
+                  <p class="small cart__new-arrivals-price">
+                    {{ product.price | money_with_currency }}
+                    {% if product.compare_at_price > product.price %}
+                      <span class="cart__new-arrivals-price--compare">
+                        {{- product.compare_at_price | money_with_currency -}}
+                      </span>
+                    {% endif %}
+                  </p>
+                </a>
               {% endfor %}
             </div>
+            <a href="{{ routes.collections_url }}/mens-suits" class="cart__new-arrivals body">View Full Collection</a>
+          {% endif %}
+        </div>
+      {% else %}
+        <div class="cart__content-wrapper custom-scrollbar">
+          <div class="cart__items">
+            {% for item in cart.items %}
+              <article
+                class="cart-item"
+                data-line-item-key="{{ item.key }}"
+                data-inventory-quantity="{{ item.variant.inventory_quantity }}"
+              >
+                <div class="cart-item__image">
+                  <img
+                    src="{{ item.image | image_url: width: '200x' }}"
+                    width="200"
+                    height="150"
+                    alt="{{ item.title }}"
+                  >
+                </div>
+                <div class="cart-item__content">
+                  <div class="cart-item__details">
+                    <h3 class="cart-item__title body--bold">
+                      <a href="{{ item.url }}">{{ item.product.title }}</a>
+                    </h3>
+                    <div class="cart-item__specifics">
+                      <p class="cart-item__variant small">
+                        {% if item.variant.title != 'Default Title' %}
+                          {% assign variant_parts = item.variant.title | split: ' / ' %}
+                          {% for option in item.product.options %}
+                            {% if forloop.index <= variant_parts.size %}
+                              {% assign option_value = variant_parts[forloop.index0] %}
+                              {{ option }}:
+                              {% if option contains 'Size' -%}
+                                {{- option_value | remove: '.0' -}}
+                              {%- else -%}
+                                {{- option_value -}}
+                              {%- endif -%}
+                              {%- unless forloop.last %}, {% endunless %}
+                            {% endif %}
+                          {% endfor %}
+                        {% else %}
+                          One Size
+                        {% endif %}
+                      </p>
+                      <div class="cart-item__price">
+                        <p class="small">{{ item.final_line_price | money_with_currency }}</p>
+                      </div>
+                    </div>
+                    <div class="cart-item__actions">
+                      <div class="cart-item__quantity">
+                        <button
+                          class="cart-item__quantity-button cart-item__quantity-button--minus body"
+                          type="button"
+                          aria-label="Decrease quantity"
+                        >
+                          -
+                        </button>
+                        <input
+                          type="text"
+                          class="cart-item__quantity-input small"
+                          readonly
+                          value="{{ item.quantity }}"
+                          aria-label="Quantity"
+                        >
+                        <button
+                          class="cart-item__quantity-button cart-item__quantity-button--plus body"
+                          type="button"
+                          aria-label="Increase quantity"
+                        >
+                          +
+                        </button>
+                      </div>
+                      <button type="button" class="cart-item__remove small">Remove</button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            {% endfor %}
+          </div>
 
-            <div class="cart__complementary-products" style="display: none;">
-              <div class="cart__complementary-products-loading"></div>
-              <div class="cart__complementary-products-content" style="display: none;">
-                <h3 class="cart__complementary-products-title heading--l">Complement Your Look</h3>
-                <div class="cart__complementary-products-slider splide">
-                  <div class="splide__arrows">
-                    <button class="splide__arrow splide__arrow--prev" type="button">
-                      {% render '_icon-arrow-see-less' %}
-                    </button>
-                    <button class="splide__arrow splide__arrow--next" type="button">
-                      {% render '_icon-arrow-see-more' %}
-                    </button>
-                  </div>
-                  <div class="splide__track">
-                    <ul class="splide__list"></ul>
-                  </div>
+          <div class="cart__complementary-products" style="display: none;">
+            <div class="cart__complementary-products-loading"></div>
+            <div class="cart__complementary-products-content" style="display: none;">
+              <h3 class="cart__complementary-products-title heading--l">Complement Your Look</h3>
+              <div class="cart__complementary-products-slider splide">
+                <div class="splide__arrows">
+                  <button class="splide__arrow splide__arrow--prev" type="button">
+                    {% render '_icon-arrow-see-less' %}
+                  </button>
+                  <button class="splide__arrow splide__arrow--next" type="button">
+                    {% render '_icon-arrow-see-more' %}
+                  </button>
+                </div>
+                <div class="splide__track">
+                  <ul class="splide__list"></ul>
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <footer class="cart__footer">
-            {% if cart.total_discounts > 0 %}
-              <div class="cart__footer-row">
-                <h3 class="cart__footer-label body">Discounts</h3>
-                <span class="cart__footer-value body--bold">{{ cart.total_discounts | money_with_currency }}</span>
-              </div>
-            {% endif %}
+        <footer class="cart__footer">
+          {% if cart.total_discounts > 0 %}
             <div class="cart__footer-row">
-              <h3 class="cart__footer-label body">Subtotal</h3>
-              <span class="cart__footer-value body--bold">{{ cart.total_price | money_with_currency }}</span>
+              <h3 class="cart__footer-label body">Discounts</h3>
+              <span class="cart__footer-value body--bold">{{ cart.total_discounts | money_with_currency }}</span>
             </div>
-            <button type="submit" name="checkout" class="cart__checkout body">Checkout</button>
-          </footer>
-        {% endif %}
-      {% endform %}
-    </div>
-  </aside>
-</div>
+          {% endif %}
+          <div class="cart__footer-row">
+            <h3 class="cart__footer-label body">Subtotal</h3>
+            <span class="cart__footer-value body--bold">{{ cart.total_price | money_with_currency }}</span>
+          </div>
+          <button type="submit" name="checkout" class="cart__checkout body">Checkout</button>
+        </footer>
+      {% endif %}
+    {% endform %}
+  </div>
+</aside>
 
 {% schema %}
-{
-  "name": "Cart drawer"
-}
+{ "name": "Cart drawer" }
 {% endschema %}
