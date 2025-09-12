@@ -13,6 +13,7 @@
       "type": "hero-countdown-timer",
       "name": "Hero Countdown Timer",
       "settings": {
+        "background_image": "shopify://shop_images/mens-blazer-blue-wool-SU25-SP16-32.webp",
         "heading": "Limited Time Offer",
         "heading_animation": "none",
         "subheading": "Do not miss out on this special offer!",
