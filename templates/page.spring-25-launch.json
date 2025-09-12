@@ -230,16 +230,16 @@
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
-        "show_bottom_border": false,
+        "show_bottom_border": true,
         "column_count": "3",
         "text_alignment": "left",
         "animate_columns": false,
-        "heading": "Spring Style Refresh",
+        "heading": "",
         "heading_animation": "none",
         "text": "The new season brings a reset in style. Linen, cotton and lightweight wools shape suits, jackets, shirts and denim designed for ease, refinement and versatility through the season’s social calendar.",
         "text_animation": "none",
-        "button_label": "Shop New Arrivals",
-        "button_link": "shopify://collections/new-arrivals"
+        "button_label": "",
+        "button_link": ""
       }
     },
     "collection_slider_3p3hD9": {
@@ -248,7 +248,7 @@
       "settings": {
         "heading": "Spring Style Refresh",
         "heading_animation": "none",
-        "description": "Layer up with premium wool/cashmere blends.",
+        "description": "The new season brings a reset in style. Linen, cotton and lightweight wools shape suits, jackets, shirts and denim designed for ease, refinement and versatility through the season’s social calendar.",
         "description_animation": "none",
         "collection": "new-arrivals",
         "button_label": "Shop Now",
