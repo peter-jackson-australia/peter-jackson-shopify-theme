@@ -151,24 +151,11 @@
     </div>
   </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const splideElement = document.querySelector('#section-{{ section.id }} .related-articles__slider');
-
-      if (splideElement && window.innerWidth <= 768) {
-        new Splide(splideElement, {
-          perPage: 1,
-          type: 'loop',
-          gap: 'var(--space-2xs)',
-          arrows: true,
-          pagination: false,
-          drag: true,
-          snap: true,
-          autoWidth: false,
-        }).mount();
-      }
-    });
-  </script>
+  <script
+    src="{{ "section-related-content.js" | asset_url }}"
+    data-section-id="{{ section.id }}"
+    defer
+  ></script>
 {% endif %}
 
 {% schema %}

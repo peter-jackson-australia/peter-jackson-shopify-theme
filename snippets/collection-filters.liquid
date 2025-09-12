@@ -496,10 +496,8 @@
   <div class="filter__footer">
     <button type="submit" class="filter__apply-button body">Apply Filters</button>
   </div>
-  <script>
-    document.querySelector('.filter').addEventListener('submit', function (e) {
-      const button = document.querySelector('.filter__apply-button');
-      button.innerHTML = `<span class="loader--spinner"></span>`;
-    });
-  </script>
+  <script
+    src="{{ "snippet-collection-filter.js" | asset_url }}"
+    defer
+  ></script>
 </form>

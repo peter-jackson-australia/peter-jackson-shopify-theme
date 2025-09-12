@@ -126,23 +126,11 @@
   </div>
 
   {% if shop_the_look_count > 1 %}
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        const splideElement = document.querySelector('#section-{{ section.id }} .shop-the-look__slider');
-
-        if (splideElement) {
-          new Splide(splideElement, {
-            perPage: 1,
-            type: 'loop',
-            gap: 'var(--space-m)',
-            arrows: true,
-            pagination: false,
-            drag: true,
-            snap: true,
-          }).mount();
-        }
-      });
-    </script>
+    <script
+      src="{{ "section-shop-the-look.js" | asset_url }}"
+      data-section-id="{{ section.id }}"
+      defer
+    ></script>
   {% endif %}
 {% endif %}
 
