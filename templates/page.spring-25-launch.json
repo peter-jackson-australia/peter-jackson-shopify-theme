@@ -283,6 +283,40 @@
         "mobile_horizontal_alignment": "center",
         "mobile_vertical_alignment": "bottom"
       }
+    },
+    "spacer_wCQ8WH": {
+      "type": "spacer",
+      "name": "Spacer",
+      "settings": {
+        "spacer_height": "var(--space-s)"
+      }
+    },
+    "hero_primary_WLbcQ7": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/SS25_Wedding_1.webp",
+        "heading": "",
+        "svg_image": "shopify://shop_images/MOD_HP_Heading_a2545755-65f2-4fbe-9d1e-cfd88fdde7ed.svg",
+        "svg_size": "medium",
+        "heading_level": "h1",
+        "heading_animation": "none",
+        "description": "For the ceremony, the celebration, the forever.",
+        "description_animation": "none",
+        "button_label_1": "Shop Weddings",
+        "button_link_1": "shopify://blogs/the-jackson-journal/moments-of-distinction-the-wedding-edit",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "middle",
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "bottom"
+      }
     }
   },
   "order": [
@@ -291,6 +325,8 @@
     "variable_column_content_secondary_X9KJtx",
     "variable_column_content_tertiary_XwmChF",
     "collection_slider_3p3hD9",
-    "hero_primary_zeaCqL"
+    "hero_primary_zeaCqL",
+    "spacer_wCQ8WH",
+    "hero_primary_WLbcQ7"
   ]
 }
