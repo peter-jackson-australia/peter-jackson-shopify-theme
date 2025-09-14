@@ -119,6 +119,10 @@
   max-width: min(900px, 90vw);
 }
 
+.hero-slider__svg--full {
+  max-width: min(0, 90vw);
+}
+
 .hero-slider__svg--mobile {
   display: none;
 }
