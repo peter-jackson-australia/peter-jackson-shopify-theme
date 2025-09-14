@@ -20,6 +20,7 @@
             "heading": "",
             "svg_image": "shopify://shop_images/S25_Homepage_Hero.svg",
             "svg_size": "large",
+            "mobile_svg_image": "shopify://shop_images/S25_Homepage_Hero_Mobile.svg",
             "heading_level": "h1",
             "heading_animation": "none",
             "description": "The season of renewal is here.Explore our Spring collection of tailoring and elevated everyday essentials.",
