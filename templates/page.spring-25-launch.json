@@ -16,9 +16,10 @@
           "type": "slide",
           "settings": {
             "media_type": "image",
-            "desktop_image": "shopify://shop_images/Spring_Hero_Desktop_copy.webp",
+            "desktop_image": "shopify://shop_images/Spring_Hero_Desktop.webp",
             "heading": "",
-            "svg_size": "medium",
+            "svg_image": "shopify://shop_images/S25_Homepage_Hero.svg",
+            "svg_size": "large",
             "heading_level": "h1",
             "heading_animation": "none",
             "description": "The season of renewal is here.Explore our Spring collection of tailoring and elevated everyday essentials.",
@@ -32,7 +33,7 @@
             "button_label_4": "",
             "button_link_4": "",
             "horizontal_alignment": "center",
-            "vertical_alignment": "bottom",
+            "vertical_alignment": "middle",
             "mobile_horizontal_alignment": "center",
             "mobile_vertical_alignment": "bottom"
           }
