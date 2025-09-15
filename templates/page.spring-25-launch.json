@@ -361,6 +361,14 @@
         "mobile_horizontal_alignment": "center",
         "mobile_vertical_alignment": "bottom"
       }
+    },
+    "featured_article_r6pY9T": {
+      "type": "featured-article",
+      "name": "Featured Articles",
+      "settings": {
+        "heading": "FROM THE JACKSON JOURNAL",
+        "heading_alignment": "center"
+      }
     }
   },
   "order": [
@@ -373,6 +381,7 @@
     "spacer_wCQ8WH",
     "hero_primary_WLbcQ7",
     "spacer_yr6m7M",
-    "hero_primary_kTJdhq"
+    "hero_primary_kTJdhq",
+    "featured_article_r6pY9T"
   ]
 }
