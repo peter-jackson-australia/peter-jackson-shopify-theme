@@ -16,14 +16,14 @@
     "announcement": {
       "settings": {},
       "blocks": {
+        "announcement_tnUYFL": {
+          "settings": {
+            "text": "<a href=\"/collections/spring-25\" title=\"Spring 25\">Spring Collection | Now Online</a>"
+          }
+        },
         "announcement_mQFJhL": {
           "settings": {
             "text": "<a href=\"/collections/sale\" title=\"Sale\">End Of Season Sale | Up to 40% Off* | Last Days</a>"
-          }
-        },
-        "announcement_tnUYFL": {
-          "settings": {
-            "text": "Spring Collection | Now Online"
           }
         },
         "announcement_ny4ip": {
