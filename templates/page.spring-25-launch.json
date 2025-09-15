@@ -34,7 +34,7 @@
             "button_label_4": "",
             "button_link_4": "",
             "horizontal_alignment": "center",
-            "vertical_alignment": "middle",
+            "vertical_alignment": "stretch",
             "mobile_horizontal_alignment": "center",
             "mobile_vertical_alignment": "bottom"
           }
