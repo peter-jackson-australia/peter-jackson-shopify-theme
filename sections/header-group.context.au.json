@@ -16,6 +16,11 @@
     "announcement": {
       "settings": {},
       "blocks": {
+        "announcement_mQFJhL": {
+          "settings": {
+            "text": "<a href=\"/collections/sale\" title=\"Sale\">End Of Season Sale | Up to 40% Off* | Last Days</a>"
+          }
+        },
         "announcement_ny4ip": {
           "type": "announcement",
           "disabled": false,
@@ -24,9 +29,9 @@
             "alignment": "center"
           }
         },
-        "announcement_mQFJhL": {
+        "announcement_tnUYFL": {
           "settings": {
-            "text": "<a href=\"/collections/sale\" title=\"Sale\">End Of Season Sale | Up to 40% Off* | Last Days</a>"
+            "text": "Spring Collection | Now Online"
           }
         }
       },
