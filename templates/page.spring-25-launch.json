@@ -267,9 +267,10 @@
       "settings": {
         "media_type": "image",
         "desktop_image": "shopify://shop_images/Spring_After_Dark_Desktop.webp",
+        "mobile_image": "shopify://shop_images/Spring_After_Dark_Mobile.webp",
         "heading": "",
         "svg_image": "shopify://shop_images/S25_Homepage_After_Dark_Desktop.svg",
-        "svg_size": "medium",
+        "svg_size": "full",
         "heading_level": "h1",
         "heading_animation": "none",
         "description": "THE FORMAL & EVENTWEAR EDIT",
@@ -283,7 +284,7 @@
         "button_label_4": "",
         "button_link_4": "",
         "horizontal_alignment": "center",
-        "vertical_alignment": "middle",
+        "vertical_alignment": "stretch",
         "mobile_horizontal_alignment": "center",
         "mobile_vertical_alignment": "bottom"
       }
