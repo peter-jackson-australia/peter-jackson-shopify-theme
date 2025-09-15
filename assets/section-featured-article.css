@@ -72,6 +72,11 @@
     padding: 0 var(--space-m);
   }
 
+  .featured-article__heading--center,
+  .featured-article__heading--right {
+    text-align: left;
+  }
+
   .featured-article__title,
   .featured-article__read-more {
     padding-left: 0 !important;
