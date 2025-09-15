@@ -203,7 +203,7 @@
             "content_horizontal_alignment": "center",
             "content_vertical_alignment": "center",
             "column_link": "shopify://collections/casual-shirts",
-            "column_link_text": "Shop from $69.95"
+            "column_link_text": "Shop from $89.95"
           }
         },
         "column_item_TdMYVf": {
@@ -263,8 +263,9 @@
       "name": "Hero Section",
       "settings": {
         "media_type": "image",
-        "desktop_image": "shopify://shop_images/Spring_Drop_1_Hero_Desktop_copy.webp",
+        "desktop_image": "shopify://shop_images/Spring_After_Dark_Desktop.webp",
         "heading": "",
+        "svg_image": "shopify://shop_images/S25_Homepage_After_Dark_Desktop.svg",
         "svg_size": "medium",
         "heading_level": "h1",
         "heading_animation": "none",
@@ -279,7 +280,7 @@
         "button_label_4": "",
         "button_link_4": "",
         "horizontal_alignment": "center",
-        "vertical_alignment": "bottom",
+        "vertical_alignment": "middle",
         "mobile_horizontal_alignment": "center",
         "mobile_vertical_alignment": "bottom"
       }
