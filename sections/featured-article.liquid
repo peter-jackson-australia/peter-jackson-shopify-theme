@@ -22,9 +22,12 @@
                   {% if article.image %}
                     <div class="featured-article__image-wrapper">
                       <img
-                        src="{{ article.image | image_url: width: 600 }}"
+                        src="{{ article.image | image_url: width: 561 }}"
                         alt="{{ article.image.alt | escape }}"
                         loading="lazy"
+                        ,
+                        sizes="(max-width: 561px) 400px, 561px"
+                        ,
                         width="{{ article.image.width }}"
                         height="{{ article.image.height }}"
                         class="featured-article__image"
