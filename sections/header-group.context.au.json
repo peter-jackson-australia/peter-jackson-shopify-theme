@@ -21,6 +21,11 @@
             "text": "<a href=\"/collections/sale\" title=\"Sale\">End Of Season Sale | Up to 40% Off* | Last Days</a>"
           }
         },
+        "announcement_tnUYFL": {
+          "settings": {
+            "text": "Spring Collection | Now Online"
+          }
+        },
         "announcement_ny4ip": {
           "type": "announcement",
           "disabled": false,
@@ -28,16 +33,11 @@
             "text": "<a href=\"/collections/mens-suits\" title=\"Suits\">Merino Wool Suits starting from $399</a>",
             "alignment": "center"
           }
-        },
-        "announcement_tnUYFL": {
-          "settings": {
-            "text": "Spring Collection | Now Online"
-          }
         }
       },
       "block_order": [
-        "announcement_mQFJhL",
         "announcement_tnUYFL",
+        "announcement_mQFJhL",
         "announcement_ny4ip"
       ]
     }
