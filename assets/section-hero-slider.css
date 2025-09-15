@@ -210,6 +210,8 @@
     padding-top: 0;
     top: auto;
     transform: none;
+    grid-template-rows: 1fr !important;
+    height: auto !important;
   }
 
   .hero-slider__svg--desktop {
