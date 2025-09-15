@@ -71,6 +71,13 @@
   transform: translateY(-50%);
 }
 
+.hero__content--stretch {
+  bottom: 0;
+  grid-template-rows: 1fr auto auto;
+  height: 50%;
+  padding-bottom: var(--space-2xl);
+}
+
 .hero__content--bottom {
   bottom: 0;
   padding-bottom: var(--space-2xl);
@@ -96,6 +103,10 @@
 
 .hero__svg--large {
   max-width: min(900px, 90vw);
+}
+
+.hero__svg--full {
+  max-width: min(0, 90vw);
 }
 
 .hero__svg--mobile {
@@ -142,6 +153,8 @@
 
   .hero__content--mobile-bottom {
     bottom: 0;
+    grid-template-rows: 1fr !important;
+    height: auto !important;
     padding-bottom: var(--space-xl);
     padding-top: 0;
     top: auto;
