@@ -96,7 +96,8 @@
                 class="hero-slider__svg hero-slider__svg--{{ block.settings.svg_size | default: 'medium' }} hero-slider__svg--desktop"
                 width="{{ block.settings.svg_image.width }}"
                 height="{{ block.settings.svg_image.height }}"
-                loading="lazy"
+                loading="eager"
+                fetchpriority="high"
               >
               {% if block.settings.mobile_svg_image %}
                 <img
@@ -105,7 +106,8 @@
                   class="hero-slider__svg hero-slider__svg--{{ block.settings.svg_size | default: 'medium' }} hero-slider__svg--mobile"
                   width="{{ block.settings.mobile_svg_image.width }}"
                   height="{{ block.settings.mobile_svg_image.height }}"
-                  loading="lazy"
+                  loading="eager"
+                  fetchpriority="high"
                 >
               {% endif %}
             {% elsif block.settings.heading %}
