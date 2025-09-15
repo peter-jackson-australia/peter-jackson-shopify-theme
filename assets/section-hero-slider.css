@@ -86,7 +86,7 @@
   transform: translateY(-50%);
 }
 
-.hero-slider__content--middle-to-bottom {
+.hero-slider__content--stretch {
   bottom: 0;
   grid-template-rows: 1fr auto auto;
   height: 50%;
