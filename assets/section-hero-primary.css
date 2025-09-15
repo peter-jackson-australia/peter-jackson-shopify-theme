@@ -106,7 +106,7 @@
 }
 
 .hero__svg--full {
-  max-width: min(0, 90vw);
+  max-width: min(100%, 90vw);
 }
 
 .hero__svg--mobile {
