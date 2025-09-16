@@ -194,8 +194,16 @@
   transition: opacity 200ms ease-out;
 }
 
-.search-state-transition[x-cloak] {
+.search-state-transition.hidden {
+  display: none !important;
+}
+
+.search-state-transition.fade-out {
   opacity: 0;
+}
+
+.search-state-transition.fade-in {
+  opacity: 1;
 }
 
 .sub-drawer-trigger {
