@@ -11,26 +11,30 @@
   let dom = {};
 
   const initializeElements = () => {
-    dom = {
-      drawer: document.getElementById("searchDrawer"),
-      container: document.querySelector(".search-drawer__container"),
-      closeBtn: document.querySelector(".search-drawer__close"),
-      searchInput: document.getElementById("search"),
-      loading: document.getElementById("searchLoading"),
-      noResults: document.getElementById("noResultsContainer"),
-      noResultsBtn: document.getElementById("noResultsSearchButton"),
-      results: document.getElementById("searchResultsContainer"),
-      productResults: document.getElementById("productResults"),
-      productList: document.getElementById("productResultsList"),
-      collectionResults: document.getElementById("collectionResults"),
-      collectionList: document.getElementById("collectionResultsList"),
-      searchBtn: document.getElementById("searchResultsButton"),
-      popularSearches: document.getElementById("popularSearches"),
-      subDrawerTrigger: document.getElementById("subDrawerTrigger"),
-      subDrawer: document.getElementById("subDrawer"),
-      subDrawerBack: document.getElementById("subDrawerBack"),
-      newArrivals: document.getElementById("newArrivals"),
-    };
+    const ids = [
+      "searchDrawer",
+      "searchLoading",
+      "noResultsContainer",
+      "noResultsSearchButton",
+      "searchResultsContainer",
+      "productResults",
+      "productResultsList",
+      "collectionResults",
+      "collectionResultsList",
+      "searchResultsButton",
+      "popularSearches",
+      "subDrawerTrigger",
+      "subDrawer",
+      "subDrawerBack",
+      "newArrivals",
+      "search",
+    ];
+
+    ids.forEach((id) => (dom[id] = document.getElementById(id)));
+
+    dom.container = document.querySelector(".search-drawer__container");
+    dom.closeBtn = document.querySelector(".search-drawer__close");
+    dom.searchInput = dom.search;
   };
 
   const toggleElement = (el, show, opacity = "1") => {
@@ -46,8 +50,8 @@
     if (callback) setTimeout(callback, opacity === "0" ? 200 : 10);
   };
 
-  const toggleElements = (elements, show, fade = false) => {
-    elements.forEach((key) => {
+  const toggleElements = (keys, show, fade = false) => {
+    keys.forEach((key) => {
       if (dom[key]) {
         toggleElement(dom[key], show, fade ? "0" : "1");
         if (fade && show) setTimeout(() => (dom[key].style.opacity = "1"), 10);
@@ -56,36 +60,32 @@
   };
 
   const clearTimeouts = () => {
-    clearTimeout(state.timeouts.search);
-    clearTimeout(state.timeouts.loading);
-    state.timeouts.fade.forEach(clearTimeout);
-    state.timeouts.fade = [];
-  };
-
-  const abortCurrentRequest = () => {
-    if (state.controller) {
-      state.controller.abort();
-      state.controller = null;
-    }
+    Object.values(state.timeouts).flat().forEach(clearTimeout);
+    state.timeouts = { search: null, loading: null, fade: [] };
   };
 
   const showDefaultContent = (fade = false) => {
-    ["loading", "noResults", "results", "productResults", "collectionResults", "searchBtn"].forEach((key) =>
-      toggleElement(dom[key], false)
-    );
+    [
+      "searchLoading",
+      "noResultsContainer",
+      "searchResultsContainer",
+      "productResults",
+      "collectionResults",
+      "searchResultsButton",
+    ].forEach((key) => toggleElement(dom[key], false));
     toggleElements(["popularSearches", "subDrawerTrigger", "newArrivals"], true, fade);
   };
 
   const hideDefaultContent = () => {
     ["popularSearches", "subDrawerTrigger", "newArrivals"].forEach((key) => {
-      if (dom[key]) {
-        dom[key].style.opacity = "0";
-        const timeout = setTimeout(() => {
+      if (!dom[key]) return;
+      dom[key].style.opacity = "0";
+      state.timeouts.fade.push(
+        setTimeout(() => {
           dom[key].style.display = "none";
           dom[key].classList.add("hidden");
-        }, 200);
-        state.timeouts.fade.push(timeout);
-      }
+        }, 200)
+      );
     });
   };
 
@@ -102,22 +102,19 @@
     }
 
     document.body.classList.add("search-open");
-    dom.drawer.classList.add("search-drawer--active");
+    dom.searchDrawer?.classList.add("search-drawer--active");
     showDefaultContent();
-    if (window.closeMenu) window.closeMenu(true);
-    setTimeout(() => dom.searchInput?.focus(), 400);
+    setTimeout(() => dom.searchInput?.focus(), 300);
   };
 
   const closeSearchDrawer = () => {
-    state.subDrawerOpen = false;
-    state.query = "";
-    state.isLoading = false;
+    Object.assign(state, { subDrawerOpen: false, query: "", isLoading: false });
     if (dom.searchInput) dom.searchInput.value = "";
 
     dom.subDrawer?.classList.remove("sub-drawer--active");
     showDefaultContent();
     document.body.classList.remove("search-open");
-    dom.drawer?.classList.remove("search-drawer--active");
+    dom.searchDrawer?.classList.remove("search-drawer--active");
 
     document.documentElement.style.scrollBehavior = "auto";
     Object.assign(document.body.style, { position: "", top: "", width: "" });
@@ -143,7 +140,7 @@
       { type: "product", plural: "products", showImage: true },
       { type: "collection", plural: "collections", showImage: false },
     ].forEach(({ type, plural, showImage }) => {
-      const list = dom[`${type}List`];
+      const list = dom[`${type}ResultsList`];
       const container = dom[`${type}Results`];
       const items = results[plural];
 
@@ -151,35 +148,32 @@
       list.innerHTML = "";
 
       if (items?.length > 0) {
-        items.forEach((item) => {
-          const li = document.createElement("li");
-          li.className = "predictive-search__item";
+        const html = items
+          .map((item) => {
+            const baseUrl = item.image?.replace(/width=\d+/, "") || "";
+            const sep = baseUrl.includes("?") ? "&" : "?";
+            const imgHtml =
+              showImage && item.image
+                ? `
+              <div class="predictive-search__image-container">
+                <img src="${item.image}" 
+                  srcset="${baseUrl}${sep}width=80 1x, ${baseUrl}${sep}width=160 2x, ${baseUrl}${sep}width=240 3x"
+                  alt="${item.title}" class="predictive-search__image" 
+                  loading="eager" fetchpriority="high" decoding="async"
+                  width="40" height="40">
+              </div>`
+                : "";
 
-          let imageHtml = "";
-          if (showImage && item.image) {
-            const baseUrl = item.image.replace(/width=\d+/, "");
-            const separator = baseUrl.includes("?") ? "&" : "?";
-            imageHtml = `
-                  <div class="predictive-search__image-container">
-                    <img src="${baseUrl}${separator}width=80" 
-                      srcset="${baseUrl}${separator}width=80 1x, ${baseUrl}${separator}width=160 2x, ${baseUrl}${separator}width=240 3x"
-                      alt="${item.title}" 
-                      class="predictive-search__image" 
-                      loading="eager" 
-                      fetchpriority="high"
-                      decoding="async"
-                      width="40" 
-                      height="40">
-                  </div>`;
-          }
-
-          li.innerHTML = `
+            return `<li class="predictive-search__item">
               <a href="${item.url}" class="predictive-search__link">
-                ${imageHtml}
+                ${imgHtml}
                 <span class="predictive-search__text body">${item.title}</span>
-              </a>`;
-          list.appendChild(li);
-        });
+              </a>
+            </li>`;
+          })
+          .join("");
+
+        list.innerHTML = html;
         container.style.display = "block";
       } else {
         container.style.display = "none";
@@ -187,9 +181,9 @@
     });
 
     const hasResults = results.products.length || results.collections.length;
-    if (dom.searchBtn) {
-      dom.searchBtn.textContent = `Search for '${state.query}'`;
-      dom.searchBtn.style.display = hasResults ? "block" : "none";
+    if (dom.searchResultsButton) {
+      dom.searchResultsButton.textContent = `Search for '${state.query}'`;
+      dom.searchResultsButton.style.display = hasResults ? "block" : "none";
     }
   };
 
@@ -204,56 +198,57 @@
       );
 
       if (!response.ok) throw new Error("Search failed");
-
       const data = await response.json();
       const results = { products: [], collections: [] };
+      const imagePreloads = [];
 
       ["products", "collections"].forEach((type) => {
         const items = data.resources?.results?.[type] || [];
-        results[type] = items.map((item, index) => {
-          let imageUrl = null;
-          if (item.image) {
-            imageUrl = item.image.replace(/width=\d+/, "width=80");
+        results[type] = items.map((item) => {
+          if (item.image && type === "products") {
+            const baseUrl = item.image.replace(/width=\d+/, "");
+            const sep = baseUrl.includes("?") ? "&" : "?";
 
-            if (type === "products" && index < 3) {
-              const link = document.createElement("link");
-              link.rel = "preload";
-              link.as = "image";
-              link.href = imageUrl;
-              document.head.appendChild(link);
-            }
+            [80, 160, 240].forEach((size) => {
+              const img = new Image();
+              img.src = `${baseUrl}${sep}width=${size}`;
+              imagePreloads.push(img.decode().catch(() => {}));
+            });
+
+            return {
+              url: item.url,
+              title: item.title,
+              image: `${baseUrl}${sep}width=80`,
+            };
           }
-
-          return {
-            id: item.id,
-            url: item.url,
-            title: item.title,
-            image: imageUrl,
-          };
+          return { url: item.url, title: item.title, image: item.image?.replace(/width=\d+/, "width=80") };
         });
       });
 
       results.collections = results.collections.slice(0, 3);
+
+      await Promise.all(imagePreloads);
+
       state.isLoading = false;
 
-      fadeElement(dom.loading, "0", () => {
-        toggleElement(dom.loading, false);
+      fadeElement(dom.searchLoading, "0", () => {
+        toggleElement(dom.searchLoading, false);
         renderSearchResults(results);
 
         const hasResults = results.products.length || results.collections.length;
-        if (!hasResults) {
-          if (dom.noResultsBtn) dom.noResultsBtn.textContent = `Search for '${query}'`;
-          toggleElement(dom.noResults, true, "0");
-          fadeElement(dom.noResults, "1");
-        } else {
-          toggleElement(dom.results, true, "0");
-          fadeElement(dom.results, "1");
+        const target = hasResults ? dom.searchResultsContainer : dom.noResultsContainer;
+
+        if (!hasResults && dom.noResultsSearchButton) {
+          dom.noResultsSearchButton.textContent = `Search for '${query}'`;
         }
+
+        toggleElement(target, true, "0");
+        setTimeout(() => fadeElement(target, "1"), 10);
       });
     } catch (error) {
       if (error.name !== "AbortError") {
         state.isLoading = false;
-        fadeElement(dom.loading, "0", () => toggleElement(dom.loading, false));
+        fadeElement(dom.searchLoading, "0", () => toggleElement(dom.searchLoading, false));
       }
     } finally {
       state.controller = null;
@@ -261,18 +256,22 @@
   };
 
   const handleSearchInput = (e) => {
-    const query = e.target.value;
-    state.query = query;
+    const query = (state.query = e.target.value);
 
     clearTimeouts();
-    abortCurrentRequest();
+    state.controller?.abort();
+    state.controller = null;
 
     if (!query) {
       state.isLoading = false;
-      toggleElement(dom.loading, false);
-      ["noResults", "results", "productResults", "collectionResults", "searchBtn"].forEach((key) =>
-        toggleElement(dom[key], false)
-      );
+      toggleElement(dom.searchLoading, false);
+      [
+        "noResultsContainer",
+        "searchResultsContainer",
+        "productResults",
+        "collectionResults",
+        "searchResultsButton",
+      ].forEach((key) => toggleElement(dom[key], false));
       showDefaultContent(true);
       if (state.subDrawerOpen) toggleSubDrawer();
       return;
@@ -280,14 +279,18 @@
 
     state.isLoading = true;
     hideDefaultContent();
-    ["noResults", "results", "productResults", "collectionResults", "searchBtn"].forEach((key) =>
-      toggleElement(dom[key], false)
-    );
+    [
+      "noResultsContainer",
+      "searchResultsContainer",
+      "productResults",
+      "collectionResults",
+      "searchResultsButton",
+    ].forEach((key) => toggleElement(dom[key], false));
 
     state.timeouts.loading = setTimeout(() => {
       if (state.query) {
-        toggleElement(dom.loading, true, "0");
-        fadeElement(dom.loading, "1");
+        toggleElement(dom.searchLoading, true, "0");
+        fadeElement(dom.searchLoading, "1");
       }
     }, 200);
 
@@ -296,17 +299,19 @@
   };
 
   const attachEventListeners = () => {
-    dom.closeBtn?.addEventListener("click", closeSearchDrawer);
-    document.addEventListener("keydown", (e) => e.key === "Escape" && closeSearchDrawer());
-    dom.drawer?.addEventListener("click", (e) => e.target === dom.drawer && closeSearchDrawer());
-    dom.container?.addEventListener("click", (e) => e.stopPropagation());
+    const events = [
+      [dom.closeBtn, "click", closeSearchDrawer],
+      [document, "keydown", (e) => e.key === "Escape" && closeSearchDrawer()],
+      [dom.searchDrawer, "click", (e) => e.target === dom.searchDrawer && closeSearchDrawer()],
+      [dom.container, "click", (e) => e.stopPropagation()],
+      [dom.subDrawerTrigger, "click", toggleSubDrawer],
+      [dom.subDrawerBack, "click", toggleSubDrawer],
+      [dom.searchInput, "input", handleSearchInput],
+      [dom.noResultsSearchButton, "click", performSearch],
+      [dom.searchResultsButton, "click", performSearch],
+    ];
 
-    dom.subDrawerTrigger?.addEventListener("click", toggleSubDrawer);
-    dom.subDrawerBack?.addEventListener("click", toggleSubDrawer);
-
-    dom.searchInput?.addEventListener("input", handleSearchInput);
-    dom.noResultsBtn?.addEventListener("click", performSearch);
-    dom.searchBtn?.addEventListener("click", performSearch);
+    events.forEach(([el, event, handler]) => el?.addEventListener(event, handler));
 
     window.toggleSearch = openSearchDrawer;
     window.closeSearch = closeSearchDrawer;
@@ -324,9 +329,5 @@
     attachEventListeners();
   };
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initialize);
-  } else {
-    initialize();
-  }
+  document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", initialize) : initialize();
 })();
