@@ -165,7 +165,9 @@
                       srcset="${baseUrl}${separator}width=80 1x, ${baseUrl}${separator}width=160 2x, ${baseUrl}${separator}width=240 3x"
                       alt="${item.title}" 
                       class="predictive-search__image" 
-                      loading="lazy" 
+                      loading="eager" 
+                      fetchpriority="high"
+                      decoding="async"
                       width="40" 
                       height="40">
                   </div>`;
@@ -208,12 +210,27 @@
 
       ["products", "collections"].forEach((type) => {
         const items = data.resources?.results?.[type] || [];
-        results[type] = items.map((item) => ({
-          id: item.id,
-          url: item.url,
-          title: item.title,
-          image: item.image ? item.image.replace(/width=\d+/, "width=80") : null,
-        }));
+        results[type] = items.map((item, index) => {
+          let imageUrl = null;
+          if (item.image) {
+            imageUrl = item.image.replace(/width=\d+/, "width=80");
+
+            if (type === "products" && index < 3) {
+              const link = document.createElement("link");
+              link.rel = "preload";
+              link.as = "image";
+              link.href = imageUrl;
+              document.head.appendChild(link);
+            }
+          }
+
+          return {
+            id: item.id,
+            url: item.url,
+            title: item.title,
+            image: imageUrl,
+          };
+        });
       });
 
       results.collections = results.collections.slice(0, 3);
