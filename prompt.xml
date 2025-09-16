@@ -162,28 +162,6 @@ File Integration:
 </confidence_requirements>
 </error_prevention>
 
-<task>
-[CLEAR_SPECIFIC_REQUEST]
-
-Requirements:
-- [FUNCTIONAL_REQUIREMENT_1]
-- [FUNCTIONAL_REQUIREMENT_2]
-- [PERFORMANCE_REQUIREMENT]
-- [ACCESSIBILITY_REQUIREMENT]
-- Must integrate with existing codebase seamlessly
-
-Constraints:
-- [TECHNICAL_CONSTRAINT_1]
-- [BUSINESS_CONSTRAINT_2]
-- Cannot modify existing files unless explicitly requested
-- Must follow established project patterns
-
-File Integration:
-- [SPECIFIC_FILES_TO_MODIFY_OR_CREATE]
-- [IMPORT_EXPORT_REQUIREMENTS]
-- [COMPATIBILITY_REQUIREMENTS]
-</task>
-
 <output_format>
 <structure>
 1. Brief explanation (max 100 words)
@@ -206,3 +184,30 @@ File Integration:
 - Follow established file naming patterns
 </file_delivery>
 </output_format>
+
+<context7_integration>
+<mandatory_flag>
+CRITICAL: Every instruction using this template MUST end with the exact phrase "use context7" (without quotes) to activate the Context7 MCP connector for fetching current documentation.
+
+Without this flag, the AI cannot access up-to-date documentation and will rely on potentially outdated training data.
+</mandatory_flag>
+
+<usage_pattern>
+Template users must always conclude their requests with "use context7"
+
+Examples:
+- "Create a Shopify product carousel with lazy loading. use context7"
+- "Build a mobile-first navigation menu for Shopify themes. use context7" 
+- "Implement cart drawer functionality with vanilla JavaScript. use context7"
+</usage_pattern>
+
+<documentation_benefits>
+When "use context7" is included, the AI will fetch:
+- Latest Shopify Liquid syntax and best practices
+- Current browser API documentation
+- Modern CSS features and compatibility
+- Updated accessibility guidelines
+- Performance optimization standards
+- Security best practices
+</documentation_benefits>
+</context7_integration>
