@@ -88,12 +88,17 @@ const toggleCartDrawer = (show = true) => {
   const drawer = cartElements.drawer();
 
   if (show && !cartState.isOpen) {
-    cartState.scrollY = window.scrollY;
-    Object.assign(body.style, {
-      position: "fixed",
-      top: `-${cartState.scrollY}px`,
-      width: "100%",
-    });
+    if (body.style.position !== "fixed") {
+      cartState.scrollY = window.scrollY;
+      Object.assign(body.style, {
+        position: "fixed",
+        top: `-${cartState.scrollY}px`,
+        width: "100%",
+      });
+    } else {
+      cartState.scrollY = Math.abs(parseInt(body.style.top || "0"));
+    }
+
     cartState.isOpen = true;
     body.classList.add("cart-open");
     drawer.classList.add("cart--active");
@@ -103,11 +108,13 @@ const toggleCartDrawer = (show = true) => {
     body.classList.remove("cart-open");
     drawer.classList.remove("cart--active");
 
-    const scrollY = Math.abs(parseInt(body.style.top || "0"));
-    document.documentElement.style.scrollBehavior = "auto";
-    Object.assign(body.style, { position: "", top: "", width: "" });
-    window.scrollTo(0, scrollY);
-    document.documentElement.style.scrollBehavior = "";
+    if (body.style.position === "fixed") {
+      const scrollY = cartState.scrollY || Math.abs(parseInt(body.style.top || "0"));
+      document.documentElement.style.scrollBehavior = "auto";
+      Object.assign(body.style, { position: "", top: "", width: "" });
+      window.scrollTo(0, scrollY);
+      document.documentElement.style.scrollBehavior = "";
+    }
   }
 };
 

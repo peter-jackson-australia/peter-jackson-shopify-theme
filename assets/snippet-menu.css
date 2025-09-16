@@ -12,6 +12,11 @@
   z-index: 9998;
 }
 
+.menu-drawer__overlay:not(.menu-drawer--open),
+.menu-drawer:not(.menu-drawer--open) {
+  display: none !important;
+}
+
 .menu-drawer {
   background: var(--white);
   border-top: 1px solid var(--neutral-50);
