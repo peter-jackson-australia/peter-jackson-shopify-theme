@@ -1,51 +1,21 @@
-(function () {
-  const searchDrawerState = {
+(() => {
+  const state = {
     query: "",
     scrollY: 0,
-    predictiveResults: null,
-    searchTimeout: null,
     isLoading: false,
-    currentController: null,
+    controller: null,
     subDrawerOpen: false,
-    loadingTimeout: null,
-    fadeTimeouts: [],
+    timeouts: { search: null, loading: null, fade: [] },
   };
 
-  let elements = {};
+  let dom = {};
 
-  function setDisplay(el, show, opacity = "1") {
-    if (!el) return;
-    el.style.display = show ? "block" : "none";
-    el.classList.toggle("hidden", !show);
-    if (show && opacity) el.style.opacity = opacity;
-  }
-
-  function setOpacityWithDelay(el, opacity, callback) {
-    if (!el) return;
-    el.style.opacity = opacity;
-    if (callback) setTimeout(callback, opacity === "0" ? 200 : 10);
-  }
-
-  function showDefaultContent(fade = false) {
-    ["loading", "noResults", "results"].forEach((key) => setDisplay(elements[key], false));
-    ["productResults", "collectionResults", "searchBtn"].forEach((key) => {
-      if (elements[key]) elements[key].style.display = "none";
-    });
-
-    ["popularSearches", "subDrawerTrigger", "newArrivals"].forEach((key) => {
-      if (elements[key]) {
-        setDisplay(elements[key], true, fade ? "0" : "1");
-        if (fade) setTimeout(() => (elements[key].style.opacity = "1"), 10);
-      }
-    });
-  }
-
-  function initSearchDrawer() {
-    elements = {
+  const initializeElements = () => {
+    dom = {
       drawer: document.getElementById("searchDrawer"),
       container: document.querySelector(".search-drawer__container"),
       closeBtn: document.querySelector(".search-drawer__close"),
-      searchInput: null,
+      searchInput: document.getElementById("search"),
       loading: document.getElementById("searchLoading"),
       noResults: document.getElementById("noResultsContainer"),
       noResultsBtn: document.getElementById("noResultsSearchButton"),
@@ -61,250 +31,149 @@
       subDrawerBack: document.getElementById("subDrawerBack"),
       newArrivals: document.getElementById("newArrivals"),
     };
+  };
 
-    document.querySelectorAll(".faq-item__description[data-full-text]").forEach((desc) => {
-      const text = desc.getAttribute("data-full-text");
-      if (text) desc.textContent = text.length > 200 ? text.substring(0, 200) + "..." : text;
-    });
+  const toggleElement = (el, show, opacity = "1") => {
+    if (!el) return;
+    el.style.display = show ? "block" : "none";
+    el.classList.toggle("hidden", !show);
+    if (show && opacity) el.style.opacity = opacity;
+  };
 
-    showDefaultContent();
+  const fadeElement = (el, opacity, callback) => {
+    if (!el) return;
+    el.style.opacity = opacity;
+    if (callback) setTimeout(callback, opacity === "0" ? 200 : 10);
+  };
 
-    if (elements.closeBtn) elements.closeBtn.addEventListener("click", closeSearch);
-    document.addEventListener("keydown", (e) => e.key === "Escape" && closeSearch());
-    if (elements.drawer) {
-      elements.drawer.addEventListener("click", (e) => e.target === elements.drawer && closeSearch());
-    }
-    if (elements.container) {
-      elements.container.addEventListener("click", (e) => e.stopPropagation());
-    }
-    if (elements.subDrawerTrigger) {
-      elements.subDrawerTrigger.addEventListener("click", toggleSubDrawer);
-    }
-    if (elements.subDrawerBack) {
-      elements.subDrawerBack.addEventListener("click", toggleSubDrawer);
-    }
-    if (elements.noResultsBtn) {
-      elements.noResultsBtn.addEventListener("click", performSearch);
-    }
-    if (elements.searchBtn) {
-      elements.searchBtn.addEventListener("click", performSearch);
-    }
-
-    window.toggleSearch = openSearch;
-    window.closeSearch = closeSearch;
-
-    setTimeout(() => {
-      elements.searchInput = document.getElementById("search");
-      if (elements.searchInput) {
-        elements.searchInput.addEventListener("input", handleSearchInput);
+  const toggleElements = (elements, show, fade = false) => {
+    elements.forEach((key) => {
+      if (dom[key]) {
+        toggleElement(dom[key], show, fade ? "0" : "1");
+        if (fade && show) setTimeout(() => (dom[key].style.opacity = "1"), 10);
       }
-    }, 0);
-  }
+    });
+  };
 
-  function openSearch() {
-    searchDrawerState.scrollY =
+  const clearTimeouts = () => {
+    clearTimeout(state.timeouts.search);
+    clearTimeout(state.timeouts.loading);
+    state.timeouts.fade.forEach(clearTimeout);
+    state.timeouts.fade = [];
+  };
+
+  const abortCurrentRequest = () => {
+    if (state.controller) {
+      state.controller.abort();
+      state.controller = null;
+    }
+  };
+
+  const showDefaultContent = (fade = false) => {
+    ["loading", "noResults", "results", "productResults", "collectionResults", "searchBtn"].forEach((key) =>
+      toggleElement(dom[key], false)
+    );
+    toggleElements(["popularSearches", "subDrawerTrigger", "newArrivals"], true, fade);
+  };
+
+  const hideDefaultContent = () => {
+    ["popularSearches", "subDrawerTrigger", "newArrivals"].forEach((key) => {
+      if (dom[key]) {
+        dom[key].style.opacity = "0";
+        const timeout = setTimeout(() => {
+          dom[key].style.display = "none";
+          dom[key].classList.add("hidden");
+        }, 200);
+        state.timeouts.fade.push(timeout);
+      }
+    });
+  };
+
+  const openSearchDrawer = () => {
+    state.scrollY =
       document.body.style.position === "fixed" ? Math.abs(parseInt(document.body.style.top || "0")) : window.scrollY;
 
     if (document.body.style.position !== "fixed") {
-      document.body.style.position = "fixed";
-      document.body.style.top = `-${searchDrawerState.scrollY}px`;
-      document.body.style.width = "100%";
+      Object.assign(document.body.style, {
+        position: "fixed",
+        top: `-${state.scrollY}px`,
+        width: "100%",
+      });
     }
 
     document.body.classList.add("search-open");
-    elements.drawer.classList.add("search-drawer--active");
+    dom.drawer.classList.add("search-drawer--active");
     showDefaultContent();
-    if (typeof window.closeMenu === "function") window.closeMenu(true);
-    setTimeout(() => elements.searchInput && elements.searchInput.focus(), 400);
-  }
+    if (window.closeMenu) window.closeMenu(true);
+    setTimeout(() => dom.searchInput?.focus(), 400);
+  };
 
-  function closeSearch() {
-    searchDrawerState.subDrawerOpen = false;
-    searchDrawerState.query = "";
-    searchDrawerState.predictiveResults = null;
-    searchDrawerState.isLoading = false;
+  const closeSearchDrawer = () => {
+    state.subDrawerOpen = false;
+    state.query = "";
+    state.isLoading = false;
+    if (dom.searchInput) dom.searchInput.value = "";
 
-    if (elements.searchInput) elements.searchInput.value = "";
-    elements.subDrawer.classList.remove("sub-drawer--active");
+    dom.subDrawer?.classList.remove("sub-drawer--active");
     showDefaultContent();
     document.body.classList.remove("search-open");
-    elements.drawer.classList.remove("search-drawer--active");
+    dom.drawer?.classList.remove("search-drawer--active");
 
     document.documentElement.style.scrollBehavior = "auto";
-    document.body.style.position = "";
-    document.body.style.top = "";
-    document.body.style.width = "";
-    window.scrollTo(0, searchDrawerState.scrollY);
+    Object.assign(document.body.style, { position: "", top: "", width: "" });
+    window.scrollTo(0, state.scrollY);
     document.documentElement.style.scrollBehavior = "";
-  }
+  };
 
-  function toggleSubDrawer() {
-    searchDrawerState.subDrawerOpen = !searchDrawerState.subDrawerOpen;
-    elements.subDrawer.classList.toggle("sub-drawer--active", searchDrawerState.subDrawerOpen);
-  }
+  const toggleSubDrawer = () => {
+    state.subDrawerOpen = !state.subDrawerOpen;
+    dom.subDrawer?.classList.toggle("sub-drawer--active", state.subDrawerOpen);
+  };
 
-  function handleSearchInput(e) {
-    const query = e.target.value;
-    searchDrawerState.query = query;
-
-    clearTimeout(searchDrawerState.searchTimeout);
-    clearTimeout(searchDrawerState.loadingTimeout);
-    searchDrawerState.fadeTimeouts.forEach((t) => clearTimeout(t));
-    searchDrawerState.fadeTimeouts = [];
-
-    if (searchDrawerState.currentController) {
-      searchDrawerState.currentController.abort();
-      searchDrawerState.currentController = null;
+  const performSearch = () => {
+    if (state.query) {
+      window.location.href = `/search?q=${encodeURIComponent(state.query)}&type=product&options[prefix]=last`;
     }
+  };
 
-    if (!query) {
-      searchDrawerState.predictiveResults = null;
-      searchDrawerState.isLoading = false;
-
-      elements.loading.style.display = "none";
-      elements.loading.classList.add("hidden");
-      elements.loading.style.opacity = "0";
-
-      ["noResults", "results"].forEach((key) => setDisplay(elements[key], false));
-      ["productResults", "collectionResults", "searchBtn"].forEach((key) => {
-        if (elements[key]) elements[key].style.display = "none";
-      });
-
-      ["popularSearches", "subDrawerTrigger", "newArrivals"].forEach((key) => {
-        if (elements[key]) {
-          elements[key].style.display = "block";
-          elements[key].classList.remove("hidden");
-          elements[key].style.opacity = "0";
-          setTimeout(() => {
-            if (elements[key]) elements[key].style.opacity = "1";
-          }, 10);
-        }
-      });
-
-      if (searchDrawerState.subDrawerOpen) toggleSubDrawer();
-      return;
-    }
-
-    searchDrawerState.isLoading = true;
-
-    ["popularSearches", "subDrawerTrigger", "newArrivals"].forEach((key) => {
-      if (elements[key]) {
-        elements[key].style.opacity = "0";
-        const timeout = setTimeout(() => {
-          if (elements[key]) {
-            elements[key].style.display = "none";
-            elements[key].classList.add("hidden");
-          }
-        }, 200);
-        searchDrawerState.fadeTimeouts.push(timeout);
-      }
-    });
-
-    ["noResults", "results"].forEach((key) => setDisplay(elements[key], false));
-    ["productResults", "collectionResults", "searchBtn"].forEach((key) => {
-      if (elements[key]) elements[key].style.display = "none";
-    });
-
-    searchDrawerState.loadingTimeout = setTimeout(() => {
-      if (searchDrawerState.query) {
-        setDisplay(elements.loading, true, "0");
-        setOpacityWithDelay(elements.loading, "1");
-      }
-    }, 200);
-
-    if (searchDrawerState.subDrawerOpen) toggleSubDrawer();
-
-    searchDrawerState.searchTimeout = setTimeout(() => fetchPredictiveResults(query), 300);
-  }
-
-  async function fetchPredictiveResults(query) {
-    try {
-      searchDrawerState.currentController = new AbortController();
-      const response = await fetch(
-        `/search/suggest.json?q=${encodeURIComponent(
-          query
-        )}&resources[type]=product,collection&resources[limit]=5&resources[limit_scope]=each`,
-        { signal: searchDrawerState.currentController.signal }
-      );
-
-      if (!response.ok) throw new Error("Response not ok");
-
-      const data = await response.json();
-      const results = { products: [], collections: [] };
-
-      ["products", "collections"].forEach((type) => {
-        const items = data.resources?.results?.[type];
-        if (items) {
-          items.forEach((item) => {
-            let imageUrl = item.image ? item.image.replace(/width=\d+/, "width=150") : null;
-            if (imageUrl && !imageUrl.includes("width=")) {
-              imageUrl += (item.image.includes("?") ? "&" : "?") + "width=150";
-            }
-
-            results[type].push({
-              id: item.id,
-              url: item.url,
-              title: item.title,
-              image: imageUrl,
-            });
-          });
-        }
-      });
-
-      results.collections = results.collections.slice(0, 3);
-      searchDrawerState.predictiveResults = results;
-      searchDrawerState.isLoading = false;
-
-      setOpacityWithDelay(elements.loading, "0", () => {
-        setDisplay(elements.loading, false);
-        renderSearchResults();
-
-        const hasResults = results.products.length || results.collections.length;
-        if (!hasResults) {
-          elements.noResultsBtn.textContent = `Search for '${query}'`;
-          setDisplay(elements.noResults, true, "0");
-          setOpacityWithDelay(elements.noResults, "1");
-        } else {
-          setDisplay(elements.results, true, "0");
-          setOpacityWithDelay(elements.results, "1");
-        }
-      });
-    } catch (error) {
-      if (error.name !== "AbortError") {
-        searchDrawerState.isLoading = false;
-        setOpacityWithDelay(elements.loading, "0", () => setDisplay(elements.loading, false));
-      }
-    } finally {
-      searchDrawerState.currentController = null;
-    }
-  }
-
-  function renderSearchResults() {
-    const results = searchDrawerState.predictiveResults;
+  const renderSearchResults = (results) => {
     if (!results) return;
 
-    ["product", "collection"].forEach((type) => {
-      const list = elements[`${type}List`];
-      const container = elements[`${type}Results`];
-      const items = results[`${type}s`];
+    [
+      { type: "product", plural: "products", showImage: true },
+      { type: "collection", plural: "collections", showImage: false },
+    ].forEach(({ type, plural, showImage }) => {
+      const list = dom[`${type}List`];
+      const container = dom[`${type}Results`];
+      const items = results[plural];
 
+      if (!list || !container) return;
       list.innerHTML = "";
 
-      if (items && items.length > 0) {
+      if (items?.length > 0) {
         items.forEach((item) => {
           const li = document.createElement("li");
           li.className = "predictive-search__item";
+
+          let imageHtml = "";
+          if (showImage && item.image) {
+            const baseUrl = item.image.replace(/width=\d+/, "");
+            const separator = baseUrl.includes("?") ? "&" : "?";
+            imageHtml = `
+                  <div class="predictive-search__image-container">
+                    <img src="${baseUrl}${separator}width=80" 
+                      srcset="${baseUrl}${separator}width=80 1x, ${baseUrl}${separator}width=160 2x, ${baseUrl}${separator}width=240 3x"
+                      alt="${item.title}" 
+                      class="predictive-search__image" 
+                      loading="lazy" 
+                      width="40" 
+                      height="40">
+                  </div>`;
+          }
+
           li.innerHTML = `
               <a href="${item.url}" class="predictive-search__link">
-                ${
-                  type === "product"
-                    ? `
-                  <div class="predictive-search__image-container">
-                    <img src="${item.image || ""}" alt="${item.title}" class="predictive-search__image" 
-                      loading="lazy" width="40" height="40">
-                  </div>`
-                    : ""
-                }
+                ${imageHtml}
                 <span class="predictive-search__text body">${item.title}</span>
               </a>`;
           list.appendChild(li);
@@ -316,25 +185,131 @@
     });
 
     const hasResults = results.products.length || results.collections.length;
-    if (hasResults) {
-      elements.searchBtn.textContent = `Search for '${searchDrawerState.query}'`;
-      elements.searchBtn.style.display = "block";
-    } else {
-      elements.searchBtn.style.display = "none";
+    if (dom.searchBtn) {
+      dom.searchBtn.textContent = `Search for '${state.query}'`;
+      dom.searchBtn.style.display = hasResults ? "block" : "none";
     }
-  }
+  };
 
-  function performSearch() {
-    if (searchDrawerState.query) {
-      window.location.href = `{{ routes.search_url }}?q=${encodeURIComponent(
-        searchDrawerState.query
-      )}&type=product&options[prefix]=last`;
+  const fetchSearchResults = async (query) => {
+    try {
+      state.controller = new AbortController();
+      const response = await fetch(
+        `/search/suggest.json?q=${encodeURIComponent(
+          query
+        )}&resources[type]=product,collection&resources[limit]=5&resources[limit_scope]=each`,
+        { signal: state.controller.signal }
+      );
+
+      if (!response.ok) throw new Error("Search failed");
+
+      const data = await response.json();
+      const results = { products: [], collections: [] };
+
+      ["products", "collections"].forEach((type) => {
+        const items = data.resources?.results?.[type] || [];
+        results[type] = items.map((item) => ({
+          id: item.id,
+          url: item.url,
+          title: item.title,
+          image: item.image ? item.image.replace(/width=\d+/, "width=80") : null,
+        }));
+      });
+
+      results.collections = results.collections.slice(0, 3);
+      state.isLoading = false;
+
+      fadeElement(dom.loading, "0", () => {
+        toggleElement(dom.loading, false);
+        renderSearchResults(results);
+
+        const hasResults = results.products.length || results.collections.length;
+        if (!hasResults) {
+          if (dom.noResultsBtn) dom.noResultsBtn.textContent = `Search for '${query}'`;
+          toggleElement(dom.noResults, true, "0");
+          fadeElement(dom.noResults, "1");
+        } else {
+          toggleElement(dom.results, true, "0");
+          fadeElement(dom.results, "1");
+        }
+      });
+    } catch (error) {
+      if (error.name !== "AbortError") {
+        state.isLoading = false;
+        fadeElement(dom.loading, "0", () => toggleElement(dom.loading, false));
+      }
+    } finally {
+      state.controller = null;
     }
-  }
+  };
+
+  const handleSearchInput = (e) => {
+    const query = e.target.value;
+    state.query = query;
+
+    clearTimeouts();
+    abortCurrentRequest();
+
+    if (!query) {
+      state.isLoading = false;
+      toggleElement(dom.loading, false);
+      ["noResults", "results", "productResults", "collectionResults", "searchBtn"].forEach((key) =>
+        toggleElement(dom[key], false)
+      );
+      showDefaultContent(true);
+      if (state.subDrawerOpen) toggleSubDrawer();
+      return;
+    }
+
+    state.isLoading = true;
+    hideDefaultContent();
+    ["noResults", "results", "productResults", "collectionResults", "searchBtn"].forEach((key) =>
+      toggleElement(dom[key], false)
+    );
+
+    state.timeouts.loading = setTimeout(() => {
+      if (state.query) {
+        toggleElement(dom.loading, true, "0");
+        fadeElement(dom.loading, "1");
+      }
+    }, 200);
+
+    if (state.subDrawerOpen) toggleSubDrawer();
+    state.timeouts.search = setTimeout(() => fetchSearchResults(query), 300);
+  };
+
+  const attachEventListeners = () => {
+    dom.closeBtn?.addEventListener("click", closeSearchDrawer);
+    document.addEventListener("keydown", (e) => e.key === "Escape" && closeSearchDrawer());
+    dom.drawer?.addEventListener("click", (e) => e.target === dom.drawer && closeSearchDrawer());
+    dom.container?.addEventListener("click", (e) => e.stopPropagation());
+
+    dom.subDrawerTrigger?.addEventListener("click", toggleSubDrawer);
+    dom.subDrawerBack?.addEventListener("click", toggleSubDrawer);
+
+    dom.searchInput?.addEventListener("input", handleSearchInput);
+    dom.noResultsBtn?.addEventListener("click", performSearch);
+    dom.searchBtn?.addEventListener("click", performSearch);
+
+    window.toggleSearch = openSearchDrawer;
+    window.closeSearch = closeSearchDrawer;
+  };
+
+  const initialize = () => {
+    initializeElements();
+
+    document.querySelectorAll(".faq-item__description[data-full-text]").forEach((desc) => {
+      const text = desc.getAttribute("data-full-text");
+      if (text) desc.textContent = text.length > 200 ? `${text.substring(0, 200)}...` : text;
+    });
+
+    showDefaultContent();
+    attachEventListeners();
+  };
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initSearchDrawer);
+    document.addEventListener("DOMContentLoaded", initialize);
   } else {
-    initSearchDrawer();
+    initialize();
   }
 })();
