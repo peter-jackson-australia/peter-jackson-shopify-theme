@@ -9,63 +9,17 @@
 <div
   id="{{ section.id }}"
   class="section-wrap"
-  x-data="
-    {
-      expandedGrid: window.innerWidth < 768 && {{ section.settings.default_mobile_single_column }} ? false : true,
-      isFilterOpen: false,
-      scrollY: 0,
-
-      openFilter() {
-        this.scrollY = window.scrollY;
-
-        document.body.style.position = 'fixed';
-        document.body.style.top = `-${this.scrollY}px`;
-        document.body.style.width = '100%';
-
-        this.isFilterOpen = true;
-        document.body.classList.add('filter-open');
-      },
-
-      closeFilter() {
-        if (!this.isFilterOpen) return;
-
-        document.querySelector('.filter-sidebar').classList.add('closing');
-        setTimeout(() => {
-          this.isFilterOpen = false;
-          document.body.classList.remove('filter-open');
-          document.querySelector('.filter-sidebar').classList.remove('closing');
-
-          document.documentElement.style.scrollBehavior = 'auto';
-
-          document.body.style.position = '';
-          document.body.style.top = '';
-          document.body.style.width = '';
-          window.scrollTo(0, this.scrollY);
-
-          document.documentElement.style.scrollBehavior = '';
-        }, 300);
-      }
-    }
-  "
-  x-init="
-    document.addEventListener('menu-open', () => {
-      closeFilter();
-    });
-    window.closeFilter = () => closeFilter();
-  "
 >
   <div id="collection" class="section">
-    <div x-show="isFilterOpen" x-cloak>
+    <div data-filter-container style="display: none;">
       <div
         class="filter-sidebar__overlay"
-        @click="closeFilter()"
       ></div>
       <aside class="filter-sidebar">
         <div class="filter-sidebar-header">
           <h3 class="heading--xl">Filters</h3>
           <button
             class="filter-close-btn"
-            @click="closeFilter()"
             aria-label="Close filters"
           >
             {% render '_icon-close' %}
@@ -125,7 +79,6 @@
           <div class="collection-controls">
             <button
               class="collection-controls__filter-button body"
-              @click="openFilter()"
             >
               Filters
               <span>{% render '_icon-filter' %}</span>
@@ -140,39 +93,24 @@
               <button
                 aria-label="Change the grid view"
                 class="grid-toggle-btn"
-                @click="expandedGrid = !expandedGrid"
-                x-data="{ isMobile: window.innerWidth < 768 }"
-                x-init="
-                  window.addEventListener('resize', () => {
-                    isMobile = window.innerWidth < 768;
-                  })
-                "
               >
-                <span x-cloak x-show="!isMobile && expandedGrid">{% render '_icon-grid-2' %}</span>
-                <span x-cloak x-show="!isMobile && !expandedGrid">{% render '_icon-grid-4' %}</span>
-
-                <span x-cloak x-show="isMobile && expandedGrid">{% render '_icon-grid-1' %}</span>
-                <span x-cloak x-show="isMobile && !expandedGrid">{% render '_icon-grid-2' %}</span>
+                <span data-icon="grid-2">{% render '_icon-grid-2' %}</span>
+                <span data-icon="grid-4" style="display: none;">{% render '_icon-grid-4' %}</span>
+                <span data-icon="grid-1" style="display: none;">{% render '_icon-grid-1' %}</span>
               </button>
             </div>
           </div>
 
           <div
             id="AjaxinateContainer"
-            class="products-grid animate-container-cards-scroll{% if section.settings.default_mobile_single_column %} products-grid--cols-2{% endif %}"
-            :class="
-              {
-                'products-grid--cols-2': !expandedGrid,
-                'products-grid--cols-4': expandedGrid
-              }
-            "
+            class="products-grid animate-container-cards-scroll products-grid--cols-4"
           >
             {% if collection.products.size == 0 %}
               <div class="no-products-message">
                 <p class="heading--l" style="color: var(--neutral-950)">Sorry, there are no products to show</p>
                 <p class="body">
                   Try adjusting your filters or
-                  <a href="/" style="color: var(--neutral-950)">return home</a>
+                  <a href="{{ routes.root_url }}" style="color: var(--neutral-950)">return home</a>
                 </p>
               </div>
             {% else %}
@@ -305,13 +243,6 @@
       "id": "prominent_discount_mobile",
       "label": "Show prominent discount codes",
       "info": "Display discount codes as overlay badges on product images",
-      "default": false
-    },
-    {
-      "type": "checkbox",
-      "id": "default_mobile_single_column",
-      "label": "Default to single column on mobile",
-      "info": "When enabled, products will display in a single column by default on mobile devices",
       "default": false
     }
   ],
