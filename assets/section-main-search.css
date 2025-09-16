@@ -65,6 +65,10 @@
   white-space: nowrap;
 }
 
+.search-filter-container {
+  display: none;
+}
+
 .search-controls {
   align-items: stretch;
   display: flex;
