@@ -194,18 +194,6 @@
   width: 100%;
 }
 
-.product-card__discount-code-prominent {
-  background-color: var(--neutral-950);
-  color: var(--white);
-  display: block;
-  left: var(--space-xs);
-  padding: var(--space-3xs) var(--space-xs);
-  position: absolute;
-  text-align: center;
-  top: var(--space-xs);
-  width: auto;
-}
-
 .product-card__image {
   display: block;
   height: 100%;
@@ -488,18 +476,5 @@
 
   .product-card__discount-code-mobile {
     display: block;
-  }
-
-  .product-card__discount-code-prominent {
-    background-color: var(--neutral-950);
-    bottom: 0;
-    color: var(--white);
-    display: block;
-    left: 0;
-    padding: var(--space-3xs);
-    position: absolute;
-    text-align: center;
-    top: auto;
-    width: 100%;
   }
 }
