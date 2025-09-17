@@ -34,7 +34,7 @@
 </script>
 
 {% for article in selected_blog.articles limit: 100 %}
-  {% assign article_id = article.article_id %}
+  {% assign article_id = article.id %}
   {% assign article_image = article.image %}
   {% assign article_title = article.title %}
   {% assign article_tags_count = article.tags.size %}
@@ -42,8 +42,8 @@
 
   <template data-article="{{ article_id }}">
     <article class="blog-collection__post">
-      {% if article.image %}
-        <a href="{{ article.url }}" class="blog-collection__post-image">
+      {% if article_image %}
+        <a href="{{ article_url }}" class="blog-collection__post-image">
           {{
             article_image
             | image_url: width: 850
