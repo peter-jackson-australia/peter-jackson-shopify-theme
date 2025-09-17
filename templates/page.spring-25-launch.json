@@ -16,6 +16,34 @@
           "type": "slide",
           "settings": {
             "media_type": "image",
+            "desktop_image": "shopify://shop_images/Suits_Desktop_copy.webp",
+            "mobile_image": "shopify://shop_images/Suits_Mobile.webp",
+            "heading": "",
+            "svg_image": "shopify://shop_images/S25_Homepage_Suits_534467bb-fb4e-4ba3-86e1-8ad0f211cb10.svg",
+            "svg_size": "full",
+            "mobile_svg_image": "shopify://shop_images/S25_Homepage_Suits_Mobile.svg",
+            "heading_level": "h1",
+            "heading_animation": "none",
+            "description": "The season of renewal is here.Explore our Spring collection of tailoring and elevated everyday essentials.",
+            "description_animation": "none",
+            "button_label_1": "Shop New",
+            "button_link_1": "shopify://collections/new-arrivals",
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_label_3": "",
+            "button_link_3": "",
+            "button_label_4": "",
+            "button_link_4": "",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "stretch",
+            "mobile_horizontal_alignment": "center",
+            "mobile_vertical_alignment": "bottom"
+          }
+        },
+        "slide_ddW7HK": {
+          "type": "slide",
+          "settings": {
+            "media_type": "image",
             "desktop_image": "shopify://shop_images/Spring_Hero_Desktop.webp",
             "mobile_image": "shopify://shop_images/Spring_Hero_Mobile.webp",
             "heading": "",
@@ -26,7 +54,7 @@
             "heading_animation": "none",
             "description": "The season of renewal is here.Explore our Spring collection of tailoring and elevated everyday essentials.",
             "description_animation": "none",
-            "button_label_1": "Shop Now",
+            "button_label_1": "Shop New",
             "button_link_1": "shopify://collections/new-arrivals",
             "button_label_2": "",
             "button_link_2": "",
@@ -71,6 +99,7 @@
       },
       "block_order": [
         "slide_JGebxX",
+        "slide_ddW7HK",
         "slide_P9nnNj"
       ],
       "name": "Hero Slider",
