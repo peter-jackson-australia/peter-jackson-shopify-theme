@@ -55,7 +55,7 @@
           "settings": {
             "title": "Message",
             "name": "customer_message",
-            "maxlength": 500,
+            "maxlength": 1000,
             "rows": 5,
             "required": false,
             "placeholder": ""
