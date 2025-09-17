@@ -2,418 +2,47 @@
   Mega Menu Sidebar Drawer Component
 {% endcomment %}
 
-<style>
-  [x-cloak] {
-    display: none !important;
-  }
-
-  .menu-drawer__container {
-    position: relative;
-    z-index: 9997;
-  }
-
-  .menu-drawer__overlay {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 9998;
-  }
-
-  .menu-drawer {
-    position: fixed;
-    bottom: 0;
-    background: var(--white);
-    overflow-x: hidden;
-    z-index: 9999;
-    border-top: 1px solid var(--neutral-50);
-  }
-
-  .header-fixed ~ .menu-drawer__container > .menu-drawer {
-    border-top: none !important;
-  }
-
-  .menu-drawer__inner {
-    display: flex;
-    height: 100%;
-  }
-
-  .menu-drawer__level {
-    width: 400px;
-    height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
-    display: none;
-  }
-
-  .menu-drawer__level--active {
-    display: block;
-  }
-
-  #menu-drawer-level-1 {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .menu-drawer__scrollable-content {
-    flex: 1;
-    overflow-y: auto;
-  }
-
-  .menu-drawer__menu {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-s);
-    padding: var(--space-m) var(--space-m);
-  }
-
-  #menu-drawer__menu-1 {
-    border-bottom: 1px solid var(--neutral-50);
-  }
-
-  .menu-drawer__link,
-  .menu-drawer__button {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    text-decoration: none;
-    border: none;
-    background: none;
-    color: inherit;
-    cursor: pointer;
-  }
-
-  .menu-drawer__item--inactive,
-  .menu-drawer__media--inactive {
-    opacity: 0.4;
-  }
-
-  .menu-drawer__item--active {
-    opacity: 1;
-    text-decoration: underline;
-    font-weight: 500;
-  }
-
-  li:has(.menu-drawer__item--active) a,
-  li:has(.menu-drawer__item--active) button > span:first-child {
-    text-decoration: underline;
-    font-weight: 500;
-  }
-
-  .menu-drawer__video-container {
-    width: 100%;
-    padding: var(--space-m) var(--space-m);
-    border-bottom: 1px solid var(--neutral-50);
-  }
-
-  .menu-drawer__video {
-    width: 100%;
-    max-height: 300px;
-    object-fit: cover;
-    margin-bottom: var(--space-2xs);
-  }
-
-  .menu-drawer__klaviyo {
-    padding: var(--space-m) var(--space-m);
-    display: flex;
-    flex-direction: column;
-    margin-top: auto;
-    border-top: 1px solid var(--neutral-50);
-  }
-
-  .menu-drawer__klaviyo > p.small {
-    margin-top: var(--space-xs);
-  }
-
-  .menu-drawer__klaviyo > .klaviyo-form > div > form,
-  .menu-drawer__klaviyo > .klaviyo-form > div > form > div > div > div {
-    padding: 0px !important;
-  }
-
-  .menu-drawer__klaviyo > .klaviyo-form > div > form > div {
-    gap: var(--space-xs);
-  }
-
-  .menu-drawer__klaviyo > .klaviyo-form > div > form > div > div > div > div > input {
-    padding: 0px !important;
-    border: none !important;
-    border-bottom: 1px solid var(--neutral-50) !important;
-    color: var(--neutral-950);
-  }
-
-  #menu-drawer-level-2,
-  #menu-drawer-level-3 {
-    border-left: 1px solid var(--neutral-50);
-  }
-
-  #menu-drawer-level-2 {
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
-  }
-
-  #menu-drawer-level-2::-webkit-scrollbar-horizontal {
-    display: none !important;
-  }
-
-  #menu-drawer-level-2 > .menu-drawer__menu {
-    border-top: 1px solid var(--neutral-50);
-    border-bottom: 1px solid var(--neutral-50);
-  }
-
-  #menu-drawer-level-2 > div > .splide {
-    padding: var(--space-m) var(--space-m);
-    position: relative;
-  }
-
-  #menu-drawer-level-2 > div > div > .splide__track {
-    overflow: visible;
-  }
-
-  .menu-drawer__header {
-    display: flex;
-    align-items: center;
-    padding: var(--space-m) var(--space-m);
-    border-bottom: 1px solid var(--neutral-50);
-  }
-
-  .menu-drawer__header .menu-drawer__heading {
-    flex-grow: 1;
-  }
-
-  .menu-drawer__back {
-    display: flex;
-    align-items: center;
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    display: none;
-    color: var(--neutral-950);
-  }
-
-  .menu-drawer__back > :first-child {
-    margin-right: var(--space-xs);
-    margin-top: -2px;
-  }
-
-  .menu-drawer__featured-image {
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-    will-change: transform;
-    padding: var(--space-m) var(--space-m);
-    height: 550px;
-  }
-
-  .menu-drawer__featured-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transform: translateZ(0);
-    background-color: var(--neutral-50);
-  }
-
-  .menu-drawer__featured-image--loading-new-image img {
-    display: none;
-  }
-
-  .menu-drawer__heading-journal {
-    padding: var(--space-m) var(--space-m) 0 var(--space-m);
-  }
-
-  .menu-drawer__article {
-    padding: 0;
-    width: 100%;
-  }
-
-  .menu-drawer__article-content {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-  }
-
-  .menu-drawer__article-content > img {
-    height: 350px;
-    width: 99%;
-    object-fit: cover;
-  }
-
-  .menu-drawer__article-link {
-    color: var(--neutral-950);
-    text-decoration: none;
-  }
-
-  .menu-drawer__article-title,
-  .menu-drawer__article-tag {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
-  }
-
-  .splide__slide {
-    height: auto;
-  }
-
-  .splide__slide .menu-drawer__article-image {
-    filter: grayscale(100%);
-    transition: filter 0.3s ease;
-  }
-
-  .splide__slide.is-active .menu-drawer__article-image {
-    filter: grayscale(0%);
-  }
-
-  @media screen and (min-width: 1200px) {
-    #menu-drawer-level-2 > div > div > .splide__track > .splide__list > .splide__slide {
-      width: 80% !important;
-    }
-  }
-
-  @media screen and (max-width: 1200px) {
-    .menu-drawer {
-      width: 100%;
-    }
-
-    .menu-drawer__overlay {
-      display: none;
-    }
-
-    .menu-drawer__inner {
-      display: block;
-      position: relative;
-      height: 100%;
-    }
-
-    .menu-drawer__level {
-      width: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      display: none;
-      background: var(--white);
-    }
-
-    #menu-drawer-level-1 {
-      position: relative;
-      display: block;
-    }
-
-    .menu-drawer__level--active {
-      display: block;
-      z-index: 10;
-    }
-
-    #menu-drawer-level-2,
-    #menu-drawer-level-3 {
-      border-left: none;
-      display: flex;
-      flex-direction: column;
-    }
-
-    #menu-drawer-level-2 .menu-drawer__menu-level-2 {
-      order: 1;
-    }
-    #menu-drawer-level-2 .menu-drawer__featured-image {
-      order: 2;
-    }
-
-    #menu-drawer-level-2 > div:has(.splide) {
-      order: 3;
-    }
-
-    .menu-drawer__back {
-      display: block;
-    }
-
-    .menu-drawer__heading {
-      text-align: right;
-    }
-
-    .menu-drawer__video {
-      max-height: 400px;
-    }
-
-    #menu-drawer-level-2 > div > div > .splide__track {
-      overflow: hidden;
-    }
-
-    .splide__slide .menu-drawer__article-image {
-      filter: grayscale(0%);
-    }
-
-    #menu-drawer-level-2 > .menu-drawer__menu {
-      border-top: none;
-    }
-
-    .menu-drawer__featured-image {
-      overflow: visible;
-    }
-
-    .menu-drawer__article-content > img {
-      height: auto;
-    }
-  }
-</style>
+{{ 'snippet-menu.css' | asset_url | stylesheet_tag }}
 
 <aside
-  x-data="menuDrawer"
-  x-init="init()"
-  @keydown.escape.window="closeMenu()"
   class="menu-drawer__container"
   aria-label="Main menu"
 >
   <div
-    x-show="isOpen"
-    x-cloak
     class="menu-drawer__overlay"
-    @click="closeMenu()"
     role="button"
     aria-label="Close menu"
     tabindex="-1"
   ></div>
-  <nav x-show="isOpen" x-cloak :data-active-level="currentLevel" class="menu-drawer">
+  <nav class="menu-drawer" data-active-level="1">
     <div class="menu-drawer__inner">
       <section
-        :class="{'menu-drawer__level': true, 'menu-drawer__level--active': currentLevel >= 1}"
+        class="menu-drawer__level menu-drawer__level--active custom-scrollbar"
         id="menu-drawer-level-1"
-        class="custom-scrollbar"
       >
         <div class="menu-drawer__scrollable-content custom-scrollbar">
           <ul class="menu-drawer__menu" role="menu" id="menu-drawer__menu-1">
             {% for link in linklists['main-menu'].links %}
               {% unless localization.market.handle != 'au' and link.title == 'Gift Cards' %}
-                <li
-                  role="none"
-                  :class="{ 'menu-drawer__item--active': currentLevel >= 2 && {{ forloop.index0 }} === activeLevel1Index }"
-                >
+                <li role="none">
                   {% if link.links.size > 0 %}
                     <button
-                      @click="openLevel(2, '{{ link.title }}', {{ forloop.index0 }}, '{{ link.object.featured_image | image_url: width: 2000 }}', '{{ link.object.featured_image.alt }}')"
+                      data-menu-index="{{ forloop.index0 }}"
+                      data-menu-title="{{ link.title }}"
+                      data-menu-image="{{ link.object.featured_image | image_url: width: 2000 }}"
+                      data-menu-image-alt="{{ link.object.featured_image.alt }}"
                       class="menu-drawer__button menu-drawer__button--has-submenu body--uppercase"
                       role="menuitem"
                       aria-haspopup="true"
                       aria-expanded="false"
                     >
-                      <span :class="{ 'menu-drawer__item--inactive': currentLevel >= 2 && {{ forloop.index0 }} !== activeLevel1Index }">
-                        {{- link.title -}}
-                      </span>
-                      <span :class="{ 'menu-drawer__item--inactive': currentLevel >= 2 && {{ forloop.index0 }} !== activeLevel1Index }">
-                        {% render '_icon-arrow-see-more' %}
-                      </span>
+                      <span>{{ link.title }}</span>
+                      <span>{% render '_icon-arrow-see-more' %}</span>
                     </button>
                   {% else %}
                     <a
                       href="{{ link.url }}"
                       class="menu-drawer__link body--uppercase"
-                      :class="
-                        {
-                        'menu-drawer__item--inactive': currentLevel >= 2 }
-                      "
                       role="menuitem"
                     >
                       {{ link.title }}
@@ -427,9 +56,6 @@
             <a href="{{ routes.collections_url }}/new-arrivals" style="text-decoration: none;">
               <video
                 class="menu-drawer__video"
-                :class="{'menu-drawer__media--inactive': currentLevel >= 2}"
-                x-ref="menuVideo"
-                x-init="$watch('isOpen', value => {if (value && $refs.menuVideo) {$refs.menuVideo.play().catch(e => console.log('Autoplay prevented:', e));} else if ($refs.menuVideo) {$refs.menuVideo.pause();}})"
                 muted
                 loop
                 playsinline
@@ -441,7 +67,7 @@
                   type="video/mp4"
                 >
               </video>
-              <p class="body" :class="{'menu-drawer__media--inactive': currentLevel >= 2}">Transeasonal Refinement</p>
+              <p class="body">Transeasonal Refinement</p>
             </a>
           </div>
           <ul class="menu-drawer__menu" id="menu-drawer__menu-1-secondary" role="menu">
@@ -450,7 +76,6 @@
                 <a
                   href="{{ link.url }}"
                   class="menu-drawer__link body--uppercase"
-                  :class="{'menu-drawer__item--inactive': currentLevel >= 2}"
                   role="menuitem"
                 >
                   {{ link.title }}
@@ -466,474 +91,550 @@
         </div>
       </section>
       <section
-        class="custom-scrollbar"
-        :class="{'menu-drawer__level': true, 'menu-drawer__level--active': currentLevel >= 2}"
+        class="menu-drawer__level custom-scrollbar"
         id="menu-drawer-level-2"
         aria-labelledby="menu-drawer-heading-2"
       >
         <header class="menu-drawer__header">
-          <button @click="backLevel()" class="menu-drawer__back" aria-label="Back to previous menu">
-            <span :class="{'menu-drawer__media--inactive': currentLevel >= 3}">
-              {%- render '_icon-arrow-see-less' -%}
-            </span>
-            <span class="body--uppercase" :class="{'menu-drawer__media--inactive': currentLevel >= 3}">Back</span>
+          <button class="menu-drawer__back" aria-label="Back to previous menu">
+            <span>{% render '_icon-arrow-see-less' %}</span>
+            <span class="body--uppercase">Back</span>
           </button>
           <h2
             class="menu-drawer__heading body--uppercase"
             id="menu-drawer-heading-2"
-            :class="{'menu-drawer__media--inactive': currentLevel >= 3}"
-            x-text="decodeEntities(menuTitle)"
           ></h2>
         </header>
-        <figure
-          class="menu-drawer__featured-image"
-          :class="{'menu-drawer__featured-image--loading-new-image': isImageLoading}"
-        >
-          <a :href="menuData[currentParentIndex]?.url || '#'">
+        <figure class="menu-drawer__featured-image">
+          <a href="#">
             <img
-              :src="featuredImageUrl || '#'"
-              :alt="featuredImageAlt"
-              :srcset="generateSrcset(featuredImageUrl)"
-              :class="{'menu-drawer__media--inactive': currentLevel >= 3}"
+              src="#"
+              alt=""
               loading="eager"
-              @load="imageLoaded = true; isImageLoading = false;"
               height="100"
               width="100"
             >
           </a>
         </figure>
-        <ul class="menu-drawer__menu menu-drawer__menu-level-2" role="menu">
-          <template x-for="(item, childIndex) in submenu" :key="childIndex">
-            <li
-              role="none"
-              :class="{'menu-drawer__item--active': currentLevel >= 3 && childIndex === activeLevel2Index}"
-            >
-              <template x-if="item.links && item.links.length > 0">
-                <button
-                  @click="openLevel(3, item.title, currentParentIndex, null, null, childIndex)"
-                  class="menu-drawer__button menu-drawer__button--has-submenu body--uppercase"
-                  role="menuitem"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <span
-                    :class="{'menu-drawer__item--inactive': currentLevel >= 3 && childIndex !== activeLevel2Index}"
-                    x-text="decodeEntities(item.title)"
-                  ></span>
-                  <span :class="{'menu-drawer__item--inactive': currentLevel >= 3 && childIndex !== activeLevel2Index}">
-                    {% render '_icon-arrow-see-more' %}
-                  </span>
-                </button>
-              </template>
-              <template x-if="!item.links || item.links.length === 0">
-                <a
-                  :href="item.url"
-                  class="menu-drawer__link body--uppercase"
-                  :class="{'menu-drawer__item--inactive': currentLevel >= 3}"
-                  role="menuitem"
-                  x-text="decodeEntities(item.title)"
-                ></a>
-              </template>
-            </li>
-          </template>
-        </ul>
-
-        <template x-if="filteredArticles && filteredArticles.length > 0">
-          <div :class="{'menu-drawer__media--inactive': currentLevel >= 3}">
-            <h2 class="menu-drawer__heading-journal body--uppercase">The Jackson Journal</h2>
-            <div class="splide" x-ref="splideSlider">
-              <div class="splide__arrows">
-                <button class="splide__arrow splide__arrow--prev">{% render '_icon-arrow-see-less' %}</button>
-                <button class="splide__arrow splide__arrow--next">{% render '_icon-arrow-see-more' %}</button>
-              </div>
-              <div class="splide__track">
-                <ul class="splide__list"></ul>
-              </div>
+        <ul class="menu-drawer__menu menu-drawer__menu-level-2" role="menu"></ul>
+        <div class="menu-drawer__journal-container" style="display: none;">
+          <h2 class="menu-drawer__heading-journal body--uppercase">The Jackson Journal</h2>
+          <div class="splide">
+            <div class="splide__arrows">
+              <button class="splide__arrow splide__arrow--prev">{% render '_icon-arrow-see-less' %}</button>
+              <button class="splide__arrow splide__arrow--next">{% render '_icon-arrow-see-more' %}</button>
+            </div>
+            <div class="splide__track">
+              <ul class="splide__list"></ul>
             </div>
           </div>
-        </template>
+        </div>
       </section>
       <section
-        :class="{'menu-drawer__level': true, 'menu-drawer__level--active': currentLevel >= 3}"
+        class="menu-drawer__level"
         id="menu-drawer-level-3"
         aria-labelledby="menu-drawer-heading-3"
       >
         <header class="menu-drawer__header">
-          <button @click="backLevel()" class="menu-drawer__back" aria-label="Back to previous menu">
+          <button class="menu-drawer__back" aria-label="Back to previous menu">
             {% render '_icon-arrow-see-less' %}
             <span class="body--uppercase">Back</span>
           </button>
           <h2
             class="menu-drawer__heading body--uppercase"
             id="menu-drawer-heading-3"
-            x-text="decodeEntities(subMenuTitle)"
           ></h2>
         </header>
-        <ul class="menu-drawer__menu menu-drawer__menu-level-3" role="menu">
-          <template x-for="(item, index) in subSubmenu" :key="index">
-            <li role="none">
-              <a
-                :href="item.url"
-                class="menu-drawer__link body--uppercase"
-                role="menuitem"
-                x-text="decodeEntities(item.title)"
-              ></a>
-            </li>
-          </template>
-        </ul>
+        <ul class="menu-drawer__menu menu-drawer__menu-level-3" role="menu"></ul>
       </section>
     </div>
   </nav>
 </aside>
 
 <script>
-  document.addEventListener('alpine:init', () => {
-    Alpine.data('menuDrawer', () => ({
-      isOpen: false,
-      scrollY: 0,
-      currentLevel: 1,
-      menuTitle: '',
-      subMenuTitle: '',
-      submenu: [],
-      subSubmenu: [],
-      menuData: [],
-      currentParentIndex: 0,
-      featuredImageUrl: '',
-      featuredImageAlt: '',
-      imageLoaded: false,
-      isImageLoading: false,
-      activeLevel1Index: null,
-      activeLevel2Index: null,
-      filteredArticles: [],
-      splideSlider: null,
-      currentChildIndex: null,
-  
-      init() {
-        this.updateHeaderHeight();
-        
-        const siteHeader = document.querySelector('#site-header');
-        if (siteHeader) {
-          const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-              if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-                this.updateHeaderHeight();
-              }
-            });
-          });
-          
-          observer.observe(siteHeader, {
-            attributes: true,
-            attributeFilter: ['class']
-          });
-        }
-        
-        window.addEventListener('scroll', () => {
-          this.updateHeaderHeight();
+  const menuDrawer = {
+    isOpen: false,
+    currentLevel: 1,
+    menuTitle: '',
+    subMenuTitle: '',
+    submenu: [],
+    subSubmenu: [],
+    menuData: [],
+    currentParentIndex: 0,
+    featuredImageUrl: '',
+    featuredImageAlt: '',
+    activeLevel1Index: null,
+    activeLevel2Index: null,
+    filteredArticles: [],
+    splideSlider: null,
+    currentChildIndex: null,
+
+    init() {
+      this.updateHeaderHeight();
+      
+      const siteHeader = document.querySelector('#site-header');
+      if (siteHeader) {
+        const observer = new MutationObserver(() => this.updateHeaderHeight());
+        observer.observe(siteHeader, { attributes: true, attributeFilter: ['class'] });
+      }
+      
+      window.addEventListener('scroll', () => this.updateHeaderHeight());
+      window.addEventListener('resize', () => this.updateHeaderHeight());
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') this.closeMenu();
+      });
+
+      this.menuData = [
+        {% for link in linklists['main-menu'].links %}
+          {% unless localization.market.handle != 'au' and link.title == 'Gift Cards' %}
+          {
+            title: "{{ link.title | strip_html | replace: '"', '\"' | replace: "'", "\\'" }}",
+            url: "{{ link.url }}",
+            collectionId: "{{ link.object.id }}",
+            featuredImage: "{{ link.object.featured_image | image_url: '1200x' }}",
+            featuredImageAlt: "{{ link.object.featured_image.alt | strip_html | replace: '"', '\"' | replace: "'", "\\'" }}",
+            links: [
+              {% for childlink in link.links %}
+                {
+                  title: "{{ childlink.title | strip_html | replace: '"', '\"' | replace: "'", "\\'" }}",
+                  url: "{{ childlink.url }}",
+                  links: [
+                    {% for grandchildlink in childlink.links %}
+                      {
+                        title: "{{ grandchildlink.title | strip_html | replace: '"', '\"' | replace: "'", "\\'" }}",
+                        url: "{{ grandchildlink.url }}"
+                      }{% unless forloop.last %},{% endunless %}
+                    {% endfor %}
+                  ]
+                }{% unless forloop.last %},{% endunless %}
+              {% endfor %}
+            ]
+          }{% unless forloop.last %},{% endunless %}
+          {% endunless %}
+        {% endfor %}
+      ];
+
+      this.setupEventListeners();
+      
+      window.toggleNav = () => this.isOpen ? this.closeMenu() : this.openMenu();
+      window.closeMenu = (keepScrollLocked = false) => this.closeMenu(keepScrollLocked);
+    },
+
+    setupEventListeners() {
+      document.querySelector('.menu-drawer__overlay')?.addEventListener('click', () => this.closeMenu());
+      
+      document.querySelectorAll('.menu-drawer__back').forEach(btn => {
+        btn.addEventListener('click', () => this.backLevel());
+      });
+
+      document.querySelectorAll('#menu-drawer__menu-1 .menu-drawer__button--has-submenu').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const index = parseInt(btn.dataset.menuIndex);
+          const title = btn.dataset.menuTitle;
+          const image = btn.dataset.menuImage;
+          const imageAlt = btn.dataset.menuImageAlt;
+          this.openLevel(2, title, index, image, imageAlt);
         });
-        
-        window.addEventListener('resize', () => {
-          this.updateHeaderHeight();
-        });
+      });
+    },
 
-        this.menuData = [
-          {% for link in linklists['main-menu'].links %}
-            {% unless localization.market.handle != 'au' and link.title == 'Gift Cards' %}
-            {
-              title: "{{ link.title | strip_html | replace: '"', '\"' | replace: "'", "\\'" }}",
-              url: "{{ link.url }}",
-              collectionId: "{{ link.object.id }}",
-              featuredImage: "{{ link.object.featured_image | image_url: '1200x' }}",
-              featuredImageAlt: "{{ link.object.featured_image.alt | strip_html | replace: '"', '\"' | replace: "'", "\\'" }}",
-              links: [
-                {% for childlink in link.links %}
-                  {
-                    title: "{{ childlink.title | strip_html | replace: '"', '\"' | replace: "'", "\\'" }}",
-                    url: "{{ childlink.url }}",
-                    links: [
-                      {% for grandchildlink in childlink.links %}
-                        {
-                          title: "{{ grandchildlink.title | strip_html | replace: '"', '\"' | replace: "'", "\\'" }}",
-                          url: "{{ grandchildlink.url }}"
-                        }{% unless forloop.last %},{% endunless %}
-                      {% endfor %}
-                    ]
-                  }{% unless forloop.last %},{% endunless %}
-                {% endfor %}
-              ]
-            }{% unless forloop.last %},{% endunless %}
-            {% endunless %}
-          {% endfor %}
-        ];
-  
-        window.toggleNav = () => {
-          this.isOpen ? this.closeMenu() : this.openMenu();
-        };
+    updateHeaderHeight() {
+      const siteHeader = document.querySelector('#site-header');
+      const overlay = document.querySelector('.menu-drawer__overlay');
+      const drawer = document.querySelector('.menu-drawer');
+      
+      if (!siteHeader || !overlay || !drawer) return;
+      
+      const isFixed = siteHeader.classList.contains('header-fixed');
+      const topPosition = isFixed ? 'var(--space-xl)' : Math.max(0, siteHeader.getBoundingClientRect().bottom) + 'px';
+      
+      overlay.style.top = topPosition;
+      drawer.style.top = topPosition;
+    },
 
-        window.closeMenu = (keepScrollLocked = false) => this.closeMenu(keepScrollLocked);
-      },
+    decodeEntities(text) {
+      if (!text) return '';
+      const textarea = document.createElement('textarea');
+      textarea.innerHTML = text;
+      return textarea.value;
+    },
 
-      updateHeaderHeight() {
-        const siteHeader = document.querySelector('#site-header');
-        const overlay = document.querySelector('.menu-drawer__overlay');
-        const drawer = document.querySelector('.menu-drawer');
+    openMenu() {
+      const scrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+      
+      this.resetMenu();
+      
+      this.isOpen = true;
+      document.body.classList.add('menu-open');
+      document.querySelector('.hamburger-menu')?.classList.add('nav-open');
+      window.closeFilter?.();
+
+      document.querySelector('.menu-drawer__overlay').classList.add('menu-drawer--open');
+      document.querySelector('.menu-drawer').classList.add('menu-drawer--open');
+
+      const video = document.querySelector('.menu-drawer__video');
+      if (video) video.play().catch(e => console.log('Autoplay prevented:', e));
+
+      setTimeout(() => this.updateHeaderHeight(), 0);
+
+      if (window.triggerCardLoadAnimation) {
+        ['#menu-drawer__menu-1', '#menu-drawer__menu-1-secondary', '.menu-drawer__scrollable-content']
+          .forEach(sel => window.triggerCardLoadAnimation(sel));
+      }
+    },
+
+    closeMenu(keepScrollLocked = false) {
+      if (!this.isOpen) return;
+      
+      this.isOpen = false;
+      document.body.classList.remove('menu-open');
+      document.querySelector('.hamburger-menu')?.classList.remove('nav-open');
+      
+      document.querySelector('.menu-drawer__overlay').classList.remove('menu-drawer--open');
+      document.querySelector('.menu-drawer').classList.remove('menu-drawer--open');
+
+      const video = document.querySelector('.menu-drawer__video');
+      if (video) video.pause();
+      
+      if (!keepScrollLocked) {
+        const scrollY = Math.abs(parseInt(document.body.style.top || '0'));
         
-        if (!siteHeader || !overlay || !drawer) return;
+        document.documentElement.style.scrollBehavior = 'auto';
         
-        const isFixed = siteHeader.classList.contains('header-fixed');
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
         
-        if (isFixed) {
-          overlay.style.top = 'var(--space-xl)';
-          drawer.style.top = 'var(--space-xl)';
+        window.scrollTo(0, scrollY);
+        
+        document.documentElement.style.scrollBehavior = '';
+      }
+    
+      this.resetMenu();
+    },
+    
+    resetMenu() {
+      this.currentLevel = 1;
+      this.activeLevel1Index = null;
+      this.activeLevel2Index = null;
+      this.menuTitle = '';
+      this.subMenuTitle = '';
+      this.submenu = [];
+      this.subSubmenu = [];
+      this.currentParentIndex = 0;
+      this.featuredImageUrl = '';
+      this.featuredImageAlt = '';
+      this.filteredArticles = [];
+      
+      this.splideSlider?.destroy();
+      this.splideSlider = null;
+      
+      const journalContainer = document.querySelector('.menu-drawer__journal-container');
+      if (journalContainer) journalContainer.style.display = 'none';
+      
+      document.querySelector('#menu-drawer-level-2')?.classList.remove('menu-drawer__level--active');
+      document.querySelector('#menu-drawer-level-3')?.classList.remove('menu-drawer__level--active');
+      
+      const nav = document.querySelector('.menu-drawer');
+      if (nav) nav.dataset.activeLevel = 1;
+      
+      document.querySelectorAll('.menu-drawer__item--active, .menu-drawer__item--inactive, .menu-drawer__media--inactive').forEach(el => {
+        el.classList.remove('menu-drawer__item--active', 'menu-drawer__item--inactive', 'menu-drawer__media--inactive');
+      });
+    },
+
+    updateLevelVisibility() {
+      const nav = document.querySelector('.menu-drawer');
+      if (nav) nav.dataset.activeLevel = this.currentLevel;
+
+      document.querySelector('#menu-drawer-level-1')?.classList.toggle('menu-drawer__level--active', this.currentLevel >= 1);
+      document.querySelector('#menu-drawer-level-2')?.classList.toggle('menu-drawer__level--active', this.currentLevel >= 2);
+      document.querySelector('#menu-drawer-level-3')?.classList.toggle('menu-drawer__level--active', this.currentLevel >= 3);
+
+      this.updateActiveStates();
+      this.updateInactiveStates();
+    },
+
+    updateActiveStates() {
+      document.querySelectorAll('#menu-drawer__menu-1 > li').forEach((item, idx) => {
+        item.classList.toggle('menu-drawer__item--active', idx === this.activeLevel1Index);
+      });
+
+      document.querySelectorAll('.menu-drawer__menu-level-2 > li').forEach((item, idx) => {
+        item.classList.toggle('menu-drawer__item--active', idx === this.activeLevel2Index && this.currentLevel >= 3);
+      });
+    },
+
+    updateInactiveStates() {
+      const isLevel2Active = this.currentLevel >= 2;
+      const isLevel3Active = this.currentLevel >= 3;
+
+      document.querySelectorAll('#menu-drawer__menu-1 .menu-drawer__link, #menu-drawer__menu-1-secondary .menu-drawer__link, .menu-drawer__video, .menu-drawer__video + p').forEach(el => {
+        el.classList.toggle(el.tagName === 'VIDEO' || el.tagName === 'P' ? 'menu-drawer__media--inactive' : 'menu-drawer__item--inactive', isLevel2Active);
+      });
+
+      document.querySelectorAll('#menu-drawer__menu-1 > li').forEach((item, idx) => {
+        if (idx !== this.activeLevel1Index && isLevel2Active) {
+          item.querySelectorAll('span').forEach(span => {
+            span.classList.add('menu-drawer__item--inactive');
+          });
         } else {
-          const headerRect = siteHeader.getBoundingClientRect();
-          const topPosition = Math.max(0, headerRect.bottom) + 'px';
-          overlay.style.top = topPosition;
-          drawer.style.top = topPosition;
-        }
-      },
-  
-      decodeEntities(text) {
-        if (!text) return '';
-        const textarea = document.createElement('textarea');
-        textarea.innerHTML = text;
-        return textarea.value;
-      },
-  
-      openMenu() {
-        this.scrollY = window.scrollY;
-        
-        document.body.style.position = 'fixed';
-        document.body.style.top = `-${this.scrollY}px`;
-        document.body.style.width = '100%';
-        
-        this.isOpen = true;
-        this.currentLevel = 1;
-        document.body.classList.add('menu-open');
-        document.querySelector('.hamburger-menu').classList.add('nav-open');
-        window.closeFilter && window.closeFilter();
-
-        this.$nextTick(() => {
-          this.updateHeaderHeight();
-        });
-  
-        if (window.triggerCardLoadAnimation) {
-          window.triggerCardLoadAnimation('#menu-drawer__menu-1');
-          window.triggerCardLoadAnimation('#menu-drawer__menu-1-secondary');
-          window.triggerCardLoadAnimation('.menu-drawer__scrollable-content');
-        }
-      },
-  
-      closeMenu(keepScrollLocked = false) {
-        if (!this.isOpen) return;
-        
-        this.isOpen = false;
-        document.body.classList.remove('menu-open');
-        document.querySelector('.hamburger-menu').classList.remove('nav-open');
-        
-        if (!keepScrollLocked) {
-          const scrollY = Math.abs(parseInt(document.body.style.top || '0'));
-          
-          document.documentElement.style.scrollBehavior = 'auto';
-          
-          document.body.style.position = '';
-          document.body.style.top = '';
-          document.body.style.width = '';
-          window.scrollTo(0, scrollY);
-          
-          document.documentElement.style.scrollBehavior = '';
-        }
-      
-        if (this.splideSlider) {
-          this.splideSlider.destroy(); 
-          this.splideSlider = null; 
-        }
-      
-        this.filteredArticles = [];
-      },
-
-      refreshSliderContent() {
-        const track = this.$refs.splideSlider?.querySelector('.splide__list');
-        
-        if (track) {
-          track.innerHTML = '';
-          
-          this.filteredArticles.forEach(article => {
-            const slideHTML = `
-              <li class="splide__slide">
-                <article class="menu-drawer__article">
-                  <div class="menu-drawer__article-content">
-                    ${article.image ? `<img src="${article.image}" alt="${article.title}" class="menu-drawer__article-image" width="300" height="300">` : ''}
-                    <p class="menu-drawer__article-tag small">${article.tag}</p>
-                    <header class="menu-drawer__article-header">
-                      <h2 class="menu-drawer__article-title body--bold">${article.title}</h2>
-                    </header>
-                    <a class="menu-drawer__article-link body" href="${article.url}">Read The Article <span><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M6.6 1L10.6 5M10.6 5L6.6 9M10.6 5L1 5" stroke="#A0A0A0" stroke-width="0.75" stroke-linecap="square"/>
-                    </svg>
-                    </span></a>
-                  </div>
-                </article>
-              </li>
-            `;
-            
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = slideHTML.trim();
-            track.appendChild(tempDiv.firstElementChild);
+          item.querySelectorAll('span').forEach(span => {
+            span.classList.remove('menu-drawer__item--inactive');
           });
         }
-      },
-  
-      initSplideSlider() {
-        if (this.splideSlider) {
-          this.splideSlider.destroy();
-          this.splideSlider = null;
+      });
+
+      document.querySelectorAll('#menu-drawer-level-2 .menu-drawer__back span, #menu-drawer-level-2 .menu-drawer__heading, .menu-drawer__featured-image img').forEach(el => {
+        el.classList.toggle('menu-drawer__media--inactive', isLevel3Active);
+      });
+
+      const journalContainer = document.querySelector('.menu-drawer__journal-container');
+      if (journalContainer?.style.display !== 'none') {
+        journalContainer?.classList.toggle('menu-drawer__media--inactive', isLevel3Active);
+      }
+
+      document.querySelectorAll('.menu-drawer__menu-level-2 .menu-drawer__link').forEach(el => {
+        el.classList.toggle('menu-drawer__item--inactive', isLevel3Active);
+      });
+
+      document.querySelectorAll('.menu-drawer__menu-level-2 > li').forEach((item, idx) => {
+        if (idx !== this.activeLevel2Index && isLevel3Active) {
+          item.querySelectorAll('span').forEach(span => {
+            span.classList.add('menu-drawer__item--inactive');
+          });
+        } else {
+          item.querySelectorAll('span').forEach(span => {
+            span.classList.remove('menu-drawer__item--inactive');
+          });
         }
-        
-        this.$nextTick(() => {
-          if (this.filteredArticles.length > 0 && window.Splide && this.$refs.splideSlider) {
-            this.splideSlider = new Splide(this.$refs.splideSlider, {
-              perPage: 1,
-              gap: 'var(--space-m)',
-              autoplay: false,
-              type: 'loop',
-              arrows: false,
-              pagination: false,
-              breakpoints: {
-                1200: {
-                  perPage: 3,
-                  arrows: true, 
-                }, 
-                768: {
-                  perPage: 2
-                }, 
-                470: {
-                  perPage: 1
-                }
-              }
-            }).mount();
-          }
-        });
-      },
-  
-      openLevel(level, title, parentIndex, featuredImage, featuredImageAlt, childIndex) {
-        if (level === 2 && this.activeLevel1Index === parentIndex && this.currentLevel > 1) {
+      });
+    },
+
+    refreshSliderContent() {
+      const track = document.querySelector('#menu-drawer-level-2 .splide__list');
+      if (!track) return;
+      
+      track.innerHTML = this.filteredArticles.map(article => `
+        <li class="splide__slide">
+          <article class="menu-drawer__article">
+            <div class="menu-drawer__article-content">
+              ${article.image ? `<img src="${article.image}" alt="${article.title}" class="menu-drawer__article-image" width="300" height="300">` : ''}
+              <p class="menu-drawer__article-tag small">${article.tag}</p>
+              <header class="menu-drawer__article-header">
+                <h2 class="menu-drawer__article-title body--bold">${article.title}</h2>
+              </header>
+              <a class="menu-drawer__article-link body" href="${article.url}">Read The Article <span><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6.6 1L10.6 5M10.6 5L6.6 9M10.6 5L1 5" stroke="#A0A0A0" stroke-width="0.75" stroke-linecap="square"/>
+              </svg></span></a>
+            </div>
+          </article>
+        </li>
+      `).join('');
+    },
+
+    initSplideSlider() {
+      this.splideSlider?.destroy();
+      this.splideSlider = null;
+      
+      setTimeout(() => {
+        const splideElement = document.querySelector('#menu-drawer-level-2 .splide');
+        if (this.filteredArticles.length > 0 && window.Splide && splideElement) {
+          this.splideSlider = new Splide(splideElement, {
+            perPage: 1,
+            gap: 'var(--space-m)',
+            type: 'loop',
+            arrows: false,
+            pagination: false,
+            breakpoints: {
+              1200: { perPage: 3, arrows: true },
+              768: { perPage: 2 },
+              470: { perPage: 1 }
+            }
+          }).mount();
+        }
+      }, 0);
+    },
+
+    openLevel(level, title, parentIndex, featuredImage, featuredImageAlt, childIndex) {
+      if (level === 2) {
+        if (this.activeLevel1Index === parentIndex && this.currentLevel >= 2) {
           this.currentLevel = 1;
           this.activeLevel1Index = null;
           this.activeLevel2Index = null;
           this.featuredImageUrl = '';
           this.featuredImageAlt = '';
+          this.updateLevelVisibility();
           return;
         }
         
-        const isSameLevel2Item = level === 2 && this.currentLevel === 2 && this.currentParentIndex === parentIndex;
-        const isSameLevel3Item = level === 3 && this.currentLevel === 3 && this.currentChildIndex === childIndex;
+        this.currentLevel = 2;
+        this.activeLevel1Index = parentIndex;
+        this.activeLevel2Index = null;
+        this.menuTitle = title;
+        this.currentParentIndex = parentIndex;
+        this.submenu = this.menuData[parentIndex].links;
+
+        document.querySelector('#menu-drawer-heading-2').textContent = this.decodeEntities(this.menuTitle);
         
-        if (isSameLevel2Item || isSameLevel3Item) {
+        const newUrl = featuredImage || this.menuData[parentIndex]?.featuredImage || '';
+        
+        if (this.featuredImageUrl !== newUrl) {
+          this.featuredImageUrl = newUrl;
+          this.featuredImageAlt = featuredImageAlt || this.menuData[parentIndex]?.featuredImageAlt || title;
+
+          const img = document.querySelector('.menu-drawer__featured-image img');
+          const imgLink = document.querySelector('.menu-drawer__featured-image a');
+          const imgContainer = document.querySelector('.menu-drawer__featured-image');
+          
+          if (img) {
+            imgContainer?.classList.add('menu-drawer__featured-image--loading-new-image');
+            img.src = this.featuredImageUrl;
+            img.alt = this.featuredImageAlt;
+            img.srcset = this.generateSrcset(this.featuredImageUrl);
+            img.onload = () => imgContainer?.classList.remove('menu-drawer__featured-image--loading-new-image');
+          }
+          if (imgLink) imgLink.href = this.menuData[parentIndex]?.url || '#';
+        }
+        
+        const collectionId = this.menuData[parentIndex].collectionId;
+        this.filteredArticles = this.getAllArticles().filter(article => 
+          article.relatedIds.includes(collectionId)
+        );
+
+        const journalContainer = document.querySelector('.menu-drawer__journal-container');
+        if (journalContainer) {
+          journalContainer.style.display = this.filteredArticles.length > 0 ? 'block' : 'none';
+        }
+
+        this.renderLevel2Menu();
+        this.updateLevelVisibility();
+        
+        setTimeout(() => {
+          this.refreshSliderContent();
+          this.initSplideSlider();
+          window.triggerCardLoadAnimation?.('#menu-drawer-level-2');
+          window.triggerCardLoadAnimation?.('.menu-drawer__menu-level-2');
+        }, 0);
+      } else if (level === 3) {
+        if (this.currentLevel === 3 && this.currentChildIndex === childIndex) {
           this.backLevel();
           return;
         }
         
-        this.currentLevel = level;
-  
-        if (level === 2) {
-          this.activeLevel1Index = parentIndex;
+        this.currentLevel = 3;
+        this.activeLevel2Index = childIndex;
+        this.subMenuTitle = title;
+        this.currentChildIndex = childIndex;
+        this.subSubmenu = this.menuData[this.currentParentIndex].links[childIndex].links;
+
+        document.querySelector('#menu-drawer-heading-3').textContent = this.decodeEntities(this.subMenuTitle);
+        
+        this.renderLevel3Menu();
+        this.updateLevelVisibility();
+        
+        setTimeout(() => {
+          window.triggerCardLoadAnimation?.('#menu-drawer-level-3');
+          window.triggerCardLoadAnimation?.('.menu-drawer__menu-level-3');
+        }, 0);
+      }
+    },
+
+    renderLevel2Menu() {
+      const container = document.querySelector('.menu-drawer__menu-level-2');
+      if (!container) return;
+
+      const arrowIcon = document.querySelector('#menu-drawer__menu-1 .menu-drawer__button--has-submenu span:last-child')?.innerHTML || '';
+      
+      container.innerHTML = this.submenu.map((item, index) => `
+        <li role="none">
+          ${item.links?.length > 0 ? `
+            <button data-submenu-index="${index}" class="menu-drawer__button menu-drawer__button--has-submenu body--uppercase" role="menuitem" aria-haspopup="true" aria-expanded="false">
+              <span>${this.decodeEntities(item.title)}</span>
+              <span>${arrowIcon}</span>
+            </button>
+          ` : `
+            <a href="${item.url}" class="menu-drawer__link body--uppercase" role="menuitem">
+              ${this.decodeEntities(item.title)}
+            </a>
+          `}
+        </li>
+      `).join('');
+
+      container.querySelectorAll('.menu-drawer__button--has-submenu').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const index = parseInt(btn.dataset.submenuIndex);
+          const item = this.submenu[index];
+          if (item) this.openLevel(3, item.title, this.currentParentIndex, null, null, index);
+        });
+      });
+    },
+
+    renderLevel3Menu() {
+      const container = document.querySelector('.menu-drawer__menu-level-3');
+      if (!container) return;
+
+      container.innerHTML = this.subSubmenu.map(item => `
+        <li role="none">
+          <a href="${item.url}" class="menu-drawer__link body--uppercase" role="menuitem">
+            ${this.decodeEntities(item.title)}
+          </a>
+        </li>
+      `).join('');
+    },
+
+    backLevel() {
+      if (this.currentLevel > 1) {
+        this.currentLevel--;
+        
+        if (this.currentLevel === 1) {
+          this.activeLevel1Index = null;
           this.activeLevel2Index = null;
-          this.menuTitle = title;
-          this.currentParentIndex = parentIndex;
-          this.submenu = this.menuData[parentIndex].links;
-          
-          const prevUrl = this.featuredImageUrl;
-          const newUrl = featuredImage || (this.menuData[parentIndex] ? this.menuData[parentIndex].featuredImage : '');
-          const collectionId = this.menuData[parentIndex].collectionId;
-  
-          this.filteredArticles = this.getAllArticles().filter(article => 
-            article.relatedIds.includes(collectionId)
-          );      
-  
-          this.$nextTick(() => {
+          this.featuredImageUrl = '';
+          this.featuredImageAlt = '';
+          this.filteredArticles = [];
+          this.splideSlider?.destroy();
+          this.splideSlider = null;
+          const journalContainer = document.querySelector('.menu-drawer__journal-container');
+          if (journalContainer) journalContainer.style.display = 'none';
+        } else if (this.currentLevel === 2) {
+          this.activeLevel2Index = null;
+          setTimeout(() => {
             this.refreshSliderContent();
             this.initSplideSlider();
-          });
-          
-          if (prevUrl !== newUrl) {
-            this.isImageLoading = true;
-            this.imageLoaded = false;
-  
-            if (featuredImage) {
-              this.featuredImageUrl = featuredImage;
-              this.featuredImageAlt = featuredImageAlt || title;
-            } 
-            else if (this.menuData[parentIndex]) {
-              this.featuredImageUrl = this.menuData[parentIndex].featuredImage;
-              this.featuredImageAlt = this.menuData[parentIndex].featuredImageAlt || title;
-            }
-          }
-          this.$nextTick(() => {
-            window.triggerCardLoadAnimation && window.triggerCardLoadAnimation('#menu-drawer-level-2');
-            window.triggerCardLoadAnimation && window.triggerCardLoadAnimation('.menu-drawer__menu-level-2');
-          });
-        } else if (level === 3) {
-          this.activeLevel2Index = childIndex;
-          this.subMenuTitle = title;
-          this.currentChildIndex = childIndex; 
-          this.subSubmenu = this.menuData[this.currentParentIndex].links[childIndex].links;
-          this.$nextTick(() => {
-            window.triggerCardLoadAnimation && window.triggerCardLoadAnimation('#menu-drawer-level-3');
-            window.triggerCardLoadAnimation && window.triggerCardLoadAnimation('.menu-drawer__menu-level-3');
-          });
+          }, 0);
         }
-      }, 
-  
-      backLevel() {
-        if (this.currentLevel > 1) {
-          this.currentLevel--;
-          
-          if (this.currentLevel === 1) {
-            this.featuredImageUrl = '';
-            this.featuredImageAlt = '';
-            this.filteredArticles = []; 
-            if (this.splideSlider) {
-              this.splideSlider.destroy();
-              this.splideSlider = null; 
-            }
-          } else if (this.currentLevel === 2) {
-            this.$nextTick(() => {
-              this.refreshSliderContent();
-              this.initSplideSlider();
-            });
-          }
-        }
-      },
-  
-      getAllArticles() {
-        return [
-          {% for article in blogs['the-jackson-journal'].articles limit: 50 %}
-            {
-              title: "{{ article.title | escape }}",
-              image: "{{ article.image | image_url: width: '600px' }}",
-              url: "{{ article.url | escape }}",
-              tag: "{{ article.tags[0] | escape }}",
-              relatedIds: [{% for relatedCollection in article.metafields.custom.related_collections.value %}'{{ relatedCollection.id }}',{% endfor %}]
-            }{% unless forloop.last %},{% endunless %}
-          {% endfor %}
-        ];
-      },
+        
+        this.updateLevelVisibility();
+      }
+    },
+
+    getAllArticles() {
+      return [
+        {% for article in blogs['the-jackson-journal'].articles %}
+          {
+            title: "{{ article.title | escape }}",
+            image: "{{ article.image | image_url: width: '600px' }}",
+            url: "{{ article.url | escape }}",
+            tag: "{{ article.tags[0] | escape }}",
+            relatedIds: [{% for relatedCollection in article.metafields.custom.related_collections.value %}'{{ relatedCollection.id }}',{% endfor %}]
+          }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ];
+    },
+    
+    generateSrcset(baseUrl) {
+      if (!baseUrl) return '';
+      const urlParts = baseUrl.split('_1200x');
+      if (urlParts.length !== 2) return baseUrl;
       
-      generateSrcset(baseUrl) {
-        if (!baseUrl) return '';
-        
-        const urlParts = baseUrl.split('_1200x');
-        if (urlParts.length !== 2) return baseUrl;
-        
-        const baseUrlWithoutSize = urlParts[0];
-        const extension = urlParts[1];
-        
-        return [
-          `${baseUrlWithoutSize}_400x${extension} 400w`,
-          `${baseUrlWithoutSize}_800x${extension} 800w`,
-          `${baseUrlWithoutSize}_1200x${extension} 1200w`
-        ].join(', ');
-      },
-    }));
-  });
+      const [base, ext] = urlParts;
+      return `${base}_400x${ext} 400w, ${base}_800x${ext} 800w, ${base}_1200x${ext} 1200w`;
+    }
+  };
+
+  menuDrawer.init();
 </script>

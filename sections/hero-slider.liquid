@@ -39,9 +39,11 @@
 
                 {{
                   block.settings.desktop_image
-                  | image_url: width: block.settings.desktop_image.width
+                  | image_url: width: 2560
                   | image_tag:
                     class: 'hero-slider__background',
+                    widths: '400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2400, 2560',
+                    sizes: '(max-width: 400px) 400px, (max-width: 600px) 600px, (max-width: 800px) 800px, (max-width: 1000px) 1000px, (max-width: 1200px) 1200px, (max-width: 1400px) 1400px, (max-width: 1600px) 1600px, (max-width: 1800px) 1800px, (max-width: 2000px) 2000px, (max-width: 2560px) 2560px, 100vw',
                     loading: loading_attr,
                     decoding: 'async',
                     fetchpriority: fetch_priority
@@ -96,7 +98,8 @@
                 class="hero-slider__svg hero-slider__svg--{{ block.settings.svg_size | default: 'medium' }} hero-slider__svg--desktop"
                 width="{{ block.settings.svg_image.width }}"
                 height="{{ block.settings.svg_image.height }}"
-                loading="lazy"
+                loading="eager"
+                fetchpriority="high"
               >
               {% if block.settings.mobile_svg_image %}
                 <img
@@ -105,7 +108,8 @@
                   class="hero-slider__svg hero-slider__svg--{{ block.settings.svg_size | default: 'medium' }} hero-slider__svg--mobile"
                   width="{{ block.settings.mobile_svg_image.width }}"
                   height="{{ block.settings.mobile_svg_image.height }}"
-                  loading="lazy"
+                  loading="eager"
+                  fetchpriority="high"
                 >
               {% endif %}
             {% elsif block.settings.heading %}
@@ -257,6 +261,10 @@
             {
               "value": "large",
               "label": "Large (900px max)"
+            },
+            {
+              "value": "full",
+              "label": "Full (100%)"
             }
           ],
           "default": "medium",
@@ -265,8 +273,8 @@
         {
           "type": "image_picker",
           "id": "mobile_svg_image",
-          "label": "Mobile SVG Image (optional)",
-          "info": "If not provided, Desktop SVG will be used on mobile devices"
+          "label": "Mobile SVG Image",
+          "info": "Please provide a mobile SVG, you can reuse the same one from Desktop if needed"
         },
         {
           "type": "select",
@@ -428,6 +436,10 @@
             {
               "value": "middle",
               "label": "Middle"
+            },
+            {
+              "value": "stretch",
+              "label": "Stretch"
             },
             {
               "value": "bottom",

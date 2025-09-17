@@ -38,15 +38,16 @@
                   <a href="{{ product.url }}" class="collection-slider__product-link">
                     <div class="collection-slider__product-image-wrapper">
                       {% if product.featured_image != blank %}
-                        <img
-                          src="{{ product.featured_image | image_url: width: '600' }}"
-                          alt="{{ product.featured_image.alt | escape }}"
-                          loading="lazy"
-                          width="{{ product.featured_image.width }}"
-                          height="{{ product.featured_image.height }}"
-                          class="collection-slider__product-image"
-                          decoding="async"
-                        >
+                        {{
+                          product.featured_image
+                          | image_url: width: 625
+                          | image_tag:
+                            class: 'collection-slider__product-image',
+                            sizes: '(max-width: 625px) 400px, 625px',
+                            loading: 'lazy',
+                            decoding: 'async',
+                            alt: product.featured_image.alt
+                        }}
                       {% endif %}
                     </div>
 

@@ -2,52 +2,7 @@
 
 <script src="{{ 'lib-ajaxinate.min.js' | asset_url }}" defer></script>
 
-<div
-  id="{{ section.id }}"
-  x-data="
-    {
-      isFilterOpen: false,
-      scrollY: 0,
-
-      openFilter() {
-        this.scrollY = window.scrollY;
-
-        document.body.style.position = 'fixed';
-        document.body.style.top = `-${this.scrollY}px`;
-        document.body.style.width = '100%';
-
-        this.isFilterOpen = true;
-        document.body.classList.add('search-filter-open');
-      },
-
-      closeFilter() {
-        if (!this.isFilterOpen) return;
-
-        document.querySelector('.search-filter-sidebar').classList.add('closing');
-        setTimeout(() => {
-          this.isFilterOpen = false;
-          document.body.classList.remove('search-filter-open');
-          document.querySelector('.search-filter-sidebar').classList.remove('closing');
-
-          document.documentElement.style.scrollBehavior = 'auto';
-
-          document.body.style.position = '';
-          document.body.style.top = '';
-          document.body.style.width = '';
-          window.scrollTo(0, this.scrollY);
-
-          document.documentElement.style.scrollBehavior = '';
-        }, 300);
-      }
-    }
-  "
-  x-init="
-    document.addEventListener('menu-open', () => {
-      closeFilter();
-    });
-    window.closeFilter = () => closeFilter();
-  "
->
+<div id="{{ section.id }}">
   <div>
     <div class="search-header">
       <div class="search-header__wrapper">
@@ -79,17 +34,13 @@
     </div>
 
     {% if search.performed %}
-      <div x-show="isFilterOpen" x-cloak>
-        <div
-          class="search-filter-sidebar__overlay"
-          @click="closeFilter()"
-        ></div>
+      <div class="search-filter-container">
+        <div class="search-filter-sidebar__overlay"></div>
         <aside class="search-filter-sidebar">
           <div class="search-filter-sidebar-header">
             <h3 class="heading--xl">Filters</h3>
             <button
               class="search-filter-close-btn"
-              @click="closeFilter()"
               aria-label="Close filters"
             >
               {% render '_icon-close' %}
@@ -100,10 +51,7 @@
       </div>
 
       <div class="search-controls">
-        <button
-          class="search-controls__filter-button body"
-          @click="openFilter()"
-        >
+        <button class="search-controls__filter-button body">
           Filters
           <span>{% render '_icon-filter' %}</span>
         </button>
@@ -142,7 +90,8 @@
         <div class="no-products-message">
           <p class="heading--l" style="color: var(--neutral-950)">Start your search</p>
           <p class="body">
-            Enter a search term above to find products, or <a href="/" style="color: var(--neutral-950)">return home</a>
+            Enter a search term above to find products, or
+            <a href="{{ routes.root_url }}" style="color: var(--neutral-950)">return home</a>
           </p>
         </div>
       </div>

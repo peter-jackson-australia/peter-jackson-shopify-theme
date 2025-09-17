@@ -16,12 +16,43 @@
           "type": "slide",
           "settings": {
             "media_type": "image",
-            "desktop_image": "shopify://shop_images/Spring_Hero_Desktop_copy.webp",
+            "desktop_image": "shopify://shop_images/Suits_Desktop_copy.webp",
+            "mobile_image": "shopify://shop_images/Suits_Mobile.webp",
             "heading": "",
-            "svg_size": "medium",
+            "svg_image": "shopify://shop_images/S25_Homepage_Suits_534467bb-fb4e-4ba3-86e1-8ad0f211cb10.svg",
+            "svg_size": "full",
+            "mobile_svg_image": "shopify://shop_images/S25_Homepage_Suits_Mobile.svg",
             "heading_level": "h1",
             "heading_animation": "none",
-            "description": "The season of renewal is here.Explore our Spring collection of tailoring and elevated everyday essentials.",
+            "description": "New lightweight tailoring for the most social season of the year.",
+            "description_animation": "none",
+            "button_label_1": "Two Suits for $895*",
+            "button_link_1": "shopify://collections/new-arrivals",
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_label_3": "",
+            "button_link_3": "",
+            "button_label_4": "",
+            "button_link_4": "",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "stretch",
+            "mobile_horizontal_alignment": "center",
+            "mobile_vertical_alignment": "bottom"
+          }
+        },
+        "slide_ddW7HK": {
+          "type": "slide",
+          "settings": {
+            "media_type": "image",
+            "desktop_image": "shopify://shop_images/Spring_Hero_Desktop.webp",
+            "mobile_image": "shopify://shop_images/Spring_Hero_Mobile.webp",
+            "heading": "",
+            "svg_image": "shopify://shop_images/S25_Homepage_Hero_V2.svg",
+            "svg_size": "Large",
+            "mobile_svg_image": "shopify://shop_images/S25_Homepage_Hero_Mobile.svg",
+            "heading_level": "h1",
+            "heading_animation": "none",
+            "description": "The season of renewal is here.<br>Explore our Spring collection of tailoring and elevated everyday essentials.",
             "description_animation": "none",
             "button_label_1": "Shop New",
             "button_link_1": "shopify://collections/new-arrivals",
@@ -32,7 +63,7 @@
             "button_label_4": "",
             "button_link_4": "",
             "horizontal_alignment": "center",
-            "vertical_alignment": "bottom",
+            "vertical_alignment": "stretch",
             "mobile_horizontal_alignment": "center",
             "mobile_vertical_alignment": "bottom"
           }
@@ -42,15 +73,17 @@
           "settings": {
             "media_type": "image",
             "desktop_image": "shopify://shop_images/Spring_Sports_Hero_Desktop_copy.webp",
+            "mobile_image": "shopify://shop_images/Spring_Sports_Jackets_Mobile.webp",
             "heading": "",
             "svg_image": "shopify://shop_images/S25_Homepage_Hero_Desktop_941795f4-735a-4ebc-8c6a-c33a68263f78.svg",
             "svg_size": "medium",
+            "mobile_svg_image": "shopify://shop_images/S25_Sports_Jacket_Mobile.svg",
             "heading_level": "h1",
             "heading_animation": "none",
-            "description": "This season’s sports jackets are renewed and mark the moment to reset your wardrobe.",
+            "description": "Sports jackets arrive with fresh energy to reset your wardrobe.",
             "description_animation": "none",
-            "button_label_1": "Shop Sports Jackets",
-            "button_link_1": "shopify://collections/new-arrivals",
+            "button_label_1": "Shop New",
+            "button_link_1": "shopify://collections/sport-jackets",
             "button_label_2": "",
             "button_link_2": "",
             "button_label_3": "",
@@ -66,6 +99,7 @@
       },
       "block_order": [
         "slide_JGebxX",
+        "slide_ddW7HK",
         "slide_P9nnNj"
       ],
       "name": "Hero Slider",
@@ -174,6 +208,7 @@
       "blocks": {
         "column_item_zER8gb": {
           "type": "column_item",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Spring_Suit_Hero_Desktop_copy.webp",
             "image_link": "",
@@ -201,7 +236,7 @@
             "content_horizontal_alignment": "center",
             "content_vertical_alignment": "center",
             "column_link": "shopify://collections/casual-shirts",
-            "column_link_text": "Shop from $69.95"
+            "column_link_text": "Shop from $89.95"
           }
         },
         "column_item_TdMYVf": {
@@ -231,12 +266,12 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": true,
-        "column_count": "3",
+        "column_count": "2",
         "text_alignment": "left",
         "animate_columns": false,
         "heading": "",
         "heading_animation": "none",
-        "text": "The new season brings a reset in style. Linen, cotton and lightweight wools shape suits, jackets, shirts and denim designed for ease, refinement and versatility through the season’s social calendar.",
+        "text": "",
         "text_animation": "none",
         "button_label": "",
         "button_link": ""
@@ -248,7 +283,7 @@
       "settings": {
         "heading": "Spring Style Refresh",
         "heading_animation": "none",
-        "description": "The new season brings a reset in style. Linen, cotton and lightweight wools shape suits, jackets, shirts and denim designed for ease, refinement and versatility through the season’s social calendar.",
+        "description": "A new chapter in style begins. Linen, cotton and lightweight wools shape suits, jackets, shirts and denim designed for ease, refinement and versatility across the social calendar.",
         "description_animation": "none",
         "collection": "new-arrivals",
         "button_label": "Shop Now",
@@ -256,14 +291,53 @@
         "animate_products": false
       }
     },
+    "hero_primary_kTJdhq": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/EOS_Sale_Desktop.webp",
+        "mobile_image": "shopify://shop_images/EOS_Sale_Mobile.webp",
+        "heading": "",
+        "svg_image": "shopify://shop_images/EOS_Sale_Desktop.svg",
+        "svg_size": "medium",
+        "mobile_svg_image": "shopify://shop_images/EOS_Sale_Desktop.svg",
+        "heading_level": "h1",
+        "heading_animation": "none",
+        "description": "Up to 40% Off Select Styles / Last Days",
+        "description_animation": "none",
+        "button_label_1": "Shop Sale",
+        "button_link_1": "shopify://collections/sale",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
+        "horizontal_alignment": "right",
+        "vertical_alignment": "middle",
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "bottom"
+      }
+    },
+    "spacer_yr6m7M": {
+      "type": "spacer",
+      "name": "Spacer",
+      "settings": {
+        "spacer_height": "var(--space-s)"
+      }
+    },
     "hero_primary_zeaCqL": {
       "type": "hero-primary",
       "name": "Hero Section",
       "settings": {
         "media_type": "image",
-        "desktop_image": "shopify://shop_images/Spring_Drop_1_Hero_Desktop_copy.webp",
+        "desktop_image": "shopify://shop_images/Spring_After_Dark_Desktop.webp",
+        "mobile_image": "shopify://shop_images/Spring_After_Dark_Mobile.webp",
         "heading": "",
-        "svg_size": "medium",
+        "svg_image": "shopify://shop_images/S25_Homepage_After_Dark_Desktop_85061869-99a9-4ef7-a2ec-1257d3a4698d.svg",
+        "svg_size": "full",
+        "mobile_svg_image": "shopify://shop_images/S25_Homepage_After_Dark_Mobile.svg",
         "heading_level": "h1",
         "heading_animation": "none",
         "description": "THE FORMAL & EVENTWEAR EDIT",
@@ -277,9 +351,53 @@
         "button_label_4": "",
         "button_link_4": "",
         "horizontal_alignment": "center",
-        "vertical_alignment": "bottom",
+        "vertical_alignment": "stretch",
         "mobile_horizontal_alignment": "center",
         "mobile_vertical_alignment": "bottom"
+      }
+    },
+    "spacer_wCQ8WH": {
+      "type": "spacer",
+      "name": "Spacer",
+      "settings": {
+        "spacer_height": "var(--space-s)"
+      }
+    },
+    "hero_primary_WLbcQ7": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/SS25_Wedding_1.webp",
+        "mobile_image": "shopify://shop_images/Wedding_Blog_Featured.webp",
+        "heading": "",
+        "svg_image": "shopify://shop_images/MOD_HP_Heading_a2545755-65f2-4fbe-9d1e-cfd88fdde7ed.svg",
+        "svg_size": "large",
+        "mobile_svg_image": "shopify://shop_images/MOD_HP_Heading_a2545755-65f2-4fbe-9d1e-cfd88fdde7ed.svg",
+        "heading_level": "h1",
+        "heading_animation": "none",
+        "description": "For the ceremony, the celebration, the forever.",
+        "description_animation": "none",
+        "button_label_1": "Shop Weddings",
+        "button_link_1": "shopify://blogs/the-jackson-journal/moments-of-distinction-the-wedding-edit",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "middle",
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "bottom"
+      }
+    },
+    "featured_article_r6pY9T": {
+      "type": "featured-article",
+      "name": "Featured Articles",
+      "settings": {
+        "heading": "FROM THE JACKSON JOURNAL",
+        "heading_alignment": "center"
       }
     }
   },
@@ -289,6 +407,11 @@
     "variable_column_content_secondary_X9KJtx",
     "variable_column_content_tertiary_XwmChF",
     "collection_slider_3p3hD9",
-    "hero_primary_zeaCqL"
+    "hero_primary_kTJdhq",
+    "spacer_yr6m7M",
+    "hero_primary_zeaCqL",
+    "spacer_wCQ8WH",
+    "hero_primary_WLbcQ7",
+    "featured_article_r6pY9T"
   ]
 }

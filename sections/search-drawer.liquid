@@ -1,22 +1,18 @@
 {{ 'section-search-drawer.css' | asset_url | stylesheet_tag }}
 
 <aside
-  x-data="searchDrawer"
-  x-init="init()"
-  @keydown.escape.window="closeSearch()"
+  id="searchDrawer"
   class="search-drawer"
   role="dialog"
   aria-labelledby="search-title"
-  @click="closeSearch()"
 >
-  <div class="search-drawer__container custom-scrollbar" @click.stop>
+  <div class="search-drawer__container custom-scrollbar">
     <header class="search-drawer__header">
       <h2 id="search-title" class="search-drawer__title heading--xl">Search</h2>
       <button
         class="search-drawer__close"
         type="button"
         aria-label="Close search"
-        @click="closeSearch()"
       >
         {% render '_icon-close' %}
       </button>
@@ -27,9 +23,8 @@
 
       <div class="search-content-wrapper">
         <div
-          class="search-drawer__loading small search-state-transition"
-          x-show="isLoading"
-          x-transition.opacity.duration.200ms
+          id="searchLoading"
+          class="search-drawer__loading small search-state-transition hidden"
         >
           <div class="animated-loader">
             <svg fill="#E7E7E7" style="height:4px;display:block" viewBox="0 0 40 4" xmlns="http://www.w3.org/2000/svg">
@@ -43,72 +38,37 @@
         </div>
 
         <div
-          class="predictive-search__no-results small search-state-transition"
-          x-show="$store.search.query.length > 0 && !isLoading && predictiveResults && (!predictiveResults.products || predictiveResults.products.length === 0) && (!predictiveResults.collections || predictiveResults.collections.length === 0)"
-          x-transition.opacity.duration.200ms
+          id="noResultsContainer"
+          class="predictive-search__no-results small search-state-transition hidden"
         >
           <button
             type="button"
+            id="noResultsSearchButton"
             class="predictive-search__search-button button body"
             style="margin-top: 0px;"
-            @click="performSearch()"
-            x-text="`Search for '${$store.search.query}'`"
           ></button>
         </div>
 
         <div
-          class="search-state-transition"
-          x-show="$store.search.query.length > 0 && predictiveResults && !isLoading"
-          x-transition.opacity.duration.200ms
+          id="searchResultsContainer"
+          class="search-state-transition hidden"
         >
-          <template x-if="predictiveResults && predictiveResults.products && predictiveResults.products.length > 0">
-            <div>
-              <h3 class="predictive-search__title heading--l">Products</h3>
-              <ul class="predictive-search__results">
-                <template x-for="product in predictiveResults.products" :key="product.id">
-                  <li class="predictive-search__item">
-                    <a :href="product.url" class="predictive-search__link">
-                      <div class="predictive-search__image-container">
-                        <img
-                          :src="product.image"
-                          :alt="product.title"
-                          class="predictive-search__image"
-                          loading="lazy"
-                          width="40"
-                          height="40"
-                        >
-                      </div>
-                      <span class="predictive-search__text body" x-text="product.title"></span>
-                    </a>
-                  </li>
-                </template>
-              </ul>
-            </div>
-          </template>
+          <div id="productResults" style="display: none;">
+            <h3 class="predictive-search__title heading--l">Products</h3>
+            <ul id="productResultsList" class="predictive-search__results"></ul>
+          </div>
 
-          <template x-if="predictiveResults && predictiveResults.collections && predictiveResults.collections.length > 0">
-            <div>
-              <h3 class="predictive-search__title heading--l">Collections</h3>
-              <ul class="predictive-search__results">
-                <template x-for="collection in predictiveResults.collections" :key="collection.id">
-                  <li class="predictive-search__item">
-                    <a :href="collection.url" class="predictive-search__link">
-                      <span class="predictive-search__text body" x-text="collection.title"></span>
-                    </a>
-                  </li>
-                </template>
-              </ul>
-            </div>
-          </template>
+          <div id="collectionResults" style="display: none;">
+            <h3 class="predictive-search__title heading--l">Collections</h3>
+            <ul id="collectionResultsList" class="predictive-search__results"></ul>
+          </div>
 
-          <template x-if="$store.search.query.length > 0 && predictiveResults && (predictiveResults.products.length > 0 || predictiveResults.collections.length > 0)">
-            <button
-              type="button"
-              class="predictive-search__search-button button body"
-              @click="performSearch()"
-              x-text="`Search for '${$store.search.query}'`"
-            ></button>
-          </template>
+          <button
+            type="button"
+            id="searchResultsButton"
+            class="predictive-search__search-button button body"
+            style="display: none;"
+          ></button>
         </div>
 
         {% assign popular_searches = '' %}
@@ -128,9 +88,8 @@
 
         {% if has_popular_searches %}
           <div
+            id="popularSearches"
             class="popular-searches search-state-transition"
-            x-show="$store.search.query.length === 0 && !isLoading"
-            x-transition.opacity.duration.200ms
           >
             <h3 class="popular-searches__title heading--l">Popular Searches</h3>
             <ul class="popular-searches__list">
@@ -152,10 +111,8 @@
       </div>
 
       <div
+        id="subDrawerTrigger"
         class="sub-drawer-trigger body--uppercase search-state-transition"
-        x-show="$store.search.query.length === 0 && !isLoading"
-        x-transition.opacity.duration.200ms
-        @click.stop="toggleSubDrawer()"
       >
         Knowledge Base
       </div>
@@ -163,9 +120,8 @@
       {% assign new_arrivals = collections['new-arrivals'] %}
       {% if new_arrivals and new_arrivals.products.size > 0 %}
         <div
+          id="newArrivals"
           class="search-drawer__new-arrivals search-state-transition"
-          x-show="$store.search.query.length === 0 && !isLoading"
-          x-transition.opacity.duration.200ms
         >
           <h3 class="predictive-search__title heading--l">New Arrivals</h3>
           <div class="search-drawer__new-arrivals-grid">
@@ -210,9 +166,9 @@
     </div>
   </div>
 
-  <div class="sub-drawer custom-scrollbar" :class="{ 'sub-drawer--active': subDrawerOpen }" @click.stop>
+  <div id="subDrawer" class="sub-drawer custom-scrollbar">
     <header class="sub-drawer__header">
-      <button @click="toggleSubDrawer()" class="sub-drawer__back" aria-label="Back to search">
+      <button id="subDrawerBack" class="sub-drawer__back" aria-label="Back to search">
         <span>
           {%- render '_icon-arrow-see-less' -%}
         </span>
@@ -227,7 +183,7 @@
             <h3 class="faq-item__title body--bold">{{ section.settings.faq_1_title }}</h3>
             <p
               class="faq-item__description body"
-              x-text="truncateText('{{ section.settings.faq_1_description | escape }}', 200)"
+              data-full-text="{{ section.settings.faq_1_description | escape }}"
             ></p>
             {% if section.settings.faq_1_link != blank %}
               <a href="{{ section.settings.faq_1_link }}" class="faq-item__link body">Learn more</a>
@@ -240,7 +196,7 @@
             <h3 class="faq-item__title body--bold">{{ section.settings.faq_2_title }}</h3>
             <p
               class="faq-item__description body"
-              x-text="truncateText('{{ section.settings.faq_2_description | escape }}', 200)"
+              data-full-text="{{ section.settings.faq_2_description | escape }}"
             ></p>
             {% if section.settings.faq_2_link != blank %}
               <a href="{{ section.settings.faq_2_link }}" class="faq-item__link body">Learn more</a>
@@ -253,7 +209,7 @@
             <h3 class="faq-item__title body--bold">{{ section.settings.faq_3_title }}</h3>
             <p
               class="faq-item__description body"
-              x-text="truncateText('{{ section.settings.faq_3_description | escape }}', 200)"
+              data-full-text="{{ section.settings.faq_3_description | escape }}"
             ></p>
             {% if section.settings.faq_3_link != blank %}
               <a href="{{ section.settings.faq_3_link }}" class="faq-item__link body">Learn more</a>
@@ -266,7 +222,7 @@
             <h3 class="faq-item__title body--bold">{{ section.settings.faq_4_title }}</h3>
             <p
               class="faq-item__description body"
-              x-text="truncateText('{{ section.settings.faq_4_description | escape }}', 200)"
+              data-full-text="{{ section.settings.faq_4_description | escape }}"
             ></p>
             {% if section.settings.faq_4_link != blank %}
               <a href="{{ section.settings.faq_4_link }}" class="faq-item__link body">Learn more</a>
@@ -278,204 +234,10 @@
   </div>
 </aside>
 
-<script>
-  document.addEventListener('alpine:init', () => {
-    Alpine.store('search', {
-      query: '',
-    });
-
-    Alpine.data('searchDrawer', () => ({
-      isOpen: false,
-      scrollY: 0,
-      predictiveResults: null,
-      searchTimeout: null,
-      isLoading: false,
-      currentController: null,
-      subDrawerOpen: false,
-
-      init() {
-        window.toggleSearch = () => {
-          this.openSearch();
-        };
-
-        window.closeSearch = () => this.closeSearch();
-
-        this.$watch('$store.search.query', (value) => {
-          this.handleSearchInput(value);
-        });
-      },
-
-      openSearch() {
-        this.scrollY =
-          document.body.style.position === 'fixed'
-            ? Math.abs(parseInt(document.body.style.top || '0'))
-            : window.scrollY;
-
-        if (document.body.style.position !== 'fixed') {
-          document.body.style.position = 'fixed';
-          document.body.style.top = `-${this.scrollY}px`;
-          document.body.style.width = '100%';
-        }
-
-        this.isOpen = true;
-        document.body.classList.add('search-open');
-        document.querySelector('.search-drawer').classList.add('search-drawer--active');
-
-        if (window.closeMenu) {
-          window.closeMenu(true);
-        }
-      },
-
-      closeSearch() {
-        if (!this.isOpen) return;
-
-        this.isOpen = false;
-        this.subDrawerOpen = false;
-        Alpine.store('search').query = '';
-        this.predictiveResults = null;
-        this.isLoading = false;
-        document.body.classList.remove('search-open');
-        document.querySelector('.search-drawer').classList.remove('search-drawer--active');
-
-        document.documentElement.style.scrollBehavior = 'auto';
-
-        document.body.style.position = '';
-        document.body.style.top = '';
-        document.body.style.width = '';
-        window.scrollTo(0, this.scrollY);
-
-        document.documentElement.style.scrollBehavior = '';
-      },
-
-      toggleSubDrawer() {
-        this.subDrawerOpen = !this.subDrawerOpen;
-      },
-
-      truncateText(text, maxLength) {
-        if (text.length <= maxLength) return text;
-        return text.substring(0, maxLength) + '...';
-      },
-
-      handleSearchInput(query) {
-        clearTimeout(this.searchTimeout);
-
-        if (this.currentController) {
-          this.currentController.abort();
-          this.currentController = null;
-        }
-
-        if (query.length > 0 && this.subDrawerOpen) {
-          this.subDrawerOpen = false;
-        }
-
-        if (query.length < 1) {
-          this.predictiveResults = null;
-          this.isLoading = false;
-          return;
-        }
-
-        this.isLoading = true;
-        this.searchTimeout = setTimeout(() => {
-          this.fetchPredictiveResults(query);
-        }, 300);
-      },
-
-      async fetchPredictiveResults(query) {
-        try {
-          if (this.currentController) {
-            this.currentController.abort();
-          }
-
-          this.currentController = new AbortController();
-
-          const response = await fetch(
-            `/search/suggest.json?q=${encodeURIComponent(
-              query
-            )}&resources[type]=product,collection&resources[limit]=5&resources[limit_scope]=each`,
-            { signal: this.currentController.signal }
-          );
-
-          if (!response.ok) {
-            this.isLoading = false;
-            return;
-          }
-
-          const data = await response.json();
-
-          const products = [];
-          const collections = [];
-
-          if (data.resources && data.resources.results && data.resources.results.products) {
-            data.resources.results.products.forEach((product) => {
-              let imageUrl = null;
-              if (product.image) {
-                imageUrl = product.image.replace(/width=\d+/, 'width=150');
-                if (!imageUrl.includes('width=')) {
-                  imageUrl = product.image + (product.image.includes('?') ? '&' : '?') + 'width=150';
-                }
-              }
-
-              products.push({
-                id: product.id,
-                url: product.url,
-                title: product.title,
-                image: imageUrl,
-              });
-            });
-          }
-
-          if (data.resources && data.resources.results && data.resources.results.collections) {
-            data.resources.results.collections.forEach((collection) => {
-              let imageUrl = null;
-              if (collection.image) {
-                imageUrl = collection.image.replace(/width=\d+/, 'width=150');
-                if (!imageUrl.includes('width=')) {
-                  imageUrl = collection.image + (collection.image.includes('?') ? '&' : '?') + 'width=150';
-                }
-              }
-
-              collections.push({
-                id: collection.id,
-                url: collection.url,
-                title: collection.title,
-                image: imageUrl,
-              });
-            });
-          }
-
-          this.predictiveResults = {
-            products,
-            collections: collections.slice(0, 3),
-          };
-          this.isLoading = false;
-          this.currentController = null;
-        } catch (error) {
-          if (error.name === 'AbortError') {
-            return;
-          }
-          console.error('Predictive search error:', error);
-          this.isLoading = false;
-          this.currentController = null;
-        }
-      },
-
-      performSearch() {
-        const query = Alpine.store('search').query;
-        if (query.length > 0) {
-          window.location.href = `{{ routes.search_url }}?q=${encodeURIComponent(
-            query
-          )}&type=product&options[prefix]=last`;
-        }
-      },
-    }));
-
-    window.addEventListener('unhandledrejection', (event) => {
-      if (event.reason && event.reason.isFromCancelledTransition) {
-        event.preventDefault();
-      }
-    });
-  });
-</script>
+<script
+  src="{{ 'section-search-drawer.js' | asset_url }}"
+  defer
+></script>
 
 {% schema %}
 {

@@ -1,75 +1,61 @@
-// Constants & configuration
-const cartDOMElements = {
-  cartCountBadges: document.querySelectorAll(".cart-count-indicator"),
-  cartDrawerElement: document.querySelector(".cart"),
-  addToCartForms: document.querySelectorAll('form[action="/cart/add"]'),
-  cartIconButtons: document.querySelectorAll(".js-cart-icon"),
+// Constants & DOM elements
+const cartElements = {
+  countBadges: () => document.querySelectorAll(".cart-count-indicator"),
+  drawer: () => document.querySelector(".cart"),
+  addToCartForms: () => document.querySelectorAll('form[action="/cart/add"]'),
+  cartIcons: () => document.querySelectorAll(".js-cart-icon"),
 };
 
-const animatedLoadingBarSVG = `<svg fill=#E7E7E7 style=height:4px;display:block viewBox="0 0 40 4"xmlns=http://www.w3.org/2000/svg><style>.react{animation:moving 1s ease-in-out infinite}@keyframes moving{0%{width:0%}50%{width:100%;transform:translate(0,0)}100%{width:0;right:0;transform:translate(100%,0)}}</style><rect class=react fill=#E7E7E7 height=4 width=40 /></svg>`;
-const jsonRequestHeaders = { Accept: "application/json", "Content-Type": "application/json" };
+const loadingSVG = `<svg fill=#E7E7E7 style=height:4px;display:block viewBox="0 0 40 4"xmlns=http://www.w3.org/2000/svg><style>.react{animation:moving 1s ease-in-out infinite}@keyframes moving{0%{width:0%}50%{width:100%;transform:translate(0,0)}100%{width:0;right:0;transform:translate(100%,0)}}</style><rect class=react fill=#E7E7E7 height=4 width=40 /></svg>`;
 
-const cartState = {
-  isOpen: false,
-  scrollY: 0,
+let cartState = { isOpen: false, scrollY: 0 };
+
+// Utility functions
+const createLoader = () => {
+  const div = document.createElement("div");
+  div.innerHTML = loadingSVG;
+  return div;
 };
 
-// Utility/helper functions
-const createLoadingBarElement = () => {
-  const loadingBarContainer = document.createElement("div");
-  loadingBarContainer.innerHTML = animatedLoadingBarSVG;
-  return loadingBarContainer;
+const showLoader = (element) => {
+  const original = element.innerHTML;
+  element.replaceChildren(createLoader());
+  return original;
 };
 
-const replaceContentWithLoader = (targetElement) => {
-  const originalContent = targetElement.innerHTML;
-  targetElement.replaceChildren(createLoadingBarElement());
-  return originalContent;
+const showError = (container, text, permanent = false) => {
+  container.querySelectorAll('[class*="error"]').forEach((el) => el.remove());
+  const error = document.createElement("div");
+  error.className = permanent ? "cart-item__error small cart-item__error--permanent" : "product-error body";
+  error.textContent = text;
+  container.querySelector("#js--addtocart, .cart-item__actions")?.after(error);
+
+  if (permanent) {
+    const cleanup = () => {
+      document.querySelectorAll(".cart-item__error--permanent").forEach((el) => el.remove());
+      document.removeEventListener("click", cleanup);
+    };
+    setTimeout(() => document.addEventListener("click", cleanup), 100);
+  }
 };
 
-const displayErrorMessage = (containerElement, errorText, cssClassName = "product-error body") => {
-  containerElement.querySelectorAll('[class*="error"]').forEach((errorElement) => errorElement.remove());
-  const errorElement = document.createElement("div");
-  errorElement.className = cssClassName;
-  errorElement.textContent = errorText;
-  containerElement.querySelector("#js--addtocart, .cart-item__actions")?.after(errorElement);
+// Product checks
+const isGiftCard = (element) => {
+  const title = element?.querySelector?.(".cart-item__title a, .product-details__title")?.textContent || "";
+  return title.toLowerCase().includes("gift card");
 };
 
-const displayTemporaryError = (itemElement, errorText) => {
-  const errorElement = document.createElement("div");
-  errorElement.className = "cart-item__error small cart-item__error--permanent";
-  errorElement.textContent = errorText;
-
-  const actionButton = itemElement.querySelector("#js--addtocart, .cart-item__actions");
-  if (actionButton) actionButton.after(errorElement);
-
-  const removeAllErrors = () => {
-    document.querySelectorAll(".cart-item__error--permanent").forEach((errorElement) => errorElement.remove());
-    document.removeEventListener("click", removeAllErrors);
-  };
-  setTimeout(() => document.addEventListener("click", removeAllErrors), 100);
-};
-
-// Product type checks
-const isGiftCardCartItem = (cartItemElement) => {
-  const productTitle = cartItemElement.querySelector(".cart-item__title a")?.textContent || "";
-  return productTitle.toLowerCase().includes("gift card");
-};
-
-const isCurrentProductGiftCard = () => {
-  const pageProductTitle = document.querySelector(".product-details__title")?.textContent || "";
-  return pageProductTitle.toLowerCase().includes("gift card");
-};
-
-const validateInventoryAvailability = (maxInventory, currentQuantity, requestedQuantity) => {
+const validateInventory = (maxInventory, currentQty, requestedQty) => {
   const availableLimit = maxInventory === Infinity ? Infinity : Math.max(0, maxInventory - 5);
-  const totalRequested = currentQuantity + requestedQuantity;
+  const totalRequested = currentQty + requestedQty;
 
-  if (availableLimit === Infinity || totalRequested <= availableLimit) return { isAllowed: true };
+  if (availableLimit === Infinity || totalRequested <= availableLimit) {
+    return { isAllowed: true };
+  }
 
   return {
     isAllowed: false,
-    availableLimit: availableLimit,
+    availableLimit,
     errorMessage:
       availableLimit === 0
         ? "Sorry, this item is out of stock."
@@ -78,19 +64,17 @@ const validateInventoryAvailability = (maxInventory, currentQuantity, requestedQ
 };
 
 // Cart data management
-const fetchCurrentCartData = async () => {
+const fetchCartData = async () => {
   try {
     const response = await fetch("/cart.js");
     const cartData = await response.json();
-    localStorage.setItem(
-      "cartData",
-      JSON.stringify({
-        count: cartData.item_count,
-        items: cartData.items,
-        total: cartData.total_price,
-      })
-    );
-    updateCartCountBadges(cartData.item_count);
+    const simplifiedData = {
+      count: cartData.item_count,
+      items: cartData.items,
+      total: cartData.total_price,
+    };
+    localStorage.setItem("cartData", JSON.stringify(simplifiedData));
+    updateCartBadges(cartData.item_count);
     return cartData;
   } catch (error) {
     console.error("Error fetching cart:", error);
@@ -98,275 +82,183 @@ const fetchCurrentCartData = async () => {
   }
 };
 
-// Cart UI updates
-const showCartDrawer = () => {
-  if (document.body.style.position !== "fixed") {
-    cartState.scrollY = window.scrollY;
-    document.body.style.position = "fixed";
-    document.body.style.top = `-${cartState.scrollY}px`;
-    document.body.style.width = "100%";
-  }
+// Cart UI management
+const toggleCartDrawer = (show = true) => {
+  const body = document.body;
+  const drawer = cartElements.drawer();
 
-  cartState.isOpen = true;
-  document.body.classList.add("cart-open");
-  cartDOMElements.cartDrawerElement.classList.add("cart--active");
+  if (show && !cartState.isOpen) {
+    if (body.style.position !== "fixed") {
+      cartState.scrollY = window.scrollY;
+      Object.assign(body.style, {
+        position: "fixed",
+        top: `-${cartState.scrollY}px`,
+        width: "100%",
+      });
+    } else {
+      cartState.scrollY = Math.abs(parseInt(body.style.top || "0"));
+    }
 
-  if (window.closeMenu) {
-    window.closeMenu(true);
+    cartState.isOpen = true;
+    body.classList.add("cart-open");
+    drawer.classList.add("cart--active");
+    window.closeMenu?.(true);
+  } else if (!show && cartState.isOpen) {
+    cartState.isOpen = false;
+    body.classList.remove("cart-open");
+    drawer.classList.remove("cart--active");
+
+    if (body.style.position === "fixed") {
+      const scrollY = cartState.scrollY || Math.abs(parseInt(body.style.top || "0"));
+      document.documentElement.style.scrollBehavior = "auto";
+      Object.assign(body.style, { position: "", top: "", width: "" });
+      window.scrollTo(0, scrollY);
+      document.documentElement.style.scrollBehavior = "";
+    }
   }
 };
 
-const hideCartDrawer = () => {
-  if (!cartState.isOpen) return;
-
-  cartState.isOpen = false;
-  document.body.classList.remove("cart-open");
-  cartDOMElements.cartDrawerElement.classList.remove("cart--active");
-
-  const scrollY = Math.abs(parseInt(document.body.style.top || "0"));
-
-  document.documentElement.style.scrollBehavior = "auto";
-
-  document.body.style.position = "";
-  document.body.style.top = "";
-  document.body.style.width = "";
-  window.scrollTo(0, scrollY);
-
-  document.documentElement.style.scrollBehavior = "";
-};
-
-const updateCartCountBadges = (itemCount) => {
-  cartDOMElements.cartCountBadges.forEach((badge) => {
+const updateCartBadges = (count) => {
+  cartElements.countBadges().forEach((badge) => {
     badge.style.visibility = "visible";
-    badge.classList.toggle("hide", itemCount <= 0);
+    badge.classList.toggle("hide", count <= 0);
   });
-  localStorage.setItem("cartCount", itemCount.toString());
+  localStorage.setItem("cartCount", count.toString());
 };
 
-const showCartTotalsLoading = () => {
-  document.querySelectorAll(".cart__footer-value").forEach((valueElement) => replaceContentWithLoader(valueElement));
+const showCartLoading = () => {
+  document.querySelectorAll(".cart__footer-value").forEach(showLoader);
   const checkoutBtn = document.querySelector(".cart__checkout");
   if (checkoutBtn) checkoutBtn.innerHTML = '<span class="loader--spinner"></span>';
 };
 
-const refreshCartDrawerContent = async () => {
-  try {
-    const currentProgressBar = document.querySelector(".cart__shipping-progress");
-    const currentProgressWidth = currentProgressBar ? currentProgressBar.style.width || "0%" : "0%";
-    const [drawerHTMLResponse, latestCartData] = await Promise.all([
-      fetch("/?section_id=cart-drawer"),
-      fetchCurrentCartData(),
-    ]);
-    const tempContainer = document.createElement("div");
-    tempContainer.innerHTML = await drawerHTMLResponse.text();
+// Slider management
+let sliderUpdateInProgress = false;
 
-    document.querySelectorAll(".cart__shipping--loading").forEach((loadingElement) => loadingElement.remove());
-
-    const newShippingSection = tempContainer.querySelector(".cart__shipping");
-    const existingShippingSection = document.querySelector(".cart__shipping");
-    if (newShippingSection && existingShippingSection) {
-      const hasCartItems = tempContainer.querySelector(".cart-item");
-      if (hasCartItems) {
-        newShippingSection.style.display = "block";
-        newShippingSection.style.height = "93px";
-        const freeShippingThreshold = 9900;
-        const shippingTextElement = newShippingSection.querySelector(".cart__shipping-text");
-        const progressBarElement = newShippingSection.querySelector(".cart__shipping-progress");
-
-        if (latestCartData && shippingTextElement && progressBarElement) {
-          if (latestCartData.total_price >= freeShippingThreshold) {
-            shippingTextElement.textContent = "Your Order Has Free Shipping!";
-          } else {
-            const amountRemaining = Shopify.formatMoney(freeShippingThreshold - latestCartData.total_price);
-            shippingTextElement.textContent = `${amountRemaining} Away From Free Shipping`;
-          }
-          progressBarElement.style.width = currentProgressWidth;
-        }
-      }
-      existingShippingSection.replaceWith(newShippingSection);
-    }
-
-    const replaceElementIfExists = (cssSelector) => {
-      const newElement = tempContainer.querySelector(cssSelector);
-      const existingElement = document.querySelector(cssSelector);
-      if (newElement && existingElement) existingElement.replaceWith(newElement);
-    };
-
-    replaceElementIfExists(".cart__items");
-    replaceElementIfExists(".cart__footer");
-
-    const newEmptyStateElement = tempContainer.querySelector(".cart__empty-state");
-    const existingEmptyState = document.querySelector(".cart__empty-state");
-    const cartFormElement = document.querySelector(".cart__form");
-
-    if (newEmptyStateElement && !existingEmptyState && cartFormElement) {
-      cartFormElement.innerHTML = "";
-      cartFormElement.appendChild(newEmptyStateElement);
-    } else if (!newEmptyStateElement && existingEmptyState) {
-      existingEmptyState.remove();
-    }
-
-    attachCartInteractionListeners();
-
-    const updatedCart = await fetchCurrentCartData();
-    if (updatedCart) {
-      setTimeout(() => {
-        const progressBar = document.querySelector(".cart__shipping-progress");
-        if (!progressBar) return;
-        const freeShippingThreshold = 9900;
-        progressBar.style.width = `${Math.min((updatedCart.total_price / freeShippingThreshold) * 100, 100)}%`;
-      }, 100);
-    }
-
-    return true;
-  } catch (error) {
-    console.error("Error updating cart drawer:", error);
-    return false;
-  }
-};
-
-// Complementary products slider
-let isSliderUpdateInProgress = false;
-
-const generateComplementarySliderHTML = () => `
-    <div class="cart__complementary-products-loading">${animatedLoadingBarSVG}</div>
-    <div class="cart__complementary-products-content" style="display: none;">
-      <h3 class="cart__complementary-products-title heading--l">Complement Your Look</h3>
-      <div class="cart__complementary-products-slider splide">
-        <div class="splide__arrows">
-          <button class="splide__arrow splide__arrow--prev" type="button">
-            <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6 1L1 6L6 11" stroke="#0F0F0F" stroke-linecap="square"/>
-            </svg>
-          </button>
-          <button class="splide__arrow splide__arrow--next" type="button">
-            <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M1 1L6 6L1 11" stroke="#0F0F0F" stroke-linecap="square"/>
-            </svg>
-          </button>
-        </div>
-        <div class="splide__track">
-          <ul class="splide__list"></ul>
-        </div>
+const sliderHTML = () => `
+  <div class="cart__complementary-products-loading">${loadingSVG}</div>
+  <div class="cart__complementary-products-content" style="display: none;">
+    <h3 class="cart__complementary-products-title heading--l">Complement Your Look</h3>
+    <div class="cart__complementary-products-slider splide">
+      <div class="splide__arrows">
+        <button class="splide__arrow splide__arrow--prev" type="button">
+          <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 1L1 6L6 11" stroke="#0F0F0F" stroke-linecap="square"/>
+          </svg>
+        </button>
+        <button class="splide__arrow splide__arrow--next" type="button">
+          <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L6 6L1 11" stroke="#0F0F0F" stroke-linecap="square"/>
+          </svg>
+        </button>
       </div>
+      <div class="splide__track"><ul class="splide__list"></ul></div>
     </div>
-  `;
+  </div>`;
 
-const createSliderContainerIfMissing = () => {
+const createSliderContainer = () => {
   if (document.querySelector(".cart__complementary-products")) return;
 
-  const cartFormElement = document.querySelector(".cart__form");
-  const footerElement = document.querySelector(".cart__footer");
-  if (!cartFormElement || !footerElement) return;
+  const cartForm = document.querySelector(".cart__form");
+  const footer = document.querySelector(".cart__footer");
+  if (!cartForm || !footer) return;
 
-  const sliderContainer = document.createElement("div");
-  sliderContainer.className = "cart__complementary-products";
-  sliderContainer.style.display = "none";
-  sliderContainer.innerHTML = generateComplementarySliderHTML();
-  sliderContainer.querySelector(".cart__complementary-products-loading").appendChild(createLoadingBarElement());
-  cartFormElement.insertBefore(sliderContainer, footerElement);
+  const container = document.createElement("div");
+  container.className = "cart__complementary-products";
+  container.style.display = "none";
+  container.innerHTML = sliderHTML();
+  cartForm.insertBefore(container, footer);
 };
 
-const removeComplementarySlider = () => {
+const hideSlider = () => {
   window.complementarySlider?.destroy();
   window.complementarySlider = null;
-  const sliderContainer = document.querySelector(".cart__complementary-products");
-  if (sliderContainer) sliderContainer.style.display = "none";
+  const container = document.querySelector(".cart__complementary-products");
+  if (container) container.style.display = "none";
 };
 
-const hideComplementarySection = () => {
-  const sliderContainer = document.querySelector(".cart__complementary-products");
-  if (sliderContainer) sliderContainer.style.display = "none";
-};
+const fetchRecommendations = async (productHandles) => {
+  const recommendations = [];
+  const processed = new Set(productHandles);
 
-const loadRecommendedProducts = async (productHandles) => {
-  const cartProductHandles = new Set(productHandles);
-  const processedHandles = new Set([...cartProductHandles]);
-  const recommendedProducts = [];
-
-  const fetchProductRecommendations = async (productHandle) => {
+  const getProductRecs = async (handle) => {
     try {
-      const productResponse = await fetch(`/products/${productHandle}.js`);
-      if (!productResponse.ok) return [];
-      const productData = await productResponse.json();
-      const recommendationsResponse = await fetch(
-        `/recommendations/products.json?product_id=${productData.id}&limit=10&intent=related`
-      );
-      if (!recommendationsResponse.ok) return [];
-      const recommendationsData = await recommendationsResponse.json();
-      return recommendationsData.products || [];
+      const productRes = await fetch(`/products/${handle}.js`);
+      if (!productRes.ok) return [];
+      const product = await productRes.json();
+      const recsRes = await fetch(`/recommendations/products.json?product_id=${product.id}&limit=10&intent=related`);
+      if (!recsRes.ok) return [];
+      const data = await recsRes.json();
+      return data.products || [];
     } catch {
       return [];
     }
   };
 
-  const allProductRecommendations = await Promise.all(productHandles.slice(0, 4).map(fetchProductRecommendations));
+  const allRecs = await Promise.all(productHandles.slice(0, 4).map(getProductRecs));
 
-  for (const productList of allProductRecommendations) {
-    let addedFromCurrentProduct = 0;
-    for (const product of productList) {
-      if (addedFromCurrentProduct >= 2) break;
-      if (!processedHandles.has(product.handle)) {
-        processedHandles.add(product.handle);
-        recommendedProducts.push(product);
-        addedFromCurrentProduct++;
-        if (recommendedProducts.length >= 8) return recommendedProducts;
+  for (const products of allRecs) {
+    let added = 0;
+    for (const product of products) {
+      if (added >= 2 || recommendations.length >= 8) break;
+      if (!processed.has(product.handle)) {
+        processed.add(product.handle);
+        recommendations.push(product);
+        added++;
       }
     }
   }
-  return recommendedProducts;
+  return recommendations;
 };
 
-const recreateComplementarySlider = async (productHandles) => {
-  if (isSliderUpdateInProgress) return;
-  isSliderUpdateInProgress = true;
+const updateSlider = async (productHandles) => {
+  if (sliderUpdateInProgress) return;
+  if (!productHandles?.length) {
+    hideSlider();
+    return;
+  }
+  sliderUpdateInProgress = true;
 
-  removeComplementarySlider();
+  hideSlider();
 
-  const sliderContainer = document.querySelector(".cart__complementary-products");
-  const loadingElement = document.querySelector(".cart__complementary-products-loading");
-  const contentElement = document.querySelector(".cart__complementary-products-content");
-  const sliderListElement = sliderContainer?.querySelector(".splide__list");
+  const container = document.querySelector(".cart__complementary-products");
+  const loading = container?.querySelector(".cart__complementary-products-loading");
+  const content = container?.querySelector(".cart__complementary-products-content");
+  const list = container?.querySelector(".splide__list");
 
-  if (!sliderContainer || !loadingElement || !contentElement || !sliderListElement || productHandles.length === 0) {
-    if (sliderContainer) sliderContainer.style.display = "none";
-    isSliderUpdateInProgress = false;
+  if (!container || !loading || !content || !list) {
+    sliderUpdateInProgress = false;
     return;
   }
 
-  sliderContainer.style.display = "block";
-  loadingElement.style.display = "block";
-  contentElement.style.display = "none";
-  if (!loadingElement.innerHTML.trim()) loadingElement.innerHTML = animatedLoadingBarSVG;
+  container.style.display = "block";
+  loading.style.display = "block";
+  content.style.display = "none";
+  if (!loading.innerHTML.trim()) loading.innerHTML = loadingSVG;
 
   try {
-    const recommendedProducts = await loadRecommendedProducts(productHandles);
-
-    if (!isSliderUpdateInProgress || recommendedProducts.length === 0) {
-      sliderContainer.style.display = "none";
-      isSliderUpdateInProgress = false;
+    const products = await fetchRecommendations(productHandles);
+    if (!sliderUpdateInProgress || !products.length) {
+      container.style.display = "none";
       return;
     }
 
-    sliderListElement.innerHTML = recommendedProducts
+    list.innerHTML = products
       .map(
-        (product) => `
+        (p) => `
       <li class="splide__slide">
-        <a href="/products/${product.handle}">
+        <a href="/products/${p.handle}">
           <div class="cart__complementary-products-image-wrapper">
-            <img src="https:${product.featured_image}&width=300" alt="${
-          product.title
-        }" class="cart__complementary-products-image">
+            <img src="https:${p.featured_image}&width=300" alt="${p.title}" class="cart__complementary-products-image">
           </div>
-          <h3 class="body--bold cart__complementary-products-title-product">${product.title}</h3>
-          <p class="small cart__complementary-products-price">${Shopify.formatMoney(product.price)}</p>
+          <h3 class="body--bold cart__complementary-products-title-product">${p.title}</h3>
+          <p class="small cart__complementary-products-price">${Shopify.formatMoney(p.price)}</p>
         </a>
-      </li>
-    `
+      </li>`
       )
       .join("");
 
-    window.complementarySlider = new Splide(sliderContainer.querySelector(".cart__complementary-products-slider"), {
+    window.complementarySlider = new Splide(container.querySelector(".cart__complementary-products-slider"), {
       type: "slide",
       perPage: 2,
       gap: "var(--space-2xs)",
@@ -374,391 +266,435 @@ const recreateComplementarySlider = async (productHandles) => {
       pagination: false,
     }).mount();
 
-    const arrowButtonsContainer = sliderContainer.querySelector(".splide__arrows");
-    if (arrowButtonsContainer) arrowButtonsContainer.style.display = recommendedProducts.length <= 2 ? "none" : "flex";
+    const arrows = container.querySelector(".splide__arrows");
+    if (arrows) arrows.style.display = products.length <= 2 ? "none" : "flex";
 
-    loadingElement.style.display = "none";
-    contentElement.style.display = "block";
+    loading.style.display = "none";
+    content.style.display = "block";
   } catch (error) {
-    console.error("Error rebuilding slider:", error);
-    sliderContainer.style.display = "none";
+    console.error("Error updating slider:", error);
+    container.style.display = "none";
   } finally {
-    isSliderUpdateInProgress = false;
+    sliderUpdateInProgress = false;
   }
 };
 
-const initializeSliderBasedOnCart = () => {
-  const allCartItems = document.querySelectorAll(".cart-item");
-  if (!allCartItems.length) {
-    hideComplementarySection();
+const initSlider = () => {
+  const cartItems = document.querySelectorAll(".cart-item");
+  if (!cartItems.length) {
+    hideSlider();
     return;
   }
 
-  createSliderContainerIfMissing();
-
-  const productHandles = Array.from(allCartItems)
+  createSliderContainer();
+  const handles = Array.from(cartItems)
     .map((item) => item.querySelector(".cart-item__title a")?.href?.split("/products/")[1]?.split("?")[0])
     .filter(Boolean);
 
-  if (productHandles.length) recreateComplementarySlider(productHandles);
+  if (handles.length) updateSlider(handles);
 };
 
-const refreshSliderWithCartProducts = () => {
-  const currentProductHandles = Array.from(document.querySelectorAll(".cart-item .cart-item__title a"))
-    .map((link) => link.href.split("/products/")[1]?.split("?")[0])
-    .filter(Boolean);
+// Cart content refresh
+const refreshCartContent = async () => {
+  try {
+    const currentProgressWidth = document.querySelector(".cart__shipping-progress")?.style.width || "0%";
+    const [drawerRes, cartData] = await Promise.all([fetch("/?section_id=cart-drawer"), fetchCartData()]);
 
-  if (currentProductHandles.length > 0) {
-    setTimeout(() => recreateComplementarySlider(currentProductHandles), 100);
-  } else {
-    setTimeout(initializeSliderBasedOnCart, 100);
+    const temp = document.createElement("div");
+    temp.innerHTML = await drawerRes.text();
+
+    document.querySelectorAll(".cart__shipping--loading").forEach((el) => el.remove());
+
+    // Update shipping section
+    const newShipping = temp.querySelector(".cart__shipping");
+    const existingShipping = document.querySelector(".cart__shipping");
+    if (newShipping && existingShipping) {
+      const hasItems = temp.querySelector(".cart-item");
+      if (hasItems) {
+        Object.assign(newShipping.style, { display: "block", height: "93px" });
+        const threshold = 9900;
+        const textEl = newShipping.querySelector(".cart__shipping-text");
+        const progressEl = newShipping.querySelector(".cart__shipping-progress");
+
+        if (cartData && textEl && progressEl) {
+          textEl.textContent =
+            cartData.total_price >= threshold
+              ? "Your Order Has Free Shipping!"
+              : `${Shopify.formatMoney(threshold - cartData.total_price)} Away From Free Shipping`;
+          progressEl.style.width = currentProgressWidth;
+        }
+      }
+      existingShipping.replaceWith(newShipping);
+    }
+
+    // Replace elements
+    const replaceElement = (selector) => {
+      const newEl = temp.querySelector(selector);
+      const existing = document.querySelector(selector);
+      if (newEl && existing) existing.replaceWith(newEl);
+    };
+
+    // Preserve optimistic images
+    const optimisticImages = new Map();
+    document.querySelectorAll(".cart-item--optimistic").forEach((item) => {
+      const key = item.getAttribute("data-line-item-key");
+      const img = item.querySelector(".cart-item__image img");
+      if (img) optimisticImages.set(key, img.cloneNode(true));
+    });
+
+    replaceElement(".cart__items");
+
+    // Restore optimistic images
+    optimisticImages.forEach((img, tempKey) => {
+      const variantId = tempKey.replace("temp-", "");
+      const newItem = document.querySelector(`[data-line-item-key*="${variantId}"]`);
+      const newImg = newItem?.querySelector(".cart-item__image img");
+      if (newImg) newImg.replaceWith(img);
+    });
+
+    replaceElement(".cart__footer");
+
+    // Handle empty state
+    const newEmpty = temp.querySelector(".cart__empty-state");
+    const existingEmpty = document.querySelector(".cart__empty-state");
+    const cartForm = document.querySelector(".cart__form");
+
+    if (newEmpty && !existingEmpty && cartForm) {
+      cartForm.innerHTML = "";
+      cartForm.appendChild(newEmpty);
+    } else if (!newEmpty && existingEmpty) {
+      existingEmpty.remove();
+    }
+
+    attachEventListeners();
+
+    // Update progress bar
+    if (cartData) {
+      setTimeout(() => {
+        const progressBar = document.querySelector(".cart__shipping-progress");
+        if (progressBar) {
+          progressBar.style.width = `${Math.min((cartData.total_price / 9900) * 100, 100)}%`;
+        }
+      }, 100);
+    }
+
+    return true;
+  } catch (error) {
+    console.error("Error updating cart:", error);
+    return false;
   }
 };
 
-// Optimistic UI for add to cart
-const getSelectedVariantOptions = () => {
-  const selectedOptions = [];
-  document.querySelectorAll(".js--variant-options:checked").forEach((checkedInput) => {
-    const optionGroup = checkedInput.closest(".js--variant-options");
-    const optionNameElement = optionGroup?.querySelector("legend");
-    const optionValueElement = checkedInput.nextElementSibling;
+// Optimistic UI
+const getSelectedOptions = () => {
+  const options = [];
+  document.querySelectorAll(".js--variant-options:checked").forEach((input) => {
+    const group = input.closest(".js--variant-options");
+    const nameEl = group?.querySelector("legend");
+    const valueEl = input.nextElementSibling;
 
-    if (optionNameElement && optionValueElement) {
-      const optionName = optionNameElement.textContent.replace(":", "").trim();
-      const optionValue = optionValueElement.textContent.trim();
-      if (optionName && optionValue) selectedOptions.push(`${optionName}: ${optionValue}`);
+    if (nameEl && valueEl) {
+      const name = nameEl.textContent.replace(":", "").trim();
+      const value = valueEl.textContent.trim();
+      if (name && value) options.push(`${name}: ${value}`);
     }
   });
-  return selectedOptions.length > 0 ? selectedOptions.join(", ") : "One Size";
+  return options.length > 0 ? options.join(", ") : "One Size";
 };
 
 const getCurrentProductImage = () => {
-  const featuredSlide = document.querySelector(`[data-imageid="${default_image}"] img`);
-  if (featuredSlide?.src) return featuredSlide.src;
+  const slide = document.querySelector(`[data-imageid="${default_image}"] img`);
+  if (slide) {
+    const clone = slide.cloneNode(true);
+    clone.width = 100;
+    clone.height = 150;
+    return clone;
+  }
+  return null;
 };
 
-const initializeEmptyCartStructure = (emptyStateElement) => {
-  const cartFormElement = document.querySelector(".cart__form");
-  emptyStateElement.remove();
+const initEmptyCart = (emptyEl) => {
+  const cartForm = document.querySelector(".cart__form");
+  emptyEl.remove();
 
-  const sliderHTMLContent = generateComplementarySliderHTML();
   const shippingHTML = document.querySelector(".cart__shipping")
-    ? `
-    <div class="cart__shipping cart__shipping--loading" style="display: block; height: 93px;">
-      <p class="cart__shipping-text small">${createLoadingBarElement().outerHTML}</p>
-      <div class="cart__shipping-bar">
-        <div class="cart__shipping-progress"></div>
-      </div>
-    </div>
-  `
+    ? `<div class="cart__shipping cart__shipping--loading" style="display: block; height: 93px;">
+         <p class="cart__shipping-text small">${createLoader().outerHTML}</p>
+         <div class="cart__shipping-bar"><div class="cart__shipping-progress"></div></div>
+       </div>`
     : "";
 
-  cartFormElement.innerHTML = `
+  cartForm.innerHTML = `
     ${shippingHTML}
     <div class="cart__items"></div>
-    <div class="cart__complementary-products" style="display: block;">
-      ${sliderHTMLContent}
-    </div>
+    <div class="cart__complementary-products" style="display: block;">${sliderHTML()}</div>
     <footer class="cart__footer">
       <div class="cart__footer-row">
         <h3 class="cart__footer-label body">Subtotal</h3>
-        <span class="cart__footer-value body--bold">${createLoadingBarElement().outerHTML}</span>
+        <span class="cart__footer-value body--bold">${createLoader().outerHTML}</span>
       </div>
       <button type="submit" name="checkout" class="cart__checkout body">
         <span class="loader--spinner"></span>
       </button>
-    </footer>
-  `;
-
-  const loadingContainer = cartFormElement.querySelector(".cart__complementary-products-loading");
-  if (loadingContainer && !loadingContainer.firstChild) loadingContainer.appendChild(createLoadingBarElement());
+    </footer>`;
 };
 
-const showExistingItemLoading = (cartItemElement) => {
-  const priceContainer = cartItemElement.querySelector(".cart-item__price");
-  if (priceContainer) replaceContentWithLoader(priceContainer);
+const showItemLoading = (item) => {
+  const price = item.querySelector(".cart-item__price");
+  if (price) showLoader(price);
 
-  const actionsContainer = cartItemElement.querySelector(".cart-item__actions");
-  if (actionsContainer) {
-    actionsContainer.innerHTML = `
-      <div class="placeholder-loader">${createLoadingBarElement().outerHTML}</div>
-      <div class="placeholder-remove"></div>
-    `;
+  const actions = item.querySelector(".cart-item__actions");
+  if (actions) {
+    actions.innerHTML = `<div class="placeholder-loader">${
+      createLoader().outerHTML
+    }</div><div class="placeholder-remove"></div>`;
   }
 };
 
-const insertNewCartItem = (itemsContainer, variantId, imageUrl, productName, variantOptions) => {
-  const newCartItem = document.createElement("article");
-  newCartItem.className = "cart-item";
-  newCartItem.setAttribute("data-line-item-key", `temp-${variantId}`);
+const addOptimisticItem = (container, variantId, image, name) => {
+  const item = document.createElement("article");
+  item.className = "cart-item cart-item--optimistic";
+  item.setAttribute("data-line-item-key", `temp-${variantId}`);
 
-  newCartItem.innerHTML = `
-    <div class="cart-item__image">
-      <img src="${imageUrl}" alt="${productName}" width="100" height="150">
-    </div>
+  const imageDiv = document.createElement("div");
+  imageDiv.className = "cart-item__image";
+  if (image) imageDiv.appendChild(image);
+
+  item.innerHTML = `
     <div class="cart-item__content">
-      <div class="cart-item__row">
-        <div class="cart-item__details">
-          <h3 class="cart-item__title body--bold">
-            <a href="${window.location.pathname}">${productName}</a>
-          </h3>
-          <div class="cart-item__specifics">
-            <div class="cart-item__variant small" style="display: flex; align-items: center; height: auto;">${
-              createLoadingBarElement().outerHTML
-            }</div>
-            <div class="cart-item__price">
-              <div class="price-placeholder">${createLoadingBarElement().outerHTML}</div>
-            </div>
-          </div>
-          <div class="cart-item__actions">
-            <div class="placeholder-loader">${createLoadingBarElement().outerHTML}</div>
-            <div class="placeholder-remove"></div>
-          </div>
+      <div class="cart-item__details">
+        <h3 class="cart-item__title body--bold">
+          <a href="${window.location.pathname}">${name}</a>
+        </h3>
+        <div class="cart-item__specifics">
+          <div class="cart-item__variant small" style="display: flex; align-items: center; height: auto;">${
+            createLoader().outerHTML
+          }</div>
+          <div class="cart-item__price"><div class="price-placeholder">${createLoader().outerHTML}</div></div>
+        </div>
+        <div class="cart-item__actions">
+          <div class="placeholder-loader">${createLoader().outerHTML}</div>
+          <div class="placeholder-remove"></div>
         </div>
       </div>
-    </div>
-  `;
+    </div>`;
 
-  itemsContainer.prepend(newCartItem);
+  item.insertBefore(imageDiv, item.firstChild);
+  container.prepend(item);
 };
 
-const showOptimisticCartUpdate = () => {
-  const currentProductName = document.querySelector(".product-details__title")?.textContent || "";
-  const selectedVariantId = document.querySelector("#js--variant-id")?.value || "";
-  const selectedOptions = getSelectedVariantOptions();
-  const productImageUrl = getCurrentProductImage();
+const showOptimisticUpdate = () => {
+  const productName = document.querySelector(".product-details__title")?.textContent || "";
+  const variantId = document.querySelector("#js--variant-id")?.value || "";
+  const image = getCurrentProductImage();
 
-  showCartTotalsLoading();
-  createSliderContainerIfMissing();
+  showCartLoading();
+  createSliderContainer();
 
-  const emptyCartElement = document.querySelector(".cart__empty-state");
-  if (emptyCartElement) initializeEmptyCartStructure(emptyCartElement);
+  const emptyCart = document.querySelector(".cart__empty-state");
+  if (emptyCart) initEmptyCart(emptyCart);
 
-  const cartItemsContainer = document.querySelector(".cart__items");
-  if (!cartItemsContainer) return;
+  const container = document.querySelector(".cart__items");
+  if (!container) return;
 
-  const existingVariantItem = document.querySelector(`.cart-item[data-line-item-key*="${selectedVariantId}"]`);
+  const existing = document.querySelector(`.cart-item[data-line-item-key*="${variantId}"]`);
 
-  if (existingVariantItem) {
-    showExistingItemLoading(existingVariantItem);
+  if (existing) {
+    showItemLoading(existing);
   } else {
-    insertNewCartItem(cartItemsContainer, selectedVariantId, productImageUrl, currentProductName, selectedOptions);
+    addOptimisticItem(container, variantId, image, productName);
   }
 
-  refreshSliderWithCartProducts();
+  // Refresh slider
+  setTimeout(() => {
+    const handles = Array.from(document.querySelectorAll(".cart-item .cart-item__title a"))
+      .map((link) => link.href.split("/products/")[1]?.split("?")[0])
+      .filter(Boolean);
+    if (handles.length) updateSlider(handles);
+  }, 100);
 };
 
 // Event handlers
-const createAddToCartHandler = (formElement) => {
-  return async (submitEvent) => {
-    submitEvent.preventDefault();
+const createAddToCartHandler = (form) => async (e) => {
+  e.preventDefault();
 
-    const submitButton = formElement.querySelector("#js--addtocart");
-    if (!submitButton?.enabled === false) return;
+  const btn = form.querySelector("#js--addtocart");
+  if (!btn?.enabled === false) return;
 
-    const variantId = formElement.querySelector("#js--variant-id")?.value || "";
-    const requestedQuantity = parseInt(formElement.querySelector('input[name="quantity"]')?.value || "1", 10);
-    const originalButtonContent = submitButton.innerHTML;
+  const variantId = form.querySelector("#js--variant-id")?.value || "";
+  const qty = parseInt(form.querySelector('input[name="quantity"]')?.value || "1", 10);
+  const originalContent = btn.innerHTML;
 
-    submitButton.innerHTML = `<span class="loader--spinner"></span>`;
+  btn.innerHTML = '<span class="loader--spinner"></span>';
 
-    try {
-      if (!isCurrentProductGiftCard()) {
-        const availableInventory = parseInt(
-          document.querySelector("#js--variant-inventory-quantity")?.value || "Infinity",
-          10
-        );
-        const currentCart = await fetchCurrentCartData();
-        const existingCartItem = currentCart?.items?.find((item) => item.variant_id.toString() === variantId);
-        const currentItemQuantity = existingCartItem?.quantity || 0;
-        const inventoryValidation = validateInventoryAvailability(
-          availableInventory,
-          currentItemQuantity,
-          requestedQuantity
-        );
+  try {
+    if (!isGiftCard()) {
+      const inventory = parseInt(document.querySelector("#js--variant-inventory-quantity")?.value || "Infinity", 10);
+      const currentCart = await fetchCartData();
+      const existingItem = currentCart?.items?.find((item) => item.variant_id.toString() === variantId);
+      const currentQty = existingItem?.quantity || 0;
+      const validation = validateInventory(inventory, currentQty, qty);
 
-        if (!inventoryValidation.isAllowed) {
-          submitButton.innerHTML = originalButtonContent;
-          displayErrorMessage(formElement, inventoryValidation.errorMessage);
-          return;
-        }
+      if (!validation.isAllowed) {
+        btn.innerHTML = originalContent;
+        showError(form, validation.errorMessage);
+        return;
       }
-
-      showCartDrawer();
-      showOptimisticCartUpdate();
-
-      await fetch("/cart/add.js", {
-        method: "post",
-        body: new FormData(formElement),
-      });
-
-      await refreshCartDrawerContent();
-      submitButton.innerHTML = originalButtonContent;
-    } catch (error) {
-      console.error("Error adding to cart:", error);
-      submitButton.innerHTML = originalButtonContent;
-      displayErrorMessage(formElement, "Could not add to cart. Please try again.");
     }
-  };
+
+    toggleCartDrawer(true);
+    showOptimisticUpdate();
+
+    await fetch("/cart/add.js", { method: "post", body: new FormData(form) });
+    await refreshCartContent();
+    btn.innerHTML = originalContent;
+  } catch (error) {
+    console.error("Error adding to cart:", error);
+    btn.innerHTML = originalContent;
+    showError(form, "Could not add to cart. Please try again.");
+  }
 };
 
-const attachCartInteractionListeners = () => {
-  const showItemLoadingState = (cartItemElement) => {
-    const actionsSection = cartItemElement.querySelector(".cart-item__actions");
-    const priceSection = cartItemElement.querySelector(".cart-item__price");
-    const loadingBarHTML = createLoadingBarElement().outerHTML;
-
-    if (actionsSection) {
-      actionsSection.innerHTML = `
-        <div class="placeholder-loader">${loadingBarHTML}</div>
-        <div class="placeholder-remove"></div>
-      `;
-    }
-    if (priceSection) replaceContentWithLoader(priceSection);
-  };
-
-  const getOtherProductHandles = (excludeItemKey) => {
-    return Array.from(document.querySelectorAll('.cart-item:not([style*="display: none"])'))
-      .filter((item) => item.getAttribute("data-line-item-key") !== excludeItemKey)
+const attachEventListeners = () => {
+  const getOtherHandles = (excludeKey) =>
+    Array.from(document.querySelectorAll('.cart-item:not([style*="display: none"])'))
+      .filter((item) => item.getAttribute("data-line-item-key") !== excludeKey)
       .map((item) => item.querySelector(".cart-item__title a")?.href?.split("/products/")[1]?.split("?")[0])
       .filter(Boolean);
-  };
 
-  const deleteCartItem = async (itemElement, itemKey) => {
-    const totalItemCount = document.querySelectorAll(".cart-item").length;
-    itemElement.style.display = "none";
+  const deleteItem = async (item, key) => {
+    const totalItems = document.querySelectorAll(".cart-item").length;
+    item.style.display = "none";
 
-    if (totalItemCount === 1) {
-      const shippingBar = document.querySelector(".cart__shipping");
-      if (shippingBar) shippingBar.style.display = "none";
+    if (totalItems === 1) {
+      const shipping = document.querySelector(".cart__shipping");
+      if (shipping) shipping.style.display = "none";
     }
 
-    showCartTotalsLoading();
-    recreateComplementarySlider(getOtherProductHandles(itemKey));
+    showCartLoading();
+    updateSlider(getOtherHandles(key));
 
     try {
       await fetch("/cart/update.js", {
         method: "post",
-        headers: jsonRequestHeaders,
-        body: JSON.stringify({ updates: { [itemKey]: 0 } }),
+        headers: { Accept: "application/json", "Content-Type": "application/json" },
+        body: JSON.stringify({ updates: { [key]: 0 } }),
       });
-      await refreshCartDrawerContent();
+      await refreshCartContent();
     } catch (error) {
       console.error("Error removing item:", error);
-      itemElement.style.display = "";
-      if (totalItemCount === 1) {
-        const shippingBar = document.querySelector(".cart__shipping");
-        if (shippingBar) shippingBar.style.display = "block";
+      item.style.display = "";
+      if (totalItems === 1) {
+        const shipping = document.querySelector(".cart__shipping");
+        const slider = document.querySelector(".cart__complementary-products");
+        if (shipping) shipping.style.display = "block";
+        if (slider) slider.style.display = "block";
       }
-      await refreshCartDrawerContent();
+      await refreshCartContent();
     }
   };
 
-  document.querySelectorAll(".cart-item__quantity button").forEach((quantityButton) => {
-    quantityButton.addEventListener("click", async () => {
-      const parentItem = quantityButton.closest(".cart-item");
-      const itemKey = parentItem.getAttribute("data-line-item-key");
-      const quantityInput = quantityButton.parentElement.querySelector("input");
-      const currentQuantity = Number(quantityInput.value);
-      const isIncreaseButton = quantityButton.classList.contains("cart-item__quantity-button--plus");
+  // Quantity buttons
+  document.querySelectorAll(".cart-item__quantity button").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const item = btn.closest(".cart-item");
+      const key = item.getAttribute("data-line-item-key");
+      const input = btn.parentElement.querySelector("input");
+      const currentQty = Number(input.value);
+      const isPlus = btn.classList.contains("cart-item__quantity-button--plus");
 
-      if (isIncreaseButton && !isGiftCardCartItem(parentItem)) {
-        const maxInventory = parseInt(parentItem.getAttribute("data-inventory-quantity") || "Infinity", 10);
-        const inventoryValidation = validateInventoryAvailability(maxInventory, currentQuantity, 1);
+      if (isPlus && !isGiftCard(item)) {
+        const maxInventory = parseInt(item.getAttribute("data-inventory-quantity") || "Infinity", 10);
+        const validation = validateInventory(maxInventory, currentQty, 1);
 
-        if (!inventoryValidation.isAllowed) {
-          showCartTotalsLoading();
-          showItemLoadingState(parentItem);
+        if (!validation.isAllowed) {
+          showCartLoading();
+          showItemLoading(item);
           await new Promise((resolve) => setTimeout(resolve, 800));
-          await refreshCartDrawerContent();
-          const updatedItem = document.querySelector(`[data-line-item-key="${itemKey}"]`);
-          if (updatedItem) displayTemporaryError(updatedItem, inventoryValidation.errorMessage);
+          await refreshCartContent();
+          const updated = document.querySelector(`[data-line-item-key="${key}"]`);
+          if (updated) showError(updated, validation.errorMessage, true);
           return;
         }
       }
 
-      const newQuantity = isIncreaseButton ? currentQuantity + 1 : currentQuantity - 1;
+      const newQty = isPlus ? currentQty + 1 : currentQty - 1;
 
-      if (newQuantity === 0) {
-        await deleteCartItem(parentItem, itemKey);
+      if (newQty === 0) {
+        await deleteItem(item, key);
         return;
       }
 
       try {
-        showCartTotalsLoading();
-        showItemLoadingState(parentItem);
+        showCartLoading();
+        showItemLoading(item);
 
         await fetch("/cart/update.js", {
           method: "post",
-          headers: jsonRequestHeaders,
-          body: JSON.stringify({ updates: { [itemKey]: newQuantity } }),
+          headers: { Accept: "application/json", "Content-Type": "application/json" },
+          body: JSON.stringify({ updates: { [key]: newQty } }),
         });
 
-        await refreshCartDrawerContent();
+        await refreshCartContent();
       } catch (error) {
         console.error("Error updating quantity:", error);
-        await refreshCartDrawerContent();
-        const updatedItem = document.querySelector(`[data-line-item-key="${itemKey}"]`);
-        if (updatedItem) displayTemporaryError(updatedItem, "Could not update quantity. Please try again.");
+        await refreshCartContent();
+        const updated = document.querySelector(`[data-line-item-key="${key}"]`);
+        if (updated) showError(updated, "Could not update quantity. Please try again.", true);
       }
     });
   });
 
-  document.querySelectorAll(".cart-item__remove").forEach((removeButton) => {
-    removeButton.addEventListener("click", async () => {
-      const parentItem = removeButton.closest(".cart-item");
-      const itemKey = parentItem.getAttribute("data-line-item-key");
-      await deleteCartItem(parentItem, itemKey);
+  // Remove buttons
+  document.querySelectorAll(".cart-item__remove").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const item = btn.closest(".cart-item");
+      const key = item.getAttribute("data-line-item-key");
+      await deleteItem(item, key);
     });
   });
 
-  document.querySelector(".cart__container")?.addEventListener("click", (clickEvent) => clickEvent.stopPropagation());
-
-  const closeButton = document.querySelector(".cart__close");
-  if (closeButton) {
-    closeButton.addEventListener("click", hideCartDrawer);
-  }
-
-  const cartElement = document.querySelector(".cart");
-  if (cartElement) {
-    cartElement.addEventListener("click", (clickEvent) => {
-      if (clickEvent.target === cartElement) hideCartDrawer();
-    });
-  }
+  // Cart container and close
+  document.querySelector(".cart__container")?.addEventListener("click", (e) => e.stopPropagation());
+  document.querySelector(".cart__close")?.addEventListener("click", () => toggleCartDrawer(false));
+  document.querySelector(".cart")?.addEventListener("click", (e) => {
+    if (e.target.classList.contains("cart")) toggleCartDrawer(false);
+  });
 };
 
-// Initialisation
-const loadCartFromLocalStorage = () => {
-  const storedCartData = localStorage.getItem("cartData");
-  if (storedCartData) {
-    const parsedCartData = JSON.parse(storedCartData);
-    if (parsedCartData.count > 0) updateCartCountBadges(parsedCartData.count);
+// Initialization
+const loadFromStorage = () => {
+  const stored = localStorage.getItem("cartData");
+  if (stored) {
+    const data = JSON.parse(stored);
+    if (data.count > 0) updateCartBadges(data.count);
   }
 
-  fetchCurrentCartData().then((latestCart) => {
-    refreshCartDrawerContent().then(() => {
-      if (latestCart?.item_count > 0) initializeSliderBasedOnCart();
+  fetchCartData().then((cart) => {
+    refreshCartContent().then(() => {
+      if (cart?.item_count > 0) initSlider();
     });
   });
 };
 
-window.openCart = showCartDrawer;
-window.closeCart = hideCartDrawer;
+// Global functions
+window.openCart = () => toggleCartDrawer(true);
+window.closeCart = () => toggleCartDrawer(false);
 
-// Main initialisation & event binding
+// Initialize
 document.addEventListener("DOMContentLoaded", () => {
-  loadCartFromLocalStorage();
-  attachCartInteractionListeners();
+  loadFromStorage();
+  attachEventListeners();
 
-  cartDOMElements.addToCartForms.forEach((formElement) => {
-    formElement.addEventListener("submit", createAddToCartHandler(formElement));
+  cartElements.addToCartForms().forEach((form) => {
+    form.addEventListener("submit", createAddToCartHandler(form));
   });
 
-  cartDOMElements.cartIconButtons.forEach((iconButton) => {
-    iconButton.addEventListener("click", (clickEvent) => {
-      clickEvent.preventDefault();
-      showCartDrawer();
-      refreshCartDrawerContent();
+  cartElements.cartIcons().forEach((icon) => {
+    icon.addEventListener("click", (e) => {
+      e.preventDefault();
+      toggleCartDrawer(true);
+      refreshCartContent();
     });
   });
 });

@@ -25,9 +25,9 @@ This file can be re-written at any time.
 
 {%- assign shogun_variant_id = cart.attributes.shogun_variant_id -%}
 {%- if shogun_variant_id != nil -%}
-  {%- assign price_tests = shop.metafields.app--.price-tests -%}
+  {%- assign price_tests = shop.metafields.app--214825828353.price-tests -%}
   {%- assign optimization_config = nil -%}
-  {% for optimization in shop.metafields.app--.price-tests.value %}
+  {% for optimization in shop.metafields.app--214825828353.price-tests.value %}
     {% for variants in optimization.variants %}
       {% if variants.id == shogun_variant_id %}
         {% assign optimization_config = optimization %}
