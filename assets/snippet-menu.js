@@ -1,518 +1,474 @@
-const menuDrawer = {
-  isOpen: false,
-  currentLevel: 1,
-  menuTitle: "",
-  subMenuTitle: "",
-  submenu: [],
-  subSubmenu: [],
-  menuData: [],
-  currentParentIndex: 0,
-  featuredImageUrl: "",
-  featuredImageAlt: "",
-  activeLevel1Index: null,
-  activeLevel2Index: null,
-  filteredArticles: [],
-  splideSlider: null,
-  currentChildIndex: null,
+(() => {
+  const menuDrawer = {
+    isOpen: false,
+    currentLevel: 1,
+    menuData: [],
+    activeIndexes: [null, null],
+    featuredImage: { url: "", alt: "" },
+    filteredArticles: [],
+    splideSlider: null,
 
-  init() {
-    this.updateHeaderHeight();
+    init() {
+      this.updateHeaderHeight();
+      this.setupObservers();
+      this.loadMenuData();
+      this.setupEventListeners();
 
-    const siteHeader = document.querySelector("#site-header");
-    if (siteHeader) {
-      const observer = new MutationObserver(() => this.updateHeaderHeight());
-      observer.observe(siteHeader, { attributes: true, attributeFilter: ["class"] });
-    }
+      window.toggleNav = () => (this.isOpen ? this.closeMenu() : this.openMenu());
+      window.closeMenu = () => this.closeMenu();
+    },
 
-    window.addEventListener("scroll", () => this.updateHeaderHeight());
-    window.addEventListener("resize", () => this.updateHeaderHeight());
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") this.closeMenu();
-    });
-
-    const scriptElement = document.getElementById("menu-drawer-script");
-    const menuDataEscaped = scriptElement.getAttribute("data-menu-data");
-
-    if (menuDataEscaped) {
-      try {
-        const textarea = document.createElement("textarea");
-        textarea.innerHTML = menuDataEscaped;
-        const menuDataJson = textarea.value;
-
-        this.menuData = JSON.parse(menuDataJson);
-      } catch (e) {
-        console.error("Failed to parse menu data:", e);
-        this.menuData = [];
-      }
-    }
-
-    this.setupEventListeners();
-
-    window.toggleNav = () => (this.isOpen ? this.closeMenu() : this.openMenu());
-    window.closeMenu = (keepScrollLocked = false) => this.closeMenu(keepScrollLocked);
-  },
-
-  setupEventListeners() {
-    document.querySelector(".menu-drawer__overlay")?.addEventListener("click", () => this.closeMenu());
-
-    document.querySelectorAll(".menu-drawer__back").forEach((btn) => {
-      btn.addEventListener("click", () => this.backLevel());
-    });
-
-    document.querySelectorAll("#menu-drawer__menu-1 .menu-drawer__button--has-submenu").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const index = parseInt(btn.dataset.menuIndex);
-        const title = btn.dataset.menuTitle;
-        const image = btn.dataset.menuImage;
-        const imageAlt = btn.dataset.menuImageAlt;
-        this.openLevel(2, title, index, image, imageAlt);
-      });
-    });
-  },
-
-  updateHeaderHeight() {
-    const siteHeader = document.querySelector("#site-header");
-    const overlay = document.querySelector(".menu-drawer__overlay");
-    const drawer = document.querySelector(".menu-drawer");
-
-    if (!siteHeader || !overlay || !drawer) return;
-
-    const isFixed = siteHeader.classList.contains("header-fixed");
-    const topPosition = isFixed ? "var(--space-xl)" : Math.max(0, siteHeader.getBoundingClientRect().bottom) + "px";
-
-    overlay.style.top = topPosition;
-    drawer.style.top = topPosition;
-  },
-
-  decodeEntities(text) {
-    if (!text) return "";
-    const textarea = document.createElement("textarea");
-    textarea.innerHTML = text;
-    return textarea.value;
-  },
-
-  openMenu() {
-    const scrollY = window.scrollY;
-    document.body.style.position = "fixed";
-    document.body.style.top = `-${scrollY}px`;
-    document.body.style.width = "100%";
-
-    this.resetMenu();
-
-    this.isOpen = true;
-    document.body.classList.add("menu-open");
-    document.querySelector(".hamburger-menu")?.classList.add("nav-open");
-    window.closeFilter?.();
-
-    document.querySelector(".menu-drawer__overlay").classList.add("menu-drawer--open");
-    document.querySelector(".menu-drawer").classList.add("menu-drawer--open");
-
-    const video = document.querySelector(".menu-drawer__video");
-    if (video) video.play().catch((e) => console.log("Autoplay prevented:", e));
-
-    setTimeout(() => this.updateHeaderHeight(), 0);
-
-    if (window.triggerCardLoadAnimation) {
-      ["#menu-drawer__menu-1", "#menu-drawer__menu-1-secondary", ".menu-drawer__scrollable-content"].forEach((sel) =>
-        window.triggerCardLoadAnimation(sel)
-      );
-    }
-  },
-
-  closeMenu(keepScrollLocked = false) {
-    if (!this.isOpen) return;
-
-    this.isOpen = false;
-    document.body.classList.remove("menu-open");
-    document.querySelector(".hamburger-menu")?.classList.remove("nav-open");
-
-    document.querySelector(".menu-drawer__overlay").classList.remove("menu-drawer--open");
-    document.querySelector(".menu-drawer").classList.remove("menu-drawer--open");
-
-    const video = document.querySelector(".menu-drawer__video");
-    if (video) video.pause();
-
-    if (!keepScrollLocked) {
-      const scrollY = Math.abs(parseInt(document.body.style.top || "0"));
-
-      document.documentElement.style.scrollBehavior = "auto";
-
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.width = "";
-
-      window.scrollTo(0, scrollY);
-
-      document.documentElement.style.scrollBehavior = "";
-    }
-
-    this.resetMenu();
-  },
-
-  resetMenu() {
-    this.currentLevel = 1;
-    this.activeLevel1Index = null;
-    this.activeLevel2Index = null;
-    this.menuTitle = "";
-    this.subMenuTitle = "";
-    this.submenu = [];
-    this.subSubmenu = [];
-    this.currentParentIndex = 0;
-    this.featuredImageUrl = "";
-    this.featuredImageAlt = "";
-    this.filteredArticles = [];
-
-    this.splideSlider?.destroy();
-    this.splideSlider = null;
-
-    const journalContainer = document.querySelector(".menu-drawer__journal-container");
-    if (journalContainer) journalContainer.style.display = "none";
-
-    document.querySelector("#menu-drawer-level-2")?.classList.remove("menu-drawer__level--active");
-    document.querySelector("#menu-drawer-level-3")?.classList.remove("menu-drawer__level--active");
-
-    const nav = document.querySelector(".menu-drawer");
-    if (nav) nav.dataset.activeLevel = 1;
-
-    document
-      .querySelectorAll(".menu-drawer__item--active, .menu-drawer__item--inactive, .menu-drawer__media--inactive")
-      .forEach((el) => {
-        el.classList.remove("menu-drawer__item--active", "menu-drawer__item--inactive", "menu-drawer__media--inactive");
-      });
-  },
-
-  updateLevelVisibility() {
-    const nav = document.querySelector(".menu-drawer");
-    if (nav) nav.dataset.activeLevel = this.currentLevel;
-
-    document
-      .querySelector("#menu-drawer-level-1")
-      ?.classList.toggle("menu-drawer__level--active", this.currentLevel >= 1);
-    document
-      .querySelector("#menu-drawer-level-2")
-      ?.classList.toggle("menu-drawer__level--active", this.currentLevel >= 2);
-    document
-      .querySelector("#menu-drawer-level-3")
-      ?.classList.toggle("menu-drawer__level--active", this.currentLevel >= 3);
-
-    this.updateActiveStates();
-    this.updateInactiveStates();
-  },
-
-  updateActiveStates() {
-    document.querySelectorAll("#menu-drawer__menu-1 > li").forEach((item, idx) => {
-      item.classList.toggle("menu-drawer__item--active", idx === this.activeLevel1Index);
-    });
-
-    document.querySelectorAll(".menu-drawer__menu-level-2 > li").forEach((item, idx) => {
-      item.classList.toggle("menu-drawer__item--active", idx === this.activeLevel2Index && this.currentLevel >= 3);
-    });
-  },
-
-  updateInactiveStates() {
-    const isLevel2Active = this.currentLevel >= 2;
-    const isLevel3Active = this.currentLevel >= 3;
-
-    document
-      .querySelectorAll(
-        "#menu-drawer__menu-1 .menu-drawer__link, #menu-drawer__menu-1-secondary .menu-drawer__link, .menu-drawer__video, .menu-drawer__video + p"
-      )
-      .forEach((el) => {
-        el.classList.toggle(
-          el.tagName === "VIDEO" || el.tagName === "P" ? "menu-drawer__media--inactive" : "menu-drawer__item--inactive",
-          isLevel2Active
-        );
-      });
-
-    document.querySelectorAll("#menu-drawer__menu-1 > li").forEach((item, idx) => {
-      if (idx !== this.activeLevel1Index && isLevel2Active) {
-        item.querySelectorAll("span").forEach((span) => {
-          span.classList.add("menu-drawer__item--inactive");
-        });
-      } else {
-        item.querySelectorAll("span").forEach((span) => {
-          span.classList.remove("menu-drawer__item--inactive");
+    setupObservers() {
+      const header = document.querySelector("#site-header");
+      if (header) {
+        new MutationObserver(() => this.updateHeaderHeight()).observe(header, {
+          attributes: true,
+          attributeFilter: ["class"],
         });
       }
-    });
 
-    document
-      .querySelectorAll(
-        "#menu-drawer-level-2 .menu-drawer__back span, #menu-drawer-level-2 .menu-drawer__heading, .menu-drawer__featured-image img"
-      )
-      .forEach((el) => {
-        el.classList.toggle("menu-drawer__media--inactive", isLevel3Active);
+      ["scroll", "resize"].forEach((e) => window.addEventListener(e, () => this.updateHeaderHeight()));
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") this.closeMenu();
       });
+    },
 
-    const journalContainer = document.querySelector(".menu-drawer__journal-container");
-    if (journalContainer?.style.display !== "none") {
-      journalContainer?.classList.toggle("menu-drawer__media--inactive", isLevel3Active);
-    }
+    loadMenuData() {
+      const script = document.getElementById("menu-drawer-script");
+      const menuDataEscaped = script?.getAttribute("data-menu-data");
 
-    document.querySelectorAll(".menu-drawer__menu-level-2 .menu-drawer__link").forEach((el) => {
-      el.classList.toggle("menu-drawer__item--inactive", isLevel3Active);
-    });
-
-    document.querySelectorAll(".menu-drawer__menu-level-2 > li").forEach((item, idx) => {
-      if (idx !== this.activeLevel2Index && isLevel3Active) {
-        item.querySelectorAll("span").forEach((span) => {
-          span.classList.add("menu-drawer__item--inactive");
-        });
-      } else {
-        item.querySelectorAll("span").forEach((span) => {
-          span.classList.remove("menu-drawer__item--inactive");
-        });
-      }
-    });
-  },
-
-  refreshSliderContent() {
-    const track = document.querySelector("#menu-drawer-level-2 .splide__list");
-    if (!track) return;
-
-    track.innerHTML = this.filteredArticles
-      .map(
-        (article) => `
-        <li class="splide__slide">
-          <article class="menu-drawer__article">
-            <div class="menu-drawer__article-content">
-              ${
-                article.image
-                  ? `<img src="${article.image}" alt="${article.title}" class="menu-drawer__article-image" width="300" height="300">`
-                  : ""
-              }
-              <p class="menu-drawer__article-tag small">${article.tag}</p>
-              <header class="menu-drawer__article-header">
-                <h2 class="menu-drawer__article-title body--bold">${article.title}</h2>
-              </header>
-              <a class="menu-drawer__article-link body" href="${
-                article.url
-              }">Read The Article <span><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M6.6 1L10.6 5M10.6 5L6.6 9M10.6 5L1 5" stroke="#A0A0A0" stroke-width="0.75" stroke-linecap="square"/>
-              </svg></span></a>
-            </div>
-          </article>
-        </li>
-      `
-      )
-      .join("");
-  },
-
-  initSplideSlider() {
-    this.splideSlider?.destroy();
-    this.splideSlider = null;
-
-    setTimeout(() => {
-      const splideElement = document.querySelector("#menu-drawer-level-2 .splide");
-      if (this.filteredArticles.length > 0 && window.Splide && splideElement) {
-        this.splideSlider = new Splide(splideElement, {
-          perPage: 1,
-          gap: "var(--space-m)",
-          type: "loop",
-          arrows: false,
-          pagination: false,
-          breakpoints: {
-            1200: { perPage: 3, arrows: true },
-            768: { perPage: 2 },
-            470: { perPage: 1 },
-          },
-        }).mount();
-      }
-    }, 0);
-  },
-
-  openLevel(level, title, parentIndex, featuredImage, featuredImageAlt, childIndex) {
-    if (level === 2) {
-      if (this.activeLevel1Index === parentIndex && this.currentLevel >= 2) {
-        this.currentLevel = 1;
-        this.activeLevel1Index = null;
-        this.activeLevel2Index = null;
-        this.featuredImageUrl = "";
-        this.featuredImageAlt = "";
-        this.updateLevelVisibility();
-        return;
-      }
-
-      this.currentLevel = 2;
-      this.activeLevel1Index = parentIndex;
-      this.activeLevel2Index = null;
-      this.menuTitle = title;
-      this.currentParentIndex = parentIndex;
-      this.submenu = this.menuData[parentIndex].links;
-
-      document.querySelector("#menu-drawer-heading-2").textContent = this.decodeEntities(this.menuTitle);
-
-      const newUrl = featuredImage || this.menuData[parentIndex]?.featuredImage || "";
-
-      if (this.featuredImageUrl !== newUrl) {
-        this.featuredImageUrl = newUrl;
-        this.featuredImageAlt = featuredImageAlt || this.menuData[parentIndex]?.featuredImageAlt || title;
-
-        const img = document.querySelector(".menu-drawer__featured-image img");
-        const imgLink = document.querySelector(".menu-drawer__featured-image a");
-        const imgContainer = document.querySelector(".menu-drawer__featured-image");
-
-        if (img) {
-          imgContainer?.classList.add("menu-drawer__featured-image--loading-new-image");
-          img.src = this.featuredImageUrl;
-          img.alt = this.featuredImageAlt;
-          img.srcset = this.generateSrcset(this.featuredImageUrl);
-          img.onload = () => imgContainer?.classList.remove("menu-drawer__featured-image--loading-new-image");
+      if (menuDataEscaped) {
+        try {
+          this.menuData = JSON.parse(this.decodeHtml(menuDataEscaped));
+        } catch (e) {
+          console.error("Failed to parse menu data:", e);
         }
-        if (imgLink) imgLink.href = this.menuData[parentIndex]?.url || "#";
       }
+    },
 
-      const collectionId = this.menuData[parentIndex].collectionId;
-      this.filteredArticles = this.getAllArticles().filter((article) => article.relatedIds.includes(collectionId));
+    setupEventListeners() {
+      document.querySelector(".menu-drawer__overlay")?.addEventListener("click", () => this.closeMenu());
 
-      const journalContainer = document.querySelector(".menu-drawer__journal-container");
-      if (journalContainer) {
-        journalContainer.style.display = this.filteredArticles.length > 0 ? "block" : "none";
-      }
+      document
+        .querySelectorAll(".menu-drawer__back")
+        .forEach((btn) => btn.addEventListener("click", () => this.backLevel()));
 
-      this.renderLevel2Menu();
-      this.updateLevelVisibility();
-
-      setTimeout(() => {
-        this.refreshSliderContent();
-        this.initSplideSlider();
-        window.triggerCardLoadAnimation?.("#menu-drawer-level-2");
-        window.triggerCardLoadAnimation?.(".menu-drawer__menu-level-2");
-      }, 0);
-    } else if (level === 3) {
-      if (this.currentLevel === 3 && this.currentChildIndex === childIndex) {
-        this.backLevel();
-        return;
-      }
-
-      this.currentLevel = 3;
-      this.activeLevel2Index = childIndex;
-      this.subMenuTitle = title;
-      this.currentChildIndex = childIndex;
-      this.subSubmenu = this.menuData[this.currentParentIndex].links[childIndex].links;
-
-      document.querySelector("#menu-drawer-heading-3").textContent = this.decodeEntities(this.subMenuTitle);
-
-      this.renderLevel3Menu();
-      this.updateLevelVisibility();
-
-      setTimeout(() => {
-        window.triggerCardLoadAnimation?.("#menu-drawer-level-3");
-        window.triggerCardLoadAnimation?.(".menu-drawer__menu-level-3");
-      }, 0);
-    }
-  },
-
-  renderLevel2Menu() {
-    const container = document.querySelector(".menu-drawer__menu-level-2");
-    if (!container) return;
-
-    const arrowIcon =
-      document.querySelector("#menu-drawer__menu-1 .menu-drawer__button--has-submenu span:last-child")?.innerHTML || "";
-
-    container.innerHTML = this.submenu
-      .map(
-        (item, index) => `
-        <li role="none">
-          ${
-            item.links?.length > 0
-              ? `
-            <button data-submenu-index="${index}" class="menu-drawer__button menu-drawer__button--has-submenu body--uppercase" role="menuitem" aria-haspopup="true" aria-expanded="false">
-              <span>${this.decodeEntities(item.title)}</span>
-              <span>${arrowIcon}</span>
-            </button>
-          `
-              : `
-            <a href="${item.url}" class="menu-drawer__link body--uppercase" role="menuitem">
-              ${this.decodeEntities(item.title)}
-            </a>
-          `
-          }
-        </li>
-      `
-      )
-      .join("");
-
-    container.querySelectorAll(".menu-drawer__button--has-submenu").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const index = parseInt(btn.dataset.submenuIndex);
-        const item = this.submenu[index];
-        if (item) this.openLevel(3, item.title, this.currentParentIndex, null, null, index);
+      document.querySelectorAll("#menu-drawer__menu-1 .menu-drawer__button--has-submenu").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          this.openLevel(
+            2,
+            btn.dataset.menuTitle,
+            parseInt(btn.dataset.menuIndex),
+            btn.dataset.menuImage,
+            btn.dataset.menuImageAlt
+          );
+        });
       });
-    });
-  },
+    },
 
-  renderLevel3Menu() {
-    const container = document.querySelector(".menu-drawer__menu-level-3");
-    if (!container) return;
+    updateHeaderHeight() {
+      const header = document.querySelector("#site-header");
+      const overlay = document.querySelector(".menu-drawer__overlay");
+      const drawer = document.querySelector(".menu-drawer");
 
-    container.innerHTML = this.subSubmenu
-      .map(
-        (item) => `
-        <li role="none">
-          <a href="${item.url}" class="menu-drawer__link body--uppercase" role="menuitem">
-            ${this.decodeEntities(item.title)}
-          </a>
-        </li>
-      `
-      )
-      .join("");
-  },
+      if (!header || !overlay || !drawer) return;
 
-  backLevel() {
-    if (this.currentLevel > 1) {
+      const isFixed = header.classList.contains("header-fixed");
+      const top = isFixed ? "var(--space-xl)" : Math.max(0, header.getBoundingClientRect().bottom) + "px";
+
+      overlay.style.top = drawer.style.top = top;
+    },
+
+    decodeHtml(text) {
+      if (!text) return "";
+      const textarea = document.createElement("textarea");
+      textarea.innerHTML = text;
+      return textarea.value;
+    },
+
+    toggleScrollLock(lock) {
+      if (lock) {
+        const scrollY = window.scrollY;
+        Object.assign(document.body.style, {
+          position: "fixed",
+          top: `-${scrollY}px`,
+          width: "100%",
+        });
+      } else {
+        const scrollY = Math.abs(parseInt(document.body.style.top || "0"));
+        document.documentElement.style.scrollBehavior = "auto";
+        Object.assign(document.body.style, { position: "", top: "", width: "" });
+        window.scrollTo(0, scrollY);
+        document.documentElement.style.scrollBehavior = "";
+      }
+    },
+
+    openMenu() {
+      this.toggleScrollLock(true);
+      this.resetMenu();
+      this.isOpen = true;
+
+      document.body.classList.add("menu-open");
+      document.querySelector(".hamburger-menu")?.classList.add("nav-open");
+      window.closeFilter?.();
+
+      [".menu-drawer__overlay", ".menu-drawer"].forEach((sel) =>
+        document.querySelector(sel)?.classList.add("menu-drawer--open")
+      );
+
+      const video = document.querySelector(".menu-drawer__video");
+      video?.play().catch((e) => console.log("Autoplay prevented:", e));
+
+      setTimeout(() => this.updateHeaderHeight(), 0);
+      this.triggerAnimations([
+        "#menu-drawer__menu-1",
+        "#menu-drawer__menu-1-secondary",
+        ".menu-drawer__scrollable-content",
+      ]);
+    },
+
+    closeMenu() {
+      if (!this.isOpen) return;
+
+      this.isOpen = false;
+      document.body.classList.remove("menu-open");
+      document.querySelector(".hamburger-menu")?.classList.remove("nav-open");
+
+      [".menu-drawer__overlay", ".menu-drawer"].forEach((sel) =>
+        document.querySelector(sel)?.classList.remove("menu-drawer--open")
+      );
+
+      document.querySelector(".menu-drawer__video")?.pause();
+
+      this.toggleScrollLock(false);
+      this.resetMenu();
+    },
+
+    resetMenu() {
+      this.currentLevel = 1;
+      this.activeIndexes = [null, null];
+      this.filteredArticles = [];
+
+      this.splideSlider?.destroy();
+      this.splideSlider = null;
+
+      const journal = document.querySelector(".menu-drawer__journal-container");
+      if (journal) journal.style.display = "none";
+
+      [2, 3].forEach((level) =>
+        document.querySelector(`#menu-drawer-level-${level}`)?.classList.remove("menu-drawer__level--active")
+      );
+
+      const nav = document.querySelector(".menu-drawer");
+      if (nav) nav.dataset.activeLevel = 1;
+
+      document
+        .querySelectorAll(".menu-drawer__item--active, .menu-drawer__item--inactive, .menu-drawer__media--inactive")
+        .forEach(
+          (el) => (el.className = el.className.replace(/(menu-drawer__(item|media)--(active|inactive))/g, "").trim())
+        );
+    },
+
+    updateLevelVisibility() {
+      const nav = document.querySelector(".menu-drawer");
+      if (nav) nav.dataset.activeLevel = this.currentLevel;
+
+      [1, 2, 3].forEach((level) =>
+        document
+          .querySelector(`#menu-drawer-level-${level}`)
+          ?.classList.toggle("menu-drawer__level--active", this.currentLevel >= level)
+      );
+
+      this.updateActiveStates();
+      this.updateInactiveStates();
+    },
+
+    updateActiveStates() {
+      document
+        .querySelectorAll("#menu-drawer__menu-1 > li")
+        .forEach((item, idx) => item.classList.toggle("menu-drawer__item--active", idx === this.activeIndexes[0]));
+
+      document
+        .querySelectorAll(".menu-drawer__menu-level-2 > li")
+        .forEach((item, idx) =>
+          item.classList.toggle("menu-drawer__item--active", idx === this.activeIndexes[1] && this.currentLevel >= 3)
+        );
+    },
+
+    updateInactiveStates() {
+      const isLevel2 = this.currentLevel >= 2;
+      const isLevel3 = this.currentLevel >= 3;
+
+      const level1Selectors =
+        "#menu-drawer__menu-1 .menu-drawer__link, #menu-drawer__menu-1-secondary .menu-drawer__link, .menu-drawer__video, .menu-drawer__video + p";
+      document.querySelectorAll(level1Selectors).forEach((el) => {
+        const isMedia = ["VIDEO", "P"].includes(el.tagName);
+        el.classList.toggle(isMedia ? "menu-drawer__media--inactive" : "menu-drawer__item--inactive", isLevel2);
+      });
+
+      this.updateSpanStates("#menu-drawer__menu-1 > li", this.activeIndexes[0], isLevel2);
+
+      const level2Selectors =
+        "#menu-drawer-level-2 .menu-drawer__back span, #menu-drawer-level-2 .menu-drawer__heading, .menu-drawer__featured-image img";
+      document
+        .querySelectorAll(level2Selectors)
+        .forEach((el) => el.classList.toggle("menu-drawer__media--inactive", isLevel3));
+
+      const journal = document.querySelector(".menu-drawer__journal-container");
+      if (journal?.style.display !== "none") {
+        journal?.classList.toggle("menu-drawer__media--inactive", isLevel3);
+      }
+
+      document
+        .querySelectorAll(".menu-drawer__menu-level-2 .menu-drawer__link")
+        .forEach((el) => el.classList.toggle("menu-drawer__item--inactive", isLevel3));
+
+      this.updateSpanStates(".menu-drawer__menu-level-2 > li", this.activeIndexes[1], isLevel3);
+    },
+
+    updateSpanStates(selector, activeIndex, shouldInactivate) {
+      document.querySelectorAll(selector).forEach((item, idx) => {
+        const shouldApply = idx !== activeIndex && shouldInactivate;
+        item
+          .querySelectorAll("span")
+          .forEach((span) => span.classList.toggle("menu-drawer__item--inactive", shouldApply));
+      });
+    },
+
+    openLevel(level, title, parentIndex, featuredImage, featuredImageAlt, childIndex) {
+      if (level === 2) {
+        if (this.activeIndexes[0] === parentIndex && this.currentLevel >= 2) {
+          this.currentLevel = 1;
+          this.activeIndexes = [null, null];
+          this.updateLevelVisibility();
+          return;
+        }
+
+        this.currentLevel = 2;
+        this.activeIndexes[0] = parentIndex;
+        this.activeIndexes[1] = null;
+
+        const menuItem = this.menuData[parentIndex];
+        if (!menuItem) return;
+
+        document.querySelector("#menu-drawer-heading-2").textContent = this.decodeHtml(title);
+
+        const newUrl = featuredImage || menuItem.featuredImage || "";
+        if (this.featuredImage.url !== newUrl) {
+          this.updateFeaturedImage(newUrl, featuredImageAlt || menuItem.featuredImageAlt || title, menuItem.url);
+        }
+
+        this.filteredArticles = this.getArticles().filter((article) =>
+          article.relatedIds.includes(menuItem.collectionId)
+        );
+
+        const journal = document.querySelector(".menu-drawer__journal-container");
+        if (journal) journal.style.display = this.filteredArticles.length > 0 ? "block" : "none";
+
+        this.renderMenu(2, menuItem.links);
+        this.updateLevelVisibility();
+
+        setTimeout(() => {
+          this.refreshSlider();
+          this.triggerAnimations(["#menu-drawer-level-2", ".menu-drawer__menu-level-2"]);
+        }, 0);
+      } else if (level === 3) {
+        if (this.currentLevel === 3 && this.activeIndexes[1] === childIndex) {
+          this.backLevel();
+          return;
+        }
+
+        this.currentLevel = 3;
+        this.activeIndexes[1] = childIndex;
+
+        const submenu = this.menuData[this.activeIndexes[0]]?.links[childIndex];
+        if (!submenu) return;
+
+        document.querySelector("#menu-drawer-heading-3").textContent = this.decodeHtml(title);
+
+        this.renderMenu(3, submenu.links);
+        this.updateLevelVisibility();
+
+        setTimeout(() => {
+          this.triggerAnimations(["#menu-drawer-level-3", ".menu-drawer__menu-level-3"]);
+        }, 0);
+      }
+    },
+
+    updateFeaturedImage(url, alt, link) {
+      this.featuredImage = { url, alt };
+
+      const img = document.querySelector(".menu-drawer__featured-image img");
+      const imgLink = document.querySelector(".menu-drawer__featured-image a");
+      const container = document.querySelector(".menu-drawer__featured-image");
+
+      if (img) {
+        container?.classList.add("menu-drawer__featured-image--loading-new-image");
+        img.src = url;
+        img.alt = alt;
+        img.srcset = this.generateSrcset(url);
+        img.onload = () => container?.classList.remove("menu-drawer__featured-image--loading-new-image");
+      }
+      if (imgLink) imgLink.href = link || "#";
+    },
+
+    renderMenu(level, items) {
+      const container = document.querySelector(`.menu-drawer__menu-level-${level}`);
+      if (!container || !items) return;
+
+      const arrowIcon =
+        level === 2
+          ? document.querySelector("#menu-drawer__menu-1 .menu-drawer__button--has-submenu span:last-child")
+              ?.innerHTML || ""
+          : "";
+
+      container.innerHTML = items
+        .map((item, index) => {
+          const hasSubmenu = level === 2 && item.links?.length > 0;
+
+          return `
+            <li role="none">
+              ${
+                hasSubmenu
+                  ? `
+                <button data-submenu-index="${index}" class="menu-drawer__button menu-drawer__button--has-submenu body--uppercase" role="menuitem" aria-haspopup="true" aria-expanded="false">
+                  <span>${this.decodeHtml(item.title)}</span>
+                  <span>${arrowIcon}</span>
+                </button>
+              `
+                  : `
+                <a href="${item.url}" class="menu-drawer__link body--uppercase" role="menuitem">
+                  ${this.decodeHtml(item.title)}
+                </a>
+              `
+              }
+            </li>
+          `;
+        })
+        .join("");
+
+      if (level === 2) {
+        container.querySelectorAll(".menu-drawer__button--has-submenu").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const index = parseInt(btn.dataset.submenuIndex);
+            const item = items[index];
+            if (item) this.openLevel(3, item.title, this.activeIndexes[0], null, null, index);
+          });
+        });
+      }
+    },
+
+    backLevel() {
+      if (this.currentLevel <= 1) return;
+
       this.currentLevel--;
 
       if (this.currentLevel === 1) {
-        this.activeLevel1Index = null;
-        this.activeLevel2Index = null;
-        this.featuredImageUrl = "";
-        this.featuredImageAlt = "";
+        this.activeIndexes = [null, null];
         this.filteredArticles = [];
         this.splideSlider?.destroy();
         this.splideSlider = null;
-        const journalContainer = document.querySelector(".menu-drawer__journal-container");
-        if (journalContainer) journalContainer.style.display = "none";
+
+        const journal = document.querySelector(".menu-drawer__journal-container");
+        if (journal) journal.style.display = "none";
       } else if (this.currentLevel === 2) {
-        this.activeLevel2Index = null;
-        setTimeout(() => {
-          this.refreshSliderContent();
-          this.initSplideSlider();
-        }, 0);
+        this.activeIndexes[1] = null;
+        setTimeout(() => this.refreshSlider(), 0);
       }
 
       this.updateLevelVisibility();
-    }
-  },
+    },
 
-  getAllArticles() {
-    const scriptElement = document.getElementById("menu-drawer-script");
-    const articlesDataEscaped = scriptElement.getAttribute("data-articles-data");
+    refreshSlider() {
+      const track = document.querySelector("#menu-drawer-level-2 .splide__list");
+      if (!track) return;
 
-    if (articlesDataEscaped) {
-      try {
-        const textarea = document.createElement("textarea");
-        textarea.innerHTML = articlesDataEscaped;
-        const articlesDataJson = textarea.value;
+      track.innerHTML = this.filteredArticles
+        .map(
+          (article) => `
+          <li class="splide__slide">
+            <article class="menu-drawer__article">
+              <div class="menu-drawer__article-content">
+                ${
+                  article.image
+                    ? `<img src="${article.image}" alt="${article.title}" class="menu-drawer__article-image" width="300" height="300">`
+                    : ""
+                }
+                <p class="menu-drawer__article-tag small">${article.tag}</p>
+                <header class="menu-drawer__article-header">
+                  <h2 class="menu-drawer__article-title body--bold">${article.title}</h2>
+                </header>
+                <a class="menu-drawer__article-link body" href="${article.url}">
+                  Read The Article 
+                  <span>
+                    <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M6.6 1L10.6 5M10.6 5L6.6 9M10.6 5L1 5" stroke="#A0A0A0" stroke-width="0.75" stroke-linecap="square"/>
+                    </svg>
+                  </span>
+                </a>
+              </div>
+            </article>
+          </li>
+        `
+        )
+        .join("");
 
-        return JSON.parse(articlesDataJson);
-      } catch (e) {
-        console.error("Failed to parse articles data:", e);
-        return [];
+      this.initSlider();
+    },
+
+    initSlider() {
+      this.splideSlider?.destroy();
+      this.splideSlider = null;
+
+      setTimeout(() => {
+        const element = document.querySelector("#menu-drawer-level-2 .splide");
+        if (this.filteredArticles.length > 0 && window.Splide && element) {
+          this.splideSlider = new Splide(element, {
+            perPage: 1,
+            gap: "var(--space-m)",
+            type: "loop",
+            arrows: false,
+            pagination: false,
+            breakpoints: {
+              1200: { perPage: 3, arrows: true },
+              768: { perPage: 2 },
+              470: { perPage: 1 },
+            },
+          }).mount();
+        }
+      }, 0);
+    },
+
+    getArticles() {
+      const script = document.getElementById("menu-drawer-script");
+      const articlesData = script?.getAttribute("data-articles-data");
+
+      if (articlesData) {
+        try {
+          return JSON.parse(this.decodeHtml(articlesData));
+        } catch (e) {
+          console.error("Failed to parse articles data:", e);
+        }
       }
-    }
+      return [];
+    },
 
-    return [];
-  },
+    generateSrcset(baseUrl) {
+      if (!baseUrl) return "";
+      const parts = baseUrl.split("_1200x");
+      if (parts.length !== 2) return baseUrl;
 
-  generateSrcset(baseUrl) {
-    if (!baseUrl) return "";
-    const urlParts = baseUrl.split("_1200x");
-    if (urlParts.length !== 2) return baseUrl;
+      const [base, ext] = parts;
+      return [400, 800, 1200].map((size) => `${base}_${size}x${ext} ${size}w`).join(", ");
+    },
 
-    const [base, ext] = urlParts;
-    return `${base}_400x${ext} 400w, ${base}_800x${ext} 800w, ${base}_1200x${ext} 1200w`;
-  },
-};
+    triggerAnimations(selectors) {
+      if (window.triggerCardLoadAnimation) {
+        selectors.forEach((sel) => window.triggerCardLoadAnimation(sel));
+      }
+    },
+  };
 
-menuDrawer.init();
+  menuDrawer.init();
+})();
