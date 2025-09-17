@@ -208,6 +208,7 @@
       "blocks": {
         "column_item_zER8gb": {
           "type": "column_item",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Spring_Suit_Hero_Desktop_copy.webp",
             "image_link": "",
@@ -265,7 +266,7 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": true,
-        "column_count": "3",
+        "column_count": "2",
         "text_alignment": "left",
         "animate_columns": false,
         "heading": "",
@@ -406,11 +407,11 @@
     "variable_column_content_secondary_X9KJtx",
     "variable_column_content_tertiary_XwmChF",
     "collection_slider_3p3hD9",
+    "hero_primary_kTJdhq",
+    "spacer_yr6m7M",
     "hero_primary_zeaCqL",
     "spacer_wCQ8WH",
     "hero_primary_WLbcQ7",
-    "spacer_yr6m7M",
-    "hero_primary_kTJdhq",
     "featured_article_r6pY9T"
   ]
 }
