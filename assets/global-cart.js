@@ -1,4 +1,3 @@
-// Constants & DOM elements
 const cartElements = {
   countBadges: () => document.querySelectorAll(".cart-count-indicator"),
   drawer: () => document.querySelector(".cart"),
@@ -6,44 +5,20 @@ const cartElements = {
   cartIcons: () => document.querySelectorAll(".js-cart-icon"),
 };
 
-const loadingSVG = `<svg fill=#E7E7E7 style=height:4px;display:block viewBox="0 0 40 4"xmlns=http://www.w3.org/2000/svg><style>.react{animation:moving 1s ease-in-out infinite}@keyframes moving{0%{width:0%}50%{width:100%;transform:translate(0,0)}100%{width:0;right:0;transform:translate(100%,0)}}</style><rect class=react fill=#E7E7E7 height=4 width=40 /></svg>`;
+const loadingSVG = `<svg style=height:4px;display:block viewBox="0 0 40 4" xmlns=http://www.w3.org/2000/svg><style>.react{animation:moving 1s ease-in-out infinite}@keyframes moving{0%{width:0}50%{width:100%;transform:translate(0,0)}100%{width:0;right:0;transform:translate(100%,0)}}</style><rect class=react fill=#E7E7E7 height=4 width=40 /></svg>`;
 
 let cartState = { isOpen: false, scrollY: 0 };
 
-// Utility functions
-const createLoader = () => {
-  const div = document.createElement("div");
-  div.innerHTML = loadingSVG;
-  return div;
+const createLoader = () => Object.assign(document.createElement("div"), { innerHTML: loadingSVG });
+
+const showLoader = (element) => element.replaceChildren(createLoader());
+
+const showError = (errorMessageContainer, text) => {
+  errorMessageContainer.querySelector("#js--addtocart, .cart-item__actions")?.insertAdjacentHTML("afterend", `<div class="product-error body">${text}</div>`);
+  setTimeout(() => errorMessageContainer.querySelector(".product-error")?.remove(), 3000);
 };
 
-const showLoader = (element) => {
-  const original = element.innerHTML;
-  element.replaceChildren(createLoader());
-  return original;
-};
-
-const showError = (container, text, permanent = false) => {
-  container.querySelectorAll('[class*="error"]').forEach((el) => el.remove());
-  const error = document.createElement("div");
-  error.className = permanent ? "cart-item__error small cart-item__error--permanent" : "product-error body";
-  error.textContent = text;
-  container.querySelector("#js--addtocart, .cart-item__actions")?.after(error);
-
-  if (permanent) {
-    const cleanup = () => {
-      document.querySelectorAll(".cart-item__error--permanent").forEach((el) => el.remove());
-      document.removeEventListener("click", cleanup);
-    };
-    setTimeout(() => document.addEventListener("click", cleanup), 100);
-  }
-};
-
-// Product checks
-const isGiftCard = (element) => {
-  const title = element?.querySelector?.(".cart-item__title a, .product-details__title")?.textContent || "";
-  return title.toLowerCase().includes("gift card");
-};
+const isGiftCard = element => (element?.querySelector?.(".cart-item__title a, .product-details__title")?.textContent).toLowerCase().includes("gift card");
 
 const validateInventory = (maxInventory, currentQty, requestedQty) => {
   const availableLimit = maxInventory === Infinity ? Infinity : Math.max(0, maxInventory - 5);
@@ -63,7 +38,6 @@ const validateInventory = (maxInventory, currentQty, requestedQty) => {
   };
 };
 
-// Cart data management
 const fetchCartData = async () => {
   try {
     const response = await fetch("/cart.js");
@@ -82,7 +56,6 @@ const fetchCartData = async () => {
   }
 };
 
-// Cart UI management
 const toggleCartDrawer = (show = true) => {
   const body = document.body;
   const drawer = cartElements.drawer();
@@ -132,7 +105,6 @@ const showCartLoading = () => {
   if (checkoutBtn) checkoutBtn.innerHTML = '<span class="loader--spinner"></span>';
 };
 
-// Slider management
 let sliderUpdateInProgress = false;
 
 const sliderHTML = () => `
@@ -142,12 +114,12 @@ const sliderHTML = () => `
     <div class="cart__complementary-products-slider splide">
       <div class="splide__arrows">
         <button class="splide__arrow splide__arrow--prev" type="button">
-          <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="7" height="12" viewBox="0 0 7 12" xmlns="http://www.w3.org/2000/svg">
             <path d="M6 1L1 6L6 11" stroke="#0F0F0F" stroke-linecap="square"/>
           </svg>
         </button>
         <button class="splide__arrow splide__arrow--next" type="button">
-          <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="7" height="12" viewBox="0 0 7 12" xmlns="http://www.w3.org/2000/svg">
             <path d="M1 1L6 6L1 11" stroke="#0F0F0F" stroke-linecap="square"/>
           </svg>
         </button>
@@ -294,7 +266,6 @@ const initSlider = () => {
   if (handles.length) updateSlider(handles);
 };
 
-// Cart content refresh
 const refreshCartContent = async () => {
   try {
     const currentProgressWidth = document.querySelector(".cart__shipping-progress")?.style.width || "0%";
@@ -305,7 +276,6 @@ const refreshCartContent = async () => {
 
     document.querySelectorAll(".cart__shipping--loading").forEach((el) => el.remove());
 
-    // Update shipping section
     const newShipping = temp.querySelector(".cart__shipping");
     const existingShipping = document.querySelector(".cart__shipping");
     if (newShipping && existingShipping) {
@@ -327,14 +297,12 @@ const refreshCartContent = async () => {
       existingShipping.replaceWith(newShipping);
     }
 
-    // Replace elements
     const replaceElement = (selector) => {
       const newEl = temp.querySelector(selector);
       const existing = document.querySelector(selector);
       if (newEl && existing) existing.replaceWith(newEl);
     };
 
-    // Preserve optimistic images
     const optimisticImages = new Map();
     document.querySelectorAll(".cart-item--optimistic").forEach((item) => {
       const key = item.getAttribute("data-line-item-key");
@@ -344,7 +312,6 @@ const refreshCartContent = async () => {
 
     replaceElement(".cart__items");
 
-    // Restore optimistic images
     optimisticImages.forEach((img, tempKey) => {
       const variantId = tempKey.replace("temp-", "");
       const newItem = document.querySelector(`[data-line-item-key*="${variantId}"]`);
@@ -354,7 +321,6 @@ const refreshCartContent = async () => {
 
     replaceElement(".cart__footer");
 
-    // Handle empty state
     const newEmpty = temp.querySelector(".cart__empty-state");
     const existingEmpty = document.querySelector(".cart__empty-state");
     const cartForm = document.querySelector(".cart__form");
@@ -368,7 +334,6 @@ const refreshCartContent = async () => {
 
     attachEventListeners();
 
-    // Update progress bar
     if (cartData) {
       setTimeout(() => {
         const progressBar = document.querySelector(".cart__shipping-progress");
@@ -383,23 +348,6 @@ const refreshCartContent = async () => {
     console.error("Error updating cart:", error);
     return false;
   }
-};
-
-// Optimistic UI
-const getSelectedOptions = () => {
-  const options = [];
-  document.querySelectorAll(".js--variant-options:checked").forEach((input) => {
-    const group = input.closest(".js--variant-options");
-    const nameEl = group?.querySelector("legend");
-    const valueEl = input.nextElementSibling;
-
-    if (nameEl && valueEl) {
-      const name = nameEl.textContent.replace(":", "").trim();
-      const value = valueEl.textContent.trim();
-      if (name && value) options.push(`${name}: ${value}`);
-    }
-  });
-  return options.length > 0 ? options.join(", ") : "One Size";
 };
 
 const getCurrentProductImage = () => {
@@ -505,7 +453,6 @@ const showOptimisticUpdate = () => {
     addOptimisticItem(container, variantId, image, productName);
   }
 
-  // Refresh slider
   setTimeout(() => {
     const handles = Array.from(document.querySelectorAll(".cart-item .cart-item__title a"))
       .map((link) => link.href.split("/products/")[1]?.split("?")[0])
@@ -514,7 +461,6 @@ const showOptimisticUpdate = () => {
   }, 100);
 };
 
-// Event handlers
 const createAddToCartHandler = (form) => async (e) => {
   e.preventDefault();
 
@@ -528,7 +474,7 @@ const createAddToCartHandler = (form) => async (e) => {
   btn.innerHTML = '<span class="loader--spinner"></span>';
 
   try {
-    if (!isGiftCard()) {
+    if (!isGiftCard(document)) {
       const inventory = parseInt(document.querySelector("#js--variant-inventory-quantity")?.value || "Infinity", 10);
       const currentCart = await fetchCartData();
       const existingItem = currentCart?.items?.find((item) => item.variant_id.toString() === variantId);
@@ -594,7 +540,6 @@ const attachEventListeners = () => {
     }
   };
 
-  // Quantity buttons
   document.querySelectorAll(".cart-item__quantity button").forEach((btn) => {
     btn.addEventListener("click", async () => {
       const item = btn.closest(".cart-item");
@@ -645,7 +590,6 @@ const attachEventListeners = () => {
     });
   });
 
-  // Remove buttons
   document.querySelectorAll(".cart-item__remove").forEach((btn) => {
     btn.addEventListener("click", async () => {
       const item = btn.closest(".cart-item");
@@ -654,7 +598,6 @@ const attachEventListeners = () => {
     });
   });
 
-  // Cart container and close
   document.querySelector(".cart__container")?.addEventListener("click", (e) => e.stopPropagation());
   document.querySelector(".cart__close")?.addEventListener("click", () => toggleCartDrawer(false));
   document.querySelector(".cart")?.addEventListener("click", (e) => {
@@ -662,7 +605,6 @@ const attachEventListeners = () => {
   });
 };
 
-// Initialization
 const loadFromStorage = () => {
   const stored = localStorage.getItem("cartData");
   if (stored) {
@@ -677,11 +619,9 @@ const loadFromStorage = () => {
   });
 };
 
-// Global functions
 window.openCart = () => toggleCartDrawer(true);
 window.closeCart = () => toggleCartDrawer(false);
 
-// Initialize
 document.addEventListener("DOMContentLoaded", () => {
   loadFromStorage();
   attachEventListeners();
