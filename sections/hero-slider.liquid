@@ -1,13 +1,18 @@
 {{ 'section-hero-slider.css' | asset_url | stylesheet_tag }}
 
-{% for block in section.blocks %}
-  {% if block.settings.mobile_video %}
+{% assign blocks = section.blocks %}
+{% assign section_id = section.id %}
+
+{% for block in blocks %}
+  {% assign block_id = block.id %}
+  {% assign mobile_video = block.settings.mobile_video %}
+  {% if mobile_video %}
     <style>
       @media screen and (max-width: 768px) {
-        #hero-slider-{{ section.id }} .splide__slide[data-block-id="{{ block.id }}"] .hero-slider__video--desktop {
+        #hero-slider-{{ section_id }} .splide__slide[data-block-id="{{ block_id }}"] .hero-slider__video--desktop {
           display: none;
         }
-        #hero-slider-{{ section.id }} .splide__slide[data-block-id="{{ block.id }}"] .hero-slider__video--mobile {
+        #hero-slider-{{ section_id }} .splide__slide[data-block-id="{{ block_id }}"] .hero-slider__video--mobile {
           display: block;
         }
       }
@@ -15,13 +20,39 @@
   {% endif %}
 {% endfor %}
 
-<div class="hero-slider splide" id="hero-slider-{{ section.id }}">
+<div class="hero-slider splide" id="hero-slider-{{ section_id }}">
   <div class="splide__track">
     <ul class="splide__list">
-      {% for block in section.blocks %}
-        <li class="splide__slide" {{ block.shopify_attributes }} data-block-id="{{ block.id }}">
-          {% if block.settings.media_type == 'image' %}
-            {% if block.settings.desktop_image %}
+      {% for block in blocks %}
+        {% assign shopfiy_attributes = block.shopify_attributes %}
+        {% assign block_id = block.id %}
+        {% assign autoplay = section.settings.autoplay %}
+        {% assign slide_interval = section.settings.slide_interval %}
+
+        {% assign media_type = block.settings.media_type %}
+        {% assign desktop_image = block.settings.desktop_image %}
+        {% assign mobile_image = block.settings.mobile_image %}
+        {% assign video = block.settings.video %}
+        {% assign mobile_video = block.settings.mobile_video %}
+        {% assign video_poster = block.settings.video_poster | image_url %}
+
+        {% assign horizontal_alignment = block.settings.horizontal_alignment | default: 'center' %}
+        {% assign vertical_alignment = block.settings.vertical_alignment | default: 'bottom' %}
+        {% assign mobile_horizontal_alignment = block.settings.mobile_horizontal_alignment | default: horizontal_alignment %}
+        {% assign mobile_vertical_alignment = block.settings.mobile_vertical_alignment | default: vertical_alignment %}
+        {% assign svg_image = block.settings.svg_image %}
+        {% assign svg_image = block.settings.svg_image %}
+        {% assign mobile_svg_image = block.settings.mobile_svg_image %}
+
+        {% assign heading = block.settings.heading %}
+        {% assign heading_animation = block.settings.heading_animation %}
+        {% assign heading_level = block.settings.heading_level %}
+        {% assign description = block.settings.description %}
+        {% assign description_animation = block.settings.description_animation %}
+
+        <li class="splide__slide" {{ shopify_attributes }} data-block-id="{{ block_id }}">
+          {% if media_type == 'image' %}
+            {% if desktop_image %}
               {% assign loading_attr = 'lazy' %}
               {% assign fetch_priority = 'low' %}
               {% if forloop.first %}
@@ -30,15 +61,15 @@
               {% endif %}
 
               <picture>
-                {% if block.settings.mobile_image %}
+                {% if mobile_image %}
                   <source
                     media="(max-width: 768px)"
-                    srcset="{{ block.settings.mobile_image | image_url: width: 412 }} 1x"
+                    srcset="{{ mobile_image | image_url: width: 412 }} 1x"
                   >
                 {% endif %}
 
                 {{
-                  block.settings.desktop_image
+                  desktop_image
                   | image_url: width: 2560
                   | image_tag:
                     class: 'hero-slider__background',
@@ -50,89 +81,91 @@
                 }}
               </picture>
             {% endif %}
-          {% elsif block.settings.media_type == 'video' %}
-            {% if block.settings.video %}
+          {% elsif media_type == 'video' %}
+            {% if video %}
               <div class="hero-slider__video hero-slider__video--desktop">
-                {% assign poster_url_desktop = block.settings.video_poster | image_url %}
                 {{
-                  block.settings.video
+                  video
                   | video_tag:
                     autoplay: true,
                     loop: true,
                     muted: true,
                     controls: false,
                     playsinline: true,
-                    poster: poster_url_desktop,
+                    poster: video_poster,
                     class: 'hero-slider__video-element',
                     id: 'video-'
-                  | append: block.id
+                  | append: block_id
                 }}
               </div>
             {% endif %}
 
-            {% if block.settings.mobile_video %}
+            {% if mobile_video %}
               <div class="hero-slider__video hero-slider__video--mobile">
-                {% assign poster_url_mobile = block.settings.video_poster | image_url %}
                 {{
-                  block.settings.mobile_video
+                  mobile_video
                   | video_tag:
                     autoplay: true,
                     loop: true,
                     muted: true,
                     controls: false,
                     playsinline: true,
-                    poster: poster_url_mobile,
+                    poster: video_poster,
                     class: 'hero-slider__video-element',
                     id: 'mobile-video-'
-                  | append: block.id
+                  | append: block_id
                 }}
               </div>
             {% endif %}
           {% endif %}
 
-          <div class="hero-slider__content hero-slider__content--{{ block.settings.horizontal_alignment | default: 'center' }} hero-slider__content--{{ block.settings.vertical_alignment | default: 'bottom' }} hero-slider__content--mobile-{{ block.settings.mobile_horizontal_alignment | default: 'center' }} hero-slider__content--mobile-{{ block.settings.mobile_vertical_alignment | default: block.settings.vertical_alignment | default: 'bottom' }}">
-            {% if block.settings.svg_image %}
+          <div class="hero-slider__content hero-slider__content--{{ horizontal_alignment }} hero-slider__content--{{ vertical_alignment }} hero-slider__content--mobile-{{ mobile_horizontal_alignment }} hero-slider__content--mobile-{{ mobile_vertical_alignment }}">
+            {% if svg_image %}
               <img
-                src="{{ block.settings.svg_image | image_url }}"
-                alt="{{ block.settings.heading | escape }}"
-                class="hero-slider__svg hero-slider__svg--{{ block.settings.svg_size | default: 'medium' }} hero-slider__svg--desktop"
-                width="{{ block.settings.svg_image.width }}"
-                height="{{ block.settings.svg_image.height }}"
+                src="{{ svg_image | image_url }}"
+                alt="{{ heading | escape }}"
+                class="hero-slider__svg hero-slider__svg--{{ svg_size | default: 'medium' }} hero-slider__svg--desktop"
+                width="{{ svg_image.width }}"
+                height="{{ svg_image.height }}"
                 loading="eager"
                 fetchpriority="high"
               >
-              {% if block.settings.mobile_svg_image %}
+              {% if mobile_svg_image %}
                 <img
-                  src="{{ block.settings.mobile_svg_image | image_url }}"
-                  alt="{{ block.settings.heading | escape }}"
-                  class="hero-slider__svg hero-slider__svg--{{ block.settings.svg_size | default: 'medium' }} hero-slider__svg--mobile"
-                  width="{{ block.settings.mobile_svg_image.width }}"
-                  height="{{ block.settings.mobile_svg_image.height }}"
+                  src="{{ mobile_svg_image | image_url }}"
+                  alt="{{ heading | escape }}"
+                  class="hero-slider__svg hero-slider__svg--{{ svg_size | default: 'medium' }} hero-slider__svg--mobile"
+                  width="{{ mobile_svg_image.width }}"
+                  height="{{ mobile_svg_image.height }}"
                   loading="eager"
                   fetchpriority="high"
                 >
               {% endif %}
-            {% elsif block.settings.heading %}
-              <{{ block.settings.heading_level | default: 'h1' }} class="heading--3xl {% if block.settings.heading_animation != 'none' %}{{ block.settings.heading_animation }}{% endif %}">
-                {{ block.settings.heading }}
-              </{{ block.settings.heading_level | default: 'h1' }}>
+
+            {% elsif heading %}
+              <{{ heading_level | default: 'h1' }} class="heading--3xl {% if heading_animation != 'none' %}{{ heading_animation }}{% endif %}">
+                {{ heading }}
+              </{{ heading_level | default: 'h1' }}>
             {% endif %}
 
-            <div class="hero-slider__description heading--l {% if block.settings.description_animation != 'none' %}{{ block.settings.description_animation }}{% endif %}">
-              {{ block.settings.description }}
+            <div class="hero-slider__description heading--l {% if description_animation != 'none' %}{{ description_animation }}{% endif %}">
+              {{ description }}
             </div>
 
-            <div class="hero-slider__buttons">
+            <div class="hero__buttons">
               {% for i in (1..4) %}
-                {% assign button_label = 'button_label_' | append: i %}
-                {% assign button_link = 'button_link_' | append: i %}
-                {% if block.settings[button_label] and block.settings[button_link] %}
+                {% assign current_button_label_field = 'button_label_' | append: i %}
+                {% assign current_button_link_field = 'button_link_' | append: i %}
+                {% assign button_label = section.settings[current_button_label_field] %}
+                {% assign button_link = section.settings[current_button_link_field] %}
+
+                {% if button_label and button_link %}
                   <a
-                    href="{{ block.settings[button_link] }}"
+                    href="{{ button_link }}"
                     class="button button--white body"
-                    aria-label="{{ block.settings[button_label] | escape }}"
+                    aria-label="{{ button_label | escape }}"
                   >
-                    {{ block.settings[button_label] }}
+                    {{ button_label }}
                   </a>
                 {% endif %}
               {% endfor %}
@@ -147,9 +180,9 @@
 
 <script
   src="{{ "section-hero-slider.js" | asset_url }}"
-  data-section-id="{{ section.id }}"
-  data-autoplay="{{ section.settings.autoplay }}"
-  data-slide-interval="{{ section.settings.slide_interval | times: 1000 }}"
+  data-section-id="{{ section_id }}"
+  data-autoplay="{{ autoplay }}"
+  data-slide-interval="{{ slide_interval | times: 1000 }}"
   defer
 ></script>
 
