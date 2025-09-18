@@ -1,16 +1,16 @@
+// Constants & DOM elements
 const cartElements = {
   countBadges: () => document.querySelectorAll(".cart-count-indicator"),
   drawer: () => document.querySelector(".cart"),
   addToCartForms: () => document.querySelectorAll('form[action="/cart/add"]'),
   cartIcons: () => document.querySelectorAll(".js-cart-icon"),
-  secondaryDrawer: () => document.querySelector(".cart-secondary"),
 };
 
 const loadingSVG = `<svg fill=#E7E7E7 style=height:4px;display:block viewBox="0 0 40 4"xmlns=http://www.w3.org/2000/svg><style>.react{animation:moving 1s ease-in-out infinite}@keyframes moving{0%{width:0%}50%{width:100%;transform:translate(0,0)}100%{width:0;right:0;transform:translate(100%,0)}}</style><rect class=react fill=#E7E7E7 height=4 width=40 /></svg>`;
 
-let cartState = { isOpen: false, scrollY: 0, secondaryOpen: false };
-let secondarySlider = null;
+let cartState = { isOpen: false, scrollY: 0 };
 
+// Utility functions
 const createLoader = () => {
   const div = document.createElement("div");
   div.innerHTML = loadingSVG;
@@ -39,6 +39,7 @@ const showError = (container, text, permanent = false) => {
   }
 };
 
+// Product checks
 const isGiftCard = (element) => {
   const title = element?.querySelector?.(".cart-item__title a, .product-details__title")?.textContent || "";
   return title.toLowerCase().includes("gift card");
@@ -62,6 +63,7 @@ const validateInventory = (maxInventory, currentQty, requestedQty) => {
   };
 };
 
+// Cart data management
 const fetchCartData = async () => {
   try {
     const response = await fetch("/cart.js");
@@ -80,6 +82,7 @@ const fetchCartData = async () => {
   }
 };
 
+// Cart UI management
 const toggleCartDrawer = (show = true) => {
   const body = document.body;
   const drawer = cartElements.drawer();
@@ -104,7 +107,6 @@ const toggleCartDrawer = (show = true) => {
     cartState.isOpen = false;
     body.classList.remove("cart-open");
     drawer.classList.remove("cart--active");
-    drawer.classList.remove("cart--secondary-open");
 
     if (body.style.position === "fixed") {
       const scrollY = cartState.scrollY || Math.abs(parseInt(body.style.top || "0"));
@@ -114,225 +116,6 @@ const toggleCartDrawer = (show = true) => {
       document.documentElement.style.scrollBehavior = "";
     }
   }
-};
-
-const toggleSecondaryDrawer = (show = true) => {
-  const secondary = cartElements.secondaryDrawer();
-  const cart = cartElements.drawer();
-
-  if (show && !cartState.secondaryOpen) {
-    cartState.secondaryOpen = true;
-    secondary.classList.add("cart-secondary--active");
-    cart.classList.add("cart--secondary-open");
-  } else if (!show && cartState.secondaryOpen) {
-    cartState.secondaryOpen = false;
-    secondary.classList.remove("cart-secondary--active");
-    cart.classList.remove("cart--secondary-open");
-    if (secondarySlider) {
-      secondarySlider.destroy();
-      secondarySlider = null;
-    }
-  }
-};
-
-const fetchProductData = async (handle) => {
-  try {
-    const response = await fetch(`/products/${handle}.js`);
-    if (!response.ok) throw new Error("Product not found");
-    return await response.json();
-  } catch (error) {
-    console.error("Error fetching product:", error);
-    return null;
-  }
-};
-
-const initSecondarySlider = (images) => {
-  if (secondarySlider) {
-    secondarySlider.destroy();
-    secondarySlider = null;
-  }
-
-  const progressBar = document.querySelector(".cart-secondary__progress-bar");
-
-  secondarySlider = new Splide(".cart-secondary__splide", {
-    type: "loop",
-    direction: "ltr",
-    arrows: false,
-    pagination: false,
-    rewind: false,
-    wheel: false,
-    drag: true,
-    speed: 300,
-    perPage: 1,
-    waitForTransition: true,
-  });
-
-  secondarySlider.on("mounted move", () => {
-    const end = secondarySlider.Components.Controller.getEnd() + 1;
-    const rate = Math.min((secondarySlider.index + 1) / end, 1);
-    progressBar.style.width = `${100 * rate}%`;
-  });
-
-  secondarySlider.mount();
-};
-
-const loadProductInSecondary = async (lineKey, productHandle, variantId) => {
-  const secondary = cartElements.secondaryDrawer();
-  const contentEl = secondary.querySelector(".cart-secondary__content");
-  const titleEl = secondary.querySelector(".cart-secondary__title");
-  const formEl = secondary.querySelector(".cart-secondary__form");
-
-  contentEl.innerHTML = `<div class="cart-secondary__loading">${loadingSVG}</div>`;
-
-  const product = await fetchProductData(productHandle);
-  if (!product) {
-    contentEl.innerHTML = `<div class="body">Product not found</div>`;
-    return;
-  }
-
-  titleEl.textContent = product.title;
-  formEl.setAttribute("data-line-key", lineKey);
-  formEl.setAttribute("data-product-id", product.id);
-
-  const currentVariant = product.variants.find((v) => v.id === parseInt(variantId));
-
-  const imagesHtml = product.images
-    .map(
-      (img) => `
-    <li class="splide__slide">
-      <img src="${img}" alt="${product.title}" loading="lazy">
-    </li>
-  `
-    )
-    .join("");
-
-  const optionsHtml = product.options
-    .map((option, optionIndex) => {
-      const optionName = typeof option === "object" ? option.name : option;
-      const values = [...new Set(product.variants.map((v) => v[`option${optionIndex + 1}`]))];
-      return `
-      <fieldset class="cart-secondary__option-group">
-        <legend class="body--bold">${optionName}:</legend>
-        <div class="cart-secondary__option-list">
-          ${values
-            .map((value) => {
-              const optionId = `secondary-${optionName}-${value}`.toLowerCase().replace(/\s+/g, "-");
-              const isChecked = currentVariant && currentVariant[`option${optionIndex + 1}`] === value;
-              return `
-                <div class="cart-secondary__option">
-                  <input
-                    type="radio"
-                    id="${optionId}"
-                    name="option${optionIndex + 1}"
-                    value="${value}"
-                    ${isChecked ? "checked" : ""}
-                  >
-                  <label for="${optionId}" class="body">
-                    ${optionName === "Size" && value.includes(".0") ? value.replace(".0", "") : value}
-                  </label>
-                </div>
-              `;
-            })
-            .join("")}
-        </div>
-      </fieldset>
-    `;
-    })
-    .join("");
-
-  contentEl.innerHTML = `
-    <div class="cart-secondary__images">
-      <div class="cart-secondary__splide splide">
-        <div class="splide__track">
-          <ul class="splide__list">${imagesHtml}</ul>
-        </div>
-        <div class="cart-secondary__progress">
-          <div class="cart-secondary__progress-bar"></div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="cart-secondary__form-wrapper">
-      <form class="cart-secondary__form" data-line-key="${lineKey}" data-product-variants='${JSON.stringify(
-    product.variants
-  )}'>
-        <div class="cart-secondary__options">${optionsHtml}</div>
-        <button type="submit" class="cart-secondary__update body">Update</button>
-      </form>
-    </div>
-  `;
-
-  attachSecondaryEventListeners();
-  initSecondarySlider(product.images);
-};
-
-const attachSecondaryEventListeners = () => {
-  const form = document.querySelector(".cart-secondary__form");
-  if (!form) return;
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const lineKey = form.getAttribute("data-line-key");
-    const variantsData = JSON.parse(form.getAttribute("data-product-variants"));
-    const updateBtn = form.querySelector(".cart-secondary__update");
-    const originalBtnContent = updateBtn.innerHTML;
-
-    const selectedOptions = [];
-    form.querySelectorAll('input[type="radio"]:checked').forEach((input) => {
-      selectedOptions.push(input.value);
-    });
-
-    const selectedVariant = variantsData.find((variant) => {
-      return selectedOptions.every(
-        (option, index) => variant[`option${index + 1}`] === option || variant[`option${index + 1}`] === null
-      );
-    });
-
-    if (!selectedVariant) {
-      showError(form, "Invalid variant selection");
-      return;
-    }
-
-    updateBtn.innerHTML = '<span class="loader--spinner"></span>';
-
-    try {
-      const cartData = await fetchCartData();
-      const currentItem = cartData.items.find((item) => item.key === lineKey);
-
-      if (!currentItem) {
-        throw new Error("Cart item not found");
-      }
-
-      const updateBody = {
-        updates: {
-          [lineKey]: 0,
-        },
-      };
-
-      await fetch("/cart/update.js", {
-        method: "post",
-        headers: { Accept: "application/json", "Content-Type": "application/json" },
-        body: JSON.stringify(updateBody),
-      });
-
-      await fetch("/cart/add.js", {
-        method: "post",
-        headers: { Accept: "application/json", "Content-Type": "application/json" },
-        body: JSON.stringify({
-          id: selectedVariant.id,
-          quantity: currentItem.quantity,
-        }),
-      });
-
-      await refreshCartContent();
-      toggleSecondaryDrawer(false);
-    } catch (error) {
-      console.error("Error updating cart:", error);
-      updateBtn.innerHTML = originalBtnContent;
-      showError(form, "Could not update cart. Please try again.");
-    }
-  });
 };
 
 const updateCartBadges = (count) => {
@@ -349,6 +132,7 @@ const showCartLoading = () => {
   if (checkoutBtn) checkoutBtn.innerHTML = '<span class="loader--spinner"></span>';
 };
 
+// Slider management
 let sliderUpdateInProgress = false;
 
 const sliderHTML = () => `
@@ -510,6 +294,7 @@ const initSlider = () => {
   if (handles.length) updateSlider(handles);
 };
 
+// Cart content refresh
 const refreshCartContent = async () => {
   try {
     const currentProgressWidth = document.querySelector(".cart__shipping-progress")?.style.width || "0%";
@@ -520,6 +305,7 @@ const refreshCartContent = async () => {
 
     document.querySelectorAll(".cart__shipping--loading").forEach((el) => el.remove());
 
+    // Update shipping section
     const newShipping = temp.querySelector(".cart__shipping");
     const existingShipping = document.querySelector(".cart__shipping");
     if (newShipping && existingShipping) {
@@ -541,12 +327,14 @@ const refreshCartContent = async () => {
       existingShipping.replaceWith(newShipping);
     }
 
+    // Replace elements
     const replaceElement = (selector) => {
       const newEl = temp.querySelector(selector);
       const existing = document.querySelector(selector);
       if (newEl && existing) existing.replaceWith(newEl);
     };
 
+    // Preserve optimistic images
     const optimisticImages = new Map();
     document.querySelectorAll(".cart-item--optimistic").forEach((item) => {
       const key = item.getAttribute("data-line-item-key");
@@ -556,6 +344,7 @@ const refreshCartContent = async () => {
 
     replaceElement(".cart__items");
 
+    // Restore optimistic images
     optimisticImages.forEach((img, tempKey) => {
       const variantId = tempKey.replace("temp-", "");
       const newItem = document.querySelector(`[data-line-item-key*="${variantId}"]`);
@@ -565,6 +354,7 @@ const refreshCartContent = async () => {
 
     replaceElement(".cart__footer");
 
+    // Handle empty state
     const newEmpty = temp.querySelector(".cart__empty-state");
     const existingEmpty = document.querySelector(".cart__empty-state");
     const cartForm = document.querySelector(".cart__form");
@@ -578,6 +368,7 @@ const refreshCartContent = async () => {
 
     attachEventListeners();
 
+    // Update progress bar
     if (cartData) {
       setTimeout(() => {
         const progressBar = document.querySelector(".cart__shipping-progress");
@@ -594,6 +385,7 @@ const refreshCartContent = async () => {
   }
 };
 
+// Optimistic UI
 const getSelectedOptions = () => {
   const options = [];
   document.querySelectorAll(".js--variant-options:checked").forEach((input) => {
@@ -713,6 +505,7 @@ const showOptimisticUpdate = () => {
     addOptimisticItem(container, variantId, image, productName);
   }
 
+  // Refresh slider
   setTimeout(() => {
     const handles = Array.from(document.querySelectorAll(".cart-item .cart-item__title a"))
       .map((link) => link.href.split("/products/")[1]?.split("?")[0])
@@ -721,6 +514,7 @@ const showOptimisticUpdate = () => {
   }, 100);
 };
 
+// Event handlers
 const createAddToCartHandler = (form) => async (e) => {
   e.preventDefault();
 
@@ -772,11 +566,6 @@ const attachEventListeners = () => {
     const totalItems = document.querySelectorAll(".cart-item").length;
     item.style.display = "none";
 
-    const secondaryForm = document.querySelector(".cart-secondary__form");
-    if (secondaryForm && secondaryForm.getAttribute("data-line-key") === key) {
-      toggleSecondaryDrawer(false);
-    }
-
     if (totalItems === 1) {
       const shipping = document.querySelector(".cart__shipping");
       if (shipping) shipping.style.display = "none";
@@ -805,19 +594,7 @@ const attachEventListeners = () => {
     }
   };
 
-  document.querySelectorAll(".cart-item__title-link").forEach((link) => {
-    link.addEventListener("click", async (e) => {
-      e.preventDefault();
-      const item = link.closest(".cart-item");
-      const lineKey = item.getAttribute("data-line-item-key");
-      const productHandle = item.getAttribute("data-product-handle");
-      const variantId = item.getAttribute("data-variant-id");
-
-      toggleSecondaryDrawer(true);
-      await loadProductInSecondary(lineKey, productHandle, variantId);
-    });
-  });
-
+  // Quantity buttons
   document.querySelectorAll(".cart-item__quantity button").forEach((btn) => {
     btn.addEventListener("click", async () => {
       const item = btn.closest(".cart-item");
@@ -868,6 +645,7 @@ const attachEventListeners = () => {
     });
   });
 
+  // Remove buttons
   document.querySelectorAll(".cart-item__remove").forEach((btn) => {
     btn.addEventListener("click", async () => {
       const item = btn.closest(".cart-item");
@@ -876,27 +654,15 @@ const attachEventListeners = () => {
     });
   });
 
+  // Cart container and close
   document.querySelector(".cart__container")?.addEventListener("click", (e) => e.stopPropagation());
   document.querySelector(".cart__close")?.addEventListener("click", () => toggleCartDrawer(false));
   document.querySelector(".cart")?.addEventListener("click", (e) => {
     if (e.target.classList.contains("cart")) toggleCartDrawer(false);
   });
-
-  document.querySelector(".cart-secondary__back")?.addEventListener("click", () => toggleSecondaryDrawer(false));
-
-  document.addEventListener("click", (e) => {
-    const secondary = cartElements.secondaryDrawer();
-    if (
-      cartState.secondaryOpen &&
-      secondary &&
-      !secondary.contains(e.target) &&
-      !e.target.closest(".cart-item__title-link")
-    ) {
-      toggleSecondaryDrawer(false);
-    }
-  });
 };
 
+// Initialization
 const loadFromStorage = () => {
   const stored = localStorage.getItem("cartData");
   if (stored) {
@@ -911,9 +677,11 @@ const loadFromStorage = () => {
   });
 };
 
+// Global functions
 window.openCart = () => toggleCartDrawer(true);
 window.closeCart = () => toggleCartDrawer(false);
 
+// Initialize
 document.addEventListener("DOMContentLoaded", () => {
   loadFromStorage();
   attachEventListeners();
