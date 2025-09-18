@@ -65,6 +65,8 @@
                 class="cart-item"
                 data-line-item-key="{{ item.key }}"
                 data-inventory-quantity="{{ item.variant.inventory_quantity }}"
+                data-product-handle="{{ item.product.handle }}"
+                data-variant-id="{{ item.variant.id }}"
               >
                 <div class="cart-item__image">
                   <img
@@ -77,7 +79,9 @@
                 <div class="cart-item__content">
                   <div class="cart-item__details">
                     <h3 class="cart-item__title body--bold">
-                      <a href="{{ item.url }}">{{ item.product.title }}</a>
+                      <a href="#" class="cart-item__title-link" data-line-key="{{ item.key }}">
+                        {{- item.product.title -}}
+                      </a>
                     </h3>
                     <div class="cart-item__specifics">
                       <p class="cart-item__variant small">
@@ -171,6 +175,40 @@
         </footer>
       {% endif %}
     {% endform %}
+  </div>
+
+  <div class="cart-secondary">
+    <div class="cart-secondary__container">
+      <header class="cart-secondary__header">
+        <button class="cart-secondary__back" type="button" aria-label="Back to cart">
+          <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 1L1 6L6 11" stroke="#0F0F0F" stroke-linecap="square"/>
+          </svg>
+        </button>
+        <h2 class="cart-secondary__title heading--xl"></h2>
+        <div class="cart-secondary__close-spacer"></div>
+      </header>
+
+      <div class="cart-secondary__content custom-scrollbar">
+        <div class="cart-secondary__images">
+          <div class="cart-secondary__splide splide">
+            <div class="splide__track">
+              <ul class="splide__list"></ul>
+            </div>
+            <div class="cart-secondary__progress">
+              <div class="cart-secondary__progress-bar"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cart-secondary__form-wrapper">
+          <form class="cart-secondary__form" data-line-key="">
+            <div class="cart-secondary__options"></div>
+            <button type="submit" class="cart-secondary__update body">Update</button>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 </aside>
 
