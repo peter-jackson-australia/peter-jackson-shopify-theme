@@ -9,69 +9,34 @@
  */
 {
   "sections": {
-    "contact_form_d4LfAL": {
-      "type": "contact-form",
-      "blocks": {
-        "text_n3nAKC": {
-          "type": "text",
-          "settings": {
-            "title": "Text Field",
-            "name": "text-field",
-            "maxlength": 10,
-            "required": true,
-            "placeholder": "This is the text field"
-          }
-        },
-        "email_eDkAPd": {
-          "type": "email",
-          "settings": {
-            "title": "Email Field",
-            "maxlength": 128,
-            "placeholder": "e.g. steve@example.com"
-          }
-        },
-        "textarea_GqLTba": {
-          "type": "textarea",
-          "settings": {
-            "title": "Textarea Example",
-            "name": "body",
-            "maxlength": 500,
-            "rows": 8,
-            "required": true,
-            "placeholder": "This is an example"
-          }
-        },
-        "checkbox_7KUL6c": {
-          "type": "checkbox",
-          "settings": {
-            "title": "I agree to the terms and conditions",
-            "name": "terms_agreement",
-            "required": true
-          }
-        },
-        "paragraph_a8EUpf": {
-          "type": "paragraph",
-          "settings": {
-            "text": "<p>Complete the form below to send us a message.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "text_n3nAKC",
-        "email_eDkAPd",
-        "textarea_GqLTba",
-        "checkbox_7KUL6c",
-        "paragraph_a8EUpf"
-      ],
-      "name": "Contact Form",
+    "hero_countdown_timer_6TTXKi": {
+      "type": "hero-countdown-timer",
+      "name": "Hero Countdown Timer",
       "settings": {
-        "heading": "Get in Touch",
-        "description": "We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
-        "button_label": "Submit"
+        "background_image": "shopify://shop_images/Suits_Desktop_copy.webp",
+        "heading": "Limited Time Offer",
+        "heading_animation": "none",
+        "subheading": "Do not miss out on this special offer!",
+        "subheading_animation": "none",
+        "target_date": "2025-12-31T23:59:59",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "middle",
+        "animate_timer_blocks": true,
+        "days_label": "Days",
+        "hours_label": "Hours",
+        "minutes_label": "Minutes",
+        "seconds_label": "Seconds",
+        "final_hours_threshold": 3,
+        "final_message": "Final hours! Do not miss out!",
+        "final_message_animation": "none",
+        "complete_message": "The countdown has ended!",
+        "complete_message_animation": "none",
+        "button_label": "",
+        "button_link": ""
       }
     }
   },
   "order": [
-    "contact_form_d4LfAL"
+    "hero_countdown_timer_6TTXKi"
   ]
 }
