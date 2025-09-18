@@ -16,6 +16,34 @@
           "type": "slide",
           "settings": {
             "media_type": "image",
+            "desktop_image": "shopify://shop_images/Suits_Desktop_copy.webp",
+            "mobile_image": "shopify://shop_images/Suits_Mobile.webp",
+            "heading": "",
+            "svg_image": "shopify://shop_images/S25_Homepage_Suits_534467bb-fb4e-4ba3-86e1-8ad0f211cb10.svg",
+            "svg_size": "full",
+            "mobile_svg_image": "shopify://shop_images/S25_Homepage_Suits_Mobile.svg",
+            "heading_level": "h1",
+            "heading_animation": "none",
+            "description": "New lightweight tailoring for the most social season of the year.",
+            "description_animation": "none",
+            "button_label_1": "Two Suits for $895*",
+            "button_link_1": "shopify://collections/mens-suits",
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_label_3": "",
+            "button_link_3": "",
+            "button_label_4": "",
+            "button_link_4": "",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "stretch",
+            "mobile_horizontal_alignment": "center",
+            "mobile_vertical_alignment": "bottom"
+          }
+        },
+        "slide_CMKbFE": {
+          "type": "slide",
+          "settings": {
+            "media_type": "image",
             "desktop_image": "shopify://shop_images/Spring_Hero_Desktop.webp",
             "mobile_image": "shopify://shop_images/Spring_Hero_Mobile.webp",
             "heading": "",
@@ -71,6 +99,7 @@
       },
       "block_order": [
         "slide_JGebxX",
+        "slide_CMKbFE",
         "slide_P9nnNj"
       ],
       "name": "Hero Slider",
@@ -179,6 +208,7 @@
       "blocks": {
         "column_item_zER8gb": {
           "type": "column_item",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Spring_Suit_Hero_Desktop_copy.webp",
             "image_link": "",
@@ -236,7 +266,7 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": true,
-        "column_count": "3",
+        "column_count": "2",
         "text_alignment": "left",
         "animate_columns": false,
         "heading": "",
@@ -377,11 +407,11 @@
     "variable_column_content_secondary_X9KJtx",
     "variable_column_content_tertiary_XwmChF",
     "collection_slider_3p3hD9",
+    "hero_primary_kTJdhq",
+    "spacer_yr6m7M",
     "hero_primary_zeaCqL",
     "spacer_wCQ8WH",
     "hero_primary_WLbcQ7",
-    "spacer_yr6m7M",
-    "hero_primary_kTJdhq",
     "featured_article_r6pY9T"
   ]
 }
