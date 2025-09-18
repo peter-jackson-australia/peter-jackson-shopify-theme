@@ -128,13 +128,10 @@ const toggleSecondaryDrawer = (show = true) => {
     cartState.secondaryOpen = false;
     secondary.classList.remove("cart-secondary--active");
     cart.classList.remove("cart--secondary-open");
-    
-    setTimeout(() => {
-      if (secondarySlider) {
-        secondarySlider.destroy();
-        secondarySlider = null;
-      }
-    }, 400);
+    if (secondarySlider) {
+      secondarySlider.destroy();
+      secondarySlider = null;
+    }
   }
 };
 
@@ -211,7 +208,7 @@ const loadProductInSecondary = async (lineKey, productHandle, variantId) => {
 
   const optionsHtml = product.options
     .map((option, optionIndex) => {
-      const optionName = typeof option === 'object' ? option.name : option;
+      const optionName = typeof option === "object" ? option.name : option;
       const values = [...new Set(product.variants.map((v) => v[`option${optionIndex + 1}`]))];
       return `
       <fieldset class="cart-secondary__option-group">
@@ -507,7 +504,7 @@ const initSlider = () => {
 
   createSliderContainer();
   const handles = Array.from(cartItems)
-    .map((item) => item.getAttribute("data-product-handle"))
+    .map((item) => item.querySelector(".cart-item__title a")?.href?.split("/products/")[1]?.split("?")[0])
     .filter(Boolean);
 
   if (handles.length) updateSlider(handles);
@@ -717,8 +714,8 @@ const showOptimisticUpdate = () => {
   }
 
   setTimeout(() => {
-    const handles = Array.from(document.querySelectorAll(".cart-item"))
-      .map((item) => item.getAttribute("data-product-handle"))
+    const handles = Array.from(document.querySelectorAll(".cart-item .cart-item__title a"))
+      .map((link) => link.href.split("/products/")[1]?.split("?")[0])
       .filter(Boolean);
     if (handles.length) updateSlider(handles);
   }, 100);
@@ -768,45 +765,45 @@ const attachEventListeners = () => {
   const getOtherHandles = (excludeKey) =>
     Array.from(document.querySelectorAll('.cart-item:not([style*="display: none"])'))
       .filter((item) => item.getAttribute("data-line-item-key") !== excludeKey)
-      .map((item) => item.getAttribute("data-product-handle"))
+      .map((item) => item.querySelector(".cart-item__title a")?.href?.split("/products/")[1]?.split("?")[0])
       .filter(Boolean);
 
-      const deleteItem = async (item, key) => {
-        const totalItems = document.querySelectorAll(".cart-item").length;
-        item.style.display = "none";
-      
-        const secondaryForm = document.querySelector(".cart-secondary__form");
-        if (secondaryForm && secondaryForm.getAttribute("data-line-key") === key) {
-          toggleSecondaryDrawer(false);
-        }
-      
-        if (totalItems === 1) {
-          const shipping = document.querySelector(".cart__shipping");
-          if (shipping) shipping.style.display = "none";
-        }
-      
-        showCartLoading();
-        updateSlider(getOtherHandles(key));
-      
-        try {
-          await fetch("/cart/update.js", {
-            method: "post",
-            headers: { Accept: "application/json", "Content-Type": "application/json" },
-            body: JSON.stringify({ updates: { [key]: 0 } }),
-          });
-          await refreshCartContent();
-        } catch (error) {
-          console.error("Error removing item:", error);
-          item.style.display = "";
-          if (totalItems === 1) {
-            const shipping = document.querySelector(".cart__shipping");
-            const slider = document.querySelector(".cart__complementary-products");
-            if (shipping) shipping.style.display = "block";
-            if (slider) slider.style.display = "block";
-          }
-          await refreshCartContent();
-        }
-      };
+  const deleteItem = async (item, key) => {
+    const totalItems = document.querySelectorAll(".cart-item").length;
+    item.style.display = "none";
+
+    const secondaryForm = document.querySelector(".cart-secondary__form");
+    if (secondaryForm && secondaryForm.getAttribute("data-line-key") === key) {
+      toggleSecondaryDrawer(false);
+    }
+
+    if (totalItems === 1) {
+      const shipping = document.querySelector(".cart__shipping");
+      if (shipping) shipping.style.display = "none";
+    }
+
+    showCartLoading();
+    updateSlider(getOtherHandles(key));
+
+    try {
+      await fetch("/cart/update.js", {
+        method: "post",
+        headers: { Accept: "application/json", "Content-Type": "application/json" },
+        body: JSON.stringify({ updates: { [key]: 0 } }),
+      });
+      await refreshCartContent();
+    } catch (error) {
+      console.error("Error removing item:", error);
+      item.style.display = "";
+      if (totalItems === 1) {
+        const shipping = document.querySelector(".cart__shipping");
+        const slider = document.querySelector(".cart__complementary-products");
+        if (shipping) shipping.style.display = "block";
+        if (slider) slider.style.display = "block";
+      }
+      await refreshCartContent();
+    }
+  };
 
   document.querySelectorAll(".cart-item__title-link").forEach((link) => {
     link.addEventListener("click", async (e) => {
@@ -886,13 +883,15 @@ const attachEventListeners = () => {
   });
 
   document.querySelector(".cart-secondary__back")?.addEventListener("click", () => toggleSecondaryDrawer(false));
-  
+
   document.addEventListener("click", (e) => {
     const secondary = cartElements.secondaryDrawer();
-    if (cartState.secondaryOpen && 
-        secondary && 
-        !secondary.contains(e.target) && 
-        !e.target.closest(".cart-item__title-link")) {
+    if (
+      cartState.secondaryOpen &&
+      secondary &&
+      !secondary.contains(e.target) &&
+      !e.target.closest(".cart-item__title-link")
+    ) {
       toggleSecondaryDrawer(false);
     }
   });
