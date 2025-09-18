@@ -1,4 +1,3 @@
-// Constants & DOM elements
 const cartElements = {
   countBadges: () => document.querySelectorAll(".cart-count-indicator"),
   drawer: () => document.querySelector(".cart"),
@@ -10,7 +9,6 @@ const loadingSVG = `<svg fill=#E7E7E7 style=height:4px;display:block viewBox="0 
 
 let cartState = { isOpen: false, scrollY: 0 };
 
-// Utility functions
 const createLoader = () => {
   const div = document.createElement("div");
   div.innerHTML = loadingSVG;
