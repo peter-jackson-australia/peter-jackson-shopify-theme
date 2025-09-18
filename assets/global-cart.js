@@ -9,38 +9,16 @@ const loadingSVG = `<svg style=height:4px;display:block viewBox="0 0 40 4" xmlns
 
 let cartState = { isOpen: false, scrollY: 0 };
 
-const createLoader = () => {
-  const div = document.createElement("div");
-  div.innerHTML = loadingSVG;
-  return div;
+const createLoader = () => Object.assign(document.createElement("div"), { innerHTML: loadingSVG });
+
+const showLoader = (element) => element.replaceChildren(createLoader());
+
+const showError = (errorMessageContainer, text) => {
+  errorMessageContainer.querySelector("#js--addtocart, .cart-item__actions")?.insertAdjacentHTML("afterend", `<div class="product-error body">${text}</div>`);
+  setTimeout(() => errorMessageContainer.querySelector(".product-error")?.remove(), 3000);
 };
 
-const showLoader = (element) => {
-  const original = element.innerHTML;
-  element.replaceChildren(createLoader());
-  return original;
-};
-
-const showError = (container, text, permanent = false) => {
-  container.querySelectorAll('[class*="error"]').forEach((el) => el.remove());
-  const error = document.createElement("div");
-  error.className = permanent ? "cart-item__error small cart-item__error--permanent" : "product-error body";
-  error.textContent = text;
-  container.querySelector("#js--addtocart, .cart-item__actions")?.after(error);
-
-  if (permanent) {
-    const cleanup = () => {
-      document.querySelectorAll(".cart-item__error--permanent").forEach((el) => el.remove());
-      document.removeEventListener("click", cleanup);
-    };
-    setTimeout(() => document.addEventListener("click", cleanup), 100);
-  }
-};
-
-const isGiftCard = (element) => {
-  const title = element?.querySelector?.(".cart-item__title a, .product-details__title")?.textContent || "";
-  return title.toLowerCase().includes("gift card");
-};
+const isGiftCard = element => (element?.querySelector?.(".cart-item__title a, .product-details__title")?.textContent).toLowerCase().includes("gift card");
 
 const validateInventory = (maxInventory, currentQty, requestedQty) => {
   const availableLimit = maxInventory === Infinity ? Infinity : Math.max(0, maxInventory - 5);
@@ -496,7 +474,7 @@ const createAddToCartHandler = (form) => async (e) => {
   btn.innerHTML = '<span class="loader--spinner"></span>';
 
   try {
-    if (!isGiftCard()) {
+    if (!isGiftCard(document)) {
       const inventory = parseInt(document.querySelector("#js--variant-inventory-quantity")?.value || "Infinity", 10);
       const currentCart = await fetchCartData();
       const existingItem = currentCart?.items?.find((item) => item.variant_id.toString() === variantId);
