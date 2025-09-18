@@ -37,7 +37,6 @@ const showError = (container, text, permanent = false) => {
   }
 };
 
-// Product checks
 const isGiftCard = (element) => {
   const title = element?.querySelector?.(".cart-item__title a, .product-details__title")?.textContent || "";
   return title.toLowerCase().includes("gift card");
@@ -61,7 +60,6 @@ const validateInventory = (maxInventory, currentQty, requestedQty) => {
   };
 };
 
-// Cart data management
 const fetchCartData = async () => {
   try {
     const response = await fetch("/cart.js");
@@ -80,7 +78,6 @@ const fetchCartData = async () => {
   }
 };
 
-// Cart UI management
 const toggleCartDrawer = (show = true) => {
   const body = document.body;
   const drawer = cartElements.drawer();
@@ -130,7 +127,6 @@ const showCartLoading = () => {
   if (checkoutBtn) checkoutBtn.innerHTML = '<span class="loader--spinner"></span>';
 };
 
-// Slider management
 let sliderUpdateInProgress = false;
 
 const sliderHTML = () => `
@@ -292,7 +288,6 @@ const initSlider = () => {
   if (handles.length) updateSlider(handles);
 };
 
-// Cart content refresh
 const refreshCartContent = async () => {
   try {
     const currentProgressWidth = document.querySelector(".cart__shipping-progress")?.style.width || "0%";
@@ -303,7 +298,6 @@ const refreshCartContent = async () => {
 
     document.querySelectorAll(".cart__shipping--loading").forEach((el) => el.remove());
 
-    // Update shipping section
     const newShipping = temp.querySelector(".cart__shipping");
     const existingShipping = document.querySelector(".cart__shipping");
     if (newShipping && existingShipping) {
@@ -325,14 +319,12 @@ const refreshCartContent = async () => {
       existingShipping.replaceWith(newShipping);
     }
 
-    // Replace elements
     const replaceElement = (selector) => {
       const newEl = temp.querySelector(selector);
       const existing = document.querySelector(selector);
       if (newEl && existing) existing.replaceWith(newEl);
     };
 
-    // Preserve optimistic images
     const optimisticImages = new Map();
     document.querySelectorAll(".cart-item--optimistic").forEach((item) => {
       const key = item.getAttribute("data-line-item-key");
@@ -342,7 +334,6 @@ const refreshCartContent = async () => {
 
     replaceElement(".cart__items");
 
-    // Restore optimistic images
     optimisticImages.forEach((img, tempKey) => {
       const variantId = tempKey.replace("temp-", "");
       const newItem = document.querySelector(`[data-line-item-key*="${variantId}"]`);
@@ -352,7 +343,6 @@ const refreshCartContent = async () => {
 
     replaceElement(".cart__footer");
 
-    // Handle empty state
     const newEmpty = temp.querySelector(".cart__empty-state");
     const existingEmpty = document.querySelector(".cart__empty-state");
     const cartForm = document.querySelector(".cart__form");
@@ -366,7 +356,6 @@ const refreshCartContent = async () => {
 
     attachEventListeners();
 
-    // Update progress bar
     if (cartData) {
       setTimeout(() => {
         const progressBar = document.querySelector(".cart__shipping-progress");
@@ -383,7 +372,6 @@ const refreshCartContent = async () => {
   }
 };
 
-// Optimistic UI
 const getCurrentProductImage = () => {
   const slide = document.querySelector(`[data-imageid="${default_image}"] img`);
   if (slide) {
@@ -487,7 +475,6 @@ const showOptimisticUpdate = () => {
     addOptimisticItem(container, variantId, image, productName);
   }
 
-  // Refresh slider
   setTimeout(() => {
     const handles = Array.from(document.querySelectorAll(".cart-item .cart-item__title a"))
       .map((link) => link.href.split("/products/")[1]?.split("?")[0])
@@ -496,7 +483,6 @@ const showOptimisticUpdate = () => {
   }, 100);
 };
 
-// Event handlers
 const createAddToCartHandler = (form) => async (e) => {
   e.preventDefault();
 
@@ -576,7 +562,6 @@ const attachEventListeners = () => {
     }
   };
 
-  // Quantity buttons
   document.querySelectorAll(".cart-item__quantity button").forEach((btn) => {
     btn.addEventListener("click", async () => {
       const item = btn.closest(".cart-item");
@@ -627,7 +612,6 @@ const attachEventListeners = () => {
     });
   });
 
-  // Remove buttons
   document.querySelectorAll(".cart-item__remove").forEach((btn) => {
     btn.addEventListener("click", async () => {
       const item = btn.closest(".cart-item");
@@ -636,7 +620,6 @@ const attachEventListeners = () => {
     });
   });
 
-  // Cart container and close
   document.querySelector(".cart__container")?.addEventListener("click", (e) => e.stopPropagation());
   document.querySelector(".cart__close")?.addEventListener("click", () => toggleCartDrawer(false));
   document.querySelector(".cart")?.addEventListener("click", (e) => {
@@ -644,7 +627,6 @@ const attachEventListeners = () => {
   });
 };
 
-// Initialization
 const loadFromStorage = () => {
   const stored = localStorage.getItem("cartData");
   if (stored) {
@@ -659,11 +641,9 @@ const loadFromStorage = () => {
   });
 };
 
-// Global functions
 window.openCart = () => toggleCartDrawer(true);
 window.closeCart = () => toggleCartDrawer(false);
 
-// Initialize
 document.addEventListener("DOMContentLoaded", () => {
   loadFromStorage();
   attachEventListeners();
