@@ -5,7 +5,7 @@ const cartElements = {
   cartIcons: () => document.querySelectorAll(".js-cart-icon"),
 };
 
-const loadingSVG = `<svg fill=#E7E7E7 style=height:4px;display:block viewBox="0 0 40 4"xmlns=http://www.w3.org/2000/svg><style>.react{animation:moving 1s ease-in-out infinite}@keyframes moving{0%{width:0%}50%{width:100%;transform:translate(0,0)}100%{width:0;right:0;transform:translate(100%,0)}}</style><rect class=react fill=#E7E7E7 height=4 width=40 /></svg>`;
+const loadingSVG = `<svg style=height:4px;display:block viewBox="0 0 40 4" xmlns=http://www.w3.org/2000/svg><style>.react{animation:moving 1s ease-in-out infinite}@keyframes moving{0%{width:0}50%{width:100%;transform:translate(0,0)}100%{width:0;right:0;transform:translate(100%,0)}}</style><rect class=react fill=#E7E7E7 height=4 width=40 /></svg>`;
 
 let cartState = { isOpen: false, scrollY: 0 };
 
@@ -140,12 +140,12 @@ const sliderHTML = () => `
     <div class="cart__complementary-products-slider splide">
       <div class="splide__arrows">
         <button class="splide__arrow splide__arrow--prev" type="button">
-          <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="7" height="12" viewBox="0 0 7 12" xmlns="http://www.w3.org/2000/svg">
             <path d="M6 1L1 6L6 11" stroke="#0F0F0F" stroke-linecap="square"/>
           </svg>
         </button>
         <button class="splide__arrow splide__arrow--next" type="button">
-          <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="7" height="12" viewBox="0 0 7 12" xmlns="http://www.w3.org/2000/svg">
             <path d="M1 1L6 6L1 11" stroke="#0F0F0F" stroke-linecap="square"/>
           </svg>
         </button>
@@ -384,22 +384,6 @@ const refreshCartContent = async () => {
 };
 
 // Optimistic UI
-const getSelectedOptions = () => {
-  const options = [];
-  document.querySelectorAll(".js--variant-options:checked").forEach((input) => {
-    const group = input.closest(".js--variant-options");
-    const nameEl = group?.querySelector("legend");
-    const valueEl = input.nextElementSibling;
-
-    if (nameEl && valueEl) {
-      const name = nameEl.textContent.replace(":", "").trim();
-      const value = valueEl.textContent.trim();
-      if (name && value) options.push(`${name}: ${value}`);
-    }
-  });
-  return options.length > 0 ? options.join(", ") : "One Size";
-};
-
 const getCurrentProductImage = () => {
   const slide = document.querySelector(`[data-imageid="${default_image}"] img`);
   if (slide) {
