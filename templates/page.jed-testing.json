@@ -9,19 +9,19 @@
  */
 {
   "sections": {
-    "hero_countdown_timer_fjRArk": {
+    "hero_countdown_timer_6TTXKi": {
       "type": "hero-countdown-timer",
       "name": "Hero Countdown Timer",
       "settings": {
-        "background_image": "shopify://shop_images/mens-blazer-blue-wool-SU25-SP16-32.webp",
+        "background_image": "shopify://shop_images/Suits_Desktop_copy.webp",
         "heading": "Limited Time Offer",
         "heading_animation": "none",
         "subheading": "Do not miss out on this special offer!",
         "subheading_animation": "none",
         "target_date": "2025-12-31T23:59:59",
         "horizontal_alignment": "center",
-        "vertical_alignment": "bottom",
-        "animate_timer_blocks": false,
+        "vertical_alignment": "middle",
+        "animate_timer_blocks": true,
         "days_label": "Days",
         "hours_label": "Hours",
         "minutes_label": "Minutes",
@@ -37,6 +37,6 @@
     }
   },
   "order": [
-    "hero_countdown_timer_fjRArk"
+    "hero_countdown_timer_6TTXKi"
   ]
 }
