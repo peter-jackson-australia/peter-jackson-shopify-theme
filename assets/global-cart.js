@@ -776,9 +776,7 @@ const attachEventListeners = () => {
         item.style.display = "none";
       
         const secondaryForm = document.querySelector(".cart-secondary__form");
-        const isSecondaryOpen = secondaryForm && secondaryForm.getAttribute("data-line-key") === key;
-        
-        if (isSecondaryOpen) {
+        if (secondaryForm && secondaryForm.getAttribute("data-line-key") === key) {
           toggleSecondaryDrawer(false);
         }
       
@@ -796,14 +794,7 @@ const attachEventListeners = () => {
             headers: { Accept: "application/json", "Content-Type": "application/json" },
             body: JSON.stringify({ updates: { [key]: 0 } }),
           });
-          
-          if (isSecondaryOpen) {
-            setTimeout(async () => {
-              await refreshCartContent();
-            }, 400);
-          } else {
-            await refreshCartContent();
-          }
+          await refreshCartContent();
         } catch (error) {
           console.error("Error removing item:", error);
           item.style.display = "";
