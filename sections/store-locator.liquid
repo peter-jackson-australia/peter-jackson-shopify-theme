@@ -2,8 +2,15 @@
 {{ 'section-store-locator.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'lib-leaflet.min.js' | asset_url }}" defer></script>
 
-{% comment %} This value is populated in the paginate `metaobjects.locations.values` {% endcomment %}
+{% comment %}
+    This value is populated in the paginate `metaobjects.locations.values`
+{% endcomment %}
 {% assign locations_json_str = '' %}
+{% comment %}
+    This value is also populated in the paginate `metaobjects.locations.values`
+    Due to limitations of Liquid, this array will always have an empty string
+    as it's first element.
+{% endcomment %}
 {% assign location_urls_array = '' %}
 
 <div class="store-locator" x-data="storeLocator()">
@@ -85,7 +92,6 @@
             </div>
             <div class="location-item__link body">
               <a href="{{ location.location_page.value.url }}">View Store Information</a>
-              {{ location.location_page.value.url }}
             </div>
           </div>
         {% endfor %}
@@ -177,9 +183,10 @@
 
         for (let i = 0; i < dataLocations.length; i++) {
           const currentLocation = dataLocations[i];
-          const currentLocationUrl = dataLocationUrls[i];
+          // As stated in the top of this file, the urls array's first element is an empty string, so we must add 1
+          // to the index to get the correct one.
+          const currentLocationUrl = dataLocationUrls[i + 1];
 
-          console.log(currentLocation);
           if (!currentLocation.latitude || !currentLocation.longitude) {
             continue;
           }
