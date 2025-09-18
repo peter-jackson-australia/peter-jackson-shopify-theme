@@ -1,24 +1,37 @@
 {{ 'section-icon-callout.css' | asset_url | stylesheet_tag }}
 
+{% assign section_id = section.id %}
+{% assign show_top_border = section.settings.show_top_border %}
+{% assign show_bottom_border = section.settings.show_bottom_border %}
+{% assign background_colour = section.settings.background_color %}
+{% assign anchor_id = section.settings.anchor_id %}
+{% assign icon = section.settings.icon %}
+{% assign heading = section.settings.heading %}
+{% assign heading_animation = section.settings.heading_animation %}
+{% assign text = section.settings.text %}
+{% assign text_animation = section.settings.text_animation %}
+{% assign button_label = section.settings.button_label %}
+{% assign button_link = section.settings.button_link %}
+
 <div
-  id="icon-callout-{{ section.id }}"
+  id="icon-callout-{{ section_id }}"
   class="icon-callout"
   aria-label="Icon callout section"
   style="
-    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
-    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
+    {% if show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
+    {% if show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
   "
 >
   <div
-    class="icon-callout__container icon-callout--{{ section.settings.background_color }}"
-    {% if section.settings.anchor_id != blank %}
-      id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
+    class="icon-callout__container icon-callout--{{ background_colour }}"
+    {% if anchor_id != blank %}
+      id="{{ anchor_id | downcase | replace: ' ', '-' }}-segment"
     {% endif %}
   >
-    {% if section.settings.icon != blank %}
+    {% if icon != blank %}
       <img
-        src="{{ section.settings.icon | image_url: width: 150 }}"
-        alt="{{ section.settings.heading | escape }}"
+        src="{{ icon | image_url: width: 150 }}"
+        alt="{{ heading | escape }}"
         class="icon-callout__icon"
         width="80"
         height="80"
@@ -26,21 +39,21 @@
       >
     {% endif %}
 
-    {% if section.settings.heading != blank %}
-      <h2 class="icon-callout__heading heading--xl {% if section.settings.heading_animation != 'none' %}{{ section.settings.heading_animation }}{% endif %}">
-        {{ section.settings.heading }}
+    {% if heading != blank %}
+      <h2 class="icon-callout__heading heading--xl {% if heading_animation != 'none' %}{{ heading_animation }}{% endif %}">
+        {{ heading }}
       </h2>
     {% endif %}
 
-    {% if section.settings.text != blank %}
-      <div class="icon-callout__text body {% if section.settings.text_animation != 'none' %}{{ section.settings.text_animation }}{% endif %}">
-        {{ section.settings.text }}
+    {% if text != blank %}
+      <div class="icon-callout__text body {% if text_animation != 'none' %}{{ text_animation }}{% endif %}">
+        {{ text }}
       </div>
     {% endif %}
 
-    {% if section.settings.button_label != blank and section.settings.button_link != blank %}
-      <a href="{{ section.settings.button_link }}" class="icon-callout__cta button body">
-        {{ section.settings.button_label }}
+    {% if button_label != blank and button_link != blank %}
+      <a href="{{ button_link }}" class="icon-callout__cta button body">
+        {{ button_label }}
       </a>
     {% endif %}
   </div>
