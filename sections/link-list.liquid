@@ -4,29 +4,38 @@
 
 {{ 'section-link-list.css' | asset_url | stylesheet_tag }}
 
+{% assign alignment = section.settings.alignment %}
+{% assign show_top_border = section.settings.show_top_border %}
+{% assign show_bottom_border = section.settings.show_bottom_border %}
+{% assign heading = section.settings.heading %}
+{% assign blocks = section.blocks %}
+
 <div
-  class="link-list link-list--align-{{ section.settings.alignment }}"
+  class="link-list link-list--align-{{ alignment }}"
   style="
-    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
-    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
+    {% if show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
+    {% if show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
   "
 >
   <div class="link-list__wrapper">
-    {% if section.settings.heading != blank %}
+    {% if heading != blank %}
       <div class="link-list__title">
-        <h2 class="heading--xl">{{ section.settings.heading }}</h2>
+        <h2 class="heading--xl">{{ heading }}</h2>
       </div>
     {% endif %}
 
     <div class="link-list__content">
       <ul class="link-list__list">
-        {% for block in section.blocks %}
+        {% for block in blocks %}
+          {% assign type = block.type %}
+          {% assign link_text = block.settings.link_test %}
+          {% assign link_url = block.settings.link_url %}
           {% case block.type %}
             {% when 'link' %}
-              {% if block.settings.link_text != blank and block.settings.link_url != blank %}
+              {% if link_text != blank and link_url != blank %}
                 <li>
-                  <a href="{{ block.settings.link_url }}" class="link-list__link body--uppercase">
-                    {{ block.settings.link_text }}
+                  <a href="{{ link_url }}" class="link-list__link body--uppercase">
+                    {{ link_text }}
                   </a>
                 </li>
               {% endif %}
