@@ -4,30 +4,47 @@
 
 {{ 'section-variable-column-content.css' | asset_url | stylesheet_tag }}
 
+{% assign section_id = section.id %}
+{% assign show_top_border = section.settings.show_top_border %}
+{% assign show_bottom_border = section.settings.show_bottom_border %}
+{% assign column_count = section.settings.column_count %}
+{% assign anchor_id = section.settings.anchor_id %}
+{% assign animate_images = section.settings.animate_images %}
+
+{% assign heading = section.settings.heading %}
+{% assign heading_animation = section.settings.heading_alignment %}
+{% assign text = section.settings.text %}
+{% assign text_alignment = section.settings.text_alignment %}
+{% assign button_label = section.settings.button_label %}
+{% assign button_link = section.settings.button_link %}
+
 <div
   class="variable-column-content"
-  id="shopify-section-{{ section.id }}"
+  id="shopify-section-{{ section_id }}"
   style="
-    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
-    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
+    {% if show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
+    {% if show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
   "
 >
-  {% if section.settings.column_count != blank %}
-    {% assign column_count = section.settings.column_count | plus: 0 %}
+  {% if column_count != blank %}
+    {% assign column_count = column_count | plus: 0 %}
     <div
-      class="variable-column-content__image-grid {% if section.settings.animate_images %}animate-container-cards-scroll{% endif %}"
+      class="variable-column-content__image-grid {% if animate_images %}animate-container-cards-scroll{% endif %}"
       style="grid-template-columns: repeat({{ column_count }}, 1fr);"
-      {% if section.settings.anchor_id != blank %}
-        id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
+      {% if anchor_id != blank %}
+        id="{{ anchor_id | downcase | replace: ' ', '-' }}-segment"
       {% endif %}
     >
       {% for i in (1..column_count) %}
-        {% assign image_setting = 'image_' | append: i %}
-        {% assign image_link_setting = 'image_' | append: i | append: '_link' %}
-        {% if section.settings[image_setting] != blank %}
+        {% assign image_setting_key = 'image_' | append: i %}
+        {% assign image_link_setting_key = 'image_' | append: i | append: '_link' %}
+        {% assign current_image = section.settings[image_setting_key] %}
+        {% assign current_image_link = section.settings[image_link_setting_key] %}
+        
+        {% if current_image != blank %}
           <div class="variable-column-content__image-wrapper">
-            {% if section.settings[image_link_setting] != blank %}
-              <a href="{{ section.settings[image_link_setting] }}">
+            {% if current_image_link != blank %}
+              <a href="{{ current_image_link }}">
             {% endif %}
             {% assign grid_sizes = '' %}
             {% case column_count %}
@@ -41,17 +58,17 @@
                 {% assign grid_sizes = '(max-width: 768px) 100vw, 16.67vw' %}
             {% endcase %}
             {{
-              section.settings[image_setting]
+              current_image
               | image_url: width: 1440
               | image_tag:
                 class: 'variable-column-content__image',
                 loading: 'lazy',
                 decoding: 'async',
-                alt: section.settings[image_setting].alt,
+                alt: current_image.alt,
                 widths: '200, 300, 400, 500, 600, 700, 800',
                 sizes: grid_sizes
             }}
-            {% if section.settings[image_link_setting] != blank %}
+            {% if current_image_link != blank %}
               </a>
             {% endif %}
           </div>
@@ -59,27 +76,27 @@
       {% endfor %}
     </div>
   {% endif %}
-
+  
   <div class="variable-column-content__text-container">
-    <div class="variable-column-content__text-content variable-column-content__text-content--{{ section.settings.text_alignment }}">
-      {% if section.settings.heading != blank %}
-        <h2 class="variable-column-content__heading heading--xl {% if section.settings.heading_animation != 'none' %}{{ section.settings.heading_animation }}{% endif %}">
-          {{ section.settings.heading }}
+    <div class="variable-column-content__text-content variable-column-content__text-content--{{ text_alignment }}">
+      {% if heading != blank %}
+        <h2 class="variable-column-content__heading heading--xl {% if heading_animation != 'none' %}{{ heading_animation }}{% endif %}">
+          {{ heading }}
         </h2>
       {% endif %}
 
-      {% if section.settings.text != blank %}
-        <div class="variable-column-content__text body {% if section.settings.text_animation != 'none' %}{{ section.settings.text_animation }}{% endif %}">
-          {{ section.settings.text }}
+      {% if text != blank %}
+        <div class="variable-column-content__text body {% if text_animation != 'none' %}{{ text_animation }}{% endif %}">
+          {{ text }}
         </div>
       {% endif %}
 
-      {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+      {% if button_label != blank and button_link != blank %}
         <a
-          href="{{ section.settings.button_link }}"
+          href="{{ button_link }}"
           class="variable-column-content__button button body"
         >
-          {{ section.settings.button_label }}
+          {{ button_label }}
         </a>
       {% endif %}
     </div>
