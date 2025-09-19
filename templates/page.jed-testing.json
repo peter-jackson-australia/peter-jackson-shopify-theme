@@ -53,10 +53,74 @@
         "button_label": "Learn More",
         "button_link": "shopify://policies/terms-of-service"
       }
+    },
+    "variable_column_content_secondary_Xpqq6A": {
+      "type": "variable-column-content-secondary",
+      "blocks": {
+        "column_item_f7ABtD": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Suits_Desktop_copy.webp",
+            "image_link": "shopify://blogs/the-jackson-journal",
+            "heading": "one with image",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "column_link": "shopify://pages/burwood",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_HtQRwr": {
+          "type": "column_item",
+          "settings": {
+            "image_link": "",
+            "heading": "One without image",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "column_link": "shopify://collections/business",
+            "column_link_text": "Business"
+          }
+        },
+        "column_item_xQdYGb": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/men-blazer-blue-wool-cotton-SU25-SP06_1101_10.webp",
+            "image_link": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "column_link": "shopify://blogs/the-jackson-journal",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_f7ABtD",
+        "column_item_HtQRwr",
+        "column_item_xQdYGb"
+      ],
+      "name": "Variable Column Content Secondary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "3",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "Variable Column Content Secondary",
+        "heading_animation": "none",
+        "text": "Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
     }
   },
   "order": [
     "shop_the_look_global_gJTjmQ",
-    "variable_column_content_MCdUGD"
+    "variable_column_content_MCdUGD",
+    "variable_column_content_secondary_Xpqq6A"
   ]
 }
