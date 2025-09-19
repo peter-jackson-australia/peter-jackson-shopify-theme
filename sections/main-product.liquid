@@ -4,36 +4,85 @@
 
 {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
 
-<style>
-  @media screen and (min-width: 1100px) {
-    .product-details__container {
-      max-height: calc({{product.images[0].height}} * 50vw / {{product.images[0].width}});
-    }
-  }
-</style>
-
 {% assign current_variant = null %}
+{% assign variants = product.variants %}
+{% assign featured_image = product.featured_image %}
+{% assign title = product.title %}
+{% assign type = product.type %}
+{% assign options = product.options %}
+{% comment %}{% assign inventory_quantity = product.inventory_quantity %}{% endcomment %}
+{% assign images = product.images %}
+{% assign product_price = product.price %}
+{% assign description = product.description %}
 
-{% for variant in product.variants %}
-  {% if variant.available and variant.inventory_quantity > 5 %}
-    {% assign current_variant = variant %}
-    {% break %}
-  {% endif %}
-{% endfor %}
+{% assign localisation_handle = localization.market.handle %}
+{% assign round_cta = section.settings.round_cta %}
+{% assign show_usps = section.settings.show_usps %}
+{% assign show_low_stock_warning = section.settings.show_low_stock_warning %}
+{% assign show_afterpay = section.settings.show_afterpay %}
+{% assign shipping_content = section.settings.shipping_content %}
 
-{% if current_variant == null %}
-  {% assign current_variant = product.selected_or_first_available_variant %}
-{% endif %}
+{% assign discount_bundle_name = product.metafields.custom.discount_bundle_name %}
+{% assign colour_variants = product.metafields.custom.product_colour_variants %}
+{% assign show_pants_size_for_suits = product.metafields.custom.show_pants_size_for_suits %}
+{% assign care_guide = product.metafields.custom.care_guide %}
+{% assign garment_fit = product.metafields.custom.garment_fit %}
+{% assign product_specifications = product.metafields.custom.product_specifications %}
+{% assign stylist_notes = product.metafields.custom.stylist_notes %}
+{% assign fabric_description = product.metafields.custom.fabric_description %}
+
+{% liquid
+    assign has_description = false
+    assign has_specs = false
+    assign has_shipping = false
+
+    if description != blank
+        assign has_description = true
+    endif
+
+    if custom.care_guide != blank or garment_fit != blank or product_specifications != blank
+        assign has_specs = true
+    endif
+
+    if shipping_content != blank
+        assign has_shipping = true
+    endif
+
+    for variant in variants
+      if variant_is_available and variant_inventory_quantity > 5
+        assign current_variant = variant
+        break
+      endif
+    endfor
+    if current_variant == null
+      assign current_variant = product.selected_or_first_available_variant
+    endif
+%}
+
+{% assign variant_price = current_variant.price %}
+{% assign sku = current_variant.sku %}
+{% assign compare_at_price = current_variant.compare_at_price %}
+{% assign variant_option1 = current_variant.option1 %}
+{% assign variant_is_available = current_variant.available %}
+{% assign variant_inventory_quantity = current_variant.inventory_quantity%}
+
+<style>
+    @media screen and (min-width: 1100px) {
+        .product-details__container {
+            max-height: calc({{product.images[0].height}} * 50vw / {{product.images[0].width}});
+        }
+    }
+</style>
 
 <script>
   var current_variant = {{ current_variant | json }};
-  var variants = {{ product.variants | json }};
-  var default_image = {{ product.featured_image.id | default: 'null' }};
-  var product_type = {{ product.type | json }};
-  var variant_inventory_quantities = [{% for variant in product.variants %}{{ variant.inventory_quantity }}{% unless forloop.last %},{% endunless %}{% endfor %}];
-  var product_title = {{ product.title | json }};
-  var product_options = {{ product.options | json }};
-  var show_low_stock_warning = {{ section.settings.show_low_stock_warning | json }};
+  var variants = {{ variants | json }};
+  var default_image = {{ featured_image.id | default: 'null' }};
+  var product_type = {{ type | json }};
+  var variant_inventory_quantities = [{% for variant in variants %}{{ variant.inventory_quantity }}{% unless forloop.last %},{% endunless %}{% endfor %}];
+  var product_title = {{ title | json }};
+  var product_options = {{ options | json }};
+  var show_low_stock_warning = {{ show_low_stock_warning | json }};
 </script>
 
 <div>
@@ -58,7 +107,7 @@
 
         <div class="splide__track">
           <ul class="splide__list">
-            {% for image in product.images %}
+            {% for image in images %}
               <li class="splide__slide" data-imageid="{{ image.id }}">
                 {% if forloop.first %}
                   {{
@@ -97,35 +146,35 @@
       class="product-details__container custom-scrollbar"
     >
       <div id="product-details">
-        {% if section.settings.show_afterpay %}
+        {% if show_afterpay %}
           <p class="product-details__sku small">
-            Buy In 4 Interest Free Payments of {{ current_variant.price | divided_by: 4 | money_with_currency }}
+            Buy In 4 Interest Free Payments of {{ variant_price | divided_by: 4 | money_with_currency }}
             {{ 'afterpay' | payment_type_svg_tag }}
           </p>
-        {% elsif current_variant.sku %}
+        {% elsif sku %}
           <p class="product-details__sku small">
             Product Code:
-            <span class="js--variant-sku">{{ current_variant.sku }}</span>
+            <span class="js--variant-sku">{{ sku }}</span>
           </p>
         {% endif %}
         <div class="product-details__header">
-          <h1 class="product-details__title heading--xl" data-title="{{ product.title }}">{{ product.title }}</h1>
+          <h1 class="product-details__title heading--xl" data-title="{{ title }}">{{ title }}</h1>
           <div class="product-details__price">
-            {% if current_variant.compare_at_price > current_variant.price %}
+            {% if compare_at_price > variant_price %}
               <span class="product-details__compare-price body js--variant-compareatprice">
-                {{ current_variant.compare_at_price | money_with_currency }}
+                {{ compare_at_price | money_with_currency }}
               </span>
             {% endif %}
             <span class="product-details__price-actual body js--variant-price">
-              {{ current_variant.price | money_with_currency }}
+              {{ variant_price | money_with_currency }}
             </span>
           </div>
         </div>
 
         <div class="product-details__info-container">
-          {% if localization.market.handle == 'au' %}
+          {% if localisation_handle == 'au' %}
             <p class="small" style="color: var(--neutral-600);">
-              {{ product.metafields.custom.discount_bundle_name | metafield_tag }}
+              {{ discount_bundle_name | metafield_tag }}
             </p>
           {% endif %}
           <button
@@ -136,7 +185,7 @@
           </button>
         </div>
 
-        {% if product.metafields.custom.product_colour_variants %}
+        {% if colour_variants %}
           {% render 'related-product-slider' %}
         {% endif %}
 
@@ -154,7 +203,9 @@
                       <legend class="body--bold">{{ option_group.name }}:</legend>
                       <div class="variant-options__list">
                         {% for value in option_group.values %}
+                          {% assign variant_option_field_value = current_variant[option_field] %}
                           {% capture option_id %}{{ option_group.name }}_{{ value }}{% endcapture %}
+
                           <div class="variant-option">
                             <input
                               type="radio"
@@ -162,7 +213,7 @@
                               class="js--variant-option"
                               name="{{ option_group.position | prepend: 'option'}}"
                               value="{{ value }}"
-                              {% if current_variant[option_field] == value %}
+                              {% if variant_option_field_value == value %}
                                 checked
                               {% endif %}
                             >
@@ -178,13 +229,14 @@
                       </div>
                     </fieldset>
                   {% endfor %}
-                  {% if product.metafields.custom.show_pants_size_for_suits %}
+                  {% if show_pants_size_for_suits %}
                     <p class="small" style="margin-bottom: var(--space-m); color: var(--neutral-600);">
                       Suit Includes Trousers Size:
-                      <span class="js--pants-size">{{ current_variant.option1 | minus: 12 }}</span>
+                      <span class="js--pants-size">{{ variant_option1 | minus: 12 }}</span>
                     </p>
                   {% endif %}
                 {% endunless %}
+
 
               {%- when 'button' -%}
                 <input
@@ -196,29 +248,29 @@
                 <input
                   type="hidden"
                   id="js--variant-inventory-quantity"
-                  value="{{ current_variant.inventory_quantity }}"
+                  value="{{ variant_inventory_quantity }}"
                 >
 
-                {% if current_variant.available and product.gift_card? %}
+                {% if variant_is_available and product.gift_card? %}
                   <button
                     type="submit"
                     id="js--addtocart"
                     class="body"
-                    style="height: var(--space-xl); {% if section.settings.round_cta %} border-radius: 200px; {% endif %}"
+                    style="height: var(--space-xl); {% if round_cta %} border-radius: 200px; {% endif %}"
                   >
                     Add To Cart
                   </button>
-                {% elsif current_variant.available and current_variant.inventory_quantity > 5 %}
+                {% elsif variant_is_available and variant_inventory_quantity > 5 %}
                   <button
                     type="submit"
                     id="js--addtocart"
                     class="body"
-                    style="height: var(--space-xl); {% if section.settings.round_cta %} border-radius: 200px; {% endif %}"
+                    style="height: var(--space-xl); {% if round_cta %} border-radius: 200px; {% endif %}"
                   >
-                    {% if section.settings.show_low_stock_warning
-                      and current_variant.available
-                      and current_variant.inventory_quantity >= 6
-                      and current_variant.inventory_quantity <= 10
+                    {% if show_low_stock_warning
+                      and variant_is_available
+                      and variant_inventory_quantity >= 6
+                      and variant_inventory_quantity <= 10
                       and product.gift_card? == false
                     %}
                       Low In Stock - Add To Cart
@@ -231,7 +283,7 @@
                     type="submit"
                     id="js--addtocart"
                     class="body"
-                    style="height: var(--space-xl); display: none; {% if section.settings.round_cta %} border-radius: 200px; {% endif %}"
+                    style="height: var(--space-xl); display: none; {% if round_cta %} border-radius: 200px; {% endif %}"
                   >
                     Add To Cart
                   </button>
@@ -240,37 +292,18 @@
                   type="button"
                   id="js--notify-me"
                   class="body"
-                  style="height: var(--space-xl); width: 100%; background-color: var(--neutral-950); color: var(--white); border: none; padding: var(--space-s) var(--space-m); cursor: pointer; margin-bottom: var(--space-s); {% if current_variant.available and product.gift_card? %}display: none;{% elsif current_variant.available and current_variant.inventory_quantity > 5 %}display: none;{% else %}display: block;{% endif %} {% if section.settings.round_cta %} border-radius: 200px; {% endif %}"
+                  style="height: var(--space-xl); width: 100%; background-color: var(--neutral-950); color: var(--white); border: none; padding: var(--space-s) var(--space-m); cursor: pointer; margin-bottom: var(--space-s); {% if variant_is_available and product.gift_card? %}display: none;{% elsif variant_is_available and current_variant.inventory_quantity > 5 %}display: none;{% else %}display: block;{% endif %} {% if section.settings.round_cta %} border-radius: 200px; {% endif %}"
                 >
                   Out of Stock - Notify Me
                 </button>
 
                 <div
                   class="klaviyo-form-WMidEs"
-                  style="{% if current_variant.available and product.gift_card? %}display: none;{% elsif current_variant.available and current_variant.inventory_quantity > 5 %}display: none;{% else %}display: none;{% endif %}"
+                  style="{% if variant_is_available and product.gift_card? %}display: none;{% elsif variant_is_available and variant_inventory_quantity > 5 %}display: none;{% else %}display: none;{% endif %}"
                 ></div>
             {%- endcase -%}
           {%- endfor -%}
         </form>
-
-        {% assign has_description = false %}
-        {% assign has_specs = false %}
-        {% assign has_shipping = false %}
-
-        {% if product.description != blank %}
-          {% assign has_description = true %}
-        {% endif %}
-
-        {% if product.metafields.custom.care_guide != blank
-          or product.metafields.custom.garment_fit != blank
-          or product.metafields.custom.product_specifications != blank
-        %}
-          {% assign has_specs = true %}
-        {% endif %}
-
-        {% if section.settings.shipping_content != blank %}
-          {% assign has_shipping = true %}
-        {% endif %}
 
         {% if has_description or has_specs or has_shipping %}
           <div class="product-tabs">
@@ -290,19 +323,19 @@
               <div class="product-tabs__content" data-content="description">
                 <div class="product-tabs__description body">
                   {{ product.description }}
-                  {% if product.metafields.custom.stylist_notes %}
+                  {% if stylist_notes %}
                     <div>
                       <strong class="product-tabs__description-stylist-notes-heading body--bold">Stylist Notes</strong>
-                      {{ product.metafields.custom.stylist_notes | metafield_tag }}
+                      {{ stylist_notes | metafield_tag }}
                     </div>
                   {% endif %}
-                  {% if section.settings.show_usps %}
+                  {% if show_usps %}
                     <hr
                       class="product-tabs__description-usp-hr"
                     >
                     <ul>
                       <li>
-                        {% if product.price > 9900 %}
+                        {% if product_price > 9900 %}
                           <strong class="body--bold product-tabs__description-usp"
                             >Complimentary standard shipping on this item.</strong
                           >
@@ -315,10 +348,10 @@
                       <li>
                         <strong class="body--bold product-tabs__description-usp">30 Day Returns Policy</strong>
                       </li>
-                      {% if product.metafields.custom.fabric_description %}
+                      {% if fabric_description %}
                         <li>
                           <strong class="body--bold product-tabs__description-usp">
-                            {{- product.metafields.custom.fabric_description -}}
+                            {{- fabric_description -}}
                           </strong>
                         </li>
                       {% endif %}
@@ -330,24 +363,24 @@
 
             {% if has_specs %}
               <div class="product-tabs__content" data-content="specs">
-                {% if product.metafields.custom.garment_fit != blank %}
+                {% if garment_fit != blank %}
                   <div class="product-tabs__metafield">
                     <h4 class="body--bold">Sizing Information</h4>
-                    <div class="body">{{ product.metafields.custom.garment_fit | metafield_tag }}</div>
+                    <div class="body">{{ garment_fit | metafield_tag }}</div>
                   </div>
                 {% endif %}
 
-                {% if product.metafields.custom.product_specifications != blank %}
+                {% if product_specifications != blank %}
                   <div class="product-tabs__metafield">
                     <h4 class="body--bold">Specifications</h4>
-                    <div class="body">{{ product.metafields.custom.product_specifications | metafield_tag }}</div>
+                    <div class="body">{{ product_specifications | metafield_tag }}</div>
                   </div>
                 {% endif %}
 
-                {% if product.metafields.custom.care_guide != blank %}
+                {% if care_guide != blank %}
                   <div class="product-tabs__metafield">
                     <h4 class="body--bold">Fabric and Care</h4>
-                    <div class="body">{{ product.metafields.custom.care_guide | metafield_tag }}</div>
+                    <div class="body">{{ care_guide | metafield_tag }}</div>
                   </div>
                 {% endif %}
               </div>
@@ -356,7 +389,7 @@
             {% if has_shipping %}
               <div class="product-tabs__content" data-content="shipping">
                 <div class="body product-tabs__content-shipping">
-                  {{ section.settings.shipping_content }}
+                  {{ shipping_content }}
                 </div>
               </div>
             {% endif %}
@@ -371,38 +404,38 @@
 <div class="sticky-cart-bar">
   <div class="sticky-cart-bar__container">
     <div class="sticky-cart-bar__thumbnail">
-      {% if product.featured_image %}
-        {{ product.featured_image | image_url: width: 120 | image_tag: alt: product.title }}
+      {% if featured_image %}
+        {{ featured_image | image_url: width: 120 | image_tag: alt: title }}
       {% endif %}
     </div>
 
     <div class="sticky-cart-bar__product-title heading--l">
-      {{ product.title }}
+      {{ title }}
     </div>
 
     <div class="sticky-cart-bar__price-container">
-      {% if current_variant.compare_at_price > current_variant.price %}
+      {% if compare_at_price > variant_price %}
         <span class="sticky-cart-bar__compare-price body js--sticky-compare-price">
-          {{ current_variant.compare_at_price | money_with_currency }}
+          {{ compare_at_price | money_with_currency }}
         </span>
       {% endif %}
       <span class="sticky-cart-bar__price body js--sticky-price">
-        {{ current_variant.price | money_with_currency }}
+        {{ variant_price | money_with_currency }}
       </span>
     </div>
 
     <div class="sticky-cart-bar__mobile-info">
       <div class="sticky-cart-bar__mobile-title body">
-        {{ product.title }}
+        {{ title }}
       </div>
       <div class="sticky-cart-bar__mobile-price-container">
-        {% if current_variant.compare_at_price > current_variant.price %}
+        {% if compare_at_price > variant_price %}
           <span class="sticky-cart-bar__mobile-compare-price body js--sticky-mobile-compare-price">
-            {{ current_variant.compare_at_price | money_with_currency }}
+            {{ compare_at_price | money_with_currency }}
           </span>
         {% endif %}
         <span class="sticky-cart-bar__mobile-price body js--sticky-mobile-price">
-          {{ current_variant.price | money_with_currency }}
+          {{ variant_price | money_with_currency }}
         </span>
       </div>
     </div>
