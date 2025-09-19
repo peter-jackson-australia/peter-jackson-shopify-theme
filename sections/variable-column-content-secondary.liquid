@@ -21,7 +21,7 @@
 
 <div
   class="variable-column-content-secondary"
-  id="shopify-section-{{ section.id }}"
+  id="shopify-section-{{ section_id }}"
   style="
     {% if show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
     {% if show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
@@ -44,7 +44,7 @@
         {% assign block_text = block.settings.text %}
         {% assign block_text_animation = block.settings.text_animation %}
         {% assign block_column_link = block.settings.column_link %}
-        {% assign block_column_link_text = block.settings.column_link_test %}
+        {% assign block_column_link_text = block.settings.column_link_text %}
         
         {% if block.type == 'column_item' %}
           <div class="variable-column-content-secondary__column" {{ block.shopify_attributes }}>
@@ -82,7 +82,7 @@
                     {{ block_text }}
                   </div>
                 {% endif %}
-
+                
                 {% if block_column_link != blank and block_column_link_text != blank %}
                   <a href="{{ block_column_link }}" class="variable-column-content-secondary__column-cta body">
                     {{ block_column_link_text }}
@@ -106,7 +106,7 @@
           </h2>
         {% endif %}
 
-        {% if section_section_text != blank %}
+        {% if section_text != blank %}
           <div class="variable-column-content-secondary__text body {% if section_text_animation != 'none' %}{{ section_text_animation }}{% endif %}">
             {{ section_text }}
           </div>
