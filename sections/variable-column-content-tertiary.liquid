@@ -4,62 +4,80 @@
 
 {{ 'section-variable-column-content-tertiary.css' | asset_url | stylesheet_tag }}
 
+{% assign section_id = section.id %}
+{% assign show_top_border = section.settings.show_top_border %}
+{% assign show_bottom_border = section.settings.show_bottom_border %}
+{% assign column_count = section.settings.column_count %}
+{% assign animate_columns = section.settings.animate_columns %}
+{% assign anchor_id = section.settings.anchor_id %}
+{% assign section_button_label = section.settings.button_label %}
+{% assign section_button_link = section.settings.button_link %}
+
 <div
   class="variable-column-content-tertiary"
-  id="shopify-section-{{ section.id }}"
+  id="shopify-section-{{ section_id }}"
   style="
-    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
-    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
+    {% if show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
+    {% if show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
   "
 >
-  {% if section.settings.column_count != blank %}
-    {% assign column_count = section.settings.column_count | plus: 0 %}
+  {% if column_count != blank %}
+    {% assign column_count = column_count | plus: 0 %}
     <div
-      class="variable-column-content-tertiary__image-grid {% if section.settings.animate_columns %}animate-container-cards-scroll{% endif %}"
+      class="variable-column-content-tertiary__image-grid {% if animate_columns %}animate-container-cards-scroll{% endif %}"
       style="grid-template-columns: repeat({{ column_count }}, 1fr);"
-      {% if section.settings.anchor_id != blank %}
-        id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
+      {% if anchor_id != blank %}
+        id="{{ anchor_id | downcase | replace: ' ', '-' }}-segment"
       {% endif %}
     >
       {%- for block in section.blocks limit: column_count -%}
+        {% assign block_image = block.settings.image %}
+        {% assign block_show_gradient_overlay = block.settings.show_gradient_overlay  %}
+        {% assign block_heading = block.settings.heading %}
+        {% assign block_heading_animation = block.settings.heading_animation %}
+        {% assign block_text = block.settings.text %}
+        {% assign block_text_animation = block.settings.text_animation %}
+        {% assign block_column_link = block.settings.column_link %}
+        {% assign block_column_link_text = block.settings.column_link_text %}
+        
         {% if block.type == 'column_item' %}
           <div class="variable-column-content-tertiary__column" {{ block.shopify_attributes }}>
-            {% if block.settings.column_link != blank %}
-              <a href="{{ block.settings.column_link }}" class="variable-column-content-tertiary__column-link">
+            {% if block_column_link != blank %}
+              <a href="{{ block_column_link }}" class="variable-column-content-tertiary__column-link">
             {% endif %}
 
-            {% if block.settings.image != blank %}
-              <div class="variable-column-content-tertiary__image-wrapper{% if block.settings.show_gradient_overlay %} variable-column-content-tertiary__image-wrapper--gradient{% endif %}">
+            {% if block_image != blank %}
+              <div class="variable-column-content-tertiary__image-wrapper{% if block_show_gradient_overlay %} variable-column-content-tertiary__image-wrapper--gradient{% endif %}">
                 {{
-                  block.settings.image
+                  block_image
                   | image_url: width: 847
                   | image_tag:
                     class: 'variable-column-content-tertiary__image',
                     sizes: '(max-width: 847px) 400px, 847px',
                     loading: 'lazy',
                     decoding: 'async',
-                    alt: block.settings.image.alt
+                    alt: block_image.alt
                 }}
 
-                {% if block.settings.heading != blank or block.settings.text != blank %}
+                {% if block_heading != blank or block_text != blank %}
                   {% assign h_align = block.settings.content_horizontal_alignment | default: 'center' %}
                   {% assign v_align = block.settings.content_vertical_alignment | default: 'center' %}
                   <div class="variable-column-content-tertiary__column-content variable-column-content-tertiary__column-content--h-{{ h_align }} variable-column-content-tertiary__column-content--v-{{ v_align }}">
-                    {% if block.settings.heading != blank %}
-                      <h3 class="variable-column-content-tertiary__column-heading heading--l {% if block.settings.heading_animation != 'none' %}{{ block.settings.heading_animation }}{% endif %}">
-                        {{ block.settings.heading }}
+                    {% if block_heading != blank %}
+                      <h3 class="variable-column-content-tertiary__column-heading heading--l {% if block_heading_animation != 'none' %}{{ block_heading_animation }}{% endif %}">
+                        {{ block_heading }}
                       </h3>
                     {% endif %}
 
-                    {% if block.settings.text != blank %}
-                      <div class="variable-column-content-tertiary__column-text body {% if block.settings.text_animation != 'none' %}{{ block.settings.text_animation }}{% endif %}">
-                        {{ block.settings.text }}
+                    {% if block_text != blank %}
+                      <div class="variable-column-content-tertiary__column-text body {% if block_text_animation != 'none' %}{{ block_text_animation }}{% endif %}">
+                        {{ block_text }}
                       </div>
                     {% endif %}
 
-                    {% if block.settings.column_link != blank and block.settings.column_link_text != blank %}
+                    {% if block_column_link != blank and block_column_link_text != blank %}
                       <div class="variable-column-content-tertiary__column-cta body">
-                        {{ block.settings.column_link_text }}
+                        {{ block_column_link_text }}
                         {% render '_icon-arrow-submit-light' %}
                       </div>
                     {% endif %}
@@ -68,7 +86,7 @@
               </div>
             {% endif %}
 
-            {% if block.settings.column_link != blank %}
+            {% if block_column_link != blank %}
               </a>
             {% endif %}
           </div>
@@ -76,28 +94,34 @@
       {%- endfor -%}
     </div>
   {% endif %}
+  
+  {% assign section_heading = section.settings.heading %}
+  {% assign section_text = section.settings.text %}
+  {% assign section_text_alignment = section.settings.text_alignment %}
+  {% assign section_heading_animation = section.settings.heading_animation %}
+  {% assign section_text_animation = section.settings.text_animation %}
 
-  {% if section.settings.heading != blank and section.settings.text != blank %}
+  {% if section_heading != blank and section_text != blank %}
     <div class="variable-column-content-tertiary__text-container">
-      <div class="variable-column-content-tertiary__text-content variable-column-content-tertiary__text-content--{{ section.settings.text_alignment }}">
-        {% if section.settings.heading != blank %}
-          <h2 class="variable-column-content-tertiary__heading heading--xl {% if section.settings.heading_animation != 'none' %}{{ section.settings.heading_animation }}{% endif %}">
-            {{ section.settings.heading }}
+      <div class="variable-column-content-tertiary__text-content variable-column-content-tertiary__text-content--{{ section_text_alignment }}">
+        {% if section_heading != blank %}
+          <h2 class="variable-column-content-tertiary__heading heading--xl {% if section_heading_animation != 'none' %}{{ section_heading_animation }}{% endif %}">
+            {{ section_heading }}
           </h2>
         {% endif %}
 
-        {% if section.settings.text != blank %}
-          <div class="variable-column-content-tertiary__text body {% if section.settings.text_animation != 'none' %}{{ section.settings.text_animation }}{% endif %}">
-            {{ section.settings.text }}
+        {% if section_text != blank %}
+          <div class="variable-column-content-tertiary__text body {% if section_text_animation != 'none' %}{{ section_text_animation }}{% endif %}">
+            {{ section_text }}
           </div>
         {% endif %}
-
-        {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+        
+        {% if section_button_label != blank and section_button_link != blank %}
           <a
-            href="{{ section.settings.button_link }}"
+            href="{{ section_button_link }}"
             class="variable-column-content-tertiary__button button body"
           >
-            {{ section.settings.button_label }}
+            {{ section_button_label }}
           </a>
         {% endif %}
       </div>
