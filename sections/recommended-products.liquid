@@ -89,7 +89,7 @@
                       {% endif %}
 
                       <p class="small recommended-products__product-price">
-                        {% if compare_at_price > price %}
+                        {% if compare_at_price > product_price %}
                           <span class="recommended-products__product-price--sale">
                             {{- product_price | money_with_currency -}}
                           </span>
