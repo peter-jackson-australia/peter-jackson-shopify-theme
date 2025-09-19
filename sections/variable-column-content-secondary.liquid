@@ -4,64 +4,88 @@
 
 {{ 'section-variable-column-content-secondary.css' | asset_url | stylesheet_tag }}
 
+{% assign section_id = section.id %}
+{% assign show_top_border = section.settings.show_top_border %}
+{% assign show_bottom_border = section.settings.show_bottom_border %}
+{% assign column_count = section.settings.column_count %}
+{% assign animate_columns = section.settings.animate_columns %}
+{% assign anchor_id = section.settings.anchor_id %}
+
+{% assign section_heading = section.settings.heading %}
+{% assign section_text = section.settings.text %}
+{% assign section_heading_animation = section.settings.heading_animation %}
+{% assign section_text_animation = section.settings.text_animation %}
+{% assign section_text_alignment = section.settings.text_alignment %}
+{% assign section_button_label = section.settings.button_label %}
+{% assign section_button_link = section.settings.button_link %}
+
 <div
   class="variable-column-content-secondary"
-  id="shopify-section-{{ section.id }}"
+  id="shopify-section-{{ section_id }}"
   style="
-    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
-    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
+    {% if show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
+    {% if show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
   "
 >
-  {% if section.settings.column_count != blank %}
-    {% assign column_count = section.settings.column_count | plus: 0 %}
+  {% if column_count != blank %}
+    {% assign column_count = column_count | plus: 0 %}
     <div
-      class="variable-column-content-secondary__image-grid {% if section.settings.animate_columns %}animate-container-cards-scroll{% endif %}"
+      class="variable-column-content-secondary__image-grid {% if animate_columns %}animate-container-cards-scroll{% endif %}"
       style="grid-template-columns: repeat({{ column_count }}, 1fr);"
-      {% if section.settings.anchor_id != blank %}
-        id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
+      {% if anchor_id != blank %}
+        id="{{ anchor_id | downcase | replace: ' ', '-' }}-segment"
       {% endif %}
     >
       {%- for block in section.blocks limit: column_count -%}
+        {% assign block_image_link = block.settings.image_link %}
+        {% assign block_image = block.settings.image %}
+        {% assign block_heading = block.settings.heading %}
+        {% assign block_heading_animation = block.settings.heading_animation %}
+        {% assign block_text = block.settings.text %}
+        {% assign block_text_animation = block.settings.text_animation %}
+        {% assign block_column_link = block.settings.column_link %}
+        {% assign block_column_link_text = block.settings.column_link_text %}
+        
         {% if block.type == 'column_item' %}
           <div class="variable-column-content-secondary__column" {{ block.shopify_attributes }}>
-            {% if block.settings.image != blank %}
+            {% if block_image != blank %}
               <div class="variable-column-content-secondary__image-wrapper">
-                {% if block.settings.image_link != blank %}
-                  <a href="{{ block.settings.image_link }}">
+                {% if block_image_link != blank %}
+                  <a href="{{ block_image_link }}">
                 {% endif %}
                 {{
-                  block.settings.image
+                  block_image
                   | image_url: width: 1200
                   | image_tag:
                     class: 'variable-column-content-secondary__image',
                     sizes: '(max-width: 767px) 100px, 1200px',
                     loading: 'lazy',
                     decoding: 'async',
-                    alt: block.settings.image.alt
+                    alt: block_image.alt
                 }}
-                {% if block.settings.image_link != blank %}
+                {% if block_image_link != blank %}
                   </a>
                 {% endif %}
               </div>
             {% endif %}
 
-            {% if block.settings.heading != blank or block.settings.text != blank %}
+            {% if block_heading != blank or block_text != blank %}
               <div class="variable-column-content-secondary__column-content">
-                {% if block.settings.heading != blank %}
-                  <h3 class="variable-column-content-secondary__column-heading heading--l {% if block.settings.heading_animation != 'none' %}{{ block.settings.heading_animation }}{% endif %}">
-                    {{ block.settings.heading }}
+                {% if block_heading != blank %}
+                  <h3 class="variable-column-content-secondary__column-heading heading--l {% if block_heading_animation != 'none' %}{{ block_heading_animation }}{% endif %}">
+                    {{ block_heading }}
                   </h3>
                 {% endif %}
 
-                {% if block.settings.text != blank %}
-                  <div class="variable-column-content-secondary__column-text body {% if block.settings.text_animation != 'none' %}{{ block.settings.text_animation }}{% endif %}">
-                    {{ block.settings.text }}
+                {% if block_text != blank %}
+                  <div class="variable-column-content-secondary__column-text body {% if block_text_animation != 'none' %}{{ block_text_animation }}{% endif %}">
+                    {{ block_text }}
                   </div>
                 {% endif %}
-
-                {% if block.settings.column_link != blank and block.settings.column_link_text != blank %}
-                  <a href="{{ block.settings.column_link }}" class="variable-column-content-secondary__column-cta body">
-                    {{ block.settings.column_link_text }}
+                
+                {% if block_column_link != blank and block_column_link_text != blank %}
+                  <a href="{{ block_column_link }}" class="variable-column-content-secondary__column-cta body">
+                    {{ block_column_link_text }}
                     {% render '_icon-arrow-submit-dark' %}
                   </a>
                 {% endif %}
@@ -73,27 +97,27 @@
     </div>
   {% endif %}
 
-  {% if section.settings.heading != blank and section.settings.text != blank %}
+  {% if section_heading != blank and section_text != blank %}
     <div class="variable-column-content-secondary__text-container">
-      <div class="variable-column-content-secondary__text-content variable-column-content-secondary__text-content--{{ section.settings.text_alignment }}">
-        {% if section.settings.heading != blank %}
-          <h2 class="variable-column-content-secondary__heading heading--xl {% if section.settings.heading_animation != 'none' %}{{ section.settings.heading_animation }}{% endif %}">
-            {{ section.settings.heading }}
+      <div class="variable-column-content-secondary__text-content variable-column-content-secondary__text-content--{{ section_text_alignment }}">
+        {% if section_heading != blank %}
+          <h2 class="variable-column-content-secondary__heading heading--xl {% if heading_animation != 'none' %}{{ section_heading_animation }}{% endif %}">
+            {{ section_heading }}
           </h2>
         {% endif %}
 
-        {% if section.settings.text != blank %}
-          <div class="variable-column-content-secondary__text body {% if section.settings.text_animation != 'none' %}{{ section.settings.text_animation }}{% endif %}">
-            {{ section.settings.text }}
+        {% if section_text != blank %}
+          <div class="variable-column-content-secondary__text body {% if section_text_animation != 'none' %}{{ section_text_animation }}{% endif %}">
+            {{ section_text }}
           </div>
         {% endif %}
 
-        {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+        {% if section_button_label != blank and section_button_link != blank %}
           <a
-            href="{{ section.settings.button_link }}"
+            href="{{ section_button_link }}"
             class="variable-column-content-secondary__button button body"
           >
-            {{ section.settings.button_label }}
+            {{ section_button_label }}
           </a>
         {% endif %}
       </div>

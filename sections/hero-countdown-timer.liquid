@@ -4,13 +4,39 @@
 
 {{ 'section-hero-countdown.css' | asset_url | stylesheet_tag }}
 
-<div id="countdown-timer-{{ section.id }}" class="countdown-timer">
-  {% if section.settings.background_image %}
+{% assign section_id = section.id %}
+{% assign heading = section.settings.heading%}
+{% assign background_image = section.settings.background_image %}
+{% assign background_image_alt = section.settings.background_image_alt %}
+{% assign horizontal_alignment = section.settings.horizontal_alignment %}
+{% assign vertical_alignment = section.settings.vertical_alignment %}
+{% assign subheading = section.settings.subheading %}
+{% assign final_message = section.settings.final_message %}
+{% assign complete_message = section.settings.complete_message %}
+{% assign target_date = section.settings.target_date %}
+{% assign final_hours_threshold = section.settings.final_hours_threshold %}
+
+{% assign heading_animation = section.settings.heading_animation %}
+{% assign subheading_animation = section.settings.subheading_animation %}
+{% assign final_message_animation = section.settings.final_message_animation %}
+{% assign complete_message_animation = section.settings.complete_message_animation %}
+{% assign animate_timer_blocks = section.settings.animate_timer_blocks %}
+
+{% assign days_label = section.settings.days_label %}
+{% assign hours_label = section.settings.hours_label %}
+{% assign minutes_label = section.settings.minutes_label %}
+{% assign seconds_label = section.settings.seconds_label %}
+
+{% assign button_label = section.settings.button_label %}
+{% assign button_link = section.settings.button_link %}
+
+<div id="countdown-timer-{{ section_id }}" class="countdown-timer">
+  {% if background_image %}
     {{
-      section.settings.background_image
+      background_image
       | image_url: width: 3000
-      | image_tag: class: 'countdown-timer__background', alt: section.settings.background_image.alt
-      | default: section.settings.heading,
+      | image_tag: class: 'countdown-timer__background', alt: background_image_alt
+      | default: heading,
         loading: 'eager',
         decoding: 'async',
         widths: '400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2400, 3000',
@@ -18,73 +44,73 @@
     }}
   {% endif %}
 
-  <div class="countdown-timer__container countdown-timer__container--{{ section.settings.horizontal_alignment | default: 'center' }} countdown-timer__container--{{ section.settings.vertical_alignment | default: 'bottom' }}">
-    {% if section.settings.heading != blank %}
-      <h1 class="countdown-timer__heading heading--3xl {% if section.settings.heading_animation != 'none' %}{{ section.settings.heading_animation }}{% endif %}">
-        {{ section.settings.heading }}
+  <div class="countdown-timer__container countdown-timer__container--{{ horizontal_alignment | default: 'center' }} countdown-timer__container--{{ vertical_alignment | default: 'bottom' }}">
+    {% if heading != blank %}
+      <h1 class="countdown-timer__heading heading--3xl {% if heading_animation != 'none' %}{{ heading_animation }}{% endif %}">
+        {{ heading }}
       </h1>
     {% endif %}
 
-    {% if section.settings.subheading != blank %}
-      <div class="countdown-timer__subheading heading--l {% if section.settings.subheading_animation != 'none' %}{{ section.settings.subheading_animation }}{% endif %}">
-        {{ section.settings.subheading }}
+    {% if subheading != blank %}
+      <div class="countdown-timer__subheading heading--l {% if subheading_animation != 'none' %}{{ subheading_animation }}{% endif %}">
+        {{ subheading }}
       </div>
     {% endif %}
 
     <div
-      id="countdown-timer-blocks-{{ section.id }}"
-      class="countdown-timer__blocks {% if section.settings.animate_timer_blocks %}animate-container-cards-scroll{% endif %}"
+      id="countdown-timer-blocks-{{ section_id }}"
+      class="countdown-timer__blocks {% if animate_timer_blocks %}animate-container-cards-scroll{% endif %}"
     >
       <div class="countdown-timer__block">
-        <div id="countdown-timer-days-{{ section.id }}" class="countdown-timer__value heading--xl">00</div>
+        <div id="countdown-timer-days-{{ section_id }}" class="countdown-timer__value heading--xl">00</div>
         <div class="countdown-timer__label body--uppercase">
-          {{ section.settings.days_label | default: 'Days' }}
+          {{ days_label | default: 'Days' }}
         </div>
       </div>
 
       <div class="countdown-timer__block">
-        <div id="countdown-timer-hours-{{ section.id }}" class="countdown-timer__value heading--xl">00</div>
+        <div id="countdown-timer-hours-{{ section_id }}" class="countdown-timer__value heading--xl">00</div>
         <div class="countdown-timer__label body--uppercase">
-          {{ section.settings.hours_label | default: 'Hours' }}
+          {{ hours_label | default: 'Hours' }}
         </div>
       </div>
 
       <div class="countdown-timer__block">
-        <div id="countdown-timer-minutes-{{ section.id }}" class="countdown-timer__value heading--xl">00</div>
+        <div id="countdown-timer-minutes-{{ section_id }}" class="countdown-timer__value heading--xl">00</div>
         <div class="countdown-timer__label body--uppercase">
-          {{ section.settings.minutes_label | default: 'Minutes' }}
+          {{ minutes_label | default: 'Minutes' }}
         </div>
       </div>
 
       <div class="countdown-timer__block">
-        <div id="countdown-timer-seconds-{{ section.id }}" class="countdown-timer__value heading--xl">00</div>
+        <div id="countdown-timer-seconds-{{ section_id }}" class="countdown-timer__value heading--xl">00</div>
         <div class="countdown-timer__label body--uppercase">
-          {{ section.settings.seconds_label | default: 'Seconds' }}
+          {{ seconds_label | default: 'Seconds' }}
         </div>
       </div>
     </div>
 
     <div
-      id="countdown-timer-final-{{ section.id }}"
-      class="countdown-timer__final-message countdown-timer__message heading--xl {% if section.settings.final_message_animation != 'none' %}{{ section.settings.final_message_animation }}{% endif %}"
+      id="countdown-timer-final-{{ section_id }}"
+      class="countdown-timer__final-message countdown-timer__message heading--xl {% if final_message_animation != 'none' %}{{ final_message_animation }}{% endif %}"
     >
-      {{ section.settings.final_message | default: 'Final hours! Do not miss out!' }}
+      {{ final_message | default: 'Final hours! Do not miss out!' }}
     </div>
 
     <div
-      id="countdown-timer-complete-{{ section.id }}"
-      class="countdown-timer__complete-message countdown-timer__message heading--xl {% if section.settings.complete_message_animation != 'none' %}{{ section.settings.complete_message_animation }}{% endif %}"
+      id="countdown-timer-complete-{{ section_id }}"
+      class="countdown-timer__complete-message countdown-timer__message heading--xl {% if complete_message_animation != 'none' %}{{ complete_message_animation }}{% endif %}"
     >
-      {{ section.settings.complete_message | default: 'The countdown has ended!' }}
+      {{ complete_message | default: 'The countdown has ended!' }}
     </div>
 
-    {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+    {% if button_label != blank and button_link != blank %}
       <div class="countdown-timer__button-container body">
         <a
-          href="{{ section.settings.button_link }}"
+          href="{{ button_link }}"
           class="button button--white body"
         >
-          {{ section.settings.button_label }}
+          {{ button_label }}
         </a>
       </div>
     {% endif %}
@@ -93,9 +119,9 @@
 
 <script
   src="{{ "section-hero-countdown-timer.js" | asset_url }}"
-  data-section-id="{{ section.id }}"
-  data-target-date="{{ section.settings.target_date }}"
-  data-final-hours-threshold="{{ section.settings.final_hours_threshold | default: 3 }}"
+  data-section-id="{{ section_id }}"
+  data-target-date="{{ target_date }}"
+  data-final-hours-threshold="{{ final_hours_threshold | default: 3 }}"
   defer
 ></script>
 

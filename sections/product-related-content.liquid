@@ -5,8 +5,13 @@
 {% assign product_collections = product.collections %}
 {% assign has_related_articles = false %}
 {% assign related_count = 0 %}
+{% assign jackson_journal_articles = blogs['the-jackson-journal'].articles %}
+{% assign section_id = section.id %}
+{% assign heading = section.settings.heading %}
+{% assign subheading = section.settings.subheading %}
+{% assign description = section.settings.description %}
 
-{% for article in blogs['the-jackson-journal'].articles limit: 50 %}
+{% for article in jackson_journal_articles limit: 50 %}
   {% assign is_related = false %}
   {% for article_collection in article.metafields.custom.related_collections.value %}
     {% for product_collection in product_collections %}
@@ -28,28 +33,31 @@
 {% if has_related_articles %}
   {{ 'section-product-related-content.css' | asset_url | stylesheet_tag }}
 
-  <div class="related-articles" id="section-{{ section.id }}">
+  <div class="related-articles" id="section-{{ section_id }}">
     <div class="related-articles__content">
       <div class="related-articles__header">
-        {% if section.settings.heading != blank %}
-          <h2 class="related-articles__title heading--decorative">{{ section.settings.heading }}</h2>
+        {% if heading != blank %}
+          <h2 class="related-articles__title heading--decorative">{{ heading }}</h2>
         {% endif %}
 
         <span class="related-articles__divider"></span>
 
-        {% if section.settings.subheading != blank %}
-          <div class="related-articles__subtitle heading--l">{{ section.settings.subheading }}</div>
+        {% if subheading != blank %}
+          <div class="related-articles__subtitle heading--l">{{ subheading }}</div>
         {% endif %}
       </div>
 
       <div class="related-articles__description">
-        {% if section.settings.description != blank %}
-          <div class="related-articles__text body">{{ section.settings.description }}</div>
+        {% if description != blank %}
+          <div class="related-articles__text body">{{ description }}</div>
         {% endif %}
 
-        {% if section.settings.cta_link != blank and section.settings.cta_text != blank %}
-          <a href="{{ section.settings.cta_link }}" class="related-articles__link body">
-            {{ section.settings.cta_text }}
+        {% assign cta_link = section.settings.cta_link %}
+        {% assign cta_text = section.settings.cta_text %}
+
+        {% if cta_link != blank and cta_text != blank %}
+          <a href="{{ scta_link }}" class="related-articles__link body">
+            {{ cta_text }}
             {% render '_icon-arrow-submit-dark' %}
           </a>
         {% endif %}
@@ -59,9 +67,10 @@
     <div class="related-articles__posts">
       {% assign related_count = 0 %}
 
-      {% for article in blogs['the-jackson-journal'].articles limit: 50 %}
+      {% for article in jackson_journal_articles limit: 50 %}
         {% assign is_related = false %}
-        {% for article_collection in article.metafields.custom.related_collections.value %}
+        {% assign related_collections = article.metafields.custom.related_collections.value %}
+        {% for article_collection in related_collections %}
           {% for product_collection in product_collections %}
             {% if product_collection.title != 'Sale' and article_collection.id == product_collection.id %}
               {% assign is_related = true %}
@@ -115,9 +124,10 @@
           <ul class="splide__list">
             {% assign related_count = 0 %}
 
-            {% for article in blogs['the-jackson-journal'].articles limit: 50 %}
+            {% for article in jackson_journal_articles limit: 50 %}
               {% assign is_related = false %}
-              {% for article_collection in article.metafields.custom.related_collections.value %}
+              {% assign related_collections = article.metafields.custom.related_collections.value %}
+              {% for article_collection in related_collections %}
                 {% for product_collection in product_collections %}
                   {% if product_collection.title != 'Sale' and article_collection.id == product_collection.id %}
                     {% assign is_related = true %}
@@ -169,7 +179,7 @@
 
   <script
     src="{{ "section-product-related-content.js" | asset_url }}"
-    data-section-id="{{ section.id }}"
+    data-section-id="{{ section_id }}"
     defer
   ></script>
 {% endif %}

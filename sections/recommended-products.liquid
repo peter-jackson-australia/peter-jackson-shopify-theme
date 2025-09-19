@@ -4,29 +4,40 @@
 
 {{ 'section-recommended-products.css' | asset_url | stylesheet_tag }}
 
+{% assign section_id = section.id %}
+{% assign product_id = product.id %}
+{% assign product_recommendations_url = routes.product_recommendations_url %}
+{% assign show_top_border = section.settings.show_top_border %}
+{% assign show_bottom_border = section.settings.show_bottom_border %}
+{% assign recommendation_intent = section.settings.recommendation_intent %}
+{% assign heading = section.settings.heading %}
+{% assign heading_animation = section.settings.heading_animation %}
+{% assign description = section.settings.description %}
+{% assign description_animation = section.settings.description_animation %}
+
 <div
   class="recommended-products"
-  id="section-{{ section.id }}"
-  data-base-url="{{ routes.product_recommendations_url }}"
-  data-product-id="{{ product.id }}"
-  data-section-id="{{ section.id }}"
-  data-intent="{{ section.settings.recommendation_intent | default: 'related' }}"
+  id="section-{{ section_id }}"
+  data-base-url="{{ product_recommendations_url }}"
+  data-product-id="{{ product_id }}"
+  data-section-id="{{ section_id }}"
+  data-intent="{{ recommendation_intent | default: 'related' }}"
   style="
-    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
-    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
+    {% if show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
+    {% if show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
   "
 >
   <div class="recommended-products__container">
     <div class="recommended-products__content">
-      {% if section.settings.heading != blank %}
-        <h2 class="heading--2xl recommended-products__heading {% if section.settings.heading_animation != 'none' %}{{ section.settings.heading_animation }}{% endif %}">
-          {{ section.settings.heading }}
+      {% if heading != blank %}
+        <h2 class="heading--2xl recommended-products__heading {% if heading_animation != 'none' %}{{ heading_animation }}{% endif %}">
+          {{ heading }}
         </h2>
       {% endif %}
 
-      {% if section.settings.description != blank %}
-        <p class="body recommended-products__description {% if section.settings.description_animation != 'none' %}{{ section.settings.description_animation }}{% endif %}">
-          {{ section.settings.description }}
+      {% if description != blank %}
+        <p class="body recommended-products__description {% if description_animation != 'none' %}{{ description_animation }}{% endif %}">
+          {{ description }}
         </p>
       {% endif %}
     </div>
@@ -42,16 +53,25 @@
             <div class="splide__track">
               <ul class="splide__list {% if section.settings.animate_products %}animate-container-cards-scroll{% endif %}">
                 {% for product in recommendations.products limit: 10 %}
+                  {% assign product_url = product.url %}
+                  {% assign featured_image = product.featured_image %}
+                  {% assign fabric_description = product.fabric_description %}
+                  {% assign compare_at_price = product.compare_at_price %}
+                  {% assign product_price = product.price %}
+                  {% assign fabric_description = product.metafields.custom.fabric_description %}
+                  {% assign product_title = product.title %}
+                  {% assign colour_variants = product.metafields.custom.colour_variants %}
+
                   <li class="splide__slide recommended-products__slide">
-                    <a href="{{ product.url }}" class="recommended-products__product-link">
+                    <a href="{{ product_url }}" class="recommended-products__product-link">
                       <div class="recommended-products__product-image-wrapper">
-                        {% if product.featured_image != blank %}
+                        {% if featured_image != blank %}
                           <img
-                            src="{{ product.featured_image | image_url: width: '600' }}"
-                            alt="{{ product.featured_image.alt | escape }}"
+                            src="{{ featured_image | image_url: width: '600' }}"
+                            alt="{{ featured_image.alt | escape }}"
                             loading="lazy"
-                            width="{{ product.featured_image.width }}"
-                            height="{{ product.featured_image.height }}"
+                            width="{{ featured_image.width }}"
+                            height="{{ featured_image.height }}"
                             class="recommended-products__product-image"
                             decoding="async"
                           >
@@ -60,28 +80,28 @@
                         {% endif %}
                       </div>
 
-                      <h3 class="body--bold recommended-products__product-title">{{ product.title }}</h3>
+                      <h3 class="body--bold recommended-products__product-title">{{ product_title }}</h3>
 
-                      {% if product.metafields.custom.fabric_description != blank %}
+                      {% if fabric_description != blank %}
                         <p class="small recommended-products__product-material">
-                          {{ product.metafields.custom.fabric_description }}
+                          {{ fabric_description }}
                         </p>
                       {% endif %}
 
                       <p class="small recommended-products__product-price">
-                        {% if product.compare_at_price > product.price %}
+                        {% if compare_at_price > product_price %}
                           <span class="recommended-products__product-price--sale">
-                            {{- product.price | money_with_currency -}}
+                            {{- product_price | money_with_currency -}}
                           </span>
                           <span class="recommended-products__product-price--compare">
-                            {{- product.compare_at_price | money_with_currency -}}
+                            {{- compare_at_price | money_with_currency -}}
                           </span>
                         {% else %}
-                          {{ product.price | money_with_currency }}
+                          {{ product_price | money_with_currency }}
                         {% endif %}
                       </p>
                     </a>
-                    {% if product.metafields.custom.product_colour_variants %}
+                    {% if product_colour_variants %}
                       {% assign colour_variants = product.metafields.custom.product_colour_variants.value %}
                       {% assign max_display = 3 %}
                       {% assign remaining_count = colour_variants.count | minus: max_display %}
@@ -89,13 +109,12 @@
                       <div class="product-card__swatches">
                         {% assign current_colour = product.metafields.custom.swatch_colour.value.colour | strip %}
                         {% assign bg_colour = current_colour | default: 'var(--neutral-200)' %}
-
                         {% assign border_style = '1px solid var(--neutral-950)' %}
 
                         <a
-                          href="{{ product.url }}"
+                          href="{{ product_url }}"
                           class="product-card__swatch-link"
-                          aria-label="View {{ product.title }} variant"
+                          aria-label="View {{ product_title }} variant"
                           style="border: {{ border_style }}; background-color: {{ bg_colour }}; padding: 2px; background-clip: content-box;"
                         >
                         </a>
@@ -104,6 +123,8 @@
                           {% assign variant_colour = variant.metafields.custom.swatch_colour.value.colour | strip %}
                           {% assign variant_name = variant.metafields.custom.swatch_colour.value.name | strip %}
                           {% assign bg_colour = variant_colour | default: 'var(--neutral-200)' %}
+                          {% assign variant_url = variant.url %}
+                          {% assign variant_title = variant.title %}
 
                           {% if variant_name == 'White' %}
                             {% assign border_style = '2px solid var(--neutral-200)' %}
@@ -113,9 +134,9 @@
                           {% endif %}
 
                           <a
-                            href="{{ variant.url }}"
+                            href="{{ variant_url }}"
                             class="product-card__swatch-link"
-                            aria-label="View {{ variant.title }} variant"
+                            aria-label="View {{ variant_title }} variant"
                             style="border: {{ border_style }}; background-color: {{ bg_colour }};"
                           >
                           </a>
@@ -147,7 +168,7 @@
 
 <script
   src="{{ "section-recommended-products.js" | asset_url }}"
-  data-section-id="{{ section.id }}"
+  data-section-id="{{ section_id }}"
   defer
 ></script>
 

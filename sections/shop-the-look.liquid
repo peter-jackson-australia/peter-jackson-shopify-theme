@@ -2,38 +2,44 @@
   Shop The Look Section
 {% endcomment %}
 
-{% assign active_products = 0 %}
-
-{% for item in product.metafields.custom.shop_the_look.value %}
-  {% assign active_products = forloop.index %}
-{% endfor %}
-
+{% assign shop_the_look = product.metafields.custom.shop_the_look %}
+{% liquid
+   assign active_products = 0
+   for item in shop_the_look.value
+     assign active_products = forloop.index
+   endfor
+%}
 {% assign shop_the_look_count = active_products %}
 
 {% if shop_the_look_count > 0 and product.images.size > 1 %}
+  {% assign section_id = section.id %}
+  {% assign heading = section.settings.heading %}
   {% assign second_image = product.images[1] %}
 
   {{ 'section-shop-the-look.css' | asset_url | stylesheet_tag }}
 
-  <div class="shop-the-look" id="section-{{ section.id }}">
+  <div class="shop-the-look" id="section-{{ section_id }}">
     <div class="shop-the-look__slider-container">
-      <h2 class="heading--xl shop-the-look__heading">{{ section.settings.heading }}</h2>
+      <h2 class="heading--xl shop-the-look__heading">{{ heading }}</h2>
       {% if shop_the_look_count > 1 %}
         <div class="shop-the-look__slider-wrapper">
           <div class="shop-the-look__slider splide">
             <div class="splide__track">
               <ul class="splide__list">
-                {% for item in product.metafields.custom.shop_the_look.value %}
+                {% for item in shop_the_look.value %}
+                  {% assign item_handle = item.handle %}
+                  {% assign featured_image = item.featured_image %}
+                  
                   <li class="splide__slide shop-the-look__slide">
-                    <a href="/products/{{ item.handle }}" class="shop-the-look__product-link">
+                    <a href="/products/{{ item_handle }}" class="shop-the-look__product-link">
                       <div class="shop-the-look__product-image-wrapper">
-                        {% if item.featured_image != blank %}
+                        {% if featured_image != blank %}
                           <img
-                            src="{{ item.featured_image | image_url: width: '600px' }}"
-                            alt="{{ item.featured_image.alt | escape }}"
+                            src="{{ featured_image | image_url: width: '600px' }}"
+                            alt="{{ featured_image.alt | escape }}"
                             loading="lazy"
-                            width="{{ item.featured_image.width }}"
-                            height="{{ item.featured_image.width }}"
+                            width="{{ featured_image.width }}"
+                            height="{{ featured_image.width }}"
                             class="shop-the-look__product-image"
                           >
                         {% else %}
@@ -41,16 +47,20 @@
                         {% endif %}
                       </div>
 
-                      <h3 class="body--bold shop-the-look__product-title">{{ item.title }}</h3>
+                      {% assign item_title = item.title %}
+                      {% assign item_price = item.price %}
+                      {% assign compare_at_price = item.compare_at_price %}
+                      
+                      <h3 class="body--bold shop-the-look__product-title">{{ item_title }}</h3>
 
                       <p class="small shop-the-look__product-price">
-                        {% if item.compare_at_price > item.price %}
-                          <span class="shop-the-look__product-price--sale">{{ item.price | money_with_currency }}</span>
+                        {% if compare_at_price > item_price %}
+                          <span class="shop-the-look__product-price--sale">{{ item_price | money_with_currency }}</span>
                           <span class="shop-the-look__product-price--compare">
-                            {{- item.compare_at_price | money_with_currency -}}
+                            {{- compare_at_price | money_with_currency -}}
                           </span>
                         {% else %}
-                          {{ item.price | money_with_currency }}
+                          {{ item_price | money_with_currency }}
                         {% endif %}
                       </p>
                     </a>
@@ -67,16 +77,23 @@
       {% else %}
         <div class="shop-the-look__single-product">
           {% assign single_product = product.metafields.custom.shop_the_look.value | first %}
+          
+          {% assign product_handle = single_product.handle %}
+          {% assign product_title = single_product.title %}
+          {% assign product_featured_image = single_product.featured_image %}
+          {% assign product_price = single_product.price %}
+          {% assign compare_at_price = single_product.compare_at_price %}
+          
           {% if single_product %}
-            <a href="/products/{{ single_product.handle }}" class="shop-the-look__product-link">
+            <a href="/products/{{ product_handle }}" class="shop-the-look__product-link">
               <div class="shop-the-look__product-image-wrapper">
-                {% if single_product.featured_image != blank %}
+                {% if product_featured_image != blank %}
                   <img
-                    src="{{ single_product.featured_image | image_url: width: '600px' }}"
-                    alt="{{ single_product.featured_image.alt | escape }}"
+                    src="{{ product_featured_image | image_url: width: '600px' }}"
+                    alt="{{ product_featured_image.alt | escape }}"
                     loading="lazy"
-                    width="{{ single_product.featured_image.width }}"
-                    height="{{ single_product.featured_image.height }}"
+                    width="{{ product_featured_image.width }}"
+                    height="{{ product_featured_image.height }}"
                     class="shop-the-look__product-image"
                   >
                 {% else %}
@@ -84,18 +101,18 @@
                 {% endif %}
               </div>
 
-              <h3 class="body--bold shop-the-look__product-title">{{ single_product.title }}</h3>
+              <h3 class="body--bold shop-the-look__product-title">{{ product_title }}</h3>
 
               <p class="small shop-the-look__product-price">
-                {% if single_product.compare_at_price > single_product.price %}
+                {% if product_compare_at_price > price %}
                   <span class="shop-the-look__product-price--sale">
-                    {{- single_product.price | money_with_currency -}}
+                    {{- product_price | money_with_currency -}}
                   </span>
                   <span class="shop-the-look__product-price--compare">
-                    {{- single_product.compare_at_price | money_with_currency -}}
+                    {{- product_compare_at_price | money_with_currency -}}
                   </span>
                 {% else %}
-                  {{ single_product.price | money_with_currency }}
+                  {{ product_price | money_with_currency }}
                 {% endif %}
               </p>
             </a>
@@ -128,7 +145,7 @@
   {% if shop_the_look_count > 1 %}
     <script
       src="{{ "section-shop-the-look.js" | asset_url }}"
-      data-section-id="{{ section.id }}"
+      data-section-id="{{ section_id }}"
       defer
     ></script>
   {% endif %}

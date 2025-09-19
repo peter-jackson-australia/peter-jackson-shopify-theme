@@ -1,5 +1,6 @@
 .shop-the-look {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   overflow: hidden;
 }
 
@@ -133,8 +134,9 @@
 
 @media screen and (max-width: 1100px) {
   .shop-the-look {
-    border-top: 1px solid var(--neutral-50);
+    display: flex;
     flex-direction: column-reverse;
+    border-top: 1px solid var(--neutral-50);
     margin-top: var(--space-xl);
   }
 

@@ -4,54 +4,77 @@
 
 {{ 'section-editorial-hero.css' | asset_url | stylesheet_tag }}
 
+{% assign section_id = section.id %}
+{% assign show_top_border = section.settings.show_top_border %}
+{% assign show_bottom_border = section.settings.show_bottom_border %}
+{% assign leading_text = section.settings.leading_text %}
+{% assign leading_text_animation = section.settings.leading_text_animation %}
+{% assign anchor_id = section.settings.anchor_id %}
+{% assign first_title = section.settings.first_title %}
+{% assign first_title_level = section.settings.first_title_level %}
+{% assign first_title_animation = section.settings.first_title_animation %}
+{% assign animate_media = section.settings.animate_media %}
+{% assign media_type = section.settings.media_type %}
+{% assign image = section.settings.image %}
+{% assign image_alt = image.alt %}
+{% assign video = section.settings.video %}
+{% assign video_poster = section.settings.video_poster %}
+{% assign second_title = section.settings.second_title %}
+{% assign second_title_level = section.settings.second_title_level %}
+{% assign second_title_animation = section.settings.second_title_animation %}
+{% assign description = section.settings.description %}
+{% assign description_animation = section.settings.description_animation %}
+{% assign cta_text = section.settings.cta_text %}
+{% assign cta_link = section.settings.cta_link %}
+
 <div
-  id="editorial-hero-{{ section.id }}"
+  id="editorial-hero-{{ section_id }}"
   class="editorial-hero"
   aria-label="Editorial hero section"
   style="
-    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
-    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
+    {% if show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
+    {% if show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
   "
 >
-  {% if section.settings.leading_text != blank %}
-    <div class="editorial-hero__leading-text body--uppercase {% if section.settings.leading_text_animation != 'none' %}{{ section.settings.leading_text_animation }}{% endif %}">
-      {{ section.settings.leading_text }}
+  {% if leading_text != blank %}
+    <div class="editorial-hero__leading-text body--uppercase {% if leading_text_animation != 'none' %}{{ leading_text_animation }}{% endif %}">
+      {{ leading_text }}
     </div>
   {% endif %}
 
   <div
-    {% if section.settings.anchor_id != blank %}
-      id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
+    {% if anchor_id != blank %}
+      id="{{ anchor_id | downcase | replace: ' ', '-' }}-segment"
     {% endif %}
   >
-    {% if section.settings.first_title != blank %}
-      <{{ section.settings.first_title_level | default: 'h1' }} class="editorial-hero__first-title heading--4xl {% if section.settings.first_title_animation != 'none' %}{{ section.settings.first_title_animation }}{% endif %}">
-        {{ section.settings.first_title }}
-      </{{ section.settings.first_title_level | default: 'h1' }}>
+    {% if first_title != blank %}
+      <{{ first_title_level | default: 'h1' }} class="editorial-hero__first-title heading--4xl {% if first_title_animation != 'none' %}{{ first_title_animation }}{% endif %}">
+        {{ first_title }}
+      </{{ first_title_level | default: 'h1' }}>
     {% endif %}
   </div>
 
-  <div class="editorial-hero__media-container {% if section.settings.animate_media %}animate-container-cards-scroll{% endif %}">
-    {% if section.settings.media_type == 'image' %}
-      {% if section.settings.image != blank %}
+  <div class="editorial-hero__media-container {% if animate_media %}animate-container-cards-scroll{% endif %}">
+    {% if media_type == 'image' %}
+      {% if image != blank %}
         {{
-          section.settings.image
+          image
           | image_url: width: 700
-          | image_tag: alt: section.settings.image.alt
-          | default: section.settings.first_title,
+          | image_tag: alt: image_alt
+          | default: first_title,
             loading: 'eager',
             decoding: 'async',
             widths: '400, 500, 600, 700, 800, 1000, 1200, 1400',
             sizes: '(max-width: 400px) 400px, (max-width: 500px) 500px, (max-width: 600px) 600px, (max-width: 768px) 700px, 700px'
         }}
       {% endif %}
-    {% elsif section.settings.media_type == 'video' and section.settings.video != blank %}
+    {% elsif media_type == 'video' and video != blank %}
       <div>
-        {% assign poster_url = section.settings.video_poster | image_url %}
+        {% assign poster_url = video_poster | image_url %}
         {{
-          section.settings.video
+          video
           | video_tag:
-            alt: section.settings.image.alt,
+            alt: image_alt,
             autoplay: true,
             loop: true,
             muted: true,
@@ -64,23 +87,23 @@
   </div>
 
   <div>
-    {% if section.settings.second_title != blank %}
-      <{{ section.settings.second_title_level | default: 'h1' }} class="editorial-hero__second-title heading--4xl {% if section.settings.second_title_animation != 'none' %}{{ section.settings.second_title_animation }}{% endif %}">
-        {{ section.settings.second_title }}
-      </{{ section.settings.second_title_level | default: 'h1' }}>
+    {% if second_title != blank %}
+      <{{ second_title_level | default: 'h1' }} class="editorial-hero__second-title heading--4xl {% if second_title_animation != 'none' %}{{ second_title_animation }}{% endif %}">
+        {{ second_title }}
+      </{{ second_title_level | default: 'h1' }}>
     {% endif %}
   </div>
 
-  {% if section.settings.description != blank %}
-    <p class="editorial-hero__description body {% if section.settings.description_animation != 'none' %}{{ section.settings.description_animation }}{% endif %}">
-      {{ section.settings.description }}
+  {% if description != blank %}
+    <p class="editorial-hero__description body {% if description_animation != 'none' %}{{ description_animation }}{% endif %}">
+      {{ description }}
     </p>
   {% endif %}
 
-  {% if section.settings.cta_text != blank and section.settings.cta_link != blank %}
+  {% if cta_text != blank and cta_link != blank %}
     <div class="body">
-      <a href="{{ section.settings.cta_link }}" class="editorial-hero__cta button body">
-        {{ section.settings.cta_text }}
+      <a href="{{ cta_link }}" class="editorial-hero__cta button body">
+        {{ cta_text }}
       </a>
     </div>
   {% endif %}

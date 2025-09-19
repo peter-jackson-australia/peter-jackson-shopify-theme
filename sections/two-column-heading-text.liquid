@@ -4,42 +4,53 @@
 
 {{ 'section-two-column-heading-text.css' | asset_url | stylesheet_tag }}
 
+{% assign anchor_id = section.settings.anchor_id %}
+{% assign icon = section.settings.icon %}
+{% assign alignment = section.settings.alignment %}
+{% assign heading_style = section.settings.heading_style %}
+{% assign heading = section.settings.heading %}
+{% assign heading_animation = section.settings.heading_animation %}
+{% assign content = section.settings.content %}
+{% assign content_animation = section.settings.content_animation %}
+{% assign show_top_border = section.settings.show_top_border %}
+{% assign show_top_border = section.settings.show_top_border %}
+
 <div
-  class="two-column-heading-text two-column-heading-text--{{ section.settings.alignment }}"
-  {% if section.settings.anchor_id != blank %}
-    id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
+  class="two-column-heading-text two-column-heading-text--{{ alignment }}"
+  {% if anchor_id != blank %}
+    id="{{ anchor_id | downcase | replace: ' ', '-' }}-segment"
   {% endif %}
   style="
-    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
-    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
+    {% if show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
+    {% if show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
   "
 >
   <div class="two-column-heading-text__wrapper">
     <div class="two-column-heading-text__column">
       <div class="two-column-heading-text__heading-group">
-        {% if section.settings.icon != blank %}
+        {% if icon != blank %}
           <img
-            src="{{ section.settings.icon | image_url: width: 200 }}"
-            alt="{{ section.settings.icon.alt | escape }}"
-            width="{{ section.settings.icon.width }}"
-            height="{{ section.settings.icon.height }}"
+            src="{{ icon | image_url: width: 200 }}"
+            alt="{{ icon.alt | escape }}"
+            width="{{ icon.width }}"
+            height="{{ icon.height }}"
             loading="lazy"
             class="two-column-heading-text__icon"
           >
         {% endif %}
 
-        {% if section.settings.heading != blank %}
-          <h2 class="two-column-heading-text__heading {% if section.settings.heading_style == 'decorative' %}heading--decorative{% else %}heading--2xl{% endif %} {% if section.settings.heading_animation != 'none' %}{{ section.settings.heading_animation }}{% endif %}">
-            {{ section.settings.heading }}
+        {% if heading != blank %}
+          <h2 class="two-column-heading-text__heading {% if heading_style == 'decorative' %}heading--decorative{% else %}heading--2xl{% endif %} {% if heading_animation != 'none' %}{{ heading_animation }}{% endif %}">
+            {{ heading }}
           </h2>
         {% endif %}
       </div>
     </div>
 
     <div class="two-column-heading-text__column">
-      {% if section.settings.content != blank %}
-        <div class="two-column-heading-text__content body metafield-rich_text_field {% if section.settings.content_animation != 'none' %}{{ section.settings.content_animation }}{% endif %}">
-          {{ section.settings.content }}
+      {% if content != blank %}
+        <div class="two-column-heading-text__content body metafield-rich_text_field {% if content_animation != 'none' %}{{ content_animation }}{% endif %}">
+          {{ content }}
         </div>
       {% endif %}
     </div>

@@ -1,59 +1,78 @@
 {{ 'section-image-with-text.css' | asset_url | stylesheet_tag }}
 
+{% assign section_id = section.id %}
+{% assign alignment = section.settings.alignment %}
+{% assign full_width = section.settings.full_width %}
+{% assign show_top_border = section.settings.show_top_border %}
+{% assign show_bottom_border = section.settings.show_bottom_border %}
+
+{% assign animate_images = section.settings.animate_images %}
+{% assign anchor_id = section.settings.anchor_id %}
+{% assign first_image = section.settings.first_image %}
+{% assign second_image = section.settings.second_image %}
+{% assign image_link = section.settings.image_link %}
+
+{% assign heading = section.settings.heading %}
+{% assign heading_animation = section.settings.heading_animation %}
+{% assign text = section.settings.text %}
+{% assign text_animation = section.settings.text_animation %}
+{% assign button_label = section.settings.button_label %}
+{% assign button_link = section.settings.button_link %}
+
 <div
-  id="image-with-text-{{ section.id }}"
+  id="image-with-text-{{ section_id }}"
   class="image-with-text"
   aria-label="Image with text section"
   style="
-    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
-    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
+    {% if show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
+    {% if show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
   "
 >
   <div
-    class="image-with-text__container {% if section.settings.alignment == 'right' %}image-with-text__container--right{% endif %}"
-    style="{% if section.settings.full_width %} max-width: 100% {% endif %}"
+    class="image-with-text__container {% if alignment == 'right' %}image-with-text__container--right{% endif %}"
+    style="{% if full_width %} max-width: 100%; {% endif %}"
   >
     <figure
-      class="image-with-text__media-container {% if section.settings.animate_images %}animate-container-cards-scroll{% endif %}"
-      {% if section.settings.anchor_id != blank %}
-        id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
+      class="image-with-text__media-container {% if animate_images %}animate-container-cards-scroll{% endif %}"
+      {% if anchor_id != blank %}
+        id="{{ anchor_id | downcase | replace: ' ', '-' }}-segment"
       {% endif %}
     >
       <div
         class="image-with-text__images-wrapper"
-        style="{% if section.settings.full_width %} aspect-ratio: auto; padding-bottom: 0px; padding-right: 0px; {% endif %}"
+        style="{% if full_width %} aspect-ratio: auto; padding-bottom: 0px; padding-right: 0px; {% endif %}"
       >
-        {% if section.settings.first_image != blank %}
+        {% if first_image != blank %}
           <div
-            class="image-with-text__image-container {% if section.settings.second_image != blank %}image-with-text__image-container--first{% endif %}"
-            style="{% if section.settings.full_width %} position: static; {% endif %}"
+            class="image-with-text__image-container {% if second_image != blank %}image-with-text__image-container--first{% endif %}"
+            style="{% if full_width %} position: static; {% endif %}"
           >
-            {% if section.settings.image_link != blank %}
-              <a href="{{ section.settings.image_link }}">
+            {% if image_link != blank %}
+              <a href="{{ image_link }}">
             {% endif %}
             {{
-              section.settings.first_image
+              first_image
               | image_url: width: 600
-              | image_tag: class: 'image-with-text__image', alt: section.settings.first_image.alt
-              | default: section.settings.heading,
+              | image_tag: class: 'image-with-text__image', alt: first_image.alt
+              | default: heading,
                 loading: 'lazy',
                 decoding: 'async',
                 widths: '300, 400, 500, 600, 700, 800, 1000, 1200',
                 sizes: '(max-width: 768px) 100vw, 50vw'
             }}
-            {% if section.settings.image_link != blank %}
+            {% if image_link != blank %}
               </a>
             {% endif %}
           </div>
         {% endif %}
 
-        {% if section.settings.second_image != blank %}
+        {% if second_image != blank %}
           <div class="image-with-text__image-container image-with-text__image-container--second">
             {{
-              section.settings.second_image
+              second_image
               | image_url: width: 600
-              | image_tag: class: 'image-with-text__image', alt: section.settings.second_image.alt
-              | default: section.settings.heading,
+              | image_tag: class: 'image-with-text__image', alt: second_image.alt
+              | default: heading,
                 loading: 'lazy',
                 decoding: 'async',
                 widths: '300, 400, 500, 600, 700, 800, 1000, 1200',
@@ -64,22 +83,22 @@
       </div>
     </figure>
 
-    <div class="image-with-text__content" style="{% if section.settings.full_width %} padding-left: 0px; {% endif %}">
-      {% if section.settings.heading != blank %}
-        <h2 class="image-with-text__title heading--2xl {% if section.settings.heading_animation != 'none' %}{{ section.settings.heading_animation }}{% endif %}">
-          {{ section.settings.heading }}
+    <div class="image-with-text__content" style="{% if full_width %} padding-left: 0px; {% endif %}">
+      {% if heading != blank %}
+        <h2 class="image-with-text__title heading--2xl {% if heading_animation != 'none' %}{{ heading_animation }}{% endif %}">
+          {{ heading }}
         </h2>
       {% endif %}
 
-      {% if section.settings.text != blank %}
-        <div class="image-with-text__text body {% if section.settings.text_animation != 'none' %}{{ section.settings.text_animation }}{% endif %}">
-          {{ section.settings.text }}
+      {% if text != blank %}
+        <div class="image-with-text__text body {% if text_animation != 'none' %}{{ text_animation }}{% endif %}">
+          {{ text }}
         </div>
       {% endif %}
 
-      {% if section.settings.button_label != blank and section.settings.button_link != blank %}
-        <a href="{{ section.settings.button_link }}" class="image-with-text__button body">
-          {{ section.settings.button_label }}
+      {% if button_label != blank and button_link != blank %}
+        <a href="{{ button_link }}" class="image-with-text__button body">
+          {{ image-with-text__buttonbutton_label }}
           {% render '_icon-arrow-submit-dark' %}
         </a>
       {% endif %}

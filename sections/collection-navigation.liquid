@@ -44,16 +44,19 @@
   <div class="collection-navigation__container">
     <div class="collection-navigation__previous">
       {% if prev_collection %}
+        {% assign prev_collection_title = prev_collection.title %}
+        {% assign prev_collection_url = prev_collection.url %}
+
         <span class="collection-navigation__label body--uppercase">Previous</span>
         <a
-          href="{{ prev_collection.url }}"
+          href="{{ prev_collection_url }}"
           class="collection-navigation__link body--uppercase"
-          title="{{ prev_collection.title }}"
+          title="{{ prev_collection_title }}"
         >
           <span class="collection-navigation__arrow collection-navigation__arrow--prev">
             {% render '_icon-arrow-submit-dark' %}
           </span>
-          <span class="collection-navigation__link-text">{{ prev_collection.title }}</span>
+          <span class="collection-navigation__link-text">{{ prev_collection_title }}</span>
         </a>
       {% endif %}
     </div>
@@ -64,13 +67,16 @@
 
     <div class="collection-navigation__next">
       {% if next_collection %}
+        {% assign next_collection_url = next_collection.url %}
+        {% assign next_collection_title = next_collection.title %}
+
         <span class="collection-navigation__label body--uppercase">Next</span>
         <a
-          href="{{ next_collection.url }}"
+          href="{{ next_collection_url }}"
           class="collection-navigation__link body--uppercase"
-          title="{{ next_collection.title }}"
+          title="{{ next_collection_title }}"
         >
-          <span class="collection-navigation__link-text">{{ next_collection.title }}</span>
+          <span class="collection-navigation__link-text">{{ next_collection_title }}</span>
           <span class="collection-navigation__arrow collection-navigation__arrow--next">
             {% render '_icon-arrow-submit-dark' %}
           </span>

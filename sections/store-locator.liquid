@@ -2,6 +2,9 @@
 {{ 'section-store-locator.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'lib-leaflet.min.js' | asset_url }}" defer></script>
 
+{% assign heading = section.settings.heading %}
+{% assign all_locations = metaobjects.locations.values %}
+
 {% comment %}
     This value is populated in the paginate `metaobjects.locations.values`
 {% endcomment %}
@@ -14,99 +17,110 @@
 {% assign location_urls_array = '' %}
 
 <div class="store-locator" x-data="storeLocator()">
-    <h1 class="heading--xl" style="padding: 0 var(--space-m);">{{ section.settings.heading }}</h1>
-
-    <div class="store-locator__filters">
-        <input
-                type="text"
-                x-model="searchTerm"
-                @input="filterLocations"
-                class="store-locator__search"
-                placeholder="Search by name, address or state"
-        >
-        <select x-model="selectedState" @change="filterLocations" class="store-locator__state-select body">
-            <option value="" selected>All</option>
-            <option value="WA">WA</option>
-            <option value="SA">SA</option>
-            <option value="QLD">QLD</option>
-            <option value="NSW">NSW</option>
-            <option value="VIC">VIC</option>
-            <option value="ACT">ACT</option>
-        </select>
-    </div>
-
-    <div class="store-locator__container">
-        <div class="store-locator__sidebar custom-scrollbar">
-            <div x-show="showNoResults" class="location-item">
-                <p class="body">
-                    Sorry, your search for "<span x-text="searchTerm"></span>" returned zero results, please try another search
-                    term.
-                </p>
+  <h1 class="heading--xl" style="padding: 0 var(--space-m);">{{ heading }}</h1>
+  
+  <div class="store-locator__filters">
+    <input
+      type="text"
+      x-model="searchTerm"
+      @input="filterLocations"
+      class="store-locator__search"
+      placeholder="Search by name, address or state"
+    >
+    <select x-model="selectedState" @change="filterLocations" class="store-locator__state-select body">
+      <option value="" selected>All</option>
+      <option value="WA">WA</option>
+      <option value="SA">SA</option>
+      <option value="QLD">QLD</option>
+      <option value="NSW">NSW</option>
+      <option value="VIC">VIC</option>
+      <option value="ACT">ACT</option>
+    </select>
+  </div>
+  
+  <div class="store-locator__container">
+    <div class="store-locator__sidebar custom-scrollbar">
+      <div x-show="showNoResults" class="location-item">
+        <p class="body">
+          Sorry, your search for "<span x-text="searchTerm"></span>" returned zero results, please try another search
+          term.
+        </p>
+      </div>
+      {% paginate all_locations by 200 %}
+        {% liquid
+          # By default, location URIs are in the format "gid://...". So, we need to convert
+          # it into a string by calling "location.location_page.value.url"
+          assign all_locations = metaobjects.locations.values
+          assign all_locations_json = all_locations | json
+          assign locations_json_str = locations_json_str | append: all_locations_json
+        %}
+        
+        {% for location in metaobjects.locations.values %}
+          {% liquid
+            assign current_location_url = location.location_page.value.url | split: ' '
+            assign location_urls_array = location_urls_array | concat: current_location_url
+          %}
+          {% assign location_name = location.location_name.value %}
+          {% assign location_handle = location_name | handleize %}
+          {% assign location_street_address = location.street_address.value %}
+          {% assign location_state = location.location_state.value %}
+          {% assign location_latitude = location.latitude.value %}
+          {% assign location_longitude = location.longitude.value %}
+          {% assign location_page_url = location.location_page.value.url %}
+          {% assign location_opening_hours = location.opening_hours.value %}
+          {% assign location_google_maps_link = location.google_maps_link.value %}
+          {% assign location_email = location.email_address.value %}
+          {% assign location_phone_number = location.phone_number.value %}
+          
+          <div
+            class="location-item"
+            x-show="isLocationVisible('{{ location_name }}', '{{ location_street_address | default: '' }}', '{{ location_state | default: '' }}')"
+            data-lat="{{ location_latitude }}"
+            data-lng="{{ location_longitude }}"
+            data-state="{{ location_state }}"
+            data-hours="{{ location_opening_hours }}"
+            data-location-url="{{ location_page_url }}"
+          >
+            <div class="location-item__header">
+              <div
+                class="location-item__status-dot"
+                data-location-status="{{ location_handle }}"
+              ></div>
+              <h3 class="location-item__title heading--xl">{{ location_name }}</h3>
             </div>
-            {% paginate metaobjects.locations.values by 200 %}
-                {% liquid
-                    # By default, location URIs are in the format "gid://...". So, we need to convert
-                    # it into a string by calling "location.location_page.value.url"
-                    assign all_locations = metaobjects.locations.values
-                    assign all_locations_json = all_locations | json
-                    assign locations_json_str = locations_json_str | append: all_locations_json
-                %}
-
-                {% for location in metaobjects.locations.values %}
-                    {% liquid
-                        assign current_location_url = location.location_page.value.url | split: ' '
-                        assign location_urls_array = location_urls_array | concat: current_location_url
-                    %}
-
-                    <div
-                            class="location-item"
-                            x-show="isLocationVisible('{{ location.location_name.value }}', '{{ location.street_address.value | default: '' }}', '{{ location.location_state.value | default: '' }}')"
-                            data-lat="{{ location.latitude.value }}"
-                            data-lng="{{ location.longitude.value }}"
-                            data-state="{{ location.location_state.value }}"
-                            data-hours="{{ location.opening_hours.value }}"
-                            data-location-url="{{ location.location_page.value.url }}"
-                    >
-                        <div class="location-item__header">
-                            <div
-                                    class="location-item__status-dot"
-                                    data-location-status="{{ location.location_name.value | handleize }}"
-                            ></div>
-                            <h3 class="location-item__title heading--xl">{{ location.location_name.value }}</h3>
-                        </div>
-
-                        <div class="location-item__address body">
-                            <a target="_blank" href="{{ location.google_maps_link.value }}">{{ location.street_address.value }}</a>
-                        </div>
-
-                        <div class="location-item__contact body">
-                            <a href="mailto:{{ location.email_address.value }}">{{ location.email_address.value }}</a> |
-                            <a href="tel:{{ location.phone_number.value }}">{{ location.phone_number.value }}</a>
-                        </div>
-
-                        <div class="location-item__hours body">
-                            <strong>Open Today:</strong>
-                            <span data-today-hours="{{ location.location_name.value | handleize }}">
-                {{- location.opening_hours.value -}}
+            
+            <div class="location-item__address body">
+              <a target="_blank" href="{{ location_google_maps_link }}">{{ location_street_address }}</a>
+            </div>
+            
+            <div class="location-item__contact body">
+              <a href="mailto:{{ location_email }}">{{ location_email }}</a> |
+              <a href="tel:{{ location_phone_number }}">{{ location_phone_number }}</a>
+            </div>
+            
+            <div class="location-item__hours body">
+              <strong>Open Today:</strong>
+              <span data-today-hours="{{ location_handle }}">
+                {{- location_opening_hours -}}
               </span>
-                        </div>
-                        <div class="location-item__link body">
-                            <a href="{{ location.location_page.value.url }}">View Store Information</a>
-                        </div>
-                    </div>
-                {% endfor %}
-            {% endpaginate %}
-        </div>
-        <div class="store-locator__map">
-            <div id="map"></div>
-        </div>
+            </div>
+            <div class="location-item__link body">
+              <a href="{{ location_page_url }}">View Store Information</a>
+            </div>
+          </div>
+        {% endfor %}
+      {% endpaginate %}
     </div>
+    <div class="store-locator__map">
+      <div id="map"></div>
+    </div>
+  </div>
 </div>
-
+  
 <script
-        data-locations="{{ locations_json_str | escape }}"
-        data-location-urls="{{ location_urls_array | json | escape }}"
-        defer
+  data-locations="{{ locations_json_str | escape }}"
+  data-location-urls="{{ location_urls_array | json | escape }}"
+  defer
 >
     /** @type {Array} */
     const dataLocations = JSON.parse(document.currentScript.getAttribute('data-locations'));
@@ -164,7 +178,7 @@
             initMap() {
                 const isMobile = window.innerWidth < 1000;
                 const zoomLevel = isMobile ? 3 : 5;
-
+                
                 this.map = L.map('map').setView([-25.2744, 133.7751], zoomLevel);
 
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -192,23 +206,24 @@
                     }
 
                     var marker = L.marker([currentLocation.latitude, currentLocation.longitude], { icon: storeIcon }).bindPopup(`
-                <div class="location-item__header">
-                  <h3 class="location-item__title heading--xl">${currentLocation.location_name}</h3>
-                </div>
-                <div class="location-item__address body">
-                  <a href="${currentLocation.google_maps_link}">${currentLocation.street_address}</a>
-                </div>
-                <div class="location-item__contact body">
-                  <a href="mailto:${currentLocation.email_address}">${currentLocation.email_address}</a><br>
-                  <a href="tel:${currentLocation.phone_number}">${currentLocation.phone_number}</a>
-                </div>
-                <div class="location-item__hours body">
-                  <a href="${currentLocationUrl}">View Location Details</a>
-                </div>
-                <div>
-                  <a href="mailto:${currentLocation.email_address}" class="location-item__contact-button body">Contact Store</a>
-                </div>
-              `);
+                        <div class="location-item__header">
+                          <h3 class="location-item__title heading--xl">${currentLocation.location_name}</h3>
+                        </div>
+                        <div class="location-item__address body">
+                          <a href="${currentLocation.google_maps_link}">${currentLocation.street_address}</a>
+                        </div>
+                        <div class="location-item__contact body">
+                          <a href="mailto:${currentLocation.email_address}">${currentLocation.email_address}</a><br>
+                          <a href="tel:${currentLocation.phone_number}">${currentLocation.phone_number}</a>
+                        </div>
+                        <div class="location-item__hours body">
+                          <a href="${currentLocationUrl}">View Location Details</a>
+                        </div>
+                        <div>
+                          <a href="mailto:${currentLocation.email_address}" class="location-item__contact-button body">Contact Store</a>
+                        </div>
+                      `);
+
                     marker.locationData = {
                         name: currentLocation.location_name,
                         address: currentLocation.street_address ?? '',

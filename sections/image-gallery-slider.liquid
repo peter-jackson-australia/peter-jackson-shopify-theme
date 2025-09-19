@@ -4,30 +4,38 @@
 
 {{ 'section-image-gallery-slider.css' | asset_url | stylesheet_tag }}
 
+{% assign section_id = section.id %}
+{% assign show_top_border = section.settings.show_top_border %}
+{% assign show_bottom_border = section.settings.show_bottom_border %}
+{% assign heading = section.settings.heading %}
+{% assign subtitle = section.settings.subtitle %}
+{% assign alignment = section.settings.alignment %}
+{% assign blocks = section.blocks %}
+
 <div
   class="image-gallery-slider"
-  id="section-{{ section.id }}"
+  id="section-{{ section_id }}"
   style="
-    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
-    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
+    {% if show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
+    {% if show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
   "
 >
-  {% if section.settings.heading != blank or section.settings.subtitle != blank %}
-    <div class="image-gallery-slider__header image-gallery-slider__header--{{ section.settings.alignment }}">
+  {% if heading != blank or subtitle != blank %}
+    <div class="image-gallery-slider__header image-gallery-slider__header--{{ alignment }}">
       <div class="image-gallery-slider__header-content">
-        {% if section.settings.heading != blank %}
+        {% if heading != blank %}
           <h2 class="image-gallery-slider__title heading--decorative">
-            {{ section.settings.heading }}
+            {{ heading }}
           </h2>
         {% endif %}
 
-        {% if section.settings.heading != blank and section.settings.subtitle != blank %}
+        {% if heading != blank and subtitle != blank %}
           <span class="image-gallery-slider__divider"></span>
         {% endif %}
 
-        {% if section.settings.subtitle != blank %}
+        {% if subtitle != blank %}
           <h3 class="image-gallery-slider__subtitle heading--l">
-            {{ section.settings.subtitle }}
+            {{ subtitle }}
           </h3>
         {% endif %}
       </div>
@@ -43,14 +51,15 @@
       <div class="splide__track">
         <ul class="splide__list">
           {% for block in section.blocks %}
-            {% if block.settings.image != blank %}
+            {% assign image = block.settings.image %}
+            {% if image != blank %}
               <li class="splide__slide">
                 <img
-                  src="{{ block.settings.image | image_url: width: 800 }}"
-                  alt="{{ block.settings.image.alt | escape }}"
+                  src="{{ image | image_url: width: 800 }}"
+                  alt="{{ image.alt | escape }}"
                   loading="lazy"
-                  width="{{ block.settings.image.width }}"
-                  height="{{ block.settings.image.height }}"
+                  width="{{ image.width }}"
+                  height="{{ image.height }}"
                   class="image-gallery-slider__slide-image"
                   decoding="async"
                 >
@@ -65,7 +74,7 @@
 
 <script
   src="{{ "section-image-gallery-slider.js" | asset_url }}"
-  data-section-id="{{ section.id }}"
+  data-section-id="{{ section_id }}"
   defer
 ></script>
 

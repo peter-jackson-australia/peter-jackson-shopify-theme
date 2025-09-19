@@ -1,21 +1,31 @@
 {{ 'section-location-hero.css' | asset_url | stylesheet_tag }}
 
 {% assign location = page.metafields.custom.location_reference.value %}
+{% assign default_image = section.settings.default_image %}
 
 {% if location %}
-  <div class="location-hero" data-state="{{ location.location_state }}">
+  {% assign location_state = location.location_state %}
+  {% assign location_image = location.location_image %}
+  {% assign location_name = location.location_name %}
+  {% assign google_maps_link = location.google_maps_link %}
+  {% assign street_address = location.street_address %}
+  {% assign email_address = location.email_address %}
+  {% assign phone_number = location.phone_number %}
+  {% assign opening_hours = location.opening_hours %}
+
+  <div class="location-hero" data-state="{{ location_state }}">
     <div class="location-hero__image">
-      {% if location.location_image %}
+      {% if location_image %}
         <img
-          src="{{ location.location_image | image_url: width: 1400, height: 1400 }}"
-          alt="{{ location.location_name }}"
+          src="{{ location_image | image_url: width: 1400, height: 1400 }}"
+          alt="{{ location_name }}"
           width="600"
           height="600"
         >
       {% else %}
         <img
-          src="{{ section.settings.default_image | image_url: width: 1400, height: 1400 }}"
-          alt="{{ location.location_name }}"
+          src="{{ default_image | image_url: width: 1400, height: 1400 }}"
+          alt="{{ location_name }}"
           width="600"
           height="600"
         >
@@ -25,31 +35,31 @@
     <div class="location-hero__content">
       <div class="location-hero__header">
         <div class="location-hero__status-dot" id="location-status-dot"></div>
-        <h1 class="location-hero__title heading--2xl">{{ location.location_name }}</h1>
+        <h1 class="location-hero__title heading--2xl">{{ location_name }}</h1>
       </div>
 
       <div class="location-hero__address body">
-        <a href="{{ location.google_maps_link }}" target="_blank">{{ location.street_address }}</a>
+        <a href="{{ google_maps_link }}" target="_blank">{{ street_address }}</a>
       </div>
 
       <div class="location-hero__email body">
-        <a href="mailto:{{ location.email_address }}">{{ location.email_address }}</a>
+        <a href="mailto:{{ email_address }}">{{ email_address }}</a>
       </div>
 
       <div class="location-hero__phone body">
-        <a href="tel:{{ location.phone_number }}">{{ location.phone_number }}</a>
+        <a href="tel:{{ phone_number }}">{{ phone_number }}</a>
       </div>
 
       <div class="location-hero__hours">
         <div class="location-hero__hours-title body--bold">Opening Hours:</div>
-        <pre class="location-hero__hours-display body" id="opening-hours-display">{{ location.opening_hours }}</pre>
+        <pre class="location-hero__hours-display body" id="opening-hours-display">{{ opening_hours }}</pre>
       </div>
 
-      {% if location.location_description %}
-        <div class="location-hero__description body">{{ location.location_description }}</div>
+      {% if location_description %}
+        <div class="location-hero__description body">{{ location_description }}</div>
       {% endif %}
 
-      <a href="mailto:{{ location.email_address }}" class="location-hero__button body">Contact Us</a>
+      <a href="mailto:{{ email_address }}" class="location-hero__button body">Contact Us</a>
     </div>
   </div>
 
