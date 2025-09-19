@@ -9,107 +9,89 @@
  */
 {
   "sections": {
-    "shop_the_look_global_gJTjmQ": {
-      "type": "shop-the-look-global",
-      "name": "Shop the Look Global",
-      "settings": {
-        "anchor_id": "test",
-        "show_top_border": true,
-        "show_bottom_border": true,
-        "heading": "Shop the Look 2",
-        "heading_animation": "animate-word-rotate-scroll",
-        "featured_image": "shopify://shop_images/Suits_Desktop_copy.webp",
-        "product1": "albinoni-penny-black-loafer",
-        "product2": "aldo-black-leather-briefcase",
-        "product3": "alessio-dark-olive-denim-jacket"
-      }
-    },
-    "variable_column_content_MCdUGD": {
-      "type": "variable-column-content",
-      "name": "Variable Column Content",
-      "settings": {
-        "anchor_id": "hntuheoantsu",
-        "show_top_border": true,
-        "show_bottom_border": true,
-        "column_count": "6",
-        "text_alignment": "center",
-        "animate_images": true,
-        "image_1": "shopify://shop_images/Suits_Desktop_copy.webp",
-        "image_1_link": "",
-        "image_2": "shopify://shop_images/men-shirt-grey-SU25-A23_3.webp",
-        "image_2_link": "",
-        "image_3": "shopify://shop_images/men-shirt-grey-SU25-A23_2.webp",
-        "image_3_link": "",
-        "image_4": "shopify://shop_images/men-shirt-grey-SU25-A23_1.webp",
-        "image_4_link": "shopify://collections/all",
-        "image_5": "shopify://shop_images/men-shirt-orange-cotton-SU25-A09-OR_5.webp",
-        "image_5_link": "",
-        "image_6": "shopify://shop_images/men-shirt-purple-cotton-SU25-A11-GR_1.webp",
-        "image_6_link": "",
-        "heading": "Variable Column Content",
-        "heading_animation": "none",
-        "text": "Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.",
-        "text_animation": "none",
-        "button_label": "Learn More",
-        "button_link": "shopify://policies/terms-of-service"
-      }
-    },
-    "variable_column_content_secondary_Xpqq6A": {
-      "type": "variable-column-content-secondary",
+    "variable_column_content_tertiary_fkPD3N": {
+      "type": "variable-column-content-tertiary",
       "blocks": {
-        "column_item_f7ABtD": {
+        "column_item_qVGBP3": {
           "type": "column_item",
           "settings": {
             "image": "shopify://shop_images/Suits_Desktop_copy.webp",
-            "image_link": "shopify://blogs/the-jackson-journal",
-            "heading": "one with image",
+            "image_link": "shopify://blogs/the-jackson-journal/higher-ground",
+            "heading": "Column Heading",
             "heading_animation": "none",
             "text": "Add a brief description for this column item.",
             "text_animation": "none",
-            "column_link": "shopify://pages/burwood",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "top",
+            "column_link": "",
             "column_link_text": "Shop Now"
           }
         },
-        "column_item_HtQRwr": {
+        "column_item_ATfX4j": {
           "type": "column_item",
           "settings": {
+            "image": "shopify://shop_images/men-shirt-grey-SU25-A23_5.webp",
             "image_link": "",
-            "heading": "One without image",
-            "heading_animation": "none",
+            "heading": "Column Heading",
+            "heading_animation": "animate-word-rotate-scroll",
             "text": "Add a brief description for this column item.",
-            "text_animation": "none",
-            "column_link": "shopify://collections/business",
-            "column_link_text": "Business"
+            "text_animation": "animate-paragraph-slide-up-scroll",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "center",
+            "content_vertical_alignment": "center",
+            "column_link": "shopify://policies/shipping-policy",
+            "column_link_text": "Shop Now"
           }
         },
-        "column_item_xQdYGb": {
+        "column_item_pdjgAn": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/men-blazer-blue-wool-cotton-SU25-SP06_1101_10.webp",
+            "image": "shopify://shop_images/men-shirt-purple-cotton-SU25-A11-GR_3.webp",
             "image_link": "",
             "heading": "Column Heading",
             "heading_animation": "none",
             "text": "Add a brief description for this column item.",
             "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "right",
+            "content_vertical_alignment": "bottom",
             "column_link": "shopify://blogs/the-jackson-journal",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_kaVwhj": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/men-shirt-orange-SU25-A03-COR_2.webp",
+            "image_link": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "center",
+            "content_vertical_alignment": "top",
+            "column_link": "",
             "column_link_text": "Shop Now"
           }
         }
       },
       "block_order": [
-        "column_item_f7ABtD",
-        "column_item_HtQRwr",
-        "column_item_xQdYGb"
+        "column_item_qVGBP3",
+        "column_item_ATfX4j",
+        "column_item_pdjgAn",
+        "column_item_kaVwhj"
       ],
-      "name": "Variable Column Content Secondary",
+      "name": "Variable Column Content Tertiary",
       "settings": {
         "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": false,
-        "column_count": "3",
-        "text_alignment": "left",
-        "animate_columns": false,
-        "heading": "Variable Column Content Secondary",
+        "show_top_border": true,
+        "show_bottom_border": true,
+        "column_count": "4",
+        "text_alignment": "right",
+        "animate_columns": true,
+        "heading": "Variable Column Content Tertiary",
         "heading_animation": "none",
         "text": "Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.",
         "text_animation": "none",
@@ -119,8 +101,6 @@
     }
   },
   "order": [
-    "shop_the_look_global_gJTjmQ",
-    "variable_column_content_MCdUGD",
-    "variable_column_content_secondary_Xpqq6A"
+    "variable_column_content_tertiary_fkPD3N"
   ]
 }
