@@ -37,8 +37,8 @@ body {
   height: 100%;
 }
 
-html {
-  overflow-y: scroll;
+body {
+  overflow-x: hidden;
 }
 
 ul[role="list"],
