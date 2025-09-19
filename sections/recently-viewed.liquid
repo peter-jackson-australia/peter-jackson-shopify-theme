@@ -1,11 +1,13 @@
 {{ 'section-recently-viewed.css' | asset_url | stylesheet_tag }}
 
+{% assign heading = section.settings.heading %}
+
 <div
   id="recently-viewed"
   class="recently-viewed"
 >
   <div>
-    <h2 class="recently-viewed__header heading--xl">{{ section.settings.heading }}</h2>
+    <h2 class="recently-viewed__header heading--xl">{{ heading }}</h2>
     <div id="js--recently_viewed" class="recently-viewed__grid"></div>
   </div>
 </div>
