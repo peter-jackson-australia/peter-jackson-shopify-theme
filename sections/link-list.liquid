@@ -13,9 +13,9 @@
 <div
   class="link-list link-list--align-{{ alignment }}"
   style="
-    {% if show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
-    {% if show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
-  "
+  {% if show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
+  {% if show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
+    "
 >
   <div class="link-list__wrapper">
     {% if heading != blank %}
@@ -23,14 +23,14 @@
         <h2 class="heading--xl">{{ heading }}</h2>
       </div>
     {% endif %}
-
+    
     <div class="link-list__content">
       <ul class="link-list__list">
         {% for block in blocks %}
           {% assign type = block.type %}
-          {% assign link_text = block.settings.link_test %}
+          {% assign link_text = block.settings.link_text %}
           {% assign link_url = block.settings.link_url %}
-          {% case block.type %}
+          {% case type %}
             {% when 'link' %}
               {% if link_text != blank and link_url != blank %}
                 <li>
