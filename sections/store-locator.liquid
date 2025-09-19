@@ -188,23 +188,24 @@
                         }
 
                         var marker = L.marker([currentLocation.latitude, currentLocation.longitude], { icon: storeIcon }).bindPopup(`
-                <div class="location-item__header">
-                  <h3 class="location-item__title heading--xl">${currentLocation.location_name}</h3>
-                </div>
-                <div class="location-item__address body">
-                  <a href="${currentLocation.google_maps_link}">${currentLocation.street_address}</a>
-                </div>
-                <div class="location-item__contact body">
-                  <a href="mailto:${currentLocation.email_address}">${currentLocation.email_address}</a><br>
-                  <a href="tel:${currentLocation.phone_number}">${currentLocation.phone_number}</a>
-                </div>
-                <div class="location-item__hours body">
-                  <a href="${currentLocationUrl}">View Location Details</a>
-                </div>
-                <div>
-                  <a href="mailto:${currentLocation.email_address}" class="location-item__contact-button body">Contact Store</a>
-                </div>
-              `);
+                          <div class="location-item__header">
+                            <h3 class="location-item__title heading--xl">${currentLocation.location_name}</h3>
+                          </div>
+                          <div class="location-item__address body">
+                            <a href="${currentLocation.google_maps_link}">${currentLocation.street_address}</a>
+                          </div>
+                          <div class="location-item__contact body">
+                            <a href="mailto:${currentLocation.email_address}">${currentLocation.email_address}</a><br>
+                            <a href="tel:${currentLocation.phone_number}">${currentLocation.phone_number}</a>
+                          </div>
+                          <div class="location-item__hours body">
+                            <a href="${currentLocationUrl}">View Location Details</a>
+                          </div>
+                          <div>
+                            <a href="mailto:${currentLocation.email_address}" class="location-item__contact-button body">Contact Store</a>
+                          </div>
+                        `);
+
                         marker.locationData = {
                             name: currentLocation.location_name,
                             address: currentLocation.street_address ?? '',
