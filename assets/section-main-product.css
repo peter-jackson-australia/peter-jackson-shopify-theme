@@ -139,7 +139,8 @@
 }
 
 #product {
-  display: flex;
+  display: grid;
+    grid-template-columns: 1fr 1fr;
   gap: 0;
 }
 
@@ -656,6 +657,7 @@ body.modal-open {
   }
 
   #product {
+    display: flex;
     flex-direction: column;
   }
 
