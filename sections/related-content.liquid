@@ -61,8 +61,8 @@
     </div>
 
     <div class="related-articles__posts">
+      {% assign related_count = 0 %}
       {% for article in jackson_journal_articles limit: 50 %}
-        {% assign related_count = 0 %}
         {% assign article_image = article.image %}
         {% assign article_tags = article.tags %}
         {% assign article_title = article.title %}
@@ -92,7 +92,7 @@
               {% endif %}
 
               <h3 class="related-articles__post-title heading--l">
-                <a href="{{ article_url }}">{{ article_title }}</a>
+                <a href="{{ article_url }}">{{ article_title }} --> {{ related_count }}</a>
               </h3>
 
               <a href="{{ article_url }}" class="related-articles__post-link-container">

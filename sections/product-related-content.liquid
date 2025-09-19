@@ -52,8 +52,8 @@
           <div class="related-articles__text body">{{ description }}</div>
         {% endif %}
 
-          {% assign cta_link = section.settings.cta_link %}
-          {% assign cta_text = section.settings.cta_text %}
+        {% assign cta_link = section.settings.cta_link %}
+        {% assign cta_text = section.settings.cta_text %}
 
         {% if cta_link != blank and cta_text != blank %}
           <a href="{{ scta_link }}" class="related-articles__link body">
