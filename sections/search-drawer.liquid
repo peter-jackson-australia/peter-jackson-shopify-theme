@@ -1,5 +1,29 @@
 {{ 'section-search-drawer.css' | asset_url | stylesheet_tag }}
 
+{% assign popular_searches = '' %}
+{% assign popular_searches = popular_searches | append: section.settings.popular_search_1 | append: '|' %}
+{% assign popular_searches = popular_searches | append: section.settings.popular_search_2 | append: '|' %}
+{% assign popular_searches = popular_searches | append: section.settings.popular_search_3 | append: '|' %}
+{% assign popular_searches = popular_searches | append: section.settings.popular_search_4 %}
+{% assign popular_searches_array = popular_searches | split: '|' %}
+
+{% assign faq_1_title = section.settings.faq_1_title %}
+{% assign faq_1_description = section.settings.faq_1_description %}
+{% assign faq_2_title = section.settings.faq_2_title %}
+{% assign faq_2_description = section.settings.faq_2_description %}
+{% assign faq_3_title = section.settings.faq_3_title %}
+{% assign faq_3_description = section.settings.faq_3_description %}
+{% assign faq_4_title = section.settings.faq_4_title %}
+{% assign faq_4_description = section.settings.faq_4_description %}
+
+{% assign has_popular_searches = false %}
+{% for search_term in popular_searches_array %}
+  {% unless search_term == blank %}
+    {% assign has_popular_searches = true %}
+    {% break %}
+  {% endunless %}
+{% endfor %}
+
 <aside
   id="searchDrawer"
   class="search-drawer"
@@ -70,21 +94,6 @@
             style="display: none;"
           ></button>
         </div>
-
-        {% assign popular_searches = '' %}
-        {% assign popular_searches = popular_searches | append: section.settings.popular_search_1 | append: '|' %}
-        {% assign popular_searches = popular_searches | append: section.settings.popular_search_2 | append: '|' %}
-        {% assign popular_searches = popular_searches | append: section.settings.popular_search_3 | append: '|' %}
-        {% assign popular_searches = popular_searches | append: section.settings.popular_search_4 %}
-        {% assign popular_searches_array = popular_searches | split: '|' %}
-
-        {% assign has_popular_searches = false %}
-        {% for search_term in popular_searches_array %}
-          {% unless search_term == blank %}
-            {% assign has_popular_searches = true %}
-            {% break %}
-          {% endunless %}
-        {% endfor %}
 
         {% if has_popular_searches %}
           <div
@@ -178,54 +187,55 @@
     </header>
     <div class="sub-drawer__content">
       <div class="faq-list">
-        {% if section.settings.faq_1_title != blank %}
+        
+        {% if faq_1_title != blank %}
           <div class="faq-item">
-            <h3 class="faq-item__title body--bold">{{ section.settings.faq_1_title }}</h3>
+            <h3 class="faq-item__title body--bold">{{ faq_1_title }}</h3>
             <p
               class="faq-item__description body"
-              data-full-text="{{ section.settings.faq_1_description | escape }}"
+              data-full-text="{{ faq_1_description | escape }}"
             ></p>
-            {% if section.settings.faq_1_link != blank %}
-              <a href="{{ section.settings.faq_1_link }}" class="faq-item__link body">Learn more</a>
+            {% if faq_1_link != blank %}
+              <a href="{{ faq_1_link }}" class="faq-item__link body">Learn more</a>
             {% endif %}
           </div>
         {% endif %}
 
-        {% if section.settings.faq_2_title != blank %}
+        {% if faq_2_title != blank %}
           <div class="faq-item">
-            <h3 class="faq-item__title body--bold">{{ section.settings.faq_2_title }}</h3>
+            <h3 class="faq-item__title body--bold">{{ faq_2_title }}</h3>
             <p
               class="faq-item__description body"
-              data-full-text="{{ section.settings.faq_2_description | escape }}"
+              data-full-text="{{ faq_2_description | escape }}"
             ></p>
-            {% if section.settings.faq_2_link != blank %}
-              <a href="{{ section.settings.faq_2_link }}" class="faq-item__link body">Learn more</a>
+            {% if faq_2_link != blank %}
+              <a href="{{ faq_2_link }}" class="faq-item__link body">Learn more</a>
             {% endif %}
           </div>
         {% endif %}
 
-        {% if section.settings.faq_3_title != blank %}
+        {% if faq_3_title != blank %}
           <div class="faq-item">
-            <h3 class="faq-item__title body--bold">{{ section.settings.faq_3_title }}</h3>
+            <h3 class="faq-item__title body--bold">{{ faq_3_title }}</h3>
             <p
               class="faq-item__description body"
-              data-full-text="{{ section.settings.faq_3_description | escape }}"
+              data-full-text="{{ faq_3_description | escape }}"
             ></p>
-            {% if section.settings.faq_3_link != blank %}
-              <a href="{{ section.settings.faq_3_link }}" class="faq-item__link body">Learn more</a>
+            {% if faq_3_link != blank %}
+              <a href="{{ faq_3_link }}" class="faq-item__link body">Learn more</a>
             {% endif %}
           </div>
         {% endif %}
 
-        {% if section.settings.faq_4_title != blank %}
+        {% if faq_4_title != blank %}
           <div class="faq-item">
-            <h3 class="faq-item__title body--bold">{{ section.settings.faq_4_title }}</h3>
+            <h3 class="faq-item__title body--bold">{{ faq_4_title }}</h3>
             <p
               class="faq-item__description body"
-              data-full-text="{{ section.settings.faq_4_description | escape }}"
+              data-full-text="{{ faq_4_description | escape }}"
             ></p>
-            {% if section.settings.faq_4_link != blank %}
-              <a href="{{ section.settings.faq_4_link }}" class="faq-item__link body">Learn more</a>
+            {% if faq_4_link != blank %}
+              <a href="{{ faq_4_link }}" class="faq-item__link body">Learn more</a>
             {% endif %}
           </div>
         {% endif %}
