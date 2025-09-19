@@ -23,9 +23,40 @@
         "product2": "aldo-black-leather-briefcase",
         "product3": "alessio-dark-olive-denim-jacket"
       }
+    },
+    "variable_column_content_MCdUGD": {
+      "type": "variable-column-content",
+      "name": "Variable Column Content",
+      "settings": {
+        "anchor_id": "hntuheoantsu",
+        "show_top_border": true,
+        "show_bottom_border": true,
+        "column_count": "6",
+        "text_alignment": "center",
+        "animate_images": true,
+        "image_1": "shopify://shop_images/Suits_Desktop_copy.webp",
+        "image_1_link": "",
+        "image_2": "shopify://shop_images/men-shirt-grey-SU25-A23_3.webp",
+        "image_2_link": "",
+        "image_3": "shopify://shop_images/men-shirt-grey-SU25-A23_2.webp",
+        "image_3_link": "",
+        "image_4": "shopify://shop_images/men-shirt-grey-SU25-A23_1.webp",
+        "image_4_link": "shopify://collections/all",
+        "image_5": "shopify://shop_images/men-shirt-orange-cotton-SU25-A09-OR_5.webp",
+        "image_5_link": "",
+        "image_6": "shopify://shop_images/men-shirt-purple-cotton-SU25-A11-GR_1.webp",
+        "image_6_link": "",
+        "heading": "Variable Column Content",
+        "heading_animation": "none",
+        "text": "Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": "shopify://policies/terms-of-service"
+      }
     }
   },
   "order": [
-    "shop_the_look_global_gJTjmQ"
+    "shop_the_look_global_gJTjmQ",
+    "variable_column_content_MCdUGD"
   ]
 }
