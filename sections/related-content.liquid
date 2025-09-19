@@ -4,46 +4,56 @@
 
 {{ 'section-related-content.css' | asset_url | stylesheet_tag }}
 
+{% assign section_id = section.id %}
 {% assign collection_id = collection.id %}
 {% assign has_related_articles = false %}
 {% assign related_count = 0 %}
+{% assign jackson_journal_articles = blogs['the-jackson-journal'].articles %}
 
-{% for article in blogs['the-jackson-journal'].articles limit: 50 %}
-  {% assign is_related = false %}
-  {% for related_collection in article.metafields.custom.related_collections.value %}
-    {% if related_collection.id == collection_id %}
-      {% assign has_related_articles = true %}
-      {% break %}
-    {% endif %}
-  {% endfor %}
-  {% if has_related_articles %}
-    {% break %}
-  {% endif %}
-{% endfor %}
+{% assign heading = section.settings.heading %}
+{% assign subheading = section.settings.subheading %}
+{% assign description = section.settings.description %}
+{% assign cta_link = section.settings.cta_link %}
+{% assign cta_text = section.settings.cta_text %}
+
+{% liquid
+  for article in jackson_journal_articles limit: 50
+    assign is_related = false
+    for related_collection in article.metafields.custom.related_collections.value
+      if related_collection.id == collection_id
+        assign has_related_articles = true
+        break
+      endif
+    endfor
+    if has_related_articles
+      break
+    endif
+  endfor
+%}
 
 {% if has_related_articles %}
-  <div class="related-articles" id="section-{{ section.id }}">
+  <div class="related-articles" id="section-{{ section_id }}">
     <div class="related-articles__content">
       <div class="related-articles__header">
-        {% if section.settings.heading != blank %}
-          <h2 class="related-articles__title heading--decorative">{{ section.settings.heading }}</h2>
+        {% if heading != blank %}
+          <h2 class="related-articles__title heading--decorative">{{ heading }}</h2>
         {% endif %}
 
         <span class="related-articles__divider"></span>
 
-        {% if section.settings.subheading != blank %}
-          <div class="related-articles__subtitle heading--l">{{ section.settings.subheading }}</div>
+        {% if subheading != blank %}
+          <div class="related-articles__subtitle heading--l">{{ subheading }}</div>
         {% endif %}
       </div>
 
       <div class="related-articles__description">
-        {% if section.settings.description != blank %}
-          <div class="related-articles__text body">{{ section.settings.description }}</div>
+        {% if description != blank %}
+          <div class="related-articles__text body">{{ description }}</div>
         {% endif %}
 
-        {% if section.settings.cta_link != blank and section.settings.cta_text != blank %}
-          <a href="{{ section.settings.cta_link }}" class="related-articles__link body">
-            {{ section.settings.cta_text }}
+        {% if cta_link != blank and cta_text != blank %}
+          <a href="{{ cta_link }}" class="related-articles__link body">
+            {{ cta_text }}
             {% render '_icon-arrow-submit-dark' %}
           </a>
         {% endif %}
@@ -51,35 +61,41 @@
     </div>
 
     <div class="related-articles__posts">
-      {% assign related_count = 0 %}
+      {% for article in jackson_journal_articles limit: 50 %}
+        {% assign related_count = 0 %}
+        {% assign article_image = article.image %}
+        {% assign article_tags = article.tags %}
+        {% assign article_title = article.title %}
+        {% assign article_url = article.url %}
 
-      {% for article in blogs['the-jackson-journal'].articles limit: 50 %}
-        {% assign is_related = false %}
-        {% for related_collection in article.metafields.custom.related_collections.value %}
-          {% if related_collection.id == collection_id %}
-            {% assign is_related = true %}
-            {% break %}
-          {% endif %}
-        {% endfor %}
+        {% liquid
+          assign is_related = false
+          for related_collection in article.metafields.custom.related_collections.value
+            if related_collection.id == collection_id
+              assign is_related = true
+              break
+            endif
+          endfor
+        %}
 
         {% if is_related %}
           <article class="related-articles__post">
-            {% if article.image %}
-              <a href="{{ article.url }}" class="related-articles__post-image">
-                {{ article.image | image_url: width: 2000 | image_tag: loading: 'lazy', alt: article.title }}
+            {% if article_image %}
+              <a href="{{ article_url }}" class="related-articles__post-image">
+                {{ article_image | image_url: width: 2000 | image_tag: loading: 'lazy', alt: article_title }}
               </a>
             {% endif %}
 
             <div class="related-articles__post-content">
-              {% if article.tags.size > 0 %}
-                <div class="related-articles__post-category small">{{ article.tags.first }}</div>
+              {% if article_tags.size > 0 %}
+                <div class="related-articles__post-category small">{{ article_tags.first }}</div>
               {% endif %}
 
               <h3 class="related-articles__post-title heading--l">
-                <a href="{{ article.url }}">{{ article.title }}</a>
+                <a href="{{ article_url }}">{{ article_title }}</a>
               </h3>
 
-              <a href="{{ article.url }}" class="related-articles__post-link-container">
+              <a href="{{ article_url }}" class="related-articles__post-link-container">
                 <span class="related-articles__post-link body"
                   >Read Article {% render '_icon-arrow-submit-dark' -%}
                 </span>
@@ -102,36 +118,42 @@
         </div>
         <div class="splide__track">
           <ul class="splide__list">
-            {% assign related_count = 0 %}
+            {% for article in jackson_journal_articles limit: 50 %}
+              {% assign related_count = 0 %}
+              {% assign article_title = article.title %}
+              {% assign article_image = article.image %}
+              {% assign article_url = article.url %}
+              {% assign article_tags = article.tags %}
 
-            {% for article in blogs['the-jackson-journal'].articles limit: 50 %}
-              {% assign is_related = false %}
-              {% for related_collection in article.metafields.custom.related_collections.value %}
-                {% if related_collection.id == collection_id %}
-                  {% assign is_related = true %}
-                  {% break %}
-                {% endif %}
-              {% endfor %}
+              {% liquid
+                assign is_related = false
+                for related_collection in article.metafields.custom.related_collections.value
+                  if related_collection.id == collection_id
+                    assign is_related = true
+                    break
+                  endif
+                endfor
+              %}
 
               {% if is_related %}
                 <li class="splide__slide">
                   <article class="related-articles__post">
-                    {% if article.image %}
-                      <a href="{{ article.url }}" class="related-articles__post-image">
-                        {{ article.image | image_url: width: 600 | image_tag: loading: 'lazy', alt: article.title }}
+                    {% if article_image %}
+                      <a href="{{ article_url }}" class="related-articles__post-image">
+                        {{ article_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: article_title }}
                       </a>
                     {% endif %}
 
                     <div class="related-articles__post-content">
-                      {% if article.tags.size > 0 %}
-                        <div class="related-articles__post-category small">{{ article.tags.first }}</div>
+                      {% if article_tags.size > 0 %}
+                        <div class="related-articles__post-category small">{{ article_tags.first }}</div>
                       {% endif %}
 
                       <h3 class="related-articles__post-title heading--l">
-                        <a href="{{ article.url }}">{{ article.title }}</a>
+                        <a href="{{ article_url }}">{{ article_title }}</a>
                       </h3>
 
-                      <a href="{{ article.url }}" class="related-articles__post-link-container">
+                      <a href="{{ article_url }}" class="related-articles__post-link-container">
                         <span class="related-articles__post-link body"
                           >Read Article {% render '_icon-arrow-submit-dark' -%}
                         </span>
@@ -153,7 +175,7 @@
 
   <script
     src="{{ "section-related-content.js" | asset_url }}"
-    data-section-id="{{ section.id }}"
+    data-section-id="{{ section_id }}"
     defer
   ></script>
 {% endif %}
