@@ -1,33 +1,39 @@
 {{ 'section-main-article.css' | asset_url | stylesheet_tag }}
 
-{% liquid
-  assign image_width = 800
-  assign image_height = image_width | divided_by: article.image.aspect_ratio | ceil
-%}
+{% assign image_width = 800 %}
+{% assign image_height = image_width | divided_by: article.image.aspect_ratio | ceil %}
+{% assign section_id = section.id %}
+{% assign title = section.title %}
+{% assign content = article.content %}
+{% assign excerpt = article.excerpt %}
+{% assign published_at = article.published_at %}
+{% assign tags = article.tags %}
+{% assign hero_image = article.metafields.custom.blog_landscape_hero_image %}
+{% assign display_image = hero_image | default: article.image %}
 
-<section id="{{ section.id }}">
+<section id="{{ section_id }}">
   <article>
     <header class="article-header">
-      <h1 class="article-header__title heading--2xl">{{ article.title }}</h1>
+      <h1 class="article-header__title heading--2xl">{{ title }}</h1>
 
-      {% if article.excerpt != blank %}
+      {% if excerpt != blank %}
         <div class="article-header__excerpt body">
-          {{ article.excerpt }}
+          {{ excerpt }}
         </div>
       {% endif %}
 
       <div class="article-header__meta">
-        <p class="small">{{ article.published_at | date: '%b %d, %Y' }}</p>
+        <p class="small">{{ published_at | date: '%b %d, %Y' }}</p>
       </div>
 
-      {% if article.tags.size > 0 %}
+      {% if tags.size > 0 %}
         <div class="article-header__tags">
           <p class="small">
             {% liquid
-              if article.tags.size > 1
-                assign display_tag = article.tags[1]
+              if tags.size > 1
+                assign display_tag = tags[1]
               else
-                assign display_tag = article.tags[0]
+                assign display_tag = tags[0]
               endif
             %}
             <a
@@ -40,25 +46,20 @@
         </div>
       {% endif %}
 
-      {% liquid
-        assign hero_image = article.metafields.custom.blog_landscape_hero_image
-        assign display_image = hero_image | default: article.image
-      %}
-
       {% if display_image %}
         <div class="article-header__image">
           <img
             src="{{ display_image | image_url: width: image_width }}"
             width="{{ image_width }}"
             height="{{ image_height }}"
-            alt="{{ article.title | escape }}"
+            alt="{{ title | escape }}"
             loading="lazy"
           >
         </div>
       {% endif %}
     </header>
     <div class="article-content">
-      {{ article.content }}
+      {{ content }}
     </div>
     <div class="article-related">
       <div class="article-related__header">
