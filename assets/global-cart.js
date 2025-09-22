@@ -18,7 +18,7 @@ const showError = (errorMessageContainer, text) => {
   setTimeout(() => errorMessageContainer.querySelector(".product-error")?.remove(), 3000);
 };
 
-const isGiftCard = element => (element?.querySelector?.(".cart-item__title a, .product-details__title")?.textContent).toLowerCase().includes("gift card");
+const isGiftCard = (element) => element?.querySelector?.(".cart-item__title a, .product-details__title")?.textContent.toLowerCase().includes("gift card");
 
 const validateInventory = (maxInventory, currentQty, requestedQty) => {
   const availableLimit = maxInventory === Infinity ? Infinity : Math.max(0, maxInventory - 5);
@@ -31,10 +31,7 @@ const validateInventory = (maxInventory, currentQty, requestedQty) => {
   return {
     isAllowed: false,
     availableLimit,
-    errorMessage:
-      availableLimit === 0
-        ? "Sorry, this item is out of stock."
-        : `Sorry, only ${availableLimit} ${availableLimit === 1 ? "item" : "items"} available.`,
+    errorMessage: availableLimit === 0 ? "Sorry, this item is out of stock." : `Sorry, only ${availableLimit} ${availableLimit === 1 ? "item" : "items"} available.`,
   };
 };
 
@@ -287,10 +284,7 @@ const refreshCartContent = async () => {
         const progressEl = newShipping.querySelector(".cart__shipping-progress");
 
         if (cartData && textEl && progressEl) {
-          textEl.textContent =
-            cartData.total_price >= threshold
-              ? "Your Order Has Free Shipping!"
-              : `${Shopify.formatMoney(threshold - cartData.total_price)} Away From Free Shipping`;
+          textEl.textContent = cartData.total_price >= threshold ? "Your Order Has Free Shipping!" : `${Shopify.formatMoney(threshold - cartData.total_price)} Away From Free Shipping`;
           progressEl.style.width = currentProgressWidth;
         }
       }
@@ -393,9 +387,7 @@ const showItemLoading = (item) => {
 
   const actions = item.querySelector(".cart-item__actions");
   if (actions) {
-    actions.innerHTML = `<div class="placeholder-loader">${
-      createLoader().outerHTML
-    }</div><div class="placeholder-remove"></div>`;
+    actions.innerHTML = `<div class="placeholder-loader">${createLoader().outerHTML}</div><div class="placeholder-remove"></div>`;
   }
 };
 
@@ -415,9 +407,7 @@ const addOptimisticItem = (container, variantId, image, name) => {
           <a href="${window.location.pathname}">${name}</a>
         </h3>
         <div class="cart-item__specifics">
-          <div class="cart-item__variant small" style="display: flex; align-items: center; height: auto;">${
-            createLoader().outerHTML
-          }</div>
+          <div class="cart-item__variant small" style="display: flex; align-items: center; height: auto;">${createLoader().outerHTML}</div>
           <div class="cart-item__price"><div class="price-placeholder">${createLoader().outerHTML}</div></div>
         </div>
         <div class="cart-item__actions">

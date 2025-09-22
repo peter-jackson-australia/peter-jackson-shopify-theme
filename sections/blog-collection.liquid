@@ -2,6 +2,12 @@
   Blog collection section
 {% endcomment %}
 
+{% if request.path == '/blogs/the-jackson-journal' %}
+  <script>
+    window.location.href = '/pages/the-jackson-journal';
+  </script>
+{% endif %}
+
 {{ 'section-blog-collection.css' | asset_url | stylesheet_tag }}
 
 {% assign selected_blog = blogs[section.settings.blog] %}
