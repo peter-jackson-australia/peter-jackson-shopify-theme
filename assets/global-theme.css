@@ -184,6 +184,61 @@ a {
   color: var(--neutral-950);
 }
 
+/* Variant selectors */
+
+/* Variant Options - Used by Secondary Drawer */
+.variant-options {
+  border: none;
+  margin: 0 0 var(--space-m) 0;
+  padding: 0;
+}
+
+.variant-options legend {
+  color: var(--neutral-950);
+  margin-bottom: var(--space-xs);
+}
+
+.variant-options__list {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.variant-option {
+  position: relative;
+}
+
+.variant-option input[type="radio"] {
+  height: 0;
+  opacity: 0;
+  position: absolute;
+  width: 0;
+}
+
+.variant-option label {
+  color: var(--neutral-950);
+  cursor: pointer;
+  display: inline-block;
+  padding: 0;
+  position: relative;
+  border: 1px solid var(--neutral-200);
+  padding: var(--space-2xs) var(--space-2xs);
+}
+
+.variant-option input[type="radio"]:checked + label {
+  border: 1px solid var(--neutral-950);
+}
+
+.variant-option input[type="radio"]:checked + label::after {
+  display: none;
+}
+
+.variant-option input[type="radio"]:disabled + label {
+  color: var(--neutral-200);
+  cursor: not-allowed;
+}
+
 /* Splide */
 
 @keyframes splide-loading {

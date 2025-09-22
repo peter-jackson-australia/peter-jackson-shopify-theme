@@ -14,7 +14,7 @@ let secondaryDrawerState = {
   currentItemKey: null,
   currentIndex: 0,
   productData: null,
-  splideInstance: null,
+  splideInstance: null
 };
 
 const utils = {
@@ -90,16 +90,18 @@ const secondaryDrawer = {
     if (!productUrl) return;
 
     secondaryDrawerState.currentItemKey = lineItemKey;
-
+    
     const cartItems = [...document.querySelectorAll(".cart-item")];
-    secondaryDrawerState.currentIndex = cartItems.findIndex((item) => item.getAttribute("data-line-item-key") === lineItemKey);
+    secondaryDrawerState.currentIndex = cartItems.findIndex(item => 
+      item.getAttribute("data-line-item-key") === lineItemKey
+    );
 
     const container = document.querySelector(".cart-secondary");
     if (!container) return;
 
     container.classList.add("cart-secondary--active");
     secondaryDrawerState.isOpen = true;
-
+    
     await this.loadProductData(productUrl);
   },
 
@@ -111,7 +113,18 @@ const secondaryDrawer = {
 
     try {
       const productHandle = productUrl.split("/products/")[1]?.split("?")[0];
-      const [productRes, sectionRes] = await Promise.all([fetch(`/products/${productHandle}.js`), fetch(`${productUrl}?section_id=main-product`)]);
+      
+      const url = new URL(productUrl, window.location.origin);
+      url.searchParams.set("section_id", "main-product");
+      
+      const [productRes, sectionRes] = await Promise.all([
+        fetch(`/products/${productHandle}.js`),
+        fetch(url.toString())
+      ]);
+
+      if (!productRes.ok || !sectionRes.ok) {
+        throw new Error(`Failed to fetch: Product ${productRes.status}, Section ${sectionRes.status}`);
+      }
 
       const productData = await productRes.json();
       const sectionHTML = await sectionRes.text();
@@ -136,7 +149,7 @@ const secondaryDrawer = {
     if (!container) return;
 
     container.innerHTML = `
-      ${isMobile ? '<button class="cart-secondary__back" type="button"><svg width="7" height="12" viewBox="0 0 7 12" xmlns="http://www.w3.org/2000/svg"><path d="M6 1L1 6L6 11" stroke="#0F0F0F" stroke-linecap="square"/></svg> Back</button>' : ""}
+      <button class="cart-secondary__back" type="button"><svg width="7" height="12" viewBox="0 0 7 12" xmlns="http://www.w3.org/2000/svg"><path d="M6 1L1 6L6 11" stroke="#0F0F0F" stroke-linecap="square"/></svg> Back</button>
       <div class="cart-secondary__navigation">
         <button class="cart-secondary__nav-prev" type="button">←</button>
         <span class="cart-secondary__nav-info"></span>
@@ -147,15 +160,11 @@ const secondaryDrawer = {
         <div class="splide cart-secondary__slider">
           <div class="splide__track">
             <ul class="splide__list">
-              ${productData.images
-                .map(
-                  (img) => `
+              ${productData.images.map(img => `
                 <li class="splide__slide">
                   <img src="${img}" alt="${productData.title}">
                 </li>
-              `
-                )
-                .join("")}
+              `).join("")}
             </ul>
           </div>
         </div>
@@ -174,7 +183,7 @@ const secondaryDrawer = {
     const container = document.querySelector(".cart-secondary__options");
     if (!container) return;
 
-    const currentVariant = productData.variants.find((v) => v.id === cartItem.variant_id);
+    const currentVariant = productData.variants.find(v => v.id === cartItem.variant_id);
 
     productData.options.forEach((option, index) => {
       const currentValue = currentVariant ? currentVariant[`option${index + 1}`] : null;
@@ -184,13 +193,14 @@ const secondaryDrawer = {
       fieldset.innerHTML = `
         <legend class="body--bold">${option.name}:</legend>
         <div class="variant-options__list">
-          ${option.values
-            .map((value) => {
-              const variantForOption = productData.variants.find((v) => v[`option${index + 1}`] === value && v.available);
-              const isAvailable = !!variantForOption;
-              const isChecked = value === currentValue;
+          ${option.values.map(value => {
+            const variantForOption = productData.variants.find(v => 
+              v[`option${index + 1}`] === value && v.available
+            );
+            const isAvailable = !!variantForOption;
+            const isChecked = value === currentValue;
 
-              return `
+            return `
               <div class="variant-option">
                 <input 
                   type="radio" 
@@ -206,8 +216,7 @@ const secondaryDrawer = {
                 </label>
               </div>
             `;
-            })
-            .join("")}
+          }).join("")}
         </div>
       `;
 
@@ -251,7 +260,7 @@ const secondaryDrawer = {
 
   navigateToItem(direction) {
     const cartItems = [...document.querySelectorAll(".cart-item")];
-
+    
     if (direction === "next" && secondaryDrawerState.currentIndex < cartItems.length - 1) {
       secondaryDrawerState.currentIndex++;
     } else if (direction === "prev" && secondaryDrawerState.currentIndex > 0) {
@@ -273,12 +282,12 @@ const secondaryDrawer = {
   async handleUpdate() {
     const selectedOptions = [];
     const optionInputs = document.querySelectorAll(".cart-secondary__options input:checked");
-
-    optionInputs.forEach((input) => {
+    
+    optionInputs.forEach(input => {
       selectedOptions[parseInt(input.dataset.optionPosition) - 1] = input.value;
     });
 
-    const newVariant = secondaryDrawerState.productData.variants.find((v) => {
+    const newVariant = secondaryDrawerState.productData.variants.find(v => {
       return selectedOptions.every((opt, idx) => v[`option${idx + 1}`] === opt);
     });
 
@@ -286,31 +295,31 @@ const secondaryDrawer = {
 
     const updateBtn = document.querySelector(".cart-secondary__update");
     updateBtn.innerHTML = '<span class="loader--spinner"></span>';
-
+    
     try {
       const cartData = await cartAPI.fetch();
-      const currentItem = cartData.items.find((item) => item.key === secondaryDrawerState.currentItemKey);
-
+      const currentItem = cartData.items.find(item => item.key === secondaryDrawerState.currentItemKey);
+      
       if (currentItem && currentItem.variant_id === newVariant.id) {
         updateBtn.innerHTML = "Update";
         return;
       }
 
-      const existingItem = cartData.items.find((item) => item.variant_id === newVariant.id);
+      const existingItem = cartData.items.find(item => item.variant_id === newVariant.id);
 
       if (existingItem) {
         const newQuantity = existingItem.quantity + currentItem.quantity;
-        await cartAPI.update({
+        await cartAPI.update({ 
           [existingItem.key]: newQuantity,
-          [secondaryDrawerState.currentItemKey]: 0,
+          [secondaryDrawerState.currentItemKey]: 0
         });
       } else {
         await cartAPI.update({ [secondaryDrawerState.currentItemKey]: 0 });
-
+        
         const formData = new FormData();
         formData.append("id", newVariant.id);
         formData.append("quantity", currentItem.quantity);
-
+        
         await cartAPI.add(formData);
       }
 
@@ -327,12 +336,12 @@ const secondaryDrawer = {
     if (container) {
       container.classList.remove("cart-secondary--active");
     }
-
+    
     if (secondaryDrawerState.splideInstance) {
       secondaryDrawerState.splideInstance.destroy();
       secondaryDrawerState.splideInstance = null;
     }
-
+    
     secondaryDrawerState.isOpen = false;
     secondaryDrawerState.currentItemKey = null;
     secondaryDrawerState.productData = null;
@@ -354,7 +363,7 @@ const secondaryDrawer = {
     document.querySelector(".cart-secondary__back")?.addEventListener("click", () => {
       this.close();
     });
-  },
+  }
 };
 
 const validateInventory = (maxInventory, currentQty, requestedQty) => {
@@ -379,7 +388,7 @@ const cartDrawer = {
       cartState.isOpen = false;
       body.classList.remove("cart-open");
       drawer.classList.remove("cart--active");
-
+      
       secondaryDrawer.close();
 
       if (body.style.position === "fixed") {
@@ -801,7 +810,7 @@ const cart = {
     });
 
     document.querySelector(".cart__container")?.addEventListener("click", (e) => e.stopPropagation());
-
+    
     document.querySelector(".cart-secondary")?.addEventListener("click", (e) => {
       if (e.target.classList.contains("cart-secondary")) {
         secondaryDrawer.close();
