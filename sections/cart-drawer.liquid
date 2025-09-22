@@ -1,6 +1,131 @@
 {% comment %} AJAX Cart Sidebar Drawer {% endcomment %}
 {{ 'section-cart-drawer.css' | asset_url | stylesheet_tag }}
 
+<style>
+  .cart-secondary {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 400px;
+    height: 100%;
+    background: var(--white);
+    z-index: 100000;
+    transform: translateX(100%);
+    transition: transform 0.4s ease;
+    border-left: 1px solid var(--neutral-50);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cart-secondary--active {
+    transform: translateX(0);
+  }
+
+  .cart--active .cart-secondary--active {
+    right: 400px;
+  }
+
+  .cart-secondary__content {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-m);
+  }
+
+  .cart-secondary__loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+  .cart-secondary__back {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    background: none;
+    border: none;
+    padding: var(--space-xs) 0;
+    margin-bottom: var(--space-m);
+    cursor: pointer;
+    color: var(--neutral-950);
+  }
+
+  .cart-secondary__navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-m);
+    padding: var(--space-xs) 0;
+    border-bottom: 1px solid var(--neutral-50);
+  }
+
+  .cart-secondary__nav-prev,
+  .cart-secondary__nav-next {
+    background: none;
+    border: 1px solid var(--neutral-200);
+    padding: var(--space-2xs);
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cart-secondary__nav-prev:disabled,
+  .cart-secondary__nav-next:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  .cart-secondary__nav-info {
+    color: var(--neutral-600);
+  }
+
+  .cart-secondary__title {
+    margin-bottom: var(--space-m);
+    color: var(--neutral-950);
+  }
+
+  .cart-secondary__images {
+    margin-bottom: var(--space-m);
+  }
+
+  .cart-secondary__slider .splide__slide img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .cart-secondary__options {
+    margin-bottom: var(--space-m);
+  }
+
+  .cart-secondary__update {
+    width: 100%;
+    background: var(--neutral-950);
+    color: var(--white);
+    border: none;
+    padding: var(--space-s);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--space-xl);
+  }
+
+  @media screen and (max-width: 1099px) {
+    .cart-secondary {
+      width: 100%;
+      z-index: 100001;
+    }
+
+    .cart--active .cart-secondary--active {
+      right: 0;
+    }
+  }
+</style>
+
 <aside class="cart" aria-labelledby="cart-title">
   <div class="cart__container">
     <header class="cart__header">
@@ -173,6 +298,10 @@
     {% endform %}
   </div>
 </aside>
+
+<div class="cart-secondary">
+  <div class="cart-secondary__content"></div>
+</div>
 
 {% schema %}
 { "name": "Cart drawer" }

@@ -9,6 +9,14 @@ const loadingSVG = `<svg style=height:4px;display:block viewBox="0 0 40 4" xmlns
 
 let cartState = { isOpen: false, scrollY: 0, sliderUpdateInProgress: false };
 
+let secondaryDrawerState = {
+  isOpen: false,
+  currentItemKey: null,
+  currentIndex: 0,
+  productData: null,
+  splideInstance: null,
+};
+
 const utils = {
   createLoader: () => Object.assign(document.createElement("div"), { innerHTML: loadingSVG }),
   showLoader: (element) => element.replaceChildren(utils.createLoader()),
@@ -50,6 +58,16 @@ const cartAPI = {
     });
   },
 
+  async change(lineKey, quantity, properties = null) {
+    const body = { id: lineKey, quantity };
+    if (properties) body.properties = properties;
+    return fetch("/cart/change.js", {
+      method: "post",
+      headers: { Accept: "application/json", "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+  },
+
   async add(formData) {
     return fetch("/cart/add.js", { method: "post", body: formData });
   },
@@ -60,6 +78,282 @@ const cartAPI = {
       badge.classList.toggle("hide", count <= 0);
     });
     localStorage.setItem("cartCount", count.toString());
+  },
+};
+
+const secondaryDrawer = {
+  async open(lineItemKey) {
+    const cartItem = document.querySelector(`[data-line-item-key="${lineItemKey}"]`);
+    if (!cartItem) return;
+
+    const productUrl = cartItem.querySelector(".cart-item__title a")?.href;
+    if (!productUrl) return;
+
+    secondaryDrawerState.currentItemKey = lineItemKey;
+
+    const cartItems = [...document.querySelectorAll(".cart-item")];
+    secondaryDrawerState.currentIndex = cartItems.findIndex((item) => item.getAttribute("data-line-item-key") === lineItemKey);
+
+    const container = document.querySelector(".cart-secondary");
+    if (!container) return;
+
+    container.classList.add("cart-secondary--active");
+    secondaryDrawerState.isOpen = true;
+
+    await this.loadProductData(productUrl);
+  },
+
+  async loadProductData(productUrl) {
+    const container = document.querySelector(".cart-secondary__content");
+    if (!container) return;
+
+    container.innerHTML = `<div class="cart-secondary__loading">${loadingSVG}</div>`;
+
+    try {
+      const productHandle = productUrl.split("/products/")[1]?.split("?")[0];
+      const [productRes, sectionRes] = await Promise.all([fetch(`/products/${productHandle}.js`), fetch(`${productUrl}?section_id=main-product`)]);
+
+      const productData = await productRes.json();
+      const sectionHTML = await sectionRes.text();
+
+      secondaryDrawerState.productData = productData;
+
+      const temp = document.createElement("div");
+      temp.innerHTML = sectionHTML;
+
+      const cartData = await cartAPI.fetch();
+      const currentItem = cartData.items.find((item) => item.key === secondaryDrawerState.currentItemKey);
+
+      this.renderContent(productData, temp, currentItem);
+    } catch (error) {
+      console.error("Error loading product:", error);
+      container.innerHTML = `<div class="cart-secondary__error">Failed to load product</div>`;
+    }
+  },
+
+  renderContent(productData, sectionHTML, cartItem) {
+    const container = document.querySelector(".cart-secondary__content");
+    if (!container) return;
+
+    container.innerHTML = `
+      ${isMobile ? '<button class="cart-secondary__back" type="button"><svg width="7" height="12" viewBox="0 0 7 12" xmlns="http://www.w3.org/2000/svg"><path d="M6 1L1 6L6 11" stroke="#0F0F0F" stroke-linecap="square"/></svg> Back</button>' : ""}
+      <div class="cart-secondary__navigation">
+        <button class="cart-secondary__nav-prev" type="button">←</button>
+        <span class="cart-secondary__nav-info"></span>
+        <button class="cart-secondary__nav-next" type="button">→</button>
+      </div>
+      <h2 class="cart-secondary__title heading--l">${productData.title}</h2>
+      <div class="cart-secondary__images">
+        <div class="splide cart-secondary__slider">
+          <div class="splide__track">
+            <ul class="splide__list">
+              ${productData.images
+                .map(
+                  (img) => `
+                <li class="splide__slide">
+                  <img src="${img}" alt="${productData.title}">
+                </li>
+              `
+                )
+                .join("")}
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="cart-secondary__options"></div>
+      <button class="cart-secondary__update body" type="button">Update</button>
+    `;
+
+    this.renderOptions(productData, cartItem);
+    this.initSlider();
+    this.updateNavigation();
+    this.attachSecondaryEventListeners();
+  },
+
+  renderOptions(productData, cartItem) {
+    const container = document.querySelector(".cart-secondary__options");
+    if (!container) return;
+
+    const currentVariant = productData.variants.find((v) => v.id === cartItem.variant_id);
+
+    productData.options.forEach((option, index) => {
+      const currentValue = currentVariant ? currentVariant[`option${index + 1}`] : null;
+
+      const fieldset = document.createElement("fieldset");
+      fieldset.className = "variant-options";
+      fieldset.innerHTML = `
+        <legend class="body--bold">${option.name}:</legend>
+        <div class="variant-options__list">
+          ${option.values
+            .map((value) => {
+              const variantForOption = productData.variants.find((v) => v[`option${index + 1}`] === value && v.available);
+              const isAvailable = !!variantForOption;
+              const isChecked = value === currentValue;
+
+              return `
+              <div class="variant-option">
+                <input 
+                  type="radio" 
+                  id="secondary-${option.position}-${value}"
+                  name="secondary-option-${option.position}"
+                  value="${value}"
+                  data-option-position="${index + 1}"
+                  ${isChecked ? "checked" : ""}
+                  ${!isAvailable ? "disabled" : ""}
+                >
+                <label for="secondary-${option.position}-${value}" class="body">
+                  ${option.name === "Size" && value.includes(".0") ? value.replace(".0", "") : value}
+                </label>
+              </div>
+            `;
+            })
+            .join("")}
+        </div>
+      `;
+
+      container.appendChild(fieldset);
+    });
+  },
+
+  initSlider() {
+    if (secondaryDrawerState.splideInstance) {
+      secondaryDrawerState.splideInstance.destroy();
+    }
+
+    secondaryDrawerState.splideInstance = new Splide(".cart-secondary__slider", {
+      type: "slide",
+      perPage: 1,
+      arrows: true,
+      pagination: false,
+    }).mount();
+  },
+
+  updateNavigation() {
+    const info = document.querySelector(".cart-secondary__nav-info");
+    const prevBtn = document.querySelector(".cart-secondary__nav-prev");
+    const nextBtn = document.querySelector(".cart-secondary__nav-next");
+
+    const cartItems = document.querySelectorAll(".cart-item");
+    const total = cartItems.length;
+
+    if (info) {
+      info.textContent = `${secondaryDrawerState.currentIndex + 1} of ${total}`;
+    }
+
+    if (prevBtn) {
+      prevBtn.disabled = secondaryDrawerState.currentIndex === 0;
+    }
+
+    if (nextBtn) {
+      nextBtn.disabled = secondaryDrawerState.currentIndex === total - 1;
+    }
+  },
+
+  navigateToItem(direction) {
+    const cartItems = [...document.querySelectorAll(".cart-item")];
+
+    if (direction === "next" && secondaryDrawerState.currentIndex < cartItems.length - 1) {
+      secondaryDrawerState.currentIndex++;
+    } else if (direction === "prev" && secondaryDrawerState.currentIndex > 0) {
+      secondaryDrawerState.currentIndex--;
+    } else {
+      return;
+    }
+
+    const newItem = cartItems[secondaryDrawerState.currentIndex];
+    const newKey = newItem.getAttribute("data-line-item-key");
+    const productUrl = newItem.querySelector(".cart-item__title a")?.href;
+
+    if (newKey && productUrl) {
+      secondaryDrawerState.currentItemKey = newKey;
+      this.loadProductData(productUrl);
+    }
+  },
+
+  async handleUpdate() {
+    const selectedOptions = [];
+    const optionInputs = document.querySelectorAll(".cart-secondary__options input:checked");
+
+    optionInputs.forEach((input) => {
+      selectedOptions[parseInt(input.dataset.optionPosition) - 1] = input.value;
+    });
+
+    const newVariant = secondaryDrawerState.productData.variants.find((v) => {
+      return selectedOptions.every((opt, idx) => v[`option${idx + 1}`] === opt);
+    });
+
+    if (!newVariant) return;
+
+    const updateBtn = document.querySelector(".cart-secondary__update");
+    updateBtn.innerHTML = '<span class="loader--spinner"></span>';
+
+    try {
+      const cartData = await cartAPI.fetch();
+      const currentItem = cartData.items.find((item) => item.key === secondaryDrawerState.currentItemKey);
+
+      if (currentItem && currentItem.variant_id === newVariant.id) {
+        updateBtn.innerHTML = "Update";
+        return;
+      }
+
+      const existingItem = cartData.items.find((item) => item.variant_id === newVariant.id);
+
+      if (existingItem) {
+        const newQuantity = existingItem.quantity + currentItem.quantity;
+        await cartAPI.update({
+          [existingItem.key]: newQuantity,
+          [secondaryDrawerState.currentItemKey]: 0,
+        });
+      } else {
+        await cartAPI.update({ [secondaryDrawerState.currentItemKey]: 0 });
+
+        const formData = new FormData();
+        formData.append("id", newVariant.id);
+        formData.append("quantity", currentItem.quantity);
+
+        await cartAPI.add(formData);
+      }
+
+      await cart.refreshContent();
+      this.close();
+    } catch (error) {
+      console.error("Error updating variant:", error);
+      updateBtn.innerHTML = "Update";
+    }
+  },
+
+  close() {
+    const container = document.querySelector(".cart-secondary");
+    if (container) {
+      container.classList.remove("cart-secondary--active");
+    }
+
+    if (secondaryDrawerState.splideInstance) {
+      secondaryDrawerState.splideInstance.destroy();
+      secondaryDrawerState.splideInstance = null;
+    }
+
+    secondaryDrawerState.isOpen = false;
+    secondaryDrawerState.currentItemKey = null;
+    secondaryDrawerState.productData = null;
+  },
+
+  attachSecondaryEventListeners() {
+    document.querySelector(".cart-secondary__update")?.addEventListener("click", () => {
+      this.handleUpdate();
+    });
+
+    document.querySelector(".cart-secondary__nav-prev")?.addEventListener("click", () => {
+      this.navigateToItem("prev");
+    });
+
+    document.querySelector(".cart-secondary__nav-next")?.addEventListener("click", () => {
+      this.navigateToItem("next");
+    });
+
+    document.querySelector(".cart-secondary__back")?.addEventListener("click", () => {
+      this.close();
+    });
   },
 };
 
@@ -85,6 +379,8 @@ const cartDrawer = {
       cartState.isOpen = false;
       body.classList.remove("cart-open");
       drawer.classList.remove("cart--active");
+
+      secondaryDrawer.close();
 
       if (body.style.position === "fixed") {
         const scrollY = cartState.scrollY || Math.abs(parseInt(body.style.top || "0"));
@@ -241,7 +537,7 @@ const cart = {
       document.querySelectorAll(".cart__shipping--loading").forEach((el) => el.remove());
 
       const [newShipping, existingShipping] = [temp.querySelector(".cart__shipping"), document.querySelector(".cart__shipping")];
-      if (newShipping && existingShipping) {
+      if (newShipping) {
         const hasItems = temp.querySelector(".cart-item");
         if (hasItems) {
           utils.applyStyles(newShipping, { display: "block", height: "93px" });
@@ -253,7 +549,14 @@ const cart = {
             progressEl.style.width = currentProgressWidth;
           }
         }
-        existingShipping.replaceWith(newShipping);
+        if (existingShipping) {
+          existingShipping.replaceWith(newShipping);
+        } else {
+          const cartForm = document.querySelector(".cart__form");
+          if (cartForm && hasItems) {
+            cartForm.parentNode.insertBefore(newShipping, cartForm);
+          }
+        }
       }
 
       const optimisticImages = new Map();
@@ -282,6 +585,13 @@ const cart = {
       }
 
       this.attachEventListeners();
+
+      if (secondaryDrawerState.isOpen) {
+        const itemStillExists = document.querySelector(`[data-line-item-key="${secondaryDrawerState.currentItemKey}"]`);
+        if (!itemStillExists) {
+          secondaryDrawer.close();
+        }
+      }
 
       if (cartData) {
         setTimeout(() => {
@@ -434,6 +744,15 @@ const cart = {
       }
     };
 
+    document.querySelectorAll(".cart-item__title a").forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const item = link.closest(".cart-item");
+        const key = item.getAttribute("data-line-item-key");
+        secondaryDrawer.open(key);
+      });
+    });
+
     document.querySelectorAll(".cart-item__quantity button").forEach((btn) => {
       btn.addEventListener("click", async () => {
         const item = btn.closest(".cart-item");
@@ -482,9 +801,18 @@ const cart = {
     });
 
     document.querySelector(".cart__container")?.addEventListener("click", (e) => e.stopPropagation());
+
+    document.querySelector(".cart-secondary")?.addEventListener("click", (e) => {
+      if (e.target.classList.contains("cart-secondary")) {
+        secondaryDrawer.close();
+      }
+    });
+
     document.querySelector(".cart__close")?.addEventListener("click", () => cartDrawer.toggle(false));
     document.querySelector(".cart")?.addEventListener("click", (e) => {
-      if (e.target.classList.contains("cart")) cartDrawer.toggle(false);
+      if (e.target.classList.contains("cart") && !e.target.closest(".cart-item__title")) {
+        cartDrawer.toggle(false);
+      }
     });
   },
 
