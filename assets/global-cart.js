@@ -843,7 +843,7 @@ const cart = {
 window.openCart = () => cartDrawer.toggle(true);
 window.closeCart = () => cartDrawer.toggle(false);
 
-document.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("load", () => {
   cart.loadFromStorage();
   cart.attachEventListeners();
 
