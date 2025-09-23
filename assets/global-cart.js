@@ -7,7 +7,13 @@ const cartElements = {
 
 const loadingSVG = `<svg style=height:4px;display:block viewBox="0 0 40 4" xmlns=http://www.w3.org/2000/svg><style>.react{animation:moving 1s ease-in-out infinite}@keyframes moving{0%{width:0}50%{width:100%;transform:translate(0,0)}100%{width:0;right:0;transform:translate(100%,0)}}</style><rect class=react fill=#E7E7E7 height=4 width=40 /></svg>`;
 
-let cartState = { isOpen: false, scrollY: 0, sliderUpdateInProgress: false };
+let cartState = {
+  isOpen: false,
+  scrollY: 0,
+  sliderUpdateInProgress: false,
+  isInitialized: false,
+  isRefreshing: false,
+};
 
 let secondaryDrawerState = {
   isOpen: false,
@@ -537,6 +543,15 @@ const slider = {
 
 const cart = {
   async refreshContent() {
+    if (cartState.isRefreshing) {
+      while (cartState.isRefreshing) {
+        await new Promise((resolve) => setTimeout(resolve, 50));
+      }
+      return true;
+    }
+
+    cartState.isRefreshing = true;
+
     try {
       const currentProgressWidth = document.querySelector(".cart__shipping-progress")?.style.width || "0%";
       const [drawerRes, cartData] = await Promise.all([fetch("/?section_id=cart-drawer"), cartAPI.fetch()]);
@@ -613,6 +628,8 @@ const cart = {
     } catch (error) {
       console.error("Error updating cart:", error);
       return false;
+    } finally {
+      cartState.isRefreshing = false;
     }
   },
 
@@ -686,7 +703,7 @@ const cart = {
 
       const btn = form.querySelector("#js--addtocart");
 
-      if (btn.querySelector('.loader--spinner')) return;
+      if (btn.querySelector(".loader--spinner")) return;
       if (btn.disabled) return;
 
       if (!btn?.enabled === false) return;
@@ -829,26 +846,40 @@ const cart = {
     });
   },
 
-  loadFromStorage() {
+  async loadFromStorage() {
     const stored = localStorage.getItem("cartData");
     if (stored) {
       const data = JSON.parse(stored);
       if (data.count > 0) cartAPI.updateBadges(data.count);
     }
 
-    cartAPI.fetch().then((cartData) => {
-      this.refreshContent().then(() => {
-        if (cartData?.item_count > 0) slider.init();
-      });
-    });
+    try {
+      const cartData = await cartAPI.fetch();
+      await this.refreshContent();
+
+      if (cartData?.item_count > 0) {
+        slider.init();
+      }
+
+      cartState.isInitialized = true;
+    } catch (error) {
+      console.error("Error initializing cart:", error);
+      cartState.isInitialized = true;
+    }
   },
 };
 
 window.openCart = () => cartDrawer.toggle(true);
 window.closeCart = () => cartDrawer.toggle(false);
 
-window.addEventListener("load", () => {
-  cart.loadFromStorage();
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll("#js--addtocart").forEach((btn) => {
+    btn.classList.remove("ready");
+    btn.setAttribute("aria-busy", "true");
+  });
+});
+
+window.addEventListener("load", async () => {
   cart.attachEventListeners();
 
   cartElements.addToCartForms().forEach((form) => {
@@ -861,5 +892,12 @@ window.addEventListener("load", () => {
       cartDrawer.toggle(true);
       cart.refreshContent();
     });
+  });
+
+  await cart.loadFromStorage();
+
+  document.querySelectorAll("#js--addtocart").forEach((btn) => {
+    btn.classList.add("ready");
+    btn.removeAttribute("aria-busy");
   });
 });
