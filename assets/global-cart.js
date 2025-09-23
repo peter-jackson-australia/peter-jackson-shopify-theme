@@ -154,7 +154,7 @@ const secondaryDrawer = {
   renderContent(productData, sectionHTML, cartItem) {
     const container = document.querySelector(".cart-secondary__content");
     if (!container) return;
-
+  
     container.innerHTML = `
       <button class="cart-secondary__back" type="button"><svg width="7" height="12" viewBox="0 0 7 12" xmlns="http://www.w3.org/2000/svg"><path d="M6 1L1 6L6 11" stroke="#0F0F0F" stroke-linecap="square"/></svg> Back</button>
       <div class="cart-secondary__navigation">
@@ -165,6 +165,18 @@ const secondaryDrawer = {
       <h2 class="cart-secondary__title heading--l">${productData.title}</h2>
       <div class="cart-secondary__images">
         <div class="splide cart-secondary__slider">
+          <div class="splide__arrows">
+            <button class="splide__arrow splide__arrow--prev" type="button">
+              <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 1L1 6L6 11" stroke="#0F0F0F" stroke-linecap="square"/>
+              </svg>
+            </button>
+            <button class="splide__arrow splide__arrow--next" type="button">
+              <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L6 6L1 11" stroke="#0F0F0F" stroke-linecap="square"/>
+              </svg>
+            </button>
+          </div>
           <div class="splide__track">
             <ul class="splide__list">
               ${productData.images
@@ -183,7 +195,7 @@ const secondaryDrawer = {
       <div class="cart-secondary__options"></div>
       <button class="cart-secondary__update body" type="button">Update</button>
     `;
-
+  
     this.renderOptions(productData, cartItem);
     this.initSlider();
     this.updateNavigation();
@@ -241,7 +253,7 @@ const secondaryDrawer = {
     }
 
     secondaryDrawerState.splideInstance = new Splide(".cart-secondary__slider", {
-      type: "slide",
+      type: "loop",
       perPage: 1,
       arrows: true,
       pagination: false,
