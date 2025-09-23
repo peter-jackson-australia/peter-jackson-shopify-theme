@@ -156,10 +156,10 @@ const secondaryDrawer = {
     if (!container) return;
   
     container.innerHTML = `
-      <button class="cart-secondary__back" type="button"><svg width="7" height="12" viewBox="0 0 7 12" xmlns="http://www.w3.org/2000/svg"><path d="M6 1L1 6L6 11" stroke="#0F0F0F" stroke-linecap="square"/></svg> Back</button>
+      <button class="cart-secondary__back" type="button">Back</button>
       <div class="cart-secondary__navigation">
         <button class="cart-secondary__nav-prev" type="button">←</button>
-        <span class="cart-secondary__nav-info"></span>
+        <span class="cart-secondary__nav-info body"></span>
         <button class="cart-secondary__nav-next" type="button">→</button>
       </div>
       <h2 class="cart-secondary__title heading--l">${productData.title}</h2>
@@ -193,7 +193,7 @@ const secondaryDrawer = {
         </div>
       </div>
       <div class="cart-secondary__options"></div>
-      <button class="cart-secondary__update body" type="button">Update</button>
+      <button class="cart-secondary__update body" type="button">Update Size</button>
     `;
   
     this.renderOptions(productData, cartItem);
@@ -400,6 +400,7 @@ const cartDrawer = {
   toggle(show = true) {
     const body = document.body;
     const drawer = cartElements.drawer();
+    const overlay = document.querySelector('.cart-overlay');
 
     if (show && !cartState.isOpen) {
       cartState.scrollY = body.style.position === "fixed" ? Math.abs(parseInt(body.style.top || "0")) : window.scrollY;
@@ -407,11 +408,13 @@ const cartDrawer = {
       cartState.isOpen = true;
       body.classList.add("cart-open");
       drawer.classList.add("cart--active");
+      overlay.classList.add("cart-overlay--active");
       window.closeMenu?.(true);
     } else if (!show && cartState.isOpen) {
       cartState.isOpen = false;
       body.classList.remove("cart-open");
       drawer.classList.remove("cart--active");
+      overlay.classList.remove("cart-overlay--active");
 
       secondaryDrawer.close();
 
@@ -867,6 +870,7 @@ const cart = {
     });
 
     document.querySelector(".cart__close")?.addEventListener("click", () => cartDrawer.toggle(false));
+    document.querySelector(".cart-overlay")?.addEventListener("click", () => cartDrawer.toggle(false));
     document.querySelector(".cart")?.addEventListener("click", (e) => {
       if (e.target.classList.contains("cart") && !e.target.closest(".cart-item__title")) {
         cartDrawer.toggle(false);
