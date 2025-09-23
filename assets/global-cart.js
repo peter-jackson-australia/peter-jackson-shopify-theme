@@ -685,6 +685,10 @@ const cart = {
       e.preventDefault();
 
       const btn = form.querySelector("#js--addtocart");
+
+      if (btn.querySelector('.loader--spinner')) return;
+      if (btn.disabled) return;
+
       if (!btn?.enabled === false) return;
 
       const [variantId, qty, originalContent] = [form.querySelector("#js--variant-id")?.value || "", parseInt(form.querySelector('input[name="quantity"]')?.value || "1", 10), btn.innerHTML];
