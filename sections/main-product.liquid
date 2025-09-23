@@ -10,7 +10,6 @@
 {% assign title = product.title %}
 {% assign type = product.type %}
 {% assign options = product.options %}
-{% comment %}{% assign inventory_quantity = product.inventory_quantity %}{% endcomment %}
 {% assign images = product.images %}
 {% assign product_price = product.price %}
 {% assign description = product.description %}
@@ -32,31 +31,31 @@
 {% assign fabric_description = product.metafields.custom.fabric_description %}
 
 {% liquid
-    assign has_description = false
-    assign has_specs = false
-    assign has_shipping = false
+  assign has_description = false
+  assign has_specs = false
+  assign has_shipping = false
 
-    if description != blank
-        assign has_description = true
-    endif
+  if description != blank
+    assign has_description = true
+  endif
 
-    if custom.care_guide != blank or garment_fit != blank or product_specifications != blank
-        assign has_specs = true
-    endif
+  if custom.care_guide != blank or garment_fit != blank or product_specifications != blank
+    assign has_specs = true
+  endif
 
-    if shipping_content != blank
-        assign has_shipping = true
-    endif
+  if shipping_content != blank
+    assign has_shipping = true
+  endif
 
-    for variant in variants
-      if variant_is_available and variant_inventory_quantity > 5
-        assign current_variant = variant
-        break
-      endif
-    endfor
-    if current_variant == null
-      assign current_variant = product.selected_or_first_available_variant
+  for variant in variants
+    if variant_is_available and variant_inventory_quantity > 5
+      assign current_variant = variant
+      break
     endif
+  endfor
+  if current_variant == null
+    assign current_variant = product.selected_or_first_available_variant
+  endif
 %}
 
 {% assign variant_price = current_variant.price %}
@@ -64,14 +63,14 @@
 {% assign compare_at_price = current_variant.compare_at_price %}
 {% assign variant_option1 = current_variant.option1 %}
 {% assign variant_is_available = current_variant.available %}
-{% assign variant_inventory_quantity = current_variant.inventory_quantity%}
+{% assign variant_inventory_quantity = current_variant.inventory_quantity %}
 
 <style>
-    @media screen and (min-width: 1100px) {
-        .product-details__container {
-            max-height: calc({{product.images[0].height}} * 50vw / {{product.images[0].width}});
-        }
-    }
+  @media screen and (min-width: 1100px) {
+      .product-details__container {
+          max-height: calc({{product.images[0].height}} * 50vw / {{product.images[0].width}});
+      }
+  }
 </style>
 
 <script>
@@ -236,7 +235,6 @@
                     </p>
                   {% endif %}
                 {% endunless %}
-
 
               {%- when 'button' -%}
                 <input

@@ -1,21 +1,18 @@
 @font-face {
   font-family: "Ordinary Regular";
-  src: url("https://cdn.shopify.com/s/files/1/0898/1859/5696/files/ordinary-display-regular.woff2?v=1742796201")
-    format("woff2");
+  src: url("https://cdn.shopify.com/s/files/1/0898/1859/5696/files/ordinary-display-regular.woff2?v=1742796201") format("woff2");
   font-display: swap;
 }
 
 @font-face {
   font-family: "Ordinary Light";
-  src: url("https://cdn.shopify.com/s/files/1/0898/1859/5696/files/ordinary-display-light.woff2?v=1742796170")
-    format("woff2");
+  src: url("https://cdn.shopify.com/s/files/1/0898/1859/5696/files/ordinary-display-light.woff2?v=1742796170") format("woff2");
   font-display: swap;
 }
 
 @font-face {
   font-family: "The Wedding Signature";
-  src: url("https://cdn.shopify.com/s/files/1/0898/1859/5696/files/the-wedding-signature-regular.woff2?v=1743742147")
-    format("woff2");
+  src: url("https://cdn.shopify.com/s/files/1/0898/1859/5696/files/the-wedding-signature-regular.woff2?v=1743742147") format("woff2");
   font-display: swap;
 }
 
@@ -186,7 +183,6 @@ a {
 
 /* Variant selectors */
 
-/* Variant Options - Used by Secondary Drawer */
 .variant-options {
   border: none;
   margin: 0 0 var(--space-m) 0;

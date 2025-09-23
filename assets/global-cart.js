@@ -302,6 +302,7 @@ const secondaryDrawer = {
       
       if (currentItem && currentItem.variant_id === newVariant.id) {
         updateBtn.innerHTML = "Update";
+        this.close();
         return;
       }
 
