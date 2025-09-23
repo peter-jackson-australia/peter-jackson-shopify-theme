@@ -1,3 +1,9 @@
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll("#js--addtocart").forEach((btn) => {
+    btn.classList.remove("ready");
+  });
+});
+
 const cartElements = {
   countBadges: () => document.querySelectorAll(".cart-count-indicator"),
   drawer: () => document.querySelector(".cart"),
@@ -624,6 +630,10 @@ const cart = {
         }, 100);
       }
 
+      if (!cartState.isInitialized) {
+        cartState.isInitialized = true;
+      }
+
       return true;
     } catch (error) {
       console.error("Error updating cart:", error);
@@ -700,35 +710,41 @@ const cart = {
   createAddToCartHandler(form) {
     return async (e) => {
       e.preventDefault();
-
+  
       const btn = form.querySelector("#js--addtocart");
-
+  
       if (btn.querySelector(".loader--spinner")) return;
       if (btn.disabled) return;
-
       if (!btn?.enabled === false) return;
-
+  
       const [variantId, qty, originalContent] = [form.querySelector("#js--variant-id")?.value || "", parseInt(form.querySelector('input[name="quantity"]')?.value || "1", 10), btn.innerHTML];
-
+  
+      if (!cartState.isInitialized) {
+        btn.innerHTML = '<span class="loader--spinner"></span>';
+        while (!cartState.isInitialized) {
+          await new Promise((resolve) => setTimeout(resolve, 50));
+        }
+      }
+  
       btn.innerHTML = '<span class="loader--spinner"></span>';
-
+  
       try {
         if (!utils.isGiftCard(document)) {
           const inventory = parseInt(document.querySelector("#js--variant-inventory-quantity")?.value || "Infinity", 10);
           const currentCart = await cartAPI.fetch();
           const existingItem = currentCart?.items?.find((item) => item.variant_id.toString() === variantId);
           const validation = validateInventory(inventory, existingItem?.quantity || 0, qty);
-
+  
           if (!validation.isAllowed) {
             btn.innerHTML = originalContent;
             utils.showError(form, validation.errorMessage);
             return;
           }
         }
-
+  
         cartDrawer.toggle(true);
         this.showOptimisticUpdate();
-
+  
         await cartAPI.add(new FormData(form));
         await this.refreshContent();
         btn.innerHTML = originalContent;
@@ -873,13 +889,10 @@ window.openCart = () => cartDrawer.toggle(true);
 window.closeCart = () => cartDrawer.toggle(false);
 
 document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll("#js--addtocart").forEach((btn) => {
-    btn.classList.remove("ready");
-    btn.setAttribute("aria-busy", "true");
-  });
+  cart.loadFromStorage();
 });
 
-window.addEventListener("load", async () => {
+window.addEventListener("load", () => {
   cart.attachEventListeners();
 
   cartElements.addToCartForms().forEach((form) => {
@@ -894,10 +907,7 @@ window.addEventListener("load", async () => {
     });
   });
 
-  await cart.loadFromStorage();
-
   document.querySelectorAll("#js--addtocart").forEach((btn) => {
     btn.classList.add("ready");
-    btn.removeAttribute("aria-busy");
   });
 });
