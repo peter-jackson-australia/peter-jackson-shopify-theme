@@ -35,6 +35,8 @@ body {
 }
 
 body {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
   overflow-x: hidden;
 }
 
