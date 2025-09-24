@@ -47,6 +47,8 @@ const utils = {
   },
 };
 
+const getMultiVariantItems = () => [...document.querySelectorAll(".cart-item")].filter((i) => !i.querySelector(".cart-item__variant")?.textContent?.includes("One Size"));
+
 const cartAPI = {
   async fetch() {
     try {
@@ -98,13 +100,15 @@ const secondaryDrawer = {
     const cartItem = document.querySelector(`[data-line-item-key="${lineItemKey}"]`);
     if (!cartItem) return;
 
+    if (cartItem.querySelector(".cart-item__variant")?.textContent?.includes("One Size")) return;
+
     const productUrl = cartItem.querySelector(".cart-item__title a")?.href;
     if (!productUrl) return;
 
     secondaryDrawerState.currentItemKey = lineItemKey;
 
-    const cartItems = [...document.querySelectorAll(".cart-item")];
-    secondaryDrawerState.currentIndex = cartItems.findIndex((item) => item.getAttribute("data-line-item-key") === lineItemKey);
+    const cartItems = getMultiVariantItems();
+    secondaryDrawerState.currentIndex = cartItems.findIndex((i) => i.getAttribute("data-line-item-key") === lineItemKey);
 
     const container = document.querySelector(".cart-secondary");
     if (!container) return;
@@ -154,7 +158,12 @@ const secondaryDrawer = {
   renderContent(productData, sectionHTML, cartItem) {
     const container = document.querySelector(".cart-secondary__content");
     if (!container) return;
-  
+
+    if (productData.variants.length === 1) {
+      this.close();
+      return;
+    }
+
     container.innerHTML = `
       <button class="cart-secondary__back" type="button">Back</button>
       <div class="cart-secondary__navigation">
@@ -195,7 +204,7 @@ const secondaryDrawer = {
       <div class="cart-secondary__options"></div>
       <button class="cart-secondary__update body" type="button">Update Size</button>
     `;
-  
+
     this.renderOptions(productData, cartItem);
     this.initSlider();
     this.updateNavigation();
@@ -265,24 +274,16 @@ const secondaryDrawer = {
     const prevBtn = document.querySelector(".cart-secondary__nav-prev");
     const nextBtn = document.querySelector(".cart-secondary__nav-next");
 
-    const cartItems = document.querySelectorAll(".cart-item");
+    const cartItems = getMultiVariantItems();
     const total = cartItems.length;
 
-    if (info) {
-      info.textContent = `${secondaryDrawerState.currentIndex + 1} of ${total}`;
-    }
-
-    if (prevBtn) {
-      prevBtn.disabled = secondaryDrawerState.currentIndex === 0;
-    }
-
-    if (nextBtn) {
-      nextBtn.disabled = secondaryDrawerState.currentIndex === total - 1;
-    }
+    if (info) info.textContent = `${secondaryDrawerState.currentIndex + 1} of ${total}`;
+    if (prevBtn) prevBtn.disabled = secondaryDrawerState.currentIndex === 0 || total <= 1;
+    if (nextBtn) nextBtn.disabled = secondaryDrawerState.currentIndex === total - 1 || total <= 1;
   },
 
   navigateToItem(direction) {
-    const cartItems = [...document.querySelectorAll(".cart-item")];
+    const cartItems = getMultiVariantItems();
 
     if (direction === "next" && secondaryDrawerState.currentIndex < cartItems.length - 1) {
       secondaryDrawerState.currentIndex++;
@@ -400,7 +401,7 @@ const cartDrawer = {
   toggle(show = true) {
     const body = document.body;
     const drawer = cartElements.drawer();
-    const overlay = document.querySelector('.cart-overlay');
+    const overlay = document.querySelector(".cart-overlay");
 
     if (show && !cartState.isOpen) {
       cartState.scrollY = body.style.position === "fixed" ? Math.abs(parseInt(body.style.top || "0")) : window.scrollY;
@@ -725,41 +726,41 @@ const cart = {
   createAddToCartHandler(form) {
     return async (e) => {
       e.preventDefault();
-  
+
       const btn = form.querySelector("#js--addtocart");
-  
+
       if (btn.querySelector(".loader--spinner")) return;
       if (btn.disabled) return;
       if (!btn?.enabled === false) return;
-  
+
       const [variantId, qty, originalContent] = [form.querySelector("#js--variant-id")?.value || "", parseInt(form.querySelector('input[name="quantity"]')?.value || "1", 10), btn.innerHTML];
-  
+
       if (!cartState.isInitialized) {
         btn.innerHTML = '<span class="loader--spinner"></span>';
         while (!cartState.isInitialized) {
           await new Promise((resolve) => setTimeout(resolve, 50));
         }
       }
-  
+
       btn.innerHTML = '<span class="loader--spinner"></span>';
-  
+
       try {
         if (!utils.isGiftCard(document)) {
           const inventory = parseInt(document.querySelector("#js--variant-inventory-quantity")?.value || "Infinity", 10);
           const currentCart = await cartAPI.fetch();
           const existingItem = currentCart?.items?.find((item) => item.variant_id.toString() === variantId);
           const validation = validateInventory(inventory, existingItem?.quantity || 0, qty);
-  
+
           if (!validation.isAllowed) {
             btn.innerHTML = originalContent;
             utils.showError(form, validation.errorMessage);
             return;
           }
         }
-  
+
         cartDrawer.toggle(true);
         this.showOptimisticUpdate();
-  
+
         await cartAPI.add(new FormData(form));
         await this.refreshContent();
         btn.innerHTML = originalContent;
