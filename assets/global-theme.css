@@ -339,6 +339,7 @@ a {
 
 .splide__slide img {
   vertical-align: bottom;
+  width: 100%; 
 }
 
 .splide__spinner {

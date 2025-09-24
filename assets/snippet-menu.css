@@ -196,7 +196,6 @@ li:has(.menu-drawer__item--active) button > span:first-child {
 }
 
 .menu-drawer__featured-image {
-  height: 550px;
   overflow: hidden;
   padding: var(--space-m) var(--space-m);
   position: relative;
