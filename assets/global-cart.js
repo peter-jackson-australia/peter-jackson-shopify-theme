@@ -165,7 +165,7 @@ const secondaryDrawer = {
     }
 
     container.innerHTML = `
-      <button class="cart-secondary__back" type="button">Back</button>
+      <button class="cart-secondary__back body" type="button">Close</button>
       <div class="cart-secondary__navigation">
         <button class="cart-secondary__nav-prev" type="button">←</button>
         <span class="cart-secondary__nav-info body"></span>
@@ -202,8 +202,12 @@ const secondaryDrawer = {
         </div>
       </div>
       <div class="cart-secondary__options"></div>
-      <button class="cart-secondary__update body" type="button">Update Size</button>
+      <button class="cart-secondary__update body" type="button">Select Size</button>
     `;
+
+    const cartItems = getMultiVariantItems();
+    if (cartItems.length <= 1) document.querySelector(".cart-secondary__navigation").style.display = "none";
+  
 
     this.renderOptions(productData, cartItem);
     this.initSlider();
@@ -276,6 +280,8 @@ const secondaryDrawer = {
 
     const cartItems = getMultiVariantItems();
     const total = cartItems.length;
+
+    
 
     if (info) info.textContent = `${secondaryDrawerState.currentIndex + 1} of ${total}`;
     if (prevBtn) prevBtn.disabled = secondaryDrawerState.currentIndex === 0 || total <= 1;
