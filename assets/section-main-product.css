@@ -140,8 +140,8 @@
 
 #product {
   display: grid;
-    grid-template-columns: 1fr 1fr;
-  gap: 0;
+    gap: 0;
+  grid-template-columns: 1fr 1fr;
 }
 
 #product .product-top-breadcrumb-container .breadcrumb__list {
