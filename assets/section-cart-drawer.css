@@ -519,13 +519,29 @@
 }
 
 @media screen and (max-width: 1099px) {
+
+  .cart, 
+  .cart__container {
+    width: 100%;
+  } 
+
   .cart-secondary {
     width: 100%;
     z-index: 99998;
   }
 
-  .cart--active .cart-secondary--active {
+  .cart--active,
+  .cart-secondary--active {
     right: 0;
     transform: translateX(0);
+    z-index: 100000;
+  }
+
+  .cart-secondary__options {
+    margin-bottom: 0;
+  }
+
+  .cart-secondary__title {
+    margin-bottom: var(--space-s);
   }
 }
