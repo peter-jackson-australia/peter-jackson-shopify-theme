@@ -165,7 +165,7 @@ const secondaryDrawer = {
     }
 
     container.innerHTML = `
-      <button class="cart-secondary__back body" type="button">← Back To Cart</button>
+      <button class="cart-secondary__back body" type="button">${window.innerWidth <= 768 ? '← Back To Cart' : 'Close'}</button>
       <div class="cart-secondary__navigation">
         <button class="cart-secondary__nav-prev" type="button">←</button>
         <span class="cart-secondary__nav-info body"></span>
