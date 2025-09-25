@@ -49,6 +49,23 @@
         "mobile_vertical_alignment": "bottom"
       }
     },
+    "heading_with_text_m9QJRw": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "leading_text": "",
+        "leading_text_animation": "none",
+        "heading": "",
+        "heading_style": "normal",
+        "heading_animation": "none",
+        "content": "<p>Spring signals a style reset, where premium European wools, breathable cottons and refined linen blends bring lightness and polish to the everyday wardrobe. Linen suits, lightweight sports jackets, versatile shirts, polos and denim form the essential pieces of the season - foundations that balance ease with sophistication. Designed to move effortlessly from day to evening, they set a new standard for elevated casual style in the social months ahead.</p>",
+        "content_animation": "none",
+        "alignment": "center"
+      }
+    },
     "editorial_hero_dTVGEg": {
       "type": "editorial-hero",
       "disabled": true,
@@ -327,29 +344,13 @@
         "button_label": "Learn More",
         "button_link": ""
       }
-    },
-    "heading_with_text_m9QJRw": {
-      "type": "heading-with-text",
-      "name": "Heading with Text",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": false,
-        "leading_text": "",
-        "leading_text_animation": "none",
-        "heading": "Colour in Season",
-        "heading_style": "normal",
-        "heading_animation": "none",
-        "content": "<p>Whilst fabric weight and texture are important cornerstones of transeasonal dressing, the colours in your outfit require just as much attention. Between seasons, this means you should be pairing neutral tones like navy, charcoal and brown with lighter pastel ones, like sand, light grey and sky blue. Avoid wearing too many light and bright colours at this time of year (unless you want to look like an extra in Miami Vice) Ideally, your outfit should be made up predominantly of those quieter, more subtle hues, with one or two pieces providing contrast either by being lighter or darker than the rest, or by adding a pop of colour. This could mean wearing an olive green t-shirt under a taupe suit, or a light shirt under a darker ensemble. Have fun and play around with it, but avoid the risk of overdoing it.</p><p>Building a transeasonal wardrobe allows you to easily adapt to any situation and look good in any setting. You can leave the house confident that you’re prepared for anything. And the best part? We’ve got everything that you need to get started. All you need to do is decide which items will make your life (and mornings) a whole lot easier.</p>",
-        "content_animation": "none",
-        "alignment": "left"
-      }
     }
   },
   "order": [
     "article",
     "blog_header_aBjQNU",
     "hero_primary_7KDfwB",
+    "heading_with_text_m9QJRw",
     "editorial_hero_dTVGEg",
     "variable_column_content_tertiary_LT7464",
     "hero_primary_feCpm7",
@@ -357,7 +358,6 @@
     "variable_column_content_secondary_Wfmfxi",
     "collection_slider_CEcm4Y",
     "image_with_text_4FciAz",
-    "variable_column_content_secondary_xcBKxn",
-    "heading_with_text_m9QJRw"
+    "variable_column_content_secondary_xcBKxn"
   ]
 }
