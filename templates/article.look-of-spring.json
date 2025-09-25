@@ -21,76 +21,6 @@
         "journal_type": "jackson"
       }
     },
-    "hero_primary_7KDfwB": {
-      "type": "hero-primary",
-      "name": "Hero Section",
-      "settings": {
-        "media_type": "image",
-        "desktop_image": "shopify://shop_images/Spring_Hero_Desktop.webp",
-        "mobile_image": "shopify://shop_images/Spring_Hero_Mobile.webp",
-        "heading": "",
-        "svg_image": "shopify://shop_images/S25_Homepage_Hero_V2.svg",
-        "svg_size": "full",
-        "mobile_svg_image": "shopify://shop_images/S25_Homepage_Hero_Mobile.svg",
-        "heading_level": "h1",
-        "heading_animation": "none",
-        "description": "SPRING 25",
-        "description_animation": "none",
-        "button_label_1": "Shop Now",
-        "button_link_1": "",
-        "button_label_2": "",
-        "button_link_2": "",
-        "button_label_3": "",
-        "button_link_3": "",
-        "button_label_4": "",
-        "button_link_4": "",
-        "horizontal_alignment": "center",
-        "vertical_alignment": "bottom",
-        "mobile_horizontal_alignment": "center",
-        "mobile_vertical_alignment": "bottom"
-      }
-    },
-    "collection_slider_secondary_CEkyCA": {
-      "type": "collection-slider-secondary",
-      "name": "Collection Slider Secondary",
-      "settings": {
-        "heading": "",
-        "heading_animation": "none",
-        "description": "Spring signals a style reset, where premium European wools, breathable cottons and refined linen blends bring lightness and polish to the everyday wardrobe. Linen suits, lightweight sports jackets, versatile shirts, polos and denim form the essential pieces of the season - foundations that balance ease with sophistication. Designed to move effortlessly from day to evening, they set a new standard for elevated casual style in the social months ahead.",
-        "description_animation": "none",
-        "collection": "spring-25",
-        "button_label": "Shop Spring",
-        "products_to_show": 10,
-        "animate_products": false
-      }
-    },
-    "hero_primary_pXnGLT": {
-      "type": "hero-primary",
-      "name": "Hero Section",
-      "settings": {
-        "media_type": "image",
-        "desktop_image": "shopify://shop_images/Jungle_Jackets.jpg",
-        "mobile_image": "shopify://shop_images/Jungle_Jackets_Mob.jpg",
-        "heading": "",
-        "svg_size": "medium",
-        "heading_level": "h1",
-        "heading_animation": "none",
-        "description": "",
-        "description_animation": "none",
-        "button_label_1": "Shop Now",
-        "button_link_1": "",
-        "button_label_2": "",
-        "button_link_2": "",
-        "button_label_3": "",
-        "button_link_3": "",
-        "button_label_4": "",
-        "button_link_4": "",
-        "horizontal_alignment": "center",
-        "vertical_alignment": "bottom",
-        "mobile_horizontal_alignment": "center",
-        "mobile_vertical_alignment": "bottom"
-      }
-    },
     "heading_with_text_m9QJRw": {
       "type": "heading-with-text",
       "name": "Heading with Text",
@@ -100,46 +30,12 @@
         "show_bottom_border": false,
         "leading_text": "",
         "leading_text_animation": "none",
-        "heading": "The Smart Casual Spring Clean",
+        "heading": "Smart. Casual. Your Spring Off-Duty Uniform.",
         "heading_style": "normal",
         "heading_animation": "none",
-        "content": "<p>A soft-shouldered sports jacket over a polo, paired with tailored trousers and loafers, is the European formula for modern ease. Rooted in British sportswear and elevated by Italian tailoring, it's finished with the nonchalant polish of a slip-on loafer. Versatile, elegant & effortless, it's a look that defines the season.</p>",
+        "content": "<p>This season’s key casual look is anchored by the soft structure of a sports jacket, paired with the laid-back confidence of a knitted polo and the timeless appeal of denim. The result? Style that feels polished yet instinctively relaxed — modern dressing for every occasion that calls for casual refinement.</p>",
         "content_animation": "none",
         "alignment": "center"
-      }
-    },
-    "image_with_text_RRTVz8": {
-      "type": "image-with-text",
-      "name": "Image With Text",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": true,
-        "show_bottom_border": false,
-        "full_width": false,
-        "first_image": "shopify://shop_images/Blue_Sports_Jacket.jpg",
-        "image_link": "",
-        "animate_images": false,
-        "alignment": "right",
-        "heading": "The Renewal Of The All-Rounder",
-        "heading_animation": "none",
-        "text": "The season's ultimate layer, the sports jacket pairs effortlessly with a denim shirt or polo for casual sophistication, or a crisp cotton shirt for polish. Luxurious wool, linen and silk meet a palette of fresh blues, rich oranges, and earthy tones. This collection of sports jackets brings fresh energy, marking the perfect moment to rest your wardrobe.",
-        "text_animation": "none",
-        "button_label": "Shop Sports Jacket",
-        "button_link": "shopify://collections/sport-jackets"
-      }
-    },
-    "collection_slider_secondary_hxrHEe": {
-      "type": "collection-slider-secondary",
-      "name": "Collection Slider Secondary",
-      "settings": {
-        "heading": "",
-        "heading_animation": "none",
-        "description": "",
-        "description_animation": "none",
-        "collection": "sport-jackets",
-        "button_label": "",
-        "products_to_show": 10,
-        "animate_products": false
       }
     },
     "editorial_hero_dTVGEg": {
@@ -173,7 +69,7 @@
         "column_item_U9xHRY": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/Linen_Suit_2.jpg",
+            "image": "shopify://shop_images/The_Look_Of_Spring.jpg",
             "image_link": "",
             "heading": "",
             "heading_animation": "none",
@@ -186,7 +82,7 @@
         "column_item_4eRYBQ": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/Linen_Suit_1.jpg",
+            "image": "shopify://shop_images/The_Look_Of_Spring_2.jpg",
             "image_link": "",
             "heading": "",
             "heading_animation": "none",
@@ -209,77 +105,65 @@
         "column_count": "2",
         "text_alignment": "left",
         "animate_columns": false,
-        "heading": "The Evergreen Essential",
+        "heading": "",
         "heading_animation": "none",
-        "text": "Light, breathable and endlessly versatile, this canvas-linen suit is your warm-weather classic that earns its place year after year. Perfect for weddings, garden parties and outdoor occasions, it carries an ease tht feels both elegant and relaxed. Linen's natural texture and breathability make it ideal for summer, while its timeless appeal ensures this suit remains an essential that never goes out of style.",
+        "text": "",
         "text_animation": "none",
         "button_label": "Shop Spring Suits",
         "button_link": "shopify://collections/mens-suits"
       }
     },
-    "image_with_text_kXwLAa": {
-      "type": "image-with-text",
-      "name": "Image With Text",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": true,
-        "show_bottom_border": false,
-        "full_width": false,
-        "first_image": "shopify://shop_images/Polo_3.jpg",
-        "image_link": "",
-        "animate_images": false,
-        "alignment": "right",
-        "heading": "Polised Polos",
-        "heading_animation": "none",
-        "text": "Knitted polos add a refined ease to the smart-casual uniform, balancing sharp tailoring with laid-back confidence. Pair them under a sports jacket for subtle texture, or wear solo with denim or tailored trousers for a cleaner, more relaxed statement.",
-        "text_animation": "none",
-        "button_label": "Shop Polo Shirts",
-        "button_link": "shopify://collections/sport-jackets"
-      }
-    },
-    "collection_slider_secondary_4cJeT8": {
+    "collection_slider_secondary_hxrHEe": {
       "type": "collection-slider-secondary",
       "name": "Collection Slider Secondary",
       "settings": {
-        "heading": "",
+        "heading": "Versatility at its finest",
         "heading_animation": "none",
-        "description": "",
+        "description": "Our lightweight sports jackets are the ultimate layering piece for your go-to spring look. Cut in lightweight cloths with a softer shoulder and easy drape, this season’s sports jackets bring structure without stiffness — the kind of refinement that feels as relaxed as it looks.",
         "description_animation": "none",
-        "collection": "long-sleeves-and-polos",
+        "collection": "sport-jackets",
         "button_label": "",
         "products_to_show": 10,
         "animate_products": false
       }
     },
-    "image_with_text_4FciAz": {
-      "type": "image-with-text",
-      "name": "Image With Text",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": true,
-        "show_bottom_border": false,
-        "full_width": false,
-        "first_image": "shopify://shop_images/Spring_Suit.jpg",
-        "image_link": "",
-        "animate_images": false,
-        "alignment": "left",
-        "heading": "Spring Tailoring",
-        "heading_animation": "none",
-        "text": "Lightweight structure that keeps its edge from desk to dusk. These suits work overtime, taking you from boardroom to bar. New season colours in classic navy, olive, chocolate, sand, sky blue and port. Trend Alert:The Banker Stripe is back!",
-        "text_animation": "none",
-        "button_label": "Shop Spring Suits",
-        "button_link": "shopify://collections/mens-suits"
-      }
-    },
-    "collection_slider_secondary_XHG4xA": {
+    "collection_slider_secondary_4HWxVh": {
       "type": "collection-slider-secondary",
       "name": "Collection Slider Secondary",
       "settings": {
-        "heading": "",
+        "heading": "Polished Polos",
         "heading_animation": "none",
-        "description": "",
+        "description": "Knitted polos add a refined ease to the smart-casual uniform, balancing sharp tailoring with laid-back confidence. Pair them under a sports jacket for subtle texture, or wear solo with denim, tailored trousers or chinos for a cleaner, more relaxed statement.",
         "description_animation": "none",
-        "collection": "mens-suits",
+        "collection": "sport-jackets",
+        "button_label": "",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
+    "collection_slider_secondary_cMbCmh": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "Denim Defined",
+        "heading_animation": "none",
+        "description": "Denim becomes the foundation that adapts to every occasion. A range of washes and colours ensures effortless versatility — pair light tones for relaxed days, darker shades for evenings, and keep every look rooted in smart-casual ease.",
+        "description_animation": "none",
+        "collection": "mens-jeans",
+        "button_label": "",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
+    "collection_slider_secondary_7qmPbd": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "Tailored For Style",
+        "heading_animation": "none",
+        "description": "Tailored trousers bring sharp structure to a polo and sports jacket, creating a look that works long after office hours. Smart enough for the workday yet relaxed enough for weekend plans, this combination balances polish and ease without feeling overdone.",
+        "description_animation": "none",
+        "collection": "mens-tailored-trousers",
         "button_label": "",
         "products_to_show": 10,
         "animate_products": false
@@ -289,17 +173,12 @@
   "order": [
     "article",
     "blog_header_aBjQNU",
-    "hero_primary_7KDfwB",
-    "collection_slider_secondary_CEkyCA",
-    "hero_primary_pXnGLT",
     "heading_with_text_m9QJRw",
-    "image_with_text_RRTVz8",
-    "collection_slider_secondary_hxrHEe",
     "editorial_hero_dTVGEg",
     "variable_column_content_secondary_Wfmfxi",
-    "image_with_text_kXwLAa",
-    "collection_slider_secondary_4cJeT8",
-    "image_with_text_4FciAz",
-    "collection_slider_secondary_XHG4xA"
+    "collection_slider_secondary_hxrHEe",
+    "collection_slider_secondary_4HWxVh",
+    "collection_slider_secondary_cMbCmh",
+    "collection_slider_secondary_7qmPbd"
   ]
 }
