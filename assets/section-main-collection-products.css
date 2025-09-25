@@ -14,13 +14,13 @@
 }
 
 .collection-controls.controls-fixed {
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
   animation: slideDown 0.3s ease forwards;
   backface-visibility: hidden;
   background-color: white;
+  -webkit-font-smoothing: antialiased;
   left: 0;
   opacity: 0;
+  -moz-osx-font-smoothing: grayscale;
   padding: 0;
   position: fixed;
   right: 0;
@@ -90,7 +90,7 @@
   color: var(--neutral-950);
   cursor: pointer;
   padding: var(--space-2xs) var(--space-s);
-  transition: 0.3 ease-in;
+  transition: 0.3s ease-in;
 }
 
 .collection-controls__actions {

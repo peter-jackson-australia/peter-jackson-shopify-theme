@@ -31,10 +31,6 @@
   padding: 0 var(--space-xl);
 }
 
-.countervalue__aside-text {
-  white-space: break-spaces;
-}
-
 .counter__counters:last-child {
   border-right: none;
 }
