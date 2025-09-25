@@ -203,13 +203,47 @@
         "button_link": "shopify://collections/mens-suits"
       }
     },
+    "image_with_text_kXwLAa": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "full_width": false,
+        "first_image": "shopify://shop_images/Polo_3.jpg",
+        "image_link": "",
+        "animate_images": false,
+        "alignment": "left",
+        "heading": "Polised Polos",
+        "heading_animation": "none",
+        "text": "Knitted polos add a refined ease to the smart-casual uniform, balancing sharp tailoring with laid-back confidence. Pair them under a sports jacket for subtle texture, or wear solo with denim or tailored trousers for a cleaner, more relaxed statement.",
+        "text_animation": "none",
+        "button_label": "Shop Polo Shirts",
+        "button_link": "shopify://collections/sport-jackets"
+      }
+    },
+    "collection_slider_secondary_4cJeT8": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "long-sleeves-and-polos",
+        "button_label": "",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
     "variable_column_content_tertiary_LT7464": {
       "type": "variable-column-content-tertiary",
       "blocks": {
         "column_item_34GMTd": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34374_copy_2.webp",
+            "image": "shopify://shop_images/Polo_2.jpg",
             "image_link": "shopify://products/genoa-taupe-technical-twill-field-jacket",
             "heading": "",
             "heading_animation": "none",
@@ -225,7 +259,7 @@
         "column_item_twi3Jn": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34383_copy_2.webp",
+            "image": "shopify://shop_images/Polo_3.jpg",
             "image_link": "shopify://products/genoa-taupe-technical-twill-field-jacket",
             "heading": "",
             "heading_animation": "none",
@@ -241,7 +275,7 @@
         "column_item_wV9m9x": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34341_copy_2.webp",
+            "image": "shopify://shop_images/Polo_1.jpg",
             "image_link": "shopify://products/genoa-taupe-technical-twill-field-jacket",
             "heading": "",
             "heading_animation": "none",
@@ -260,6 +294,7 @@
         "column_item_twi3Jn",
         "column_item_wV9m9x"
       ],
+      "disabled": true,
       "name": "Variable Column Content Tertiary",
       "settings": {
         "anchor_id": "",
@@ -301,20 +336,6 @@
         "vertical_alignment": "bottom",
         "mobile_horizontal_alignment": "center",
         "mobile_vertical_alignment": "bottom"
-      }
-    },
-    "collection_slider_CEcm4Y": {
-      "type": "collection-slider",
-      "name": "Collection Slider",
-      "settings": {
-        "heading": "New Season Style",
-        "heading_animation": "none",
-        "description": "Shop our latest transeasonal pieces",
-        "description_animation": "none",
-        "collection": "new-arrivals",
-        "button_label": "Shop Now",
-        "products_to_show": 10,
-        "animate_products": false
       }
     },
     "image_with_text_4FciAz": {
@@ -398,9 +419,10 @@
     "image_with_text_RRTVz8",
     "editorial_hero_dTVGEg",
     "variable_column_content_secondary_Wfmfxi",
+    "image_with_text_kXwLAa",
+    "collection_slider_secondary_4cJeT8",
     "variable_column_content_tertiary_LT7464",
     "hero_primary_feCpm7",
-    "collection_slider_CEcm4Y",
     "image_with_text_4FciAz",
     "variable_column_content_secondary_xcBKxn"
   ]
