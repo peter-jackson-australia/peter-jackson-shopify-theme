@@ -1,0 +1,305 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "article": {
+      "type": "main-article",
+      "disabled": true,
+      "settings": {}
+    },
+    "blog_header_aBjQNU": {
+      "type": "blog-header",
+      "name": "Blog Header",
+      "settings": {
+        "journal_type": "jackson"
+      }
+    },
+    "hero_primary_7KDfwB": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/Spring_Hero_Desktop.webp",
+        "mobile_image": "shopify://shop_images/Spring_Hero_Mobile.webp",
+        "heading": "",
+        "svg_image": "shopify://shop_images/S25_Homepage_Hero_V2.svg",
+        "svg_size": "full",
+        "mobile_svg_image": "shopify://shop_images/S25_Homepage_Hero_Mobile.svg",
+        "heading_level": "h1",
+        "heading_animation": "none",
+        "description": "SPRING 25",
+        "description_animation": "none",
+        "button_label_1": "Shop Now",
+        "button_link_1": "",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "bottom",
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "bottom"
+      }
+    },
+    "collection_slider_secondary_CEkyCA": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "",
+        "heading_animation": "none",
+        "description": "Spring signals a style reset, where premium European wools, breathable cottons and refined linen blends bring lightness and polish to the everyday wardrobe. Linen suits, lightweight sports jackets, versatile shirts, polos and denim form the essential pieces of the season - foundations that balance ease with sophistication. Designed to move effortlessly from day to evening, they set a new standard for elevated casual style in the social months ahead.",
+        "description_animation": "none",
+        "collection": "spring-25",
+        "button_label": "Shop Spring",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
+    "hero_primary_pXnGLT": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/Jungle_Jackets.jpg",
+        "mobile_image": "shopify://shop_images/Jungle_Jackets_Mob.jpg",
+        "heading": "",
+        "svg_size": "medium",
+        "heading_level": "h1",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "button_label_1": "Shop Now",
+        "button_link_1": "",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "bottom",
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "bottom"
+      }
+    },
+    "heading_with_text_m9QJRw": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "leading_text": "",
+        "leading_text_animation": "none",
+        "heading": "The Smart Casual Spring Clean",
+        "heading_style": "normal",
+        "heading_animation": "none",
+        "content": "<p>A soft-shouldered sports jacket over a polo, paired with tailored trousers and loafers, is the European formula for modern ease. Rooted in British sportswear and elevated by Italian tailoring, it's finished with the nonchalant polish of a slip-on loafer. Versatile, elegant & effortless, it's a look that defines the season.</p>",
+        "content_animation": "none",
+        "alignment": "center"
+      }
+    },
+    "image_with_text_RRTVz8": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "full_width": false,
+        "first_image": "shopify://shop_images/Blue_Sports_Jacket.jpg",
+        "image_link": "",
+        "animate_images": false,
+        "alignment": "right",
+        "heading": "The Renewal Of The All-Rounder",
+        "heading_animation": "none",
+        "text": "The season's ultimate layer, the sports jacket pairs effortlessly with a denim shirt or polo for casual sophistication, or a crisp cotton shirt for polish. Luxurious wool, linen and silk meet a palette of fresh blues, rich oranges, and earthy tones. This collection of sports jackets brings fresh energy, marking the perfect moment to rest your wardrobe.",
+        "text_animation": "none",
+        "button_label": "Shop Sports Jacket",
+        "button_link": "shopify://collections/sport-jackets"
+      }
+    },
+    "collection_slider_secondary_hxrHEe": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "sport-jackets",
+        "button_label": "",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
+    "editorial_hero_dTVGEg": {
+      "type": "editorial-hero",
+      "disabled": true,
+      "name": "Hero Editorial",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "leading_text": "",
+        "leading_text_animation": "none",
+        "first_title": "TRANSEASONAL",
+        "first_title_level": "h1",
+        "first_title_animation": "none",
+        "media_type": "video",
+        "video": "shopify://files/videos/Transeasonal Refinement (HP Final).mp4",
+        "animate_media": false,
+        "second_title": "REFINEMENT",
+        "second_title_level": "h1",
+        "second_title_animation": "none",
+        "description": "Traversing the Australian climate as the seasons change is tough; not just on the weatherman, but on all of us. One day, you're struggling to leave the bed, and the next, you're dreaming of the beach and a six-pack of your favourite beer. How are you supposed to dress for this kind of weather? Thankfully, it doesn't have to be complicated. All you need are a few key layer-friendly pieces that bridge the gap between winter warmth and spring breeziness.",
+        "description_animation": "none",
+        "cta_text": "Shop Now",
+        "cta_link": ""
+      }
+    },
+    "variable_column_content_secondary_Wfmfxi": {
+      "type": "variable-column-content-secondary",
+      "blocks": {
+        "column_item_U9xHRY": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Linen_Suit_2.jpg",
+            "image_link": "",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_4eRYBQ": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Linen_Suit_1.jpg",
+            "image_link": "",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "column_link": "shopify://collections/mens-suits",
+            "column_link_text": "Shop Spring Suits"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_U9xHRY",
+        "column_item_4eRYBQ"
+      ],
+      "name": "Variable Column Content Secondary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "column_count": "2",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "The Evergreen Essential",
+        "heading_animation": "none",
+        "text": "Light, breathable and endlessly versatile, this canvas-linen suit is your warm-weather classic that earns its place year after year. Perfect for weddings, garden parties and outdoor occasions, it carries an ease tht feels both elegant and relaxed. Linen's natural texture and breathability make it ideal for summer, while its timeless appeal ensures this suit remains an essential that never goes out of style.",
+        "text_animation": "none",
+        "button_label": "Shop Spring Suits",
+        "button_link": "shopify://collections/mens-suits"
+      }
+    },
+    "image_with_text_kXwLAa": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "full_width": false,
+        "first_image": "shopify://shop_images/Polo_3.jpg",
+        "image_link": "",
+        "animate_images": false,
+        "alignment": "right",
+        "heading": "Polised Polos",
+        "heading_animation": "none",
+        "text": "Knitted polos add a refined ease to the smart-casual uniform, balancing sharp tailoring with laid-back confidence. Pair them under a sports jacket for subtle texture, or wear solo with denim or tailored trousers for a cleaner, more relaxed statement.",
+        "text_animation": "none",
+        "button_label": "Shop Polo Shirts",
+        "button_link": "shopify://collections/sport-jackets"
+      }
+    },
+    "collection_slider_secondary_4cJeT8": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "long-sleeves-and-polos",
+        "button_label": "",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
+    "image_with_text_4FciAz": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "full_width": false,
+        "first_image": "shopify://shop_images/Spring_Suit.jpg",
+        "image_link": "",
+        "animate_images": false,
+        "alignment": "left",
+        "heading": "Spring Tailoring",
+        "heading_animation": "none",
+        "text": "Lightweight structure that keeps its edge from desk to dusk. These suits work overtime, taking you from boardroom to bar. New season colours in classic navy, olive, chocolate, sand, sky blue and port. Trend Alert:The Banker Stripe is back!",
+        "text_animation": "none",
+        "button_label": "Shop Spring Suits",
+        "button_link": "shopify://collections/mens-suits"
+      }
+    },
+    "collection_slider_secondary_XHG4xA": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "mens-suits",
+        "button_label": "",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    }
+  },
+  "order": [
+    "article",
+    "blog_header_aBjQNU",
+    "hero_primary_7KDfwB",
+    "collection_slider_secondary_CEkyCA",
+    "hero_primary_pXnGLT",
+    "heading_with_text_m9QJRw",
+    "image_with_text_RRTVz8",
+    "collection_slider_secondary_hxrHEe",
+    "editorial_hero_dTVGEg",
+    "variable_column_content_secondary_Wfmfxi",
+    "image_with_text_kXwLAa",
+    "collection_slider_secondary_4cJeT8",
+    "image_with_text_4FciAz",
+    "collection_slider_secondary_XHG4xA"
+  ]
+}
