@@ -1,0 +1,363 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "article": {
+      "type": "main-article",
+      "disabled": true,
+      "settings": {}
+    },
+    "blog_header_aBjQNU": {
+      "type": "blog-header",
+      "name": "Blog Header",
+      "settings": {
+        "journal_type": "jackson"
+      }
+    },
+    "hero_primary_7KDfwB": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/Spring_Hero_Desktop.webp",
+        "mobile_image": "shopify://shop_images/Spring_Hero_Mobile.webp",
+        "heading": "",
+        "svg_image": "shopify://shop_images/S25_Homepage_Hero_V2.svg",
+        "svg_size": "full",
+        "heading_level": "h1",
+        "heading_animation": "none",
+        "description": "SPRING 25",
+        "description_animation": "none",
+        "button_label_1": "Shop Now",
+        "button_link_1": "",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "bottom",
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "bottom"
+      }
+    },
+    "heading_with_text_m9QJRw": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "leading_text": "",
+        "leading_text_animation": "none",
+        "heading": "",
+        "heading_style": "normal",
+        "heading_animation": "none",
+        "content": "<p>Spring signals a style reset, where premium European wools, breathable cottons and refined linen blends bring lightness and polish to the everyday wardrobe. Linen suits, lightweight sports jackets, versatile shirts, polos and denim form the essential pieces of the season - foundations that balance ease with sophistication. Designed to move effortlessly from day to evening, they set a new standard for elevated casual style in the social months ahead.</p>",
+        "content_animation": "none",
+        "alignment": "center"
+      }
+    },
+    "editorial_hero_dTVGEg": {
+      "type": "editorial-hero",
+      "disabled": true,
+      "name": "Hero Editorial",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "leading_text": "",
+        "leading_text_animation": "none",
+        "first_title": "TRANSEASONAL",
+        "first_title_level": "h1",
+        "first_title_animation": "none",
+        "media_type": "video",
+        "video": "shopify://files/videos/Transeasonal Refinement (HP Final).mp4",
+        "animate_media": false,
+        "second_title": "REFINEMENT",
+        "second_title_level": "h1",
+        "second_title_animation": "none",
+        "description": "Traversing the Australian climate as the seasons change is tough; not just on the weatherman, but on all of us. One day, you're struggling to leave the bed, and the next, you're dreaming of the beach and a six-pack of your favourite beer. How are you supposed to dress for this kind of weather? Thankfully, it doesn't have to be complicated. All you need are a few key layer-friendly pieces that bridge the gap between winter warmth and spring breeziness.",
+        "description_animation": "none",
+        "cta_text": "Shop Now",
+        "cta_link": ""
+      }
+    },
+    "variable_column_content_tertiary_LT7464": {
+      "type": "variable-column-content-tertiary",
+      "blocks": {
+        "column_item_34GMTd": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34374_copy_2.webp",
+            "image_link": "shopify://products/genoa-taupe-technical-twill-field-jacket",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "center",
+            "content_vertical_alignment": "center",
+            "column_link": "shopify://products/genoa-taupe-technical-twill-field-jacket",
+            "column_link_text": ""
+          }
+        },
+        "column_item_twi3Jn": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34383_copy_2.webp",
+            "image_link": "shopify://products/genoa-taupe-technical-twill-field-jacket",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "center",
+            "content_vertical_alignment": "center",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_wV9m9x": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34341_copy_2.webp",
+            "image_link": "shopify://products/genoa-taupe-technical-twill-field-jacket",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "center",
+            "content_vertical_alignment": "center",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_34GMTd",
+        "column_item_twi3Jn",
+        "column_item_wV9m9x"
+      ],
+      "name": "Variable Column Content Tertiary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "column_count": "3",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "Layered Intent",
+        "heading_animation": "none",
+        "text": "The most effective way to prepare for the shifting weather is to layer with intention. You want each item to stand alone, but also pair easily with the other clothes you own. Things like polos, overshirts, and field jackets work perfectly to get you through the brisk mornings as well as the warm afternoons. As the temperature fluctuates, so does your outfit, with layers being easy to remove (or re-add) as needed.Start with lighter base layers and build outward from there, with a slightly heavier layer for warmth covered by a larger outer layer to protect you from the elements as required. Limiting yourself to three items will keep you from feeling weighed down and looking convoluted.On days that you're headed into the office, a crisp white dress shirt pairs perfectly with a dark, earth tone tie and our lightweight field jacket for a professional yet relaxed look.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    },
+    "hero_primary_feCpm7": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34422_copy_2.webp",
+        "mobile_image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34422_copy_2.webp",
+        "heading": "",
+        "svg_size": "medium",
+        "heading_level": "h1",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "button_label_1": "Shop Now",
+        "button_link_1": "",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "bottom",
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "bottom"
+      }
+    },
+    "image_with_text_RRTVz8": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "full_width": false,
+        "first_image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34557_copy_2.webp",
+        "image_link": "",
+        "animate_images": false,
+        "alignment": "right",
+        "heading": "Polo Perfection",
+        "heading_animation": "none",
+        "text": "A tailored polo dressed up with an unstructured burgundy sports coat over some white jeans will have you dressed appropriately for a cocktail party or a weekend dinner with friends.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    },
+    "variable_column_content_secondary_Wfmfxi": {
+      "type": "variable-column-content-secondary",
+      "blocks": {
+        "column_item_U9xHRY": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34725_copy_2.webp",
+            "image_link": "",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_4eRYBQ": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/PJ_Transeasonal_Russell_8b7ef198-aa6d-447d-9f68-2da444e8b495.webp",
+            "image_link": "",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_U9xHRY",
+        "column_item_4eRYBQ"
+      ],
+      "name": "Variable Column Content Secondary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "column_count": "2",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "Off-Duty Overshirts",
+        "heading_animation": "none",
+        "text": "And for those days off when you just need to run some errands? Wearing a fitted t-shirt with a more structured overshirt creates a laid back look that you can be proud to leave the house in.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    },
+    "collection_slider_CEcm4Y": {
+      "type": "collection-slider",
+      "name": "Collection Slider",
+      "settings": {
+        "heading": "New Season Style",
+        "heading_animation": "none",
+        "description": "Shop our latest transeasonal pieces",
+        "description_animation": "none",
+        "collection": "new-arrivals",
+        "button_label": "Shop Now",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
+    "image_with_text_4FciAz": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": true,
+        "full_width": false,
+        "first_image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34622_copy_2.webp",
+        "image_link": "",
+        "animate_images": false,
+        "alignment": "left",
+        "heading": "Depth in Dressing",
+        "heading_animation": "none",
+        "text": "Not only does this keep you feeling your best all day, but it also provides exciting opportunities to experiment with colour, textures, and proportions. Don’t be afraid to combine different things for a more varied look. You can easily add depth to an outfit by blending textures or contrasting colours. The interplay of different fabrics will have you garnering compliments rather than leaving people thinking you threw on the first shirt and jacket you could find. Wool, linen, denim, corduroy and brushed cotton are all materials that can provide some much needed visual interest to your get-up. ",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    },
+    "variable_column_content_secondary_xcBKxn": {
+      "type": "variable-column-content-secondary",
+      "blocks": {
+        "column_item_N8pqiz": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34508_copy_2.webp",
+            "image_link": "",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_NJGyNa": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34886_1_copy_2.webp",
+            "image_link": "",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_N8pqiz",
+        "column_item_NJGyNa"
+      ],
+      "name": "Variable Column Content Secondary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "2",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "",
+        "heading_animation": "none",
+        "text": "",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    }
+  },
+  "order": [
+    "article",
+    "blog_header_aBjQNU",
+    "hero_primary_7KDfwB",
+    "heading_with_text_m9QJRw",
+    "editorial_hero_dTVGEg",
+    "variable_column_content_tertiary_LT7464",
+    "hero_primary_feCpm7",
+    "image_with_text_RRTVz8",
+    "variable_column_content_secondary_Wfmfxi",
+    "collection_slider_CEcm4Y",
+    "image_with_text_4FciAz",
+    "variable_column_content_secondary_xcBKxn"
+  ]
+}
