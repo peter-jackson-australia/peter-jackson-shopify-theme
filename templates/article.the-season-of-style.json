@@ -237,107 +237,6 @@
         "animate_products": false
       }
     },
-    "variable_column_content_tertiary_LT7464": {
-      "type": "variable-column-content-tertiary",
-      "blocks": {
-        "column_item_34GMTd": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/Polo_2.jpg",
-            "image_link": "shopify://products/genoa-taupe-technical-twill-field-jacket",
-            "heading": "",
-            "heading_animation": "none",
-            "text": "",
-            "text_animation": "none",
-            "show_gradient_overlay": false,
-            "content_horizontal_alignment": "center",
-            "content_vertical_alignment": "center",
-            "column_link": "shopify://products/genoa-taupe-technical-twill-field-jacket",
-            "column_link_text": ""
-          }
-        },
-        "column_item_twi3Jn": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/Polo_3.jpg",
-            "image_link": "shopify://products/genoa-taupe-technical-twill-field-jacket",
-            "heading": "",
-            "heading_animation": "none",
-            "text": "",
-            "text_animation": "none",
-            "show_gradient_overlay": false,
-            "content_horizontal_alignment": "center",
-            "content_vertical_alignment": "center",
-            "column_link": "",
-            "column_link_text": "Shop Now"
-          }
-        },
-        "column_item_wV9m9x": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/Polo_1.jpg",
-            "image_link": "shopify://products/genoa-taupe-technical-twill-field-jacket",
-            "heading": "",
-            "heading_animation": "none",
-            "text": "",
-            "text_animation": "none",
-            "show_gradient_overlay": false,
-            "content_horizontal_alignment": "center",
-            "content_vertical_alignment": "center",
-            "column_link": "",
-            "column_link_text": "Shop Now"
-          }
-        }
-      },
-      "block_order": [
-        "column_item_34GMTd",
-        "column_item_twi3Jn",
-        "column_item_wV9m9x"
-      ],
-      "disabled": true,
-      "name": "Variable Column Content Tertiary",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": true,
-        "column_count": "3",
-        "text_alignment": "left",
-        "animate_columns": false,
-        "heading": "The Smart Casual Spring Clean",
-        "heading_animation": "none",
-        "text": "A soft-shouldered sports jacket over a polo, paired with tailored trousers and loafers, is the European formula for modern ease. Rooted in British sportswear and elevated by Italian tailoring, it's finished with the nonchalant polish of a slip-on loafer. Versatile, elegant & effortless, it's a look that defines the season.",
-        "text_animation": "none",
-        "button_label": "Learn More",
-        "button_link": ""
-      }
-    },
-    "hero_primary_feCpm7": {
-      "type": "hero-primary",
-      "name": "Hero Section",
-      "settings": {
-        "media_type": "image",
-        "desktop_image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34422_copy_2.webp",
-        "mobile_image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34422_copy_2.webp",
-        "heading": "",
-        "svg_size": "medium",
-        "heading_level": "h1",
-        "heading_animation": "none",
-        "description": "A soft-shouldered sport",
-        "description_animation": "none",
-        "button_label_1": "Shop Now",
-        "button_link_1": "",
-        "button_label_2": "",
-        "button_link_2": "",
-        "button_label_3": "",
-        "button_link_3": "",
-        "button_label_4": "",
-        "button_link_4": "",
-        "horizontal_alignment": "center",
-        "vertical_alignment": "bottom",
-        "mobile_horizontal_alignment": "center",
-        "mobile_vertical_alignment": "bottom"
-      }
-    },
     "image_with_text_4FciAz": {
       "type": "image-with-text",
       "name": "Image With Text",
@@ -346,66 +245,16 @@
         "show_top_border": true,
         "show_bottom_border": true,
         "full_width": false,
-        "first_image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34622_copy_2.webp",
+        "first_image": "shopify://shop_images/Spring_Suit.jpg",
         "image_link": "",
         "animate_images": false,
         "alignment": "left",
-        "heading": "Depth in Dressing",
+        "heading": "Spring Tailoring",
         "heading_animation": "none",
-        "text": "Not only does this keep you feeling your best all day, but it also provides exciting opportunities to experiment with colour, textures, and proportions. Don’t be afraid to combine different things for a more varied look. You can easily add depth to an outfit by blending textures or contrasting colours. The interplay of different fabrics will have you garnering compliments rather than leaving people thinking you threw on the first shirt and jacket you could find. Wool, linen, denim, corduroy and brushed cotton are all materials that can provide some much needed visual interest to your get-up. ",
+        "text": "Lightweight structure that keeps its edge from desk to dusk. These suits work overtime, taking you from boardroom to bar. New season colours in classic navy, olive, chocolate, sand, sky blue and port. <br><br>Trend Alert:The Banker Stripe is back!",
         "text_animation": "none",
-        "button_label": "Learn More",
-        "button_link": ""
-      }
-    },
-    "variable_column_content_secondary_xcBKxn": {
-      "type": "variable-column-content-secondary",
-      "blocks": {
-        "column_item_N8pqiz": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34508_copy_2.webp",
-            "image_link": "",
-            "heading": "",
-            "heading_animation": "none",
-            "text": "",
-            "text_animation": "none",
-            "column_link": "",
-            "column_link_text": "Shop Now"
-          }
-        },
-        "column_item_NJGyNa": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34886_1_copy_2.webp",
-            "image_link": "",
-            "heading": "",
-            "heading_animation": "none",
-            "text": "",
-            "text_animation": "none",
-            "column_link": "",
-            "column_link_text": "Shop Now"
-          }
-        }
-      },
-      "block_order": [
-        "column_item_N8pqiz",
-        "column_item_NJGyNa"
-      ],
-      "name": "Variable Column Content Secondary",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": false,
-        "column_count": "2",
-        "text_alignment": "left",
-        "animate_columns": false,
-        "heading": "",
-        "heading_animation": "none",
-        "text": "",
-        "text_animation": "none",
-        "button_label": "Learn More",
-        "button_link": ""
+        "button_label": "Shop Spring Suits",
+        "button_link": "shopify://collections/mens-suits"
       }
     }
   },
@@ -421,9 +270,6 @@
     "variable_column_content_secondary_Wfmfxi",
     "image_with_text_kXwLAa",
     "collection_slider_secondary_4cJeT8",
-    "variable_column_content_tertiary_LT7464",
-    "hero_primary_feCpm7",
-    "image_with_text_4FciAz",
-    "variable_column_content_secondary_xcBKxn"
+    "image_with_text_4FciAz"
   ]
 }
