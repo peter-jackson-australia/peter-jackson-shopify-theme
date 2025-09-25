@@ -14,6 +14,7 @@
 {% assign heading = section.settings.heading %}
 {% assign heading_animation = section.settings.heading_alignment %}
 {% assign text = section.settings.text %}
+{% assign text_animation = section.settings.text_animation %}
 {% assign text_alignment = section.settings.text_alignment %}
 {% assign button_label = section.settings.button_label %}
 {% assign button_link = section.settings.button_link %}
@@ -40,7 +41,7 @@
         {% assign image_link_setting_key = 'image_' | append: i | append: '_link' %}
         {% assign current_image = section.settings[image_setting_key] %}
         {% assign current_image_link = section.settings[image_link_setting_key] %}
-        
+
         {% if current_image != blank %}
           <div class="variable-column-content__image-wrapper">
             {% if current_image_link != blank %}
@@ -76,7 +77,7 @@
       {% endfor %}
     </div>
   {% endif %}
-  
+
   <div class="variable-column-content__text-container">
     <div class="variable-column-content__text-content variable-column-content__text-content--{{ text_alignment }}">
       {% if heading != blank %}
