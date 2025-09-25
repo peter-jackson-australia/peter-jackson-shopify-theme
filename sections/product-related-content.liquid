@@ -56,7 +56,7 @@
         {% assign cta_text = section.settings.cta_text %}
 
         {% if cta_link != blank and cta_text != blank %}
-          <a href="{{ scta_link }}" class="related-articles__link body">
+          <a href="{{ cta_link }}" class="related-articles__link body">
             {{ cta_text }}
             {% render '_icon-arrow-submit-dark' %}
           </a>

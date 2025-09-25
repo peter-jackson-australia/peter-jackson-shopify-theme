@@ -187,7 +187,6 @@
     </header>
     <div class="sub-drawer__content">
       <div class="faq-list">
-        
         {% if faq_1_title != blank %}
           <div class="faq-item">
             <h3 class="faq-item__title body--bold">{{ faq_1_title }}</h3>
@@ -195,9 +194,6 @@
               class="faq-item__description body"
               data-full-text="{{ faq_1_description | escape }}"
             ></p>
-            {% if faq_1_link != blank %}
-              <a href="{{ faq_1_link }}" class="faq-item__link body">Learn more</a>
-            {% endif %}
           </div>
         {% endif %}
 
@@ -208,9 +204,6 @@
               class="faq-item__description body"
               data-full-text="{{ faq_2_description | escape }}"
             ></p>
-            {% if faq_2_link != blank %}
-              <a href="{{ faq_2_link }}" class="faq-item__link body">Learn more</a>
-            {% endif %}
           </div>
         {% endif %}
 
@@ -221,9 +214,6 @@
               class="faq-item__description body"
               data-full-text="{{ faq_3_description | escape }}"
             ></p>
-            {% if faq_3_link != blank %}
-              <a href="{{ faq_3_link }}" class="faq-item__link body">Learn more</a>
-            {% endif %}
           </div>
         {% endif %}
 
@@ -234,9 +224,6 @@
               class="faq-item__description body"
               data-full-text="{{ faq_4_description | escape }}"
             ></p>
-            {% if faq_4_link != blank %}
-              <a href="{{ faq_4_link }}" class="faq-item__link body">Learn more</a>
-            {% endif %}
           </div>
         {% endif %}
       </div>
