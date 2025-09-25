@@ -70,7 +70,7 @@
       "settings": {
         "media_type": "image",
         "desktop_image": "shopify://shop_images/Jungle_Jackets.jpg",
-        "mobile_image": "shopify://shop_images/Jungle_Jackets.jpg",
+        "mobile_image": "shopify://shop_images/Jungle_Jackets_Mob.jpg",
         "heading": "",
         "svg_size": "medium",
         "heading_level": "h1",
