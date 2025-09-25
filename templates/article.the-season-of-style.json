@@ -66,6 +66,26 @@
         "alignment": "center"
       }
     },
+    "image_with_text_RRTVz8": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": true,
+        "full_width": false,
+        "first_image": "shopify://shop_images/Blue_Sports_Jacket.jpg",
+        "image_link": "",
+        "animate_images": false,
+        "alignment": "right",
+        "heading": "The Renewal Of The All-Rounder",
+        "heading_animation": "none",
+        "text": "The season's ultimate layer, the sports jacket pairs effortlessly with a denim shirt or polo for casual sophistication, or a crisp cotton shirt for polish. Luxurious wool, linen and silk meet a palette of fresh blues, rich oranges, and earthy tones. This collection of sports jackets brings fresh energy, marking the perfect moment to rest your wardrobe.",
+        "text_animation": "none",
+        "button_label": "Shop Sports Jacket",
+        "button_link": "shopify://collections/sport-jackets"
+      }
+    },
     "editorial_hero_dTVGEg": {
       "type": "editorial-hero",
       "disabled": true,
@@ -189,26 +209,6 @@
         "vertical_alignment": "bottom",
         "mobile_horizontal_alignment": "center",
         "mobile_vertical_alignment": "bottom"
-      }
-    },
-    "image_with_text_RRTVz8": {
-      "type": "image-with-text",
-      "name": "Image With Text",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": true,
-        "full_width": false,
-        "first_image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34557_copy_2.webp",
-        "image_link": "",
-        "animate_images": false,
-        "alignment": "right",
-        "heading": "Polo Perfection",
-        "heading_animation": "none",
-        "text": "A tailored polo dressed up with an unstructured burgundy sports coat over some white jeans will have you dressed appropriately for a cocktail party or a weekend dinner with friends.",
-        "text_animation": "none",
-        "button_label": "Learn More",
-        "button_link": ""
       }
     },
     "variable_column_content_secondary_Wfmfxi": {
@@ -351,10 +351,10 @@
     "blog_header_aBjQNU",
     "hero_primary_7KDfwB",
     "heading_with_text_m9QJRw",
+    "image_with_text_RRTVz8",
     "editorial_hero_dTVGEg",
     "variable_column_content_tertiary_LT7464",
     "hero_primary_feCpm7",
-    "image_with_text_RRTVz8",
     "variable_column_content_secondary_Wfmfxi",
     "collection_slider_CEcm4Y",
     "image_with_text_4FciAz",
