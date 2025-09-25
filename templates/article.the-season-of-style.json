@@ -70,7 +70,7 @@
       "settings": {
         "media_type": "image",
         "desktop_image": "shopify://shop_images/Jungle_Jackets.jpg",
-        "mobile_image": "shopify://shop_images/Jungle_Jackets.jpg",
+        "mobile_image": "shopify://shop_images/Jungle_Jackets_Mob.jpg",
         "heading": "",
         "svg_size": "medium",
         "heading_level": "h1",
@@ -114,7 +114,7 @@
       "settings": {
         "anchor_id": "",
         "show_top_border": true,
-        "show_bottom_border": true,
+        "show_bottom_border": false,
         "full_width": false,
         "first_image": "shopify://shop_images/Blue_Sports_Jacket.jpg",
         "image_link": "",
@@ -126,6 +126,20 @@
         "text_animation": "none",
         "button_label": "Shop Sports Jacket",
         "button_link": "shopify://collections/sport-jackets"
+      }
+    },
+    "collection_slider_secondary_hxrHEe": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "sport-jackets",
+        "button_label": "",
+        "products_to_show": 10,
+        "animate_products": false
       }
     },
     "editorial_hero_dTVGEg": {
@@ -153,113 +167,13 @@
         "cta_link": ""
       }
     },
-    "variable_column_content_tertiary_LT7464": {
-      "type": "variable-column-content-tertiary",
-      "blocks": {
-        "column_item_34GMTd": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34374_copy_2.webp",
-            "image_link": "shopify://products/genoa-taupe-technical-twill-field-jacket",
-            "heading": "",
-            "heading_animation": "none",
-            "text": "",
-            "text_animation": "none",
-            "show_gradient_overlay": false,
-            "content_horizontal_alignment": "center",
-            "content_vertical_alignment": "center",
-            "column_link": "shopify://products/genoa-taupe-technical-twill-field-jacket",
-            "column_link_text": ""
-          }
-        },
-        "column_item_twi3Jn": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34383_copy_2.webp",
-            "image_link": "shopify://products/genoa-taupe-technical-twill-field-jacket",
-            "heading": "",
-            "heading_animation": "none",
-            "text": "",
-            "text_animation": "none",
-            "show_gradient_overlay": false,
-            "content_horizontal_alignment": "center",
-            "content_vertical_alignment": "center",
-            "column_link": "",
-            "column_link_text": "Shop Now"
-          }
-        },
-        "column_item_wV9m9x": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34341_copy_2.webp",
-            "image_link": "shopify://products/genoa-taupe-technical-twill-field-jacket",
-            "heading": "",
-            "heading_animation": "none",
-            "text": "",
-            "text_animation": "none",
-            "show_gradient_overlay": false,
-            "content_horizontal_alignment": "center",
-            "content_vertical_alignment": "center",
-            "column_link": "",
-            "column_link_text": "Shop Now"
-          }
-        }
-      },
-      "block_order": [
-        "column_item_34GMTd",
-        "column_item_twi3Jn",
-        "column_item_wV9m9x"
-      ],
-      "name": "Variable Column Content Tertiary",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": true,
-        "column_count": "3",
-        "text_alignment": "left",
-        "animate_columns": false,
-        "heading": "The Smart Casual Spring Clean",
-        "heading_animation": "none",
-        "text": "A soft-shouldered sports jacket over a polo, paired with tailored trousers and loafers, is the European formula for modern ease. Rooted in British sportswear and elevated by Italian tailoring, it's finished with the nonchalant polish of a slip-on loafer. Versatile, elegant & effortless, it's a look that defines the season.",
-        "text_animation": "none",
-        "button_label": "Learn More",
-        "button_link": ""
-      }
-    },
-    "hero_primary_feCpm7": {
-      "type": "hero-primary",
-      "name": "Hero Section",
-      "settings": {
-        "media_type": "image",
-        "desktop_image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34422_copy_2.webp",
-        "mobile_image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34422_copy_2.webp",
-        "heading": "",
-        "svg_size": "medium",
-        "heading_level": "h1",
-        "heading_animation": "none",
-        "description": "A soft-shouldered sport",
-        "description_animation": "none",
-        "button_label_1": "Shop Now",
-        "button_link_1": "",
-        "button_label_2": "",
-        "button_link_2": "",
-        "button_label_3": "",
-        "button_link_3": "",
-        "button_label_4": "",
-        "button_link_4": "",
-        "horizontal_alignment": "center",
-        "vertical_alignment": "bottom",
-        "mobile_horizontal_alignment": "center",
-        "mobile_vertical_alignment": "bottom"
-      }
-    },
     "variable_column_content_secondary_Wfmfxi": {
       "type": "variable-column-content-secondary",
       "blocks": {
         "column_item_U9xHRY": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34725_copy_2.webp",
+            "image": "shopify://shop_images/Linen_Suit_2.jpg",
             "image_link": "",
             "heading": "",
             "heading_animation": "none",
@@ -272,14 +186,14 @@
         "column_item_4eRYBQ": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/PJ_Transeasonal_Russell_8b7ef198-aa6d-447d-9f68-2da444e8b495.webp",
+            "image": "shopify://shop_images/Linen_Suit_1.jpg",
             "image_link": "",
             "heading": "",
             "heading_animation": "none",
             "text": "",
             "text_animation": "none",
-            "column_link": "",
-            "column_link_text": "Shop Now"
+            "column_link": "shopify://collections/mens-suits",
+            "column_link_text": "Shop Spring Suits"
           }
         }
       },
@@ -295,24 +209,44 @@
         "column_count": "2",
         "text_alignment": "left",
         "animate_columns": false,
-        "heading": "Off-Duty Overshirts",
+        "heading": "The Evergreen Essential",
         "heading_animation": "none",
-        "text": "And for those days off when you just need to run some errands? Wearing a fitted t-shirt with a more structured overshirt creates a laid back look that you can be proud to leave the house in.",
+        "text": "Light, breathable and endlessly versatile, this canvas-linen suit is your warm-weather classic that earns its place year after year. Perfect for weddings, garden parties and outdoor occasions, it carries an ease tht feels both elegant and relaxed. Linen's natural texture and breathability make it ideal for summer, while its timeless appeal ensures this suit remains an essential that never goes out of style.",
         "text_animation": "none",
-        "button_label": "Learn More",
-        "button_link": ""
+        "button_label": "Shop Spring Suits",
+        "button_link": "shopify://collections/mens-suits"
       }
     },
-    "collection_slider_CEcm4Y": {
-      "type": "collection-slider",
-      "name": "Collection Slider",
+    "image_with_text_kXwLAa": {
+      "type": "image-with-text",
+      "name": "Image With Text",
       "settings": {
-        "heading": "New Season Style",
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "full_width": false,
+        "first_image": "shopify://shop_images/Polo_3.jpg",
+        "image_link": "",
+        "animate_images": false,
+        "alignment": "right",
+        "heading": "Polised Polos",
         "heading_animation": "none",
-        "description": "Shop our latest transeasonal pieces",
+        "text": "Knitted polos add a refined ease to the smart-casual uniform, balancing sharp tailoring with laid-back confidence. Pair them under a sports jacket for subtle texture, or wear solo with denim or tailored trousers for a cleaner, more relaxed statement.",
+        "text_animation": "none",
+        "button_label": "Shop Polo Shirts",
+        "button_link": "shopify://collections/sport-jackets"
+      }
+    },
+    "collection_slider_secondary_4cJeT8": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "",
+        "heading_animation": "none",
+        "description": "",
         "description_animation": "none",
-        "collection": "new-arrivals",
-        "button_label": "Shop Now",
+        "collection": "long-sleeves-and-polos",
+        "button_label": "",
         "products_to_show": 10,
         "animate_products": false
       }
@@ -323,68 +257,32 @@
       "settings": {
         "anchor_id": "",
         "show_top_border": true,
-        "show_bottom_border": true,
+        "show_bottom_border": false,
         "full_width": false,
-        "first_image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34622_copy_2.webp",
+        "first_image": "shopify://shop_images/Spring_Suit.jpg",
         "image_link": "",
         "animate_images": false,
         "alignment": "left",
-        "heading": "Depth in Dressing",
+        "heading": "Spring Tailoring",
         "heading_animation": "none",
-        "text": "Not only does this keep you feeling your best all day, but it also provides exciting opportunities to experiment with colour, textures, and proportions. Don’t be afraid to combine different things for a more varied look. You can easily add depth to an outfit by blending textures or contrasting colours. The interplay of different fabrics will have you garnering compliments rather than leaving people thinking you threw on the first shirt and jacket you could find. Wool, linen, denim, corduroy and brushed cotton are all materials that can provide some much needed visual interest to your get-up. ",
+        "text": "Lightweight structure that keeps its edge from desk to dusk. These suits work overtime, taking you from boardroom to bar. New season colours in classic navy, olive, chocolate, sand, sky blue and port. Trend Alert:The Banker Stripe is back!",
         "text_animation": "none",
-        "button_label": "Learn More",
-        "button_link": ""
+        "button_label": "Shop Spring Suits",
+        "button_link": "shopify://collections/mens-suits"
       }
     },
-    "variable_column_content_secondary_xcBKxn": {
-      "type": "variable-column-content-secondary",
-      "blocks": {
-        "column_item_N8pqiz": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34508_copy_2.webp",
-            "image_link": "",
-            "heading": "",
-            "heading_animation": "none",
-            "text": "",
-            "text_animation": "none",
-            "column_link": "",
-            "column_link_text": "Shop Now"
-          }
-        },
-        "column_item_NJGyNa": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34886_1_copy_2.webp",
-            "image_link": "",
-            "heading": "",
-            "heading_animation": "none",
-            "text": "",
-            "text_animation": "none",
-            "column_link": "",
-            "column_link_text": "Shop Now"
-          }
-        }
-      },
-      "block_order": [
-        "column_item_N8pqiz",
-        "column_item_NJGyNa"
-      ],
-      "name": "Variable Column Content Secondary",
+    "collection_slider_secondary_XHG4xA": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
       "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": false,
-        "column_count": "2",
-        "text_alignment": "left",
-        "animate_columns": false,
         "heading": "",
         "heading_animation": "none",
-        "text": "",
-        "text_animation": "none",
-        "button_label": "Learn More",
-        "button_link": ""
+        "description": "",
+        "description_animation": "none",
+        "collection": "mens-suits",
+        "button_label": "",
+        "products_to_show": 10,
+        "animate_products": false
       }
     }
   },
@@ -396,12 +294,12 @@
     "hero_primary_pXnGLT",
     "heading_with_text_m9QJRw",
     "image_with_text_RRTVz8",
+    "collection_slider_secondary_hxrHEe",
     "editorial_hero_dTVGEg",
-    "variable_column_content_tertiary_LT7464",
-    "hero_primary_feCpm7",
     "variable_column_content_secondary_Wfmfxi",
-    "collection_slider_CEcm4Y",
+    "image_with_text_kXwLAa",
+    "collection_slider_secondary_4cJeT8",
     "image_with_text_4FciAz",
-    "variable_column_content_secondary_xcBKxn"
+    "collection_slider_secondary_XHG4xA"
   ]
 }

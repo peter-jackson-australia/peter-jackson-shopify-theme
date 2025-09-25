@@ -4,10 +4,10 @@
 
 {% assign shop_the_look = product.metafields.custom.shop_the_look %}
 {% liquid
-   assign active_products = 0
-   for item in shop_the_look.value
-     assign active_products = forloop.index
-   endfor
+  assign active_products = 0
+  for item in shop_the_look.value
+    assign active_products = forloop.index
+  endfor
 %}
 {% assign shop_the_look_count = active_products %}
 
@@ -29,7 +29,7 @@
                 {% for item in shop_the_look.value %}
                   {% assign item_handle = item.handle %}
                   {% assign featured_image = item.featured_image %}
-                  
+
                   <li class="splide__slide shop-the-look__slide">
                     <a href="/products/{{ item_handle }}" class="shop-the-look__product-link">
                       <div class="shop-the-look__product-image-wrapper">
@@ -50,7 +50,7 @@
                       {% assign item_title = item.title %}
                       {% assign item_price = item.price %}
                       {% assign compare_at_price = item.compare_at_price %}
-                      
+
                       <h3 class="body--bold shop-the-look__product-title">{{ item_title }}</h3>
 
                       <p class="small shop-the-look__product-price">
@@ -77,13 +77,13 @@
       {% else %}
         <div class="shop-the-look__single-product">
           {% assign single_product = product.metafields.custom.shop_the_look.value | first %}
-          
+
           {% assign product_handle = single_product.handle %}
           {% assign product_title = single_product.title %}
           {% assign product_featured_image = single_product.featured_image %}
           {% assign product_price = single_product.price %}
           {% assign compare_at_price = single_product.compare_at_price %}
-          
+
           {% if single_product %}
             <a href="/products/{{ product_handle }}" class="shop-the-look__product-link">
               <div class="shop-the-look__product-image-wrapper">
@@ -104,12 +104,12 @@
               <h3 class="body--bold shop-the-look__product-title">{{ product_title }}</h3>
 
               <p class="small shop-the-look__product-price">
-                {% if product_compare_at_price > price %}
+                {% if product.compare_at_price > product.price %}
                   <span class="shop-the-look__product-price--sale">
                     {{- product_price | money_with_currency -}}
                   </span>
                   <span class="shop-the-look__product-price--compare">
-                    {{- product_compare_at_price | money_with_currency -}}
+                    {{- product.compare_at_price | money_with_currency -}}
                   </span>
                 {% else %}
                   {{ product_price | money_with_currency }}

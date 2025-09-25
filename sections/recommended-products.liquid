@@ -60,7 +60,7 @@
                   {% assign product_price = product.price %}
                   {% assign fabric_description = product.metafields.custom.fabric_description %}
                   {% assign product_title = product.title %}
-                  {% assign colour_variants = product.metafields.custom.colour_variants %}
+                  {% assign colour_variants = product.metafields.custom.product_colour_variants %}
 
                   <li class="splide__slide recommended-products__slide">
                     <a href="{{ product_url }}" class="recommended-products__product-link">
@@ -101,7 +101,7 @@
                         {% endif %}
                       </p>
                     </a>
-                    {% if product_colour_variants %}
+                    {% if colour_variants != blank %}
                       {% assign colour_variants = product.metafields.custom.product_colour_variants.value %}
                       {% assign max_display = 3 %}
                       {% assign remaining_count = colour_variants.count | minus: max_display %}
