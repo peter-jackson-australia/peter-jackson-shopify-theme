@@ -3,7 +3,7 @@
 {% assign image_width = 800 %}
 {% assign image_height = image_width | divided_by: article.image.aspect_ratio | ceil %}
 {% assign section_id = section.id %}
-{% assign title = section.title %}
+{% assign title = article.title %}
 {% assign content = article.content %}
 {% assign excerpt = article.excerpt %}
 {% assign published_at = article.published_at %}
