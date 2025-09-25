@@ -231,20 +231,17 @@ const secondaryDrawer = {
         <div class="variant-options__list">
           ${option.values
             .map((value) => {
-              const variantForOption = productData.variants.find((v) => v[`option${index + 1}`] === value && v.available);
-              const isAvailable = !!variantForOption;
               const isChecked = value === currentValue;
-
               return `
               <div class="variant-option">
                 <input 
                   type="radio" 
                   id="secondary-${option.position}-${value}"
-                  name="secondary-option-${option.position}"
+                  name="option${index + 1}"
                   value="${value}"
                   data-option-position="${index + 1}"
+                  class="secondary-variant-option"
                   ${isChecked ? "checked" : ""}
-                  ${!isAvailable ? "disabled" : ""}
                 >
                 <label for="secondary-${option.position}-${value}" class="body">
                   ${option.name === "Size" && value.includes(".0") ? value.replace(".0", "") : value}
@@ -255,8 +252,56 @@ const secondaryDrawer = {
             .join("")}
         </div>
       `;
-
       container.appendChild(fieldset);
+    });
+
+    container.querySelectorAll(".secondary-variant-option").forEach((input) => {
+      input.addEventListener("change", () => this.checkSecondaryVariants(input));
+    });
+
+    const checkedInput = container.querySelector(".secondary-variant-option:checked");
+    if (checkedInput) this.checkSecondaryVariants(checkedInput);
+  },
+
+  checkSecondaryVariants(changedInput) {
+    const availableVariants = new Set();
+    secondaryDrawerState.productData.variants.filter((variant) => {
+      if (variant[changedInput.name] === changedInput.value) {
+        availableVariants.add(variant);
+      }
+    });
+
+    const optionGroups = {};
+    availableVariants.forEach((variant) => {
+      Object.entries(variant).forEach(([key, value]) => {
+        if (value != null && key.startsWith("option")) {
+          if (!optionGroups[key]) optionGroups[key] = [];
+          if (!optionGroups[key].includes(value)) {
+            optionGroups[key].push(value);
+          }
+        }
+      });
+    });
+
+    document.querySelectorAll(".secondary-variant-option").forEach((input) => {
+      if (input.name !== changedInput.name) {
+        if (!optionGroups[input.name]?.includes(input.value)) {
+          input.disabled = true;
+          input.checked = false;
+        } else {
+          input.disabled = false;
+        }
+      }
+    });
+
+    document.querySelectorAll(".cart-secondary__options fieldset").forEach((group) => {
+      if (!group.querySelector(".secondary-variant-option:checked")) {
+        const firstAvailable = group.querySelector(".secondary-variant-option:not(:disabled)");
+        if (firstAvailable) {
+          firstAvailable.checked = true;
+          this.checkSecondaryVariants(firstAvailable);
+        }
+      }
     });
   },
 
