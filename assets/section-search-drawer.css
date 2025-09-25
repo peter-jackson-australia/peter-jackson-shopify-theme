@@ -253,7 +253,6 @@
 .sub-drawer__content {
   flex: 1;
   padding: var(--space-m);
-  padding-top: var(--space-m);
 }
 
 .faq-list {
