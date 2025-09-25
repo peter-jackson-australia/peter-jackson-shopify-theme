@@ -114,7 +114,7 @@
       "settings": {
         "anchor_id": "",
         "show_top_border": true,
-        "show_bottom_border": true,
+        "show_bottom_border": false,
         "full_width": false,
         "first_image": "shopify://shop_images/Blue_Sports_Jacket.jpg",
         "image_link": "",
@@ -126,6 +126,20 @@
         "text_animation": "none",
         "button_label": "Shop Sports Jacket",
         "button_link": "shopify://collections/sport-jackets"
+      }
+    },
+    "collection_slider_secondary_hxrHEe": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "sport-jackets",
+        "button_label": "",
+        "products_to_show": 10,
+        "animate_products": false
       }
     },
     "editorial_hero_dTVGEg": {
@@ -210,7 +224,7 @@
         "anchor_id": "",
         "show_top_border": true,
         "show_bottom_border": false,
-        "full_width": true,
+        "full_width": false,
         "first_image": "shopify://shop_images/Polo_3.jpg",
         "image_link": "",
         "animate_images": false,
@@ -280,6 +294,7 @@
     "hero_primary_pXnGLT",
     "heading_with_text_m9QJRw",
     "image_with_text_RRTVz8",
+    "collection_slider_secondary_hxrHEe",
     "editorial_hero_dTVGEg",
     "variable_column_content_secondary_Wfmfxi",
     "image_with_text_kXwLAa",
