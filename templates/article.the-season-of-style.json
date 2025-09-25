@@ -210,7 +210,7 @@
         "anchor_id": "",
         "show_top_border": true,
         "show_bottom_border": false,
-        "full_width": false,
+        "full_width": true,
         "first_image": "shopify://shop_images/Polo_3.jpg",
         "image_link": "",
         "animate_images": false,
