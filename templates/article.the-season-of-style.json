@@ -49,8 +49,23 @@
         "mobile_vertical_alignment": "bottom"
       }
     },
+    "collection_slider_secondary_CEkyCA": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "",
+        "heading_animation": "none",
+        "description": "Spring signals a style reset, where premium European wools, breathable cottons and refined linen blends bring lightness and polish to the everyday wardrobe. Linen suits, lightweight sports jackets, versatile shirts, polos and denim form the essential pieces of the season - foundations that balance ease with sophistication. Designed to move effortlessly from day to evening, they set a new standard for elevated casual style in the social months ahead.",
+        "description_animation": "none",
+        "collection": "spring-25",
+        "button_label": "Shop Spring",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
     "heading_with_text_m9QJRw": {
       "type": "heading-with-text",
+      "disabled": true,
       "name": "Heading with Text",
       "settings": {
         "anchor_id": "",
@@ -350,6 +365,7 @@
     "article",
     "blog_header_aBjQNU",
     "hero_primary_7KDfwB",
+    "collection_slider_secondary_CEkyCA",
     "heading_with_text_m9QJRw",
     "image_with_text_RRTVz8",
     "editorial_hero_dTVGEg",
