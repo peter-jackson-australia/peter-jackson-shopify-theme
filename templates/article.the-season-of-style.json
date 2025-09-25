@@ -63,9 +63,35 @@
         "animate_products": false
       }
     },
+    "hero_primary_pXnGLT": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/Jungle_Jackets.jpg",
+        "mobile_image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34422_copy_2.webp",
+        "heading": "",
+        "svg_size": "medium",
+        "heading_level": "h1",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "button_label_1": "Shop Now",
+        "button_link_1": "",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "bottom",
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "bottom"
+      }
+    },
     "heading_with_text_m9QJRw": {
       "type": "heading-with-text",
-      "disabled": true,
       "name": "Heading with Text",
       "settings": {
         "anchor_id": "",
@@ -73,10 +99,10 @@
         "show_bottom_border": false,
         "leading_text": "",
         "leading_text_animation": "none",
-        "heading": "",
+        "heading": "The Smart Casual Spring Clean",
         "heading_style": "normal",
         "heading_animation": "none",
-        "content": "<p>Spring signals a style reset, where premium European wools, breathable cottons and refined linen blends bring lightness and polish to the everyday wardrobe. Linen suits, lightweight sports jackets, versatile shirts, polos and denim form the essential pieces of the season - foundations that balance ease with sophistication. Designed to move effortlessly from day to evening, they set a new standard for elevated casual style in the social months ahead.</p>",
+        "content": "<p>A soft-shouldered sports jacket over a polo, paired with tailored trousers and loafers, is the European formula for modern ease. Rooted in British sportswear and elevated by Italian tailoring, it's finished with the nonchalant polish of a slip-on loafer. Versatile, elegant & effortless, it's a look that defines the season.</p>",
         "content_animation": "none",
         "alignment": "center"
       }
@@ -210,7 +236,7 @@
         "svg_size": "medium",
         "heading_level": "h1",
         "heading_animation": "none",
-        "description": "",
+        "description": "A soft-shouldered sport",
         "description_animation": "none",
         "button_label_1": "Shop Now",
         "button_link_1": "",
@@ -366,6 +392,7 @@
     "blog_header_aBjQNU",
     "hero_primary_7KDfwB",
     "collection_slider_secondary_CEkyCA",
+    "hero_primary_pXnGLT",
     "heading_with_text_m9QJRw",
     "image_with_text_RRTVz8",
     "editorial_hero_dTVGEg",
