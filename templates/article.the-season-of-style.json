@@ -243,7 +243,7 @@
       "settings": {
         "anchor_id": "",
         "show_top_border": true,
-        "show_bottom_border": true,
+        "show_bottom_border": false,
         "full_width": false,
         "first_image": "shopify://shop_images/Spring_Suit.jpg",
         "image_link": "",
@@ -251,10 +251,24 @@
         "alignment": "left",
         "heading": "Spring Tailoring",
         "heading_animation": "none",
-        "text": "Lightweight structure that keeps its edge from desk to dusk. These suits work overtime, taking you from boardroom to bar. New season colours in classic navy, olive, chocolate, sand, sky blue and port. <br><br>Trend Alert:The Banker Stripe is back!",
+        "text": "Lightweight structure that keeps its edge from desk to dusk. These suits work overtime, taking you from boardroom to bar. New season colours in classic navy, olive, chocolate, sand, sky blue and port. Trend Alert:The Banker Stripe is back!",
         "text_animation": "none",
         "button_label": "Shop Spring Suits",
         "button_link": "shopify://collections/mens-suits"
+      }
+    },
+    "collection_slider_secondary_XHG4xA": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "mens-suits",
+        "button_label": "",
+        "products_to_show": 10,
+        "animate_products": false
       }
     }
   },
@@ -270,6 +284,7 @@
     "variable_column_content_secondary_Wfmfxi",
     "image_with_text_kXwLAa",
     "collection_slider_secondary_4cJeT8",
-    "image_with_text_4FciAz"
+    "image_with_text_4FciAz",
+    "collection_slider_secondary_XHG4xA"
   ]
 }
