@@ -388,58 +388,57 @@ This file can be re-written at any time.
                         {{ caret_symbol }}
                       </button>
                     {% endif %}
-                    </div>
-                    <div class="shogun-price-test-preview-sidebar-product-collection-header-child">
-                      {% if product.variants.size > 1 %}
-                        <div class="shogun-price-test-preview-sidebar-count-badge">
-                          {{ product.variants.size }}
+                  </div>
+                  <div class="shogun-price-test-preview-sidebar-product-collection-header-child">
+                    {% if product.variants.size > 1 %}
+                      <div class="shogun-price-test-preview-sidebar-count-badge">
+                        {{ product.variants.size }}
+                      </div>
+                    {% endif %}
+                    {% if product.variants.size == 1 %}
+                      <div class="shogun-price-test-preview-sidebar-product-collection-child-pricing">
+                        {%- assign original_price = product_config.variant_pricing.first.original_price -%}
+                        {%- assign new_price = product_config.variant_pricing.first.test_price -%}
+                        {%- assign price_change = product_config.variant_pricing.first.price_change -%}
+                        <div>${{ original_price }}</div>
+                        <div>{{ price_change }}%</div>
+                        <div>${{ new_price }}</div>
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+                {% if product.variants.size > 1 %}
+                  <div class="shogun-price-test-preview-sidebar-product-collection-children collapsed" id="product-{{ forloop.index }}">
+                    {% for variant in product.variants %}
+                      <div class="shogun-price-test-preview-sidebar-product-collection-child-item">
+                        <div class="shogun-price-test-preview-sidebar-product-collection-child-arrow">
+                          {{ arrow_symbol }}
                         </div>
-                      {% endif %}
-                      {% if product.variants.size == 1 %}
+                        <div class="shogun-price-test-preview-sidebar-image-container">
+                          <img src="{{ variant.featured_image | default: product.featured_image | image_url: width: image_size }}" width="{{ image_size }}" height="{{ image_size }}"/>
+                        </div>
+                        <div class="shogun-price-test-preview-sidebar-title-container">
+                          <span>{{ variant.title | default: product.title }}</span>
+                        </div>
                         <div class="shogun-price-test-preview-sidebar-product-collection-child-pricing">
-                          {%- assign original_price = product_config.variant_pricing.first.original_price -%}
-                          {%- assign new_price = product_config.variant_pricing.first.test_price -%}
-                          {%- assign price_change = product_config.variant_pricing.first.price_change -%}
+                          {%- assign original_price = 0 -%}
+                          {%- assign new_price = 0 -%}
+                          {%- assign price_change = 0 -%}
+                          {% for variant_pricing in product_config.variant_pricing %}
+                            {% if variant_pricing.id | append: '' == variant.id | append: '' %}
+                              {%- assign original_price = variant_pricing.original_price -%}
+                              {%- assign new_price = variant_pricing.test_price -%}
+                              {%- assign price_change = variant_pricing.price_change -%}
+                            {% endif %}
+                          {% endfor %}
                           <div>${{ original_price }}</div>
                           <div>{{ price_change }}%</div>
                           <div>${{ new_price }}</div>
                         </div>
-                      {% endif %}
-                    </div>
+                      </div>
+                    {% endfor %}
                   </div>
-                  {% if product.variants.size > 1 %}
-                    <div class="shogun-price-test-preview-sidebar-product-collection-children collapsed" id="product-{{ forloop.index }}">
-                      {% for variant in product.variants %}
-                        <div class="shogun-price-test-preview-sidebar-product-collection-child-item">
-                          <div class="shogun-price-test-preview-sidebar-product-collection-child-arrow">
-                            {{ arrow_symbol }}
-                          </div>
-                          <div class="shogun-price-test-preview-sidebar-image-container">
-                            <img src="{{ variant.featured_image | default: product.featured_image | image_url: width: image_size }}" width="{{ image_size }}" height="{{ image_size }}"/>
-                          </div>
-                          <div class="shogun-price-test-preview-sidebar-title-container">
-                            <span>{{ variant.title | default: product.title }}</span>
-                          </div>
-                          <div class="shogun-price-test-preview-sidebar-product-collection-child-pricing">
-                            {%- assign original_price = 0 -%}
-                            {%- assign new_price = 0 -%}
-                            {%- assign price_change = 0 -%}
-                            {% for variant_pricing in product_config.variant_pricing %}
-                              {% if variant_pricing.id | append: '' == variant.id | append: '' %}
-                                {%- assign original_price = variant_pricing.original_price -%}
-                                {%- assign new_price = variant_pricing.test_price -%}
-                                {%- assign price_change = variant_pricing.price_change -%}
-                              {% endif %}
-                            {% endfor %}
-                            <div>${{ original_price }}</div>
-                            <div>{{ price_change }}%</div>
-                            <div>${{ new_price }}</div>
-                          </div>
-                        </div>
-                      {% endfor %}
-                    </div>
-                  {% endif %}
-                </div>
+                {% endif %}
               </div> 
             {% endif %}
           {% endfor %}
@@ -518,7 +517,7 @@ This file can be re-written at any time.
       defaultThemeId: String(shopMetafieldConfig.default_theme_id),
       currentThemeId: "179206914416",
       pageId: "{{ content.id }}",
-      pageType: "{% if article %}article{% elsif blog %}blog{% elsif page %}page{% elsif product %}product{% elsif collection %}collection{% elsif metaobject %}metaobject{% else %}homepage{% endif %}",
+      pageType: "{% if template.name == 'list-collections' %}list-collections{% elsif article %}article{% elsif blog %}blog{% elsif page %}page{% elsif product %}product{% elsif collection %}collection{% elsif metaobject %}metaobject{% else %}homepage{% endif %}",
       templateName: "{{ template.name }}",
       templateSuffix: "{{ template.suffix }}",
       customerId: "{{ customer.id }}",
