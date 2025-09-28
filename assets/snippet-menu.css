@@ -185,7 +185,6 @@ li:has(.menu-drawer__item--active) button > span:first-child {
   border: none;
   color: var(--neutral-950);
   cursor: pointer;
-  display: flex;
   display: none;
   padding: 0;
 }

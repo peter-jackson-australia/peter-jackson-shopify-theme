@@ -1,0 +1,184 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "article": {
+      "type": "main-article",
+      "disabled": true,
+      "settings": {}
+    },
+    "blog_header_aBjQNU": {
+      "type": "blog-header",
+      "name": "Blog Header",
+      "settings": {
+        "journal_type": "jackson"
+      }
+    },
+    "heading_with_text_m9QJRw": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "leading_text": "",
+        "leading_text_animation": "none",
+        "heading": "Smart. Casual. Your Spring Off-Duty Uniform.",
+        "heading_style": "normal",
+        "heading_animation": "none",
+        "content": "<p>This season’s key casual look is anchored by the soft structure of a sports jacket, paired with the laid-back confidence of a knitted polo and the timeless appeal of denim. The result? Style that feels polished yet instinctively relaxed — modern dressing for every occasion that calls for casual refinement.</p>",
+        "content_animation": "none",
+        "alignment": "center"
+      }
+    },
+    "editorial_hero_dTVGEg": {
+      "type": "editorial-hero",
+      "disabled": true,
+      "name": "Hero Editorial",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "leading_text": "",
+        "leading_text_animation": "none",
+        "first_title": "TRANSEASONAL",
+        "first_title_level": "h1",
+        "first_title_animation": "none",
+        "media_type": "video",
+        "video": "shopify://files/videos/Transeasonal Refinement (HP Final).mp4",
+        "animate_media": false,
+        "second_title": "REFINEMENT",
+        "second_title_level": "h1",
+        "second_title_animation": "none",
+        "description": "Traversing the Australian climate as the seasons change is tough; not just on the weatherman, but on all of us. One day, you're struggling to leave the bed, and the next, you're dreaming of the beach and a six-pack of your favourite beer. How are you supposed to dress for this kind of weather? Thankfully, it doesn't have to be complicated. All you need are a few key layer-friendly pieces that bridge the gap between winter warmth and spring breeziness.",
+        "description_animation": "none",
+        "cta_text": "Shop Now",
+        "cta_link": ""
+      }
+    },
+    "variable_column_content_secondary_Wfmfxi": {
+      "type": "variable-column-content-secondary",
+      "blocks": {
+        "column_item_U9xHRY": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/The_Look_Of_Spring.jpg",
+            "image_link": "",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_4eRYBQ": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/The_Look_Of_Spring_2.jpg",
+            "image_link": "",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "column_link": "shopify://collections/mens-suits",
+            "column_link_text": "Shop Spring Suits"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_U9xHRY",
+        "column_item_4eRYBQ"
+      ],
+      "name": "Variable Column Content Secondary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "column_count": "2",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "",
+        "heading_animation": "none",
+        "text": "",
+        "text_animation": "none",
+        "button_label": "Shop Spring Suits",
+        "button_link": "shopify://collections/mens-suits"
+      }
+    },
+    "collection_slider_secondary_hxrHEe": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "Versatility at its finest",
+        "heading_animation": "none",
+        "description": "Our lightweight sports jackets are the ultimate layering piece for your go-to spring look. Cut in lightweight cloths with a softer shoulder and easy drape, this season’s sports jackets bring structure without stiffness — the kind of refinement that feels as relaxed as it looks.",
+        "description_animation": "none",
+        "collection": "sport-jackets",
+        "button_label": "",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
+    "collection_slider_secondary_4HWxVh": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "Polished Polos",
+        "heading_animation": "none",
+        "description": "Knitted polos add a refined ease to the smart-casual uniform, balancing sharp tailoring with laid-back confidence. Pair them under a sports jacket for subtle texture, or wear solo with denim, tailored trousers or chinos for a cleaner, more relaxed statement.",
+        "description_animation": "none",
+        "collection": "long-sleeves-and-polos",
+        "button_label": "",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
+    "collection_slider_secondary_cMbCmh": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "Denim Defined",
+        "heading_animation": "none",
+        "description": "Denim becomes the foundation that adapts to every occasion. A range of washes and colours ensures effortless versatility — pair light tones for relaxed days, darker shades for evenings, and keep every look rooted in smart-casual ease.",
+        "description_animation": "none",
+        "collection": "mens-jeans",
+        "button_label": "",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
+    "collection_slider_secondary_7qmPbd": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "Tailored For Style",
+        "heading_animation": "none",
+        "description": "Tailored trousers bring sharp structure to a polo and sports jacket, creating a look that works long after office hours. Smart enough for the workday yet relaxed enough for weekend plans, this combination balances polish and ease without feeling overdone.",
+        "description_animation": "none",
+        "collection": "mens-tailored-trousers",
+        "button_label": "",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    }
+  },
+  "order": [
+    "article",
+    "blog_header_aBjQNU",
+    "heading_with_text_m9QJRw",
+    "editorial_hero_dTVGEg",
+    "variable_column_content_secondary_Wfmfxi",
+    "collection_slider_secondary_hxrHEe",
+    "collection_slider_secondary_4HWxVh",
+    "collection_slider_secondary_cMbCmh",
+    "collection_slider_secondary_7qmPbd"
+  ]
+}
