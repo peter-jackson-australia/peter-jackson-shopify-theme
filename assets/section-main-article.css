@@ -62,7 +62,7 @@
 
 .article-content strong {
   color: var(--neutral-950);
-  font-family: var(--ordinary-regular);
+  font-family: var(--ordinary-regular), sans-serif;
   font-weight: 500;
 }
 
@@ -157,7 +157,7 @@
 .leading-letter {
   color: var(--neutral-950);
   float: left;
-  font-family: var(--ordinary-regular);
+  font-family: var(--ordinary-regular), sans-serif;
   font-size: clamp(2.986rem, 2.8367rem + 0.7465vw, 3.7325rem);
   font-weight: 500;
   line-height: 0.8;
@@ -170,7 +170,7 @@
 .article-content blockquote > * > *,
 .article-content blockquote > * > * > * {
   color: var(--neutral-950);
-  font-family: var(--ordinary-regular);
+  font-family: var(--ordinary-regular), sans-serif;
   font-size: clamp(1rem, 0.95rem + 0.25vw, 1.25rem);
   font-weight: 500;
   line-height: 140%;

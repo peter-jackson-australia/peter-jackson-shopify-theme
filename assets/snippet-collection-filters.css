@@ -194,7 +194,7 @@
 
 .filter__group:last-of-type {
   border-bottom: none;
-  padding-bottom: 0px;
+  padding-bottom: 0;
 }
 
 .filter-close-btn {

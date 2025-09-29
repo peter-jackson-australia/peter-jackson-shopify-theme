@@ -101,19 +101,19 @@
 
 @media screen and (max-width: 768px) {
   .collection-slider-secondary__slider {
-    padding: 0px var(--space-m);
+    padding: 0 var(--space-m);
   }
 
   .collection-slider-secondary__product-price {
-    padding-left: 0px;
+    padding-left: 0;
   }
 
   .collection-slider-secondary__product-title {
-    padding-left: 0px;
+    padding-left: 0;
   }
 
   .collection-slider-secondary__product-material {
-    padding-left: 0px;
+    padding-left: 0;
   }
 
   .collection-slider-secondary {
@@ -130,7 +130,7 @@
   }
 
   .product-card__swatches {
-    margin-left: 0px !important;
+    margin-left: 0 !important;
   }
 }
 

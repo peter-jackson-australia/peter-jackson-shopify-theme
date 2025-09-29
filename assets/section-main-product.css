@@ -287,7 +287,6 @@ body.modal-open {
   border: none;
   color: var(--white);
   cursor: pointer;
-  cursor: not-allowed;
   display: flex;
   justify-content: center;
   margin-bottom: var(--space-s);
@@ -338,7 +337,7 @@ body.modal-open {
 }
 
 #opt_in_promotional_sms__4__5 ~ label > .needsclick {
-  font-family: "Ordinary Light" !important;
+  font-family: "Ordinary Light", sans-serif !important;
   font-size: clamp(0.6944rem, 0.6597rem + 0.1736vw, 0.8681rem) !important;
   font-weight: 300 !important;
   letter-spacing: 0.065rem !important;
@@ -399,7 +398,7 @@ body.modal-open {
 
 .product-tabs__description > p > strong {
   color: var(--neutral-950);
-  font-family: "Ordinary Regular";
+  font-family: "Ordinary Regular", sans-serif;
   font-weight: 500;
 }
 
@@ -438,7 +437,7 @@ body.modal-open {
 .product-tabs__content-shipping > P > em > strong,
 .product-tabs__content-shipping > P > strong {
   color: var(--neutral-950);
-  font-family: "Ordinary Regular";
+  font-family: "Ordinary Regular", sans-serif;
 }
 
 .product-tabs__metafield h4 {

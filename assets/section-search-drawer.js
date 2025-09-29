@@ -11,24 +11,7 @@
   let dom = {};
 
   const initializeElements = () => {
-    const ids = [
-      "searchDrawer",
-      "searchLoading",
-      "noResultsContainer",
-      "noResultsSearchButton",
-      "searchResultsContainer",
-      "productResults",
-      "productResultsList",
-      "collectionResults",
-      "collectionResultsList",
-      "searchResultsButton",
-      "popularSearches",
-      "subDrawerTrigger",
-      "subDrawer",
-      "subDrawerBack",
-      "newArrivals",
-      "search",
-    ];
+    const ids = ["searchDrawer", "searchLoading", "noResultsContainer", "noResultsSearchButton", "searchResultsContainer", "productResults", "productResultsList", "collectionResults", "collectionResultsList", "searchResultsButton", "popularSearches", "subDrawerTrigger", "subDrawer", "subDrawerBack", "newArrivals", "search"];
 
     ids.forEach((id) => (dom[id] = document.getElementById(id)));
 
@@ -65,14 +48,7 @@
   };
 
   const showDefaultContent = (fade = false) => {
-    [
-      "searchLoading",
-      "noResultsContainer",
-      "searchResultsContainer",
-      "productResults",
-      "collectionResults",
-      "searchResultsButton",
-    ].forEach((key) => toggleElement(dom[key], false));
+    ["searchLoading", "noResultsContainer", "searchResultsContainer", "productResults", "collectionResults", "searchResultsButton"].forEach((key) => toggleElement(dom[key], false));
     toggleElements(["popularSearches", "subDrawerTrigger", "newArrivals"], true, fade);
   };
 
@@ -90,8 +66,7 @@
   };
 
   const openSearchDrawer = () => {
-    state.scrollY =
-      document.body.style.position === "fixed" ? Math.abs(parseInt(document.body.style.top || "0")) : window.scrollY;
+    state.scrollY = document.body.style.position === "fixed" ? Math.abs(parseInt(document.body.style.top || "0")) : window.scrollY;
 
     if (document.body.style.position !== "fixed") {
       Object.assign(document.body.style, {
@@ -190,12 +165,7 @@
   const fetchSearchResults = async (query) => {
     try {
       state.controller = new AbortController();
-      const response = await fetch(
-        `/search/suggest.json?q=${encodeURIComponent(
-          query
-        )}&resources[type]=product,collection&resources[limit]=5&resources[limit_scope]=each`,
-        { signal: state.controller.signal }
-      );
+      const response = await fetch(`/search/suggest.json?q=${encodeURIComponent(query)}&resources[type]=product,collection&resources[limit]=5&resources[limit_scope]=each`, { signal: state.controller.signal });
 
       if (!response.ok) throw new Error("Search failed");
       const data = await response.json();
@@ -265,13 +235,7 @@
     if (!query) {
       state.isLoading = false;
       toggleElement(dom.searchLoading, false);
-      [
-        "noResultsContainer",
-        "searchResultsContainer",
-        "productResults",
-        "collectionResults",
-        "searchResultsButton",
-      ].forEach((key) => toggleElement(dom[key], false));
+      ["noResultsContainer", "searchResultsContainer", "productResults", "collectionResults", "searchResultsButton"].forEach((key) => toggleElement(dom[key], false));
       showDefaultContent(true);
       if (state.subDrawerOpen) toggleSubDrawer();
       return;
@@ -279,13 +243,7 @@
 
     state.isLoading = true;
     hideDefaultContent();
-    [
-      "noResultsContainer",
-      "searchResultsContainer",
-      "productResults",
-      "collectionResults",
-      "searchResultsButton",
-    ].forEach((key) => toggleElement(dom[key], false));
+    ["noResultsContainer", "searchResultsContainer", "productResults", "collectionResults", "searchResultsButton"].forEach((key) => toggleElement(dom[key], false));
 
     state.timeouts.loading = setTimeout(() => {
       if (state.query) {
@@ -319,7 +277,7 @@
 
   const initialize = () => {
     initializeElements();
-
+    dom.container?.classList.remove("no-transition");
     document.querySelectorAll(".faq-item__description[data-full-text]").forEach((desc) => {
       const text = desc.getAttribute("data-full-text");
       if (text) desc.textContent = text.length > 200 ? `${text.substring(0, 200)}...` : text;

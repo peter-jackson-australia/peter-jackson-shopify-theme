@@ -192,7 +192,7 @@
   }
 
   .blog-hero__content-subtitle {
-    padding-left: 0px;
+    padding-left: 0;
   }
 
   .blog-hero__content-divider {
@@ -229,7 +229,7 @@
   }
 
   .blog-hero__image-link {
-    margin-left: 0px;
+    margin-left: 0;
   }
 
   .blog-hero__posts {

@@ -34,7 +34,7 @@
   border-bottom: 1px solid transparent;
   color: var(--neutral-950);
   cursor: pointer;
-  padding: var(--space-3xs) 0px;
+  padding: var(--space-3xs) 0;
 }
 
 .main-tab-button.active {
@@ -56,8 +56,8 @@
 
 .size-guide-right {
   overflow-x: auto;
-  padding-bottom: 0px;
-  padding-right: 0px;
+  padding-bottom: 0;
+  padding-right: 0;
   padding-top: var(--space-l);
   width: 60%;
 }
@@ -93,7 +93,7 @@
   color: var(--neutral-950);
   cursor: pointer;
   margin-right: var(--space-m);
-  padding: var(--space-3xs) 0px;
+  padding: var(--space-3xs) 0;
 }
 
 .size-button.active {
@@ -156,12 +156,12 @@
   }
 
   .size-guide-right {
-    padding-top: 0px;
+    padding-top: 0;
   }
 
   .modal-content {
     padding: var(--space-m);
-    padding-bottom: 0px;
+    padding-bottom: 0;
   }
 
   .main-tabs {
@@ -184,10 +184,10 @@
   }
 
   .modal-close {
-    padding: 0px;
+    padding: 0;
     position: absolute;
-    right: 0px;
-    top: 0px;
+    right: 0;
+    top: 0;
   }
 
   .size-guide-right > .tab-content.active {

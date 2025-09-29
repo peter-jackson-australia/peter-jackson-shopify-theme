@@ -104,7 +104,7 @@
 
   .collection-slider__container {
     flex-direction: column;
-    gap: 0px;
+    gap: 0;
   }
 
   .collection-slider__content {

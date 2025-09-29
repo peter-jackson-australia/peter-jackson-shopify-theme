@@ -31,7 +31,7 @@
 
 .variable-column-content-secondary__column-content {
   padding: var(--space-m);
-  padding-bottom: 0px;
+  padding-bottom: 0;
 }
 
 .variable-column-content-secondary__column-heading {
@@ -46,7 +46,7 @@
 .variable-column-content-secondary__text-container {
   box-sizing: border-box;
   padding: var(--space-m);
-  padding-bottom: 0px;
+  padding-bottom: 0;
   width: 100%;
 }
 
@@ -110,7 +110,7 @@
   }
 
   .variable-column-content-secondary__image-grid {
-    gap: 0px;
+    gap: 0;
     grid-template-columns: 1fr !important;
   }
 

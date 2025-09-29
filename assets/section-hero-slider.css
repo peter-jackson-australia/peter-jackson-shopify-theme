@@ -43,7 +43,6 @@
       transform: translateY(-50%) translate3d(0, 0, 0);
     }
     .hero-slider .hero-slider__content:not(.hero-slider__content--middle) {
-      -webkit-transform: translate3d(0, 0, 0);
       transform: translate3d(0, 0, 0);
     }
   }

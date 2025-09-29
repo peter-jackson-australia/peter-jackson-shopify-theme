@@ -120,7 +120,7 @@
     gap: var(--space-s);
   }
   .two-column-content__description {
-    margin-left: 0px;
+    margin-left: 0;
     text-align: left;
   }
   .two-column-content__product-link {

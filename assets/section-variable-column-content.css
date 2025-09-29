@@ -27,7 +27,7 @@
 .variable-column-content__text-container {
   box-sizing: border-box;
   padding: var(--space-m);
-  padding-bottom: 0px;
+  padding-bottom: 0;
   width: 100%;
 }
 

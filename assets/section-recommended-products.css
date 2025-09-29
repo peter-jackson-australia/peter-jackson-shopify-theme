@@ -142,19 +142,19 @@
 
 @media screen and (max-width: 768px) {
   .recommended-products__slider {
-    padding: 0px var(--space-m);
+    padding: 0 var(--space-m);
   }
 
   .recommended-products__product-price {
-    padding-left: 0px;
+    padding-left: 0;
   }
 
   .recommended-products__product-title {
-    padding-left: 0px;
+    padding-left: 0;
   }
 
   .recommended-products__product-material {
-    padding-left: 0px;
+    padding-left: 0;
   }
 
   .recommended-products {
@@ -171,7 +171,7 @@
   }
 
   .recommended-products__slide .product-card__swatches {
-    margin-left: 0px;
+    margin-left: 0;
   }
 }
 

@@ -52,7 +52,7 @@
 
 .image-gallery-slider__slider {
   padding: 0 var(--space-m);
-  padding-right: 0px;
+  padding-right: 0;
   width: 100%;
 }
 

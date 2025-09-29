@@ -126,7 +126,7 @@ li:has(.menu-drawer__item--active) button > span:first-child {
 
 .menu-drawer__klaviyo > .klaviyo-form > div > form,
 .menu-drawer__klaviyo > .klaviyo-form > div > form > div > div > div {
-  padding: 0px !important;
+  padding: 0 !important;
 }
 
 .menu-drawer__klaviyo > .klaviyo-form > div > form > div {
@@ -137,7 +137,7 @@ li:has(.menu-drawer__item--active) button > span:first-child {
   border: none !important;
   border-bottom: 1px solid var(--neutral-50) !important;
   color: var(--neutral-950);
-  padding: 0px !important;
+  padding: 0 !important;
 }
 
 #menu-drawer-level-2,
@@ -148,10 +148,6 @@ li:has(.menu-drawer__item--active) button > span:first-child {
 #menu-drawer-level-2 {
   overflow-x: hidden !important;
   overflow-y: auto !important;
-}
-
-#menu-drawer-level-2::-webkit-scrollbar-horizontal {
-  display: none !important;
 }
 
 #menu-drawer-level-2 > .menu-drawer__menu {

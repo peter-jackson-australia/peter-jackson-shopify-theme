@@ -116,7 +116,7 @@
 
   .location-hero__content {
     max-width: 100%;
-    padding: var(--space-xl) 0px;
+    padding: var(--space-xl) 0;
     width: 100%;
   }
 }

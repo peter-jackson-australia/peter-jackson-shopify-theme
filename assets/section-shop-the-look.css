@@ -150,11 +150,11 @@
   }
 
   .shop-the-look .splide__arrow--prev {
-    left: 0px;
+    left: 0;
   }
 
   .shop-the-look .splide__arrow--next {
-    right: 0px;
+    right: 0;
   }
 }
 

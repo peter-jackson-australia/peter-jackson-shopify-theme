@@ -78,7 +78,7 @@
   background-color: var(--white);
   border: 1px solid var(--neutral-50);
   color: var(--neutral-950);
-  font-family: "Ordinary Light";
+  font-family: "Ordinary Light", sans-serif;
   font-size: clamp(0.6944rem, 0.6597rem + 0.1736vw, 0.8681rem);
   letter-spacing: 0.065rem;
   line-height: 140%;

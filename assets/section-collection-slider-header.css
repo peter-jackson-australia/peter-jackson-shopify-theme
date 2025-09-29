@@ -220,7 +220,7 @@
   }
 
   .collection-slider-header__subtitle {
-    padding-left: 0px;
+    padding-left: 0;
   }
 
   .collection-slider-header__nav {
@@ -230,7 +230,7 @@
   .collection-slider-header__nav-list {
     flex-wrap: wrap;
     justify-content: center;
-    margin-left: 0px;
+    margin-left: 0;
     padding-bottom: var(--space-s);
   }
 }
@@ -247,7 +247,7 @@
 
   .collection-slider-header__slider-container {
     flex-direction: column;
-    gap: 0px;
+    gap: 0;
     width: 100%;
   }
 
