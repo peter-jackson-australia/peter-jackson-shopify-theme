@@ -152,7 +152,6 @@
   color: var(--neutral-950);
   cursor: pointer;
   padding: var(--space-2xs) var(--space-s);
-  transition: ease-in 0.3s;
 }
 
 .search-filter-sidebar {

@@ -90,7 +90,6 @@
   color: var(--neutral-950);
   cursor: pointer;
   padding: var(--space-2xs) var(--space-s);
-  transition: 0.3s ease-in;
 }
 
 .collection-controls__actions {
