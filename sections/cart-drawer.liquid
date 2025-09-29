@@ -1,10 +1,10 @@
 {% comment %} AJAX Cart Sidebar Drawer {% endcomment %}
 {{ 'section-cart-drawer.css' | asset_url | stylesheet_tag }}
 
-<div class="cart-overlay"></div>
+<div class="cart-overlay initial-hidden"></div>
 
 <aside class="cart" aria-labelledby="cart-title">
-  <div class="cart__container no-transition">
+  <div class="cart__container">
     <header class="cart__header">
       <h2 id="cart-title" class="cart__title heading--xl">Cart</h2>
       <button class="cart__close" type="button" aria-label="Close cart">

@@ -45,13 +45,19 @@
   opacity: 0;
   overflow: auto;
   transform: translateX(100%);
-  transition: transform 0.4s ease, opacity 0.3s linear;
   width: 400px;
-  will-change: transform, opacity;
 }
 
-.cart__container.no-transition {
-  transition: none !important;
+.cart-overlay:not(.cart-overlay--active) {
+  display: none !important;
+}
+
+.cart:not(.cart--active) {
+  display: none !important;
+}
+
+.cart-secondary:not(.cart-secondary--active) {
+  display: none !important;
 }
 
 .cart--active .cart__container {

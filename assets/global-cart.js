@@ -956,7 +956,6 @@ window.closeCart = () => cartDrawer.toggle(false);
 
 document.addEventListener("DOMContentLoaded", () => {
   cart.loadFromStorage();
-  document.querySelector(".cart__container")?.classList.remove("no-transition");
 });
 
 window.addEventListener("load", () => {

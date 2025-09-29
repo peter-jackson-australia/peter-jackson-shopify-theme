@@ -277,7 +277,6 @@
 
   const initialize = () => {
     initializeElements();
-    dom.container?.classList.remove("no-transition");
     document.querySelectorAll(".faq-item__description[data-full-text]").forEach((desc) => {
       const text = desc.getAttribute("data-full-text");
       if (text) desc.textContent = text.length > 200 ? `${text.substring(0, 200)}...` : text;

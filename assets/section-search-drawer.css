@@ -32,12 +32,15 @@
   transform: translateX(100%);
   transition: transform 0.4s ease, opacity 0.3s linear;
   width: 400px;
-  will-change: transform, opacity;
   z-index: 99995;
 }
 
-.search-drawer__container.no-transition {
-  transition: none !important;
+.search-drawer:not(.search-drawer--active) {
+  display: none !important;
+}
+
+.sub-drawer:not(.sub-drawer--active) {
+  display: none !important;
 }
 
 .search-drawer--active .search-drawer__container {
