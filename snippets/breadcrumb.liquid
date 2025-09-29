@@ -7,7 +7,7 @@
     <ol aria-label="Breadcrumb" class="breadcrumb__list small custom-scrollbar">
       {% if template.name == 'product' %}
         <li class="breadcrumb__item">
-          <a href="/" title="Home" class="breadcrumb__link">Home</a>
+          <a href="{{ routes.root_url }}" title="Home" class="breadcrumb__link">Home</a>
         </li>
         <li class="breadcrumb__separator">/</li>
 
@@ -75,7 +75,7 @@
 
       {% elsif template.name == 'collection' %}
         <li class="breadcrumb__item">
-          <a href="/" title="Home" class="breadcrumb__link">Home</a>
+          <a href="{{ routes.root_url }}" title="Home" class="breadcrumb__link">Home</a>
         </li>
         <li class="breadcrumb__separator">/</li>
 
@@ -133,7 +133,7 @@
 
         {% if trail_found == false %}
           <li class="breadcrumb__item">
-            <a href="/collections" class="breadcrumb__link">Collections</a>
+            <a href="{{ routes.collections_url }}" class="breadcrumb__link">Collections</a>
           </li>
           <li class="breadcrumb__separator">/</li>
           <li class="breadcrumb__item breadcrumb__item--current" aria-current="page">{{ collection.title }}</li>
@@ -141,14 +141,14 @@
 
       {% elsif template.name == 'blog' %}
         <li class="breadcrumb__item">
-          <a href="/" title="Home" class="breadcrumb__link">Home</a>
+          <a href="{{ routes.root_url }}" title="Home" class="breadcrumb__link">Home</a>
         </li>
         <li class="breadcrumb__separator">/</li>
         <li class="breadcrumb__item breadcrumb__item--current" aria-current="page">{{ blog.title }}</li>
 
       {% elsif template.name == 'article' %}
         <li class="breadcrumb__item">
-          <a href="/" title="Home" class="breadcrumb__link">Home</a>
+          <a href="{{ routes.root_url }}" title="Home" class="breadcrumb__link">Home</a>
         </li>
         <li class="breadcrumb__separator">/</li>
         <li class="breadcrumb__item">
@@ -159,14 +159,14 @@
 
       {% elsif template.name == 'page' %}
         <li class="breadcrumb__item">
-          <a href="/" title="Home" class="breadcrumb__link">Home</a>
+          <a href="{{ routes.root_url }}" title="Home" class="breadcrumb__link">Home</a>
         </li>
         <li class="breadcrumb__separator">/</li>
         <li class="breadcrumb__item breadcrumb__item--current" aria-current="page">{{ page.title }}</li>
 
       {% elsif template.name == 'search' %}
         <li class="breadcrumb__item">
-          <a href="/" title="Home" class="breadcrumb__link">Home</a>
+          <a href="{{ routes.root_url }}" title="Home" class="breadcrumb__link">Home</a>
         </li>
         <li class="breadcrumb__separator">/</li>
         <li class="breadcrumb__item breadcrumb__item--current" aria-current="page">
@@ -175,7 +175,7 @@
 
       {% else %}
         <li class="breadcrumb__item">
-          <a href="/" title="Home" class="breadcrumb__link">Home</a>
+          <a href="{{ routes.root_url }}" title="Home" class="breadcrumb__link">Home</a>
         </li>
         <li class="breadcrumb__separator">/</li>
         <li class="breadcrumb__item breadcrumb__item--current" aria-current="page">{{ page_title }}</li>
