@@ -382,7 +382,7 @@ a {
   z-index: 0;
 }
 
-/* Ploiu Vanilla JS Accordion */
+/* Ploiu Vanilla JS Accordion (Web Component) */
 
 accordion-element {
   border-bottom: 1px solid var(--neutral-50);
