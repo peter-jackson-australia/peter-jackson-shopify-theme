@@ -244,7 +244,7 @@ const menuDrawer = {
         <li class="splide__slide">
           <article class="menu-drawer__article">
             <div class="menu-drawer__article-content">
-              ${article.image ? `<img src="${article.image}" alt="${article.title}" class="menu-drawer__article-image" width="300" height="300">` : ""}
+              ${article.image ? `<img src="https://${article.image}" alt="${article.title}" class="menu-drawer__article-image" width="300" height="300">` : ""}
               <p class="menu-drawer__article-tag small">${article.tag}</p>
               <header class="menu-drawer__article-header">
                 <h2 class="menu-drawer__article-title body--bold">${article.title}</h2>
@@ -310,7 +310,14 @@ const menuDrawer = {
         this.featuredImageUrl = newUrl;
         this.featuredImageAlt = featuredImageAlt || this.menuData[parentIndex]?.featuredImageAlt || title;
 
-        const img = document.querySelector(".menu-drawer__featured-image img");
+        let img = document.querySelector(".menu-drawer__featured-image img");
+        if (!img) {
+          img = document.createElement("img");
+          img.loading = "eager";
+          img.height = 100;
+          img.width = 100;
+          document.querySelector(".menu-drawer__featured-image a")?.appendChild(img);
+        }
         const imgLink = document.querySelector(".menu-drawer__featured-image a");
         const imgContainer = document.querySelector(".menu-drawer__featured-image");
 
