@@ -11,7 +11,10 @@
 {% assign heading = section.settings.heading %}
 {% assign media_type = section.settings.media_type %}
 {% assign poster_url = section.settings.video_placeholder | image_url %}
-{% assign poster_url_mobile = section.settings.mobile_video_placeholder | default: section.settings.video_placeholder | image_url %}
+{% assign poster_url_mobile = section.settings.mobile_video_placeholder
+  | default: section.settings.video_placeholder
+  | image_url
+%}
 {% assign poster_url_mobile = mobile_video_placeholder | default: video_placeholder | image_url %}
 
 {% assign horizontal_alignment = section.settings.horizontal_alignment %}
@@ -26,7 +29,6 @@
 {% assign svg_image = section.settings.svg_image %}
 {% assign svg_size = section.settings.svg_size %}
 {% assign mobile_svg_image = section.settings.mobile_svg_image %}
-{% assign mobile_svg_size = section.settings.mobile_svg_size %}
 
 {% if mobile_video %}
   <style>

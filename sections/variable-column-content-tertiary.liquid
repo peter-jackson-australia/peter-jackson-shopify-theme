@@ -32,14 +32,14 @@
     >
       {%- for block in section.blocks limit: column_count -%}
         {% assign block_image = block.settings.image %}
-        {% assign block_show_gradient_overlay = block.settings.show_gradient_overlay  %}
+        {% assign block_show_gradient_overlay = block.settings.show_gradient_overlay %}
         {% assign block_heading = block.settings.heading %}
         {% assign block_heading_animation = block.settings.heading_animation %}
         {% assign block_text = block.settings.text %}
         {% assign block_text_animation = block.settings.text_animation %}
         {% assign block_column_link = block.settings.column_link %}
         {% assign block_column_link_text = block.settings.column_link_text %}
-        
+
         {% if block.type == 'column_item' %}
           <div class="variable-column-content-tertiary__column" {{ block.shopify_attributes }}>
             {% if block_column_link != blank %}
@@ -94,7 +94,7 @@
       {%- endfor -%}
     </div>
   {% endif %}
-  
+
   {% assign section_heading = section.settings.heading %}
   {% assign section_text = section.settings.text %}
   {% assign section_text_alignment = section.settings.text_alignment %}
@@ -115,7 +115,7 @@
             {{ section_text }}
           </div>
         {% endif %}
-        
+
         {% if section_button_label != blank and section_button_link != blank %}
           <a
             href="{{ section_button_link }}"

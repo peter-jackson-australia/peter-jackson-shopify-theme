@@ -7,62 +7,62 @@
 {% assign sizes_attr = '(max-width: 561px) 400px, 561px' %}
 
 <div class="featured-article" id="section-{{ section_id }}">
-    {% if heading != blank %}
-        <h2 class="heading--xl featured-article__heading featured-article__heading--{{ heading_alignment }}">
-            {{ heading }}
-        </h2>
-    {% endif %}
+  {% if heading != blank %}
+    <h2 class="heading--xl featured-article__heading featured-article__heading--{{ heading_alignment }}">
+      {{ heading }}
+    </h2>
+  {% endif %}
 
-    <div class="featured-article__slider-wrapper">
-        <div class="featured-article__slider splide">
-            <div class="splide__arrows">
-                <button class="splide__arrow splide__arrow--prev">{% render '_icon-arrow-see-less' %}</button>
-                <button class="splide__arrow splide__arrow--next">{% render '_icon-arrow-see-more' %}</button>
-            </div>
-            <div class="splide__track">
-                <div class="splide__list">
-                    {% for article in blog_articles limit: 100 %}
-                        {% assign is_featured = article.metafields.custom.featured_article %}
-                        {% assign article_url = article.url %}
-                        {% assign article_title = article.title %}
-                        {% assign article_image = article.image %}
-                        {% if is_featured == true %}
-                            <article class="splide__slide featured-article__slide">
-                                <a href="{{ article_url }}" class="featured-article__card-link">
-                                    {% if article_image %}
-                                        {% assign article_image_alt = article_image.alt | escape %}
-                                        {% assign article_image_width = article_image.width %}
-                                        {% assign article_image_height = article_image.height %}
-                                        <div class="featured-article__image-wrapper">
-                                            <img
-                                                    src="{{ article_image | image_url: width: 561 }}"
-                                                    alt="{{ article_image_alt }}"
-                                                    loading="lazy"
-                                                    ,
-                                                    sizes="{{ sizes_attr }}"
-                                                    ,
-                                                    width="{{ article_image_width }}"
-                                                    height="{{ article_image_height }}"
-                                                    class="featured-article__image"
-                                                    decoding="async"
-                                            >
-                                        </div>
-                                    {% endif %}
-                                    <h3 class="heading--l featured-article__title">{{ article_title }}</h3>
-                                    <span class="body featured-article__read-more">Read More{% render '_icon-arrow-submit-dark' %}</span>
-                                </a>
-                            </article>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
+  <div class="featured-article__slider-wrapper">
+    <div class="featured-article__slider splide">
+      <div class="splide__arrows">
+        <button class="splide__arrow splide__arrow--prev">{% render '_icon-arrow-see-less' %}</button>
+        <button class="splide__arrow splide__arrow--next">{% render '_icon-arrow-see-more' %}</button>
+      </div>
+      <div class="splide__track">
+        <div class="splide__list">
+          {% for article in blog_articles limit: 100 %}
+            {% assign is_featured = article.metafields.custom.featured_article %}
+            {% assign article_url = article.url %}
+            {% assign article_title = article.title %}
+            {% assign article_image = article.image %}
+            {% if is_featured == true %}
+              <article class="splide__slide featured-article__slide">
+                <a href="{{ article_url }}" class="featured-article__card-link">
+                  {% if article_image %}
+                    {% assign article_image_alt = article_image.alt | escape %}
+                    {% assign article_image_width = article_image.width %}
+                    {% assign article_image_height = article_image.height %}
+                    <div class="featured-article__image-wrapper">
+                      <img
+                        src="{{ article_image | image_url: width: 561 }}"
+                        alt="{{ article_image_alt }}"
+                        loading="lazy"
+                        ,
+                        sizes="{{ sizes_attr }}"
+                        ,
+                        width="{{ article_image_width }}"
+                        height="{{ article_image_height }}"
+                        class="featured-article__image"
+                        decoding="async"
+                      >
+                    </div>
+                  {% endif %}
+                  <h3 class="heading--l featured-article__title">{{ article_title }}</h3>
+                  <span class="body featured-article__read-more">Read More{% render '_icon-arrow-submit-dark' %}</span>
+                </a>
+              </article>
+            {% endif %}
+          {% endfor %}
         </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <script
-        src="{{ 'section-featured-article.js' | asset_url }}"
-        defer
+  src="{{ 'section-featured-article.js' | asset_url }}"
+  defer
 ></script>
 
 {% schema %}
