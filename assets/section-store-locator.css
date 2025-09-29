@@ -54,12 +54,12 @@
 
 .store-locator__state-select {
   -webkit-appearance: none;
+  -webkit-border-radius: 0;
   appearance: none;
   background: transparent url("data:image/svg+xml,%3Csvg width='12' height='7' viewBox='0 0 12 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%23616161' stroke-linecap='square'/%3E%3C/svg%3E") no-repeat right 0 center;
   background-size: 12px 7px;
   border: none;
   border-bottom: 1px solid var(--neutral-50);
-  -webkit-border-radius: 0;
   border-radius: 0;
   color: var(--neutral-950);
   cursor: pointer;
