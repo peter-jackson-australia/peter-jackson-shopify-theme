@@ -23,9 +23,3 @@ function applyFilters() {
 
   window.location.href = url.toString();
 }
-
-function closeFilter() {
-  if (window.closeFilter) {
-    window.closeFilter();
-  }
-}
