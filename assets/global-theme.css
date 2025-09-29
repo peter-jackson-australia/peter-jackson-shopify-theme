@@ -160,7 +160,7 @@ a {
 .metafield-rich_text_field > p > strong,
 .metafield-rich_text_field > * > li > strong {
   color: var(--neutral-950) !important;
-  font-family: var(--ordinary-regular);
+  font-family: var(--ordinary-regular), sans-serif;
   font-weight: 500;
 }
 
@@ -218,7 +218,6 @@ a {
   color: var(--neutral-950);
   cursor: pointer;
   display: inline-block;
-  padding: 0;
   padding: var(--space-2xs) var(--space-2xs);
   position: relative;
 }
@@ -327,7 +326,6 @@ a {
 }
 
 .splide__slide {
-  -ms-flex-negative: 0;
   backface-visibility: hidden;
   box-sizing: border-box;
   flex-shrink: 0;
@@ -432,7 +430,7 @@ accordion-element > .ploiu-accordion-body {
 accordion-element > .ploiu-accordion-body > .body > p > strong,
 accordion-element > .ploiu-accordion-body > .body > * > li > strong {
   color: var(--neutral-950);
-  font-family: var(--ordinary-regular);
+  font-family: var(--ordinary-regular), sans-serif;
   font-weight: 500;
 }
 
@@ -456,7 +454,7 @@ accordion-element.open > .ploiu-accordion-title {
 }
 
 accordion-element.open > .ploiu-accordion-body {
-  margin-bottom: 0px !important;
+  margin-bottom: 0 !important;
 }
 
 accordion-fan {
@@ -476,7 +474,7 @@ accordion-fan > accordion-element > .ploiu-accordion-title {
 /* Typography */
 
 .small {
-  font-family: var(--ordinary-light);
+  font-family: var(--ordinary-light), sans-serif;
   font-size: clamp(0.5787rem, 0.5498rem + 0.1447vw, 0.7234rem);
   letter-spacing: 0.065rem;
   line-height: 140%;
@@ -485,7 +483,7 @@ accordion-fan > accordion-element > .ploiu-accordion-title {
 .body,
 p,
 li {
-  font-family: var(--ordinary-light);
+  font-family: var(--ordinary-light), sans-serif;
   font-size: clamp(0.6944rem, 0.6597rem + 0.1736vw, 0.8681rem);
   font-weight: 300;
   letter-spacing: 0.065rem;
@@ -493,7 +491,7 @@ li {
 }
 
 .body--uppercase {
-  font-family: var(--ordinary-light);
+  font-family: var(--ordinary-light), sans-serif;
   font-size: clamp(0.6944rem, 0.6597rem + 0.1736vw, 0.8681rem);
   font-weight: 300;
   letter-spacing: 0.065rem;
@@ -504,7 +502,7 @@ li {
 .body--bold,
 h5,
 h6 {
-  font-family: var(--ordinary-regular);
+  font-family: var(--ordinary-regular), sans-serif;
   font-size: clamp(0.6944rem, 0.6597rem + 0.1736vw, 0.8681rem);
   font-weight: 500;
   letter-spacing: 0.065rem;
@@ -515,7 +513,7 @@ h6 {
 h4 {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  font-family: var(--ordinary-regular);
+  font-family: var(--ordinary-regular), sans-serif;
   font-size: clamp(0.8333rem, 0.7917rem + 0.2083vw, 1.0417rem);
   font-weight: 500;
   letter-spacing: 0.125rem;
@@ -524,7 +522,7 @@ h4 {
 
 .heading--xl,
 h3 {
-  font-family: var(--ordinary-regular);
+  font-family: var(--ordinary-regular), sans-serif;
   font-size: clamp(1rem, 0.95rem + 0.25vw, 1.25rem);
   font-weight: 500;
   line-height: 140%;
@@ -532,7 +530,7 @@ h3 {
 
 .heading--2xl,
 h2 {
-  font-family: var(--ordinary-regular);
+  font-family: var(--ordinary-regular), sans-serif;
   font-size: clamp(1.2rem, 1.14rem + 0.3vw, 1.5rem);
   font-weight: 500;
   letter-spacing: 0.125rem;
@@ -542,7 +540,7 @@ h2 {
 .heading--decorative {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  font-family: "The Wedding Signature";
+  font-family: "The Wedding Signature", serif;
   font-size: clamp(2.4883rem, 2.3639rem + 0.6221vw, 3.1104rem);
   font-weight: 500;
   letter-spacing: 0 !important;
@@ -551,7 +549,7 @@ h2 {
 
 .heading--3xl,
 h1 {
-  font-family: var(--ordinary-light);
+  font-family: var(--ordinary-light), sans-serif;
   font-size: clamp(2.986rem, 2.8367rem + 0.7465vw, 3.7325rem);
   font-weight: 300;
   letter-spacing: 0.2rem;
@@ -559,7 +557,7 @@ h1 {
 }
 
 .heading--4xl {
-  font-family: var(--ordinary-regular);
+  font-family: var(--ordinary-regular), sans-serif;
   font-size: clamp(3.5832rem, 3.404rem + 0.8958vw, 4.479rem);
   font-weight: 500;
   letter-spacing: 0.2rem;
@@ -580,7 +578,7 @@ h1 {
 
 .button,
 .klaviyo-form-WH7CVh > div > form > div > div > div > button.needsclick {
-  font-family: var(--ordinary-light) !important;
+  font-family: var(--ordinary-light), sans-serif !important;
   padding: var(--space-xs) var(--space-l) !important;
   text-align: center !important;
 }
@@ -591,14 +589,14 @@ h1 {
 
 input,
 input::placeholder {
-  font-family: var(--ordinary-light) !important;
+  font-family: var(--ordinary-light), sans-serif !important;
   font-size: clamp(0.6944rem, 0.6597rem + 0.1736vw, 0.8681rem) !important;
   letter-spacing: 0.1rem !important;
   line-height: 140% !important;
 }
 
 input:focus-visible {
-  outline-width: 0px !important;
+  outline-width: 0 !important;
 }
 
 .button--white {
@@ -789,7 +787,7 @@ footer ul {
   border: none;
   border-bottom: 1px solid var(--neutral-50);
   color: var(--neutral-950);
-  padding: var(--space-m) 0px;
+  padding: var(--space-m) 0;
   width: 100%;
 }
 
@@ -819,7 +817,7 @@ input[type="search"] {
   justify-content: center;
   padding: 0;
   position: absolute;
-  right: 0px;
+  right: 0;
   top: 50%;
   transform: translateY(-50%);
 }
@@ -830,7 +828,7 @@ input[type="search"] {
 
 @media (min-width: 769px) {
   .search-drawer__content .predictive-search__input {
-    padding: var(--space-s) 0px;
+    padding: var(--space-s) 0;
   }
 
   .search-drawer__content .predictive-search__button {
@@ -934,7 +932,7 @@ a.skip-to-content:focus-visible {
 #rich-text-01JQ7PY3EM88BD6RSMQFFCS2QW > * > *,
 #rich-text-01JQ7PY3EVQV63T4NT5GGT9J67 > * > *,
 #label-email_01K0TJKMBA3VDEFYQ0GC07SFN3 {
-  font-family: var(--ordinary-light) !important;
+  font-family: var(--ordinary-light), sans-serif !important;
   font-size: clamp(0.6944rem, 0.6597rem + 0.1736vw, 0.8681rem) !important;
   font-weight: 300 !important;
   letter-spacing: 0.065rem !important;
@@ -973,17 +971,17 @@ a.skip-to-content:focus-visible {
     max-width: 100% !important;
   }
   #csm-wrapper > .cc-banner {
-    border-radius: 0px !important;
+    border-radius: 0 !important;
     width: calc(100% - var(--space-m) - var(--space-m)) !important;
   }
 }
 
 .cc-compliance > button {
   border: 1px solid var(--neutral-950) !important;
-  border-radius: 0px;
+  border-radius: 0;
 }
 
 .cc-compliance > button {
   border: 1px solid var(--neutral-950) !important;
-  border-radius: 0px;
+  border-radius: 0;
 }
