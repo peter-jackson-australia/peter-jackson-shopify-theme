@@ -6,7 +6,7 @@ let currentPageNumber = parseInt(params.get("page")) || 1;
 
 const requiresLifestyleFilter = document.querySelector(".blog-collection").dataset.lifestyleFilter === "true";
 
-const allArticles = JSON.parse(document.getElementById("articles-data").textContent);
+const allArticles = JSON.parse(document.currentScript.getAttribute("data-articles"));
 
 const displayableArticleIds = allArticles
   .filter((article) => {
@@ -51,9 +51,7 @@ const renderPagination = () => {
     currentPageNumber > 1 && createPageLink(currentPageNumber - 1, "Previous", "prev"),
     ...Array.from({ length: totalPages }, (_, i) => {
       const pageNum = i + 1;
-      return pageNum === currentPageNumber
-        ? `<span class="blog-collection__pagination-current">${pageNum}</span>`
-        : createPageLink(pageNum, pageNum);
+      return pageNum === currentPageNumber ? `<span class="blog-collection__pagination-current">${pageNum}</span>` : createPageLink(pageNum, pageNum);
     }),
     currentPageNumber < totalPages && createPageLink(currentPageNumber + 1, "Next", "next"),
   ]
