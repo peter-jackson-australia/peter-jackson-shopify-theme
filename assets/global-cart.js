@@ -27,6 +27,7 @@ let secondaryDrawerState = {
   currentIndex: 0,
   productData: null,
   splideInstance: null,
+  inventoryQuantities: [],
 };
 
 const utils = {
@@ -141,6 +142,13 @@ const secondaryDrawer = {
       const sectionHTML = await sectionRes.text();
 
       secondaryDrawerState.productData = productData;
+
+      const inventoryMatch = sectionHTML.match(/var variant_inventory_quantities = \[(.*?)\];/);
+      if (inventoryMatch) {
+        secondaryDrawerState.inventoryQuantities = inventoryMatch[1].split(",").map((q) => parseInt(q.trim()));
+      } else {
+        secondaryDrawerState.inventoryQuantities = [];
+      }
 
       const temp = document.createElement("div");
       temp.innerHTML = sectionHTML;
@@ -303,6 +311,26 @@ const secondaryDrawer = {
         }
       }
     });
+
+    const selectedOptions = [];
+    document.querySelectorAll(".secondary-variant-option:checked").forEach((input) => {
+      selectedOptions[parseInt(input.dataset.optionPosition) - 1] = input.value;
+    });
+
+    const selectedVariant = secondaryDrawerState.productData.variants.find((v) => {
+      return selectedOptions.every((opt, idx) => v[`option${idx + 1}`] === opt);
+    });
+
+    const updateBtn = document.querySelector(".cart-secondary__update");
+    if (updateBtn && selectedVariant) {
+      const variantIndex = secondaryDrawerState.productData.variants.findIndex((v) => v.id === selectedVariant.id);
+      const inventoryQty = secondaryDrawerState.inventoryQuantities?.[variantIndex] ?? Infinity;
+      const isGiftCard = selectedVariant.name?.toLowerCase().includes("gift card");
+
+      const isOutOfStock = !selectedVariant.available || (inventoryQty <= 5 && !isGiftCard);
+      updateBtn.disabled = isOutOfStock;
+      updateBtn.textContent = isOutOfStock ? "Out of Stock" : "Select Size";
+    }
   },
 
   initSlider() {
@@ -365,6 +393,17 @@ const secondaryDrawer = {
     });
 
     if (!newVariant) return;
+
+    const variantIndex = secondaryDrawerState.productData.variants.findIndex((v) => v.id === newVariant.id);
+    const inventoryQty = secondaryDrawerState.inventoryQuantities?.[variantIndex] ?? Infinity;
+    const isGiftCard = newVariant.name?.toLowerCase().includes("gift card");
+
+    if (!newVariant.available || (inventoryQty <= 5 && !isGiftCard)) {
+      const updateBtn = document.querySelector(".cart-secondary__update");
+      updateBtn.innerHTML = "Out of Stock";
+      updateBtn.disabled = true;
+      return;
+    }
 
     const updateBtn = document.querySelector(".cart-secondary__update");
     updateBtn.innerHTML = '<span class="loader--spinner"></span>';
