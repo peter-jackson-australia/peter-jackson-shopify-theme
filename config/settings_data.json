@@ -11,7 +11,7 @@
   "current": {
     "favicon": "shopify://shop_images/favicon-peter-jackson-menswear-australia-new.png",
     "klaviyo_newsletter_image_1": "https://d3k81ch9hvuctc.cloudfront.net/company/VLyhSf/images/e99d0cd4-52b5-4b39-9a47-068403eebe82.jpeg",
-    "klaviyo_newsletter_image_2": "https://d3k81ch9hvuctc.cloudfront.net/company/VLyhSf/images/fc65f7b2-4f71-4144-a5f3-d251947217a2.jpeg",
+    "klaviyo_newsletter_image_2": "",
     "newsletter_popup": false,
     "newsletter_heading": "Newsletter Sign-up",
     "newsletter_text": "This is the built-in newsletter signup pop-up form, which you can customise as required.",
