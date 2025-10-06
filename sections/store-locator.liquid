@@ -5,16 +5,7 @@
 
 {% assign heading = section.settings.heading %}
 {% assign all_locations = metaobjects.locations.values %}
-
-{% comment %}
-  This value is populated in the paginate `metaobjects.locations.values`
-{% endcomment %}
 {% assign locations_json_str = '' %}
-{% comment %}
-  This value is also populated in the paginate `metaobjects.locations.values`
-  Due to limitations of Liquid, this array will always have an empty string
-  as it's first element.
-{% endcomment %}
 {% assign location_urls_array = '' %}
 
 <div class="store-locator" x-data="storeLocator()">
@@ -49,8 +40,6 @@
       </div>
       {% paginate all_locations by 200 %}
         {% liquid
-          # By default, location URIs are in the format "gid://...". So, we need to convert
-          # it into a string by calling "location.location_page.value.url"
           assign all_locations = metaobjects.locations.values
           assign all_locations_json = all_locations | json
           assign locations_json_str = locations_json_str | append: all_locations_json
@@ -198,8 +187,6 @@
 
         for (let i = 0; i < dataLocations.length; i++) {
           const currentLocation = dataLocations[i];
-          // As stated in the top of this file, the urls array's first element is an empty string, so we must add 1
-          // to the index to get the correct one.
           const currentLocationUrl = dataLocationUrls[i + 1];
 
           if (!currentLocation.latitude || !currentLocation.longitude) {
