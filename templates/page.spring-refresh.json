@@ -16,8 +16,6 @@
           "type": "slide",
           "settings": {
             "media_type": "video",
-            "desktop_image": "shopify://shop_images/Suits_Desktop_copy.webp",
-            "mobile_image": "shopify://shop_images/Suits_Mobile.webp",
             "video": "shopify://files/videos/Spring Homepage Update.mp4",
             "heading": "",
             "svg_image": "shopify://shop_images/S25_HP_Refresh_Spring_935e178e-1110-42e1-a150-c63f9b8e52a3.svg",
