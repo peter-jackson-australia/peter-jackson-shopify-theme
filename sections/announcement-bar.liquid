@@ -2,7 +2,7 @@
   Announcement bar slider that sits at the top of all pages on the site, used for calling out sale and campaigns
 {% endcomment %}
 
-{{ 'section-announcement-bar.css' | asset_url | stylesheet_tag }}
+{% comment %} {{ 'section-announcement-bar.css' | asset_url | stylesheet_tag }} {% endcomment %}
 
 {% assign slider_background_colour = section.settings.background_color %}
 {% assign slider_text_colour = section.settings.text_color %}
