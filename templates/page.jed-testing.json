@@ -9,98 +9,20 @@
  */
 {
   "sections": {
-    "variable_column_content_tertiary_fkPD3N": {
-      "type": "variable-column-content-tertiary",
-      "blocks": {
-        "column_item_qVGBP3": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/Suits_Desktop_copy.webp",
-            "image_link": "shopify://blogs/the-jackson-journal/higher-ground",
-            "heading": "Column Heading",
-            "heading_animation": "none",
-            "text": "Add a brief description for this column item.",
-            "text_animation": "none",
-            "show_gradient_overlay": false,
-            "content_horizontal_alignment": "left",
-            "content_vertical_alignment": "top",
-            "column_link": "",
-            "column_link_text": "Shop Now"
-          }
-        },
-        "column_item_ATfX4j": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/men-shirt-grey-SU25-A23_5.webp",
-            "image_link": "",
-            "heading": "Column Heading",
-            "heading_animation": "animate-word-rotate-scroll",
-            "text": "Add a brief description for this column item.",
-            "text_animation": "animate-paragraph-slide-up-scroll",
-            "show_gradient_overlay": false,
-            "content_horizontal_alignment": "center",
-            "content_vertical_alignment": "center",
-            "column_link": "shopify://policies/shipping-policy",
-            "column_link_text": "Shop Now"
-          }
-        },
-        "column_item_pdjgAn": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/men-shirt-purple-cotton-SU25-A11-GR_3.webp",
-            "image_link": "",
-            "heading": "Column Heading",
-            "heading_animation": "none",
-            "text": "Add a brief description for this column item.",
-            "text_animation": "none",
-            "show_gradient_overlay": false,
-            "content_horizontal_alignment": "right",
-            "content_vertical_alignment": "bottom",
-            "column_link": "shopify://blogs/the-jackson-journal",
-            "column_link_text": "Shop Now"
-          }
-        },
-        "column_item_kaVwhj": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/men-shirt-orange-SU25-A03-COR_2.webp",
-            "image_link": "",
-            "heading": "Column Heading",
-            "heading_animation": "none",
-            "text": "Add a brief description for this column item.",
-            "text_animation": "none",
-            "show_gradient_overlay": false,
-            "content_horizontal_alignment": "center",
-            "content_vertical_alignment": "top",
-            "column_link": "",
-            "column_link_text": "Shop Now"
-          }
-        }
-      },
-      "block_order": [
-        "column_item_qVGBP3",
-        "column_item_ATfX4j",
-        "column_item_pdjgAn",
-        "column_item_kaVwhj"
-      ],
-      "name": "Variable Column Content Tertiary",
+    "block_quote_BETkhU": {
+      "type": "block-quote",
+      "name": "Block Quote",
       "settings": {
         "anchor_id": "",
-        "show_top_border": true,
-        "show_bottom_border": true,
-        "column_count": "4",
-        "text_alignment": "right",
-        "animate_columns": true,
-        "heading": "Variable Column Content Tertiary",
-        "heading_animation": "none",
-        "text": "Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.",
-        "text_animation": "none",
-        "button_label": "Learn More",
-        "button_link": ""
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "quote_text": "Add a memorable quote that represents your brand values or highlights your products.",
+        "quote_animation": "animate-word-opacity-scroll",
+        "background_color": "neutral-950"
       }
     }
   },
   "order": [
-    "variable_column_content_tertiary_fkPD3N"
+    "block_quote_BETkhU"
   ]
 }
