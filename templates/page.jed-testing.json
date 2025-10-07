@@ -17,7 +17,7 @@
         "show_top_border": false,
         "show_bottom_border": false,
         "quote_text": "Add a memorable quote that represents your brand values or highlights your products.",
-        "quote_animation": "animate-paragraph-slide-up-scroll",
+        "quote_animation": "animate-word-opacity-scroll",
         "background_color": "neutral-950"
       }
     }
