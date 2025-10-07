@@ -20,14 +20,14 @@
             "mobile_image": "shopify://shop_images/Suits_Mobile.webp",
             "video": "shopify://files/videos/Spring Homepage Update.mp4",
             "heading": "",
-            "svg_image": "shopify://shop_images/S25_HP_Refresh_Spring.svg",
-            "svg_size": "full",
+            "svg_image": "shopify://shop_images/S25_HP_Refresh_Spring_935e178e-1110-42e1-a150-c63f9b8e52a3.svg",
+            "svg_size": "medium",
             "mobile_svg_image": "shopify://shop_images/S25_Homepage_Suits_Mobile.svg",
             "heading_level": "h1",
             "heading_animation": "none",
-            "description": "New lightweight tailoring for the most social season of the year.",
+            "description": "",
             "description_animation": "none",
-            "button_label_1": "Two Suits for $895*",
+            "button_label_1": "Shop New Arrivals",
             "button_link_1": "shopify://collections/new-arrivals",
             "button_label_2": "",
             "button_link_2": "",
@@ -43,6 +43,7 @@
         },
         "slide_ddW7HK": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "media_type": "image",
             "desktop_image": "shopify://shop_images/Spring_Hero_Desktop.webp",
@@ -71,6 +72,7 @@
         },
         "slide_P9nnNj": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "media_type": "image",
             "desktop_image": "shopify://shop_images/EOS_Sale_Desktop.webp",
