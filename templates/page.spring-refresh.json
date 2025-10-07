@@ -46,7 +46,7 @@
           "settings": {
             "media_type": "image",
             "desktop_image": "shopify://shop_images/Spring_Suits_HP_Refresh.webp",
-            "mobile_image": "shopify://shop_images/Spring_Suits_Mobile_copy.webp",
+            "mobile_image": "shopify://shop_images/Spring_Suits_HP_Refresh.webp",
             "heading": "",
             "svg_image": "shopify://shop_images/S25_Homepage_Suits_534467bb-fb4e-4ba3-86e1-8ad0f211cb10.svg",
             "svg_size": "full",
@@ -284,7 +284,7 @@
         "anchor_id": "",
         "show_top_border": true,
         "show_bottom_border": true,
-        "heading": "The MVP Of The Season",
+        "heading": "The Look Of The Season",
         "heading_animation": "none",
         "featured_image": "shopify://shop_images/MVP_Linen_ab36d975-67d4-4c58-9fce-ae7bc7396acd.webp",
         "product1": "luzio-canvas-taupe-jacket",
@@ -302,7 +302,7 @@
         "description_animation": "none",
         "collection": "business-shirts",
         "button_label": "Any Three for $259",
-        "products_to_show": 12,
+        "products_to_show": 10,
         "animate_products": false
       }
     },
