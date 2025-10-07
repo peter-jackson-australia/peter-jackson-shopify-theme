@@ -17,6 +17,7 @@ Completely removes duplication as every element merely references classes, every
 /* EVERY SINGLE STYLE USED IN SITE FROM HERE DOWN */
 
 /* Global Splide Styles */
+
 @keyframes splide-loading {
   0% {
     transform: rotate(0);
