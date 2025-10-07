@@ -245,7 +245,7 @@ This file can be re-written at any time.
             <span>We have created a variant theme with your chosen price changes. Please check everywhere your prices may appear such as product pages, collection pages, and featured product elements.</span>
             <br>
             <br>
-            <span>When you’re done reviewing close this tab and return to Shogun.</span>
+            <span>When you're done reviewing close this tab and return to Shogun.</span>
             <br>
             <br>
             <span>If something is wrong please let us know.</span>
@@ -398,7 +398,7 @@ This file can be re-written at any time.
                   <div class="shogun-price-test-preview-sidebar-product-collection-header-child">
                     {% if product.variants.size > 1 %}
                       <div class="shogun-price-test-preview-sidebar-count-badge">
-                        {{ product.variants.size }}
+                        {{ product_config.variant_pricing.size }}
                       </div>
                     {% endif %}
                     {% if product.variants.size == 1 %}
@@ -416,32 +416,29 @@ This file can be re-written at any time.
                 {% if product.variants.size > 1 %}
                   <div class="shogun-price-test-preview-sidebar-product-collection-children" id="product-{{ forloop.index }}">
                     {% for variant in product.variants %}
-                      <div class="shogun-price-test-preview-sidebar-product-collection-child-item">
-                        <div class="shogun-price-test-preview-sidebar-product-collection-child-arrow">
-                          {{ arrow_symbol }}
-                        </div>
-                        <div class="shogun-price-test-preview-sidebar-image-container">
-                          <img src="{{ variant.featured_image | default: product.featured_image | image_url: width: image_size }}" width="{{ image_size }}" height="{{ image_size }}"/>
-                        </div>
-                        <div class="shogun-price-test-preview-sidebar-title-container">
-                          <span>{{ variant.title | default: product.title }}</span>
-                        </div>
-                        <div class="shogun-price-test-preview-sidebar-product-collection-child-pricing">
-                          {%- assign original_price = 0 -%}
-                          {%- assign new_price = 0 -%}
-                          {%- assign price_change = 0 -%}
-                          {% for variant_pricing in product_config.variant_pricing %}
-                            {% if variant_pricing.id | append: '' == variant.id | append: '' %}
+                      {% for variant_pricing in product_config.variant_pricing %}
+                        {% if variant_pricing.id == variant.id %}
+                          <div class="shogun-price-test-preview-sidebar-product-collection-child-item">
+                            <div class="shogun-price-test-preview-sidebar-product-collection-child-arrow">
+                              {{ arrow_symbol }}
+                            </div>
+                            <div class="shogun-price-test-preview-sidebar-image-container">
+                              <img src="{{ variant.featured_image | default: product.featured_image | image_url: width: image_size }}" width="{{ image_size }}" height="{{ image_size }}"/>
+                            </div>
+                            <div class="shogun-price-test-preview-sidebar-title-container">
+                              <span>{{ variant.title | default: product.title }}</span>
+                            </div>
+                            <div class="shogun-price-test-preview-sidebar-product-collection-child-pricing">
                               {%- assign original_price = variant_pricing.original_price -%}
                               {%- assign new_price = variant_pricing.test_price -%}
                               {%- assign price_change = variant_pricing.price_change -%}
-                            {% endif %}
-                          {% endfor %}
-                          <div>${{ original_price }}</div>
-                          <div>{{ price_change }}%</div>
-                          <div>${{ new_price }}</div>
-                        </div>
-                      </div>
+                              <div>${{ original_price }}</div>
+                              <div>{{ price_change }}%</div>
+                              <div>${{ new_price }}</div>
+                            </div>
+                          </div>
+                        {% endif %}
+                      {% endfor %}
                     {% endfor %}
                   </div>
                 {% endif %}
