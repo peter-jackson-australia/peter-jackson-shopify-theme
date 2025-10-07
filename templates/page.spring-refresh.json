@@ -106,7 +106,7 @@
       "name": "Hero Slider",
       "settings": {
         "autoplay": false,
-        "slide_interval": 3
+        "slide_interval": 15
       }
     },
     "heading_with_text_zDqYQf": {
