@@ -302,7 +302,7 @@
         "description_animation": "none",
         "collection": "business-shirts",
         "button_label": "Any Three for $259",
-        "products_to_show": 10,
+        "products_to_show": 12,
         "animate_products": false
       }
     },
