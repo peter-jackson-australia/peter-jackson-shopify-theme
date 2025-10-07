@@ -74,11 +74,11 @@
           "settings": {
             "media_type": "image",
             "desktop_image": "shopify://shop_images/EOS_Sale_Desktop.webp",
-            "mobile_image": "shopify://shop_images/Spring_Sports_Jackets_Mobile.webp",
+            "mobile_image": "shopify://shop_images/EOS_Sale_Mobile.webp",
             "heading": "",
             "svg_image": "shopify://shop_images/EOS_Sale_Desktop.svg",
             "svg_size": "small",
-            "mobile_svg_image": "shopify://shop_images/S25_Sports_Jacket_Mobile.svg",
+            "mobile_svg_image": "shopify://shop_images/EOS_Sale_Desktop.svg",
             "heading_level": "h1",
             "heading_animation": "none",
             "description": "Up to 40% Off Select Styles / Final Days",
