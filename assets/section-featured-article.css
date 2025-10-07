@@ -59,7 +59,7 @@
   gap: var(--space-3xs);
 }
 
-.splide__arrows {
+.featured-article__slider .splide__arrows {
   display: none;
 }
 
@@ -82,7 +82,7 @@
     padding-left: 0 !important;
   }
 
-  .splide__arrows {
+  .featured-article__slider .splide__arrows {
     display: flex;
     gap: var(--space-m);
     margin-bottom: var(--space-s);
