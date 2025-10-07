@@ -226,9 +226,9 @@
         "column_item_EdH7tR": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/Spring_Casual_Hero_Desktop_copy.webp",
+            "image": "shopify://shop_images/Spring_Sports_Jackets.webp",
             "image_link": "",
-            "heading": "CASUAL SHIRTS",
+            "heading": "SPORTS JACKETS",
             "heading_animation": "none",
             "text": "",
             "text_animation": "none",
@@ -236,7 +236,7 @@
             "content_horizontal_alignment": "center",
             "content_vertical_alignment": "center",
             "column_link": "shopify://collections/casual-shirts",
-            "column_link_text": "Shop from $89.95"
+            "column_link_text": "Shop from $299"
           }
         },
         "column_item_TdMYVf": {
