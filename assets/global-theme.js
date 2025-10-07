@@ -1,11 +1,3 @@
-window.addEventListener("load", () => {
-  if (window.location.hostname === "peterjacksons.com" || window.location.hostname === "www.peterjacksons.com") {
-    quicklink.listen({
-      origins: ["account.peterjacksons.com"],
-    });
-  }
-});
-
 var ready = (callback) => {
   if (document.readyState != "loading") callback();
   else document.addEventListener("DOMContentLoaded", callback);
