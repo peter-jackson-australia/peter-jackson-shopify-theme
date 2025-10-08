@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "hero_slider_ULyNnz": {
       "type": "hero-slider",
@@ -235,7 +235,7 @@
             "content_horizontal_alignment": "center",
             "content_vertical_alignment": "center",
             "column_link": "shopify://collections/sport-jackets",
-            "column_link_text": "Shop from $299"
+            "column_link_text": "Shop from $399"
           }
         },
         "column_item_TdMYVf": {
