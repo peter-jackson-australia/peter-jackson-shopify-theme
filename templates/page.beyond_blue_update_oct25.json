@@ -14,14 +14,14 @@
       "name": "Hero Section",
       "settings": {
         "media_type": "image",
-        "desktop_image": "shopify://shop_images/Beyond_Blue_Harry_Hero.webp",
-        "heading": "Beyond Blue",
-        "svg_image": "shopify://shop_images/beyond-blue-footer-logo.svg",
-        "svg_size": "large",
+        "desktop_image": "shopify://shop_images/Beyond_Blue_Hero.webp",
+        "heading": "Beyond Blue. Breaking The Stigma",
+        "svg_image": "shopify://shop_images/Hero_67aa5f53-0006-419a-a160-4ecf580a3209.svg",
+        "svg_size": "full",
         "mobile_svg_image": "shopify://shop_images/beyond-blue-footer-logo.svg",
         "heading_level": "h1",
         "heading_animation": "none",
-        "description": "Breaking the Stigma Around Men’s Mental Health.<br><br> For 75 years, our brand has been more than a menswear label—we've been a companion in men's lives, crafting confidence and style. Today, we deepen that commitment with a partnership with Beyond Blue aimed at supporting men's mental health and dismantling the stigma that surrounds it. At the heart of this initiative is our mission to help men lead happier, healthier, and more fulfilling lives—not just through what they wear, but by supporting their mental health and emotional well-being.",
+        "description": "",
         "description_animation": "none",
         "button_label_1": "Shop Now",
         "button_link_1": "",
@@ -31,10 +31,27 @@
         "button_link_3": "",
         "button_label_4": "",
         "button_link_4": "",
-        "horizontal_alignment": "left",
+        "horizontal_alignment": "center",
         "vertical_alignment": "bottom",
-        "mobile_horizontal_alignment": "left",
-        "mobile_vertical_alignment": "bottom"
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "middle"
+      }
+    },
+    "heading_with_text_pV6AKa": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "leading_text": "A MEN'S MENTAL HEALTH INITIATIVE",
+        "leading_text_animation": "none",
+        "heading": "TOGETHER, WE START THE CONVERSATION",
+        "heading_style": "normal",
+        "heading_animation": "none",
+        "content": "<p>For 75 years, our brand has been more than a menswear label—we've been a companion in men's lives, crafting confidence and style. Today, we deepen that commitment with a partnership with Beyond Blue aimed at supporting men's mental health and dismantling the stigma that surrounds it. At the heart of this initiative is our mission to help men lead happier, healthier, and more fulfilling lives—not just through what they wear, but by supporting their mental health and emotional well-being.</p>",
+        "content_animation": "none",
+        "alignment": "center"
       }
     },
     "image_with_text_MbFKE3": {
@@ -51,7 +68,7 @@
         "alignment": "left",
         "heading": "The Blue Shirt Initiative",
         "heading_animation": "none",
-        "text": "Mental health is a cornerstone of a fulfilling life, yet many men face challenges in silence. Societal expectations often pressure men to appear strong and unshaken, leading to the suppression of feelings like stress, anxiety, or depression. <br><br>This stigma can prevent men from seeking help when they need it most. Through the Blue Shirt Initiative, we contribute $10 from the sale of every blue shirt to Beyond Blue’s 24/7 Support Service. This vital resource offers free, confidential support to individuals facing life's challenges, providing immediate assistance whenever it's needed. <br><br>This initiative is about more than shirts; it's about sparking conversations, showing solidarity, and proving that no man has to face his challenges alone.",
+        "text": "Mental health is a cornerstone of a fulfilling life, yet many men face challenges in silence. Societal expectations often pressure men to appear strong and unshaken, leading to the suppression of feelings like stress, anxiety, or depression. This stigma can prevent men from seeking help when they need it most. Through the Blue Shirt Initiative, we contribute $10 from the sale of every blue shirt to Beyond Blue’s 24/7 Support Service. This vital resource offers free, confidential support to individuals facing life's challenges, providing immediate assistance whenever it's needed. This initiative is about more than shirts; it's about sparking conversations, showing solidarity, and proving that no man has to face his challenges alone.",
         "text_animation": "none",
         "button_label": "Shop The Blue Shirt",
         "button_link": "shopify://products/milan-sky-twill-shirt"
@@ -212,6 +229,7 @@
   },
   "order": [
     "hero_primary_Jzfr7x",
+    "heading_with_text_pV6AKa",
     "image_with_text_MbFKE3",
     "image_with_text_L6Enzy",
     "block_quote_Kx6A6p",
