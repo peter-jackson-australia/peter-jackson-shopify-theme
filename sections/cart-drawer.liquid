@@ -24,38 +24,36 @@
         <div class="cart__empty-state custom-scrollbar">
           <p class="cart__empty heading--l">Your Cart Is Empty</p>
           {% assign new_arrivals = collections['mens-suits'] %}
-          {% if new_arrivals.products.size > 0 %}
-            <h3 class="cart__new-arrivals-section-title body">Shop Premium Merino Wool Suits from $399</h3>
-            <div class="cart__new-arrivals-grid">
-              {% for product in new_arrivals.products limit: 4 %}
-                <a href="{{ product.url }}" class="cart__new-arrivals-card">
-                  {% if product.featured_image %}
-                    <div class="cart__new-arrivals-image-wrapper">
-                      {{
-                        product.featured_image
-                        | image_url: width: 300
-                        | image_tag:
-                          class: 'cart__new-arrivals-image',
-                          sizes: '(max-width: 768px) 150px, 300px',
-                          loading: 'lazy',
-                          alt: product.featured_image.alt
-                      }}
-                    </div>
+          <h3 class="cart__new-arrivals-section-title body">Shop Premium Merino Wool Suits from $399</h3>
+          <div class="cart__new-arrivals-grid">
+            {% for product in new_arrivals.products limit: 4 %}
+              <a href="{{ product.url }}" class="cart__new-arrivals-card">
+                {% if product.featured_image %}
+                  <div class="cart__new-arrivals-image-wrapper">
+                    {{
+                      product.featured_image
+                      | image_url: width: 300
+                      | image_tag:
+                        class: 'cart__new-arrivals-image',
+                        sizes: '(max-width: 768px) 150px, 300px',
+                        loading: 'lazy',
+                        alt: product.featured_image.alt
+                    }}
+                  </div>
+                {% endif %}
+                <h3 class="body--bold cart__new-arrivals-title">{{ product.title }}</h3>
+                <p class="small cart__new-arrivals-price">
+                  {{ product.price | money_with_currency }}
+                  {% if product.compare_at_price > product.price %}
+                    <span class="cart__new-arrivals-price--compare">
+                      {{- product.compare_at_price | money_with_currency -}}
+                    </span>
                   {% endif %}
-                  <h3 class="body--bold cart__new-arrivals-title">{{ product.title }}</h3>
-                  <p class="small cart__new-arrivals-price">
-                    {{ product.price | money_with_currency }}
-                    {% if product.compare_at_price > product.price %}
-                      <span class="cart__new-arrivals-price--compare">
-                        {{- product.compare_at_price | money_with_currency -}}
-                      </span>
-                    {% endif %}
-                  </p>
-                </a>
-              {% endfor %}
-            </div>
-            <a href="{{ routes.collections_url }}/mens-suits" class="cart__new-arrivals body">View Full Collection</a>
-          {% endif %}
+                </p>
+              </a>
+            {% endfor %}
+          </div>
+          <a href="{{ routes.collections_url }}/mens-suits" class="cart__new-arrivals body">View Full Collection</a>
         </div>
       {% else %}
         <div class="cart__content-wrapper custom-scrollbar">
