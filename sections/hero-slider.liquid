@@ -53,7 +53,10 @@
           {% elsif block.settings.media_type == 'video' %}
             {% if block.settings.video %}
               <div class="hero-slider__video hero-slider__video--desktop">
-                {% assign poster_url_desktop = block.settings.video_poster | image_url %}
+                {% assign poster_url_desktop = block.settings.video_poster
+                  | image_url: 100
+                  | image_tag: fetchpriority: fetch_priority
+                %}
                 {{
                   block.settings.video
                   | video_tag:
@@ -72,7 +75,10 @@
 
             {% if block.settings.mobile_video %}
               <div class="hero-slider__video hero-slider__video--mobile">
-                {% assign poster_url_mobile = block.settings.video_poster | image_url %}
+                {% assign poster_url_mobile = block.settings.video_poster
+                  | image_url: 100
+                  | image_tag: fetchpriority: fetch_priority
+                %}
                 {{
                   block.settings.mobile_video
                   | video_tag:
