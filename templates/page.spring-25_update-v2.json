@@ -276,8 +276,23 @@
         "button_link": ""
       }
     },
+    "collection_slider_XmLf6t": {
+      "type": "collection-slider",
+      "name": "Collection Slider",
+      "settings": {
+        "heading": "The Season's Best",
+        "heading_animation": "none",
+        "description": "Premium cotton, sharp cutaway collars, and new season colours and patterns — your work wardrobe, refreshed.",
+        "description_animation": "none",
+        "collection": "mens-suits",
+        "button_label": "Shop Spring Tailoring",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
     "shop_the_look_global_NN6BDN": {
       "type": "shop-the-look-global",
+      "disabled": true,
       "name": "Shop the Look Global",
       "settings": {
         "anchor_id": "",
@@ -291,16 +306,45 @@
         "product3": "bottinelli-italian-tie-green-with-vintage-paisley-print"
       }
     },
+    "hero_primary_WLbcQ7": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/SS25_Wedding_1.webp",
+        "mobile_image": "shopify://shop_images/Wedding_Blog_Featured.webp",
+        "heading": "",
+        "svg_image": "shopify://shop_images/MOD_HP_Heading_a2545755-65f2-4fbe-9d1e-cfd88fdde7ed.svg",
+        "svg_size": "large",
+        "mobile_svg_image": "shopify://shop_images/MOD_HP_Heading_a2545755-65f2-4fbe-9d1e-cfd88fdde7ed.svg",
+        "heading_level": "h1",
+        "heading_animation": "none",
+        "description": "For the ceremony, the celebration, the forever.",
+        "description_animation": "none",
+        "button_label_1": "Shop Weddings",
+        "button_link_1": "shopify://blogs/the-jackson-journal/moments-of-distinction-the-wedding-edit",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "middle",
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "bottom"
+      }
+    },
     "collection_slider_3p3hD9": {
       "type": "collection-slider",
       "name": "Collection Slider",
       "settings": {
-        "heading": "Business Shirts",
+        "heading": "Wedding & Formal Style",
         "heading_animation": "none",
         "description": "Premium cotton, sharp cutaway collars, and new season colours and patterns — your work wardrobe, refreshed.",
         "description_animation": "none",
-        "collection": "business-shirts",
-        "button_label": "Any Three for $259",
+        "collection": "tuxedos-and-formal-jackets",
+        "button_label": "Shop Now",
         "products_to_show": 10,
         "animate_products": false
       }
@@ -335,13 +379,6 @@
         "mobile_vertical_alignment": "bottom"
       }
     },
-    "spacer_yr6m7M": {
-      "type": "spacer",
-      "name": "Spacer",
-      "settings": {
-        "spacer_height": "var(--space-s)"
-      }
-    },
     "hero_primary_zeaCqL": {
       "type": "hero-primary",
       "name": "Hero Section",
@@ -371,40 +408,18 @@
         "mobile_vertical_alignment": "bottom"
       }
     },
-    "spacer_wCQ8WH": {
+    "spacer_yr6m7M": {
       "type": "spacer",
       "name": "Spacer",
       "settings": {
         "spacer_height": "var(--space-s)"
       }
     },
-    "hero_primary_WLbcQ7": {
-      "type": "hero-primary",
-      "name": "Hero Section",
+    "spacer_wCQ8WH": {
+      "type": "spacer",
+      "name": "Spacer",
       "settings": {
-        "media_type": "image",
-        "desktop_image": "shopify://shop_images/SS25_Wedding_1.webp",
-        "mobile_image": "shopify://shop_images/Wedding_Blog_Featured.webp",
-        "heading": "",
-        "svg_image": "shopify://shop_images/MOD_HP_Heading_a2545755-65f2-4fbe-9d1e-cfd88fdde7ed.svg",
-        "svg_size": "large",
-        "mobile_svg_image": "shopify://shop_images/MOD_HP_Heading_a2545755-65f2-4fbe-9d1e-cfd88fdde7ed.svg",
-        "heading_level": "h1",
-        "heading_animation": "none",
-        "description": "For the ceremony, the celebration, the forever.",
-        "description_animation": "none",
-        "button_label_1": "Shop Weddings",
-        "button_link_1": "shopify://blogs/the-jackson-journal/moments-of-distinction-the-wedding-edit",
-        "button_label_2": "",
-        "button_link_2": "",
-        "button_label_3": "",
-        "button_link_3": "",
-        "button_label_4": "",
-        "button_link_4": "",
-        "horizontal_alignment": "center",
-        "vertical_alignment": "middle",
-        "mobile_horizontal_alignment": "center",
-        "mobile_vertical_alignment": "bottom"
+        "spacer_height": "var(--space-s)"
       }
     },
     "featured_article_r6pY9T": {
@@ -421,13 +436,14 @@
     "heading_with_text_zDqYQf",
     "variable_column_content_secondary_X9KJtx",
     "variable_column_content_tertiary_XwmChF",
+    "collection_slider_XmLf6t",
     "shop_the_look_global_NN6BDN",
+    "hero_primary_WLbcQ7",
     "collection_slider_3p3hD9",
     "hero_primary_kTJdhq",
-    "spacer_yr6m7M",
     "hero_primary_zeaCqL",
+    "spacer_yr6m7M",
     "spacer_wCQ8WH",
-    "hero_primary_WLbcQ7",
     "featured_article_r6pY9T"
   ]
 }
