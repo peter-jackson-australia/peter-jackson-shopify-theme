@@ -15,10 +15,11 @@
       "settings": {
         "media_type": "image",
         "desktop_image": "shopify://shop_images/Beyond_Blue_Hero.webp",
+        "mobile_image": "shopify://shop_images/Beyond_Blue_Hero_Mob.webp",
         "heading": "Beyond Blue. Breaking The Stigma",
         "svg_image": "shopify://shop_images/Hero_BB.svg",
         "svg_size": "large",
-        "mobile_svg_image": "shopify://shop_images/beyond-blue-footer-logo.svg",
+        "mobile_svg_image": "shopify://shop_images/Hero_BB_Mob.svg",
         "heading_level": "h1",
         "heading_animation": "none",
         "description": "",
