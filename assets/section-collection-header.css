@@ -23,6 +23,7 @@
 .collection-header__title {
   border-right: 1px solid var(--neutral-50);
   padding: var(--space-xs) var(--space-m) var(--space-xs) 0;
+  text-align: center;
   white-space: nowrap;
 }
 
@@ -69,5 +70,9 @@
 
   .collection-header__list {
     margin-left: 0;
+  }
+
+  .collection-description__container {
+    display: none;
   }
 }

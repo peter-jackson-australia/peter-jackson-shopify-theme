@@ -189,8 +189,7 @@
 }
 
 .product-details__compare-price {
-  color: var(--neutral-600);
-  text-decoration: line-through;
+  color: var(--neutral-400);
 }
 
 .product-details__price-actual {
@@ -202,6 +201,12 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: var(--space-l);
+}
+
+.variant-options {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
 }
 
 .product-details__sku {

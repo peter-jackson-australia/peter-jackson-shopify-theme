@@ -10,7 +10,6 @@
   gap: var(--space-xs);
   justify-content: space-between;
   padding: var(--space-m);
-  padding-top: var(--space-s);
 }
 
 .collection-controls.controls-fixed {
@@ -402,9 +401,8 @@
 }
 
 .product-card__price--compare {
-  color: var(--neutral-600);
+  color: var(--neutral-400);
   margin-left: var(--space-2xs);
-  text-decoration: line-through;
 }
 
 .product-card__discount-code-desktop {
