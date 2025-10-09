@@ -53,6 +53,15 @@ class StoreLocator {
     });
 
     this.waitForLeafletAndInit();
+
+    document.getElementById("postcodeInput").addEventListener("input", (e) => {
+      const postcode = e.target.value.trim();
+      if (postcode.length === 4) {
+        this.findNearestByPostcode(postcode);
+      } else {
+        document.getElementById("nearestStores").style.display = "none";
+      }
+    });
   }
 
   waitForLeafletAndInit() {
@@ -207,6 +216,47 @@ class StoreLocator {
         }
       }
     });
+  }
+  async findNearestByPostcode(postcode) {
+    try {
+      // Geocode the postcode
+      const response = await fetch(`https://nominatim.openstreetmap.org/search?postalcode=${postcode}&country=australia&format=json&limit=1`);
+      const data = await response.json();
+
+      if (!data.length) {
+        document.getElementById("nearestStores").innerHTML = "<p class='body'>Invalid postcode</p>";
+        document.getElementById("nearestStores").style.display = "block";
+        return;
+      }
+
+      const userLocation = L.latLng(data[0].lat, data[0].lon);
+
+      const locations = Array.from(document.querySelectorAll(".location-item[data-lat]"))
+        .map((item) => ({
+          element: item,
+          name: item.dataset.name,
+          distance: userLocation.distanceTo(L.latLng(item.dataset.lat, item.dataset.lng)) / 1000,
+        }))
+        .sort((a, b) => a.distance - b.distance)
+        .slice(0, 5);
+
+      const html =
+        "<h3 class='heading--xl' style='margin-bottom: var(--space-s);'>5 Nearest Stores</h3>" +
+        locations
+          .map((loc) => {
+            const storePostcode = loc.element.dataset.postcode;
+            const distanceText = storePostcode === postcode ? "" : ` - ${loc.distance.toFixed(1)} km away`;
+            return `<div class='body' style='margin-bottom: var(--space-xs);'>
+            <strong>${loc.name}</strong>${distanceText}
+          </div>`;
+          })
+          .join("");
+
+      document.getElementById("nearestStores").innerHTML = html;
+      document.getElementById("nearestStores").style.display = "block";
+    } catch (error) {
+      console.error("Error finding nearest stores:", error);
+    }
   }
 }
 

@@ -28,6 +28,16 @@
     </select>
   </div>
 
+  <input
+    type="text"
+    id="postcodeInput"
+    class="store-locator__search"
+    placeholder="Enter postcode to find nearest stores"
+    maxlength="4"
+    style="margin: 0 var(--space-m) var(--space-m);"
+  >
+  <div id="nearestStores" style="margin: 0 var(--space-m) var(--space-m); display: none;"></div>
+
   <div class="store-locator__container">
     <div class="store-locator__sidebar custom-scrollbar">
       <div id="noResults" class="location-item" style="display: none;">
@@ -51,6 +61,7 @@
           {% assign location_name = location.location_name.value %}
           {% assign location_handle = location_name | handleize %}
           {% assign location_street_address = location.street_address.value %}
+          {% assign location_postcode = location.postcode.value %}
           {% assign location_state = location.location_state.value %}
           {% assign location_latitude = location.latitude.value %}
           {% assign location_longitude = location.longitude.value %}
@@ -69,6 +80,7 @@
             data-state="{{ location_state }}"
             data-hours="{{ location_opening_hours }}"
             data-location-url="{{ location_page_url }}"
+            data-postcode="{{ location_postcode }}"
           >
             <div class="location-item__header">
               <div
