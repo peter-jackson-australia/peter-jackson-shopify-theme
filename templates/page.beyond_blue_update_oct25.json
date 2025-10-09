@@ -77,7 +77,7 @@
     "block_quote_6zpcDa": {
       "type": "block-quote",
       "custom_css": [
-        ".block-quote__text {font-size: 70px !important; }"
+        ".block-quote__text {font-size: 70px !important;}"
       ],
       "name": "Block Quote",
       "settings": {
@@ -192,9 +192,9 @@
       "name": "Icon Callout",
       "settings": {
         "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": false,
-        "icon": "shopify://shop_images/beyond-blue-footer-logo.svg",
+        "show_top_border": true,
+        "show_bottom_border": true,
+        "icon": "shopify://shop_images/beyond-blue-footer-logo_dcff6604-67e8-4363-a7e7-3072847a2e76.svg",
         "heading": "Who is Beyond Blue?",
         "heading_animation": "none",
         "text": "Beyond Blue is one of Australia's leading mental health organisations, providing support, education, and advocacy to break down barriers around mental health. Their 24/7 Support Service is a lifeline for countless individuals, offering immediate help when it’s needed most.Their mission is clear: to empower Australians to prioritize their mental health and seek support without shame or hesitation. With up to 300,000 contacts annually, Beyond Blue is not just an organisation—they are a movement for hope, connection, and resilience.",
