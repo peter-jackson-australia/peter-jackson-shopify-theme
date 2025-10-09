@@ -43,7 +43,7 @@
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
-        "show_bottom_border": false,
+        "show_bottom_border": true,
         "leading_text": "A MEN'S MENTAL HEALTH INITIATIVE",
         "leading_text_animation": "none",
         "heading": "TOGETHER, WE START THE CONVERSATION",
@@ -116,7 +116,7 @@
         "alignment": "right",
         "heading": "Recognising Symptoms of Mental Health Issues in Men",
         "heading_animation": "none",
-        "text": "Understanding the signs of mental health challenges is crucial for early intervention. <br><br>Common symptoms in men may include:  <br><br>Physical Symptoms: <br>Constant tiredness, headaches, muscle pains, stomach issues, sleep problems, and significant weight changes.<br><br>Emotional Symptoms:<br>Feelings of failure, worthlessness, or hopelessness, irritability, anger, and mood swings.<br><br>Behavioural Changes:<br>Withdrawing from friends and family, loss of interest in activities once enjoyed, increased use of alcohol or drugs, and neglecting responsibilities.  <br><br>Recognising these signs is the first step toward seeking help and fostering a supportive environment.",
+        "text": "Understanding the signs of mental health challenges is crucial for early intervention. Common symptoms in men may include:  Physical Symptoms: Constant tiredness, headaches, muscle pains, stomach issues, sleep problems, and significant weight changes.Emotional Symptoms:Feelings of failure, worthlessness, or hopelessness, irritability, anger, and mood swings.Behavioural Changes:Withdrawing from friends and family, loss of interest in activities once enjoyed, increased use of alcohol or drugs, and neglecting responsibilities.  Recognising these signs is the first step toward seeking help and fostering a supportive environment.",
         "text_animation": "none",
         "button_label": "Visit Beyond Blue For More Information",
         "button_link": "https://www.beyondblue.org.au/"
@@ -198,7 +198,7 @@
         "text_animation": "none",
         "button_label": "",
         "button_link": "",
-        "background_color": "neutral-950"
+        "background_color": "white"
       }
     },
     "image_with_text_w66BtE": {
@@ -215,7 +215,7 @@
         "alignment": "left",
         "heading": "75 Years of Supporting Men",
         "heading_animation": "none",
-        "text": "For three-quarters of a century, we’ve spoken directly to men through our garments, helping them navigate their lives with confidence and ease. This initiative reflects ongoing promise: to be more than a menswear brand. <br><br>This is our chance to give back to the community that has supported us for decades, tackling a cause that touches so many. Every dollar raised represents a meaningful step toward breaking mental health barriers and providing essential support to those in need.",
+        "text": "For three-quarters of a century, we’ve spoken directly to men through our garments, helping them navigate their lives with confidence and ease. This initiative reflects ongoing promise: to be more than a menswear brand. This is our chance to give back to the community that has supported us for decades, tackling a cause that touches so many. Every dollar raised represents a meaningful step toward breaking mental health barriers and providing essential support to those in need.",
         "text_animation": "none",
         "button_label": "",
         "button_link": "https://www.beyondblue.org.au/"
@@ -229,10 +229,10 @@
         "show_top_border": false,
         "show_bottom_border": false,
         "icon": "shopify://shop_images/Beyond-Blue-White-Large_d8a3d3d2-405b-4705-aedc-35bce48b5afe.svg",
-        "heading": "Peter Jackson",
+        "heading": "",
         "heading_style": "decorative",
         "heading_animation": "none",
-        "content": "<p><strong>How can you help?</strong></p><p>When you purchase a blue shirt from our collection, you’re doing more than stepping up your style game—you’re directly supporting men who need it most. But your involvement doesn’t have to stop there:<br/><br/><strong>Spread the Word:</strong> Share the initiative on social media or tell your friends.</p><p><strong>Start a Conversation:</strong> Ask your friends and family how they’re really feeling.</p><p><strong>Donate Directly:</strong> Support Beyond Blue with a direct donation to their programs.</p><p>Together, we can redefine what it means to be strong, resilient, and truly well-tailored, inside and out.</p>",
+        "content": "<p><strong>How can you help?<br/></strong>When you purchase a blue shirt from our collection, you’re doing more than stepping up your style game—you’re directly supporting men who need it most. But your involvement doesn’t have to stop there:<br/><br/><strong>Spread the Word:</strong> Share the initiative on social media or tell your friends.</p><p><strong>Start a Conversation:</strong> Ask your friends and family how they’re really feeling.</p><p><strong>Donate Directly:</strong> Support Beyond Blue with a direct donation to their programs.</p><p>Together, we can redefine what it means to be strong, resilient, and truly well-tailored, inside and out.</p>",
         "content_animation": "none",
         "alignment": "left"
       }
