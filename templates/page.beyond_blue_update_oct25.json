@@ -77,7 +77,7 @@
     "block_quote_6zpcDa": {
       "type": "block-quote",
       "custom_css": [
-        ".block-quote__text {}"
+        ".block-quote__text {font-size: 70px !important; }"
       ],
       "name": "Block Quote",
       "settings": {
