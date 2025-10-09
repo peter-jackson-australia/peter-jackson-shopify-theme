@@ -74,6 +74,34 @@
         "button_link": "shopify://products/milan-sky-twill-shirt"
       }
     },
+    "block_quote_6zpcDa": {
+      "type": "block-quote",
+      "name": "Block Quote",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "quote_text": "$150,000<p> \n<br>$10 from the sale of each blue shirt goes directly to Beyond Blue's 24/7 Support Service. Helping provide crucial services for men dealing with mental health issues.<br><br>Through The Blue Shirt Initiative, we've contributed $150,000 to Beyond Blue and we've only just begun the fight.</p>",
+        "quote_animation": "none",
+        "background_color": "green-800"
+      }
+    },
+    "two_column_heading_text_fcAa4U": {
+      "type": "two-column-heading-text",
+      "disabled": true,
+      "name": "Two Column Heading Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "heading": "$150,000 & we've only just begun",
+        "heading_style": "normal",
+        "heading_animation": "none",
+        "content": "<p>Add your content here. This area uses the rich text editor so you can format text, add links, and more.</p>",
+        "content_animation": "none",
+        "alignment": "left"
+      }
+    },
     "image_with_text_L6Enzy": {
       "type": "image-with-text",
       "name": "Image With Text",
@@ -231,6 +259,8 @@
     "hero_primary_Jzfr7x",
     "heading_with_text_pV6AKa",
     "image_with_text_MbFKE3",
+    "block_quote_6zpcDa",
+    "two_column_heading_text_fcAa4U",
     "image_with_text_L6Enzy",
     "block_quote_Kx6A6p",
     "counter_dRKyqa",
