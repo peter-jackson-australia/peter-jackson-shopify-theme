@@ -189,6 +189,7 @@
     },
     "icon_callout_gqbHGg": {
       "type": "icon-callout",
+      "custom_css": [],
       "name": "Icon Callout",
       "settings": {
         "anchor_id": "",
