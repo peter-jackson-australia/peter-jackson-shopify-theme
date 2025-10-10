@@ -209,15 +209,15 @@
         "column_item_zER8gb": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/Spring_Suit_Hero_Desktop_copy.webp",
+            "image": "shopify://shop_images/Spring_Suits.webp",
             "image_link": "",
-            "heading": "SPRING TAILORING",
+            "heading": "Spring Suits",
             "heading_animation": "none",
             "text": "",
             "text_animation": "none",
             "show_gradient_overlay": false,
-            "content_horizontal_alignment": "center",
-            "content_vertical_alignment": "center",
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
             "column_link": "shopify://collections/mens-suits",
             "column_link_text": "Shop $200 Off Suits"
           }
@@ -227,13 +227,13 @@
           "settings": {
             "image": "shopify://shop_images/Spring_Sports_Jackets.webp",
             "image_link": "",
-            "heading": "SPORTS JACKETS",
+            "heading": "Sports Jackets",
             "heading_animation": "none",
             "text": "",
             "text_animation": "none",
             "show_gradient_overlay": false,
-            "content_horizontal_alignment": "center",
-            "content_vertical_alignment": "center",
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
             "column_link": "shopify://collections/sport-jackets",
             "column_link_text": "Shop from $399"
           }
@@ -241,17 +241,17 @@
         "column_item_TdMYVf": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/Spring_POLO_Hero_Desktop_copy_2.webp",
+            "image": "shopify://shop_images/Spring_Social_Style.webp",
             "image_link": "",
-            "heading": "POLO SHIRTS",
+            "heading": "Social Style",
             "heading_animation": "none",
             "text": "",
             "text_animation": "none",
             "show_gradient_overlay": false,
-            "content_horizontal_alignment": "center",
-            "content_vertical_alignment": "center",
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
             "column_link": "shopify://collections/long-sleeves-and-polos",
-            "column_link_text": "Shop from $79.95"
+            "column_link_text": "Shop Spring"
           }
         },
         "column_item_tXtkqD": {
@@ -259,13 +259,13 @@
           "settings": {
             "image": "shopify://shop_images/Spring_POLO_Hero_Desktop_copy_2.webp",
             "image_link": "",
-            "heading": "POLO SHIRTS",
+            "heading": "Polo Shirts",
             "heading_animation": "none",
             "text": "",
             "text_animation": "none",
             "show_gradient_overlay": false,
-            "content_horizontal_alignment": "center",
-            "content_vertical_alignment": "center",
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
             "column_link": "shopify://collections/long-sleeves-and-polos",
             "column_link_text": "Shop from $79.95"
           }
@@ -322,7 +322,7 @@
             "heading_animation": "none",
             "description": "Neapolitan tailoring cut from lightweight European textiles for comfort and ease in warmer months.",
             "description_animation": "none",
-            "button_label": "Shop Now",
+            "button_label": "Two for $895",
             "button_link": "shopify://collections/business-suits"
           }
         },
@@ -335,7 +335,7 @@
             "heading_animation": "none",
             "description": "Premium cotton, sharp cutaway collars, and new season colours and patterns — your work wardrobe, refreshed.",
             "description_animation": "none",
-            "button_label": "Shop Now",
+            "button_label": "Three for $259",
             "button_link": "shopify://collections/business-shirts"
           }
         }
