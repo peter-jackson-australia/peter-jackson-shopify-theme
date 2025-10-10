@@ -214,7 +214,7 @@
   color: var(--neutral-600);
   display: flex;
   gap: var(--space-3xs);
-  margin-bottom: var(--space-2xs);
+  margin-bottom: var(--space-xs);
 }
 
 .product-details__afterpay > svg {
