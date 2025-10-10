@@ -243,7 +243,7 @@
           "settings": {
             "image": "shopify://shop_images/Spring_Social_Style.webp",
             "image_link": "",
-            "heading": "Social Style",
+            "heading": "The Social Edit",
             "heading_animation": "none",
             "text": "",
             "text_animation": "none",
@@ -251,7 +251,7 @@
             "content_horizontal_alignment": "left",
             "content_vertical_alignment": "bottom",
             "column_link": "shopify://collections/long-sleeves-and-polos",
-            "column_link_text": "Shop Spring"
+            "column_link_text": "Shop Spring Looks"
           }
         },
         "column_item_tXtkqD": {
