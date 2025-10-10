@@ -209,9 +209,16 @@
   justify-content: space-between;
 }
 
-.product-details__sku {
+.product-details__afterpay {
+  align-items: center;
   color: var(--neutral-600);
+  display: flex;
+  gap: var(--space-3xs);
   margin-bottom: var(--space-2xs);
+}
+
+.product-details__afterpay > svg {
+  width: var(--space-m);
 }
 
 .size-guide-button {
