@@ -44,12 +44,21 @@ class StoreLocator {
 
     this.searchInput.addEventListener("input", () => {
       this.searchTerm = this.searchInput.value;
-      this.filterLocations();
+      this.showAutocomplete();
+      if (!this.searchTerm) {
+        this.filterLocations();
+      }
     });
 
     this.stateSelect.addEventListener("change", () => {
       this.selectedState = this.stateSelect.value;
       this.filterLocations();
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest("#searchInput") && !e.target.closest("#autocomplete")) {
+        document.getElementById("autocomplete").style.display = "none";
+      }
     });
 
     this.waitForLeafletAndInit();
@@ -217,9 +226,39 @@ class StoreLocator {
       }
     });
   }
+
+  showAutocomplete() {
+    const autocomplete = document.getElementById("autocomplete");
+    if (!this.searchTerm) {
+      autocomplete.style.display = "none";
+      return;
+    }
+
+    const matches = Array.from(document.querySelectorAll(".location-item[data-lat]"))
+      .filter((item) => this.isLocationVisible(item.dataset.name, item.dataset.address, item.dataset.state))
+      .slice(0, 5);
+
+    if (!matches.length) {
+      autocomplete.style.display = "none";
+      return;
+    }
+
+    autocomplete.innerHTML = matches.map((item) => `<div data-name="${item.dataset.name}">${item.dataset.name} - ${item.dataset.address}</div>`).join("");
+
+    autocomplete.querySelectorAll("div").forEach((div) => {
+      div.onclick = () => {
+        this.searchInput.value = div.dataset.name;
+        this.searchTerm = div.dataset.name;
+        this.filterLocations();
+        autocomplete.style.display = "none";
+      };
+    });
+
+    autocomplete.style.display = "block";
+  }
+
   async findNearestByPostcode(postcode) {
     try {
-      // Geocode the postcode
       const response = await fetch(`https://nominatim.openstreetmap.org/search?postalcode=${postcode}&country=australia&format=json&limit=1`);
       const data = await response.json();
 

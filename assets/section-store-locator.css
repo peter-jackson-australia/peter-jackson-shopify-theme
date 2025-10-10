@@ -139,6 +139,26 @@
   color: var(--neutral-950);
 }
 
+.store-locator__autocomplete {
+  background: white;
+  border: 1px solid var(--neutral-50);
+  max-height: 200px;
+  overflow-y: auto;
+  position: absolute;
+  width: calc(100% - var(--space-m) * 2);
+  z-index: 1000;
+}
+
+.store-locator__autocomplete div {
+  border-bottom: 1px solid var(--neutral-50);
+  cursor: pointer;
+  padding: var(--space-s);
+}
+
+.store-locator__autocomplete div:hover {
+  background: var(--neutral-50);
+}
+
 @media screen and (min-width: 1000px) {
   #map {
     height: 900px;
