@@ -29,24 +29,8 @@
     </select>
   </div>
 
-  <input
-    type="text"
-    id="postcodeInput"
-    class="store-locator__search"
-    placeholder="Enter postcode to find nearest stores"
-    maxlength="4"
-    style="margin: 0 var(--space-m) var(--space-m);"
-  >
-  <div id="nearestStores" style="margin: 0 var(--space-m) var(--space-m); display: none;"></div>
-
   <div class="store-locator__container">
     <div class="store-locator__sidebar custom-scrollbar">
-      <div id="noResults" class="location-item" style="display: none;">
-        <p class="body">
-          Sorry, your search for "<span id="noResultsText"></span>" returned zero results, please try search by state or
-          postcode.
-        </p>
-      </div>
       {% paginate all_locations by 200 %}
         {% liquid
           assign all_locations = metaobjects.locations.values

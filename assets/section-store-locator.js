@@ -10,8 +10,8 @@ class StoreLocator {
     this.timezoneHandler = null;
     this.searchInput = document.getElementById("searchInput");
     this.stateSelect = document.getElementById("stateSelect");
-    this.noResults = document.getElementById("noResults");
-    this.noResultsText = document.getElementById("noResultsText");
+    this.autocomplete = document.getElementById("autocomplete");
+    this.searchTimeout = null;
 
     this.init();
   }
@@ -43,11 +43,7 @@ class StoreLocator {
     this.timezoneHandler = new ShopifyTimezoneHandler();
 
     this.searchInput.addEventListener("input", () => {
-      this.searchTerm = this.searchInput.value;
-      this.showAutocomplete();
-      if (!this.searchTerm) {
-        this.filterLocations();
-      }
+      this.handleSearch();
     });
 
     this.stateSelect.addEventListener("change", () => {
@@ -57,20 +53,11 @@ class StoreLocator {
 
     document.addEventListener("click", (e) => {
       if (!e.target.closest("#searchInput") && !e.target.closest("#autocomplete")) {
-        document.getElementById("autocomplete").style.display = "none";
+        this.hideAutocomplete();
       }
     });
 
     this.waitForLeafletAndInit();
-
-    document.getElementById("postcodeInput").addEventListener("input", (e) => {
-      const postcode = e.target.value.trim();
-      if (postcode.length === 4) {
-        this.findNearestByPostcode(postcode);
-      } else {
-        document.getElementById("nearestStores").style.display = "none";
-      }
-    });
   }
 
   waitForLeafletAndInit() {
@@ -139,6 +126,169 @@ class StoreLocator {
     }
   }
 
+  handleSearch() {
+    clearTimeout(this.searchTimeout);
+
+    const currentInput = this.searchInput.value;
+
+    if (!currentInput) {
+      this.searchTerm = "";
+      this.filterLocations();
+      this.hideAutocomplete();
+      return;
+    }
+
+    this.showLoader();
+
+    const is4DigitPostcode = /^\d{4}$/.test(currentInput.trim());
+
+    if (is4DigitPostcode) {
+      this.findNearestByPostcode(currentInput.trim());
+    } else {
+      this.searchTimeout = setTimeout(() => {
+        this.showTextSearchResults(currentInput);
+      }, 300);
+    }
+  }
+
+  showLoader() {
+    this.autocomplete.innerHTML = `
+      <div class="store-locator__autocomplete-loader">
+        <svg style="height:4px;display:block" viewBox="0 0 40 4" xmlns="http://www.w3.org/2000/svg">
+          <style>.react{animation:moving 1s ease-in-out infinite}@keyframes moving{0%{width:0}50%{width:100%;transform:translate(0,0)}100%{width:0;right:0;transform:translate(100%,0)}}</style>
+          <rect class="react" fill="#E7E7E7" height="4" width="40" />
+        </svg>
+      </div>
+    `;
+    this.showAutocomplete();
+  }
+
+  showAutocomplete() {
+    this.autocomplete.style.display = "block";
+    setTimeout(() => {
+      this.autocomplete.classList.add("store-locator__autocomplete--visible");
+    }, 10);
+  }
+
+  hideAutocomplete() {
+    this.autocomplete.classList.remove("store-locator__autocomplete--visible");
+    setTimeout(() => {
+      this.autocomplete.style.display = "none";
+    }, 300);
+  }
+
+  showTextSearchResults(searchValue) {
+    const searchLower = searchValue.toLowerCase();
+    
+    const matches = Array.from(document.querySelectorAll(".location-item[data-lat]"))
+      .filter((item) => {
+        const name = item.dataset.name.toLowerCase();
+        const address = item.dataset.address.toLowerCase();
+        const state = item.dataset.state;
+        const stateLower = state.toLowerCase();
+        
+        const matchesSearch = name.includes(searchLower) || address.includes(searchLower) || stateLower.includes(searchLower);
+        const matchesState = !this.selectedState || state === this.selectedState;
+        
+        return matchesSearch && matchesState;
+      })
+      .slice(0, 5);
+
+    if (!matches.length) {
+      this.showNoResults(searchValue);
+      return;
+    }
+
+    const html = matches
+      .map((item) => `<div class="store-locator__autocomplete-item" data-name="${item.dataset.name}">${item.dataset.name} - ${item.dataset.address}</div>`)
+      .join("");
+
+    this.autocomplete.innerHTML = html;
+
+    this.autocomplete.querySelectorAll(".store-locator__autocomplete-item").forEach((div) => {
+      div.onclick = () => {
+        this.searchInput.value = div.dataset.name;
+        this.searchTerm = div.dataset.name;
+        this.filterLocations();
+        this.hideAutocomplete();
+      };
+    });
+
+    this.showAutocomplete();
+  }
+
+  showNoResults(searchValue) {
+    this.autocomplete.innerHTML = `
+      <div class="store-locator__autocomplete-error">
+        <p class="body">Sorry, your search for "<span>${searchValue}</span>" returned zero results, please try search by state or postcode.</p>
+      </div>
+    `;
+    this.showAutocomplete();
+  }
+
+  async findNearestByPostcode(postcode) {
+    try {
+      const response = await fetch(`https://nominatim.openstreetmap.org/search?postalcode=${postcode}&country=australia&format=json&limit=1`);
+      const data = await response.json();
+
+      if (!data.length) {
+        this.autocomplete.innerHTML = `
+          <div class="store-locator__autocomplete-error">
+            <p class="body">Invalid postcode</p>
+          </div>
+        `;
+        this.showAutocomplete();
+        return;
+      }
+
+      const userLocation = L.latLng(data[0].lat, data[0].lon);
+
+      const locations = Array.from(document.querySelectorAll(".location-item[data-lat]"))
+        .filter((item) => {
+          const state = item.dataset.state;
+          return !this.selectedState || state === this.selectedState;
+        })
+        .map((item) => ({
+          element: item,
+          name: item.dataset.name,
+          postcode: item.dataset.postcode,
+          distance: userLocation.distanceTo(L.latLng(item.dataset.lat, item.dataset.lng)) / 1000,
+        }))
+        .sort((a, b) => a.distance - b.distance)
+        .slice(0, 5);
+
+      const html =
+        '<div class="store-locator__autocomplete-header heading--xl">5 Nearest Stores</div>' +
+        locations
+          .map((loc) => {
+            const distanceText = loc.postcode === postcode ? "" : ` - ${loc.distance.toFixed(1)} km away`;
+            return `<div class="store-locator__autocomplete-item" data-name="${loc.name}"><strong>${loc.name}</strong>${distanceText}</div>`;
+          })
+          .join("");
+
+      this.autocomplete.innerHTML = html;
+
+      this.autocomplete.querySelectorAll(".store-locator__autocomplete-item").forEach((div) => {
+        div.onclick = () => {
+          this.searchInput.value = div.dataset.name;
+          this.searchTerm = div.dataset.name;
+          this.filterLocations();
+          this.hideAutocomplete();
+        };
+      });
+
+      this.showAutocomplete();
+    } catch (error) {
+      console.error("Error finding nearest stores:", error);
+      this.autocomplete.innerHTML = `
+        <div class="store-locator__autocomplete-error">
+          <p class="body">Error finding nearest stores</p>
+        </div>
+      `;
+      this.showAutocomplete();
+    }
+  }
+
   isLocationVisible(name, address, state) {
     const searchLower = this.searchTerm.toLowerCase();
     const matchesSearch = !this.searchTerm || name.toLowerCase().includes(searchLower) || address.toLowerCase().includes(searchLower) || state.toLowerCase().includes(searchLower);
@@ -173,31 +323,7 @@ class StoreLocator {
       }
     });
 
-    this.updateNoResultsState();
     this.updateAllLocationTimes();
-  }
-
-  updateNoResultsState() {
-    if (!this.searchTerm) {
-      this.noResults.style.display = "none";
-      return;
-    }
-
-    const locations = document.querySelectorAll(".location-item[data-lat]");
-    let hasVisibleLocations = false;
-
-    locations.forEach((item) => {
-      const name = item.getAttribute("data-name");
-      const address = item.getAttribute("data-address");
-      const state = item.getAttribute("data-state") || "";
-
-      if (this.isLocationVisible(name, address, state)) {
-        hasVisibleLocations = true;
-      }
-    });
-
-    this.noResults.style.display = hasVisibleLocations ? "none" : "";
-    this.noResultsText.textContent = this.searchTerm;
   }
 
   updateAllLocationTimes() {
@@ -225,77 +351,6 @@ class StoreLocator {
         }
       }
     });
-  }
-
-  showAutocomplete() {
-    const autocomplete = document.getElementById("autocomplete");
-    if (!this.searchTerm) {
-      autocomplete.style.display = "none";
-      return;
-    }
-
-    const matches = Array.from(document.querySelectorAll(".location-item[data-lat]"))
-      .filter((item) => this.isLocationVisible(item.dataset.name, item.dataset.address, item.dataset.state))
-      .slice(0, 5);
-
-    if (!matches.length) {
-      autocomplete.style.display = "none";
-      return;
-    }
-
-    autocomplete.innerHTML = matches.map((item) => `<div data-name="${item.dataset.name}">${item.dataset.name} - ${item.dataset.address}</div>`).join("");
-
-    autocomplete.querySelectorAll("div").forEach((div) => {
-      div.onclick = () => {
-        this.searchInput.value = div.dataset.name;
-        this.searchTerm = div.dataset.name;
-        this.filterLocations();
-        autocomplete.style.display = "none";
-      };
-    });
-
-    autocomplete.style.display = "block";
-  }
-
-  async findNearestByPostcode(postcode) {
-    try {
-      const response = await fetch(`https://nominatim.openstreetmap.org/search?postalcode=${postcode}&country=australia&format=json&limit=1`);
-      const data = await response.json();
-
-      if (!data.length) {
-        document.getElementById("nearestStores").innerHTML = "<p class='body'>Invalid postcode</p>";
-        document.getElementById("nearestStores").style.display = "block";
-        return;
-      }
-
-      const userLocation = L.latLng(data[0].lat, data[0].lon);
-
-      const locations = Array.from(document.querySelectorAll(".location-item[data-lat]"))
-        .map((item) => ({
-          element: item,
-          name: item.dataset.name,
-          distance: userLocation.distanceTo(L.latLng(item.dataset.lat, item.dataset.lng)) / 1000,
-        }))
-        .sort((a, b) => a.distance - b.distance)
-        .slice(0, 5);
-
-      const html =
-        "<h3 class='heading--xl' style='margin-bottom: var(--space-s);'>5 Nearest Stores</h3>" +
-        locations
-          .map((loc) => {
-            const storePostcode = loc.element.dataset.postcode;
-            const distanceText = storePostcode === postcode ? "" : ` - ${loc.distance.toFixed(1)} km away`;
-            return `<div class='body' style='margin-bottom: var(--space-xs);'>
-            <strong>${loc.name}</strong>${distanceText}
-          </div>`;
-          })
-          .join("");
-
-      document.getElementById("nearestStores").innerHTML = html;
-      document.getElementById("nearestStores").style.display = "block";
-    } catch (error) {
-      console.error("Error finding nearest stores:", error);
-    }
   }
 }
 
