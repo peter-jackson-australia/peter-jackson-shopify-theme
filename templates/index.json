@@ -209,15 +209,15 @@
         "column_item_zER8gb": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/Spring_Suit_Hero_Desktop_copy.webp",
+            "image": "shopify://shop_images/Spring_Suits.webp",
             "image_link": "",
-            "heading": "SPRING TAILORING",
+            "heading": "Spring Suits",
             "heading_animation": "none",
             "text": "",
             "text_animation": "none",
             "show_gradient_overlay": false,
-            "content_horizontal_alignment": "center",
-            "content_vertical_alignment": "center",
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
             "column_link": "shopify://collections/mens-suits",
             "column_link_text": "Shop $200 Off Suits"
           }
@@ -227,13 +227,13 @@
           "settings": {
             "image": "shopify://shop_images/Spring_Sports_Jackets.webp",
             "image_link": "",
-            "heading": "SPORTS JACKETS",
+            "heading": "Sports Jackets",
             "heading_animation": "none",
             "text": "",
             "text_animation": "none",
             "show_gradient_overlay": false,
-            "content_horizontal_alignment": "center",
-            "content_vertical_alignment": "center",
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
             "column_link": "shopify://collections/sport-jackets",
             "column_link_text": "Shop from $399"
           }
@@ -241,15 +241,31 @@
         "column_item_TdMYVf": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/Spring_POLO_Hero_Desktop_copy_2.webp",
+            "image": "shopify://shop_images/Spring_Social_Style.webp",
             "image_link": "",
-            "heading": "POLO SHIRTS",
+            "heading": "Trousers + Chinos",
             "heading_animation": "none",
             "text": "",
             "text_animation": "none",
             "show_gradient_overlay": false,
-            "content_horizontal_alignment": "center",
-            "content_vertical_alignment": "center",
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "shopify://collections/bottoms",
+            "column_link_text": "Shop from $89.95"
+          }
+        },
+        "column_item_tXtkqD": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Spring_POLO_Hero_Desktop_copy_2.webp",
+            "image_link": "",
+            "heading": "Polo Shirts",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
             "column_link": "shopify://collections/long-sleeves-and-polos",
             "column_link_text": "Shop from $79.95"
           }
@@ -258,14 +274,15 @@
       "block_order": [
         "column_item_zER8gb",
         "column_item_EdH7tR",
-        "column_item_TdMYVf"
+        "column_item_TdMYVf",
+        "column_item_tXtkqD"
       ],
       "name": "Variable Column Content Tertiary",
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
-        "column_count": "3",
+        "column_count": "4",
         "text_alignment": "left",
         "animate_columns": false,
         "heading": "",
@@ -276,8 +293,82 @@
         "button_link": ""
       }
     },
+    "heading_with_text_9nQj7z": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "leading_text": "CORPORATE TAILORING",
+        "leading_text_animation": "none",
+        "heading": "REFINED REDEFINED",
+        "heading_style": "normal",
+        "heading_animation": "none",
+        "content": "<p>Business suiting takes a new direction this season, where tradition meets modern edge. The banker stripe makes a bold return and fresh spring/summer hues redefine elegance for today.</p>",
+        "content_animation": "none",
+        "alignment": "center"
+      }
+    },
+    "two_column_content_3yctUz": {
+      "type": "two-column-content",
+      "blocks": {
+        "column_PqiLQn": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Business_Suits_0db34f3e-06f8-4913-a25b-1a3a73138999.webp",
+            "product": "",
+            "heading": "Business Suits",
+            "heading_animation": "none",
+            "description": "Neapolitan tailoring cut from lightweight European textiles for comfort and ease in warmer months.",
+            "description_animation": "none",
+            "button_label": "Two for $895",
+            "button_link": "shopify://collections/business-suits"
+          }
+        },
+        "column_9wEW7B": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Business_Shirts_9d1fd351-9569-4832-bcfe-85543118d47a.webp",
+            "product": "",
+            "heading": "Business Shirts",
+            "heading_animation": "none",
+            "description": "Premium cotton, sharp cutaway collars, and new season colours and patterns — your work wardrobe, refreshed.",
+            "description_animation": "none",
+            "button_label": "Three for $259",
+            "button_link": "shopify://collections/business-shirts"
+          }
+        }
+      },
+      "block_order": [
+        "column_PqiLQn",
+        "column_9wEW7B"
+      ],
+      "name": "Two Column Content",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "animate_columns": false
+      }
+    },
+    "collection_slider_XmLf6t": {
+      "type": "collection-slider",
+      "name": "Collection Slider",
+      "settings": {
+        "heading": "The Season's Best",
+        "heading_animation": "none",
+        "description": "The styles capturing attention and setting the style pace this spring.",
+        "description_animation": "none",
+        "collection": "spring-25",
+        "button_label": "Shop Bestsellers",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
     "shop_the_look_global_NN6BDN": {
       "type": "shop-the-look-global",
+      "disabled": true,
       "name": "Shop the Look Global",
       "settings": {
         "anchor_id": "",
@@ -291,16 +382,45 @@
         "product3": "bottinelli-italian-tie-green-with-vintage-paisley-print"
       }
     },
+    "hero_primary_WLbcQ7": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/SS25_Wedding_1.webp",
+        "mobile_image": "shopify://shop_images/Wedding_Blog_Featured.webp",
+        "heading": "",
+        "svg_image": "shopify://shop_images/MOD_HP_Heading_a2545755-65f2-4fbe-9d1e-cfd88fdde7ed.svg",
+        "svg_size": "large",
+        "mobile_svg_image": "shopify://shop_images/MOD_HP_Heading_a2545755-65f2-4fbe-9d1e-cfd88fdde7ed.svg",
+        "heading_level": "h1",
+        "heading_animation": "none",
+        "description": "For the ceremony, the celebration, the forever.",
+        "description_animation": "none",
+        "button_label_1": "Shop Weddings",
+        "button_link_1": "shopify://blogs/the-jackson-journal/moments-of-distinction-the-wedding-edit",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "middle",
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "bottom"
+      }
+    },
     "collection_slider_3p3hD9": {
       "type": "collection-slider",
       "name": "Collection Slider",
       "settings": {
-        "heading": "Business Shirts",
+        "heading": "Wedding & Formal Style",
         "heading_animation": "none",
         "description": "Premium cotton, sharp cutaway collars, and new season colours and patterns — your work wardrobe, refreshed.",
         "description_animation": "none",
-        "collection": "business-shirts",
-        "button_label": "Any Three for $259",
+        "collection": "tuxedos-and-formal-jackets",
+        "button_label": "Shop Now",
         "products_to_show": 10,
         "animate_products": false
       }
@@ -335,13 +455,6 @@
         "mobile_vertical_alignment": "bottom"
       }
     },
-    "spacer_yr6m7M": {
-      "type": "spacer",
-      "name": "Spacer",
-      "settings": {
-        "spacer_height": "var(--space-s)"
-      }
-    },
     "hero_primary_zeaCqL": {
       "type": "hero-primary",
       "name": "Hero Section",
@@ -371,40 +484,18 @@
         "mobile_vertical_alignment": "bottom"
       }
     },
-    "spacer_wCQ8WH": {
+    "spacer_yr6m7M": {
       "type": "spacer",
       "name": "Spacer",
       "settings": {
         "spacer_height": "var(--space-s)"
       }
     },
-    "hero_primary_WLbcQ7": {
-      "type": "hero-primary",
-      "name": "Hero Section",
+    "spacer_wCQ8WH": {
+      "type": "spacer",
+      "name": "Spacer",
       "settings": {
-        "media_type": "image",
-        "desktop_image": "shopify://shop_images/SS25_Wedding_1.webp",
-        "mobile_image": "shopify://shop_images/Wedding_Blog_Featured.webp",
-        "heading": "",
-        "svg_image": "shopify://shop_images/MOD_HP_Heading_a2545755-65f2-4fbe-9d1e-cfd88fdde7ed.svg",
-        "svg_size": "large",
-        "mobile_svg_image": "shopify://shop_images/MOD_HP_Heading_a2545755-65f2-4fbe-9d1e-cfd88fdde7ed.svg",
-        "heading_level": "h1",
-        "heading_animation": "none",
-        "description": "For the ceremony, the celebration, the forever.",
-        "description_animation": "none",
-        "button_label_1": "Shop Weddings",
-        "button_link_1": "shopify://blogs/the-jackson-journal/moments-of-distinction-the-wedding-edit",
-        "button_label_2": "",
-        "button_link_2": "",
-        "button_label_3": "",
-        "button_link_3": "",
-        "button_label_4": "",
-        "button_link_4": "",
-        "horizontal_alignment": "center",
-        "vertical_alignment": "middle",
-        "mobile_horizontal_alignment": "center",
-        "mobile_vertical_alignment": "bottom"
+        "spacer_height": "var(--space-s)"
       }
     },
     "featured_article_r6pY9T": {
@@ -421,13 +512,16 @@
     "heading_with_text_zDqYQf",
     "variable_column_content_secondary_X9KJtx",
     "variable_column_content_tertiary_XwmChF",
+    "heading_with_text_9nQj7z",
+    "two_column_content_3yctUz",
+    "collection_slider_XmLf6t",
     "shop_the_look_global_NN6BDN",
+    "hero_primary_WLbcQ7",
     "collection_slider_3p3hD9",
     "hero_primary_kTJdhq",
-    "spacer_yr6m7M",
     "hero_primary_zeaCqL",
+    "spacer_yr6m7M",
     "spacer_wCQ8WH",
-    "hero_primary_WLbcQ7",
     "featured_article_r6pY9T"
   ]
 }
