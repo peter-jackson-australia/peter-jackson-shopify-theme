@@ -253,19 +253,36 @@
             "column_link": "shopify://collections/long-sleeves-and-polos",
             "column_link_text": "Shop from $79.95"
           }
+        },
+        "column_item_tXtkqD": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Spring_POLO_Hero_Desktop_copy_2.webp",
+            "image_link": "",
+            "heading": "POLO SHIRTS",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "center",
+            "content_vertical_alignment": "center",
+            "column_link": "shopify://collections/long-sleeves-and-polos",
+            "column_link_text": "Shop from $79.95"
+          }
         }
       },
       "block_order": [
         "column_item_zER8gb",
         "column_item_EdH7tR",
-        "column_item_TdMYVf"
+        "column_item_TdMYVf",
+        "column_item_tXtkqD"
       ],
       "name": "Variable Column Content Tertiary",
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
-        "column_count": "3",
+        "column_count": "4",
         "text_alignment": "left",
         "animate_columns": false,
         "heading": "",
@@ -274,6 +291,65 @@
         "text_animation": "none",
         "button_label": "",
         "button_link": ""
+      }
+    },
+    "heading_with_text_9nQj7z": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "leading_text": "CORPORATE TAILORING",
+        "leading_text_animation": "none",
+        "heading": "REFINED REDEFINED",
+        "heading_style": "normal",
+        "heading_animation": "none",
+        "content": "<p>Business suiting takes a new direction this season, where tradition meets modern edge. The banker stripe makes a bold return and fresh spring/summer hues redefine elegance for today.</p>",
+        "content_animation": "none",
+        "alignment": "center"
+      }
+    },
+    "two_column_content_3yctUz": {
+      "type": "two-column-content",
+      "blocks": {
+        "column_PqiLQn": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Business_Suits_0db34f3e-06f8-4913-a25b-1a3a73138999.webp",
+            "product": "",
+            "heading": "Business Suits",
+            "heading_animation": "none",
+            "description": "Neapolitan tailoring cut from lightweight European textiles for comfort and ease in warmer months.",
+            "description_animation": "none",
+            "button_label": "Shop Now",
+            "button_link": "shopify://collections/business-suits"
+          }
+        },
+        "column_9wEW7B": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Business_Shirts_191c04be-4d01-4638-ba4e-861a963d9250.webp",
+            "product": "",
+            "heading": "Business Shirts",
+            "heading_animation": "none",
+            "description": "Premium cotton, sharp cutaway collars, and new season colours and patterns — your work wardrobe, refreshed.",
+            "description_animation": "none",
+            "button_label": "Shop Now",
+            "button_link": "shopify://collections/business-shirts"
+          }
+        }
+      },
+      "block_order": [
+        "column_PqiLQn",
+        "column_9wEW7B"
+      ],
+      "name": "Two Column Content",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "animate_columns": false
       }
     },
     "collection_slider_XmLf6t": {
@@ -436,6 +512,8 @@
     "heading_with_text_zDqYQf",
     "variable_column_content_secondary_X9KJtx",
     "variable_column_content_tertiary_XwmChF",
+    "heading_with_text_9nQj7z",
+    "two_column_content_3yctUz",
     "collection_slider_XmLf6t",
     "shop_the_look_global_NN6BDN",
     "hero_primary_WLbcQ7",
