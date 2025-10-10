@@ -63,7 +63,7 @@
               {% if has_product %}
                 {{
                   block.settings.image
-                  | image_url: width: 720
+                  | image_url: width: 1280
                   | image_tag:
                     class: 'two-column-content__image has-product',
                     loading: 'lazy',
@@ -75,7 +75,7 @@
               {% else %}
                 {{
                   current_block_img
-                  | image_url: width: 720
+                  | image_url: width: 1280
                   | image_tag:
                     class: 'two-column-content__image',
                     loading: 'lazy',
