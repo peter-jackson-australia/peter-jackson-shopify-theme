@@ -243,15 +243,15 @@
           "settings": {
             "image": "shopify://shop_images/Spring_Social_Style.webp",
             "image_link": "",
-            "heading": "The Social Edit",
+            "heading": "Trousers + Chinos",
             "heading_animation": "none",
             "text": "",
             "text_animation": "none",
             "show_gradient_overlay": false,
             "content_horizontal_alignment": "left",
             "content_vertical_alignment": "bottom",
-            "column_link": "shopify://collections/long-sleeves-and-polos",
-            "column_link_text": "Shop Spring Looks"
+            "column_link": "shopify://collections/bottoms",
+            "column_link_text": "Shop from $89.95"
           }
         },
         "column_item_tXtkqD": {
