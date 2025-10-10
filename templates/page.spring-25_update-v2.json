@@ -358,10 +358,10 @@
       "settings": {
         "heading": "The Season's Best",
         "heading_animation": "none",
-        "description": "Premium cotton, sharp cutaway collars, and new season colours and patterns — your work wardrobe, refreshed.",
+        "description": "The styles capturing attention and setting the style pace this spring.",
         "description_animation": "none",
         "collection": "spring-25",
-        "button_label": "Shop Spring Bestsellers",
+        "button_label": "Shop Bestsellers",
         "products_to_show": 10,
         "animate_products": false
       }
