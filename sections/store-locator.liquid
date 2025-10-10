@@ -71,6 +71,7 @@
           {% assign location_google_maps_link = location.google_maps_link.value %}
           {% assign location_email = location.email_address.value %}
           {% assign location_phone_number = location.phone_number.value %}
+          {% assign location_made_to_measure = location.made_to_measure.value %}
 
           <div
             class="location-item"
@@ -109,6 +110,16 @@
             <div class="location-item__link body">
               <a href="{{ location_page_url }}">View Store Information</a>
             </div>
+            {% if location_made_to_measure == true %}
+              <div class="location-item__made-to-measure">
+                <p>
+                  <span>{% render '_icon-made-to-measure' %}</span>
+                  <span class="location-item__made-to-measure-text"
+                    ><a href="{{ routes.root_url }}/pages/made-to-measure">Made To Measure</a> Offered</span
+                  >
+                </p>
+              </div>
+            {% endif %}
           </div>
         {% endfor %}
       {% endpaginate %}

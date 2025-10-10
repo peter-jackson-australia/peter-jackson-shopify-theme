@@ -139,6 +139,18 @@
   color: var(--neutral-950);
 }
 
+.location-item__made-to-measure {
+  align-items: center;
+  display: flex;
+  margin-left: auto;
+  margin-top: var(--space-xs);
+}
+
+.location-item__made-to-measure-text {
+  color: var(--neutral-950);
+  margin-left: var(--space-3xs);
+}
+
 .store-locator__autocomplete {
   background: white;
   border: 1px solid var(--neutral-50);
