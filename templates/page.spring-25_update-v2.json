@@ -253,19 +253,36 @@
             "column_link": "shopify://collections/long-sleeves-and-polos",
             "column_link_text": "Shop from $79.95"
           }
+        },
+        "column_item_tXtkqD": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Spring_POLO_Hero_Desktop_copy_2.webp",
+            "image_link": "",
+            "heading": "POLO SHIRTS",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "center",
+            "content_vertical_alignment": "center",
+            "column_link": "shopify://collections/long-sleeves-and-polos",
+            "column_link_text": "Shop from $79.95"
+          }
         }
       },
       "block_order": [
         "column_item_zER8gb",
         "column_item_EdH7tR",
-        "column_item_TdMYVf"
+        "column_item_TdMYVf",
+        "column_item_tXtkqD"
       ],
       "name": "Variable Column Content Tertiary",
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
-        "column_count": "3",
+        "column_count": "4",
         "text_alignment": "left",
         "animate_columns": false,
         "heading": "",
