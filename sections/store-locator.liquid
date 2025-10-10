@@ -15,9 +15,9 @@
       type="text"
       id="searchInput"
       class="store-locator__search"
-      placeholder="Search by name, address or state"
+      placeholder="Search by address, postcode or state"
     >
-    <div id="autocomplete" class="store-locator__autocomplete" style="display: none;"></div>
+    <div id="autocomplete" class="store-locator__autocomplete custom-scrollbar" style="display: none;"></div>
     <select id="stateSelect" class="store-locator__state-select body">
       <option value="" selected>All</option>
       <option value="WA">WA</option>
@@ -43,8 +43,8 @@
     <div class="store-locator__sidebar custom-scrollbar">
       <div id="noResults" class="location-item" style="display: none;">
         <p class="body">
-          Sorry, your search for "<span id="noResultsText"></span>" returned zero results, please try another search
-          term.
+          Sorry, your search for "<span id="noResultsText"></span>" returned zero results, please try search by state or
+          postcode.
         </p>
       </div>
       {% paginate all_locations by 200 %}
