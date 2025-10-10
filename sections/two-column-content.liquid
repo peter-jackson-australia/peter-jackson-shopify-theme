@@ -49,44 +49,46 @@
         {{ current_shopify_attrs }}
       >
         <div class="two-column-content__image-container">
-          {% if current_block_img %}
-            <picture>
-              {% if current_block_mobile_img %}
-                <source
-                  media="(max-width: 767px)"
-                  srcset="
-                    {{ current_block_mobile_img | image_url: width: 400 }} 1x,
-                    {{ current_block_mobile_img | image_url: width: 800 }} 2x
-                  "
-                >
-              {% endif %}
-              {% if has_product %}
-                {{
-                  block.settings.image
-                  | image_url: width: 1280
-                  | image_tag:
-                    class: 'two-column-content__image has-product',
-                    loading: 'lazy',
-                    decoding: 'async',
-                    alt: current_block_img.alt,
-                    widths: '400, 500, 600, 700, 800, 1000, 1200',
-                    sizes: '(max-width: 768px) 100vw, (max-width: 1040px) 100vw, 50vw'
-                }}
-              {% else %}
-                {{
-                  current_block_img
-                  | image_url: width: 1280
-                  | image_tag:
-                    class: 'two-column-content__image',
-                    loading: 'lazy',
-                    decoding: 'async',
-                    alt: current_block_img.alt,
-                    widths: '400, 500, 600, 700, 800, 1000, 1200',
-                    sizes: '(max-width: 768px) 100vw, (max-width: 1040px) 100vw, 50vw'
-                }}
-              {% endif %}
-            </picture>
-          {% endif %}
+          <a href="{{ current_button_link }}">
+            {% if current_block_img %}
+              <picture>
+                {% if current_block_mobile_img %}
+                  <source
+                    media="(max-width: 767px)"
+                    srcset="
+                      {{ current_block_mobile_img | image_url: width: 400 }} 1x,
+                      {{ current_block_mobile_img | image_url: width: 800 }} 2x
+                    "
+                  >
+                {% endif %}
+                {% if has_product %}
+                  {{
+                    block.settings.image
+                    | image_url: width: 1280
+                    | image_tag:
+                      class: 'two-column-content__image has-product',
+                      loading: 'lazy',
+                      decoding: 'async',
+                      alt: current_block_img.alt,
+                      widths: '400, 500, 600, 700, 800, 1000, 1200',
+                      sizes: '(max-width: 768px) 100vw, (max-width: 1040px) 100vw, 50vw'
+                  }}
+                {% else %}
+                  {{
+                    current_block_img
+                    | image_url: width: 1280
+                    | image_tag:
+                      class: 'two-column-content__image',
+                      loading: 'lazy',
+                      decoding: 'async',
+                      alt: current_block_img.alt,
+                      widths: '400, 500, 600, 700, 800, 1000, 1200',
+                      sizes: '(max-width: 768px) 100vw, (max-width: 1040px) 100vw, 50vw'
+                  }}
+                {% endif %}
+              </picture>
+            {% endif %}
+          </a>
 
           {% if has_product %}
             <div class="two-column-content__product-overlay">
