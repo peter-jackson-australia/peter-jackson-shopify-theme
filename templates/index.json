@@ -210,7 +210,7 @@
           "type": "column_item",
           "settings": {
             "image": "shopify://shop_images/Spring_Suits.webp",
-            "image_link": "",
+            "image_link": "shopify://collections/mens-suits",
             "heading": "Spring Suits",
             "heading_animation": "none",
             "text": "",
@@ -226,7 +226,7 @@
           "type": "column_item",
           "settings": {
             "image": "shopify://shop_images/Spring_Sports_Jackets.webp",
-            "image_link": "",
+            "image_link": "shopify://collections/sport-jackets",
             "heading": "Sports Jackets",
             "heading_animation": "none",
             "text": "",
@@ -242,7 +242,7 @@
           "type": "column_item",
           "settings": {
             "image": "shopify://shop_images/Spring_Social_Style.webp",
-            "image_link": "",
+            "image_link": "shopify://collections/bottoms",
             "heading": "Trousers + Chinos",
             "heading_animation": "none",
             "text": "",
@@ -258,7 +258,7 @@
           "type": "column_item",
           "settings": {
             "image": "shopify://shop_images/Spring_POLO_Hero_Desktop_copy_2.webp",
-            "image_link": "",
+            "image_link": "shopify://collections/polos-and-tees",
             "heading": "Polo Shirts",
             "heading_animation": "none",
             "text": "",
