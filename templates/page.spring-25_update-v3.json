@@ -209,7 +209,7 @@
         "column_item_zER8gb": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/Spring_Suits.webp",
+            "image": "shopify://shop_images/Spring_Suits-1.webp",
             "image_link": "",
             "heading": "Spring Suits",
             "heading_animation": "none",
@@ -225,7 +225,7 @@
         "column_item_EdH7tR": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/Spring_Sports_Jackets.webp",
+            "image": "shopify://shop_images/Sports_Jackets_2_8dd15275-2c54-44a9-bcbc-81c6bc28551f.webp",
             "image_link": "",
             "heading": "Sports Jackets",
             "heading_animation": "none",
@@ -241,9 +241,9 @@
         "column_item_TdMYVf": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/Spring_Social_Style.webp",
+            "image": "shopify://shop_images/Trousers.webp",
             "image_link": "",
-            "heading": "The Social Edit",
+            "heading": "Trousers + Chinos",
             "heading_animation": "none",
             "text": "",
             "text_animation": "none",
@@ -251,13 +251,13 @@
             "content_horizontal_alignment": "left",
             "content_vertical_alignment": "bottom",
             "column_link": "shopify://collections/long-sleeves-and-polos",
-            "column_link_text": "Shop Spring Looks"
+            "column_link_text": "Shop from $89.95"
           }
         },
         "column_item_tXtkqD": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/Spring_POLO_Hero_Desktop_copy_2.webp",
+            "image": "shopify://shop_images/Polos-1.webp",
             "image_link": "",
             "heading": "Polo Shirts",
             "heading_animation": "none",
