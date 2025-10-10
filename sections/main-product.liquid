@@ -99,14 +99,9 @@
     >
       <div id="product-details">
         {% if section.settings.show_afterpay %}
-          <p class="product-details__sku small">
+          <p class="product-details__afterpay small">
             Buy In 4 Interest Free Payments of {{ current_variant.price | divided_by: 4 | money_with_currency }}
             {{ 'afterpay' | payment_type_svg_tag }}
-          </p>
-        {% elsif current_variant.sku %}
-          <p class="product-details__sku small">
-            Product Code:
-            <span class="js--variant-sku">{{ current_variant.sku }}</span>
           </p>
         {% endif %}
         <div class="product-details__header">
@@ -322,6 +317,12 @@
                         </li>
                       {% endif %}
                     </ul>
+                  {% endif %}
+                  {% if current_variant.sku %}
+                    <p class="product-details__afterpay body--bold">
+                      Product Code:
+                      <span class="js--variant-sku body--bold">{{ current_variant.sku }}</span>
+                    </p>
                   {% endif %}
                 </div>
               </div>
