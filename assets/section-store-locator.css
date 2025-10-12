@@ -155,11 +155,12 @@
 .store-locator__autocomplete {
   background: white;
   border: 1px solid var(--neutral-50);
+  border-top: none; 
   max-height: 200px;
   opacity: 0;
   overflow-y: auto;
   position: absolute;
-  top: var(--space-2xl);
+  top: var(--space-xl);
   transition: opacity 0.3s ease;
   width: calc(100% - var(--space-m) * 2);
   z-index: 1000;
@@ -175,6 +176,10 @@
   padding: var(--space-s);
 }
 
+.store-locator__autocomplete-item:last-of-type {
+  border-bottom: none;
+}
+
 .store-locator__autocomplete-item:hover {
   background: var(--neutral-50);
 }
@@ -188,8 +193,7 @@
 }
 
 .store-locator__autocomplete-header {
-  border-bottom: 1px solid var(--neutral-50);
-  font-weight: bold;
+  border-bottom: 1px solid var(--neutral-50); 
   padding: var(--space-s);
 }
 
