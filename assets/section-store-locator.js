@@ -13,6 +13,40 @@ class StoreLocator {
     this.autocomplete = document.getElementById("autocomplete");
     this.searchTimeout = null;
     this.postcodeCache = {};
+    this.stateBounds = {
+      NSW: [
+        [-37.5, 141],
+        [-28, 154],
+      ],
+      VIC: [
+        [-39.2, 141],
+        [-34, 150],
+      ],
+      QLD: [
+        [-29, 138],
+        [-10, 154],
+      ],
+      SA: [
+        [-38, 129],
+        [-26, 141],
+      ],
+      WA: [
+        [-35, 113],
+        [-14, 129],
+      ],
+      TAS: [
+        [-43.7, 144],
+        [-40, 149],
+      ],
+      NT: [
+        [-26, 129],
+        [-11, 138],
+      ],
+      ACT: [
+        [-35.9, 148.7],
+        [-35.1, 149.4],
+      ],
+    };
 
     this.init();
   }
@@ -50,6 +84,7 @@ class StoreLocator {
     this.stateSelect.addEventListener("change", () => {
       this.selectedState = this.stateSelect.value;
       this.filterLocations();
+      this.zoomToState(this.selectedState);
     });
 
     document.addEventListener("click", (e) => {
@@ -124,6 +159,26 @@ class StoreLocator {
       };
       this.markers.push(marker);
       marker.addTo(this.map);
+    }
+  }
+
+  zoomToState(state) {
+    if (!state) {
+      const isMobile = window.innerWidth < 1000;
+      const zoomLevel = isMobile ? 3 : 5;
+      this.map.setView([-25.2744, 133.7751], zoomLevel);
+    } else if (this.stateBounds[state]) {
+      this.map.fitBounds(this.stateBounds[state], { padding: [20, 20] });
+    }
+  }
+
+  centerOnLocation(locationName) {
+    const locationItem = Array.from(document.querySelectorAll(".location-item[data-lat]")).find((item) => item.dataset.name === locationName);
+
+    if (locationItem) {
+      const lat = parseFloat(locationItem.dataset.lat);
+      const lng = parseFloat(locationItem.dataset.lng);
+      this.map.setView([lat, lng], 13);
     }
   }
 
@@ -210,6 +265,7 @@ class StoreLocator {
       div.onclick = () => {
         this.searchInput.value = div.dataset.name;
         this.searchTerm = div.dataset.name;
+        this.centerOnLocation(div.dataset.name);
         this.filterLocations();
         this.hideAutocomplete();
       };
@@ -245,7 +301,7 @@ class StoreLocator {
   }
 
   showLocalPostcodeResults(postcode, locations) {
-    const html = '<div class="store-locator__autocomplete-header heading--xl">Stores in ' + postcode + "</div>" + locations.map((loc) => `<div class="store-locator__autocomplete-item" data-name="${loc.name}"><strong class="body--bold">${loc.name}</strong></div>`).join("");
+    const html = '<div class="store-locator__autocomplete-header heading--xl">Stores in ' + postcode + "</div>" + locations.map((loc) => `<div class="store-locator__autocomplete-item" data-name="${loc.name}"><strong>${loc.name}</strong></div>`).join("");
 
     this.autocomplete.innerHTML = html;
 
@@ -253,6 +309,7 @@ class StoreLocator {
       div.onclick = () => {
         this.searchInput.value = div.dataset.name;
         this.searchTerm = div.dataset.name;
+        this.centerOnLocation(div.dataset.name);
         this.filterLocations();
         this.hideAutocomplete();
       };
@@ -333,6 +390,7 @@ class StoreLocator {
         div.onclick = () => {
           this.searchInput.value = div.dataset.name;
           this.searchTerm = div.dataset.name;
+          this.centerOnLocation(div.dataset.name);
           this.filterLocations();
           this.hideAutocomplete();
         };
@@ -373,6 +431,7 @@ class StoreLocator {
       div.onclick = () => {
         this.searchInput.value = div.dataset.name;
         this.searchTerm = div.dataset.name;
+        this.centerOnLocation(div.dataset.name);
         this.filterLocations();
         this.hideAutocomplete();
       };
