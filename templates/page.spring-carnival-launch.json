@@ -109,24 +109,6 @@
         "slide_interval": 15
       }
     },
-    "heading_with_text_zDqYQf": {
-      "type": "heading-with-text",
-      "disabled": true,
-      "name": "Heading with Text",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": false,
-        "leading_text": "SINCE 1948",
-        "leading_text_animation": "none",
-        "heading": "TAILORED FOR A LIFE WELL LIVED",
-        "heading_style": "normal",
-        "heading_animation": "none",
-        "content": "",
-        "content_animation": "none",
-        "alignment": "center"
-      }
-    },
     "variable_column_content_secondary_X9KJtx": {
       "type": "variable-column-content-secondary",
       "blocks": {
@@ -299,7 +281,7 @@
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
-        "show_bottom_border": false,
+        "show_bottom_border": true,
         "column_count": "4",
         "text_alignment": "left",
         "animate_columns": false,
@@ -353,6 +335,33 @@
         "animate_columns": false
       }
     },
+    "hero_primary_DztL84": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/Weddings.webp",
+        "heading": "Welcome to Our Store",
+        "svg_image": "shopify://shop_images/Winning_Form_Desktop_e0623912-2013-4407-8340-e90bd217d0f4.svg",
+        "svg_size": "full",
+        "heading_level": "h1",
+        "heading_animation": "none",
+        "description": "Discover our latest collection",
+        "description_animation": "none",
+        "button_label_1": "Shop Now",
+        "button_link_1": "shopify://collections/black-tie-wedding-and-attire",
+        "button_label_2": "Made To Measure",
+        "button_link_2": "shopify://pages/canberra-centre",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "stretch",
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "bottom"
+      }
+    },
     "collection_slider_XmLf6t": {
       "type": "collection-slider",
       "name": "Collection Slider",
@@ -365,22 +374,6 @@
         "button_label": "Shop Bestsellers",
         "products_to_show": 10,
         "animate_products": false
-      }
-    },
-    "shop_the_look_global_NN6BDN": {
-      "type": "shop-the-look-global",
-      "disabled": true,
-      "name": "Shop the Look Global",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": true,
-        "show_bottom_border": true,
-        "heading": "The Look Of The Season",
-        "heading_animation": "animate-paragraph-slide-up-scroll",
-        "featured_image": "shopify://shop_images/MVP_Linen_ab36d975-67d4-4c58-9fce-ae7bc7396acd.webp",
-        "product1": "luzio-canvas-taupe-jacket",
-        "product2": "sienna-canvas-taupe-trousers",
-        "product3": "bottinelli-italian-tie-green-with-vintage-paisley-print"
       }
     },
     "hero_primary_WLbcQ7": {
@@ -424,36 +417,6 @@
         "button_label": "Shop Now",
         "products_to_show": 10,
         "animate_products": false
-      }
-    },
-    "hero_primary_kTJdhq": {
-      "type": "hero-primary",
-      "disabled": true,
-      "name": "Hero Section",
-      "settings": {
-        "media_type": "image",
-        "desktop_image": "shopify://shop_images/EOS_Sale_Desktop.webp",
-        "mobile_image": "shopify://shop_images/EOS_Sale_Mobile.webp",
-        "heading": "",
-        "svg_image": "shopify://shop_images/EOS_Sale_Desktop.svg",
-        "svg_size": "medium",
-        "mobile_svg_image": "shopify://shop_images/EOS_Sale_Desktop.svg",
-        "heading_level": "h1",
-        "heading_animation": "none",
-        "description": "Up to 40% Off Select Styles / Last Days",
-        "description_animation": "none",
-        "button_label_1": "Shop Sale",
-        "button_link_1": "shopify://collections/sale",
-        "button_label_2": "",
-        "button_link_2": "",
-        "button_label_3": "",
-        "button_link_3": "",
-        "button_label_4": "",
-        "button_link_4": "",
-        "horizontal_alignment": "right",
-        "vertical_alignment": "middle",
-        "mobile_horizontal_alignment": "center",
-        "mobile_vertical_alignment": "bottom"
       }
     },
     "hero_primary_zeaCqL": {
@@ -510,16 +473,14 @@
   },
   "order": [
     "hero_slider_ULyNnz",
-    "heading_with_text_zDqYQf",
     "variable_column_content_secondary_X9KJtx",
     "heading_with_text_9nQj7z",
     "variable_column_content_tertiary_XwmChF",
     "two_column_content_3yctUz",
+    "hero_primary_DztL84",
     "collection_slider_XmLf6t",
-    "shop_the_look_global_NN6BDN",
     "hero_primary_WLbcQ7",
     "collection_slider_3p3hD9",
-    "hero_primary_kTJdhq",
     "hero_primary_zeaCqL",
     "spacer_yr6m7M",
     "spacer_wCQ8WH",
