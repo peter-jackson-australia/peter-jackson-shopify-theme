@@ -293,72 +293,32 @@
         "button_link": ""
       }
     },
-    "two_column_content_3yctUz": {
-      "type": "two-column-content",
-      "blocks": {
-        "column_PqiLQn": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/Business_Suits_0db34f3e-06f8-4913-a25b-1a3a73138999.webp",
-            "product": "",
-            "heading": "Business Suits",
-            "heading_animation": "none",
-            "description": "Neapolitan tailoring cut from lightweight European textiles for comfort and ease in warmer months.",
-            "description_animation": "none",
-            "button_label": "Two for $895",
-            "button_link": "shopify://collections/business-suits"
-          }
-        },
-        "column_9wEW7B": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/Business_Shirts_9d1fd351-9569-4832-bcfe-85543118d47a.webp",
-            "product": "",
-            "heading": "Business Shirts",
-            "heading_animation": "none",
-            "description": "Premium cotton, sharp cutaway collars, and new season colours and patterns — your work wardrobe, refreshed.",
-            "description_animation": "none",
-            "button_label": "Three for $259",
-            "button_link": "shopify://collections/business-shirts"
-          }
-        }
-      },
-      "block_order": [
-        "column_PqiLQn",
-        "column_9wEW7B"
-      ],
-      "name": "Two Column Content",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": true,
-        "animate_columns": false
-      }
-    },
-    "hero_primary_DztL84": {
+    "hero_primary_NeKfMz": {
       "type": "hero-primary",
       "name": "Hero Section",
       "settings": {
         "media_type": "image",
-        "desktop_image": "shopify://shop_images/Weddings.webp",
-        "heading": "Welcome to Our Store",
-        "svg_image": "shopify://shop_images/Winning_Form_Desktop_e0623912-2013-4407-8340-e90bd217d0f4.svg",
-        "svg_size": "full",
+        "desktop_image": "shopify://shop_images/Business_Suits_b4de4b15-ba94-45d6-aae2-3ac4b946a3c7.webp",
+        "mobile_image": "shopify://shop_images/Business_Suits_Mobile.webp",
+        "heading": "Business Tailoring",
+        "svg_image": "shopify://shop_images/Refined_Redefined.svg",
+        "svg_size": "small",
+        "mobile_svg_image": "shopify://shop_images/Refined_Redefined_Mob.svg",
         "heading_level": "h1",
         "heading_animation": "none",
-        "description": "Discover our latest collection",
+        "description": "Business tailoring takes a new direction this season,<br>where tradition meets modern edge.",
         "description_animation": "none",
-        "button_label_1": "Shop Now",
-        "button_link_1": "shopify://collections/black-tie-wedding-and-attire",
-        "button_label_2": "Made To Measure",
-        "button_link_2": "shopify://pages/canberra-centre",
+        "button_label_1": "Two for $895",
+        "button_link_1": "shopify://collections/mens-suits",
+        "button_label_2": "",
+        "button_link_2": "",
         "button_label_3": "",
         "button_link_3": "",
         "button_label_4": "",
         "button_link_4": "",
-        "horizontal_alignment": "center",
-        "vertical_alignment": "stretch",
-        "mobile_horizontal_alignment": "center",
+        "horizontal_alignment": "left",
+        "vertical_alignment": "middle",
+        "mobile_horizontal_alignment": "left",
         "mobile_vertical_alignment": "bottom"
       }
     },
@@ -366,15 +326,79 @@
       "type": "collection-slider",
       "name": "Collection Slider",
       "settings": {
-        "heading": "The Season's Best",
+        "heading": "Business Shirts",
         "heading_animation": "none",
         "description": "The styles capturing attention and setting the style pace this spring.",
         "description_animation": "none",
-        "collection": "spring-25",
+        "collection": "business-shirts",
         "button_label": "Shop Bestsellers",
         "products_to_show": 10,
         "animate_products": false
       }
+    },
+    "17603889363e8d8b97": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_f35cdfd_E4pwWB": {
+          "type": "ai_gen_block_f35cdfd",
+          "settings": {
+            "text_alignment": "center",
+            "border_radius": 0,
+            "overlay_opacity": 0,
+            "tile_background_color": "#f8f8f8",
+            "heading_color": "#ffffff",
+            "subline_color": "#ffffff",
+            "heading_size": 28,
+            "heading_margin": 15,
+            "subline_size": 13,
+            "subline_margin": 20,
+            "button_text_color": "#ffffff",
+            "button_hover_text_color": "#cccccc",
+            "button_bottom_padding": 20,
+            "tile_1_background_image": "shopify://shop_images/R0015500_copy.jpg",
+            "tile_1_content_position": "bottom",
+            "tile_1_use_svg": true,
+            "tile_1_svg_image": "shopify://shop_images/POLOS.svg",
+            "tile_1_svg_size": 30,
+            "tile_1_heading": "First Tile",
+            "tile_1_subline": "",
+            "tile_1_button_text": "from $79.95",
+            "tile_1_button_link": "",
+            "tile_2_background_image": "shopify://shop_images/Spring_Suits_83745627-5f88-4929-b7cc-0d32264cc5e2.webp",
+            "tile_2_content_position": "bottom",
+            "tile_2_use_svg": true,
+            "tile_2_svg_image": "shopify://shop_images/Spring_Suits.svg",
+            "tile_2_svg_size": 40,
+            "tile_2_heading": "Second Tile",
+            "tile_2_subline": "",
+            "tile_2_button_text": "from $399",
+            "tile_2_button_link": "",
+            "tile_3_background_image": "shopify://shop_images/Co-Orders.webp",
+            "tile_3_content_position": "bottom",
+            "tile_3_use_svg": true,
+            "tile_3_svg_image": "shopify://shop_images/Co-Ords.svg",
+            "tile_3_svg_size": 40,
+            "tile_3_heading": "Third Tile",
+            "tile_3_subline": "",
+            "tile_3_button_text": "Shop Matching Sets",
+            "tile_3_button_link": "",
+            "tile_4_background_image": "shopify://shop_images/Sports_Jacket.webp",
+            "tile_4_content_position": "bottom",
+            "tile_4_use_svg": true,
+            "tile_4_svg_image": "shopify://shop_images/Sports_Jackets.svg",
+            "tile_4_svg_size": 45,
+            "tile_4_heading": "Fourth Tile",
+            "tile_4_subline": "",
+            "tile_4_button_text": "from $299",
+            "tile_4_button_link": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_f35cdfd_E4pwWB"
+      ],
+      "settings": {}
     },
     "hero_primary_WLbcQ7": {
       "type": "hero-primary",
@@ -417,6 +441,57 @@
         "button_label": "Shop Now",
         "products_to_show": 10,
         "animate_products": false
+      }
+    },
+    "variable_column_content_secondary_eRLfeJ": {
+      "type": "variable-column-content-secondary",
+      "blocks": {
+        "column_item_gtWXVr": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Wedding_Test.webp",
+            "image_link": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_Q6TGXb": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/MTM_Test.webp",
+            "image_link": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_gtWXVr",
+        "column_item_Q6TGXb"
+      ],
+      "disabled": true,
+      "name": "Variable Column Content Secondary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "2",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "Variable Column Content Secondary",
+        "heading_animation": "none",
+        "text": "Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
       }
     },
     "hero_primary_zeaCqL": {
@@ -476,11 +551,12 @@
     "variable_column_content_secondary_X9KJtx",
     "heading_with_text_9nQj7z",
     "variable_column_content_tertiary_XwmChF",
-    "two_column_content_3yctUz",
-    "hero_primary_DztL84",
+    "hero_primary_NeKfMz",
     "collection_slider_XmLf6t",
+    "17603889363e8d8b97",
     "hero_primary_WLbcQ7",
     "collection_slider_3p3hD9",
+    "variable_column_content_secondary_eRLfeJ",
     "hero_primary_zeaCqL",
     "spacer_yr6m7M",
     "spacer_wCQ8WH",
