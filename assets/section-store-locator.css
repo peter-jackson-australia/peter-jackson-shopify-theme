@@ -287,7 +287,17 @@
 
 .store-locator__autocomplete-header {
   border-bottom: 1px solid var(--neutral-50);
+  color: var(--neutral-950); 
   padding: var(--space-s);
+}
+
+.location-item__status-popover {
+  background: var(--white);
+  border: 1px solid var(--neutral-50);
+  font-size: 0.875rem;
+  margin: 0;
+  padding: var(--space-xs) var(--space-s);
+  white-space: nowrap;
 }
 
 @media screen and (min-width: 1000px) {

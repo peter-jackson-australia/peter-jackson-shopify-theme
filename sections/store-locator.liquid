@@ -83,10 +83,8 @@
             data-postcode="{{ location_postcode }}"
           >
             <div class="location-item__header">
-              <div
-                class="location-item__status-dot"
-                data-location-status="{{ location_handle }}"
-              ></div>
+              <div class="location-item__status-dot" data-location-status="{{ location_handle }}"></div>
+              <div id="popover-{{ location_handle }}" popover class="location-item__status-popover"></div>
               <h3 class="location-item__title heading--xl">{{ location_name }}</h3>
             </div>
 

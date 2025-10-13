@@ -121,7 +121,7 @@ class StoreLocator {
   handleScroll() {
     if (this.sidebar.scrollTop > 0) {
       this.fixedHeader.classList.add("store-locator__fixed-header--visible");
-      
+
       clearTimeout(this.scrollTimeout);
       this.scrollTimeout = setTimeout(() => {
         this.fixedHeader.classList.remove("store-locator__fixed-header--visible");
@@ -342,7 +342,7 @@ class StoreLocator {
   }
 
   showLocalPostcodeResults(postcode, locations) {
-    const html = '<div class="store-locator__autocomplete-header heading--xl">Stores in ' + postcode + "</div>" + locations.map((loc) => `<div class="store-locator__autocomplete-item" data-name="${loc.name}"><strong>${loc.name}</strong></div>`).join("");
+    const html = '<div class="store-locator__autocomplete-header heading--xl">Stores in ' + postcode + "</div>" + locations.map((loc) => `<div class="store-locator__autocomplete-item" data-name="${loc.name}"><strong class="body--bold">${loc.name}</strong></div>`).join("");
 
     this.autocomplete.innerHTML = html;
 
@@ -425,7 +425,7 @@ class StoreLocator {
         locations
           .map((loc) => {
             const distanceText = loc.postcode === postcode ? "" : ` - ${loc.distance.toFixed(1)} km away`;
-            return `<div class="store-locator__autocomplete-item" data-name="${loc.name}"><strong>${loc.name}</strong>${distanceText}</div>`;
+            return `<div class="store-locator__autocomplete-item" data-name="${loc.name}"><strong class="body--bold">${loc.name}</strong>${distanceText}</div>`;
           })
           .join("");
 
@@ -470,7 +470,7 @@ class StoreLocator {
       cachedData.locations
         .map((loc) => {
           const distanceText = loc.postcode === postcode ? "" : ` - ${loc.distance.toFixed(1)} km away`;
-          return `<div class="store-locator__autocomplete-item" data-name="${loc.name}"><strong>${loc.name}</strong>${distanceText}</div>`;
+          return `<div class="store-locator__autocomplete-item" data-name="${loc.name}"><strong class="body--bold">${loc.name}</strong>${distanceText}</div>`;
         })
         .join("");
 
@@ -499,13 +499,10 @@ class StoreLocator {
 
     const matchesState = !this.selectedState || state === this.selectedState;
 
-    const isClosed = statusDot?.classList.contains('location-item__status-dot--closed');
-    const matchesStatus = !this.selectedStatus || 
-      (this.selectedStatus === 'open' && !isClosed) ||
-      (this.selectedStatus === 'closed' && isClosed);
+    const isClosed = statusDot?.classList.contains("location-item__status-dot--closed");
+    const matchesStatus = !this.selectedStatus || (this.selectedStatus === "open" && !isClosed) || (this.selectedStatus === "closed" && isClosed);
 
-    const matchesServices = !this.selectedService || 
-      (this.selectedService === 'made-to-measure' && hasMadeToMeasure);
+    const matchesServices = !this.selectedService || (this.selectedService === "made-to-measure" && hasMadeToMeasure);
 
     return matchesSearch && matchesState && matchesStatus && matchesServices;
   }
@@ -532,15 +529,15 @@ class StoreLocator {
 
   showNoResultsMessage() {
     if (!this.noResultsContainer) {
-      this.noResultsContainer = document.createElement('div');
-      this.noResultsContainer.className = 'store-locator__no-results';
+      this.noResultsContainer = document.createElement("div");
+      this.noResultsContainer.className = "store-locator__no-results";
     }
 
     const activeFilters = [];
-    if (this.selectedStatus) activeFilters.push('status');
-    if (this.selectedService) activeFilters.push('services');
+    if (this.selectedStatus) activeFilters.push("status");
+    if (this.selectedService) activeFilters.push("services");
 
-    let buttonsHTML = '';
+    let buttonsHTML = "";
     if (this.selectedStatus && this.selectedService) {
       buttonsHTML = `
         <button class="store-locator__clear-button body" data-clear="status">Clear Status Filter</button>
@@ -565,21 +562,21 @@ class StoreLocator {
       </div>
     `;
 
-    const firstLocationItem = this.sidebar.querySelector('.location-item');
+    const firstLocationItem = this.sidebar.querySelector(".location-item");
     if (firstLocationItem) {
       this.sidebar.insertBefore(this.noResultsContainer, firstLocationItem);
     } else {
       this.sidebar.appendChild(this.noResultsContainer);
     }
 
-    this.noResultsContainer.querySelectorAll('.store-locator__clear-button').forEach(button => {
-      button.addEventListener('click', (e) => {
-        const clearType = e.target.getAttribute('data-clear');
-        if (clearType === 'status') {
+    this.noResultsContainer.querySelectorAll(".store-locator__clear-button").forEach((button) => {
+      button.addEventListener("click", (e) => {
+        const clearType = e.target.getAttribute("data-clear");
+        if (clearType === "status") {
           this.clearStatusFilter();
-        } else if (clearType === 'service') {
+        } else if (clearType === "service") {
           this.clearServiceFilter();
-        } else if (clearType === 'all') {
+        } else if (clearType === "all") {
           this.clearAllFilters();
         }
       });
@@ -599,14 +596,12 @@ class StoreLocator {
 
     this.markers.forEach((marker) => {
       const data = marker.locationData;
-      const locationElement = Array.from(document.querySelectorAll(".location-item[data-lat]")).find(
-        (item) => item.dataset.name === data.name
-      );
-      
+      const locationElement = Array.from(document.querySelectorAll(".location-item[data-lat]")).find((item) => item.dataset.name === data.name);
+
       if (locationElement) {
-        const statusDot = locationElement.querySelector('.location-item__status-dot');
-        const hasMadeToMeasure = !!locationElement.querySelector('.location-item__made-to-measure');
-        
+        const statusDot = locationElement.querySelector(".location-item__status-dot");
+        const hasMadeToMeasure = !!locationElement.querySelector(".location-item__made-to-measure");
+
         if (this.isLocationVisible(data.name, data.address, data.state, statusDot, hasMadeToMeasure)) {
           marker.addTo(this.map);
         } else {
@@ -620,8 +615,8 @@ class StoreLocator {
       const name = item.getAttribute("data-name");
       const address = item.getAttribute("data-address");
       const state = item.getAttribute("data-state") || "";
-      const statusDot = item.querySelector('.location-item__status-dot');
-      const hasMadeToMeasure = !!item.querySelector('.location-item__made-to-measure');
+      const statusDot = item.querySelector(".location-item__status-dot");
+      const hasMadeToMeasure = !!item.querySelector(".location-item__made-to-measure");
 
       if (this.isLocationVisible(name, address, state, statusDot, hasMadeToMeasure)) {
         item.style.display = "";
@@ -658,6 +653,25 @@ class StoreLocator {
             statusDot.classList.remove("location-item__status-dot--closed");
           } else {
             statusDot.classList.add("location-item__status-dot--closed");
+          }
+        }
+
+        const popover = item.querySelector('[id^="popover-"]');
+        if (popover && openingStatus && (openingStatus.openTime || openingStatus.closeTime)) {
+          const timeUntil = openingStatus.isOpen ? this.timezoneHandler.getTimeUntil(timeData.time, openingStatus.closeTime) : this.timezoneHandler.getTimeUntil(timeData.time, openingStatus.openTime);
+
+          if (timeUntil) {
+            popover.textContent = openingStatus.isOpen ? `Closes in ${timeUntil}` : `Opens in ${timeUntil}`;
+
+            if (!statusDot.dataset.popoverInit) {
+              statusDot.onmouseenter = (e) => {
+                const r = e.target.getBoundingClientRect();
+                popover.style.cssText = `left:${r.left}px;top:${r.bottom + 5}px;`;
+                popover.showPopover();
+              };
+              statusDot.onmouseleave = () => popover.hidePopover();
+              statusDot.dataset.popoverInit = "true";
+            }
           }
         }
 
@@ -801,6 +815,14 @@ class ShopifyTimezoneHandler {
   timeToMinutes(timeStr) {
     const [hours, minutes] = timeStr.split(":").map(Number);
     return hours * 60 + minutes;
+  }
+
+  getTimeUntil(currentTime, targetTime) {
+    const diff = this.timeToMinutes(targetTime) - this.timeToMinutes(currentTime);
+    if (diff <= 0) return null;
+    const h = Math.floor(diff / 60),
+      m = diff % 60;
+    return h ? `${h}h ${m}m` : `${m}m`;
   }
 }
 
