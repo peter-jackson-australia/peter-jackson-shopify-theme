@@ -15,12 +15,12 @@
         "slide_JGebxX": {
           "type": "slide",
           "settings": {
-            "media_type": "video",
-            "video": "shopify://files/videos/Spring Homepage Update.mp4",
-            "mobile_video": "shopify://files/videos/Portrait.mp4",
+            "media_type": "image",
+            "desktop_image": "shopify://shop_images/Winning_Form.webp",
+            "mobile_image": "shopify://shop_images/Winning_Form_Mobile.webp",
             "heading": "The Season Of Style",
-            "svg_image": "shopify://shop_images/S25_HP_Refresh_Spring_935e178e-1110-42e1-a150-c63f9b8e52a3.svg",
-            "svg_size": "medium",
+            "svg_image": "shopify://shop_images/Winning_Form_Desktop_e0623912-2013-4407-8340-e90bd217d0f4.svg",
+            "svg_size": "full",
             "mobile_svg_image": "shopify://shop_images/S25_HP_Refresh_Spring_935e178e-1110-42e1-a150-c63f9b8e52a3.svg",
             "heading_level": "h1",
             "heading_animation": "none",
@@ -42,6 +42,7 @@
         },
         "slide_ddW7HK": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "media_type": "image",
             "desktop_image": "shopify://shop_images/Spring_Suits_HP_Refresh.webp",
@@ -70,6 +71,7 @@
         },
         "slide_P9nnNj": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "media_type": "image",
             "desktop_image": "shopify://shop_images/EOS_Sale_Desktop_Fresh.webp",
