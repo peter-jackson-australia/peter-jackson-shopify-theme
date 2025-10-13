@@ -12,6 +12,7 @@ class StoreLocator {
     this.stateSelect = document.getElementById("stateSelect");
     this.autocomplete = document.getElementById("autocomplete");
     this.searchTimeout = null;
+    this.postcodeCache = {};
 
     this.init();
   }
@@ -143,7 +144,9 @@ class StoreLocator {
     const is4DigitPostcode = /^\d{4}$/.test(currentInput.trim());
 
     if (is4DigitPostcode) {
-      this.findNearestByPostcode(currentInput.trim());
+      this.searchTimeout = setTimeout(() => {
+        this.findNearestByPostcode(currentInput.trim());
+      }, 500);
     } else {
       this.searchTimeout = setTimeout(() => {
         this.showTextSearchResults(currentInput);
@@ -179,17 +182,17 @@ class StoreLocator {
 
   showTextSearchResults(searchValue) {
     const searchLower = searchValue.toLowerCase();
-    
+
     const matches = Array.from(document.querySelectorAll(".location-item[data-lat]"))
       .filter((item) => {
         const name = item.dataset.name.toLowerCase();
         const address = item.dataset.address.toLowerCase();
         const state = item.dataset.state;
         const stateLower = state.toLowerCase();
-        
+
         const matchesSearch = name.includes(searchLower) || address.includes(searchLower) || stateLower.includes(searchLower);
         const matchesState = !this.selectedState || state === this.selectedState;
-        
+
         return matchesSearch && matchesState;
       })
       .slice(0, 5);
@@ -199,9 +202,7 @@ class StoreLocator {
       return;
     }
 
-    const html = matches
-      .map((item) => `<div class="store-locator__autocomplete-item" data-name="${item.dataset.name}">${item.dataset.name} - ${item.dataset.address}</div>`)
-      .join("");
+    const html = matches.map((item) => `<div class="store-locator__autocomplete-item" data-name="${item.dataset.name}">${item.dataset.name} - ${item.dataset.address}</div>`).join("");
 
     this.autocomplete.innerHTML = html;
 
@@ -226,9 +227,64 @@ class StoreLocator {
     this.showAutocomplete();
   }
 
+  getLocalPostcodeMatches(postcode) {
+    return Array.from(document.querySelectorAll(".location-item[data-lat]"))
+      .filter((item) => {
+        const itemPostcode = item.dataset.postcode;
+        const state = item.dataset.state;
+        const matchesPostcode = itemPostcode === postcode;
+        const matchesState = !this.selectedState || state === this.selectedState;
+        return matchesPostcode && matchesState;
+      })
+      .map((item) => ({
+        element: item,
+        name: item.dataset.name,
+        postcode: item.dataset.postcode,
+        distance: 0,
+      }));
+  }
+
+  showLocalPostcodeResults(postcode, locations) {
+    const html = '<div class="store-locator__autocomplete-header heading--xl">Stores in ' + postcode + "</div>" + locations.map((loc) => `<div class="store-locator__autocomplete-item" data-name="${loc.name}"><strong class="body--bold">${loc.name}</strong></div>`).join("");
+
+    this.autocomplete.innerHTML = html;
+
+    this.autocomplete.querySelectorAll(".store-locator__autocomplete-item").forEach((div) => {
+      div.onclick = () => {
+        this.searchInput.value = div.dataset.name;
+        this.searchTerm = div.dataset.name;
+        this.filterLocations();
+        this.hideAutocomplete();
+      };
+    });
+
+    this.showAutocomplete();
+  }
+
   async findNearestByPostcode(postcode) {
+    const localMatches = this.getLocalPostcodeMatches(postcode);
+
+    if (localMatches.length > 0) {
+      this.showLocalPostcodeResults(postcode, localMatches);
+      return;
+    }
+
+    if (this.postcodeCache[postcode]) {
+      this.displayCachedPostcodeResults(postcode, this.postcodeCache[postcode]);
+      return;
+    }
+
     try {
-      const response = await fetch(`https://nominatim.openstreetmap.org/search?postalcode=${postcode}&country=australia&format=json&limit=1`);
+      const response = await fetch(`https://nominatim.openstreetmap.org/search?postalcode=${postcode}&country=australia&format=json&limit=1`, {
+        headers: {
+          "User-Agent": "StoreLocator/1.0",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
       const data = await response.json();
 
       if (!data.length) {
@@ -257,6 +313,11 @@ class StoreLocator {
         .sort((a, b) => a.distance - b.distance)
         .slice(0, 5);
 
+      this.postcodeCache[postcode] = {
+        userLocation: userLocation,
+        locations: locations,
+      };
+
       const html =
         '<div class="store-locator__autocomplete-header heading--xl">5 Nearest Stores</div>' +
         locations
@@ -280,13 +341,44 @@ class StoreLocator {
       this.showAutocomplete();
     } catch (error) {
       console.error("Error finding nearest stores:", error);
-      this.autocomplete.innerHTML = `
-        <div class="store-locator__autocomplete-error">
-          <p class="body">Error finding nearest stores</p>
-        </div>
-      `;
-      this.showAutocomplete();
+
+      const fallbackMatches = this.getLocalPostcodeMatches(postcode);
+
+      if (fallbackMatches.length > 0) {
+        this.showLocalPostcodeResults(postcode, fallbackMatches);
+      } else {
+        this.autocomplete.innerHTML = `
+          <div class="store-locator__autocomplete-error">
+            <p class="body">Error finding nearest stores</p>
+          </div>
+        `;
+        this.showAutocomplete();
+      }
     }
+  }
+
+  displayCachedPostcodeResults(postcode, cachedData) {
+    const html =
+      '<div class="store-locator__autocomplete-header heading--xl">5 Nearest Stores</div>' +
+      cachedData.locations
+        .map((loc) => {
+          const distanceText = loc.postcode === postcode ? "" : ` - ${loc.distance.toFixed(1)} km away`;
+          return `<div class="store-locator__autocomplete-item" data-name="${loc.name}"><strong>${loc.name}</strong>${distanceText}</div>`;
+        })
+        .join("");
+
+    this.autocomplete.innerHTML = html;
+
+    this.autocomplete.querySelectorAll(".store-locator__autocomplete-item").forEach((div) => {
+      div.onclick = () => {
+        this.searchInput.value = div.dataset.name;
+        this.searchTerm = div.dataset.name;
+        this.filterLocations();
+        this.hideAutocomplete();
+      };
+    });
+
+    this.showAutocomplete();
   }
 
   isLocationVisible(name, address, state) {
