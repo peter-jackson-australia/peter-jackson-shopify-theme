@@ -31,6 +31,20 @@
 
   <div class="store-locator__container">
     <div class="store-locator__sidebar custom-scrollbar">
+      <div class="store-locator__fixed-header">
+        <div class="store-locator__fixed-filters">
+          <select id="statusSelect" class="store-locator__status-select body">
+            <option value="" selected>All Stores</option>
+            <option value="open">Open Now</option>
+            <option value="closed">Closed Now</option>
+          </select>
+          <select id="serviceSelect" class="store-locator__service-select body">
+            <option value="" selected>All Services</option>
+            <option value="made-to-measure">Made To Measure Only</option>
+          </select>
+        </div>
+      </div>
+
       {% paginate all_locations by 200 %}
         {% liquid
           assign all_locations = metaobjects.locations.values

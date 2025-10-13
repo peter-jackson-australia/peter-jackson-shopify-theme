@@ -5,14 +5,22 @@ class StoreLocator {
   constructor() {
     this.searchTerm = "";
     this.selectedState = "";
+    this.selectedStatus = "";
+    this.selectedService = "";
     this.markers = [];
     this.map = null;
     this.timezoneHandler = null;
     this.searchInput = document.getElementById("searchInput");
     this.stateSelect = document.getElementById("stateSelect");
+    this.statusSelect = document.getElementById("statusSelect");
+    this.serviceSelect = document.getElementById("serviceSelect");
     this.autocomplete = document.getElementById("autocomplete");
+    this.sidebar = document.querySelector(".store-locator__sidebar");
+    this.fixedHeader = document.querySelector(".store-locator__fixed-header");
     this.searchTimeout = null;
+    this.scrollTimeout = null;
     this.postcodeCache = {};
+    this.noResultsContainer = null;
     this.stateBounds = {
       NSW: [
         [-37.5, 141],
@@ -87,6 +95,20 @@ class StoreLocator {
       this.zoomToState(this.selectedState);
     });
 
+    this.statusSelect.addEventListener("change", () => {
+      this.selectedStatus = this.statusSelect.value;
+      this.filterLocations();
+    });
+
+    this.serviceSelect.addEventListener("change", () => {
+      this.selectedService = this.serviceSelect.value;
+      this.filterLocations();
+    });
+
+    this.sidebar.addEventListener("scroll", () => {
+      this.handleScroll();
+    });
+
     document.addEventListener("click", (e) => {
       if (!e.target.closest("#searchInput") && !e.target.closest("#autocomplete")) {
         this.hideAutocomplete();
@@ -94,6 +116,20 @@ class StoreLocator {
     });
 
     this.waitForLeafletAndInit();
+  }
+
+  handleScroll() {
+    if (this.sidebar.scrollTop > 0) {
+      this.fixedHeader.classList.add("store-locator__fixed-header--visible");
+      
+      clearTimeout(this.scrollTimeout);
+      this.scrollTimeout = setTimeout(() => {
+        this.fixedHeader.classList.remove("store-locator__fixed-header--visible");
+      }, 2000);
+    } else {
+      this.fixedHeader.classList.remove("store-locator__fixed-header--visible");
+      clearTimeout(this.scrollTimeout);
+    }
   }
 
   waitForLeafletAndInit() {
@@ -191,6 +227,7 @@ class StoreLocator {
       this.searchTerm = "";
       this.filterLocations();
       this.hideAutocomplete();
+      this.zoomToState(this.selectedState);
       return;
     }
 
@@ -265,6 +302,10 @@ class StoreLocator {
       div.onclick = () => {
         this.searchInput.value = div.dataset.name;
         this.searchTerm = div.dataset.name;
+        this.selectedStatus = "";
+        this.selectedService = "";
+        this.statusSelect.value = "";
+        this.serviceSelect.value = "";
         this.centerOnLocation(div.dataset.name);
         this.filterLocations();
         this.hideAutocomplete();
@@ -309,6 +350,10 @@ class StoreLocator {
       div.onclick = () => {
         this.searchInput.value = div.dataset.name;
         this.searchTerm = div.dataset.name;
+        this.selectedStatus = "";
+        this.selectedService = "";
+        this.statusSelect.value = "";
+        this.serviceSelect.value = "";
         this.centerOnLocation(div.dataset.name);
         this.filterLocations();
         this.hideAutocomplete();
@@ -390,6 +435,10 @@ class StoreLocator {
         div.onclick = () => {
           this.searchInput.value = div.dataset.name;
           this.searchTerm = div.dataset.name;
+          this.selectedStatus = "";
+          this.selectedService = "";
+          this.statusSelect.value = "";
+          this.serviceSelect.value = "";
           this.centerOnLocation(div.dataset.name);
           this.filterLocations();
           this.hideAutocomplete();
@@ -431,6 +480,10 @@ class StoreLocator {
       div.onclick = () => {
         this.searchInput.value = div.dataset.name;
         this.searchTerm = div.dataset.name;
+        this.selectedStatus = "";
+        this.selectedService = "";
+        this.statusSelect.value = "";
+        this.serviceSelect.value = "";
         this.centerOnLocation(div.dataset.name);
         this.filterLocations();
         this.hideAutocomplete();
@@ -440,24 +493,125 @@ class StoreLocator {
     this.showAutocomplete();
   }
 
-  isLocationVisible(name, address, state) {
+  isLocationVisible(name, address, state, statusDot, hasMadeToMeasure) {
     const searchLower = this.searchTerm.toLowerCase();
     const matchesSearch = !this.searchTerm || name.toLowerCase().includes(searchLower) || address.toLowerCase().includes(searchLower) || state.toLowerCase().includes(searchLower);
 
     const matchesState = !this.selectedState || state === this.selectedState;
 
-    return matchesSearch && matchesState;
+    const isClosed = statusDot?.classList.contains('location-item__status-dot--closed');
+    const matchesStatus = !this.selectedStatus || 
+      (this.selectedStatus === 'open' && !isClosed) ||
+      (this.selectedStatus === 'closed' && isClosed);
+
+    const matchesServices = !this.selectedService || 
+      (this.selectedService === 'made-to-measure' && hasMadeToMeasure);
+
+    return matchesSearch && matchesState && matchesStatus && matchesServices;
+  }
+
+  clearStatusFilter() {
+    this.selectedStatus = "";
+    this.statusSelect.value = "";
+    this.filterLocations();
+  }
+
+  clearServiceFilter() {
+    this.selectedService = "";
+    this.serviceSelect.value = "";
+    this.filterLocations();
+  }
+
+  clearAllFilters() {
+    this.selectedStatus = "";
+    this.selectedService = "";
+    this.statusSelect.value = "";
+    this.serviceSelect.value = "";
+    this.filterLocations();
+  }
+
+  showNoResultsMessage() {
+    if (!this.noResultsContainer) {
+      this.noResultsContainer = document.createElement('div');
+      this.noResultsContainer.className = 'store-locator__no-results';
+    }
+
+    const activeFilters = [];
+    if (this.selectedStatus) activeFilters.push('status');
+    if (this.selectedService) activeFilters.push('services');
+
+    let buttonsHTML = '';
+    if (this.selectedStatus && this.selectedService) {
+      buttonsHTML = `
+        <button class="store-locator__clear-button body" data-clear="status">Clear Status Filter</button>
+        <button class="store-locator__clear-button body" data-clear="service">Clear Service Filter</button>
+        <button class="store-locator__clear-button body" data-clear="all">Clear All Filters</button>
+      `;
+    } else if (this.selectedStatus) {
+      buttonsHTML = `
+        <button class="store-locator__clear-button body" data-clear="status">Clear Status Filter</button>
+      `;
+    } else if (this.selectedService) {
+      buttonsHTML = `
+        <button class="store-locator__clear-button body" data-clear="service">Clear Service Filter</button>
+      `;
+    }
+
+    this.noResultsContainer.innerHTML = `
+      <h3 class="store-locator__no-results-title heading--xl">No Stores Found</h3>
+      <p class="store-locator__no-results-text body">No stores match your current filter selection. Try adjusting your filters below:</p>
+      <div class="store-locator__clear-buttons">
+        ${buttonsHTML}
+      </div>
+    `;
+
+    const firstLocationItem = this.sidebar.querySelector('.location-item');
+    if (firstLocationItem) {
+      this.sidebar.insertBefore(this.noResultsContainer, firstLocationItem);
+    } else {
+      this.sidebar.appendChild(this.noResultsContainer);
+    }
+
+    this.noResultsContainer.querySelectorAll('.store-locator__clear-button').forEach(button => {
+      button.addEventListener('click', (e) => {
+        const clearType = e.target.getAttribute('data-clear');
+        if (clearType === 'status') {
+          this.clearStatusFilter();
+        } else if (clearType === 'service') {
+          this.clearServiceFilter();
+        } else if (clearType === 'all') {
+          this.clearAllFilters();
+        }
+      });
+    });
+  }
+
+  hideNoResultsMessage() {
+    if (this.noResultsContainer && this.noResultsContainer.parentNode) {
+      this.noResultsContainer.remove();
+    }
   }
 
   filterLocations() {
     sessionStorage.setItem("selectedState", this.selectedState);
 
+    let visibleCount = 0;
+
     this.markers.forEach((marker) => {
       const data = marker.locationData;
-      if (this.isLocationVisible(data.name, data.address, data.state)) {
-        marker.addTo(this.map);
-      } else {
-        marker.remove();
+      const locationElement = Array.from(document.querySelectorAll(".location-item[data-lat]")).find(
+        (item) => item.dataset.name === data.name
+      );
+      
+      if (locationElement) {
+        const statusDot = locationElement.querySelector('.location-item__status-dot');
+        const hasMadeToMeasure = !!locationElement.querySelector('.location-item__made-to-measure');
+        
+        if (this.isLocationVisible(data.name, data.address, data.state, statusDot, hasMadeToMeasure)) {
+          marker.addTo(this.map);
+        } else {
+          marker.remove();
+        }
       }
     });
 
@@ -466,13 +620,24 @@ class StoreLocator {
       const name = item.getAttribute("data-name");
       const address = item.getAttribute("data-address");
       const state = item.getAttribute("data-state") || "";
+      const statusDot = item.querySelector('.location-item__status-dot');
+      const hasMadeToMeasure = !!item.querySelector('.location-item__made-to-measure');
 
-      if (this.isLocationVisible(name, address, state)) {
+      if (this.isLocationVisible(name, address, state, statusDot, hasMadeToMeasure)) {
         item.style.display = "";
+        visibleCount++;
       } else {
         item.style.display = "none";
       }
     });
+
+    if (visibleCount === 0 && (this.selectedStatus || this.selectedService)) {
+      this.showNoResultsMessage();
+      this.fixedHeader.classList.add("store-locator__fixed-header--visible");
+      clearTimeout(this.scrollTimeout);
+    } else {
+      this.hideNoResultsMessage();
+    }
 
     this.updateAllLocationTimes();
   }
