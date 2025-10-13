@@ -26,7 +26,7 @@
             "heading_animation": "none",
             "description": "",
             "description_animation": "none",
-            "button_label_1": "Shop New Arrivals",
+            "button_label_1": "Shop Spring Carnival Style",
             "button_link_1": "shopify://collections/new-arrivals",
             "button_label_2": "",
             "button_link_2": "",
@@ -301,14 +301,14 @@
         "anchor_id": "",
         "show_top_border": true,
         "show_bottom_border": false,
-        "leading_text": "CORPORATE TAILORING",
+        "leading_text": "SPRING CARNIVAL",
         "leading_text_animation": "none",
-        "heading": "REFINED REDEFINED",
+        "heading": "RACETRACK READY",
         "heading_style": "normal",
         "heading_animation": "none",
-        "content": "<p>Business suiting takes a new direction this season, where tradition meets modern edge. The banker stripe makes a bold return and fresh spring/summer hues redefine elegance for today.</p>",
+        "content": "<p>Four race days, four distinct moods. Whether it’s the confident edge of the Cox Plate or the refined ease of Oaks Day, this is tailoring built for the track — modern, masculine and made to move.</p>",
         "content_animation": "none",
-        "alignment": "center"
+        "alignment": "left"
       }
     },
     "two_column_content_3yctUz": {
