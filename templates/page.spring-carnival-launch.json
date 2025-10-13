@@ -339,11 +339,11 @@
       "type": "collection-slider",
       "name": "Collection Slider",
       "settings": {
-        "heading": "The Season's Best",
+        "heading": "Business Shirts",
         "heading_animation": "none",
         "description": "The styles capturing attention and setting the style pace this spring.",
         "description_animation": "none",
-        "collection": "spring-25",
+        "collection": "business-shirts",
         "button_label": "Shop Bestsellers",
         "products_to_show": 10,
         "animate_products": false
