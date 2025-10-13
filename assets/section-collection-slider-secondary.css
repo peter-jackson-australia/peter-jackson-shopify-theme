@@ -94,9 +94,8 @@
 }
 
 .collection-slider-secondary__product-price--compare {
-  color: var(--neutral-600);
+  color: var(--neutral-400);
   margin-left: var(--space-2xs);
-  text-decoration: line-through;
 }
 
 @media screen and (max-width: 768px) {

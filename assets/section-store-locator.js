@@ -481,14 +481,14 @@ class StoreLocator {
   isLocationVisible(name, address, state, statusDot, locationElement) {
     const searchLower = this.searchTerm.toLowerCase();
     const matchesSearch = !this.searchTerm || name.toLowerCase().includes(searchLower) || address.toLowerCase().includes(searchLower) || state.toLowerCase().includes(searchLower);
-  
+
     const matchesState = !this.selectedState || state === this.selectedState;
-  
+
     const isClosed = statusDot?.classList.contains("location-item__status-dot--closed");
     const matchesStatus = !this.selectedStatus || (this.selectedStatus === "open" && !isClosed) || (this.selectedStatus === "closed" && isClosed);
-  
+
     const matchesServices = !this.selectedService || locationElement.dataset[this.selectedService.replace(/-([a-z])/g, (g) => g[1].toUpperCase())] === "true";
-  
+
     return matchesSearch && matchesState && matchesStatus && matchesServices;
   }
 

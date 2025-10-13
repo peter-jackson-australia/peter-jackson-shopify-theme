@@ -46,7 +46,8 @@
                   {{ product.price | money_with_currency }}
                   {% if product.compare_at_price > product.price %}
                     <span class="cart__new-arrivals-price--compare">
-                      {{- product.compare_at_price | money_with_currency -}}
+                      Was
+                      {{ product.compare_at_price | money_with_currency -}}
                     </span>
                   {% endif %}
                 </p>

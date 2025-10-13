@@ -74,7 +74,8 @@
                               {{- product.price | money_with_currency -}}
                             </span>
                             <span class="shop-the-look-global__product-price--compare">
-                              {{- product.compare_at_price_max | money_with_currency -}}
+                              Was
+                              {{ product.compare_at_price_max | money_with_currency -}}
                             </span>
                           {% else %}
                             {{ product.price | money_with_currency }}
@@ -112,7 +113,8 @@
                               {{- product.price | money_with_currency -}}
                             </span>
                             <span class="shop-the-look-global__product-price--compare">
-                              {{- product.compare_at_price_max | money_with_currency -}}
+                              Was
+                              {{ product.compare_at_price_max | money_with_currency -}}
                             </span>
                           {% else %}
                             {{ product.price | money_with_currency }}
@@ -150,7 +152,8 @@
                               {{- product.price | money_with_currency -}}
                             </span>
                             <span class="shop-the-look-global__product-price--compare">
-                              {{- product.compare_at_price_max | money_with_currency -}}
+                              Was
+                              {{ product.compare_at_price_max | money_with_currency -}}
                             </span>
                           {% else %}
                             {{ product.price | money_with_currency }}
@@ -202,7 +205,8 @@
                     {{- product.price | money_with_currency -}}
                   </span>
                   <span class="shop-the-look-global__product-price--compare">
-                    {{- product.compare_at_price_max | money_with_currency -}}
+                    Was
+                    {{ product.compare_at_price_max | money_with_currency -}}
                   </span>
                 {% else %}
                   {{ product.price | money_with_currency }}

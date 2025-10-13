@@ -527,8 +527,7 @@ body.modal-open {
 }
 
 .sticky-cart-bar__compare-price {
-  color: var(--neutral-600);
-  text-decoration: line-through;
+  color: var(--neutral-400);
 }
 
 .sticky-cart-bar__price {
@@ -554,8 +553,7 @@ body.modal-open {
 }
 
 .sticky-cart-bar__mobile-compare-price {
-  color: var(--neutral-600);
-  text-decoration: line-through;
+  color: var(--neutral-400);
 }
 
 .sticky-cart-bar__mobile-price {

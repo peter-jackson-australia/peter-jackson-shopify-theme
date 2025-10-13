@@ -86,7 +86,8 @@
                           {{- product_price | money_with_currency -}}
                         </span>
                         <span class="collection-slider__product-price--compare">
-                          {{- product_compare_price | money_with_currency -}}
+                          Was
+                          {{ product_compare_price | money_with_currency -}}
                         </span>
                       {% else %}
                         {{ product_price | money_with_currency }}
