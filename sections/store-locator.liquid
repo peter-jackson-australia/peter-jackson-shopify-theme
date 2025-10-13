@@ -41,6 +41,10 @@
           <select id="serviceSelect" class="store-locator__service-select body">
             <option value="" selected>All Services</option>
             <option value="made-to-measure">Made To Measure</option>
+            <option value="alterations">Alterations</option>
+            <option value="styling-advice">Styling Advice</option>
+            <option value="weddings">Weddings</option>
+            <option value="layby">Layby</option>
           </select>
         </div>
       </div>
@@ -81,6 +85,11 @@
             data-hours="{{ location_opening_hours }}"
             data-location-url="{{ location_page_url }}"
             data-postcode="{{ location_postcode }}"
+            data-made-to-measure="{{ location.made_to_measure.value }}"
+            data-alterations="{{ location.alterations.value }}"
+            data-styling-advice="{{ location.styling_advice.value }}"
+            data-weddings="{{ location.weddings.value }}"
+            data-layby="{{ location.layby.value }}"
           >
             <div class="location-item__header">
               <div class="location-item__status-dot" data-location-status="{{ location_handle }}"></div>

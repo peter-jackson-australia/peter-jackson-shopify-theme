@@ -478,17 +478,17 @@ class StoreLocator {
     this.showAutocomplete();
   }
 
-  isLocationVisible(name, address, state, statusDot, hasMadeToMeasure) {
+  isLocationVisible(name, address, state, statusDot, locationElement) {
     const searchLower = this.searchTerm.toLowerCase();
     const matchesSearch = !this.searchTerm || name.toLowerCase().includes(searchLower) || address.toLowerCase().includes(searchLower) || state.toLowerCase().includes(searchLower);
-
+  
     const matchesState = !this.selectedState || state === this.selectedState;
-
+  
     const isClosed = statusDot?.classList.contains("location-item__status-dot--closed");
     const matchesStatus = !this.selectedStatus || (this.selectedStatus === "open" && !isClosed) || (this.selectedStatus === "closed" && isClosed);
-
-    const matchesServices = !this.selectedService || (this.selectedService === "made-to-measure" && hasMadeToMeasure);
-
+  
+    const matchesServices = !this.selectedService || locationElement.dataset[this.selectedService.replace(/-([a-z])/g, (g) => g[1].toUpperCase())] === "true";
+  
     return matchesSearch && matchesState && matchesStatus && matchesServices;
   }
 
@@ -585,9 +585,8 @@ class StoreLocator {
 
       if (locationElement) {
         const statusDot = locationElement.querySelector(".location-item__status-dot");
-        const hasMadeToMeasure = !!locationElement.querySelector(".location-item__made-to-measure");
 
-        if (this.isLocationVisible(data.name, data.address, data.state, statusDot, hasMadeToMeasure)) {
+        if (this.isLocationVisible(data.name, data.address, data.state, statusDot, locationElement)) {
           marker.addTo(this.map);
         } else {
           marker.remove();
@@ -601,9 +600,8 @@ class StoreLocator {
       const address = item.getAttribute("data-address");
       const state = item.getAttribute("data-state") || "";
       const statusDot = item.querySelector(".location-item__status-dot");
-      const hasMadeToMeasure = !!item.querySelector(".location-item__made-to-measure");
 
-      if (this.isLocationVisible(name, address, state, statusDot, hasMadeToMeasure)) {
+      if (this.isLocationVisible(name, address, state, statusDot, item)) {
         item.style.display = "";
         visibleCount++;
       } else {
