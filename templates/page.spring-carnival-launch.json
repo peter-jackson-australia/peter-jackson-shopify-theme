@@ -9,6 +9,66 @@
  */
 {
   "sections": {
+    "17603889363e8d8b97": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_f35cdfd_E4pwWB": {
+          "type": "ai_gen_block_f35cdfd",
+          "settings": {
+            "text_alignment": "center",
+            "border_radius": 0,
+            "overlay_opacity": 0,
+            "tile_background_color": "#f8f8f8",
+            "heading_color": "#ffffff",
+            "subline_color": "#ffffff",
+            "heading_size": 28,
+            "heading_margin": 15,
+            "subline_size": 16,
+            "subline_margin": 20,
+            "button_text_color": "#ffffff",
+            "button_hover_text_color": "#cccccc",
+            "button_bottom_padding": 20,
+            "tile_1_background_image": "shopify://shop_images/R0015500_copy.jpg",
+            "tile_1_content_position": "bottom",
+            "tile_1_use_svg": true,
+            "tile_1_svg_image": "shopify://shop_images/POLOS.svg",
+            "tile_1_svg_size": 30,
+            "tile_1_heading": "First Tile",
+            "tile_1_subline": "This is the first tile with some descriptive text.",
+            "tile_1_button_text": "Learn More",
+            "tile_1_button_link": "",
+            "tile_2_background_image": "shopify://shop_images/R0015500_copy.jpg",
+            "tile_2_content_position": "middle",
+            "tile_2_use_svg": true,
+            "tile_2_svg_image": "shopify://shop_images/POLOS.svg",
+            "tile_2_svg_size": 30,
+            "tile_2_heading": "Second Tile",
+            "tile_2_subline": "This is the second tile with some descriptive text.",
+            "tile_2_button_text": "Learn More",
+            "tile_2_button_link": "",
+            "tile_3_content_position": "middle",
+            "tile_3_use_svg": false,
+            "tile_3_svg_size": 30,
+            "tile_3_heading": "Third Tile",
+            "tile_3_subline": "This is the third tile with some descriptive text.",
+            "tile_3_button_text": "Learn More",
+            "tile_3_button_link": "",
+            "tile_4_content_position": "middle",
+            "tile_4_use_svg": false,
+            "tile_4_svg_size": 30,
+            "tile_4_heading": "Fourth Tile",
+            "tile_4_subline": "This is the fourth tile with some descriptive text.",
+            "tile_4_button_text": "Learn More",
+            "tile_4_button_link": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_f35cdfd_E4pwWB"
+      ],
+      "settings": {}
+    },
     "hero_slider_ULyNnz": {
       "type": "hero-slider",
       "blocks": {
@@ -293,6 +353,48 @@
         "button_link": ""
       }
     },
+    "two_column_content_JiNqAQ": {
+      "type": "two-column-content",
+      "blocks": {
+        "column_weRkxV": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Business_Suits_0db34f3e-06f8-4913-a25b-1a3a73138999.webp",
+            "product": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "description": "Add your description text here.",
+            "description_animation": "none",
+            "button_label": "Learn More",
+            "button_link": ""
+          }
+        },
+        "column_iD7mJF": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Business_Shirts_9d1fd351-9569-4832-bcfe-85543118d47a.webp",
+            "product": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "description": "Add your description text here.",
+            "description_animation": "none",
+            "button_label": "Learn More",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_weRkxV",
+        "column_iD7mJF"
+      ],
+      "name": "Two Column Content",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "animate_columns": false
+      }
+    },
     "collection_slider_XmLf6t": {
       "type": "collection-slider",
       "name": "Collection Slider",
@@ -350,6 +452,56 @@
         "animate_products": false
       }
     },
+    "variable_column_content_secondary_eRLfeJ": {
+      "type": "variable-column-content-secondary",
+      "blocks": {
+        "column_item_gtWXVr": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Wedding_Test.webp",
+            "image_link": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_Q6TGXb": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/MTM_Test.webp",
+            "image_link": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_gtWXVr",
+        "column_item_Q6TGXb"
+      ],
+      "name": "Variable Column Content Secondary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "2",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "Variable Column Content Secondary",
+        "heading_animation": "none",
+        "text": "Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    },
     "hero_primary_zeaCqL": {
       "type": "hero-primary",
       "name": "Hero Section",
@@ -400,63 +552,15 @@
         "heading": "FROM THE JACKSON JOURNAL",
         "heading_alignment": "center"
       }
-    },
-    "variable_column_content_secondary_eRLfeJ": {
-      "type": "variable-column-content-secondary",
-      "blocks": {
-        "column_item_gtWXVr": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/Wedding_Test.webp",
-            "image_link": "",
-            "heading": "Column Heading",
-            "heading_animation": "none",
-            "text": "Add a brief description for this column item.",
-            "text_animation": "none",
-            "column_link": "",
-            "column_link_text": "Shop Now"
-          }
-        },
-        "column_item_Q6TGXb": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/MTM_Test.webp",
-            "image_link": "",
-            "heading": "Column Heading",
-            "heading_animation": "none",
-            "text": "Add a brief description for this column item.",
-            "text_animation": "none",
-            "column_link": "",
-            "column_link_text": "Shop Now"
-          }
-        }
-      },
-      "block_order": [
-        "column_item_gtWXVr",
-        "column_item_Q6TGXb"
-      ],
-      "name": "Variable Column Content Secondary",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": false,
-        "column_count": "2",
-        "text_alignment": "left",
-        "animate_columns": false,
-        "heading": "Variable Column Content Secondary",
-        "heading_animation": "none",
-        "text": "Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.",
-        "text_animation": "none",
-        "button_label": "Learn More",
-        "button_link": ""
-      }
     }
   },
   "order": [
+    "17603889363e8d8b97",
     "hero_slider_ULyNnz",
     "variable_column_content_secondary_X9KJtx",
     "heading_with_text_9nQj7z",
     "variable_column_content_tertiary_XwmChF",
+    "two_column_content_JiNqAQ",
     "collection_slider_XmLf6t",
     "hero_primary_WLbcQ7",
     "collection_slider_3p3hD9",
