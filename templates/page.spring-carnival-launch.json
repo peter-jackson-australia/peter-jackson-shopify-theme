@@ -9,68 +9,6 @@
  */
 {
   "sections": {
-    "17603889363e8d8b97": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_f35cdfd_E4pwWB": {
-          "type": "ai_gen_block_f35cdfd",
-          "settings": {
-            "text_alignment": "center",
-            "border_radius": 0,
-            "overlay_opacity": 0,
-            "tile_background_color": "#f8f8f8",
-            "heading_color": "#ffffff",
-            "subline_color": "#ffffff",
-            "heading_size": 28,
-            "heading_margin": 15,
-            "subline_size": 16,
-            "subline_margin": 20,
-            "button_text_color": "#ffffff",
-            "button_hover_text_color": "#cccccc",
-            "button_bottom_padding": 20,
-            "tile_1_background_image": "shopify://shop_images/R0015500_copy.jpg",
-            "tile_1_content_position": "bottom",
-            "tile_1_use_svg": true,
-            "tile_1_svg_image": "shopify://shop_images/POLOS.svg",
-            "tile_1_svg_size": 30,
-            "tile_1_heading": "First Tile",
-            "tile_1_subline": "This is the first tile with some descriptive text.",
-            "tile_1_button_text": "Learn More",
-            "tile_1_button_link": "",
-            "tile_2_background_image": "shopify://shop_images/Sports_Jacket.webp",
-            "tile_2_content_position": "bottom",
-            "tile_2_use_svg": true,
-            "tile_2_svg_image": "shopify://shop_images/POLOS.svg",
-            "tile_2_svg_size": 30,
-            "tile_2_heading": "Second Tile",
-            "tile_2_subline": "This is the second tile with some descriptive text.",
-            "tile_2_button_text": "Learn More",
-            "tile_2_button_link": "",
-            "tile_3_background_image": "shopify://shop_images/Sports_Jacket.webp",
-            "tile_3_content_position": "bottom",
-            "tile_3_use_svg": false,
-            "tile_3_svg_size": 30,
-            "tile_3_heading": "Third Tile",
-            "tile_3_subline": "This is the third tile with some descriptive text.",
-            "tile_3_button_text": "Learn More",
-            "tile_3_button_link": "",
-            "tile_4_background_image": "shopify://shop_images/R0015500_copy.jpg",
-            "tile_4_content_position": "bottom",
-            "tile_4_use_svg": false,
-            "tile_4_svg_size": 30,
-            "tile_4_heading": "Fourth Tile",
-            "tile_4_subline": "This is the fourth tile with some descriptive text.",
-            "tile_4_button_text": "Learn More",
-            "tile_4_button_link": ""
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_f35cdfd_E4pwWB"
-      ],
-      "settings": {}
-    },
     "hero_slider_ULyNnz": {
       "type": "hero-slider",
       "blocks": {
@@ -440,6 +378,68 @@
         "mobile_vertical_alignment": "bottom"
       }
     },
+    "17603889363e8d8b97": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_f35cdfd_E4pwWB": {
+          "type": "ai_gen_block_f35cdfd",
+          "settings": {
+            "text_alignment": "center",
+            "border_radius": 0,
+            "overlay_opacity": 0,
+            "tile_background_color": "#f8f8f8",
+            "heading_color": "#ffffff",
+            "subline_color": "#ffffff",
+            "heading_size": 28,
+            "heading_margin": 15,
+            "subline_size": 13,
+            "subline_margin": 20,
+            "button_text_color": "#ffffff",
+            "button_hover_text_color": "#cccccc",
+            "button_bottom_padding": 20,
+            "tile_1_background_image": "shopify://shop_images/R0015500_copy.jpg",
+            "tile_1_content_position": "bottom",
+            "tile_1_use_svg": true,
+            "tile_1_svg_image": "shopify://shop_images/POLOS.svg",
+            "tile_1_svg_size": 30,
+            "tile_1_heading": "First Tile",
+            "tile_1_subline": "This is the first tile with some descriptive text.",
+            "tile_1_button_text": "Learn More",
+            "tile_1_button_link": "",
+            "tile_2_background_image": "shopify://shop_images/Sports_Jacket.webp",
+            "tile_2_content_position": "bottom",
+            "tile_2_use_svg": true,
+            "tile_2_svg_image": "shopify://shop_images/POLOS.svg",
+            "tile_2_svg_size": 30,
+            "tile_2_heading": "Second Tile",
+            "tile_2_subline": "This is the second tile with some descriptive text.",
+            "tile_2_button_text": "Learn More",
+            "tile_2_button_link": "",
+            "tile_3_background_image": "shopify://shop_images/Sports_Jacket.webp",
+            "tile_3_content_position": "bottom",
+            "tile_3_use_svg": false,
+            "tile_3_svg_size": 30,
+            "tile_3_heading": "Third Tile",
+            "tile_3_subline": "This is the third tile with some descriptive text.",
+            "tile_3_button_text": "Learn More",
+            "tile_3_button_link": "",
+            "tile_4_background_image": "shopify://shop_images/R0015500_copy.jpg",
+            "tile_4_content_position": "bottom",
+            "tile_4_use_svg": false,
+            "tile_4_svg_size": 30,
+            "tile_4_heading": "Fourth Tile",
+            "tile_4_subline": "This is the fourth tile with some descriptive text.",
+            "tile_4_button_text": "Learn More",
+            "tile_4_button_link": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_f35cdfd_E4pwWB"
+      ],
+      "settings": {}
+    },
     "collection_slider_3p3hD9": {
       "type": "collection-slider",
       "name": "Collection Slider",
@@ -557,7 +557,6 @@
     }
   },
   "order": [
-    "17603889363e8d8b97",
     "hero_slider_ULyNnz",
     "variable_column_content_secondary_X9KJtx",
     "heading_with_text_9nQj7z",
@@ -565,6 +564,7 @@
     "two_column_content_JiNqAQ",
     "collection_slider_XmLf6t",
     "hero_primary_WLbcQ7",
+    "17603889363e8d8b97",
     "collection_slider_3p3hD9",
     "variable_column_content_secondary_eRLfeJ",
     "hero_primary_zeaCqL",
