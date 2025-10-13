@@ -1,0 +1,528 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero_slider_ULyNnz": {
+      "type": "hero-slider",
+      "blocks": {
+        "slide_JGebxX": {
+          "type": "slide",
+          "settings": {
+            "media_type": "image",
+            "desktop_image": "shopify://shop_images/Winning_Form.webp",
+            "mobile_image": "shopify://shop_images/Winning_Form_Mobile.webp",
+            "heading": "The Season Of Style",
+            "svg_image": "shopify://shop_images/Winning_Form_Desktop_e0623912-2013-4407-8340-e90bd217d0f4.svg",
+            "svg_size": "full",
+            "mobile_svg_image": "shopify://shop_images/S25_HP_Refresh_Spring_935e178e-1110-42e1-a150-c63f9b8e52a3.svg",
+            "heading_level": "h1",
+            "heading_animation": "none",
+            "description": "",
+            "description_animation": "none",
+            "button_label_1": "Shop Spring Carnival Style",
+            "button_link_1": "shopify://collections/new-arrivals",
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_label_3": "",
+            "button_link_3": "",
+            "button_label_4": "",
+            "button_link_4": "",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "stretch",
+            "mobile_horizontal_alignment": "center",
+            "mobile_vertical_alignment": "bottom"
+          }
+        },
+        "slide_ddW7HK": {
+          "type": "slide",
+          "settings": {
+            "media_type": "image",
+            "desktop_image": "shopify://shop_images/Suits_Hero.webp",
+            "mobile_image": "shopify://shop_images/Suits_Hero_Mob_1afba34e-6c4f-485c-bd07-7b428b72aad3.webp",
+            "heading": "Well Suited For Spring",
+            "svg_image": "shopify://shop_images/S25_Homepage_Suits_534467bb-fb4e-4ba3-86e1-8ad0f211cb10.svg",
+            "svg_size": "full",
+            "mobile_svg_image": "shopify://shop_images/S25_Homepage_Suits_Mobile.svg",
+            "heading_level": "h1",
+            "heading_animation": "none",
+            "description": "New Season Tailoring",
+            "description_animation": "none",
+            "button_label_1": "$200 Off All Suits",
+            "button_link_1": "shopify://collections/mens-suits",
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_label_3": "",
+            "button_link_3": "",
+            "button_label_4": "",
+            "button_link_4": "",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "stretch",
+            "mobile_horizontal_alignment": "center",
+            "mobile_vertical_alignment": "bottom"
+          }
+        },
+        "slide_P9nnNj": {
+          "type": "slide",
+          "disabled": true,
+          "settings": {
+            "media_type": "image",
+            "desktop_image": "shopify://shop_images/EOS_Sale_Desktop_Fresh.webp",
+            "mobile_image": "shopify://shop_images/EOS_Sale_Mobile.webp",
+            "heading": "End Of Season Sale",
+            "svg_image": "shopify://shop_images/EOS_Sale.svg",
+            "svg_size": "full",
+            "mobile_svg_image": "shopify://shop_images/EOS_Sale_Desktop.svg",
+            "heading_level": "h1",
+            "heading_animation": "none",
+            "description": "Up to 40% Off Select Styles / Final Days",
+            "description_animation": "none",
+            "button_label_1": "Shop Sale",
+            "button_link_1": "shopify://collections/sale",
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_label_3": "",
+            "button_link_3": "",
+            "button_label_4": "",
+            "button_link_4": "",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "stretch",
+            "mobile_horizontal_alignment": "center",
+            "mobile_vertical_alignment": "bottom"
+          }
+        }
+      },
+      "block_order": [
+        "slide_JGebxX",
+        "slide_ddW7HK",
+        "slide_P9nnNj"
+      ],
+      "name": "Hero Slider",
+      "settings": {
+        "autoplay": false,
+        "slide_interval": 15
+      }
+    },
+    "heading_with_text_zDqYQf": {
+      "type": "heading-with-text",
+      "disabled": true,
+      "name": "Heading with Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "leading_text": "SINCE 1948",
+        "leading_text_animation": "none",
+        "heading": "TAILORED FOR A LIFE WELL LIVED",
+        "heading_style": "normal",
+        "heading_animation": "none",
+        "content": "",
+        "content_animation": "none",
+        "alignment": "center"
+      }
+    },
+    "variable_column_content_secondary_X9KJtx": {
+      "type": "variable-column-content-secondary",
+      "blocks": {
+        "column_item_MXYNUN": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Spring_Suit_Hero_Desktop_copy.webp",
+            "image_link": "",
+            "heading": "Spring Tailoring",
+            "heading_animation": "none",
+            "text": "Fresh hues meet airy premium textiles, tailored in soft Neapolitan shapes designed for ease",
+            "text_animation": "none",
+            "column_link": "shopify://collections/mens-suits",
+            "column_link_text": "Shop Suits"
+          }
+        },
+        "column_item_tJc4WM": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Spring_Casual_Hero_Desktop_copy.webp",
+            "image_link": "",
+            "heading": "Casual Shirts",
+            "heading_animation": "none",
+            "text": "Denim, linen and fine cotton shirts lead the spring style refresh",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_TGjtNg": {
+          "type": "column_item",
+          "settings": {
+            "image_link": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_DXeb3W": {
+          "type": "column_item",
+          "settings": {
+            "image_link": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_MXYNUN",
+        "column_item_tJc4WM",
+        "column_item_TGjtNg",
+        "column_item_DXeb3W"
+      ],
+      "disabled": true,
+      "name": "Variable Column Content Secondary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "3",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "",
+        "heading_animation": "none",
+        "text": "",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    },
+    "heading_with_text_9nQj7z": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "leading_text": "SPRING CARNIVAL",
+        "leading_text_animation": "none",
+        "heading": "RACETRACK READY",
+        "heading_style": "normal",
+        "heading_animation": "none",
+        "content": "<p>Four race days, four distinct moods. Whether it’s the confident edge of the Cox Plate or the refined ease of Oaks Day, this is tailoring built for the fast track.</p>",
+        "content_animation": "none",
+        "alignment": "left"
+      }
+    },
+    "variable_column_content_tertiary_XwmChF": {
+      "type": "variable-column-content-tertiary",
+      "blocks": {
+        "column_item_TdMYVf": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Stakes_Day.webp",
+            "image_link": "",
+            "heading": "The Contender",
+            "heading_animation": "none",
+            "text": "Cox Plate",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "shopify://collections/cox-plate",
+            "column_link_text": ""
+          }
+        },
+        "column_item_EdH7tR": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Derby_Day_0fcd025b-c8da-4c6a-bcea-167a0f52697a.webp",
+            "image_link": "",
+            "heading": "The Traditionalist",
+            "heading_animation": "none",
+            "text": "Derby Day",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "shopify://collections/derby-day",
+            "column_link_text": ""
+          }
+        },
+        "column_item_zER8gb": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Melb_Cup.webp",
+            "image_link": "",
+            "heading": "The Headliner",
+            "heading_animation": "none",
+            "text": "Melbourne Cup",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "shopify://collections/melbourne-cup",
+            "column_link_text": ""
+          }
+        },
+        "column_item_tXtkqD": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Oaks_Day.webp",
+            "image_link": "",
+            "heading": "The Modernist",
+            "heading_animation": "none",
+            "text": "Oaks Day",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "shopify://collections/oaks-day",
+            "column_link_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_item_TdMYVf",
+        "column_item_EdH7tR",
+        "column_item_zER8gb",
+        "column_item_tXtkqD"
+      ],
+      "name": "Variable Column Content Tertiary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "4",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "",
+        "heading_animation": "none",
+        "text": "",
+        "text_animation": "none",
+        "button_label": "",
+        "button_link": ""
+      }
+    },
+    "two_column_content_3yctUz": {
+      "type": "two-column-content",
+      "blocks": {
+        "column_PqiLQn": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Business_Suits_0db34f3e-06f8-4913-a25b-1a3a73138999.webp",
+            "product": "",
+            "heading": "Business Suits",
+            "heading_animation": "none",
+            "description": "Neapolitan tailoring cut from lightweight European textiles for comfort and ease in warmer months.",
+            "description_animation": "none",
+            "button_label": "Two for $895",
+            "button_link": "shopify://collections/business-suits"
+          }
+        },
+        "column_9wEW7B": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Business_Shirts_9d1fd351-9569-4832-bcfe-85543118d47a.webp",
+            "product": "",
+            "heading": "Business Shirts",
+            "heading_animation": "none",
+            "description": "Premium cotton, sharp cutaway collars, and new season colours and patterns — your work wardrobe, refreshed.",
+            "description_animation": "none",
+            "button_label": "Three for $259",
+            "button_link": "shopify://collections/business-shirts"
+          }
+        }
+      },
+      "block_order": [
+        "column_PqiLQn",
+        "column_9wEW7B"
+      ],
+      "name": "Two Column Content",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "animate_columns": false
+      }
+    },
+    "collection_slider_XmLf6t": {
+      "type": "collection-slider",
+      "name": "Collection Slider",
+      "settings": {
+        "heading": "The Season's Best",
+        "heading_animation": "none",
+        "description": "The styles capturing attention and setting the style pace this spring.",
+        "description_animation": "none",
+        "collection": "spring-25",
+        "button_label": "Shop Bestsellers",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
+    "shop_the_look_global_NN6BDN": {
+      "type": "shop-the-look-global",
+      "disabled": true,
+      "name": "Shop the Look Global",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": true,
+        "heading": "The Look Of The Season",
+        "heading_animation": "animate-paragraph-slide-up-scroll",
+        "featured_image": "shopify://shop_images/MVP_Linen_ab36d975-67d4-4c58-9fce-ae7bc7396acd.webp",
+        "product1": "luzio-canvas-taupe-jacket",
+        "product2": "sienna-canvas-taupe-trousers",
+        "product3": "bottinelli-italian-tie-green-with-vintage-paisley-print"
+      }
+    },
+    "hero_primary_WLbcQ7": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/SS25_Wedding_1.webp",
+        "mobile_image": "shopify://shop_images/Wedding_Blog_Featured.webp",
+        "heading": "",
+        "svg_image": "shopify://shop_images/MOD_HP_Heading_a2545755-65f2-4fbe-9d1e-cfd88fdde7ed.svg",
+        "svg_size": "large",
+        "mobile_svg_image": "shopify://shop_images/MOD_HP_Heading_a2545755-65f2-4fbe-9d1e-cfd88fdde7ed.svg",
+        "heading_level": "h1",
+        "heading_animation": "none",
+        "description": "For the ceremony, the celebration, the forever.",
+        "description_animation": "none",
+        "button_label_1": "Shop Weddings",
+        "button_link_1": "shopify://blogs/the-jackson-journal/moments-of-distinction-the-wedding-edit",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "middle",
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "bottom"
+      }
+    },
+    "collection_slider_3p3hD9": {
+      "type": "collection-slider",
+      "name": "Collection Slider",
+      "settings": {
+        "heading": "Wedding & Formal Style",
+        "heading_animation": "none",
+        "description": "Premium cotton, sharp cutaway collars, and new season colours and patterns — your work wardrobe, refreshed.",
+        "description_animation": "none",
+        "collection": "tuxedos-and-formal-jackets",
+        "button_label": "Shop Now",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
+    "hero_primary_kTJdhq": {
+      "type": "hero-primary",
+      "disabled": true,
+      "name": "Hero Section",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/EOS_Sale_Desktop.webp",
+        "mobile_image": "shopify://shop_images/EOS_Sale_Mobile.webp",
+        "heading": "",
+        "svg_image": "shopify://shop_images/EOS_Sale_Desktop.svg",
+        "svg_size": "medium",
+        "mobile_svg_image": "shopify://shop_images/EOS_Sale_Desktop.svg",
+        "heading_level": "h1",
+        "heading_animation": "none",
+        "description": "Up to 40% Off Select Styles / Last Days",
+        "description_animation": "none",
+        "button_label_1": "Shop Sale",
+        "button_link_1": "shopify://collections/sale",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
+        "horizontal_alignment": "right",
+        "vertical_alignment": "middle",
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "bottom"
+      }
+    },
+    "hero_primary_zeaCqL": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/Spring_After_Dark_Desktop.webp",
+        "mobile_image": "shopify://shop_images/Spring_After_Dark_Mobile.webp",
+        "heading": "",
+        "svg_image": "shopify://shop_images/S25_Homepage_After_Dark_Desktop_85061869-99a9-4ef7-a2ec-1257d3a4698d.svg",
+        "svg_size": "full",
+        "mobile_svg_image": "shopify://shop_images/S25_Homepage_After_Dark_Mobile.svg",
+        "heading_level": "h1",
+        "heading_animation": "none",
+        "description": "THE FORMAL & EVENTWEAR EDIT",
+        "description_animation": "none",
+        "button_label_1": "Shop Now",
+        "button_link_1": "shopify://collections/tuxedos-and-formal-jackets",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "stretch",
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "bottom"
+      }
+    },
+    "spacer_yr6m7M": {
+      "type": "spacer",
+      "name": "Spacer",
+      "settings": {
+        "spacer_height": "var(--space-s)"
+      }
+    },
+    "spacer_wCQ8WH": {
+      "type": "spacer",
+      "name": "Spacer",
+      "settings": {
+        "spacer_height": "var(--space-s)"
+      }
+    },
+    "featured_article_r6pY9T": {
+      "type": "featured-article",
+      "name": "Featured Articles",
+      "settings": {
+        "heading": "FROM THE JACKSON JOURNAL",
+        "heading_alignment": "center"
+      }
+    }
+  },
+  "order": [
+    "hero_slider_ULyNnz",
+    "heading_with_text_zDqYQf",
+    "variable_column_content_secondary_X9KJtx",
+    "heading_with_text_9nQj7z",
+    "variable_column_content_tertiary_XwmChF",
+    "two_column_content_3yctUz",
+    "collection_slider_XmLf6t",
+    "shop_the_look_global_NN6BDN",
+    "hero_primary_WLbcQ7",
+    "collection_slider_3p3hD9",
+    "hero_primary_kTJdhq",
+    "hero_primary_zeaCqL",
+    "spacer_yr6m7M",
+    "spacer_wCQ8WH",
+    "featured_article_r6pY9T"
+  ]
+}
