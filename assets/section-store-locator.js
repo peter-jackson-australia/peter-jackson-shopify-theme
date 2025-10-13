@@ -18,7 +18,6 @@ class StoreLocator {
     this.sidebar = document.querySelector(".store-locator__sidebar");
     this.fixedHeader = document.querySelector(".store-locator__fixed-header");
     this.searchTimeout = null;
-    this.scrollTimeout = null;
     this.postcodeCache = {};
     this.noResultsContainer = null;
     this.stateBounds = {
@@ -91,6 +90,10 @@ class StoreLocator {
 
     this.stateSelect.addEventListener("change", () => {
       this.selectedState = this.stateSelect.value;
+      this.selectedStatus = "";
+      this.selectedService = "";
+      this.statusSelect.value = "";
+      this.serviceSelect.value = "";
       this.filterLocations();
       this.zoomToState(this.selectedState);
     });
@@ -105,10 +108,6 @@ class StoreLocator {
       this.filterLocations();
     });
 
-    this.sidebar.addEventListener("scroll", () => {
-      this.handleScroll();
-    });
-
     document.addEventListener("click", (e) => {
       if (!e.target.closest("#searchInput") && !e.target.closest("#autocomplete")) {
         this.hideAutocomplete();
@@ -116,20 +115,6 @@ class StoreLocator {
     });
 
     this.waitForLeafletAndInit();
-  }
-
-  handleScroll() {
-    if (this.sidebar.scrollTop > 0) {
-      this.fixedHeader.classList.add("store-locator__fixed-header--visible");
-
-      clearTimeout(this.scrollTimeout);
-      this.scrollTimeout = setTimeout(() => {
-        this.fixedHeader.classList.remove("store-locator__fixed-header--visible");
-      }, 2000);
-    } else {
-      this.fixedHeader.classList.remove("store-locator__fixed-header--visible");
-      clearTimeout(this.scrollTimeout);
-    }
   }
 
   waitForLeafletAndInit() {
@@ -628,8 +613,6 @@ class StoreLocator {
 
     if (visibleCount === 0 && (this.selectedStatus || this.selectedService)) {
       this.showNoResultsMessage();
-      this.fixedHeader.classList.add("store-locator__fixed-header--visible");
-      clearTimeout(this.scrollTimeout);
     } else {
       this.hideNoResultsMessage();
     }
