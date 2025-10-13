@@ -94,7 +94,8 @@
                             {{- product_price | money_with_currency -}}
                           </span>
                           <span class="recommended-products__product-price--compare">
-                            {{- compare_at_price | money_with_currency -}}
+                            Was
+                            {{ compare_at_price | money_with_currency -}}
                           </span>
                         {% else %}
                           {{ product_price | money_with_currency }}

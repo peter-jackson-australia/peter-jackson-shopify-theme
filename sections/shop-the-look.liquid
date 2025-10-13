@@ -57,7 +57,8 @@
                         {% if compare_at_price > item_price %}
                           <span class="shop-the-look__product-price--sale">{{ item_price | money_with_currency }}</span>
                           <span class="shop-the-look__product-price--compare">
-                            {{- compare_at_price | money_with_currency -}}
+                            Was
+                            {{ compare_at_price | money_with_currency -}}
                           </span>
                         {% else %}
                           {{ item_price | money_with_currency }}
@@ -109,7 +110,8 @@
                     {{- product_price | money_with_currency -}}
                   </span>
                   <span class="shop-the-look__product-price--compare">
-                    {{- product.compare_at_price | money_with_currency -}}
+                    Was
+                    {{ product.compare_at_price | money_with_currency -}}
                   </span>
                 {% else %}
                   {{ product_price | money_with_currency }}

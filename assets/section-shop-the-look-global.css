@@ -85,9 +85,8 @@
 }
 
 .shop-the-look-global__product-price--compare {
-  color: var(--neutral-600);
+  color: var(--neutral-400);
   margin-left: var(--space-2xs);
-  text-decoration: line-through;
 }
 
 .shop-the-look-global__single-product {

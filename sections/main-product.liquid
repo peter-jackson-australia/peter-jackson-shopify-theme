@@ -383,7 +383,7 @@
     <div class="sticky-cart-bar__price-container">
       {% if current_variant.compare_at_price > current_variant.price %}
         <span class="sticky-cart-bar__compare-price body js--sticky-compare-price">
-          {{ current_variant.compare_at_price | money_with_currency }}
+          Was {{ current_variant.compare_at_price | money_with_currency }}
         </span>
       {% endif %}
       <span class="sticky-cart-bar__price body js--sticky-price">
@@ -398,7 +398,7 @@
       <div class="sticky-cart-bar__mobile-price-container">
         {% if current_variant.compare_at_price > current_variant.price %}
           <span class="sticky-cart-bar__mobile-compare-price body js--sticky-mobile-compare-price">
-            {{ current_variant.compare_at_price | money_with_currency }}
+            Was {{ current_variant.compare_at_price | money_with_currency }}
           </span>
         {% endif %}
         <span class="sticky-cart-bar__mobile-price body js--sticky-mobile-price">
