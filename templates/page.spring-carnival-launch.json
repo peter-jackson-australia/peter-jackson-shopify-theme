@@ -296,23 +296,11 @@
     "two_column_content_3yctUz": {
       "type": "two-column-content",
       "blocks": {
-        "column_PqiLQn": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/Business_Suits_0db34f3e-06f8-4913-a25b-1a3a73138999.webp",
-            "product": "",
-            "heading": "Business Suits",
-            "heading_animation": "none",
-            "description": "Neapolitan tailoring cut from lightweight European textiles for comfort and ease in warmer months.",
-            "description_animation": "none",
-            "button_label": "Two for $895",
-            "button_link": "shopify://collections/business-suits"
-          }
-        },
         "column_9wEW7B": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/Business_Shirts_9d1fd351-9569-4832-bcfe-85543118d47a.webp",
+            "image": "shopify://shop_images/Wedding_Test.webp",
+            "image_mobile": "shopify://shop_images/Wedding_Test.webp",
             "product": "",
             "heading": "Business Shirts",
             "heading_animation": "none",
@@ -321,11 +309,24 @@
             "button_label": "Three for $259",
             "button_link": "shopify://collections/business-shirts"
           }
+        },
+        "column_PqiLQn": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/MTM_Test.webp",
+            "product": "",
+            "heading": "Business Suits",
+            "heading_animation": "none",
+            "description": "Neapolitan tailoring cut from lightweight European textiles for comfort and ease in warmer months.",
+            "description_animation": "none",
+            "button_label": "Two for $895",
+            "button_link": "shopify://collections/business-suits"
+          }
         }
       },
       "block_order": [
-        "column_PqiLQn",
-        "column_9wEW7B"
+        "column_9wEW7B",
+        "column_PqiLQn"
       ],
       "name": "Two Column Content",
       "settings": {
@@ -333,33 +334,6 @@
         "show_top_border": false,
         "show_bottom_border": true,
         "animate_columns": false
-      }
-    },
-    "hero_primary_DztL84": {
-      "type": "hero-primary",
-      "name": "Hero Section",
-      "settings": {
-        "media_type": "image",
-        "desktop_image": "shopify://shop_images/Weddings.webp",
-        "heading": "Welcome to Our Store",
-        "svg_image": "shopify://shop_images/Winning_Form_Desktop_e0623912-2013-4407-8340-e90bd217d0f4.svg",
-        "svg_size": "full",
-        "heading_level": "h1",
-        "heading_animation": "none",
-        "description": "Discover our latest collection",
-        "description_animation": "none",
-        "button_label_1": "Shop Now",
-        "button_link_1": "shopify://collections/black-tie-wedding-and-attire",
-        "button_label_2": "Made To Measure",
-        "button_link_2": "shopify://pages/canberra-centre",
-        "button_label_3": "",
-        "button_link_3": "",
-        "button_label_4": "",
-        "button_link_4": "",
-        "horizontal_alignment": "center",
-        "vertical_alignment": "stretch",
-        "mobile_horizontal_alignment": "center",
-        "mobile_vertical_alignment": "bottom"
       }
     },
     "collection_slider_XmLf6t": {
@@ -477,7 +451,6 @@
     "heading_with_text_9nQj7z",
     "variable_column_content_tertiary_XwmChF",
     "two_column_content_3yctUz",
-    "hero_primary_DztL84",
     "collection_slider_XmLf6t",
     "hero_primary_WLbcQ7",
     "collection_slider_3p3hD9",
