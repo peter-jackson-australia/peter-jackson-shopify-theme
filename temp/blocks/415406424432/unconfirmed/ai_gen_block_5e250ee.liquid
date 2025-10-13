@@ -1,6 +1,737 @@
+{% doc %}
+  @prompt
+    A responsive grid of 4 tiles. 2 on top. 2 below. padded 100px on outer edges. 10px pixel padding on inner edges. Stacks left to right on mobile. I want a heading, subline of copy and a CTA button.
+    
+    Use website styling., i need the modules to be perfect squares and I want there to be a background image.
+    
+    I want the option to make the text sit in the middle, bottom or top with 20px padding on each side
+    
+    I also want the option to be able to have an SVG image sitting in place of the heading also with a slider that gives me the option to choose the size., I want to be able to upload an SVG and not use code for that. 
+    
+    Text is currently not centered.
+    
+    Still not matching the site CSS H rules
+    
+    CTA button to match site CSS
+    
+    CTA button to be sitting under heading and subline, Button styling:
+    
+      align-items: center;
+      color: var(--neutral-950);
+      display: inline-flex;
+      gap: var(--space-xs);
+      text-decoration: none;, I dont want a background on the button and I want an arrow next to the text, button to match alignment of heading and sub line
+    
+    Not capitalised, the SVG div needs to span whole module width with 20px padding either side
+    
+    The slider should be based on percentage ie: percentage of width of the module
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-tile-grid-{{ ai_gen_id }} {
+    padding: 100px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .ai-tile-grid-container-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+    max-width: 100%;
+  }
+
+  .ai-tile-{{ ai_gen_id }} {
+    aspect-ratio: 1;
+    background-color: {{ block.settings.tile_background_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .ai-tile-content-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    width: 100%;
+    text-align: {{ block.settings.text_alignment }};
+  }
+
+  .ai-tile-content-top-{{ ai_gen_id }} {
+    justify-content: flex-start;
+  }
+
+  .ai-tile-content-middle-{{ ai_gen_id }} {
+    justify-content: center;
+  }
+
+  .ai-tile-content-bottom-{{ ai_gen_id }} {
+    justify-content: flex-end;
+  }
+
+  .ai-tile-overlay-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, {{ block.settings.overlay_opacity | divided_by: 100.0 }});
+    z-index: 1;
+  }
+
+  .ai-tile-svg-{{ ai_gen_id }} {
+    margin-bottom: {{ block.settings.heading_margin }}px;
+    flex-shrink: 0;
+    display: flex;
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+
+  .ai-tile-svg-center-{{ ai_gen_id }} {
+    justify-content: center;
+  }
+
+  .ai-tile-svg-left-{{ ai_gen_id }} {
+    justify-content: flex-start;
+  }
+
+  .ai-tile-svg-right-{{ ai_gen_id }} {
+    justify-content: flex-end;
+  }
+
+  .ai-tile-svg-{{ ai_gen_id }} img {
+    width: var(--ai-svg-size-{{ ai_gen_id }});
+    height: auto;
+    object-fit: contain;
+    max-width: 100%;
+  }
+
+  .ai-tile-heading-{{ ai_gen_id }} {
+    color: {{ block.settings.heading_color }};
+    font-size: {{ block.settings.heading_size }}px;
+    font-weight: 700;
+    margin: 0 0 {{ block.settings.heading_margin }}px 0;
+    line-height: 1.2;
+    flex-shrink: 0;
+    font-family: inherit;
+    letter-spacing: -0.02em;
+  }
+
+  .ai-tile-subline-{{ ai_gen_id }} {
+    color: {{ block.settings.subline_color }};
+    font-size: {{ block.settings.subline_size }}px;
+    margin: 0 0 {{ block.settings.subline_margin }}px 0;
+    line-height: 1.4;
+    font-family: inherit;
+  }
+
+  .ai-tile-button-wrapper-{{ ai_gen_id }} {
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  .ai-tile-button-wrapper-left-{{ ai_gen_id }} {
+    justify-content: flex-start;
+  }
+
+  .ai-tile-button-wrapper-center-{{ ai_gen_id }} {
+    justify-content: center;
+  }
+
+  .ai-tile-button-wrapper-right-{{ ai_gen_id }} {
+    justify-content: flex-end;
+  }
+
+  .ai-tile-button-{{ ai_gen_id }} {
+    align-items: center;
+    color: {{ block.settings.button_text_color }};
+    display: inline-flex;
+    gap: 8px;
+    text-decoration: none;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    font-family: inherit;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+
+  .ai-tile-button-{{ ai_gen_id }}:hover {
+    color: {{ block.settings.button_hover_text_color }};
+  }
+
+  .ai-tile-button-{{ ai_gen_id }}:hover .ai-tile-button-arrow-{{ ai_gen_id }} {
+    transform: translateX(4px);
+  }
+
+  .ai-tile-button-{{ ai_gen_id }}:focus {
+    outline: 2px solid {{ block.settings.button_text_color }};
+    outline-offset: 2px;
+  }
+
+  .ai-tile-button-arrow-{{ ai_gen_id }} {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-tile-grid-{{ ai_gen_id }} {
+      padding: 50px 20px;
+    }
+
+    .ai-tile-grid-container-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .ai-tile-heading-{{ ai_gen_id }} {
+      font-size: {{ block.settings.heading_size | times: 0.8 }}px;
+    }
+
+    .ai-tile-subline-{{ ai_gen_id }} {
+      font-size: {{ block.settings.subline_size | times: 0.9 }}px;
+    }
+
+    .ai-tile-button-{{ ai_gen_id }} {
+      font-size: 12px;
+    }
+
+    .ai-tile-button-arrow-{{ ai_gen_id }} {
+      width: 14px;
+      height: 14px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-tile-grid-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-tile-grid-container-{{ ai_gen_id }}">
+    {% for i in (1..4) %}
+      {% liquid
+        assign heading_key = 'tile_' | append: i | append: '_heading'
+        assign subline_key = 'tile_' | append: i | append: '_subline'
+        assign button_text_key = 'tile_' | append: i | append: '_button_text'
+        assign button_link_key = 'tile_' | append: i | append: '_button_link'
+        assign background_image_key = 'tile_' | append: i | append: '_background_image'
+        assign content_position_key = 'tile_' | append: i | append: '_content_position'
+        assign use_svg_key = 'tile_' | append: i | append: '_use_svg'
+        assign svg_image_key = 'tile_' | append: i | append: '_svg_image'
+        assign svg_size_key = 'tile_' | append: i | append: '_svg_size'
+        
+        assign heading = block.settings[heading_key]
+        assign subline = block.settings[subline_key]
+        assign button_text = block.settings[button_text_key]
+        assign button_link = block.settings[button_link_key]
+        assign background_image = block.settings[background_image_key]
+        assign content_position = block.settings[content_position_key]
+        assign use_svg = block.settings[use_svg_key]
+        assign svg_image = block.settings[svg_image_key]
+        assign svg_size = block.settings[svg_size_key]
+
+        assign svg_alignment_class = 'ai-tile-svg-' | append: block.settings.text_alignment | append: '-' | append: ai_gen_id
+        assign button_alignment_class = 'ai-tile-button-wrapper-' | append: block.settings.text_alignment | append: '-' | append: ai_gen_id
+      %}
+      
+      <div 
+        class="ai-tile-{{ ai_gen_id }}"
+        style="
+          {% if background_image %}background-image: url('{{ background_image | image_url: width: 800 }}');{% endif %}
+          --ai-svg-size-{{ ai_gen_id }}: {{ svg_size }}%;
+        "
+      >
+        {% if background_image %}
+          <div class="ai-tile-overlay-{{ ai_gen_id }}"></div>
+        {% endif %}
+        
+        <div class="ai-tile-content-{{ ai_gen_id }} ai-tile-content-{{ content_position }}-{{ ai_gen_id }}">
+          {% if use_svg and svg_image != blank %}
+            <div class="ai-tile-svg-{{ ai_gen_id }} {{ svg_alignment_class }}">
+              <img 
+                src="{{ svg_image | image_url }}" 
+                alt="{{ svg_image.alt | escape }}"
+                loading="lazy"
+              >
+            </div>
+          {% elsif heading != blank %}
+            <h3 class="ai-tile-heading-{{ ai_gen_id }}">{{ heading }}</h3>
+          {% endif %}
+          
+          {% if subline != blank %}
+            <p class="ai-tile-subline-{{ ai_gen_id }}">{{ subline }}</p>
+          {% endif %}
+          
+          {% if button_text != blank %}
+            <div class="ai-tile-button-wrapper-{{ ai_gen_id }} {{ button_alignment_class }}">
+              {% if button_link != blank %}
+                <a href="{{ button_link }}" class="ai-tile-button-{{ ai_gen_id }}">
+                  <span>{{ button_text }}</span>
+                  <svg class="ai-tile-button-arrow-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                  </svg>
+                </a>
+              {% else %}
+                <button class="ai-tile-button-{{ ai_gen_id }}" type="button">
+                  <span>{{ button_text }}</span>
+                  <svg class="ai-tile-button-arrow-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                  </svg>
+                </button>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Tile grid",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "label": "Background overlay opacity",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "tile_background_color",
+      "label": "Tile background",
+      "default": "#f8f8f8"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "subline_color",
+      "label": "Subline color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "heading_margin",
+      "min": 5,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "label": "Heading bottom margin",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "subline_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Subline size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "subline_margin",
+      "min": 10,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "label": "Subline bottom margin",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Button style"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Hover text color",
+      "default": "#cccccc"
+    },
+    {
+      "type": "header",
+      "content": "Tile 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "tile_1_background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "select",
+      "id": "tile_1_content_position",
+      "label": "Content position",
+      "options": [
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "middle",
+          "label": "Middle"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        }
+      ],
+      "default": "middle"
+    },
+    {
+      "type": "checkbox",
+      "id": "tile_1_use_svg",
+      "label": "Use SVG instead of heading",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "tile_1_svg_image",
+      "label": "SVG image"
+    },
+    {
+      "type": "range",
+      "id": "tile_1_svg_size",
+      "min": 10,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "label": "SVG size",
+      "default": 30
+    },
+    {
+      "type": "text",
+      "id": "tile_1_heading",
+      "label": "Heading",
+      "default": "First Tile"
+    },
+    {
+      "type": "textarea",
+      "id": "tile_1_subline",
+      "label": "Subline",
+      "default": "This is the first tile with some descriptive text."
+    },
+    {
+      "type": "text",
+      "id": "tile_1_button_text",
+      "label": "Button text",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "tile_1_button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Tile 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "tile_2_background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "select",
+      "id": "tile_2_content_position",
+      "label": "Content position",
+      "options": [
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "middle",
+          "label": "Middle"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        }
+      ],
+      "default": "middle"
+    },
+    {
+      "type": "checkbox",
+      "id": "tile_2_use_svg",
+      "label": "Use SVG instead of heading",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "tile_2_svg_image",
+      "label": "SVG image"
+    },
+    {
+      "type": "range",
+      "id": "tile_2_svg_size",
+      "min": 10,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "label": "SVG size",
+      "default": 30
+    },
+    {
+      "type": "text",
+      "id": "tile_2_heading",
+      "label": "Heading",
+      "default": "Second Tile"
+    },
+    {
+      "type": "textarea",
+      "id": "tile_2_subline",
+      "label": "Subline",
+      "default": "This is the second tile with some descriptive text."
+    },
+    {
+      "type": "text",
+      "id": "tile_2_button_text",
+      "label": "Button text",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "tile_2_button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Tile 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "tile_3_background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "select",
+      "id": "tile_3_content_position",
+      "label": "Content position",
+      "options": [
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "middle",
+          "label": "Middle"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        }
+      ],
+      "default": "middle"
+    },
+    {
+      "type": "checkbox",
+      "id": "tile_3_use_svg",
+      "label": "Use SVG instead of heading",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "tile_3_svg_image",
+      "label": "SVG image"
+    },
+    {
+      "type": "range",
+      "id": "tile_3_svg_size",
+      "min": 10,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "label": "SVG size",
+      "default": 30
+    },
+    {
+      "type": "text",
+      "id": "tile_3_heading",
+      "label": "Heading",
+      "default": "Third Tile"
+    },
+    {
+      "type": "textarea",
+      "id": "tile_3_subline",
+      "label": "Subline",
+      "default": "This is the third tile with some descriptive text."
+    },
+    {
+      "type": "text",
+      "id": "tile_3_button_text",
+      "label": "Button text",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "tile_3_button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Tile 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "tile_4_background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "select",
+      "id": "tile_4_content_position",
+      "label": "Content position",
+      "options": [
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "middle",
+          "label": "Middle"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        }
+      ],
+      "default": "middle"
+    },
+    {
+      "type": "checkbox",
+      "id": "tile_4_use_svg",
+      "label": "Use SVG instead of heading",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "tile_4_svg_image",
+      "label": "SVG image"
+    },
+    {
+      "type": "range",
+      "id": "tile_4_svg_size",
+      "min": 10,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "label": "SVG size",
+      "default": 30
+    },
+    {
+      "type": "text",
+      "id": "tile_4_heading",
+      "label": "Heading",
+      "default": "Fourth Tile"
+    },
+    {
+      "type": "textarea",
+      "id": "tile_4_subline",
+      "label": "Subline",
+      "default": "This is the fourth tile with some descriptive text."
+    },
+    {
+      "type": "text",
+      "id": "tile_4_button_text",
+      "label": "Button text",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "tile_4_button_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tile grid"
+    }
+  ]
+}
 {% endschema %}
