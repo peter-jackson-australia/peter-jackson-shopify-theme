@@ -293,46 +293,31 @@
         "button_link": ""
       }
     },
-    "two_column_content_JiNqAQ": {
-      "type": "two-column-content",
-      "blocks": {
-        "column_weRkxV": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/Business_Suits_0db34f3e-06f8-4913-a25b-1a3a73138999.webp",
-            "product": "",
-            "heading": "Column Heading",
-            "heading_animation": "none",
-            "description": "Add your description text here.",
-            "description_animation": "none",
-            "button_label": "Learn More",
-            "button_link": ""
-          }
-        },
-        "column_iD7mJF": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/Business_Shirts_9d1fd351-9569-4832-bcfe-85543118d47a.webp",
-            "product": "",
-            "heading": "Column Heading",
-            "heading_animation": "none",
-            "description": "Add your description text here.",
-            "description_animation": "none",
-            "button_label": "Learn More",
-            "button_link": ""
-          }
-        }
-      },
-      "block_order": [
-        "column_weRkxV",
-        "column_iD7mJF"
-      ],
-      "name": "Two Column Content",
+    "hero_primary_NeKfMz": {
+      "type": "hero-primary",
+      "name": "Hero Section",
       "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": true,
-        "animate_columns": false
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/Business_Suits_b4de4b15-ba94-45d6-aae2-3ac4b946a3c7.webp",
+        "heading": "Business Tailoring",
+        "svg_image": "shopify://shop_images/Refined_Redefined.svg",
+        "svg_size": "small",
+        "heading_level": "h1",
+        "heading_animation": "none",
+        "description": "Business tailoring takes a new direction this season,<br>where tradition meets modern edge.",
+        "description_animation": "none",
+        "button_label_1": "Two for $895",
+        "button_link_1": "shopify://collections/mens-suits",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
+        "horizontal_alignment": "left",
+        "vertical_alignment": "middle",
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "middle"
       }
     },
     "collection_slider_XmLf6t": {
@@ -563,7 +548,7 @@
     "variable_column_content_secondary_X9KJtx",
     "heading_with_text_9nQj7z",
     "variable_column_content_tertiary_XwmChF",
-    "two_column_content_JiNqAQ",
+    "hero_primary_NeKfMz",
     "collection_slider_XmLf6t",
     "17603889363e8d8b97",
     "hero_primary_WLbcQ7",
