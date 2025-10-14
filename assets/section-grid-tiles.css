@@ -1,6 +1,5 @@
 .grid-tiles {
-  padding-bottom: var(--space-2xl);
-  padding-top: var(--space-2xl);
+  padding: var(--space-2xl);
   width: 100%;
 }
 
@@ -39,6 +38,9 @@
 }
 
 .grid-tiles__tile {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   color: var(--neutral-950);
   cursor: pointer;
   display: flex;
@@ -47,11 +49,6 @@
   min-height: 150px;
   padding: var(--space-m);
   text-decoration: none;
-}
-
-.grid-tiles__tile:hover {
-  background-color: var(--white);
-  border-color: var(--neutral-200);
 }
 
 .grid-tiles__tile-header {
@@ -66,8 +63,7 @@
 
 @media screen and (max-width: 768px) {
   .grid-tiles {
-    padding-bottom: var(--space-l);
-    padding-top: var(--space-l);
+    padding: var(--space-l);
   }
 
   .grid-tiles__grid {
