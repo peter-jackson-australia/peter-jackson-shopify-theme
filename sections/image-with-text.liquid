@@ -52,7 +52,7 @@
             {% endif %}
             {{
               first_image
-              | image_url: width: 600
+              | image_url: width: 1440
               | image_tag: class: 'image-with-text__image', alt: first_image.alt
               | default: heading,
                 loading: 'lazy',
@@ -70,7 +70,7 @@
           <div class="image-with-text__image-container image-with-text__image-container--second">
             {{
               second_image
-              | image_url: width: 600
+              | image_url: width: 1440
               | image_tag: class: 'image-with-text__image', alt: second_image.alt
               | default: heading,
                 loading: 'lazy',
@@ -83,7 +83,7 @@
       </div>
     </figure>
 
-    <div class="image-with-text__content" style="{% if full_width %} padding-left: 0px; {% endif %}">
+    <div class="image-with-text__content">
       {% if heading != blank %}
         <h2 class="image-with-text__title heading--2xl {% if heading_animation != 'none' %}{{ heading_animation }}{% endif %}">
           {{ heading }}
