@@ -1,0 +1,152 @@
+{{ 'section-grid-tiles.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign grid_columns = section.settings.grid_columns
+  assign section_padding_top = section.settings.section_padding_top
+  assign section_padding_bottom = section.settings.section_padding_bottom
+-%}
+
+<section
+  class="grid-tiles section-wrap"
+  style="padding-top: {{ section_padding_top }}px; padding-bottom: {{ section_padding_bottom }}px;"
+>
+  <div class="container">
+    <div class="grid-tiles__grid" data-columns="{{ grid_columns }}">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign tile_header = block.settings.tile_header
+          assign tile_secondary_text = block.settings.tile_secondary_text
+          assign tile_link = block.settings.tile_link
+        -%}
+
+        {%- if tile_link != blank -%}
+          <a href="{{ tile_link }}" class="grid-tiles__tile" {{ block.shopify_attributes }}>
+            {%- if tile_header != blank -%}
+              <h3 class="grid-tiles__tile-header">{{ tile_header }}</h3>
+            {%- endif -%}
+            {%- if tile_secondary_text != blank -%}
+              <p class="grid-tiles__tile-text small">{{ tile_secondary_text }}</p>
+            {%- endif -%}
+          </a>
+        {%- else -%}
+          <div class="grid-tiles__tile" {{ block.shopify_attributes }}>
+            {%- if tile_header != blank -%}
+              <h3 class="grid-tiles__tile-header">{{ tile_header }}</h3>
+            {%- endif -%}
+            {%- if tile_secondary_text != blank -%}
+              <p class="grid-tiles__tile-text small">{{ tile_secondary_text }}</p>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Grid Tiles",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "grid_columns",
+      "label": "Grid columns",
+      "options": [
+        {
+          "value": "1",
+          "label": "1 column"
+        },
+        {
+          "value": "2",
+          "label": "2 columns"
+        },
+        {
+          "value": "3",
+          "label": "3 columns"
+        },
+        {
+          "value": "4",
+          "label": "4 columns"
+        },
+        {
+          "value": "5",
+          "label": "5 columns"
+        },
+        {
+          "value": "6",
+          "label": "6 columns"
+        },
+        {
+          "value": "auto",
+          "label": "Auto"
+        }
+      ],
+      "default": "3"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Section padding top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Section padding bottom",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tile",
+      "name": "Tile",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tile_header",
+          "label": "Header",
+          "default": "Tile Header"
+        },
+        {
+          "type": "text",
+          "id": "tile_secondary_text",
+          "label": "Secondary text",
+          "default": "Add some descriptive text here"
+        },
+        {
+          "type": "url",
+          "id": "tile_link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Grid Tiles",
+      "blocks": [
+        {
+          "type": "tile"
+        },
+        {
+          "type": "tile"
+        },
+        {
+          "type": "tile"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
