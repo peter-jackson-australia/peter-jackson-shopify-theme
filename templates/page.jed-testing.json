@@ -20,9 +20,48 @@
         "quote_animation": "animate-word-opacity-scroll",
         "background_color": "neutral-950"
       }
+    },
+    "grid_tiles_bi6EWX": {
+      "type": "grid-tiles",
+      "blocks": {
+        "tile_NfbEyq": {
+          "type": "tile",
+          "settings": {
+            "tile_header": "Tile Header",
+            "tile_secondary_text": "Add some descriptive text here",
+            "tile_link": ""
+          }
+        },
+        "tile_7qWikX": {
+          "type": "tile",
+          "settings": {
+            "tile_header": "Tile Header",
+            "tile_secondary_text": "Add some descriptive text here",
+            "tile_link": ""
+          }
+        },
+        "tile_TDX8Nn": {
+          "type": "tile",
+          "settings": {
+            "tile_header": "Tile Header",
+            "tile_secondary_text": "Add some descriptive text here",
+            "tile_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "tile_NfbEyq",
+        "tile_7qWikX",
+        "tile_TDX8Nn"
+      ],
+      "name": "Grid Tiles",
+      "settings": {
+        "grid_columns": "2"
+      }
     }
   },
   "order": [
-    "block_quote_BETkhU"
+    "block_quote_BETkhU",
+    "grid_tiles_bi6EWX"
   ]
 }
