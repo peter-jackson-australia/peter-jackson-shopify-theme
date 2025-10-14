@@ -163,12 +163,33 @@
         "button_label": "Learn More",
         "button_link": ""
       }
+    },
+    "image_with_text_bEaVba": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "test-section",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "full_width": true,
+        "first_image": "shopify://shop_images/Statement.webp",
+        "image_link": "",
+        "animate_images": false,
+        "alignment": "right",
+        "heading": "Make A Statement",
+        "heading_animation": "none",
+        "text": "MELBOURNE CUP / FlemingtonTHE EVEREST / RandwickThe days to stand out. Cup Day is about colour, confidence, and standout tailoring; The Everest has become Sydney’s boldest fashion day. Think strong blues, rich textures, playful accessories, statement suiting.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
     }
   },
   "order": [
     "hero_primary_EKUrWR",
     "heading_with_text_BzixE7",
     "variable_column_content_tertiary_LtHLxE",
-    "image_with_text_n7w8Tz"
+    "image_with_text_n7w8Tz",
+    "image_with_text_bEaVba"
   ]
 }
