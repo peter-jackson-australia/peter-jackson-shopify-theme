@@ -172,7 +172,7 @@
         "heading_animation": "none",
         "description": "",
         "description_animation": "none",
-        "collection": "melbourne-cup",
+        "collection": "oaks-day",
         "button_label": "",
         "products_to_show": 10,
         "animate_products": false
@@ -231,6 +231,20 @@
         "button_label": "Learn More",
         "button_link": ""
       }
+    },
+    "collection_slider_secondary_rrnhLh": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "melbourne-cup",
+        "button_label": "",
+        "products_to_show": 10,
+        "animate_products": false
+      }
     }
   },
   "order": [
@@ -241,6 +255,7 @@
     "collection_slider_secondary_Bc7CPp",
     "image_with_text_bEaVba",
     "collection_slider_secondary_c8F73Y",
-    "image_with_text_Qynbbi"
+    "image_with_text_Qynbbi",
+    "collection_slider_secondary_rrnhLh"
   ]
 }
