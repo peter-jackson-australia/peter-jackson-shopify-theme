@@ -62,28 +62,29 @@
           "settings": {
             "image": "shopify://shop_images/Melb_Cup.webp",
             "image_link": "",
-            "heading": "Bold In Blue",
+            "heading": "Make A Statement",
             "heading_animation": "none",
-            "text": "Melbourne Cup/Everest",
+            "text": "Melbourne Cup/ The Everest",
             "text_animation": "none",
             "show_gradient_overlay": false,
             "content_horizontal_alignment": "left",
             "content_vertical_alignment": "bottom",
-            "column_link": "/pages/gdpr?view=winning-form#test-section",
+            "column_link": "",
             "column_link_text": ""
           }
         },
         "column_item_bRcUM9": {
           "type": "column_item",
           "settings": {
+            "image": "shopify://shop_images/Derby_Day.webp",
             "image_link": "",
-            "heading": "Column Heading",
+            "heading": "Monochromatic Classic",
             "heading_animation": "none",
-            "text": "Add a brief description for this column item.",
+            "text": "Derby Day/Epsom Day",
             "text_animation": "none",
             "show_gradient_overlay": false,
-            "content_horizontal_alignment": "center",
-            "content_vertical_alignment": "center",
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
             "column_link": "",
             "column_link_text": "Shop Now"
           }
@@ -91,14 +92,31 @@
         "column_item_7KzBPw": {
           "type": "column_item",
           "settings": {
+            "image": "shopify://shop_images/Oaks_Day.webp",
             "image_link": "",
-            "heading": "Column Heading",
+            "heading": "Easy Does It",
             "heading_animation": "none",
-            "text": "Add a brief description for this column item.",
+            "text": "Oaks Day/Golden Eagle Day",
             "text_animation": "none",
             "show_gradient_overlay": false,
-            "content_horizontal_alignment": "center",
-            "content_vertical_alignment": "center",
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_y8Awck": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Stakes_Day.webp",
+            "image_link": "",
+            "heading": "Easy Does It",
+            "heading_animation": "none",
+            "text": "Stakes Day/Five Diamonds Day",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
             "column_link": "",
             "column_link_text": "Shop Now"
           }
@@ -107,7 +125,8 @@
       "block_order": [
         "column_item_CmLrH7",
         "column_item_bRcUM9",
-        "column_item_7KzBPw"
+        "column_item_7KzBPw",
+        "column_item_y8Awck"
       ],
       "name": "Variable Column Content Tertiary",
       "settings": {
