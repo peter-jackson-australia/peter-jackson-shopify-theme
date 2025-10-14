@@ -38,6 +38,7 @@
 }
 
 .grid-tiles__tile {
+  align-items: center;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -46,6 +47,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
+  justify-content: end;
   min-height: 800px;
   padding: var(--space-m);
   text-decoration: none;
