@@ -24,6 +24,16 @@
         "tile_GGJJgP": {
           "type": "tile",
           "settings": {
+            "tile_background_image": "shopify://shop_images/Sports_Jacket.webp",
+            "tile_header": "Tile Header",
+            "tile_secondary_text": "Add some descriptive text here",
+            "tile_link": ""
+          }
+        },
+        "tile_JqgCHP": {
+          "type": "tile",
+          "settings": {
+            "tile_background_image": "shopify://shop_images/R0015500_copy.jpg",
             "tile_header": "Tile Header",
             "tile_secondary_text": "Add some descriptive text here",
             "tile_link": ""
@@ -32,11 +42,12 @@
       },
       "block_order": [
         "tile_ejRQWD",
-        "tile_GGJJgP"
+        "tile_GGJJgP",
+        "tile_JqgCHP"
       ],
       "name": "Grid Tiles",
       "settings": {
-        "grid_columns": "3"
+        "grid_columns": "auto"
       }
     }
   },
