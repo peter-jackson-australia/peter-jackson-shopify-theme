@@ -328,10 +328,10 @@
       "settings": {
         "heading": "Business Shirts",
         "heading_animation": "none",
-        "description": "The styles capturing attention and setting the style pace this spring.",
+        "description": "Premium cotton, sharp cutaway collars, and new season colours and patterns. Your work wardrobe, refreshed.",
         "description_animation": "none",
         "collection": "business-shirts",
-        "button_label": "Shop Bestsellers",
+        "button_label": "Three for $259",
         "products_to_show": 10,
         "animate_products": false
       }
