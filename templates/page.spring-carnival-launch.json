@@ -203,69 +203,45 @@
         "alignment": "left"
       }
     },
-    "17603889363e8d8b97": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_f35cdfd_E4pwWB": {
-          "type": "ai_gen_block_f35cdfd",
-          "settings": {
-            "text_alignment": "center",
-            "border_radius": 0,
-            "overlay_opacity": 0,
-            "tile_background_color": "#f8f8f8",
-            "heading_color": "#ffffff",
-            "subline_color": "#ffffff",
-            "heading_size": 28,
-            "heading_margin": 15,
-            "subline_size": 13,
-            "subline_margin": 20,
-            "button_text_color": "#ffffff",
-            "button_hover_text_color": "#cccccc",
-            "button_bottom_padding": 20,
-            "tile_1_background_image": "shopify://shop_images/R0015500_copy.jpg",
-            "tile_1_content_position": "bottom",
-            "tile_1_use_svg": true,
-            "tile_1_svg_image": "shopify://shop_images/POLOS.svg",
-            "tile_1_svg_size": 30,
-            "tile_1_heading": "First Tile",
-            "tile_1_subline": "",
-            "tile_1_button_text": "from $79.95",
-            "tile_1_button_link": "",
-            "tile_2_background_image": "shopify://shop_images/Spring_Suits_83745627-5f88-4929-b7cc-0d32264cc5e2.webp",
-            "tile_2_content_position": "bottom",
-            "tile_2_use_svg": true,
-            "tile_2_svg_image": "shopify://shop_images/Spring_Suits.svg",
-            "tile_2_svg_size": 40,
-            "tile_2_heading": "Second Tile",
-            "tile_2_subline": "",
-            "tile_2_button_text": "from $399",
-            "tile_2_button_link": "",
-            "tile_3_background_image": "shopify://shop_images/Co-Orders.webp",
-            "tile_3_content_position": "bottom",
-            "tile_3_use_svg": true,
-            "tile_3_svg_image": "shopify://shop_images/Co-Ords.svg",
-            "tile_3_svg_size": 40,
-            "tile_3_heading": "Third Tile",
-            "tile_3_subline": "",
-            "tile_3_button_text": "Shop Matching Sets",
-            "tile_3_button_link": "",
-            "tile_4_background_image": "shopify://shop_images/Sports_Jacket.webp",
-            "tile_4_content_position": "bottom",
-            "tile_4_use_svg": true,
-            "tile_4_svg_image": "shopify://shop_images/Sports_Jackets.svg",
-            "tile_4_svg_size": 45,
-            "tile_4_heading": "Fourth Tile",
-            "tile_4_subline": "",
-            "tile_4_button_text": "from $299",
-            "tile_4_button_link": ""
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_f35cdfd_E4pwWB"
-      ],
-      "settings": {}
+    "spacer_wCQ8WH": {
+      "type": "spacer",
+      "name": "Spacer",
+      "settings": {
+        "spacer_height": "var(--space-xl)"
+      }
+    },
+    "hero_primary_rEqDxz": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/Screenshot_2025-10-14_at_2.04.51_pm.png",
+        "heading": "",
+        "svg_size": "medium",
+        "heading_level": "h1",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "button_label_1": "Shop Now",
+        "button_link_1": "",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "bottom",
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "bottom"
+      }
+    },
+    "spacer_yr6m7M": {
+      "type": "spacer",
+      "name": "Spacer",
+      "settings": {
+        "spacer_height": "var(--space-xl)"
+      }
     },
     "variable_column_content_tertiary_XwmChF": {
       "type": "variable-column-content-tertiary",
@@ -524,20 +500,6 @@
         "mobile_vertical_alignment": "bottom"
       }
     },
-    "spacer_yr6m7M": {
-      "type": "spacer",
-      "name": "Spacer",
-      "settings": {
-        "spacer_height": "var(--space-s)"
-      }
-    },
-    "spacer_wCQ8WH": {
-      "type": "spacer",
-      "name": "Spacer",
-      "settings": {
-        "spacer_height": "var(--space-s)"
-      }
-    },
     "featured_article_r6pY9T": {
       "type": "featured-article",
       "name": "Featured Articles",
@@ -551,7 +513,9 @@
     "hero_slider_ULyNnz",
     "variable_column_content_secondary_X9KJtx",
     "heading_with_text_9nQj7z",
-    "17603889363e8d8b97",
+    "spacer_wCQ8WH",
+    "hero_primary_rEqDxz",
+    "spacer_yr6m7M",
     "variable_column_content_tertiary_XwmChF",
     "hero_primary_NeKfMz",
     "collection_slider_XmLf6t",
@@ -559,8 +523,6 @@
     "collection_slider_3p3hD9",
     "variable_column_content_secondary_eRLfeJ",
     "hero_primary_zeaCqL",
-    "spacer_yr6m7M",
-    "spacer_wCQ8WH",
     "featured_article_r6pY9T"
   ]
 }
