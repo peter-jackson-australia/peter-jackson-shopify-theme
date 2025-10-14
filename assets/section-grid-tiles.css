@@ -39,6 +39,7 @@
 
 .grid-tiles__tile {
   align-items: center;
+  aspect-ratio: 1 / 1;
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
@@ -48,9 +49,10 @@
   flex-direction: column;
   gap: var(--space-xs);
   justify-content: end;
-  min-height: 1000px;
   padding: var(--space-m);
+  position: relative;
   text-decoration: none;
+  width: 100%;
 }
 
 .grid-tiles__tile-header {
@@ -66,10 +68,6 @@
 @media screen and (max-width: 1000px) {
   .grid-tiles {
     padding: var(--space-m);
-  }
-
-  .grid-tiles__tile {
-    min-height: 700px;
   }
 
   .grid-tiles__grid {
