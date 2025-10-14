@@ -73,8 +73,8 @@
           "disabled": true,
           "settings": {
             "media_type": "image",
-            "desktop_image": "shopify://shop_images/EOS_Sale_Desktop_Fresh.webp",
-            "mobile_image": "shopify://shop_images/EOS_Sale_Mobile.webp",
+            "desktop_image": "shopify://shop_images/Spring_Suits_HP_Refresh.webp",
+            "mobile_image": "shopify://shop_images/Spring_Suits_Mobile_copy.webp",
             "heading": "End Of Season Sale",
             "svg_image": "shopify://shop_images/EOS_Sale.svg",
             "svg_size": "full",
