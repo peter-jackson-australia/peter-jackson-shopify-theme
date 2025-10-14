@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "hero_slider_ULyNnz": {
       "type": "hero-slider",
@@ -27,7 +27,7 @@
             "description": "",
             "description_animation": "none",
             "button_label_1": "Shop Spring Carnival Style",
-            "button_link_1": "shopify://collections/mens-suits",
+            "button_link_1": "shopify://pages/winning-form-spring-carnival-style",
             "button_label_2": "",
             "button_link_2": "",
             "button_label_3": "",
