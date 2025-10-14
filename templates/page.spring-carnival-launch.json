@@ -236,7 +236,7 @@
         "tile_dThQxe": {
           "type": "tile",
           "settings": {
-            "tile_background_image": "shopify://shop_images/Sports_Jacket.webp",
+            "tile_background_image": "shopify://shop_images/Sports_Jacket_Will.webp",
             "tile_header": "SPORTS JACKETS",
             "tile_secondary_text": "from $299",
             "tile_link": "shopify://collections/sport-jackets"
