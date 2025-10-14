@@ -11,9 +11,7 @@
   assign non_empty_collection_handles = ''
 
   for coll in collections
-    if coll.products_count > 0
-      assign non_empty_collection_handles = non_empty_collection_handles | append: coll.handle | append: ','
-    endif
+    assign non_empty_collection_handles = non_empty_collection_handles | append: coll.handle | append: ','
   endfor
 
   assign non_empty_collection_handles = non_empty_collection_handles | split: ','
