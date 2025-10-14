@@ -85,8 +85,8 @@
             "show_gradient_overlay": false,
             "content_horizontal_alignment": "left",
             "content_vertical_alignment": "bottom",
-            "column_link": "",
-            "column_link_text": "Shop Now"
+            "column_link": "https://peterjacksons.com/pages/winning-form-spring-carnival-style#monochromatic-segment",
+            "column_link_text": ""
           }
         },
         "column_item_7KzBPw": {
@@ -182,7 +182,7 @@
       "type": "image-with-text",
       "name": "Image With Text",
       "settings": {
-        "anchor_id": "",
+        "anchor_id": "monochromatic",
         "show_top_border": false,
         "show_bottom_border": false,
         "full_width": true,
@@ -192,7 +192,7 @@
         "alignment": "right",
         "heading": "Monochromatic Classic",
         "heading_animation": "none",
-        "text": "DERBY DAY / Flemington<br>EPSOM DAY / Randwick<br><br>Both days are classic and monochrome. Derby is famous for black, white, and grey; Epsom Day carries the same traditional tailoring cues — structured, timeless, and formal. Think grey or charcoal suits, black ties, white shirts, polished shoes.",
+        "text": "DERBY DAY / FlemingtonEPSOM DAY / RandwickBoth days are classic and monochrome. Derby is famous for black, white, and grey; Epsom Day carries the same traditional tailoring cues — structured, timeless, and formal. Think grey or charcoal suits, black ties, white shirts, polished shoes.",
         "text_animation": "none",
         "button_label": "Learn More",
         "button_link": ""
