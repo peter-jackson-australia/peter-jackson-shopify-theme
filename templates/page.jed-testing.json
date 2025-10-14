@@ -16,7 +16,7 @@
           "type": "tile",
           "settings": {
             "tile_header": "Tile Header",
-            "tile_secondary_text": "Add some descriptive text here",
+            "tile_secondary_text": "Add some descriptive text herefd",
             "tile_link": ""
           }
         },
