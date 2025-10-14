@@ -52,12 +52,12 @@
 }
 
 .grid-tiles__tile-header {
-  color: var(--neutral-950);
+  color: var(--white);
   margin: 0;
 }
 
 .grid-tiles__tile-text {
-  color: var(--neutral-600);
+  color: var(--white);
   margin: 0;
 }
 
