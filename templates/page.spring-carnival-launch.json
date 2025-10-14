@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{
+ {
   "sections": {
     "hero_slider_ULyNnz": {
       "type": "hero-slider",
@@ -201,6 +201,46 @@
         "content": "<p>Four race days, four distinct moods. Whether it’s the confident edge of the Cox Plate or the refined ease of Oaks Day, this is tailoring built for the fast track.</p>",
         "content_animation": "none",
         "alignment": "left"
+      }
+    },
+    "spacer_wCQ8WH": {
+      "type": "spacer",
+      "name": "Spacer",
+      "settings": {
+        "spacer_height": "var(--space-xl)"
+      }
+    },
+    "hero_primary_rEqDxz": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/Screenshot_2025-10-14_at_2.04.51_pm.png",
+        "heading": "",
+        "svg_size": "medium",
+        "heading_level": "h1",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "button_label_1": "Shop Now",
+        "button_link_1": "",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "bottom",
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "bottom"
+      }
+    },
+    "spacer_yr6m7M": {
+      "type": "spacer",
+      "name": "Spacer",
+      "settings": {
+        "spacer_height": "var(--space-xl)"
       }
     },
     "variable_column_content_tertiary_XwmChF": {
@@ -460,20 +500,6 @@
         "mobile_vertical_alignment": "bottom"
       }
     },
-    "spacer_yr6m7M": {
-      "type": "spacer",
-      "name": "Spacer",
-      "settings": {
-        "spacer_height": "var(--space-s)"
-      }
-    },
-    "spacer_wCQ8WH": {
-      "type": "spacer",
-      "name": "Spacer",
-      "settings": {
-        "spacer_height": "var(--space-s)"
-      }
-    },
     "featured_article_r6pY9T": {
       "type": "featured-article",
       "name": "Featured Articles",
@@ -487,6 +513,9 @@
     "hero_slider_ULyNnz",
     "variable_column_content_secondary_X9KJtx",
     "heading_with_text_9nQj7z",
+    "spacer_wCQ8WH",
+    "hero_primary_rEqDxz",
+    "spacer_yr6m7M",
     "variable_column_content_tertiary_XwmChF",
     "hero_primary_NeKfMz",
     "collection_slider_XmLf6t",
@@ -494,8 +523,6 @@
     "collection_slider_3p3hD9",
     "variable_column_content_secondary_eRLfeJ",
     "hero_primary_zeaCqL",
-    "spacer_yr6m7M",
-    "spacer_wCQ8WH",
     "featured_article_r6pY9T"
   ]
 }

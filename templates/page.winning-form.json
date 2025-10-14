@@ -110,7 +110,7 @@
           "settings": {
             "image": "shopify://shop_images/Stakes_Day.webp",
             "image_link": "",
-            "heading": "Easy Does It",
+            "heading": "Finish Strong",
             "heading_animation": "none",
             "text": "Stakes Day/Five Diamonds Day",
             "text_animation": "none",
@@ -150,18 +150,32 @@
       "settings": {
         "anchor_id": "test-section",
         "show_top_border": false,
-        "show_bottom_border": true,
+        "show_bottom_border": false,
         "full_width": true,
         "first_image": "shopify://shop_images/Statement.webp",
         "image_link": "",
         "animate_images": false,
         "alignment": "left",
-        "heading": "Make A Statement",
+        "heading": "MAKE A STATEMENT",
         "heading_animation": "none",
-        "text": "MELBOURNE CUP / FlemingtonTHE EVEREST / RandwickThe days to stand out. Cup Day is about colour, confidence, and standout tailoring; The Everest has become Sydney’s boldest fashion day. Think strong blues, rich textures, playful accessories, statement suiting.",
+        "text": "MELBOURNE CUP / Flemington<br>THE EVEREST / Randwick<br><br>The are the days to stand out. Cup Day is about colour, confidence, and standout tailoring; The Everest has become Sydney’s boldest fashion day. Think strong blues, rich textures, playful accessories, statement suiting.",
         "text_animation": "none",
         "button_label": "Learn More",
         "button_link": ""
+      }
+    },
+    "collection_slider_secondary_Bc7CPp": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "oaks-day",
+        "button_label": "",
+        "products_to_show": 12,
+        "animate_products": false
       }
     },
     "image_with_text_bEaVba": {
@@ -170,7 +184,7 @@
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
-        "show_bottom_border": true,
+        "show_bottom_border": false,
         "full_width": true,
         "first_image": "shopify://shop_images/Monochromatic.webp",
         "image_link": "",
@@ -182,6 +196,20 @@
         "text_animation": "none",
         "button_label": "Learn More",
         "button_link": ""
+      }
+    },
+    "collection_slider_secondary_c8F73Y": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "derby-day",
+        "button_label": "",
+        "products_to_show": 10,
+        "animate_products": false
       }
     },
     "image_with_text_Qynbbi": {
@@ -198,10 +226,58 @@
         "alignment": "left",
         "heading": "Easy Does It",
         "heading_animation": "none",
-        "text": "OAKS DAY / Flemington<br>GOLDEN EAGLE DAY / Randwick<br><br>Both lean softer and more contemporary. Oaks is “Ladies Day,” so men often opt for lighter tones, linen, and relaxed refinement. Same vibe for Golden Eagle — sand, cream, taupe, pastel accents, relaxed cuts.",
+        "text": "OAKS DAY / FlemingtonGOLDEN EAGLE DAY / RandwickBoth lean softer and more contemporary. Oaks is “Ladies Day,” so men often opt for lighter tones, linen, and relaxed refinement. Same vibe for Golden Eagle — sand, cream, taupe, pastel accents, relaxed cuts.",
         "text_animation": "none",
         "button_label": "Learn More",
         "button_link": ""
+      }
+    },
+    "collection_slider_secondary_rrnhLh": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "stakes-day",
+        "button_label": "",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
+    "image_with_text_AA4PpH": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "full_width": true,
+        "first_image": "shopify://shop_images/Stakes_Day_e9e199fe-3d29-4989-a6f6-a0a8ccbb0b0c.webp",
+        "image_link": "",
+        "animate_images": false,
+        "alignment": "right",
+        "heading": "Finish Strong",
+        "heading_animation": "none",
+        "text": "DERBY DAY / FlemingtonTHE EVEREST / RandwickThe last of the major race days, these are the most relaxed, modern, and family-friendly events. The suits are still sharp but less formal — unstructured jackets, open collars, tonal dressing, soft tailoring.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    },
+    "collection_slider_secondary_DMPjdT": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "melbourne-cup",
+        "button_label": "",
+        "products_to_show": 10,
+        "animate_products": false
       }
     }
   },
@@ -210,7 +286,12 @@
     "heading_with_text_BzixE7",
     "variable_column_content_tertiary_LtHLxE",
     "image_with_text_n7w8Tz",
+    "collection_slider_secondary_Bc7CPp",
     "image_with_text_bEaVba",
-    "image_with_text_Qynbbi"
+    "collection_slider_secondary_c8F73Y",
+    "image_with_text_Qynbbi",
+    "collection_slider_secondary_rrnhLh",
+    "image_with_text_AA4PpH",
+    "collection_slider_secondary_DMPjdT"
   ]
 }
