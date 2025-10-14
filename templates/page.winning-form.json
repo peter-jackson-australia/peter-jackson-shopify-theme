@@ -9,29 +9,54 @@
  */
 {
   "sections": {
-    "editorial_hero_hceC9g": {
-      "type": "editorial-hero",
-      "name": "Hero Editorial",
+    "hero_primary_EKUrWR": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/Winning_Form_bfedcd22-6f75-4d6e-913b-677814585048.webp",
+        "mobile_image": "shopify://shop_images/Winning_Form_Mobile_f1b41076-07b3-4be9-8a00-b0de5b9df4e0.webp",
+        "heading": "Welcome to Our Store",
+        "svg_image": "shopify://shop_images/Winning_Form_Desktop_V2.svg",
+        "svg_size": "full",
+        "heading_level": "h1",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "button_label_1": "Shop Now",
+        "button_link_1": "",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "stretch",
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "bottom"
+      }
+    },
+    "heading_with_text_BzixE7": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
         "leading_text": "",
         "leading_text_animation": "none",
-        "first_title": "Discover",
-        "first_title_animation": "none",
-        "media_type": "image",
-        "animate_media": false,
-        "second_title": "Collection",
-        "second_title_animation": "none",
-        "description": "",
-        "description_animation": "none",
-        "cta_text": "Shop Now",
-        "cta_link": ""
+        "heading": "Spring Carnival Style Guide",
+        "heading_style": "normal",
+        "heading_animation": "none",
+        "content": "<p>From Melbourne Cup to The Everest, the spring carnival season celebrates precision, polish, and personality. This is your guide to what to wear and where — tailored looks that define every race day with intent and style.</p>",
+        "content_animation": "none",
+        "alignment": "center"
       }
     }
   },
   "order": [
-    "editorial_hero_hceC9g"
+    "hero_primary_EKUrWR",
+    "heading_with_text_BzixE7"
   ]
 }
