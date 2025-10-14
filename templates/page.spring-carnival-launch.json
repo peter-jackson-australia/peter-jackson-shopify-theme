@@ -187,6 +187,7 @@
     },
     "heading_with_text_9nQj7z": {
       "type": "heading-with-text",
+      "disabled": true,
       "name": "Heading with Text",
       "settings": {
         "anchor_id": "",
@@ -276,6 +277,7 @@
         "column_item_tXtkqD",
         "column_item_TdMYVf"
       ],
+      "disabled": true,
       "name": "Variable Column Content Tertiary",
       "settings": {
         "anchor_id": "",
@@ -305,9 +307,9 @@
         "mobile_svg_image": "shopify://shop_images/Refined_Redefined_Mob.svg",
         "heading_level": "h1",
         "heading_animation": "none",
-        "description": "Business tailoring takes a new direction this season,<br>where tradition meets modern edge.",
+        "description": "Business tailoring takes a new direction this season,where tradition meets modern edge.",
         "description_animation": "none",
-        "button_label_1": "Two for $895",
+        "button_label_1": "Two Suits for $895",
         "button_link_1": "shopify://collections/mens-suits",
         "button_label_2": "",
         "button_link_2": "",
