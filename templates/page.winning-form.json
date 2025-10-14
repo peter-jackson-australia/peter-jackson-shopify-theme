@@ -60,30 +60,31 @@
         "column_item_CmLrH7": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/Melb_Cup.webp",
+            "image": "shopify://shop_images/Statement.webp",
             "image_link": "",
-            "heading": "Bold In Blue",
+            "heading": "Make A Statement",
             "heading_animation": "none",
-            "text": "Melbourne Cup/Everest",
+            "text": "Melbourne Cup/ The Everest",
             "text_animation": "none",
             "show_gradient_overlay": false,
             "content_horizontal_alignment": "left",
             "content_vertical_alignment": "bottom",
-            "column_link": "/pages/gdpr?view=winning-form#test-section",
+            "column_link": "",
             "column_link_text": ""
           }
         },
         "column_item_bRcUM9": {
           "type": "column_item",
           "settings": {
+            "image": "shopify://shop_images/Derby_Day.webp",
             "image_link": "",
-            "heading": "Column Heading",
+            "heading": "Monochromatic Classic",
             "heading_animation": "none",
-            "text": "Add a brief description for this column item.",
+            "text": "Derby Day/Epsom Day",
             "text_animation": "none",
             "show_gradient_overlay": false,
-            "content_horizontal_alignment": "center",
-            "content_vertical_alignment": "center",
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
             "column_link": "",
             "column_link_text": "Shop Now"
           }
@@ -91,14 +92,31 @@
         "column_item_7KzBPw": {
           "type": "column_item",
           "settings": {
+            "image": "shopify://shop_images/Oaks_Day.webp",
             "image_link": "",
-            "heading": "Column Heading",
+            "heading": "Easy Does It",
             "heading_animation": "none",
-            "text": "Add a brief description for this column item.",
+            "text": "Oaks Day/Golden Eagle Day",
             "text_animation": "none",
             "show_gradient_overlay": false,
-            "content_horizontal_alignment": "center",
-            "content_vertical_alignment": "center",
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_y8Awck": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Stakes_Day.webp",
+            "image_link": "",
+            "heading": "Easy Does It",
+            "heading_animation": "none",
+            "text": "Stakes Day/Five Diamonds Day",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
             "column_link": "",
             "column_link_text": "Shop Now"
           }
@@ -107,7 +125,8 @@
       "block_order": [
         "column_item_CmLrH7",
         "column_item_bRcUM9",
-        "column_item_7KzBPw"
+        "column_item_7KzBPw",
+        "column_item_y8Awck"
       ],
       "name": "Variable Column Content Tertiary",
       "settings": {
@@ -132,14 +151,34 @@
         "anchor_id": "test-section",
         "show_top_border": false,
         "show_bottom_border": false,
-        "full_width": false,
-        "first_image": "shopify://shop_images/Melb_Cup.webp",
+        "full_width": true,
+        "first_image": "shopify://shop_images/Statement.webp",
         "image_link": "",
         "animate_images": false,
         "alignment": "left",
-        "heading": "Image With Text",
+        "heading": "Make A Statement",
         "heading_animation": "none",
-        "text": "The statement day. Cup Day is about colour, confidence, and standout tailoring; The Everest has become Sydney’s boldest fashion day. Think strong blues, rich textures, playful accessories, statement suiting.",
+        "text": "MELBOURNE CUP / Flemington<br>THE EVEREST / Randwick<br><br>The days to stand out. Cup Day is about colour, confidence, and standout tailoring; The Everest has become Sydney’s boldest fashion day. Think strong blues, rich textures, playful accessories, statement suiting.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    },
+    "image_with_text_bEaVba": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "full_width": true,
+        "first_image": "shopify://shop_images/Monochromatic.webp",
+        "image_link": "",
+        "animate_images": false,
+        "alignment": "right",
+        "heading": "Monochromatic Classic",
+        "heading_animation": "none",
+        "text": "DERBY DAY / Flemington<br>THE EVEREST / Randwick<br><br>Both days are classic and monochrome. Derby is famous for black, white, and grey; Epsom Day carries the same traditional tailoring cues — structured, timeless, and formal. Think grey or charcoal suits, black ties, white shirts, polished shoes.",
         "text_animation": "none",
         "button_label": "Learn More",
         "button_link": ""
@@ -150,6 +189,7 @@
     "hero_primary_EKUrWR",
     "heading_with_text_BzixE7",
     "variable_column_content_tertiary_LtHLxE",
-    "image_with_text_n7w8Tz"
+    "image_with_text_n7w8Tz",
+    "image_with_text_bEaVba"
   ]
 }
