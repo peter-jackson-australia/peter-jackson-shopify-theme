@@ -151,7 +151,7 @@
         "anchor_id": "test-section",
         "show_top_border": false,
         "show_bottom_border": false,
-        "full_width": false,
+        "full_width": true,
         "first_image": "shopify://shop_images/Melb_Cup.webp",
         "image_link": "",
         "animate_images": false,
