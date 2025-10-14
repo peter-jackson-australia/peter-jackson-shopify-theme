@@ -223,9 +223,9 @@ h2 {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-family: "Optispire", serif;
-  font-size: clamp(2.4883rem, 2.3639rem + 0.6221vw, 3.1104rem);
+  font-size: clamp(2.986rem, 2.8367rem + 0.7465vw, 3.7325rem);
   font-weight: 500;
-  letter-spacing: 0 !important;
+  letter-spacing: 0.35rem !important;
   line-height: 100%;
 }
 

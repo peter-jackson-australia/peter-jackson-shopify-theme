@@ -21,14 +21,17 @@
             class="grid-tiles__tile"
             {{ block.shopify_attributes }}
             {% if tile_background_image != blank %}
-              style="background-image: url('{{ tile_background_image | image_url: width: 800 }}');"
+              style="background-image: url('{{ tile_background_image | image_url: width: 1440 }}');"
             {% endif %}
           >
             {%- if tile_header != blank -%}
               <h3 class="grid-tiles__tile-header heading--optispire">{{ tile_header }}</h3>
             {%- endif -%}
             {%- if tile_secondary_text != blank -%}
-              <p class="grid-tiles__tile-text small">{{ tile_secondary_text }}</p>
+              <p class="grid-tiles__tile-text heading--l">
+                {{ tile_secondary_text }}
+                <span>{% render '_icon-arrow-submit-white' %}</span>
+              </p>
             {%- endif -%}
           </a>
         {%- else -%}
@@ -36,14 +39,17 @@
             class="grid-tiles__tile"
             {{ block.shopify_attributes }}
             {% if tile_background_image != blank %}
-              style="background-image: url('{{ tile_background_image | image_url: width: 800 }}');"
+              style="background-image: url('{{ tile_background_image | image_url: width: 1440 }}');"
             {% endif %}
           >
             {%- if tile_header != blank -%}
               <h3 class="grid-tiles__tile-header heading--optispire">{{ tile_header }}</h3>
             {%- endif -%}
             {%- if tile_secondary_text != blank -%}
-              <p class="grid-tiles__tile-text small">{{ tile_secondary_text }}</p>
+              <p class="grid-tiles__tile-text heading--l">
+                {{ tile_secondary_text }}
+                <span>{% render '_icon-arrow-submit-white' %}</span>
+              </p>
             {%- endif -%}
           </div>
         {%- endif -%}
