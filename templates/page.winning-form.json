@@ -240,7 +240,7 @@
         "heading_animation": "none",
         "description": "",
         "description_animation": "none",
-        "collection": "melbourne-cup",
+        "collection": "stakes-day",
         "button_label": "",
         "products_to_show": 10,
         "animate_products": false
@@ -274,7 +274,7 @@
         "heading_animation": "none",
         "description": "",
         "description_animation": "none",
-        "collection": "stakes-day",
+        "collection": "melbourne-cup",
         "button_label": "",
         "products_to_show": 10,
         "animate_products": false
