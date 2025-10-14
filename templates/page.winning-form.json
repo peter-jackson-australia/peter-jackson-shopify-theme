@@ -69,7 +69,7 @@
             "show_gradient_overlay": false,
             "content_horizontal_alignment": "left",
             "content_vertical_alignment": "bottom",
-            "column_link": "/pages/test-2#test-section-segment",
+            "column_link": "https://peterjacksons.com/pages/winning-form-spring-carnival-style#statement-segment",
             "column_link_text": ""
           }
         },
@@ -148,7 +148,7 @@
       "type": "image-with-text",
       "name": "Image With Text",
       "settings": {
-        "anchor_id": "test-section",
+        "anchor_id": "statement",
         "show_top_border": false,
         "show_bottom_border": false,
         "full_width": true,
@@ -156,7 +156,7 @@
         "image_link": "",
         "animate_images": false,
         "alignment": "left",
-        "heading": "MAKE A STATEMENT",
+        "heading": "Make A Statement",
         "heading_animation": "none",
         "text": "MELBOURNE CUP / FlemingtonTHE EVEREST / RandwickThe are the days to stand out. Cup Day is about colour, confidence, and standout tailoring; The Everest has become Sydney’s boldest fashion day. Think strong blues, rich textures, playful accessories, statement suiting.",
         "text_animation": "none",
