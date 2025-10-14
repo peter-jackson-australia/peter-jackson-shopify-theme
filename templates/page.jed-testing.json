@@ -15,9 +15,10 @@
         "tile_ejRQWD": {
           "type": "tile",
           "settings": {
+            "tile_background_image": "shopify://shop_images/Co-Orders.webp",
             "tile_header": "Tile Header",
             "tile_secondary_text": "Add some descriptive text herefd",
-            "tile_link": ""
+            "tile_link": "shopify://collections/all"
           }
         },
         "tile_GGJJgP": {
