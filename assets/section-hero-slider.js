@@ -4,7 +4,7 @@
   const interval = document.currentScript.getAttribute("data-slide-interval");
 
   const slider = new Splide(`#hero-slider-${sectionId}`, {
-    type: "slide",
+    type: "loop",
     perPage: 1,
     arrows: false,
     pagination: true,
