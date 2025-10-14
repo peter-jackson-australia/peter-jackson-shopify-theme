@@ -184,7 +184,7 @@
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
-        "show_bottom_border": true,
+        "show_bottom_border": false,
         "full_width": true,
         "first_image": "shopify://shop_images/Monochromatic.webp",
         "image_link": "",
@@ -196,6 +196,20 @@
         "text_animation": "none",
         "button_label": "Learn More",
         "button_link": ""
+      }
+    },
+    "collection_slider_secondary_c8F73Y": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "derby-day",
+        "button_label": "",
+        "products_to_show": 10,
+        "animate_products": false
       }
     },
     "image_with_text_Qynbbi": {
@@ -226,6 +240,7 @@
     "image_with_text_n7w8Tz",
     "collection_slider_secondary_Bc7CPp",
     "image_with_text_bEaVba",
+    "collection_slider_secondary_c8F73Y",
     "image_with_text_Qynbbi"
   ]
 }
