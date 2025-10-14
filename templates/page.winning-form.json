@@ -44,19 +44,112 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
-        "leading_text": "",
+        "leading_text": "Spring Carnival 25",
         "leading_text_animation": "none",
-        "heading": "Spring Carnival Style Guide",
+        "heading": "The Season’s Style Guide",
         "heading_style": "normal",
         "heading_animation": "none",
         "content": "<p>From Melbourne Cup to The Everest, the spring carnival season celebrates precision, polish, and personality. This is your guide to what to wear and where — tailored looks that define every race day with intent and style.</p>",
         "content_animation": "none",
-        "alignment": "center"
+        "alignment": "left"
+      }
+    },
+    "variable_column_content_tertiary_LtHLxE": {
+      "type": "variable-column-content-tertiary",
+      "blocks": {
+        "column_item_CmLrH7": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Melb_Cup.webp",
+            "image_link": "",
+            "heading": "Bold In Blue",
+            "heading_animation": "none",
+            "text": "Melbourne Cup/Everest",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "/#test-section",
+            "column_link_text": ""
+          }
+        },
+        "column_item_bRcUM9": {
+          "type": "column_item",
+          "settings": {
+            "image_link": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "center",
+            "content_vertical_alignment": "center",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_7KzBPw": {
+          "type": "column_item",
+          "settings": {
+            "image_link": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "center",
+            "content_vertical_alignment": "center",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_CmLrH7",
+        "column_item_bRcUM9",
+        "column_item_7KzBPw"
+      ],
+      "name": "Variable Column Content Tertiary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "column_count": "4",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "",
+        "heading_animation": "none",
+        "text": "",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    },
+    "image_with_text_n7w8Tz": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "test-section",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "full_width": false,
+        "first_image": "shopify://shop_images/Melb_Cup.webp",
+        "image_link": "",
+        "animate_images": false,
+        "alignment": "left",
+        "heading": "Image With Text",
+        "heading_animation": "none",
+        "text": "The statement day. Cup Day is about colour, confidence, and standout tailoring; The Everest has become Sydney’s boldest fashion day. Think strong blues, rich textures, playful accessories, statement suiting.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
       }
     }
   },
   "order": [
     "hero_primary_EKUrWR",
-    "heading_with_text_BzixE7"
+    "heading_with_text_BzixE7",
+    "variable_column_content_tertiary_LtHLxE",
+    "image_with_text_n7w8Tz"
   ]
 }
