@@ -336,8 +336,10 @@
 
 .grid-content__background--image {
   background-position: top center;
-  object-fit: cover;
   height: 100%;
+  object-fit: cover;
+  object-position: top;
+  width: 100%;
 }
 
 .grid-content__background--video {
