@@ -206,22 +206,6 @@
     "variable_column_content_tertiary_XwmChF": {
       "type": "variable-column-content-tertiary",
       "blocks": {
-        "column_item_TdMYVf": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/Stakes_Day.webp",
-            "image_link": "",
-            "heading": "The Contender",
-            "heading_animation": "none",
-            "text": "Cox Plate",
-            "text_animation": "none",
-            "show_gradient_overlay": false,
-            "content_horizontal_alignment": "left",
-            "content_vertical_alignment": "bottom",
-            "column_link": "shopify://collections/cox-plate",
-            "column_link_text": ""
-          }
-        },
         "column_item_EdH7tR": {
           "type": "column_item",
           "settings": {
@@ -269,13 +253,29 @@
             "column_link": "shopify://collections/oaks-day",
             "column_link_text": ""
           }
+        },
+        "column_item_TdMYVf": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Stakes_Day.webp",
+            "image_link": "",
+            "heading": "The Contender",
+            "heading_animation": "none",
+            "text": "Stakes Day",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "shopify://collections/cox-plate",
+            "column_link_text": ""
+          }
         }
       },
       "block_order": [
-        "column_item_TdMYVf",
         "column_item_EdH7tR",
         "column_item_zER8gb",
-        "column_item_tXtkqD"
+        "column_item_tXtkqD",
+        "column_item_TdMYVf"
       ],
       "name": "Variable Column Content Tertiary",
       "settings": {
