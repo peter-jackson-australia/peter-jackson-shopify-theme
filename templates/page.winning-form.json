@@ -174,7 +174,7 @@
         "description_animation": "none",
         "collection": "oaks-day",
         "button_label": "",
-        "products_to_show": 10,
+        "products_to_show": 12,
         "animate_products": false
       }
     },
