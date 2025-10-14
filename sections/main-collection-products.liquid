@@ -132,10 +132,9 @@
                           </video>
                         </div>
                       {% else %}
-                        <div
-                          class="grid-content__background grid-content__background--image"
-                          style="background-image: url('{{ metaobject_raw.image_or_video | image_url: width: 1200 }}');"
-                        ></div>
+                        <div class="grid-content__background grid-content__background--image">
+                          {{ metaobject_raw.image_or_video | image_url: width: 1200 | image_tag: class: 'grid-content__background--image', loading: 'eager', fetchpriority: 'high', decoding: 'async', widths: '300, 600, 900, 1200' }}
+                        </div>
                       {% endif %}
                     {% endif %}
 
