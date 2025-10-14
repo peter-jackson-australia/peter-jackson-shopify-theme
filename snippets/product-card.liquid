@@ -67,7 +67,7 @@
     {% endif %}
 
     <p class="product-card__price small">
-      <span class="product-card__price--current body">{{ product.price | money_with_currency }}</span>
+      <span class="product-card__price--current">{{ product.price | money_with_currency }}</span>
       {% if product.compare_at_price > product.price %}
         <span class="product-card__price--compare">Was {{ product.compare_at_price | money_with_currency }}</span>
       {% endif %}

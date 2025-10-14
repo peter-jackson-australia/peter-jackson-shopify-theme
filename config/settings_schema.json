@@ -16,21 +16,4 @@
     }
   ]
 },
-{
-  "name": "Klaviyo Newsletter Image Preloading",
-  "settings": [
-    {
-      "type": "text",
-      "id": "klaviyo_newsletter_image_1",
-      "label": "Klaviyo Newsletter Image 1 URL",
-      "info": "Enter the full URL of the first Klaviyo newsletter image to preload"
-    },
-    {
-      "type": "text",
-      "id": "klaviyo_newsletter_image_2",
-      "label": "Klaviyo Newsletter Image 2 URL",
-      "info": "Enter the full URL of the second Klaviyo newsletter image to preload"
-    }
-  ]
-}
 ]

@@ -1729,18 +1729,6 @@
     </style>
     {{ 'global-theme.css' | asset_url | stylesheet_tag }}
 
-    {% comment %}
-      Klaviyo Newsletter Image Preloading
-    {% endcomment %}
-    {% comment %}
-      {%- unless settings.klaviyo_newsletter_image_1 == blank -%}
-        <link rel="preload" as="image" href="{{ settings.klaviyo_newsletter_image_1 }}">
-      {%- endunless -%}
-      {%- unless settings.klaviyo_newsletter_image_2 == blank -%}
-        <link rel="preload" as="image" href="{{ settings.klaviyo_newsletter_image_2 }}">
-      {%- endunless -%}
-    {% endcomment %}
-
     <script src="{{ 'lib-splide.min.js' | asset_url }}" defer></script>
     <script src="{{ 'global-theme.js' | asset_url }}" defer></script>
     <script src="{{ 'global-cart.js' | asset_url }}" defer></script>
