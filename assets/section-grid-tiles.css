@@ -1,4 +1,6 @@
 .grid-tiles {
+  padding-bottom: var(--space-2xl);
+  padding-top: var(--space-2xl);
   width: 100%;
 }
 
@@ -63,6 +65,11 @@
 }
 
 @media screen and (max-width: 768px) {
+  .grid-tiles {
+    padding-bottom: var(--space-l);
+    padding-top: var(--space-l);
+  }
+
   .grid-tiles__grid {
     display: flex;
     flex-direction: column;
