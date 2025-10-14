@@ -69,7 +69,7 @@
             "show_gradient_overlay": false,
             "content_horizontal_alignment": "left",
             "content_vertical_alignment": "bottom",
-            "column_link": "/#test-section",
+            "column_link": "/pages/gdpr?view=winning-form/#test-section",
             "column_link_text": ""
           }
         },
