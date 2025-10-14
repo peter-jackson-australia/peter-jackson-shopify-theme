@@ -101,8 +101,8 @@
             "show_gradient_overlay": false,
             "content_horizontal_alignment": "left",
             "content_vertical_alignment": "bottom",
-            "column_link": "",
-            "column_link_text": "Shop Now"
+            "column_link": "https://peterjacksons.com/pages/winning-form-spring-carnival-style#easy-segment",
+            "column_link_text": ""
           }
         },
         "column_item_y8Awck": {
@@ -216,7 +216,7 @@
       "type": "image-with-text",
       "name": "Image With Text",
       "settings": {
-        "anchor_id": "",
+        "anchor_id": "easy",
         "show_top_border": false,
         "show_bottom_border": true,
         "full_width": true,
