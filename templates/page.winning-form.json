@@ -192,7 +192,7 @@
         "alignment": "right",
         "heading": "Monochromatic Classic",
         "heading_animation": "none",
-        "text": "DERBY DAY / FlemingtonEPSOM DAY / RandwickBoth days are classic and monochrome. Derby is famous for black, white, and grey; Epsom Day carries the same traditional tailoring cues — structured, timeless, and formal. Think grey or charcoal suits, black ties, white shirts, polished shoes.",
+        "text": "DERBY DAY / Flemington<br>EPSOM DAY / Randwick<br><br>Both days are classic and monochrome. Derby is famous for black, white, and grey; Epsom Day carries the same traditional tailoring cues — structured, timeless, and formal. Think grey or charcoal suits, black ties, white shirts, polished shoes.",
         "text_animation": "none",
         "button_label": "Learn More",
         "button_link": ""
@@ -226,7 +226,7 @@
         "alignment": "left",
         "heading": "Easy Does It",
         "heading_animation": "none",
-        "text": "OAKS DAY / FlemingtonGOLDEN EAGLE DAY / RandwickBoth lean softer and more contemporary. Oaks is “Ladies Day,” so men often opt for lighter tones, linen, and relaxed refinement. Same vibe for Golden Eagle — sand, cream, taupe, pastel accents, relaxed cuts.",
+        "text": "OAKS DAY / Flemington<br>GOLDEN EAGLE DAY / Randwick<br><br>Both lean softer and more contemporary. Oaks is “Ladies Day,” so men often opt for lighter tones, linen, and relaxed refinement. Same vibe for Golden Eagle — sand, cream, taupe, pastel accents, relaxed cuts.",
         "text_animation": "none",
         "button_label": "Learn More",
         "button_link": ""
@@ -260,7 +260,7 @@
         "alignment": "right",
         "heading": "Finish Strong",
         "heading_animation": "none",
-        "text": "DERBY DAY / FlemingtonTHE EVEREST / RandwickThe last of the major race days, these are the most relaxed, modern, and family-friendly events. The suits are still sharp but less formal — unstructured jackets, open collars, tonal dressing, soft tailoring.",
+        "text": "DERBY DAY / Flemington<br>THE EVEREST / Randwick<br><br>The last of the major race days, these are the most relaxed, modern, and family-friendly events. The suits are still sharp but less formal — unstructured jackets, open collars, tonal dressing, soft tailoring.",
         "text_animation": "none",
         "button_label": "Learn More",
         "button_link": ""
