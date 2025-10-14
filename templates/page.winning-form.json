@@ -245,6 +245,40 @@
         "products_to_show": 10,
         "animate_products": false
       }
+    },
+    "image_with_text_AA4PpH": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "full_width": true,
+        "first_image": "shopify://shop_images/Stakes_Day_e9e199fe-3d29-4989-a6f6-a0a8ccbb0b0c.webp",
+        "image_link": "",
+        "animate_images": false,
+        "alignment": "right",
+        "heading": "Finish Strong",
+        "heading_animation": "none",
+        "text": "DERBY DAY / FlemingtonTHE EVEREST / RandwickThe last of the major race days, these are the most relaxed, modern, and family-friendly events. The suits are still sharp but less formal — unstructured jackets, open collars, tonal dressing, soft tailoring.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    },
+    "collection_slider_secondary_DMPjdT": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "stakes-day",
+        "button_label": "",
+        "products_to_show": 10,
+        "animate_products": false
+      }
     }
   },
   "order": [
@@ -256,6 +290,8 @@
     "image_with_text_bEaVba",
     "collection_slider_secondary_c8F73Y",
     "image_with_text_Qynbbi",
-    "collection_slider_secondary_rrnhLh"
+    "collection_slider_secondary_rrnhLh",
+    "image_with_text_AA4PpH",
+    "collection_slider_secondary_DMPjdT"
   ]
 }
