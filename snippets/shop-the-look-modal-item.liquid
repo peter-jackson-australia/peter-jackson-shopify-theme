@@ -1,0 +1,318 @@
+{% doc %}
+This snippet renders a product within the splide slider for the "shop the look" section.
+
+@param{bool} hasNext - There is another product in the list to render
+@param{bool} hasPrev - There is another product in the list to render
+@param{object} product - The product to display at this point
+{% enddoc %}
+
+{% assign item_handle = product.handle %}
+{% assign featured_image = product.featured_image %}
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+<article class="shop-the-look__modal-item custom-scrollbar">
+  <div class="shop-the-look__modal-close-button-container">
+    <button class="shop-the-look__modal-close-button" aria-label="Close Modal">{% render '_icon-close' %}</button>
+  </div>
+  <section class="shop-the-look__modal-item-image splide">
+    <div class="splide__arrows">
+      <button class="splide__arrow splide__arrow--prev">
+        <svg width="14" height="24" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 1L1 6L6 11" stroke="#0F0F0F" stroke-linecap="square"/>
+        </svg>
+      </button>
+      <button class="splide__arrow splide__arrow--next">
+        <svg width="14" height="24" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1L6 6L1 11" stroke="#0F0F0F" stroke-linecap="square"/>
+        </svg>
+      </button>
+    </div>
+    <div class="splide__track">
+      <ul class="splide__list">
+        {% for image in product.images %}
+          <li class="shop-the-look__modal-image splide__slide" data-imageid="{{ image.id }}">
+            {{
+            image
+            | image_url: width: image.width
+            | image_tag:
+            sizes: '(max-width: 768px) 400px, 1200px',
+            alt: image.alt,
+            loading: 'lazy',
+            decoding: 'async'
+            }}
+          </li>
+        {% endfor %}
+      </ul>
+      <div class="shop-the-look__product-images-progress">
+        <div class="shop-the-look__product-images-progress-bar"></div>
+      </div>
+    </div>
+  </section>
+  <section class="shop-the-look__modal-item-content">
+    <div class="shop-the-look__modal-item-content-container custom-scrollbar">
+      <div>
+        {% if current_variant.sku %}
+          <p class="product-details__sku small">
+            Product Code:
+            <span class="js--variant-sku">{{ current_variant.sku }}</span>
+          </p>
+        {% endif %}
+
+        <div class="product-details__header">
+          <h1 class="product-details__title heading--xl" data-title="{{ product.title }}">{{ product.title }}</h1>
+          <div class="product-details__price">
+            {% if current_variant.compare_at_price > current_variant.price %}
+              <span class="product-details__compare-price body js--variant-compareatprice">
+                  {{ current_variant.compare_at_price | money_with_currency }}
+                </span>
+            {% endif %}
+            <span class="product-details__price-actual body js--variant-price">
+                {{ current_variant.price | money_with_currency }}
+              </span>
+          </div>
+        </div>
+
+        <div class="product-details__info-container">
+          {% if localization.market.handle == 'au' %}
+            <p class="small" style="color: var(--neutral-600);">
+              {{ product.metafields.custom.discount_bundle_name | metafield_tag }}
+            </p>
+          {% endif %}
+          <button
+              type="button"
+              class="size-guide-button small"
+          >
+            What's my size?
+          </button>
+        </div>
+
+        {% comment %}{% if product.metafields.custom.product_colour_variants %}{% endcomment %}
+        {% comment %}{% render 'related-product-slider' %}{% endcomment %}
+        {% comment %}{% endif %}{% endcomment %}
+
+        <form action="{{ routes.cart_add_url }}" method="post" onsubmit="return false;" id="js--variant-form">
+          {% unless product.has_only_default_variant %}
+            {% for option_group in product.options_with_values %}
+              {% assign option_field = option_group.position | prepend: 'option' %}
+              <fieldset class="variant-options js--variant-options">
+                <legend class="body--bold">{{ option_group.name }}:</legend>
+                <div class="variant-options__list">
+                  {% for value in option_group.values %}
+                    {% capture option_id %}{{ option_group.name }}_{{ value }}{% endcapture %}
+                    {% capture input_id %}option-{{ product.id | handleize }}-{{ option_id | handleize }}{% endcapture %}
+                    <div class="variant-option">
+                      <input
+                          type="radio"
+                          id="option-{{ product.id | handleize }}-{{ option_id | handleize }}"
+                          class="js--variant-option"
+                          name="{{ option_group.position | prepend: 'option'}}"
+                          value="{{ value }}"
+                          {% if current_variant[option_field] == value %}
+                            checked
+                          {% endif %}
+                      >
+                      <label for="{{ input_id }}" class="body">
+                        {% if option_group.name == 'Size' and value contains '.0' %}
+                          {{- value | remove: '.0' -}}
+                        {% else %}
+                          {{- value -}}
+                        {% endif %}
+                      </label>
+                    </div>
+                  {% endfor %}
+                </div>
+              </fieldset>
+            {% endfor %}
+            {% if product.metafields.custom.show_pants_size_for_suits %}
+              <p class="small" style="margin-bottom: var(--space-m); color: var(--neutral-600);">
+                Suit Includes Trousers Size:
+                <span class="js--pants-size">{{ current_variant.option1 | minus: 12 }}</span>
+              </p>
+            {% endif %}
+          {% endunless %}
+
+          <input
+              type="hidden"
+              id="js--variant-id"
+              name="id"
+              value="{{ current_variant.id }}"
+          >
+          <input
+              type="hidden"
+              id="js--variant-inventory-quantity"
+              value="{{ current_variant.inventory_quantity }}"
+          >
+
+          {% if current_variant.available and product.gift_card? %}
+            <button
+                type="submit"
+                id="js--addtocart"
+                class="body"
+                style="height: var(--space-xl); border-radius: 200px;"
+            >
+              Add To Cart
+            </button>
+          {% elsif current_variant.available and current_variant.inventory_quantity > 5 %}
+            <button
+                type="submit"
+                id="js--addtocart"
+                class="body"
+                style="height: var(--space-xl); border-radius: 200px;"
+            >
+              {% if section.settings.show_low_stock_warning
+              and current_variant.available
+              and current_variant.inventory_quantity >= 6
+              and current_variant.inventory_quantity <= 10
+              and product.gift_card? == false
+              %}
+                Low In Stock - Add To Cart
+              {% else %}
+                Add To Cart
+              {% endif %}
+            </button>
+          {% else %}
+            <button
+                type="submit"
+                id="js--addtocart"
+                class="body"
+                style="height: var(--space-xl); display: none; {% if section.settings.round_cta %} border-radius: 200px; {% endif %}"
+            >
+              Add To Cart
+            </button>
+          {% endif %}
+          <button
+              type="button"
+              id="js--notify-me"
+              class="body"
+              style="height: var(--space-xl); width: 100%; background-color: var(--neutral-950); color: var(--white); border: none; padding: var(--space-s) var(--space-m); cursor: pointer; margin-bottom: var(--space-s); {% if current_variant.available and product.gift_card? %}display: none;{% elsif current_variant.available and current_variant.inventory_quantity > 5 %}display: none;{% else %}display: block;{% endif %} {% if section.settings.round_cta %} border-radius: 200px; {% endif %}"
+          >
+            Out of Stock - Notify Me
+          </button>
+
+          <div
+              class="klaviyo-form-WMidEs"
+              style="{% if current_variant.available and product.gift_card? %}display: none;{% elsif current_variant.available and current_variant.inventory_quantity > 5 %}display: none;{% else %}display: none;{% endif %}"
+          ></div>
+        </form>
+
+        {% assign has_description = false %}
+        {% assign has_specs = false %}
+        {% assign has_shipping = false %}
+
+        {% if product.description != blank %}
+          {% assign has_description = true %}
+        {% endif %}
+
+        {% if product.metafields.custom.care_guide != blank
+        or product.metafields.custom.garment_fit != blank
+        or product.metafields.custom.product_specifications != blank
+        %}
+          {% assign has_specs = true %}
+        {% endif %}
+
+        {% if section.settings.shipping_content != blank %}
+          {% assign has_shipping = true %}
+        {% endif %}
+
+        {% if has_description or has_specs or has_shipping %}
+          <div class="tab-collection">
+            <div class="tab-collection__buttons">
+              {% if has_description %}
+                <button class="tab-collection__tab tab-collection__tab--active body--uppercase" data-tab="description">Product Info</button>
+              {% endif %}
+              {% if has_specs %}
+                <button class="tab-collection__tab body--uppercase" data-tab="specs">Specifications And Care</button>
+              {% endif %}
+              {% if has_shipping %}
+                <button class="tab-collection__tab body--uppercase" data-tab="shipping">Shipping</button>
+              {% endif %}
+            </div>
+
+            {% if has_description %}
+              <div class="tab-collection__content tab-collection__content--active" data-tab="description">
+                <div class="product-tabs__description body">
+                  {{ product.description }}
+                  {% if product.metafields.custom.stylist_notes %}
+                    <div>
+                      <strong class="product-tabs__description-stylist-notes-heading body--bold">Stylist Notes</strong>
+                      {{ product.metafields.custom.stylist_notes | metafield_tag }}
+                    </div>
+                  {% endif %}
+                  {% if section.settings.show_usps %}
+                    <hr
+                        class="product-tabs__description-usp-hr"
+                    >
+                    <ul>
+                      <li>
+                        {% if product.price > 9900 %}
+                          <strong class="body--bold product-tabs__description-usp"
+                          >Complimentary standard shipping on this item.</strong
+                          >
+                        {% else %}
+                          <strong class="body--bold product-tabs__description-usp"
+                          >Complimentary standard shipping over $99.</strong
+                          >
+                        {% endif %}
+                      </li>
+                      <li>
+                        <strong class="body--bold product-tabs__description-usp">30 Day Returns Policy</strong>
+                      </li>
+                      {% if product.metafields.custom.fabric_description %}
+                        <li>
+                          <strong class="body--bold product-tabs__description-usp">
+                            {{- product.metafields.custom.fabric_description -}}
+                          </strong>
+                        </li>
+                      {% endif %}
+                    </ul>
+                  {% endif %}
+                </div>
+              </div>
+            {% endif %}
+
+            {% if has_specs %}
+              <div class="tab-collection__content" data-tab="specs">
+                {% if product.metafields.custom.garment_fit != blank %}
+                  <div class="product-tabs__metafield">
+                    <h4 class="body--bold">Sizing Information</h4>
+                    <div class="body">{{ product.metafields.custom.garment_fit | metafield_tag }}</div>
+                  </div>
+                {% endif %}
+
+                {% if product.metafields.custom.product_specifications != blank %}
+                  <div class="product-tabs__metafield">
+                    <h4 class="body--bold">Specifications</h4>
+                    <div class="body">{{ product.metafields.custom.product_specifications | metafield_tag }}</div>
+                  </div>
+                {% endif %}
+
+                {% if product.metafields.custom.care_guide != blank %}
+                  <div class="product-tabs__metafield">
+                    <h4 class="body--bold">Fabric and Care</h4>
+                    <div class="body">{{ product.metafields.custom.care_guide | metafield_tag }}</div>
+                  </div>
+                {% endif %}
+              </div>
+            {% endif %}
+
+            {% if has_shipping %}
+              <div class="tab-collection__content" data-tab="shipping">
+                <div class="body product-tabs__content-shipping">
+                  {{ section.settings.shipping_content }}
+                </div>
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+      <div class="shop-the-look__modal-item-content-gradient"></div>
+    </div>
+    <div class="shop-the-look__modal-navigation-bar">
+      <div class="shop-the-look__modal-item-gradient"></div>
+      <div class="shop-the-look__modal-navigation-bar-items">
+        <button class="shop-the-look__switch-product-button shop-the-look__switch-product-button--prev body--uppercase" {% if hasPrev != false %}disabled{% endif %}>&lt; Previous</button>
+        <button class="shop-the-look__switch-product-button shop-the-look__switch-product-button--next body--uppercase" {% if hasNext != false %}disabled{% endif %}>Next &gt;</button>
+      </div>
+    </div>
+  </section>
+</article>
