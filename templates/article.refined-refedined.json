@@ -319,6 +319,33 @@
         "button_label": "Learn More",
         "button_link": ""
       }
+    },
+    "hero_primary_eAEBWA": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/RR_11.webp",
+        "mobile_image": "shopify://shop_images/RR_11.1.webp",
+        "heading": "",
+        "svg_size": "medium",
+        "heading_level": "h4",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "button_label_1": "Shop Now",
+        "button_link_1": "",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "bottom",
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "bottom"
+      }
     }
   },
   "order": [
@@ -335,6 +362,7 @@
     "collection_slider_secondary_Fr3RYB",
     "full_page_media_fUVJVk",
     "collection_slider_secondary_yGfCVj",
-    "variable_column_content_tertiary_7TTkFy"
+    "variable_column_content_tertiary_7TTkFy",
+    "hero_primary_eAEBWA"
   ]
 }
