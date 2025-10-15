@@ -66,7 +66,7 @@
         "description": "",
         "description_animation": "none",
         "collection": "business-suits",
-        "button_label": "",
+        "button_label": "Shop Suits",
         "products_to_show": 12,
         "animate_products": true
       }
@@ -152,7 +152,7 @@
         "description": "",
         "description_animation": "none",
         "collection": "mens-suits",
-        "button_label": "",
+        "button_label": "Shop Suits",
         "products_to_show": 12,
         "animate_products": true
       }
