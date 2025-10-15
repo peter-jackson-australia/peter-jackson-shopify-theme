@@ -71,6 +71,20 @@
         "animate_products": true
       }
     },
+    "collection_slider_secondary_jWfe7r": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "business-suits",
+        "button_label": "",
+        "products_to_show": 12,
+        "animate_products": true
+      }
+    },
     "two_column_content_JQLcTq": {
       "type": "two-column-content",
       "blocks": {
@@ -115,13 +129,16 @@
     },
     "hero_primary_AMqni9": {
       "type": "hero-primary",
+      "custom_css": [
+        ".heading--3xl {font-size: 35px; font-weight: 600; letter-spacing: 5px;}"
+      ],
       "name": "Hero Section",
       "settings": {
         "media_type": "image",
         "desktop_image": "shopify://shop_images/RR_4.webp",
-        "heading": "The Peak Of Style",
+        "heading": "THE PEAK OF STYLE",
         "svg_size": "medium",
-        "heading_level": "h3",
+        "heading_level": "h4",
         "heading_animation": "none",
         "description": "Defined by a strong peak lapel, this soft sand suit brings subtle strength to modern tailoring. Fine pinstripes introduce quiet character without overpowering, while a flat-end knit tie adds texture, contrast, and contemporary sensibility. The result is a confident look that sharpens the classics.",
         "description_animation": "none",
@@ -338,6 +355,7 @@
     "collection_slider_secondary_GjGnVj",
     "two_column_content_JQLcTq",
     "hero_primary_AMqni9",
+    "collection_slider_secondary_jWfe7r",
     "image_with_text_KWmAa3",
     "image_with_text_FGfVYU",
     "hero_slider_zKUKdU",
