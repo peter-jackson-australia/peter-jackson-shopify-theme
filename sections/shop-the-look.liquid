@@ -97,8 +97,7 @@
                         {% if compare_at_price > item_price %}
                           <span class="shop-the-look__product-price--sale">{{ item_price | money_with_currency }}</span>
                           <span class="shop-the-look__product-price--compare">
-                            Was
-                            {{ compare_at_price | money_with_currency -}}
+                            {{- compare_at_price | money_with_currency -}}
                           </span>
                         {% else %}
                           {{ item_price | money_with_currency }}
@@ -126,7 +125,7 @@
           {% assign compare_at_price = single_product.compare_at_price %}
 
           {% if single_product %}
-            <a href="/products/{{ product_handle }}" class="shop-the-look__product-link">
+            <a class="shop-the-look__product-link">
               <div class="shop-the-look__product-image-wrapper">
                 {% if product_featured_image != blank %}
                   <img
@@ -150,8 +149,7 @@
                     {{- product_price | money_with_currency -}}
                   </span>
                   <span class="shop-the-look__product-price--compare">
-                    Was
-                    {{ product.compare_at_price | money_with_currency -}}
+                    {{- product.compare_at_price | money_with_currency -}}
                   </span>
                 {% else %}
                   {{ product_price | money_with_currency }}

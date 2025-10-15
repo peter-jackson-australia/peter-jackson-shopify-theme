@@ -232,10 +232,10 @@
                   </button>
                 {% else %}
                   <button
-                    type="submit"
-                    id="js--addtocart"
-                    class="body"
-                    style="height: var(--space-xl); display: none; {% if section.settings.round_cta %} border-radius: 200px; {% endif %}"
+                      type="submit"
+                      id="js--addtocart"
+                      class="body"
+                      style="height: var(--space-xl); display: none; {% if section.settings.round_cta %} border-radius: 200px; {% endif %}"
                   >
                     Add To Cart
                   </button>
@@ -327,12 +327,12 @@
                         </li>
                       {% endif %}
                     </ul>
-                  {% endif %}
-                  {% if current_variant.sku %}
+                  {% else current_variant.sku %}
                   <p class="product-details__afterpay body--bold">
                     Product Code:
                     <span class="js--variant-sku body--bold">{{ current_variant.sku }}</span>
                   </p>
+                  {% endif %}
                 </div>
               </div>
             {% endif %}
