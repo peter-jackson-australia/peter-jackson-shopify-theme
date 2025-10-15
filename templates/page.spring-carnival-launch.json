@@ -227,7 +227,7 @@
         "tile_FPGHMd": {
           "type": "tile",
           "settings": {
-            "tile_background_image": "shopify://shop_images/Co-Orders.webp",
+            "tile_background_image": "shopify://shop_images/Co-Ords.webp",
             "tile_header": "CO-ORDS",
             "tile_secondary_text": "Shop Matching Sets",
             "tile_link": ""
