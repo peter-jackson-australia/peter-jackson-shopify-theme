@@ -2,6 +2,16 @@
   Shop The Look Section
 {% endcomment %}
 
+<style>
+  {% comment %}
+  @media screen and (min-width: 1100px) {
+    .shop-the-look__modal-item-content {
+      max-height: calc({{product.images[0].height}} * (50vw - var(--space-l)) / {{product.images[0].width}});
+    }
+  }
+  {% endcomment %}
+</style>
+
 {% assign shop_the_look = product.metafields.custom.shop_the_look %}
 {% liquid
   assign active_products = 0
@@ -10,15 +20,45 @@
   endfor
 %}
 {% assign shop_the_look_count = active_products %}
+{% assign section_id = section.id %}
 
 {% if shop_the_look_count > 0 and product.images.size > 1 %}
-  {% assign section_id = section.id %}
-  {% assign heading = section.settings.heading %}
-  {% assign second_image = product.images[1] %}
-
-  {{ 'section-shop-the-look.css' | asset_url | stylesheet_tag }}
-
   <div class="shop-the-look" id="section-{{ section_id }}">
+    {% assign heading = section.settings.heading %}
+    {% assign second_image = product.images[1] %}
+
+    {{ 'section-shop-the-look.css' | asset_url | stylesheet_tag }}
+
+    {% if shop_the_look_count > 1 %}
+      <div class="shop-the-look__modal-container">
+        <div class="shop-the-look__modal">
+          {% comment %}<button role="button" class="shop-the-look__modal-close-button">Close</button>{% endcomment %}
+          <div class="shop-the-look__modal-slider splide">
+            <div class="shop-the-look__modal-splide-track splide__track">
+              <ul class="shop-the-look__modal-splide-list splide__list">
+                {% for product in shop_the_look.value %}
+                  <li class="splide__slide">
+                    <div class="buyable-product-wrapper"
+                         data-product-id="{{ product.id }}"
+                         data-variants="{{ product.variants | json | escape}}";
+                         data-variant-inventory-quantities="[{% for variant in product.variants %}{{ variant.inventory_quantity | escape }}{% unless forloop.last %},{% endunless %}{% endfor %}]";
+                         data-product-title="{{ product.title | json | escape }}";
+                         data-show-low-stock-warning="{{ section.settings.show_low_stock_warning | json | escape }}";>
+                      {% render 'shop-the-look-modal-item',
+                          product: product,
+                          hasPrev: forloop.first != true,
+                          hasNext: forloop.last != true
+                      %}
+                    </div>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
     <div class="shop-the-look__slider-container">
       <h2 class="heading--xl shop-the-look__heading">{{ heading }}</h2>
       {% if shop_the_look_count > 1 %}
@@ -30,17 +70,17 @@
                   {% assign item_handle = item.handle %}
                   {% assign featured_image = item.featured_image %}
 
-                  <li class="splide__slide shop-the-look__slide">
-                    <a href="/products/{{ item_handle }}" class="shop-the-look__product-link">
+                  <li class="splide__slide shop-the-look__slide" data-product-id="{{ item.id }}">
+                    <a class="shop-the-look__product-link">
                       <div class="shop-the-look__product-image-wrapper">
                         {% if featured_image != blank %}
                           <img
-                            src="{{ featured_image | image_url: width: '600px' }}"
-                            alt="{{ featured_image.alt | escape }}"
-                            loading="lazy"
-                            width="{{ featured_image.width }}"
-                            height="{{ featured_image.width }}"
-                            class="shop-the-look__product-image"
+                              src="{{ featured_image | image_url: width: '600px' }}"
+                              alt="{{ featured_image.alt | escape }}"
+                              loading="lazy"
+                              width="{{ featured_image.width }}"
+                              height="{{ featured_image.width }}"
+                              class="shop-the-look__product-image"
                           >
                         {% else %}
                           {{ 'product-1' | placeholder_svg_tag: 'shop-the-look__product-image placeholder' }}
@@ -90,12 +130,12 @@
               <div class="shop-the-look__product-image-wrapper">
                 {% if product_featured_image != blank %}
                   <img
-                    src="{{ product_featured_image | image_url: width: '600px' }}"
-                    alt="{{ product_featured_image.alt | escape }}"
-                    loading="lazy"
-                    width="{{ product_featured_image.width }}"
-                    height="{{ product_featured_image.height }}"
-                    class="shop-the-look__product-image"
+                      src="{{ product_featured_image | image_url: width: '600px' }}"
+                      alt="{{ product_featured_image.alt | escape }}"
+                      loading="lazy"
+                      width="{{ product_featured_image.width }}"
+                      height="{{ product_featured_image.height }}"
+                      class="shop-the-look__product-image"
                   >
                 {% else %}
                   {{ 'product-1' | placeholder_svg_tag: 'shop-the-look__product-image placeholder' }}
@@ -127,28 +167,29 @@
       {% assign image_width = 1024 %}
       {% assign image_height = image_width | divided_by: second_image.aspect_ratio | ceil %}
       <img
-        src="{{ second_image.src | image_url: width: image_width }}"
-        srcset="
+          src="{{ second_image.src | image_url: width: image_width }}"
+          srcset="
           {{ second_image.src | image_url: width: 600 }} 600w,
           {{ second_image.src | image_url: width: 800 }} 800w,
           {{ second_image.src | image_url: width: 1024 }} 1024w,
           {{ second_image.src | image_url: width: 1440 }} 1440w
         "
-        sizes="(max-width: 768px) 100vw, 50vw"
-        width="{{ image_width }}"
-        height="{{ image_height }}"
-        alt="{{ second_image.alt | default: product.title }}"
-        loading="lazy"
-        class="shop-the-look__image"
+          sizes="(max-width: 768px) 100vw, 50vw"
+          width="{{ image_width }}"
+          height="{{ image_height }}"
+          alt="{{ second_image.alt | default: product.title }}"
+          loading="lazy"
+          class="shop-the-look__image"
       >
     </div>
   </div>
 
   {% if shop_the_look_count > 1 %}
     <script
-      src="{{ "section-shop-the-look.js" | asset_url }}"
-      data-section-id="{{ section_id }}"
-      defer
+        src="{{ "section-shop-the-look.js" | asset_url }}"
+        data-section-id="{{ section_id }}"
+        data-products="{{ shop_the_look.value | json | escape }}"
+        defer
     ></script>
   {% endif %}
 {% endif %}
