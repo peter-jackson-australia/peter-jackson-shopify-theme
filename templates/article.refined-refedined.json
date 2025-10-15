@@ -1,0 +1,350 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "article": {
+      "type": "main-article",
+      "disabled": true,
+      "settings": {}
+    },
+    "editorial_hero_Q8bdNh": {
+      "type": "editorial-hero",
+      "name": "Hero Editorial",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "leading_text": "WINTER 25",
+        "leading_text_animation": "animate-paragraph-slide-up-scroll",
+        "first_title": "Higher",
+        "first_title_level": "h1",
+        "first_title_animation": "animate-paragraph-slide-up-scroll",
+        "media_type": "video",
+        "video": "shopify://files/videos/WT25-Homepage-Desktop-Compressed.mp4",
+        "animate_media": false,
+        "second_title": "Ground",
+        "second_title_level": "h1",
+        "second_title_animation": "animate-paragraph-slide-up-scroll",
+        "description": "Our winter collection embodies a mindset — one of purpose, progress, and refinement. Suits and sports jackets are reimagined in relaxed silhouettes, crafted from premium textiles that balance heritage with innovation. This is style designed not just for the day ahead, but for the journey beyond it — tailored for higher ground.",
+        "description_animation": "animate-paragraph-slide-up-scroll",
+        "cta_text": "Shop Now",
+        "cta_link": ""
+      }
+    },
+    "full_page_media_DQrgiW": {
+      "type": "full-page-media",
+      "name": "Full Page Media",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/Higher-Ground-2_2102x_262d9e57-8b01-4718-8a37-b5c4260c1e99.webp",
+        "mobile_image": "shopify://shop_images/Higher-Ground-2_2102x_262d9e57-8b01-4718-8a37-b5c4260c1e99-1_copy.webp",
+        "link": "shopify://collections/new-arrivals",
+        "link_text": "Learn more",
+        "alt_text": "Full page media"
+      }
+    },
+    "two_column_content_JQLcTq": {
+      "type": "two-column-content",
+      "blocks": {
+        "column_E6NPhW": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Higher-Ground-4_900x_343acf6e-e3ab-441b-9280-720a71ce8069.webp",
+            "product": "textured-rib-ash-crew-neck-knit",
+            "heading": "The Build Up",
+            "heading_animation": "none",
+            "description": "New season knitwear. The ultimate outfit foundation piece.",
+            "description_animation": "none",
+            "button_label": "Learn More",
+            "button_link": ""
+          }
+        },
+        "column_R9dG48": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/WT25-Suits_1512x_8ac5eb3d-e875-43bb-b6cf-13fc2f62f29c.webp",
+            "product": "",
+            "heading": "Winter Tailoring",
+            "heading_animation": "none",
+            "description": "Merino wool suits for cooler days.",
+            "description_animation": "none",
+            "button_label": "Learn More",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_E6NPhW",
+        "column_R9dG48"
+      ],
+      "name": "Two Column Content",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "animate_columns": false
+      }
+    },
+    "hero_primary_AMqni9": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/Wt25-Launch-Hero_2000x_463f760b-fb8a-497b-8b90-b7a1c37ff402.webp",
+        "heading": "Next-Level Outerwear",
+        "svg_size": "medium",
+        "heading_level": "h1",
+        "heading_animation": "none",
+        "description": "A refined essential for the season. Our wool coats balance structure with ease in a versatile car coat length.",
+        "description_animation": "none",
+        "button_label_1": "Shop Now",
+        "button_link_1": "",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "bottom",
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "bottom"
+      }
+    },
+    "collection_slider_secondary_GjGnVj": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "Outerwear",
+        "heading_animation": "none",
+        "description": "Premium winter jackets and coats",
+        "description_animation": "none",
+        "collection": "outerwear",
+        "button_label": "Shop All",
+        "products_to_show": 10,
+        "animate_products": true
+      }
+    },
+    "image_with_text_KWmAa3": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "full_width": false,
+        "first_image": "shopify://shop_images/Higher-Ground-5_900x_b9c7f089-0715-4a89-9497-717235b82c9e.webp",
+        "image_link": "",
+        "animate_images": false,
+        "alignment": "left",
+        "heading": "Quiet Command",
+        "heading_animation": "none",
+        "text": "The fine-gauge knit defines winter’s sharpest layer. In classic turtlenecks and clean crew styles, each piece is cut from a wool-cashmere blend that delivers warmth, breathability, and a soft, refined finish.",
+        "text_animation": "none",
+        "button_label": "Shop Knitwear",
+        "button_link": ""
+      }
+    },
+    "image_with_text_FGfVYU": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "full_width": false,
+        "first_image": "shopify://shop_images/Higher-Ground-6_900x_e0484f2a-0263-454c-ab59-aff2b7c7618d.webp",
+        "image_link": "",
+        "animate_images": false,
+        "alignment": "right",
+        "heading": "",
+        "heading_animation": "none",
+        "text": "Designed to style under suits and sports jackets with ease, it’s a foundation of the season’s style. Crafted to sit close to the body without bulk, it slips easily under tailoring — adding warmth, not weight.",
+        "text_animation": "none",
+        "button_label": "Shop Knitwear",
+        "button_link": "shopify://collections/knitwear"
+      }
+    },
+    "hero_slider_zKUKdU": {
+      "type": "hero-slider",
+      "blocks": {
+        "slide_PQmV7m": {
+          "type": "slide",
+          "settings": {
+            "media_type": "image",
+            "desktop_image": "shopify://shop_images/Higher-Ground-11_2000x_c79ae7f6-21a2-456c-9040-60b8f3877894.webp",
+            "mobile_image": "shopify://shop_images/Higher-Ground-12_1512x_d69a6e14-699c-48e7-8c5b-b28738aacdc0.webp",
+            "heading": "A Modern Statement",
+            "svg_size": "medium",
+            "heading_level": "h1",
+            "heading_animation": "animate-paragraph-slide-up-scroll",
+            "description": "Corduroy returns with new intent — softer, lighter, and sharper in cut. Once rooted in utility, it’s now a textural statement in modern tailoring, bringing relaxed structure and refined ease to everyday dressing.",
+            "description_animation": "animate-paragraph-slide-up-scroll",
+            "button_label_1": "Shop Now",
+            "button_link_1": "",
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_label_3": "",
+            "button_link_3": "",
+            "button_label_4": "",
+            "button_link_4": "",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "middle",
+            "mobile_horizontal_alignment": "center",
+            "mobile_vertical_alignment": "bottom"
+          }
+        },
+        "slide_zKAYnh": {
+          "type": "slide",
+          "settings": {
+            "media_type": "image",
+            "desktop_image": "shopify://shop_images/Higher-Ground-10_2000x_a3504dc2-72d2-4cce-ba83-2df0da46af22.webp",
+            "mobile_image": "shopify://shop_images/Higher-Ground-14_1512x_654bf664-3a7c-4975-a17a-f43347a99f4a.webp",
+            "heading": "The Power Suit Returns",
+            "svg_size": "medium",
+            "heading_level": "h1",
+            "heading_animation": "animate-paragraph-slide-up-scroll",
+            "description": "The bold return of the banker stripe channels classic power with sharper lines and softer structure. In contrast, tonal dressing takes a quieter approach — all depth, no noise. Different executions, same energy: confidence, refined.",
+            "description_animation": "animate-paragraph-slide-up-scroll",
+            "button_label_1": "Shop Now",
+            "button_link_1": "",
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_label_3": "",
+            "button_link_3": "",
+            "button_label_4": "",
+            "button_link_4": "",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "middle",
+            "mobile_horizontal_alignment": "center",
+            "mobile_vertical_alignment": "bottom"
+          }
+        }
+      },
+      "block_order": [
+        "slide_PQmV7m",
+        "slide_zKAYnh"
+      ],
+      "name": "Hero Slider",
+      "settings": {
+        "autoplay": true,
+        "slide_interval": 5
+      }
+    },
+    "collection_slider_secondary_Fr3RYB": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "European Textiles, Neapolitan Style",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "mens-suits",
+        "button_label": "Shop Winter Tailoring",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
+    "variable_column_content_DECpXN": {
+      "type": "variable-column-content",
+      "name": "Variable Column Content",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "3",
+        "text_alignment": "center",
+        "animate_images": false,
+        "image_1": "shopify://shop_images/Higher-Ground-18_1296x_6f34e57a-a003-4ff4-846c-f56fd65a6fc1.webp",
+        "image_1_link": "",
+        "image_2": "shopify://shop_images/Higher-Ground-20_1512x_bed04047-3e42-4ccc-84bf-fa81e433ba28.webp",
+        "image_2_link": "",
+        "image_3": "shopify://shop_images/Higher-Ground-21_1296x_16db31b8-b465-43a2-a9e6-66f77ad4ca56.webp",
+        "image_3_link": "",
+        "image_4_link": "",
+        "image_5_link": "",
+        "image_6_link": "",
+        "heading": "The Height Of Ease",
+        "heading_animation": "none",
+        "text": "Relaxed in form, precise in impact. These aren’t just off-duty layers — they’re refined essentials that bring structure to the everyday. Suede, denim, and soft tailoring offer a sense of polish, proving that casual can still carry weight.",
+        "text_animation": "none",
+        "button_label": "Shop Casual Essentials",
+        "button_link": "shopify://collections/casual"
+      }
+    },
+    "heading_with_text_NFCiF4": {
+      "type": "heading-with-text",
+      "name": "Heading with Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "leading_text": "",
+        "leading_text_animation": "none",
+        "heading": "The Feel Factor",
+        "heading_style": "normal",
+        "heading_animation": "none",
+        "content": "<p>Texture isn’t an accent — it’s the point. Wool-cashmere and corduroy add structure and depth to casual looks, making even off-duty outfits feel refined.</p>",
+        "content_animation": "none",
+        "alignment": "center"
+      }
+    },
+    "full_page_media_fUVJVk": {
+      "type": "full-page-media",
+      "name": "Full Page Media",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/Higher-Ground-22_2000x_16836b81-bdc5-4650-9c30-02b0c87cdcfa.webp",
+        "mobile_image": "shopify://shop_images/Higher-Ground-25_1296x_056d5532-ba31-4ca9-995b-dde481acb249.webp",
+        "link": "",
+        "link_text": "Learn more",
+        "alt_text": "Full page media"
+      }
+    },
+    "collection_slider_secondary_yGfCVj": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "Shop New Season",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "new-arrivals",
+        "button_label": "New In",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
+    "blog_header_z96LBn": {
+      "type": "blog-header",
+      "name": "Blog Header",
+      "settings": {
+        "journal_type": "jackson"
+      }
+    }
+  },
+  "order": [
+    "article",
+    "blog_header_z96LBn",
+    "editorial_hero_Q8bdNh",
+    "full_page_media_DQrgiW",
+    "two_column_content_JQLcTq",
+    "hero_primary_AMqni9",
+    "collection_slider_secondary_GjGnVj",
+    "image_with_text_KWmAa3",
+    "image_with_text_FGfVYU",
+    "hero_slider_zKUKdU",
+    "collection_slider_secondary_Fr3RYB",
+    "variable_column_content_DECpXN",
+    "heading_with_text_NFCiF4",
+    "full_page_media_fUVJVk",
+    "collection_slider_secondary_yGfCVj"
+  ]
+}
