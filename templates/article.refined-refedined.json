@@ -346,6 +346,20 @@
         "mobile_horizontal_alignment": "center",
         "mobile_vertical_alignment": "bottom"
       }
+    },
+    "collection_slider_secondary_CehJHz": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "mens-navy-suits",
+        "button_label": "Shop Navy Suits",
+        "products_to_show": 10,
+        "animate_products": false
+      }
     }
   },
   "order": [
@@ -363,6 +377,7 @@
     "full_page_media_fUVJVk",
     "collection_slider_secondary_yGfCVj",
     "variable_column_content_tertiary_7TTkFy",
-    "hero_primary_eAEBWA"
+    "hero_primary_eAEBWA",
+    "collection_slider_secondary_CehJHz"
   ]
 }
