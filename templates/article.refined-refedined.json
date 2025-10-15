@@ -71,20 +71,6 @@
         "animate_products": true
       }
     },
-    "collection_slider_secondary_jWfe7r": {
-      "type": "collection-slider-secondary",
-      "name": "Collection Slider Secondary",
-      "settings": {
-        "heading": "",
-        "heading_animation": "none",
-        "description": "",
-        "description_animation": "none",
-        "collection": "business-suits",
-        "button_label": "",
-        "products_to_show": 12,
-        "animate_products": true
-      }
-    },
     "two_column_content_JQLcTq": {
       "type": "two-column-content",
       "blocks": {
@@ -130,7 +116,7 @@
     "hero_primary_AMqni9": {
       "type": "hero-primary",
       "custom_css": [
-        ".heading--3xl {font-size: 35px; font-weight: 600; letter-spacing: 5px;}"
+        ".heading--3xl {font-size: 30px; font-weight: 600; letter-spacing: 5px;}"
       ],
       "name": "Hero Section",
       "settings": {
@@ -154,6 +140,21 @@
         "vertical_alignment": "bottom",
         "mobile_horizontal_alignment": "center",
         "mobile_vertical_alignment": "bottom"
+      }
+    },
+    "collection_slider_secondary_jWfe7r": {
+      "type": "collection-slider-secondary",
+      "custom_css": [],
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "business-suits",
+        "button_label": "",
+        "products_to_show": 12,
+        "animate_products": true
       }
     },
     "image_with_text_KWmAa3": {
