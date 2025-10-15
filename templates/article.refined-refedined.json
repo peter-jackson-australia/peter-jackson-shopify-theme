@@ -68,7 +68,7 @@
         "collection": "business-suits",
         "button_label": "Shop Suits",
         "products_to_show": 12,
-        "animate_products": true
+        "animate_products": false
       }
     },
     "two_column_content_JQLcTq": {
@@ -154,7 +154,7 @@
         "collection": "mens-suits",
         "button_label": "Shop Suits",
         "products_to_show": 12,
-        "animate_products": true
+        "animate_products": false
       }
     },
     "image_with_text_KWmAa3": {
