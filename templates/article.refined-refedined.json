@@ -211,7 +211,7 @@
       "type": "collection-slider-secondary",
       "name": "Collection Slider Secondary",
       "settings": {
-        "heading": "The Distinctive Touch",
+        "heading": "",
         "heading_animation": "none",
         "description": "",
         "description_animation": "none",
@@ -221,30 +221,13 @@
         "animate_products": false
       }
     },
-    "heading_with_text_NFCiF4": {
-      "type": "heading-with-text",
-      "name": "Heading with Text",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": true,
-        "show_bottom_border": false,
-        "leading_text": "",
-        "leading_text_animation": "none",
-        "heading": "The Feel Factor",
-        "heading_style": "normal",
-        "heading_animation": "none",
-        "content": "<p>Texture isn’t an accent — it’s the point. Wool-cashmere and corduroy add structure and depth to casual looks, making even off-duty outfits feel refined.</p>",
-        "content_animation": "none",
-        "alignment": "center"
-      }
-    },
     "full_page_media_fUVJVk": {
       "type": "full-page-media",
       "name": "Full Page Media",
       "settings": {
         "media_type": "image",
-        "desktop_image": "shopify://shop_images/Higher-Ground-22_2000x_16836b81-bdc5-4650-9c30-02b0c87cdcfa.webp",
-        "mobile_image": "shopify://shop_images/Higher-Ground-25_1296x_056d5532-ba31-4ca9-995b-dde481acb249.webp",
+        "desktop_image": "shopify://shop_images/RR_7.webp",
+        "mobile_image": "shopify://shop_images/RR_7.1.webp",
         "link": "",
         "link_text": "Learn more",
         "alt_text": "Full page media"
@@ -254,14 +237,87 @@
       "type": "collection-slider-secondary",
       "name": "Collection Slider Secondary",
       "settings": {
-        "heading": "Business Shirts",
+        "heading": "",
         "heading_animation": "none",
         "description": "",
         "description_animation": "none",
         "collection": "business-shirts",
-        "button_label": "Shop Now",
+        "button_label": "Shop Business Shirts",
         "products_to_show": 10,
         "animate_products": false
+      }
+    },
+    "variable_column_content_tertiary_7TTkFy": {
+      "type": "variable-column-content-tertiary",
+      "blocks": {
+        "column_item_wjH8nU": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/RR_8.webp",
+            "image_link": "",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "center",
+            "content_vertical_alignment": "center",
+            "column_link": "shopify://collections/mens-suits",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_bgtMB8": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/RR_10.webp",
+            "image_link": "",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "center",
+            "content_vertical_alignment": "center",
+            "column_link": "shopify://collections/mens-suits",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_RPjWgx": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/RR_9.webp",
+            "image_link": "",
+            "heading": "",
+            "heading_animation": "none",
+            "text": "",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "center",
+            "content_vertical_alignment": "center",
+            "column_link": "shopify://collections/mens-suits",
+            "column_link_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_item_wjH8nU",
+        "column_item_bgtMB8",
+        "column_item_RPjWgx"
+      ],
+      "name": "Variable Column Content Tertiary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "3",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "",
+        "heading_animation": "none",
+        "text": "",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
       }
     }
   },
@@ -277,8 +333,8 @@
     "image_with_text_KWmAa3",
     "hero_primary_TRYbfg",
     "collection_slider_secondary_Fr3RYB",
-    "heading_with_text_NFCiF4",
     "full_page_media_fUVJVk",
-    "collection_slider_secondary_yGfCVj"
+    "collection_slider_secondary_yGfCVj",
+    "variable_column_content_tertiary_7TTkFy"
   ]
 }
