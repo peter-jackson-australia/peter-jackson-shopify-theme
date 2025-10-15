@@ -353,7 +353,7 @@
 
   .shop-the-look__modal-container {
     margin: 0;
-    padding: var(--space-m);
+    padding: 0;
     width: 100%;
   }
 
