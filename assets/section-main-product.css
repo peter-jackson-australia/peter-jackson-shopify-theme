@@ -261,11 +261,11 @@ body.modal-open {
 
 .modal-content {
   background-color: var(--white);
-  max-width: 80%;
+  height: 880px;
   overflow-y: auto;
-  padding: var(--space-xl);
   position: relative;
   transform: translateY(var(--space-xl));
+  width: 1280px;
 }
 
 .modal-overlay.is-active .modal-content {
