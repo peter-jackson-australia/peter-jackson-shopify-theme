@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 const cartElements = {
   countBadges: () => document.querySelectorAll(".cart-count-indicator"),
   drawer: () => document.querySelector(".cart"),
-  addToCartForms: () => document.querySelectorAll('form[action="/cart/add"]'),
+  productPages: () => document.querySelectorAll(".buyable-product-wrapper"),
   cartIcons: () => document.querySelectorAll(".js-cart-icon"),
 };
 
@@ -197,15 +197,15 @@ const secondaryDrawer = {
           <div class="splide__track">
             <ul class="splide__list">
               ${productData.images
-                .map((img) => {
-                  const imageUrl = img.startsWith("//") ? `https:${img}` : img;
-                  return `
+      .map((img) => {
+        const imageUrl = img.startsWith("//") ? `https:${img}` : img;
+        return `
                       <li class="splide__slide">
                         <img src="${imageUrl}" alt="${productData.title}">
                       </li>
                     `;
-                })
-                .join("")}
+      })
+      .join("")}
             </ul>
           </div>
         </div>
@@ -238,9 +238,9 @@ const secondaryDrawer = {
         <legend class="body--bold">${option.name}:</legend>
         <div class="variant-options__list">
           ${option.values
-            .map((value) => {
-              const isChecked = value === currentValue;
-              return `
+        .map((value) => {
+          const isChecked = value === currentValue;
+          return `
               <div class="variant-option">
                 <input 
                   type="radio" 
@@ -256,8 +256,8 @@ const secondaryDrawer = {
                 </label>
               </div>
             `;
-            })
-            .join("")}
+        })
+        .join("")}
         </div>
       `;
       container.appendChild(fieldset);
@@ -811,15 +811,15 @@ const cart = {
     container.prepend(item);
   },
 
-  createAddToCartHandler(form) {
+  createAddToCartHandler(productPageElem, form) {
     return async (e) => {
       e.preventDefault();
 
       const btn = form.querySelector("#js--addtocart");
 
-      if (btn.querySelector(".loader--spinner")) return;
-      if (btn.disabled) return;
-      if (!btn?.enabled === false) return;
+      if (btn.querySelector(".loader--spinner")) { console.warn("spinner exists. not adding to cart"); return }
+      if (btn.disabled) { console.warn("button disabled. not adding to cart"); return; }
+      if (!btn?.enabled === false) { console.warn("button is not enabled. not adding to cart"); return; }
 
       const [variantId, qty, originalContent] = [form.querySelector("#js--variant-id")?.value || "", parseInt(form.querySelector('input[name="quantity"]')?.value || "1", 10), btn.innerHTML];
 
@@ -834,7 +834,7 @@ const cart = {
 
       try {
         if (!utils.isGiftCard(document)) {
-          const inventory = parseInt(document.querySelector("#js--variant-inventory-quantity")?.value || "Infinity", 10);
+          const inventory = parseInt(productPageElem.querySelector("#js--variant-inventory-quantity")?.value || "Infinity", 10);
           const currentCart = await cartAPI.fetch();
           const existingItem = currentCart?.items?.find((item) => item.variant_id.toString() === variantId);
           const validation = validateInventory(inventory, existingItem?.quantity || 0, qty);
@@ -1000,8 +1000,9 @@ document.addEventListener("DOMContentLoaded", () => {
 window.addEventListener("load", () => {
   cart.attachEventListeners();
 
-  cartElements.addToCartForms().forEach((form) => {
-    form.addEventListener("submit", cart.createAddToCartHandler(form));
+  cartElements.productPages().forEach((pageElem) => {
+    const form = pageElem.querySelector("form[action=\"/cart/add\"]")
+    form.addEventListener("submit", cart.createAddToCartHandler(pageElem, form));
   });
 
   cartElements.cartIcons().forEach((icon) => {
