@@ -14,6 +14,13 @@
       "disabled": true,
       "settings": {}
     },
+    "blog_header_z96LBn": {
+      "type": "blog-header",
+      "name": "Blog Header",
+      "settings": {
+        "journal_type": "jackson"
+      }
+    },
     "editorial_hero_Q8bdNh": {
       "type": "editorial-hero",
       "name": "Hero Editorial",
@@ -21,18 +28,18 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": true,
-        "leading_text": "WINTER 25",
+        "leading_text": "SPRING TAILORING",
         "leading_text_animation": "animate-paragraph-slide-up-scroll",
-        "first_title": "Higher",
+        "first_title": "REFINED",
         "first_title_level": "h1",
         "first_title_animation": "animate-paragraph-slide-up-scroll",
         "media_type": "video",
-        "video": "shopify://files/videos/WT25-Homepage-Desktop-Compressed.mp4",
+        "video": "shopify://files/videos/Refined Redefined Hero.mp4",
         "animate_media": false,
-        "second_title": "Ground",
+        "second_title": "REDEFINED",
         "second_title_level": "h1",
         "second_title_animation": "animate-paragraph-slide-up-scroll",
-        "description": "Our winter collection embodies a mindset — one of purpose, progress, and refinement. Suits and sports jackets are reimagined in relaxed silhouettes, crafted from premium textiles that balance heritage with innovation. This is style designed not just for the day ahead, but for the journey beyond it — tailored for higher ground.",
+        "description": "Suiting takes a new direction this season, where tradition meets modern edge. Neapolitan tailoring brings ease and fluidity to elegant silhouettes, cut from premium European textile by Vitale Barberis Canonico and Marzotto. The banker stripe makes a confident return, reimagined in lightweight, performance-driven fabrics with fresh spring hues and rich detail. Whether for the corporate arena, event dressing, or pure suit swagger, this is elegance redefined for today.",
         "description_animation": "animate-paragraph-slide-up-scroll",
         "cta_text": "Shop Now",
         "cta_link": ""
@@ -320,13 +327,6 @@
         "button_label": "New In",
         "products_to_show": 10,
         "animate_products": false
-      }
-    },
-    "blog_header_z96LBn": {
-      "type": "blog-header",
-      "name": "Blog Header",
-      "settings": {
-        "journal_type": "jackson"
       }
     }
   },
