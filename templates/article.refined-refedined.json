@@ -57,6 +57,20 @@
         "alt_text": "Full page media"
       }
     },
+    "collection_slider_secondary_GjGnVj": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "business-suits",
+        "button_label": "",
+        "products_to_show": 12,
+        "animate_products": true
+      }
+    },
     "two_column_content_JQLcTq": {
       "type": "two-column-content",
       "blocks": {
@@ -96,21 +110,7 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
-        "animate_columns": true
-      }
-    },
-    "collection_slider_secondary_GjGnVj": {
-      "type": "collection-slider-secondary",
-      "name": "Collection Slider Secondary",
-      "settings": {
-        "heading": "",
-        "heading_animation": "none",
-        "description": "",
-        "description_animation": "none",
-        "collection": "business-suits",
-        "button_label": "",
-        "products_to_show": 12,
-        "animate_products": true
+        "animate_columns": false
       }
     },
     "hero_primary_AMqni9": {
@@ -118,12 +118,12 @@
       "name": "Hero Section",
       "settings": {
         "media_type": "image",
-        "desktop_image": "shopify://shop_images/Wt25-Launch-Hero_2000x_463f760b-fb8a-497b-8b90-b7a1c37ff402.webp",
-        "heading": "Next-Level Outerwear",
+        "desktop_image": "shopify://shop_images/RR_4.webp",
+        "heading": "The Peak Of Style",
         "svg_size": "medium",
-        "heading_level": "h1",
+        "heading_level": "h3",
         "heading_animation": "none",
-        "description": "A refined essential for the season. Our wool coats balance structure with ease in a versatile car coat length.",
+        "description": "Defined by a strong peak lapel, this soft sand suit brings subtle strength to modern tailoring. Fine pinstripes introduce quiet character without overpowering, while a flat-end knit tie adds texture, contrast, and contemporary sensibility. The result is a confident look that sharpens the classics.",
         "description_animation": "none",
         "button_label_1": "Shop Now",
         "button_link_1": "",
@@ -335,8 +335,8 @@
     "blog_header_z96LBn",
     "editorial_hero_Q8bdNh",
     "full_page_media_DQrgiW",
-    "two_column_content_JQLcTq",
     "collection_slider_secondary_GjGnVj",
+    "two_column_content_JQLcTq",
     "hero_primary_AMqni9",
     "image_with_text_KWmAa3",
     "image_with_text_FGfVYU",
