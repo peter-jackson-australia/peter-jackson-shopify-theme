@@ -211,12 +211,12 @@
       "type": "collection-slider-secondary",
       "name": "Collection Slider Secondary",
       "settings": {
-        "heading": "European Textiles, Neapolitan Style",
+        "heading": "The Distinctive Touch",
         "heading_animation": "none",
         "description": "",
         "description_animation": "none",
-        "collection": "mens-suits",
-        "button_label": "Shop Winter Tailoring",
+        "collection": "ties",
+        "button_label": "Shop Ties",
         "products_to_show": 10,
         "animate_products": false
       }
