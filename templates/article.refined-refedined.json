@@ -64,10 +64,10 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/RR_2.webp",
-            "product": "textured-rib-ash-crew-neck-knit",
-            "heading": "The Build Up",
+            "product": "",
+            "heading": "Vintage Rules",
             "heading_animation": "none",
-            "description": "New season knitwear. The ultimate outfit foundation piece.",
+            "description": "Retro cues meet modern cuts in this light grey suit, sharpened with a patterned tie and clean lines. A classic revival for today.",
             "description_animation": "none",
             "button_label": "Learn More",
             "button_link": ""
@@ -76,11 +76,11 @@
         "column_R9dG48": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/RR_3.webp",
+            "image": "shopify://shop_images/RR_3_d5b76df2-124c-4b6c-bffc-14cd4af0ca80.webp",
             "product": "",
-            "heading": "Winter Tailoring",
+            "heading": "Solid Ground",
             "heading_animation": "none",
-            "description": "Merino wool suits for cooler days.",
+            "description": "There's subtle strength in a solid suit. Free from distraction, it lets cut, fabric and fit speak with clarity, projecting confidence in its purest form. In navy, charcoal, or seasonal hues, the solid suit stands as the boldest expression of timeless simplicity.",
             "description_animation": "none",
             "button_label": "Learn More",
             "button_link": ""
@@ -96,7 +96,7 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
-        "animate_columns": false
+        "animate_columns": true
       }
     },
     "hero_primary_AMqni9": {
