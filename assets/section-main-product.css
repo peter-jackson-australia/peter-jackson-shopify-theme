@@ -609,9 +609,9 @@ body.modal-open {
 @media screen and (max-width: 1300px) {
   .modal-content {
     height: 100%;
-    margin: 0 var(--space-m);
-    max-height: 90%;
+    max-height: 100%;
     max-width: 100%;
+    padding: 0;
     width: 100%;
   }
 
