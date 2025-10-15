@@ -99,6 +99,20 @@
         "animate_columns": true
       }
     },
+    "collection_slider_secondary_GjGnVj": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "business-suits",
+        "button_label": "",
+        "products_to_show": 12,
+        "animate_products": true
+      }
+    },
     "hero_primary_AMqni9": {
       "type": "hero-primary",
       "name": "Hero Section",
@@ -123,20 +137,6 @@
         "vertical_alignment": "bottom",
         "mobile_horizontal_alignment": "center",
         "mobile_vertical_alignment": "bottom"
-      }
-    },
-    "collection_slider_secondary_GjGnVj": {
-      "type": "collection-slider-secondary",
-      "name": "Collection Slider Secondary",
-      "settings": {
-        "heading": "Outerwear",
-        "heading_animation": "none",
-        "description": "Premium winter jackets and coats",
-        "description_animation": "none",
-        "collection": "outerwear",
-        "button_label": "Shop All",
-        "products_to_show": 10,
-        "animate_products": true
       }
     },
     "image_with_text_KWmAa3": {
@@ -336,8 +336,8 @@
     "editorial_hero_Q8bdNh",
     "full_page_media_DQrgiW",
     "two_column_content_JQLcTq",
-    "hero_primary_AMqni9",
     "collection_slider_secondary_GjGnVj",
+    "hero_primary_AMqni9",
     "image_with_text_KWmAa3",
     "image_with_text_FGfVYU",
     "hero_slider_zKUKdU",
