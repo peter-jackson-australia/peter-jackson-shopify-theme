@@ -70,11 +70,14 @@
 }
 
 .shop-the-look__modal-close-button-container {
+  background: var(--white);
+  border-bottom: solid var(--neutral-50) 1px;
   flex: none;
   padding: var(--space-s);
   position: absolute;
   right: 0;
   text-align: end;
+  width: 50%;
   z-index: 1;
 }
 
@@ -88,6 +91,7 @@
   overflow-x: clip;
   overflow-y: auto;
   padding: var(--space-l);
+  padding-top: calc(var(--space-l) + var(--space-s));
   position: relative;
   scrollbar-gutter: stable;
 }
@@ -140,7 +144,7 @@
 }
 
 .shop-the-look__modal-item-content {
-  /*padding: var(--space-l)*/
+  margin-top: var(--space-l)
 }
 
 .tab-collection__content {
@@ -184,7 +188,7 @@
 .shop-the-look__image {
   display: block;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
   width: 100%;
 }
@@ -246,7 +250,7 @@
 
 .shop-the-look__product-image {
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   width: 100%;
 }
 
@@ -283,7 +287,7 @@
 
 .shop-the-look__modal-image img {
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   width: 100%;
 }
 
@@ -357,6 +361,12 @@
     width: 100%;
   }
 
+  .shop-the-look__modal-close-button-container {
+    position: sticky;
+    width: 100%;
+    z-index: 20;
+  }
+
   .shop-the-look__modal-container--open {
     display: block;
   }
@@ -377,6 +387,7 @@
   }
 
   .shop-the-look__modal-item-content {
+    margin-top: 0;
     width: 100%;
   }
 
