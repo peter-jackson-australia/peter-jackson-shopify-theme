@@ -209,7 +209,7 @@
         "tile_bRm4wE": {
           "type": "tile",
           "settings": {
-            "tile_background_image": "shopify://shop_images/R0015500_copy.jpg",
+            "tile_background_image": "shopify://shop_images/Polos.webp",
             "tile_header": "POLOS",
             "tile_secondary_text": "from $79.95",
             "tile_link": "shopify://collections/polos-and-tees"
@@ -218,7 +218,7 @@
         "tile_WhJarW": {
           "type": "tile",
           "settings": {
-            "tile_background_image": "shopify://shop_images/Spring_Suits_83745627-5f88-4929-b7cc-0d32264cc5e2.webp",
+            "tile_background_image": "shopify://shop_images/Spring_Suits_045eaea9-d9e1-4333-b51c-a6fd25a16d77.webp",
             "tile_header": "SPRING SUITS",
             "tile_secondary_text": "from $399",
             "tile_link": "shopify://collections/mens-suits"
@@ -227,7 +227,7 @@
         "tile_FPGHMd": {
           "type": "tile",
           "settings": {
-            "tile_background_image": "shopify://shop_images/Co-Orders.webp",
+            "tile_background_image": "shopify://shop_images/Co-Ords.webp",
             "tile_header": "CO-ORDS",
             "tile_secondary_text": "Shop Matching Sets",
             "tile_link": ""
