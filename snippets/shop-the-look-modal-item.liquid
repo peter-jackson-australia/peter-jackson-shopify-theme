@@ -312,8 +312,8 @@ This snippet renders a product within the splide slider for the "shop the look" 
     <div class="shop-the-look__modal-navigation-bar">
       <div class="shop-the-look__modal-item-gradient"></div>
       <div class="shop-the-look__modal-navigation-bar-items">
-        <button class="shop-the-look__switch-product-button shop-the-look__switch-product-button--prev body--uppercase" {% if hasPrev != false %}disabled{% endif %}>&lt; Previous</button>
-        <button class="shop-the-look__switch-product-button shop-the-look__switch-product-button--next body--uppercase" {% if hasNext != false %}disabled{% endif %}>Next &gt;</button>
+        <button class="shop-the-look__switch-product-button shop-the-look__switch-product-button--prev body--uppercase" {% if hasPrev != false %}disabled{% endif %}>{% render '_icon-arrow-see-less' %} Previous</button>
+        <button class="shop-the-look__switch-product-button shop-the-look__switch-product-button--next body--uppercase" {% if hasNext != false %}disabled{% endif %}>Next {% render '_icon-arrow-see-more' %}</button>
       </div>
     </div>
   </section>

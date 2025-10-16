@@ -31,17 +31,15 @@
   padding-top: 0;
 }
 
-.shop-the-look__switch-product-button[disabled] {
-  border-bottom: 1px solid var(--neutral-300);
-}
-
 .shop-the-look__switch-product-button {
+  gap: var(--space-s);
   background: none;
   border: none;
   border-bottom: 1px solid var(--neutral-950);
   cursor: pointer;
   padding: var(--space-xs) var(--space-s);
   position: relative;
+  display: flex;
 }
 
 .shop-the-look__switch-product-label {
