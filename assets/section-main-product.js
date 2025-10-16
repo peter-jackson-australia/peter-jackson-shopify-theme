@@ -2,15 +2,18 @@ window.Shopify = window.Shopify || {};
 Shopify.money_format = shopify_money_format;
 
 document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll("#product").forEach(registerBuyableProduct(true))
-  document.querySelectorAll("#product").forEach(setupModalOverlay)
+  const productElement = document.querySelector("#product")
+  if (productElement) {
+    registerBuyableProduct(true)(productElement)
+    setupModalOverlay(productElement)
+    initStickyCartBar(productElement);
+  }
 })
 
 window.setupModalOverlay = (containerElement) => {
   const sizeGuideButton = containerElement.querySelector(".size-guide-button");
   const modalOverlayElem = document.querySelector(".modal-overlay")
   const modalClose = modalOverlayElem.querySelector(".modal-close");
-  console.log(containerElement, modalOverlayElem, modalClose)
 
   if (sizeGuideButton && modalOverlayElem) {
     sizeGuideButton.addEventListener("click", function () {
@@ -42,15 +45,16 @@ const registerBuyableProduct = (isMainElement) => (elementWrapper) => {
 
   if (isMainElement) {
     if (typeof Splide !== "undefined") {
-      initializeProductSlider();
+      initializeProductSlider(elementWrapper);
     } else {
       window.addEventListener("load", function () {
-        initializeProductSlider();
+        initializeProductSlider(elementWrapper);
       });
     }
   }
 
-  function initializeProductSlider() {
+  /** @param elementWrapper {HTMLElement} */
+  function initializeProductSlider(elementWrapper) {
     let splideInstance = null;
     const container = elementWrapper.querySelector(".product-images-container");
     const progressBar = elementWrapper.querySelector(".product-images-progress__bar");
@@ -172,278 +176,284 @@ const registerBuyableProduct = (isMainElement) => (elementWrapper) => {
       });
     });
   }
+};
 
-  function getSelectedVariantOptions() {
-    const selectedOptions = [];
-    const optionInputs = elementWrapper.querySelectorAll(".js--variant-option:checked");
+/** @param elementWrapper {HTMLElement} */
+function initStickyCartBar(elementWrapper) {
+  const originalButton = document.querySelector("#js--addtocart");
+  const stickyBar = document.querySelector(".sticky-cart-bar");
+  const stickyContainer = document.querySelector(".sticky-cart-bar__container");
 
-    optionInputs.forEach(function (input) {
-      let value = input.value;
-      if (input.name === "option1" && value.includes(".0")) {
-        value = value.replace(".0", "");
-      }
-      selectedOptions.push(value);
-    });
-
-    return selectedOptions;
+  if (!originalButton || !stickyBar || !stickyContainer) {
+    console.warn(`sticky bar not being initialised because: ${!originalButton}, ${!stickyBar}, ${!stickyContainer}`)
+    return;
   }
 
-  function getCurrentVariant() {
-    const selectedOptions = [];
-    const optionInputs = elementWrapper.querySelectorAll(".js--variant-option:checked");
+  const clonedButton = originalButton.cloneNode(true);
+  stickyContainer.appendChild(clonedButton);
 
-    optionInputs.forEach(function (input) {
-      selectedOptions.push(input.value);
-    });
-
-    return (
-      variants.find(function (variant) {
-        return variant.option1 === selectedOptions[0] && variant.option2 === selectedOptions[1] && variant.option3 === selectedOptions[2];
-      }) || current_variant
-    );
+  function isDesktop() {
+    return window.innerWidth >= 1100;
   }
 
-  function updateStickyProductInfo() {
-    const stickyInfo = elementWrapper.querySelector(".js--sticky-product-info");
-    if (!stickyInfo) return;
+  function syncButtons() {
+    const originalNotifyButton = elementWrapper.querySelector("#js--notify-me");
+    const klaviyoForm = elementWrapper.querySelector(".klaviyo-form-WMidEs");
 
-    const selectedOptions = getSelectedVariantOptions();
-    const mainPrice = elementWrapper.querySelector(".js--variant-price");
+    const isNotifyMeVisible = originalNotifyButton && originalNotifyButton.style.display !== "none";
+    const isKlaviyoVisible = klaviyoForm && klaviyoForm.style.display !== "none" && klaviyoForm.style.display !== "";
 
-    let variantString = "";
-    if (selectedOptions.length > 0) {
-      variantString = " " + selectedOptions.join(" / ");
-    }
-
-    const priceString = mainPrice ? " - " + mainPrice.textContent.trim() : "";
-
-    stickyInfo.innerHTML = '<span class="heading--l">' + product_title + ":</span>" + variantString + priceString;
-  }
-
-  function updateStickyPrices() {
-    const currentVar = getCurrentVariant();
-    const stickyPrice = elementWrapper.querySelector(".js--sticky-price");
-    const stickyComparePrice = elementWrapper.querySelector(".js--sticky-compare-price");
-    const stickyComparePriceContainer = stickyComparePrice ? stickyComparePrice.parentElement : null;
-
-    const stickyMobilePrice = elementWrapper.querySelector(".js--sticky-mobile-price");
-    const stickyMobileComparePrice = elementWrapper.querySelector(".js--sticky-mobile-compare-price");
-
-    const mainPrice = elementWrapper.querySelector(".js--variant-price");
-    const mainComparePrice = elementWrapper.querySelector(".js--variant-compareatprice");
-
-    if (stickyPrice && mainPrice) {
-      stickyPrice.textContent = mainPrice.textContent;
-    }
-
-    if (stickyComparePrice && stickyComparePriceContainer) {
-      if (mainComparePrice && mainComparePrice.textContent.trim() !== "") {
-        stickyComparePrice.textContent = mainComparePrice.textContent;
-        stickyComparePrice.style.display = "inline";
-      } else {
-        stickyComparePrice.style.display = "none";
-      }
-    }
-
-    if (stickyMobilePrice && mainPrice) {
-      stickyMobilePrice.textContent = mainPrice.textContent;
-    }
-
-    if (stickyMobileComparePrice) {
-      if (mainComparePrice && mainComparePrice.textContent.trim() !== "") {
-        stickyMobileComparePrice.textContent = mainComparePrice.textContent;
-        stickyMobileComparePrice.style.display = "inline";
-      } else {
-        stickyMobileComparePrice.style.display = "none";
-      }
-    }
-  }
-
-  function scrollToVariantForm() {
-    const productDetails = elementWrapper.querySelector("#product-details");
-    const fixedHeader = elementWrapper.querySelector(".header-fixed");
-
-    if (productDetails) {
-      const rect = productDetails.getBoundingClientRect();
-      const headerHeight = fixedHeader ? fixedHeader.offsetHeight : 0;
-      const targetPosition = window.pageYOffset + rect.top - headerHeight + 1;
-
-      window.scrollTo({
-        top: targetPosition,
-        behavior: "smooth",
-      });
-    }
-  }
-
-  function initStickyCartBar() {
-    const originalButton = elementWrapper.querySelector("#js--addtocart");
-    const stickyBar = elementWrapper.querySelector(".sticky-cart-bar");
-    const stickyContainer = elementWrapper.querySelector(".sticky-cart-bar__container");
-
-    if (!originalButton || !stickyBar || !stickyContainer) return;
-
-    const clonedButton = originalButton.cloneNode(true);
-    stickyContainer.appendChild(clonedButton);
-
-    function isDesktop() {
-      return window.innerWidth >= 1100;
-    }
-
-    function syncButtons() {
-      const originalNotifyButton = elementWrapper.querySelector("#js--notify-me");
-      const klaviyoForm = elementWrapper.querySelector(".klaviyo-form-WMidEs");
-
-      const isNotifyMeVisible = originalNotifyButton && originalNotifyButton.style.display !== "none";
-      const isKlaviyoVisible = klaviyoForm && klaviyoForm.style.display !== "none" && klaviyoForm.style.display !== "";
-
-      if (product_has_only_default_variant) {
-        if (isNotifyMeVisible || isKlaviyoVisible) {
-          clonedButton.textContent = "Notify Me";
-          clonedButton.disabled = false;
-          clonedButton.className = originalButton.className;
-          const originalStyle = originalButton.getAttribute("style");
-          if (originalStyle) {
-            clonedButton.setAttribute("style", originalStyle);
-          }
-          clonedButton.style.display = "flex";
-        } else {
-          clonedButton.disabled = originalButton.disabled;
-          clonedButton.innerHTML = originalButton.innerHTML;
-          clonedButton.className = originalButton.className;
-          clonedButton.type = originalButton.type;
-          clonedButton.name = originalButton.name;
-          clonedButton.value = originalButton.value;
-
-          Array.from(originalButton.attributes).forEach((attr) => {
-            if (attr.name !== "id") {
-              clonedButton.setAttribute(attr.name, attr.value);
-            }
-          });
-
-          const originalStyle = originalButton.getAttribute("style");
-          if (originalStyle) {
-            clonedButton.setAttribute("style", originalStyle);
-          }
-        }
-      } else {
-        if (isNotifyMeVisible || isKlaviyoVisible) {
-          clonedButton.textContent = "Notify Me";
-          clonedButton.disabled = false;
-          clonedButton.className = originalButton.className;
-          const originalStyle = originalButton.getAttribute("style");
-          if (originalStyle) {
-            clonedButton.setAttribute("style", originalStyle);
-          }
-          clonedButton.style.display = "flex";
-        } else {
-          if (product_is_gift_card) {
-            clonedButton.textContent = "Select Card Amount";
-          } else {
-            clonedButton.textContent = "Select Your Size";
-          }
-          clonedButton.disabled = false;
-          clonedButton.className = originalButton.className;
-          const originalStyle = originalButton.getAttribute("style");
-          if (originalStyle) {
-            clonedButton.setAttribute("style", originalStyle);
-          }
-        }
-      }
-    }
-
-    function syncAll() {
-      syncButtons();
-      updateStickyProductInfo();
-      updateStickyPrices();
-    }
-
-    clonedButton.addEventListener("click", function (e) {
-      e.preventDefault();
-      const originalNotifyButton = elementWrapper.querySelector("#js--notify-me");
-      const klaviyoForm = elementWrapper.querySelector(".klaviyo-form-WMidEs");
-
-      const isNotifyMeVisible = originalNotifyButton && originalNotifyButton.style.display !== "none";
-      const isKlaviyoVisible = klaviyoForm && klaviyoForm.style.display !== "none" && klaviyoForm.style.display !== "";
-
+    if (product_has_only_default_variant) {
       if (isNotifyMeVisible || isKlaviyoVisible) {
-        scrollToVariantForm();
-        if (isNotifyMeVisible) {
-          setTimeout(() => {
-            if (originalNotifyButton) {
-              originalNotifyButton.click();
-            }
-          }, 300);
+        clonedButton.textContent = "Notify Me";
+        clonedButton.disabled = false;
+        clonedButton.className = originalButton.className;
+        const originalStyle = originalButton.getAttribute("style");
+        if (originalStyle) {
+          clonedButton.setAttribute("style", originalStyle);
         }
-      } else if (!product_has_only_default_variant) {
-        scrollToVariantForm();
+        clonedButton.style.display = "flex";
       } else {
-        originalButton.click();
+        clonedButton.disabled = originalButton.disabled;
+        clonedButton.innerHTML = originalButton.innerHTML;
+        clonedButton.className = originalButton.className;
+        clonedButton.type = originalButton.type;
+        clonedButton.name = originalButton.name;
+        clonedButton.value = originalButton.value;
+
+        Array.from(originalButton.attributes).forEach((attr) => {
+          if (attr.name !== "id") {
+            clonedButton.setAttribute(attr.name, attr.value);
+          }
+        });
+
+        const originalStyle = originalButton.getAttribute("style");
+        if (originalStyle) {
+          clonedButton.setAttribute("style", originalStyle);
+        }
       }
-    });
-
-    function checkButtonPosition() {
-      const originalNotifyButton = elementWrapper.querySelector("#js--notify-me");
-      const klaviyoForm = elementWrapper.querySelector(".klaviyo-form-WMidEs");
-      const addToCartButton = elementWrapper.querySelector("#js--addtocart");
-
-      const isNotifyMeVisible = originalNotifyButton && originalNotifyButton.style.display !== "none";
-      const isKlaviyoVisible = klaviyoForm && klaviyoForm.style.display !== "none" && klaviyoForm.style.display !== "";
-      const isAddToCartVisible = addToCartButton && addToCartButton.style.display !== "none";
-
-      let buttonRect;
-      if (isKlaviyoVisible) {
-        buttonRect = klaviyoForm.getBoundingClientRect();
-      } else if (isNotifyMeVisible) {
-        buttonRect = originalNotifyButton.getBoundingClientRect();
-      } else if (isAddToCartVisible) {
-        buttonRect = addToCartButton.getBoundingClientRect();
+    } else {
+      if (isNotifyMeVisible || isKlaviyoVisible) {
+        clonedButton.textContent = "Notify Me";
+        clonedButton.disabled = false;
+        clonedButton.className = originalButton.className;
+        const originalStyle = originalButton.getAttribute("style");
+        if (originalStyle) {
+          clonedButton.setAttribute("style", originalStyle);
+        }
+        clonedButton.style.display = "flex";
       } else {
-        buttonRect = originalButton.getBoundingClientRect();
-      }
-
-      const buttonBottom = buttonRect.bottom;
-
-      if (buttonBottom < 0) {
-        stickyBar.classList.add("is-visible");
-      } else {
-        stickyBar.classList.remove("is-visible");
+        if (product_is_gift_card) {
+          clonedButton.textContent = "Select Card Amount";
+        } else {
+          clonedButton.textContent = "Select Your Size";
+        }
+        clonedButton.disabled = false;
+        clonedButton.className = originalButton.className;
+        const originalStyle = originalButton.getAttribute("style");
+        if (originalStyle) {
+          clonedButton.setAttribute("style", originalStyle);
+        }
       }
     }
+  }
 
-    const variantOptions = elementWrapper.querySelectorAll(".js--variant-option");
-    variantOptions.forEach(function (option) {
-      option.addEventListener("change", function () {
-        setTimeout(syncAll, 10);
-      });
+  function syncAll() {
+    syncButtons();
+    updateStickyProductInfo();
+    updateStickyPrices();
+  }
+
+  clonedButton.addEventListener("click", function (e) {
+    e.preventDefault();
+    const originalNotifyButton = elementWrapper.querySelector("#js--notify-me");
+    const klaviyoForm = elementWrapper.querySelector(".klaviyo-form-WMidEs");
+
+    const isNotifyMeVisible = originalNotifyButton && originalNotifyButton.style.display !== "none";
+    const isKlaviyoVisible = klaviyoForm && klaviyoForm.style.display !== "none" && klaviyoForm.style.display !== "";
+
+    if (isNotifyMeVisible || isKlaviyoVisible) {
+      scrollToVariantForm(elementWrapper);
+      if (isNotifyMeVisible) {
+        setTimeout(() => {
+          if (originalNotifyButton) {
+            originalNotifyButton.click();
+          }
+        }, 300);
+      }
+    } else if (!product_has_only_default_variant) {
+      scrollToVariantForm(elementWrapper);
+    } else {
+      originalButton.click();
+    }
+  });
+
+  function checkButtonPosition() {
+    const originalNotifyButton = elementWrapper.querySelector("#js--notify-me");
+    const klaviyoForm = elementWrapper.querySelector(".klaviyo-form-WMidEs");
+    const addToCartButton = elementWrapper.querySelector("#js--addtocart");
+
+    const isNotifyMeVisible = originalNotifyButton && originalNotifyButton.style.display !== "none";
+    const isKlaviyoVisible = klaviyoForm && klaviyoForm.style.display !== "none" && klaviyoForm.style.display !== "";
+    const isAddToCartVisible = addToCartButton && addToCartButton.style.display !== "none";
+
+    let buttonRect;
+    if (isKlaviyoVisible) {
+      buttonRect = klaviyoForm.getBoundingClientRect();
+    } else if (isNotifyMeVisible) {
+      buttonRect = originalNotifyButton.getBoundingClientRect();
+    } else if (isAddToCartVisible) {
+      buttonRect = addToCartButton.getBoundingClientRect();
+    } else {
+      buttonRect = originalButton.getBoundingClientRect();
+    }
+
+    const buttonBottom = buttonRect.bottom;
+    console.log(buttonBottom)
+
+    if (buttonBottom < 0) {
+      stickyBar.classList.add("is-visible");
+    } else {
+      stickyBar.classList.remove("is-visible");
+    }
+  }
+
+  const variantOptions = elementWrapper.querySelectorAll(".js--variant-option");
+  variantOptions.forEach(function (option) {
+    option.addEventListener("change", function () {
+      setTimeout(syncAll, 10);
+    });
+  });
+
+  window.addEventListener("scroll", checkButtonPosition);
+
+  drag: false,
+    window.addEventListener("resize", function () {
+      checkButtonPosition();
+      syncAll();
     });
 
-    window.addEventListener("scroll", checkButtonPosition);
-    drag: false,
-      window.addEventListener("resize", function () {
-        checkButtonPosition();
-        syncAll();
-      });
+  const mutationObserver = new MutationObserver(syncAll);
+  mutationObserver.observe(originalButton, {
+    attributes: true,
+    childList: true,
+    subtree: true,
+  });
 
-    const mutationObserver = new MutationObserver(syncAll);
-    mutationObserver.observe(originalButton, {
+  const notifyButton = elementWrapper.querySelector("#js--notify-me");
+  if (notifyButton) {
+    const notifyMutationObserver = new MutationObserver(syncAll);
+    notifyMutationObserver.observe(notifyButton, {
       attributes: true,
       childList: true,
       subtree: true,
     });
-
-    const notifyButton = elementWrapper.querySelector("#js--notify-me");
-    if (notifyButton) {
-      const notifyMutationObserver = new MutationObserver(syncAll);
-      notifyMutationObserver.observe(notifyButton, {
-        attributes: true,
-        childList: true,
-        subtree: true,
-      });
-    }
-
-    checkButtonPosition();
-    syncAll();
   }
 
-  initStickyCartBar();
-};
+  checkButtonPosition();
+  syncAll();
+}
+
+/** @param elementWrapper {HTMLElement} */
+function getSelectedVariantOptions(elementWrapper) {
+  const selectedOptions = [];
+  const optionInputs = elementWrapper.querySelectorAll(".js--variant-option:checked");
+
+  optionInputs.forEach(function (input) {
+    let value = input.value;
+    if (input.name === "option1" && value.includes(".0")) {
+      value = value.replace(".0", "");
+    }
+    selectedOptions.push(value);
+  });
+
+  return selectedOptions;
+}
+
+/** @param elementWrapper {HTMLElement} */
+function getCurrentVariant(elementWrapper) {
+  const selectedOptions = [];
+  const optionInputs = elementWrapper.querySelectorAll(".js--variant-option:checked");
+
+  optionInputs.forEach(function (input) {
+    selectedOptions.push(input.value);
+  });
+
+  return (
+    variants.find(function (variant) {
+      return variant.option1 === selectedOptions[0] && variant.option2 === selectedOptions[1] && variant.option3 === selectedOptions[2];
+    }) || current_variant
+  );
+}
+
+function updateStickyProductInfo(elementWrapper) {
+  const stickyInfo = elementWrapper.querySelector(".js--sticky-product-info");
+  if (!stickyInfo) return;
+
+  const selectedOptions = getSelectedVariantOptions();
+  const mainPrice = elementWrapper.querySelector(".js--variant-price");
+
+  let variantString = "";
+  if (selectedOptions.length > 0) {
+    variantString = " " + selectedOptions.join(" / ");
+  }
+
+  const priceString = mainPrice ? " - " + mainPrice.textContent.trim() : "";
+
+  stickyInfo.innerHTML = '<span class="heading--l">' + product_title + ":</span>" + variantString + priceString;
+}
+
+function updateStickyPrices(elementWrapper) {
+  const currentVar = getCurrentVariant();
+  const stickyPrice = elementWrapper.querySelector(".js--sticky-price");
+  const stickyComparePrice = elementWrapper.querySelector(".js--sticky-compare-price");
+  const stickyComparePriceContainer = stickyComparePrice ? stickyComparePrice.parentElement : null;
+
+  const stickyMobilePrice = elementWrapper.querySelector(".js--sticky-mobile-price");
+  const stickyMobileComparePrice = elementWrapper.querySelector(".js--sticky-mobile-compare-price");
+
+  const mainPrice = elementWrapper.querySelector(".js--variant-price");
+  const mainComparePrice = elementWrapper.querySelector(".js--variant-compareatprice");
+
+  if (stickyPrice && mainPrice) {
+    stickyPrice.textContent = mainPrice.textContent;
+  }
+
+  if (stickyComparePrice && stickyComparePriceContainer) {
+    if (mainComparePrice && mainComparePrice.textContent.trim() !== "") {
+      stickyComparePrice.textContent = mainComparePrice.textContent;
+      stickyComparePrice.style.display = "inline";
+    } else {
+      stickyComparePrice.style.display = "none";
+    }
+  }
+
+  if (stickyMobilePrice && mainPrice) {
+    stickyMobilePrice.textContent = mainPrice.textContent;
+  }
+
+  if (stickyMobileComparePrice) {
+    if (mainComparePrice && mainComparePrice.textContent.trim() !== "") {
+      stickyMobileComparePrice.textContent = mainComparePrice.textContent;
+      stickyMobileComparePrice.style.display = "inline";
+    } else {
+      stickyMobileComparePrice.style.display = "none";
+    }
+  }
+}
+
+function scrollToVariantForm(elementWrapper) {
+  const productDetails = elementWrapper.querySelector("#product-details");
+  const fixedHeader = elementWrapper.querySelector(".header-fixed");
+
+  if (productDetails) {
+    const rect = productDetails.getBoundingClientRect();
+    const headerHeight = fixedHeader ? fixedHeader.offsetHeight : 0;
+    const targetPosition = window.pageYOffset + rect.top - headerHeight + 1;
+
+    window.scrollTo({
+      top: targetPosition,
+      behavior: "smooth",
+    });
+  }
+}
