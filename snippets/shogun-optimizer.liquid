@@ -50,45 +50,42 @@ This file can be re-written at any time.
           background-color: white;
           height: 100%;
           left: 0;
-          padding: 1rem;
           line-height: 2rem;
           overflow-y: auto;
         }
 
         .shogun-price-test-preview-sidebar-header {
-          border-radius: 12px;
-          border: 1px solid #e5e7eb;
+          border-bottom: 1px solid #e5e7eb;
           font-size: 1rem;
-          box-shadow: rgb(181, 181, 181) 0px -1px 0px 0px inset, rgba(0, 0, 0, 0.1) 0px 0px 0px 1px inset, rgb(255, 255, 255) 0px 0.5px 0px 1.5px inset;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          padding: 1rem;
         }
 
         .shogun-price-test-preview-sidebar-title {
-          border-radius: 12px 12px 0 0;
-          background-color: #bfe1ff;
-          padding: 1rem;
           font-weight: 650;
           color: #251A00;
         }
 
         .shogun-price-test-preview-sidebar-content {
           padding: 1rem;
-          padding-top: 0.5rem;
-          border-radius: 0 0 12px 12px;
           font-size: 1rem;
           color: #303030;
         }
 
         .shogun-price-test-preview-sidebar-contact-support-button {
-          margin-top: 0.8rem;
-          background: #FFFFFF;
-          border-radius: 8px;
+          background: #303030;
+          font-weight: 650;
+          font-size: 1rem;
+          color: #FFFFFF;
+          border-radius: 12px;
           padding: 6px 12px;
-          border: 1px solid #e5e7eb;
           cursor: pointer;
-          box-shadow: rgb(181, 181, 181) 0px -1px 0px 0px inset, rgba(0, 0, 0, 0.1) 0px 0px 0px 1px inset, rgb(255, 255, 255) 0px 0.5px 0px 1.5px inset;
-
+       
           &:hover {
-            background: #fafafa;
+            background: #444444;
           }
         }
 
@@ -106,12 +103,11 @@ This file can be re-written at any time.
         .shogun-price-test-preview-sidebar-currency-info {
           background-color: #f3f4f6;
           color: #374151;
-          padding: 10px;
           margin: 10px 0;
           border-radius: 10px;
           text-align: center;
           font-weight: 550;
-          font-size: 1.5rem;
+          font-size: 1rem;
         }
 
         .shogun-price-test-preview-sidebar-product-collection-container {
@@ -261,57 +257,54 @@ This file can be re-written at any time.
       <div class="shogun-price-test-preview-sidebar">
         <div class="shogun-price-test-preview-sidebar-header">
           <div class="shogun-price-test-preview-sidebar-title">
-            Check the updated theme for errors 
+            Something not working properly?
           </div>
-          <div class="shogun-price-test-preview-sidebar-content">
-            <span>We have created a variant theme with your chosen price changes. Please check everywhere your prices may appear such as product pages, collection pages, and featured product elements.</span>
-            <br>
-            <br>
-            <span>When you're done reviewing close this tab and return to Shogun.</span>
-            <br>
-            <br>
-            <span>If something is wrong please let us know.</span>
-            <br>
-            <button class="shogun-price-test-preview-sidebar-contact-support-button" onclick="contactSupport()">Contact support</button>
-          </div>
+          <button class="shogun-price-test-preview-sidebar-contact-support-button" onclick="contactSupport()">Contact us</button>
         </div>
         
-        {% if shop.currency != cart.currency.iso_code %}
-          <div class="shogun-price-test-preview-sidebar-currency-warn">
-            Prices in this preview are always shown in your store's default currency. Prices will display properly once published.
-          </div>
-        {% else %}
-          <div class="shogun-price-test-preview-sidebar-currency-info">
-            Prices shown in {{ shop.currency }}
-          </div>
-        {% endif %}
+      <div class="shogun-price-test-preview-sidebar-content">
+          <div>
+            Go check your product pages, collection pages,
+            and anywhere else the price might appear on your store.
+            </div>
+    
+          {% if shop.currency != cart.currency.iso_code %}
+            <div style="background-color: red; color: white; padding: 10px; margin: 10px 0; border-radius: 10px; text-align: center; font-weight: 550;">
+              Prices in this preview are always shown in your store’s default currency ({{ shop.currency }}). Prices will display properly once published.
+            </div>
+            {% else %}
+            <div class="shogun-price-test-preview-sidebar-currency-info">
+              Prices shown in {{ shop.currency }}
+            </div>
+          {% endif %}
 
-        <div class="shogun-price-test-preview-sidebar-product-collection-container">
-          {% for collection_config in optimization_config.collections -%}
-            {%- assign collection = collections[collection_config.handle] -%}
-            {% if collection != nil %}
-              <div class="shogun-price-test-preview-sidebar-product-collection-item-container">
-                <div class="shogun-price-test-preview-sidebar-product-collection-header">
-                  <div class="shogun-price-test-preview-sidebar-product-collection-header-child">
-                    <div class="shogun-price-test-preview-sidebar-image-container">
-                      <img src="{{ collection.featured_image | image_url: width: image_size }}" width="{{ image_size }}" height="{{ image_size }}"/>
+          <div class="shogun-price-test-preview-sidebar-product-collection-container">
+            {% for collection_config in optimization_config.collections -%}
+              {%- assign collection = collections[collection_config.handle] -%}
+              {% if collection != nil %}
+                <div class="shogun-price-test-preview-sidebar-product-collection-item-container">
+                  <div class="shogun-price-test-preview-sidebar-product-collection-header">
+                    <div class="shogun-price-test-preview-sidebar-product-collection-header-child">
+                      <div class="shogun-price-test-preview-sidebar-image-container">
+                        <img src="{{ collection.featured_image | image_url: width: image_size }}" width="{{ image_size }}" height="{{ image_size }}"/>
+                      </div>
+                      <div class="shogun-price-test-preview-sidebar-title-container">
+                        <span>{{ collection.title }}</span>
+                      </div>
+                      <button class="shogun-price-test-preview-sidebar-product-collection-caret" onclick="toggleCollection('collection-{{ forloop.index }}')">
+                        {{ caret_symbol }}
+                      </button>
+                      <div class="shogun-price-test-preview-sidebar-collection-badge">
+                        Collection
+                      </div>
                     </div>
-                    <div class="shogun-price-test-preview-sidebar-title-container">
-                      <span>{{ collection.title }}</span>
-                    </div>
-                    <button class="shogun-price-test-preview-sidebar-product-collection-caret" onclick="toggleCollection('collection-{{ forloop.index }}')">
-                      {{ caret_symbol }}
-                    </button>
-                    <div class="shogun-price-test-preview-sidebar-collection-badge">
-                      Collection
+                    <div class="shogun-price-test-preview-sidebar-product-collection-header-child">
+                      <div class="shogun-price-test-preview-sidebar-count-badge">
+                        {{ collection.products.size }}
+                      </div>
                     </div>
                   </div>
-                  <div class="shogun-price-test-preview-sidebar-product-collection-header-child">
-                    <div class="shogun-price-test-preview-sidebar-count-badge">
-                      {{ collection_config.productIds.size }}
-                    </div>
-                  </div>
-                </div>
+                 
                 <div class="shogun-price-test-preview-sidebar-product-collection-children" id="collection-{{ forloop.index }}">
                   {% for product in collection.products %}
                     {% for product_config in optimization_config.products %}
@@ -334,138 +327,153 @@ This file can be re-written at any time.
                             {% endif %}
                           </div>
                           {% if product.variants.size > 1 %}
-                            <div class="shogun-price-test-preview-sidebar-count-badge">
-                              {{ product_config.variant_pricing.size }}
-                            </div>
+                          <div class="shogun-price-test-preview-sidebar-count-badge">
+                            {{ product.variants.size }}
+                          </div>
                           {% endif %}
                           {% if product.variants.size == 1 %}
                             <div class="shogun-price-test-preview-sidebar-product-collection-child-pricing">
-                              {%- assign original_price = product_config.variant_pricing.first.original_price -%}
-                              {%- assign new_price = product_config.variant_pricing.first.test_price -%}
-                              {%- assign price_change = product_config.variant_pricing.first.price_change -%}
-                              <div>${{ original_price }}</div>
+                              {%- assign original_price = 0 -%}
+                              {%- assign new_price = 0 -%}
+                              {%- assign price_change = 0 -%}
+                              {% for product_config in optimization_config.products %}
+                                {% if product_config.handle == product.handle %}
+                                  {%- assign original_price = product_config.variant_pricing.first.original_price -%}
+                                  {%- assign new_price = product_config.variant_pricing.first.test_price -%}
+                                  {%- assign price_change = product_config.variant_pricing.first.price_change -%}
+                                {% endif %}
+                              {% endfor %}
+                              <div>{{ original_price }}<div>
                               <div>{{ price_change }}%</div>
-                              <div>${{ new_price }}</div>
+                              <div>{{ new_price }}</div>
                             </div>
                           {% endif %}
                         </div>
                         {% if product.variants.size > 1 %}
                           <div class="shogun-price-test-preview-sidebar-product-collection-children" id="collection-{{ forloop.parentloop.index }}-product-{{ forloop.index }}">
                             {% for variant in product.variants %}
-                              {% for variant_pricing in product_config.variant_pricing %}
-                                {% if variant_pricing.id == variant.id %}
-                                  <div class="shogun-price-test-preview-sidebar-product-collection-child-item">
-                                    <div class="shogun-price-test-preview-sidebar-product-collection-child-arrow">
-                                      {{ arrow_symbol }}
-                                    </div>
-                                    <div class="shogun-price-test-preview-sidebar-image-container">
-                                      <img src="{{ variant.featured_image | default: product.featured_image | image_url: width: image_size }}" width="{{ image_size }}" height="{{ image_size }}"/>
-                                    </div>
-                                    <div class="shogun-price-test-preview-sidebar-title-container">
-                                      <span>{{ variant.title | default: product.title }}</span>
-                                    </div>
-                                    <div class="shogun-price-test-preview-sidebar-product-collection-child-pricing">
-                                      {%- assign original_price = variant_pricing.original_price -%}
-                                      {%- assign new_price = variant_pricing.test_price -%}
-                                      {%- assign price_change = variant_pricing.price_change -%}
-                                      <div>${{ original_price }}</div>
-                                      <div>{{ price_change }}%</div>
-                                      <div>${{ new_price }}</div>
-                                    </div>
-                                  </div>
-                                {% endif %}
-                              {% endfor %}
+                              <div class="shogun-price-test-preview-sidebar-product-collection-child-item">
+                                <div class="shogun-price-test-preview-sidebar-product-collection-child-arrow">
+                                  {{ arrow_symbol }}
+                                </div>
+                                <div class="shogun-price-test-preview-sidebar-image-container">
+                                  <img src="{{ variant.featured_image | default: product.featured_image | image_url: width: image_size }}" width="{{ image_size }}" height="{{ image_size }}"/>
+                                </div>
+                                <div class="shogun-price-test-preview-sidebar-title-container">
+                                  <span>{{ variant.title | default: product.title }}</span>
+                                </div>
+                                <div class="shogun-price-test-preview-sidebar-product-collection-child-pricing">
+                                  {%- assign original_price = 0 -%}
+                                  {%- assign new_price = 0 -%}
+                                  {%- assign price_change = 0 -%}
+                                  {% for product_config in optimization_config.products %}
+                                    {% if product_config.handle == product.handle %}
+                                      {% for variant_pricing in product_config.variant_pricing %}
+                                        {% if variant_pricing.id | append: '' == variant.id | append: '' %}
+                                          {%- assign original_price = variant_pricing.original_price -%}
+                                          {%- assign new_price = variant_pricing.test_price -%}
+                                          {%- assign price_change = variant_pricing.price_change -%}
+                                        {% endif %}
+                                      {% endfor %}
+                                    {% endif %}
+                                  {% endfor %}
+                                  <div>{{ original_price }}</div>
+                                  <div>{{ price_change }}%</div>
+                                  <div>{{ new_price }}</div>
+                                </div>
+                              </div>
                             {% endfor %}
                           </div>
                         {% endif %}
                       {% endif %}
-                    {%  endfor %}
-                  {% endfor %}
-                </div>
-              </div>
-            {% endif %}
-          {% endfor -%}
-          {%- assign products_in_collections = '' -%}
-          {% for collection_config in optimization_config.collections -%}
-            {%- assign collection = collections[collection_config.handle] -%}
-            {% if collection != nil %}
-              {% for product in collection.products %}
-                {%- assign products_in_collections = products_in_collections | append: product.handle | append: ',' -%}
-              {% endfor %}
-            {% endif %}
-          {% endfor -%}
-          {% for product_config in optimization_config.products -%}
-            {%- assign product = all_products[product_config.handle] -%}
-            {%- assign product_in_collection = false -%}
-            {%- if products_in_collections contains product_config.handle -%}
-              {%- assign product_in_collection = true -%}
-            {%- endif -%}
-            {% if product != nil and product_in_collection == false and product.title != blank and product.variants.size > 0 %}
-              <div class="shogun-price-test-preview-sidebar-product-collection-item-container">
-                <div class="shogun-price-test-preview-sidebar-product-collection-header">
-                  <div class="shogun-price-test-preview-sidebar-product-collection-header-child">
-                    <div class="shogun-price-test-preview-sidebar-image-container">
-                      <img src="{{ product.featured_image | image_url: width: image_size }}" width="{{ image_size }}" height="{{ image_size }}"/>
-                    </div>
-                    <div class="shogun-price-test-preview-sidebar-title-container">
-                      <span>{{ product.title }}</span>
-                    </div>
-                    {% if product.variants.size > 1 %}
-                      <button class="shogun-price-test-preview-sidebar-product-collection-caret" onclick="toggleProduct('product-{{ forloop.index }}')">
-                        {{ caret_symbol }}
-                      </button>
-                    {% endif %}
-                  </div>
-                  <div class="shogun-price-test-preview-sidebar-product-collection-header-child">
-                    {% if product.variants.size > 1 %}
-                      <div class="shogun-price-test-preview-sidebar-count-badge">
-                        {{ product_config.variant_pricing.size }}
-                      </div>
-                    {% endif %}
-                    {% if product.variants.size == 1 %}
-                      <div class="shogun-price-test-preview-sidebar-product-collection-child-pricing">
-                        {%- assign original_price = product_config.variant_pricing.first.original_price -%}
-                        {%- assign new_price = product_config.variant_pricing.first.test_price -%}
-                        {%- assign price_change = product_config.variant_pricing.first.price_change -%}
-                        <div>${{ original_price }}</div>
-                        <div>{{ price_change }}%</div>
-                        <div>${{ new_price }}</div>
-                      </div>
-                    {% endif %}
-                  </div>
-                </div>
-                {% if product.variants.size > 1 %}
-                  <div class="shogun-price-test-preview-sidebar-product-collection-children" id="product-{{ forloop.index }}">
-                    {% for variant in product.variants %}
-                      {% for variant_pricing in product_config.variant_pricing %}
-                        {% if variant_pricing.id == variant.id %}
-                          <div class="shogun-price-test-preview-sidebar-product-collection-child-item">
-                            <div class="shogun-price-test-preview-sidebar-product-collection-child-arrow">
-                              {{ arrow_symbol }}
-                            </div>
-                            <div class="shogun-price-test-preview-sidebar-image-container">
-                              <img src="{{ variant.featured_image | default: product.featured_image | image_url: width: image_size }}" width="{{ image_size }}" height="{{ image_size }}"/>
-                            </div>
-                            <div class="shogun-price-test-preview-sidebar-title-container">
-                              <span>{{ variant.title | default: product.title }}</span>
-                            </div>
-                            <div class="shogun-price-test-preview-sidebar-product-collection-child-pricing">
-                              {%- assign original_price = variant_pricing.original_price -%}
-                              {%- assign new_price = variant_pricing.test_price -%}
-                              {%- assign price_change = variant_pricing.price_change -%}
-                              <div>${{ original_price }}</div>
-                              <div>{{ price_change }}%</div>
-                              <div>${{ new_price}}</div>
-                            </div>
-                          </div>
-                        {% endif %}
-                      {% endfor %}
                     {% endfor %}
+                  {% endfor %}
                   </div>
-                {% endif %}
-              </div> 
-            {% endif %}
-          {% endfor %}
+                </div>
+              {% endif %}
+            {% endfor -%}
+            {%- assign products_in_collections = '' -%}
+            {% for collection_config in optimization_config.collections -%}
+              {%- assign collection = collections[collection_config.handle] -%}
+              {% if collection != nil %}
+                {% for product in collection.products %}
+                  {%- assign products_in_collections = products_in_collections | append: product.handle | append: ',' -%}
+                {% endfor %}
+              {% endif %}
+            {% endfor -%}
+            {% for product_config in optimization_config.products -%}
+              {%- assign product = all_products[product_config.handle] -%}
+              {%- assign product_in_collection = false -%}
+              {%- if products_in_collections contains product_config.handle -%}
+                {%- assign product_in_collection = true -%}
+              {%- endif -%}
+              {% if product != nil and product_in_collection == false and product.title != blank and product.variants.size > 0 %}
+                <div class="shogun-price-test-preview-sidebar-product-collection-item-container">
+                  <div class="shogun-price-test-preview-sidebar-product-collection-header">
+                    <div class="shogun-price-test-preview-sidebar-product-collection-header-child">
+                      <div class="shogun-price-test-preview-sidebar-image-container">
+                        <img src="{{ product.featured_image | image_url: width: image_size }}" width="{{ image_size }}" height="{{ image_size }}"/>
+                      </div>
+                      <div class="shogun-price-test-preview-sidebar-title-container">
+                        <span>{{ product.title }}</span>
+                      </div>
+                      {% if product.variants.size > 1 %}
+                        <button class="shogun-price-test-preview-sidebar-product-collection-caret" onclick="toggleProduct('product-{{ forloop.index }}')">
+                          {{ caret_symbol }}
+                        </button>
+                      {% endif %}
+                    </div>
+                    <div class="shogun-price-test-preview-sidebar-product-collection-header-child">
+                      {% if product.variants.size > 1 %}
+                        <div class="shogun-price-test-preview-sidebar-count-badge">
+                          {{ product_config.variant_pricing.size }}
+                        </div>
+                      {% endif %}
+                      {% if product.variants.size == 1 %}
+                        <div class="shogun-price-test-preview-sidebar-product-collection-child-pricing">
+                          {%- assign original_price = product_config.variant_pricing.first.original_price -%}
+                          {%- assign new_price = product_config.variant_pricing.first.test_price -%}
+                          {%- assign price_change = product_config.variant_pricing.first.price_change -%}
+                          <div>{{ original_price }}</div>
+                          <div>{{ price_change }}%</div>
+                          <div>{{ new_price }}</div>
+                        </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                  {% if product.variants.size > 1 %}
+                    <div class="shogun-price-test-preview-sidebar-product-collection-children" id="product-{{ forloop.index }}">
+                      {% for variant in product.variants %}
+                        {% for variant_pricing in product_config.variant_pricing %}
+                          {% if variant_pricing.id == variant.id %}
+                            <div class="shogun-price-test-preview-sidebar-product-collection-child-item">
+                              <div class="shogun-price-test-preview-sidebar-product-collection-child-arrow">
+                                {{ arrow_symbol }}
+                              </div>
+                              <div class="shogun-price-test-preview-sidebar-image-container">
+                                <img src="{{ variant.featured_image | default: product.featured_image | image_url: width: image_size }}" width="{{ image_size }}" height="{{ image_size }}"/>
+                              </div>
+                              <div class="shogun-price-test-preview-sidebar-title-container">
+                                <span>{{ variant.title | default: product.title }}</span>
+                              </div>
+                              <div class="shogun-price-test-preview-sidebar-product-collection-child-pricing">
+                                {%- assign original_price = variant_pricing.original_price -%}
+                                {%- assign new_price = variant_pricing.test_price -%}
+                                {%- assign price_change = variant_pricing.price_change -%}
+                                <div>{{ original_price }}</div>
+                                <div>{{ price_change }}%</div>
+                                <div>{{ new_price }}</div>
+                              </div>
+                            </div>
+                          {% endif %}
+                        {% endfor %}
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+                </div> 
+              {% endif %}
+            {% endfor %}
+          </div> 
         </div> 
       </div>
     </template>
