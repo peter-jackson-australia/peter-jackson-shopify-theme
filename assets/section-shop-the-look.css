@@ -89,6 +89,13 @@
 .shop-the-look__modal-close-button {
   background: none;
   border: none;
+  cursor: pointer;
+}
+
+.shop-the-look__modal-close-button {
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
   .shop-the-look__modal-item-content-container {
@@ -367,6 +374,7 @@
     }
 
     .shop-the-look__modal-close-button-container {
+      top: 0;
       position: sticky;
       width: 100%;
       z-index: 20;
