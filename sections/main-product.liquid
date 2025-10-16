@@ -18,7 +18,7 @@
 {% endfor %}
 
 {% if current_variant == null %}
-  {% assign current_variant = product.selected_or_first_available_variant %}
+  {% assign current_variant = product.selectproduct.ed_or_first_available_variant %}
 {% endif %}
 
 <script>
@@ -37,7 +37,9 @@
   var product_is_gift_card = {{ product.gift_card? | json }};
 </script>
 
-<div class="buyable-product-wrapper">
+<div class="buyable-product-wrapper"
+     data-featured-image-id="{{ product.featured_image.id }}"
+>
   <div id="product"
        data-variants="{{ product.variants | json | escape}}";
        data-variant-inventory-quantities="[{% for variant in product.variants %}{{ variant.inventory_quantity | escape }}{% unless forloop.last %},{% endunless %}{% endfor %}]";

@@ -747,10 +747,11 @@ const cart = {
     }
   },
 
-  showOptimisticUpdate() {
-    const productName = document.querySelector(".product-details__title")?.textContent || "";
-    const variantId = document.querySelector("#js--variant-id")?.value || "";
-    const image = this.getCurrentProductImage();
+  /** @param productPageElem {Element} */
+  showOptimisticUpdate(productPageElem) {
+    const productName = productPageElem.querySelector(".product-details__title")?.textContent || "";
+    const variantId = productPageElem.querySelector("#js--variant-id")?.value || "";
+    const image = this.getCurrentProductImage(productPageElem);
 
     cartDrawer.showLoading();
     slider.create();
@@ -775,8 +776,11 @@ const cart = {
     }, 100);
   },
 
-  getCurrentProductImage() {
-    const slide = document.querySelector(`[data-imageid="${default_image}"] img`);
+  /** @param prdouctPageElem {Element} */
+  getCurrentProductImage(productPageElem) {
+    console.log(productPageElem)
+    const featuredImageId = productPageElem.getAttribute("data-featured-image-id");
+    const slide = productPageElem.querySelector(`[data-imageid="${featuredImageId}"] img`);
     return slide ? Object.assign(slide.cloneNode(true), { width: 100, height: 150 }) : null;
   },
 
@@ -847,7 +851,7 @@ const cart = {
         }
 
         cartDrawer.toggle(true);
-        this.showOptimisticUpdate();
+        this.showOptimisticUpdate(productPageElem);
 
         await cartAPI.add(new FormData(form));
         await this.refreshContent();

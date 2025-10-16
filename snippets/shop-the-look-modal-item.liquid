@@ -63,14 +63,14 @@ This snippet renders a product within the splide slider for the "shop the look" 
         <div class="product-details__header">
           <h1 class="product-details__title heading--xl" data-title="{{ product.title }}">{{ product.title }}</h1>
           <div class="product-details__price">
-            {% if current_variant.compare_at_price > current_variant.price %}
-              <span class="product-details__compare-price body js--variant-compareatprice">
-                  {{ current_variant.compare_at_price | money_with_currency }}
-                </span>
-            {% endif %}
             <span class="product-details__price-actual body js--variant-price">
                 {{ current_variant.price | money_with_currency }}
-              </span>
+            </span>
+            {% if current_variant.compare_at_price > current_variant.price %}
+              <span class="product-details__compare-price body js--variant-compareatprice">
+                  Was {{ current_variant.compare_at_price | money_with_currency }}
+                </span>
+            {% endif %}
           </div>
         </div>
 
