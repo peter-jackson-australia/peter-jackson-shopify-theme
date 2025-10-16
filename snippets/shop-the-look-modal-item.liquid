@@ -4,6 +4,7 @@ This snippet renders a product within the splide slider for the "shop the look" 
 @param{bool} hasNext - There is another product in the list to render
 @param{bool} hasPrev - There is another product in the list to render
 @param{object} product - The product to display at this point
+@param{string} heading - Heading for the modal
 {% enddoc %}
 
 {% assign item_handle = product.handle %}
@@ -12,6 +13,7 @@ This snippet renders a product within the splide slider for the "shop the look" 
 
 <article class="shop-the-look__modal-item custom-scrollbar">
   <div class="shop-the-look__modal-close-button-container">
+    <p class="shop-the-look__modal-close-button-header body--uppercase">{{ heading }}</p>
     <button class="shop-the-look__modal-close-button" aria-label="Close Modal">{% render '_icon-close' %}</button>
   </div>
   <section class="shop-the-look__modal-item-image splide">
