@@ -18,7 +18,7 @@
 {% endfor %}
 
 {% if current_variant == null %}
-  {% assign current_variant = product.selectproduct.ed_or_first_available_variant %}
+  {% assign current_variant = product.selected_or_first_available_variant %}
 {% endif %}
 
 <script>
@@ -153,6 +153,7 @@
 
               {%- when 'options' %}
                 {% unless product.has_only_default_variant %}
+                  
                   {% for option_group in product.options_with_values %}
                     {% assign option_field = option_group.position | prepend: 'option' %}
                     <fieldset class="variant-options js--variant-options">
@@ -161,7 +162,6 @@
                         {% for value in option_group.values %}
                           {% capture option_id %}{{ option_group.name }}_{{ value }}{% endcapture %}
                           {% capture input_id %}option-{{ product.id | handleize }}-{{ option_id | handleize }}{% endcapture %}
-                          {{ current_variant[option_field] }}
                           <div class="variant-option">
                             <input
                                 type="radio"
