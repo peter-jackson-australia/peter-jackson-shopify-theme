@@ -309,7 +309,6 @@ function initStickyCartBar(elementWrapper) {
     }
 
     const buttonBottom = buttonRect.bottom;
-    console.log(buttonBottom)
 
     if (buttonBottom < 0) {
       stickyBar.classList.add("is-visible");

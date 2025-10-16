@@ -778,7 +778,6 @@ const cart = {
 
   /** @param prdouctPageElem {Element} */
   getCurrentProductImage(productPageElem) {
-    console.log(productPageElem)
     const featuredImageId = productPageElem.getAttribute("data-featured-image-id");
     const slide = productPageElem.querySelector(`[data-imageid="${featuredImageId}"] img`);
     return slide ? Object.assign(slide.cloneNode(true), { width: 100, height: 150 }) : null;
