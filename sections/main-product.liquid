@@ -161,6 +161,7 @@
                         {% for value in option_group.values %}
                           {% capture option_id %}{{ option_group.name }}_{{ value }}{% endcapture %}
                           {% capture input_id %}option-{{ product.id | handleize }}-{{ option_id | handleize }}{% endcapture %}
+                          {{ current_variant[option_field] }}
                           <div class="variant-option">
                             <input
                                 type="radio"

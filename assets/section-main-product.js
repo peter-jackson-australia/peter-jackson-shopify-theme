@@ -260,8 +260,8 @@ function initStickyCartBar(elementWrapper) {
 
   function syncAll() {
     syncButtons();
-    updateStickyProductInfo();
-    updateStickyPrices();
+    updateStickyProductInfo(elementWrapper);
+    updateStickyPrices(elementWrapper);
   }
 
   clonedButton.addEventListener("click", function (e) {
@@ -369,27 +369,27 @@ function getSelectedVariantOptions(elementWrapper) {
   return selectedOptions;
 }
 
-/** @param elementWrapper {HTMLElement} */
-function getCurrentVariant(elementWrapper) {
-  const selectedOptions = [];
-  const optionInputs = elementWrapper.querySelectorAll(".js--variant-option:checked");
-
-  optionInputs.forEach(function (input) {
-    selectedOptions.push(input.value);
-  });
-
-  return (
-    variants.find(function (variant) {
-      return variant.option1 === selectedOptions[0] && variant.option2 === selectedOptions[1] && variant.option3 === selectedOptions[2];
-    }) || current_variant
-  );
-}
-
+// /** @param elementWrapper {HTMLElement} */
+// function getCurrentVariant(elementWrapper) {
+//   const selectedOptions = [];
+//   const optionInputs = elementWrapper.querySelectorAll(".js--variant-option:checked");
+//
+//   optionInputs.forEach(function (input) {
+//     selectedOptions.push(input.value);
+//   });
+//
+//   return (
+//     variants.find(function (variant) {
+//       return variant.option1 === selectedOptions[0] && variant.option2 === selectedOptions[1] && variant.option3 === selectedOptions[2];
+//     }) || current_variant
+//   );
+// }
+//
 function updateStickyProductInfo(elementWrapper) {
   const stickyInfo = elementWrapper.querySelector(".js--sticky-product-info");
   if (!stickyInfo) return;
 
-  const selectedOptions = getSelectedVariantOptions();
+  const selectedOptions = getSelectedVariantOptions(elementWrapper);
   const mainPrice = elementWrapper.querySelector(".js--variant-price");
 
   let variantString = "";
@@ -403,7 +403,6 @@ function updateStickyProductInfo(elementWrapper) {
 }
 
 function updateStickyPrices(elementWrapper) {
-  const currentVar = getCurrentVariant();
   const stickyPrice = elementWrapper.querySelector(".js--sticky-price");
   const stickyComparePrice = elementWrapper.querySelector(".js--sticky-compare-price");
   const stickyComparePriceContainer = stickyComparePrice ? stickyComparePrice.parentElement : null;
