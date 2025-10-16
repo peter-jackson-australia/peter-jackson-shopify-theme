@@ -209,7 +209,7 @@
         "tile_bRm4wE": {
           "type": "tile",
           "settings": {
-            "tile_background_image": "shopify://shop_images/R0015500_copy.jpg",
+            "tile_background_image": "shopify://shop_images/Polos.webp",
             "tile_header": "POLOS",
             "tile_secondary_text": "from $79.95",
             "tile_link": "shopify://collections/polos-and-tees"
