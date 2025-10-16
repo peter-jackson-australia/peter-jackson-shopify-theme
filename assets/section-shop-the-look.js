@@ -17,18 +17,20 @@
     }).mount();
   }
 
+  let stateScrollY = undefined;
+  let modalProductSplides = []
+  let modalSplide = undefined;
+
   const modalOpenClassName = "shop-the-look__modal-container--open"
   const modalElem = section.querySelector(".shop-the-look__modal-container")
   const modalSlider = document.querySelectorAll(".shop-the-look__modal-slider")[0];
+  const siteHeader = document.querySelector("#site-header")
 
   const modalCloseBtns = modalElem.querySelectorAll(".shop-the-look__modal-close-button")
   const nextItemButtons = modalElem.querySelectorAll(".shop-the-look__switch-product-button--next")
   const prevItemButtons= modalElem.querySelectorAll(".shop-the-look__switch-product-button--prev")
 
   const productImageSliders = section.querySelectorAll(".buyable-product-wrapper .splide")
-  let modalProductSplides = []
-
-  let modalSplide = undefined;
 
   const isMobile = () => {
     return window.innerWidth < 1300;
@@ -94,7 +96,61 @@
     });
   }
 
+  /**
+   * Freezes the document's height for modals, by setting the main body element's position to `"fixed"`. Will also set
+   * navbar's position to `"fixed"`, to ensure it doesn't disappear.
+   * @param siteHeader {HTMLElement|undefined} Header element. If set, it will set it's `position` property to `fixed`.
+   * @return {number} the scroll position of the document before freezing. To be used with `unfreezeDocumentHeight`
+   */
+  const freezeDocumentHeight = (siteHeader) => {
+    const scroll = document.body.style.position === "fixed" ? Math.abs(parseInt(document.body.style.top || "0")) : window.scrollY;
+
+    if (document.body.style.position !== "fixed") {
+      if (!document.body.classList.contains("modal-open")) document.body.classList.add("modal-open")
+      Object.assign(document.body.style, {
+        position: "fixed",
+        top: `-${scroll}px`,
+        width: "100%",
+      });
+    }
+
+    if (siteHeader) {
+      Object.assign(siteHeader.style, {
+        position: "fixed",
+        top: "0",
+      })
+    }
+
+    return scroll
+  }
+
+  /**
+   * Will unfreeze the document height, by removing/resetting all properties changed via `freezeDocumentHeight`.
+   * @param siteHeader {HTMLElement|undefined} Header element. If set, it will remove any changes made by `freezeDocumentHeight`.
+   * @param scrollHeight {number|undefined} Optional scroll height property, when provided, will snap the page to that
+   *                                        position after removing all properties
+   */
+  const unfreezeDocumentHeight = (scrollHeight, siteHeader) => {
+    if (siteHeader) {
+      Object.assign(siteHeader.style, {
+        position: "",
+        top: "",
+      })
+    }
+
+    if (document.body.classList.contains("modal-open")) document.body.classList.remove("modal-open")
+
+    Object.assign(document.body.style, { position: "", top: "", width: "" });
+    window.scrollTo({
+      top: scrollHeight ?? 0,
+      left: 0,
+      behavior: "instant"
+    })
+  }
+
   const openProductModal = (productId) => {
+    stateScrollY = freezeDocumentHeight(siteHeader)
+
     if (!modalSplide) {
       const idx = productData.findIndex(p => p.id == productId)
       modalSplide = initialiseProductsInModalSlider(idx)
@@ -106,11 +162,11 @@
     if (modalProductSplides.length == 0) {
       refreshProductImageSplides()
     }
-    const body = document.body
-    if (!body.classList.contains("modal-open")) body.classList.add("modal-open")
   }
 
   const closeProductModal = () => {
+    unfreezeDocumentHeight(stateScrollY, siteHeader)
+
     destroyProductImageSplides()
 
     if (modalSplide) {
@@ -120,8 +176,6 @@
     if (modalElem.classList.contains(modalOpenClassName)) {
       modalElem.classList.remove(modalOpenClassName)
     }
-    const body = document.body
-    if (body.classList.contains("modal-open")) body.classList.remove("modal-open")
   }
 
   /**
