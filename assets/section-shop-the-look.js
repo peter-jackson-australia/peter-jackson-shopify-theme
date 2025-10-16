@@ -40,7 +40,6 @@
       perPage: 1,
       type: 'loop',
       gap: 'var(--space-m)',
-      arrows: false,
       direction: 'ttb',
       pagination: false,
       height: "100%",
@@ -65,7 +64,7 @@
     const direction = isMobile ? "ltr" : "ttb"
 
     const newSplide = new Splide(element, {
-      type: "slide",
+      type: "loop",
       direction: direction,
       pagination: false,
       arrows: isMobile,
