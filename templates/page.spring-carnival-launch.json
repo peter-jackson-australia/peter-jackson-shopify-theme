@@ -42,6 +42,7 @@
         },
         "slide_ddW7HK": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "media_type": "image",
             "desktop_image": "shopify://shop_images/Suits_Hero.webp",
