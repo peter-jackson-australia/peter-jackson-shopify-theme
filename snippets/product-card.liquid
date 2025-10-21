@@ -7,9 +7,9 @@
 {% assign image_aspect_ratio = product.featured_image.aspect_ratio | default: 1 %}
 {% assign image_height = image_width | divided_by: image_aspect_ratio | round %}
 
-{% assign img_small = product.featured_image | image_url: width: 472 %}
+{% assign img_small = product.featured_image | image_url: width: 600 %}
 {% assign img_large = product.featured_image | image_url: width: 1275 %}
-{% assign img_height = 472 | divided_by: image_aspect_ratio | round %}
+{% assign img_height = 600 | divided_by: image_aspect_ratio | round %}
 
 <div class="product-card">
   <a class="product-card__image-link" href="{{ product.url }}">
@@ -17,7 +17,7 @@
       <div style="background-color: var(--neutral-50); position: relative; width: 100%; padding-bottom: calc({{ image_height | times: 1.0 | divided_by: image_width | times: 100 }}%);">
         <img
           src="{{ img_small }}"
-          width="472"
+          width="600"
           height="{{ img_height }}"
           class="product-card__image product-card__image--first"
           loading="eager"
@@ -29,16 +29,16 @@
         >
 
         {% if product.images.size > 1 %}
-          {% assign img2_small = product.images[1] | image_url: width: 472 %}
+          {% assign img2_small = product.images[1] | image_url: width: 600 %}
           {% assign img2_large = product.images[1] | image_url: width: 1275 %}
           {% assign img2_aspect = product.images[1].aspect_ratio | default: 1 %}
-          {% assign img2_height = 472 | divided_by: img2_aspect | round %}
+          {% assign img2_height = 600 | divided_by: img2_aspect | round %}
           <div
             class="product-card__hover-container"
             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.3s ease;"
             data-src-small="{{ img2_small }}"
             data-src-large="{{ img2_large }}"
-            data-width="472"
+            data-width="600"
             data-height="{{ img2_height }}"
             data-alt="{{ product.images[1].alt | escape | default: product.title }}"
           ></div>
