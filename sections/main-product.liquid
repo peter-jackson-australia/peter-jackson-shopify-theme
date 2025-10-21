@@ -110,9 +110,11 @@
             <span class="product-details__price-actual body js--variant-price">
               {{ current_variant.price | money_with_currency }}
             </span>
+            {% if current_variant.compare_at_price > current_variant.price %}
             <span class="product-details__compare-price body js--variant-compareatprice">
               Was {{ current_variant.compare_at_price | money_with_currency }}
             </span>
+          {% endif %}
           </div>
         </div>
 
