@@ -37,8 +37,14 @@
   var product_is_gift_card = {{ product.gift_card? | json }};
 </script>
 
-<div>
-  <div id="product">
+<div class="buyable-product-wrapper"
+     data-featured-image-id="{{ product.featured_image.id }}"
+>
+  <div id="product"
+       data-variants="{{ product.variants | json | escape}}";
+       data-variant-inventory-quantities="[{% for variant in product.variants %}{{ variant.inventory_quantity | escape }}{% unless forloop.last %},{% endunless %}{% endfor %}]";
+       data-product-title="{{ product.title | json | escape }}";
+       data-show-low-stock-warning="{{ section.settings.show_low_stock_warning | json | escape }}";>
     <div class="product-top-breadcrumb-container">
       {% render 'breadcrumb' %}
     </div>
@@ -63,24 +69,24 @@
               <li class="splide__slide" data-imageid="{{ image.id }}">
                 {% if forloop.first %}
                   {{
-                    image
-                    | image_url: width: image.width
-                    | image_tag:
-                      sizes: '(max-width: 768px) 400px, 1200px',
-                      alt: image.alt,
-                      loading: 'eager',
-                      decoding: 'async',
-                      fetchpriority: 'high'
+                  image
+                  | image_url: width: image.width
+                  | image_tag:
+                  sizes: '(max-width: 768px) 400px, 1200px',
+                  alt: image.alt,
+                  loading: 'eager',
+                  decoding: 'async',
+                  fetchpriority: 'high'
                   }}
                 {% else %}
                   {{
-                    image
-                    | image_url: width: image.width
-                    | image_tag:
-                      sizes: '(max-width: 768px) 400px, 1200px',
-                      alt: image.alt,
-                      loading: 'lazy',
-                      decoding: 'async'
+                  image
+                  | image_url: width: image.width
+                  | image_tag:
+                  sizes: '(max-width: 768px) 400px, 1200px',
+                  alt: image.alt,
+                  loading: 'lazy',
+                  decoding: 'async'
                   }}
                 {% endif %}
               </li>
@@ -95,13 +101,18 @@
     </div>
 
     <section
-      class="product-details__container custom-scrollbar"
+        class="product-details__container custom-scrollbar"
     >
       <div id="product-details">
         {% if section.settings.show_afterpay %}
-          <p class="product-details__afterpay small">
+          <p class="product-details__sku small">
             Buy In 4 Interest Free Payments of {{ current_variant.price | divided_by: 4 | money_with_currency }}
             {{ 'afterpay' | payment_type_svg_tag }}
+          </p>
+        {% elsif current_variant.sku %}
+          <p class="product-details__sku small">
+            Product Code:
+            <span class="js--variant-sku">{{ current_variant.sku }}</span>
           </p>
         {% endif %}
         <div class="product-details__header">
@@ -125,8 +136,8 @@
             </p>
           {% endif %}
           <button
-            type="button"
-            class="size-guide-button small"
+              type="button"
+              class="size-guide-button small"
           >
             What's my size?
           </button>
@@ -144,6 +155,7 @@
 
               {%- when 'options' %}
                 {% unless product.has_only_default_variant %}
+                  
                   {% for option_group in product.options_with_values %}
                     {% assign option_field = option_group.position | prepend: 'option' %}
                     <fieldset class="variant-options js--variant-options">
@@ -151,18 +163,19 @@
                       <div class="variant-options__list">
                         {% for value in option_group.values %}
                           {% capture option_id %}{{ option_group.name }}_{{ value }}{% endcapture %}
+                          {% capture input_id %}option-{{ product.id | handleize }}-{{ option_id | handleize }}{% endcapture %}
                           <div class="variant-option">
                             <input
-                              type="radio"
-                              id="{{ option_id | handleize }}"
-                              class="js--variant-option"
-                              name="{{ option_group.position | prepend: 'option'}}"
-                              value="{{ value }}"
-                              {% if current_variant[option_field] == value %}
-                                checked
-                              {% endif %}
+                                type="radio"
+                                id="{{ input_id }}"
+                                class="js--variant-option"
+                                name="{{ option_group.position | prepend: 'option'}}"
+                                value="{{ value }}"
+                                {% if current_variant[option_field] == value %}
+                                  checked
+                                {% endif %}
                             >
-                            <label for="{{ option_id | handleize }}" class="body">
+                            <label for="{{ input_id }}" class="body">
                               {% if option_group.name == 'Size' and value contains '.0' %}
                                 {{- value | remove: '.0' -}}
                               {% else %}
@@ -184,38 +197,38 @@
 
               {%- when 'button' -%}
                 <input
-                  type="hidden"
-                  id="js--variant-id"
-                  name="id"
-                  value="{{ current_variant.id }}"
+                    type="hidden"
+                    id="js--variant-id"
+                    name="id"
+                    value="{{ current_variant.id }}"
                 >
                 <input
-                  type="hidden"
-                  id="js--variant-inventory-quantity"
-                  value="{{ current_variant.inventory_quantity }}"
+                    type="hidden"
+                    id="js--variant-inventory-quantity"
+                    value="{{ current_variant.inventory_quantity }}"
                 >
 
                 {% if current_variant.available and product.gift_card? %}
                   <button
-                    type="submit"
-                    id="js--addtocart"
-                    class="body"
-                    style="height: var(--space-xl); {% if section.settings.round_cta %} border-radius: 200px; {% endif %}"
+                      type="submit"
+                      id="js--addtocart"
+                      class="body"
+                      style="height: var(--space-xl); {% if section.settings.round_cta %} border-radius: 200px; {% endif %}"
                   >
                     Add To Cart
                   </button>
                 {% elsif current_variant.available and current_variant.inventory_quantity > 5 %}
                   <button
-                    type="submit"
-                    id="js--addtocart"
-                    class="body"
-                    style="height: var(--space-xl); {% if section.settings.round_cta %} border-radius: 200px; {% endif %}"
+                      type="submit"
+                      id="js--addtocart"
+                      class="body"
+                      style="height: var(--space-xl); {% if section.settings.round_cta %} border-radius: 200px; {% endif %}"
                   >
                     {% if section.settings.show_low_stock_warning
-                      and current_variant.available
-                      and current_variant.inventory_quantity >= 6
-                      and current_variant.inventory_quantity <= 10
-                      and product.gift_card? == false
+                    and current_variant.available
+                    and current_variant.inventory_quantity >= 6
+                    and current_variant.inventory_quantity <= 10
+                    and product.gift_card? == false
                     %}
                       Low In Stock - Add To Cart
                     {% else %}
@@ -224,26 +237,26 @@
                   </button>
                 {% else %}
                   <button
-                    type="submit"
-                    id="js--addtocart"
-                    class="body"
-                    style="height: var(--space-xl); display: none; {% if section.settings.round_cta %} border-radius: 200px; {% endif %}"
+                      type="submit"
+                      id="js--addtocart"
+                      class="body"
+                      style="height: var(--space-xl); display: none; {% if section.settings.round_cta %} border-radius: 200px; {% endif %}"
                   >
                     Add To Cart
                   </button>
                 {% endif %}
                 <button
-                  type="button"
-                  id="js--notify-me"
-                  class="body"
-                  style="height: var(--space-xl); width: 100%; background-color: var(--neutral-950); color: var(--white); border: none; padding: var(--space-s) var(--space-m); cursor: pointer; margin-bottom: var(--space-s); {% if current_variant.available and product.gift_card? %}display: none;{% elsif current_variant.available and current_variant.inventory_quantity > 5 %}display: none;{% else %}display: block;{% endif %} {% if section.settings.round_cta %} border-radius: 200px; {% endif %}"
+                    type="button"
+                    id="js--notify-me"
+                    class="body"
+                    style="height: var(--space-xl); width: 100%; background-color: var(--neutral-950); color: var(--white); border: none; padding: var(--space-s) var(--space-m); cursor: pointer; margin-bottom: var(--space-s); {% if current_variant.available and product.gift_card? %}display: none;{% elsif current_variant.available and current_variant.inventory_quantity > 5 %}display: none;{% else %}display: block;{% endif %} {% if section.settings.round_cta %} border-radius: 200px; {% endif %}"
                 >
                   Out of Stock - Notify Me
                 </button>
 
                 <div
-                  class="klaviyo-form-WMidEs"
-                  style="{% if current_variant.available and product.gift_card? %}display: none;{% elsif current_variant.available and current_variant.inventory_quantity > 5 %}display: none;{% else %}display: none;{% endif %}"
+                    class="klaviyo-form-WMidEs"
+                    style="{% if current_variant.available and product.gift_card? %}display: none;{% elsif current_variant.available and current_variant.inventory_quantity > 5 %}display: none;{% else %}display: none;{% endif %}"
                 ></div>
             {%- endcase -%}
           {%- endfor -%}
@@ -258,8 +271,8 @@
         {% endif %}
 
         {% if product.metafields.custom.care_guide != blank
-          or product.metafields.custom.garment_fit != blank
-          or product.metafields.custom.product_specifications != blank
+        or product.metafields.custom.garment_fit != blank
+        or product.metafields.custom.product_specifications != blank
         %}
           {% assign has_specs = true %}
         {% endif %}
@@ -294,17 +307,17 @@
                   {% endif %}
                   {% if section.settings.show_usps %}
                     <hr
-                      class="product-tabs__description-usp-hr"
+                        class="product-tabs__description-usp-hr"
                     >
                     <ul>
                       <li>
                         {% if product.price > 9900 %}
                           <strong class="body--bold product-tabs__description-usp"
-                            >Complimentary standard shipping on this item.</strong
+                          >Complimentary standard shipping on this item.</strong
                           >
                         {% else %}
                           <strong class="body--bold product-tabs__description-usp"
-                            >Complimentary standard shipping over $99.</strong
+                          >Complimentary standard shipping over $99.</strong
                           >
                         {% endif %}
                       </li>
@@ -319,12 +332,11 @@
                         </li>
                       {% endif %}
                     </ul>
-                  {% endif %}
-                  {% if current_variant.sku %}
-                    <p class="product-details__afterpay body--bold">
-                      Product Code:
-                      <span class="js--variant-sku body--bold">{{ current_variant.sku }}</span>
-                    </p>
+                  {% else current_variant.sku %}
+                  <p class="product-details__afterpay body--bold">
+                    Product Code:
+                    <span class="js--variant-sku body--bold">{{ current_variant.sku }}</span>
+                  </p>
                   {% endif %}
                 </div>
               </div>

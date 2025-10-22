@@ -3,10 +3,12 @@ var ready = (callback) => {
   else document.addEventListener("DOMContentLoaded", callback);
 };
 
+// Backwards and forwards history/cache
 function historyState() {
   return window.history && window.history.replaceState;
 }
 
+// Get URL Parameters
 function getParam(name) {
   if ("URLSearchParams" in window) {
     var params = new URLSearchParams(window.location.search);
@@ -21,6 +23,7 @@ function getParam(name) {
   }
 }
 
+// Formats money when we can't use the shopify money filter
 var Shopify = Shopify || {};
 Shopify.money_format = Shopify.money_format || "${{amount}}";
 Shopify.formatMoney = function (cents, format) {
@@ -71,17 +74,28 @@ Shopify.formatMoney = function (cents, format) {
   return formatString.replace(placeholderRegex, value);
 };
 
-ready(function () {
-  var variant;
+const settingsFromContainer = (containerElement) => {
+  return {
+    variants: JSON.parse(containerElement.getAttribute("data-variants")),
+    variant_inventory_quantities: JSON.parse(containerElement.getAttribute("data-variant-inventory-quantities")),
+    product_title: containerElement.getAttribute("data-product-title"),
+    show_low_stock_warning: containerElement.getAttribute("data-show-low-stock-warning"),
+  }
+}
+
+// Variant selector and add to cart button logic
+window.updateProductPurchaseDetails = (containerElement) => {
+  const settings = settingsFromContainer(containerElement)
+
   var options = [];
   options[1] = null;
   options[2] = null;
   options[3] = null;
 
-  var variantOptions = document.querySelectorAll(".js--variant-option");
+  var variantOptions = containerElement.querySelectorAll(".js--variant-option");
   variantOptions.forEach(function (el) {
     el.addEventListener("change", function (event) {
-      checkVariants();
+      checkVariants(containerElement, settings);
 
       variantOptions.forEach(function (opt) {
         if (opt.tagName.toLowerCase() == "input" && opt.checked == true) {
@@ -92,12 +106,12 @@ ready(function () {
         }
       });
 
-      variants.filter(function (v) {
+      settings.variants.filter(v => {
         if (v.option1 == options[1] && v.option2 == options[2] && v.option3 == options[3]) {
           variant = v;
 
-          document.querySelector("input#js--variant-id").value = v.id;
-          document.querySelectorAll('input[type="checkbox"].js--variant-id').forEach(function (el) {
+          containerElement.querySelector("input#js--variant-id").value = v.id;
+          containerElement.querySelectorAll('input[type="checkbox"].js--variant-id').forEach(el => {
             el.value = v.id;
             el.setAttribute("data-price", v.price);
             if (v.available == true) {
@@ -108,37 +122,37 @@ ready(function () {
               el.disabled = true;
             }
           });
-          document.querySelectorAll(".js--variant-price").forEach(function (el) {
+
+          containerElement.querySelectorAll(".js--variant-price").forEach(el => {
             el.innerHTML = Shopify.formatMoney(v.price);
           });
 
           if (v.compare_at_price > v.price) {
-            document.querySelectorAll(".js--variant-compareatprice").forEach(function (el) {
+            containerElement.querySelectorAll(".js--variant-compareatprice").forEach(el => {
               el.innerText = Shopify.formatMoney(v.compare_at_price);
             });
           } else {
-            document.querySelectorAll(".js--variant-compareatprice").forEach(function (el) {
+            containerElement.querySelectorAll(".js--variant-compareatprice").forEach(el => {
               el.innerText = "";
             });
           }
 
-          document.querySelectorAll(".js--variant-sku").forEach(function (el) {
+          containerElement.querySelectorAll(".js--variant-sku").forEach(el => {
             el.innerText = variant.sku;
           });
 
-          if (document.querySelector(".js--pants-size")) {
-            document.querySelector(".js--pants-size").textContent = v.option1 - 12;
+          if (containerElement.querySelector(".js--pants-size")) {
+            containerElement.querySelector(".js--pants-size").textContent = v.option1 - 12;
           }
 
-          var variantIndex = variants.findIndex((variant) => variant.id === v.id);
-          var inventoryQuantity = variant_inventory_quantities[variantIndex];
+          var variantIndex = settings.variants.findIndex((variant) => variant.id === v.id);
+          var inventoryQuantity = settings.variant_inventory_quantities[variantIndex];
 
-          var addToCartButton = document.querySelector("#js--addtocart");
-          var notifyMeButton = document.querySelector("#js--notify-me");
-          var klaviyoForm = document.querySelector(".klaviyo-form-WMidEs");
+          var addToCartButton = containerElement.querySelector("#js--addtocart");
+          var notifyMeButton = containerElement.querySelector("#js--notify-me");
+          var klaviyoForm = containerElement.querySelector(".klaviyo-form-WMidEs");
 
-          var isUnavailable =
-            v.available === false || (inventoryQuantity <= 5 && !v.name.includes("Digital Gift Card"));
+          var isUnavailable = v.available === false || (inventoryQuantity <= 5 && !v.name.includes("Digital Gift Card"));
 
           if (isUnavailable) {
             if (addToCartButton) {
@@ -156,10 +170,10 @@ ready(function () {
               addToCartButton.disabled = false;
               addToCartButton.style.display = "block";
               var buttonText =
-                show_low_stock_warning &&
+                settings.show_low_stock_warning &&
                 inventoryQuantity >= 6 &&
                 inventoryQuantity <= 10 &&
-                !product_title.includes("Gift Card")
+                !settings.product_title.includes("Gift Card")
                   ? "Low In Stock - Add To Cart"
                   : "Add To Cart";
               addToCartButton.innerText = buttonText;
@@ -172,7 +186,7 @@ ready(function () {
             }
           }
 
-          document.querySelector("#js--variant-inventory-quantity").value = inventoryQuantity;
+          containerElement.querySelector("#js--variant-inventory-quantity").value = inventoryQuantity;
 
           if (v != undefined) {
             if (historyState()) {
@@ -184,31 +198,38 @@ ready(function () {
     });
   });
 
-  var notifyMeButton = document.querySelector("#js--notify-me");
-  var klaviyoForm = document.querySelector(".klaviyo-form-WMidEs");
+  var notifyMeButtons = containerElement.querySelectorAll("#js--notify-me");
+  var klaviyoForm = containerElement.querySelector(".klaviyo-form-WMidEs");
 
-  if (notifyMeButton && klaviyoForm) {
-    notifyMeButton.addEventListener("click", function () {
+  if (klaviyoForm && notifyMeButtons.length > 0) {
+    notifyMeButtons.forEach(n => n.addEventListener("click", function () {
       if (klaviyoForm.style.display === "none" || klaviyoForm.style.display === "") {
         klaviyoForm.style.display = "block";
-        notifyMeButton.style.display = "none";
+        n.style.display = "none";
       }
-    });
+    }));
   }
-});
+};
 
-function checkVariants() {
+ready(() => {
+  const elem = document.querySelector("#product")
+  if (elem) window.updateProductPurchaseDetails(elem)
+  else console.warn("no product found for this page, not updating purchase details")
+})
+
+// Checks the variants and disables combinations that are not valid
+function checkVariants(containerElement, settings) {
   let $this = event.target;
   if ($this !== undefined) {
     let availableVariants = new Set();
-    variants.filter(function (variant, k) {
+    settings.variants.filter((variant, k) => {
       if (variant[$this.name] == $this.value) {
         availableVariants.add(variant);
       }
     });
 
     let optionGroups = {};
-    availableVariants.forEach(function (variant) {
+    availableVariants.forEach(variant => {
       let options = Object.entries(variant);
       for (const [key, value] of options) {
         if (value != null) {
@@ -222,7 +243,7 @@ function checkVariants() {
       }
     });
 
-    document.querySelectorAll(".js--variant-option").forEach(function (input) {
+    containerElement.querySelectorAll(".js--variant-option").forEach(input => {
       if (input.name != $this.name) {
         if (optionGroups[input.name].includes(input.value) == false) {
           input.disabled = true;
@@ -234,7 +255,7 @@ function checkVariants() {
     });
   }
 
-  document.querySelectorAll(".js--variant-options").forEach(function (group) {
+  containerElement.querySelectorAll(".js--variant-options").forEach(group => {
     let firstAvailable = null;
     let checkedOptions = group.querySelectorAll(".js--variant-option:checked").length;
     if (checkedOptions == 0) {
@@ -246,6 +267,7 @@ function checkVariants() {
   });
 }
 
+// fixed/sticy site header logic
 document.addEventListener("DOMContentLoaded", function () {
   const header = document.querySelector("#site-header");
   const spacer = document.querySelector("#header-spacer");
