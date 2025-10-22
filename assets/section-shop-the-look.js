@@ -157,6 +157,8 @@
       height: "100%",
       drag: true,
       snap: true,
+      wheel: true,
+      waitForTransition: true,
     }).mount();
   }
 
@@ -183,6 +185,8 @@
       height: "100%",
       drag: true,
       snap: true,
+      wheel: true,
+      waitForTransition: true,
     })
 
     const progressBar = element.querySelector(".shop-the-look__product-images-progress > .shop-the-look__product-images-progress-bar")
@@ -193,7 +197,7 @@
 
   /** Manages the width/height of the progress bar for image slides in the modal */
   const updateProductImageSliderHeight = (splideInstance, sliderElement) => {
-    splideInstance.on("mounted move", function () {
+    splideInstance.on("mounted move", () => {
       const end = splideInstance.Components.Controller.getEnd() + 1;
       const rate = Math.min((splideInstance.index + 1) / end, 1);
 
