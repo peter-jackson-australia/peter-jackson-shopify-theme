@@ -836,7 +836,7 @@ const cart = {
       btn.innerHTML = '<span class="loader--spinner"></span>';
 
       try {
-        if (!utils.isGiftCard(document)) {
+        if (!utils.isGiftCard(productPageElem)) {
           const inventory = parseInt(productPageElem.querySelector("#js--variant-inventory-quantity")?.value || "Infinity", 10);
           const currentCart = await cartAPI.fetch();
           const existingItem = currentCart?.items?.find((item) => item.variant_id.toString() === variantId);
