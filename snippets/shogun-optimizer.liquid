@@ -69,6 +69,11 @@ This file can be re-written at any time.
           color: #251A00;
         }
 
+        .shogun-price-test-preview-sidebar-subtitle {
+          font-weight: 550;
+          color: #303030;
+        }
+
         .shogun-price-test-preview-sidebar-content {
           padding: 1rem;
           font-size: 1rem;
@@ -98,16 +103,6 @@ This file can be re-written at any time.
           text-align: center;
           font-weight: 550;
           font-size: 1.5rem;
-        }
-
-        .shogun-price-test-preview-sidebar-currency-info {
-          background-color: #f3f4f6;
-          color: #374151;
-          margin: 10px 0;
-          border-radius: 10px;
-          text-align: center;
-          font-weight: 550;
-          font-size: 1rem;
         }
 
         .shogun-price-test-preview-sidebar-product-collection-container {
@@ -263,10 +258,10 @@ This file can be re-written at any time.
         </div>
 
         <div class="shogun-price-test-preview-sidebar-content">
-          <div class="shogun-price-test-preview-sidebar-currency-info">
-            Prices shown in {{ cart.currency.iso_code }}
+          <div class="shogun-price-test-preview-sidebar-subtitle">
+            Go check your product pages, collection pages,
+            and anywhere else the price might appear on your store.
           </div>
-
           <div class="shogun-price-test-preview-sidebar-product-collection-container">
             {% for collection_config in optimization_config.collections -%}
               {%- assign collection = collections[collection_config.handle] -%}
