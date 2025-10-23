@@ -242,7 +242,7 @@
   }
 
   /**
-   * @param listElement {Element}
+   * @param listElement {HTMLElement}
    */
   const connectShopTheLookItemToModal = (listElement) => {
     const productId = listElement.getAttribute("data-product-id")
@@ -250,7 +250,10 @@
       console.error("list element does not have data-product-id attribute: ", listElement)
       return
     }
-    listElement.addEventListener("click", (_) => openProductModal(parseInt(productId)))
+    const linkAnchor = listElement.querySelector(".shop-the-look__product-link")
+    if (linkAnchor) {
+      linkAnchor.addEventListener("click", (_) => openProductModal(parseInt(productId)))
+    }
   }
 
   /**
