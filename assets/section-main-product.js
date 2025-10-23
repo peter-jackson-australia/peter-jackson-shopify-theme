@@ -273,7 +273,7 @@ function initStickyCartBar(elementWrapper) {
     const isKlaviyoVisible = klaviyoForm && klaviyoForm.style.display !== "none" && klaviyoForm.style.display !== "";
 
     if (isNotifyMeVisible || isKlaviyoVisible) {
-      scrollToVariantForm(elementWrapper);
+      scrollToVariantForm();
       if (isNotifyMeVisible) {
         setTimeout(() => {
           if (originalNotifyButton) {
@@ -282,7 +282,7 @@ function initStickyCartBar(elementWrapper) {
         }, 300);
       }
     } else if (!product_has_only_default_variant) {
-      scrollToVariantForm(elementWrapper);
+      scrollToVariantForm();
     } else {
       originalButton.click();
     }
@@ -440,9 +440,9 @@ function updateStickyPrices(elementWrapper) {
   }
 }
 
-function scrollToVariantForm(elementWrapper) {
-  const productDetails = elementWrapper.querySelector("#product-details");
-  const fixedHeader = elementWrapper.querySelector(".header-fixed");
+function scrollToVariantForm() {
+  const productDetails = document.querySelector("#product-details");
+  const fixedHeader = document.querySelector(".header-fixed");
 
   if (productDetails) {
     const rect = productDetails.getBoundingClientRect();
