@@ -243,6 +243,7 @@
 
 .shop-the-look__product-link {
   color: var(--neutral-950);
+  cursor: pointer;
   display: block;
   text-decoration: none;
 }
