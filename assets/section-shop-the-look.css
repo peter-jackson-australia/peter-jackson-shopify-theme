@@ -25,6 +25,7 @@
 
 .shop-the-look__modal-navigation-bar-items {
   background-color: var(--white);
+  border-top: 1px solid var(--neutral-50);
   display: flex;
   justify-content: space-between;
   padding: var(--space-xs) var(--space-m);
