@@ -60,13 +60,7 @@ This snippet renders a product within the splide slider for the "shop the look" 
   <section class="shop-the-look__modal-item-content">
     <div class="shop-the-look__modal-item-content-container custom-scrollbar">
       <div>
-        <p class="product-details__sku small">
-          {% if current_variant.sku %}
-        <p class="product-details__sku small">
-          Product Code:
-          <span class="js--variant-sku">{{ current_variant.sku }}</span>
-        </p>
-        {% endif %}
+        <p>
           Buy In 4 Interest Free Payments of {{ current_variant.price | divided_by: 4 | money_with_currency }}
           {{ 'afterpay' | payment_type_svg_tag }}
         </p>
