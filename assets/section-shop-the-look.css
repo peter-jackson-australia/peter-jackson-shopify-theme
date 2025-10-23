@@ -210,6 +210,7 @@
 }
 
 .shop-the-look__modal-item-image {
+  border-right: 1px solid var(--neutral-50);
   width: 50%;
 }
 
