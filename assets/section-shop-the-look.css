@@ -28,14 +28,12 @@
   border-top: 1px solid var(--neutral-50);
   display: flex;
   justify-content: space-between;
-  padding: var(--space-xs) var(--space-m);
-  padding-top: 0;
+  padding: var(--space-3xs) var(--space-m);
 }
 
 .shop-the-look__switch-product-button {
   background: none;
   border: none;
-  border-bottom: 1px solid var(--neutral-950);
   cursor: pointer;
   display: flex;
   gap: var(--space-s);
