@@ -50,8 +50,8 @@
   const freezeDocumentHeight = (siteHeader) => {
     const scroll = document.body.style.position === "fixed" ? Math.abs(parseInt(document.body.style.top || "0")) : window.scrollY;
 
+    if (!document.body.classList.contains("cart-open")) document.body.classList.add("cart-open")
     if (document.body.style.position !== "fixed") {
-      if (!document.body.classList.contains("modal-open")) document.body.classList.add("modal-open")
       Object.assign(document.body.style, {
         position: "fixed",
         top: `-${scroll}px`,
@@ -83,7 +83,7 @@
       })
     }
 
-    if (document.body.classList.contains("modal-open")) document.body.classList.remove("modal-open")
+    if (document.body.classList.contains("cart-open")) document.body.classList.remove("cart-open")
 
     Object.assign(document.body.style, { position: "", top: "", width: "" });
     window.scrollTo({
@@ -157,6 +157,8 @@
       height: "100%",
       drag: true,
       snap: true,
+      wheel: true,
+      waitForTransition: true,
     }).mount();
   }
 
@@ -183,6 +185,8 @@
       height: "100%",
       drag: true,
       snap: true,
+      wheel: !isMobile,
+      waitForTransition: true,
     })
 
     const progressBar = element.querySelector(".shop-the-look__product-images-progress > .shop-the-look__product-images-progress-bar")
@@ -193,7 +197,7 @@
 
   /** Manages the width/height of the progress bar for image slides in the modal */
   const updateProductImageSliderHeight = (splideInstance, sliderElement) => {
-    splideInstance.on("mounted move", function () {
+    splideInstance.on("mounted move", () => {
       const end = splideInstance.Components.Controller.getEnd() + 1;
       const rate = Math.min((splideInstance.index + 1) / end, 1);
 
@@ -238,7 +242,7 @@
   }
 
   /**
-   * @param listElement {Element}
+   * @param listElement {HTMLElement}
    */
   const connectShopTheLookItemToModal = (listElement) => {
     const productId = listElement.getAttribute("data-product-id")
@@ -246,7 +250,10 @@
       console.error("list element does not have data-product-id attribute: ", listElement)
       return
     }
-    listElement.addEventListener("click", (_) => openProductModal(parseInt(productId)))
+    const linkAnchor = listElement.querySelector(".shop-the-look__product-link")
+    if (linkAnchor) {
+      linkAnchor.addEventListener("click", (_) => openProductModal(parseInt(productId)))
+    }
   }
 
   /**

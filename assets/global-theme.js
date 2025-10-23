@@ -129,7 +129,8 @@ window.updateProductPurchaseDetails = (containerElement) => {
 
           if (v.compare_at_price > v.price) {
             containerElement.querySelectorAll(".js--variant-compareatprice").forEach(el => {
-              el.innerText = Shopify.formatMoney(v.compare_at_price);
+              const price = Shopify.formatMoney(v.compare_at_price);
+              el.innerText = `Was ${price}`
             });
           } else {
             containerElement.querySelectorAll(".js--variant-compareatprice").forEach(el => {

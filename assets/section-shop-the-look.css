@@ -25,21 +25,26 @@
 
 .shop-the-look__modal-navigation-bar-items {
   background-color: var(--white);
+  border-top: 1px solid var(--neutral-50);
   display: flex;
   justify-content: space-between;
-  padding: var(--space-xs) var(--space-m);
-  padding-top: 0;
+  padding: var(--space-3xs) var(--space-m);
 }
 
 .shop-the-look__switch-product-button {
   background: none;
   border: none;
-  border-bottom: 1px solid var(--neutral-950);
   cursor: pointer;
   display: flex;
   gap: var(--space-s);
+  opacity: 1;
   padding: var(--space-xs) var(--space-s);
   position: relative;
+}
+
+.shop-the-look__switch-product-button:disabled {
+  color: black;
+  opacity: 0.5;
 }
 
 .shop-the-look__switch-product-label {
@@ -244,13 +249,13 @@
 
 .shop-the-look__product-link {
   color: var(--neutral-950);
+  cursor: pointer;
   display: block;
   text-decoration: none;
 }
 
 .shop-the-look__product-image-wrapper {
   align-items: center;
-  background-color: var(--neutral-50);
   display: flex;
   justify-content: center;
   margin: 0 auto var(--space-xs);
@@ -259,6 +264,7 @@
 }
 
 .shop-the-look__product-image {
+  background-color: var(--neutral-50);
   height: 100%;
   object-fit: cover;
   width: 100%;
@@ -384,7 +390,7 @@
 
   .shop-the-look__modal-item {
     flex-direction: column;
-    overflow: scroll;
+    overflow-y: scroll;
     position: relative;
   }
 
