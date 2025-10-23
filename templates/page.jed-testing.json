@@ -9,59 +9,22 @@
  */
 {
   "sections": {
-    "grid_tiles_yML3h6": {
-      "type": "grid-tiles",
-      "blocks": {
-        "tile_ejRQWD": {
-          "type": "tile",
-          "settings": {
-            "tile_background_image": "shopify://shop_images/Co-Orders.webp",
-            "tile_header": "Tile Header",
-            "tile_secondary_text": "Add some descriptive text herefd",
-            "tile_link": "shopify://collections/all"
-          }
-        },
-        "tile_GGJJgP": {
-          "type": "tile",
-          "settings": {
-            "tile_background_image": "shopify://shop_images/Sports_Jacket.webp",
-            "tile_header": "Tile Header",
-            "tile_secondary_text": "Add some descriptive text here",
-            "tile_link": ""
-          }
-        },
-        "tile_JqgCHP": {
-          "type": "tile",
-          "settings": {
-            "tile_background_image": "shopify://shop_images/R0015500_copy.jpg",
-            "tile_header": "Tile Header",
-            "tile_secondary_text": "Add some descriptive text here",
-            "tile_link": ""
-          }
-        },
-        "tile_GWFeqE": {
-          "type": "tile",
-          "settings": {
-            "tile_background_image": "shopify://shop_images/Spring_Suits_83745627-5f88-4929-b7cc-0d32264cc5e2.webp",
-            "tile_header": "Tile Header",
-            "tile_secondary_text": "Add some descriptive text here",
-            "tile_link": ""
-          }
-        }
-      },
-      "block_order": [
-        "tile_ejRQWD",
-        "tile_GGJJgP",
-        "tile_JqgCHP",
-        "tile_GWFeqE"
-      ],
-      "name": "Grid Tiles",
+    "collection_slider_9gKBxh": {
+      "type": "collection-slider",
+      "name": "Collection Slider",
       "settings": {
-        "grid_columns": "2"
+        "heading": "New In Now",
+        "heading_animation": "none",
+        "description": "Layer up with premium wool/cashmere blends.",
+        "description_animation": "none",
+        "collection": "all-products",
+        "button_label": "From {{ metaobjects.money_reference[\"money-reference-zabem3hf\"].price | metafield_text }}",
+        "products_to_show": 10,
+        "animate_products": false
       }
     }
   },
   "order": [
-    "grid_tiles_yML3h6"
+    "collection_slider_9gKBxh"
   ]
 }
