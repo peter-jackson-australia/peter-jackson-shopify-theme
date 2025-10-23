@@ -54,9 +54,9 @@
             
             <ul id="CountryList" role="list" class="disclosure__list custom-scrollbar" hidden>
               {% for country in localization.available_countries %}
-                <li class="disclosure__item" tabindex="-1">
-                  <a {% if country.iso_code == localization.country.iso_code %} aria-current="true"{% endif %} data-value="{{ country.iso_code }}">
-                    {{ country.name }} ({{ country.currency.iso_code }} {{ country.currency.symbol }})
+                <li class="disclosure__list-item" tabindex="-1">
+                  <a class="disclosure__list-item-link" {% if country.iso_code == localization.country.iso_code %} aria-current="true"{% endif %} data-value="{{ country.iso_code }}">
+                    <span class="disclosure__list-item-text">{{ country.name }} ({{ country.currency.iso_code }} {{ country.currency.symbol }})</span>
                   </a>
                 </li>
               {% endfor %}
@@ -66,6 +66,7 @@
           </div>
         {% endform %}
       </localization-form>
+      
     </li>
     
     <li>
@@ -94,3 +95,4 @@
   src="{{ "header.js" | asset_url }}"
   defer
 />
+
