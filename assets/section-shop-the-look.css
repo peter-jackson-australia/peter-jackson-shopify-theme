@@ -383,7 +383,7 @@
 
   .shop-the-look__modal-item {
     flex-direction: column;
-    overflow: scroll;
+    overflow-y: scroll;
     position: relative;
   }
 
