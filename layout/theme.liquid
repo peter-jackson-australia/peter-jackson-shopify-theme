@@ -21,6 +21,12 @@
       Other Critical CSS that NEEDS TO BE minified at some point
     {% endcomment %}
     <style>
+      @media screen and (max-width: 768px) {
+        #localization_form {
+          display: none;
+        }
+      }
+      
       #localization_form .disclosure__button {
         border: none;
         background-color: white;
