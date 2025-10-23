@@ -50,8 +50,8 @@
   const freezeDocumentHeight = (siteHeader) => {
     const scroll = document.body.style.position === "fixed" ? Math.abs(parseInt(document.body.style.top || "0")) : window.scrollY;
 
+    if (!document.body.classList.contains("cart-open")) document.body.classList.add("cart-open")
     if (document.body.style.position !== "fixed") {
-      if (!document.body.classList.contains("modal-open")) document.body.classList.add("modal-open")
       Object.assign(document.body.style, {
         position: "fixed",
         top: `-${scroll}px`,
@@ -83,7 +83,7 @@
       })
     }
 
-    if (document.body.classList.contains("modal-open")) document.body.classList.remove("modal-open")
+    if (document.body.classList.contains("cart-open")) document.body.classList.remove("cart-open")
 
     Object.assign(document.body.style, { position: "", top: "", width: "" });
     window.scrollTo({

@@ -252,13 +252,6 @@
   transform: translateY(0);
 }
 
-body.modal-open {
-  height: 100%;
-  overflow: hidden;
-  position: fixed;
-  width: 100%;
-}
-
 .modal-content {
   background-color: var(--white);
   height: 880px;
@@ -280,10 +273,6 @@ body.modal-open {
   display: flex;
   justify-content: center;
   padding: var(--space-2xs);
-}
-
-body.modal-open {
-  overflow: hidden;
 }
 
 #js--addtocart {
