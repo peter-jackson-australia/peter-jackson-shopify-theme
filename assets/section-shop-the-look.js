@@ -185,7 +185,7 @@
       height: "100%",
       drag: true,
       snap: true,
-      wheel: true,
+      wheel: !isMobile,
       waitForTransition: true,
     })
 
