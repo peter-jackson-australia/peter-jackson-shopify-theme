@@ -44,6 +44,7 @@
 
 .shop-the-look__switch-product-button:disabled {
   color: black;
+  cursor: not-allowed;
   opacity: 0.5;
 }
 
