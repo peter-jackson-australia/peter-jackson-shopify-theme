@@ -166,18 +166,13 @@
   cursor: pointer;
 }
 
-#localization_form .disclosure__button-img-text {
+#localization_form .disclosure__button-text {
   display: flex;
   gap: var(--space-2xs);
 }
 
-#localization_form .disclosure__button:hover .disclosure__button-img-text,
-#localization_form .disclosure__button[aria-expanded='true'] .disclosure__button-img-text {
+#localization_form .disclosure__button-text-country {
   text-decoration: underline;
-}
-
-#localization_form .disclosure__button-img img {
-  object-fit: cover;
 }
 
 #localization_form .disclosure__list {
