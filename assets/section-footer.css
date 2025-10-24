@@ -151,6 +151,70 @@
   width: 100%;
 }
 
+.disclosure {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-width: 260px;
+  position: relative;
+}
+
+#localization_form .disclosure__button {
+  background: none;
+  border: none;
+  color: var(--white);
+  cursor: pointer;
+}
+
+#localization_form .disclosure__button:hover .disclosure__button-img-text,
+#localization_form .disclosure__button[aria-expanded='true'] .disclosure__button-img-text {
+  text-decoration: underline;
+}
+
+#localization_form .disclosure__button-img img {
+  object-fit: cover;
+}
+
+#localization_form .disclosure__list {
+  background-color: var(--white);
+  bottom: var(--space-l);
+  flex-direction: column;
+  margin-top: calc(var(--space-s) - 1px);
+  max-height: 300px;
+  overflow-y: scroll;
+  position: absolute;
+}
+
+#localization_form .disclosure__list[hidden] {
+  display: none;
+}
+
+#localization_form .disclosure__list-item {
+  width: 100%;
+}
+
+#localization_form .disclosure__list-item-link {
+  color: var(--neutral-400);
+  cursor: pointer;
+  display: block;
+  padding: var(--space-xs);
+}
+
+#localization_form .disclosure__list-item-text {
+  display: flex;
+  gap: var(--space-2xs);
+  width: 100%;
+}
+
+#localization_form .disclosure__list-item-link[aria-current='true'] {
+  color: var(--neutral-700);
+}
+
+#localization_form .disclosure__list-item-link:hover {
+  background-color: var(--neutral-50);
+  color: var(--neutral-700);
+}
+
 @media (max-width: 1024px) {
   .footer__main {
     gap: 0;
