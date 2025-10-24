@@ -161,7 +161,7 @@
             <div class="disclosure">
               <button type="button" class="disclosure__button" aria-expanded="false" aria-controls="localization-country-list" id="localization-popup-button">
                 <div class="disclosure__button-img">
-                  <span class="disclosure__button-img-text body">{{ localization.country | image_url: height: 18 | image_tag }} {{  localization.country.name }} ({{ localization.country.currency.iso_code }} {{ localization.country.currency.symbol }})</span>
+                  <span class="disclosure__button-img-text body">{{ localization.country | image_url: height: 18 | image_tag }} {{  localization.country.name }} ({{ localization.country.currency.iso_code }} {{ localization.country.currency.symbol }}) {% render '_icon-arrow-up' %}</span>
                 </div>
               </button>
               
