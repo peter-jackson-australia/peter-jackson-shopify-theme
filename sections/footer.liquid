@@ -159,13 +159,13 @@
         <localization-form>
           {% form 'localization' %}
             <div class="disclosure">
-              <button type="button" class="disclosure__button" aria-expanded="false" aria-controls="CountryList">
+              <button type="button" class="disclosure__button" aria-expanded="false" aria-controls="localization-country-list" id="localization-popup-button">
                 <div class="disclosure__button-img">
                   <span class="disclosure__button-img-text body">{{ localization.country | image_url: height: 18 | image_tag }} {{  localization.country.name }} ({{ localization.country.currency.iso_code }} {{ localization.country.currency.symbol }})</span>
                 </div>
               </button>
               
-              <ul id="CountryList" role="list" class="disclosure__list custom-scrollbar" hidden>
+              <ul id="localization-country-list" role="list" class="disclosure__list custom-scrollbar" hidden>
                 {% for country in localization.available_countries %}
                   <li class="disclosure__list-item" tabindex="-1">
                     <a class="disclosure__list-item-link" {% if country.iso_code == localization.country.iso_code %} aria-current="true"{% endif %} data-value="{{ country.iso_code }}">
