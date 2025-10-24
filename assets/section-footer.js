@@ -1,9 +1,11 @@
 class LocalizationForm extends HTMLElement {
   constructor() {
     super();
+    const btn = this.querySelector('button');
     this.elements = {
       input: this.querySelector('input[name="country_code"]'),
-      button: this.querySelector('button'),
+      button: btn,
+      buttonArrow: btn.querySelector("svg"),
       panel: document.querySelector('#localization-country-list'),
     };
 
@@ -17,6 +19,7 @@ class LocalizationForm extends HTMLElement {
   hidePanel() {
     this.elements.button.setAttribute('aria-expanded', 'false');
     this.elements.panel.setAttribute('hidden', true);
+    this.elements.buttonArrow.style.transform = "rotate(270deg)";
   }
 
   onContainerKeyUp(event) {
@@ -37,6 +40,7 @@ class LocalizationForm extends HTMLElement {
     this.elements.button.focus();
     this.elements.panel.toggleAttribute('hidden');
     this.elements.button.setAttribute('aria-expanded', (this.elements.button.getAttribute('aria-expanded') === 'false').toString());
+    this.elements.buttonArrow.style.transform = "rotate(90deg)";
   }
 
   closeSelector(event) {
