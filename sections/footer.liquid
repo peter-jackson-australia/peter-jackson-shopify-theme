@@ -154,6 +154,32 @@
         </a>
       {% endif %}
     </div>
+    
+    <div>
+        <localization-form>
+          {% form 'localization' %}
+            <div class="disclosure">
+              <button type="button" class="disclosure__button" aria-expanded="false" aria-controls="CountryList">
+                <div class="disclosure__button-img">
+                  {{ localization.country | image_url: height: 18 | image_tag }}
+                </div>
+              </button>
+              
+              <ul id="CountryList" role="list" class="disclosure__list custom-scrollbar" hidden>
+                {% for country in localization.available_countries %}
+                  <li class="disclosure__list-item" tabindex="-1">
+                    <a class="disclosure__list-item-link" {% if country.iso_code == localization.country.iso_code %} aria-current="true"{% endif %} data-value="{{ country.iso_code }}">
+                      <span class="disclosure__list-item-text" >{{ country | image_url: width: 24 | image_tag: style: "border: 1px solid var(--neutral-50);"}} {{ country.name }} ({{ country.currency.iso_code }} {{ country.currency.symbol }})</span>
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+              
+              <input type="hidden" name="country_code" value="{{ localization.country.iso_code }}" />
+            </div>
+          {% endform %}
+        </localization-form>
+    </div>
 
     <div class="footer__terms">
       {% if terms_link != blank %}
@@ -352,3 +378,5 @@
   }
 }
 {% endschema %}
+
+<script src="{{ "section-footer" |  asset_url }}" defer></script>
