@@ -166,6 +166,11 @@
   cursor: pointer;
 }
 
+#localization_form .disclosure__button-img-text {
+  display: flex;
+  gap: var(--space-2xs);
+}
+
 #localization_form .disclosure__button:hover .disclosure__button-img-text,
 #localization_form .disclosure__button[aria-expanded='true'] .disclosure__button-img-text {
   text-decoration: underline;
