@@ -161,7 +161,7 @@
             <div class="disclosure">
               <button type="button" class="disclosure__button" aria-expanded="false" aria-controls="CountryList">
                 <div class="disclosure__button-img">
-                  {{ localization.country | image_url: height: 18 | image_tag }}
+                  <span class="disclosure__button-img-text body">{{ localization.country | image_url: height: 18 | image_tag }} {{  localization.country.name }} ({{ localization.country.currency.iso_code }} {{ localization.country.currency.symbol }})</span>
                 </div>
               </button>
               

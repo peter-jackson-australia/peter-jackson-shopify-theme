@@ -28,32 +28,27 @@
       }
       
       .disclosure {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
         position: relative;
         min-width: 260px;
       }
       
       #localization_form .disclosure__button {
         border: none;
-        background-color: white;
+        color: var(--white);
         cursor: pointer;
+        background: none;
       }
       
-      #localization_form .disclosure__button-img {
-      
+      #localization_form .disclosure__button:hover .disclosure__button-img-text,
+      #localization_form .disclosure__button[aria-expanded='true'] .disclosure__button-img-text {
+        text-decoration: underline;
       }
-      
+
       #localization_form .disclosure__button-img img {
         object-fit: cover;
-      }
-      
-      #localization_form .disclosure__button:hover {
-        color: var(--neutral-700);
-        border-bottom-color: var(--neutral-500);
-      }
-      
-      #localization_form .disclosure__button[aria-expanded='true'] {
-        color: var(--neutral-900);
-        border-bottom-color: var(--neutral-500);
       }
       
       #localization_form .disclosure__list {
