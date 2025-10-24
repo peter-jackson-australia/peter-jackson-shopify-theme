@@ -241,9 +241,19 @@
     align-items: flex-start;
     flex-direction: column;
     gap: var(--space-s);
+    justify-content: start;
+  }
+
+  .footer__currency_selector {
+    justify-content: start;
+  }
+
+  .disclosure {
+    justify-content: left;
   }
 
   .footer__terms {
     gap: var(--space-xs);
+    justify-content: start;
   }
 }
