@@ -2,20 +2,31 @@
 This snippet renders a product within the splide slider for the "shop the look" section.
 
 @param{string} sectionId - The section ID this snippet is being rendered on
+@param{string} product - The product this button is associated with
 {% enddoc %}
 
 {% assign sectionId = section.id %}
+{% assign productIsWishlisted = false %}
 
-{% if customer %}
-  {% assign wishlistedItems = customer.metafields.custom.wishlist_products.value %}
-  <p>User Logged In. Wishlisted Items: </p>
-  <ul>
-  {% for p in wishlistedItems %}
-    <li>{{ p.title }}</li>
-  {% endfor %}
-  </ul>
-{% endif %}
-<button class="wishlist-button">Wishlist {{ customer.name }}</button>
+{% liquid
+if customer
+  assign wishlistedItems = customer.metafields.custom.wishlist_products.value
+  for p in wishlistedItems
+    if p.id == product.id
+      assign productIsWishlisted = true
+      break
+    endif
+  endfor
+endif
+%}
+
+<div>
+  {% if productIsWishlisted %}
+    <button class="wishlist-button">Remove Wishlist</button>
+  {% else %}
+    <button class="wishlist-button">Wishlist</button>
+  {% endif %}
+</div>
 
 <script
   data-section-id="{{ sectionId }}"
