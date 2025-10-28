@@ -356,7 +356,7 @@ input:focus-visible {
 }
 
 .variant-option label {
-  border: 1px solid var(--neutral-200);
+  border: 1px solid var(--neutral-100);
   color: var(--neutral-950);
   cursor: pointer;
   display: inline-block;
