@@ -55,6 +55,7 @@
   font: inherit;
   padding: 0;
   white-space: nowrap;
+  cursor: pointer; 
 }
 
 .collection-slider-header__nav-button.active {
