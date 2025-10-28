@@ -173,7 +173,7 @@
         "heading_animation": "none",
         "description": "",
         "description_animation": "none",
-        "collection": "oaks-day",
+        "collection": "melbourne-cup-the-everest",
         "button_label": "",
         "products_to_show": 12,
         "animate_products": false
@@ -241,7 +241,7 @@
         "heading_animation": "none",
         "description": "",
         "description_animation": "none",
-        "collection": "stakes-day",
+        "collection": "oaks-day-golden-eagle",
         "button_label": "",
         "products_to_show": 10,
         "animate_products": false
@@ -275,7 +275,7 @@
         "heading_animation": "none",
         "description": "",
         "description_animation": "none",
-        "collection": "melbourne-cup",
+        "collection": "stakes-day-five-diamonds-day",
         "button_label": "",
         "products_to_show": 10,
         "animate_products": false
