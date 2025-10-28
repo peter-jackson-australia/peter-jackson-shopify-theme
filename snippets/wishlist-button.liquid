@@ -10,7 +10,7 @@ This snippet renders a product within the splide slider for the "shop the look" 
   {% assign wishlistedItems = customer.metafields.custom.wishlist_products.value %}
   <p>User Logged In. Wishlisted Items: </p>
   <ul>
-  {% for p in customer.metafields.custom.wishlist_products %}
+  {% for p in wishlistedItems %}
     <li>{{ p.title }}</li>
   {% endfor %}
   </ul>
