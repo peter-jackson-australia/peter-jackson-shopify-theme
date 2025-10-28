@@ -1,0 +1,23 @@
+{% doc %}
+This snippet renders a product within the splide slider for the "shop the look" section.
+
+@param{string} sectionId - The section ID this snippet is being rendered on
+{% enddoc %}
+
+{% assign sectionId = section.id %}
+
+<button class="wishlist-button">Wishlist</button>
+<pre><code>
+    {{ customer | json | escape }}
+  </code></pre>
+
+<script
+  data-section-id="{{ sectionId }}"
+  defer
+>
+  (() => {
+    const sectionId = document.currentScript.getAttribute("data-section-id")
+    const section = document.querySelector(`#${sectionId}`)
+    const btn = section.querySelector(".wishlist-button")
+  })()
+</script>
