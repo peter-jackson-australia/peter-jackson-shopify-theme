@@ -21,6 +21,8 @@ let cartState = {
   isRefreshing: false,
 };
 
+const isAustralianMarket = document.querySelector('.cart')?.getAttribute('data-market') === 'au';
+
 let secondaryDrawerState = {
   isOpen: false,
   currentItemKey: null,
@@ -526,7 +528,7 @@ const cartDrawer = {
 
 const templates = {
   slider: () => `<div class="cart__complementary-products-loading">${loadingSVG}</div><div class="cart__complementary-products-content" style="display: none;"><h3 class="cart__complementary-products-title heading--l">Complement Your Look</h3><div class="cart__complementary-products-slider splide"><div class="splide__arrows"><button class="splide__arrow splide__arrow--prev" type="button"><svg width="7" height="12" viewBox="0 0 7 12" xmlns="https://www.w3.org/2000/svg"><path d="M6 1L1 6L6 11" stroke="#0F0F0F" stroke-linecap="square"/></svg></button><button class="splide__arrow splide__arrow--next" type="button"><svg width="7" height="12" viewBox="0 0 7 12" xmlns="https://www.w3.org/2000/svg"><path d="M1 1L6 6L1 11" stroke="#0F0F0F" stroke-linecap="square"/></svg></button></div><div class="splide__track"><ul class="splide__list"></ul></div></div></div>`,
-  productSlide: (p) => `<li class="splide__slide"><a href="/products/${p.handle}"><div class="cart__complementary-products-image-wrapper"><img src="https:${p.featured_image}&width=300" alt="${p.title}" class="cart__complementary-products-image"></div><h3 class="body--bold cart__complementary-products-title-product">${p.title}</h3><p class="small cart__complementary-products-price">${Shopify.formatMoney(p.price)}</p></a></li>`,
+  productSlide: (p) => `<li class="splide__slide"><a href="/products/${p.handle}"><div class="cart__complementary-products-image-wrapper"><img src="https:${p.featured_image}&width=300" alt="${p.title}" class="cart__complementary-products-image"></div><h3 class="body--bold cart__complementary-products-title-product">${p.title}</h3><p class="small cart__complementary-products-price">${isAustralianMarket ? Shopify.formatMoney(p.price) : 'View Product'}</p></a></li>`,
   emptyCartContent: (shippingHTML) => `${shippingHTML}<div class="cart__items"></div><div class="cart__complementary-products" style="display: block;">${templates.slider()}</div><footer class="cart__footer"><div class="cart__footer-row"><h3 class="cart__footer-label body">Subtotal</h3><span class="cart__footer-value body--bold">${utils.createLoader().outerHTML}</span></div><button type="submit" name="checkout" class="cart__checkout body"><span class="loader--spinner"></span></button></footer>`,
   optimisticItem: (variantId, name) => `<div class="cart-item__content"><div class="cart-item__details"><h3 class="cart-item__title body--bold"><a href="${window.location.pathname}">${name}</a></h3><div class="cart-item__specifics"><div class="cart-item__variant small" style="display: flex; align-items: center; height: auto;">${utils.createLoader().outerHTML}</div><div class="cart-item__price"><div class="price-placeholder">${utils.createLoader().outerHTML}</div></div></div><div class="cart-item__actions"><div class="placeholder-loader">${utils.createLoader().outerHTML}</div><div class="placeholder-remove"></div></div></div></div>`,
 };
