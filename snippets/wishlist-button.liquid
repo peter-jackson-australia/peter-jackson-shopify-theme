@@ -6,9 +6,12 @@ This snippet renders a product within the splide slider for the "shop the look" 
 
 {% assign sectionId = section.id %}
 {% if customer and customer.has_account %}
+  <p>User Logged In. Wishlisted Items: </p>
+  <ul>
   {% for p in customer.metafields.custom.wishlist_products %}
-    <pre><code>{{ p | json |  escape }}</code></pre>
+    <li>{{ p.title }}</li>
   {% endfor %}
+  </ul>
 {% endif %}
 
 <button class="wishlist-button">Wishlist</button>
