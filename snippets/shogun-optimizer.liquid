@@ -24,6 +24,26 @@ This file can be re-written at any time.
 </script>
 
 {%- assign shogun_variant_id = cart.attributes.shogun_variant_id -%}
+{%- assign optimizer_supports_klarna = false -%}
+{%- if shop.enabled_payment_types != blank -%}
+  {%- for payment_type in shop.enabled_payment_types -%}
+    {%- assign payment_type_downcase = payment_type | downcase -%}
+    {%- if payment_type_downcase contains 'klarna' -%}
+      {%- assign optimizer_supports_klarna = true -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+{%- if optimizer_supports_klarna == false and shop.enabled_payment_gateways != blank -%}
+  {%- for payment_gateway in shop.enabled_payment_gateways -%}
+    {%- assign gateway_name = payment_gateway.name | default: payment_gateway -%}
+    {%- assign gateway_value = gateway_name | downcase -%}
+    {%- if gateway_value contains 'klarna' -%}
+      {%- assign optimizer_supports_klarna = true -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
 {%- if shogun_variant_id != nil -%}
   {%- assign price_tests = shop.metafields.app--214825828353.price-tests -%}
   {%- assign optimization_config = nil -%}
@@ -39,6 +59,297 @@ This file can be re-written at any time.
   {%- assign image_size = 40 -%}
   {%- assign arrow_symbol = '<svg xmlns="http://www.w3.org/2000/svg" width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M4.92296 10.5227C4.55973 10.8482 4.55973 11.3758 4.92296 11.7012C5.28619 12.0267 5.8751 12.0267 6.23833 11.7012L9.33869 8.92346C9.70192 8.59802 9.70192 8.07038 9.33869 7.74494L6.23833 4.96717C5.8751 4.64173 5.28619 4.64173 4.92296 4.96717C4.55973 5.2926 4.55973 5.82024 4.92296 6.14568L6.43552 7.50087L4.65054 7.50087C3.10948 7.50087 1.86021 6.38158 1.86021 5.00087L1.86021 0.834201C1.86021 0.373964 1.44379 0.000867717 0.930106 0.000867762C0.416423 0.000867807 -4.79388e-07 0.373964 -4.39152e-07 0.834201L-6.07103e-07 5.00087C-4.05927e-07 7.30205 2.08212 9.16753 4.65054 9.16753L6.43552 9.16753L4.92296 10.5227Z" fill="#4A4A4A"/></svg>' -%}
   {%- assign caret_symbol = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M6.23966 11.7996C6.5432 12.0814 7.01775 12.0639 7.2996 11.7603L10 8.85221L12.7004 11.7603C12.9823 12.0639 13.4568 12.0814 13.7603 11.7996C14.0639 11.5177 14.0815 11.0432 13.7996 10.7397L10.5496 7.23966C10.4077 7.08683 10.2086 7 10 7C9.79145 7 9.59232 7.08683 9.45041 7.23966L6.20041 10.7397C5.91856 11.0432 5.93613 11.5177 6.23966 11.7996Z" fill="#4A4A4A"/></svg>' -%}
+
+   {% if product %}
+    {%- assign shogun_price_namespace = 'app--214825828353' -%}
+    {%- assign product_pricing_metafield = product.metafields[shogun_price_namespace]['product-pricing'] -%}
+
+    <!-- Primary payload: per-variant metafields + product-level default -->
+    <script type="application/json" id="shg-price-test-pricing">
+      {
+        "shogunVariantId": {{ shogun_variant_id | json }},
+        "variants": {
+          {% for variant in product.variants %}
+            {% assign shogun_variant_pricing = variant.metafields[shogun_price_namespace]['product-variant-pricing'] %}
+            "{{ variant.id }}": {% if shogun_variant_pricing %}{{ shogun_variant_pricing.value | json }}{% else %}null{% endif %}{% unless forloop.last %},{% endunless %}
+          {% endfor %}
+        },
+        "productPricing": {% if product_pricing_metafield %}{{ product_pricing_metafield.value | json }}{% else %}null{% endif %}
+      }
+    </script>
+
+    {%- comment -%}
+      Fallback payload: build from optimization_config for THIS product (covers draft preview & cases where metafields aren't present)
+    {%- endcomment -%}
+    {% assign current_product_config = nil %}
+    {% if optimization_config %}
+      {% for p in optimization_config.products %}
+        {% if p.id == product.id %}
+          {% assign current_product_config = p %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+
+    {% if current_product_config %}
+      <script type="application/json" id="shg-price-test-pricing-fallback">
+        {
+          "shogunVariantId": {{ shogun_variant_id | json }},
+          "variantPricing": {
+            {% for vp in current_product_config.variant_pricing %}
+              "{{ vp.id }}": { "test_price": {{ vp.test_price | json }}, "original_price": {{ vp.original_price | json }} }{% unless forloop.last %},{% endunless %}
+            {% endfor %}
+          }
+        }
+      </script>
+    {% endif %}
+
+  {% endif %}
+
+  {% if optimizer_supports_klarna %}
+    <script>
+(function () {
+  if (window.__shgKlarnaLite) return;
+
+  // ---------- tiny helpers ----------
+  function isArray(v){ return Array.isArray ? Array.isArray(v) : Object.prototype.toString.call(v)==='[object Array]'; }
+  function findEntry(list, pred){ if(!isArray(list)) return null; for(var i=0;i<list.length;i++) if(pred(list[i])) return list[i]; return null; }
+  function toCents(x){ var n = Math.round(parseFloat(x) * 100); return (isFinite(n) && n >= 0) ? n : null; }
+
+  // ---------- read test amount from your JSON blobs ----------
+  var dataNode = document.getElementById('shg-price-test-pricing');
+  var defaultCents = null;     // chosen product price (your test price)
+  var priceMap = {};           // per-variant overrides if provided
+
+  if (dataNode) {
+    try {
+      var payload = JSON.parse(dataNode.textContent || dataNode.innerHTML || '{}');
+
+      // 1) Main product price (chosen/test price for this shogunVariantId)
+      if (payload && payload.shogunVariantId && isArray(payload.productPricing)) {
+        var chosen = findEntry(payload.productPricing, function (e){ return e.shogun_variant_id === payload.shogunVariantId; })
+                 || findEntry(payload.productPricing, function (e){ return e.original; });
+        if (chosen && chosen.price != null) defaultCents = toCents(chosen.price);
+      }
+
+      // 2) Optional per-variant map (if present)
+      var variants = (payload && payload.variants) || {};
+      Object.keys(variants).forEach(function(vid){
+        var entries = variants[vid];
+        if (!isArray(entries)) return;
+        var match = findEntry(entries, function (e){return e.shogun_variant_id === payload.shogunVariantId;})
+                 || findEntry(entries, function (e){return e.original;});
+        if (match && match.price != null) {
+          var cents = toCents(match.price);
+          if (cents != null) priceMap[String(vid)] = cents;
+        }
+      });
+    } catch(_){}
+  }
+
+  // Fallback blob (optional)
+  if (!Object.keys(priceMap).length && defaultCents == null) {
+    var fb = document.getElementById('shg-price-test-pricing-fallback');
+    if (fb) {
+      try {
+        var fbPayload = JSON.parse(fb.textContent || '{}');
+        if (fbPayload && fbPayload.variantPricing) {
+          Object.keys(fbPayload.variantPricing).forEach(function(id){
+            var vp = fbPayload.variantPricing[id];
+            var chosen = (vp && (vp.test_price != null ? vp.test_price : vp.original_price));
+            var c = toCents(chosen);
+            if (c != null) priceMap[String(id)] = c;
+          });
+        }
+      } catch(_){}
+    }
+  }
+
+  // Final amount resolver:
+  function resolveOverrideCents(){
+    if (typeof defaultCents === 'number') return defaultCents;
+    var ids = Object.keys(priceMap);
+    if (ids.length) return priceMap[ids[0]];
+    return null;
+  }
+
+  // ---------- (A) keep DOM placements in sync ----------
+  function resyncDom(){
+    var amt = resolveOverrideCents();
+    if (amt == null) return;
+
+    // Set both DOM attributes (safe on DOM)
+    var nodes = document.querySelectorAll('klarna-placement,[data-klarna-osm]');
+    for (var i=0;i<nodes.length;i++){
+      nodes[i].setAttribute('data-purchase-amount', String(amt));
+      nodes[i].setAttribute('data-payment-amount',  String(amt));
+    }
+
+    // Nudge OSM to re-render with the enforced amount
+    try {
+      if (window.KlarnaOnsiteService && typeof window.KlarnaOnsiteService.push === 'function') {
+        window.KlarnaOnsiteService.push({ event: 'update', purchaseAmount: amt, paymentAmount: amt });
+      }
+    } catch(_){}
+  }
+
+  // Guard direct attribute writes so Klarna can't revert them
+  (function patchSetAttribute(){
+    var proto = Element.prototype;
+    var orig = proto.setAttribute;
+    if (!orig || proto.__shgSetAttrPatched) return;
+    proto.setAttribute = function(name, value){
+      try {
+        var n = String(name || '').toLowerCase();
+        if ((this && this.nodeType === 1) && (n === 'data-purchase-amount' || n === 'purchase-amount' || n === 'data-payment-amount' || n === 'payment-amount')) {
+          var amt = resolveOverrideCents();
+          return orig.call(this, name, String(amt != null ? amt : value));
+        }
+      } catch(_){}
+      return orig.call(this, name, value);
+    };
+    proto.__shgSetAttrPatched = true;
+  })();
+
+  // Snap back any attribute changes (e.g., after modal closes)
+  (function installObserver(){
+    try {
+      var obs = new MutationObserver(function(records){
+        var amt = resolveOverrideCents();
+        if (amt == null) return;
+        for (var i=0;i<records.length;i++){
+          var r = records[i];
+          if (r.type !== 'attributes' || !r.target) continue;
+          var name = (r.attributeName || '').toLowerCase();
+          if (name && (name === 'data-purchase-amount' || name === 'purchase-amount' || name === 'data-payment-amount' || name === 'payment-amount')) {
+            var cur = r.target.getAttribute(r.attributeName);
+            var want = String(amt);
+            if (cur !== want) r.target.setAttribute(r.attributeName, want);
+          }
+        }
+      });
+      obs.observe(document.documentElement, {
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['data-purchase-amount','purchase-amount','data-payment-amount','payment-amount']
+      });
+    } catch(_){}
+  })();
+
+  // ---------- (B) force amount in Klarna network calls (no duplicates) ----------
+  function whichAmountKey(url){
+    // Prefer the key already present; otherwise infer from placement_key
+    if (url.searchParams.has('purchase_amount')) return 'purchase_amount';
+    if (url.searchParams.has('payment_amount'))  return 'payment_amount';
+
+    var pk = url.searchParams.get('placement_key') || '';
+    // Known defaults:
+    if (/payment-calculator-interstitial/i.test(pk)) return 'purchase_amount';
+    if (/credit-promotion-badge/i.test(pk))         return 'payment_amount';
+
+    // Fallback: default to purchase_amount
+    return 'purchase_amount';
+  }
+
+  function forceAmountInUrl(u){
+    try{
+      var url = (u instanceof Request) ? new URL(u.url, location.href) : new URL(String(u), location.href);
+      var isKlarnaMsg = /js\.klarna\.com.*\/(cma|eu\/cma)\/v\d+\/messaging/i.test(url.href) || /klarna.*\/messaging/i.test(url.href);
+      if (!isKlarnaMsg) return null;
+
+      var amt = resolveOverrideCents();
+      if (amt == null) return null;
+
+      // Decide exactly ONE param to set
+      var key = whichAmountKey(url);
+      url.searchParams.set(key, String(amt));
+
+      // And IMPORTANT: remove the other key if present to avoid "duplicated" error
+      var other = key === 'purchase_amount' ? 'payment_amount' : 'purchase_amount';
+      url.searchParams.delete(other);
+
+      return url.toString();
+    }catch(_){ return null; }
+  }
+
+  // fetch() patch
+  (function patchFetch(){
+    try {
+      var _fetch = window.fetch;
+      if (typeof _fetch === 'function' && !_fetch.__shgPatched) {
+        window.fetch = function(input, init){
+          try{
+            var forced = forceAmountInUrl(input);
+            if (forced) {
+              if (input instanceof Request) {
+                input = new Request(forced, input);
+              } else {
+                input = forced;
+              }
+            }
+          }catch(_){}
+          return _fetch.call(this, input, init);
+        };
+        window.fetch.__shgPatched = true;
+      }
+    } catch(_){}
+  })();
+
+  // XHR patch
+  (function patchXHR(){
+    try {
+      var _open = XMLHttpRequest.prototype.open;
+      var _send = XMLHttpRequest.prototype.send;
+
+      if (!_open.__shgPatched) {
+        XMLHttpRequest.prototype.open = function(method, url, async, user, password){
+          try{ this.__shgForcedUrl = forceAmountInUrl(url) || null; }catch(_){}
+          this._lastMethod = method;
+          return _open.apply(this, arguments);
+        };
+        _open.__shgPatched = true;
+      }
+
+      if (!_send.__shgPatched) {
+        XMLHttpRequest.prototype.send = function(body){
+          try{
+            if (this.__shgForcedUrl) {
+              _open.call(this, this._lastMethod || 'GET', this.__shgForcedUrl, true);
+            }
+          }catch(_){}
+          return _send.apply(this, arguments);
+        };
+        _send.__shgPatched = true;
+      }
+    } catch(_){}
+  })();
+
+  // ---------- (C) kick + keep things fresh around modal lifecycle ----------
+  function kick(){
+    resyncDom();
+  }
+
+  // Initial + a short burst to catch late mounts
+  kick();
+  var end = Date.now() + 6000;
+  (function loop(){
+    kick();
+    if (Date.now() < end) requestAnimationFrame(loop);
+  })();
+
+  // When focus returns / tab visible (often right after modal closes)
+  document.addEventListener('visibilitychange', function(){ if (!document.hidden) kick(); }, { passive: true });
+  window.addEventListener('focus', kick, { passive: true });
+
+  // Variant selectors often fire "change"
+  document.addEventListener('change', function(e){
+    if ((e.target && /variant|size|color|option/i.test(String(e.target.name||''))) || e.isTrusted) kick();
+  }, { passive: true });
+
+  window.__shgKlarnaLite = true;
+})();
+</script>
+
+  {% endif %}
 
   {% if optimization_config and optimization_config.status == "draft" %}
     <template id="shogun-price-test-preview">
@@ -153,7 +464,7 @@ This file can be re-written at any time.
             vertical-align: middle;
           }
         }
-        
+
         .shogun-price-test-preview-sidebar-product-collection-item-container {
           width: 100%;
         }
@@ -248,7 +559,7 @@ This file can be re-written at any time.
           gap: 0.5rem;
           align-items: center;
         }
-      </style>  
+      </style>
       <div class="shogun-price-test-preview-sidebar">
         <div class="shogun-price-test-preview-sidebar-header">
           <div class="shogun-price-test-preview-sidebar-title">
@@ -506,7 +817,7 @@ This file can be re-written at any time.
     </template>
     <script>
       const COLLAPSED_STATE_KEY = 'shogun_price_test_sidebar_collapsed_state';
-      
+
       function saveCollapsedState(elementId, isCollapsed) {
         try {
           const state = JSON.parse(localStorage.getItem(COLLAPSED_STATE_KEY) || '{}');
@@ -516,16 +827,16 @@ This file can be re-written at any time.
           console.warn('Failed to save collapsed state:', e);
         }
       }
-      
+
       function restoreCollapsedState() {
         try {
           const state = JSON.parse(localStorage.getItem(COLLAPSED_STATE_KEY) || '{}');
-          
+
           Object.keys(state).forEach(elementId => {
             const element = document.getElementById(elementId);
             if (element) {
               const caret = element.previousElementSibling?.querySelector('.shogun-price-test-preview-sidebar-product-collection-caret');
-              
+
               if (state[elementId]) {
                 element.classList.add('collapsed');
                 if (caret) {
@@ -543,11 +854,11 @@ This file can be re-written at any time.
           console.warn('Failed to restore collapsed state:', e);
         }
       }
-      
+
       function toggleElement(elementId) {
         const children = document.getElementById(elementId);
         const caret = children.previousElementSibling.querySelector('.shogun-price-test-preview-sidebar-product-collection-caret');
-        
+
         if (children.classList.contains('collapsed')) {
           // Expand: remove collapsed class first, then rotate caret
           children.classList.remove('collapsed');
@@ -560,7 +871,7 @@ This file can be re-written at any time.
           saveCollapsedState(elementId, true);
         }
       }
-      
+
       function toggleCollection(collectionId) {
         toggleElement(collectionId);
       }
@@ -575,7 +886,7 @@ This file can be re-written at any time.
         const mailtoLink = `mailto:support-ab@getshogun.com?subject=${subject}&body=${body}`;
         window.open(mailtoLink, '_blank');
       }
-      
+
       // Restore collapsed state when the page loads
       document.addEventListener('DOMContentLoaded', function() {
         // Small delay to ensure all elements are rendered
