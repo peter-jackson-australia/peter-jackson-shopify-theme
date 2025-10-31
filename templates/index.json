@@ -56,7 +56,7 @@
             "heading_animation": "none",
             "description": "",
             "description_animation": "none",
-            "button_label_1": "$200 Off All Suits",
+            "button_label_1": "{{ metaobjects.money_reference[\"259\"].price | metafield_text }} Off All Suits",
             "button_link_1": "shopify://collections/mens-suits",
             "button_label_2": "",
             "button_link_2": "",
