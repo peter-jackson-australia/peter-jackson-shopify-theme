@@ -213,7 +213,7 @@
           "settings": {
             "tile_background_image": "shopify://shop_images/Polos.webp",
             "tile_header": "POLOS",
-            "tile_secondary_text": "from $79.95",
+            "tile_secondary_text": "from {{ metaobjects.money_reference[\"79-95\"].price | metafield_text }}",
             "tile_link": "shopify://collections/polos-and-tees"
           }
         },
@@ -222,7 +222,7 @@
           "settings": {
             "tile_background_image": "shopify://shop_images/Spring_Suits_045eaea9-d9e1-4333-b51c-a6fd25a16d77.webp",
             "tile_header": "SPRING SUITS",
-            "tile_secondary_text": "from $459",
+            "tile_secondary_text": "from {{ metaobjects.money_reference[\"459\"].price | metafield_text }}",
             "tile_link": "shopify://collections/mens-suits"
           }
         },
