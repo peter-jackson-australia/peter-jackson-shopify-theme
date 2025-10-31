@@ -362,7 +362,7 @@
         "heading_animation": "none",
         "description": "Tailoring where tradition meets modern edge.",
         "description_animation": "none",
-        "button_label_1": "Two Suits for $895",
+        "button_label_1": "Two Suits for {{ metaobjects.money_reference[\"895\"].price | metafield_text }}",
         "button_link_1": "shopify://collections/mens-suits",
         "button_label_2": "",
         "button_link_2": "",
