@@ -385,7 +385,7 @@
         "description": "Premium cotton, sharp cutaway collars, and new season colours and patterns. Your work wardrobe, refreshed.",
         "description_animation": "none",
         "collection": "business-shirts",
-        "button_label": "Three for $259",
+        "button_label": "Three for {{ metaobjects.money_reference[\"259\"].price | metafield_text }}",
         "products_to_show": 10,
         "animate_products": false
       }
