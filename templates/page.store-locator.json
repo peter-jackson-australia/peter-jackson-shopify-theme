@@ -16,79 +16,6 @@
         "heading": "Store Locations"
       }
     },
-    "variable_column_content_tertiary_YHVRFY": {
-      "type": "variable-column-content-tertiary",
-      "blocks": {
-        "column_item_cpgqRq": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/Store_Locator___Suits.webp",
-            "image_link": "shopify://collections/mens-suits",
-            "heading": "Suits From $399",
-            "heading_animation": "none",
-            "text": "",
-            "text_animation": "none",
-            "show_gradient_overlay": true,
-            "content_horizontal_alignment": "left",
-            "content_vertical_alignment": "bottom",
-            "column_link": "shopify://collections/mens-suits",
-            "column_link_text": "Shop Now"
-          }
-        },
-        "column_item_qk43E6": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/Store_Locator___Business_Shirts_copy.webp",
-            "image_link": "shopify://collections/business-shirts",
-            "heading": "Business Shirts From $99.95",
-            "heading_animation": "none",
-            "text": "",
-            "text_animation": "none",
-            "show_gradient_overlay": true,
-            "content_horizontal_alignment": "left",
-            "content_vertical_alignment": "bottom",
-            "column_link": "shopify://collections/business-shirts",
-            "column_link_text": "Shop Now"
-          }
-        },
-        "column_item_zJnyng": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/Store_Locator___Sports_Jackets.webp",
-            "image_link": "shopify://collections/sport-jackets",
-            "heading": "Sports Jackets From $299",
-            "heading_animation": "none",
-            "text": "",
-            "text_animation": "none",
-            "show_gradient_overlay": true,
-            "content_horizontal_alignment": "left",
-            "content_vertical_alignment": "bottom",
-            "column_link": "shopify://collections/sport-jackets",
-            "column_link_text": "Shop Now"
-          }
-        }
-      },
-      "block_order": [
-        "column_item_cpgqRq",
-        "column_item_qk43E6",
-        "column_item_zJnyng"
-      ],
-      "name": "Variable Column Content Tertiary",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": true,
-        "column_count": "3",
-        "text_alignment": "center",
-        "animate_columns": false,
-        "heading": "",
-        "heading_animation": "none",
-        "text": "",
-        "text_animation": "none",
-        "button_label": "Learn More",
-        "button_link": ""
-      }
-    },
     "collection_slider_secondary_XNdMD3": {
       "type": "collection-slider-secondary",
       "name": "Collection Slider Secondary",
@@ -106,7 +33,6 @@
   },
   "order": [
     "store_locator_MeaHa9",
-    "variable_column_content_tertiary_YHVRFY",
     "collection_slider_secondary_XNdMD3"
   ]
 }
