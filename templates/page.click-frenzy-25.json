@@ -189,24 +189,6 @@
         "button_link": ""
       }
     },
-    "heading_with_text_9nQj7z": {
-      "type": "heading-with-text",
-      "disabled": true,
-      "name": "Heading with Text",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": true,
-        "show_bottom_border": false,
-        "leading_text": "SPRING CARNIVAL",
-        "leading_text_animation": "none",
-        "heading": "RACETRACK READY",
-        "heading_style": "normal",
-        "heading_animation": "none",
-        "content": "<p>Four race days, four distinct moods. Whether it’s the confident edge of the Cox Plate or the refined ease of Oaks Day, this is tailoring built for the fast track.</p>",
-        "content_animation": "none",
-        "alignment": "left"
-      }
-    },
     "grid_tiles_r7ifEt": {
       "type": "grid-tiles",
       "blocks": {
@@ -231,10 +213,10 @@
         "tile_FPGHMd": {
           "type": "tile",
           "settings": {
-            "tile_background_image": "shopify://shop_images/Co-Ords.webp",
-            "tile_header": "CO-ORDS",
-            "tile_secondary_text": "Shop Matching Sets",
-            "tile_link": "shopify://collections/the-co-ords-edit"
+            "tile_background_image": "shopify://shop_images/Casual_Shirts.webp",
+            "tile_header": "CASUAL SHIRTS",
+            "tile_secondary_text": "from $69.95",
+            "tile_link": "shopify://collections/casual-shirts"
           }
         }
       },
@@ -246,6 +228,38 @@
       "name": "Grid Tiles",
       "settings": {
         "grid_columns": "3"
+      }
+    },
+    "heading_with_text_9nQj7z": {
+      "type": "heading-with-text",
+      "disabled": true,
+      "name": "Heading with Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "leading_text": "SPRING CARNIVAL",
+        "leading_text_animation": "none",
+        "heading": "RACETRACK READY",
+        "heading_style": "normal",
+        "heading_animation": "none",
+        "content": "<p>Four race days, four distinct moods. Whether it’s the confident edge of the Cox Plate or the refined ease of Oaks Day, this is tailoring built for the fast track.</p>",
+        "content_animation": "none",
+        "alignment": "left"
+      }
+    },
+    "collection_slider_secondary_r6XR7q": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "sale",
+        "button_label": "Shop Click Frenzy",
+        "products_to_show": 12,
+        "animate_products": false
       }
     },
     "variable_column_content_tertiary_XwmChF": {
@@ -517,8 +531,9 @@
   "order": [
     "hero_slider_ULyNnz",
     "variable_column_content_secondary_X9KJtx",
-    "heading_with_text_9nQj7z",
     "grid_tiles_r7ifEt",
+    "heading_with_text_9nQj7z",
+    "collection_slider_secondary_r6XR7q",
     "variable_column_content_tertiary_XwmChF",
     "hero_primary_NeKfMz",
     "collection_slider_XmLf6t",
