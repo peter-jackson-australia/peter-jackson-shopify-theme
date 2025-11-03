@@ -200,9 +200,9 @@
         "tile_WhJarW": {
           "type": "tile",
           "settings": {
-            "tile_background_image": "shopify://shop_images/Spring_Suits_045eaea9-d9e1-4333-b51c-a6fd25a16d77.webp",
+            "tile_background_image": "shopify://shop_images/Spring_Suits_CF.webp",
             "tile_header": "SPRING SUITS",
-            "tile_secondary_text": "from {{ metaobjects.money_reference[\"459\"].price | metafield_text }}",
+            "tile_secondary_text": "$250 Off*",
             "tile_link": "shopify://collections/mens-suits"
           }
         },
