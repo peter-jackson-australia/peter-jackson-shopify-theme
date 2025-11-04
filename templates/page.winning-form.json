@@ -60,6 +60,7 @@
       "blocks": {
         "column_item_CmLrH7": {
           "type": "column_item",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Statement.webp",
             "image_link": "",
@@ -76,6 +77,7 @@
         },
         "column_item_bRcUM9": {
           "type": "column_item",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Derby_Day.webp",
             "image_link": "",
@@ -134,7 +136,7 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": true,
-        "column_count": "4",
+        "column_count": "2",
         "text_alignment": "left",
         "animate_columns": false,
         "heading": "",
@@ -147,6 +149,7 @@
     },
     "image_with_text_n7w8Tz": {
       "type": "image-with-text",
+      "disabled": true,
       "name": "Image With Text",
       "settings": {
         "anchor_id": "statement",
@@ -167,6 +170,7 @@
     },
     "collection_slider_secondary_Bc7CPp": {
       "type": "collection-slider-secondary",
+      "disabled": true,
       "name": "Collection Slider Secondary",
       "settings": {
         "heading": "",
@@ -181,6 +185,7 @@
     },
     "image_with_text_bEaVba": {
       "type": "image-with-text",
+      "disabled": true,
       "name": "Image With Text",
       "settings": {
         "anchor_id": "monochromatic",
@@ -201,6 +206,7 @@
     },
     "collection_slider_secondary_c8F73Y": {
       "type": "collection-slider-secondary",
+      "disabled": true,
       "name": "Collection Slider Secondary",
       "settings": {
         "heading": "",
