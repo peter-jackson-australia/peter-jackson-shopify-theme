@@ -248,12 +248,12 @@
       "type": "collection-slider-secondary",
       "name": "Collection Slider Secondary",
       "settings": {
-        "heading": "",
+        "heading": "$50 Off All Footwear",
         "heading_animation": "none",
         "description": "",
         "description_animation": "none",
-        "collection": "sale",
-        "button_label": "Shop Click Frenzy",
+        "collection": "mens-footwear",
+        "button_label": "Shop Footwear",
         "products_to_show": 12,
         "animate_products": false
       }
