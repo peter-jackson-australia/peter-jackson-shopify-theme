@@ -12,22 +12,22 @@
     "hero_slider_ULyNnz": {
       "type": "hero-slider",
       "blocks": {
-        "slide_JGebxX": {
+        "slide_P9nnNj": {
           "type": "slide",
           "settings": {
             "media_type": "image",
-            "desktop_image": "shopify://shop_images/Winning_Form.webp",
-            "mobile_image": "shopify://shop_images/Winning_Form_Mobile.webp",
-            "heading": "Spring Carnival Style",
-            "svg_image": "shopify://shop_images/Winning_Form_Desktop_V2.svg",
+            "desktop_image": "shopify://shop_images/Spring_Suits_HP_Refresh.webp",
+            "mobile_image": "shopify://shop_images/Spring_Suits_Mobile_copy.webp",
+            "heading": "Social Style",
+            "svg_image": "shopify://shop_images/Social_Style_Desktop_V2_da4f45dd-314e-4708-a69c-e7fd5b55ef31.svg",
             "svg_size": "full",
-            "mobile_svg_image": "shopify://shop_images/Winning_Form_Mobile.svg",
+            "mobile_svg_image": "shopify://shop_images/Social_Style_Mobile_12cc63aa-6fbd-4669-98d3-d8af7bd500ee.svg",
             "heading_level": "h1",
             "heading_animation": "none",
             "description": "",
             "description_animation": "none",
-            "button_label_1": "Shop Spring Carnival Style",
-            "button_link_1": "shopify://pages/winning-form-spring-carnival-style",
+            "button_label_1": "Shop Spring",
+            "button_link_1": "shopify://collections/spring-25",
             "button_label_2": "",
             "button_link_2": "",
             "button_label_3": "",
@@ -70,22 +70,22 @@
             "mobile_vertical_alignment": "bottom"
           }
         },
-        "slide_P9nnNj": {
+        "slide_JGebxX": {
           "type": "slide",
           "settings": {
             "media_type": "image",
-            "desktop_image": "shopify://shop_images/Spring_Suits_HP_Refresh.webp",
-            "mobile_image": "shopify://shop_images/Spring_Suits_Mobile_copy.webp",
-            "heading": "Social Style",
-            "svg_image": "shopify://shop_images/Social_Style_Desktop_V2_da4f45dd-314e-4708-a69c-e7fd5b55ef31.svg",
+            "desktop_image": "shopify://shop_images/Winning_Form.webp",
+            "mobile_image": "shopify://shop_images/Winning_Form_Mobile.webp",
+            "heading": "Spring Carnival Style",
+            "svg_image": "shopify://shop_images/Winning_Form_Desktop_V2.svg",
             "svg_size": "full",
-            "mobile_svg_image": "shopify://shop_images/Social_Style_Mobile_12cc63aa-6fbd-4669-98d3-d8af7bd500ee.svg",
+            "mobile_svg_image": "shopify://shop_images/Winning_Form_Mobile.svg",
             "heading_level": "h1",
             "heading_animation": "none",
             "description": "",
             "description_animation": "none",
-            "button_label_1": "Shop Spring",
-            "button_link_1": "shopify://collections/spring-25",
+            "button_label_1": "Shop Spring Carnival Style",
+            "button_link_1": "shopify://pages/winning-form-spring-carnival-style",
             "button_label_2": "",
             "button_link_2": "",
             "button_label_3": "",
@@ -100,9 +100,9 @@
         }
       },
       "block_order": [
-        "slide_JGebxX",
+        "slide_P9nnNj",
         "slide_ddW7HK",
-        "slide_P9nnNj"
+        "slide_JGebxX"
       ],
       "name": "Hero Slider",
       "settings": {
