@@ -30,7 +30,6 @@
         {% assign block_svg_icon = block.settings.svg_icon %}
         {% assign block_bottom_text = block.settings.bottom_text %}
         {% assign block_content_alignment = block.settings.content_alignment %}
-        {% assign block_column_link_text = block.settings.column_link_text %}
 
         {% if block.type == 'column_item' %}
           <div class="variable-column-content-svg__column" {{ block.shopify_attributes }}>
@@ -76,13 +75,6 @@
                 <div class="variable-column-content-svg__bottom-text body">
                   {{ block_bottom_text }}
                 </div>
-              {% endif %}
-
-              {% if block_column_link_text != blank %}
-                <p class="variable-column-content-svg__column-cta body">
-                  {{ block_column_link_text }}
-                  {% render '_icon-arrow-submit-dark' %}
-                </p>
               {% endif %}
             </div>
           </div>
@@ -188,12 +180,6 @@
             }
           ],
           "default": "center"
-        },
-        {
-          "type": "text",
-          "id": "column_link_text",
-          "label": "Link Text",
-          "default": "Learn More"
         }
       ]
     }
