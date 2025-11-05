@@ -396,6 +396,7 @@
     },
     "hero_primary_WLbcQ7": {
       "type": "hero-primary",
+      "disabled": true,
       "name": "Hero Section",
       "settings": {
         "media_type": "image",
@@ -425,6 +426,7 @@
     },
     "collection_slider_3p3hD9": {
       "type": "collection-slider",
+      "disabled": true,
       "name": "Collection Slider",
       "settings": {
         "heading": "Wedding & Formal Style",
@@ -437,6 +439,62 @@
         "animate_products": false
       }
     },
+    "variable_column_content_tertiary_qfTkVT": {
+      "type": "variable-column-content-tertiary",
+      "blocks": {
+        "column_item_hNUNJW": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Wedding_Column.webp",
+            "image_link": "",
+            "heading": "Moments of Distinction",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "center",
+            "content_vertical_alignment": "center",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_JPaqtp": {
+          "type": "column_item",
+          "settings": {
+            "image_link": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "center",
+            "content_vertical_alignment": "center",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_hNUNJW",
+        "column_item_JPaqtp"
+      ],
+      "disabled": true,
+      "name": "Variable Column Content Tertiary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "2",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "Variable Column Content Tertiary",
+        "heading_animation": "none",
+        "text": "Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    },
     "variable_column_content_secondary_eRLfeJ": {
       "type": "variable-column-content-secondary",
       "blocks": {
@@ -445,9 +503,9 @@
           "settings": {
             "image": "shopify://shop_images/Wedding_Test.webp",
             "image_link": "",
-            "heading": "Column Heading",
+            "heading": "",
             "heading_animation": "none",
-            "text": "Add a brief description for this column item.",
+            "text": "",
             "text_animation": "none",
             "column_link": "",
             "column_link_text": "Shop Now"
@@ -458,9 +516,9 @@
           "settings": {
             "image": "shopify://shop_images/MTM_Test.webp",
             "image_link": "",
-            "heading": "Column Heading",
+            "heading": "",
             "heading_animation": "none",
-            "text": "Add a brief description for this column item.",
+            "text": "",
             "text_animation": "none",
             "column_link": "",
             "column_link_text": "Shop Now"
@@ -471,7 +529,6 @@
         "column_item_gtWXVr",
         "column_item_Q6TGXb"
       ],
-      "disabled": true,
       "name": "Variable Column Content Secondary",
       "settings": {
         "anchor_id": "",
@@ -480,9 +537,9 @@
         "column_count": "2",
         "text_alignment": "left",
         "animate_columns": false,
-        "heading": "Variable Column Content Secondary",
+        "heading": "",
         "heading_animation": "none",
-        "text": "Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.",
+        "text": "",
         "text_animation": "none",
         "button_label": "Learn More",
         "button_link": ""
@@ -537,6 +594,7 @@
     "collection_slider_XmLf6t",
     "hero_primary_WLbcQ7",
     "collection_slider_3p3hD9",
+    "variable_column_content_tertiary_qfTkVT",
     "variable_column_content_secondary_eRLfeJ",
     "hero_primary_zeaCqL",
     "featured_article_r6pY9T"
