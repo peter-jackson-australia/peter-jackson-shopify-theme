@@ -9,58 +9,49 @@
  */
 {
   "sections": {
-    "variable_column_content_secondary_HVPnxc": {
-      "type": "variable-column-content-secondary",
+    "variable_column_content_svg_JaULdW": {
+      "type": "variable-column-content-svg",
       "blocks": {
-        "column_item_eqWfz6": {
+        "column_item_fqQJ8G": {
           "type": "column_item",
           "settings": {
             "image": "shopify://shop_images/Wedding_Column.webp",
             "image_link": "",
-            "heading": "Column Heading",
-            "heading_animation": "none",
-            "text": "Add a brief description for this column item.",
-            "text_animation": "none",
+            "top_text": "fdgfdgf",
+            "svg_icon": "shopify://shop_images/Sport_Of_It_Mob.svg",
+            "bottom_text": "fgfggerger",
+            "content_alignment": "center",
             "column_link": "",
-            "column_link_text": "Shop Now"
+            "column_link_text": "Learn More"
           }
         },
-        "column_item_bqqQzT": {
+        "column_item_wUt74d": {
           "type": "column_item",
           "settings": {
             "image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
             "image_link": "",
-            "heading": "Column Heading",
-            "heading_animation": "none",
-            "text": "Add a brief description for this column item.",
-            "text_animation": "none",
+            "top_text": "",
+            "bottom_text": "",
+            "content_alignment": "center",
             "column_link": "",
-            "column_link_text": "Shop Now"
+            "column_link_text": "Learn More"
           }
         }
       },
       "block_order": [
-        "column_item_eqWfz6",
-        "column_item_bqqQzT"
+        "column_item_fqQJ8G",
+        "column_item_wUt74d"
       ],
-      "name": "Variable Column Content Secondary",
+      "name": "Variable Column Content SVG",
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
-        "column_count": "2",
-        "text_alignment": "left",
-        "animate_columns": false,
-        "heading": "Variable Column Content Secondary",
-        "heading_animation": "none",
-        "text": "Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.",
-        "text_animation": "none",
-        "button_label": "Learn More",
-        "button_link": ""
+        "column_count": "2"
       }
     }
   },
   "order": [
-    "variable_column_content_secondary_HVPnxc"
+    "variable_column_content_svg_JaULdW"
   ]
 }
