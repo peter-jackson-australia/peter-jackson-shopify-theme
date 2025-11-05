@@ -16,7 +16,7 @@
           "type": "column_item",
           "settings": {
             "image": "shopify://shop_images/Wedding_Column.webp",
-            "image_link": "",
+            "image_link": "shopify://products/abstract-sunshine-pocket-square",
             "top_text": "fdgfdgf",
             "svg_icon": "shopify://shop_images/Sport_Of_It_Mob.svg",
             "bottom_text": "fgfggerger",
@@ -28,7 +28,7 @@
         "column_item_wUt74d": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+            "image": "shopify://shop_images/Wedding_Column.webp",
             "image_link": "",
             "top_text": "",
             "bottom_text": "",
