@@ -14,7 +14,6 @@
       "blocks": {
         "slide_JGebxX": {
           "type": "slide",
-          "disabled": true,
           "settings": {
             "media_type": "image",
             "desktop_image": "shopify://shop_images/Click_Frenzy_Hero_5a73b703-0e09-4f7f-a2ce-7960e06770f3.webp",
@@ -203,8 +202,8 @@
           "type": "tile",
           "settings": {
             "tile_background_image": "shopify://shop_images/Spring_Suits_CF.webp",
-            "tile_header": "SPRING SUITS",
-            "tile_secondary_text": "$250 Off*",
+            "tile_header": "BUSINESS SHIRTS",
+            "tile_secondary_text": "$50 Off*",
             "tile_link": "shopify://collections/mens-suits"
           }
         },
@@ -251,26 +250,26 @@
       "name": "Hero Section",
       "settings": {
         "media_type": "image",
-        "desktop_image": "shopify://shop_images/RR_12.webp",
-        "mobile_image": "shopify://shop_images/RR_13.webp",
+        "desktop_image": "shopify://shop_images/Sports_Jackets_CF_78a2b45e-da57-4a08-9fd1-4ba71a2c1ab7.webp",
+        "mobile_image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
         "heading": "Business Tailoring",
-        "svg_image": "shopify://shop_images/Refined_Redefined.svg",
-        "svg_size": "small",
+        "svg_image": "shopify://shop_images/Sport_Of_It_Desktop_V2_6ee40d41-826f-4a72-bbf4-423822773e58.svg",
+        "svg_size": "full",
         "mobile_svg_image": "shopify://shop_images/Refined_Redefined_Mob.svg",
         "heading_level": "h1",
         "heading_animation": "none",
-        "description": "Business tailoring with modern edge.",
+        "description": "",
         "description_animation": "none",
-        "button_label_1": "Two Suits for $895*",
+        "button_label_1": "Click Frenzy - $150 Off*",
         "button_link_1": "shopify://collections/mens-suits",
-        "button_label_2": "$250 Off Suits*",
-        "button_link_2": "shopify://collections/mens-suits",
+        "button_label_2": "",
+        "button_link_2": "",
         "button_label_3": "",
         "button_link_3": "",
         "button_label_4": "",
         "button_link_4": "",
-        "horizontal_alignment": "left",
-        "vertical_alignment": "bottom",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "stretch",
         "mobile_horizontal_alignment": "center",
         "mobile_vertical_alignment": "bottom"
       }
