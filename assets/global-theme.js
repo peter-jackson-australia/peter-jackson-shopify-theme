@@ -153,7 +153,7 @@ window.updateProductPurchaseDetails = (containerElement) => {
           var notifyMeButton = containerElement.querySelector("#js--notify-me");
           var klaviyoForm = containerElement.querySelector(".klaviyo-form-WMidEs");
 
-          var isUnavailable = v.available === false || (inventoryQuantity <= 5 && !v.name.includes("Digital Gift Card"));
+          var isUnavailable = v.available === false || (inventoryQuantity <= 5 && !product_is_gift_card);
 
           if (isUnavailable) {
             if (addToCartButton) {
