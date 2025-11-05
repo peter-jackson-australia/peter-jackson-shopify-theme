@@ -379,21 +379,6 @@
         "button_link": ""
       }
     },
-    "collection_slider_XmLf6t": {
-      "type": "collection-slider",
-      "disabled": true,
-      "name": "Collection Slider",
-      "settings": {
-        "heading": "Business Shirts",
-        "heading_animation": "none",
-        "description": "Premium cotton, sharp cutaway collars, and new season colours and patterns. Your work wardrobe, refreshed.",
-        "description_animation": "none",
-        "collection": "business-shirts",
-        "button_label": "Three for {{ metaobjects.money_reference[\"259\"].price | metafield_text }}",
-        "products_to_show": 10,
-        "animate_products": false
-      }
-    },
     "hero_primary_WLbcQ7": {
       "type": "hero-primary",
       "disabled": true,
@@ -574,8 +559,23 @@
         "mobile_vertical_alignment": "bottom"
       }
     },
+    "collection_slider_XmLf6t": {
+      "type": "collection-slider",
+      "name": "Collection Slider",
+      "settings": {
+        "heading": "Best Of Click Frenzy",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "mens-suits",
+        "button_label": "Up to 60% Off Storewide*",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
     "featured_article_r6pY9T": {
       "type": "featured-article",
+      "disabled": true,
       "name": "Featured Articles",
       "settings": {
         "heading": "FROM THE JACKSON JOURNAL",
@@ -591,12 +591,12 @@
     "hero_primary_NeKfMz",
     "collection_slider_secondary_r6XR7q",
     "variable_column_content_tertiary_XwmChF",
-    "collection_slider_XmLf6t",
     "hero_primary_WLbcQ7",
     "collection_slider_3p3hD9",
     "variable_column_content_tertiary_qfTkVT",
     "variable_column_content_secondary_eRLfeJ",
     "hero_primary_zeaCqL",
+    "collection_slider_XmLf6t",
     "featured_article_r6pY9T"
   ]
 }
