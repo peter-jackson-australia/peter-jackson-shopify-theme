@@ -9,22 +9,58 @@
  */
 {
   "sections": {
-    "collection_slider_9gKBxh": {
-      "type": "collection-slider",
-      "name": "Collection Slider",
+    "variable_column_content_secondary_HVPnxc": {
+      "type": "variable-column-content-secondary",
+      "blocks": {
+        "column_item_eqWfz6": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Wedding_Column.webp",
+            "image_link": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_bqqQzT": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+            "image_link": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_eqWfz6",
+        "column_item_bqqQzT"
+      ],
+      "name": "Variable Column Content Secondary",
       "settings": {
-        "heading": "New In Now",
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "2",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "Variable Column Content Secondary",
         "heading_animation": "none",
-        "description": "Layer up with premium wool/cashmere blends.",
-        "description_animation": "none",
-        "collection": "all-products",
-        "button_label": "From {{ metaobjects.money_reference[\"money-reference-zabem3hf\"].price | metafield_text }}",
-        "products_to_show": 10,
-        "animate_products": false
+        "text": "Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
       }
     }
   },
   "order": [
-    "collection_slider_9gKBxh"
+    "variable_column_content_secondary_HVPnxc"
   ]
 }
