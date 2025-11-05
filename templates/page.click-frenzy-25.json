@@ -194,7 +194,7 @@
           "settings": {
             "tile_background_image": "shopify://shop_images/Polos_0d8886a8-723a-4c47-bab4-dfa0ff51a9fd.webp",
             "tile_header": "POLOS",
-            "tile_secondary_text": "from {{ metaobjects.money_reference[\"79-95\"].price | metafield_text }}",
+            "tile_secondary_text": "from $79.95",
             "tile_link": "shopify://collections/polos-and-tees"
           }
         },
