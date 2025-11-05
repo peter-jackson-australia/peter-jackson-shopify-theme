@@ -19,7 +19,7 @@
             "desktop_image": "shopify://shop_images/Spring_Suits_HP_Refresh.webp",
             "mobile_image": "shopify://shop_images/Spring_Suits_Mobile_copy.webp",
             "heading": "Social Style",
-            "svg_image": "shopify://shop_images/Social_Style_Desktop_V2_da4f45dd-314e-4708-a69c-e7fd5b55ef31.svg",
+            "svg_image": "shopify://shop_images/Social_Season_Style_Desktop_50173257-3ef0-4c01-bdce-a4c13c9405a6.svg",
             "svg_size": "full",
             "mobile_svg_image": "shopify://shop_images/Social_Style_Mobile_12cc63aa-6fbd-4669-98d3-d8af7bd500ee.svg",
             "heading_level": "h1",
@@ -37,7 +37,7 @@
             "horizontal_alignment": "center",
             "vertical_alignment": "stretch",
             "mobile_horizontal_alignment": "center",
-            "mobile_vertical_alignment": "bottom"
+            "mobile_vertical_alignment": "middle"
           }
         },
         "slide_ddW7HK": {
