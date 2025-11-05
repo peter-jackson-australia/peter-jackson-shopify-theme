@@ -14,13 +14,14 @@
       "blocks": {
         "slide_JGebxX": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "media_type": "image",
             "desktop_image": "shopify://shop_images/Click_Frenzy_Hero_5a73b703-0e09-4f7f-a2ce-7960e06770f3.webp",
             "mobile_image": "shopify://shop_images/Click_Frenzy_Mobile.webp",
             "heading": "Shop Click Frenzy",
             "svg_image": "shopify://shop_images/Click_Frenzy_Desktop.svg",
-            "svg_size": "full",
+            "svg_size": "large",
             "mobile_svg_image": "shopify://shop_images/Winning_Form_Mobile.svg",
             "heading_level": "h1",
             "heading_animation": "none",
@@ -40,14 +41,43 @@
             "mobile_vertical_alignment": "bottom"
           }
         },
+        "slide_P9nnNj": {
+          "type": "slide",
+          "settings": {
+            "media_type": "image",
+            "desktop_image": "shopify://shop_images/Sports_Jackets_CF_78a2b45e-da57-4a08-9fd1-4ba71a2c1ab7.webp",
+            "mobile_image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+            "heading": "Sports Jackets",
+            "svg_image": "shopify://shop_images/Sport_Of_It_Desktop_V2_6ee40d41-826f-4a72-bbf4-423822773e58.svg",
+            "svg_size": "full",
+            "mobile_svg_image": "shopify://shop_images/Sport_Of_It_Mob.svg",
+            "heading_level": "h1",
+            "heading_animation": "none",
+            "description": "",
+            "description_animation": "none",
+            "button_label_1": "Click Frenzy - $150 Off*",
+            "button_link_1": "shopify://collections/sport-jackets",
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_label_3": "",
+            "button_link_3": "",
+            "button_label_4": "",
+            "button_link_4": "",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "stretch",
+            "mobile_horizontal_alignment": "center",
+            "mobile_vertical_alignment": "bottom"
+          }
+        },
         "slide_ddW7HK": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "media_type": "image",
             "desktop_image": "shopify://shop_images/Suits_Hero.webp",
             "mobile_image": "shopify://shop_images/Suits_Hero_Mob_1afba34e-6c4f-485c-bd07-7b428b72aad3.webp",
             "heading": "Spring Sale",
-            "svg_image": "shopify://shop_images/S25_Homepage_Suits.svg",
+            "svg_image": "shopify://shop_images/Sport_Of_It_Desktop_V2.svg",
             "svg_size": "full",
             "mobile_svg_image": "shopify://shop_images/S25_Homepage_Suits_Mobile.svg",
             "heading_level": "h1",
@@ -67,40 +97,12 @@
             "mobile_horizontal_alignment": "center",
             "mobile_vertical_alignment": "bottom"
           }
-        },
-        "slide_P9nnNj": {
-          "type": "slide",
-          "settings": {
-            "media_type": "image",
-            "desktop_image": "shopify://shop_images/Sports_Jackets_CF_78a2b45e-da57-4a08-9fd1-4ba71a2c1ab7.webp",
-            "mobile_image": "shopify://shop_images/Social_Season_Style_Mobile.webp",
-            "heading": "Social Style",
-            "svg_image": "shopify://shop_images/Social_Season_Style_Desktop_50173257-3ef0-4c01-bdce-a4c13c9405a6.svg",
-            "svg_size": "full",
-            "mobile_svg_image": "shopify://shop_images/SSS_Mobile.svg",
-            "heading_level": "h1",
-            "heading_animation": "none",
-            "description": "",
-            "description_animation": "none",
-            "button_label_1": "Click Frenzy - $150 Off*",
-            "button_link_1": "shopify://collections/sport-jackets",
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_label_3": "",
-            "button_link_3": "",
-            "button_label_4": "",
-            "button_link_4": "",
-            "horizontal_alignment": "center",
-            "vertical_alignment": "stretch",
-            "mobile_horizontal_alignment": "center",
-            "mobile_vertical_alignment": "bottom"
-          }
         }
       },
       "block_order": [
         "slide_JGebxX",
-        "slide_ddW7HK",
-        "slide_P9nnNj"
+        "slide_P9nnNj",
+        "slide_ddW7HK"
       ],
       "name": "Hero Slider",
       "settings": {
