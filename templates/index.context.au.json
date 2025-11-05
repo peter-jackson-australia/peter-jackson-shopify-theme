@@ -12,5 +12,15 @@
   "context": {
     "market": "au"
   },
-  "sections": {}
+  "sections": {
+    "hero_slider_ULyNnz": {
+      "settings": {},
+      "blocks": {},
+      "block_order": [
+        "slide_ddW7HK",
+        "slide_P9nnNj",
+        "slide_JGebxX"
+      ]
+    }
+  }
 }
