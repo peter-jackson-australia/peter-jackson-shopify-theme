@@ -36,24 +36,22 @@
         {% if block.type == 'column_item' %}
           <div class="variable-column-content-svg__column" {{ block.shopify_attributes }}>
             {% if block_image != blank %}
-              <div class="variable-column-content-svg__image-wrapper">
-                {% if block_image_link != blank %}
-                  <a href="{{ block_image_link }}">
-                {% endif %}
-                {{
-                  block_image
-                  | image_url: width: 1200
-                  | image_tag:
-                    class: 'variable-column-content-svg__image',
-                    sizes: '(max-width: 767px) 100vw, 1200px',
-                    loading: 'lazy',
-                    decoding: 'async',
-                    alt: block_image.alt
-                }}
-                {% if block_image_link != blank %}
-                  </a>
-                {% endif %}
-              </div>
+              {% if block_image_link != blank %}
+                <a href="{{ block_image_link }}">
+              {% endif %}
+              {{
+                block_image
+                | image_url: width: 1200
+                | image_tag:
+                  class: 'variable-column-content-svg__image',
+                  sizes: '(max-width: 767px) 100vw, 1200px',
+                  loading: 'lazy',
+                  decoding: 'async',
+                  alt: block_image.alt
+              }}
+              {% if block_image_link != blank %}
+                </a>
+              {% endif %}
             {% endif %}
 
             <div class="variable-column-content-svg__content variable-column-content-svg__content--{{ block_content_alignment }}">
