@@ -17,12 +17,10 @@
           "settings": {
             "image": "shopify://shop_images/Wedding_Column.webp",
             "image_link": "shopify://products/abstract-sunshine-pocket-square",
-            "top_text": "fdgfdgf",
-            "svg_icon": "shopify://shop_images/Sport_Of_It_Mob.svg",
-            "bottom_text": "fgfggerger",
-            "content_alignment": "center",
-            "column_link": "",
-            "column_link_text": "Learn More"
+            "top_text": "This is the top text",
+            "svg_icon": "shopify://shop_images/SSS_Mobile.svg",
+            "bottom_text": "This is the bottom text",
+            "content_alignment": "center"
           }
         },
         "column_item_wUt74d": {
@@ -32,22 +30,31 @@
             "image_link": "",
             "top_text": "",
             "bottom_text": "",
-            "content_alignment": "center",
-            "column_link": "",
-            "column_link_text": "Learn More"
+            "content_alignment": "center"
+          }
+        },
+        "column_item_4EJMtc": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Wedding_Column.webp",
+            "image_link": "",
+            "top_text": "",
+            "bottom_text": "",
+            "content_alignment": "center"
           }
         }
       },
       "block_order": [
         "column_item_fqQJ8G",
-        "column_item_wUt74d"
+        "column_item_wUt74d",
+        "column_item_4EJMtc"
       ],
       "name": "Variable Column Content SVG",
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
-        "column_count": "2"
+        "column_count": "3"
       }
     }
   },
