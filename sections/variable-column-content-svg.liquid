@@ -1,0 +1,227 @@
+{{ 'section-variable-column-content-svg.css' | asset_url | stylesheet_tag }}
+
+{% assign section_id = section.id %}
+{% assign show_top_border = section.settings.show_top_border %}
+{% assign show_bottom_border = section.settings.show_bottom_border %}
+{% assign column_count = section.settings.column_count %}
+{% assign anchor_id = section.settings.anchor_id %}
+
+<div
+  class="variable-column-content-svg"
+  id="shopify-section-{{ section_id }}"
+  style="
+    {% if show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
+    {% if show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
+  "
+>
+  {% if column_count != blank %}
+    {% assign column_count = column_count | plus: 0 %}
+    <div
+      class="variable-column-content-svg__grid"
+      style="grid-template-columns: repeat({{ column_count }}, 1fr);"
+      {% if anchor_id != blank %}
+        id="{{ anchor_id | downcase | replace: ' ', '-' }}-segment"
+      {% endif %}
+    >
+      {%- for block in section.blocks limit: column_count -%}
+        {% assign block_image = block.settings.image %}
+        {% assign block_image_link = block.settings.image_link %}
+        {% assign block_top_text = block.settings.top_text %}
+        {% assign block_svg_icon = block.settings.svg_icon %}
+        {% assign block_bottom_text = block.settings.bottom_text %}
+        {% assign block_content_alignment = block.settings.content_alignment %}
+        {% assign block_column_link = block.settings.column_link %}
+        {% assign block_column_link_text = block.settings.column_link_text %}
+
+        {% if block.type == 'column_item' %}
+          <div class="variable-column-content-svg__column" {{ block.shopify_attributes }}>
+            {% if block_image != blank %}
+              <div class="variable-column-content-svg__image-wrapper">
+                {% if block_image_link != blank %}
+                  <a href="{{ block_image_link }}">
+                {% endif %}
+                {{
+                  block_image
+                  | image_url: width: 1200
+                  | image_tag:
+                    class: 'variable-column-content-svg__image',
+                    sizes: '(max-width: 767px) 100vw, 1200px',
+                    loading: 'lazy',
+                    decoding: 'async',
+                    alt: block_image.alt
+                }}
+                {% if block_image_link != blank %}
+                  </a>
+                {% endif %}
+              </div>
+            {% endif %}
+
+            <div class="variable-column-content-svg__content variable-column-content-svg__content--{{ block_content_alignment }}">
+              {% if block_top_text != blank %}
+                <div class="variable-column-content-svg__top-text body">
+                  {{ block_top_text }}
+                </div>
+              {% endif %}
+
+              {% if block_svg_icon != blank %}
+                {{
+                  block_svg_icon
+                  | image_url: width: 200
+                  | image_tag:
+                    class: 'variable-column-content-svg__icon',
+                    loading: 'lazy',
+                    decoding: 'async',
+                    alt: block_svg_icon.alt
+                }}
+              {% endif %}
+
+              {% if block_bottom_text != blank %}
+                <div class="variable-column-content-svg__bottom-text body">
+                  {{ block_bottom_text }}
+                </div>
+              {% endif %}
+
+              {% if block_column_link != blank and block_column_link_text != blank %}
+                <a href="{{ block_column_link }}" class="variable-column-content-svg__column-cta body">
+                  {{ block_column_link_text }}
+                  {% render '_icon-arrow-submit-dark' %}
+                </a>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+      {%- endfor -%}
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Variable Content SVG",
+  "tag": "section",
+  "class": "variable-column-content-svg-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Anchor ID (lowercase with hyphens)",
+      "info": "Example: history or about-us"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_top_border",
+      "label": "Show top border",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bottom_border",
+      "label": "Show bottom border",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "column_count",
+      "label": "Number of Columns",
+      "options": [
+        {
+          "value": "2",
+          "label": "2 Columns"
+        },
+        {
+          "value": "3",
+          "label": "3 Columns"
+        },
+        {
+          "value": "4",
+          "label": "4 Columns"
+        }
+      ],
+      "default": "2"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Column Item",
+      "type": "column_item",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Background Image"
+        },
+        {
+          "type": "url",
+          "id": "image_link",
+          "label": "Image Link",
+          "info": "Add a link to make the background image clickable"
+        },
+        {
+          "type": "text",
+          "id": "top_text",
+          "label": "Top Text"
+        },
+        {
+          "type": "image_picker",
+          "id": "svg_icon",
+          "label": "SVG Icon"
+        },
+        {
+          "type": "text",
+          "id": "bottom_text",
+          "label": "Bottom Text"
+        },
+        {
+          "type": "select",
+          "id": "content_alignment",
+          "label": "Content Alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "url",
+          "id": "column_link",
+          "label": "Column Link"
+        },
+        {
+          "type": "text",
+          "id": "column_link_text",
+          "label": "Link Text",
+          "default": "Learn More"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Variable Column Content SVG",
+      "blocks": [
+        {
+          "type": "column_item"
+        },
+        {
+          "type": "column_item"
+        }
+      ],
+      "category": "Image"
+    }
+  ],
+  "enabled_on": {
+    "templates": ["index", "page", "article", "blog"]
+  }
+}
+{% endschema %}
