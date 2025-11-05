@@ -73,7 +73,6 @@
   
   @media screen and (max-width: 768px) {
     .variable-column-content-svg__grid {
-      gap: 0;
       grid-template-columns: 1fr !important;
     }
   
