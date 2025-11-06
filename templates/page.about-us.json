@@ -177,6 +177,18 @@
         "button_link": ""
       }
     },
+    "block_quote_E9F7ML": {
+      "type": "block-quote",
+      "name": "Block Quote",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "quote_text": "SUITING",
+        "quote_animation": "none",
+        "background_color": "neutral-950"
+      }
+    },
     "variable_column_content_tertiary_MmBfyG": {
       "type": "variable-column-content-tertiary",
       "blocks": {
@@ -266,6 +278,108 @@
         "button_label": "Learn More",
         "button_link": ""
       }
+    },
+    "block_quote_Ezh7id": {
+      "type": "block-quote",
+      "name": "Block Quote",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "quote_text": "SHIRTING",
+        "quote_animation": "none",
+        "background_color": "neutral-950"
+      }
+    },
+    "variable_column_content_tertiary_ceXfEa": {
+      "type": "variable-column-content-tertiary",
+      "blocks": {
+        "column_item_WGiDkx": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+            "image_link": "",
+            "heading": "Borghi",
+            "heading_animation": "none",
+            "text": "Established in 1819, Borghi treat fabric construction as an art form—where natural fibres meet to create the ultimate textiles.",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_8HXTMf": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+            "image_link": "",
+            "heading": "Soktas",
+            "heading_animation": "none",
+            "text": "Founded in 1971, SÖKTAŞ is a specialist designer and producer of cotton and cotton-blended fabrics.",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_QPKgwe": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+            "image_link": "",
+            "heading": "Albini Group",
+            "heading_animation": "none",
+            "text": "Established in 1876, the Albini Group is known for producing some of the best shirting fabrics in the world.",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_4gmmDp": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+            "image_link": "",
+            "heading": "Sustainability",
+            "heading_animation": "none",
+            "text": "We strive to be ambassadors of taste, passionate for the innovation and creation of menswear.",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_WGiDkx",
+        "column_item_8HXTMf",
+        "column_item_QPKgwe",
+        "column_item_4gmmDp"
+      ],
+      "name": "Variable Column Content Tertiary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "4",
+        "text_alignment": "left",
+        "animate_columns": true,
+        "heading": "",
+        "heading_animation": "none",
+        "text": "",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
     }
   },
   "order": [
@@ -274,6 +388,9 @@
     "hero_primary_jY9HbP",
     "image_with_text_nGqV3U",
     "variable_column_content_secondary_ALdp3k",
-    "variable_column_content_tertiary_MmBfyG"
+    "block_quote_E9F7ML",
+    "variable_column_content_tertiary_MmBfyG",
+    "block_quote_Ezh7id",
+    "variable_column_content_tertiary_ceXfEa"
   ]
 }
