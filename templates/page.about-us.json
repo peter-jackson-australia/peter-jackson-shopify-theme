@@ -167,7 +167,7 @@
         "show_top_border": false,
         "show_bottom_border": false,
         "column_count": "4",
-        "text_alignment": "left",
+        "text_alignment": "center",
         "animate_columns": true,
         "heading": "Garment Journey",
         "heading_animation": "none",
@@ -188,6 +188,96 @@
         "quote_animation": "animate-word-slide-up-scroll",
         "background_color": "neutral-950"
       }
+    },
+    "variable_column_content_tertiary_MmBfyG": {
+      "type": "variable-column-content-tertiary",
+      "blocks": {
+        "column_item_RPPcFP": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+            "image_link": "",
+            "heading": "Marzotto Group",
+            "heading_animation": "none",
+            "text": "The Marzotto Group is an Italian textile manufacturer, based in Veldango. Created in 1836.",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_qEWAeG": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+            "image_link": "",
+            "heading": "Zignone",
+            "heading_animation": "none",
+            "text": "Combining quality raw materials with years of textile tradition—Zignone creates quality fabrics that are all expertly constructed in Italy.",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_8YFtjg": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+            "image_link": "",
+            "heading": "Reda",
+            "heading_animation": "none",
+            "text": "Since 1865, Reda has a history of producing fine Italian suiting fabrics, beautifully designed to embody style and elegance.",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_EpwyN9": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+            "image_link": "",
+            "heading": "Marlane",
+            "heading_animation": "none",
+            "text": "Founded in 1815 in Biella, Italy—Marlane is a fabric manufacturer distinguished for its innovation and use of natural fibres.",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_RPPcFP",
+        "column_item_qEWAeG",
+        "column_item_8YFtjg",
+        "column_item_EpwyN9"
+      ],
+      "name": "Variable Column Content Tertiary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "4",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "",
+        "heading_animation": "none",
+        "text": "",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
     }
   },
   "order": [
@@ -196,6 +286,7 @@
     "hero_primary_jY9HbP",
     "image_with_text_nGqV3U",
     "variable_column_content_secondary_ALdp3k",
-    "block_quote_3nRkjt"
+    "block_quote_3nRkjt",
+    "variable_column_content_tertiary_MmBfyG"
   ]
 }
