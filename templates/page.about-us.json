@@ -127,11 +127,39 @@
             "column_link": "",
             "column_link_text": "Shop Now"
           }
+        },
+        "column_item_HbzBnh": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+            "image_link": "",
+            "heading": "Silk",
+            "heading_animation": "none",
+            "text": "All our ties and pocket squares are handmade from premium silk sourced from Italy's city of silk, Como. The ample water supply provided by Lake Como and the mulberry (the silkworm's food of choice) farming in the Po River Valley to the south provides the nurturing landscape this fine fabric demands.",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_EXBLxE": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+            "image_link": "",
+            "heading": "Linen",
+            "heading_animation": "none",
+            "text": "Our linen lines are all organically woven from the fibres of the flax plant, a long and flexible plant that sprouts a single blue flower. These stalks contain the bundles of flax fibres that take it from field to fabric. We source our linen from the Italian Boggi Milano (formerly known as Crespi). For more than two centuries, this Italian mill has been a leader in natural fabrics. Pioneering an all-natural way of producing linen, Boggi finds itself on the cusp between tradition and modernity.",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
         }
       },
       "block_order": [
         "column_item_KaxqaU",
-        "column_item_M78QBW"
+        "column_item_M78QBW",
+        "column_item_HbzBnh",
+        "column_item_EXBLxE"
       ],
       "name": "Variable Column Content Secondary",
       "settings": {
