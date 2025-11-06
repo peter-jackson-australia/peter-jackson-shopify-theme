@@ -52,10 +52,95 @@
         "button_label": "Learn More",
         "button_link": ""
       }
+    },
+    "hero_primary_jY9HbP": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/Sports_Jackets_CF_78a2b45e-da57-4a08-9fd1-4ba71a2c1ab7.webp",
+        "heading": "Tailored Specialists",
+        "svg_size": "medium",
+        "heading_level": "h1",
+        "heading_animation": "none",
+        "description": "Selling neckties, the trio's foray into fashion gradually evolved into a full tailored men's range. Soon after, we promptly established ourselves as the number one destination for men's fashion throughout Melbourne.",
+        "description_animation": "none",
+        "button_label_1": "Shop Now",
+        "button_link_1": "",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "bottom",
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "bottom"
+      }
+    },
+    "image_with_text_nGqV3U": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": true,
+        "full_width": false,
+        "first_image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+        "image_link": "",
+        "animate_images": false,
+        "alignment": "right",
+        "heading": "New Generation",
+        "heading_animation": "none",
+        "text": "With a new generation of Jacksons at the helm and more than 60 stores nationally, Peter Jackson still remains a family business echoing views and values established 70 years ago.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    },
+    "variable_column_content_secondary_ALdp3k": {
+      "type": "variable-column-content-secondary",
+      "blocks": {
+        "column_item_KaxqaU": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+            "image_link": "",
+            "heading": "Merino Wool",
+            "heading_animation": "none",
+            "text": "Our suits are crafted from Australian Merino wool that is meticulously cultivated by generations of Australian woolgrowers. We use Merino wool because its resilient natural stretch prevents it from losing its shape. When the fabric is stretched, the fibres' natural crimp acts like a spring, returning it to its original form. Its durability also stems from it being comprised of a special protein called keratin. Keratin acts as a barrier, protecting you (and the sheep!) from environmental elements.",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_KaxqaU"
+      ],
+      "name": "Variable Column Content Secondary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "3",
+        "text_alignment": "left",
+        "animate_columns": true,
+        "heading": "Garment Journey",
+        "heading_animation": "none",
+        "text": "Our chosen mills are renowned for their refined production techniques, dedication to quality, and use of premium natural fibres. Our enduring partnerships with them stem from their innovative approach and eco-friendly practices, with a focus on environmental performance and compliance with regulations.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
     }
   },
   "order": [
     "editorial_hero_hceC9g",
-    "image_with_text_e4kRFG"
+    "image_with_text_e4kRFG",
+    "hero_primary_jY9HbP",
+    "image_with_text_nGqV3U",
+    "variable_column_content_secondary_ALdp3k"
   ]
 }
