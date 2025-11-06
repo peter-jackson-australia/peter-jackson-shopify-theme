@@ -46,9 +46,9 @@
         "animate_images": false,
         "alignment": "left",
         "heading": "Where It All Began",
-        "heading_animation": "none",
+        "heading_animation": "animate-paragraph-slide-up-scroll",
         "text": "For over 7 decades we've believed in elevating the dress standards of all Australian men.Empowering them to draw confidence from their appearance, knowing that they will look their best and be ready for every occasion. This strong sense of purpose started in 1948, in the heart of Melbourne's CBD—Little Bourke Street, where siblings Olga, Peter and David Jackson ran their iconic barbershop.",
-        "text_animation": "none",
+        "text_animation": "animate-paragraph-slide-up-scroll",
         "button_label": "Learn More",
         "button_link": ""
       }
@@ -62,9 +62,9 @@
         "heading": "Tailored Specialists",
         "svg_size": "medium",
         "heading_level": "h1",
-        "heading_animation": "none",
+        "heading_animation": "animate-paragraph-slide-up-scroll",
         "description": "Selling neckties, the trio's foray into fashion gradually evolved into a full tailored men's range. Soon after, we promptly established ourselves as the number one destination for men's fashion throughout Melbourne.",
-        "description_animation": "none",
+        "description_animation": "animate-paragraph-slide-up-scroll",
         "button_label_1": "Shop Now",
         "button_link_1": "",
         "button_label_2": "",
