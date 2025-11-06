@@ -270,7 +270,7 @@
         "show_bottom_border": false,
         "column_count": "4",
         "text_alignment": "left",
-        "animate_columns": false,
+        "animate_columns": true,
         "heading": "",
         "heading_animation": "none",
         "text": "",
