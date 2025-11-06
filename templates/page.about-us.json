@@ -114,10 +114,24 @@
             "column_link": "",
             "column_link_text": "Shop Now"
           }
+        },
+        "column_item_M78QBW": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+            "image_link": "",
+            "heading": "Cotton",
+            "heading_animation": "none",
+            "text": "All Peter Jackson shirts are fashioned from 2-ply Egyptian cotton formed from the rich soil and moist atmosphere facilitated by the Nile River. We use Egyptian cotton because it's substantially longer than regular cotton. This results in more uninterrupted fibres to use for composing yarn and threads, making the threads and eventual fabrics stronger overall as a result of fewer splices.",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
         }
       },
       "block_order": [
-        "column_item_KaxqaU"
+        "column_item_KaxqaU",
+        "column_item_M78QBW"
       ],
       "name": "Variable Column Content Secondary",
       "settings": {
