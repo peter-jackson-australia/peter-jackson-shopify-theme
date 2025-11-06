@@ -92,9 +92,9 @@
         "animate_images": false,
         "alignment": "right",
         "heading": "New Generation",
-        "heading_animation": "none",
+        "heading_animation": "animate-paragraph-slide-up-scroll",
         "text": "With a new generation of Jacksons at the helm and more than 60 stores nationally, Peter Jackson still remains a family business echoing views and values established 70 years ago.",
-        "text_animation": "none",
+        "text_animation": "animate-paragraph-slide-up-scroll",
         "button_label": "Learn More",
         "button_link": ""
       }
