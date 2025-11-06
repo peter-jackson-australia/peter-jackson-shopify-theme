@@ -380,6 +380,26 @@
         "button_label": "Learn More",
         "button_link": ""
       }
+    },
+    "image_with_text_tRXyXH": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": true,
+        "full_width": false,
+        "first_image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+        "image_link": "",
+        "animate_images": false,
+        "alignment": "right",
+        "heading": "Bridging",
+        "heading_animation": "animate-paragraph-slide-up-scroll",
+        "text": "We deliver quality tailored menswear at excellent value because Australian men deserve better from the menswear industry. Through ethical and sustainable trade practices, we create standards that benefit everyone involved. We partner with environmentally responsible suppliers like Marzotto, whose solar investment has saved nearly one million litres of oil since 2011, and Reda, whose water purification plant earned them EMAS certification in 2004. These partnerships help us minimize our environmental impact and build a sustainable future for fashion.",
+        "text_animation": "animate-paragraph-slide-up-scroll",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
     }
   },
   "order": [
@@ -391,6 +411,7 @@
     "block_quote_E9F7ML",
     "variable_column_content_tertiary_MmBfyG",
     "block_quote_Ezh7id",
-    "variable_column_content_tertiary_ceXfEa"
+    "variable_column_content_tertiary_ceXfEa",
+    "image_with_text_tRXyXH"
   ]
 }
