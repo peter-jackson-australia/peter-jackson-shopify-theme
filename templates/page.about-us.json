@@ -176,6 +176,18 @@
         "button_label": "Learn More",
         "button_link": ""
       }
+    },
+    "block_quote_3nRkjt": {
+      "type": "block-quote",
+      "name": "Block Quote",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "quote_text": "SUITING",
+        "quote_animation": "animate-word-slide-up-scroll",
+        "background_color": "neutral-950"
+      }
     }
   },
   "order": [
@@ -183,6 +195,7 @@
     "image_with_text_e4kRFG",
     "hero_primary_jY9HbP",
     "image_with_text_nGqV3U",
-    "variable_column_content_secondary_ALdp3k"
+    "variable_column_content_secondary_ALdp3k",
+    "block_quote_3nRkjt"
   ]
 }
