@@ -387,7 +387,7 @@
       "settings": {
         "anchor_id": "",
         "show_top_border": true,
-        "show_bottom_border": true,
+        "show_bottom_border": false,
         "full_width": false,
         "first_image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
         "image_link": "",
@@ -396,6 +396,46 @@
         "heading": "Bridging",
         "heading_animation": "animate-paragraph-slide-up-scroll",
         "text": "We deliver quality tailored menswear at excellent value because Australian men deserve better from the menswear industry. Through ethical and sustainable trade practices, we create standards that benefit everyone involved. We partner with environmentally responsible suppliers like Marzotto, whose solar investment has saved nearly one million litres of oil since 2011, and Reda, whose water purification plant earned them EMAS certification in 2004. These partnerships help us minimize our environmental impact and build a sustainable future for fashion.",
+        "text_animation": "animate-paragraph-slide-up-scroll",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    },
+    "image_with_text_rNAfre": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": true,
+        "full_width": false,
+        "first_image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+        "image_link": "",
+        "animate_images": false,
+        "alignment": "left",
+        "heading": "Ethical Production",
+        "heading_animation": "animate-paragraph-slide-up-scroll",
+        "text": "We do this not just because it is right for us, but because we seek to elevate the industry standard. We believe that every person, no matter where they're from, has the right to a fair, liveable wage and a safe work environment.We align ourselves with production partners that ensure regular site checks, salary standards and a minimum working age.",
+        "text_animation": "animate-paragraph-slide-up-scroll",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    },
+    "image_with_text_AAqkDJ": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": true,
+        "full_width": false,
+        "first_image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+        "image_link": "",
+        "animate_images": false,
+        "alignment": "right",
+        "heading": "Ethical Retailing",
+        "heading_animation": "animate-paragraph-slide-up-scroll",
+        "text": "At Peter Jackson our people are our most valued assets. As our business continues to grow, we rely upon our team to be specialists in their field and effectively communicate our ethos to the public. It is because of this that we strive to find the best talent and develop a strong, customer-centric skill set.We will always provide a safe and secure work environment with a strong sense of belonging. We are an equal opportunity employer, dedicated to regularly training and developing the members of our team. It is through this that they gain valuable skills and experience to achieve and build upon a career in fashion.",
         "text_animation": "animate-paragraph-slide-up-scroll",
         "button_label": "Learn More",
         "button_link": ""
@@ -412,6 +452,8 @@
     "variable_column_content_tertiary_MmBfyG",
     "block_quote_Ezh7id",
     "variable_column_content_tertiary_ceXfEa",
-    "image_with_text_tRXyXH"
+    "image_with_text_tRXyXH",
+    "image_with_text_rNAfre",
+    "image_with_text_AAqkDJ"
   ]
 }
