@@ -13,7 +13,8 @@
       "order_summary": {
         "gift_card_and_discount_title": "Discount Code",
         "gift_card_and_discount_label": "Discount Code",
-        "gift_card_and_discount_placeholder": "Discount Code"
+        "gift_card_and_discount_placeholder": "Discount Code",
+        "add_discount_or_gift_card": "Discount Code"
       }
     }
   }
