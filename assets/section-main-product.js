@@ -39,10 +39,6 @@ window.setupModalOverlay = (containerElement) => {
 }
 
 const registerBuyableProduct = (isMainElement) => (elementWrapper) => {
-  if (typeof Alpine === "undefined") {
-    console.warn("Alpine.js is required for the size guide modal");
-  }
-
   if (isMainElement) {
     if (typeof Splide !== "undefined") {
       initializeProductSlider(elementWrapper);
