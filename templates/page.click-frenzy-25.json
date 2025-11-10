@@ -590,7 +590,8 @@
           "settings": {
             "image": "shopify://shop_images/Wedding_Moments_Of_Distinction.webp",
             "image_link": "",
-            "top_text": "FOR THE CELEBRATION. FOR THE FOREVER",
+            "top_text": "FOR THE CEREMONY, THE CELEBRATION, THE FOREVER.",
+            "svg_icon": "shopify://shop_images/MOD_HP_91b83c97-8504-447b-aab1-58b3896ba897.svg",
             "bottom_text": "Your Wedding Style Guide",
             "content_alignment": "center"
           }
