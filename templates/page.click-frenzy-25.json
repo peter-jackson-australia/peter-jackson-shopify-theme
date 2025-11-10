@@ -311,9 +311,10 @@
             "image_link": "shopify://pages/made-to-measure",
             "top_text": "",
             "svg_icon": "shopify://shop_images/TPF_Desk_V2.svg",
+            "mobile_svg_icon": "shopify://shop_images/TPF_Mob_V3.svg",
             "bottom_text": "Book Your Appointment",
             "content_alignment": "center",
-            "mobile_alignment": "left"
+            "mobile_alignment": "center"
           }
         }
       },
