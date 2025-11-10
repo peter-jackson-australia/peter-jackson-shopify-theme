@@ -2,14 +2,10 @@
   Collection Expandable Content Section
 {% endcomment %}
 
-{% assign collection_expandable_content = collection.metafields.custom.collection_expandable_content.value %}
-
 <div class="collection-expandable-content">
-  {% if collection_expandable_content %}
-    {% for content_entry in collection_expandable_content %}
-      {% assign associated_collection = content_entry.associated_collection.value %}
-
-      {% if associated_collection.id == collection.id %}
+  {% if collection.metafields.custom.collection_expandable_content.value %}
+    {% for content_entry in collection.metafields.custom.collection_expandable_content.value %}
+      {% if content_entry.associated_collection.value.id == collection.id %}
         <accordion-element
           class="collection-expandable-content__item body--bold"
           data-title="{{ content_entry.heading }}"

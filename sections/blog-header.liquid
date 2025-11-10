@@ -4,9 +4,7 @@
 
 {{ 'section-blog-header.css' | asset_url | stylesheet_tag }}
 
-{% assign journal_type = section.settings.journal_type %}
-
-{% if journal_type == 'jackson' %}
+{% if section.settings.journal_type == 'jackson' %}
   <div class="blog-header">
     <h1 class="blog-header__title heading--decorative">The Jackson Journal</h1>
     <nav class="blog-header__nav">
@@ -21,7 +19,7 @@
       <a href="/pages/the-empowered-mind#blog-collection" class="blog-header__link body--uppercase">Lifestyle</a>
     </nav>
   </div>
-{% elsif journal_type == 'empowered' %}
+{% elsif section.settings.journal_type == 'empowered' %}
   <div class="blog-header">
     <h1 class="blog-header__title heading--decorative">The Empowered Mind</h1>
     <nav class="blog-header__nav">

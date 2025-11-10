@@ -1,41 +1,29 @@
 {{ 'section-collection-slider.css' | asset_url | stylesheet_tag }}
 
-{% assign section_id = section.id %}
-{% assign heading = section.settings.heading %}
-{% assign heading_animation = section.settings.heading_animation %}
-{% assign description = section.settings.description %}
-{% assign description_animation = section.settings.description_animation %}
-{% assign collection = section.settings.collection %}
-{% assign button_label = section.settings.button_label %}
-{% assign animate_products = section.settings.animate_products %}
-{% assign product_limit = section.settings.products_to_show | default: 10 %}
-
-<div class="collection-slider" id="section-{{ section_id }}">
+<div class="collection-slider" id="section-{{ section.id }}">
   <div class="collection-slider__container">
     <div class="collection-slider__content">
-      {% if heading != blank %}
-        <h2 class="heading--2xl collection-slider__heading {% if heading_animation != 'none' %}{{ heading_animation }}{% endif %}">
-          {{ heading }}
+      {% if section.settings.heading != blank %}
+        <h2 class="heading--2xl collection-slider__heading {% if section.settings.heading_animation != 'none' %}{{ section.settings.heading_animation }}{% endif %}">
+          {{ section.settings.heading }}
         </h2>
       {% endif %}
 
-      {% if description != blank %}
-        <p class="body collection-slider__description {% if description_animation != 'none' %}{{ description_animation }}{% endif %}">
-          {{ description }}
+      {% if section.settings.description != blank %}
+        <p class="body collection-slider__description {% if section.settings.description_animation != 'none' %}{{ section.settings.description_animation }}{% endif %}">
+          {{ section.settings.description }}
         </p>
       {% endif %}
 
-      {% if collection != blank and button_label != blank %}
-        {% assign collection_url = collection.url %}
-        <a href="{{ collection_url }}" class="body collection-slider__link">
-          {{ button_label }}
+      {% if section.settings.collection != blank and section.settings.button_label != blank %}
+        <a href="{{ section.settings.collection.url }}" class="body collection-slider__link">
+          {{ section.settings.button_label }}
           {% render '_icon-arrow-submit-dark' %}
         </a>
       {% endif %}
     </div>
 
-    {% if collection != blank %}
-      {% assign collection_products = collection.products %}
+    {% if section.settings.collection != blank %}
       <div class="collection-slider__slider-wrapper">
         <div class="collection-slider__slider splide">
           <div class="splide__arrows">
@@ -43,98 +31,76 @@
             <button class="splide__arrow splide__arrow--next">{% render '_icon-arrow-see-more' %}</button>
           </div>
           <div class="splide__track">
-            <div class="splide__list {% if animate_products %}animate-container-cards-scroll{% endif %}">
-              {% for product in collection_products limit: product_limit %}
-                {% assign product_url = product.url %}
-                {% assign product_title = product.title %}
-                {% assign featured_image = product.featured_image %}
-                {% assign featured_image_alt = product.featured_image.alt %}
-                {% assign fabric_description = product.metafields.custom.fabric_description %}
-                {% assign product_compare_price = product.compare_at_price %}
-                {% assign product_price = product.price %}
-                {% assign colour_variants_metafield = product.metafields.custom.product_colour_variants %}
-                {% assign colour_swatch = product.metafields.custom.swatch_colour.value.colour | strip %}
-
+            <div class="splide__list {% if section.settings.animate_products %}animate-container-cards-scroll{% endif %}">
+              {% for product in section.settings.collection.products limit: section.settings.products_to_show %}
                 <article class="splide__slide collection-slider__slide">
                   <a href="{{ product.url }}" class="collection-slider__product-link">
                     <div class="collection-slider__product-image-wrapper">
-                      {% if featured_image != blank %}
+                      {% if product.featured_image != blank %}
                         {{
-                          featured_image
+                          product.featured_image
                           | image_url: width: 625
                           | image_tag:
                             class: 'collection-slider__product-image',
                             sizes: '(max-width: 625px) 400px, 625px',
                             loading: 'lazy',
                             decoding: 'async',
-                            alt: featured_image_alt
+                            alt: product.featured_image.alt
                         }}
                       {% endif %}
                     </div>
 
-                    <h3 class="body--bold collection-slider__product-title">{{ product_title }}</h3>
+                    <h3 class="body--bold collection-slider__product-title">{{ product.title }}</h3>
 
-                    {% if fabric_description != blank %}
+                    {% if product.metafields.custom.fabric_description != blank %}
                       <p class="small collection-slider__product-material">
-                        {{ fabric_description }}
+                        {{ product.metafields.custom.fabric_description }}
                       </p>
                     {% endif %}
 
                     <p class="small collection-slider__product-price">
-                      {% if product_compare_price > product_price %}
+                      {% if product.compare_at_price > product.price %}
                         <span>
-                          {{- product_price | money_with_currency -}}
+                          {{- product.price | money_with_currency -}}
                         </span>
                         <span class="collection-slider__product-price--compare">
                           Was
-                          {{ product_compare_price | money_with_currency -}}
+                          {{ product.compare_at_price | money_with_currency -}}
                         </span>
                       {% else %}
-                        {{ product_price | money_with_currency }}
+                        {{ product.price | money_with_currency }}
                       {% endif %}
                     </p>
                   </a>
 
-                  {% if colour_variants_metafield %}
-                    {% assign colour_variants = colour_variants_metafield.value %}
-                    {% assign max_display = 3 %}
-                    {% assign remaining_count = colour_variants.count | minus: max_display %}
-
+                  {% if product.metafields.custom.product_colour_variants %}
                     <div class="product-card__swatches">
-                      {% assign bg_colour = colour_swatch | default: 'var(--neutral-200)' %}
-                      {% assign border_style = '1px solid var(--neutral-950)' %}
-
                       <a
-                        href="{{ product_url }}"
+                        href="{{ product.url }}"
                         class="product-card__swatch-link"
-                        aria-label="View {{ product_title }} variant"
-                        style="border: {{ border_style }}; background-color: {{ bg_colour }}; padding: 2px; background-clip: content-box;"
+                        aria-label="View {{ product.title }} variant"
+                        style="border: 1px solid var(--neutral-950); background-color: {{ product.metafields.custom.swatch_colour.value.colour | strip | default: 'var(--neutral-200)' }}; padding: 2px; background-clip: content-box;"
                       >
                       </a>
 
-                      {% for variant in colour_variants limit: max_display %}
-                        {% assign variant_url = variant.url %}
-                        {% assign variant_title = variant.title %}
-                        {% assign variant_colour = variant.metafields.custom.swatch_colour.value.colour | strip %}
+                      {% for variant in product.metafields.custom.product_colour_variants.value limit: 3 %}
                         {% assign variant_name = variant.metafields.custom.swatch_colour.value.name | strip %}
-                        {% assign bg_colour = variant_colour | default: 'var(--neutral-200)' %}
-
                         {% if variant_name == 'White' %}
                           {% assign border_style = '2px solid var(--neutral-200)' %}
                         {% else %}
-                          {% assign border_colour = variant_colour | default: 'var(--neutral-950)' %}
-                          {% assign border_style = '2px solid ' | append: border_colour %}
+                          {% assign border_style = '2px solid ' | append: variant.metafields.custom.swatch_colour.value.colour | strip | default: 'var(--neutral-950)' %}
                         {% endif %}
 
                         <a
-                          href="{{ variant_url }}"
+                          href="{{ variant.url }}"
                           class="product-card__swatch-link"
-                          aria-label="View {{ variant_title }} variant"
-                          style="border: {{ border_style }}; background-color: {{ bg_colour }};"
+                          aria-label="View {{ variant.title }} variant"
+                          style="border: {{ border_style }}; background-color: {{ variant.metafields.custom.swatch_colour.value.colour | strip | default: 'var(--neutral-200)' }};"
                         >
                         </a>
                       {% endfor %}
 
+                      {% assign remaining_count = product.metafields.custom.product_colour_variants.value.count | minus: 3 %}
                       {% if remaining_count > 0 %}
                         <p class="small">+{{ remaining_count }}</p>
                       {% endif %}
@@ -152,7 +118,7 @@
 
 <script
   src="{{ "section-collection-slider.js" | asset_url }}"
-  data-section-id="{{ section_id }}"
+  data-section-id="{{ section.id }}"
   defer
 ></script>
 

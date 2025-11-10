@@ -23,10 +23,9 @@
       {% if cart.item_count == 0 %}
         <div class="cart__empty-state custom-scrollbar">
           <p class="cart__empty heading--l">Your Cart Is Empty</p>
-          {% assign new_arrivals = collections['mens-suits'] %}
           <h3 class="cart__new-arrivals-section-title body">Shop Premium Merino Wool Suits from $399</h3>
           <div class="cart__new-arrivals-grid">
-            {% for product in new_arrivals.products limit: 4 %}
+            {% for product in collections['mens-suits'].products limit: 4 %}
               <a href="{{ product.url }}" class="cart__new-arrivals-card">
                 {% if product.featured_image %}
                   <div class="cart__new-arrivals-image-wrapper">
@@ -84,12 +83,11 @@
                           {% assign variant_parts = item.variant.title | split: ' / ' %}
                           {% for option in item.product.options %}
                             {% if forloop.index <= variant_parts.size %}
-                              {% assign option_value = variant_parts[forloop.index0] %}
                               {{ option }}:
                               {% if option contains 'Size' -%}
-                                {{- option_value | remove: '.0' -}}
+                                {{- variant_parts[forloop.index0] | remove: '.0' -}}
                               {%- else -%}
-                                {{- option_value -}}
+                                {{- variant_parts[forloop.index0] -}}
                               {%- endif -%}
                               {%- unless forloop.last %}, {% endunless %}
                             {% endif %}

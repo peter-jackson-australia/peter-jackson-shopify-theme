@@ -4,31 +4,23 @@
 
 {{ 'section-block-quote.css' | asset_url | stylesheet_tag }}
 
-{% assign id = section.id %}
-{% assign show_top_border = section.settings.show_top_border %}
-{% assign show_bottom_border = section.settings.show_top_border %}
-{% assign anchor_tag = section.settings.anchor_id %}
-{% assign quote_text = section.settings.quote_text %}
-{% assign quote_animation = section.settings.quote_animation %}
-{% assign background_color = section.settings.background_color %}
-
 <div
-  id="block-quote-{{ id }}"
+  id="block-quote-{{ section.id }}"
   class="block-quote"
   aria-label="Block quote section"
   style="
-    {% if show_top_border %} border-top: 1px solid var(--neutral-50); {% endif %}
-    {% if show_bottom_border %} border-bottom: 1px solid var(--neutral-50); {% endif %}
+    {% if section.settings.show_top_border %} border-top: 1px solid var(--neutral-50); {% endif %}
+    {% if section.settings.show_bottom_border %} border-bottom: 1px solid var(--neutral-50); {% endif %}
   "
 >
   <blockquote
-    class="block-quote__container block-quote--{{ background_color }}"
-    {% if anchor_tag %}
-      id="{{ anchor_tag | downcase | replace: ' ', '-' }}-segment"
+    class="block-quote__container block-quote--{{ section.settings.background_color }}"
+    {% if section.settings.anchor_id %}
+      id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
     {% endif %}
   >
-    <div class="block-quote__text heading--2xl {% if quote_animation != 'none' %}{{ quote_animation }}{% endif %}">
-      {{ quote_text }}
+    <div class="block-quote__text heading--2xl {% if section.settings.quote_animation != 'none' %}{{ section.settings.quote_animation }}{% endif %}">
+      {{ section.settings.quote_text }}
     </div>
   </blockquote>
 </div>

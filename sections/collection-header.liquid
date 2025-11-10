@@ -4,23 +4,18 @@
 
 {{ 'section-collection-header.css' | asset_url | stylesheet_tag }}
 
-{% assign title = collection.title %}
-{% assign related_collections = collection.metafields.custom.related_collections %}
-
 <div class="collection-header">
   <div class="collection-header__wrapper">
     <div class="collection-header__title">
-      <h1 class="heading--xl">{{ title }}</h1>
+      <h1 class="heading--xl">{{ collection.title }}</h1>
     </div>
-
     <div class="collection-header__related custom-scrollbar">
-      {% if related_collections %}
+      {% if collection.metafields.custom.related_collections %}
         <ul class="collection-header__list">
-          {% for collection_ref in related_collections.value %}
-            {% assign related_collection = collection_ref %}
+          {% for collection_ref in collection.metafields.custom.related_collections.value %}
             <li>
-              <a href="{{ related_collection.url }}" class="collection-header__link body--uppercase">
-                {{ related_collection.title }}
+              <a href="{{ collection_ref.url }}" class="collection-header__link body--uppercase">
+                {{ collection_ref.title }}
               </a>
             </li>
           {% endfor %}

@@ -4,14 +4,12 @@
 
 {{ 'section-careers.css' | asset_url | stylesheet_tag }}
 
-{% assign career_image = section.settings.career_image %}
-
 <div id="careers-container">
-  {% if career_image %}
+  {% if section.settings.career_image %}
     <img
       id="visual"
       alt="Peter Jackson Careers"
-      src="{{ career_image | image_url: width: '2000' }}"
+      src="{{ section.settings.career_image| image_url: width: '2000' }}"
       loading="lazy"
       height="100"
       width="100"
