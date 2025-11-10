@@ -39,14 +39,17 @@
 
 .variable-column-content-svg__content--left {
   align-items: flex-start;
+  text-align: left;
 }
 
 .variable-column-content-svg__content--center {
   align-items: center;
+  text-align: center;
 }
 
 .variable-column-content-svg__content--right {
   align-items: flex-end;
+  text-align: right;
 }
 
 .variable-column-content-svg__top-text {
@@ -82,14 +85,17 @@
 
   .variable-column-content-svg__content--mobile-left {
     align-items: flex-start !important;
+    text-align: left !important;
   }
 
   .variable-column-content-svg__content--mobile-center {
     align-items: center !important;
+    text-align: center !important;
   }
 
   .variable-column-content-svg__content--mobile-right {
     align-items: flex-end !important;
+    text-align: right !important;
   }
 
   .variable-column-content-svg__icon--desktop {
