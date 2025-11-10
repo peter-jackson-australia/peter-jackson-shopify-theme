@@ -40,17 +40,20 @@
 .variable-column-content-svg__top {
   display: flex;
   flex-direction: column;
+  width: 100%; 
 }
 
 .variable-column-content-svg__middle {
   display: flex;
   flex-direction: column;
   align-items: inherit;
+  width: 100%; 
 }
 
 .variable-column-content-svg__bottom {
   display: flex;
   flex-direction: column;
+  width: 100%; 
 }
 
 .variable-column-content-svg__content--left {
