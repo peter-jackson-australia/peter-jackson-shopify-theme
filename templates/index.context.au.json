@@ -18,18 +18,12 @@
         "slide_interval": 25
       },
       "blocks": {
-        "slide_ddW7HK": {
-          "settings": {
-            "button_label_1": "Two Suits for $895*"
-          }
-        },
         "slide_P9nnNj": {
           "disabled": false,
           "settings": {}
         }
       },
       "block_order": [
-        "slide_ddW7HK",
         "slide_JGebxX",
         "slide_P9nnNj"
       ]
