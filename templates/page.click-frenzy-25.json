@@ -591,8 +591,8 @@
             "image": "shopify://shop_images/Wedding_Moments_Of_Distinction.webp",
             "image_link": "",
             "top_text": "",
-            "svg_icon": "shopify://shop_images/MOD_HP.svg",
-            "mobile_svg_icon": "shopify://shop_images/MOD_HP_91b83c97-8504-447b-aab1-58b3896ba897.svg",
+            "svg_icon": "shopify://shop_images/MOD_Desk.svg",
+            "mobile_svg_icon": "shopify://shop_images/MOD_Mob.svg",
             "bottom_text": "Your Wedding Style Guide",
             "content_alignment": "center",
             "mobile_alignment": "center"
@@ -601,6 +601,7 @@
         "column_item_3WzPyc": {
           "type": "column_item",
           "settings": {
+            "image": "shopify://shop_images/Wedding_MTM.webp",
             "image_link": "",
             "top_text": "",
             "bottom_text": "",
