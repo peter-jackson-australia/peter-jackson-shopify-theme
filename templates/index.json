@@ -42,7 +42,6 @@
         },
         "slide_P9nnNj": {
           "type": "slide",
-          "disabled": true,
           "settings": {
             "media_type": "image",
             "desktop_image": "shopify://shop_images/RR_12.webp",
@@ -55,9 +54,9 @@
             "heading_animation": "none",
             "description": "Business tailoring with modern edge.",
             "description_animation": "none",
-            "button_label_1": "Two Suits for $895*",
+            "button_label_1": "Two Suits for {{ metaobjects.money_reference[\"895\"].price | metafield_text }}*",
             "button_link_1": "shopify://collections/mens-suits",
-            "button_label_2": "$250 Off Suits*",
+            "button_label_2": "{{ metaobjects.money_reference[\"250\"].price | metafield_text }} Off Suits*",
             "button_link_2": "shopify://collections/mens-suits",
             "button_label_3": "",
             "button_link_3": "",
@@ -68,41 +67,11 @@
             "mobile_horizontal_alignment": "center",
             "mobile_vertical_alignment": "bottom"
           }
-        },
-        "slide_ddW7HK": {
-          "type": "slide",
-          "disabled": true,
-          "settings": {
-            "media_type": "image",
-            "desktop_image": "shopify://shop_images/Suits_Hero.webp",
-            "mobile_image": "shopify://shop_images/Suits_Hero_Mob_1afba34e-6c4f-485c-bd07-7b428b72aad3.webp",
-            "heading": "Spring Sale",
-            "svg_image": "shopify://shop_images/Sport_Of_It_Desktop_V2.svg",
-            "svg_size": "full",
-            "mobile_svg_image": "shopify://shop_images/S25_Homepage_Suits_Mobile.svg",
-            "heading_level": "h1",
-            "heading_animation": "none",
-            "description": "",
-            "description_animation": "none",
-            "button_label_1": "{{ metaobjects.money_reference[\"200\"].price | metafield_text }} Off All Suits",
-            "button_link_1": "shopify://collections/mens-suits",
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_label_3": "",
-            "button_link_3": "",
-            "button_label_4": "",
-            "button_link_4": "",
-            "horizontal_alignment": "center",
-            "vertical_alignment": "stretch",
-            "mobile_horizontal_alignment": "center",
-            "mobile_vertical_alignment": "bottom"
-          }
         }
       },
       "block_order": [
         "slide_JGebxX",
-        "slide_P9nnNj",
-        "slide_ddW7HK"
+        "slide_P9nnNj"
       ],
       "name": "Hero Slider",
       "settings": {
@@ -195,7 +164,7 @@
           "settings": {
             "tile_background_image": "shopify://shop_images/Polos_0d8886a8-723a-4c47-bab4-dfa0ff51a9fd.webp",
             "tile_header": "POLOS",
-            "tile_secondary_text": "from $79.95",
+            "tile_secondary_text": "from {{ metaobjects.money_reference[\"79-95\"].price | metafield_text }}",
             "tile_link": "shopify://collections/polos-and-tees"
           }
         },
@@ -204,7 +173,7 @@
           "settings": {
             "tile_background_image": "shopify://shop_images/Spring_Suits_CF.webp",
             "tile_header": "BUSINESS SHIRTS",
-            "tile_secondary_text": "$50 Off*",
+            "tile_secondary_text": "{{ metaobjects.money_reference[\"50\"].price | metafield_text }} Off*",
             "tile_link": "shopify://collections/business-shirts"
           }
         },
@@ -213,7 +182,7 @@
           "settings": {
             "tile_background_image": "shopify://shop_images/Casual_Shirts.webp",
             "tile_header": "CASUAL SHIRTS",
-            "tile_secondary_text": "from $69.95",
+            "tile_secondary_text": "from {{ metaobjects.money_reference[\"59-95\"].price | metafield_text }}",
             "tile_link": "shopify://collections/casual-shirts"
           }
         }
@@ -261,7 +230,7 @@
         "heading_animation": "none",
         "description": "",
         "description_animation": "none",
-        "button_label_1": "Click Frenzy - $150 Off*",
+        "button_label_1": "Click Frenzy - {{ metaobjects.money_reference[\"150\"].price | metafield_text }} Off*",
         "button_link_1": "shopify://collections/sport-jackets",
         "button_label_2": "",
         "button_link_2": "",
@@ -279,7 +248,7 @@
       "type": "collection-slider-secondary",
       "name": "Collection Slider Secondary",
       "settings": {
-        "heading": "$50 Off Leather Footwear",
+        "heading": "{{ metaobjects.money_reference[\"50\"].price | metafield_text }} Off Leather Footwear",
         "heading_animation": "none",
         "description": "",
         "description_animation": "none",
