@@ -581,6 +581,41 @@
         "heading": "FROM THE JACKSON JOURNAL",
         "heading_alignment": "center"
       }
+    },
+    "variable_column_content_svg_tBLLXD": {
+      "type": "variable-column-content-svg",
+      "blocks": {
+        "column_item_6wGj7R": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Wedding_Moments_Of_Distinction.webp",
+            "image_link": "",
+            "top_text": "FOR THE CELEBRATION. FOR THE FOREVER",
+            "bottom_text": "Your Wedding Style Guide",
+            "content_alignment": "center"
+          }
+        },
+        "column_item_3WzPyc": {
+          "type": "column_item",
+          "settings": {
+            "image_link": "",
+            "top_text": "",
+            "bottom_text": "",
+            "content_alignment": "center"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_6wGj7R",
+        "column_item_3WzPyc"
+      ],
+      "name": "Variable Column Content SVG",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "2"
+      }
     }
   },
   "order": [
@@ -597,6 +632,7 @@
     "variable_column_content_secondary_eRLfeJ",
     "hero_primary_zeaCqL",
     "collection_slider_XmLf6t",
-    "featured_article_r6pY9T"
+    "featured_article_r6pY9T",
+    "variable_column_content_svg_tBLLXD"
   ]
 }
