@@ -14,7 +14,9 @@
   },
   "sections": {
     "hero_slider_ULyNnz": {
-      "settings": {},
+      "settings": {
+        "slide_interval": 25
+      },
       "blocks": {
         "slide_ddW7HK": {
           "settings": {
