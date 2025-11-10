@@ -53,42 +53,48 @@
                 {% endif %}
           
                 <div class="variable-column-content-svg__content variable-column-content-svg__content--{{ block_content_alignment }} variable-column-content-svg__content--mobile-{{ block_mobile_alignment }}">
-                  {% if block_top_text != blank %}
-                    <div class="variable-column-content-svg__top-text body">
-                      {{ block_top_text }}
-                    </div>
-                  {% endif %}
+                  <div class="variable-column-content-svg__top">
+                    {% if block_top_text != blank %}
+                      <div class="variable-column-content-svg__top-text body">
+                        {{ block_top_text }}
+                      </div>
+                    {% endif %}
+                  </div>
           
-                  {% if block_svg_icon != blank %}
-                    {{
-                      block_svg_icon
-                      | image_url: width: block_svg_icon.wdith
-                      | image_tag:
-                        class: 'variable-column-content-svg__icon variable-column-content-svg__icon--desktop',
-                        loading: 'lazy',
-                        decoding: 'async',
-                        alt: block_svg_icon.alt
-                    }}
-                  {% endif %}
+                  <div class="variable-column-content-svg__middle">
+                    {% if block_svg_icon != blank %}
+                      {{
+                        block_svg_icon
+                        | image_url: width: block_svg_icon.wdith
+                        | image_tag:
+                          class: 'variable-column-content-svg__icon variable-column-content-svg__icon--desktop',
+                          loading: 'lazy',
+                          decoding: 'async',
+                          alt: block_svg_icon.alt
+                      }}
+                    {% endif %}
 
-                  {% if block_mobile_svg_icon != blank %}
-                    {{
-                      block_mobile_svg_icon
-                      | image_url: width: block_mobile_svg_icon.wdith
-                      | image_tag:
-                        class: 'variable-column-content-svg__icon variable-column-content-svg__icon--mobile',
-                        loading: 'lazy',
-                        decoding: 'async',
-                        alt: block_mobile_svg_icon.alt
-                    }}
-                  {% endif %}
+                    {% if block_mobile_svg_icon != blank %}
+                      {{
+                        block_mobile_svg_icon
+                        | image_url: width: block_mobile_svg_icon.wdith
+                        | image_tag:
+                          class: 'variable-column-content-svg__icon variable-column-content-svg__icon--mobile',
+                          loading: 'lazy',
+                          decoding: 'async',
+                          alt: block_mobile_svg_icon.alt
+                      }}
+                    {% endif %}
+                  </div>
           
-                  {% if block_bottom_text != blank %}
-                    <div class="variable-column-content-svg__bottom-text body">
-                      {{ block_bottom_text }}
-                      <span>{% render '_icon-arrow-submit-light' %}</span>
-                    </div>
-                  {% endif %}
+                  <div class="variable-column-content-svg__bottom">
+                    {% if block_bottom_text != blank %}
+                      <div class="variable-column-content-svg__bottom-text body">
+                        {{ block_bottom_text }}
+                        <span>{% render '_icon-arrow-submit-light' %}</span>
+                      </div>
+                    {% endif %}
+                  </div>
                 </div>
               
               {% if block_image_link != blank %}

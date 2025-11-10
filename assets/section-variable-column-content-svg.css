@@ -37,6 +37,22 @@
   width: 100%;
 }
 
+.variable-column-content-svg__top {
+  display: flex;
+  flex-direction: column;
+}
+
+.variable-column-content-svg__middle {
+  display: flex;
+  flex-direction: column;
+  align-items: inherit;
+}
+
+.variable-column-content-svg__bottom {
+  display: flex;
+  flex-direction: column;
+}
+
 .variable-column-content-svg__content--left {
   align-items: flex-start;
   text-align: left;
