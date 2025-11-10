@@ -41,6 +41,7 @@
         {% assign current_product_data = all_products[current_product_handle] %}
         {% if current_product_data.id != blank %}
           {% assign has_product = true %}
+          {% assign product_data = current_product_data %}
         {% endif %}
       {% endif %}
 
