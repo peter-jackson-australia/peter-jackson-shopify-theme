@@ -25,7 +25,7 @@
           "type": "announcement",
           "disabled": false,
           "settings": {
-            "text": "<a href=\"/collections/mens-suits\" title=\"Suits\">Up to $200 Off Spring Suits</a>",
+            "text": "<a href=\"/collections/mens-suits\" title=\"Suits\">$250 Off Suits*</a>",
             "alignment": "center"
           }
         }
