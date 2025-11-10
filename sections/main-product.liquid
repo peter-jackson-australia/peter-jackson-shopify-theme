@@ -34,7 +34,7 @@
   var product_image_height = {{ product.images[0].height }};
   var product_image_width = {{ product.images[0].width }};
   var product_has_only_default_variant = {{ product.has_only_default_variant | json }};
-  var product_is_gift_card = {{ product.gift_card? | json }};
+  var product_is_gift_card = {% if product.title == "Digital Gift Card" %}true{% else %}false{% endif %};
 </script>
 
 <div class="buyable-product-wrapper"
