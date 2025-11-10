@@ -15,12 +15,33 @@
   "sections": {
     "hero_slider_ULyNnz": {
       "settings": {},
-      "blocks": {},
+      "blocks": {
+        "slide_ddW7HK": {
+          "settings": {
+            "button_label_1": "Two Suits for $895*"
+          }
+        }
+      },
       "block_order": [
         "slide_ddW7HK",
         "slide_P9nnNj",
         "slide_JGebxX"
       ]
+    },
+    "grid_tiles_r7ifEt": {
+      "settings": {},
+      "blocks": {
+        "tile_bRm4wE": {
+          "settings": {
+            "tile_secondary_text": "from $79.95"
+          }
+        },
+        "tile_WhJarW": {
+          "settings": {
+            "tile_secondary_text": "from $459"
+          }
+        }
+      }
     }
   }
 }
