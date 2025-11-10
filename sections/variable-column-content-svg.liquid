@@ -28,8 +28,10 @@
         {% assign block_image_link = block.settings.image_link %}
         {% assign block_top_text = block.settings.top_text %}
         {% assign block_svg_icon = block.settings.svg_icon %}
+        {% assign block_mobile_svg_icon = block.settings.mobile_svg_icon %}
         {% assign block_bottom_text = block.settings.bottom_text %}
         {% assign block_content_alignment = block.settings.content_alignment %}
+        {% assign block_mobile_alignment = block.settings.mobile_alignment %}
 
         {% if block.type == 'column_item' %}
             <div class="variable-column-content-svg__column" {{ block.shopify_attributes }}>
@@ -50,7 +52,7 @@
                   }}
                 {% endif %}
           
-                <div class="variable-column-content-svg__content variable-column-content-svg__content--{{ block_content_alignment }}">
+                <div class="variable-column-content-svg__content variable-column-content-svg__content--{{ block_content_alignment }} variable-column-content-svg__content--mobile-{{ block_mobile_alignment }}">
                   {% if block_top_text != blank %}
                     <div class="variable-column-content-svg__top-text body">
                       {{ block_top_text }}
@@ -62,10 +64,22 @@
                       block_svg_icon
                       | image_url: width: block_svg_icon.wdith
                       | image_tag:
-                        class: 'variable-column-content-svg__icon',
+                        class: 'variable-column-content-svg__icon variable-column-content-svg__icon--desktop',
                         loading: 'lazy',
                         decoding: 'async',
                         alt: block_svg_icon.alt
+                    }}
+                  {% endif %}
+
+                  {% if block_mobile_svg_icon != blank %}
+                    {{
+                      block_mobile_svg_icon
+                      | image_url: width: block_mobile_svg_icon.wdith
+                      | image_tag:
+                        class: 'variable-column-content-svg__icon variable-column-content-svg__icon--mobile',
+                        loading: 'lazy',
+                        decoding: 'async',
+                        alt: block_mobile_svg_icon.alt
                     }}
                   {% endif %}
           
@@ -160,6 +174,11 @@
           "label": "SVG Icon"
         },
         {
+          "type": "image_picker",
+          "id": "mobile_svg_icon",
+          "label": "Mobile SVG Icon"
+        },
+        {
           "type": "text",
           "id": "bottom_text",
           "label": "Bottom Text"
@@ -183,6 +202,26 @@
             }
           ],
           "default": "center"
+        },
+        {
+          "type": "select",
+          "id": "mobile_alignment",
+          "label": "Mobile Content Alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "left"
         }
       ]
     }
