@@ -480,56 +480,6 @@
         "button_link": ""
       }
     },
-    "variable_column_content_secondary_eRLfeJ": {
-      "type": "variable-column-content-secondary",
-      "blocks": {
-        "column_item_gtWXVr": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/Wedding_Test.webp",
-            "image_link": "",
-            "heading": "",
-            "heading_animation": "none",
-            "text": "",
-            "text_animation": "none",
-            "column_link": "",
-            "column_link_text": "Shop Now"
-          }
-        },
-        "column_item_Q6TGXb": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/MTM_Test.webp",
-            "image_link": "",
-            "heading": "",
-            "heading_animation": "none",
-            "text": "",
-            "text_animation": "none",
-            "column_link": "",
-            "column_link_text": "Shop Now"
-          }
-        }
-      },
-      "block_order": [
-        "column_item_gtWXVr",
-        "column_item_Q6TGXb"
-      ],
-      "name": "Variable Column Content Secondary",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": false,
-        "column_count": "2",
-        "text_alignment": "left",
-        "animate_columns": false,
-        "heading": "",
-        "heading_animation": "none",
-        "text": "",
-        "text_animation": "none",
-        "button_label": "Learn More",
-        "button_link": ""
-      }
-    },
     "hero_primary_zeaCqL": {
       "type": "hero-primary",
       "name": "Hero Section",
@@ -631,14 +581,13 @@
     "heading_with_text_9nQj7z",
     "hero_primary_NeKfMz",
     "collection_slider_secondary_r6XR7q",
+    "variable_column_content_svg_tBLLXD",
     "variable_column_content_tertiary_XwmChF",
     "hero_primary_WLbcQ7",
     "collection_slider_3p3hD9",
     "variable_column_content_tertiary_qfTkVT",
-    "variable_column_content_secondary_eRLfeJ",
     "hero_primary_zeaCqL",
     "collection_slider_XmLf6t",
-    "featured_article_r6pY9T",
-    "variable_column_content_svg_tBLLXD"
+    "featured_article_r6pY9T"
   ]
 }
