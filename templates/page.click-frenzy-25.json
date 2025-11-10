@@ -589,7 +589,7 @@
           "type": "column_item",
           "settings": {
             "image": "shopify://shop_images/Wedding_Moments_Of_Distinction.webp",
-            "image_link": "",
+            "image_link": "shopify://blogs/the-jackson-journal/moments-of-distinction-the-wedding-edit",
             "top_text": "",
             "svg_icon": "shopify://shop_images/MOD_Desk_dbd44949-88f5-40d6-8c69-45209c0b2f6b.svg",
             "mobile_svg_icon": "shopify://shop_images/MOD_Mobile.svg",
@@ -602,9 +602,10 @@
           "type": "column_item",
           "settings": {
             "image": "shopify://shop_images/Wedding_MTM.webp",
-            "image_link": "",
+            "image_link": "shopify://pages/made-to-measure",
             "top_text": "",
-            "bottom_text": "",
+            "svg_icon": "shopify://shop_images/TPF_Desk.svg",
+            "bottom_text": "Book Your Appointment",
             "content_alignment": "center",
             "mobile_alignment": "left"
           }
