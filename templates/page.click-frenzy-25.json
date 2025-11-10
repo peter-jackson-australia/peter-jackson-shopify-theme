@@ -45,7 +45,7 @@
           "settings": {
             "media_type": "image",
             "desktop_image": "shopify://shop_images/RR_12.webp",
-            "mobile_image": "shopify://shop_images/RR_13.webp",
+            "mobile_image": "shopify://shop_images/Suits_Hero_Mob_a34b025f-ef68-4b19-9628-7b8fad8cffcf.webp",
             "heading": "Business & Casual Suits",
             "svg_image": "shopify://shop_images/Refined_Redefined.svg",
             "svg_size": "small",
@@ -261,7 +261,7 @@
         "description": "",
         "description_animation": "none",
         "button_label_1": "Click Frenzy - $150 Off*",
-        "button_link_1": "shopify://collections/mens-suits",
+        "button_link_1": "shopify://collections/sport-jackets",
         "button_label_2": "",
         "button_link_2": "",
         "button_label_3": "",
@@ -286,6 +286,48 @@
         "button_label": "Shop Footwear",
         "products_to_show": 12,
         "animate_products": false
+      }
+    },
+    "variable_column_content_svg_tBLLXD": {
+      "type": "variable-column-content-svg",
+      "blocks": {
+        "column_item_6wGj7R": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Wedding_Moments_Of_Distinction.webp",
+            "image_link": "shopify://blogs/the-jackson-journal/moments-of-distinction-the-wedding-edit",
+            "top_text": "",
+            "svg_icon": "shopify://shop_images/MOD_Desk_dbd44949-88f5-40d6-8c69-45209c0b2f6b.svg",
+            "mobile_svg_icon": "shopify://shop_images/MOD_Mobile.svg",
+            "bottom_text": "Your Wedding Style Guide",
+            "content_alignment": "center",
+            "mobile_alignment": "center"
+          }
+        },
+        "column_item_3WzPyc": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Wedding_MTM.webp",
+            "image_link": "shopify://pages/made-to-measure",
+            "top_text": "",
+            "svg_icon": "shopify://shop_images/TPF_Desk_V2.svg",
+            "mobile_svg_icon": "shopify://shop_images/TPF_Mob_V3.svg",
+            "bottom_text": "Book Your Appointment",
+            "content_alignment": "center",
+            "mobile_alignment": "center"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_6wGj7R",
+        "column_item_3WzPyc"
+      ],
+      "name": "Variable Column Content SVG",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "2"
       }
     },
     "variable_column_content_tertiary_XwmChF": {
@@ -480,70 +522,20 @@
         "button_link": ""
       }
     },
-    "variable_column_content_secondary_eRLfeJ": {
-      "type": "variable-column-content-secondary",
-      "blocks": {
-        "column_item_gtWXVr": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/Wedding_Test.webp",
-            "image_link": "",
-            "heading": "",
-            "heading_animation": "none",
-            "text": "",
-            "text_animation": "none",
-            "column_link": "",
-            "column_link_text": "Shop Now"
-          }
-        },
-        "column_item_Q6TGXb": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/MTM_Test.webp",
-            "image_link": "",
-            "heading": "",
-            "heading_animation": "none",
-            "text": "",
-            "text_animation": "none",
-            "column_link": "",
-            "column_link_text": "Shop Now"
-          }
-        }
-      },
-      "block_order": [
-        "column_item_gtWXVr",
-        "column_item_Q6TGXb"
-      ],
-      "name": "Variable Column Content Secondary",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": false,
-        "column_count": "2",
-        "text_alignment": "left",
-        "animate_columns": false,
-        "heading": "",
-        "heading_animation": "none",
-        "text": "",
-        "text_animation": "none",
-        "button_label": "Learn More",
-        "button_link": ""
-      }
-    },
     "hero_primary_zeaCqL": {
       "type": "hero-primary",
       "name": "Hero Section",
       "settings": {
         "media_type": "image",
-        "desktop_image": "shopify://shop_images/After_Dark.webp",
-        "mobile_image": "shopify://shop_images/Night_Code.webp",
+        "desktop_image": "shopify://shop_images/The_Night_Code_Desk_V2.webp",
+        "mobile_image": "shopify://shop_images/The_Night_Code_Mob_V2.webp",
         "heading": "",
         "svg_image": "shopify://shop_images/Night_Code.svg",
         "svg_size": "full",
         "mobile_svg_image": "shopify://shop_images/Night_Code_Mobile.svg",
         "heading_level": "h1",
         "heading_animation": "none",
-        "description": "Timeless, refined, and always in style. Black remains the benchmark of occasion dressing.",
+        "description": "Timeless, refined, and always in style. <br>Black remains the benchmark of occasion dressing.",
         "description_animation": "none",
         "button_label_1": "Shop Formal & Eventwear",
         "button_link_1": "shopify://collections/the-night-code",
@@ -581,45 +573,6 @@
         "heading": "FROM THE JACKSON JOURNAL",
         "heading_alignment": "center"
       }
-    },
-    "variable_column_content_svg_tBLLXD": {
-      "type": "variable-column-content-svg",
-      "blocks": {
-        "column_item_6wGj7R": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/Wedding_Moments_Of_Distinction.webp",
-            "image_link": "",
-            "top_text": "",
-            "svg_icon": "shopify://shop_images/MOD_HP.svg",
-            "mobile_svg_icon": "shopify://shop_images/MOD_HP_91b83c97-8504-447b-aab1-58b3896ba897.svg",
-            "bottom_text": "Your Wedding Style Guide",
-            "content_alignment": "center",
-            "mobile_alignment": "center"
-          }
-        },
-        "column_item_3WzPyc": {
-          "type": "column_item",
-          "settings": {
-            "image_link": "",
-            "top_text": "",
-            "bottom_text": "",
-            "content_alignment": "center",
-            "mobile_alignment": "left"
-          }
-        }
-      },
-      "block_order": [
-        "column_item_6wGj7R",
-        "column_item_3WzPyc"
-      ],
-      "name": "Variable Column Content SVG",
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": false,
-        "column_count": "2"
-      }
     }
   },
   "order": [
@@ -629,14 +582,13 @@
     "heading_with_text_9nQj7z",
     "hero_primary_NeKfMz",
     "collection_slider_secondary_r6XR7q",
+    "variable_column_content_svg_tBLLXD",
     "variable_column_content_tertiary_XwmChF",
     "hero_primary_WLbcQ7",
     "collection_slider_3p3hD9",
     "variable_column_content_tertiary_qfTkVT",
-    "variable_column_content_secondary_eRLfeJ",
     "hero_primary_zeaCqL",
     "collection_slider_XmLf6t",
-    "featured_article_r6pY9T",
-    "variable_column_content_svg_tBLLXD"
+    "featured_article_r6pY9T"
   ]
 }

@@ -70,6 +70,7 @@
         },
         "slide_JGebxX": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "media_type": "image",
             "desktop_image": "shopify://shop_images/Winning_Form.webp",
