@@ -40,8 +40,25 @@
           "settings": {
             "tile_secondary_text": "from $459"
           }
+        },
+        "tile_dThQxe": {
+          "settings": {
+            "tile_secondary_text": "New Season from $359"
+          }
         }
       }
+    },
+    "hero_primary_NeKfMz": {
+      "settings": {
+        "button_label_1": "Two Suits for $895"
+      },
+      "blocks": {}
+    },
+    "collection_slider_XmLf6t": {
+      "settings": {
+        "button_label": "Three for $259"
+      },
+      "blocks": {}
     }
   }
 }
