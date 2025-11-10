@@ -28,11 +28,20 @@
             "text": "<a href=\"/collections/mens-suits\" title=\"Suits\">$250 Off Suits*</a>",
             "alignment": "center"
           }
+        },
+        "announcement_98Ur7": {
+          "type": "announcement",
+          "disabled": false,
+          "settings": {
+            "text": "<a href=\"/collections/sport-jackets\" title=\"Sports Jackets\">$150 Off Sports Jackets*</a>",
+            "alignment": "center"
+          }
         }
       },
       "block_order": [
         "announcement_tnUYFL",
-        "announcement_ny4ip"
+        "announcement_ny4ip",
+        "announcement_98Ur7"
       ]
     }
   }
