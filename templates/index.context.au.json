@@ -20,7 +20,8 @@
       "blocks": {
         "slide_JGebxX": {
           "settings": {
-            "svg_image": "shopify://shop_images/Click_Frenzy_Desktop_d2428fda-2acf-49e3-95bb-16efecea357b.svg"
+            "svg_image": "shopify://shop_images/Click_Frenzy_Desktop_d2428fda-2acf-49e3-95bb-16efecea357b.svg",
+            "mobile_svg_image": "shopify://shop_images/Click_Frenzy_Mobile_V2.svg"
           }
         },
         "slide_P9nnNj": {
