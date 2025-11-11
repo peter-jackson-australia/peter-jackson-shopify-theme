@@ -2,25 +2,17 @@
 
 {{ 'section-contact-form.css' | asset_url | stylesheet_tag }}
 
-{% assign image = section.settings.image %}
-{% assign heading = section.settings.heading %}
-{% assign description = section.settings.description %}
-{% assign fields = section.blocks %}
-{% assign rows = section.settings.rows %}
-{% assign button_label = section.settings.button_label %}
-
 <div class="contact-form">
-  {% if image %}
-    {% assign image_alt = image.alt %}
+  {% if section.settings.image %}
     <div class="contact-form__image-container">
-      {{ image | image_url: width: 1000 | image_tag: alt: image_alt, class: 'contact-form__image' }}
+      {{ section.settings.image | image_url: width: 1000 | image_tag: alt: section.settings.image.alt, class: 'contact-form__image' }}
     </div>
   {% endif %}
 
-  <div class="contact-form__form-container {% unless image %}contact-form__form-container--full-width{% endunless %}">
+  <div class="contact-form__form-container {% unless section.settings.image %}contact-form__form-container--full-width{% endunless %}">
     <div class="contact-form__content">
-      {% if heading %}
-        <h1 class="contact-form__heading heading--3xl">{{ heading }}</h1>
+      {% if section.settings.heading %}
+        <h1 class="contact-form__heading heading--3xl">{{ section.settings.heading }}</h1>
       {% endif %}
 
       <div class="contact-form__contact-info">
@@ -42,41 +34,32 @@
         </div>
       </div>
 
-      {% if description %}
-        <div class="contact-form__description body">{{ description }}</div>
+      {% if section.settings.description %}
+        <div class="contact-form__description body">{{ section.settings.description }}</div>
       {% endif %}
 
       {% form 'contact', class: 'contact-form__form' %}
-        {%- for field in fields -%}
-          {% assign field_type = field.type %}
-          {% assign field_name = field.settings.name %}
-          {% assign field_id = field_name | handleize | prepend: 'contact_' %}
-          {% assign field_title = field.settings.title %}
-          {% assign is_required = field.settings.required %}
-          {% assign field_placeholder = field.settings.placeholder %}
-          {% assign field_value_maxlength = field.settings.maxlength %}
-          {% assign field_text = field.settings.text %}
-
-          {%- case field_type -%}
+        {%- for field in section.blocks -%}
+          {%- case field.type -%}
             {%- when 'text' -%}
               <div class="contact-form__input-group">
                 <label
-                  for="{{ field_id }}"
+                  for="{{ field.settings.name | handleize | prepend: 'contact_' }}"
                   class="contact-form__label body"
                 >
-                  {{ field_title -}}
-                  {%- if is_required == true %} *{% endif %}
+                  {{ field.settings.title -}}
+                  {%- if field.settings.required == true %} *{% endif %}
                 </label>
                 <input
                   type="text"
-                  id="{{ field_id }}"
-                  name="contact[{{- field_name -}}]"
+                  id="{{ field.settings.name | handleize | prepend: 'contact_' }}"
+                  name="contact[{{- field.settings.name -}}]"
                   class="contact-form__input"
-                  placeholder="{{ field_placeholder }}"
-                  {% unless field_value_maxlength == blank %}
-                    maxlength="{{ field_value_maxlength }}"
+                  placeholder="{{ field.settings.placeholder }}"
+                  {% unless field.settings.maxlength == blank %}
+                    maxlength="{{ field.settings.maxlength }}"
                   {% endunless %}
-                  {% if is_required == true %}
+                  {% if field.settings.required == true %}
                     required
                   {% endif %}
                 >
@@ -85,22 +68,22 @@
             {%- when 'textarea' -%}
               <div class="contact-form__input-group">
                 <label
-                  for="{{ field_id }}"
+                  for="{{ field.settings.name | handleize | prepend: 'contact_' }}"
                   class="contact-form__label body"
                 >
-                  {{ field_title -}}
-                  {%- if is_required == true %} *{% endif %}
+                  {{ field.settings.title -}}
+                  {%- if field.settings.required == true %} *{% endif %}
                 </label>
                 <textarea
-                  name="contact[{{- field_name -}}]"
-                  id="{{ field_id }}"
+                  name="contact[{{- field.settings.name -}}]"
+                  id="{{ field.settings.name | handleize | prepend: 'contact_' }}"
                   class="contact-form__textarea"
-                  placeholder="{{ field_placeholder }}"
-                  {% unless field_value_maxlength == blank %}
-                    maxlength="{{ field_value_maxlength }}"
+                  placeholder="{{ field.settings.placeholder }}"
+                  {% unless field.settings.maxlength == blank %}
+                    maxlength="{{ field.settings.maxlength }}"
                   {% endunless %}
-                  rows="{{ rows | default: 5 }}"
-                  {% if is_required == true %}
+                  rows="{{ section.settings.rows | default: 5 }}"
+                  {% if field.settings.required == true %}
                     required
                   {% endif -%}
                 ></textarea>
@@ -109,19 +92,19 @@
             {%- when 'email' -%}
               <div class="contact-form__input-group">
                 <label
-                  for="{{ field_id }}"
+                  for="{{ field.settings.name | handleize | prepend: 'contact_' }}"
                   class="contact-form__label body"
                 >
-                  {{ field_title }} *
+                  {{ field.settings.title }} *
                 </label>
                 <input
                   type="email"
-                  id="{{ field_id }}"
+                  id="{{ field.settings.name | handleize | prepend: 'contact_' }}"
                   name="contact[email]"
                   class="contact-form__input"
-                  placeholder="{{ field_placeholder }}"
-                  {% unless field_value_maxlength == blank %}
-                    maxlength="{{ field_value_maxlength }}"
+                  placeholder="{{ field.settings.placeholder }}"
+                  {% unless field.settings.maxlength == blank %}
+                    maxlength="{{ field.settings.maxlength }}"
                   {% endunless %}
                   required
                 >
@@ -129,26 +112,26 @@
 
             {%- when 'paragraph' -%}
               <div class="body">
-                {{ field_text }}
+                {{ field.settings.text }}
               </div>
 
             {%- when 'checkbox' -%}
               <div class="contact-form__input-group">
                 <label
                   class="contact-form__checkbox-label body"
-                  for="{{ field_id }}"
+                  for="{{ field.settings.name | handleize | prepend: 'contact_' }}"
                 >
                   <input
                     type="checkbox"
-                    id="{{ field_id }}"
-                    name="contact[{{- field_name -}}]"
+                    id="{{ field.settings.name | handleize | prepend: 'contact_' }}"
+                    name="contact[{{- field.settings.name -}}]"
                     class="contact-form__checkbox"
-                    {% if is_required == true %}
+                    {% if field.settings.required == true %}
                       required
                     {% endif %}
                   >
-                  {{ field_title -}}
-                  {%- if is_required == true %} *{% endif %}
+                  {{ field.settings.title -}}
+                  {%- if field.settings.required == true %} *{% endif %}
                 </label>
               </div>
           {%- endcase -%}
@@ -156,7 +139,7 @@
 
         <div class="contact-form__input-group">
           <button type="submit" class="contact-form__button body">
-            {{ button_label | default: 'Submit' }}
+            {{ section.settings.button_label | default: 'Submit' }}
           </button>
         </div>
         {% if form.posted_successfully? %}
@@ -175,7 +158,6 @@
   src="{{ "section-contact-form.js" | asset_url }}"
   defer
 ></script>
-
 {% schema %}
 {
   "name": "Contact Form",

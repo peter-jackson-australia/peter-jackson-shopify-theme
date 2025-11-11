@@ -1,16 +1,12 @@
 {{ 'section-collections-list.css' | asset_url | stylesheet_tag }}
 
-{%- liquid
-  assign collections_per_page = 16
--%}
-
 <div class="collections-list">
   <div class="collections-list__heading">
     <h1 class="heading--xl">{{ section.settings.heading | default: 'All Collections' }}</h1>
   </div>
 
   <div class="collections-list__grid">
-    {%- paginate collections by collections_per_page -%}
+    {%- paginate collections by 16 -%}
       {%- for collection in collections -%}
         <article class="collections-list__card">
           <a href="{{ collection.url }}" class="collections-list__card-image">

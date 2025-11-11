@@ -1,29 +1,22 @@
 {{ 'section-counter.css' | asset_url | stylesheet_tag }}
 
-{% assign heading = section.settings.heading %}
-{% assign subheading = section.settings.subheading %}
-{% assign section_id = section.id %}
-{% assign show_top_border = section.settings.show_top_border %}
-{% assign show_bottom_border = section.settings.show_bottom_border %}
-{% assign section_block_size = section.blocks | size %}
-
 <div
-  id="counter-{{ section_id }}"
-  style="{% if show_top_border %}border-top: solid 1px var(--neutral-50);{% endif %}{% if show_bottom_border %} border-bottom: solid 1px var(--neutral-600);{% endif %}"
+  id="counter-{{ section.id }}"
+  style="{% if section.settings.show_top_border %}border-top: solid 1px var(--neutral-50);{% endif %}{% if section.settings.show_bottom_border %} border-bottom: solid 1px var(--neutral-600);{% endif %}"
 >
   <div class="counter__header">
-    {% if heading != blank %}
-      <h2 class="heading--2xl">{{ heading }}</h2>
+    {% if section.settings.heading != blank %}
+      <h2 class="heading--2xl">{{ section.settings.heading }}</h2>
     {% endif %}
-    {% if subheading != blank %}
-      <p class="counter__header-subheading">{{ subheading }}</p>
+    {% if section.settings.subheading != blank %}
+      <p class="counter__header-subheading">{{ section.settings.subheading }}</p>
     {% endif %}
   </div>
 
   <div
     class="counter__container"
     style="
-      {% case section_block_size %}
+      {% case section.blocks | size %}
       {% when 1 %}
         grid-template-columns: 1fr;
       {% when 2 %}
@@ -34,25 +27,18 @@
     "
   >
     {% for counter in section.blocks %}
-      {% assign counter_description = counter.settings.counter_description %}
-      {% assign counter_duration = counter.settings.counter_duration %}
-      {% assign counter_initial_value = counter.settings.counter_initial_value %}
-      {% assign counter_final_value = counter.settings.counter_final_value %}
-      {% assign counter_prefix = counter.settings.counter_text_prefix %}
-      {% assign counter_suffix = counter.settings.counter_text_suffix %}
-
       <div class="counter__counters">
-        <p class="heading--xl">{{ counter_description }}</p>
+        <p class="heading--xl">{{ counter.settings.counter_description }}</p>
         <p
           class="countervalue__main-value heading--3xl"
-          id="counter-{{ section_id }}-value-{{ forloop.index }}"
-          data-prefix="{{ counter_prefix }}"
-          data-suffix="{{ counter_suffix }}"
-          data-initial="{{ counter_initial_value }}"
-          data-final="{{ counter_final_value }}"
-          data-duration="{{ counter_duration }}"
+          id="counter-{{ section.id }}-value-{{ forloop.index }}"
+          data-prefix="{{ counter.settings.counter_text_prefix }}"
+          data-suffix="{{ counter.settings.counter_text_suffix }}"
+          data-initial="{{ counter.settings.counter_initial_value }}"
+          data-final="{{ counter.settings.counter_final_value }}"
+          data-duration="{{ counter.settings.counter_duration }}"
         >
-          {{ counter_initial_value }}
+          {{ counter.settings.counter_initial_value }}
         </p>
       </div>
     {% endfor %}
@@ -61,7 +47,7 @@
 
 <script
   src="{{ "section-counter.js" | asset_url }}"
-  data-section-id="{{ section_id }}"
+  data-section-id="{{ section.id }}"
   defer
 ></script>
 
