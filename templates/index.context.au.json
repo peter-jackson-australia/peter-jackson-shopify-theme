@@ -18,16 +18,16 @@
         "slide_interval": 25
       },
       "blocks": {
+        "slide_JGebxX": {
+          "settings": {
+            "svg_image": "shopify://shop_images/Click_Frenzy_Desktop_d2428fda-2acf-49e3-95bb-16efecea357b.svg"
+          }
+        },
         "slide_P9nnNj": {
           "disabled": false,
           "settings": {
             "button_label_1": "Two Suits for $895*",
             "button_label_2": "$250 Off Suits*"
-          }
-        },
-        "slide_JGebxX": {
-          "settings": {
-            "svg_image": "shopify://shop_images/Click_Frenzy_Desktop_7134b18e-a0fc-4751-ad18-52e118704a06.svg"
           }
         }
       },
