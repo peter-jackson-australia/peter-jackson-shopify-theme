@@ -24,8 +24,8 @@
         }
       },
       "block_order": [
-        "slide_P9nnNj",
-        "slide_JGebxX"
+        "slide_JGebxX",
+        "slide_P9nnNj"
       ]
     },
     "grid_tiles_r7ifEt": {
@@ -54,15 +54,15 @@
       },
       "blocks": {}
     },
-    "collection_slider_XmLf6t": {
-      "settings": {
-        "button_label": "Three for $259"
-      },
-      "blocks": {}
-    },
     "collection_slider_secondary_r6XR7q": {
       "settings": {
         "heading": "$50 Off Leather Footwear"
+      },
+      "blocks": {}
+    },
+    "collection_slider_XmLf6t": {
+      "settings": {
+        "button_label": "Three for $259"
       },
       "blocks": {}
     }
