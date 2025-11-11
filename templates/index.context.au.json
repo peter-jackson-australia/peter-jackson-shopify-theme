@@ -15,7 +15,14 @@
   "sections": {
     "hero_slider_ULyNnz": {
       "settings": {},
-      "blocks": {},
+      "blocks": {
+        "slide_P9nnNj": {
+          "settings": {
+            "button_label_1": "Two Suits for $895*",
+            "button_label_2": "$250 Off Suits*"
+          }
+        }
+      },
       "block_order": [
         "slide_P9nnNj",
         "slide_JGebxX"
@@ -33,18 +40,29 @@
           "settings": {
             "tile_secondary_text": "from $459"
           }
+        },
+        "tile_FPGHMd": {
+          "settings": {
+            "tile_secondary_text": "from $59.95"
+          }
         }
       }
     },
     "hero_primary_NeKfMz": {
       "settings": {
-        "button_label_1": "Two Suits for $895"
+        "button_label_1": "Two Suits for $895*"
       },
       "blocks": {}
     },
     "collection_slider_XmLf6t": {
       "settings": {
         "button_label": "Three for $259"
+      },
+      "blocks": {}
+    },
+    "collection_slider_secondary_r6XR7q": {
+      "settings": {
+        "heading": "$50 Off Leather Footwear"
       },
       "blocks": {}
     }
