@@ -4,43 +4,32 @@
 
 {{ 'section-faqs.css' | asset_url | stylesheet_tag }}
 
-{% assign show_top_border = section.settings.show_top_border %}
-{% assign show_bottom_border = section.settings.show_bottom_border %}
-{% assign animate_faqs = section.settings.animate_faqs %}
-{% assign blocks = section.blocks %}
-
 <div
   class="faq-section"
   style="
-    {% if show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
-    {% if show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
+    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
+    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
   "
 >
   <div class="faq-section__container">
-    <div class="faq-items {% if animate_faqs %}animate-container-cards-scroll{% endif %}">
-      {% for block in blocks %}
-        {% assign block_type = block.type %}
-        {% assign heading_text = block.settings.heading %}
-        {% assign anchor_id_raw = block.settings.anchor_id %}
-        {% assign anchor_id_slug = anchor_id_raw | downcase | replace: ' ', '-' %}
-        {% assign question_text = block.settings.question %}
-        {% assign answer_richtext = block.settings.answer %}
-        {% if block_type == 'heading' %}
+    <div class="faq-items {% if section.settings.animate_faqs %}animate-container-cards-scroll{% endif %}">
+      {% for block in section.blocks %}
+        {% if block.type == 'heading' %}
           <h2
             class="faq-section__heading heading--2xl"
-            {% if anchor_id_raw != blank %}
-              id="{{ anchor_id_slug }}-segment"
+            {% if block.settings.anchor_id != blank %}
+              id="{{ block.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
             {% endif %}
           >
-            {{ heading_text }}
+            {{ block.settings.heading }}
           </h2>
-        {% elsif block_type == 'faq_item' %}
+        {% elsif block.type == 'faq_item' %}
           <accordion-element
             class="faq-items__item body--bold"
-            data-title="{{ question_text }}"
+            data-title="{{ block.settings.question }}"
           >
             <div class="body">
-              {{ answer_richtext }}
+              {{ block.settings.answer }}
             </div>
           </accordion-element>
         {% endif %}

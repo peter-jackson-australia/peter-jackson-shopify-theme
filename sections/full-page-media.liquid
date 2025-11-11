@@ -1,50 +1,39 @@
 {{ 'section-full-page-media.css' | asset_url | stylesheet_tag }}
 
-{% assign section_id = section.id %}
-{% assign media_type = section.settings.media_type %}
-{% assign desktop_image = section.settings.desktop_image %}
-{% assign mobile_image = section.settings.mobile_image %}
-{% assign video = section.settings.video %}
-{% assign video_poster = section.settings.video_poster %}
-{% assign link = section.settings.link %}
-{% assign link_text = section.settings.link_text | default: 'Learn more' %}
-{% assign alt_text = section.settings.alt_text | default: 'Full page media' %}
-{% assign alt_text_escaped = alt_text | escape %}
-{% assign video_poster_url = video_poster | image_url %}
-{% assign alt_value = alt_text | default: desktop_image.alt %}
+{% assign video_poster_url = section.settings.video_poster | image_url %}
 
 <div
-  id="full-page-media-{{ section_id }}"
+  id="full-page-media-{{ section.id }}"
   class="full-page-media"
-  aria-label="{{ alt_text_escaped }}"
+  aria-label="{{ section.settings.alt_text | default: 'Full page media' | escape }}"
 >
-  {% if media_type == 'image' %}
-    {% if desktop_image %}
-      {% if link %}
+  {% if section.settings.media_type == 'image' %}
+    {% if section.settings.desktop_image %}
+      {% if section.settings.link %}
         <a
-          href="{{ link }}"
+          href="{{ section.settings.link }}"
           class="full-page-media__link"
-          aria-label="{{ link_text }}"
+          aria-label="{{ section.settings.link_text | default: 'Learn more' }}"
         ></a>
       {% endif %}
 
       <picture>
-        {% if mobile_image %}
+        {% if section.settings.mobile_image %}
           <source
             media="(max-width: 768px)"
             srcset="
-              {{ mobile_image | image_url: width: 400 }} 1x,
-              {{ mobile_image | image_url: width: 800 }} 2x
+              {{ section.settings.mobile_image | image_url: width: 400 }} 1x,
+              {{ section.settings.mobile_image | image_url: width: 800 }} 2x
             "
           >
         {% endif %}
 
         {{
-          desktop_image
+          section.settings.desktop_image
           | image_url: width: 3000
           | image_tag:
             class: 'full-page-media__image',
-            alt: alt_value,
+            alt: section.settings.alt_text | default: section.settings.desktop_image.alt,
             loading: 'lazy',
             decoding: 'async',
             widths: '400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2400, 3000',
@@ -52,17 +41,17 @@
         }}
       </picture>
     {% endif %}
-  {% elsif media_type == 'video' and video %}
-    {% if link %}
+  {% elsif section.settings.media_type == 'video' and section.settings.video %}
+    {% if section.settings.link %}
       <a
-        href="{{ link }}"
+        href="{{ section.settings.link }}"
         class="full-page-media__link"
-        aria-label="{{ link_text }}"
+        aria-label="{{ section.settings.link_text | default: 'Learn more' }}"
       ></a>
     {% endif %}
     <div class="full-page-media__video">
       {{
-        video
+        section.settings.video
         | video_tag:
           autoplay: true,
           loop: true,

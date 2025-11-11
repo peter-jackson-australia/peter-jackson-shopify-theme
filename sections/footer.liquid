@@ -1,37 +1,11 @@
 {{ 'section-footer.css' | asset_url | stylesheet_tag }}
 
-{% assign footer_logo = section.settings.footer_logo %}
-{% assign intro_text = section.settings.intro_text %}
-{% assign store_locator_heading = section.settings.store_locator_heading %}
-{% assign store_locator_placeholder = section.settings.store_locator_placeholder %}
-{% assign store_locator_description = section.settings.store_locator_description %}
-{% assign menu_heading = section.settings.menu_heading %}
-{% assign footer_menu = section.settings.footer_menu %}
-{% assign support_heading = section.settings.support_heading %}
-{% assign footer_support_menu = section.settings.footer_support_menu %}
-{% assign show_partnerships = section.settings.show_partnerships %}
-{% assign partnerships_image = section.settings.partnerships_image %}
-{% assign partnerships_heading = section.settings.partnerships_heading %}
-{% assign partnerships_text = section.settings.partnerships_text %}
-{% assign partnerships_link = section.settings.partnerships_link %}
-{% assign partnerships_link_text = section.settings.partnerships_link_text %}
-{% assign social_icon_1 = section.settings.social_icon_1 %}
-{% assign social_link_1 = section.settings.social_link_1 %}
-{% assign social_icon_2 = section.settings.social_icon_2 %}
-{% assign social_link_2 = section.settings.social_link_2 %}
-{% assign social_icon_3 = section.settings.social_icon_3 %}
-{% assign social_link_3 = section.settings.social_link_3 %}
-{% assign terms_link = section.settings.terms_link %}
-{% assign terms_text = section.settings.terms_text %}
-{% assign privacy_link = section.settings.privacy_link %}
-{% assign privacy_text = section.settings.privacy_text %}
-
 <footer class="footer">
   <div class="footer__section footer__intro">
     <div>
       <div class="footer__brand">
-        {% if footer_logo != blank %}
-          {{ footer_logo | image_url: width: 140 | image_tag: loading: 'lazy', alt: shop.name }}
+        {% if section.settings.footer_logo != blank %}
+          {{ section.settings.footer_logo | image_url: width: 140 | image_tag: loading: 'lazy', alt: shop.name }}
         {% else %}
           <svg
             width="140"
@@ -44,26 +18,26 @@
           </svg>
         {% endif %}
       </div>
-      <p class="footer__description body">{{ intro_text }}</p>
+      <p class="footer__description body">{{ section.settings.intro_text }}</p>
     </div>
 
     <div class="footer__store-locator">
       <h2 class="footer__heading heading--l">
-        {{ store_locator_heading }}
+        {{ section.settings.store_locator_heading }}
       </h2>
       <form class="footer__search-form" action="/pages/stores-in-australia" method="get">
         <input
           type="text"
           name="search"
           class="footer__search-input"
-          placeholder="{{ store_locator_placeholder }}"
+          placeholder="{{ section.settings.store_locator_placeholder }}"
         >
         <button type="submit" class="footer__search-button" aria-label="Search Peter Jackson Stores">
           {% render '_icon-arrow-submit-white' %}
         </button>
       </form>
       <p class="footer__description footer__description--store-locator body">
-        {{ store_locator_description }}
+        {{ section.settings.store_locator_description }}
       </p>
     </div>
   </div>
@@ -71,9 +45,9 @@
   <div class="footer__main">
     <div style="display: flex;">
       <div class="footer__section">
-        <h2 class="footer__heading footer__heading--menu heading--l">{{ menu_heading }}</h2>
+        <h2 class="footer__heading footer__heading--menu heading--l">{{ section.settings.menu_heading }}</h2>
         <ul class="footer__list">
-          {% for link in linklists[footer_menu].links %}
+          {% for link in linklists[section.settings.footer_menu].links %}
             <li>
               <a href="{{ link.url }}" class="footer__link body">{{ link.title }}</a>
             </li>
@@ -83,10 +57,10 @@
 
       <div class="footer__section">
         <h2 class="footer__heading footer__heading--menu heading--l">
-          {{ support_heading }}
+          {{ section.settings.support_heading }}
         </h2>
         <ul class="footer__list">
-          {% for link in linklists[footer_support_menu].links %}
+          {% for link in linklists[section.settings.footer_support_menu].links %}
             <li>
               <a href="{{ link.url }}" class="footer__link body">{{ link.title }}</a>
             </li>
@@ -96,25 +70,25 @@
     </div>
 
     <div class="footer__section">
-      {% if show_partnerships %}
+      {% if section.settings.show_partnerships %}
         <div class="footer__partnerships">
-          {% if partnerships_image != blank %}
+          {% if section.settings.partnerships_image != blank %}
             <div class="footer__logo-box">
-              {{ partnerships_image | image_url: width: 50 | image_tag: loading: 'lazy', alt: partnerships_heading }}
+              {{ section.settings.partnerships_image | image_url: width: 50 | image_tag: loading: 'lazy', alt: section.settings.partnerships_heading }}
             </div>
           {% else %}
             <div class="footer__logo-box"></div>
           {% endif %}
           <div class="footer__info">
             <h2 class="footer__heading footer__heading--partnerships heading--l">
-              {{ partnerships_heading }}
+              {{ section.settings.partnerships_heading }}
             </h2>
             <p class="footer__description body">
-              {{ partnerships_text }}
+              {{ section.settings.partnerships_text }}
             </p>
-            {% if partnerships_link != blank and partnerships_link_text != blank %}
-              <a href="{{ partnerships_link }}" class="footer__link body">
-                {{- partnerships_link_text }}
+            {% if section.settings.partnerships_link != blank and section.settings.partnerships_link_text != blank %}
+              <a href="{{ section.settings.partnerships_link }}" class="footer__link body">
+                {{- section.settings.partnerships_link_text }}
                 <span aria-hidden="true">→</span></a
               >
             {% endif %}
@@ -126,28 +100,28 @@
 
   <div class="footer__bottom">
     <div class="footer__social">
-      {% if social_icon_1 != blank and social_link_1 != blank %}
-        <a href="{{ social_link_1 }}" target="_blank">
+      {% if section.settings.social_icon_1 != blank and section.settings.social_link_1 != blank %}
+        <a href="{{ section.settings.social_link_1 }}" target="_blank">
           {{
-            social_icon_1
+            section.settings.social_icon_1
             | image_url: width: 34
             | image_tag: class: 'footer__social-icon', loading: 'lazy', decoding: 'async'
           }}
         </a>
       {% endif %}
-      {% if social_icon_2 != blank and social_link_2 != blank %}
-        <a href="{{ social_link_2 }}" target="_blank">
+      {% if section.settings.social_icon_2 != blank and section.settings.social_link_2 != blank %}
+        <a href="{{ section.settings.social_link_2 }}" target="_blank">
           {{
-            social_icon_2
+            section.settings.social_icon_2
             | image_url: width: 34
             | image_tag: class: 'footer__social-icon', loading: 'lazy', decoding: 'async'
           }}
         </a>
       {% endif %}
-      {% if social_icon_3 != blank and social_link_3 != blank %}
-        <a href="{{ social_link_3 }}" target="_blank">
+      {% if section.settings.social_icon_3 != blank and section.settings.social_link_3 != blank %}
+        <a href="{{ section.settings.social_link_3 }}" target="_blank">
           {{
-            social_icon_3
+            section.settings.social_icon_3
             | image_url: width: 34
             | image_tag: class: 'footer__social-icon', loading: 'lazy', decoding: 'async'
           }}
@@ -180,19 +154,21 @@
     </div>
 
     <div class="footer__terms">
-      {% if terms_link != blank %}
-        <a href="{{ terms_link }}" class="footer__link body">
-          {{- terms_text -}}
+      {% if section.settings.terms_link != blank %}
+        <a href="{{ section.settings.terms_link }}" class="footer__link body">
+          {{- section.settings.terms_text -}}
         </a>
       {% endif %}
-      {% if privacy_link != blank %}
-        <a href="{{ privacy_link }}" class="footer__link body">
-          {{- privacy_text -}}
+      {% if section.settings.privacy_link != blank %}
+        <a href="{{ section.settings.privacy_link }}" class="footer__link body">
+          {{- section.settings.privacy_text -}}
         </a>
       {% endif %}
     </div>
   </div>
 </footer>
+
+<script src="{{ "section-footer.js" |  asset_url }}" defer></script>
 
 {% schema %}
 {
@@ -376,5 +352,3 @@
   }
 }
 {% endschema %}
-
-<script src="{{ "section-footer.js" |  asset_url }}" defer></script>

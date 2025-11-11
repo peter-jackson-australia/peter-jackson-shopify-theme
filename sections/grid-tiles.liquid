@@ -1,35 +1,24 @@
 {{ 'section-grid-tiles.css' | asset_url | stylesheet_tag }}
 
-{%- liquid
-  assign grid_columns = section.settings.grid_columns
--%}
-
 <section class="grid-tiles section-wrap">
   <div class="container">
-    <div class="grid-tiles__grid" data-columns="{{ grid_columns }}">
+    <div class="grid-tiles__grid" data-columns="{{ section.settings.grid_columns }}">
       {%- for block in section.blocks -%}
-        {%- liquid
-          assign tile_header = block.settings.tile_header
-          assign tile_secondary_text = block.settings.tile_secondary_text
-          assign tile_link = block.settings.tile_link
-          assign tile_background_image = block.settings.tile_background_image
-        -%}
-
-        {%- if tile_link != blank -%}
+        {%- if block.settings.tile_link != blank -%}
           <a
-            href="{{ tile_link }}"
+            href="{{ block.settings.tile_link }}"
             class="grid-tiles__tile"
             {{ block.shopify_attributes }}
-            {% if tile_background_image != blank %}
-              style="background-image: url('{{ tile_background_image | image_url: width: 1440 }}');"
+            {% if block.settings.tile_background_image != blank %}
+              style="background-image: url('{{ block.settings.tile_background_image | image_url: width: 1440 }}');"
             {% endif %}
           >
-            {%- if tile_header != blank -%}
-              <h3 class="grid-tiles__tile-header heading--optispire">{{ tile_header }}</h3>
+            {%- if block.settings.tile_header != blank -%}
+              <h3 class="grid-tiles__tile-header heading--optispire">{{ block.settings.tile_header }}</h3>
             {%- endif -%}
-            {%- if tile_secondary_text != blank -%}
+            {%- if block.settings.tile_secondary_text != blank -%}
               <p class="grid-tiles__tile-text heading--l">
-                {{ tile_secondary_text }}
+                {{ block.settings.tile_secondary_text }}
                 <span>{% render '_icon-arrow-submit-white' %}</span>
               </p>
             {%- endif -%}
@@ -38,16 +27,16 @@
           <div
             class="grid-tiles__tile"
             {{ block.shopify_attributes }}
-            {% if tile_background_image != blank %}
-              style="background-image: url('{{ tile_background_image | image_url: width: 1440 }}');"
+            {% if block.settings.tile_background_image != blank %}
+              style="background-image: url('{{ block.settings.tile_background_image | image_url: width: 1440 }}');"
             {% endif %}
           >
-            {%- if tile_header != blank -%}
-              <h3 class="grid-tiles__tile-header heading--optispire">{{ tile_header }}</h3>
+            {%- if block.settings.tile_header != blank -%}
+              <h3 class="grid-tiles__tile-header heading--optispire">{{ block.settings.tile_header }}</h3>
             {%- endif -%}
-            {%- if tile_secondary_text != blank -%}
+            {%- if block.settings.tile_secondary_text != blank -%}
               <p class="grid-tiles__tile-text heading--l">
-                {{ tile_secondary_text }}
+                {{ block.settings.tile_secondary_text }}
                 <span>{% render '_icon-arrow-submit-white' %}</span>
               </p>
             {%- endif -%}
