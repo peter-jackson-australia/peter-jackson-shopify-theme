@@ -24,6 +24,11 @@
             "button_label_1": "Two Suits for $895*",
             "button_label_2": "$250 Off Suits*"
           }
+        },
+        "slide_JGebxX": {
+          "settings": {
+            "svg_image": "shopify://shop_images/Click_Frenzy_Desktop_7134b18e-a0fc-4751-ad18-52e118704a06.svg"
+          }
         }
       },
       "block_order": [
@@ -57,15 +62,15 @@
       },
       "blocks": {}
     },
-    "collection_slider_XmLf6t": {
-      "settings": {
-        "button_label": "Up to 60% Off Storewide"
-      },
-      "blocks": {}
-    },
     "collection_slider_secondary_r6XR7q": {
       "settings": {
         "heading": "$50 Off Leather Footwear"
+      },
+      "blocks": {}
+    },
+    "collection_slider_XmLf6t": {
+      "settings": {
+        "button_label": "Up to 60% Off Storewide"
       },
       "blocks": {}
     }
