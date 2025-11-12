@@ -4,14 +4,10 @@
 
 {{ 'section-two-column-content.css' | asset_url | stylesheet_tag }}
 
-{% assign anchor_id = section.settings.anchor_id %}
-{% assign blocks = section.blocks %}
-{% assign animate_columns = section.settings.animate_columns %}
-
 <div
   class="two-column-content"
-  {% if anchor_id %}
-    id="{{ anchor_id | downcase | replace: ' ', '-' }}-segment"
+  {% if section.settings.anchor_id %}
+    id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
   {% endif %}
 >
   <div
@@ -21,24 +17,12 @@
       {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
     "
   >
-    {% for block in blocks %}
+    {% for block in section.blocks %}
       {% assign has_product = false %}
       {% assign product_data = null %}
-      {% assign current_shopify_attrs = block.settings.shopify_attributes %}
-      {% assign current_block_img = block.settings.image %}
-      {% assign current_block_mobile_img = block.settings.image_mobile %}
-      {% assign current_heading = block.settings.heading %}
-      {% assign current_heading_animation = block.settings.heading_animation %}
-      {% assign current_description = block.settings.description %}
-      {% assign current_description_animation = block.settings.description_animation %}
-      {% assign current_button_link = block.settings.button_link %}
-      {% assign current_button_label = block.settings.button_label %}
-      {% assign current_button_link = block.settings.button_link %}
-      {% assign current_button_label = block.settings.button_label %}
 
       {% if block.settings.product %}
-        {% assign current_product_handle = block.settings.product %}
-        {% assign current_product_data = all_products[current_product_handle] %}
+        {% assign current_product_data = all_products[block.settings.product] %}
         {% if current_product_data.id != blank %}
           {% assign has_product = true %}
           {% assign product_data = current_product_data %}
@@ -46,19 +30,19 @@
       {% endif %}
 
       <article
-        class="two-column-content__item {% if animate_columns %}animate-container-cards-scroll{% endif %}"
-        {{ current_shopify_attrs }}
+        class="two-column-content__item {% if section.settings.animate_columns %}animate-container-cards-scroll{% endif %}"
+        {{ block.settings.shopify_attributes }}
       >
         <div class="two-column-content__image-container">
-          <a href="{{ current_button_link }}">
-            {% if current_block_img %}
+          <a href="{{ block.settings.button_link }}">
+            {% if block.settings.image %}
               <picture>
-                {% if current_block_mobile_img %}
+                {% if block.settings.image_mobile %}
                   <source
                     media="(max-width: 767px)"
                     srcset="
-                      {{ current_block_mobile_img | image_url: width: 400 }} 1x,
-                      {{ current_block_mobile_img | image_url: width: 800 }} 2x
+                      {{ block.settings.image_mobile | image_url: width: 400 }} 1x,
+                      {{ block.settings.image_mobile | image_url: width: 800 }} 2x
                     "
                   >
                 {% endif %}
@@ -70,19 +54,19 @@
                       class: 'two-column-content__image has-product',
                       loading: 'lazy',
                       decoding: 'async',
-                      alt: current_block_img.alt,
+                      alt: block.settings.image.alt,
                       widths: '400, 500, 600, 700, 800, 1000, 1200',
                       sizes: '(max-width: 768px) 100vw, (max-width: 1040px) 100vw, 50vw'
                   }}
                 {% else %}
                   {{
-                    current_block_img
+                    block.settings.image
                     | image_url: width: 1280
                     | image_tag:
                       class: 'two-column-content__image',
                       loading: 'lazy',
                       decoding: 'async',
-                      alt: current_block_img.alt,
+                      alt: block.settings.image.alt,
                       widths: '400, 500, 600, 700, 800, 1000, 1200',
                       sizes: '(max-width: 768px) 100vw, (max-width: 1040px) 100vw, 50vw'
                   }}
@@ -114,21 +98,21 @@
 
         <div class="two-column-content__content">
           <div class="two-column-content__heading-container">
-            {% if current_heading != blank %}
-              <h2 class="two-column-content__heading heading--l {% if current_heading_animation != 'none' %}{{ current_heading_animation }}{% endif %}">
-                {{ current_heading }}
+            {% if block.settings.heading != blank %}
+              <h2 class="two-column-content__heading heading--l {% if block.settings.heading_animation != 'none' %}{{ block.settings.heading_animation }}{% endif %}">
+                {{ block.settings.heading }}
               </h2>
             {% endif %}
 
-            {% if current_description != blank %}
-              <p class="two-column-content__description body {% if current_description_animation != 'none' %}{{ current_description_animation }}{% endif %}">
-                {{ current_description }}
+            {% if block.settings.description != blank %}
+              <p class="two-column-content__description body {% if block.settings.description_animation != 'none' %}{{ block.settings.description_animation }}{% endif %}">
+                {{ block.settings.description }}
               </p>
             {% endif %}
           </div>
-          {% if current_button_label != blank and current_button_link != blank %}
-            <a href="{{ current_button_link }}" class="two-column-content__link body">
-              {{ current_button_label }}
+          {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+            <a href="{{ block.settings.button_link }}" class="two-column-content__link body">
+              {{ block.settings.button_label }}
               {% render '_icon-arrow-submit-dark' %}
             </a>
           {% endif %}

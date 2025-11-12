@@ -2,13 +2,11 @@
 {{ 'section-store-locator.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'lib-leaflet.min.js' | asset_url }}" defer></script>
 
-{% assign heading = section.settings.heading %}
-{% assign all_locations = metaobjects.locations.values %}
 {% assign locations_json_str = '' %}
 {% assign location_urls_array = '' %}
 
 <div class="store-locator" id="storeLocator">
-  <h1 class="heading--xl" style="padding: 0 var(--space-m);">{{ heading }}</h1>
+  <h1 class="heading--xl" style="padding: 0 var(--space-m);">{{ section.settings.heading }}</h1>
 
   <div class="store-locator__filters">
     <input
@@ -49,10 +47,9 @@
         </div>
       </div>
 
-      {% paginate all_locations by 200 %}
+      {% paginate metaobjects.locations.values by 200 %}
         {% liquid
-          assign all_locations = metaobjects.locations.values
-          assign all_locations_json = all_locations | json
+          assign all_locations_json = metaobjects.locations.values | json
           assign locations_json_str = locations_json_str | append: all_locations_json
         %}
 
@@ -61,30 +58,18 @@
             assign current_location_url = location.location_page.value.url | split: ' '
             assign location_urls_array = location_urls_array | concat: current_location_url
           %}
-          {% assign location_name = location.location_name.value %}
-          {% assign location_handle = location_name | handleize %}
-          {% assign location_street_address = location.street_address.value %}
-          {% assign location_postcode = location.postcode.value %}
-          {% assign location_state = location.location_state.value %}
-          {% assign location_latitude = location.latitude.value %}
-          {% assign location_longitude = location.longitude.value %}
-          {% assign location_page_url = location.location_page.value.url %}
-          {% assign location_opening_hours = location.opening_hours.value %}
-          {% assign location_google_maps_link = location.google_maps_link.value %}
-          {% assign location_email = location.email_address.value %}
-          {% assign location_phone_number = location.phone_number.value %}
-          {% assign location_made_to_measure = location.made_to_measure.value %}
+          {% assign location_handle = location.location_name.value | handleize %}
 
           <div
             class="location-item"
-            data-name="{{ location_name }}"
-            data-address="{{ location_street_address | default: '' }}"
-            data-lat="{{ location_latitude }}"
-            data-lng="{{ location_longitude }}"
-            data-state="{{ location_state }}"
-            data-hours="{{ location_opening_hours }}"
-            data-location-url="{{ location_page_url }}"
-            data-postcode="{{ location_postcode }}"
+            data-name="{{ location.location_name.value }}"
+            data-address="{{ location.street_address.value | default: '' }}"
+            data-lat="{{ location.latitude.value }}"
+            data-lng="{{ location.longitude.value }}"
+            data-state="{{ location.location_state.value }}"
+            data-hours="{{ location.opening_hours.value }}"
+            data-location-url="{{ location.location_page.value.url }}"
+            data-postcode="{{ location.postcode.value }}"
             data-made-to-measure="{{ location.made_to_measure.value }}"
             data-alterations="{{ location.alterations.value }}"
             data-styling-advice="{{ location.styling_advice.value }}"
@@ -94,28 +79,28 @@
             <div class="location-item__header">
               <div class="location-item__status-dot" data-location-status="{{ location_handle }}"></div>
               <div id="popover-{{ location_handle }}" popover class="location-item__status-popover"></div>
-              <h3 class="location-item__title heading--xl">{{ location_name }}</h3>
+              <h3 class="location-item__title heading--xl">{{ location.location_name.value }}</h3>
             </div>
 
             <div class="location-item__address body">
-              <a target="_blank" href="{{ location_google_maps_link }}">{{ location_street_address }}</a>
+              <a target="_blank" href="{{ location.google_maps_link.value }}">{{ location.street_address.value }}</a>
             </div>
 
             <div class="location-item__contact body">
-              <a href="mailto:{{ location_email }}">{{ location_email }}</a> |
-              <a href="tel:{{ location_phone_number }}">{{ location_phone_number }}</a>
+              <a href="mailto:{{ location.email_address.value }}">{{ location.email_address.value }}</a> |
+              <a href="tel:{{ location.phone_number.value }}">{{ location.phone_number.value }}</a>
             </div>
 
             <div class="location-item__hours body">
               <strong>Open Today:</strong>
               <span data-today-hours="{{ location_handle }}">
-                {{- location_opening_hours -}}
+                {{- location.opening_hours.value -}}
               </span>
             </div>
             <div class="location-item__link body">
-              <a href="{{ location_page_url }}">View Store Information</a>
+              <a href="{{ location.location_page.value.url }}">View Store Information</a>
             </div>
-            {% if location_made_to_measure == true %}
+            {% if location.made_to_measure.value == true %}
               <div class="location-item__made-to-measure">
                 <p>
                   <span>{% render '_icon-made-to-measure' %}</span>

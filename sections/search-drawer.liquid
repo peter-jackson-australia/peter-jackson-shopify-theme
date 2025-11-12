@@ -5,15 +5,6 @@
 {% assign popular_searches = popular_searches | append: section.settings.popular_search_4 %}
 {% assign popular_searches_array = popular_searches | split: '|' %}
 
-{% assign faq_1_title = section.settings.faq_1_title %}
-{% assign faq_1_description = section.settings.faq_1_description %}
-{% assign faq_2_title = section.settings.faq_2_title %}
-{% assign faq_2_description = section.settings.faq_2_description %}
-{% assign faq_3_title = section.settings.faq_3_title %}
-{% assign faq_3_description = section.settings.faq_3_description %}
-{% assign faq_4_title = section.settings.faq_4_title %}
-{% assign faq_4_description = section.settings.faq_4_description %}
-
 {% assign has_popular_searches = false %}
 {% for search_term in popular_searches_array %}
   {% unless search_term == blank %}
@@ -124,14 +115,13 @@
         Knowledge Base
       </div>
 
-      {% assign new_arrivals = collections['new-arrivals'] %}
       <div
         id="newArrivals"
         class="search-drawer__new-arrivals search-state-transition"
       >
         <h3 class="predictive-search__title heading--l">New Arrivals</h3>
         <div class="search-drawer__new-arrivals-grid">
-          {% for product in new_arrivals.products limit: 6 %}
+          {% for product in collections['new-arrivals'].products limit: 6 %}
             <a href="{{ product.url }}" class="search-drawer__product-card">
               <div class="search-drawer__product-image-wrapper">
                 {% if product.featured_image != blank %}
@@ -184,42 +174,42 @@
     </header>
     <div class="sub-drawer__content">
       <div class="faq-list">
-        {% if faq_1_title != blank %}
+        {% if section.settings.faq_1_title != blank %}
           <div class="faq-item">
-            <h3 class="faq-item__title body--bold">{{ faq_1_title }}</h3>
+            <h3 class="faq-item__title body--bold">{{ section.settings.faq_1_title }}</h3>
             <p
               class="faq-item__description body"
-              data-full-text="{{ faq_1_description | escape }}"
+              data-full-text="{{ section.settings.faq_1_description | escape }}"
             ></p>
           </div>
         {% endif %}
 
-        {% if faq_2_title != blank %}
+        {% if section.settings.faq_2_title != blank %}
           <div class="faq-item">
-            <h3 class="faq-item__title body--bold">{{ faq_2_title }}</h3>
+            <h3 class="faq-item__title body--bold">{{ section.settings.faq_2_title }}</h3>
             <p
               class="faq-item__description body"
-              data-full-text="{{ faq_2_description | escape }}"
+              data-full-text="{{ section.settings.faq_2_description | escape }}"
             ></p>
           </div>
         {% endif %}
 
-        {% if faq_3_title != blank %}
+        {% if section.settings.faq_3_title != blank %}
           <div class="faq-item">
-            <h3 class="faq-item__title body--bold">{{ faq_3_title }}</h3>
+            <h3 class="faq-item__title body--bold">{{ section.settings.faq_3_title }}</h3>
             <p
               class="faq-item__description body"
-              data-full-text="{{ faq_3_description | escape }}"
+              data-full-text="{{ section.settings.faq_3_description | escape }}"
             ></p>
           </div>
         {% endif %}
 
-        {% if faq_4_title != blank %}
+        {% if section.settings.faq_4_title != blank %}
           <div class="faq-item">
-            <h3 class="faq-item__title body--bold">{{ faq_4_title }}</h3>
+            <h3 class="faq-item__title body--bold">{{ section.settings.faq_4_title }}</h3>
             <p
               class="faq-item__description body"
-              data-full-text="{{ faq_4_description | escape }}"
+              data-full-text="{{ section.settings.faq_4_description | escape }}"
             ></p>
           </div>
         {% endif %}

@@ -2,53 +2,43 @@
   Shop The Look Global Section
 {% endcomment %}
 
-{% assign product_1 = section.settings.product1 %}
-{% assign product_2 = section.settings.product2 %}
-{% assign product_3 = section.settings.product3 %}
-
 {% assign has_products = false %}
-{% if product_1 != blank or product_2 != blank or product_3 != blank %}
+{% if section.settings.product1 != blank or section.settings.product2 != blank or section.settings.product3 != blank %}
   {% assign has_products = true %}
 {% endif %}
-{% assign anchor_id = section.settings.anchor_id %}
-{% assign show_top_border = section.settings.show_top_border %}
-{% assign show_bottom_border = section.settings.show_bottom_border %}
-{% assign section_id = section.settings.show_bottom_border %}
-{% assign heading = section.settings.heading %}
-{% assign heading_animation = section.settings.heading_animaiton %}
 
 {% if has_products %}
   {{ 'section-shop-the-look-global.css' | asset_url | stylesheet_tag }}
   <div
     class="shop-the-look-global"
-    id="section-{{ section_id }}"
+    id="section-{{ section.settings.show_bottom_border }}"
     style="
-      {% if show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
-      {% if show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
+      {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
+      {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
     "
   >
     <div
       class="shop-the-look-global__slider-container"
-      {% if anchor_id != blank %}
-        id="{{ anchor_id | downcase | replace: ' ', '-' }}-segment"
+      {% if section.settings.anchor_id != blank %}
+        id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
       {% endif %}
     >
-      <h2 class="heading--xl shop-the-look-global__heading {% if heading_animation != 'none' %}{{ heading_animation }}{% endif %}">
-        {{ heading }}
+      <h2 class="heading--xl shop-the-look-global__heading {% if section.settings.heading_animaiton != 'none' %}{{ section.settings.heading_animaiton }}{% endif %}">
+        {{ section.settings.heading }}
       </h2>
 
       {% assign product_count = 0 %}
-      {% if product_1 != blank %}{% assign product_count = product_count | plus: 1 %}{% endif %}
-      {% if product_2 != blank %}{% assign product_count = product_count | plus: 1 %}{% endif %}
-      {% if product_3 != blank %}{% assign product_count = product_count | plus: 1 %}{% endif %}
+      {% if section.settings.product1 != blank %}{% assign product_count = product_count | plus: 1 %}{% endif %}
+      {% if section.settings.product2 != blank %}{% assign product_count = product_count | plus: 1 %}{% endif %}
+      {% if section.settings.product3 != blank %}{% assign product_count = product_count | plus: 1 %}{% endif %}
 
       {% if product_count > 1 %}
         <div class="shop-the-look-global__slider-wrapper">
           <div class="shop-the-look-global__slider splide">
             <div class="splide__track">
               <ul class="splide__list">
-                {% if product_1 != blank %}
-                  {% assign product = all_products[product_1] %}
+                {% if section.settings.product1 != blank %}
+                  {% assign product = all_products[section.settings.product1] %}
                   {% if product.featured_image != blank %}
                     <li class="splide__slide shop-the-look-global__slide">
                       <a href="{{ product.url }}" class="shop-the-look-global__product-link">
@@ -86,8 +76,8 @@
                   {% endif %}
                 {% endif %}
 
-                {% if product_2 != blank %}
-                  {% assign product = all_products[product_2] %}
+                {% if section.settings.product2 != blank %}
+                  {% assign product = all_products[section.settings.product2] %}
                   {% if product.featured_image != blank %}
                     <li class="splide__slide shop-the-look-global__slide">
                       <a href="{{ product.url }}" class="shop-the-look-global__product-link">
@@ -125,8 +115,8 @@
                   {% endif %}
                 {% endif %}
 
-                {% if product_3 != blank %}
-                  {% assign product = all_products[product_3] %}
+                {% if section.settings.product3 != blank %}
+                  {% assign product = all_products[section.settings.product3] %}
                   {% if product.featured_image != blank %}
                     <li class="splide__slide shop-the-look-global__slide">
                       <a href="{{ product.url }}" class="shop-the-look-global__product-link">
@@ -173,12 +163,12 @@
         </div>
       {% else %}
         <div class="shop-the-look-global__single-product">
-          {% if product_1 != blank %}
-            {% assign product = all_products[product_1] %}
-          {% elsif product_2 != blank %}
-            {% assign product = all_products[product_2] %}
-          {% elsif product_3 != blank %}
-            {% assign product = all_products[product_3] %}
+          {% if section.settings.product1 != blank %}
+            {% assign product = all_products[section.settings.product1] %}
+          {% elsif section.settings.product2 != blank %}
+            {% assign product = all_products[section.settings.product2] %}
+          {% elsif section.settings.product3 != blank %}
+            {% assign product = all_products[section.settings.product3] %}
           {% endif %}
 
           {% if product.featured_image != blank %}
@@ -238,7 +228,7 @@
   {% if product_count > 1 %}
     <script
       src="{{ "section-shop-the-look-global.js" | asset_url }}"
-      data-section-id="{{ section_id }}"
+      data-section-id="{{ section.settings.show_bottom_border }}"
       defer
     ></script>
   {% endif %}
