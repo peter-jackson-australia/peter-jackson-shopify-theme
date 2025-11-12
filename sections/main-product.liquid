@@ -21,6 +21,24 @@
   {% assign current_variant = product.selected_or_first_available_variant %}
 {% endif %}
 
+{% liquid
+  assign customer_logged_in = false
+  assign product_is_wishlisted = false
+  assign button_text = "Add To Wishlist"
+  
+  if customer
+    assign customer_logged_in = true
+    assign wishlisted_items = customer.metafields.custom.wishlist.value
+    for p in wishlisted_items
+      if p.id == product.id
+        assign product_is_wishlisted = true
+        assign button_text = "Remove From Wishlist"
+        break
+      endif
+    endfor
+  endif
+%}
+
 <script>
   var current_variant = {{ current_variant | json }};
   var variants = {{ product.variants | json }};
@@ -103,6 +121,7 @@
     <section
         class="product-details__container custom-scrollbar"
     >
+      {% render 'wishlist-button', in_wishlist: product_is_wishlisted, product: product %}
       <div id="product-details">
         {% if section.settings.show_afterpay %}
           <p class="product-details__sku small">
@@ -435,7 +454,12 @@
   </div>
 </div>
 
-<script src="{{'section-main-product.js' | asset_url }}" defer></script>
+<script src="{{'section-main-product.js' | asset_url }}"
+        data-section-id="{{ section_id }}"
+        data-product-is-wishlisted="{{ product_is_wishlisted }}"
+        data-product-id="{{ product.id }}"
+        defer
+></script>
 
 {% schema %}
 {

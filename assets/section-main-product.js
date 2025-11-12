@@ -451,3 +451,99 @@ function scrollToVariantForm() {
     });
   }
 }
+
+(async () => {
+  const state = {
+    loading: false
+  }
+
+  const sectionId = document.currentScript.getAttribute("data-section-id")
+  const productIsWishlisted = document.currentScript.getAttribute("data-product-is-wishlisted")
+  const productId = document.currentScript.getAttribute("data-product-id")
+
+  console.log({ productId, productIsWishlisted })
+
+  const registerWishlistForm = (wishlistForm) => {
+    const button = wishlistForm.querySelector(".wishlist-button")
+    const msgText = wishlistForm.querySelector(".wishlist-message")
+    const loading = wishlistForm.querySelector(".wishlist-loading")
+
+    wishlistForm.addEventListener("submit", (ev) => {
+      ev.preventDefault();
+      if (state.loading) return;
+
+      let isWishlisted = wishlistForm.getAttribute("data-is-wishlisted") === "true"
+      console.log("before Post", isWishlisted)
+
+      state.loading = true;
+      loading.hidden = false;
+
+      const showErrorMessage = (msg) => {
+        msgText.textContent = msg
+        msgText.classList.remove("wishlist-message--success")
+        msgText.classList.add("wishlist-message--error")
+      }
+
+      const showSuccessMessage = (msg) => {
+        msgText.textContent = msg
+        msgText.classList.remove("wishlist-message--error")
+        msgText.classList.add("wishlist-message--success")
+      }
+
+      const params = new URLSearchParams({
+        productid: productId,
+        shop: Shopify.shop || '{{ shop.permanent_domain }}',
+        logged_in_customer_id: '{{ customer.id }}'
+      })
+
+      const endpoint = `/apps/wishlist?${params.toString()}`
+      fetch(endpoint, {
+        method: isWishlisted ? "DELETE" : "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'same-origin',
+      }).then(r => {
+        state.loading = false
+
+        switch(r.status) {
+          case 201: // ADDED/REMOVED
+            showSuccessMessage(isWishlisted ? "Removed product from wishlist" : "Added product to wishlist")
+            isWishlisted = !isWishlisted
+            break
+          case 200: // ALREADY EXISTS
+            showSuccessMessage(isWishlisted? "Can't remove product that isn't in your wishlist" : "Product already exists in your wishlist")
+            break
+          case 400: // BAD REQUEST
+            r.json().then(j => showErrorMessage(j.message ?? "Unknown error occurred"))
+            break
+          case 403  || 401: // NOT LOGGED IN
+            showErrorMessage(isWishlisted ? "You must be logged in to add a product to your wishlist" : "You must be logged in to remove a product from your wishlist")
+            break
+          default: // ERROR
+            showErrorMessage("Could not add this product to your wishlist. Please try again later")
+            break
+        }
+
+        loading.hidden = true
+        state.loading = false
+
+        console.log("after post", isWishlisted)
+        wishlistForm.setAttribute("data-is-wishlisted", isWishlisted ? "true" : "false")
+        if (isWishlisted) {
+          button.value = "Remove From Wishlist"
+        } else {
+          button.value = "Add To Wishlist"
+        }
+      }).catch(e => {
+        console.error(e)
+        showErrorMessage("Unknown error occurred: ", e.message ?? "unknown error occurred")
+        state.loading = false
+      })
+
+    })
+  }
+
+  const section = document.querySelector(`#shopify-section-${sectionId}`)
+  section.querySelectorAll(".wishlist-form").forEach(registerWishlistForm)
+})()
