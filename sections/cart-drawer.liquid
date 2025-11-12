@@ -23,7 +23,7 @@
       {% if cart.item_count == 0 %}
         <div class="cart__empty-state custom-scrollbar">
           <p class="cart__empty heading--l">Your Cart Is Empty</p>
-          <h3 class="cart__new-arrivals-section-title body">Shop Premium Merino Wool Suits from $399</h3>
+          <h3 class="cart__new-arrivals-section-title body">Shop Premium Merino Wool Suits</h3>
           <div class="cart__new-arrivals-grid">
             {% for product in collections['mens-suits'].products limit: 4 %}
               <a href="{{ product.url }}" class="cart__new-arrivals-card">
