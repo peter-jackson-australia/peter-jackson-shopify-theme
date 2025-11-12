@@ -4,13 +4,7 @@
 
 {{ 'section-main-collection-details.css' | asset_url | stylesheet_tag }}
 
-{% assign hero_enabled = collection.metafields.custom.enable_collection_hero | default: false %}
-{% assign hero_image = collection.metafields.custom.collection_hero_image %}
-{% assign hero_header = collection.metafields.custom.collection_hero_header %}
-{% assign collection_title = collection.title %}
-{% assign collection_description = collection.description %}
-
-{% if hero_enabled and hero_image %}
+{% if collection.metafields.custom.enable_collection_hero and collection.metafields.custom.collection_hero_image %}
   <style>
     @media screen and (min-width: 768px) {
       .collection-header {
@@ -19,24 +13,24 @@
       }
     }
   </style>
-  <section class="collection-hero" aria-label="{{ hero_header | default: collection_title | escape }}">
-    {% if hero_image %}
+  <section class="collection-hero" aria-label="{{ collection.metafields.custom.collection_hero_header | default: collection.title | escape }}">
+    {% if collection.metafields.custom.collection_hero_image %}
       {{
-        hero_image
+        collection.metafields.custom.collection_hero_image
         | image_url: width: 2000
-        | image_tag: class: 'collection-hero__background', alt: collection_title, loading: 'eager'
+        | image_tag: class: 'collection-hero__background', alt: collection.title, loading: 'eager'
       }}
     {% endif %}
     <div class="collection-hero__content">
-      {% if hero_header != blank %}
-        <h2 class="heading--2xl">{{ hero_header }}</h2>
+      {% if collection.metafields.custom.collection_hero_header != blank %}
+        <h2 class="heading--2xl">{{ collection.metafields.custom.collection_hero_header }}</h2>
       {% else %}
-        <h2 class="heading--2xl">{{ collection_title }}</h2>
+        <h2 class="heading--2xl">{{ collection.title }}</h2>
       {% endif %}
 
       {% if collection.description != blank %}
         <div class="collection-hero__description heading--l">
-          {{ collection_description }}
+          {{ collection.description }}
         </div>
       {% endif %}
     </div>
@@ -45,7 +39,7 @@
   <div class="collection-description__container">
     <div>
       <div class="collection-description__text body">
-        {{ collection_description }}
+        {{ collection.description }}
       </div>
     </div>
   </div>

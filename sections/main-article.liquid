@@ -2,38 +2,30 @@
 
 {% assign image_width = 800 %}
 {% assign image_height = image_width | divided_by: article.image.aspect_ratio | ceil %}
-{% assign section_id = section.id %}
-{% assign title = article.title %}
-{% assign content = article.content %}
-{% assign excerpt = article.excerpt %}
-{% assign published_at = article.published_at %}
-{% assign tags = article.tags %}
-{% assign hero_image = article.metafields.custom.blog_landscape_hero_image %}
-{% assign display_image = hero_image | default: article.image %}
 
-<section id="{{ section_id }}">
+<section id="{{ section.id }}">
   <article>
     <header class="article-header">
-      <h1 class="article-header__title heading--2xl">{{ title }}</h1>
+      <h1 class="article-header__title heading--2xl">{{ article.title }}</h1>
 
-      {% if excerpt != blank %}
+      {% if article.excerpt != blank %}
         <div class="article-header__excerpt body">
-          {{ excerpt }}
+          {{ article.excerpt }}
         </div>
       {% endif %}
 
       <div class="article-header__meta">
-        <p class="small">{{ published_at | date: '%b %d, %Y' }}</p>
+        <p class="small">{{ article.published_at | date: '%b %d, %Y' }}</p>
       </div>
 
-      {% if tags.size > 0 %}
+      {% if article.tags.size > 0 %}
         <div class="article-header__tags">
           <p class="small">
             {% liquid
-              if tags.size > 1
-                assign display_tag = tags[1]
+              if article.tags.size > 1
+                assign display_tag = article.tags[1]
               else
-                assign display_tag = tags[0]
+                assign display_tag = article.tags[0]
               endif
             %}
             <a
@@ -46,20 +38,20 @@
         </div>
       {% endif %}
 
-      {% if display_image %}
+      {% if article.metafields.custom.blog_landscape_hero_image or article.image %}
         <div class="article-header__image">
           <img
-            src="{{ display_image | image_url: width: image_width }}"
+            src="{{ article.metafields.custom.blog_landscape_hero_image | default: article.image | image_url: width: image_width }}"
             width="{{ image_width }}"
             height="{{ image_height }}"
-            alt="{{ title | escape }}"
+            alt="{{ article.title | escape }}"
             loading="lazy"
           >
         </div>
       {% endif %}
     </header>
     <div class="article-content">
-      {{ content }}
+      {{ article.content }}
     </div>
     <div class="article-related">
       <div class="article-related__header">

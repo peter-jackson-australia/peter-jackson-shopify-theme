@@ -1,36 +1,12 @@
 {{ 'section-hero-primary.css' | asset_url | stylesheet_tag }}
 
-{% assign mobile_video = section.settings.mobile_video %}
-{% assign mobile_image = section.settings.mobile_image %}
-{% assign mobile_image_alt = section.settings.mobile_image.alt %}
-{% assign mobile_video_placeholder = section.settings.mobile_video_placeholder %}
-{% assign desktop_image = section.settings.desktop_image %}
-{% assign desktop_image_alt = section.settings.desktop_image.alt %}
-{% assign video = section.settings.video %}
-{% assign video_placeholder = section.settings.video_placeholder %}
-{% assign heading = section.settings.heading %}
-{% assign media_type = section.settings.media_type %}
 {% assign poster_url = section.settings.video_placeholder | image_url %}
 {% assign poster_url_mobile = section.settings.mobile_video_placeholder
   | default: section.settings.video_placeholder
   | image_url
 %}
-{% assign poster_url_mobile = mobile_video_placeholder | default: video_placeholder | image_url %}
 
-{% assign horizontal_alignment = section.settings.horizontal_alignment %}
-{% assign vertical_alignment = section.settings.vertical_alignment %}
-{% assign mobile_horizontal_alignment = section.settings.mobile_horizontal_alignment %}
-{% assign mobile_vertical_alignment = section.settings.mobile_vertical_alignment %}
-{% assign heading = section.settings.heading %}
-{% assign heading_level = section.settings.heading_level %}
-{% assign heading_animation = section.settings.heading_animation %}
-{% assign description = section.settings.description %}
-{% assign description_animation = section.settings.description_animation %}
-{% assign svg_image = section.settings.svg_image %}
-{% assign svg_size = section.settings.svg_size %}
-{% assign mobile_svg_image = section.settings.mobile_svg_image %}
-
-{% if mobile_video %}
+{% if section.settings.mobile_video %}
   <style>
     @media screen and (max-width: 768px) {
       #hero-primary .hero__video--desktop {
@@ -43,47 +19,47 @@
   </style>
 {% endif %}
 
-{% if desktop_image or mobile_image or video %}
-  <div id="hero-primary" class="hero" aria-label="{{ heading | escape }}">
-    {% if media_type == 'image' %}
+{% if section.settings.desktop_image or section.settings.mobile_image or section.settings.video %}
+  <div id="hero-primary" class="hero" aria-label="{{ section.settings.heading | escape }}">
+    {% if section.settings.media_type == 'image' %}
       <picture>
-        {% if mobile_image %}
+        {% if section.settings.mobile_image %}
           <source
             media="(max-width: 768px)"
             srcset="
-              {{ mobile_image | image_url: width: 400 }} 1x,
-              {{ mobile_image | image_url: width: 800 }} 2x
+              {{ section.settings.mobile_image | image_url: width: 400 }} 1x,
+              {{ section.settings.mobile_image | image_url: width: 800 }} 2x
             "
           >
         {% endif %}
 
-        {% if desktop_image %}
+        {% if section.settings.desktop_image %}
           {{
-            desktop_image
+            section.settings.desktop_image
             | image_url: width: 2560
             | image_tag:
               class: 'hero__background',
-              alt: desktop_image_alt,
+              alt: section.settings.desktop_image.alt,
               widths: '400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2400, 2560',
               sizes: '(max-width: 400px) 400px, (max-width: 600px) 600px, (max-width: 800px) 800px, (max-width: 1000px) 1000px, (max-width: 1200px) 1200px, (max-width: 1400px) 1400px, (max-width: 1600px) 1600px, (max-width: 1800px) 1800px, (max-width: 2000px) 2000px, (max-width: 2560px) 2560px, 100vw'
           }}
-        {% elsif mobile_image %}
+        {% elsif section.settings.mobile_image %}
           {{
-            mobile_image
+            section.settings.mobile_image
             | image_url: width: 500
             | image_tag:
               class: 'hero__background',
-              alt: mobile_image_alt,
+              alt: section.settings.mobile_image.alt,
               widths: '400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2400, 2560',
               sizes: '(max-width: 400px) 400px, (max-width: 600px) 600px, (max-width: 800px) 800px, (max-width: 1000px) 1000px, (max-width: 1200px) 1200px, (max-width: 1400px) 1400px, (max-width: 1600px) 1600px, (max-width: 1800px) 1800px, (max-width: 2000px) 2000px, (max-width: 2560px) 2560px, 100vw'
           }}
         {% endif %}
       </picture>
-    {% elsif media_type == 'video' %}
-      {% if video %}
+    {% elsif section.settings.media_type == 'video' %}
+      {% if section.settings.video %}
         <div class="hero__video hero__video--desktop">
           {{
-            video
+            section.settings.video
             | video_tag:
               autoplay: true,
               loop: true,
@@ -96,10 +72,10 @@
         </div>
       {% endif %}
 
-      {% if mobile_video %}
+      {% if section.settings.mobile_video %}
         <div class="hero__video hero__video--mobile">
           {{
-            mobile_video
+            section.settings.mobile_video
             | video_tag:
               autoplay: true,
               loop: true,
@@ -113,37 +89,37 @@
       {% endif %}
     {% endif %}
 
-    <div class="hero__content hero__content--{{ horizontal_alignment | default: 'center' }} hero__content--{{ vertical_alignment | default: 'bottom' }} hero__content--mobile-{{ mobile_horizontal_alignment | default: 'center' }} hero__content--mobile-{{ mobile_vertical_alignment | default: section.settings.vertical_alignment | default: 'bottom' }}">
-      {% if svg_image %}
+    <div class="hero__content hero__content--{{ section.settings.horizontal_alignment | default: 'center' }} hero__content--{{ section.settings.vertical_alignment | default: 'bottom' }} hero__content--mobile-{{ section.settings.mobile_horizontal_alignment | default: 'center' }} hero__content--mobile-{{ section.settings.mobile_vertical_alignment | default: section.settings.vertical_alignment | default: 'bottom' }}">
+      {% if section.settings.svg_image %}
         <img
-          src="{{ svg_image | image_url }}"
-          alt="{{ heading | escape }}"
-          class="hero__svg hero__svg--{{ svg_size | default: 'medium' }} hero__svg--desktop"
-          width="{{ svg_image.width }}"
-          height="{{ svg_image.height }}"
+          src="{{ section.settings.svg_image | image_url }}"
+          alt="{{ section.settings.heading | escape }}"
+          class="hero__svg hero__svg--{{ section.settings.svg_size | default: 'medium' }} hero__svg--desktop"
+          width="{{ section.settings.svg_image.width }}"
+          height="{{ section.settings.svg_image.height }}"
           loading="eager"
           fetchpriority="high"
         >
-        {% if mobile_svg_image %}
+        {% if section.settings.mobile_svg_image %}
           <img
-            src="{{ mobile_svg_image | image_url }}"
-            alt="{{ heading | escape }}"
-            class="hero__svg hero__svg--{{ svg_size | default: 'medium' }} hero__svg--mobile"
-            width="{{ mobile_svg_image.width }}"
-            height="{{ mobile_svg_image.height }}"
+            src="{{ section.settings.mobile_svg_image | image_url }}"
+            alt="{{ section.settings.heading | escape }}"
+            class="hero__svg hero__svg--{{ section.settings.svg_size | default: 'medium' }} hero__svg--mobile"
+            width="{{ section.settings.mobile_svg_image.width }}"
+            height="{{ section.settings.mobile_svg_image.height }}"
             loading="eager"
             fetchpriority="high"
           >
         {% endif %}
-      {% elsif heading %}
-        <{{ heading_level | default: 'h1' }} class="heading--3xl {% if heading_animation != 'none' %}{{ heading_animation }}{% endif %}">
-          {{ heading }}
-        </{{ heading_level | default: 'h1' }}>
+      {% elsif section.settings.heading %}
+        <{{ section.settings.heading_level | default: 'h1' }} class="heading--3xl {% if section.settings.heading_animation != 'none' %}{{ section.settings.heading_animation }}{% endif %}">
+          {{ section.settings.heading }}
+        </{{ section.settings.heading_level | default: 'h1' }}>
       {% endif %}
 
-      <div class="heading--l {% if description_animation != 'none' %}{{ description_animation }}{% endif %}">
+      <div class="heading--l {% if section.settings.description_animation != 'none' %}{{ section.settings.description_animation }}{% endif %}">
         <p class="hero__description heading--l ">
-          {{ description }}
+          {{ section.settings.description }}
         </p>
       </div>
 

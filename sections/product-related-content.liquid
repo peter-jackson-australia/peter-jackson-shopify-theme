@@ -6,10 +6,6 @@
 {% assign has_related_articles = false %}
 {% assign related_count = 0 %}
 {% assign jackson_journal_articles = blogs['the-jackson-journal'].articles %}
-{% assign section_id = section.id %}
-{% assign heading = section.settings.heading %}
-{% assign subheading = section.settings.subheading %}
-{% assign description = section.settings.description %}
 
 {% for article in jackson_journal_articles limit: 50 %}
   {% assign is_related = false %}
@@ -33,31 +29,28 @@
 {% if has_related_articles %}
   {{ 'section-product-related-content.css' | asset_url | stylesheet_tag }}
 
-  <div class="related-articles" id="section-{{ section_id }}">
+  <div class="related-articles" id="section-{{ section.id }}">
     <div class="related-articles__content">
       <div class="related-articles__header">
-        {% if heading != blank %}
-          <h2 class="related-articles__title heading--decorative">{{ heading }}</h2>
+        {% if section.settings.heading != blank %}
+          <h2 class="related-articles__title heading--decorative">{{ section.settings.heading }}</h2>
         {% endif %}
 
         <span class="related-articles__divider"></span>
 
-        {% if subheading != blank %}
-          <div class="related-articles__subtitle heading--l">{{ subheading }}</div>
+        {% if section.settings.subheading != blank %}
+          <div class="related-articles__subtitle heading--l">{{ section.settings.subheading }}</div>
         {% endif %}
       </div>
 
       <div class="related-articles__description">
-        {% if description != blank %}
-          <div class="related-articles__text body">{{ description }}</div>
+        {% if section.settings.description != blank %}
+          <div class="related-articles__text body">{{ section.settings.description }}</div>
         {% endif %}
 
-        {% assign cta_link = section.settings.cta_link %}
-        {% assign cta_text = section.settings.cta_text %}
-
-        {% if cta_link != blank and cta_text != blank %}
-          <a href="{{ cta_link }}" class="related-articles__link body">
-            {{ cta_text }}
+        {% if section.settings.cta_link != blank and section.settings.cta_text != blank %}
+          <a href="{{ section.settings.cta_link }}" class="related-articles__link body">
+            {{ section.settings.cta_text }}
             {% render '_icon-arrow-submit-dark' %}
           </a>
         {% endif %}
@@ -179,7 +172,7 @@
 
   <script
     src="{{ "section-product-related-content.js" | asset_url }}"
-    data-section-id="{{ section_id }}"
+    data-section-id="{{ section.id }}"
     defer
   ></script>
 {% endif %}
