@@ -46,9 +46,9 @@
   <div class="wishlist-not-signed-in__description">
     <p class="body">You must be logged in to manage your wishlist</p>
   </div>
-  <p>
-    <a href="{{ routes.customer_authentication }}?return_to={{ "/pages/wishlist" | url_encode }}" class="wishlist-not-signed-in__sign-in-button button">Log In</a>
-  </p>
+  {% form 'customer_login' return_to: routes.pages.wishlist %}
+    <input type="submit" class="wishlist-not-signed-in__sign-in-button button" value="Log in" />
+  {% endform %}
 </div>
 {% else %}
 <ul>
