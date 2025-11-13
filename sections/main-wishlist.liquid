@@ -7,18 +7,8 @@
 {% assign wishlisted_products = customer.metafields.custom.wishlist.value %}
 {% assign amount_in_wishlist = wishlisted_products | size %}
 
-{% if amount_in_wishlist == 0 %}
-<div class="wishlist-content__not-signed-in">
-  <p class="wishlist-not-signed-in__pj heading--decorative">Peter Jackson</p>
-  <h1 class="wishlist-not-signed-in__header heading--3xl" data-title="Page not found">Your Wishlist</h1>
-  <div class="wishlist-not-signed-in__description">
-    <p class="body">There are no products in your wishlist</p>
-  </div>
-  <p>
-    <a href="{{ routes.account_login_url }}" class="wishlist-not-signed-in__sign-in-button button">Go to new arrivals</a>
-  </p>
-</div>
-{% elsif customer == nil %}
+{% if customer == nil %}
+  <!-- Shows when the customer is not signed in -->
 <div class="wishlist-content__not-signed-in">
   <p class="wishlist-not-signed-in__pj heading--decorative">Peter Jackson</p>
   <h1 class="wishlist-not-signed-in__header heading--3xl" data-title="Page not found">Your Wishlist</h1>
@@ -29,7 +19,21 @@
     <a href="{{ routes.account_login_url }}" class="wishlist-not-signed-in__sign-in-button button">Log In</a>
   </p>
 </div>
+{% elsif amount_in_wishlist == 0 %}
+  <!-- Shows when there are no products in the customer's wishlist -->
+<div class="wishlist-content__not-signed-in">
+  <p class="wishlist-not-signed-in__pj heading--decorative">Peter Jackson</p>
+  <h1 class="wishlist-not-signed-in__header heading--3xl" data-title="Page not found">Your Wishlist</h1>
+  <div class="wishlist-not-signed-in__description">
+    <p class="body">There are no products in your wishlist</p>
+  </div>
+  <p>
+    new arrivals
+    <a href="{{ routes.account_login_url }}" class="wishlist-not-signed-in__sign-in-button button">Go to new arrivals</a>
+  </p>
+</div>
 {% else %}
+  <!-- Shows when ther are products in the wishlist -->
   <div class="wishlist-content__products-header">
     <h2 class="heading-l">Your Wishlist</h2>
   </div>
