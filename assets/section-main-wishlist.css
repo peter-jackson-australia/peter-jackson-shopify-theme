@@ -38,8 +38,8 @@
 }
 
 .wishlist-content__products-header {
-  padding: var(--space-s) 0 ;
-  margin: var(--space-s) var(--space-m);
+  padding: var(--space-s) var(--space-l);
+  margin: var(--space-s) 0;
   border-bottom: 1px solid var(--neutral-50);
 }
 
