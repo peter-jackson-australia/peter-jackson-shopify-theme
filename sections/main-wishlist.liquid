@@ -5,6 +5,7 @@
 {{ "section-main-wishlist.css" | asset_url | stylesheet_tag }}
 
 {% assign wishlisted_products = customer.metafields.custom.wishlist.value %}
+{% assign product_count = 0 %}
 
 {% if customer == nil %}
   <!-- Shows when the customer is not signed in -->
@@ -24,13 +25,14 @@
     <h2 class="heading-l">Your Wishlist</h2>
   </div>
   <div class="wishlist__products">
-    {% for current_product in wishlisted_products %}
-      {% if current_product.status == 'active' %}
-        {% render 'product-card', product: current_product, image_width: 520 %}
-      {% endif %}
-    {% endfor %}
+    {% liquid
+       for current_product in wishlisted_products
+         if current_product.status == 'active'
+           render 'product-card', product: current_product, image_width: 520
+         endif
+       endfor 
+    %}
   </div>
-
 
   <!-- Shows when there are no products in the customer's wishlist -->
   <div class="wishlist__state wishlist__state--empty">
