@@ -45,6 +45,10 @@
   position: relative;
 }
 
+.wishlist-content__products-header {
+  margin: var(--space-xl);
+}
+
 .product-card__image-link {
   display: block;
 }
@@ -238,6 +242,9 @@
   </p>
 </div>
 {% else %}
+  <div class="wishlist-content__products-header">
+    <h2>Your Wishlist</h2>
+  </div>
   <div class="wishlist-content__products">
     {% for current_product in wishlisted_products %}
       {% render 'product-card', product: current_product, image_width: 520 %}
