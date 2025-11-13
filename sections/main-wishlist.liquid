@@ -5,10 +5,6 @@
 {% assign wishlisted_products = customer.metafields.custom.wishlist %}
 {% assign amount_in_wishlist = wishlisted_products.size %}
 
-<p>Test</p>
-<p>{{ customer.metafields.custom.wishlist | json }}</p>
-<p>Test 2</p>
-
 <div
   id="{{ section.id }}"
   class="wishlist-content"
@@ -29,7 +25,7 @@
     {% else %}
       <ul>
         {% for current_product in wishlisted_products.value %}
-          <li>Product: {{ current_product.id }}</li>
+          <li>Product: {{ current_product.title }}</li>
         {% endfor %}
       </ul>
     {% endif %}
