@@ -27,6 +27,9 @@
   <div class="wishlist-content__products-header">
     <h2>Your Wishlist</h2>
   </div>
+  <div class="wishlist-content__products-description">
+    Don't lose your curated collection.
+  </div>
   <div class="wishlist-content__products">
     {% for current_product in wishlisted_products %}
       {% render 'product-card', product: current_product, image_width: 520 %}
