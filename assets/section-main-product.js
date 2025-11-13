@@ -521,8 +521,8 @@ const removeFromWishlist = async (productId) => {
 
     return {
       setRemoveFromWishlist: () => {
-        buttonImageAdd.style.display = "flex"
-        buttonImageRemove.style.display = "none"
+        buttonImageAdd.style.display = "none"
+        buttonImageRemove.style.display = "flex"
         buttonImageLoad.style.display = "none"
       },
       setAddToWishlist: () => {
