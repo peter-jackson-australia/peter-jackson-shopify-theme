@@ -24,11 +24,9 @@
       </div>
     {% else %}
       <ul>
-        {% paginate wishlisted_products by 50 %}
-          {% for current_product in wishlisted_products %}
-            <li>Product: {{ current_product.id}}</li>
-          {% endfor %}
-        {% endpaginate %}
+        {% for current_product in wishlisted_products %}
+          <li>Product: {{ current_product.id}}</li>
+        {% endfor %}
       </ul>
     {% endif %}
   </div>
