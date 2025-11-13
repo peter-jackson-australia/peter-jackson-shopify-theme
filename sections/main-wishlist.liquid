@@ -4,7 +4,9 @@
 
 {{ "section-main-wishlist.css" | asset_url | stylesheet_tag }}
 
-{% assign wishlisted_products = customer.metafields.custom.wishlist.value %}
+{% liquid
+    assign wishlisted_products = customer.metafields.custom.wishlist.value 
+%}
 {% assign amount_in_wishlist = wishlisted_products | size %}
 
 {% if customer == nil %}
