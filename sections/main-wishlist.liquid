@@ -28,7 +28,7 @@
       </div>
     {% else %}
       <ul>
-        {% for current_product in wishlisted_products.values %}
+        {% for current_product in wishlisted_products.value %}
           <li>Product: {{ current_product.id }}</li>
         {% endfor %}
       </ul>
