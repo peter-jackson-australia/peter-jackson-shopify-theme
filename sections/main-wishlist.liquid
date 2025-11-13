@@ -5,11 +5,7 @@
 {{ "section-main-wishlist.css" | asset_url | stylesheet_tag }}
 
 {% assign wishlisted_products = customer.metafields.custom.wishlist.value %}
-{% assign amount_in_wishlist = wishlisted_products.count %}
-
-<script>
-  console.log("dhnsuheoantshuntseohntuaehotn", {{ wishlisted_products.count }})
-</script>
+{% assign amount_in_wishlist = wishlisted_products | size %}
 
 <p>Test {{ amount_in_wishlist }}</p>
 
