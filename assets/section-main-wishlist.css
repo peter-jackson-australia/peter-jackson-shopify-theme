@@ -31,7 +31,7 @@
 
 .wishlist__products-header {
   padding: var(--space-m);
-  margin: var(--space-m) 0;
+  margin: var(--space-l) 0;
   border-bottom: 1px solid var(--neutral-50);
 }
 
