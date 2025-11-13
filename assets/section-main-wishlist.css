@@ -208,6 +208,7 @@
   .wishlist__products {
     display: flex !important;
     flex-direction: column !important;
+    margin-top: var(--space-l);
   }
 
   .product-card__discount-code-desktop {
