@@ -9,7 +9,7 @@
       {% render '_icon-bookmark' %}
     </span>
     <span class="wishlist-button__icon-remove-from-wishlist" {% if in_wishlist == false %} style="display: none;" {% endif %}>
-      Remove From Wishlist
+      {% render '_icon-bookmark-filled' %}
     </span>
     <span class="wishlist-button__icon-loading" hidden>
       <span class="loader--spinner"></span>
