@@ -2,8 +2,6 @@
   Customer Wishlist - Displays all of the customer's wishlisted items
 {% endcomment %}
 
-{{ 'section-main-collection-products.css' | asset_url | stylesheet_tag }}
-
 {% assign wishlisted_products = customer.metafields.custom.wishlist.value %}
 {% assign amount_in_wishlist = wishlisted_products.size %}
 
@@ -38,15 +36,6 @@
 {
   "name": "Wishlist",
   "limit": 1,
-  "tag": "section",
-  "settings": [
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Section Heading",
-      "default": "All Collections",
-      "info": "Heading for the collections page"
-    }
-  ]
+  "tag": "section"
 }
 {% endschema %}
