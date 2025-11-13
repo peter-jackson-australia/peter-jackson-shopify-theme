@@ -52,7 +52,7 @@
 </div>
 {% else %}
   {% for current_product in wishlisted_products %}
-    {% render 'product-card', product: product, image_width: 520 %}
+    {% render 'product-card', product: current_product, image_width: 520 %}
   {% endfor %}
 {% endif %}
 
