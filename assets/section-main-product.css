@@ -170,6 +170,16 @@
   padding: var(--space-2xl);
 }
 
+.product-details__preface {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.wishlist-form {
+  height: 100%;
+}
+
 .wishlist-button {
   align-items: center;
   background-color: transparent;
@@ -190,7 +200,7 @@
 
 .wishlist-button__icon-loading .loader--spinner {
   /** .loader--spinner has border colour set to white, so this overrides it */
-  border: 1px solid black;
+  border: 1.175px solid black;
   border-bottom-color: transparent;
 }
 

@@ -121,19 +121,21 @@
     <section
         class="product-details__container custom-scrollbar"
     >
-      {% render 'wishlist-button', in_wishlist: product_is_wishlisted, product: product %}
       <div id="product-details">
-        {% if section.settings.show_afterpay %}
-          <p class="product-details__sku small">
-            Buy In 4 Interest Free Payments of {{ current_variant.price | divided_by: 4 | money_with_currency }}
-            {{ 'afterpay' | payment_type_svg_tag }}
-          </p>
-        {% elsif current_variant.sku %}
-          <p class="product-details__sku small">
-            Product Code:
-            <span class="js--variant-sku">{{ current_variant.sku }}</span>
-          </p>
-        {% endif %}
+        <div class="product-details__preface">
+          {% if section.settings.show_afterpay %}
+            <p class="product-details__sku small">
+              Buy In 4 Interest Free Payments of {{ current_variant.price | divided_by: 4 | money_with_currency }}
+              {{ 'afterpay' | payment_type_svg_tag }}
+            </p>
+          {% elsif current_variant.sku %}
+            <p class="product-details__sku small">
+              Product Code:
+              <span class="js--variant-sku">{{ current_variant.sku }}</span>
+            </p>
+          {% endif %}
+          {% render 'wishlist-button', in_wishlist: product_is_wishlisted, product: product %}
+        </div>
         <div class="product-details__header">
           <h1 class="product-details__title heading--xl" data-title="{{ product.title }}">{{ product.title }}</h1>
           <div class="product-details__price">
