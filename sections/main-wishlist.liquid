@@ -4,15 +4,15 @@
 
 {{ "section-main-wishlist.css" | asset_url | stylesheet_tag }}
 
-{% liquid
-  assign wishlisted_products_raw = customer.metafields.custom.wishlist.value 
-  assign wishlisted_products = "" | spilt: ","
-  for current_product in wishlisted_products 
-    if current_product.status == 'active'
-      assign wishlisted_products = wishlisted_products | concat: current_product
-    endif
-  endfor
-%}
+{% assign wishlisted_products_raw = customer.metafields.custom.wishlist.value %}
+{% assign wishlisted_products = "" | spilt: "," %}
+
+{% for current_product in wishlisted_products %}
+    {% if current_product.status == 'active' %}
+        <pre><code>{{current_product | json}}</code></pre>
+        {% assign wishlisted_products = wishlisted_products | concat: current_product %}
+    {% endif %}
+{%endfor %}
 
 {% assign amount_in_wishlist = wishlisted_products | size %}
 
