@@ -12,7 +12,16 @@
 </div>
 {% elsif customer == nil %}
 <div class="wishlist-content__not-signed-in">
-  <h2>Not Signed In</h2>
+  <div class="page-404__container">
+    <p class="page-404__decorative-heading heading--decorative">Peter Jackson</p>
+    <h1 class="page-404__main-heading heading--3xl" data-title="Page not found">404: Page Not Found</h1>
+    <div class="page-404__content rte">
+      <p class="body">Sorry the page you are looking for could not be found. It may have been moved or deleted.</p>
+    </div>
+    <p>
+      <a href="{{ routes.collections_url }}/new-arrivals" class="page-404__button button">View Our New Arrivals</a>
+    </p>
+  </div>
 </div>
 {% else %}
 <ul>
