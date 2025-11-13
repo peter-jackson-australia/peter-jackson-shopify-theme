@@ -2,7 +2,7 @@
   Customer Wishlist - Displays all of the customer's wishlisted items
 {% endcomment %}
 
-{% assign wishlisted_products = customer.metafields.custom.wishlist %}
+{% assign wishlisted_products = customer.metafields.custom.wishlist.value %}
 {% assign amount_in_wishlist = wishlisted_products.size %}
 
 <div
@@ -24,8 +24,8 @@
       </div>
     {% else %}
       <ul>
-        {% for current_product in wishlisted_products.value %}
-          <li>Product: {{ current_product.title }}</li>
+        {% for current_product in wishlisted_products %}
+          <li>Product: {{ current_product.id }}</li>
         {% endfor %}
       </ul>
     {% endif %}
