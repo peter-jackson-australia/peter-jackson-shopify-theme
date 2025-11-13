@@ -1,11 +1,10 @@
 {% doc %}
 This snippet renders a product within the splide slider for the "shop the look" section.
 
-@param{bool} in_wishlist - If the product is inside the customer's wishlist
-@param{string} product - The product this button is associated with
+@param {boolean} in_wishlist - If the product is inside the customer's wishlist
 {% enddoc %}
 
-<form class="wishlist-form" data-is-wishlisted="{{ product_is_wishlisted }}">
+<form class="wishlist-form" data-is-wishlisted="{{ in_wishlist }}">
   <button type="submit" class="wishlist-button">
     <span class="wishlist-button__icon-add-to-wishlist" {% if in_wishlist %} style="display: none;" {% endif %}>
       {% render '_icon-bookmark' %}
