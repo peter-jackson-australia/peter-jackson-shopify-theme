@@ -41,6 +41,7 @@
   padding: var(--space-s) var(--space-l);
   margin: var(--space-s) 0;
   border-bottom: 1px solid var(--neutral-50);
+  border-top: 1px solid var(--neutral-50);
 }
 
 .product-card__image-link {
