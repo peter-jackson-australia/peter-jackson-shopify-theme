@@ -40,6 +40,7 @@
 .wishlist-content__products-header {
   padding: 0 var(--space-xl);
   margin: var(--space-xl) 0;
+  border-bottom: 1px solid var(--neutral-50);
 }
 
 .product-card__image-link {
