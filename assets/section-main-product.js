@@ -563,8 +563,10 @@ const removeFromWishlist = async (productId) => {
         switch (response.status) {
           case 201: // ADDED/REMOVED
             isWishlisted = !isWishlisted
+            console.log("added/removed from wishlist")
             break
           case 200: // ALREADY EXISTS
+            console.log("already exists/already removed")
             break
           default:  // ERROR
             console.error("Could not add this product to your wishlist. Please try again later.")
