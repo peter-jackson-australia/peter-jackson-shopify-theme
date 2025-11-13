@@ -30,8 +30,8 @@
 }
 
 .wishlist__products-header {
-  padding: var(--space-xl);
-  margin: 0 var(--space-xl);
+  padding: var(--space-m);
+  margin: var(--space-m) 0;
   border-bottom: 1px solid var(--neutral-50);
 }
 
