@@ -8,8 +8,15 @@
 {% assign amount_in_wishlist = wishlisted_products | size %}
 
 {% if amount_in_wishlist == 0 %}
-<div class="wishlist-content__no-items-found">
-<p>Test</p>
+<div class="wishlist-content__not-signed-in">
+  <p class="wishlist-not-signed-in__pj heading--decorative">Peter Jackson</p>
+  <h1 class="wishlist-not-signed-in__header heading--3xl" data-title="Page not found">Your Wishlist</h1>
+  <div class="wishlist-not-signed-in__description">
+    <p class="body">There are no products in your wishlist</p>
+  </div>
+  <p>
+    <a href="{{ routes.account_login_url }}" class="wishlist-not-signed-in__sign-in-button button">Log In</a>
+  </p>
 </div>
 {% elsif customer == nil %}
 <div class="wishlist-content__not-signed-in">
