@@ -30,7 +30,7 @@
 }
 
 .wishlist__products-header {
-  margin: var(--space-xl);
+  padding: var(--space-xl);
 }
 
 .product-card {
