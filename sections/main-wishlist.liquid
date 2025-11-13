@@ -9,35 +9,37 @@
 
 {% if customer == nil %}
   <!-- Shows when the customer is not signed in -->
-<div class="wishlist-content__not-signed-in">
-  <p class="wishlist-not-signed-in__pj heading--decorative">Peter Jackson</p>
-  <h1 class="wishlist-not-signed-in__header heading--3xl" data-title="Page not found">Your Wishlist</h1>
-  <div class="wishlist-not-signed-in__description">
-    <p class="body">You must be logged in to manage your wishlist</p>
+  <div class="wishlist__state wishlist__state--unauthenticated">
+    <p class="wishlist__state-title heading--decorative">Peter Jackson</p>
+    <h1 class="wishlist__state-heading heading--3xl" data-title="Page not found">Your Wishlist</h1>
+    <div class="wishlist__state-description">
+      <p class="body">You must be logged in to manage your wishlist</p>
+    </div>
+    <p>
+      <a href="{{ routes.account_login_url }}" class="wishlist__state-button button">Log In</a>
+    </p>
   </div>
-  <p>
-    <a href="{{ routes.account_login_url }}" class="wishlist-not-signed-in__sign-in-button button">Log In</a>
-  </p>
-</div>
+
 {% elsif amount_in_wishlist == 0 %}
   <!-- Shows when there are no products in the customer's wishlist -->
-<div class="wishlist-content__not-signed-in">
-  <p class="wishlist-not-signed-in__pj heading--decorative">Peter Jackson</p>
-  <h1 class="wishlist-not-signed-in__header heading--3xl" data-title="Page not found">Your Wishlist</h1>
-  <div class="wishlist-not-signed-in__description">
-    <p class="body">There are no products in your wishlist</p>
+  <div class="wishlist__state wishlist__state--empty">
+    <p class="wishlist__state-title heading--decorative">Peter Jackson</p>
+    <h1 class="wishlist__state-heading heading--3xl" data-title="Page not found">Your Wishlist</h1>
+    <div class="wishlist__state-description">
+      <p class="body">There are no products in your wishlist</p>
+    </div>
+    <p>
+      new arrivals
+      <a href="{{ routes.account_login_url }}" class="wishlist__state-button button">Go to new arrivals</a>
+    </p>
   </div>
-  <p>
-    new arrivals
-    <a href="{{ routes.account_login_url }}" class="wishlist-not-signed-in__sign-in-button button">Go to new arrivals</a>
-  </p>
-</div>
+
 {% else %}
-  <!-- Shows when ther are products in the wishlist -->
-  <div class="wishlist-content__products-header">
+  <!-- Shows when there are products in the wishlist -->
+  <div class="wishlist__products-header">
     <h2 class="heading-l">Your Wishlist</h2>
   </div>
-  <div class="wishlist-content__products">
+  <div class="wishlist__products">
     {% for current_product in wishlisted_products %}
       {% render 'product-card', product: current_product, image_width: 520 %}
     {% endfor %}
