@@ -20,13 +20,15 @@
       </div>
     {% elsif customer == nil %}
       <div class="wishlist-content__not-signed-in">
-        <h1>Not Signed In</h1>
+        <h2>Not Signed In</h2>
       </div>
     {% else %}
       <ul>
-      {% for current_product in wishlisted_products %}
-        <li>Product: {{ current_product.id}}</li>
-      {% endfor %}
+        {% paginate wishlisted_products by 50 %}
+          {% for current_product in wishlisted_products %}
+            <li>Product: {{ current_product.id}}</li>
+          {% endfor %}
+        {% endpaginate %}
       </ul>
     {% endif %}
   </div>
