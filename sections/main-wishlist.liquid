@@ -6,7 +6,7 @@
 {% assign amount_in_wishlist = wishlisted_products.size %}
 
 <p>Test</p>
-{{ customer.metafields.custom.wishlist }}
+<p>{{ customer.metafields.custom.wishlist | json }}</p>
 <p>Test 2</p>
 
 <div
