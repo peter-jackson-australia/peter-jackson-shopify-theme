@@ -1,0 +1,20 @@
+{% schema %}
+{
+  "name": "Customer Wishlist",
+  "limit": 1,
+  "tag": "section",
+  "class": "collections-list-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "All Collections",
+      "info": "Heading for the collections page"
+    }
+  ],
+  "enabled_on": {
+    "templates": [ "wishlist" ]
+  }
+}
+{% endschema %}
