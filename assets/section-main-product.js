@@ -521,8 +521,8 @@ const removeFromWishlist = async (productId) => {
 
     return {
       setRemoveFromWishlist: () => {
-        buttonImageAdd.style.display = "flex"
-        buttonImageRemove.style.display = "none"
+        buttonImageAdd.style.display = "none"
+        buttonImageRemove.style.display = "flex"
         buttonImageLoad.style.display = "none"
       },
       setAddToWishlist: () => {
@@ -576,7 +576,6 @@ const removeFromWishlist = async (productId) => {
 
       state.loading = false
       wishlistForm.setAttribute("data-is-wishlisted", isWishlisted ? "true" : "false")
-            console.log("after", isWishlisted)
       if (isWishlisted) {
         wishlistButtonActions.setRemoveFromWishlist()
       } else {
