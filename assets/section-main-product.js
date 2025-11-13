@@ -452,98 +452,137 @@ function scrollToVariantForm() {
   }
 }
 
-(async () => {
-  const state = {
-    loading: false
-  }
+/**
+ * Adds a product by its ID into the logged in customer's wishlist
+ * @param productId {String}
+ * @returns {Promise<Response|Error>}
+ */
+const addToWishlist = async (productId) => {
+  const params = new URLSearchParams({
+    productid: productId,
+  })
 
+  const endpoint = `/apps/wishlist?${params.toString()}`
+
+  try {
+    return await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'same-origin',
+    })
+  } catch(e) {
+    return e
+  }
+}
+
+/**
+ * Removes a product by its ID from the logged in customer's wishlist
+ * @param productId {String}
+ * @returns {Promise<Response|Error>}
+ */
+const removeFromWishlist = async (productId) => {
+  const params = new URLSearchParams({
+    productid: productId,
+  })
+
+  const endpoint = `/apps/wishlist?${params.toString()}`
+
+  try {
+    return await fetch(endpoint, {
+      method: "DELETE",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'same-origin',
+    })
+  } catch(e) {
+    return e
+  }
+}
+
+(async () => {
   const sectionId = document.currentScript.getAttribute("data-section-id")
-  const productIsWishlisted = document.currentScript.getAttribute("data-product-is-wishlisted")
   const productId = document.currentScript.getAttribute("data-product-id")
 
-  console.log({ productId, productIsWishlisted })
+  /**
+   * @param button {HTMLButtonElement}
+   * @return {{
+   *   setRemoveFromWishlist: () => void,
+   *   setAddToWishlist: () => void,
+   *   setLoading: () => void,
+   * }}
+   */
+  const getWishlistButtonActions = (button) => {
+    const buttonImageAdd = button.querySelector(".wishlist-button__icon-add-to-wishlist")
+    const buttonImageRemove = button.querySelector(".wishlist-button__icon-remove-from-wishlist")
+    const buttonImageLoad = button.querySelector(".wishlist-button__icon-loading")
+
+    return {
+      setRemoveFromWishlist: () => {
+        buttonImageAdd.hidden = false
+        buttonImageRemove.hidden = true
+        buttonImageLoad.hidden = true
+      },
+      setAddToWishlist: () => {
+        buttonImageAdd.hidden = false
+        buttonImageRemove.hidden = true
+        buttonImageLoad.hidden = true
+      },
+      setLoading: () => {
+        buttonImageAdd.hidden = true
+        buttonImageRemove.hidden = true
+        buttonImageLoad.hidden = false
+      }
+    }
+  }
 
   const registerWishlistForm = (wishlistForm) => {
-    const button = wishlistForm.querySelector(".wishlist-button")
-    const msgText = wishlistForm.querySelector(".wishlist-message")
-    const loading = wishlistForm.querySelector(".wishlist-loading")
+    const state = {
+      loading: false
+    }
 
-    wishlistForm.addEventListener("submit", (ev) => {
+    const button = wishlistForm.querySelector(".wishlist-button")
+    const wishlistButtonActions = getWishlistButtonActions(button)
+
+    wishlistForm.addEventListener("submit", async (ev) => {
       ev.preventDefault();
       if (state.loading) return;
 
       let isWishlisted = wishlistForm.getAttribute("data-is-wishlisted") === "true"
-      console.log("before Post", isWishlisted)
 
       state.loading = true;
-      loading.hidden = false;
+      wishlistButtonActions.setLoading()
 
-      const showErrorMessage = (msg) => {
-        msgText.textContent = msg
-        msgText.classList.remove("wishlist-message--success")
-        msgText.classList.add("wishlist-message--error")
-      }
+      const response = await (isWishlisted ? removeFromWishlist(productId) : addToWishlist(productId))
 
-      const showSuccessMessage = (msg) => {
-        msgText.textContent = msg
-        msgText.classList.remove("wishlist-message--error")
-        msgText.classList.add("wishlist-message--success")
-      }
-
-      const params = new URLSearchParams({
-        productid: productId,
-        shop: Shopify.shop || '{{ shop.permanent_domain }}',
-        logged_in_customer_id: '{{ customer.id }}'
-      })
-
-      const endpoint = `/apps/wishlist?${params.toString()}`
-      fetch(endpoint, {
-        method: isWishlisted ? "DELETE" : "POST",
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'same-origin',
-      }).then(r => {
-        state.loading = false
-
-        switch(r.status) {
+      if (response instanceof Error) {
+        console.error(response)
+      } else {
+        switch (response.status) {
           case 201: // ADDED/REMOVED
-            showSuccessMessage(isWishlisted ? "Removed product from wishlist" : "Added product to wishlist")
             isWishlisted = !isWishlisted
             break
           case 200: // ALREADY EXISTS
-            showSuccessMessage(isWishlisted? "Can't remove product that isn't in your wishlist" : "Product already exists in your wishlist")
             break
-          case 400: // BAD REQUEST
-            r.json().then(j => showErrorMessage(j.message ?? "Unknown error occurred"))
-            break
-          case 403  || 401: // NOT LOGGED IN
-            showErrorMessage(isWishlisted ? "You must be logged in to add a product to your wishlist" : "You must be logged in to remove a product from your wishlist")
-            break
-          default: // ERROR
-            showErrorMessage("Could not add this product to your wishlist. Please try again later")
+          default:  // ERROR
+            console.error("Could not add this product to your wishlist. Please try again later.")
+            response.json().then(console.error)
             break
         }
+      }
 
-        loading.hidden = true
-        state.loading = false
-
-        console.log("after post", isWishlisted)
-        wishlistForm.setAttribute("data-is-wishlisted", isWishlisted ? "true" : "false")
-        if (isWishlisted) {
-          button.value = "Remove From Wishlist"
-        } else {
-          button.value = "Add To Wishlist"
-        }
-      }).catch(e => {
-        console.error(e)
-        showErrorMessage("Unknown error occurred: ", e.message ?? "unknown error occurred")
-        state.loading = false
-      })
-
+      state.loading = false
+      wishlistForm.setAttribute("data-is-wishlisted", isWishlisted ? "true" : "false")
+      if (isWishlisted) {
+        wishlistButtonActions.setRemoveFromWishlist()
+      } else {
+        wishlistButtonActions.setAddToWishlist()
+      }
     })
   }
 
-  const section = document.querySelector(`#shopify-section-${sectionId}`)
+  const section = document.querySelector(`#${sectionId}`)
   section.querySelectorAll(".wishlist-form").forEach(registerWishlistForm)
 })()

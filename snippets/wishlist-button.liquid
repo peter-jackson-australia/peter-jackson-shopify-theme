@@ -5,13 +5,16 @@ This snippet renders a product within the splide slider for the "shop the look" 
 @param{string} product - The product this button is associated with
 {% enddoc %}
 
-{% liquid
-  assign button_text = "Add To Wishlist"
-  if in_wishlist
-    assign button_text = "Remove From Wishlist"
-  endif
-%}
-
 <form class="wishlist-form" data-is-wishlisted="{{ product_is_wishlisted }}">
-  <button type="submit" class="wishlist-button">{{ button_text }}</button>
+  <button type="submit" class="wishlist-button">
+    <span class="wishlist-button__icon-add-to-wishlist" {% if in_wishlist %} hidden {% endif %}>
+      {% render '_icon-bookmark' %}
+    </span>
+    <span class="wishlist-button__icon-remove-from-wishlist" {% if in_wishlist == false %} hidden {% endif %}>
+      Remove From Wishlist
+    </span>
+    <span class="wishlist-button__icon-loading" hidden>
+      <span class="loader--spinner" style="border: 1px solid black; border-bottom-color: transparent;"></span>
+    </span>
+  </button>
 </form>
