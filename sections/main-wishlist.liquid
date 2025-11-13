@@ -7,6 +7,10 @@
 {% assign wishlisted_products = customer.metafields.custom.wishlist.value %}
 {% assign amount_in_wishlist = wishlisted_products.size %}
 
+<script>
+  console.log({{ amount_in_wishlist }})
+</script>
+
 <p>Test {{ amount_in_wishlist }}</p>
 
 {% if amount_in_wishlist == 0 %}
