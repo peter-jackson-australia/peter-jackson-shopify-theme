@@ -5,34 +5,58 @@
 {% assign wishlisted_products = customer.metafields.custom.wishlist.value %}
 {% assign amount_in_wishlist = wishlisted_products.size %}
 
-<p>Test</p>
+<style>
+.wishlist-content__not-signed-in {
+  background-color: var(--white);
+  border-top: 1px solid var(--neutral-50);
+  padding: var(--space-3xl) var(--space-m);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-l);
+  max-width: 600px;
+  margin: 0 auto;
+}
 
-<div
-  id="{{ section.id }}"
-  class="wishlist-content"
->
-  <div class="wishlist-content__header">
-    <h1>Your Wishlist</h1>
-  </div>
-  <div class="wishlist-content__products">
-    {% if amount_in_wishlist == 0 %}
-      <div class="wishlist-content__no-items-found">
-        <p class="heading--l" style="color: var(--neutral-950)">Sorry, there are no products to show</p>
-        <!-- TODO - Add recent products section here -->
-      </div>
-    {% elsif customer == nil %}
-      <div class="wishlist-content__not-signed-in">
-        <h2>Not Signed In</h2>
-      </div>
-    {% else %}
-      <ul>
-        {% for current_product in wishlisted_products %}
-          <li>Product: {{ current_product.id }}</li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-  </div>
+.wishlist-not-signed-in__description {
+  color: var(--neutral-600)
+}
+
+.wishlist-not-signed-in__sign-in-button {
+  align-items: center;
+  background-color: var(--neutral-950);
+  border: none;
+  color: var(--white);
+  display: inline-flex;
+  justify-content: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+</style>
+
+{% if amount_in_wishlist == 0 %}
+<div class="wishlist-content__no-items-found">
+  <p class="heading--l" style="color: var(--neutral-950)">Sorry, there are no products to show</p>
+  <!-- TODO - Add recent products section here -->
 </div>
+{% elsif customer == nil %}
+<div class="wishlist-content__not-signed-in">
+  <p class="wishlist-not-signed-in__pj heading--decorative">Peter Jackson</p>
+  <h1 class="wishlist-not-signed-in__header heading--3xl" data-title="Page not found">Your Wishlist</h1>
+  <div class="wishlist-not-signed-in__description">
+    <p class="body">You must be logged in to manage your wishlist</p>
+  </div>
+  <p>
+    <a href="{{ routes.account_login_url }}" class="wishlist-not-signed-in__sign-in-button button">Log In</a>
+  </p>
+</div>
+{% else %}
+<ul>
+  {% for current_product in wishlisted_products %}
+    <li>Product: {{ current_product.id }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
 
 {% schema %}
 {
