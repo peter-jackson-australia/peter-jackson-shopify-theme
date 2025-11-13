@@ -521,19 +521,19 @@ const removeFromWishlist = async (productId) => {
 
     return {
       setRemoveFromWishlist: () => {
-        buttonImageAdd.hidden = false
-        buttonImageRemove.hidden = true
-        buttonImageLoad.hidden = true
+        buttonImageAdd.style.display = "flex"
+        buttonImageRemove.style.display = "none"
+        buttonImageLoad.style.display = "none"
       },
       setAddToWishlist: () => {
-        buttonImageAdd.hidden = false
-        buttonImageRemove.hidden = true
-        buttonImageLoad.hidden = true
+        buttonImageAdd.style.display = "flex"
+        buttonImageRemove.style.display = "none"
+        buttonImageLoad.style.display = "none"
       },
       setLoading: () => {
-        buttonImageAdd.hidden = true
-        buttonImageRemove.hidden = true
-        buttonImageLoad.hidden = false
+        buttonImageAdd.style.display = "none"
+        buttonImageRemove.style.display = "none"
+        buttonImageLoad.style.display = "flex"
       }
     }
   }

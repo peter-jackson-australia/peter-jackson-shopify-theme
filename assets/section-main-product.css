@@ -170,6 +170,30 @@
   padding: var(--space-2xl);
 }
 
+.wishlist-button {
+  align-items: center;
+  background-color: transparent;
+  border-color: transparent;
+  display: flex;
+  height: var(--space-m);
+  justify-content: center;
+  width: var(--space-m);
+}
+
+.wishlist-button__icon-add-to-wishlist {
+  display: flex;
+}
+
+.wishlist-button__icon-remove-from-wishlist {
+  display: flex;
+}
+
+.wishlist-button__icon-loading .loader--spinner {
+  /** .loader--spinner has border colour set to white, so this overrides it */
+  border: 1px solid black;
+  border-bottom-color: transparent;
+}
+
 .product-details__header {
   align-items: center;
   display: flex;

@@ -7,14 +7,14 @@ This snippet renders a product within the splide slider for the "shop the look" 
 
 <form class="wishlist-form" data-is-wishlisted="{{ product_is_wishlisted }}">
   <button type="submit" class="wishlist-button">
-    <span class="wishlist-button__icon-add-to-wishlist" {% if in_wishlist %} hidden {% endif %}>
+    <span class="wishlist-button__icon-add-to-wishlist" {% if in_wishlist %} style="display: none;" {% endif %}>
       {% render '_icon-bookmark' %}
     </span>
-    <span class="wishlist-button__icon-remove-from-wishlist" {% if in_wishlist == false %} hidden {% endif %}>
+    <span class="wishlist-button__icon-remove-from-wishlist" {% if in_wishlist == false %} style="display: none;" {% endif %}>
       Remove From Wishlist
     </span>
     <span class="wishlist-button__icon-loading" hidden>
-      <span class="loader--spinner" style="border: 1px solid black; border-bottom-color: transparent;"></span>
+      <span class="loader--spinner"></span>
     </span>
   </button>
 </form>
