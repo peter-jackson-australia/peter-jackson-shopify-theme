@@ -2,9 +2,10 @@
   Customer Wishlist - Displays all of the customer's wishlisted items
 {% endcomment %}
 
+{{ "section-main-wishlist.css" | asset_url }}
+
 {% assign wishlisted_products = customer.metafields.custom.wishlist.value %}
 {% assign amount_in_wishlist = wishlisted_products.size %}
-
 
 {% if amount_in_wishlist == 0 %}
 <div class="wishlist-content__no-items-found">
