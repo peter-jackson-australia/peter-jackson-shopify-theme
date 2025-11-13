@@ -551,6 +551,7 @@ const removeFromWishlist = async (productId) => {
       if (state.loading) return;
 
       let isWishlisted = wishlistForm.getAttribute("data-is-wishlisted") === "true"
+        console.log("before", isWishlisted)
 
       state.loading = true;
       wishlistButtonActions.setLoading()
@@ -575,6 +576,7 @@ const removeFromWishlist = async (productId) => {
 
       state.loading = false
       wishlistForm.setAttribute("data-is-wishlisted", isWishlisted ? "true" : "false")
+            console.log("after", isWishlisted)
       if (isWishlisted) {
         wishlistButtonActions.setRemoveFromWishlist()
       } else {
