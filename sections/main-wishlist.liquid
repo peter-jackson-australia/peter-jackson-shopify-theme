@@ -51,9 +51,11 @@
   </p>
 </div>
 {% else %}
-  {% for current_product in wishlisted_products %}
-    {% render 'product-card', product: current_product, image_width: 520 %}
-  {% endfor %}
+  <div class="products-grid animate-container-cards-scroll products-grid--cols-4">
+    {% for current_product in wishlisted_products %}
+      {% render 'product-card', product: current_product, image_width: 520 %}
+    {% endfor %}
+  </div>
 {% endif %}
 
 {% schema %}
