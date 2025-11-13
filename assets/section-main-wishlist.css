@@ -38,7 +38,8 @@
 }
 
 .wishlist-content__products-header {
-  margin: var(--space-xl);
+  margin: 0 var(--space-xl);
+  padding: var(--space-xl) 0;
 }
 
 .product-card__image-link {
