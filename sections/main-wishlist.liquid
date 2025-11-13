@@ -40,7 +40,9 @@
   </div>
   <div class="wishlist__products">
     {% for current_product in wishlisted_products %}
-      {% render 'product-card', product: current_product, image_width: 520 %}
+      {% if current_product.status == 'active' and current_product.published_at %}
+        {% render 'product-card', product: current_product, image_width: 520 %}
+      {% endif %}
     {% endfor %}
   </div>
 {% endif %}
