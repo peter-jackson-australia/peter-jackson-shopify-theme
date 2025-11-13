@@ -25,17 +25,14 @@
         <h1>Not Signed In</h1>
       </div>
     {% else %}
-      {% for product in customer.metafields %}
-        {% render 'product-card', product: product, image_width: 520 %}
+      <ul>
+      {% for current_product in wishlisted_products %}
+        <li>Product: {{ current_product.id}}</li>
       {% endfor %}
+      </ul>
     {% endif %}
   </div>
 </div>
-
-<script
-  src="{{ "section-main-collection-products.js" | asset_url }}"
-  defer
-></script>
 
 {% schema %}
 {
