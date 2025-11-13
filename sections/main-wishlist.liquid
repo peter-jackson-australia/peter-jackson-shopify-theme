@@ -5,29 +5,22 @@
 {% assign wishlisted_products = customer.metafields.custom.wishlist.value %}
 {% assign amount_in_wishlist = wishlisted_products.size %}
 
-<div
-  id="{{ section.id }}"
-  class="wishlist-content"
->
-  <div class="wishlist-content__products">
-    {% if amount_in_wishlist == 0 %}
-      <div class="wishlist-content__no-items-found">
-        <p class="heading--l" style="color: var(--neutral-950)">Sorry, there are no products to show</p>
-        <!-- TODO - Add recent products section here -->
-      </div>
-    {% elsif customer == nil %}
-      <div class="wishlist-content__not-signed-in">
-        <h2>Not Signed In</h2>
-      </div>
-    {% else %}
-      <ul>
-        {% for current_product in wishlisted_products %}
-          <li>Product: {{ current_product.id }}</li>
-        {% endfor %}
-      </ul>
-    {% endif %}
+{% if amount_in_wishlist == 0 %}
+  <div class="wishlist-content__no-items-found">
+    <p class="heading--l" style="color: var(--neutral-950)">Sorry, there are no products to show</p>
+    <!-- TODO - Add recent products section here -->
   </div>
-</div>
+{% elsif customer == nil %}
+  <div class="wishlist-content__not-signed-in">
+    <h2>Not Signed In</h2>
+  </div>
+{% else %}
+  <ul>
+    {% for current_product in wishlisted_products %}
+      <li>Product: {{ current_product.id }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
 
 {% schema %}
 {
