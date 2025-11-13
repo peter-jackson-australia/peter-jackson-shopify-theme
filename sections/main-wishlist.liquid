@@ -51,7 +51,7 @@
   </p>
 </div>
 {% else %}
-  <div class="">
+  <div class="wishlist-content__products">
     {% for current_product in wishlisted_products %}
       {% render 'product-card', product: current_product, image_width: 520 %}
     {% endfor %}
