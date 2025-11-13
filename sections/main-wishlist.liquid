@@ -51,11 +51,9 @@
   </p>
 </div>
 {% else %}
-<ul>
   {% for current_product in wishlisted_products %}
-    <li>Product: {{ current_product.id }}</li>
+    {% render 'product-card', product: product, image_width: 520 %}
   {% endfor %}
-</ul>
 {% endif %}
 
 {% schema %}
