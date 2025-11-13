@@ -1,4 +1,3 @@
-/* Wishlist states (unauthenticated / empty, etc.) */
 .wishlist__state {
   background-color: var(--white);
   border-top: 1px solid var(--neutral-50);
@@ -25,7 +24,6 @@
   text-decoration: none;
 }
 
-/* Wishlist product grid */
 .wishlist__products {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -35,7 +33,6 @@
   margin: var(--space-xl);
 }
 
-/* Product card (unchanged) */
 .product-card {
   contain: layout style paint;
   display: block;
@@ -193,7 +190,6 @@
   display: none;
 }
 
-/* Hover and responsive behaviour */
 @media (min-width: 1000px) {
   .product-card__image-wrapper:has(.product-card__image--second):hover .product-card__image--first {
     opacity: 0;
