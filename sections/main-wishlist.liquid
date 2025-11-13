@@ -47,7 +47,7 @@
     <p class="body">You must be logged in to manage your wishlist</p>
   </div>
   <p>
-    <a href="{{ routes.account_login_url }}" class="wishlist-not-signed-in__sign-in-button button">Log In</a>
+    <a href="{{ routes.account_login_url }}?return_to={{ routes.pages.wishlist.url }}" class="wishlist-not-signed-in__sign-in-button button">Log In</a>
   </p>
 </div>
 {% else %}
