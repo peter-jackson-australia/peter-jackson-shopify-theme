@@ -62,7 +62,7 @@
   }
 
   /** @param {HTMLElement} elem */
-  const registerWishlistButton = (elem) => {
+  const registerWishlistButton = async (elem) => {
     let isLoading = false
 
     const wishlistForm = elem.querySelector("wishlist-form")
@@ -76,14 +76,17 @@
       isLoading = true
       wishlistActions.setLoading()
 
-      const response = removeFromWishlist(productId)
+      const response = await removeFromWishlist(productId)
       if (response instanceof Error) {
         console.error(response)
         wishlistActions.setRemoveFromWishlist()
-      } else {
+      } else if (response.status == 200 || response.status == 201) {
         // won't be visible, but worth adding in case of delay while deleting wishlist item from u
         wishlistActions.setAddToWishlist()
         removeWishlistItemFromUI(productId)
+      } else {
+        console.warn("Could not remove from cart: ", response.status, await response.text())
+        wishlistActions.setRemoveFromWishlist()
       }
 
       isLoading = false
