@@ -503,7 +503,6 @@ const removeFromWishlist = async (productId) => {
 }
 
 (async () => {
-  const sectionId = document.currentScript.getAttribute("data-section-id")
   const productId = document.currentScript.getAttribute("data-product-id")
 
   /**
@@ -583,6 +582,5 @@ const removeFromWishlist = async (productId) => {
     })
   }
 
-  const section = document.querySelector(`#${sectionId}`)
-  section.querySelectorAll(".wishlist-form").forEach(registerWishlistForm)
+  document.querySelectorAll(".wishlist-form").forEach(registerWishlistForm)
 })()
