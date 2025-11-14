@@ -40,6 +40,7 @@
       const wishlistActions = getWishlistButtonActions(wishlistButton)
     
       wishlistForm.addEventListener("submit", (ev) => {
+        wishlistActions.setLoading()
       }
     }
 
