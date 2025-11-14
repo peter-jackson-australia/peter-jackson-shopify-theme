@@ -78,33 +78,33 @@
     }
   }
 
-  /** @param {HTMLElement} elem */
-  const initWishlistForm = async (elem) => {
+  /** @returns ({HTMLElement} elem) => void*/
+  const initWishlistForm = async (pageActions) => (elem) => {
     let isLoading = false
 
     const wishlistForm = elem.querySelector(".wishlist-form")
     const wishlistButton = wishlistForm.querySelector(".wishlist-button")
     const productId = elem.getAttribute("data-product-id")
-    const wishlistActions = getWishlistButtonActions(wishlistButton)
+    const wishlistButtonActions = getWishlistButtonActions(wishlistButton)
   
     wishlistForm.addEventListener("submit", async (ev) => {
       ev.preventDefault()
       if (isLoading) return
 
       isLoading = true
-      wishlistActions.setLoading()
+      wishlistButtonActions.setLoading()
 
       const response = await removeFromWishlist(productId)
       if (response instanceof Error) {
         console.error(response)
-        wishlistActions.setRemoveFromWishlist()
+        wishlistButtonActions.setRemoveFromWishlist()
       } else if (response.status === 200 || response.status === 201) {
         // won't be visible, but worth adding in case of delay while deleting wishlist item from u
-        wishlistActions.setAddToWishlist()
+        wishlistButtonActions.setAddToWishlist()
         elem.remove()
       } else {
         console.warn("Could not remove from cart: ", response.status, await response.text())
-        wishlistActions.setRemoveFromWishlist()
+        wishlistButtonActions.setRemoveFromWishlist()
       }
 
       isLoading = false
