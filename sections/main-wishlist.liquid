@@ -34,17 +34,19 @@
   </div>
 
   <!-- Shows when there are products in the wishlist -->
-  <div class="wishlist__products-header" {% if amount_in_wishlist == 0 %} style="display: none;" {% endif %}>
-    <h2 class="heading-l">Your Wishlist</h2>
-  </div>
-  <div class="wishlist__products">
-    {% for current_product in wishlisted_products %}
-      {% render 'product-card-with-wishlist', product: current_product, image_width: 520 %}
-    {% endfor %}
+  <div class="wishlist__state--not-empty">
+      <div class="wishlist__products-header" {% if amount_in_wishlist == 0 %} style="display: none;" {% endif %}>
+        <h2 class="heading-l">Your Wishlist</h2>
+      </div>
+      <div class="wishlist__products">
+        {% for current_product in wishlisted_products %}
+          {% render 'product-card-with-wishlist', product: current_product, image_width: 520 %}
+        {% endfor %}
+      </div>
   </div>
 {% endif %}
 
-<script src="{{ "section-main-wishlist.js" | asset_url }}" defer></script>
+<script src="{{ "section-main-wishlist.js" | asset_url }}" defer data-section-id="{{ section.id }}"></script>
 
 {% schema %}
 {
