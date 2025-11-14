@@ -97,7 +97,9 @@
       if (response instanceof Error) {
         console.error(response)
         wishlistButtonActions.setRemoveFromWishlist()
-        if (document.querySelectorAll(".product-card").length == 0) pageActions.emptyState()
+        const remainingProducts = document.querySelectorAll(".product-card")
+                console.log(remainingProducts)
+        if (remainingProducts.length == 0) pageActions.emptyState()
       } else if (response.status === 200 || response.status === 201) {
         // won't be visible, but worth adding in case of delay while deleting wishlist item from u
         wishlistButtonActions.setAddToWishlist()
