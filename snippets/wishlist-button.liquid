@@ -6,7 +6,7 @@
 {{ "snippet-wishlist-button.css" | asset_url | stylesheet_tag }}
 
 {% if customer == nil %} 
-  <div class="wishlist-form">
+  <div class="wishlist-redirect">
     <a class="wishlist-redirect-button">
       <span class="wishlist-button__icon-add-to-wishlist">
         {% render '_icon-bookmark' %}
