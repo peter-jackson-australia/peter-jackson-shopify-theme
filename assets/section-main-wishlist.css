@@ -96,10 +96,6 @@
   align-items: center;
 }
 
-/* .wishlist-button { */
-/*     align-items: center !important; */
-/* } */
-
 .product-card__material {
   color: var(--neutral-600);
 }
