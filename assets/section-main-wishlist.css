@@ -96,6 +96,10 @@
   align-content: center;
 }
 
+.wishlist-form {
+    align-content: top;
+}
+
 .product-card__material {
   color: var(--neutral-600);
 }
