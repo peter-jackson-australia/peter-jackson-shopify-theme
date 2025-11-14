@@ -1,5 +1,5 @@
 (async () => {
-    /** @param {HTMLElement} elem - test*/
+    /** @param {HTMLElement} elem */
     const registerProductCard = (elem) => {
         elem.
     }
