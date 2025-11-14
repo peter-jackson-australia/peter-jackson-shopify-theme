@@ -11,7 +11,7 @@
     {%- unless localization.market.handle != 'au' and link.title == 'Gift Cards' -%}
     {
       "title": {{ link.title | json }},
-      "url": {{ link.url | json }}
+      "url": {{ link.url | json }},
       "collectionId": {{ link.object.id | json }},
       "featuredImage": {{ link.object.featured_image | image_url: '1200x' | json }},
       "featuredImageAlt": {{ link.object.featured_image.alt | json }},
@@ -101,18 +101,15 @@
           </ul>
           <div class="menu-drawer__video-container">
             <a href="{{ video_url }}" style="text-decoration: none;">
-              <video
-                class="menu-drawer__video"
-                muted
-                loop
-                playsinline
-                preload="metadata"
-                aria-hidden="true"
-              >
-                {% for source in main_video.sources %}
-                  <source src="{{ source.url | asset_url }}" type="{{ source.mime_type }}">
-                {% endfor %}
-              </video>
+              {{ main_video 
+                | video_tag:
+                  class: "main-drawer__video",
+                  autoplay: true, 
+                  muted: true, 
+                  loop: true,
+                  playsinline: true,
+                  controls: false
+              }}
               <p class="body">{{ video_description }}</p>
             </a>
           </div>
