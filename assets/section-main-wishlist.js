@@ -97,12 +97,11 @@
       if (response instanceof Error) {
         console.error(response)
         wishlistButtonActions.setRemoveFromWishlist()
-        const remainingProducts = document.querySelectorAll(".product-card")
-                console.log(remainingProducts)
-        if (remainingProducts.length == 0) pageActions.emptyState()
       } else if (response.status === 200 || response.status === 201) {
         // won't be visible, but worth adding in case of delay while deleting wishlist item from u
         wishlistButtonActions.setAddToWishlist()
+        const remainingProducts = document.querySelectorAll(".product-card")
+        if (remainingProducts.length == 0) pageActions.emptyState()
         elem.remove()
       } else {
         console.warn("Could not remove from cart: ", response.status, await response.text())
