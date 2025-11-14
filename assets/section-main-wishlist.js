@@ -56,9 +56,9 @@
     }
   }
 
-  /** @param {Number} productId */
-  const removeWishlistItemFromUI = (productId) => {
-    console.log("removing: ", productId)
+  /** @param {HTMLElement} productContainer - Container to remove from the HTML form */
+  const removeWishlistItemFromUI = (productContainer) => {
+    productContainer.remove()
   }
 
   /** @param {HTMLElement} elem */
