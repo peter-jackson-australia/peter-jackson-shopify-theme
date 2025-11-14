@@ -56,6 +56,11 @@
     }
   }
 
+  /** @param {Number} productId */
+  const removeWishlistItemFromUI = (productId) => {
+    
+  }
+
   /** @param {HTMLElement} elem */
   const registerWishlistButton = (elem) => {
     let isLoading = false
@@ -74,7 +79,13 @@
       const response = removeFromWishlist(productId)
       if (response instanceof Error) {
         console.error(response)
+        wishlistActions.setRemoveFromWishlist()
+      } else {
+        removeWishlistItemFromUI(productId)
+        wishlistActions.setAddToWishlist()
       }
+
+      isLoading = false
     }
   }
 
