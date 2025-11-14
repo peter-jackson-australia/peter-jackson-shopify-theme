@@ -109,6 +109,7 @@
     })
   }
 
+    console.log(document.currentScript.getAttribute("section-id"))
   const section = document.querySelector(`#${document.currentScript.getAttribute("section-id")}`)
   const pageActions = getWishlistPageActions(section)
   document.querySelectorAll(".product-card").forEach(initWishlistForm(pageActions))
