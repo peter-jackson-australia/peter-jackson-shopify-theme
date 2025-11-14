@@ -1,14 +1,13 @@
 {% doc %}
 This snippet renders a product within the splide slider for the "shop the look" section.
 
-@param{bool} hasNext - There is another product in the list to render
-@param{bool} hasPrev - There is another product in the list to render
+@param{boolean} hasNext - There is another product in the list to render
+@param{boolean} hasPrev - There is another product in the list to render
 @param{object} product - The product to display at this point
 @param{string} heading - Heading for the modal
+@param{boolean} in_wishlist - If the product is in the wishlist currently
 {% enddoc %}
 
-{% assign item_handle = product.handle %}
-{% assign featured_image = product.featured_image %}
 {% assign current_variant = null %}
 
 {% for variant in product.variants %}
@@ -68,7 +67,7 @@ This snippet renders a product within the splide slider for the "shop the look" 
         <div class="shop-the-look__product-details-header">
           <div class="product-details__title">
               <h1 class="product-details__title heading--xl" data-title="{{ product.title }}">{{ product.title }}</h1>
-              {% render 'wishlist-button', in_wishlist: true %}
+              {% render 'wishlist-button', in_wishlist: in_wishlist %}
           </div>
           <div class="product-details__price">
             <span class="product-details__price-actual body js--variant-price">
