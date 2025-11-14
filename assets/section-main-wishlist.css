@@ -89,6 +89,10 @@
   text-decoration: none;
 }
 
+.product-card__title-link-wishlist {
+  text-decoration: none;
+}
+
 .product-card__material {
   color: var(--neutral-600);
 }
