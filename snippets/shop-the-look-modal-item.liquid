@@ -87,10 +87,6 @@ This snippet renders a product within the splide slider for the "shop the look" 
           {% endif %}
         </div>
 
-        {% comment %}{% if product.metafields.custom.product_colour_variants %}{% endcomment %}
-        {% comment %}{% render 'related-product-slider' %}{% endcomment %}
-        {% comment %}{% endif %}{% endcomment %}
-
         <form action="{{ routes.cart_add_url }}" method="post" onsubmit="return false;" id="js--variant-form">
           {% unless product.has_only_default_variant %}
             {% for option_group in product.options_with_values %}
