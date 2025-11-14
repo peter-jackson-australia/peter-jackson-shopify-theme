@@ -78,7 +78,7 @@
     }
   }
 
-  const initWishlistForm = async (pageActions) => (elem) => {
+  const initWishlistForm = async (pageActions, elem) => {
     const wishlistForm = elem.querySelector(".wishlist-form")
     const wishlistButton = wishlistForm.querySelector(".wishlist-button")
     const productId = elem.getAttribute("data-product-id")
@@ -111,7 +111,6 @@
 
     console.log(document.currentScript.getAttribute("data-section-id"))
   const section = document.querySelector(`#${document.currentScript.getAttribute("data-section-id")}`)
-    console.log(section)
   const pageActions = getWishlistPageActions(section)
-  document.querySelectorAll(".product-card").forEach(initWishlistForm(pageActions))
+  document.querySelectorAll(".product-card").forEach((elem) => initWishlistForm(pageActions, elem))
 })()
