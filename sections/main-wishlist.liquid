@@ -3,6 +3,7 @@
 {% endcomment %}
 
 {{ "section-main-wishlist.css" | asset_url | stylesheet_tag }}
+{{ "section-main-product.css" | asset_url | stylesheet_tag }}
 
 {% assign wishlisted_products = customer.metafields.custom.wishlist.value %}
 {% assign amount_in_wishlist = wishlisted_products | size %}
