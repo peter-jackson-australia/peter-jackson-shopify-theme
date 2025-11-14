@@ -58,7 +58,7 @@
 
   /** @param {Number} productId */
   const removeWishlistItemFromUI = (productId) => {
-    
+    console.log("removing: ", productId)
   }
 
   /** @param {HTMLElement} elem */
