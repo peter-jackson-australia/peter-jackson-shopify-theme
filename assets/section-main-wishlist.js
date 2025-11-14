@@ -1,30 +1,29 @@
-/**
- * Removes a product by its ID from the logged in customer's wishlist
- * @param productId {String}
- * @returns {Promise<Response|Error>}
- */
-const removeFromWishlist = async (productId) => {
-  const params = new URLSearchParams({
-    productid: productId,
-  })
-
-  const endpoint = `/apps/wishlist?${params.toString()}`
-
-  try {
-    return await fetch(endpoint, {
-      method: "DELETE",
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      credentials: 'same-origin',
-    })
-  } catch(e) {
-    return e
-  }
-}
-
-
 (async () => {
+  /**
+   * Removes a product by its ID from the logged in customer's wishlist
+   * @param productId {String}
+   * @returns {Promise<Response|Error>}
+   */
+  const removeFromWishlist = async (productId) => {
+    const params = new URLSearchParams({
+      productid: productId,
+    })
+
+    const endpoint = `/apps/wishlist?${params.toString()}`
+
+    try {
+      return await fetch(endpoint, {
+        method: "DELETE",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'same-origin',
+      })
+    } catch(e) {
+      return e
+    }
+  }
+
   /**
    * @param button {HTMLButtonElement}
    * @return {{
@@ -66,6 +65,7 @@ const removeFromWishlist = async (productId) => {
   
     wishlistForm.addEventListener("submit", (ev) => {
       wishlistActions.setLoading()
+      const response = removeFromWishlist(productId)
     }
   }
 
