@@ -3,6 +3,8 @@
 @param {boolean} in_wishlist - If the product is inside the customer's wishlist
 {% enddoc %}
 
+{{ "snippet-wishlist-button.css" | asset_url | stylesheet_tag }}
+
 <form class="wishlist-form" data-is-wishlisted="{{ in_wishlist }}">
   <button type="submit" class="wishlist-button">
     <span class="wishlist-button__icon-add-to-wishlist" {% if in_wishlist %} style="display: none;" {% endif %}>
