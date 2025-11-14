@@ -56,11 +56,6 @@
     }
   }
 
-  /** @param {HTMLElement} productContainer - Container to remove from the HTML form */
-  const removeWishlistItemFromUI = (productContainer) => {
-    productContainer.remove()
-  }
-
   /** @param {HTMLElement} elem */
   const initWishlistForm = async (elem) => {
     let isLoading = false
@@ -84,7 +79,7 @@
       } else if (response.status === 200 || response.status === 201) {
         // won't be visible, but worth adding in case of delay while deleting wishlist item from u
         wishlistActions.setAddToWishlist()
-        removeWishlistItemFromUI(productId)
+        elem.remove()
       } else {
         console.warn("Could not remove from cart: ", response.status, await response.text())
         wishlistActions.setRemoveFromWishlist()
