@@ -540,7 +540,7 @@ const removeFromWishlist = async (productId) => {
       loading: false
     }
 
-    const productId = wishlistForm.currentScript.getAttribute("data-product-id")
+    const productId = wishlistForm.getAttribute("data-product-id")
     const button = wishlistForm.querySelector(".wishlist-button")
     const wishlistButtonActions = getWishlistButtonActions(button)
 
