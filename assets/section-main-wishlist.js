@@ -65,8 +65,8 @@
   const registerWishlistButton = async (elem) => {
     let isLoading = false
 
-    const wishlistForm = elem.querySelector("wishlist-form")
-    const wishlistButton = wishlistForm.querySelector("wishlist-button")
+    const wishlistForm = elem.querySelector(".wishlist-form")
+    const wishlistButton = wishlistForm.querySelector(".wishlist-button")
     const productId = elem.getAttribute("data-product-id")
     const wishlistActions = getWishlistButtonActions(wishlistButton)
   
