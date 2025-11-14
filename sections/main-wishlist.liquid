@@ -20,9 +20,9 @@
     </p>
   </div>
 
-{% elsif amount_in_wishlist == 0 %}
+{% else %}
   <!-- Shows when there are no products in the customer's wishlist -->
-  <div class="wishlist__state wishlist__state--empty">
+  <div class="wishlist__state wishlist__state--empty" {% if amount_in_wishlist > 0 %} hidden {% endif %}>
     <p class="wishlist__state-title heading--decorative">Peter Jackson</p>
     <h1 class="wishlist__state-heading heading--3xl" data-title="Page not found">Your Wishlist</h1>
     <div class="wishlist__state-description">
@@ -33,9 +33,8 @@
     </p>
   </div>
 
-{% else %}
   <!-- Shows when there are products in the wishlist -->
-  <div class="wishlist__products-header">
+  <div class="wishlist__products-header" {% if amount_in_wishlist == 0 %} hidden {% endif %}>
     <h2 class="heading-l">Your Wishlist</h2>
   </div>
   <div class="wishlist__products">
