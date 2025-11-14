@@ -70,7 +70,7 @@
     const productId = elem.getAttribute("data-product-id")
     const wishlistActions = getWishlistButtonActions(wishlistButton)
   
-    wishlistForm.addEventListener("submit", () => {
+    wishlistForm.addEventListener("submit", async () => {
       if (isLoading) return
 
       isLoading = true
@@ -93,5 +93,5 @@
     })
   }
 
-  document.querySelectorAll(".product-card")
+  document.querySelectorAll(".product-card").forEach(registerWishlistButton)
 })()
