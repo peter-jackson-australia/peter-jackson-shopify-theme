@@ -5,11 +5,11 @@
 .wishlist-button {
   align-items: center;
   background-color: transparent;
-  border-color: transparent;
   display: flex;
-  height: var(--space-m);
   justify-content: center;
-  width: var(--space-m);
+  width: fit-content;
+  height: fit-content;
+  border: none;
 }
 
 .wishlist-button__icon-add-to-wishlist {
