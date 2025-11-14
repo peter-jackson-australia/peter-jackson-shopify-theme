@@ -111,6 +111,7 @@
 
     console.log(document.currentScript.getAttribute("data-section-id"))
   const section = document.querySelector(`#${document.currentScript.getAttribute("data-section-id")}`)
+    console.log(section)
   const pageActions = getWishlistPageActions(section)
   document.querySelectorAll(".product-card").forEach(initWishlistForm(pageActions))
 })()
