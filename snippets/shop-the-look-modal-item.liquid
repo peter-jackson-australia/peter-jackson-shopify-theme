@@ -8,6 +8,8 @@ This snippet renders a product within the splide slider for the "shop the look" 
 @param{boolean} in_wishlist - If the product is in the wishlist currently
 {% enddoc %}
 
+{% assign item_handle = product.handle %}
+{% assign featured_image = product.featured_image %}
 {% assign current_variant = null %}
 
 {% for variant in product.variants %}
