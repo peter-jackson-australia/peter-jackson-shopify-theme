@@ -91,6 +91,9 @@
 
 .product-card__title-link-wishlist {
   text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
 }
 
 .product-card__material {
