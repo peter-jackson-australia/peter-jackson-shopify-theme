@@ -11,7 +11,7 @@
     {%- unless localization.market.handle != 'au' and link.title == 'Gift Cards' -%}
     {
       "title": {{ link.title | json }},
-      "url": {{ link.url | json }}
+      "url": {{ link.url | json }},
       "collectionId": {{ link.object.id | json }},
       "featuredImage": {{ link.object.featured_image | image_url: '1200x' | json }},
       "featuredImageAlt": {{ link.object.featured_image.alt | json }},
