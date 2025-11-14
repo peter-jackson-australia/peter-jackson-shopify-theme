@@ -104,6 +104,9 @@
         "slide_P9nnNj",
         "slide_ddW7HK"
       ],
+      "custom_css": [
+        ".heading--l {font-size: 10px;}"
+      ],
       "name": "Hero Slider",
       "settings": {
         "autoplay": true,
