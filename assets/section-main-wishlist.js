@@ -81,8 +81,9 @@
         console.error(response)
         wishlistActions.setRemoveFromWishlist()
       } else {
-        removeWishlistItemFromUI(productId)
+        // won't be visible, but worth adding in case of delay while deleting wishlist item from u
         wishlistActions.setAddToWishlist()
+        removeWishlistItemFromUI(productId)
       }
 
       isLoading = false
