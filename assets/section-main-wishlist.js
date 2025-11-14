@@ -56,6 +56,12 @@
     }
   }
 
+  /**
+   * @return {{
+   *   emptyState: () => void,
+   *   notEmptyState: () => void,
+   * }}
+   */
   const getWishlistPageActions = (page) => {
     const emptyElem = page.querySelector(".wishlist__state wishlist__state--empty")
     const notEmptyElem = page.querySelector(".wishlist__state wishlist__state--not-empty")
