@@ -78,7 +78,10 @@
     }
   }
 
-  /** @returns ({HTMLElement} elem) => void*/
+  /** 
+   * @param {{ emptyState: () => void, notEmptyState: () => void }}
+   * @returns ({HTMLElement} elem) => void
+   */
   const initWishlistForm = async (pageActions) => (elem) => {
     let isLoading = false
 
