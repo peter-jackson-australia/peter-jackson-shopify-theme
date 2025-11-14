@@ -61,11 +61,13 @@ This snippet renders a product within the splide slider for the "shop the look" 
   <section class="shop-the-look__modal-item-content">
     <div class="shop-the-look__modal-item-content-container custom-scrollbar">
       <div>
-        <p>
-          Buy In 4 Interest Free Payments of {{ current_variant.price | divided_by: 4 | money_with_currency }}
-          {{ 'afterpay' | payment_type_svg_tag }}
+        <div class="shop-the-look__product-details-preface">
+          <p>
+            Buy In 4 Interest Free Payments of {{ current_variant.price | divided_by: 4 | money_with_currency }}
+            {{ 'afterpay' | payment_type_svg_tag }}
+          </p>
           {% render 'wishlist-button', in_wishlist: in_wishlist %}
-        </p>
+        </div>
 
         <div class="shop-the-look__product-details-header">
           <h1 class="product-details__title heading--xl" data-title="{{ product.title }}">{{ product.title }}</h1>
