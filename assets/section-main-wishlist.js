@@ -80,7 +80,7 @@
       if (response instanceof Error) {
         console.error(response)
         wishlistActions.setRemoveFromWishlist()
-      } else if (response.status == 200 || response.status == 201) {
+      } else if (response.status === 200 || response.status === 201) {
         // won't be visible, but worth adding in case of delay while deleting wishlist item from u
         wishlistActions.setAddToWishlist()
         removeWishlistItemFromUI(productId)
@@ -90,7 +90,7 @@
       }
 
       isLoading = false
-    }
+    })
   }
 
   document.querySelectorAll(".product-card")
