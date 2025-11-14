@@ -217,7 +217,6 @@
 
 .product-details__sku {
   color: var(--neutral-600);
-  margin-bottom: var(--space-2xs);
 }
 
 .size-guide-button {
