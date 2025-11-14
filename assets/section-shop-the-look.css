@@ -42,6 +42,10 @@
   position: relative;
 }
 
+.shop-the-look__afterpay {
+  color: var(--neutral-600);
+}
+
 .shop-the-look__switch-product-button:disabled {
   color: black;
   cursor: not-allowed;
