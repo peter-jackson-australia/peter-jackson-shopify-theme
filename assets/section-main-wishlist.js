@@ -80,7 +80,7 @@
 
   /** 
    * @param {{ emptyState: () => void, notEmptyState: () => void }}
-   * @returns ({HTMLElement} elem) => void
+   * @returns ({HTMLElement}) => void
    */
   const initWishlistForm = async (pageActions) => (elem) => {
     let isLoading = false
