@@ -56,6 +56,11 @@
     }
   }
 
+  const getWishlistPageActions = (page) => {
+    const emptyElem = page.querySelector(".wishlist__state wishlist__state--empty")
+    const notEmptyElem = page.querySelector(".wishlist__state wishlist__state--not-empty")
+  }
+
   /** @param {HTMLElement} elem */
   const initWishlistForm = async (elem) => {
     let isLoading = false
