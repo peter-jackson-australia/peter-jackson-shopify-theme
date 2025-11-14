@@ -60,7 +60,7 @@
 
   <div class="product-card__content">
     <a href="{{ product.url }}" class="product-card__title-link-wishlist">
-      <h2 class="product-card__title body--bold">{{ product.title }}</h2>
+      <span class="product-card__title "><h2 class="body--bold">{{ product.title }}</h2></span>
       {% render 'wishlist-button', in_wishlist: true %}
     </a>
 
