@@ -1,5 +1,8 @@
 {% doc %}
   @description Mega Menu Sidebar Drawer Component
+  @param {string} video_url
+  @param {object} main_video
+  @param {string} video_description
 {% enddoc %}
 
 {%- capture menu_data -%}
@@ -8,7 +11,7 @@
     {%- unless localization.market.handle != 'au' and link.title == 'Gift Cards' -%}
     {
       "title": {{ link.title | json }},
-      "url": {{ link.url | json }},
+      "url": {{ link.url | json }}
       "collectionId": {{ link.object.id | json }},
       "featuredImage": {{ link.object.featured_image | image_url: '1200x' | json }},
       "featuredImageAlt": {{ link.object.featured_image.alt | json }},
@@ -97,7 +100,7 @@
             {% endfor %}
           </ul>
           <div class="menu-drawer__video-container">
-            <a href="{{ routes.collections_url }}/spring-25" style="text-decoration: none;">
+            <a href="{{ video_url }}" style="text-decoration: none;">
               <video
                 class="menu-drawer__video"
                 muted
@@ -106,10 +109,9 @@
                 preload="metadata"
                 aria-hidden="true"
               >
-                <source
-                  src="https://cdn.shopify.com/videos/c/o/v/9544db7947c1409599b16e76138fc59f.mp4"
-                  type="video/mp4"
-                >
+                {% for source in main_video.sources %}
+                  <source src="{{ source.url | asset_url }}" type="{{ source.mime_type }}">
+                {% endfor %}
               </video>
               <p class="body">Season Of Style / Spring 25</p>
             </a>
