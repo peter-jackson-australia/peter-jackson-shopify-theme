@@ -11,7 +11,7 @@
 {% assign img_large = product.featured_image | image_url: width: 1275 %}
 {% assign img_height = 600 | divided_by: image_aspect_ratio | round %}
 
-<div class="product-card">
+<div class="product-card" data-product-id="{{product.id}}">
   <a class="product-card__image-link" href="{{ product.url }}">
     <div class="product-card__image-wrapper">
       <div style="background-color: var(--neutral-50); position: relative; width: 100%; padding-bottom: calc({{ image_height | times: 1.0 | divided_by: image_width | times: 100 }}%);">
