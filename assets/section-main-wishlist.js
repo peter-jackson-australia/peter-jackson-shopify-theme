@@ -58,14 +58,23 @@
 
   /** @param {HTMLElement} elem */
   const registerWishlistButton = (elem) => {
+    let isLoading = false
+
     const wishlistForm = elem.querySelector("wishlist-form")
     const wishlistButton = wishlistForm.querySelector("wishlist-button")
     const productId = elem.getAttribute("data-product-id")
     const wishlistActions = getWishlistButtonActions(wishlistButton)
   
     wishlistForm.addEventListener("submit", (ev) => {
+      if (isLoading) return
+
+      isLoading = true
       wishlistActions.setLoading()
+
       const response = removeFromWishlist(productId)
+      if (response instanceof Error) {
+        console.error(response)
+      }
     }
   }
 
