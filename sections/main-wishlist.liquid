@@ -40,7 +40,7 @@
   </div>
   <div class="wishlist__products">
     {% for current_product in wishlisted_products %}
-      {% render 'product-card', product: current_product, image_width: 520 %}
+      {% render 'product-card-with-wishlist', product: current_product, image_width: 520 %}
     {% endfor %}
   </div>
 {% endif %}
