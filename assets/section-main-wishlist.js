@@ -101,6 +101,7 @@
         // won't be visible, but worth adding in case of delay while deleting wishlist item from u
         wishlistButtonActions.setAddToWishlist()
         const remainingProducts = document.querySelectorAll(".product-card")
+                console.log(remainingProducts)
         if (remainingProducts.length == 0) pageActions.emptyState()
         elem.remove()
       } else {
