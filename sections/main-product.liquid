@@ -134,7 +134,7 @@
               <span class="js--variant-sku">{{ current_variant.sku }}</span>
             </p>
           {% endif %}
-          {% render 'wishlist-button', in_wishlist: product_is_wishlisted, product: product %}
+          {% render 'wishlist-button', in_wishlist: product_is_wishlisted, product_id: product.id %}
         </div>
         <div class="product-details__header">
           <h1 class="product-details__title heading--xl" data-title="{{ product.title }}">{{ product.title }}</h1>
