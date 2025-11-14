@@ -62,7 +62,7 @@
   }
 
   /** @param {HTMLElement} elem */
-  const registerWishlistButton = async (elem) => {
+  const initWishlistForm = async (elem) => {
     let isLoading = false
 
     const wishlistForm = elem.querySelector(".wishlist-form")
@@ -94,5 +94,5 @@
     })
   }
 
-  document.querySelectorAll(".product-card").forEach(registerWishlistButton)
+  document.querySelectorAll(".product-card").forEach(initWishlistForm)
 })()
