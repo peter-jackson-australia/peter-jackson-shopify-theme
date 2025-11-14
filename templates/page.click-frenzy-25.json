@@ -14,6 +14,7 @@
       "blocks": {
         "slide_JGebxX": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "media_type": "image",
             "desktop_image": "shopify://shop_images/Cyber_Week_Hero_V2.webp",
@@ -42,6 +43,7 @@
         },
         "slide_P9nnNj": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "media_type": "image",
             "desktop_image": "shopify://shop_images/Cyber_Week_Hero.webp",
@@ -70,13 +72,12 @@
         },
         "slide_ddW7HK": {
           "type": "slide",
-          "disabled": true,
           "settings": {
             "media_type": "image",
             "desktop_image": "shopify://shop_images/Suits_Hero.webp",
             "mobile_image": "shopify://shop_images/Suits_Hero_Mob_1afba34e-6c4f-485c-bd07-7b428b72aad3.webp",
             "heading": "Spring Sale",
-            "svg_image": "shopify://shop_images/Sport_Of_It_Desktop_V2.svg",
+            "svg_image": "shopify://shop_images/Spring_Sale.svg",
             "svg_size": "full",
             "mobile_svg_image": "shopify://shop_images/S25_Homepage_Suits_Mobile.svg",
             "heading_level": "h1",
@@ -92,7 +93,7 @@
             "button_label_4": "",
             "button_link_4": "",
             "horizontal_alignment": "center",
-            "vertical_alignment": "stretch",
+            "vertical_alignment": "bottom",
             "mobile_horizontal_alignment": "center",
             "mobile_vertical_alignment": "bottom"
           }
