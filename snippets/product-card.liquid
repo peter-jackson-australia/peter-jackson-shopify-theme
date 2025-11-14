@@ -2,10 +2,6 @@
   Product Card - Simple Grid-Responsive Images
 {% endcomment %}
 
-{% doc %}
-@param {object} product
-{% enddoc %}
-
 {% assign image_width = image_width | default: 1000 %}
 {% assign image_alt = product.featured_image.alt | escape | strip_html | strip_newlines | default: product.title %}
 {% assign image_aspect_ratio = product.featured_image.aspect_ratio | default: 1 %}
