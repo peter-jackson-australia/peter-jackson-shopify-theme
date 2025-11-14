@@ -86,6 +86,13 @@
   z-index: 1;
 }
 
+.shop-the-look__product-details-preface {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--space-2xs);
+}
+
 .shop-the-look__product-details-header {
   align-items: center;
   align-items: start;
