@@ -78,10 +78,6 @@
     }
   }
 
-  /** 
-   * @param {{ emptyState: () => void, notEmptyState: () => void }} pageActions
-   * @returns ({HTMLElement}) => void
-   */
   const initWishlistForm = async (pageActions) => (elem) => {
     const wishlistForm = elem.querySelector(".wishlist-form")
     const wishlistButton = wishlistForm.querySelector(".wishlist-button")
