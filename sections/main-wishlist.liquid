@@ -45,7 +45,9 @@
   </div>
 {% endif %}
 
-{{ "section-main-wishlist.js" | asset_url | script_tag }}
+<script src="{{ "section-main-wishlist.js" | asset_url | script_tag }}"
+        defer>
+</script>
 
 {% schema %}
 {
