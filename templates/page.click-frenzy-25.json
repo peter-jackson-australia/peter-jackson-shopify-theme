@@ -281,12 +281,12 @@
       "type": "collection-slider-secondary",
       "name": "Collection Slider Secondary",
       "settings": {
-        "heading": "$50 Off Leather Footwear",
+        "heading": "$50 Off Business Shirts",
         "heading_animation": "none",
         "description": "",
         "description_animation": "none",
-        "collection": "mens-footwear",
-        "button_label": "Shop Footwear",
+        "collection": "business-shirts",
+        "button_label": "Shop Now",
         "products_to_show": 12,
         "animate_products": false
       }
