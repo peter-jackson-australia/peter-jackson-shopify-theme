@@ -66,7 +66,10 @@ This snippet renders a product within the splide slider for the "shop the look" 
         </p>
 
         <div class="shop-the-look__product-details-header">
-          <h1 class="product-details__title heading--xl" data-title="{{ product.title }}">{{ product.title }}</h1>
+          <div class="product-details__title">
+              <h1 class="product-details__title heading--xl" data-title="{{ product.title }}">{{ product.title }}</h1>
+              {% render 'wishlist-button', in_wishlist: true %}
+          </div>
           <div class="product-details__price">
             <span class="product-details__price-actual body js--variant-price">
                 {{ current_variant.price | money_with_currency }}
