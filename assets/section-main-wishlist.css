@@ -93,12 +93,12 @@
   text-decoration: none;
   display: flex;
   justify-content: space-between;
-  align-content: center;
+  align-items: center;
 }
 
-.wishlist-button {
-    align-content: center !important;
-}
+/* .wishlist-button { */
+/*     align-items: center !important; */
+/* } */
 
 .product-card__material {
   color: var(--neutral-600);
