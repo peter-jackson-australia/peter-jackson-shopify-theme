@@ -70,7 +70,8 @@
     const productId = elem.getAttribute("data-product-id")
     const wishlistActions = getWishlistButtonActions(wishlistButton)
   
-    wishlistForm.addEventListener("submit", async () => {
+    wishlistForm.addEventListener("submit", async (ev) => {
+      ev.preventDefault()
       if (isLoading) return
 
       isLoading = true
