@@ -79,12 +79,10 @@
   }
 
   /** 
-   * @param {{ emptyState: () => void, notEmptyState: () => void }}
-   * @returns (elem {HTMLElement}) => void
+   * @param {{ emptyState: () => void, notEmptyState: () => void }} pageActions
+   * @returns ({HTMLElement}) => void
    */
   const initWishlistForm = async (pageActions) => (elem) => {
-    let isLoading = false
-
     const wishlistForm = elem.querySelector(".wishlist-form")
     const wishlistButton = wishlistForm.querySelector(".wishlist-button")
     const productId = elem.getAttribute("data-product-id")
