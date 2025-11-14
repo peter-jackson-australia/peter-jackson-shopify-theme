@@ -103,12 +103,13 @@
             <a href="{{ video_url }}" style="text-decoration: none;">
               {{ main_video 
                 | video_tag:
-                  class: "main-drawer__video",
+                  class: "menu-drawer__video",
                   autoplay: true, 
                   muted: true, 
                   loop: true,
                   playsinline: true,
-                  controls: false
+                  controls: false,
+                  preload: "metadata"
               }}
               <p class="body">{{ video_description }}</p>
             </a>
