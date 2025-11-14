@@ -61,7 +61,7 @@
   <div class="product-card__content">
     <a href="{{ product.url }}" class="product-card__title-link-wishlist">
       <span class="product-card__title"><h2 class="body--bold">{{ product.title }}</h2></span>
-      {% render 'wishlist-button', in_wishlist: true %}
+      {% render 'wishlist-button', in_wishlist: true, product_id: product.id %}
     </a>
 
     {% if product.metafields.custom.fabric_description != blank %}
