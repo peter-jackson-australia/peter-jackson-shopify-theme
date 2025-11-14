@@ -1,7 +1,8 @@
 (async () => {
-    /** @param elem {HTMLElement} */
-    const registerProductCard((elem) => {
-    })
+    /** @param {HTMLElement} elem - test*/
+    const registerProductCard = (elem) => {
+        elem.
+    }
 
     document.querySelectorAll(".product-card")
 })()
