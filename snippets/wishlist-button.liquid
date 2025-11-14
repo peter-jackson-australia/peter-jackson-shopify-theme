@@ -5,16 +5,32 @@
 
 {{ "snippet-wishlist-button.css" | asset_url | stylesheet_tag }}
 
-<form class="wishlist-form" data-is-wishlisted="{{ in_wishlist }}">
-  <button type="submit" class="wishlist-button">
-    <span class="wishlist-button__icon-add-to-wishlist" {% if in_wishlist %} style="display: none;" {% endif %}>
-      {% render '_icon-bookmark' %}
-    </span>
-    <span class="wishlist-button__icon-remove-from-wishlist" {% if in_wishlist == false %} style="display: none;" {% endif %}>
-      {% render '_icon-bookmark-filled' %}
-    </span>
-    <span class="wishlist-button__icon-loading" hidden>
-      <span class="loader--spinner"></span>
-    </span>
-  </button>
-</form>
+{% if customer == nil %} 
+  <div class="wishlist-form">
+    <a class="wishlist-button">
+      <span class="wishlist-button__icon-add-to-wishlist" {% if in_wishlist %} style="display: none;" {% endif %}>
+        {% render '_icon-bookmark' %}
+      </span>
+      <span class="wishlist-button__icon-remove-from-wishlist" {% if in_wishlist == false %} style="display: none;" {% endif %}>
+        {% render '_icon-bookmark-filled' %}
+      </span>
+      <span class="wishlist-button__icon-loading" hidden>
+        <span class="loader--spinner"></span>
+      </span>
+    </a>
+  </div>
+{% else %}
+  <form class="wishlist-form" data-is-wishlisted="{{ in_wishlist }}">
+    <button type="submit" class="wishlist-button">
+      <span class="wishlist-button__icon-add-to-wishlist" {% if in_wishlist %} style="display: none;" {% endif %}>
+        {% render '_icon-bookmark' %}
+      </span>
+      <span class="wishlist-button__icon-remove-from-wishlist" {% if in_wishlist == false %} style="display: none;" {% endif %}>
+        {% render '_icon-bookmark-filled' %}
+      </span>
+      <span class="wishlist-button__icon-loading" hidden>
+        <span class="loader--spinner"></span>
+      </span>
+    </button>
+  </form>
+{% endif %}
