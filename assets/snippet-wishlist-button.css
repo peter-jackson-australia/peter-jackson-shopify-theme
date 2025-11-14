@@ -10,6 +10,7 @@
   width: fit-content;
   height: fit-content;
   border: none;
+  cursor: pointer;
 }
 
 .wishlist-button__icon-add-to-wishlist {
