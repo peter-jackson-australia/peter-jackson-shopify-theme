@@ -1,3 +1,7 @@
+{% assign main_video = section.settings.video_content %}
+{% assign video_url = section.settings.video_url %}
+{% assign video_description = section.settings.video_description %}
+
 <div
   id="site-header"
   class="header container"
@@ -63,4 +67,31 @@
 </div>
 <div id="header-spacer" class="hide"></div>
   
-{% render 'menu', id: 'site-navigation' %}
+{% render 'menu', id: 'site-navigation', video_url: video_url %}
+
+{% schema %} 
+{
+  "name": "Header",
+  "tag": "section",
+  "limit": 1,
+  "settings": [
+    {
+      "id": "video_url",
+      "label": "Video Url",
+      "info": "The URL the user should be navigated to if they click the video",
+      "type": "url"
+    },
+    {
+      "id": "video_content",
+      "label": "Video Content",
+      "type": "video"
+    },
+    {
+      "id": "video_description",
+      "label": "Description",
+      "type": "text"
+    }
+  ]
+}
+{% endschema %}
+
