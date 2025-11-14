@@ -79,6 +79,8 @@
   }
 
   const initWishlistForm = async (pageActions, elem) => {
+    let isLoading = false
+
     const wishlistForm = elem.querySelector(".wishlist-form")
     const wishlistButton = wishlistForm.querySelector(".wishlist-button")
     const productId = elem.getAttribute("data-product-id")
@@ -109,7 +111,6 @@
     })
   }
 
-    console.log(document.currentScript.getAttribute("data-section-id"))
   const section = document.querySelector(`#${document.currentScript.getAttribute("data-section-id")}`)
   const pageActions = getWishlistPageActions(section)
   document.querySelectorAll(".product-card").forEach((elem) => initWishlistForm(pageActions, elem).then())
