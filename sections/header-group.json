@@ -50,7 +50,11 @@
     },
     "header": {
       "type": "header",
-      "settings": {}
+      "settings": {
+        "video_url": "shopify://collections/spring-25",
+        "video_content": "shopify://files/videos/CF_Sports Jackets.mp4",
+        "video_description": "Season Of Style / Spring 25"
+      }
     },
     "search-drawer": {
       "type": "search-drawer",
