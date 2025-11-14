@@ -1,4 +1,4 @@
-await (async () => {
+(async () => {
   /**
    * Removes a product by its ID from the logged in customer's wishlist
    * @param productId {String}
@@ -112,5 +112,5 @@ await (async () => {
     console.log(document.currentScript.getAttribute("data-section-id"))
   const section = document.querySelector(`#${document.currentScript.getAttribute("data-section-id")}`)
   const pageActions = getWishlistPageActions(section)
-  document.querySelectorAll(".product-card").forEach((elem) => await initWishlistForm(pageActions, elem))
+  document.querySelectorAll(".product-card").forEach((elem) => initWishlistForm(pageActions, elem).then())
 })()
