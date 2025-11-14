@@ -16,10 +16,10 @@
           "type": "slide",
           "settings": {
             "media_type": "image",
-            "desktop_image": "shopify://shop_images/Click_Frenzy_Hero_5a73b703-0e09-4f7f-a2ce-7960e06770f3.webp",
+            "desktop_image": "shopify://shop_images/Cyber_Week_Hero_V2.webp",
             "mobile_image": "shopify://shop_images/Click_Frenzy_Mobile.webp",
             "heading": "Shop Click Frenzy",
-            "svg_image": "shopify://shop_images/Click_Frenzy_Desktop.svg",
+            "svg_image": "shopify://shop_images/BF_Suits.svg",
             "svg_size": "full",
             "mobile_svg_image": "shopify://shop_images/Click_Frenzy_Mobile_82483cd2-b01d-47ff-9469-731163290243.svg",
             "heading_level": "h1",
@@ -42,6 +42,7 @@
         },
         "slide_P9nnNj": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "media_type": "image",
             "desktop_image": "shopify://shop_images/RR_12.webp",
