@@ -97,6 +97,11 @@
   gap: var(--space-3xs);
 }
 
+.product-card__title-link-wishlist h2 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 .product-card__material {
   color: var(--neutral-600);
 }
