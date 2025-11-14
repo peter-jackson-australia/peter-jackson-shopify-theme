@@ -96,8 +96,8 @@
   align-content: center;
 }
 
-.wishlist-form {
-    align-content: top;
+.wishlist-button {
+    align-content: top !important;
 }
 
 .product-card__material {
