@@ -29,11 +29,19 @@
                          data-variant-inventory-quantities="[{% for variant in product.variants %}{{ variant.inventory_quantity | escape }}{% unless forloop.last %},{% endunless %}{% endfor %}]";
                          data-product-title="{{ product.title | json | escape }}";
                          data-show-low-stock-warning="{{ section.settings.show_low_stock_warning | json | escape }}";>
-                      {% render 'shop-the-look-modal-item',
-                          product: product,
-                          hasPrev: forloop.first != true,
-                          hasNext: forloop.last != true,
-                          heading: section.settings.heading
+                      {% liquid
+                        assign in_wishlist = false
+
+                        if customer != nil 
+                            for wishlist_product in customer.metafields.custom.wishlist.value
+                                if wishlist_product.id == product.id
+                                    assign in_wishlist = true
+                                    break
+                                endif
+                            endfor
+                        endif
+
+                        render 'shop-the-look-modal-item', product: product, hasPrev: forloop.first != true, hasNext: forloop.last != true, in_wishlist: in_wishlist, heading: section.settings.heading
                       %}
                     </div>
                   </li>

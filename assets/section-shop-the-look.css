@@ -42,6 +42,10 @@
   position: relative;
 }
 
+.shop-the-look__product-details-preface {
+  color: var(--neutral-600);
+}
+
 .shop-the-look__switch-product-button:disabled {
   color: black;
   cursor: not-allowed;
@@ -84,6 +88,13 @@
   text-align: end;
   width: 50%;
   z-index: 1;
+}
+
+.shop-the-look__product-details-preface {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--space-2xs);
 }
 
 .shop-the-look__product-details-header {

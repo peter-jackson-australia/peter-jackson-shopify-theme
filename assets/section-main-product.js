@@ -451,3 +451,135 @@ function scrollToVariantForm() {
     });
   }
 }
+
+/**
+ * Adds a product by its ID into the logged in customer's wishlist
+ * @param productId {String}
+ * @returns {Promise<Response|Error>}
+ */
+const addToWishlist = async (productId) => {
+  const params = new URLSearchParams({
+    productid: productId,
+  })
+
+  const endpoint = `/apps/wishlist?${params.toString()}`
+
+  try {
+    return await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'same-origin',
+    })
+  } catch(e) {
+    return e
+  }
+}
+
+/**
+ * Removes a product by its ID from the logged in customer's wishlist
+ * @param productId {String}
+ * @returns {Promise<Response|Error>}
+ */
+const removeFromWishlist = async (productId) => {
+  const params = new URLSearchParams({
+    productid: productId,
+  })
+
+  const endpoint = `/apps/wishlist?${params.toString()}`
+
+  try {
+    return await fetch(endpoint, {
+      method: "DELETE",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'same-origin',
+    })
+  } catch(e) {
+    return e
+  }
+}
+
+(async () => {
+  /**
+   * @param button {HTMLButtonElement}
+   * @return {{
+   *   setRemoveFromWishlist: () => void,
+   *   setAddToWishlist: () => void,
+   *   setLoading: () => void,
+   * }}
+   */
+  const getWishlistButtonActions = (button) => {
+    const buttonImageAdd = button.querySelector(".wishlist-button__icon-add-to-wishlist")
+    const buttonImageRemove = button.querySelector(".wishlist-button__icon-remove-from-wishlist")
+    const buttonImageLoad = button.querySelector(".wishlist-button__icon-loading")
+
+    return {
+      setRemoveFromWishlist: () => {
+        buttonImageAdd.style.display = "none"
+        buttonImageRemove.style.display = "flex"
+        buttonImageLoad.style.display = "none"
+      },
+      setAddToWishlist: () => {
+        buttonImageAdd.style.display = "flex"
+        buttonImageRemove.style.display = "none"
+        buttonImageLoad.style.display = "none"
+      },
+      setLoading: () => {
+        buttonImageAdd.style.display = "none"
+        buttonImageRemove.style.display = "none"
+        buttonImageLoad.style.display = "flex"
+      }
+    }
+  }
+
+  const registerWishlistForm = (wishlistForm) => {
+    const state = {
+      loading: false
+    }
+
+    const productId = wishlistForm.getAttribute("data-product-id")
+    const button = wishlistForm.querySelector(".wishlist-button")
+    const wishlistButtonActions = getWishlistButtonActions(button)
+
+    wishlistForm.addEventListener("submit", async (ev) => {
+      ev.preventDefault();
+      if (state.loading) return;
+
+      let isWishlisted = wishlistForm.getAttribute("data-is-wishlisted") === "true"
+
+      state.loading = true;
+      wishlistButtonActions.setLoading()
+
+      const response = await (isWishlisted ? removeFromWishlist(productId) : addToWishlist(productId))
+
+      if (response instanceof Error) {
+        console.error(response)
+      } else {
+        switch (response.status) {
+          case 201: // ADDED/REMOVED
+            isWishlisted = !isWishlisted
+            break
+          case 200: // ALREADY EXISTS
+            break
+          default:  // ERROR
+            console.error("Could not add this product to your wishlist. Please try again later.")
+            response.json().then(console.error)
+            break
+        }
+      }
+
+      state.loading = false
+      wishlistForm.setAttribute("data-is-wishlisted", isWishlisted ? "true" : "false")
+      if (isWishlisted) {
+        wishlistButtonActions.setRemoveFromWishlist()
+      } else {
+        wishlistButtonActions.setAddToWishlist()
+      }
+    })
+  }
+
+  document.querySelectorAll(".wishlist-form").forEach(registerWishlistForm)
+})()

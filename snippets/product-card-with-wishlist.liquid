@@ -1,0 +1,145 @@
+{% comment %}
+  Product Card - Simple Grid-Responsive Images (with wishlist)
+{% endcomment %}
+
+{% assign image_width = image_width | default: 1000 %}
+{% assign image_alt = product.featured_image.alt | escape | strip_html | strip_newlines | default: product.title %}
+{% assign image_aspect_ratio = product.featured_image.aspect_ratio | default: 1 %}
+{% assign image_height = image_width | divided_by: image_aspect_ratio | round %}
+
+{% assign img_small = product.featured_image | image_url: width: 600 %}
+{% assign img_large = product.featured_image | image_url: width: 1275 %}
+{% assign img_height = 600 | divided_by: image_aspect_ratio | round %}
+
+<div class="product-card" data-product-id="{{product.id}}">
+  <a class="product-card__image-link" href="{{ product.url }}">
+    <div class="product-card__image-wrapper">
+      <div style="background-color: var(--neutral-50); position: relative; width: 100%; padding-bottom: calc({{ image_height | times: 1.0 | divided_by: image_width | times: 100 }}%);">
+        <img
+          src="{{ img_small }}"
+          width="600"
+          height="{{ img_height }}"
+          class="product-card__image product-card__image--first"
+          loading="eager"
+          decoding="async"
+          alt="{{ image_alt }}"
+          data-src-small="{{ img_small }}"
+          data-src-large="{{ img_large }}"
+          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
+        >
+
+        {% if product.images.size > 1 %}
+          {% assign img2_small = product.images[1] | image_url: width: 600 %}
+          {% assign img2_large = product.images[1] | image_url: width: 1275 %}
+          {% assign img2_aspect = product.images[1].aspect_ratio | default: 1 %}
+          {% assign img2_height = 600 | divided_by: img2_aspect | round %}
+          <img
+            src="{{ img2_small }}"
+            width="600"
+            height="{{ img2_height }}"
+            class="product-card__image product-card__image--second"
+            loading="lazy"
+            decoding="async"
+            alt="{{ product.images[1].alt | escape | default: product.title }}"
+            data-src-small="{{ img2_small }}"
+            data-src-large="{{ img2_large }}"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
+          >
+        {% endif %}
+
+        {% if prominent_discount_mobile and product.metafields.custom.discount_bundle_name != blank %}
+          {% if localization.market.handle == 'au' %}
+            <p class="small product-card__discount-code-prominent">
+              {{ product.metafields.custom.discount_bundle_name | metafield_tag }}
+            </p>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+  </a>
+
+  <div class="product-card__content">
+    <a href="{{ product.url }}" class="product-card__title-link-wishlist">
+      <span class="product-card__title"><h2 class="body--bold">{{ product.title }}</h2></span>
+      {% render 'wishlist-button', in_wishlist: true, product_id: product.id %}
+    </a>
+
+    {% if product.metafields.custom.fabric_description != blank %}
+      <p class="product-card__material small">
+        {{ product.metafields.custom.fabric_description }}
+      </p>
+    {% endif %}
+
+    <p class="product-card__price small">
+      <span class="product-card__price--current">{{ product.price | money_with_currency }}</span>
+      {% if product.compare_at_price > product.price %}
+        <span class="product-card__price--compare">Was {{ product.compare_at_price | money_with_currency }}</span>
+      {% endif %}
+      {% if product.metafields.custom.discount_bundle_name != blank %}
+        {% unless prominent_discount_mobile %}
+          {% if localization.market.handle == 'au' %}
+            <span class="product-card__discount-code-desktop">
+              {{ product.metafields.custom.discount_bundle_name | metafield_tag }}
+            </span>
+          {% endif %}
+        {% endunless %}
+      {% endif %}
+    </p>
+
+    {% if product.metafields.custom.discount_bundle_name != blank %}
+      {% unless prominent_discount_mobile %}
+        {% if localization.market.handle == 'au' %}
+          <p class="small product-card__discount-code-mobile">
+            {{ product.metafields.custom.discount_bundle_name | metafield_tag }}
+          </p>
+        {% endif %}
+      {% endunless %}
+    {% endif %}
+
+    {% if product.metafields.custom.product_colour_variants %}
+      {% assign colour_variants = product.metafields.custom.product_colour_variants.value %}
+      {% assign max_display = 3 %}
+      {% assign remaining_count = colour_variants.count | minus: max_display %}
+
+      <div class="product-card__swatches">
+        {% assign current_colour = product.metafields.custom.swatch_colour.value.colour | strip %}
+        {% assign bg_colour = current_colour | default: 'var(--neutral-200)' %}
+
+        {% assign border_style = '1px solid var(--neutral-950)' %}
+
+        <a
+          href="{{ product.url }}"
+          class="product-card__swatch-link"
+          aria-label="View {{ product.title }} variant"
+          style="border: {{ border_style }}; background-color: {{ bg_colour }}; padding: 2px; background-clip: content-box;"
+        >
+        </a>
+
+        {% for variant in colour_variants limit: max_display %}
+          {% assign variant_colour = variant.metafields.custom.swatch_colour.value.colour | strip %}
+          {% assign variant_name = variant.metafields.custom.swatch_colour.value.name | strip %}
+          {% assign bg_colour = variant_colour | default: 'var(--neutral-200)' %}
+
+          {% if variant_name == 'White' %}
+            {% assign border_style = '2px solid var(--neutral-200)' %}
+          {% else %}
+            {% assign border_colour = variant_colour | default: 'var(--neutral-950)' %}
+            {% assign border_style = '2px solid ' | append: border_colour %}
+          {% endif %}
+
+          <a
+            href="{{ variant.url }}"
+            class="product-card__swatch-link"
+            aria-label="View {{ variant.title }} variant"
+            style="border: {{ border_style }}; background-color: {{ bg_colour }};"
+          >
+          </a>
+        {% endfor %}
+
+        {% if remaining_count > 0 %}
+          <p class="small">+{{ remaining_count }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</div>

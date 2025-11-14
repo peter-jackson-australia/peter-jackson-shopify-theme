@@ -170,6 +170,13 @@
   padding: var(--space-2xl);
 }
 
+.product-details__preface {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--space-2xs);
+}
+
 .product-details__header {
   align-items: center;
   display: flex;
@@ -211,7 +218,6 @@
 
 .product-details__sku {
   color: var(--neutral-600);
-  margin-bottom: var(--space-2xs);
 }
 
 .size-guide-button {

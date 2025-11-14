@@ -21,6 +21,24 @@
   {% assign current_variant = product.selected_or_first_available_variant %}
 {% endif %}
 
+{% liquid
+  assign customer_logged_in = false
+  assign product_is_wishlisted = false
+  assign button_text = "Add To Wishlist"
+  
+  if customer
+    assign customer_logged_in = true
+    assign wishlisted_items = customer.metafields.custom.wishlist.value
+    for p in wishlisted_items
+      if p.id == product.id
+        assign product_is_wishlisted = true
+        assign button_text = "Remove From Wishlist"
+        break
+      endif
+    endfor
+  endif
+%}
+
 <script>
   var current_variant = {{ current_variant | json }};
   var variants = {{ product.variants | json }};
@@ -104,17 +122,20 @@
         class="product-details__container custom-scrollbar"
     >
       <div id="product-details">
-        {% if section.settings.show_afterpay %}
-          <p class="product-details__sku small">
-            Buy In 4 Interest Free Payments of {{ current_variant.price | divided_by: 4 | money_with_currency }}
-            {{ 'afterpay' | payment_type_svg_tag }}
-          </p>
-        {% elsif current_variant.sku %}
-          <p class="product-details__sku small">
-            Product Code:
-            <span class="js--variant-sku">{{ current_variant.sku }}</span>
-          </p>
-        {% endif %}
+        <div class="product-details__preface">
+          {% if section.settings.show_afterpay %}
+            <p class="product-details__sku small">
+              Buy In 4 Interest Free Payments of {{ current_variant.price | divided_by: 4 | money_with_currency }}
+              {{ 'afterpay' | payment_type_svg_tag }}
+            </p>
+          {% elsif current_variant.sku %}
+            <p class="product-details__sku small">
+              Product Code:
+              <span class="js--variant-sku">{{ current_variant.sku }}</span>
+            </p>
+          {% endif %}
+          {% render 'wishlist-button', in_wishlist: product_is_wishlisted, product_id: product.id %}
+        </div>
         <div class="product-details__header">
           <h1 class="product-details__title heading--xl" data-title="{{ product.title }}">{{ product.title }}</h1>
           <div class="product-details__price">
@@ -435,7 +456,12 @@
   </div>
 </div>
 
-<script src="{{'section-main-product.js' | asset_url }}" defer></script>
+<script src="{{'section-main-product.js' | asset_url }}"
+        data-section-id="product"
+        data-product-is-wishlisted="{{ product_is_wishlisted }}"
+        data-product-id="{{ product.id }}"
+        defer
+></script>
 
 {% schema %}
 {
