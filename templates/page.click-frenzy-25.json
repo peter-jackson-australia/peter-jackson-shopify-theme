@@ -43,13 +43,12 @@
         },
         "slide_P9nnNj": {
           "type": "slide",
-          "disabled": true,
           "settings": {
             "media_type": "image",
             "desktop_image": "shopify://shop_images/Cyber_Week_Hero.webp",
             "mobile_image": "shopify://shop_images/Suits_Hero_Mob_a34b025f-ef68-4b19-9628-7b8fad8cffcf.webp",
             "heading": "Business & Casual Suits",
-            "svg_image": "shopify://shop_images/BF_Early_Access_0718b60e-9e1c-496b-96ce-057dc6ad2ae0.svg",
+            "svg_image": "shopify://shop_images/Cyber_Sale.svg",
             "svg_size": "full",
             "mobile_svg_image": "shopify://shop_images/Refined_Redefined_Mob.svg",
             "heading_level": "h1",
@@ -65,13 +64,14 @@
             "button_label_4": "Casual Shirts from $59.95",
             "button_link_4": "shopify://collections/tops",
             "horizontal_alignment": "center",
-            "vertical_alignment": "stretch",
+            "vertical_alignment": "bottom",
             "mobile_horizontal_alignment": "center",
             "mobile_vertical_alignment": "bottom"
           }
         },
         "slide_ddW7HK": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "media_type": "image",
             "desktop_image": "shopify://shop_images/Suits_Hero.webp",
