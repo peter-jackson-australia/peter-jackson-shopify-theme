@@ -43,9 +43,9 @@
     "header": {
       "type": "header",
       "settings": {
-        "video_url": "shopify://collections/bags",
-        "video_content": "shopify://files/videos/Refined Redefined Hero.mp4",
-        "video_description": "Testing 123"
+        "video_url": "shopify://collections/spring-25",
+        "video_content": "shopify://files/videos/SOS_Mega Menu.mp4",
+        "video_description": "Season Of Style / Spring 25"
       }
     },
     "search-drawer": {
