@@ -20,7 +20,8 @@
           "settings": {
             "svg_image": "shopify://shop_images/Click_Frenzy_Desktop_New.svg",
             "mobile_svg_image": "shopify://shop_images/Click_Frenzy_Mobile_V3.svg",
-            "description": "*T&Cs Apply"
+            "description": "*T&Cs Apply",
+            "button_label_1": "ENDS TODAY"
           }
         },
         "slide_P9nnNj": {
