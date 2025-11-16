@@ -43,7 +43,7 @@
     "header": {
       "type": "header",
       "settings": {
-        "video_url": "shopify://collections/spring-25",
+        "video_url": "",
         "video_content": "shopify://files/videos/SOS_Mega Menu.mp4",
         "video_description": "Season Of Style / Spring 25"
       }
