@@ -14,13 +14,6 @@
     "announcement": {
       "type": "announcement-bar",
       "blocks": {
-        "announcement_mQFJhL": {
-          "type": "announcement",
-          "settings": {
-            "text": "<a href=\"/collections/sale\" title=\"Sale\">Click Frenzy Begins - Up tp 60% Off Storewide*</a>",
-            "alignment": "center"
-          }
-        },
         "announcement_ymDiAG": {
           "type": "announcement",
           "settings": {
@@ -37,7 +30,6 @@
         }
       },
       "block_order": [
-        "announcement_mQFJhL",
         "announcement_ymDiAG",
         "announcement_tnUYFL"
       ],
