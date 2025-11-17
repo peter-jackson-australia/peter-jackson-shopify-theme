@@ -114,20 +114,20 @@
         "column_item_6wGj7R": {
           "settings": {
             "image": "shopify://shop_images/Business_Shirts_CH.webp",
-            "svg_icon": "shopify://shop_images/Business_Shirts.svg",
             "top_text": "Premium Workwear Perfected",
-            "bottom_text": "$50 Off All Styles",
-            "mobile_svg_icon": "shopify://shop_images/Business_Suits.svg"
+            "svg_icon": "shopify://shop_images/Business_Shirts.svg",
+            "mobile_svg_icon": "shopify://shop_images/Business_Suits.svg",
+            "bottom_text": "$50 Off All Styles"
           }
         },
         "column_item_3WzPyc": {
           "settings": {
             "image": "shopify://shop_images/Business_Suits_CH.webp",
-            "svg_icon": "shopify://shop_images/Business_Suits.svg",
             "image_link": "shopify://collections/mens-suits",
-            "bottom_text": "Two for $895*",
             "top_text": "The Power Move",
-            "mobile_svg_icon": "shopify://shop_images/Business_Suits.svg"
+            "svg_icon": "shopify://shop_images/Business_Suits.svg",
+            "mobile_svg_icon": "shopify://shop_images/Business_Suits.svg",
+            "bottom_text": "Two for $895*"
           }
         }
       }
@@ -142,6 +142,16 @@
           }
         }
       }
+    },
+    "spacer_jABe9": {
+      "type": "spacer",
+      "disabled": false,
+      "settings": {
+        "spacer_height": "var(--space-m)"
+      },
+      "blocks": {},
+      "block_order": [],
+      "name": "Spacer"
     }
   },
   "order": [
@@ -152,10 +162,11 @@
     "hero_primary_NeKfMz",
     "heading_with_text_9nQj7z",
     "collection_slider_secondary_r6XR7q",
+    "spacer_eDihb",
     "hero_primary_WLbcQ7",
     "collection_slider_3p3hD9",
     "variable_column_content_tertiary_qfTkVT",
-    "spacer_eDihb",
+    "spacer_jABe9",
     "hero_primary_zeaCqL",
     "collection_slider_XmLf6t",
     "featured_article_r6pY9T"
