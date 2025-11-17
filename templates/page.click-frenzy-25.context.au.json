@@ -25,7 +25,9 @@
     },
     "variable_column_content_tertiary_XwmChF": {
       "disabled": false,
-      "settings": {},
+      "settings": {
+        "show_bottom_border": false
+      },
       "blocks": {
         "column_item_EdH7tR": {
           "settings": {
@@ -104,7 +106,10 @@
     },
     "variable_column_content_svg_tBLLXD": {
       "disabled": false,
-      "settings": {},
+      "settings": {
+        "show_top_border": true,
+        "show_bottom_border": true
+      },
       "blocks": {
         "column_item_6wGj7R": {
           "settings": {
@@ -132,10 +137,10 @@
   },
   "order": [
     "hero_slider_ULyNnz",
+    "variable_column_content_tertiary_XwmChF",
     "variable_column_content_svg_tBLLXD",
     "variable_column_content_secondary_X9KJtx",
     "hero_primary_NeKfMz",
-    "variable_column_content_tertiary_XwmChF",
     "heading_with_text_9nQj7z",
     "collection_slider_secondary_r6XR7q",
     "hero_primary_WLbcQ7",
