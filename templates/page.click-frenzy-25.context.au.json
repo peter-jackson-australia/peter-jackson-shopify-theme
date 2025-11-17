@@ -128,7 +128,7 @@
             "image_link": "shopify://collections/mens-suits",
             "top_text": "The Power Move",
             "svg_icon": "shopify://shop_images/Business_Suits.svg",
-            "mobile_svg_icon": "shopify://shop_images/Business_Suits.svg",
+            "mobile_svg_icon": "shopify://shop_images/Business_Suits_Mob.svg",
             "bottom_text": "Two for $895*"
           }
         }
