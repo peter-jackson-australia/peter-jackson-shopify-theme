@@ -86,36 +86,11 @@
       "blocks": {}
     },
     "collection_slider_secondary_r6XR7q": {
+      "disabled": true,
       "settings": {
         "heading": "Bestsellers Of Sale"
       },
       "blocks": {}
-    },
-    "grid_tiles_r7ifEt": {
-      "disabled": false,
-      "settings": {
-        "grid_columns": "2"
-      },
-      "blocks": {
-        "tile_bRm4wE": {
-          "settings": {
-            "tile_background_image": "shopify://shop_images/Business_Suits_Square.webp",
-            "tile_header": "Business Shirts",
-            "tile_secondary_text": "$50 Off"
-          }
-        },
-        "tile_WhJarW": {
-          "settings": {
-            "tile_background_image": "shopify://shop_images/Business_Suit_Square.webp",
-            "tile_header": "BUSINESS SUITS",
-            "tile_secondary_text": "from $399"
-          }
-        }
-      },
-      "block_order": [
-        "tile_bRm4wE",
-        "tile_WhJarW"
-      ]
     },
     "collection_slider_XmLf6t": {
       "disabled": true,
@@ -128,9 +103,20 @@
       "blocks": {}
     },
     "variable_column_content_svg_tBLLXD": {
-      "disabled": true,
+      "disabled": false,
       "settings": {},
-      "blocks": {}
+      "blocks": {
+        "column_item_6wGj7R": {
+          "settings": {
+            "image": "shopify://shop_images/Business_Shirts_CH.webp"
+          }
+        },
+        "column_item_3WzPyc": {
+          "settings": {
+            "image": "shopify://shop_images/Business_Suits_CH.webp"
+          }
+        }
+      }
     },
     "hero_slider_ULyNnz": {
       "settings": {},
@@ -146,13 +132,12 @@
   },
   "order": [
     "hero_slider_ULyNnz",
-    "variable_column_content_tertiary_XwmChF",
+    "variable_column_content_svg_tBLLXD",
     "variable_column_content_secondary_X9KJtx",
     "hero_primary_NeKfMz",
+    "variable_column_content_tertiary_XwmChF",
     "heading_with_text_9nQj7z",
-    "grid_tiles_r7ifEt",
     "collection_slider_secondary_r6XR7q",
-    "variable_column_content_svg_tBLLXD",
     "hero_primary_WLbcQ7",
     "collection_slider_3p3hD9",
     "variable_column_content_tertiary_qfTkVT",
