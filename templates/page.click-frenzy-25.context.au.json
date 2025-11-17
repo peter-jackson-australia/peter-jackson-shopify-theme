@@ -38,9 +38,15 @@
       "blocks": {
         "slide_JGebxX": {
           "settings": {
+            "svg_image": "shopify://shop_images/Cyber_Suits_White.svg",
             "button_label_2": "",
             "button_link_2": "",
-            "svg_image": "shopify://shop_images/Cyber_Sale_White.svg",
+            "vertical_alignment": "stretch"
+          }
+        },
+        "slide_P9nnNj": {
+          "settings": {
+            "svg_image": "shopify://shop_images/Cyber_Sale_White_0e4cfc4e-a8d6-4686-882e-85d5bdc84c40.svg",
             "vertical_alignment": "stretch"
           }
         }
