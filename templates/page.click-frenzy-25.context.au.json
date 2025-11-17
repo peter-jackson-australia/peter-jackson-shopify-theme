@@ -140,6 +140,14 @@
       "blocks": {}
     },
     "collection_slider_XmLf6t": {
+      "disabled": false,
+      "settings": {
+        "heading": "Black Friday Bestsellers",
+        "button_label": "The Best Of Sale"
+      },
+      "blocks": {}
+    },
+    "featured_article_r6pY9T": {
       "disabled": true,
       "settings": {},
       "blocks": {}
@@ -153,12 +161,12 @@
     "heading_with_text_9nQj7z",
     "collection_slider_secondary_r6XR7q",
     "spacer_eDihb",
+    "collection_slider_XmLf6t",
     "hero_primary_WLbcQ7",
     "collection_slider_3p3hD9",
     "variable_column_content_tertiary_qfTkVT",
     "spacer_jABe9",
     "hero_primary_zeaCqL",
-    "collection_slider_XmLf6t",
     "featured_article_r6pY9T"
   ]
 }
