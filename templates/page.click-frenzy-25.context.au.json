@@ -23,10 +23,32 @@
       "block_order": [],
       "name": "Spacer"
     },
+    "spacer_jABe9": {
+      "type": "spacer",
+      "disabled": false,
+      "settings": {
+        "spacer_height": "var(--space-m)"
+      },
+      "blocks": {},
+      "block_order": [],
+      "name": "Spacer"
+    },
+    "hero_slider_ULyNnz": {
+      "settings": {},
+      "blocks": {
+        "slide_JGebxX": {
+          "settings": {
+            "button_label_2": "",
+            "button_link_2": ""
+          }
+        }
+      }
+    },
     "variable_column_content_tertiary_XwmChF": {
       "disabled": false,
       "settings": {
-        "show_bottom_border": false
+        "show_bottom_border": false,
+        "text_alignment": "center"
       },
       "blocks": {
         "column_item_EdH7tR": {
@@ -68,42 +90,6 @@
         "column_item_tXtkqD"
       ]
     },
-    "variable_column_content_secondary_X9KJtx": {
-      "disabled": true,
-      "settings": {
-        "column_count": "4"
-      },
-      "blocks": {
-        "column_item_MXYNUN": {
-          "settings": {
-            "image": "shopify://shop_images/Cyber_Sports_Jackets.webp"
-          }
-        }
-      }
-    },
-    "hero_primary_NeKfMz": {
-      "settings": {
-        "button_label_1": "$150 Off Select Styles"
-      },
-      "blocks": {}
-    },
-    "collection_slider_secondary_r6XR7q": {
-      "disabled": true,
-      "settings": {
-        "heading": "Bestsellers Of Sale"
-      },
-      "blocks": {}
-    },
-    "collection_slider_XmLf6t": {
-      "disabled": true,
-      "settings": {},
-      "blocks": {}
-    },
-    "hero_primary_WLbcQ7": {
-      "disabled": false,
-      "settings": {},
-      "blocks": {}
-    },
     "variable_column_content_svg_tBLLXD": {
       "disabled": false,
       "settings": {
@@ -132,26 +118,41 @@
         }
       }
     },
-    "hero_slider_ULyNnz": {
-      "settings": {},
+    "variable_column_content_secondary_X9KJtx": {
+      "disabled": true,
+      "settings": {
+        "column_count": "4"
+      },
       "blocks": {
-        "slide_JGebxX": {
+        "column_item_MXYNUN": {
           "settings": {
-            "button_label_2": "",
-            "button_link_2": ""
+            "image": "shopify://shop_images/Cyber_Sports_Jackets.webp"
           }
         }
       }
     },
-    "spacer_jABe9": {
-      "type": "spacer",
-      "disabled": false,
+    "hero_primary_NeKfMz": {
       "settings": {
-        "spacer_height": "var(--space-m)"
+        "button_label_1": "$150 Off Select Styles"
       },
-      "blocks": {},
-      "block_order": [],
-      "name": "Spacer"
+      "blocks": {}
+    },
+    "collection_slider_secondary_r6XR7q": {
+      "disabled": true,
+      "settings": {
+        "heading": "Bestsellers Of Sale"
+      },
+      "blocks": {}
+    },
+    "hero_primary_WLbcQ7": {
+      "disabled": false,
+      "settings": {},
+      "blocks": {}
+    },
+    "collection_slider_XmLf6t": {
+      "disabled": true,
+      "settings": {},
+      "blocks": {}
     }
   },
   "order": [
