@@ -41,7 +41,8 @@
             "svg_image": "shopify://shop_images/Cyber_Suits_White.svg",
             "button_label_2": "",
             "button_link_2": "",
-            "vertical_alignment": "stretch"
+            "vertical_alignment": "stretch",
+            "mobile_svg_image": "shopify://shop_images/Cyber_Suits_White_Mob.svg"
           }
         },
         "slide_P9nnNj": {
