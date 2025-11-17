@@ -39,10 +39,10 @@
         "slide_JGebxX": {
           "settings": {
             "svg_image": "shopify://shop_images/Cyber_Suits_White.svg",
+            "mobile_svg_image": "shopify://shop_images/Cyber_Suits_White_Mob_d39ea33b-93bf-46d1-9db9-78a38717a192.svg",
             "button_label_2": "",
             "button_link_2": "",
-            "vertical_alignment": "stretch",
-            "mobile_svg_image": "shopify://shop_images/Cyber_Suits_White_Mob.svg"
+            "vertical_alignment": "stretch"
           }
         },
         "slide_P9nnNj": {
