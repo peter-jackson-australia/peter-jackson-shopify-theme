@@ -4,11 +4,9 @@
 
 {{ "section-main-wishlist.css" | asset_url | stylesheet_tag }}
 
-{% assign wishlisted_products = customer.metafields.custom.wishlist.value %}
-{% assign amount_in_wishlist = wishlisted_products | size %}
+{% assign amount_in_wishlist = customer.metafields.custom.wishlist.value | size %}
 
 {% if customer == nil %}
-  <!-- Shows when the customer is not signed in -->
   <div class="wishlist__state wishlist__state--unauthenticated">
     <p class="wishlist__state-title heading--decorative">Peter Jackson</p>
     <h1 class="wishlist__state-heading heading--3xl" data-title="Page not found">Your Wishlist</h1>
@@ -21,7 +19,6 @@
   </div>
 
 {% else %}
-  <!-- Shows when there are no products in the customer's wishlist -->
   <div class="wishlist__state wishlist__state--empty" {% if amount_in_wishlist > 0 %} style="display: none;" {% endif %}>
     <p class="wishlist__state-title heading--decorative">Peter Jackson</p>
     <h1 class="wishlist__state-heading heading--3xl" data-title="Page not found">Your Wishlist</h1>
@@ -29,17 +26,16 @@
       <p class="body">There are no products in your wishlist</p>
     </div>
     <p>
-      <a href="/collections/new-arrivals" class="wishlist__state-button button">Go to New Arrivals</a>
+      <a href="{{ routes.collections_url }}/new-arrivals" class="wishlist__state-button button">Go to New Arrivals</a>
     </p>
   </div>
 
-  <!-- Shows when there are products in the wishlist -->
   <div class="wishlist__state--not-empty">
       <div class="wishlist__products-header" {% if amount_in_wishlist == 0 %} style="display: none;" {% endif %}>
         <h2 class="heading-l">Your Wishlist</h2>
       </div>
       <div class="wishlist__products">
-        {% for current_product in wishlisted_products %}
+        {% for current_product in customer.metafields.custom.wishlist.value %}
           {% render 'product-card-with-wishlist', product: current_product, image_width: 520 %}
         {% endfor %}
       </div>

@@ -4,47 +4,32 @@
 
 {{ 'section-video.css' | asset_url | stylesheet_tag }}
 
-{% assign video_width = section.settings.width %}
-{% assign id = section.id %}
-{% assign title = section.settings.title %}
-{% assign show_title = section.settings.show_title %}
-
-{% assign show_top_border = section.settings.show_top_border %}
-{% assign show_bottom_border = section.settings.show_bottom_border %}
-
 {% assign poster_url = section.settings.poster_image | image_url: width: 2000 %}
 
-{% assign video_file = section.settings.video %}
-{% assign aspect_ratio = section.settings.aspect_ratio %}
-{% assign anchor_id = section.settings.anchor_id %}
-{% assign autoplay = section.settings.autoplay %}
-{% assign loop = section.settings.loop %}
-{% assign muted = section.settings.muted %}
-
 <div
-  id="video-section-{{ id }}"
-  class="video-container--{{ video_width }}"
-  aria-label="{{ title | escape }}"
+  id="video-section-{{ section.id }}"
+  class="video-container--{{ section.settings.width }}"
+  aria-label="{{ section.settings.title | escape }}"
   style="
-    {% if show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
-    {% if show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
+    {% if section.settings.show_top_border %}border-top: 1px solid var(--neutral-50);{% endif %}
+    {% if section.settings.show_bottom_border %}border-bottom: 1px solid var(--neutral-50);{% endif %}
   "
 >
-  {% if video_file %}
+  {% if section.settings.video %}
     <div
       class="video-container__video"
-      style="aspect-ratio: {% if aspect_ratio == '16-9' %}16/9{% elsif aspect_ratio == '4-3' %}4/3{% elsif aspect_ratio == '1-1' %}1/1{% else %}16/9{% endif %};"
-      {% if anchor_id != blank %}
-        id="{{ anchor_id | downcase | replace: ' ', '-' }}-segment"
+      style="aspect-ratio: {% if section.settings.aspect_ratio == '16-9' %}16/9{% elsif section.settings.aspect_ratio == '4-3' %}4/3{% elsif section.settings.aspect_ratio == '1-1' %}1/1{% else %}16/9{% endif %};"
+      {% if section.settings.anchor_id != blank %}
+        id="{{ section.settings.anchor_id | downcase | replace: ' ', '-' }}-segment"
       {% endif %}
     >
       {{
-        video_file
+        section.settings.video
         | video_tag:
           controls: true,
-          autoplay: autoplay,
-          loop: loop,
-          muted: muted,
+          autoplay: section.settings.autoplay,
+          loop: section.settings.loop,
+          muted: section.settings.muted,
           playsinline: true,
           class: 'video-container__video-element',
           poster: poster_url
@@ -56,9 +41,9 @@
     </div>
   {% endif %}
 
-  {% if show_title and title != blank %}
+  {% if section.settings.show_title and section.settings.title != blank %}
     <div class="video-container__title">
-      <p class="heading--xl">{{ title }}</p>
+      <p class="heading--xl">{{ section.settings.title }}</p>
     </div>
   {% endif %}
 </div>
