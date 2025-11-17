@@ -49,10 +49,10 @@
         },
         "slide_P9nnNj": {
           "settings": {
+            "mobile_image": "shopify://shop_images/Cyber_Sale_Mob_Hero_e220e9ea-c7db-4869-8576-f3dd4ebab7fe.webp",
             "svg_image": "shopify://shop_images/Cyber_Sale_White_0e4cfc4e-a8d6-4686-882e-85d5bdc84c40.svg",
-            "vertical_alignment": "stretch",
-            "mobile_image": "shopify://shop_images/Cyber_Sale_Mob_Hero.webp",
-            "mobile_svg_image": "shopify://shop_images/Cyber_Sale_White_Mob.svg"
+            "mobile_svg_image": "shopify://shop_images/Cyber_Sale_White_Mob.svg",
+            "vertical_alignment": "stretch"
           }
         }
       }
