@@ -52,7 +52,10 @@
             "mobile_image": "shopify://shop_images/Cyber_Sale_Mob_Hero_3.webp",
             "svg_image": "shopify://shop_images/Cyber_Sale_White_0e4cfc4e-a8d6-4686-882e-85d5bdc84c40.svg",
             "mobile_svg_image": "shopify://shop_images/Cyber_Sale_White_Mob.svg",
-            "vertical_alignment": "stretch"
+            "vertical_alignment": "stretch",
+            "button_label_2": "$150 Off Sports Jackets",
+            "button_label_3": "$50 Off Business Shirts",
+            "button_label_4": "Casual Shirts from $59.95"
           }
         }
       }
@@ -119,11 +122,11 @@
         "column_item_6wGj7R": {
           "settings": {
             "image": "shopify://shop_images/Business_Shirts_CH.webp",
+            "image_link": "shopify://collections/business-shirts",
             "top_text": "Premium Workwear Perfected",
             "svg_icon": "shopify://shop_images/Business_Shirts.svg",
             "mobile_svg_icon": "shopify://shop_images/Business_Shirts_Mob.svg",
-            "bottom_text": "$50 Off All Styles",
-            "image_link": "shopify://collections/business-shirts"
+            "bottom_text": "$50 Off All Styles"
           }
         },
         "column_item_3WzPyc": {
