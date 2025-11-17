@@ -113,12 +113,21 @@
       "blocks": {
         "column_item_6wGj7R": {
           "settings": {
-            "image": "shopify://shop_images/Business_Shirts_CH.webp"
+            "image": "shopify://shop_images/Business_Shirts_CH.webp",
+            "svg_icon": "shopify://shop_images/Business_Shirts.svg",
+            "top_text": "Premium Workwear Perfected",
+            "bottom_text": "$50 Off All Styles",
+            "mobile_svg_icon": "shopify://shop_images/Business_Suits.svg"
           }
         },
         "column_item_3WzPyc": {
           "settings": {
-            "image": "shopify://shop_images/Business_Suits_CH.webp"
+            "image": "shopify://shop_images/Business_Suits_CH.webp",
+            "svg_icon": "shopify://shop_images/Business_Suits.svg",
+            "image_link": "shopify://collections/mens-suits",
+            "bottom_text": "Two for $895*",
+            "top_text": "The Power Move",
+            "mobile_svg_icon": "shopify://shop_images/Business_Suits.svg"
           }
         }
       }
