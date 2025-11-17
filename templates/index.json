@@ -28,7 +28,7 @@
             "description_animation": "none",
             "button_label_1": "Shop Suits",
             "button_link_1": "shopify://collections/sale",
-            "button_label_2": "Two Suits for $895*",
+            "button_label_2": "Two Suits for {{ metaobjects.money_reference[\"895\"].price | metafield_text }}*",
             "button_link_2": "shopify://collections/mens-suits",
             "button_label_3": "",
             "button_link_3": "",
@@ -56,11 +56,11 @@
             "description_animation": "none",
             "button_label_1": "Shop All",
             "button_link_1": "shopify://collections/sale",
-            "button_label_2": "$150 Off Sports Jackets",
+            "button_label_2": "{{ metaobjects.money_reference[\"150\"].price | metafield_text }} Off Sports Jackets",
             "button_link_2": "shopify://collections/sport-jackets",
-            "button_label_3": "$50 Off Business Shirts",
+            "button_label_3": "{{ metaobjects.money_reference[\"50\"].price | metafield_text }} Off Business Shirts",
             "button_link_3": "shopify://collections/business-shirts",
-            "button_label_4": "Casual Shirts from $59.95",
+            "button_label_4": "Casual Shirts from {{ metaobjects.money_reference[\"59-95\"].price | metafield_text }}",
             "button_link_4": "shopify://collections/tops",
             "horizontal_alignment": "center",
             "vertical_alignment": "bottom",
@@ -197,7 +197,7 @@
           "settings": {
             "tile_background_image": "shopify://shop_images/Polos_0d8886a8-723a-4c47-bab4-dfa0ff51a9fd.webp",
             "tile_header": "POLOS",
-            "tile_secondary_text": "from $79.95",
+            "tile_secondary_text": "From {{ metaobjects.money_reference[\"79-95\"].price | metafield_text }}",
             "tile_link": "shopify://collections/polos-and-tees"
           }
         },
@@ -206,7 +206,7 @@
           "settings": {
             "tile_background_image": "shopify://shop_images/Spring_Suits_CF.webp",
             "tile_header": "BUSINESS SHIRTS",
-            "tile_secondary_text": "$50 Off*",
+            "tile_secondary_text": "{{ metaobjects.money_reference[\"50\"].price | metafield_text }} Off*",
             "tile_link": "shopify://collections/business-shirts"
           }
         },
@@ -215,7 +215,7 @@
           "settings": {
             "tile_background_image": "shopify://shop_images/Casual_Shirts.webp",
             "tile_header": "CASUAL SHIRTS",
-            "tile_secondary_text": "from $69.95",
+            "tile_secondary_text": "from {{ metaobjects.money_reference[\"69-95\"].price | metafield_text }}",
             "tile_link": "shopify://collections/casual-shirts"
           }
         }
@@ -263,7 +263,7 @@
         "heading_animation": "none",
         "description": "",
         "description_animation": "none",
-        "button_label_1": "Click Frenzy - $150 Off*",
+        "button_label_1": "Click Frenzy - {{ metaobjects.money_reference[\"150\"].price | metafield_text }} Off*",
         "button_link_1": "shopify://collections/sport-jackets",
         "button_label_2": "",
         "button_link_2": "",
