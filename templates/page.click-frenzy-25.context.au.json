@@ -34,16 +34,29 @@
         "button_label_1": "$150 Off Select Styles"
       },
       "blocks": {}
+    },
+    "variable_column_content_secondary_X9KJtx": {
+      "disabled": false,
+      "settings": {
+        "column_count": "4"
+      },
+      "blocks": {
+        "column_item_MXYNUN": {
+          "settings": {
+            "image": "shopify://shop_images/Cyber_Sports_Jackets.webp"
+          }
+        }
+      }
     }
   },
   "order": [
     "hero_slider_ULyNnz",
-    "spacer_eDihb",
-    "hero_primary_NeKfMz",
-    "collection_slider_secondary_r6XR7q",
     "variable_column_content_secondary_X9KJtx",
+    "hero_primary_NeKfMz",
+    "spacer_eDihb",
     "heading_with_text_9nQj7z",
     "grid_tiles_r7ifEt",
+    "collection_slider_secondary_r6XR7q",
     "variable_column_content_svg_tBLLXD",
     "variable_column_content_tertiary_XwmChF",
     "hero_primary_WLbcQ7",
