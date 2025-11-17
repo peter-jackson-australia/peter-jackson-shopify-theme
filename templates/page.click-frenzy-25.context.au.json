@@ -39,7 +39,9 @@
         "slide_JGebxX": {
           "settings": {
             "button_label_2": "",
-            "button_link_2": ""
+            "button_link_2": "",
+            "svg_image": "shopify://shop_images/Cyber_Sale_White.svg",
+            "vertical_alignment": "stretch"
           }
         }
       }
