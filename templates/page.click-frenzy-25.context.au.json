@@ -131,6 +131,17 @@
       "disabled": true,
       "settings": {},
       "blocks": {}
+    },
+    "hero_slider_ULyNnz": {
+      "settings": {},
+      "blocks": {
+        "slide_JGebxX": {
+          "settings": {
+            "button_label_2": "",
+            "button_link_2": ""
+          }
+        }
+      }
     }
   },
   "order": [
