@@ -57,9 +57,16 @@
             "image": "shopify://shop_images/Cyber_Sports_Jackets.webp",
             "heading": "Sports Jackets",
             "text": "$150 Off*",
-            "column_link": "shopify://collections/sport-jackets",
             "content_horizontal_alignment": "left",
-            "content_vertical_alignment": "bottom"
+            "content_vertical_alignment": "bottom",
+            "column_link": "shopify://collections/sport-jackets"
+          }
+        },
+        "column_item_zER8gb": {
+          "settings": {
+            "image": "shopify://shop_images/Business_Shirts_d1ed90e8-f521-4065-94fe-00c78c5932ec.webp",
+            "heading": "Business Shirts",
+            "text": "$50 Off"
           }
         }
       }
