@@ -38,12 +38,13 @@
       "blocks": {
         "slide_JGebxX": {
           "settings": {
+            "mobile_image": "shopify://shop_images/Cyber_Suits_Mob_Hero.webp",
             "svg_image": "shopify://shop_images/Cyber_Suits_White.svg",
             "mobile_svg_image": "shopify://shop_images/Cyber_Suits_White_Mob_d39ea33b-93bf-46d1-9db9-78a38717a192.svg",
             "button_label_2": "",
             "button_link_2": "",
             "vertical_alignment": "stretch",
-            "mobile_image": "shopify://shop_images/Cyber_Suits_Mob_Hero.webp"
+            "button_link_1": "shopify://collections/mens-suits"
           }
         },
         "slide_P9nnNj": {
