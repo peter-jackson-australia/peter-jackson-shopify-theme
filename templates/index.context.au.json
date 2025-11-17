@@ -122,7 +122,8 @@
             "top_text": "Premium Workwear Perfected",
             "svg_icon": "shopify://shop_images/Business_Shirts.svg",
             "mobile_svg_icon": "shopify://shop_images/Business_Shirts_Mob.svg",
-            "bottom_text": "$50 Off All Styles"
+            "bottom_text": "$50 Off All Styles",
+            "image_link": "shopify://collections/business-shirts"
           }
         },
         "column_item_3WzPyc": {
@@ -143,24 +144,17 @@
       },
       "blocks": {}
     },
-    "collection_slider_secondary_r6XR7q": {
-      "disabled": true,
-      "settings": {
-        "heading": "Bestsellers Of Sale"
-      },
-      "blocks": {}
-    },
-    "hero_primary_WLbcQ7": {
-      "disabled": false,
-      "settings": {},
-      "blocks": {}
-    },
     "collection_slider_XmLf6t": {
       "disabled": false,
       "settings": {
         "heading": "Black Friday Bestsellers",
         "button_label": "The Best Of Sale"
       },
+      "blocks": {}
+    },
+    "hero_primary_WLbcQ7": {
+      "disabled": false,
+      "settings": {},
       "blocks": {}
     },
     "featured_article_r6pY9T": {
@@ -174,13 +168,9 @@
     "variable_column_content_tertiary_XwmChF",
     "variable_column_content_svg_tBLLXD",
     "hero_primary_NeKfMz",
-    "heading_with_text_9nQj7z",
-    "collection_slider_secondary_r6XR7q",
     "spacer_eDihb",
     "collection_slider_XmLf6t",
     "hero_primary_WLbcQ7",
-    "collection_slider_3p3hD9",
-    "variable_column_content_tertiary_qfTkVT",
     "spacer_jABe9",
     "hero_primary_zeaCqL",
     "featured_article_r6pY9T"
