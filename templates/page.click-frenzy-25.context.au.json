@@ -36,7 +36,7 @@
       "blocks": {}
     },
     "variable_column_content_secondary_X9KJtx": {
-      "disabled": false,
+      "disabled": true,
       "settings": {
         "column_count": "4"
       },
@@ -47,10 +47,27 @@
           }
         }
       }
+    },
+    "variable_column_content_tertiary_XwmChF": {
+      "disabled": false,
+      "settings": {},
+      "blocks": {
+        "column_item_EdH7tR": {
+          "settings": {
+            "image": "shopify://shop_images/Cyber_Sports_Jackets.webp",
+            "heading": "Sports Jackets",
+            "text": "$150 Off*",
+            "column_link": "shopify://collections/sport-jackets",
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom"
+          }
+        }
+      }
     }
   },
   "order": [
     "hero_slider_ULyNnz",
+    "variable_column_content_tertiary_XwmChF",
     "variable_column_content_secondary_X9KJtx",
     "hero_primary_NeKfMz",
     "spacer_eDihb",
@@ -58,7 +75,6 @@
     "grid_tiles_r7ifEt",
     "collection_slider_secondary_r6XR7q",
     "variable_column_content_svg_tBLLXD",
-    "variable_column_content_tertiary_XwmChF",
     "hero_primary_WLbcQ7",
     "collection_slider_3p3hD9",
     "variable_column_content_tertiary_qfTkVT",
