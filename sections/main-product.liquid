@@ -22,17 +22,13 @@
 {% endif %}
 
 {% liquid
-  assign customer_logged_in = false
   assign product_is_wishlisted = false
-  assign button_text = "Add To Wishlist"
   
   if customer
-    assign customer_logged_in = true
     assign wishlisted_items = customer.metafields.custom.wishlist.value
     for p in wishlisted_items
       if p.id == product.id
         assign product_is_wishlisted = true
-        assign button_text = "Remove From Wishlist"
         break
       endif
     endfor
