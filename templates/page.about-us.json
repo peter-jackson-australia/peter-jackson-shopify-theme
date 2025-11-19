@@ -37,7 +37,7 @@
       "type": "image-with-text",
       "name": "Image With Text",
       "settings": {
-        "anchor_id": "",
+        "anchor_id": "our-history",
         "show_top_border": true,
         "show_bottom_border": true,
         "full_width": false,
