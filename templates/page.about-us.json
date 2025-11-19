@@ -239,36 +239,19 @@
             "column_link": "",
             "column_link_text": "Shop Now"
           }
-        },
-        "column_item_EpwyN9": {
-          "type": "column_item",
-          "settings": {
-            "image": "shopify://shop_images/Cyber_Sports_Jackets.webp",
-            "image_link": "",
-            "heading": "Marlane",
-            "heading_animation": "none",
-            "text": "Founded in 1815 in Biella, Italy—Marlane is a fabric manufacturer distinguished for its innovation and use of natural fibres.",
-            "text_animation": "none",
-            "show_gradient_overlay": false,
-            "content_horizontal_alignment": "left",
-            "content_vertical_alignment": "bottom",
-            "column_link": "",
-            "column_link_text": "Shop Now"
-          }
         }
       },
       "block_order": [
         "column_item_RPPcFP",
         "column_item_qEWAeG",
-        "column_item_8YFtjg",
-        "column_item_EpwyN9"
+        "column_item_8YFtjg"
       ],
       "name": "Variable Column Content Tertiary",
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": false,
-        "column_count": "4",
+        "column_count": "3",
         "text_alignment": "left",
         "animate_columns": true,
         "heading": "",
