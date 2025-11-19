@@ -41,7 +41,7 @@
         "show_top_border": true,
         "show_bottom_border": true,
         "full_width": false,
-        "first_image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+        "first_image": "shopify://shop_images/Business_Suits_CH.webp",
         "image_link": "",
         "animate_images": false,
         "alignment": "left",
@@ -58,7 +58,7 @@
       "name": "Hero Section",
       "settings": {
         "media_type": "image",
-        "desktop_image": "shopify://shop_images/Sports_Jackets_CF_78a2b45e-da57-4a08-9fd1-4ba71a2c1ab7.webp",
+        "desktop_image": "shopify://shop_images/Business_Suits_b4de4b15-ba94-45d6-aae2-3ac4b946a3c7.webp",
         "heading": "Tailored Specialists",
         "svg_size": "medium",
         "heading_level": "h1",
@@ -87,7 +87,7 @@
         "show_top_border": true,
         "show_bottom_border": true,
         "full_width": false,
-        "first_image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+        "first_image": "shopify://shop_images/Business_Shirts_CH.webp",
         "image_link": "",
         "animate_images": false,
         "alignment": "right",
@@ -105,7 +105,7 @@
         "column_item_KaxqaU": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+            "image": "shopify://shop_images/mens-jacket-white-linen-SU25-SP18_2547.webp",
             "image_link": "",
             "heading": "Merino Wool",
             "heading_animation": "none",
@@ -118,7 +118,7 @@
         "column_item_M78QBW": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+            "image": "shopify://shop_images/mens-crewneck-charcoal-cotton-WT25-K02-7.webp",
             "image_link": "",
             "heading": "Cotton",
             "heading_animation": "none",
@@ -131,7 +131,7 @@
         "column_item_HbzBnh": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+            "image": "shopify://shop_images/navy-and-grey-colour-block-pure-silk-scarf-colour-contrast.webp",
             "image_link": "",
             "heading": "Silk",
             "heading_animation": "none",
@@ -144,7 +144,7 @@
         "column_item_EXBLxE": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+            "image": "shopify://shop_images/mens-jacket-brown-linen-SU24-SC03-23.webp",
             "image_link": "",
             "heading": "Linen",
             "heading_animation": "none",
@@ -195,7 +195,7 @@
         "column_item_RPPcFP": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+            "image": "shopify://shop_images/Sports_Jackets.jpg",
             "image_link": "",
             "heading": "Marzotto Group",
             "heading_animation": "none",
@@ -211,7 +211,7 @@
         "column_item_qEWAeG": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+            "image": "shopify://shop_images/Suits_0fd4aa03-d091-4f1d-8f5d-d56e92dbf810.webp",
             "image_link": "",
             "heading": "Zignone",
             "heading_animation": "none",
@@ -227,7 +227,7 @@
         "column_item_8YFtjg": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+            "image": "shopify://shop_images/Business_Shirts.webp",
             "image_link": "",
             "heading": "Reda",
             "heading_animation": "none",
@@ -243,7 +243,7 @@
         "column_item_EpwyN9": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+            "image": "shopify://shop_images/Cyber_Sports_Jackets.webp",
             "image_link": "",
             "heading": "Marlane",
             "heading_animation": "none",
@@ -297,7 +297,7 @@
         "column_item_WGiDkx": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+            "image": "shopify://shop_images/Social_Season_Style_Mobile.webp",
             "image_link": "",
             "heading": "Borghi",
             "heading_animation": "none",
@@ -313,7 +313,7 @@
         "column_item_8HXTMf": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+            "image": "shopify://shop_images/Suits_Hero_Mob.webp",
             "image_link": "",
             "heading": "Soktas",
             "heading_animation": "none",
@@ -329,7 +329,7 @@
         "column_item_QPKgwe": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+            "image": "shopify://shop_images/Polos-1.webp",
             "image_link": "",
             "heading": "Albini Group",
             "heading_animation": "none",
@@ -345,7 +345,7 @@
         "column_item_4gmmDp": {
           "type": "column_item",
           "settings": {
-            "image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+            "image": "shopify://shop_images/Bottoms_Mega.webp",
             "image_link": "",
             "heading": "Sustainability",
             "heading_animation": "none",
@@ -389,7 +389,7 @@
         "show_top_border": true,
         "show_bottom_border": false,
         "full_width": false,
-        "first_image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+        "first_image": "shopify://shop_images/Suits_MM.webp",
         "image_link": "",
         "animate_images": false,
         "alignment": "right",
@@ -409,7 +409,7 @@
         "show_top_border": true,
         "show_bottom_border": true,
         "full_width": false,
-        "first_image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+        "first_image": "shopify://shop_images/250730_C_Peter-Jackson-2025_2_Studio34789_copy_2_a4afa8c2-c656-4f5d-8ba6-8ca220ab1af6.webp",
         "image_link": "",
         "animate_images": false,
         "alignment": "left",
@@ -429,7 +429,7 @@
         "show_top_border": true,
         "show_bottom_border": true,
         "full_width": false,
-        "first_image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+        "first_image": "shopify://shop_images/RR_11.1.webp",
         "image_link": "",
         "animate_images": false,
         "alignment": "right",
