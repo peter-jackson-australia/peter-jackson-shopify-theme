@@ -163,7 +163,7 @@
       ],
       "name": "Variable Column Content Secondary",
       "settings": {
-        "anchor_id": "",
+        "anchor_id": "production",
         "show_top_border": false,
         "show_bottom_border": false,
         "column_count": "4",
@@ -350,7 +350,7 @@
       ],
       "name": "Variable Column Content Tertiary",
       "settings": {
-        "anchor_id": "",
+        "anchor_id": "sustainability",
         "show_top_border": false,
         "show_bottom_border": false,
         "column_count": "4",
