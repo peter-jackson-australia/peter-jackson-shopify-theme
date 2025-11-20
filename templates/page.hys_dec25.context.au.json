@@ -30,7 +30,7 @@
           }
         },
         "slide_P9nnNj": {
-          "disabled": true,
+          "disabled": false,
           "settings": {
             "desktop_image": "shopify://shop_images/Summer_Suits.webp"
           }
@@ -46,6 +46,12 @@
           }
         }
       }
+    },
+    "hero_primary_NeKfMz": {
+      "settings": {
+        "desktop_image": "shopify://shop_images/Cyber_Week_Hero_copyDenim_Hero_Desk.webp"
+      },
+      "blocks": {}
     }
   }
 }
