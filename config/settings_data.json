@@ -36,6 +36,11 @@
         "type": "shopify://apps/consentmo-gdpr/blocks/gdpr_cookie_consent/4fbe573f-a377-4fea-9801-3ee0858cae41",
         "disabled": false,
         "settings": {}
+      },
+      "8367999757253633140": {
+        "type": "shopify://apps/schema-plus-for-seo/blocks/schemaplus_app_embed/0199c405-aef8-7230-87a6-aacc5fab62ed",
+        "disabled": false,
+        "settings": {}
       }
     }
   }
