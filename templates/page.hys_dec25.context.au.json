@@ -20,12 +20,12 @@
           "settings": {
             "desktop_image": "shopify://shop_images/High_Season_Hero_Desktop.webp",
             "heading": "Shop Summer",
-            "svg_image": "shopify://shop_images/High_Season_Desk_fe7d95f1-63ff-43ed-bfad-723206ce79ac.svg",
-            "svg_size": "small",
+            "svg_image": "shopify://shop_images/High_Season_Desk_d948c127-1e8f-4196-a926-92753538b9a2.svg",
+            "svg_size": "full",
             "button_label_1": "Shop Summer",
             "button_link_2": "",
-            "horizontal_alignment": "right",
-            "vertical_alignment": "middle",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "stretch",
             "mobile_horizontal_alignment": "center"
           }
         },
