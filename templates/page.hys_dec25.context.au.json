@@ -32,7 +32,9 @@
         "slide_P9nnNj": {
           "disabled": false,
           "settings": {
-            "desktop_image": "shopify://shop_images/Summer_Suits.webp"
+            "desktop_image": "shopify://shop_images/Summer_Suits.webp",
+            "svg_image": "shopify://shop_images/Suits_Of_Summer_Desktop.svg",
+            "vertical_alignment": "stretch"
           }
         }
       }
