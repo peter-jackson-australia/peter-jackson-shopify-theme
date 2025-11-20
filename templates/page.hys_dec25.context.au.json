@@ -16,15 +16,17 @@
     "hero_slider_ULyNnz": {
       "settings": {},
       "blocks": {
-        "slide_P9nnNj": {
-          "disabled": false,
-          "settings": {
-            "desktop_image": "shopify://shop_images/Summer_Suits.webp"
-          }
-        },
         "slide_JGebxX": {
           "settings": {
-            "desktop_image": "shopify://shop_images/High_Season_Hero_Desktop.webp"
+            "desktop_image": "shopify://shop_images/High_Season_Hero_Desktop.webp",
+            "svg_image": "shopify://shop_images/High_Season_Desk.svg",
+            "vertical_alignment": "stretch"
+          }
+        },
+        "slide_P9nnNj": {
+          "disabled": true,
+          "settings": {
+            "desktop_image": "shopify://shop_images/Summer_Suits.webp"
           }
         }
       }
