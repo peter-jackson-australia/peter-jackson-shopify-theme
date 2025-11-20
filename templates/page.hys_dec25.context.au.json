@@ -19,10 +19,14 @@
         "slide_JGebxX": {
           "settings": {
             "desktop_image": "shopify://shop_images/High_Season_Hero_Desktop.webp",
-            "svg_image": "shopify://shop_images/High_Season_Desk_b32aa220-c11d-483d-8d02-0265ac564943.svg",
-            "vertical_alignment": "stretch",
             "heading": "Shop Summer",
-            "button_link_2": ""
+            "svg_image": "shopify://shop_images/High_Season_Desk_fe7d95f1-63ff-43ed-bfad-723206ce79ac.svg",
+            "button_link_2": "",
+            "vertical_alignment": "stretch",
+            "svg_size": "small",
+            "mobile_horizontal_alignment": "center",
+            "horizontal_alignment": "right",
+            "button_label_1": "Shop Summer"
           }
         },
         "slide_P9nnNj": {
