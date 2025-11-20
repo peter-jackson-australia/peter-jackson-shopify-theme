@@ -36,6 +36,16 @@
           }
         }
       }
+    },
+    "grid_tiles_r7ifEt": {
+      "settings": {},
+      "blocks": {
+        "tile_bRm4wE": {
+          "settings": {
+            "tile_background_image": "shopify://shop_images/Polos.jpg"
+          }
+        }
+      }
     }
   }
 }
