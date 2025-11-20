@@ -21,12 +21,12 @@
             "desktop_image": "shopify://shop_images/High_Season_Hero_Desktop.webp",
             "heading": "Shop Summer",
             "svg_image": "shopify://shop_images/High_Season_Desk_fe7d95f1-63ff-43ed-bfad-723206ce79ac.svg",
-            "button_link_2": "",
-            "vertical_alignment": "stretch",
             "svg_size": "small",
-            "mobile_horizontal_alignment": "center",
+            "button_label_1": "Shop Summer",
+            "button_link_2": "",
             "horizontal_alignment": "right",
-            "button_label_1": "Shop Summer"
+            "vertical_alignment": "middle",
+            "mobile_horizontal_alignment": "center"
           }
         },
         "slide_P9nnNj": {
