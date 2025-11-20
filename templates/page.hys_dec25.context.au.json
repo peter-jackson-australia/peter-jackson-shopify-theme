@@ -12,5 +12,22 @@
   "context": {
     "market": "au"
   },
-  "sections": {}
+  "sections": {
+    "hero_slider_ULyNnz": {
+      "settings": {},
+      "blocks": {
+        "slide_P9nnNj": {
+          "disabled": false,
+          "settings": {
+            "desktop_image": "shopify://shop_images/Summer_Suits.webp"
+          }
+        },
+        "slide_JGebxX": {
+          "settings": {
+            "desktop_image": "shopify://shop_images/High_Season_Hero_Desktop.webp"
+          }
+        }
+      }
+    }
+  }
 }
