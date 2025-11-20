@@ -19,8 +19,10 @@
         "slide_JGebxX": {
           "settings": {
             "desktop_image": "shopify://shop_images/High_Season_Hero_Desktop.webp",
-            "svg_image": "shopify://shop_images/High_Season_Desk.svg",
-            "vertical_alignment": "stretch"
+            "svg_image": "shopify://shop_images/High_Season_Desk_b32aa220-c11d-483d-8d02-0265ac564943.svg",
+            "vertical_alignment": "stretch",
+            "heading": "Shop Summer",
+            "button_link_2": ""
           }
         },
         "slide_P9nnNj": {
