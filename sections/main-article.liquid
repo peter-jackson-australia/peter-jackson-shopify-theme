@@ -101,10 +101,32 @@
     {%- liquid
       assign current_article = article
       assign current_blog = blog
-      assign all_articles = current_blog.articles
       assign prev_article = null
       assign next_article = null
       assign current_index = -1
+
+      if article.tags contains "Lifestyle"
+        assign is_empowered_mind = true
+        assign all_articles = null | sort
+
+        comment 
+            # This is a workaround to allow filtering for attributes inside an **object** in
+            # an array.
+            # 
+            # https://ellodave.dev/blog/article/advanced-liquid-arrays/ 
+        endcomment
+
+        for a in current_blog.articles
+          if a.tags contains "Lifestyle"
+            assign current = a | sort
+            assign all_articles = all_articles | concat: current
+          endif
+        endfor
+      else
+        assign is_empowered_mind = false
+        assign all_articles = current_blog.articles | sort: "published_at"
+      endif 
+
       for i in (0..all_articles.size)
         assign article_at_index = all_articles[i]
         if article_at_index.id == current_article.id
@@ -124,6 +146,12 @@
         assign prev_article = all_articles[prev_index]
       endif
     -%}
+
+    <script>
+        console.log("prev index: {{prev_index}}")
+        console.log("next index: {{next_index}}")
+        console.log("current index: {{current_index}}")
+    </script>
 
     <div class="article-navigation">
       <div class="article-navigation__container">
@@ -145,9 +173,9 @@
 
         <div class="article-navigation__current heading--l">
           {% if article.tags contains "Lifestyle" %}
-              {% render 'breadcrumb', isEmpoweredMind: true %}
+              {% render 'breadcrumb', is_empowered_mind: is_empowered_mind %}
           {% else %}
-              {% render 'breadcrumb', isEmpoweredMind: false %}
+              {% render 'breadcrumb', is_empowered_mind: false %}
           {% endif %}
         </div>
 

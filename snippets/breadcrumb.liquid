@@ -1,5 +1,5 @@
 {% doc %}
-@param {boolean} [isEmpoweredMind] - If set to true, and the article type is an article, then it will use the text "The Empowered Mind" instead of "The Jackson Journal"
+@param {boolean} [is_empowered_mind] - If set to true, and the article type is an article, then it will use the text "The Empowered Mind" instead of "The Jackson Journal"
 {% enddoc %}
 
 {% liquid
@@ -153,7 +153,7 @@
       {% elsif template.name == 'article' %}
         {% liquid 
 
-          if isEmpoweredMind
+          if is_empowered_mind
             assign blog_label = "The Empowered Mind"
             assign blog_url = "/pages/the-empowered-mind"
           else 
