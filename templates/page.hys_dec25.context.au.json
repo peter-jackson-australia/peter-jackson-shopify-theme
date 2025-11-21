@@ -41,7 +41,8 @@
         "slide_ddW7HK": {
           "disabled": false,
           "settings": {
-            "desktop_image": "shopify://shop_images/HYS_Hero.webp",
+            "desktop_image": "shopify://shop_images/HYS_Hero_fb358dc2-3f26-41f0-b197-bee6f0675c01.webp",
+            "svg_image": "shopify://shop_images/HYSg_Sale_1d44dc3b-1b19-424e-9808-6a6822591e8a.svg",
             "button_label_1": "Shop All",
             "button_link_1": "shopify://collections/sale",
             "button_label_2": "Suits from $399",
@@ -50,8 +51,7 @@
             "button_link_3": "shopify://collections/sport-jackets",
             "button_label_4": "Business Shirts from $79",
             "button_link_4": "shopify://collections/business-shirts",
-            "vertical_alignment": "stretch",
-            "svg_image": "shopify://shop_images/HYSg_Sale.svg"
+            "vertical_alignment": "stretch"
           }
         }
       }
