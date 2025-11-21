@@ -121,6 +121,29 @@
         "heading": "Bestsellers of Sale"
       },
       "blocks": {}
+    },
+    "variable_column_content_svg_tBLLXD": {
+      "settings": {},
+      "blocks": {
+        "column_item_3WzPyc": {
+          "settings": {
+            "image": "shopify://shop_images/Gifting_V2.webp",
+            "svg_icon": "shopify://shop_images/Gift_f02feda2-71cf-43d2-89d0-6ff2c58a06fe.svg",
+            "bottom_text": "Shop Gifts from $20"
+          }
+        }
+      }
+    },
+    "collection_slider_XmLf6t": {
+      "disabled": true,
+      "settings": {},
+      "blocks": {}
+    },
+    "hero_primary_zeaCqL": {
+      "settings": {
+        "desktop_image": "shopify://shop_images/After_Dark.webp"
+      },
+      "blocks": {}
     }
   },
   "order": [
