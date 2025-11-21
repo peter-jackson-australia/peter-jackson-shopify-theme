@@ -79,7 +79,7 @@
         },
         "tile_FPGHMd": {
           "settings": {
-            "tile_background_image": "shopify://shop_images/Sports_Jackets_e5e6237c-3d7e-436a-b2eb-3c1a6effe319.webp",
+            "tile_background_image": "shopify://shop_images/Sports_Jackets_f3918271-c070-441e-9676-fc8243157b15.webp",
             "tile_header": "SPORTS JACKETS",
             "tile_secondary_text": "from $299",
             "tile_link": "shopify://collections/sport-jackets"
@@ -111,5 +111,21 @@
       },
       "blocks": {}
     }
-  }
+  },
+  "order": [
+    "hero_slider_ULyNnz",
+    "hero_primary_NeKfMz",
+    "variable_column_content_secondary_X9KJtx",
+    "grid_tiles_r7ifEt",
+    "heading_with_text_9nQj7z",
+    "collection_slider_secondary_r6XR7q",
+    "variable_column_content_svg_tBLLXD",
+    "variable_column_content_tertiary_XwmChF",
+    "hero_primary_WLbcQ7",
+    "collection_slider_3p3hD9",
+    "variable_column_content_tertiary_qfTkVT",
+    "hero_primary_zeaCqL",
+    "collection_slider_XmLf6t",
+    "featured_article_r6pY9T"
+  ]
 }
