@@ -103,7 +103,16 @@
     },
     "hero_primary_NeKfMz": {
       "settings": {
-        "desktop_image": "shopify://shop_images/Business_Essentials.svg"
+        "desktop_image": "shopify://shop_images/Business_Essentials.webp",
+        "svg_image": "shopify://shop_images/Business_Essentials_10430c04-f7a4-48d4-b139-71c303af6c53.svg",
+        "button_label_1": "Suits from $399",
+        "button_link_1": "shopify://collections/mens-suits",
+        "button_label_2": "$50 Off Business Shirts",
+        "button_link_2": "shopify://collections/business-shirts",
+        "button_label_3": "Ties from $59.95",
+        "button_link_3": "shopify://collections/ties",
+        "button_label_4": "",
+        "vertical_alignment": "middle"
       },
       "blocks": {}
     },
