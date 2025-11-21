@@ -144,7 +144,11 @@
         </div>
 
         <div class="article-navigation__current heading--l">
-          {% render 'breadcrumb' %}
+          {% if article.tags contains "Lifestyle" %}
+              {% render 'breadcrumb', isEmpoweredMind: true %}
+          {% else %}
+              {% render 'breadcrumb', isEmpoweredMind: false %}
+          {% endif %}
         </div>
 
         <div class="article-navigation__next">
