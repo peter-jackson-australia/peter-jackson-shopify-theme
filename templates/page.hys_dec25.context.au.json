@@ -112,7 +112,7 @@
         "button_label_3": "Ties from $59.95",
         "button_link_3": "shopify://collections/ties",
         "button_label_4": "",
-        "vertical_alignment": "middle"
+        "vertical_alignment": "bottom"
       },
       "blocks": {}
     },
