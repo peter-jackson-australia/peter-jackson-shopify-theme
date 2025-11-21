@@ -17,7 +17,7 @@
       "settings": {},
       "blocks": {
         "slide_JGebxX": {
-          "disabled": true,
+          "disabled": false,
           "settings": {
             "desktop_image": "shopify://shop_images/High_Season_Hero_Desktop.webp",
             "heading": "Shop Summer",
@@ -31,7 +31,7 @@
           }
         },
         "slide_P9nnNj": {
-          "disabled": true,
+          "disabled": false,
           "settings": {
             "desktop_image": "shopify://shop_images/Summer_Suits.webp",
             "svg_image": "shopify://shop_images/Suits_Of_Summer_Desktop_56962e4e-6bdb-43cf-9218-86b08eca40b9.svg",
@@ -54,7 +54,12 @@
             "vertical_alignment": "stretch"
           }
         }
-      }
+      },
+      "block_order": [
+        "slide_ddW7HK",
+        "slide_JGebxX",
+        "slide_P9nnNj"
+      ]
     },
     "grid_tiles_r7ifEt": {
       "settings": {},
