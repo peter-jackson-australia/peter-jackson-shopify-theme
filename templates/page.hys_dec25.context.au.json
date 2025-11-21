@@ -51,15 +51,15 @@
           "settings": {
             "desktop_image": "shopify://shop_images/Summer_Suits.webp",
             "svg_image": "shopify://shop_images/Suits_Of_Summer_Desktop_56962e4e-6bdb-43cf-9218-86b08eca40b9.svg",
-            "vertical_alignment": "stretch",
-            "button_link_4": "",
-            "button_label_4": "",
-            "button_link_3": "",
-            "button_label_3": "",
-            "button_link_2": "",
-            "button_label_2": "",
             "button_label_1": "Shop Lightweight Suits",
-            "button_link_1": "shopify://collections/mens-suits"
+            "button_link_1": "shopify://collections/mens-suits",
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_label_3": "",
+            "button_link_3": "",
+            "button_label_4": "",
+            "button_link_4": "",
+            "vertical_alignment": "stretch"
           }
         }
       },
@@ -75,6 +75,13 @@
         "tile_bRm4wE": {
           "settings": {
             "tile_background_image": "shopify://shop_images/Polos.jpg"
+          }
+        },
+        "tile_WhJarW": {
+          "settings": {
+            "tile_header": "Casual Shirts",
+            "tile_secondary_text": "from $59",
+            "tile_background_image": "shopify://shop_images/Casual_Shirts_83a516cf-b9dc-4b6a-8b5d-2419a082f350.webp"
           }
         }
       }
