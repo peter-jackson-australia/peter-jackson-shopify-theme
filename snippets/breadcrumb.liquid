@@ -1,3 +1,7 @@
+{% doc %}
+@param {boolean} [is_empowered_mind] - If set to true, and the article type is an article, then it will use the text "The Empowered Mind" instead of "The Jackson Journal"
+{% enddoc %}
+
 {% liquid
   assign menu_handle = 'main-menu'
 %}
@@ -147,12 +151,23 @@
         <li class="breadcrumb__item breadcrumb__item--current" aria-current="page">{{ blog.title }}</li>
 
       {% elsif template.name == 'article' %}
+        {% liquid 
+
+          if is_empowered_mind
+            assign blog_label = "The Empowered Mind"
+            assign blog_url = "/pages/the-empowered-mind"
+          else 
+            assign blog_label = blog.title 
+            assign blog_url = blog.url
+          endif
+        %}
+
         <li class="breadcrumb__item">
           <a href="{{ routes.root_url }}" title="Home" class="breadcrumb__link">Home</a>
         </li>
         <li class="breadcrumb__separator">/</li>
         <li class="breadcrumb__item">
-          <a href="{{ blog.url }}" class="breadcrumb__link">{{ blog.title }}</a>
+          <a href="{{ blog_url }}" class="breadcrumb__link">{{ blog_label }}</a>
         </li>
         <li class="breadcrumb__separator">/</li>
         <li class="breadcrumb__item breadcrumb__item--current" aria-current="page">{{ article.title }}</li>
