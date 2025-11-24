@@ -22,23 +22,29 @@
               <ul class="shop-the-look__modal-splide-list splide__list">
                 {% for product in product.metafields.custom.shop_the_look.value %}
                   <li class="splide__slide">
-                    <div class="buyable-product-wrapper"
-                         data-featured-image-id="{{ product.featured_image.id }}"
-                         data-product-id="{{ product.id }}"
-                         data-variants="{{ product.variants | json | escape}}";
-                         data-variant-inventory-quantities="[{% for variant in product.variants %}{{ variant.inventory_quantity | escape }}{% unless forloop.last %},{% endunless %}{% endfor %}]";
-                         data-product-title="{{ product.title | json | escape }}";
-                         data-show-low-stock-warning="{{ section.settings.show_low_stock_warning | json | escape }}";>
+                    <div
+                      class="buyable-product-wrapper"
+                      data-featured-image-id="{{ product.featured_image.id }}"
+                      data-product-id="{{ product.id }}"
+                      data-variants="{{ product.variants | json | escape}}"
+                      ;
+                      data-variant-inventory-quantities="[{% for variant in product.variants %}{{ variant.inventory_quantity | escape }}{% unless forloop.last %},{% endunless %}{% endfor %}]"
+                      ;
+                      data-product-title="{{ product.title | json | escape }}"
+                      ;
+                      data-show-low-stock-warning="{{ section.settings.show_low_stock_warning | json | escape }}"
+                      ;
+                    >
                       {% liquid
                         assign in_wishlist = false
 
-                        if customer != nil 
-                            for wishlist_product in customer.metafields.custom.wishlist.value
-                                if wishlist_product.id == product.id
-                                    assign in_wishlist = true
-                                    break
-                                endif
-                            endfor
+                        if customer != null
+                          for wishlist_product in customer.metafields.custom.wishlist.value
+                            if wishlist_product.id == product.id
+                              assign in_wishlist = true
+                              break
+                            endif
+                          endfor
                         endif
 
                         render 'shop-the-look-modal-item', product: product, hasPrev: forloop.first != true, hasNext: forloop.last != true, in_wishlist: in_wishlist, heading: section.settings.heading
@@ -76,15 +82,17 @@
                         {% else %}
                           {{ 'product-1' | placeholder_svg_tag: 'shop-the-look__product-image placeholder' }}
                         {% endif %}
-                        
+
                         <h3 class="body--bold shop-the-look__product-title">{{ item.title }}</h3>
-                        
+
                         <p class="small shop-the-look__product-price">
                           {% if item.compare_at_price > item.price %}
-                            <span class="shop-the-look__product-price--sale">{{ item.price | money_with_currency }}</span>
+                            <span class="shop-the-look__product-price--sale">
+                              {{- item.price | money_with_currency -}}
+                            </span>
                             <span class="shop-the-look__product-price--compare">
-                            {{- item.compare_at_price | money_with_currency -}}
-                          </span>
+                              Was {{ item.compare_at_price | money_with_currency -}}
+                            </span>
                           {% else %}
                             {{ item.price | money_with_currency }}
                           {% endif %}
@@ -110,12 +118,12 @@
               <div class="shop-the-look__product-image-wrapper">
                 {% if single_product.featured_image != blank %}
                   <img
-                      src="{{ single_product.featured_image | image_url: width: '600px' }}"
-                      alt="{{ single_product.featured_image.alt | escape }}"
-                      loading="lazy"
-                      width="{{ single_product.featured_image.width }}"
-                      height="{{ single_product.featured_image.height }}"
-                      class="shop-the-look__product-image"
+                    src="{{ single_product.featured_image | image_url: width: '600px' }}"
+                    alt="{{ single_product.featured_image.alt | escape }}"
+                    loading="lazy"
+                    width="{{ single_product.featured_image.width }}"
+                    height="{{ single_product.featured_image.height }}"
+                    class="shop-the-look__product-image"
                   >
                 {% else %}
                   {{ 'product-1' | placeholder_svg_tag: 'shop-the-look__product-image placeholder' }}
@@ -146,29 +154,29 @@
       {% assign image_width = 1024 %}
       {% assign image_height = image_width | divided_by: product.images[1].aspect_ratio | ceil %}
       <img
-          src="{{ product.images[1].src | image_url: width: image_width }}"
-          srcset="
+        src="{{ product.images[1].src | image_url: width: image_width }}"
+        srcset="
           {{ product.images[1].src | image_url: width: 600 }} 600w,
           {{ product.images[1].src | image_url: width: 800 }} 800w,
           {{ product.images[1].src | image_url: width: 1024 }} 1024w,
           {{ product.images[1].src | image_url: width: 1440 }} 1440w
         "
-          sizes="(max-width: 768px) 100vw, 50vw"
-          width="{{ image_width }}"
-          height="{{ image_height }}"
-          alt="{{ product.images[1].alt | default: product.title }}"
-          loading="lazy"
-          class="shop-the-look__image"
+        sizes="(max-width: 768px) 100vw, 50vw"
+        width="{{ image_width }}"
+        height="{{ image_height }}"
+        alt="{{ product.images[1].alt | default: product.title }}"
+        loading="lazy"
+        class="shop-the-look__image"
       >
     </div>
   </div>
 
   {% if shop_the_look_count > 1 %}
     <script
-        src="{{ "section-shop-the-look.js" | asset_url }}"
-        data-section-id="{{ section.id }}"
-        data-products="{{ product.metafields.custom.shop_the_look.value | json | escape }}"
-        defer
+      src="{{ "section-shop-the-look.js" | asset_url }}"
+      data-section-id="{{ section.id }}"
+      data-products="{{ product.metafields.custom.shop_the_look.value | json | escape }}"
+      defer
     ></script>
   {% endif %}
 {% endif %}
