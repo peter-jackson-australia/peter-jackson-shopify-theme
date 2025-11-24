@@ -45,7 +45,9 @@
             "button_link_2": "",
             "horizontal_alignment": "center",
             "vertical_alignment": "stretch",
-            "mobile_horizontal_alignment": "center"
+            "mobile_horizontal_alignment": "center",
+            "mobile_image": "shopify://shop_images/Polos_HP_Mob.webp",
+            "mobile_svg_image": "shopify://shop_images/High_Season_Mob.svg"
           }
         },
         "slide_P9nnNj": {
@@ -134,15 +136,15 @@
         }
       }
     },
-    "collection_slider_XmLf6t": {
-      "disabled": true,
-      "settings": {},
-      "blocks": {}
-    },
     "hero_primary_zeaCqL": {
       "settings": {
         "desktop_image": "shopify://shop_images/After_Dark.webp"
       },
+      "blocks": {}
+    },
+    "collection_slider_XmLf6t": {
+      "disabled": true,
+      "settings": {},
       "blocks": {}
     }
   },
