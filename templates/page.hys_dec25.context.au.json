@@ -31,7 +31,9 @@
             "button_link_3": "shopify://collections/sport-jackets",
             "button_label_4": "Business Shirts from $79",
             "button_link_4": "shopify://collections/business-shirts",
-            "vertical_alignment": "middle"
+            "vertical_alignment": "middle",
+            "mobile_image": "shopify://shop_images/HYS_Hero_c71d9662-438b-41fc-8146-87593c4984f9.webp",
+            "mobile_svg_image": "shopify://shop_images/HYS_Mob.svg"
           }
         },
         "slide_JGebxX": {
