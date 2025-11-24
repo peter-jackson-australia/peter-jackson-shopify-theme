@@ -14,7 +14,6 @@
     {{ 'global-theme.css' | asset_url | stylesheet_tag }}
     {{ 'lib-splide-core.min.css' | asset_url | stylesheet_tag }}
     <script src="{{ 'lib-splide.min.js' | asset_url }}" defer></script>
-
     <script src="{{ 'global-theme.js' | asset_url }}" defer></script>
     <script src="{{ 'global-cart.js' | asset_url }}" defer></script>
     <script src="{{ 'lib-gsap.min.js' | asset_url }}" defer></script>
@@ -35,6 +34,19 @@
       })(window, document, 'script', 'dataLayer');
     </script>
     {{ content_for_header }}
+    <script type="speculationrules">
+      {
+        "prerender": [
+          {
+            "source": "document",
+            "where": {
+              "selector_matches": ".prerender"
+            },
+            "eagerness": "eager"
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     {% comment %}

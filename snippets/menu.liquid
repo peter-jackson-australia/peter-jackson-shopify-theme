@@ -1,5 +1,6 @@
 {% doc %}
   @description Mega Menu Sidebar Drawer Component
+
   @param {string} video_url
   @param {object} main_video
   @param {string} video_description
@@ -101,15 +102,16 @@
           </ul>
           <div class="menu-drawer__video-container">
             <a href="{{ video_url }}" style="text-decoration: none;">
-              {{ main_video 
+              {{
+                main_video
                 | video_tag:
-                  class: "menu-drawer__video",
-                  autoplay: true, 
-                  muted: true, 
+                  class: 'menu-drawer__video',
+                  autoplay: true,
+                  muted: true,
                   loop: true,
                   playsinline: true,
                   controls: false,
-                  preload: "metadata"
+                  preload: 'metadata'
               }}
               <p class="body">{{ video_description }}</p>
             </a>
