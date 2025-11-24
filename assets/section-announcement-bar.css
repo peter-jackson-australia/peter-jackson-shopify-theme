@@ -1,0 +1,15 @@
+.announcement-bar {
+  display: flex;
+  height: var(--space-l);
+  padding: var(--space-2xs);
+}
+.announcement-bar .splide__track {
+  margin: auto;
+}
+.announcement-bar__content-text-container a,
+.cart__complementary-products .splide__slide a {
+  text-decoration: none;
+}
+.announcement-bar__content-text-container strong {
+  font-family: var(--ordinary-regular), sans-serif;
+}

@@ -1,3 +1,5 @@
+{{ 'section-header.css' | asset_url | stylesheet_tag }}
+
 {% assign main_video = section.settings.video_content %}
 {% assign video_url = section.settings.video_url %}
 {% assign video_description = section.settings.video_description %}
@@ -20,7 +22,7 @@
         {% render '_icon-hamburger-menu', accessible_name: 'Menu' %}
       </div>
     </button>
-    
+
     <button
       type="button"
       class="header__search-mobile"
@@ -66,10 +68,10 @@
   </ul>
 </div>
 <div id="header-spacer" class="hide"></div>
-  
+
 {% render 'menu', video_url: video_url, main_video: main_video, video_description: video_description %}
 
-{% schema %} 
+{% schema %}
 {
   "name": "Header",
   "tag": "section",
@@ -95,4 +97,3 @@
   ]
 }
 {% endschema %}
-
