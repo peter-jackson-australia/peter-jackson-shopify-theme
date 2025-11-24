@@ -22,7 +22,9 @@
           "disabled": false,
           "settings": {
             "desktop_image": "shopify://shop_images/HYS_Hero_fb358dc2-3f26-41f0-b197-bee6f0675c01.webp",
+            "mobile_image": "shopify://shop_images/HYS_Hero_c71d9662-438b-41fc-8146-87593c4984f9.webp",
             "svg_image": "shopify://shop_images/HYSg_Sale_1d44dc3b-1b19-424e-9808-6a6822591e8a.svg",
+            "mobile_svg_image": "shopify://shop_images/HYS_Mob.svg",
             "button_label_1": "Shop All",
             "button_link_1": "shopify://collections/sale",
             "button_label_2": "Suits from $399",
@@ -31,9 +33,7 @@
             "button_link_3": "shopify://collections/sport-jackets",
             "button_label_4": "Business Shirts from $79",
             "button_link_4": "shopify://collections/business-shirts",
-            "vertical_alignment": "middle",
-            "mobile_image": "shopify://shop_images/HYS_Hero_c71d9662-438b-41fc-8146-87593c4984f9.webp",
-            "mobile_svg_image": "shopify://shop_images/HYS_Mob.svg"
+            "vertical_alignment": "middle"
           }
         },
         "slide_JGebxX": {
@@ -44,7 +44,7 @@
             "heading": "Shop Summer",
             "svg_image": "shopify://shop_images/High_Season_Desk_V2_5bc55e81-2b00-45a1-aacb-bc3787484725.svg",
             "svg_size": "full",
-            "mobile_svg_image": "shopify://shop_images/High_Season_Mob_ce75a933-7ef9-402a-8757-000c81d34ce1.svg",
+            "mobile_svg_image": "shopify://shop_images/High_Season_Mob_477d6616-4b63-42c0-aae7-1a298eb6eb95.svg",
             "button_label_1": "Shop New",
             "button_link_2": "",
             "horizontal_alignment": "center",
