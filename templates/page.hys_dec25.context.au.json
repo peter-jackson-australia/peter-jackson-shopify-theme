@@ -38,16 +38,16 @@
           "disabled": false,
           "settings": {
             "desktop_image": "shopify://shop_images/High_Season_Hero_Desktop.webp",
+            "mobile_image": "shopify://shop_images/Polos_HP_Mob.webp",
             "heading": "Shop Summer",
             "svg_image": "shopify://shop_images/High_Season_Desk_V2_5bc55e81-2b00-45a1-aacb-bc3787484725.svg",
             "svg_size": "full",
+            "mobile_svg_image": "shopify://shop_images/High_Season_Mob_ce75a933-7ef9-402a-8757-000c81d34ce1.svg",
             "button_label_1": "Shop New",
             "button_link_2": "",
             "horizontal_alignment": "center",
             "vertical_alignment": "stretch",
-            "mobile_horizontal_alignment": "center",
-            "mobile_image": "shopify://shop_images/Polos_HP_Mob.webp",
-            "mobile_svg_image": "shopify://shop_images/High_Season_Mob.svg"
+            "mobile_horizontal_alignment": "center"
           }
         },
         "slide_P9nnNj": {
