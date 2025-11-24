@@ -22,7 +22,9 @@
           "disabled": false,
           "settings": {
             "desktop_image": "shopify://shop_images/HYS_Hero_fb358dc2-3f26-41f0-b197-bee6f0675c01.webp",
+            "mobile_image": "shopify://shop_images/HYS_Hero_c71d9662-438b-41fc-8146-87593c4984f9.webp",
             "svg_image": "shopify://shop_images/HYSg_Sale_1d44dc3b-1b19-424e-9808-6a6822591e8a.svg",
+            "mobile_svg_image": "shopify://shop_images/HYS_Mob.svg",
             "button_label_1": "Shop All",
             "button_link_1": "shopify://collections/sale",
             "button_label_2": "Suits from $399",
@@ -38,9 +40,11 @@
           "disabled": false,
           "settings": {
             "desktop_image": "shopify://shop_images/High_Season_Hero_Desktop.webp",
+            "mobile_image": "shopify://shop_images/Polos_HP_Mob.webp",
             "heading": "Shop Summer",
             "svg_image": "shopify://shop_images/High_Season_Desk_V2_5bc55e81-2b00-45a1-aacb-bc3787484725.svg",
             "svg_size": "full",
+            "mobile_svg_image": "shopify://shop_images/High_Season_Mob_477d6616-4b63-42c0-aae7-1a298eb6eb95.svg",
             "button_label_1": "Shop New",
             "button_link_2": "",
             "horizontal_alignment": "center",
@@ -52,7 +56,9 @@
           "disabled": false,
           "settings": {
             "desktop_image": "shopify://shop_images/Summer_Suits.webp",
+            "mobile_image": "shopify://shop_images/Suits_Hero_Mobile.webp",
             "svg_image": "shopify://shop_images/High_Season_Desk_V4.svg",
+            "mobile_svg_image": "shopify://shop_images/Suits_Mob.svg",
             "button_label_1": "Shop Lightweight Suits",
             "button_link_1": "shopify://collections/mens-suits",
             "button_label_2": "",
@@ -104,7 +110,9 @@
     "hero_primary_NeKfMz": {
       "settings": {
         "desktop_image": "shopify://shop_images/Business_Essentials.webp",
+        "mobile_image": "shopify://shop_images/Business_Essentials_Mob.webp",
         "svg_image": "shopify://shop_images/Business_Essentials_10430c04-f7a4-48d4-b139-71c303af6c53.svg",
+        "mobile_svg_image": "shopify://shop_images/Business_Essentials_Mob.svg",
         "button_label_1": "Suits from $399",
         "button_link_1": "shopify://collections/mens-suits",
         "button_label_2": "$50 Off Business Shirts",
@@ -129,20 +137,21 @@
           "settings": {
             "image": "shopify://shop_images/Gifting_V3.webp",
             "svg_icon": "shopify://shop_images/Gift_f02feda2-71cf-43d2-89d0-6ff2c58a06fe.svg",
+            "mobile_svg_icon": "shopify://shop_images/Gift_Mob.svg",
             "bottom_text": "Shop Gifts from $20"
           }
         }
       }
     },
-    "collection_slider_XmLf6t": {
-      "disabled": true,
-      "settings": {},
-      "blocks": {}
-    },
     "hero_primary_zeaCqL": {
       "settings": {
         "desktop_image": "shopify://shop_images/After_Dark.webp"
       },
+      "blocks": {}
+    },
+    "collection_slider_XmLf6t": {
+      "disabled": true,
+      "settings": {},
       "blocks": {}
     }
   },
