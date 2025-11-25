@@ -63,7 +63,10 @@
 
     document.querySelectorAll(".product-card__image").forEach((img) => {
       const newSrc = currentColumns === 2 ? img.dataset.srcLarge : img.dataset.srcSmall;
-      if (newSrc) img.src = newSrc;
+      if (newSrc) {
+        img.src = newSrc;
+        img.srcset = newSrc;
+      }
     });
   };
 

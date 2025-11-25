@@ -2,6 +2,8 @@
 {% assign image_alt = product.featured_image.alt | escape | strip_html | strip_newlines | default: product.title %}
 {% assign image_aspect_ratio = product.featured_image.aspect_ratio | default: 1 %}
 {% assign image_height = image_width | divided_by: image_aspect_ratio | round %}
+{% assign image_src_small = product.featured_image | image_url: width: 600 %}
+{% assign image_src_large = product.featured_image | image_url: width: 1200 %}
 
 <div class="product-card">
   <a class="prerender product-card__image-link" href="{{ product.url }}">
@@ -18,11 +20,15 @@
             alt: image_alt,
             widths: '300, 600, 900, 1200',
             sizes: '(max-width: 600px) 100vw, (max-width: 900px) 50vw, 25vw',
-            style: 'position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;'
+            style: 'position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;',
+            data-src-small: image_src_small,
+            data-src-large: image_src_large
         }}
 
         {% if product.images.size > 1 %}
           {% assign image2_alt = product.images[1].alt | escape | default: product.title %}
+          {% assign image2_src_small = product.images[1] | image_url: width: 600 %}
+          {% assign image2_src_large = product.images[1] | image_url: width: 1200 %}
           {{
             product.images[1]
             | image_url: width: 600
@@ -33,7 +39,9 @@
               alt: image2_alt,
               widths: '300, 600, 900, 1200',
               sizes: '(max-width: 600px) 100vw, (max-width: 900px) 50vw, 25vw',
-              style: 'position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;'
+              style: 'position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;',
+              data-src-small: image2_src_small,
+              data-src-large: image2_src_large
           }}
         {% endif %}
 
