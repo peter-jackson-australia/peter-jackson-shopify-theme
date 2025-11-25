@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
     {% render 'shogun-optimizer' %}
     {% render 'gcm-integration-script' %}
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -11,7 +12,6 @@
     </title>
     <meta name="description" content="{{ page_description | escape }}">
     <link rel="canonical" href="{{ canonical_url }}">
-    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
     {{ 'global-theme.css' | asset_url | stylesheet_tag }}
     {{ 'lib-splide-core.min.css' | asset_url | stylesheet_tag }}
     <script src="{{ 'lib-splide.min.js' | asset_url }}" defer></script>
