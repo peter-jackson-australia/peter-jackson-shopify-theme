@@ -133,7 +133,16 @@
                         </div>
                       {% else %}
                         <div class="grid-content__background grid-content__background--image">
-                          {{ metaobject_raw.image_or_video | image_url: width: 1200 | image_tag: class: 'grid-content__background--image', loading: 'eager', fetchpriority: 'high', decoding: 'async', widths: '300, 600, 900, 1200' }}
+                          {{
+                            metaobject_raw.image_or_video
+                            | image_url: width: 1200
+                            | image_tag:
+                              class: 'grid-content__background--image',
+                              loading: 'eager',
+                              fetchpriority: 'high',
+                              decoding: 'async',
+                              widths: '300, 600, 900, 1200'
+                          }}
                         </div>
                       {% endif %}
                     {% endif %}
@@ -199,6 +208,7 @@
           <div id="AjaxinatePagination">
             {% if paginate.next %}
               <a aria-label="Loading More" href="{{ paginate.next.url }}"></a>
+              <link rel="prefetch" href="{{ paginate.next.url }}" as="document" data-ajaxinate="true">
             {% endif %}
           </div>
         </div>
