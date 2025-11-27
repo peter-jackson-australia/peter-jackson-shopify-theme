@@ -1,14 +1,16 @@
 {{ 'section-hero-slider.css' | asset_url | stylesheet_tag }}
 
 {% comment %} For testing hover effect on click through {% endcomment %}
-<style>
-  .button--white {
-    transition: all 0.3s ease;
-  }
-  .button--white:hover {
-    background-color: rgba(255, 255, 255, 0.25) !important;
-  }
-</style>
+{% if section.settings.cta_hover_effect == true %}
+  <style>
+    .button--white {
+      transition: all 0.3s ease;
+    }
+    .button--white:hover {
+      background-color: rgba(255, 255, 255, 0.25) !important;
+    }
+  </style>
+{% endif %}
 
 {% for block in section.blocks %}
   {% if block.settings.mobile_video %}
@@ -183,6 +185,12 @@
       "unit": "sec",
       "label": "Change slides every",
       "default": 5
+    },
+    {
+      "type": "checkbox",
+      "id": "cta_hover_effect",
+      "label": "Shown CTA hover effect",
+      "default": false
     }
   ],
   "max_blocks": 4,
