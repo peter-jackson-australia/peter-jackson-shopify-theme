@@ -1,12 +1,12 @@
 (() => {
-  const sectionId = document.currentScript.getAttribute("data-section-id")
+  const sectionId = document.currentScript.getAttribute("data-section-id");
   const splideElement = document.querySelector(`#section-${sectionId} .collection-slider-secondary__slider`);
 
   if (splideElement) {
     new Splide(splideElement, {
       perPage: 4,
-      type: 'loop',
-      gap: 'var(--space-2xs)',
+      type: "loop",
+      gap: "var(--space-2xs)",
       arrows: false,
       pagination: false,
       drag: true,
@@ -22,4 +22,4 @@
       },
     }).mount();
   }
-})()
+})();

@@ -104,10 +104,6 @@
           <div
             id="AjaxinateContainer"
             class="products-grid animate-container-cards-scroll products-grid--cols-4"
-            {% comment %} This is just used to test 6 columns vs 4 on desktop for A/B testing {% endcomment %}
-            {% if section.settings.show_6_columns == true %}
-              style="grid-template-columns: repeat(6, 1fr) !important;"
-            {% endif %}
           >
             {% if collection.products.size == 0 %}
               <div class="no-products-message">
@@ -246,12 +242,6 @@
       "max": 16,
       "step": 1,
       "default": 8
-    },
-    {
-      "type": "checkbox",
-      "id": "show_6_columns",
-      "label": "Show 6 columns",
-      "default": false
     }
   ],
   "enabled_on": {
