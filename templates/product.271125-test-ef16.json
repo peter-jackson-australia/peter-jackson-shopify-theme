@@ -1,0 +1,89 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "product": {
+      "type": "main-product",
+      "blocks": {
+        "options_je9wUj": {
+          "type": "options",
+          "settings": {}
+        },
+        "prices_zbB86G": {
+          "type": "prices",
+          "settings": {}
+        },
+        "button_bNUm3G": {
+          "type": "button",
+          "settings": {
+            "button_label": "Add to cart"
+          }
+        }
+      },
+      "block_order": [
+        "options_je9wUj",
+        "prices_zbB86G",
+        "button_bNUm3G"
+      ],
+      "settings": {
+        "shipping_content": "<p><strong>All orders take on average 1-3 business days to process <\/strong><em><strong>before<\/strong><\/em><strong> shipping<\/strong><\/p><p>Standard Domestic Shipping - $10 (Free on orders over $99)<\/p><ul><li>Melbourne Metro: 1-3 business days<\/li><li>Other capitals: 3-5 business days<\/li><li>Regional: 5-7 business days<\/li><\/ul><p>Express Shipping - $15<\/p><ul><li>Major cities: 1-2 business days (guaranteed)<\/li><li>Regional: 3-4 business days<\/li><\/ul><p>Tracking is provided for Australian orders only.<\/p><p>Shipping is free for all international orders. <\/p>"
+      }
+    },
+    "shop_the_look_cCQwPG": {
+      "type": "shop-the-look",
+      "settings": {
+        "heading": "Complete the Look"
+      }
+    },
+    "recommended_products_fWYtPr": {
+      "type": "recommended-products",
+      "name": "Recommended Products",
+      "settings": {
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "heading": "You May Also Like",
+        "heading_animation": "none",
+        "description": "Discover products that perfectly complement your selection.",
+        "description_animation": "none",
+        "recommendation_intent": "related",
+        "animate_products": false
+      }
+    },
+    "product_related_content_B9BLgW": {
+      "type": "product-related-content",
+      "settings": {
+        "heading": "The Jackson Journal",
+        "subheading": "The Stories Behind The Threads",
+        "description": "<p>Discover our world through campaign features, interviews, and editorial made to inform and inspire your next move to live a life well lived.<\/p>",
+        "cta_link": "shopify:\/\/pages\/the-jackson-journal",
+        "cta_text": "View Articles"
+      }
+    },
+    "recently_viewed_yG6Mdn": {
+      "type": "recently-viewed",
+      "settings": {
+        "heading": "Recently Viewed"
+      }
+    },
+    "product_navigation_AwEGJc": {
+      "type": "product-navigation",
+      "name": "Product Navigation",
+      "settings": {}
+    }
+  },
+  "order": [
+    "product",
+    "shop_the_look_cCQwPG",
+    "recommended_products_fWYtPr",
+    "product_related_content_B9BLgW",
+    "recently_viewed_yG6Mdn",
+    "product_navigation_AwEGJc"
+  ]
+}
