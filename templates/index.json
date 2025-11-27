@@ -109,7 +109,8 @@
       "name": "Hero Slider",
       "settings": {
         "autoplay": true,
-        "slide_interval": 10
+        "slide_interval": 10,
+        "cta_hover_effect": true
       }
     },
     "variable_column_content_secondary_X9KJtx": {
