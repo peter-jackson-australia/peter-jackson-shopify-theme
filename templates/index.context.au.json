@@ -58,7 +58,12 @@
             "vertical_alignment": "stretch"
           }
         }
-      }
+      },
+      "block_order": [
+        "slide_P9nnNj",
+        "slide_JGebxX",
+        "slide_ddW7HK"
+      ]
     },
     "variable_column_content_tertiary_XwmChF": {
       "disabled": false,
