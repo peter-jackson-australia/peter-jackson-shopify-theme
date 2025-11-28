@@ -52,9 +52,9 @@
       "type": "search-drawer",
       "settings": {
         "popular_search_1": "Suits",
-        "popular_search_2": "Jackets",
-        "popular_search_3": "Coat",
-        "popular_search_4": "Linen Shirts",
+        "popular_search_2": "Sport Jackets",
+        "popular_search_3": "Sale",
+        "popular_search_4": "Outerwear",
         "faq_1_title": "Returns",
         "faq_1_description": "We understand there are some differences between an online and an in-store shopping experience, which is why there are a few slight variations in the way we handle returns and exchanges for both.",
         "faq_1_link": "shopify://pages/support",
