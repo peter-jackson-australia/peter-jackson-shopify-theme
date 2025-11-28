@@ -1,0 +1,83 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "contact_form": {
+      "type": "contact-form",
+      "blocks": {
+        "text_zcW3RP": {
+          "type": "text",
+          "settings": {
+            "title": "Name",
+            "name": "customer_name",
+            "maxlength": 128,
+            "required": true,
+            "placeholder": ""
+          }
+        },
+        "email_FWk9CR": {
+          "type": "email",
+          "settings": {
+            "title": "Email",
+            "maxlength": 128,
+            "placeholder": ""
+          }
+        },
+        "text_hzCLLR": {
+          "type": "text",
+          "settings": {
+            "title": "Phone",
+            "name": "customer_phone",
+            "maxlength": 128,
+            "required": true,
+            "placeholder": ""
+          }
+        },
+        "text_fPRYBA": {
+          "type": "text",
+          "settings": {
+            "title": "Postcode",
+            "name": "customer_postcode",
+            "maxlength": 128,
+            "required": true,
+            "placeholder": ""
+          }
+        },
+        "textarea_7khLgP": {
+          "type": "textarea",
+          "settings": {
+            "title": "Message",
+            "name": "customer_message",
+            "maxlength": 1000,
+            "rows": 5,
+            "required": false,
+            "placeholder": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_zcW3RP",
+        "email_FWk9CR",
+        "text_hzCLLR",
+        "text_fPRYBA",
+        "textarea_7khLgP"
+      ],
+      "settings": {
+        "heading": "Contact Us",
+        "description": "",
+        "image": "shopify:\/\/shop_images\/Contact_Us_Pre_Spring.webp",
+        "button_label": "Submit"
+      }
+    }
+  },
+  "order": [
+    "contact_form"
+  ]
+}
