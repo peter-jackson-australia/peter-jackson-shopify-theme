@@ -4,6 +4,21 @@
 
 {{ 'section-main-collection-products.css' | asset_url | stylesheet_tag }}
 
+{% comment %} START Testing 6 column vs 4 column grid on desktop {% endcomment %}
+{% if section.settings.show_6_column_grid == true %}
+  <style>
+    .products-grid--cols-4 {
+      grid-template-columns: repeat(6, 1fr) !important;
+    }
+    .product-card__discount-code-desktop {
+      display: block;
+      margin-left: 0;
+      margin-top: var(--space-2xs);
+    }
+  </style>
+{% endif %}
+{% comment %} END Testing 6 column vs 4 column grid on desktop {% endcomment %}
+
 <script src="{{ 'lib-ajaxinate.min.js' | asset_url }}" defer></script>
 
 <div
@@ -242,6 +257,12 @@
       "max": 16,
       "step": 1,
       "default": 8
+    },
+    {
+      "type": "checkbox",
+      "id": "show_6_column_grid",
+      "label": "Show 6 column grid",
+      "default": true
     }
   ],
   "enabled_on": {
