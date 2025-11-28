@@ -97,7 +97,7 @@
           "settings": {
             "tile_background_image": "shopify://shop_images/Casual_Shirts_4c766827-fc56-48f6-b628-4a6d60839f43.webp",
             "tile_header": "Casual Shirts",
-            "tile_secondary_text": "from $59"
+            "tile_secondary_text": "from $79.95"
           }
         }
       },
@@ -136,10 +136,10 @@
         "column_item_3WzPyc": {
           "settings": {
             "image": "shopify://shop_images/Gifting_V3.webp",
+            "image_link": "shopify://collections/gifts-for-men",
             "svg_icon": "shopify://shop_images/Gift_f02feda2-71cf-43d2-89d0-6ff2c58a06fe.svg",
             "mobile_svg_icon": "shopify://shop_images/Gift_Mob.svg",
-            "bottom_text": "Shop Gifts from $20",
-            "image_link": "shopify://collections/gifts-for-men"
+            "bottom_text": "Shop Gifts from $20"
           }
         }
       }
