@@ -72,12 +72,50 @@
       "settings": {
         "heading": "Contact Us",
         "description": "",
-        "image": "shopify:\/\/shop_images\/Contact_Us_Pre_Spring.webp",
+        "image": "shopify://shop_images/Contact_Us_Pre_Spring.webp",
         "button_label": "Submit"
+      }
+    },
+    "faqs_zgJMYC": {
+      "type": "faqs",
+      "blocks": {
+        "heading_wAWzRM": {
+          "type": "heading",
+          "settings": {
+            "heading": "Frequently Asked Questions",
+            "anchor_id": ""
+          }
+        },
+        "faq_item_y7kM8h": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Returns",
+            "answer": "<p>We understand there are some differences between an online and an in-store shopping experience, which is why there are a few slight variations in the way we handle returns and exchanges for both.</p>"
+          }
+        },
+        "faq_item_qwM6LU": {
+          "type": "faq_item",
+          "settings": {
+            "question": "IN-STORE PURCHASES & RETURNS",
+            "answer": "<p>If your product has a defect or technical fault, you must return it back to our head office within 30 days. Please return items in original condition and with all tags still attached. We understand circumstances can change, if you change your mind after an in-store purchase, we can offer a full credit note or exchange of an equivalent item.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_wAWzRM",
+        "faq_item_y7kM8h",
+        "faq_item_qwM6LU"
+      ],
+      "name": "FAQ Section",
+      "settings": {
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "animate_faqs": false
       }
     }
   },
   "order": [
-    "contact_form"
+    "contact_form",
+    "faqs_zgJMYC"
   ]
 }
