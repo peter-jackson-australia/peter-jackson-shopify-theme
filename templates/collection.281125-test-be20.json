@@ -20,7 +20,7 @@
     "products": {
       "type": "main-collection-products",
       "settings": {
-        "limit": 8,
+        "limit": 12,
         "show_6_column_grid": true
       }
     },
