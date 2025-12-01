@@ -141,7 +141,8 @@
           "settings": {
             "tile_background_image": "shopify://shop_images/Casual_Shirts_4c766827-fc56-48f6-b628-4a6d60839f43.webp",
             "tile_header": "Casual Shirts",
-            "tile_secondary_text": "from $79.95"
+            "tile_secondary_text": "from $79.95",
+            "tile_link": "shopify://collections/casual-shirts"
           }
         }
       },
