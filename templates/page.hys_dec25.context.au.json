@@ -21,7 +21,7 @@
         "slide_ddW7HK": {
           "disabled": false,
           "settings": {
-            "desktop_image": "shopify://shop_images/HYS_Hero_fb358dc2-3f26-41f0-b197-bee6f0675c01.webp",
+            "desktop_image": "shopify://shop_images/Gifting_HP_Hero.jpg",
             "mobile_image": "shopify://shop_images/HYS_Hero_c71d9662-438b-41fc-8146-87593c4984f9.webp",
             "svg_image": "shopify://shop_images/HYSg_Sale_1d44dc3b-1b19-424e-9808-6a6822591e8a.svg",
             "mobile_svg_image": "shopify://shop_images/HYS_Mob.svg",
@@ -33,7 +33,40 @@
             "button_link_3": "shopify://collections/sport-jackets",
             "button_label_4": "Business Shirts from $79",
             "button_link_4": "shopify://collections/business-shirts",
-            "vertical_alignment": "middle"
+            "vertical_alignment": "stretch"
+          }
+        },
+        "slide_HH9yBN": {
+          "type": "slide",
+          "disabled": true,
+          "settings": {
+            "media_type": "image",
+            "desktop_image": "shopify://shop_images/HYS_Hero_fb358dc2-3f26-41f0-b197-bee6f0675c01.webp",
+            "mobile_image": "shopify://shop_images/HYS_Hero_c71d9662-438b-41fc-8146-87593c4984f9.webp",
+            "video": null,
+            "mobile_video": null,
+            "video_poster": null,
+            "mobile_video_poster": null,
+            "heading": "Half Year Sale",
+            "svg_image": "shopify://shop_images/HYSg_Sale_1d44dc3b-1b19-424e-9808-6a6822591e8a.svg",
+            "svg_size": "full",
+            "mobile_svg_image": "shopify://shop_images/HYS_Mob.svg",
+            "heading_level": "h1",
+            "heading_animation": "none",
+            "description": "",
+            "description_animation": "none",
+            "button_label_1": "Shop All",
+            "button_link_1": "shopify://collections/sale",
+            "button_label_2": "Suits from $399",
+            "button_link_2": "shopify://collections/mens-suits",
+            "button_label_3": "Sports Jackets from $299",
+            "button_link_3": "shopify://collections/sport-jackets",
+            "button_label_4": "Business Shirts from $79",
+            "button_link_4": "shopify://collections/business-shirts",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "middle",
+            "mobile_horizontal_alignment": "center",
+            "mobile_vertical_alignment": "bottom"
           }
         },
         "slide_JGebxX": {
@@ -73,6 +106,7 @@
       },
       "block_order": [
         "slide_ddW7HK",
+        "slide_HH9yBN",
         "slide_JGebxX",
         "slide_P9nnNj"
       ]
