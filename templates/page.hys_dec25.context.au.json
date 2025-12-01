@@ -92,7 +92,9 @@
             "button_link_2": "",
             "horizontal_alignment": "center",
             "vertical_alignment": "stretch",
-            "mobile_horizontal_alignment": "center"
+            "mobile_horizontal_alignment": "center",
+            "button_link_1": "shopify://collections/new-arrivals",
+            "button_label_2": ""
           }
         },
         "slide_P9nnNj": {
