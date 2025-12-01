@@ -165,6 +165,7 @@
       "blocks": {}
     },
     "variable_column_content_svg_tBLLXD": {
+      "disabled": true,
       "settings": {},
       "blocks": {
         "column_item_3WzPyc": {
@@ -188,6 +189,21 @@
       "disabled": true,
       "settings": {},
       "blocks": {}
+    },
+    "hero_primary_WLbcQ7": {
+      "disabled": false,
+      "settings": {},
+      "blocks": {}
+    },
+    "spacer_7Rh8w": {
+      "type": "spacer",
+      "disabled": false,
+      "settings": {
+        "spacer_height": "var(--space-m)"
+      },
+      "blocks": {},
+      "block_order": [],
+      "name": "Spacer"
     }
   },
   "order": [
@@ -199,10 +215,11 @@
     "collection_slider_secondary_r6XR7q",
     "variable_column_content_svg_tBLLXD",
     "variable_column_content_tertiary_XwmChF",
+    "hero_primary_zeaCqL",
+    "spacer_7Rh8w",
     "hero_primary_WLbcQ7",
     "collection_slider_3p3hD9",
     "variable_column_content_tertiary_qfTkVT",
-    "hero_primary_zeaCqL",
     "collection_slider_XmLf6t",
     "featured_article_r6pY9T"
   ]
