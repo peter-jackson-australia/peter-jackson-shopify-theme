@@ -92,6 +92,13 @@
   padding-bottom: var(--space-2xl);
 }
 
+.hero-slider__content--stretch-secondary {
+  bottom: 0;
+  grid-template-rows: 1fr auto auto;
+  height: 75%;
+  padding-bottom: var(--space-2xl);
+}
+
 .hero-slider__content--bottom {
   bottom: 0;
   padding-bottom: var(--space-2xl);
