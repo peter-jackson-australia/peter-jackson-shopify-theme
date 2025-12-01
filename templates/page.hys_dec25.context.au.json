@@ -88,13 +88,13 @@
             "svg_image": "shopify://shop_images/High_Season_Desk_V2_5bc55e81-2b00-45a1-aacb-bc3787484725.svg",
             "svg_size": "full",
             "mobile_svg_image": "shopify://shop_images/High_Season_Mob_477d6616-4b63-42c0-aae7-1a298eb6eb95.svg",
-            "button_label_1": "Shop New",
+            "button_label_1": "Shop Suits",
+            "button_link_1": "shopify://collections/new-arrivals",
+            "button_label_2": "",
             "button_link_2": "",
             "horizontal_alignment": "center",
             "vertical_alignment": "stretch",
-            "mobile_horizontal_alignment": "center",
-            "button_link_1": "shopify://collections/new-arrivals",
-            "button_label_2": ""
+            "mobile_horizontal_alignment": "center"
           }
         },
         "slide_P9nnNj": {
