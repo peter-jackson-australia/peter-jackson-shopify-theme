@@ -13,6 +13,16 @@
     "market": "au"
   },
   "sections": {
+    "spacer_7Rh8w": {
+      "type": "spacer",
+      "disabled": false,
+      "settings": {
+        "spacer_height": "var(--space-m)"
+      },
+      "blocks": {},
+      "block_order": [],
+      "name": "Spacer"
+    },
     "hero_slider_ULyNnz": {
       "settings": {
         "slide_interval": 7
@@ -21,10 +31,40 @@
         "slide_ddW7HK": {
           "disabled": false,
           "settings": {
+            "desktop_image": "shopify://shop_images/Gifting_HP_Hero.webp",
+            "mobile_image": "shopify://shop_images/HYS_Hero_c71d9662-438b-41fc-8146-87593c4984f9.webp",
+            "svg_image": "shopify://shop_images/Gifting_HP_Desk_f9bed350-3d1f-4211-84be-7dfec79f6de0.svg",
+            "mobile_svg_image": "shopify://shop_images/HYS_Mob.svg",
+            "button_label_1": "Shop Gifts",
+            "button_link_1": "shopify://collections/gifts-for-men",
+            "button_label_2": "Polo + Chino / $159",
+            "button_link_2": "shopify://collections/the-gift-of-style-polo-and-chino",
+            "button_label_3": "Footwear + Belt / $200*",
+            "button_link_3": "shopify://collections/the-gift-of-style-footwear-belt",
+            "button_label_4": "Business Shirt + Tie / $130",
+            "button_link_4": "shopify://collections/the-gift-of-style-shirt-tie",
+            "vertical_alignment": "stretch"
+          }
+        },
+        "slide_HH9yBN": {
+          "type": "slide",
+          "disabled": true,
+          "settings": {
+            "media_type": "image",
             "desktop_image": "shopify://shop_images/HYS_Hero_fb358dc2-3f26-41f0-b197-bee6f0675c01.webp",
             "mobile_image": "shopify://shop_images/HYS_Hero_c71d9662-438b-41fc-8146-87593c4984f9.webp",
+            "video": null,
+            "mobile_video": null,
+            "video_poster": null,
+            "mobile_video_poster": null,
+            "heading": "Half Year Sale",
             "svg_image": "shopify://shop_images/HYSg_Sale_1d44dc3b-1b19-424e-9808-6a6822591e8a.svg",
+            "svg_size": "full",
             "mobile_svg_image": "shopify://shop_images/HYS_Mob.svg",
+            "heading_level": "h1",
+            "heading_animation": "none",
+            "description": "",
+            "description_animation": "none",
             "button_label_1": "Shop All",
             "button_link_1": "shopify://collections/sale",
             "button_label_2": "Suits from $399",
@@ -33,7 +73,10 @@
             "button_link_3": "shopify://collections/sport-jackets",
             "button_label_4": "Business Shirts from $79",
             "button_link_4": "shopify://collections/business-shirts",
-            "vertical_alignment": "middle"
+            "horizontal_alignment": "center",
+            "vertical_alignment": "middle",
+            "mobile_horizontal_alignment": "center",
+            "mobile_vertical_alignment": "bottom"
           }
         },
         "slide_JGebxX": {
@@ -73,6 +116,7 @@
       },
       "block_order": [
         "slide_ddW7HK",
+        "slide_HH9yBN",
         "slide_JGebxX",
         "slide_P9nnNj"
       ]
@@ -131,6 +175,7 @@
       "blocks": {}
     },
     "variable_column_content_svg_tBLLXD": {
+      "disabled": true,
       "settings": {},
       "blocks": {
         "column_item_3WzPyc": {
@@ -150,6 +195,11 @@
       },
       "blocks": {}
     },
+    "hero_primary_WLbcQ7": {
+      "disabled": false,
+      "settings": {},
+      "blocks": {}
+    },
     "collection_slider_XmLf6t": {
       "disabled": true,
       "settings": {},
@@ -165,10 +215,11 @@
     "collection_slider_secondary_r6XR7q",
     "variable_column_content_svg_tBLLXD",
     "variable_column_content_tertiary_XwmChF",
+    "hero_primary_zeaCqL",
+    "spacer_7Rh8w",
     "hero_primary_WLbcQ7",
     "collection_slider_3p3hD9",
     "variable_column_content_tertiary_qfTkVT",
-    "hero_primary_zeaCqL",
     "collection_slider_XmLf6t",
     "featured_article_r6pY9T"
   ]
