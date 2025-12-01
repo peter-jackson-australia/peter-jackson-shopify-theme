@@ -13,6 +13,16 @@
     "market": "au"
   },
   "sections": {
+    "spacer_7Rh8w": {
+      "type": "spacer",
+      "disabled": false,
+      "settings": {
+        "spacer_height": "var(--space-m)"
+      },
+      "blocks": {},
+      "block_order": [],
+      "name": "Spacer"
+    },
     "hero_slider_ULyNnz": {
       "settings": {
         "slide_interval": 7
@@ -28,11 +38,11 @@
             "button_label_1": "Shop Gifts",
             "button_link_1": "shopify://collections/gifts-for-men",
             "button_label_2": "Polo + Chino / $159",
-            "button_link_2": "shopify://collections/mens-suits",
+            "button_link_2": "shopify://collections/gifts-for-men",
             "button_label_3": "Footwear + Belt / $200*",
-            "button_link_3": "shopify://collections/sport-jackets",
+            "button_link_3": "shopify://collections/gifts-for-men",
             "button_label_4": "Business Shirt + Tie / $130",
-            "button_link_4": "shopify://collections/business-shirts",
+            "button_link_4": "shopify://collections/gifts-for-men",
             "vertical_alignment": "stretch"
           }
         },
@@ -185,25 +195,15 @@
       },
       "blocks": {}
     },
-    "collection_slider_XmLf6t": {
-      "disabled": true,
-      "settings": {},
-      "blocks": {}
-    },
     "hero_primary_WLbcQ7": {
       "disabled": false,
       "settings": {},
       "blocks": {}
     },
-    "spacer_7Rh8w": {
-      "type": "spacer",
-      "disabled": false,
-      "settings": {
-        "spacer_height": "var(--space-m)"
-      },
-      "blocks": {},
-      "block_order": [],
-      "name": "Spacer"
+    "collection_slider_XmLf6t": {
+      "disabled": true,
+      "settings": {},
+      "blocks": {}
     }
   },
   "order": [
