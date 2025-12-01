@@ -18,10 +18,8 @@
             "media_type": "image",
             "desktop_image": "shopify://shop_images/Cyber_Week_Hero_V2.webp",
             "mobile_image": "shopify://shop_images/Click_Frenzy_Mobile.webp",
-            "heading": "Shop Black Friday",
-            "svg_image": "shopify://shop_images/black-friday-international-banner-edited.svg",
+            "heading": "Peter Jackson Sale",
             "svg_size": "full",
-            "mobile_svg_image": "shopify://shop_images/Click_Frenzy_Mobile_82483cd2-b01d-47ff-9469-731163290243.svg",
             "heading_level": "h1",
             "heading_animation": "none",
             "description": "",
@@ -47,9 +45,7 @@
             "desktop_image": "shopify://shop_images/Cyber_Week_Hero.webp",
             "mobile_image": "shopify://shop_images/Suits_Hero_Mob_a34b025f-ef68-4b19-9628-7b8fad8cffcf.webp",
             "heading": "Business & Casual Suits",
-            "svg_image": "shopify://shop_images/Cyber_Sale_7af5e419-852c-4ff5-921d-4e76482f2dfd.svg",
             "svg_size": "full",
-            "mobile_svg_image": "shopify://shop_images/Refined_Redefined_Mob.svg",
             "heading_level": "h1",
             "heading_animation": "none",
             "description": "",
@@ -109,8 +105,7 @@
       "name": "Hero Slider",
       "settings": {
         "autoplay": true,
-        "slide_interval": 10,
-        "cta_hover_effect": true
+        "slide_interval": 10
       }
     },
     "variable_column_content_secondary_X9KJtx": {
@@ -264,7 +259,7 @@
         "heading_animation": "none",
         "description": "",
         "description_animation": "none",
-        "button_label_1": "Click Frenzy - {{ metaobjects.money_reference[\"150\"].price | metafield_text }} Off*",
+        "button_label_1": "Sports Jackets - {{ metaobjects.money_reference[\"150\"].price | metafield_text }} Off*",
         "button_link_1": "shopify://collections/sport-jackets",
         "button_label_2": "",
         "button_link_2": "",
@@ -282,7 +277,7 @@
       "type": "collection-slider-secondary",
       "name": "Collection Slider Secondary",
       "settings": {
-        "heading": "Black Friday Bestsellers",
+        "heading": "Sale Bestsellers",
         "heading_animation": "none",
         "description": "",
         "description_animation": "none",
