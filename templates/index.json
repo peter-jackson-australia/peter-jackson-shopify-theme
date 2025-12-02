@@ -20,6 +20,7 @@
             "mobile_image": "shopify://shop_images/Click_Frenzy_Mobile.webp",
             "heading": "Peter Jackson Sale",
             "svg_size": "full",
+            "mobile_svg_image": "shopify://shop_images/Click_Frenzy_Mobile_82483cd2-b01d-47ff-9469-731163290243.svg",
             "heading_level": "h1",
             "heading_animation": "none",
             "description": "",
@@ -46,6 +47,7 @@
             "mobile_image": "shopify://shop_images/Suits_Hero_Mob_a34b025f-ef68-4b19-9628-7b8fad8cffcf.webp",
             "heading": "Business & Casual Suits",
             "svg_size": "full",
+            "mobile_svg_image": "shopify://shop_images/Refined_Redefined_Mob.svg",
             "heading_level": "h1",
             "heading_animation": "none",
             "description": "",
@@ -54,9 +56,9 @@
             "button_link_1": "shopify://collections/sale",
             "button_label_2": "{{ metaobjects.money_reference[\"150\"].price | metafield_text }} Off Sports Jackets",
             "button_link_2": "shopify://collections/sport-jackets",
-            "button_label_3": "{{ metaobjects.money_reference[\"50\"].price | metafield_text }} Off Business Shirts",
+            "button_label_3": "$50 Off Business Shirts",
             "button_link_3": "shopify://collections/business-shirts",
-            "button_label_4": "Casual Shirts from {{ metaobjects.money_reference[\"59-95\"].price | metafield_text }}",
+            "button_label_4": "Casual Shirts from $59.95",
             "button_link_4": "shopify://collections/tops",
             "horizontal_alignment": "center",
             "vertical_alignment": "bottom",
@@ -193,7 +195,7 @@
           "settings": {
             "tile_background_image": "shopify://shop_images/Polos_0d8886a8-723a-4c47-bab4-dfa0ff51a9fd.webp",
             "tile_header": "POLOS",
-            "tile_secondary_text": "From {{ metaobjects.money_reference[\"79-95\"].price | metafield_text }}",
+            "tile_secondary_text": "from {{ metaobjects.money_reference[\"79-95\"].price | metafield_text }}",
             "tile_link": "shopify://collections/polos-and-tees"
           }
         },
@@ -259,7 +261,7 @@
         "heading_animation": "none",
         "description": "",
         "description_animation": "none",
-        "button_label_1": "Sports Jackets - {{ metaobjects.money_reference[\"150\"].price | metafield_text }} Off*",
+        "button_label_1": "Sport Jackets - {{ metaobjects.money_reference[\"150\"].price | metafield_text }} Off*",
         "button_link_1": "shopify://collections/sport-jackets",
         "button_label_2": "",
         "button_link_2": "",
@@ -554,12 +556,12 @@
       "type": "collection-slider",
       "name": "Collection Slider",
       "settings": {
-        "heading": "Best Of Sale",
+        "heading": "Last Chance Sale",
         "heading_animation": "none",
         "description": "",
         "description_animation": "none",
         "collection": "sale",
-        "button_label": "Up to 60% Off Storewide*",
+        "button_label": "Suits From {{ metaobjects.money_reference[\"399\"].price | metafield_text }}",
         "products_to_show": 10,
         "animate_products": false
       }
