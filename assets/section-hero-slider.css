@@ -88,14 +88,14 @@
 .hero-slider__content--stretch {
   bottom: 0;
   grid-template-rows: 1fr auto auto;
-  height: 60%;
+  min-height: 60%;
   padding-bottom: var(--space-2xl);
 }
 
 .hero-slider__content--stretch-secondary {
   bottom: 0;
   grid-template-rows: 1fr auto auto;
-  height: 75%;
+  min-height: 75%;
   padding-bottom: var(--space-2xl);
 }
 
