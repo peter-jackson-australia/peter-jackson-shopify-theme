@@ -656,22 +656,25 @@ This file can be re-written at any time.
 
                                 {%- comment -%} Convert prices to presentment currency {%- endcomment -%}
                                 {%- assign variant = product.variants.first -%}
-                                {%- assign presentment_price = variant.price -%}
-                                {%- assign shop_currency_price_cents = original_price | times: 100 -%}
+                                {%- assign ab_presentment_baseline_cents = variant.price -%}
+                                {%- assign ab_original_shop_cents = original_price | plus: 0 -%}
+                                {%- assign ab_price_shop_cents = new_price | plus: 0 -%}
+                                {%- assign ab_compare_at_shop_cents = test_compare_at_price | plus: 0 -%}
 
-                                {%- if presentment_price != shop_currency_price_cents -%}
-                                  {%- assign currency_ratio = presentment_price | divided_by: shop_currency_price_cents -%}
-                                  {%- assign converted_original = original_price | times: currency_ratio | round: 2 | times: 100 -%}
-                                  {%- assign converted_new = new_price | times: currency_ratio | round: 2 | times: 100 -%}
-                                  {%- if test_compare_at_price != blank -%}
-                                    {%- assign converted_test_compare_at = test_compare_at_price | times: currency_ratio | round: 2 | times: 100 -%}
-                                  {%- endif -%}
-                                {%- else -%}
-                                  {%- assign converted_original = original_price | times: 100 -%}
-                                  {%- assign converted_new = new_price | times: 100 -%}
-                                  {%- if test_compare_at_price != blank -%}
-                                    {%- assign converted_test_compare_at = test_compare_at_price | times: 100 -%}
-                                  {%- endif -%}
+                                {%- assign ab_price_cents = nil -%}
+                                {%- if ab_price_shop_cents and ab_original_shop_cents and ab_original_shop_cents > 0 -%}
+                                  {%- assign ab_price_cents = ab_price_shop_cents | times: ab_presentment_baseline_cents | divided_by: ab_original_shop_cents | round -%}
+                                {%- endif -%}
+
+                                {%- assign ab_compare_at_cents = nil -%}
+                                {%- if test_compare_at_price != blank and ab_compare_at_shop_cents and ab_original_shop_cents and ab_original_shop_cents > 0 -%}
+                                  {%- assign ab_compare_at_cents = ab_compare_at_shop_cents | times: ab_presentment_baseline_cents | divided_by: ab_original_shop_cents | round -%}
+                                {%- endif -%}
+
+                                {%- assign converted_original = ab_presentment_baseline_cents -%}
+                                {%- assign converted_new = ab_price_cents | default: ab_price_shop_cents -%}
+                                {%- if test_compare_at_price != blank and ab_compare_at_cents -%}
+                                  {%- assign converted_test_compare_at = ab_compare_at_cents -%}
                                 {%- endif -%}
 
                                 <div class="shogun-price-test-preview-sidebar-product-collection-child-pricing-row">
@@ -710,23 +713,25 @@ This file can be re-written at any time.
                                         {%- assign original_compare_at_price = variant_pricing.original_compare_at_price -%}
                                         {%- assign test_compare_at_price = variant_pricing.test_compare_at_price -%}
 
-                                        {%- comment -%} Convert prices to presentment currency {%- endcomment -%}
-                                        {%- assign presentment_price = variant.price -%}
-                                        {%- assign shop_currency_price_cents = original_price | times: 100 -%}
+                                        {%- assign ab_presentment_baseline_cents = variant.price -%}
+                                        {%- assign ab_original_shop_cents = original_price | plus: 0 -%}
+                                        {%- assign ab_price_shop_cents = new_price | plus: 0 -%}
+                                        {%- assign ab_compare_at_shop_cents = test_compare_at_price | plus: 0 -%}
 
-                                        {%- if presentment_price != shop_currency_price_cents -%}
-                                          {%- assign currency_ratio = presentment_price | divided_by: shop_currency_price_cents -%}
-                                          {%- assign converted_original = original_price | times: currency_ratio | round: 2 | times: 100 -%}
-                                          {%- assign converted_new = new_price | times: currency_ratio | round: 2 | times: 100 -%}
-                                          {%- if test_compare_at_price != blank -%}
-                                            {%- assign converted_test_compare_at = test_compare_at_price | times: currency_ratio | round: 2 | times: 100 -%}
-                                          {%- endif -%}
-                                        {%- else -%}
-                                          {%- assign converted_original = original_price | times: 100 -%}
-                                          {%- assign converted_new = new_price | times: 100 -%}
-                                          {%- if test_compare_at_price != blank -%}
-                                            {%- assign converted_test_compare_at = test_compare_at_price | times: 100 -%}
-                                          {%- endif -%}
+                                        {%- assign ab_price_cents = nil -%}
+                                        {%- if ab_price_shop_cents and ab_original_shop_cents and ab_original_shop_cents > 0 -%}
+                                          {%- assign ab_price_cents = ab_price_shop_cents | times: ab_presentment_baseline_cents | divided_by: ab_original_shop_cents | round -%}
+                                        {%- endif -%}
+
+                                        {%- assign ab_compare_at_cents = nil -%}
+                                        {%- if test_compare_at_price != blank and ab_compare_at_shop_cents and ab_original_shop_cents and ab_original_shop_cents > 0 -%}
+                                          {%- assign ab_compare_at_cents = ab_compare_at_shop_cents | times: ab_presentment_baseline_cents | divided_by: ab_original_shop_cents | round -%}
+                                        {%- endif -%}
+
+                                        {%- assign converted_original = ab_presentment_baseline_cents -%}
+                                        {%- assign converted_new = ab_price_cents | default: ab_price_shop_cents -%}
+                                        {%- if test_compare_at_price != blank and ab_compare_at_cents -%}
+                                          {%- assign converted_test_compare_at = ab_compare_at_cents -%}
                                         {%- endif -%}
 
                                         <div class="shogun-price-test-preview-sidebar-product-collection-child-pricing-row">
@@ -802,22 +807,25 @@ This file can be re-written at any time.
 
                           {%- comment -%} Convert prices to presentment currency {%- endcomment -%}
                           {%- assign variant = product.variants.first -%}
-                          {%- assign presentment_price = variant.price -%}
-                          {%- assign shop_currency_price_cents = original_price | times: 100 -%}
+                          {%- assign ab_presentment_baseline_cents = variant.price -%}
+                          {%- assign ab_original_shop_cents = original_price | plus: 0 -%}
+                          {%- assign ab_price_shop_cents = new_price | plus: 0 -%}
+                          {%- assign ab_compare_at_shop_cents = test_compare_at_price | plus: 0 -%}
 
-                          {%- if presentment_price != shop_currency_price_cents -%}
-                            {%- assign currency_ratio = presentment_price | divided_by: shop_currency_price_cents -%}
-                            {%- assign converted_original = original_price | times: currency_ratio | round: 2 | times: 100 -%}
-                            {%- assign converted_new = new_price | times: currency_ratio | round: 2 | times: 100 -%}
-                            {%- if test_compare_at_price != blank -%}
-                              {%- assign converted_test_compare_at = test_compare_at_price | times: currency_ratio | round: 2 | times: 100 -%}
-                            {%- endif -%}
-                          {%- else -%}
-                            {%- assign converted_original = original_price | times: 100 -%}
-                            {%- assign converted_new = new_price | times: 100 -%}
-                            {%- if test_compare_at_price != blank -%}
-                              {%- assign converted_test_compare_at = test_compare_at_price | times: 100 -%}
-                            {%- endif -%}
+                          {%- assign ab_price_cents = nil -%}
+                          {%- if ab_price_shop_cents and ab_original_shop_cents and ab_original_shop_cents > 0 -%}
+                            {%- assign ab_price_cents = ab_price_shop_cents | times: ab_presentment_baseline_cents | divided_by: ab_original_shop_cents | round -%}
+                          {%- endif -%}
+
+                          {%- assign ab_compare_at_cents = nil -%}
+                          {%- if test_compare_at_price != blank and ab_compare_at_shop_cents and ab_original_shop_cents and ab_original_shop_cents > 0 -%}
+                            {%- assign ab_compare_at_cents = ab_compare_at_shop_cents | times: ab_presentment_baseline_cents | divided_by: ab_original_shop_cents | round -%}
+                          {%- endif -%}
+
+                          {%- assign converted_original = ab_presentment_baseline_cents -%}
+                          {%- assign converted_new = ab_price_cents | default: ab_price_shop_cents -%}
+                          {%- if test_compare_at_price != blank and ab_compare_at_cents -%}
+                            {%- assign converted_test_compare_at = ab_compare_at_cents -%}
                           {%- endif -%}
 
                           <div class="shogun-price-test-preview-sidebar-product-collection-child-pricing-row">
@@ -857,23 +865,25 @@ This file can be re-written at any time.
                                 {%- assign original_compare_at_price = variant_pricing.original_compare_at_price -%}
                                 {%- assign test_compare_at_price = variant_pricing.test_compare_at_price -%}
 
-                                {%- comment -%} Convert prices to presentment currency {%- endcomment -%}
-                                {%- assign presentment_price = variant.price -%}
-                                {%- assign shop_currency_price_cents = original_price | times: 100 -%}
+                                {%- assign ab_presentment_baseline_cents = variant.price -%}
+                                {%- assign ab_original_shop_cents = original_price | plus: 0 -%}
+                                {%- assign ab_price_shop_cents = new_price | plus: 0 -%}
+                                {%- assign ab_compare_at_shop_cents = test_compare_at_price | plus: 0 -%}
 
-                                {%- if presentment_price != shop_currency_price_cents -%}
-                                  {%- assign currency_ratio = presentment_price | divided_by: shop_currency_price_cents -%}
-                                  {%- assign converted_original = original_price | times: currency_ratio | round: 2 | times: 100 -%}
-                                  {%- assign converted_new = new_price | times: currency_ratio | round: 2 | times: 100 -%}
-                                  {%- if test_compare_at_price != blank -%}
-                                    {%- assign converted_test_compare_at = test_compare_at_price | times: currency_ratio | round: 2 | times: 100 -%}
-                                  {%- endif -%}
-                                {%- else -%}
-                                  {%- assign converted_original = original_price | times: 100 -%}
-                                  {%- assign converted_new = new_price | times: 100 -%}
-                                  {%- if test_compare_at_price != blank -%}
-                                    {%- assign converted_test_compare_at = test_compare_at_price | times: 100 -%}
-                                  {%- endif -%}
+                                {%- assign ab_price_cents = nil -%}
+                                {%- if ab_price_shop_cents and ab_original_shop_cents and ab_original_shop_cents > 0 -%}
+                                  {%- assign ab_price_cents = ab_price_shop_cents | times: ab_presentment_baseline_cents | divided_by: ab_original_shop_cents | round -%}
+                                {%- endif -%}
+
+                                {%- assign ab_compare_at_cents = nil -%}
+                                {%- if test_compare_at_price != blank and ab_compare_at_shop_cents and ab_original_shop_cents and ab_original_shop_cents > 0 -%}
+                                  {%- assign ab_compare_at_cents = ab_compare_at_shop_cents | times: ab_presentment_baseline_cents | divided_by: ab_original_shop_cents | round -%}
+                                {%- endif -%}
+
+                                {%- assign converted_original = ab_presentment_baseline_cents -%}
+                                {%- assign converted_new = ab_price_cents | default: ab_price_shop_cents -%}
+                                {%- if test_compare_at_price != blank and ab_compare_at_cents -%}
+                                  {%- assign converted_test_compare_at = ab_compare_at_cents -%}
                                 {%- endif -%}
 
                                 <div class="shogun-price-test-preview-sidebar-product-collection-child-pricing-row">
