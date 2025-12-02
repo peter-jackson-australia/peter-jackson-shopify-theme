@@ -8,7 +8,7 @@
  * ------------------------------------------------------------
  */
  {
-  "parent": "page.hys_dec25.json",
+  "parent": "index.json",
   "context": {
     "market": "au"
   },
