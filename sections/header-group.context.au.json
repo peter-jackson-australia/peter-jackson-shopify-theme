@@ -16,6 +16,11 @@
     "announcement": {
       "settings": {},
       "blocks": {
+        "announcement_ymDiAG": {
+          "settings": {
+            "text": "<a href=\"https://peterjacksons.com/collections/gifts-for-men\" title=\"https://peterjacksons.com/collections/gifts-for-men\">The Gift of Style — Bundle & Save</a>"
+          }
+        },
         "announcement_ny4ip": {
           "type": "announcement",
           "disabled": false,
@@ -30,11 +35,6 @@
           "settings": {
             "text": "<a href=\"/collections/sport-jackets\" title=\"Sports Jackets\">Sports Jackets from $299</a>",
             "alignment": "center"
-          }
-        },
-        "announcement_ymDiAG": {
-          "settings": {
-            "text": "<a href=\"https://peterjacksons.com/collections/gifts-for-men\" title=\"https://peterjacksons.com/collections/gifts-for-men\">The Gift of Style — Bundle Spend & Save</a>"
           }
         }
       },
