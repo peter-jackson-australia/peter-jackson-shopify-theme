@@ -16,16 +16,16 @@
     "announcement": {
       "settings": {},
       "blocks": {
-        "announcement_tnUYFL": {
+        "announcement_ymDiAG": {
           "settings": {
-            "text": "<a href=\"/collections/sale\" title=\"Sale\">Cyber Monday - up to 60% Off*</a>"
+            "text": "<a href=\"https://peterjacksons.com/collections/gifts-for-men\" title=\"https://peterjacksons.com/collections/gifts-for-men\">The Gift of Style — Bundle & Save</a>"
           }
         },
         "announcement_ny4ip": {
           "type": "announcement",
           "disabled": false,
           "settings": {
-            "text": "<a href=\"/collections/mens-suits\" title=\"Suits\">$250 Off Suits*</a>",
+            "text": "<a href=\"https://peterjacksons.com/collections/mens-suits\" title=\"https://peterjacksons.com/collections/mens-suits\">Suits from $399</a>",
             "alignment": "center"
           }
         },
@@ -33,13 +33,13 @@
           "type": "announcement",
           "disabled": false,
           "settings": {
-            "text": "<a href=\"/collections/sport-jackets\" title=\"Sports Jackets\">$150 Off Sports Jackets*</a>",
+            "text": "<a href=\"/collections/sport-jackets\" title=\"Sports Jackets\">Sports Jackets from $299</a>",
             "alignment": "center"
           }
         }
       },
       "block_order": [
-        "announcement_tnUYFL",
+        "announcement_ymDiAG",
         "announcement_ny4ip",
         "announcement_98Ur7"
       ]
