@@ -1,0 +1,188 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "parent": "page.click-frenzy-25.json",
+  "context": {
+    "market": "au"
+  },
+  "sections": {
+    "spacer_eDihb": {
+      "type": "spacer",
+      "disabled": true,
+      "settings": {
+        "spacer_height": "var(--space-m)"
+      },
+      "blocks": {},
+      "block_order": [],
+      "name": "Spacer"
+    },
+    "spacer_jABe9": {
+      "type": "spacer",
+      "disabled": false,
+      "settings": {
+        "spacer_height": "var(--space-m)"
+      },
+      "blocks": {},
+      "block_order": [],
+      "name": "Spacer"
+    },
+    "hero_slider_ULyNnz": {
+      "settings": {},
+      "blocks": {
+        "slide_JGebxX": {
+          "settings": {
+            "mobile_image": "shopify://shop_images/Cyber_Suits_Mob_Hero.webp",
+            "svg_image": "shopify://shop_images/Cyber_Suits_White.svg",
+            "mobile_svg_image": "shopify://shop_images/Cyber_Suits_White_Mob_d39ea33b-93bf-46d1-9db9-78a38717a192.svg",
+            "button_link_1": "shopify://collections/mens-suits",
+            "button_label_2": "",
+            "button_link_2": "",
+            "vertical_alignment": "stretch"
+          }
+        },
+        "slide_P9nnNj": {
+          "settings": {
+            "mobile_image": "shopify://shop_images/Cyber_Sale_Mob_Hero_3.webp",
+            "svg_image": "shopify://shop_images/Cyber_Sale_White_0e4cfc4e-a8d6-4686-882e-85d5bdc84c40.svg",
+            "mobile_svg_image": "shopify://shop_images/Cyber_Sale_White_Mob.svg",
+            "vertical_alignment": "stretch"
+          }
+        }
+      }
+    },
+    "variable_column_content_tertiary_XwmChF": {
+      "disabled": false,
+      "settings": {
+        "show_bottom_border": false,
+        "text_alignment": "center"
+      },
+      "blocks": {
+        "column_item_EdH7tR": {
+          "settings": {
+            "image": "shopify://shop_images/Spring_Suits-1_70a4afcb-37f9-411d-a020-d3adb29f25b2.webp",
+            "heading": "Suits",
+            "text": "from $399",
+            "content_horizontal_alignment": "center",
+            "content_vertical_alignment": "bottom",
+            "column_link": "shopify://collections/mens-suits"
+          }
+        },
+        "column_item_zER8gb": {
+          "settings": {
+            "image": "shopify://shop_images/Sports_Jackets_2_8dd15275-2c54-44a9-bcbc-81c6bc28551f.webp",
+            "heading": "Sports Jackets",
+            "text": "$50 Off",
+            "content_horizontal_alignment": "center",
+            "column_link": "shopify://collections/sport-jackets"
+          }
+        },
+        "column_item_TdMYVf": {
+          "settings": {
+            "image": "shopify://shop_images/Trousers_77b93bfb-1c7b-4acb-b430-9a011b32d013.webp",
+            "heading": "Chinos & Trousers",
+            "text": "from $89.95",
+            "content_horizontal_alignment": "center",
+            "column_link": "shopify://collections/bottoms"
+          }
+        },
+        "column_item_tXtkqD": {
+          "settings": {
+            "image": "shopify://shop_images/Polos-1_de5d3772-7f6d-464a-9d80-62f0d922bcc8.webp",
+            "heading": "Polos",
+            "text": "from $59.95",
+            "content_horizontal_alignment": "center",
+            "column_link": "shopify://collections/polos-and-tees"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_EdH7tR",
+        "column_item_zER8gb",
+        "column_item_TdMYVf",
+        "column_item_tXtkqD"
+      ]
+    },
+    "variable_column_content_svg_tBLLXD": {
+      "disabled": false,
+      "settings": {
+        "show_top_border": true,
+        "show_bottom_border": true
+      },
+      "blocks": {
+        "column_item_6wGj7R": {
+          "settings": {
+            "image": "shopify://shop_images/Business_Shirts_CH.webp",
+            "top_text": "Premium Workwear Perfected",
+            "svg_icon": "shopify://shop_images/Business_Shirts.svg",
+            "mobile_svg_icon": "shopify://shop_images/Business_Shirts_Mob.svg",
+            "bottom_text": "$50 Off All Styles"
+          }
+        },
+        "column_item_3WzPyc": {
+          "settings": {
+            "image": "shopify://shop_images/Business_Suits_CH.webp",
+            "image_link": "shopify://collections/mens-suits",
+            "top_text": "The Power Move",
+            "svg_icon": "shopify://shop_images/Business_Suits.svg",
+            "mobile_svg_icon": "shopify://shop_images/Business_Suits_Mob.svg",
+            "bottom_text": "Two for $895*"
+          }
+        }
+      }
+    },
+    "hero_primary_NeKfMz": {
+      "settings": {
+        "button_label_1": "$150 Off Select Styles"
+      },
+      "blocks": {}
+    },
+    "collection_slider_secondary_r6XR7q": {
+      "disabled": true,
+      "settings": {
+        "heading": "Bestsellers Of Sale"
+      },
+      "blocks": {}
+    },
+    "hero_primary_WLbcQ7": {
+      "disabled": false,
+      "settings": {},
+      "blocks": {}
+    },
+    "collection_slider_XmLf6t": {
+      "disabled": false,
+      "settings": {
+        "heading": "Black Friday Bestsellers",
+        "button_label": "The Best Of Sale"
+      },
+      "blocks": {}
+    },
+    "featured_article_r6pY9T": {
+      "disabled": true,
+      "settings": {},
+      "blocks": {}
+    }
+  },
+  "order": [
+    "hero_slider_ULyNnz",
+    "variable_column_content_tertiary_XwmChF",
+    "variable_column_content_svg_tBLLXD",
+    "hero_primary_NeKfMz",
+    "heading_with_text_9nQj7z",
+    "collection_slider_secondary_r6XR7q",
+    "spacer_eDihb",
+    "collection_slider_XmLf6t",
+    "hero_primary_WLbcQ7",
+    "collection_slider_3p3hD9",
+    "variable_column_content_tertiary_qfTkVT",
+    "spacer_jABe9",
+    "hero_primary_zeaCqL",
+    "featured_article_r6pY9T"
+  ]
+}
