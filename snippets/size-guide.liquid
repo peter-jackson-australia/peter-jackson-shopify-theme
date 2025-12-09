@@ -1,530 +1,339 @@
 {{ 'snippet-size-guide.css' | asset_url | stylesheet_tag }}
 
-<div class="size-guide-container">
-  <div class="size-guide-header">
-    <h3 class="size-guide-title heading--xl">What's My Size?</h3>
-    <div class="main-tabs">
-      <button class="main-tab-button active body" data-tab="suit">Suit & Jacket</button>
-      <button class="main-tab-button body" data-tab="pants">Trousers</button>
-      <button class="main-tab-button body" data-tab="shirt">Shirts</button>
-      <button class="main-tab-button body" data-tab="shoes">Shoes</button>
-      <button
-        type="button"
-        class="modal-close"
-      >
+{% liquid
+  assign product_category_handle = product.category | handleize
+
+  assign fit_chest_categories = 'coats-jackets,overcoats,pant-suits,pea-coats,polos,rain-coats,sport-jackets,sweaters,t-shirts,tuxedos,vests' | split: ','
+  assign waist_categories = 'belts,cargo-pants,chinos,jeans,shorts,trousers' | split: ','
+  assign shirt_categories = 'shirts' | split: ','
+
+  assign show_size_guide = false
+  assign category_type = ''
+
+  if fit_chest_categories contains product_category_handle
+    assign show_size_guide = true
+    assign category_type = 'fit-chest'
+  elsif waist_categories contains product_category_handle
+    assign show_size_guide = true
+    assign category_type = 'waist'
+  elsif shirt_categories contains product_category_handle
+    assign show_size_guide = true
+    assign category_type = 'shirt'
+  endif
+%}
+
+{% if show_size_guide %}
+  <div
+    class="size-guide"
+    data-category-type="{{ category_type }}"
+    data-unit-system="{{ localization.country.unit_system }}"
+  >
+    <div class="size-guide__header">
+      <h3 class="size-guide__title heading--xl">Find Your Size</h3>
+      <button type="button" class="size-guide__close modal-close">
         {% render '_icon-close' %}
       </button>
     </div>
-  </div>
-  <div class="size-guide-content">
-    <div class="size-guide-left">
-      <div id="suit-left" class="tab-content active">
-        <div class="guide-image">
-          <img
-            class="sizing-image"
-            src="https://cdn.shopify.com/s/files/1/0898/1859/5696/files/peter-jackson-size-guide-illustration-jacket.svg?v=1751242545"
-            alt="Suit measurement guide"
-            width="300"
-            height="300"
-            loading="lazy"
-          >
+
+    <div class="size-guide__progress">
+      <div class="size-guide__progress-bar"></div>
+    </div>
+
+    <div class="size-guide__content">
+      {% if category_type == 'fit-chest' %}
+        <div class="size-guide__step" data-step="method">
+          <p class="size-guide__question heading--l">How would you like to find your size?</p>
+          <div class="size-guide__options">
+            <button type="button" class="size-guide__option" data-method="easy">
+              <span class="size-guide__option-title body--bold">Quick Estimate</span>
+              <span class="size-guide__option-desc small">Using your height and weight</span>
+            </button>
+            <button type="button" class="size-guide__option" data-method="accurate">
+              <span class="size-guide__option-title body--bold">Precise Fit</span>
+              <span class="size-guide__option-desc small">Using your height and chest measurement</span>
+            </button>
+          </div>
         </div>
-        <p class="body" id="sizing-selection-content-paragraph">
-          Find the perfect fit with our size chart. We offer 3 different fits for our tailored suits: Regular, short and
-          long. These are determined by the length of the sleeve and jacket with a 3cm difference between fittings.
-        </p>
+
+        <div class="size-guide__step" data-step="height">
+          <p class="size-guide__question heading--l">What is your height?</p>
+          <div class="size-guide__input-group" data-unit="metric">
+            <label for="size-guide-height-cm" class="size-guide__label body">Height</label>
+            <div class="size-guide__input-wrapper">
+              <input
+                type="number"
+                id="size-guide-height-cm"
+                class="size-guide__input body"
+                step="1"
+                min="155"
+                max="201"
+                placeholder="175"
+              >
+              <span class="size-guide__unit body">cm</span>
+            </div>
+            <span class="size-guide__hint small">Between 155cm and 201cm</span>
+          </div>
+          <div class="size-guide__input-group" data-unit="imperial">
+            <label class="size-guide__label body">Height</label>
+            <div class="size-guide__input-row">
+              <div class="size-guide__input-wrapper">
+                <input
+                  type="number"
+                  id="size-guide-height-feet"
+                  class="size-guide__input body"
+                  min="5"
+                  max="6"
+                  placeholder="5"
+                >
+                <span class="size-guide__unit body">ft</span>
+              </div>
+              <div class="size-guide__input-wrapper">
+                <input
+                  type="number"
+                  id="size-guide-height-inches"
+                  class="size-guide__input body"
+                  step="1"
+                  min="0"
+                  max="11"
+                  placeholder="10"
+                >
+                <span class="size-guide__unit body">in</span>
+              </div>
+            </div>
+            <span class="size-guide__hint small">Between 5'1" and 6'7"</span>
+          </div>
+        </div>
+
+        <div class="size-guide__step" data-step="weight">
+          <p class="size-guide__question heading--l">What is your weight?</p>
+          <div class="size-guide__input-group" data-unit="metric">
+            <label for="size-guide-weight-kg" class="size-guide__label body">Weight</label>
+            <div class="size-guide__input-wrapper">
+              <input
+                type="number"
+                id="size-guide-weight-kg"
+                class="size-guide__input body"
+                min="55"
+                max="140"
+                placeholder="80"
+              >
+              <span class="size-guide__unit body">kg</span>
+            </div>
+            <span class="size-guide__hint small">Between 55kg and 140kg</span>
+          </div>
+          <div class="size-guide__input-group" data-unit="imperial">
+            <label for="size-guide-weight-lbs" class="size-guide__label body">Weight</label>
+            <div class="size-guide__input-wrapper">
+              <input
+                type="number"
+                id="size-guide-weight-lbs"
+                class="size-guide__input body"
+                min="121"
+                max="309"
+                placeholder="175"
+              >
+              <span class="size-guide__unit body">lbs</span>
+            </div>
+            <span class="size-guide__hint small">Between 121lbs and 309lbs</span>
+          </div>
+        </div>
+
+        <div class="size-guide__step" data-step="chest">
+          <p class="size-guide__question heading--l">What is your chest measurement?</p>
+          <p class="size-guide__instruction body">
+            Measure around the fullest part of your chest, keeping the tape level.
+          </p>
+          <div class="size-guide__input-group" data-unit="metric">
+            <label for="size-guide-chest-cm" class="size-guide__label body">Chest</label>
+            <div class="size-guide__input-wrapper">
+              <input
+                type="number"
+                id="size-guide-chest-cm"
+                class="size-guide__input body"
+                step="1"
+                min="84"
+                max="128"
+                placeholder="96"
+              >
+              <span class="size-guide__unit body">cm</span>
+            </div>
+            <span class="size-guide__hint small">Between 84cm and 128cm</span>
+          </div>
+          <div class="size-guide__input-group" data-unit="imperial">
+            <label for="size-guide-chest-inches" class="size-guide__label body">Chest</label>
+            <div class="size-guide__input-wrapper">
+              <input
+                type="number"
+                id="size-guide-chest-inches"
+                class="size-guide__input body"
+                step="0.5"
+                min="33"
+                max="50"
+                placeholder="38"
+              >
+              <span class="size-guide__unit body">in</span>
+            </div>
+            <span class="size-guide__hint small">Between 33" and 50"</span>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if category_type == 'waist' %}
+        <div class="size-guide__step" data-step="waist">
+          <p class="size-guide__question heading--l">What is your waist measurement?</p>
+          <p class="size-guide__instruction body">
+            Measure around your natural waistline, keeping the tape comfortably loose.
+          </p>
+          <div class="size-guide__input-group" data-unit="metric">
+            <label for="size-guide-waist-cm" class="size-guide__label body">Waist</label>
+            <div class="size-guide__input-wrapper">
+              <input
+                type="number"
+                id="size-guide-waist-cm"
+                class="size-guide__input body"
+                step="1"
+                min="72"
+                max="116"
+                placeholder="84"
+              >
+              <span class="size-guide__unit body">cm</span>
+            </div>
+            <span class="size-guide__hint small">Between 72cm and 116cm</span>
+          </div>
+          <div class="size-guide__input-group" data-unit="imperial">
+            <label for="size-guide-waist-inches" class="size-guide__label body">Waist</label>
+            <div class="size-guide__input-wrapper">
+              <input
+                type="number"
+                id="size-guide-waist-inches"
+                class="size-guide__input body"
+                step="0.5"
+                min="28"
+                max="46"
+                placeholder="33"
+              >
+              <span class="size-guide__unit body">in</span>
+            </div>
+            <span class="size-guide__hint small">Between 28" and 46"</span>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if category_type == 'shirt' %}
+        <div class="size-guide__step" data-step="neck">
+          <p class="size-guide__question heading--l">What is your neck measurement?</p>
+          <p class="size-guide__instruction body">
+            Measure around the base of your neck, allowing one finger gap between tape and skin.
+          </p>
+          <div class="size-guide__input-group" data-unit="metric">
+            <label for="size-guide-neck-cm" class="size-guide__label body">Neck</label>
+            <div class="size-guide__input-wrapper">
+              <input
+                type="number"
+                id="size-guide-neck-cm"
+                class="size-guide__input body"
+                step="0.5"
+                min="37"
+                max="50"
+                placeholder="40"
+              >
+              <span class="size-guide__unit body">cm</span>
+            </div>
+            <span class="size-guide__hint small">Between 37cm and 50cm</span>
+          </div>
+          <div class="size-guide__input-group" data-unit="imperial">
+            <label for="size-guide-neck-inches" class="size-guide__label body">Neck</label>
+            <div class="size-guide__input-wrapper">
+              <input
+                type="number"
+                id="size-guide-neck-inches"
+                class="size-guide__input body"
+                step="0.25"
+                min="14"
+                max="20"
+                placeholder="16"
+              >
+              <span class="size-guide__unit body">in</span>
+            </div>
+            <span class="size-guide__hint small">Between 14" and 20"</span>
+          </div>
+        </div>
+      {% endif %}
+
+      <div class="size-guide__step" data-step="preference">
+        <p class="size-guide__question heading--l">How do you prefer your fit?</p>
+        <div class="size-guide__options size-guide__options--fit">
+          <button type="button" class="size-guide__option" data-preference="easy">
+            <span class="size-guide__option-title body--bold">Looser</span>
+            <span class="size-guide__option-desc small">More room for comfort</span>
+          </button>
+          <button type="button" class="size-guide__option" data-preference="regular">
+            <span class="size-guide__option-title body--bold">Regular</span>
+            <span class="size-guide__option-desc small">Classic tailored fit</span>
+          </button>
+          <button type="button" class="size-guide__option" data-preference="slim">
+            <span class="size-guide__option-title body--bold">Slimmer</span>
+            <span class="size-guide__option-desc small">Close to the body</span>
+          </button>
+        </div>
       </div>
 
-      <div id="pants-left" class="tab-content">
-        <div class="guide-image">
-          <img
-            class="sizing-image"
-            src="https://cdn.shopify.com/s/files/1/0898/1859/5696/files/peter-jackson-size-guide-illustration-trousers.svg?v=1751242545"
-            alt="Trousers measurement guide"
-            width="300"
-            height="300"
-            loading="lazy"
-          >
+      <div class="size-guide__step" data-step="result">
+        <div class="size-guide__result">
+          <div class="size-guide__result-header">
+            <p class="size-guide__result-label body--uppercase">Your Recommended Size</p>
+            <p class="size-guide__result-size heading--3xl"></p>
+          </div>
+          <div class="size-guide__result-details">
+            {% if category_type == 'fit-chest' %}
+              <div class="size-guide__result-item" data-result="fit">
+                <span class="size-guide__result-item-label body">Fit Length</span>
+                <span class="size-guide__result-item-value body--bold"></span>
+              </div>
+              <div class="size-guide__result-item" data-result="chest">
+                <span class="size-guide__result-item-label body">Chest Size</span>
+                <span class="size-guide__result-item-value body--bold"></span>
+              </div>
+              <div class="size-guide__result-item" data-result="trouser">
+                <span class="size-guide__result-item-label body">Trouser Size</span>
+                <span class="size-guide__result-item-value body--bold"></span>
+              </div>
+            {% endif %}
+            <div class="size-guide__result-item" data-result="confidence">
+              <span class="size-guide__result-item-label body">Confidence</span>
+              <span class="size-guide__result-item-value body--bold"></span>
+            </div>
+          </div>
+          <button type="button" class="size-guide__restart body">Start Over</button>
         </div>
-        <p class="body">
-          Our trouser sizes go up in increments of 4cm. If your waist (point A.) measures 88cm, your trouser size is 88.
-          If your waist is 90cm, it's better to go up to size 92 - always best to leave room for comfort.
-        </p>
-      </div>
-
-      <div id="shirt-left" class="tab-content">
-        <div class="guide-image">
-          <img
-            class="sizing-image"
-            src="https://cdn.shopify.com/s/files/1/0898/1859/5696/files/peter-jackson-size-guide-illustration-shirts.svg?v=1751242545"
-            alt="Shirt measurement guide"
-            width="300"
-            height="300"
-            loading="lazy"
-          >
+        <div class="size-guide__result size-guide__result--mtm">
+          <div class="size-guide__result-header">
+            <p class="size-guide__result-label body--uppercase">Made to Measure</p>
+            <p class="size-guide__result-message body">
+              Based on your measurements, we recommend our Made to Measure program for the perfect fit.
+            </p>
+          </div>
+          <a href="/pages/made-to-measure" class="size-guide__mtm-link body--bold">Learn More</a>
+          <button type="button" class="size-guide__restart body">Start Over</button>
         </div>
-        <p class="body">
-          Find the ultimate tailored companion with the right fit. Our tailored business shirts feature the signature
-          cutaway collar. For a custom longer sleeve shirt contact us through our Made to Measure programme.
-        </p>
-      </div>
-
-      <div id="shoes-left" class="tab-content">
-        <div class="guide-image">
-          <img
-            class="sizing-image"
-            src="https://cdn.shopify.com/s/files/1/0898/1859/5696/files/peter-jackson-size-guide-illustration-footwear.svg?v=1751242545"
-            alt="Shoe measurement guide"
-            width="300"
-            height="300"
-            loading="lazy"
-          >
-        </div>
-        <p class="body">
-          Our exclusive range of premium leather footwear is designed with UK sizing in mind. See the table to the right
-          for reference. If you're not sure about your size feel free to contact us via our contact form.
-        </p>
       </div>
     </div>
 
-    <div class="size-guide-right custom-scrollbar">
-      <div id="suit" class="tab-content active">
-        <div class="measurement-item">
-          <p class="body">
-            <span class="body--bold" style="color: var(--neutral-950);">A. Chest:</span>
-            With a tape measure wrap around the chest, pulling the tape firmly to gauge your centimetre measurement.
-          </p>
-        </div>
-        <div class="measurement-item">
-          <p class="body">
-            <span class="body--bold" style="color: var(--neutral-950);">B. Sleeve Length:</span>
-            With the arm naturally down, measure from the tip of your shoulder - where the shoulder seam meets the
-            sleeve head down to the wrist. Please note - if you are purchasing a 2 piece suit, the trouser size that
-            will come with the jacket is preselected.
-          </p>
-        </div>
-        <div class="size-options">
-          <p class="body--bold" style="margin-bottom: var(--space-xs);">Size Chart:</p>
-          <button class="size-button body" data-size="short">Short</button>
-          <button class="size-button body active" data-size="regular">Regular</button>
-          <button class="size-button body" data-size="long">Long</button>
-        </div>
-        <div class="table-container custom-scrollbar">
-          <table id="regular-table" class="size-table size-content active">
-            <tbody>
-              <tr class="body">
-                <td>Casual Size</td>
-                <td>S</td>
-                <td>S</td>
-                <td>M</td>
-                <td>M</td>
-                <td>L</td>
-                <td>L</td>
-                <td>XL</td>
-                <td>XL</td>
-                <td>2XL</td>
-                <td>2XL</td>
-                <td>3XL</td>
-                <td>3XL</td>
-              </tr>
-              <tr class="body">
-                <td>Chest</td>
-                <td>84</td>
-                <td>88</td>
-                <td>92</td>
-                <td>96</td>
-                <td>100</td>
-                <td>104</td>
-                <td>108</td>
-                <td>112</td>
-                <td>116</td>
-                <td>120</td>
-                <td>124</td>
-                <td>128</td>
-              </tr>
-              <tr class="body">
-                <td>Sleeve</td>
-                <td>62</td>
-                <td>62.5</td>
-                <td>63</td>
-                <td>63.5</td>
-                <td>64</td>
-                <td>64.5</td>
-                <td>65</td>
-                <td>65.5</td>
-                <td>66</td>
-                <td>66.5</td>
-                <td>67</td>
-                <td>67.5</td>
-              </tr>
-              <tr class="body">
-                <td>Trousers</td>
-                <td>72</td>
-                <td>76</td>
-                <td>80</td>
-                <td>84</td>
-                <td>88</td>
-                <td>92</td>
-                <td>96</td>
-                <td>100</td>
-                <td>104</td>
-                <td>108</td>
-                <td>112</td>
-                <td>116</td>
-              </tr>
-            </tbody>
-          </table>
-          <table id="short-table" class="size-table size-content">
-            <tbody>
-              <tr class="body">
-                <td>Casual Size</td>
-                <td>S</td>
-                <td>M</td>
-                <td>M</td>
-                <td>L</td>
-                <td>L</td>
-                <td>XL</td>
-                <td>XL</td>
-                <td>2XL</td>
-                <td>2XL</td>
-                <td>3XL</td>
-                <td>3XL</td>
-              </tr>
-              <tr class="body">
-                <td>Chest</td>
-                <td>88</td>
-                <td>92</td>
-                <td>96</td>
-                <td>100</td>
-                <td>104</td>
-                <td>108</td>
-                <td>112</td>
-                <td>116</td>
-                <td>120</td>
-                <td>124</td>
-                <td>128</td>
-              </tr>
-              <tr class="body">
-                <td>Sleeve</td>
-                <td>59.5</td>
-                <td>60</td>
-                <td>60.5</td>
-                <td>61</td>
-                <td>61.5</td>
-                <td>62</td>
-                <td>62.5</td>
-                <td>63</td>
-                <td>63.5</td>
-                <td>64</td>
-                <td>64.5</td>
-              </tr>
-              <tr class="body">
-                <td>Trousers</td>
-                <td>76</td>
-                <td>80</td>
-                <td>84</td>
-                <td>88</td>
-                <td>92</td>
-                <td>96</td>
-                <td>100</td>
-                <td>104</td>
-                <td>108</td>
-                <td>112</td>
-                <td>116</td>
-              </tr>
-            </tbody>
-          </table>
-          <table id="long-table" class="size-table size-content">
-            <tbody>
-              <tr class="body">
-                <td>Casual Size</td>
-                <td>S</td>
-                <td>M</td>
-                <td>M</td>
-                <td>L</td>
-                <td>L</td>
-                <td>XL</td>
-                <td>XL</td>
-                <td>2XL</td>
-                <td>2XL</td>
-                <td>3XL</td>
-                <td>3XL</td>
-              </tr>
-              <tr class="body">
-                <td>Chest</td>
-                <td>88</td>
-                <td>92</td>
-                <td>96</td>
-                <td>100</td>
-                <td>104</td>
-                <td>108</td>
-                <td>112</td>
-                <td>116</td>
-                <td>120</td>
-                <td>124</td>
-                <td>128</td>
-              </tr>
-              <tr class="body">
-                <td>Sleeve</td>
-                <td>65.5</td>
-                <td>66</td>
-                <td>66.5</td>
-                <td>67</td>
-                <td>67.5</td>
-                <td>68</td>
-                <td>68.5</td>
-                <td>69</td>
-                <td>69.5</td>
-                <td>70</td>
-                <td>70.5</td>
-              </tr>
-              <tr class="body">
-                <td>Trousers</td>
-                <td>76</td>
-                <td>80</td>
-                <td>84</td>
-                <td>88</td>
-                <td>92</td>
-                <td>96</td>
-                <td>100</td>
-                <td>104</td>
-                <td>108</td>
-                <td>112</td>
-                <td>116</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div id="pants" class="tab-content">
-        <div class="measurement-item">
-          <p class="body">
-            <span class="body--bold" style="color: var(--neutral-950);">A. Waist:</span>
-            Measure around the body at hip height pulling the tape firm.
-          </p>
-        </div>
-        <div class="measurement-item">
-          <p class="body">
-            <span class="body--bold" style="color: var(--neutral-950);">B. Inleg:</span>
-            Measure from the lowest part of your crotch area to the hem, or where your foot meets the ground (shoes off)
-            - This relates to 2-piece suits. Separate trousers and chinos have a standard inleg of: 84cm, and 82cm for
-            our range of cuffed trousers.
-          </p>
-        </div>
-
-        <div class="table-container custom-scrollbar">
-          <table class="size-table">
-            <thead>
-              <tr class="body">
-                <td>Size</td>
-                <td>76</td>
-                <td>80</td>
-                <td>84</td>
-                <td>88</td>
-                <td>92</td>
-                <td>96</td>
-                <td>100</td>
-                <td>104</td>
-                <td>108</td>
-                <td>112</td>
-                <td>116</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="body">
-                <td>Inleg Short</td>
-                <td>80</td>
-                <td>80</td>
-                <td>80</td>
-                <td>80</td>
-                <td>80</td>
-                <td>80</td>
-                <td>80</td>
-                <td>80</td>
-                <td>80</td>
-                <td>80</td>
-                <td>80</td>
-              </tr>
-              <tr class="body">
-                <td>Inleg Regular</td>
-                <td>82</td>
-                <td>82</td>
-                <td>82</td>
-                <td>82</td>
-                <td>82</td>
-                <td>82</td>
-                <td>82</td>
-                <td>82</td>
-                <td>82</td>
-                <td>82</td>
-                <td>82</td>
-              </tr>
-              <tr class="body">
-                <td>Inleg Long</td>
-                <td>85</td>
-                <td>85</td>
-                <td>85</td>
-                <td>85</td>
-                <td>85</td>
-                <td>85</td>
-                <td>85</td>
-                <td>85</td>
-                <td>85</td>
-                <td>85</td>
-                <td>85</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div id="shirt" class="tab-content">
-        <div class="measurement-item">
-          <p class="body">
-            <span class="body--bold" style="color: var(--neutral-950);">A. Neck:</span>
-            Measure around base of neck near Adam's apple. A correct fitting shirt should have one finger gap from the
-            tape measure to skin.
-          </p>
-        </div>
-        <div class="measurement-item">
-          <p class="body">
-            <span class="body--bold" style="color: var(--neutral-950);">B. Sleeve Length:</span>
-            Measure from the shoulder seam to the crease of where your hand meets your wrist.
-          </p>
-        </div>
-
-        <div class="table-container custom-scrollbar">
-          <table class="size-table">
-            <thead>
-              <tr class="body">
-                <td>Casual Size</td>
-                <td>S</td>
-                <td>S</td>
-                <td>M</td>
-                <td>M</td>
-                <td>L</td>
-                <td>L</td>
-                <td>XL</td>
-                <td>XL</td>
-                <td>2XL</td>
-                <td>2XL</td>
-                <td>2XL</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="body">
-                <td>Business</td>
-                <td>37</td>
-                <td>38</td>
-                <td>39</td>
-                <td>40</td>
-                <td>41</td>
-                <td>42</td>
-                <td>43</td>
-                <td>44</td>
-                <td>46</td>
-                <td>48</td>
-                <td>50</td>
-              </tr>
-              <tr class="body">
-                <td>Chest</td>
-                <td>100</td>
-                <td>104</td>
-                <td>108</td>
-                <td>112</td>
-                <td>114</td>
-                <td>118</td>
-                <td>122</td>
-                <td>126</td>
-                <td>130</td>
-                <td>134</td>
-                <td>142</td>
-              </tr>
-              <tr class="body">
-                <td>Sleeve</td>
-                <td>61</td>
-                <td>61</td>
-                <td>63.5</td>
-                <td>63.5</td>
-                <td>65</td>
-                <td>65</td>
-                <td>66.5</td>
-                <td>68</td>
-                <td>68</td>
-                <td>69.5</td>
-                <td>69.5</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div id="shoes" class="tab-content">
-        <div class="measurement-item">
-          <p class="body">
-            <span class="body--bold" style="color: var(--neutral-950);">Foot Size:</span>
-            Our shoes are standard designed and width in UK sizes.
-          </p>
-        </div>
-
-        <div class="table-container custom-scrollbar">
-          <table class="size-table">
-            <tbody>
-              <tr class="body">
-                <td>UK</td>
-                <td>6</td>
-                <td>7</td>
-                <td>8</td>
-                <td>9</td>
-                <td>10</td>
-                <td>11</td>
-                <td>12</td>
-                <td>13</td>
-                <td>14</td>
-              </tr>
-              <tr class="body">
-                <td>US</td>
-                <td>7</td>
-                <td>8</td>
-                <td>9</td>
-                <td>10</td>
-                <td>11</td>
-                <td>12</td>
-                <td>13</td>
-                <td>14</td>
-                <td>15</td>
-              </tr>
-              <tr class="body">
-                <td>EU</td>
-                <td>40</td>
-                <td>41</td>
-                <td>42</td>
-                <td>43</td>
-                <td>44</td>
-                <td>45</td>
-                <td>46</td>
-                <td>47</td>
-                <td>48</td>
-              </tr>
-              <tr class="body">
-                <td>Length</td>
-                <td>25.4</td>
-                <td>26.2</td>
-                <td>27.1</td>
-                <td>27.9</td>
-                <td>28.8</td>
-                <td>29.6</td>
-                <td>30.5</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+    <div class="size-guide__navigation">
+      <button type="button" class="size-guide__nav-back body">
+        <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 1L1 6L6 11" stroke="currentColor" stroke-linecap="square"/>
+        </svg>
+        Back
+      </button>
+      <button type="button" class="size-guide__nav-next body">
+        Continue
+        <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1L6 6L1 11" stroke="currentColor" stroke-linecap="square"/>
+        </svg>
+      </button>
     </div>
   </div>
-</div>
+{% endif %}
 
-<script
-  src="{{ "snippet-size-guide.js" | asset_url }}"
-  defer
-></script>
+<script src="{{ 'snippet-size-guide.js' | asset_url }}" defer></script>
