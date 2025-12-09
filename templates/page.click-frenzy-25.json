@@ -1,0 +1,596 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero_slider_ULyNnz": {
+      "type": "hero-slider",
+      "blocks": {
+        "slide_JGebxX": {
+          "type": "slide",
+          "settings": {
+            "media_type": "image",
+            "desktop_image": "shopify://shop_images/Cyber_Week_Hero_V2.webp",
+            "mobile_image": "shopify://shop_images/Click_Frenzy_Mobile.webp",
+            "heading": "Shop Black Friday",
+            "svg_image": "shopify://shop_images/Cyber_Suits_V2.svg",
+            "svg_size": "full",
+            "mobile_svg_image": "shopify://shop_images/Click_Frenzy_Mobile_82483cd2-b01d-47ff-9469-731163290243.svg",
+            "heading_level": "h1",
+            "heading_animation": "none",
+            "description": "",
+            "description_animation": "none",
+            "button_label_1": "Shop Suits",
+            "button_link_1": "shopify://collections/sale",
+            "button_label_2": "Two Suits for $895*",
+            "button_link_2": "shopify://collections/mens-suits",
+            "button_label_3": "",
+            "button_link_3": "",
+            "button_label_4": "",
+            "button_link_4": "",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "bottom",
+            "mobile_horizontal_alignment": "center",
+            "mobile_vertical_alignment": "bottom"
+          }
+        },
+        "slide_P9nnNj": {
+          "type": "slide",
+          "settings": {
+            "media_type": "image",
+            "desktop_image": "shopify://shop_images/Cyber_Week_Hero.webp",
+            "mobile_image": "shopify://shop_images/Suits_Hero_Mob_a34b025f-ef68-4b19-9628-7b8fad8cffcf.webp",
+            "heading": "Business & Casual Suits",
+            "svg_image": "shopify://shop_images/Cyber_Sale_7af5e419-852c-4ff5-921d-4e76482f2dfd.svg",
+            "svg_size": "full",
+            "mobile_svg_image": "shopify://shop_images/Refined_Redefined_Mob.svg",
+            "heading_level": "h1",
+            "heading_animation": "none",
+            "description": "",
+            "description_animation": "none",
+            "button_label_1": "Shop All",
+            "button_link_1": "shopify://collections/sale",
+            "button_label_2": "$150 Off Sports Jackets",
+            "button_link_2": "shopify://collections/sport-jackets",
+            "button_label_3": "$50 Off Business Shirts",
+            "button_link_3": "shopify://collections/business-shirts",
+            "button_label_4": "Casual Shirts from $59.95",
+            "button_link_4": "shopify://collections/tops",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "bottom",
+            "mobile_horizontal_alignment": "center",
+            "mobile_vertical_alignment": "bottom"
+          }
+        },
+        "slide_ddW7HK": {
+          "type": "slide",
+          "settings": {
+            "media_type": "image",
+            "desktop_image": "shopify://shop_images/Suits_Hero.webp",
+            "mobile_image": "shopify://shop_images/Suits_Hero_Mob_1afba34e-6c4f-485c-bd07-7b428b72aad3.webp",
+            "heading": "Spring Sale",
+            "svg_image": "shopify://shop_images/Spring_Sale.svg",
+            "svg_size": "full",
+            "mobile_svg_image": "shopify://shop_images/S25_Homepage_Suits_Mobile.svg",
+            "heading_level": "h1",
+            "heading_animation": "none",
+            "description": "",
+            "description_animation": "none",
+            "button_label_1": "{{ metaobjects.money_reference[\"200\"].price | metafield_text }} Off All Suits",
+            "button_link_1": "shopify://collections/mens-suits",
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_label_3": "",
+            "button_link_3": "",
+            "button_label_4": "",
+            "button_link_4": "",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "bottom",
+            "mobile_horizontal_alignment": "center",
+            "mobile_vertical_alignment": "bottom"
+          }
+        }
+      },
+      "block_order": [
+        "slide_JGebxX",
+        "slide_P9nnNj",
+        "slide_ddW7HK"
+      ],
+      "custom_css": [
+        ".heading--l {font-size: 10px;}"
+      ],
+      "name": "Hero Slider",
+      "settings": {
+        "autoplay": true,
+        "slide_interval": 10
+      }
+    },
+    "variable_column_content_secondary_X9KJtx": {
+      "type": "variable-column-content-secondary",
+      "blocks": {
+        "column_item_MXYNUN": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Spring_Suit_Hero_Desktop_copy.webp",
+            "image_link": "",
+            "heading": "Spring Tailoring",
+            "heading_animation": "none",
+            "text": "Fresh hues meet airy premium textiles, tailored in soft Neapolitan shapes designed for ease",
+            "text_animation": "none",
+            "column_link": "shopify://collections/mens-suits",
+            "column_link_text": "Shop Suits"
+          }
+        },
+        "column_item_tJc4WM": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Spring_Casual_Hero_Desktop_copy.webp",
+            "image_link": "",
+            "heading": "Casual Shirts",
+            "heading_animation": "none",
+            "text": "Denim, linen and fine cotton shirts lead the spring style refresh",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_TGjtNg": {
+          "type": "column_item",
+          "settings": {
+            "image_link": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_DXeb3W": {
+          "type": "column_item",
+          "settings": {
+            "image_link": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_MXYNUN",
+        "column_item_tJc4WM",
+        "column_item_TGjtNg",
+        "column_item_DXeb3W"
+      ],
+      "disabled": true,
+      "name": "Variable Column Content Secondary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "3",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "",
+        "heading_animation": "none",
+        "text": "",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    },
+    "grid_tiles_r7ifEt": {
+      "type": "grid-tiles",
+      "blocks": {
+        "tile_bRm4wE": {
+          "type": "tile",
+          "settings": {
+            "tile_background_image": "shopify://shop_images/Polos_0d8886a8-723a-4c47-bab4-dfa0ff51a9fd.webp",
+            "tile_header": "POLOS",
+            "tile_secondary_text": "from $79.95",
+            "tile_link": "shopify://collections/polos-and-tees"
+          }
+        },
+        "tile_WhJarW": {
+          "type": "tile",
+          "settings": {
+            "tile_background_image": "shopify://shop_images/Spring_Suits_CF.webp",
+            "tile_header": "BUSINESS SHIRTS",
+            "tile_secondary_text": "$50 Off*",
+            "tile_link": "shopify://collections/business-shirts"
+          }
+        },
+        "tile_FPGHMd": {
+          "type": "tile",
+          "settings": {
+            "tile_background_image": "shopify://shop_images/Casual_Shirts.webp",
+            "tile_header": "CASUAL SHIRTS",
+            "tile_secondary_text": "from $69.95",
+            "tile_link": "shopify://collections/casual-shirts"
+          }
+        }
+      },
+      "block_order": [
+        "tile_bRm4wE",
+        "tile_WhJarW",
+        "tile_FPGHMd"
+      ],
+      "name": "Grid Tiles",
+      "settings": {
+        "grid_columns": "3"
+      }
+    },
+    "heading_with_text_9nQj7z": {
+      "type": "heading-with-text",
+      "disabled": true,
+      "name": "Heading with Text",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": true,
+        "show_bottom_border": false,
+        "leading_text": "SPRING CARNIVAL",
+        "leading_text_animation": "none",
+        "heading": "RACETRACK READY",
+        "heading_style": "normal",
+        "heading_animation": "none",
+        "content": "<p>Four race days, four distinct moods. Whether it’s the confident edge of the Cox Plate or the refined ease of Oaks Day, this is tailoring built for the fast track.</p>",
+        "content_animation": "none",
+        "alignment": "left"
+      }
+    },
+    "hero_primary_NeKfMz": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/Sports_Jackets_CF_78a2b45e-da57-4a08-9fd1-4ba71a2c1ab7.webp",
+        "mobile_image": "shopify://shop_images/Sports_Jackets_Mobile.webp",
+        "heading": "Business Tailoring",
+        "svg_image": "shopify://shop_images/Sport_Of_It_Desktop_V2_6ee40d41-826f-4a72-bbf4-423822773e58.svg",
+        "svg_size": "full",
+        "mobile_svg_image": "shopify://shop_images/Sport_Of_It_Mob.svg",
+        "heading_level": "h1",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "button_label_1": "Click Frenzy - $150 Off*",
+        "button_link_1": "shopify://collections/sport-jackets",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "stretch",
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "bottom"
+      }
+    },
+    "collection_slider_secondary_r6XR7q": {
+      "type": "collection-slider-secondary",
+      "name": "Collection Slider Secondary",
+      "settings": {
+        "heading": "Black Friday Bestsellers",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "sale",
+        "button_label": "Shop Now",
+        "products_to_show": 12,
+        "animate_products": false
+      }
+    },
+    "variable_column_content_svg_tBLLXD": {
+      "type": "variable-column-content-svg",
+      "blocks": {
+        "column_item_6wGj7R": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Wedding_Moments_Of_Distinction.webp",
+            "image_link": "shopify://blogs/the-jackson-journal/moments-of-distinction-the-wedding-edit",
+            "top_text": "",
+            "svg_icon": "shopify://shop_images/MOD_Desk_dbd44949-88f5-40d6-8c69-45209c0b2f6b.svg",
+            "mobile_svg_icon": "shopify://shop_images/MOD_Mobile.svg",
+            "bottom_text": "Your Wedding Style Guide",
+            "content_alignment": "center",
+            "mobile_alignment": "center"
+          }
+        },
+        "column_item_3WzPyc": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Wedding_MTM.webp",
+            "image_link": "shopify://pages/made-to-measure",
+            "top_text": "",
+            "svg_icon": "shopify://shop_images/TPF_Desk_V2.svg",
+            "mobile_svg_icon": "shopify://shop_images/TPF_Mob_V3.svg",
+            "bottom_text": "Book Your Appointment",
+            "content_alignment": "center",
+            "mobile_alignment": "center"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_6wGj7R",
+        "column_item_3WzPyc"
+      ],
+      "name": "Variable Column Content SVG",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "2"
+      }
+    },
+    "variable_column_content_tertiary_XwmChF": {
+      "type": "variable-column-content-tertiary",
+      "blocks": {
+        "column_item_EdH7tR": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Derby_Day_0fcd025b-c8da-4c6a-bcea-167a0f52697a.webp",
+            "image_link": "",
+            "heading": "The Traditionalist",
+            "heading_animation": "none",
+            "text": "Derby Day",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "shopify://collections/derby-day",
+            "column_link_text": ""
+          }
+        },
+        "column_item_zER8gb": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Melb_Cup.webp",
+            "image_link": "",
+            "heading": "The Headliner",
+            "heading_animation": "none",
+            "text": "Melbourne Cup",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "shopify://collections/stakes-day-five-diamonds-day",
+            "column_link_text": ""
+          }
+        },
+        "column_item_tXtkqD": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Oaks_Day.webp",
+            "image_link": "",
+            "heading": "The Modernist",
+            "heading_animation": "none",
+            "text": "Oaks Day",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "shopify://collections/melbourne-cup-the-everest",
+            "column_link_text": ""
+          }
+        },
+        "column_item_TdMYVf": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Stakes_Day.webp",
+            "image_link": "",
+            "heading": "The Contender",
+            "heading_animation": "none",
+            "text": "Stakes Day",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "left",
+            "content_vertical_alignment": "bottom",
+            "column_link": "shopify://collections/cox-plate",
+            "column_link_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_item_EdH7tR",
+        "column_item_zER8gb",
+        "column_item_tXtkqD",
+        "column_item_TdMYVf"
+      ],
+      "disabled": true,
+      "name": "Variable Column Content Tertiary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "column_count": "4",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "",
+        "heading_animation": "none",
+        "text": "",
+        "text_animation": "none",
+        "button_label": "",
+        "button_link": ""
+      }
+    },
+    "hero_primary_WLbcQ7": {
+      "type": "hero-primary",
+      "disabled": true,
+      "name": "Hero Section",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/SS25_Wedding_1.webp",
+        "mobile_image": "shopify://shop_images/Wedding_Blog_Featured.webp",
+        "heading": "",
+        "svg_image": "shopify://shop_images/MOD_HP_Heading_a2545755-65f2-4fbe-9d1e-cfd88fdde7ed.svg",
+        "svg_size": "large",
+        "mobile_svg_image": "shopify://shop_images/MOD_HP_Heading_a2545755-65f2-4fbe-9d1e-cfd88fdde7ed.svg",
+        "heading_level": "h1",
+        "heading_animation": "none",
+        "description": "For the ceremony, the celebration, the forever.",
+        "description_animation": "none",
+        "button_label_1": "Shop Weddings",
+        "button_link_1": "shopify://blogs/the-jackson-journal/moments-of-distinction-the-wedding-edit",
+        "button_label_2": "Made To Measure",
+        "button_link_2": "shopify://pages/made-to-measure",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "middle",
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "bottom"
+      }
+    },
+    "collection_slider_3p3hD9": {
+      "type": "collection-slider",
+      "disabled": true,
+      "name": "Collection Slider",
+      "settings": {
+        "heading": "Wedding & Formal Style",
+        "heading_animation": "none",
+        "description": "Premium cotton, sharp cutaway collars, and new season colours and patterns — your work wardrobe, refreshed.",
+        "description_animation": "none",
+        "collection": "tuxedos-and-formal-jackets",
+        "button_label": "Shop Now",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
+    "variable_column_content_tertiary_qfTkVT": {
+      "type": "variable-column-content-tertiary",
+      "blocks": {
+        "column_item_hNUNJW": {
+          "type": "column_item",
+          "settings": {
+            "image": "shopify://shop_images/Wedding_Column.webp",
+            "image_link": "",
+            "heading": "Moments of Distinction",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "center",
+            "content_vertical_alignment": "center",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        },
+        "column_item_JPaqtp": {
+          "type": "column_item",
+          "settings": {
+            "image_link": "",
+            "heading": "Column Heading",
+            "heading_animation": "none",
+            "text": "Add a brief description for this column item.",
+            "text_animation": "none",
+            "show_gradient_overlay": false,
+            "content_horizontal_alignment": "center",
+            "content_vertical_alignment": "center",
+            "column_link": "",
+            "column_link_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_hNUNJW",
+        "column_item_JPaqtp"
+      ],
+      "disabled": true,
+      "name": "Variable Column Content Tertiary",
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": false,
+        "column_count": "2",
+        "text_alignment": "left",
+        "animate_columns": false,
+        "heading": "Variable Column Content Tertiary",
+        "heading_animation": "none",
+        "text": "Share information about your brand or services with your customers. Describe a product, make an announcement, or welcome customers to your store.",
+        "text_animation": "none",
+        "button_label": "Learn More",
+        "button_link": ""
+      }
+    },
+    "hero_primary_zeaCqL": {
+      "type": "hero-primary",
+      "name": "Hero Section",
+      "settings": {
+        "media_type": "image",
+        "desktop_image": "shopify://shop_images/The_Night_Code_Desk_V2.webp",
+        "mobile_image": "shopify://shop_images/The_Night_Code_Mob_V2.webp",
+        "heading": "",
+        "svg_image": "shopify://shop_images/Night_Code.svg",
+        "svg_size": "full",
+        "mobile_svg_image": "shopify://shop_images/Night_Code_Mobile.svg",
+        "heading_level": "h1",
+        "heading_animation": "none",
+        "description": "Timeless, refined, and always in style. <br>Black remains the benchmark of occasion dressing.",
+        "description_animation": "none",
+        "button_label_1": "Shop Formal & Eventwear",
+        "button_link_1": "shopify://collections/the-night-code",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_label_3": "",
+        "button_link_3": "",
+        "button_label_4": "",
+        "button_link_4": "",
+        "horizontal_alignment": "center",
+        "vertical_alignment": "stretch",
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "bottom"
+      }
+    },
+    "collection_slider_XmLf6t": {
+      "type": "collection-slider",
+      "name": "Collection Slider",
+      "settings": {
+        "heading": "Best Of Click Frenzy",
+        "heading_animation": "none",
+        "description": "",
+        "description_animation": "none",
+        "collection": "sale",
+        "button_label": "Up to 60% Off Storewide*",
+        "products_to_show": 10,
+        "animate_products": false
+      }
+    },
+    "featured_article_r6pY9T": {
+      "type": "featured-article",
+      "disabled": true,
+      "name": "Featured Articles",
+      "settings": {
+        "heading": "FROM THE JACKSON JOURNAL",
+        "heading_alignment": "center"
+      }
+    }
+  },
+  "order": [
+    "hero_slider_ULyNnz",
+    "variable_column_content_secondary_X9KJtx",
+    "grid_tiles_r7ifEt",
+    "heading_with_text_9nQj7z",
+    "hero_primary_NeKfMz",
+    "collection_slider_secondary_r6XR7q",
+    "variable_column_content_svg_tBLLXD",
+    "variable_column_content_tertiary_XwmChF",
+    "hero_primary_WLbcQ7",
+    "collection_slider_3p3hD9",
+    "variable_column_content_tertiary_qfTkVT",
+    "hero_primary_zeaCqL",
+    "collection_slider_XmLf6t",
+    "featured_article_r6pY9T"
+  ]
+}
