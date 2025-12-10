@@ -167,12 +167,29 @@
               {{ product.metafields.custom.discount_bundle_name | metafield_tag }}
             </p>
           {% endif %}
-          <button
-            type="button"
-            class="size-guide-button small"
-          >
-            What's my size?
-          </button>
+          {% liquid
+            assign product_category_handle = product.category | handleize
+            assign fit_chest_categories = 'coats-jackets,overcoats,pant-suits,pea-coats,polos,rain-coats,sport-jackets,sweaters,t-shirts,tuxedos,vests' | split: ','
+            assign waist_categories = 'belts,cargo-pants,chinos,jeans,shorts,trousers' | split: ','
+            assign shirt_categories = 'shirts' | split: ','
+            assign show_size_guide = false
+            if fit_chest_categories contains product_category_handle
+              assign show_size_guide = true
+            elsif waist_categories contains product_category_handle
+              assign show_size_guide = true
+            elsif shirt_categories contains product_category_handle
+              assign show_size_guide = true
+            endif
+          %}
+
+          {% if show_size_guide %}
+            <button
+              type="button"
+              class="size-guide-button small"
+            >
+              What's my size?
+            </button>
+          {% endif %}
         </div>
 
         {% if product.metafields.custom.product_colour_variants %}
