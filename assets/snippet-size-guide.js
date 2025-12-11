@@ -14,7 +14,7 @@
     { casualSize: "3XL", chest: 128, trousers: 116 },
   ];
 
-  const waistSize = [{ size: 72 }, { size: 76 }, { size: 80 }, { size: 84 }, { size: 88 }, { size: 92 }, { size: 96 }, { size: 100 }, { size: 104 }, { size: 108 }, { size: 112 }, { size: 116 }];
+  const waistSize = [{ size: 76 }, { size: 80 }, { size: 84 }, { size: 88 }, { size: 92 }, { size: 96 }, { size: 100 }, { size: 104 }, { size: 108 }, { size: 112 }, { size: 116 }];
 
   const shirtSizeChart = [
     { casualSize: "S", shirtSize: 37 },
@@ -449,10 +449,10 @@
         const waistCm = this.getWaistCm();
         if (!waistCm) return showError("Please enter your waist measurement");
         if (this.unitSystem === "metric") {
-          if (waistCm < 72) return showError("Waist must be at least 72cm");
+          if (waistCm < 76) return showError("Waist must be at least 76cm");
           if (waistCm > 116) return showError("Waist must be no more than 116cm");
         } else {
-          if (waistCm < 72) return showError('Waist must be at least 28"');
+          if (waistCm < 76) return showError('Waist must be at least 29"');
           if (waistCm > 116) return showError('Waist must be no more than 46"');
         }
         this.state.waistCm = waistCm;
