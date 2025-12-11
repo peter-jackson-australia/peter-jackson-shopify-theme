@@ -391,40 +391,86 @@
 
     validateCurrentStep() {
       const stepName = this.getCurrentStepName();
+      const activeGroup = this.element.querySelector(`.size-guide__step[data-step="${stepName}"] .size-guide__input-group[data-unit="${this.unitSystem}"]`);
+      const errorEl = activeGroup?.querySelector(".size-guide__error");
+
+      const showError = (msg) => {
+        if (errorEl) errorEl.textContent = msg;
+        return false;
+      };
+      const clearError = () => {
+        if (errorEl) errorEl.textContent = "";
+        return true;
+      };
 
       if (stepName === "height") {
         const heightCm = this.getHeightCm();
-        if (!heightCm || heightCm < 155 || heightCm > 201) return false;
+        if (!heightCm) return showError("Please enter your height");
+        if (this.unitSystem === "metric") {
+          if (heightCm < 155) return showError("Height must be at least 155cm");
+          if (heightCm > 201) return showError("Height must be no more than 201cm");
+        } else {
+          if (heightCm < 155) return showError("Height must be at least 5'1\"");
+          if (heightCm > 201) return showError("Height must be no more than 6'7\"");
+        }
         this.state.heightCm = heightCm;
-        return true;
+        return clearError();
       }
 
       if (stepName === "weight") {
         const weightKg = this.getWeightKg();
-        if (!weightKg || weightKg < 55 || weightKg > 140) return false;
+        if (!weightKg) return showError("Please enter your weight");
+        if (this.unitSystem === "metric") {
+          if (weightKg < 55) return showError("Weight must be at least 55kg");
+          if (weightKg > 140) return showError("Weight must be no more than 140kg");
+        } else {
+          if (weightKg < 55) return showError("Weight must be at least 121lbs");
+          if (weightKg > 140) return showError("Weight must be no more than 309lbs");
+        }
         this.state.weightKg = weightKg;
-        return true;
+        return clearError();
       }
 
       if (stepName === "chest") {
         const chestCm = this.getChestCm();
-        if (!chestCm || chestCm < 84 || chestCm > 128) return false;
+        if (!chestCm) return showError("Please enter your chest measurement");
+        if (this.unitSystem === "metric") {
+          if (chestCm < 84) return showError("Chest must be at least 84cm");
+          if (chestCm > 128) return showError("Chest must be no more than 128cm");
+        } else {
+          if (chestCm < 84) return showError('Chest must be at least 33"');
+          if (chestCm > 128) return showError('Chest must be no more than 50"');
+        }
         this.state.chestCm = chestCm;
-        return true;
+        return clearError();
       }
 
       if (stepName === "waist") {
         const waistCm = this.getWaistCm();
-        if (!waistCm || waistCm < 72 || waistCm > 116) return false;
+        if (!waistCm) return showError("Please enter your waist measurement");
+        if (this.unitSystem === "metric") {
+          if (waistCm < 72) return showError("Waist must be at least 72cm");
+          if (waistCm > 116) return showError("Waist must be no more than 116cm");
+        } else {
+          if (waistCm < 72) return showError('Waist must be at least 28"');
+          if (waistCm > 116) return showError('Waist must be no more than 46"');
+        }
         this.state.waistCm = waistCm;
-        return true;
+        return clearError();
       }
 
       if (stepName === "neck") {
         const neckCm = this.getNeckCm();
-        if (!neckCm || neckCm < 37 || neckCm > 50) return false;
+        if (!neckCm) return showError("Please enter your neck measurement");
+        if (this.unitSystem === "metric") {
+          if (neckCm < 37) return showError("Neck must be at least 37cm");
+          if (neckCm > 50) return showError("Neck must be no more than 50cm");
+        } else {
+          if (neckCm < 37) return showError('Neck must be at least 14"');
+          if (neckCm > 50) return showError('Neck must be no more than 20"');
+        }
         this.state.neckCm = neckCm;
-        return true;
+        return clearError();
       }
 
       return true;
@@ -582,6 +628,10 @@
 
       this.element.querySelectorAll(".size-guide__option--selected").forEach((btn) => {
         btn.classList.remove("size-guide__option--selected");
+      });
+
+      this.element.querySelectorAll(".size-guide__error").forEach((el) => {
+        el.textContent = "";
       });
 
       this.showStep(0);
