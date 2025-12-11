@@ -108,12 +108,14 @@
     const currentIndex = fitAndChestSize.findIndex((item) => item.chest === baseSize.chest && item.trousers === baseSize.trousers);
     if (currentIndex === -1) return baseSize;
 
-    if (preference === "easy") return baseSize;
+    if (preference === "easy") {
+      if (currentIndex < fitAndChestSize.length - 1) return fitAndChestSize[currentIndex + 1];
+      return baseSize;
+    }
     if (preference === "regular") {
-      return currentIndex > 0 ? fitAndChestSize[currentIndex - 1] : baseSize;
+      return baseSize;
     }
     if (preference === "slim") {
-      if (currentIndex > 1) return fitAndChestSize[currentIndex - 2];
       if (currentIndex > 0) return fitAndChestSize[currentIndex - 1];
       return baseSize;
     }
@@ -158,12 +160,14 @@
     const currentIndex = waistSize.findIndex((item) => item.size === baseSize.size);
     if (currentIndex === -1) return baseSize;
 
-    if (preference === "easy") return baseSize;
+    if (preference === "easy") {
+      if (currentIndex < waistSize.length - 1) return waistSize[currentIndex + 1];
+      return baseSize;
+    }
     if (preference === "regular") {
-      return currentIndex > 0 ? waistSize[currentIndex - 1] : baseSize;
+      return baseSize;
     }
     if (preference === "slim") {
-      if (currentIndex > 1) return waistSize[currentIndex - 2];
       if (currentIndex > 0) return waistSize[currentIndex - 1];
       return baseSize;
     }
@@ -203,12 +207,14 @@
     const currentIndex = shirtSizeChart.findIndex((item) => item.shirtSize === baseSize.shirtSize && item.casualSize === baseSize.casualSize);
     if (currentIndex === -1) return baseSize;
 
-    if (preference === "easy") return baseSize;
+    if (preference === "easy") {
+      if (currentIndex < shirtSizeChart.length - 1) return shirtSizeChart[currentIndex + 1];
+      return baseSize;
+    }
     if (preference === "regular") {
-      return currentIndex > 0 ? shirtSizeChart[currentIndex - 1] : baseSize;
+      return baseSize;
     }
     if (preference === "slim") {
-      if (currentIndex > 1) return shirtSizeChart[currentIndex - 2];
       if (currentIndex > 0) return shirtSizeChart[currentIndex - 1];
       return baseSize;
     }
