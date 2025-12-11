@@ -594,7 +594,7 @@
 
       if (result.chestSize) {
         const chestEl = this.element.querySelector('[data-result="chest"] .size-guide__result-item-value');
-        if (chestEl) chestEl.textContent = `${result.chestSize}cm`;
+        if (chestEl) chestEl.textContent = `${result.chestSize}`;
       }
 
       if (result.trouserSize) {
