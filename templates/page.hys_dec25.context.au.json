@@ -183,12 +183,12 @@
       "blocks": {
         "column_item_3WzPyc": {
           "settings": {
-            "image": "shopify://shop_images/Gift_Cards.webp",
+            "image": "shopify://shop_images/Gift_Cards_77585d07-82d1-4eff-be6f-a97de896f16e.webp",
             "image_link": "shopify://collections/gifts-for-men",
+            "top_text": "LET HIM DECIDE",
             "svg_icon": null,
             "mobile_svg_icon": null,
-            "bottom_text": "Shop Gift Cards",
-            "top_text": "LET HIM DECIDE"
+            "bottom_text": "Shop Gift Cards"
           }
         }
       }
