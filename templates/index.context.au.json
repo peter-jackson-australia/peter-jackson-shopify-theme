@@ -178,16 +178,25 @@
       "blocks": {}
     },
     "variable_column_content_svg_tBLLXD": {
-      "disabled": true,
+      "disabled": false,
       "settings": {},
       "blocks": {
         "column_item_3WzPyc": {
           "settings": {
-            "image": "shopify://shop_images/Gifting_V3.webp",
-            "image_link": "shopify://collections/gifts-for-men",
-            "svg_icon": "shopify://shop_images/Gift_f02feda2-71cf-43d2-89d0-6ff2c58a06fe.svg",
-            "mobile_svg_icon": "shopify://shop_images/Gift_Mob.svg",
-            "bottom_text": "Shop Gifts from $20"
+            "image": "shopify://shop_images/Gift_Cards_77585d07-82d1-4eff-be6f-a97de896f16e.webp",
+            "image_link": "shopify://products/gift-card",
+            "svg_icon": null,
+            "mobile_svg_icon": null,
+            "bottom_text": "Let Him Decide - Shop Gift Cards"
+          }
+        },
+        "column_item_6wGj7R": {
+          "settings": {
+            "image": "shopify://shop_images/Chinos_Trousers.webp",
+            "image_link": "shopify://collections/bottoms",
+            "bottom_text": "Chinos & Trousers from $89.95",
+            "mobile_svg_icon": null,
+            "svg_icon": null
           }
         }
       }
@@ -212,11 +221,11 @@
   "order": [
     "hero_slider_ULyNnz",
     "grid_tiles_r7ifEt",
+    "variable_column_content_svg_tBLLXD",
     "hero_primary_NeKfMz",
     "variable_column_content_secondary_X9KJtx",
     "heading_with_text_9nQj7z",
     "collection_slider_secondary_r6XR7q",
-    "variable_column_content_svg_tBLLXD",
     "variable_column_content_tertiary_XwmChF",
     "hero_primary_zeaCqL",
     "spacer_7Rh8w",
