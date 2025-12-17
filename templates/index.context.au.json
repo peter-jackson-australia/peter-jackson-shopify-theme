@@ -29,7 +29,7 @@
       },
       "blocks": {
         "slide_ddW7HK": {
-          "disabled": false,
+          "disabled": true,
           "settings": {
             "desktop_image": "shopify://shop_images/Xmas-Flatlay0217_Firefly_Upscaler_2x_scale_54489e12-2939-45c0-95bf-8a8422278452.webp",
             "mobile_image": "shopify://shop_images/Gifting_mobile-1_Firefly.webp",
@@ -48,7 +48,7 @@
         },
         "slide_HH9yBN": {
           "type": "slide",
-          "disabled": true,
+          "disabled": false,
           "settings": {
             "media_type": "image",
             "desktop_image": "shopify://shop_images/HYS_Hero_fb358dc2-3f26-41f0-b197-bee6f0675c01.webp",
@@ -82,8 +82,8 @@
         "slide_JGebxX": {
           "disabled": false,
           "settings": {
-            "desktop_image": "shopify://shop_images/High_Season_Hero_Desktop.webp",
-            "mobile_image": "shopify://shop_images/Polos_HP_Mob.webp",
+            "desktop_image": "shopify://shop_images/Summer_High.webp",
+            "mobile_image": "shopify://shop_images/Summer_Hero_Mobile.webp",
             "heading": "Shop Summer",
             "svg_image": "shopify://shop_images/High_Season_Desk_V2_5bc55e81-2b00-45a1-aacb-bc3787484725.svg",
             "svg_size": "full",
