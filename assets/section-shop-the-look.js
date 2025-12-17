@@ -1,15 +1,15 @@
 (() => {
-  const sectionId = document.currentScript.getAttribute("data-section-id")
-  const productData = JSON.parse(document.currentScript.getAttribute("data-products"))
-  const section = document.querySelector(`#shopify-section-${sectionId}`)
-  const mainShopTheLookSliderItems = section.querySelectorAll(".shop-the-look__slide")
+  const sectionId = document.currentScript.getAttribute("data-section-id");
+  const productData = JSON.parse(document.currentScript.getAttribute("data-products"));
+  const section = document.querySelector(`#shopify-section-${sectionId}`);
+  const mainShopTheLookSliderItems = section.querySelectorAll(".shop-the-look__slide");
 
   const mainSlider = section.querySelector(`.shop-the-look__slider`);
   if (mainSlider) {
     new Splide(mainSlider, {
       perPage: 1,
-      type: 'loop',
-      gap: 'var(--space-m)',
+      type: "loop",
+      gap: "var(--space-m)",
       arrows: true,
       pagination: false,
       drag: true,
@@ -18,23 +18,23 @@
   }
 
   let stateScrollY = undefined;
-  let modalProductSplides = []
+  let modalProductSplides = [];
   let modalSplide = undefined;
 
-  const modalOpenClassName = "shop-the-look__modal-container--open"
-  const modalElem = section.querySelector(".shop-the-look__modal-container")
+  const modalOpenClassName = "shop-the-look__modal-container--open";
+  const modalElem = section.querySelector(".shop-the-look__modal-container");
   const modalSlider = document.querySelectorAll(".shop-the-look__modal-slider")[0];
-  const siteHeader = document.querySelector("#site-header")
+  const siteHeader = document.querySelector("#site-header");
 
-  const modalCloseBtns = modalElem.querySelectorAll(".shop-the-look__modal-close-button")
-  const nextItemButtons = modalElem.querySelectorAll(".shop-the-look__switch-product-button--next")
-  const prevItemButtons= modalElem.querySelectorAll(".shop-the-look__switch-product-button--prev")
+  const modalCloseBtns = modalElem.querySelectorAll(".shop-the-look__modal-close-button");
+  const nextItemButtons = modalElem.querySelectorAll(".shop-the-look__switch-product-button--next");
+  const prevItemButtons = modalElem.querySelectorAll(".shop-the-look__switch-product-button--prev");
 
-  const productImageSliders = section.querySelectorAll(".buyable-product-wrapper .splide")
+  const productImageSliders = section.querySelectorAll(".buyable-product-wrapper .splide");
 
   const isMobile = () => {
     return window.innerWidth < 1300;
-  }
+  };
 
   /**----------------------------------------------------
    *                 GENERIC UTILS
@@ -50,7 +50,7 @@
   const freezeDocumentHeight = (siteHeader) => {
     const scroll = document.body.style.position === "fixed" ? Math.abs(parseInt(document.body.style.top || "0")) : window.scrollY;
 
-    if (!document.body.classList.contains("cart-open")) document.body.classList.add("cart-open")
+    if (!document.body.classList.contains("cart-open")) document.body.classList.add("cart-open");
     if (document.body.style.position !== "fixed") {
       Object.assign(document.body.style, {
         position: "fixed",
@@ -63,11 +63,11 @@
       Object.assign(siteHeader.style, {
         position: "fixed",
         top: "0",
-      })
+      });
     }
 
-    return scroll
-  }
+    return scroll;
+  };
 
   /**
    * Will unfreeze the document height, by removing/resetting all properties changed via `freezeDocumentHeight`.
@@ -80,18 +80,18 @@
       Object.assign(siteHeader.style, {
         position: "",
         top: "",
-      })
+      });
     }
 
-    if (document.body.classList.contains("cart-open")) document.body.classList.remove("cart-open")
+    if (document.body.classList.contains("cart-open")) document.body.classList.remove("cart-open");
 
     Object.assign(document.body.style, { position: "", top: "", width: "" });
     window.scrollTo({
       top: scrollHeight ?? 0,
       left: 0,
-      behavior: "instant"
-    })
-  }
+      behavior: "instant",
+    });
+  };
 
   /**
    * If `tabElement` contains the property `data-tab`, and is equal to `selectedTabId`, it will add `selectedClassName`
@@ -101,15 +101,15 @@
    * @param tabElement {Element}
    */
   const swapTabClassNamesOnSelected = (selectedTabId, selectedClassName) => (tabElement) => {
-    const tabButtonId = tabElement.getAttribute("data-tab")
+    const tabButtonId = tabElement.getAttribute("data-tab");
     if (tabButtonId == selectedTabId) {
       if (!tabElement.classList.contains(selectedClassName)) {
-        tabElement.classList.add(selectedClassName)
+        tabElement.classList.add(selectedClassName);
       }
-    } else if (tabElement.classList.contains(selectedClassName))  {
-      tabElement.classList.remove(selectedClassName)
+    } else if (tabElement.classList.contains(selectedClassName)) {
+      tabElement.classList.remove(selectedClassName);
     }
-  }
+  };
 
   /**
    * Using the `data-tab` attribute of `clickEvent.target`, this will set any button/content with the same `data-tab`
@@ -119,13 +119,13 @@
    * @returns {(function(Event): void)|*}
    */
   const onTabButtonClick = (tabButtons, tabContentContainers) => (clickEvent) => {
-    const tabElem = clickEvent.target
-    const tabId = tabElem.getAttribute("data-tab")
-    if (!tabId || tabId == "") return
+    const tabElem = clickEvent.target;
+    const tabId = tabElem.getAttribute("data-tab");
+    if (!tabId || tabId == "") return;
 
-    tabButtons.forEach(swapTabClassNamesOnSelected(tabId, "tab-collection__tab--active"))
-    tabContentContainers.forEach(swapTabClassNamesOnSelected(tabId, "tab-collection__content--active"))
-  }
+    tabButtons.forEach(swapTabClassNamesOnSelected(tabId, "tab-collection__tab--active"));
+    tabContentContainers.forEach(swapTabClassNamesOnSelected(tabId, "tab-collection__content--active"));
+  };
 
   /**
    * Initialises all tab buttons and content together.
@@ -133,13 +133,13 @@
    *                                    `.tab-collection__tab` and `tab-collection__content` classes
    */
   const initTabCollection = (rootTabCollection) => {
-    const tabButtons = rootTabCollection.querySelectorAll(".tab-collection__tab")
-    const tabCollections = rootTabCollection.querySelectorAll(".tab-collection__content")
+    const tabButtons = rootTabCollection.querySelectorAll(".tab-collection__tab");
+    const tabCollections = rootTabCollection.querySelectorAll(".tab-collection__content");
 
-    tabButtons.forEach(tabButton => {
-      tabButton.addEventListener("click", onTabButtonClick(tabButtons, tabCollections) )
-    })
-  }
+    tabButtons.forEach((tabButton) => {
+      tabButton.addEventListener("click", onTabButtonClick(tabButtons, tabCollections));
+    });
+  };
 
   /**---------------------------------------------------------
    *                SHOP THE LOOK FUNCTIONS
@@ -150,9 +150,9 @@
   const initialiseShopTheLoopSlider = (elem) => {
     new Splide(elem, {
       perPage: 1,
-      type: 'loop',
-      gap: 'var(--space-m)',
-      direction: 'ttb',
+      type: "slide",
+      gap: "var(--space-m)",
+      direction: "ttb",
       pagination: false,
       height: "100%",
       drag: true,
@@ -160,7 +160,7 @@
       wheel: true,
       waitForTransition: true,
     }).mount();
-  }
+  };
 
   /** Generates a splide instance for all products inside the modal */
   const initialiseProductsInModalSlider = (startIdx = 0) => {
@@ -171,14 +171,14 @@
       drag: false,
       pagination: false,
     }).mount();
-  }
+  };
 
   /** Generates a splide instance for all images for a product. If a scrollbar exists, it will initialise it too */
   const initialiseProductImagesSplide = (isMobile) => (element) => {
-    const direction = isMobile ? "ltr" : "ttb"
+    const direction = isMobile ? "ltr" : "ttb";
 
     const newSplide = new Splide(element, {
-      type: "loop",
+      type: "slide",
       direction: direction,
       pagination: false,
       arrows: isMobile,
@@ -187,13 +187,13 @@
       snap: true,
       wheel: !isMobile,
       waitForTransition: true,
-    })
+    });
 
-    const progressBar = element.querySelector(".shop-the-look__product-images-progress > .shop-the-look__product-images-progress-bar")
-    updateProductImageSliderHeight(newSplide, progressBar)
+    const progressBar = element.querySelector(".shop-the-look__product-images-progress > .shop-the-look__product-images-progress-bar");
+    updateProductImageSliderHeight(newSplide, progressBar);
 
-    return newSplide
-  }
+    return newSplide;
+  };
 
   /** Manages the width/height of the progress bar for image slides in the modal */
   const updateProductImageSliderHeight = (splideInstance, sliderElement) => {
@@ -209,102 +209,109 @@
         sliderElement.style.width = "100%";
       }
     });
-  }
+  };
 
   const openProductModal = (productId) => {
-    stateScrollY = freezeDocumentHeight(siteHeader)
+    stateScrollY = freezeDocumentHeight(siteHeader);
 
     if (!modalSplide) {
-      const idx = productData.findIndex(p => p.id == productId)
-      modalSplide = initialiseProductsInModalSlider(idx)
+      const idx = productData.findIndex((p) => p.id == productId);
+      modalSplide = initialiseProductsInModalSlider(idx);
     }
     if (!modalElem.classList.contains(modalOpenClassName)) {
-      modalElem.classList.add(modalOpenClassName)
+      modalElem.classList.add(modalOpenClassName);
     }
 
     if (modalProductSplides.length == 0) {
-      refreshProductImageSplides()
+      refreshProductImageSplides();
     }
-  }
+  };
 
   const closeProductModal = () => {
-    unfreezeDocumentHeight(stateScrollY, siteHeader)
+    unfreezeDocumentHeight(stateScrollY, siteHeader);
 
-    destroyProductImageSplides()
+    destroyProductImageSplides();
 
     if (modalSplide) {
       modalSplide.destroy();
       modalSplide = undefined;
     }
     if (modalElem.classList.contains(modalOpenClassName)) {
-      modalElem.classList.remove(modalOpenClassName)
+      modalElem.classList.remove(modalOpenClassName);
     }
-  }
+  };
 
   /**
    * @param listElement {HTMLElement}
    */
   const connectShopTheLookItemToModal = (listElement) => {
-    const productId = listElement.getAttribute("data-product-id")
+    const productId = listElement.getAttribute("data-product-id");
     if (!productId) {
-      console.error("list element does not have data-product-id attribute: ", listElement)
-      return
+      console.error("list element does not have data-product-id attribute: ", listElement);
+      return;
     }
-    const linkAnchor = listElement.querySelector(".shop-the-look__product-link")
+    const linkAnchor = listElement.querySelector(".shop-the-look__product-link");
     if (linkAnchor) {
-      linkAnchor.addEventListener("click", (_) => openProductModal(parseInt(productId)))
+      linkAnchor.addEventListener("click", (_) => openProductModal(parseInt(productId)));
     }
-  }
+  };
 
   /**
    * @param elem {Event}
    */
   const onModalContainerClick = (ev) => {
     if (ev.target != modalElem) {
-      return
+      return;
     }
 
-    closeProductModal()
-  }
+    closeProductModal();
+  };
 
   /** calls `splide.destroy()` on all modalProductSplides, and sets it to undefined */
   const destroyProductImageSplides = () => {
-    modalProductSplides.forEach(s => s.destroy())
-    modalProductSplides = []
-  }
+    modalProductSplides.forEach((s) => s.destroy());
+    modalProductSplides = [];
+  };
 
   /** Loops through all product image sliders, and mounts a new splide for it */
   const refreshProductImageSplides = () => {
-    productImageSliders.forEach(s => {
-      const newSplide = initialiseProductImagesSplide(isMobile())(s)
-      newSplide.mount()
-      modalProductSplides.push(newSplide)
+    productImageSliders.forEach((s) => {
+      const newSplide = initialiseProductImagesSplide(isMobile())(s);
+      newSplide.mount();
+      modalProductSplides.push(newSplide);
+    });
+  };
+
+  mainShopTheLookSliderItems.forEach(connectShopTheLookItemToModal);
+  modalElem.addEventListener("click", onModalContainerClick);
+  modalCloseBtns.forEach((cb) => cb.addEventListener("click", (_) => closeProductModal()));
+
+  section.querySelectorAll(".shop-the-look__modal-images").forEach(initialiseShopTheLoopSlider);
+
+  section.querySelectorAll(".buyable-product-wrapper").forEach((p) => {
+    window.updateProductPurchaseDetails(p);
+    window.setupModalOverlay(p);
+  });
+  window.addEventListener(
+    "resize",
+    (_) => {
+      destroyProductImageSplides();
+      refreshProductImageSplides();
+    },
+    true
+  );
+
+  nextItemButtons.forEach((b) =>
+    b.addEventListener("click", () => {
+      if (modalSplide) modalSplide.go(">");
     })
-  }
+  );
 
-  mainShopTheLookSliderItems.forEach(connectShopTheLookItemToModal)
-  modalElem.addEventListener("click", onModalContainerClick)
-  modalCloseBtns.forEach(cb => cb.addEventListener("click", (_) => closeProductModal()))
+  prevItemButtons.forEach((b) =>
+    b.addEventListener("click", () => {
+      if (modalSplide) modalSplide.go("<");
+    })
+  );
 
-  section.querySelectorAll(".shop-the-look__modal-images")
-    .forEach(initialiseShopTheLoopSlider)
-
-  section.querySelectorAll(".buyable-product-wrapper").forEach(p => {
-    window.updateProductPurchaseDetails(p)
-    window.setupModalOverlay(p)
-  })
-  window.addEventListener("resize", (_) => {
-    destroyProductImageSplides()
-    refreshProductImageSplides()
-  }, true)
-
-  nextItemButtons.forEach(b => b.addEventListener("click", () => {
-    if (modalSplide) modalSplide.go(">");
-  }))
-
-  prevItemButtons.forEach(b => b.addEventListener("click", () => {
-    if (modalSplide) modalSplide.go("<");
-  }))
-
-  document.querySelectorAll(".tab-collection").forEach(initTabCollection)
+  document.querySelectorAll(".tab-collection").forEach(initTabCollection);
 })();
