@@ -185,10 +185,20 @@
           "settings": {
             "image": "shopify://shop_images/Gift_Cards_77585d07-82d1-4eff-be6f-a97de896f16e.webp",
             "image_link": "shopify://collections/gifts-for-men",
-            "top_text": "LET HIM DECIDE",
+            "top_text": "",
             "svg_icon": null,
             "mobile_svg_icon": null,
-            "bottom_text": "Shop Gift Cards"
+            "bottom_text": "Let Him Decide - Shop Gift Cards"
+          }
+        },
+        "column_item_6wGj7R": {
+          "settings": {
+            "image": "shopify://shop_images/Chinos_Trousers.webp",
+            "svg_icon": null,
+            "mobile_svg_icon": null,
+            "bottom_text": "Chinos & Trousers from $89.95",
+            "image_link": "shopify://collections/bottoms",
+            "top_text": ""
           }
         }
       }
