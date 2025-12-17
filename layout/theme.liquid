@@ -3,7 +3,6 @@
   <head>
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
     {% render 'shogun-optimizer' %}
-    {% comment %} {% render 'gcm-integration-script' %} {% endcomment %}
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
@@ -21,21 +20,6 @@
     <script src="{{ 'global-animations.js' | asset_url }}" defer></script>
     <script src="{{ 'global-predictive-search.js' | asset_url }}" defer></script>
     <script src="{{ 'lib-ploiu-vanilla-js-accordion.min.js' | asset_url }}" defer></script>
-    {% comment %}
-      GTM Head Tag
-    {% endcomment %}
-    {% comment %}
-      <script>
-        !(function (e, t, a, n) {
-          (e[n] = e[n] || []), e[n].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-          var g = t.getElementsByTagName(a)[0],
-            m = t.createElement(a);
-          (m.async = !0),
-            (m.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-5Q4CBSD'),
-            g.parentNode.insertBefore(m, g);
-        })(window, document, 'script', 'dataLayer');
-      </script>
-    {% endcomment %}
     {{ content_for_header }}
     <script type="speculationrules">
       {
@@ -52,19 +36,6 @@
     </script>
   </head>
   <body>
-    {% comment %}
-      GTM Body Tag
-    {% endcomment %}
-    {% comment %}
-      <noscript
-        ><iframe
-          src="https://www.googletagmanager.com/ns.html?id=GTM-5Q4CBSD"
-          height="0"
-          width="0"
-          style="display:none;visibility:hidden"
-        ></iframe
-      ></noscript>
-    {% endcomment %}
     <header>
       {% sections 'header-group' %}
     </header>
