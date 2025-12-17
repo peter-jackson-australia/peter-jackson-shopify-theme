@@ -36,17 +36,6 @@
                       ;
                     >
                       {% liquid
-                        assign in_wishlist = false
-
-                        if customer != null
-                          for wishlist_product in customer.metafields.custom.wishlist.value
-                            if wishlist_product.id == product.id
-                              assign in_wishlist = true
-                              break
-                            endif
-                          endfor
-                        endif
-
                         render 'shop-the-look-modal-item', product: product, hasPrev: forloop.first != true, hasNext: forloop.last != true, in_wishlist: in_wishlist, heading: section.settings.heading
                       %}
                     </div>

@@ -1,15 +1,13 @@
 {% doc %}
-This snippet renders a product within the splide slider for the "shop the look" section.
+  This snippet renders a product within the splide slider for the "shop the look" section.
 
-@param{boolean} hasNext - There is another product in the list to render
-@param{boolean} hasPrev - There is another product in the list to render
-@param{object} product - The product to display at this point
-@param{boolean} in_wishlist - If the product is in the wishlist currently
-@param{string} heading - Heading for the modal
+  @param {boolean} hasNext - There is another product in the list to render
+  @param {boolean} hasPrev - There is another product in the list to render
+  @param {object} product - The product to display at this point
+  @param {boolean} in_wishlist - If the product is in the wishlist currently
+  @param {string} heading - Heading for the modal
 {% enddoc %}
 
-{% assign item_handle = product.handle %}
-{% assign featured_image = product.featured_image %}
 {% assign current_variant = null %}
 
 {% for variant in product.variants %}
@@ -22,7 +20,9 @@ This snippet renders a product within the splide slider for the "shop the look" 
 <article class="shop-the-look__modal-item custom-scrollbar">
   <div class="shop-the-look__modal-close-button-container">
     <p class="shop-the-look__modal-close-button-header body--uppercase">{{ heading }}</p>
-    <button class="shop-the-look__modal-close-button" aria-label="Close Modal" role="button">{% render '_icon-close' %}</button>
+    <button class="shop-the-look__modal-close-button" aria-label="Close Modal" role="button">
+      {% render '_icon-close' %}
+    </button>
   </div>
   <section class="shop-the-look__modal-item-image splide">
     <div class="splide__arrows">
@@ -42,13 +42,9 @@ This snippet renders a product within the splide slider for the "shop the look" 
         {% for image in product.images %}
           <li class="shop-the-look__modal-image splide__slide" data-imageid="{{ image.id }}">
             {{
-            image
-            | image_url: width: image.width
-            | image_tag:
-            sizes: '(max-width: 768px) 400px, 1200px',
-            alt: image.alt,
-            loading: 'lazy',
-            decoding: 'async'
+              image
+              | image_url: width: image.width
+              | image_tag: sizes: '(max-width: 768px) 400px, 1200px', alt: image.alt, loading: 'lazy', decoding: 'async'
             }}
           </li>
         {% endfor %}
@@ -73,12 +69,12 @@ This snippet renders a product within the splide slider for the "shop the look" 
           <h1 class="product-details__title heading--xl" data-title="{{ product.title }}">{{ product.title }}</h1>
           <div class="product-details__price">
             <span class="product-details__price-actual body js--variant-price">
-                {{ current_variant.price | money_with_currency }}
+              {{ current_variant.price | money_with_currency }}
             </span>
             {% if current_variant.compare_at_price > current_variant.price %}
               <span class="product-details__compare-price body js--variant-compareatprice">
-                  Was {{ current_variant.compare_at_price | money_with_currency }}
-                </span>
+                Was {{ current_variant.compare_at_price | money_with_currency }}
+              </span>
             {% endif %}
           </div>
         </div>
@@ -103,14 +99,14 @@ This snippet renders a product within the splide slider for the "shop the look" 
                     {% capture input_id %}option-{{ product.id | handleize }}-{{ option_id | handleize }}{% endcapture %}
                     <div class="variant-option">
                       <input
-                          type="radio"
-                          id="option-{{ product.id | handleize }}-{{ option_id | handleize }}"
-                          class="js--variant-option"
-                          name="{{ option_group.position | prepend: 'option'}}"
-                          value="{{ value }}"
-                          {% if current_variant[option_field] == value %}
-                            checked
-                          {% endif %}
+                        type="radio"
+                        id="option-{{ product.id | handleize }}-{{ option_id | handleize }}"
+                        class="js--variant-option"
+                        name="{{ option_group.position | prepend: 'option'}}"
+                        value="{{ value }}"
+                        {% if current_variant[option_field] == value %}
+                          checked
+                        {% endif %}
                       >
                       <label for="{{ input_id }}" class="body">
                         {% if option_group.name == 'Size' and value contains '.0' %}
@@ -133,38 +129,38 @@ This snippet renders a product within the splide slider for the "shop the look" 
           {% endunless %}
 
           <input
-              type="hidden"
-              id="js--variant-id"
-              name="id"
-              value="{{ current_variant.id }}"
+            type="hidden"
+            id="js--variant-id"
+            name="id"
+            value="{{ current_variant.id }}"
           >
           <input
-              type="hidden"
-              id="js--variant-inventory-quantity"
-              value="{{ current_variant.inventory_quantity }}"
+            type="hidden"
+            id="js--variant-inventory-quantity"
+            value="{{ current_variant.inventory_quantity }}"
           >
 
           {% if current_variant.available and product.gift_card? %}
             <button
-                type="submit"
-                id="js--addtocart"
-                class="body"
-                style="height: var(--space-xl); border-radius: 200px;"
+              type="submit"
+              id="js--addtocart"
+              class="body"
+              style="height: var(--space-xl); border-radius: 200px;"
             >
               Add To Cart
             </button>
           {% elsif current_variant.available and current_variant.inventory_quantity > 5 %}
             <button
-                type="submit"
-                id="js--addtocart"
-                class="body"
-                style="height: var(--space-xl); border-radius: 200px;"
+              type="submit"
+              id="js--addtocart"
+              class="body"
+              style="height: var(--space-xl); border-radius: 200px;"
             >
-              {% if section.settings.show_low_stock_warning
-              and current_variant.available
-              and current_variant.inventory_quantity >= 6
-              and current_variant.inventory_quantity <= 10
-              and product.gift_card? == false
+              {% if settings.show_low_stock_warning
+                and current_variant.available
+                and current_variant.inventory_quantity >= 6
+                and current_variant.inventory_quantity <= 10
+                and product.gift_card? == false
               %}
                 Low In Stock - Add To Cart
               {% else %}
@@ -173,26 +169,26 @@ This snippet renders a product within the splide slider for the "shop the look" 
             </button>
           {% else %}
             <button
-                type="submit"
-                id="js--addtocart"
-                class="body"
-                style="height: var(--space-xl); display: none; border-radius: 200px;"
+              type="submit"
+              id="js--addtocart"
+              class="body"
+              style="height: var(--space-xl); display: none; border-radius: 200px;"
             >
               Add To Cart
             </button>
           {% endif %}
           <button
-              type="button"
-              id="js--notify-me"
-              class="body"
-              style="border-radius: 200px; height: var(--space-xl); width: 100%; background-color: var(--neutral-950); color: var(--white); border: none; padding: var(--space-s) var(--space-m); cursor: pointer; margin-bottom: var(--space-s); {% if current_variant.available and product.gift_card? %}display: none;{% elsif current_variant.available and current_variant.inventory_quantity > 5 %}display: none;{% else %}display: block;{% endif %} {% if section.settings.round_cta %} border-radius: 200px; {% endif %}"
+            type="button"
+            id="js--notify-me"
+            class="body"
+            style="border-radius: 200px; height: var(--space-xl); width: 100%; background-color: var(--neutral-950); color: var(--white); border: none; padding: var(--space-s) var(--space-m); cursor: pointer; margin-bottom: var(--space-s); {% if current_variant.available and product.gift_card? %}display: none;{% elsif current_variant.available and current_variant.inventory_quantity > 5 %}display: none;{% else %}display: block;{% endif %} {% if settings.round_cta %} border-radius: 200px; {% endif %}"
           >
             Out of Stock - Notify Me
           </button>
 
           <div
-              class="klaviyo-form-WMidEs"
-              style="{% if current_variant.available and product.gift_card? %}display: none;{% elsif current_variant.available and current_variant.inventory_quantity > 5 %}display: none;{% else %}display: none;{% endif %}"
+            class="klaviyo-form-WMidEs"
+            style="{% if current_variant.available and product.gift_card? %}display: none;{% elsif current_variant.available and current_variant.inventory_quantity > 5 %}display: none;{% else %}display: none;{% endif %}"
           ></div>
         </form>
 
@@ -205,13 +201,13 @@ This snippet renders a product within the splide slider for the "shop the look" 
         {% endif %}
 
         {% if product.metafields.custom.care_guide != blank
-        or product.metafields.custom.garment_fit != blank
-        or product.metafields.custom.product_specifications != blank
+          or product.metafields.custom.garment_fit != blank
+          or product.metafields.custom.product_specifications != blank
         %}
           {% assign has_specs = true %}
         {% endif %}
 
-        {% if section.settings.shipping_content != blank %}
+        {% if settings.shipping_content != blank %}
           {% assign has_shipping = true %}
         {% endif %}
 
@@ -219,7 +215,9 @@ This snippet renders a product within the splide slider for the "shop the look" 
           <div class="tab-collection">
             <div class="tab-collection__buttons">
               {% if has_description %}
-                <button class="tab-collection__tab tab-collection__tab--active body--uppercase" data-tab="description">Product Info</button>
+                <button class="tab-collection__tab tab-collection__tab--active body--uppercase" data-tab="description">
+                  Product Info
+                </button>
               {% endif %}
               {% if has_specs %}
                 <button class="tab-collection__tab body--uppercase" data-tab="specs">Specifications And Care</button>
@@ -239,19 +237,19 @@ This snippet renders a product within the splide slider for the "shop the look" 
                       {{ product.metafields.custom.stylist_notes | metafield_tag }}
                     </div>
                   {% endif %}
-                  {% if section.settings.show_usps %}
+                  {% if settings.show_usps %}
                     <hr
-                        class="product-tabs__description-usp-hr"
+                      class="product-tabs__description-usp-hr"
                     >
                     <ul>
                       <li>
                         {% if product.price > 9900 %}
                           <strong class="body--bold product-tabs__description-usp"
-                          >Complimentary standard shipping on this item.</strong
+                            >Complimentary standard shipping on this item.</strong
                           >
                         {% else %}
                           <strong class="body--bold product-tabs__description-usp"
-                          >Complimentary standard shipping over $99.</strong
+                            >Complimentary standard shipping over $99.</strong
                           >
                         {% endif %}
                       </li>
@@ -305,7 +303,7 @@ This snippet renders a product within the splide slider for the "shop the look" 
             {% if has_shipping %}
               <div class="tab-collection__content" data-tab="shipping">
                 <div class="body product-tabs__content-shipping">
-                  {{ section.settings.shipping_content }}
+                  {{ settings.shipping_content }}
                 </div>
               </div>
             {% endif %}
@@ -317,8 +315,22 @@ This snippet renders a product within the splide slider for the "shop the look" 
     <div class="shop-the-look__modal-navigation-bar">
       <div class="shop-the-look__modal-item-gradient"></div>
       <div class="shop-the-look__modal-navigation-bar-items">
-        <button class="shop-the-look__switch-product-button shop-the-look__switch-product-button--prev body--uppercase" {% if hasPrev != false %}disabled{% endif %}>{% render '_icon-arrow-see-less' %} Previous</button>
-        <button class="shop-the-look__switch-product-button shop-the-look__switch-product-button--next body--uppercase" {% if hasNext != false %}disabled{% endif %}>Next {% render '_icon-arrow-see-more' %}</button>
+        <button
+          class="shop-the-look__switch-product-button shop-the-look__switch-product-button--prev body--uppercase"
+          {% if hasPrev != false %}
+            disabled
+          {% endif %}
+        >
+          {% render '_icon-arrow-see-less' %} Previous
+        </button>
+        <button
+          class="shop-the-look__switch-product-button shop-the-look__switch-product-button--next body--uppercase"
+          {% if hasNext != false %}
+            disabled
+          {% endif %}
+        >
+          Next {% render '_icon-arrow-see-more' %}
+        </button>
       </div>
     </div>
   </section>
