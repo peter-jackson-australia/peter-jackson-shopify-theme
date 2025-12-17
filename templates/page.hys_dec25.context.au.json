@@ -173,7 +173,7 @@
     },
     "collection_slider_secondary_r6XR7q": {
       "settings": {
-        "heading": "Bestsellers of Sale"
+        "heading": "Half Year Sale Bestsellers"
       },
       "blocks": {}
     },
@@ -207,6 +207,7 @@
       }
     },
     "hero_primary_zeaCqL": {
+      "disabled": true,
       "settings": {
         "desktop_image": "shopify://shop_images/After_Dark.webp"
       },
