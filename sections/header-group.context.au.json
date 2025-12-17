@@ -21,19 +21,19 @@
             "text": "<a href=\"https://peterjacksons.com/products/gift-card\" title=\"https://peterjacksons.com/products/gift-card\">Let Him Decide - Shop Gift Cards</a>"
           }
         },
+        "announcement_98Ur7": {
+          "type": "announcement",
+          "disabled": false,
+          "settings": {
+            "text": "Half Year Sale / up to 50% Off Select Styles",
+            "alignment": "center"
+          }
+        },
         "announcement_ny4ip": {
           "type": "announcement",
           "disabled": false,
           "settings": {
             "text": "<a href=\"https://peterjacksons.com/collections/mens-suits\" title=\"https://peterjacksons.com/collections/mens-suits\">Half Year Sale / Suits from $399</a>",
-            "alignment": "center"
-          }
-        },
-        "announcement_98Ur7": {
-          "type": "announcement",
-          "disabled": false,
-          "settings": {
-            "text": "<a href=\"/collections/sport-jackets\" title=\"Sports Jackets\">Sports Jackets from $299</a>",
             "alignment": "center"
           }
         }
