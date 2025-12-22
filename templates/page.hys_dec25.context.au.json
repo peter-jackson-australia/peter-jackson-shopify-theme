@@ -79,6 +79,26 @@
             "mobile_vertical_alignment": "bottom"
           }
         },
+        "slide_P9nnNj": {
+          "disabled": false,
+          "settings": {
+            "media_type": "video",
+            "desktop_image": "shopify://shop_images/Suits_Of_Summer.webp",
+            "mobile_image": "shopify://shop_images/Suits_Hero_Mobile.webp",
+            "video": "shopify://files/videos/PJ Summer High-Desktop.mp4",
+            "svg_image": "shopify://shop_images/High_Season_Desk_V6.svg",
+            "mobile_svg_image": "shopify://shop_images/Suits_Mob.svg",
+            "button_label_1": "Shop Lightweight Suits",
+            "button_link_1": "shopify://collections/mens-suits",
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_label_3": "",
+            "button_link_3": "",
+            "button_label_4": "",
+            "button_link_4": "",
+            "vertical_alignment": "stretch"
+          }
+        },
         "slide_JGebxX": {
           "disabled": true,
           "settings": {
@@ -95,26 +115,6 @@
             "horizontal_alignment": "center",
             "vertical_alignment": "stretch",
             "mobile_horizontal_alignment": "center"
-          }
-        },
-        "slide_P9nnNj": {
-          "disabled": false,
-          "settings": {
-            "desktop_image": "shopify://shop_images/Suits_Of_Summer.webp",
-            "mobile_image": "shopify://shop_images/Suits_Hero_Mobile.webp",
-            "svg_image": "shopify://shop_images/High_Season_Desk_V6.svg",
-            "mobile_svg_image": "shopify://shop_images/Suits_Mob.svg",
-            "button_label_1": "Shop Lightweight Suits",
-            "button_link_1": "shopify://collections/mens-suits",
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_label_3": "",
-            "button_link_3": "",
-            "button_label_4": "",
-            "button_link_4": "",
-            "vertical_alignment": "stretch",
-            "media_type": "video",
-            "video": "shopify://files/videos/PJ Summer High-Desktop 2k.mp4"
           }
         }
       },
