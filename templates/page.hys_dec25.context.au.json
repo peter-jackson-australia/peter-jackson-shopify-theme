@@ -97,7 +97,8 @@
             "button_link_3": "",
             "button_label_4": "",
             "button_link_4": "",
-            "vertical_alignment": "bottom"
+            "vertical_alignment": "stretch",
+            "horizontal_alignment": "center"
           }
         },
         "slide_JGebxX": {
