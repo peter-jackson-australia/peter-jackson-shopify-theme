@@ -48,7 +48,7 @@
         },
         "slide_HH9yBN": {
           "type": "slide",
-          "disabled": false,
+          "disabled": true,
           "settings": {
             "media_type": "image",
             "desktop_image": "shopify://shop_images/HYS_Hero_fb358dc2-3f26-41f0-b197-bee6f0675c01.webp",
@@ -80,7 +80,7 @@
           }
         },
         "slide_JGebxX": {
-          "disabled": false,
+          "disabled": true,
           "settings": {
             "desktop_image": "shopify://shop_images/Summer_High.webp",
             "mobile_image": "shopify://shop_images/Polos_HP_Mob.webp",
@@ -112,15 +112,17 @@
             "button_link_3": "",
             "button_label_4": "",
             "button_link_4": "",
-            "vertical_alignment": "stretch"
+            "vertical_alignment": "stretch",
+            "media_type": "video",
+            "video": "shopify://files/videos/PJ Summer High-Desktop 2k.mp4"
           }
         }
       },
       "block_order": [
         "slide_ddW7HK",
         "slide_HH9yBN",
-        "slide_JGebxX",
-        "slide_P9nnNj"
+        "slide_P9nnNj",
+        "slide_JGebxX"
       ]
     },
     "grid_tiles_r7ifEt": {
@@ -154,29 +156,6 @@
         "tile_WhJarW"
       ]
     },
-    "hero_primary_NeKfMz": {
-      "settings": {
-        "desktop_image": "shopify://shop_images/Business_Essentials.webp",
-        "mobile_image": "shopify://shop_images/Business_Essentials_Mob.webp",
-        "svg_image": "shopify://shop_images/Business_Essentials_10430c04-f7a4-48d4-b139-71c303af6c53.svg",
-        "mobile_svg_image": "shopify://shop_images/Business_Essentials_Mob.svg",
-        "button_label_1": "Suits from $399",
-        "button_link_1": "shopify://collections/mens-suits",
-        "button_label_2": "$50 Off Business Shirts",
-        "button_link_2": "shopify://collections/business-shirts",
-        "button_label_3": "Ties from $59.95",
-        "button_link_3": "shopify://collections/ties",
-        "button_label_4": "",
-        "vertical_alignment": "bottom"
-      },
-      "blocks": {}
-    },
-    "collection_slider_secondary_r6XR7q": {
-      "settings": {
-        "heading": "Half Year Sale Bestsellers"
-      },
-      "blocks": {}
-    },
     "variable_column_content_svg_tBLLXD": {
       "disabled": false,
       "settings": {
@@ -205,6 +184,29 @@
           }
         }
       }
+    },
+    "collection_slider_secondary_r6XR7q": {
+      "settings": {
+        "heading": "Half Year Sale Bestsellers"
+      },
+      "blocks": {}
+    },
+    "hero_primary_NeKfMz": {
+      "settings": {
+        "desktop_image": "shopify://shop_images/Business_Essentials.webp",
+        "mobile_image": "shopify://shop_images/Business_Essentials_Mob.webp",
+        "svg_image": "shopify://shop_images/Business_Essentials_10430c04-f7a4-48d4-b139-71c303af6c53.svg",
+        "mobile_svg_image": "shopify://shop_images/Business_Essentials_Mob.svg",
+        "button_label_1": "Suits from $399",
+        "button_link_1": "shopify://collections/mens-suits",
+        "button_label_2": "$50 Off Business Shirts",
+        "button_link_2": "shopify://collections/business-shirts",
+        "button_label_3": "Ties from $59.95",
+        "button_link_3": "shopify://collections/ties",
+        "button_label_4": "",
+        "vertical_alignment": "bottom"
+      },
+      "blocks": {}
     },
     "hero_primary_zeaCqL": {
       "disabled": true,
