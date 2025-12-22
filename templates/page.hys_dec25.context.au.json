@@ -74,7 +74,7 @@
             "button_label_4": "Business Shirts from $79",
             "button_link_4": "shopify://collections/business-shirts",
             "horizontal_alignment": "center",
-            "vertical_alignment": "middle",
+            "vertical_alignment": "stretch",
             "mobile_horizontal_alignment": "center",
             "mobile_vertical_alignment": "bottom"
           }
