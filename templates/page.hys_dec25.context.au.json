@@ -48,10 +48,10 @@
         },
         "slide_HH9yBN": {
           "type": "slide",
-          "disabled": true,
+          "disabled": false,
           "settings": {
             "media_type": "image",
-            "desktop_image": "shopify://shop_images/HYS_Hero_fb358dc2-3f26-41f0-b197-bee6f0675c01.webp",
+            "desktop_image": "shopify://shop_images/EOYS_Update.webp",
             "mobile_image": "shopify://shop_images/HYS_Hero_c71d9662-438b-41fc-8146-87593c4984f9.webp",
             "video": null,
             "mobile_video": null,
