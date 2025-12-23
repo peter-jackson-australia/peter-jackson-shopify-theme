@@ -63,15 +63,15 @@
             "mobile_svg_image": "shopify://shop_images/EOYS_Mob_V2.svg",
             "heading_level": "h1",
             "heading_animation": "none",
-            "description": "",
+            "description": "*Select Styles / T&Cs Apply",
             "description_animation": "none",
             "button_label_1": "Shop All",
             "button_link_1": "shopify://collections/sale",
-            "button_label_2": "Suits from $399",
+            "button_label_2": "Suits 40% Off*",
             "button_link_2": "shopify://collections/mens-suits",
-            "button_label_3": "Sports Jackets from $299",
+            "button_label_3": "Sports Jackets 35% Off*",
             "button_link_3": "shopify://collections/sport-jackets",
-            "button_label_4": "Business Shirts from $79",
+            "button_label_4": "Business Shirts 30% Off*",
             "button_link_4": "shopify://collections/business-shirts",
             "horizontal_alignment": "center",
             "vertical_alignment": "stretch",
@@ -80,7 +80,7 @@
           }
         },
         "slide_P9nnNj": {
-          "disabled": false,
+          "disabled": true,
           "settings": {
             "media_type": "video",
             "desktop_image": "shopify://shop_images/Suits_Of_Summer.webp",
