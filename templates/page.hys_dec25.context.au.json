@@ -256,20 +256,6 @@
             "mobile_alignment": "left"
           }
         },
-        "column_item_8XTUw": {
-          "type": "column_item",
-          "disabled": false,
-          "settings": {
-            "image": "shopify://shop_images/Sports_Jackets_cadfd6ce-3e5d-4791-81d6-f81790c4b338.webp",
-            "image_link": "",
-            "top_text": "Lightweight Layers",
-            "svg_icon": "shopify://shop_images/Sports_Jackets_6cd0060c-69ff-4a22-9ed7-1a2c309ea2b9.svg",
-            "mobile_svg_icon": null,
-            "bottom_text": "35% Off Select Styles",
-            "content_alignment": "center",
-            "mobile_alignment": "left"
-          }
-        },
         "column_item_Xxj4N": {
           "type": "column_item",
           "disabled": false,
@@ -283,12 +269,26 @@
             "content_alignment": "center",
             "mobile_alignment": "center"
           }
+        },
+        "column_item_8XTUw": {
+          "type": "column_item",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/Sports_Jackets_cadfd6ce-3e5d-4791-81d6-f81790c4b338.webp",
+            "image_link": "",
+            "top_text": "Lightweight Layers",
+            "svg_icon": "shopify://shop_images/Sports_Jackets_6cd0060c-69ff-4a22-9ed7-1a2c309ea2b9.svg",
+            "mobile_svg_icon": null,
+            "bottom_text": "35% Off Select Styles",
+            "content_alignment": "center",
+            "mobile_alignment": "left"
+          }
         }
       },
       "block_order": [
         "column_item_Hd9cf",
-        "column_item_8XTUw",
-        "column_item_Xxj4N"
+        "column_item_Xxj4N",
+        "column_item_8XTUw"
       ],
       "name": "Variable Column Content SVG"
     }
