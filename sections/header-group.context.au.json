@@ -25,7 +25,7 @@
           "type": "announcement",
           "disabled": false,
           "settings": {
-            "text": "Half Year Sale / up to 50% Off Select Styles",
+            "text": "<a href=\"/collections/sale\" title=\"Sale\">End Of Year Sale / up to 50% Off Select Styles</a>",
             "alignment": "center"
           }
         },
@@ -33,7 +33,7 @@
           "type": "announcement",
           "disabled": false,
           "settings": {
-            "text": "<a href=\"https://peterjacksons.com/collections/mens-suits\" title=\"https://peterjacksons.com/collections/mens-suits\">Half Year Sale / Suits from $399</a>",
+            "text": "<a href=\"https://peterjacksons.com/collections/mens-suits\" title=\"https://peterjacksons.com/collections/mens-suits\">End Of Year Sale / Suits 40% Off Select Styles</a>",
             "alignment": "center"
           }
         }
