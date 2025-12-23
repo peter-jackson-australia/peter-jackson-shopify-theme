@@ -16,6 +16,9 @@
     "variable_column_content_svg_YHXNd": {
       "type": "variable-column-content-svg",
       "disabled": false,
+      "custom_css": [
+        "@media (max-width: 768px) {.variable-column-content-svg {padding: var(--space-2xs) 0;}}"
+      ],
       "settings": {
         "anchor_id": "",
         "show_top_border": false,
@@ -153,6 +156,9 @@
     },
     "variable_column_content_svg_tBLLXD": {
       "disabled": false,
+      "custom_css": [
+        "@media (max-width: 768px) {.variable-column-content-svg {padding: 0;}}"
+      ],
       "settings": {
         "show_top_border": false,
         "show_bottom_border": false
