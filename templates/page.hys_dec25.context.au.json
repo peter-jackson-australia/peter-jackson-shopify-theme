@@ -248,10 +248,10 @@
           "settings": {
             "image": "shopify://shop_images/Polos_EOYS_V2.webp",
             "image_link": "",
-            "top_text": "",
-            "svg_icon": null,
+            "top_text": "Summer Essential",
+            "svg_icon": "shopify://shop_images/Polos_61d79bcd-e3e9-4f99-ba1b-99504a479453.svg",
             "mobile_svg_icon": null,
-            "bottom_text": "POLOS / 25% Off*",
+            "bottom_text": "25% Off Select Styles",
             "content_alignment": "center",
             "mobile_alignment": "left"
           }
@@ -260,12 +260,12 @@
           "type": "column_item",
           "disabled": false,
           "settings": {
-            "image": "shopify://shop_images/Sports_Jackets_d7c0d01d-bb6e-4138-9dcc-f6089886019d.webp",
+            "image": "shopify://shop_images/Sports_Jackets_cadfd6ce-3e5d-4791-81d6-f81790c4b338.webp",
             "image_link": "",
-            "top_text": "",
-            "svg_icon": null,
+            "top_text": "Lightweight Layers",
+            "svg_icon": "shopify://shop_images/Sports_Jackets_6cd0060c-69ff-4a22-9ed7-1a2c309ea2b9.svg",
             "mobile_svg_icon": null,
-            "bottom_text": "SPORTS JACKETS / 35% Off*",
+            "bottom_text": "35% Off Select Styles",
             "content_alignment": "center",
             "mobile_alignment": "left"
           }
@@ -276,12 +276,12 @@
           "settings": {
             "image": "shopify://shop_images/Casual_Shirt_V2_630021f0-c93c-44cb-9f20-bec347c7577c.webp",
             "image_link": "",
-            "top_text": "",
-            "svg_icon": null,
+            "top_text": "Smart. Casual.",
+            "svg_icon": "shopify://shop_images/Casual_Shirts.svg",
             "mobile_svg_icon": null,
-            "bottom_text": "CASUAL SHIRTS / 50% Off*",
+            "bottom_text": "50% Off Select Styles",
             "content_alignment": "center",
-            "mobile_alignment": "left"
+            "mobile_alignment": "center"
           }
         }
       },
