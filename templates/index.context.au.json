@@ -17,7 +17,7 @@
       "type": "variable-column-content-svg",
       "disabled": false,
       "custom_css": [
-        "@media (max-width: 768px) {.variable-column-content-svg {padding: var(--space-2xs) 0;}}"
+        "@media (max-width: 768px) {.variable-column-content-svg {padding: var(--space-2xs) 0; }}"
       ],
       "settings": {
         "anchor_id": "",
@@ -134,7 +134,7 @@
             "mobile_video": "shopify://files/videos/SSOM Mob_Comp.mp4",
             "svg_image": "shopify://shop_images/ASSOM_Hero_Desk_V4.svg",
             "svg_size": "full",
-            "mobile_svg_image": "shopify://shop_images/SSOM_Mob_Top.svg",
+            "mobile_svg_image": "shopify://shop_images/SSOM_Mob_Top_V2.svg",
             "button_label_1": "Shop Summer",
             "button_link_1": "shopify://collections/summer-25",
             "button_label_2": "",
@@ -157,7 +157,7 @@
     "variable_column_content_svg_tBLLXD": {
       "disabled": false,
       "custom_css": [
-        "@media (max-width: 768px) {.variable-column-content-svg {padding: 0;}}"
+        "@media (max-width: 768px) {.variable-column-content-svg {padding: 0; }}"
       ],
       "settings": {
         "show_top_border": false,
