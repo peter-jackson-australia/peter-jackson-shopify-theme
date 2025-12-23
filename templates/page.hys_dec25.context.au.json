@@ -13,6 +13,66 @@
     "market": "au"
   },
   "sections": {
+    "variable_column_content_svg_YHXNd": {
+      "type": "variable-column-content-svg",
+      "disabled": false,
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "column_count": "3"
+      },
+      "blocks": {
+        "column_item_Hd9cf": {
+          "type": "column_item",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/Polos_EOYS_V2.webp",
+            "image_link": "",
+            "top_text": "",
+            "svg_icon": "shopify://shop_images/Polos_f01e6e45-fe93-4eb3-b9cb-0df04f0d28d3.svg",
+            "mobile_svg_icon": "shopify://shop_images/Polos_f01e6e45-fe93-4eb3-b9cb-0df04f0d28d3.svg",
+            "bottom_text": "25% Off Select Styles",
+            "content_alignment": "center",
+            "mobile_alignment": "center"
+          }
+        },
+        "column_item_Xxj4N": {
+          "type": "column_item",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/Casual_Shirt_V3.webp",
+            "image_link": "",
+            "top_text": "",
+            "svg_icon": "shopify://shop_images/Casual_Shirts_a8f52503-5037-4bfe-abdc-1159321f7705.svg",
+            "mobile_svg_icon": "shopify://shop_images/Casual_Shirts_a8f52503-5037-4bfe-abdc-1159321f7705.svg",
+            "bottom_text": "50% Off Select Styles",
+            "content_alignment": "center",
+            "mobile_alignment": "center"
+          }
+        },
+        "column_item_8XTUw": {
+          "type": "column_item",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/Sports_Jackets_V2_82cde8ad-859e-454a-9d85-1a4aac7bcb5d.webp",
+            "image_link": "",
+            "top_text": "",
+            "svg_icon": "shopify://shop_images/Sports_Jackets_ace57ced-cf23-4009-a2bd-568bd93ae6b2.svg",
+            "mobile_svg_icon": "shopify://shop_images/Sports_Jackets_ace57ced-cf23-4009-a2bd-568bd93ae6b2.svg",
+            "bottom_text": "35% Off Select Styles",
+            "content_alignment": "center",
+            "mobile_alignment": "center"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_Hd9cf",
+        "column_item_Xxj4N",
+        "column_item_8XTUw"
+      ],
+      "name": "Variable Column Content SVG"
+    },
     "spacer_7Rh8w": {
       "type": "spacer",
       "disabled": false,
@@ -129,6 +189,14 @@
         "slide_JGebxX"
       ]
     },
+    "hero_primary_zeaCqL": {
+      "disabled": true,
+      "settings": {
+        "desktop_image": "shopify://shop_images/Suits_Of_Summer.webp",
+        "mobile_image": "shopify://shop_images/Suits_Hero_Mobile_b3d1a33f-06ea-46ce-ad1a-38596d1967fa.webp"
+      },
+      "blocks": {}
+    },
     "grid_tiles_r7ifEt": {
       "disabled": true,
       "settings": {},
@@ -214,14 +282,6 @@
       },
       "blocks": {}
     },
-    "hero_primary_zeaCqL": {
-      "disabled": true,
-      "settings": {
-        "desktop_image": "shopify://shop_images/Suits_Of_Summer.webp",
-        "mobile_image": "shopify://shop_images/Suits_Hero_Mobile_b3d1a33f-06ea-46ce-ad1a-38596d1967fa.webp"
-      },
-      "blocks": {}
-    },
     "hero_primary_WLbcQ7": {
       "disabled": false,
       "settings": {},
@@ -231,66 +291,6 @@
       "disabled": true,
       "settings": {},
       "blocks": {}
-    },
-    "variable_column_content_svg_YHXNd": {
-      "type": "variable-column-content-svg",
-      "disabled": false,
-      "settings": {
-        "anchor_id": "",
-        "show_top_border": false,
-        "show_bottom_border": true,
-        "column_count": "3"
-      },
-      "blocks": {
-        "column_item_Hd9cf": {
-          "type": "column_item",
-          "disabled": false,
-          "settings": {
-            "image": "shopify://shop_images/Polos_EOYS_V2.webp",
-            "image_link": "",
-            "top_text": "",
-            "svg_icon": "shopify://shop_images/Polos_f01e6e45-fe93-4eb3-b9cb-0df04f0d28d3.svg",
-            "mobile_svg_icon": "shopify://shop_images/Polos_f01e6e45-fe93-4eb3-b9cb-0df04f0d28d3.svg",
-            "bottom_text": "25% Off Select Styles",
-            "content_alignment": "center",
-            "mobile_alignment": "center"
-          }
-        },
-        "column_item_Xxj4N": {
-          "type": "column_item",
-          "disabled": false,
-          "settings": {
-            "image": "shopify://shop_images/Casual_Shirt_V3.webp",
-            "image_link": "",
-            "top_text": "",
-            "svg_icon": "shopify://shop_images/Casual_Shirts_a8f52503-5037-4bfe-abdc-1159321f7705.svg",
-            "mobile_svg_icon": "shopify://shop_images/Casual_Shirts_a8f52503-5037-4bfe-abdc-1159321f7705.svg",
-            "bottom_text": "50% Off Select Styles",
-            "content_alignment": "center",
-            "mobile_alignment": "center"
-          }
-        },
-        "column_item_8XTUw": {
-          "type": "column_item",
-          "disabled": false,
-          "settings": {
-            "image": "shopify://shop_images/Sports_Jackets_cadfd6ce-3e5d-4791-81d6-f81790c4b338.webp",
-            "image_link": "",
-            "top_text": "",
-            "svg_icon": "shopify://shop_images/Sports_Jackets_ace57ced-cf23-4009-a2bd-568bd93ae6b2.svg",
-            "mobile_svg_icon": "shopify://shop_images/Sports_Jackets_ace57ced-cf23-4009-a2bd-568bd93ae6b2.svg",
-            "bottom_text": "35% Off Select Styles",
-            "content_alignment": "center",
-            "mobile_alignment": "center"
-          }
-        }
-      },
-      "block_order": [
-        "column_item_Hd9cf",
-        "column_item_Xxj4N",
-        "column_item_8XTUw"
-      ],
-      "name": "Variable Column Content SVG"
     }
   },
   "order": [
