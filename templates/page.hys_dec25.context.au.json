@@ -104,7 +104,7 @@
           }
         },
         "slide_JGebxX": {
-          "disabled": false,
+          "disabled": true,
           "settings": {
             "desktop_image": "shopify://shop_images/Suits_Of_Summer.webp",
             "mobile_image": "shopify://shop_images/Suits_Hero_Mobile_b3d1a33f-06ea-46ce-ad1a-38596d1967fa.webp",
@@ -215,9 +215,10 @@
       "blocks": {}
     },
     "hero_primary_zeaCqL": {
-      "disabled": true,
+      "disabled": false,
       "settings": {
-        "desktop_image": "shopify://shop_images/After_Dark.webp"
+        "desktop_image": "shopify://shop_images/Suits_Of_Summer.webp",
+        "mobile_image": "shopify://shop_images/Suits_Hero_Mobile_b3d1a33f-06ea-46ce-ad1a-38596d1967fa.webp"
       },
       "blocks": {}
     },
@@ -295,12 +296,12 @@
   "order": [
     "hero_slider_ULyNnz",
     "variable_column_content_svg_YHXNd",
+    "hero_primary_zeaCqL",
     "grid_tiles_r7ifEt",
     "variable_column_content_svg_tBLLXD",
     "collection_slider_secondary_r6XR7q",
     "hero_primary_NeKfMz",
     "heading_with_text_9nQj7z",
-    "hero_primary_zeaCqL",
     "spacer_7Rh8w",
     "hero_primary_WLbcQ7",
     "collection_slider_3p3hD9",
