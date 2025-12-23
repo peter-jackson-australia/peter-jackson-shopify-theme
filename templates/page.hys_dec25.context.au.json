@@ -80,7 +80,7 @@
           }
         },
         "slide_P9nnNj": {
-          "disabled": true,
+          "disabled": false,
           "settings": {
             "media_type": "video",
             "desktop_image": "shopify://shop_images/Suits_Of_Summer.webp",
