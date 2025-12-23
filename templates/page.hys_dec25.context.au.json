@@ -171,7 +171,7 @@
       "blocks": {
         "column_item_6wGj7R": {
           "settings": {
-            "image": "shopify://shop_images/Chinos_Trousers.webp",
+            "image": "shopify://shop_images/Chinos_Trousers_V2.webp",
             "image_link": "shopify://collections/bottoms",
             "top_text": "",
             "svg_icon": null,
@@ -251,7 +251,7 @@
             "top_text": "",
             "svg_icon": null,
             "mobile_svg_icon": null,
-            "bottom_text": "",
+            "bottom_text": "POLOS / 25% Off*",
             "content_alignment": "center",
             "mobile_alignment": "left"
           }
@@ -265,7 +265,7 @@
             "top_text": "",
             "svg_icon": null,
             "mobile_svg_icon": null,
-            "bottom_text": "",
+            "bottom_text": "SPORTS JACKETS / 35% Off*",
             "content_alignment": "center",
             "mobile_alignment": "left"
           }
