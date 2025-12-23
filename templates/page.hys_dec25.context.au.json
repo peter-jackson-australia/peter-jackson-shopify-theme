@@ -86,9 +86,10 @@
             "desktop_image": "shopify://shop_images/Suits_Of_Summer.webp",
             "mobile_image": "shopify://shop_images/Suits_Hero_Mobile.webp",
             "video": "shopify://files/videos/PJ Summer High-Desktop.mp4",
+            "mobile_video": "shopify://files/videos/SSOM Mob_Comp.mp4",
             "svg_image": "shopify://shop_images/ASSOM_Hero_Desk_V4.svg",
             "svg_size": "full",
-            "mobile_svg_image": "shopify://shop_images/Suits_Mob.svg",
+            "mobile_svg_image": "shopify://shop_images/SSOM_Mob.svg",
             "button_label_1": "Shop Summer",
             "button_link_1": "shopify://collections/summer-25",
             "button_label_2": "",
@@ -98,8 +99,7 @@
             "button_label_4": "",
             "button_link_4": "",
             "horizontal_alignment": "center",
-            "vertical_alignment": "stretch",
-            "mobile_video": "shopify://files/videos/SSOM Mob_Comp.mp4"
+            "vertical_alignment": "stretch"
           }
         },
         "slide_JGebxX": {
