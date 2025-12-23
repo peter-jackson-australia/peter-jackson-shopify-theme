@@ -174,9 +174,9 @@
             "image": "shopify://shop_images/Chinos_Trousers_V2.webp",
             "image_link": "shopify://collections/bottoms",
             "top_text": "",
-            "svg_icon": null,
+            "svg_icon": "shopify://shop_images/Chinos_Trousers.svg",
             "mobile_svg_icon": null,
-            "bottom_text": "Chinos & Trousers from $89.95"
+            "bottom_text": "from $89.95"
           }
         },
         "column_item_3WzPyc": {
@@ -264,7 +264,7 @@
             "image_link": "",
             "top_text": "",
             "svg_icon": "shopify://shop_images/Casual_Shirts.svg",
-            "mobile_svg_icon": null,
+            "mobile_svg_icon": "shopify://shop_images/Casual_Shirts.svg",
             "bottom_text": "50% Off Select Styles",
             "content_alignment": "center",
             "mobile_alignment": "center"
