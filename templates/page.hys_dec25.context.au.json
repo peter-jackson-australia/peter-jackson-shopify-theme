@@ -104,10 +104,10 @@
           }
         },
         "slide_JGebxX": {
-          "disabled": true,
+          "disabled": false,
           "settings": {
-            "desktop_image": "shopify://shop_images/Summer_High.webp",
-            "mobile_image": "shopify://shop_images/Polos_HP_Mob.webp",
+            "desktop_image": "shopify://shop_images/Suits_Of_Summer.webp",
+            "mobile_image": "shopify://shop_images/Suits_Hero_Mobile_b3d1a33f-06ea-46ce-ad1a-38596d1967fa.webp",
             "heading": "Shop Summer",
             "svg_image": "shopify://shop_images/High_Season_Desk_V3.svg",
             "svg_size": "full",
@@ -130,11 +130,12 @@
       ]
     },
     "grid_tiles_r7ifEt": {
+      "disabled": true,
       "settings": {},
       "blocks": {
         "tile_bRm4wE": {
           "settings": {
-            "tile_background_image": "shopify://shop_images/Polos.jpg",
+            "tile_background_image": "shopify://shop_images/Polos_EOYS.webp",
             "tile_secondary_text": "25% Off*"
           }
         },
@@ -229,17 +230,76 @@
       "disabled": true,
       "settings": {},
       "blocks": {}
+    },
+    "variable_column_content_svg_YHXNd": {
+      "type": "variable-column-content-svg",
+      "disabled": false,
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "column_count": "2"
+      },
+      "blocks": {
+        "column_item_Hd9cf": {
+          "type": "column_item",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/Polos_EOYS_V2.webp",
+            "image_link": "",
+            "top_text": "",
+            "svg_icon": null,
+            "mobile_svg_icon": null,
+            "bottom_text": "",
+            "content_alignment": "center",
+            "mobile_alignment": "left"
+          }
+        },
+        "column_item_Xxj4N": {
+          "type": "column_item",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/Casual_Shirt_V2_630021f0-c93c-44cb-9f20-bec347c7577c.webp",
+            "image_link": "",
+            "top_text": "",
+            "svg_icon": null,
+            "mobile_svg_icon": null,
+            "bottom_text": "",
+            "content_alignment": "center",
+            "mobile_alignment": "left"
+          }
+        },
+        "column_item_8XTUw": {
+          "type": "column_item",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/Sports_Jackets_EOYS.webp",
+            "image_link": "",
+            "top_text": "",
+            "svg_icon": null,
+            "mobile_svg_icon": null,
+            "bottom_text": "",
+            "content_alignment": "center",
+            "mobile_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_Hd9cf",
+        "column_item_Xxj4N",
+        "column_item_8XTUw"
+      ],
+      "name": "Variable Column Content SVG"
     }
   },
   "order": [
     "hero_slider_ULyNnz",
+    "variable_column_content_svg_YHXNd",
     "grid_tiles_r7ifEt",
     "variable_column_content_svg_tBLLXD",
     "collection_slider_secondary_r6XR7q",
     "hero_primary_NeKfMz",
-    "variable_column_content_secondary_X9KJtx",
     "heading_with_text_9nQj7z",
-    "variable_column_content_tertiary_XwmChF",
     "hero_primary_zeaCqL",
     "spacer_7Rh8w",
     "hero_primary_WLbcQ7",
