@@ -278,10 +278,10 @@
             "image_link": "",
             "top_text": "",
             "svg_icon": "shopify://shop_images/Sports_Jackets_6cd0060c-69ff-4a22-9ed7-1a2c309ea2b9.svg",
-            "mobile_svg_icon": null,
+            "mobile_svg_icon": "shopify://shop_images/Sports_Jackets_6cd0060c-69ff-4a22-9ed7-1a2c309ea2b9.svg",
             "bottom_text": "35% Off Select Styles",
             "content_alignment": "center",
-            "mobile_alignment": "left"
+            "mobile_alignment": "center"
           }
         }
       },
