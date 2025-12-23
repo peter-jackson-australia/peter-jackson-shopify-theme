@@ -104,7 +104,7 @@
           }
         },
         "slide_JGebxX": {
-          "disabled": false,
+          "disabled": true,
           "settings": {
             "desktop_image": "shopify://shop_images/Suits_Of_Summer.webp",
             "mobile_image": "shopify://shop_images/Suits_Hero_Mobile_b3d1a33f-06ea-46ce-ad1a-38596d1967fa.webp",
@@ -215,7 +215,7 @@
       "blocks": {}
     },
     "hero_primary_zeaCqL": {
-      "disabled": false,
+      "disabled": true,
       "settings": {
         "desktop_image": "shopify://shop_images/Suits_Of_Summer.webp",
         "mobile_image": "shopify://shop_images/Suits_Hero_Mobile_b3d1a33f-06ea-46ce-ad1a-38596d1967fa.webp"
@@ -239,7 +239,7 @@
         "anchor_id": "",
         "show_top_border": false,
         "show_bottom_border": true,
-        "column_count": "2"
+        "column_count": "3"
       },
       "blocks": {
         "column_item_Hd9cf": {
@@ -247,6 +247,20 @@
           "disabled": false,
           "settings": {
             "image": "shopify://shop_images/Polos_EOYS_V2.webp",
+            "image_link": "",
+            "top_text": "",
+            "svg_icon": null,
+            "mobile_svg_icon": null,
+            "bottom_text": "",
+            "content_alignment": "center",
+            "mobile_alignment": "left"
+          }
+        },
+        "column_item_8XTUw": {
+          "type": "column_item",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/Sports_Jackets_d7c0d01d-bb6e-4138-9dcc-f6089886019d.webp",
             "image_link": "",
             "top_text": "",
             "svg_icon": null,
@@ -269,26 +283,12 @@
             "content_alignment": "center",
             "mobile_alignment": "left"
           }
-        },
-        "column_item_8XTUw": {
-          "type": "column_item",
-          "disabled": false,
-          "settings": {
-            "image": "shopify://shop_images/Sports_Jackets_EOYS.webp",
-            "image_link": "",
-            "top_text": "",
-            "svg_icon": null,
-            "mobile_svg_icon": null,
-            "bottom_text": "",
-            "content_alignment": "center",
-            "mobile_alignment": "left"
-          }
         }
       },
       "block_order": [
         "column_item_Hd9cf",
-        "column_item_Xxj4N",
-        "column_item_8XTUw"
+        "column_item_8XTUw",
+        "column_item_Xxj4N"
       ],
       "name": "Variable Column Content SVG"
     }
