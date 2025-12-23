@@ -248,7 +248,7 @@
           "settings": {
             "image": "shopify://shop_images/Polos_EOYS_V2.webp",
             "image_link": "",
-            "top_text": "Summer Essential",
+            "top_text": "",
             "svg_icon": "shopify://shop_images/Polos_61d79bcd-e3e9-4f99-ba1b-99504a479453.svg",
             "mobile_svg_icon": null,
             "bottom_text": "25% Off Select Styles",
@@ -262,7 +262,7 @@
           "settings": {
             "image": "shopify://shop_images/Casual_Shirt_V3.webp",
             "image_link": "",
-            "top_text": "Smart. Casual.",
+            "top_text": "",
             "svg_icon": "shopify://shop_images/Casual_Shirts.svg",
             "mobile_svg_icon": null,
             "bottom_text": "50% Off Select Styles",
@@ -276,7 +276,7 @@
           "settings": {
             "image": "shopify://shop_images/Sports_Jackets_cadfd6ce-3e5d-4791-81d6-f81790c4b338.webp",
             "image_link": "",
-            "top_text": "Lightweight Layers",
+            "top_text": "",
             "svg_icon": "shopify://shop_images/Sports_Jackets_6cd0060c-69ff-4a22-9ed7-1a2c309ea2b9.svg",
             "mobile_svg_icon": null,
             "bottom_text": "35% Off Select Styles",
