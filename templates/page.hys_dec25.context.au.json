@@ -88,24 +88,6 @@
         "slide_interval": 7
       },
       "blocks": {
-        "slide_ddW7HK": {
-          "disabled": true,
-          "settings": {
-            "desktop_image": "shopify://shop_images/Xmas-Flatlay0217_Firefly_Upscaler_2x_scale_54489e12-2939-45c0-95bf-8a8422278452.webp",
-            "mobile_image": "shopify://shop_images/Gifting_mobile-1_Firefly.webp",
-            "svg_image": "shopify://shop_images/Gifting_HP_Desk_f9bed350-3d1f-4211-84be-7dfec79f6de0.svg",
-            "mobile_svg_image": "shopify://shop_images/Gifting_HP_Mob.svg",
-            "button_label_1": "Shop Gifts",
-            "button_link_1": "shopify://collections/gifts-for-men",
-            "button_label_2": "Polo + Chino / $159",
-            "button_link_2": "shopify://collections/the-gift-of-style-polo-and-chino",
-            "button_label_3": "Footwear + Belt / $200*",
-            "button_link_3": "shopify://collections/the-gift-of-style-footwear-belt",
-            "button_label_4": "Business Shirt + Tie / $130",
-            "button_link_4": "shopify://collections/the-gift-of-style-shirt-tie",
-            "vertical_alignment": "stretch-secondary"
-          }
-        },
         "slide_HH9yBN": {
           "type": "slide",
           "disabled": false,
@@ -162,31 +144,11 @@
             "vertical_alignment": "stretch",
             "mobile_vertical_alignment": "bottom"
           }
-        },
-        "slide_JGebxX": {
-          "disabled": true,
-          "settings": {
-            "desktop_image": "shopify://shop_images/Suits_Of_Summer.webp",
-            "mobile_image": "shopify://shop_images/Suits_Hero_Mobile_b3d1a33f-06ea-46ce-ad1a-38596d1967fa.webp",
-            "heading": "Shop Summer",
-            "svg_image": "shopify://shop_images/High_Season_Desk_V3.svg",
-            "svg_size": "full",
-            "mobile_svg_image": "shopify://shop_images/High_Season_Mob_477d6616-4b63-42c0-aae7-1a298eb6eb95.svg",
-            "button_label_1": "Shop Summer",
-            "button_link_1": "shopify://collections/new-arrivals",
-            "button_label_2": "",
-            "button_link_2": "",
-            "horizontal_alignment": "center",
-            "vertical_alignment": "stretch",
-            "mobile_horizontal_alignment": "center"
-          }
         }
       },
       "block_order": [
-        "slide_ddW7HK",
         "slide_HH9yBN",
-        "slide_P9nnNj",
-        "slide_JGebxX"
+        "slide_P9nnNj"
       ]
     },
     "variable_column_content_svg_tBLLXD": {
