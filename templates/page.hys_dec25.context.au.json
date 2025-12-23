@@ -104,7 +104,7 @@
           }
         },
         "slide_JGebxX": {
-          "disabled": true,
+          "disabled": false,
           "settings": {
             "desktop_image": "shopify://shop_images/Suits_Of_Summer.webp",
             "mobile_image": "shopify://shop_images/Suits_Hero_Mobile_b3d1a33f-06ea-46ce-ad1a-38596d1967fa.webp",
