@@ -28,7 +28,7 @@
           "disabled": false,
           "settings": {
             "image": "shopify://shop_images/Polos_EOYS_V2.webp",
-            "image_link": "",
+            "image_link": "shopify://collections/polos-and-tees",
             "top_text": "",
             "svg_icon": "shopify://shop_images/Polos_f01e6e45-fe93-4eb3-b9cb-0df04f0d28d3.svg",
             "mobile_svg_icon": "shopify://shop_images/Polos_f01e6e45-fe93-4eb3-b9cb-0df04f0d28d3.svg",
@@ -42,7 +42,7 @@
           "disabled": false,
           "settings": {
             "image": "shopify://shop_images/Casual_Shirt_V3.webp",
-            "image_link": "",
+            "image_link": "shopify://collections/casual-shirts",
             "top_text": "",
             "svg_icon": "shopify://shop_images/Casual_Shirts_a8f52503-5037-4bfe-abdc-1159321f7705.svg",
             "mobile_svg_icon": "shopify://shop_images/Casual_Shirts_a8f52503-5037-4bfe-abdc-1159321f7705.svg",
