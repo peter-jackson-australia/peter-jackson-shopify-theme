@@ -189,47 +189,6 @@
         "slide_JGebxX"
       ]
     },
-    "hero_primary_zeaCqL": {
-      "disabled": true,
-      "settings": {
-        "desktop_image": "shopify://shop_images/Suits_Of_Summer.webp",
-        "mobile_image": "shopify://shop_images/Suits_Hero_Mobile_b3d1a33f-06ea-46ce-ad1a-38596d1967fa.webp"
-      },
-      "blocks": {}
-    },
-    "grid_tiles_r7ifEt": {
-      "disabled": true,
-      "settings": {},
-      "blocks": {
-        "tile_bRm4wE": {
-          "settings": {
-            "tile_background_image": "shopify://shop_images/Polos_EOYS.webp",
-            "tile_secondary_text": "25% Off*"
-          }
-        },
-        "tile_FPGHMd": {
-          "settings": {
-            "tile_background_image": "shopify://shop_images/Sports_Jackets_V2.webp",
-            "tile_header": "SPORTS JACKETS",
-            "tile_secondary_text": "35% Off*",
-            "tile_link": "shopify://collections/sport-jackets"
-          }
-        },
-        "tile_WhJarW": {
-          "settings": {
-            "tile_background_image": "shopify://shop_images/Casual_Shirts_4c766827-fc56-48f6-b628-4a6d60839f43.webp",
-            "tile_header": "Casual Shirts",
-            "tile_secondary_text": "50% Off*",
-            "tile_link": "shopify://collections/casual-shirts"
-          }
-        }
-      },
-      "block_order": [
-        "tile_bRm4wE",
-        "tile_FPGHMd",
-        "tile_WhJarW"
-      ]
-    },
     "variable_column_content_svg_tBLLXD": {
       "disabled": false,
       "settings": {
@@ -286,27 +245,15 @@
       "disabled": false,
       "settings": {},
       "blocks": {}
-    },
-    "collection_slider_XmLf6t": {
-      "disabled": true,
-      "settings": {},
-      "blocks": {}
     }
   },
   "order": [
     "hero_slider_ULyNnz",
     "variable_column_content_svg_YHXNd",
-    "hero_primary_zeaCqL",
-    "grid_tiles_r7ifEt",
     "variable_column_content_svg_tBLLXD",
     "collection_slider_secondary_r6XR7q",
     "hero_primary_NeKfMz",
-    "heading_with_text_9nQj7z",
     "spacer_7Rh8w",
-    "hero_primary_WLbcQ7",
-    "collection_slider_3p3hD9",
-    "variable_column_content_tertiary_qfTkVT",
-    "collection_slider_XmLf6t",
-    "featured_article_r6pY9T"
+    "hero_primary_WLbcQ7"
   ]
 }
