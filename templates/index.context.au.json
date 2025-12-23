@@ -7,12 +7,72 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{
+ {
   "parent": "index.json",
   "context": {
     "market": "au"
   },
   "sections": {
+    "variable_column_content_svg_YHXNd": {
+      "type": "variable-column-content-svg",
+      "disabled": false,
+      "settings": {
+        "anchor_id": "",
+        "show_top_border": false,
+        "show_bottom_border": true,
+        "column_count": "3"
+      },
+      "blocks": {
+        "column_item_Hd9cf": {
+          "type": "column_item",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/Polos_EOYS_V2.webp",
+            "image_link": "shopify://collections/polos-and-tees",
+            "top_text": "",
+            "svg_icon": "shopify://shop_images/Polos_f01e6e45-fe93-4eb3-b9cb-0df04f0d28d3.svg",
+            "mobile_svg_icon": "shopify://shop_images/Polos_f01e6e45-fe93-4eb3-b9cb-0df04f0d28d3.svg",
+            "bottom_text": "25% Off Select Styles",
+            "content_alignment": "center",
+            "mobile_alignment": "center"
+          }
+        },
+        "column_item_Xxj4N": {
+          "type": "column_item",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/Casual_Shirt_V3.webp",
+            "image_link": "shopify://collections/casual-shirts",
+            "top_text": "",
+            "svg_icon": "shopify://shop_images/Casual_Shirts_a8f52503-5037-4bfe-abdc-1159321f7705.svg",
+            "mobile_svg_icon": "shopify://shop_images/Casual_Shirts_a8f52503-5037-4bfe-abdc-1159321f7705.svg",
+            "bottom_text": "50% Off Select Styles",
+            "content_alignment": "center",
+            "mobile_alignment": "center"
+          }
+        },
+        "column_item_8XTUw": {
+          "type": "column_item",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/Sports_Jackets_V2_82cde8ad-859e-454a-9d85-1a4aac7bcb5d.webp",
+            "image_link": "shopify://collections/sport-jackets",
+            "top_text": "",
+            "svg_icon": "shopify://shop_images/Sports_Jackets_ace57ced-cf23-4009-a2bd-568bd93ae6b2.svg",
+            "mobile_svg_icon": "shopify://shop_images/Sports_Jackets_ace57ced-cf23-4009-a2bd-568bd93ae6b2.svg",
+            "bottom_text": "35% Off Select Styles",
+            "content_alignment": "center",
+            "mobile_alignment": "center"
+          }
+        }
+      },
+      "block_order": [
+        "column_item_Hd9cf",
+        "column_item_Xxj4N",
+        "column_item_8XTUw"
+      ],
+      "name": "Variable Column Content SVG"
+    },
     "spacer_7Rh8w": {
       "type": "spacer",
       "disabled": false,
@@ -28,71 +88,35 @@
         "slide_interval": 7
       },
       "blocks": {
-        "slide_ddW7HK": {
-          "disabled": true,
-          "settings": {
-            "desktop_image": "shopify://shop_images/Xmas-Flatlay0217_Firefly_Upscaler_2x_scale_54489e12-2939-45c0-95bf-8a8422278452.webp",
-            "mobile_image": "shopify://shop_images/Gifting_mobile-1_Firefly.webp",
-            "svg_image": "shopify://shop_images/Gifting_HP_Desk_f9bed350-3d1f-4211-84be-7dfec79f6de0.svg",
-            "mobile_svg_image": "shopify://shop_images/Gifting_HP_Mob.svg",
-            "button_label_1": "Shop Gifts",
-            "button_link_1": "shopify://collections/gifts-for-men",
-            "button_label_2": "Polo + Chino / $159",
-            "button_link_2": "shopify://collections/the-gift-of-style-polo-and-chino",
-            "button_label_3": "Footwear + Belt / $200*",
-            "button_link_3": "shopify://collections/the-gift-of-style-footwear-belt",
-            "button_label_4": "Business Shirt + Tie / $130",
-            "button_link_4": "shopify://collections/the-gift-of-style-shirt-tie",
-            "vertical_alignment": "stretch-secondary"
-          }
-        },
-        "slide_JGebxX": {
-          "disabled": false,
-          "settings": {
-            "desktop_image": "shopify://shop_images/Summer_High.webp",
-            "mobile_image": "shopify://shop_images/Summer_Hero_Mobile.webp",
-            "heading": "Shop Summer",
-            "svg_image": "shopify://shop_images/High_Season_Desk_V3.svg",
-            "svg_size": "full",
-            "mobile_svg_image": "shopify://shop_images/High_Season_Mob_BK.svg",
-            "button_label_1": "Shop Summer",
-            "button_link_1": "shopify://collections/summer-25",
-            "button_label_2": "",
-            "button_link_2": "",
-            "horizontal_alignment": "center",
-            "vertical_alignment": "stretch",
-            "mobile_horizontal_alignment": "center"
-          }
-        },
         "slide_HH9yBN": {
           "type": "slide",
           "disabled": false,
           "settings": {
             "media_type": "image",
-            "desktop_image": "shopify://shop_images/HYS_Hero_fb358dc2-3f26-41f0-b197-bee6f0675c01.webp",
-            "mobile_image": "shopify://shop_images/HYS_Hero_c71d9662-438b-41fc-8146-87593c4984f9.webp",
+            "desktop_image": "shopify://shop_images/EOYS_Update.webp",
+            "mobile_image": "shopify://shop_images/EOYS_Mob.webp",
             "video": null,
             "mobile_video": null,
             "video_poster": null,
             "mobile_video_poster": null,
             "heading": "Half Year Sale",
-            "svg_image": "shopify://shop_images/HYS_Desk.svg",
+            "svg_image": "shopify://shop_images/EOS_Sale_Desk.svg",
             "svg_size": "full",
-            "mobile_svg_image": "shopify://shop_images/HYS_Mob_e889fff6-1ff8-47df-8283-c8ca143223c3.svg",
+            "mobile_svg_image": "shopify://shop_images/EOYS_Mob_82c541ff-49ab-4bc1-b00e-ebb27dd1b779.svg",
             "heading_level": "h1",
             "heading_animation": "none",
-            "description": "",
+            "description": "*Select Styles / T&Cs Apply",
             "description_animation": "none",
             "button_label_1": "Shop All",
             "button_link_1": "shopify://collections/sale",
-            "button_label_2": "Suits from $399",
+            "button_label_2": "Suits 40% Off*",
             "button_link_2": "shopify://collections/mens-suits",
-            "button_label_3": "Sports Jackets from $259",
+            "button_label_3": "Sports Jackets 35% Off*",
             "button_link_3": "shopify://collections/sport-jackets",
-            "button_label_4": "Business Shirts from $99.95",
+            "button_label_4": "Business Shirts 30% Off*",
             "button_link_4": "shopify://collections/business-shirts",
             "horizontal_alignment": "center",
-            "vertical_alignment": "middle",
+            "vertical_alignment": "stretch",
             "mobile_horizontal_alignment": "center",
             "mobile_vertical_alignment": "bottom"
           }
@@ -100,84 +124,67 @@
         "slide_P9nnNj": {
           "disabled": false,
           "settings": {
+            "media_type": "video",
             "desktop_image": "shopify://shop_images/Suits_Of_Summer.webp",
-            "mobile_image": "shopify://shop_images/Suits_Hero_Mobile_b3d1a33f-06ea-46ce-ad1a-38596d1967fa.webp",
-            "svg_image": "shopify://shop_images/High_Season_Desk_V6.svg",
-            "mobile_svg_image": "shopify://shop_images/Suits_Mob_copy_8c148b08-e6f1-4cfe-a685-610e6a2cf771.svg",
-            "button_label_1": "Shop Lightweight Suits from $399",
-            "button_link_1": "shopify://collections/mens-suits",
+            "mobile_image": "shopify://shop_images/Suits_Hero_Mobile.webp",
+            "video": "shopify://files/videos/PJ Summer High-Desktop.mp4",
+            "mobile_video": "shopify://files/videos/SSOM Mob_Comp.mp4",
+            "svg_image": "shopify://shop_images/ASSOM_Hero_Desk_V4.svg",
+            "svg_size": "full",
+            "mobile_svg_image": "shopify://shop_images/SSOM_Mob_Top.svg",
+            "button_label_1": "Shop Summer",
+            "button_link_1": "shopify://collections/summer-25",
             "button_label_2": "",
             "button_link_2": "",
             "button_label_3": "",
             "button_link_3": "",
             "button_label_4": "",
             "button_link_4": "",
-            "vertical_alignment": "stretch"
+            "horizontal_alignment": "center",
+            "vertical_alignment": "stretch",
+            "mobile_vertical_alignment": "bottom"
           }
         }
       },
       "block_order": [
-        "slide_ddW7HK",
         "slide_HH9yBN",
-        "slide_JGebxX",
         "slide_P9nnNj"
-      ]
-    },
-    "grid_tiles_r7ifEt": {
-      "settings": {},
-      "blocks": {
-        "tile_bRm4wE": {
-          "settings": {
-            "tile_background_image": "shopify://shop_images/Polos.jpg",
-            "tile_secondary_text": "from $59.95"
-          }
-        },
-        "tile_FPGHMd": {
-          "settings": {
-            "tile_background_image": "shopify://shop_images/Sports_Jackets_V2.webp",
-            "tile_header": "SPORTS JACKETS",
-            "tile_secondary_text": "from $259",
-            "tile_link": "shopify://collections/sport-jackets"
-          }
-        },
-        "tile_WhJarW": {
-          "settings": {
-            "tile_background_image": "shopify://shop_images/Casual_Shirts_4c766827-fc56-48f6-b628-4a6d60839f43.webp",
-            "tile_header": "Casual Shirts",
-            "tile_secondary_text": "from $79",
-            "tile_link": "shopify://collections/casual-shirts"
-          }
-        }
-      },
-      "block_order": [
-        "tile_bRm4wE",
-        "tile_FPGHMd",
-        "tile_WhJarW"
       ]
     },
     "variable_column_content_svg_tBLLXD": {
       "disabled": false,
-      "settings": {},
+      "settings": {
+        "show_top_border": false,
+        "show_bottom_border": false
+      },
       "blocks": {
         "column_item_6wGj7R": {
           "settings": {
-            "image": "shopify://shop_images/Chinos_Trousers.webp",
+            "image": "shopify://shop_images/Chinos_Trousers_V2.webp",
             "image_link": "shopify://collections/bottoms",
-            "svg_icon": null,
-            "mobile_svg_icon": null,
-            "bottom_text": "Chinos & Trousers from $89.95"
+            "top_text": "",
+            "svg_icon": "shopify://shop_images/Chinos_Trousers_35d9c6b0-5f31-4e6f-980c-8be28beb94b1.svg",
+            "mobile_svg_icon": "shopify://shop_images/Chinos_Trousers_35d9c6b0-5f31-4e6f-980c-8be28beb94b1.svg",
+            "bottom_text": "from $89.95"
           }
         },
         "column_item_3WzPyc": {
           "settings": {
             "image": "shopify://shop_images/Gift_Cards_77585d07-82d1-4eff-be6f-a97de896f16e.webp",
             "image_link": "shopify://products/gift-card",
+            "top_text": "",
             "svg_icon": null,
             "mobile_svg_icon": null,
             "bottom_text": "Let Him Decide - Shop Gift Cards"
           }
         }
       }
+    },
+    "collection_slider_secondary_r6XR7q": {
+      "settings": {
+        "heading": "Half Year Sale Bestsellers"
+      },
+      "blocks": {}
     },
     "hero_primary_NeKfMz": {
       "settings": {
@@ -187,7 +194,7 @@
         "mobile_svg_image": "shopify://shop_images/Business_Essentials_Mob.svg",
         "button_label_1": "Suits from $399",
         "button_link_1": "shopify://collections/mens-suits",
-        "button_label_2": "$50 Off Selected Shirts",
+        "button_label_2": "$50 Off Business Shirts",
         "button_link_2": "shopify://collections/business-shirts",
         "button_label_3": "Ties from $59.95",
         "button_link_3": "shopify://collections/ties",
@@ -196,45 +203,19 @@
       },
       "blocks": {}
     },
-    "collection_slider_secondary_r6XR7q": {
-      "settings": {
-        "heading": "Bestsellers of Sale"
-      },
-      "blocks": {}
-    },
-    "hero_primary_zeaCqL": {
-      "disabled": true,
-      "settings": {
-        "desktop_image": "shopify://shop_images/After_Dark.webp"
-      },
-      "blocks": {}
-    },
     "hero_primary_WLbcQ7": {
       "disabled": false,
-      "settings": {},
-      "blocks": {}
-    },
-    "collection_slider_XmLf6t": {
-      "disabled": true,
       "settings": {},
       "blocks": {}
     }
   },
   "order": [
     "hero_slider_ULyNnz",
-    "grid_tiles_r7ifEt",
+    "variable_column_content_svg_YHXNd",
     "variable_column_content_svg_tBLLXD",
-    "hero_primary_NeKfMz",
-    "variable_column_content_secondary_X9KJtx",
-    "heading_with_text_9nQj7z",
     "collection_slider_secondary_r6XR7q",
-    "variable_column_content_tertiary_XwmChF",
-    "hero_primary_zeaCqL",
+    "hero_primary_NeKfMz",
     "spacer_7Rh8w",
-    "hero_primary_WLbcQ7",
-    "collection_slider_3p3hD9",
-    "variable_column_content_tertiary_qfTkVT",
-    "collection_slider_XmLf6t",
-    "featured_article_r6pY9T"
+    "hero_primary_WLbcQ7"
   ]
 }
